@@ -30,7 +30,9 @@
       "Bash(dir \"C:\\\\DEV\\\\CARF\\\\CENTRAL\" /B)",
       "Bash(dir \"C:\\\\DEV\\\\CARF\\\\PROJECTS\" /B)",
       "Bash(bun run:*)",
-      "Bash(bun add:*)"
+      "Bash(bun add:*)",
+      "Bash(git check-ignore:*)",
+      "Bash(xargs:*)"
     ]
   }
 }

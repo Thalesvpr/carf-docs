@@ -12,8 +12,8 @@ pnpm-debug.log*
 dist/
 PROJECTS/TSCORE/SRC-CODE/dist/
 
-## Docs synced (gerados)
-docs/
+## Docs synced (gerados) - apenas VitePress
+PROJECTS/WEBDOCS/SRC-CODE/docs/
 
 ## Build
 *.local
