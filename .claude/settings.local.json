@@ -52,7 +52,15 @@
       "Bash(for:*)",
       "Bash(do)",
       "Bash(echo:*)",
-      "Bash(test:*)"
+      "Bash(test:*)",
+      "Bash(chmod:*)",
+      "Bash(make:*)",
+      "Bash(docker build:*)",
+      "Bash(do echo \"\")",
+      "Bash([ -f \"themes/carf/$theme/theme.properties\" ])",
+      "Bash([ -f \"themes/carf/login/login.ftl\" ])",
+      "Bash([ -f \"themes/carf/account/account.ftl\" ])",
+      "Bash([ -f \"themes/carf/email/html/email-verification.ftl\" ])"
     ]
   }
 }
