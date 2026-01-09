@@ -48,11 +48,13 @@ export class CPF {
 
     // Validate first check digit
     const firstDigit = CPF.calculateCheckDigit(normalized.slice(0, 9), 10)
-    if (firstDigit !== parseInt(normalized[9], 10)) return false
+    const ninthDigit = normalized[9]
+    if (!ninthDigit || firstDigit !== parseInt(ninthDigit, 10)) return false
 
     // Validate second check digit
     const secondDigit = CPF.calculateCheckDigit(normalized.slice(0, 10), 11)
-    if (secondDigit !== parseInt(normalized[10], 10)) return false
+    const tenthDigit = normalized[10]
+    if (!tenthDigit || secondDigit !== parseInt(tenthDigit, 10)) return false
 
     return true
   }
@@ -75,7 +77,10 @@ export class CPF {
   private static calculateCheckDigit(digits: string, weight: number): number {
     let sum = 0
     for (let i = 0; i < digits.length; i++) {
-      sum += parseInt(digits[i], 10) * (weight - i)
+      const digit = digits[i]
+      if (digit !== undefined) {
+        sum += parseInt(digit, 10) * (weight - i)
+      }
     }
     const remainder = sum % 11
     return remainder < 2 ? 0 : 11 - remainder

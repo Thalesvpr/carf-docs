@@ -84,7 +84,8 @@ export class Email {
    * @returns Domain string (e.g., "example.com")
    */
   getDomain(): string {
-    return this.value.split('@')[1]
+    const parts = this.value.split('@')
+    return parts[1] || ''
   }
 
   /**
@@ -92,6 +93,7 @@ export class Email {
    * @returns Local part string (e.g., "user")
    */
   getLocalPart(): string {
-    return this.value.split('@')[0]
+    const parts = this.value.split('@')
+    return parts[0] || ''
   }
 }

@@ -43,11 +43,13 @@ export class CNPJ {
 
     // Validate first check digit
     const firstDigit = CNPJ.calculateCheckDigit(normalized.slice(0, 12), [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2])
-    if (firstDigit !== parseInt(normalized[12], 10)) return false
+    const twelfthDigit = normalized[12]
+    if (!twelfthDigit || firstDigit !== parseInt(twelfthDigit, 10)) return false
 
     // Validate second check digit
     const secondDigit = CNPJ.calculateCheckDigit(normalized.slice(0, 13), [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2])
-    if (secondDigit !== parseInt(normalized[13], 10)) return false
+    const thirteenthDigit = normalized[13]
+    if (!thirteenthDigit || secondDigit !== parseInt(thirteenthDigit, 10)) return false
 
     return true
   }
@@ -70,7 +72,11 @@ export class CNPJ {
   private static calculateCheckDigit(digits: string, weights: number[]): number {
     let sum = 0
     for (let i = 0; i < digits.length; i++) {
-      sum += parseInt(digits[i], 10) * weights[i]
+      const digit = digits[i]
+      const weight = weights[i]
+      if (digit !== undefined && weight !== undefined) {
+        sum += parseInt(digit, 10) * weight
+      }
     }
     const remainder = sum % 11
     return remainder < 2 ? 0 : 11 - remainder

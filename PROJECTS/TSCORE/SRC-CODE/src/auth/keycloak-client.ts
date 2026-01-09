@@ -42,6 +42,9 @@ export class KeycloakClient {
    * Start login flow (redirect to Keycloak)
    */
   login(redirectUri?: string): void {
+    if (typeof window === 'undefined') {
+      throw new Error('Login requires browser environment')
+    }
     const url = this.buildAuthorizationUrl(redirectUri)
     window.location.href = url
   }
@@ -63,6 +66,9 @@ export class KeycloakClient {
    * Logout (clear session and redirect to Keycloak logout)
    */
   async logout(redirectUri?: string): Promise<void> {
+    if (typeof window === 'undefined') {
+      throw new Error('Logout requires browser environment')
+    }
     const url = this.buildLogoutUrl(redirectUri)
     this.clearTokensFromStorage()
     this.tokens = null
@@ -120,6 +126,9 @@ export class KeycloakClient {
   // Private helper methods
 
   private buildAuthorizationUrl(redirectUri?: string): string {
+    if (typeof window === 'undefined') {
+      throw new Error('Authorization URL building requires browser environment')
+    }
     const { url, realm, clientId } = this.config
     const redirect = redirectUri || window.location.origin + '/auth/callback'
     const state = this.generateState()
@@ -143,6 +152,9 @@ export class KeycloakClient {
   }
 
   private buildLogoutUrl(redirectUri?: string): string {
+    if (typeof window === 'undefined') {
+      throw new Error('Logout URL building requires browser environment')
+    }
     const { url, realm } = this.config
     const redirect = redirectUri || window.location.origin
 
@@ -192,6 +204,9 @@ export class KeycloakClient {
     }
 
     const payload = parts[1]
+    if (!payload) {
+      throw new Error('Invalid JWT payload')
+    }
     const decoded = atob(payload.replace(/-/g, '+').replace(/_/g, '/'))
     return JSON.parse(decoded)
   }
