@@ -32,6 +32,11 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
+<<<<<<< HEAD
+=======
+        with:
+          enablement: true
+>>>>>>> 9868d51 (fix: enable Pages automatically in workflow)
 
       - name: Install dependencies
         run: cd webdocs && npm ci
