@@ -60,7 +60,8 @@
       "Bash([ -f \"themes/carf/$theme/theme.properties\" ])",
       "Bash([ -f \"themes/carf/login/login.ftl\" ])",
       "Bash([ -f \"themes/carf/account/account.ftl\" ])",
-      "Bash([ -f \"themes/carf/email/html/email-verification.ftl\" ])"
+      "Bash([ -f \"themes/carf/email/html/email-verification.ftl\" ])",
+      "Bash(Remove-Item -Path \"C:\\\\DEV\\\\CARF\\\\PROJECTS\\\\LIB\\\\TS\\\\node_modules\" -Recurse -Force)"
     ]
   }
 }
