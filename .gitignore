@@ -1,3 +1,6 @@
+## Repositórios Git Independentes (não rastrear no CENTRAL)
+PROJECTS/*/SRC-CODE/carf-*/
+
 ## Node
 node_modules/
 PROJECTS/TSCORE/node_modules/
