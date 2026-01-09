@@ -26,7 +26,10 @@
       "Bash(git rm:*)",
       "Bash(/tasks)",
       "Bash(ls:*)",
-      "Bash(bun test)"
+      "Bash(bun test)",
+      "Bash(dir \"C:\\\\DEV\\\\CARF\\\\CENTRAL\" /B)",
+      "Bash(dir \"C:\\\\DEV\\\\CARF\\\\PROJECTS\" /B)",
+      "Bash(bun run:*)"
     ]
   }
 }
