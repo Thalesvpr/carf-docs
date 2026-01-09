@@ -33,3 +33,8 @@ logs/
 ## Environment
 .env
 .env.local
+.claude/
+.obsidian/
+.temp_reports/
+CENTRAL/
+PROJECTS/
