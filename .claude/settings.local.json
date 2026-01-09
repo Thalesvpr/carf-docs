@@ -38,7 +38,17 @@
       "Bash(git -C \"C:\\\\DEV\\\\CARF\" config:*)",
       "Bash(git -C \"C:\\\\DEV\\\\CARF\" log --oneline -10)",
       "Bash(git -C \"C:\\\\DEV\\\\CARF\" remote -v)",
-      "Bash(done)"
+      "Bash(done)",
+      "Bash(git -C \"C:\\\\DEV\\\\CARF\\\\PROJECTS\\\\WEBDOCS\\\\SRC-CODE\\\\carf-webdocs\" log --oneline -20)",
+      "Bash(git -C \"C:\\\\DEV\\\\CARF\\\\PROJECTS\\\\WEBDOCS\\\\SRC-CODE\\\\carf-webdocs\" status)",
+      "Bash(git -C \"C:\\\\DEV\\\\CARF\\\\PROJECTS\\\\WEBDOCS\\\\SRC-CODE\\\\carf-webdocs\" show --name-status --pretty=\"\" b5a04f2)",
+      "Bash(git -C \"C:\\\\DEV\\\\CARF\\\\PROJECTS\\\\WEBDOCS\\\\SRC-CODE\\\\carf-webdocs\" ls-tree:*)",
+      "Bash(git -C \"C:\\\\DEV\\\\CARF\\\\PROJECTS\\\\WEBDOCS\\\\SRC-CODE\\\\carf-webdocs\" remote:*)",
+      "Bash(git -C \"C:\\\\DEV\\\\CARF\" log --all --oneline --grep=\"webdocs\")",
+      "Bash(git -C \"C:\\\\DEV\\\\CARF\\\\PROJECTS\\\\WEBDOCS\\\\SRC-CODE\\\\carf-webdocs\" show HEAD:README.md)",
+      "Bash(git -C \"C:\\\\DEV\\\\CARF\\\\PROJECTS\\\\WEBDOCS\\\\SRC-CODE\\\\carf-webdocs\" log --all --format=\"%H %s\")",
+      "Bash(git -C:*)",
+      "Bash(bun install)"
     ]
   }
 }
