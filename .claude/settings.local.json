@@ -25,7 +25,8 @@
       "Bash(dir C:DEVCARFCENTRALINTEGRATIONKEYCLOAK)",
       "Bash(git rm:*)",
       "Bash(/tasks)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(bun test)"
     ]
   }
 }
