@@ -1,0 +1,188 @@
+version: '3.8'
+
+services:
+  # PostgreSQL with PostGIS
+  postgres:
+    image: registry.example.com/carf-postgres:staging
+    container_name: carf-postgres-staging
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-carf_staging}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - backend-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Keycloak SSO
+  keycloak:
+    image: registry.example.com/carf-keycloak:staging
+    container_name: carf-keycloak-staging
+    environment:
+      KC_DB: postgres
+      KC_DB_URL_HOST: postgres
+      KC_DB_URL_DATABASE: ${KEYCLOAK_DB:-keycloak_staging}
+      KC_DB_USERNAME: ${POSTGRES_USER}
+      KC_DB_PASSWORD: ${POSTGRES_PASSWORD}
+      KC_HOSTNAME: ${KEYCLOAK_HOSTNAME:-keycloak.staging.carf.example.com}
+      KC_HTTP_ENABLED: "true"
+      KC_HEALTH_ENABLED: "true"
+      KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
+    ports:
+      - "8080:8080"
+    networks:
+      - backend-network
+      - frontend-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail http://localhost:8080/health/ready || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Redis cache
+  redis:
+    image: registry.example.com/carf-redis:staging
+    container_name: carf-redis-staging
+    networks:
+      - backend-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # RabbitMQ message broker
+  rabbitmq:
+    image: registry.example.com/carf-rabbitmq:staging
+    container_name: carf-rabbitmq-staging
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS}
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - backend-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # GEOAPI backend
+  geoapi:
+    image: registry.example.com/carf-geoapi:staging
+    container_name: carf-geoapi-staging
+    environment:
+      ASPNETCORE_ENVIRONMENT: Staging
+      DATABASE_URL: "postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}"
+      KEYCLOAK_URL: "http://keycloak:8080"
+      KEYCLOAK_REALM: "carf"
+      KEYCLOAK_CLIENT_ID: "geoapi-backend"
+      JWT_SECRET: ${JWT_SECRET}
+      REDIS_URL: "redis://redis:6379"
+      RABBITMQ_URL: "amqp://${RABBITMQ_USER}:${RABBITMQ_PASS}@rabbitmq:5672"
+      LOG_LEVEL: info
+      CORS_ORIGINS: ${CORS_ORIGINS:-https://staging.carf.example.com}
+      ENABLE_SWAGGER: "true"
+      SENTRY_DSN: ${SENTRY_DSN}
+    ports:
+      - "5000:8080"
+    networks:
+      - backend-network
+      - frontend-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+      keycloak:
+        condition: service_healthy
+      redis:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 40s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # GEOWEB frontend
+  geoweb:
+    image: registry.example.com/carf-geoweb:staging
+    container_name: carf-geoweb-staging
+    environment:
+      VITE_API_URL: "https://api.staging.carf.example.com/api"
+      VITE_KEYCLOAK_URL: "https://keycloak.staging.carf.example.com"
+      VITE_KEYCLOAK_REALM: "carf"
+      VITE_KEYCLOAK_CLIENT_ID: "geoweb-spa"
+      VITE_SENTRY_DSN: ${SENTRY_DSN_FRONTEND}
+    ports:
+      - "3000:80"
+    networks:
+      - frontend-network
+    depends_on:
+      - geoapi
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  backend-network:
+    driver: bridge
+  frontend-network:
+    driver: bridge
+
+volumes:
+  postgres-data:
+    driver: local

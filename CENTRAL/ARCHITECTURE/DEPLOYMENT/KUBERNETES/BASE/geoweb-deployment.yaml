@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: geoweb
+  labels:
+    app: geoweb
+    component: frontend
+    tier: presentation
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: geoweb
+  template:
+    metadata:
+      labels:
+        app: geoweb
+        component: frontend
+        tier: presentation
+    spec:
+      containers:
+      - name: geoweb
+        image: registry.example.com/carf-geoweb:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+        env:
+        - name: VITE_API_URL
+          valueFrom:
+            configMapKeyRef:
+              name: carf-config
+              key: api-url
+        - name: VITE_KEYCLOAK_URL
+          valueFrom:
+            configMapKeyRef:
+              name: carf-config
+              key: keycloak-public-url
+        - name: VITE_KEYCLOAK_REALM
+          valueFrom:
+            configMapKeyRef:
+              name: carf-config
+              key: keycloak-realm
+        - name: VITE_KEYCLOAK_CLIENT_ID
+          value: "geoweb-spa"
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 200m
+            memory: 256Mi
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+            scheme: HTTP
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+          successThreshold: 1
+          failureThreshold: 3
+      restartPolicy: Always

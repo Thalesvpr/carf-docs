@@ -1,0 +1,20 @@
+# PostGIS 16 with CARF initialization scripts
+FROM postgis/postgis:16-3.4
+
+# Environment variables (can be overridden at runtime)
+ENV POSTGRES_DB=carf \
+    POSTGRES_USER=carf_user
+
+# Copy initialization scripts (executed in alphabetical order)
+COPY init-scripts/ /docker-entrypoint-initdb.d/
+
+# Health check using pg_isready
+HEALTHCHECK --interval=10s --timeout=5s --retries=5 --start-period=30s \
+  CMD pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB} || exit 1
+
+# Expose PostgreSQL port
+EXPOSE 5432
+
+# Use default entrypoint from base image
+# ENTRYPOINT ["docker-entrypoint.sh"]
+# CMD ["postgres"]

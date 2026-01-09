@@ -1,0 +1,64 @@
+# docker-compose.override.yml
+# Template for local developer customizations (gitignored)
+# Copy this file to docker-compose.override.yml in your local environment
+# and modify according to your preferences
+
+version: '3.8'
+
+services:
+  # Example: Change GEOAPI port to avoid conflicts
+  # geoapi:
+  #   ports:
+  #     - "5001:8080"  # Changed from 5000 to 5001
+  #   environment:
+  #     LOG_LEVEL: debug  # Override to debug level locally
+
+  # Example: Change GEOWEB port
+  # geoweb:
+  #   ports:
+  #     - "3001:80"  # Changed from 3000 to 3001
+
+  # Example: Enable hot reload for frontend development
+  # geoweb:
+  #   volumes:
+  #     - ../../../../PROJECTS/GEOWEB/SRC-CODE/src:/app/src:ro
+  #   command: npm run dev
+
+  # Example: Add additional volumes for GEOAPI debugging
+  # geoapi:
+  #   volumes:
+  #     - ../../../../PROJECTS/GEOAPI/SRC-CODE:/src:ro
+  #   environment:
+  #     ASPNETCORE_ENVIRONMENT: Development
+
+  # Example: Enable PostgreSQL port exposure on different port
+  # postgres:
+  #   ports:
+  #     - "5433:5432"  # Expose on 5433 if 5432 is already in use
+
+  # Example: Mount custom Redis configuration
+  # redis:
+  #   volumes:
+  #     - ./custom-redis.conf:/usr/local/etc/redis/redis.conf:ro
+
+  # Example: Enable RabbitMQ management on different port
+  # rabbitmq:
+  #   ports:
+  #     - "15673:15672"  # Management UI on 15673
+
+  # Example: Add pgAdmin for database management
+  # pgadmin:
+  #   image: dpage/pgadmin4:latest
+  #   container_name: carf-pgadmin-dev
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: admin@example.com
+  #     PGADMIN_DEFAULT_PASSWORD: admin
+  #   ports:
+  #     - "5050:80"
+  #   networks:
+  #     - backend-network
+  #   depends_on:
+  #     - postgres
+
+# Developers can uncomment and modify services above as needed
+# This file should never be committed to version control

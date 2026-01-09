@@ -1,0 +1,7 @@
+# CI/CD Pipeline
+
+Pipeline CI/CD do CARF via GitHub Actions executando build/test/deploy automatizado com gates de qualidade. Build stage compilando GEOAPI (.NET 8 Release mode), bundling GEOWEB (Vite build), linting TypeScript/C# com zero warnings tolerados, e caching dependencies (NuGet, npm) reduzindo tempo build de 10min para 3min. Test stage rodando unit tests (coverage >80% obrigatório), integration tests contra banco Postgres testcontainers, e2e tests Playwright simulando fluxos críticos (login, cadastrar unidade, gerar relatório), com falha de qualquer test bloqueando pipeline. Security stage escaneando dependências vulneráveis (Dependabot alerts), análise estática SAST (SonarQube identificando SQL injection, XSS), scan imagem Docker (Trivy bloqueando high/critical CVEs), e secret scanning evitando commit de credentials. Deploy stage buildando imagem Docker taggeada (sha, semver), pushing para registry, atualizando manifests Kubernetes (kustomize substituindo image tag), e aplicando via kubectl apply com wait até rollout completo. Ambientes seguem progressão dev (auto-deploy push main) → staging (manual approval após QA) → prod (manual approval após staging validado + change request aprovado). Rollback automático se healthcheck degradar após deploy detectado via Prometheus queries (error rate >1%, latency p99 >500ms), notificações Slack alertando equipe, e post-mortem obrigatório documentando causa raiz em ADR.
+
+---
+
+**Última atualização:** 2025-12-30

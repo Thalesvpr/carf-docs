@@ -1,0 +1,7 @@
+# Clean Architecture
+
+Clean Architecture organiza GEOAPI em camadas concêntricas com dependências apontando sempre para dentro garantindo testabilidade e manutenibilidade. Domain (núcleo) contém entities (Unit, Holder, Community herdam BaseEntity), value objects imutáveis (CPF, Email, GeoPolygon), domain events (UnitCreatedEvent, HolderLinkedEvent), e exceptions de negócio (ValidationException, ConflictException), completamente puro sem dependências NuGet nem frameworks. Application orquestra use cases via CQRS com command handlers (CreateUnitCommandHandler modificando estado), query handlers (GetUnitByIdQueryHandler retornando DTOs), interfaces de portas (IUnitRepository, IEmailService, ITenantProvider), e pipelines MediatR cross-cutting (logging, validation, transaction). Infrastructure implementa adaptadores concretos (UnitRepository usando EF Core, EmailService usando SendGrid, TenantProvider extraindo de JWT claims), migrations database, configurações DI, e integrações externas (Keycloak, RabbitMQ). Gateway (API layer) traduz HTTP para comandos/queries sem lógica negócio, controllers magros delegando para MediatR, DTOs request/response mapeados via AutoMapper, e middleware tratando autenticação/autorização/exception handling. Regra de dependência: Domain não conhece ninguém, Application depende só de Domain, Infrastructure depende de Application/Domain, Gateway depende de tudo mas é thin layer substituível.
+
+---
+
+**Última atualização:** 2025-12-30

@@ -1,0 +1,12 @@
+---
+modules: [GEOAPI, GEOWEB]
+epic: compatibility
+---
+
+# US-029: Vincular Titular a Unidade
+
+Como analista, quero vincular titular a unidade para que propriedade seja documentada, onde o sistema permite estabelecer relacionamentos formais entre titulares e unidades habitacionais documentando natureza e extensão dos direitos de cada pessoa sobre cada propriedade, garantindo registro completo e rastreável da situação fundiária. O cenário principal de uso ocorre quando analista está cadastrando ou editando unidade e precisa documentar titularidade selecionando holder existente ou criando novo e então especificando detalhes do relacionamento incluindo tipo (OWNER para proprietário, TENANT para inquilino, etc.), percentual de propriedade quando há múltiplos titulares, e marcação de titular principal quando aplicável. Os critérios de aceitação incluem capacidade de selecionar holder existente através de busca por nome ou CPF/CNPJ permitindo reutilização de cadastros e evitando duplicatas, especificação de tipo de relacionamento através de enumeração incluindo OWNER (proprietário pleno), TENANT (locatário), USUFRUCTUARY (usufrutuário), POSSESSOR (posseiro) entre outros tipos juridicamente relevantes, definição de percentual de propriedade expresso em porcentagem permitindo documentar situações de copropriedade onde múltiplos titulares dividem direitos com proporções específicas, marcação através de flag booleana de "titular principal" identificando holder de referência quando há múltiplos titulares facilitando identificação de responsável primário, e permissão de múltiplos holders por unit onde mesma unidade pode ter vários titulares vinculados simultaneamente cada um com seu tipo e percentual. Esta funcionalidade é implementada pelos módulos GEOAPI (endpoint POST /api/units/{id}/holders criando registro na tabela associativa unit_holders com metadados do relacionamento) e GEOWEB (componente de gestão de titulares na página de unidade com modal de seleção e formulário de detalhes do vínculo), garantindo rastreabilidade com RF-061 (Vínculo Titular-Unidade), RF-091 (Tipos de Relacionamento) e RF-093 (Percentual de Propriedade), todos associados a UC-003 (Caso de Uso de Gestão de Titulares), onde vínculos são versionados permitindo histórico de mudanças de titularidade ao longo do tempo e validações asseguram que soma de percentuais não excede 100%.
+
+---
+
+**Última atualização:** 2025-12-30

@@ -1,0 +1,7 @@
+# Authorization Policy
+
+Política de autorização RBAC (Role-Based Access Control) do CARF controlando acesso granular por role e permissões. Roles definidos (ADMIN acesso total tenant incluindo gerenciar usuários e configurações, MANAGER gerencia equipes e aprovações sem alterar configs sistema, ANALYST cadastra e edita unidades/titulares, FISCAL aprova/rejeita unidades e processos legitimação, FIELD_AGENT cadastra apenas via mobile com aprovação obrigatória posterior, CITIZEN visualiza apenas dados próprias unidades) com hierarquia clara evitando privilege creep. Permissões granulares associadas roles (units.create, units.read, units.update, units.delete, units.approve, holders.link, reports.generate, settings.manage) verificadas em middleware antes executar operação, negando acesso se usuário não possui permissão retornando 403 Forbidden, e logando tentativas acesso negado para auditoria detectando ataques. Multi-tenancy enforcement via RLS (Row-Level Security) PostgreSQL garante queries filtram automaticamente por tenant_id extraído JWT, impossibilitando usuário Município A acessar dados Município B mesmo manipulando requests, e validação dupla (middleware + RLS) defendendo contra bypass. Princípio do menor privilégio aplicado (usuários recebem apenas permissões essenciais função), revisão trimestral permissões removendo acessos desnecessários, e segregation of duties (aprovador não pode ser mesmo que cadastrou) prevenindo fraudes.
+
+---
+
+**Última atualização:** 2025-12-30

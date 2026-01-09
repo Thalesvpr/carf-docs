@@ -1,0 +1,26 @@
+# RabbitMQ 3 with management plugin
+FROM rabbitmq:3-management-alpine
+
+# Enable essential plugins
+RUN rabbitmq-plugins enable --offline \
+    rabbitmq_management \
+    rabbitmq_shovel \
+    rabbitmq_federation \
+    rabbitmq_consistent_hash_exchange
+
+# Copy custom RabbitMQ configuration
+COPY rabbitmq.conf /etc/rabbitmq/rabbitmq.conf
+
+# Set proper permissions
+RUN chown rabbitmq:rabbitmq /etc/rabbitmq/rabbitmq.conf
+
+# Expose AMQP and Management ports
+EXPOSE 5672 15672
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --retries=3 --start-period=60s \
+  CMD rabbitmq-diagnostics ping || exit 1
+
+# Use default entrypoint from base image
+# ENTRYPOINT ["docker-entrypoint.sh"]
+# CMD ["rabbitmq-server"]

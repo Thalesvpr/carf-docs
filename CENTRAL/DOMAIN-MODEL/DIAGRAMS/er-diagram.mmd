@@ -1,0 +1,98 @@
+erDiagram
+    Tenant ||--o{ Account : "has"
+    Tenant ||--o{ Unit : "owns"
+    Tenant ||--o{ Holder : "manages"
+    Tenant ||--o{ Community : "contains"
+
+    Account ||--o{ Unit : "creates"
+    Account {
+        uuid id PK
+        uuid tenant_id FK
+        string email
+        string password_hash
+        string[] roles
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    Tenant {
+        uuid id PK
+        string name
+        string municipality
+        string state
+        json settings
+        boolean active
+        timestamp created_at
+    }
+
+    Unit ||--o{ UnitHolder : "has"
+    Unit ||--o{ Document : "attachments"
+    Unit ||--|| LegitimationRequest : "may_have"
+    Unit }o--|| Community : "belongs_to"
+    Unit {
+        uuid id PK
+        uuid tenant_id FK "RLS_FILTER"
+        uuid community_id FK
+        string code
+        json address
+        geometry(Point) coordinates "SRID_4326"
+        geometry(Polygon) polygon "SRID_4326"
+        decimal area_m2
+        string type
+        string status "ENUM"
+        uuid created_by FK
+        timestamp created_at
+        timestamp updated_at
+        bytea row_version "CONCURRENCY"
+    }
+
+    Holder ||--o{ UnitHolder : "links"
+    Holder {
+        uuid id PK
+        uuid tenant_id FK "RLS_FILTER"
+        string cpf "UNIQUE_PER_TENANT"
+        string name
+        string email
+        string phone
+        json address
+        timestamp created_at
+    }
+
+    UnitHolder {
+        uuid unit_id FK
+        uuid holder_id FK
+        boolean is_primary "ONLY_ONE_PER_UNIT"
+        decimal ownership_percentage "SUM_LE_100"
+        timestamp linked_at
+    }
+
+    Community {
+        uuid id PK
+        uuid tenant_id FK "RLS_FILTER"
+        string name
+        geometry(Polygon) polygon "SRID_4326"
+        json demographics
+        timestamp created_at
+    }
+
+    LegitimationRequest {
+        uuid id PK
+        uuid tenant_id FK "RLS_FILTER"
+        uuid unit_id FK
+        string type "REURB_S_E"
+        string status "WORKFLOW"
+        json workflow_history
+        timestamp initiated_at
+        timestamp completed_at
+    }
+
+    Document {
+        uuid id PK
+        uuid entity_id FK
+        string entity_type
+        string document_type
+        string file_name
+        string storage_url
+        integer file_size_bytes
+        timestamp uploaded_at
+    }

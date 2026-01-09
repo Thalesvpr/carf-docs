@@ -1,0 +1,13 @@
+# Holder (Titular)
+
+Entidade representando pessoa física titular ocupante ou interessado em unidade habitacional armazenando dados pessoais para processo de regularização fundiária conforme requisitos da Lei 13465/2017 e LGPD. Campos conceituais incluem identificador único global, CPF brasileiro único nacionalmente validado com dígitos verificadores, nome completo da pessoa, nome social opcional, data de nascimento para cálculo de idade e maioridade, sexo ou gênero, estado civil (solteiro casado divorciado viúvo união estável), nacionalidade e naturalidade, RG número e órgão emissor, email para contato e notificações, telefone celular com DDD brasileiro, renda mensal estimada ou faixa de renda, profissão ou ocupação, escolaridade, número de dependentes, se possui deficiência e tipo, tempo de ocupação no imóvel em anos, se reside atualmente na unidade, observações textuais adicionais, foto do documento de identidade, foto pessoal, e metadados de auditoria. Relacionamentos incluem está vinculado a múltiplas Units (N:N via UnitHolder especificando tipo de vínculo proprietário cônjuge morador procurador herdeiro e percentual de propriedade quando aplicável), possui múltiplos Documents anexos (1:N documentos pessoais RG CPF comprovante residência contratos), e possui múltiplas Annotations anotações (1:N observações sobre titular). Regras de negócio estabelecem que CPF deve ser único no sistema validado com algoritmo de dígitos verificadores formato 11 dígitos numéricos, nome deve ter mínimo 3 caracteres, data de nascimento deve resultar em idade entre 0 e 150 anos, email quando preenchido deve seguir formato RFC 5322 válido, telefone deve seguir formato brasileiro com DDD 2 dígitos e número 8 ou 9 dígitos, ao menos um Holder de cada Unit deve ter tipo PROPRIETARIO antes de aprovação de legitimação, soma de percentuais de propriedade de todos proprietários de uma Unit não deve exceder 100% mas pode ser menor se propriedade parcialmente conhecida, CPF é campo sensível LGPD exigindo criptografia em repouso e logs de acesso para auditoria, dados pessoais têm retenção limitada devendo ser anonimizados ou deletados após conclusão de processo ou período legal, e titular pode solicitar portabilidade de dados recebendo export completo em formato estruturado JSON ou PDF.
+
+**Implementações por projeto:**
+- Backend .NET: `PROJECTS/GEOAPI/LAYERS/DOMAIN/ENTITIES/03-holder.md`
+- Frontend React: `PROJECTS/GEOWEB/MODELS/ENTITIES/holder.ts`
+- Mobile React Native: `PROJECTS/REURBCAD/MODELS/ENTITIES/holder.ts`
+- Plugin GIS Python: `PROJECTS/GEOGIS/MODELS/holder.py`
+
+---
+
+**Última atualização:** 2025-01-05

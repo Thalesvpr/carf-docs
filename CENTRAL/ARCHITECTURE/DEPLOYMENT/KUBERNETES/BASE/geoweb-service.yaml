@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: geoweb-service
+  labels:
+    app: geoweb
+    component: frontend
+spec:
+  type: ClusterIP
+  selector:
+    app: geoweb
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 80
+  sessionAffinity: None

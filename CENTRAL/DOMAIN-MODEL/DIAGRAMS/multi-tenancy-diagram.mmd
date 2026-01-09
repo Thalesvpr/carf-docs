@@ -1,0 +1,52 @@
+graph LR
+    User[User GEOWEB] -->|HTTP Request| Gateway[GEOAPI Gateway<br/>Controller]
+    Gateway -->|JWT Header| Middleware[JWT Validation<br/>Middleware]
+
+    Middleware -->|Extract Claims| Claims["JWT Claims:<br/>- sub (user_id)<br/>- email<br/>- roles<br/>- tenant_id"]
+
+    Claims -->|Set Session| DbContext[EF Core<br/>DbContext]
+
+    DbContext -->|"SET app.current_tenant"| SessionVar["PostgreSQL<br/>Session Variable<br/>current_setting('app.current_tenant')"]
+
+    SessionVar -->|Execute| Query["SQL Query:<br/>SELECT * FROM units<br/>WHERE status = 'APPROVED'"]
+
+    Query -->|Intercept| RLS["RLS Policy<br/>units_tenant_isolation"]
+
+    RLS -->|Auto-add Filter| FilteredQuery["SELECT * FROM units<br/>WHERE status = 'APPROVED'<br/>AND tenant_id = current_setting(...)::uuid"]
+
+    FilteredQuery -->|Return| Results["Only Tenant's Rows<br/>Isolation Guaranteed"]
+
+    Results --> DbContext
+    DbContext --> Gateway
+    Gateway --> User
+
+    subgraph "PostgreSQL Database"
+        SessionVar
+        Query
+        RLS
+        FilteredQuery
+
+        RLSPolicy["CREATE POLICY<br/>units_tenant_isolation<br/>ON units<br/>USING (tenant_id = current_setting('app.current_tenant')::uuid)"]
+
+        EnableRLS["ALTER TABLE units<br/>ENABLE ROW LEVEL SECURITY"]
+
+        RLSPolicy -.->|Applied| RLS
+        EnableRLS -.->|Enables| RLS
+    end
+
+    subgraph "Security Layers"
+        Layer1["Layer 1:<br/>Middleware validates<br/>tenant_id claim<br/>matches resources"]
+
+        Layer2["Layer 2:<br/>RLS PostgreSQL<br/>kernel-level filtering<br/>Defense-in-depth"]
+
+        Layer1 -.->|First Check| Middleware
+        Layer2 -.->|Second Check| RLS
+    end
+
+    note1["Defense-in-Depth:<br/>- Middleware validation<br/>- RLS database kernel<br/>- Impossible to bypass<br/>- SQL injection safe<br/>- Audit logs tenant_id"]
+
+    style RLS fill:#ffcccc
+    style SessionVar fill:#ccffcc
+    style FilteredQuery fill:#ccccff
+    style Layer1 fill:#ffffcc
+    style Layer2 fill:#ffccff

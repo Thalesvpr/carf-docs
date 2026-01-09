@@ -1,0 +1,170 @@
+version: '3.8'
+
+services:
+  # PostgreSQL with PostGIS
+  postgres:
+    build:
+      context: ../../../../PROJECTS/GEOAPI/SRC-CODE
+      dockerfile: ../../CENTRAL/ARCHITECTURE/DEPLOYMENT/DOCKER/DOCKERFILES/Dockerfile.postgres
+    container_name: carf-postgres-dev
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-carf_dev}
+      POSTGRES_USER: ${POSTGRES_USER:-dev_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-dev_password}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./init-scripts:/docker-entrypoint-initdb.d:ro
+    ports:
+      - "5432:5432"
+    networks:
+      - backend-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-dev_user} -d ${POSTGRES_DB:-carf_dev}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # Keycloak SSO
+  keycloak:
+    build:
+      context: ../../KEYCLOAK
+      dockerfile: ../DEPLOYMENT/DOCKER/DOCKERFILES/Dockerfile.keycloak
+    container_name: carf-keycloak-dev
+    environment:
+      KC_DB: postgres
+      KC_DB_URL_HOST: postgres
+      KC_DB_URL_DATABASE: ${KEYCLOAK_DB:-keycloak_dev}
+      KC_DB_USERNAME: ${POSTGRES_USER:-dev_user}
+      KC_DB_PASSWORD: ${POSTGRES_PASSWORD:-dev_password}
+      KC_HOSTNAME: localhost
+      KC_HTTP_ENABLED: "true"
+      KC_HEALTH_ENABLED: "true"
+      KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN:-admin}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD:-admin}
+    ports:
+      - "8080:8080"
+    networks:
+      - backend-network
+      - frontend-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail http://localhost:8080/health/ready || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # Redis cache
+  redis:
+    build:
+      context: ../../CACHE
+      dockerfile: ../DEPLOYMENT/DOCKER/DOCKERFILES/Dockerfile.redis
+    container_name: carf-redis-dev
+    ports:
+      - "6379:6379"
+    networks:
+      - backend-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+
+  # RabbitMQ message broker
+  rabbitmq:
+    build:
+      context: ../../MESSAGING
+      dockerfile: ../DEPLOYMENT/DOCKER/DOCKERFILES/Dockerfile.rabbitmq
+    container_name: carf-rabbitmq-dev
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-guest}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS:-guest}
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - backend-network
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # GEOAPI backend
+  geoapi:
+    build:
+      context: ../../../../PROJECTS/GEOAPI/SRC-CODE
+      dockerfile: ../../../CENTRAL/ARCHITECTURE/DEPLOYMENT/DOCKER/DOCKERFILES/Dockerfile.geoapi
+    container_name: carf-geoapi-dev
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      DATABASE_URL: "postgres://${POSTGRES_USER:-dev_user}:${POSTGRES_PASSWORD:-dev_password}@postgres:5432/${POSTGRES_DB:-carf_dev}"
+      KEYCLOAK_URL: "http://keycloak:8080"
+      KEYCLOAK_REALM: "carf"
+      KEYCLOAK_CLIENT_ID: "geoapi-backend"
+      JWT_SECRET: ${JWT_SECRET:-dev-secret-256-bit-key-change-in-production}
+      REDIS_URL: "redis://redis:6379"
+      RABBITMQ_URL: "amqp://${RABBITMQ_USER:-guest}:${RABBITMQ_PASS:-guest}@rabbitmq:5672"
+      LOG_LEVEL: debug
+      CORS_ORIGINS: "http://localhost:3000"
+      ENABLE_SWAGGER: "true"
+    ports:
+      - "5000:8080"
+    networks:
+      - backend-network
+      - frontend-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+      keycloak:
+        condition: service_healthy
+      redis:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
+    volumes:
+      # Hot reload for development (optional - requires watch capability)
+      - ../../../../PROJECTS/GEOAPI/SRC-CODE:/src:ro
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 40s
+
+  # GEOWEB frontend
+  geoweb:
+    build:
+      context: ../../../../PROJECTS/GEOWEB/SRC-CODE
+      dockerfile: ../../../CENTRAL/ARCHITECTURE/DEPLOYMENT/DOCKER/DOCKERFILES/Dockerfile.geoweb
+    container_name: carf-geoweb-dev
+    environment:
+      VITE_API_URL: "http://localhost:5000/api"
+      VITE_KEYCLOAK_URL: "http://localhost:8080"
+      VITE_KEYCLOAK_REALM: "carf"
+      VITE_KEYCLOAK_CLIENT_ID: "geoweb-spa"
+    ports:
+      - "3000:80"
+    networks:
+      - frontend-network
+    depends_on:
+      - geoapi
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+networks:
+  backend-network:
+    driver: bridge
+  frontend-network:
+    driver: bridge
+
+volumes:
+  postgres-data:
+    driver: local

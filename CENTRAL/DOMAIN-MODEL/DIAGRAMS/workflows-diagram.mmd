@@ -1,0 +1,79 @@
+stateDiagram-v2
+    [*] --> Draft: Technical creates unit offline
+
+    state "Unit Status Workflow" as UnitWorkflow {
+        Draft --> Pending_Analysis: Technical syncs & submits
+        Pending_Analysis --> In_Review: Fiscal initiates review
+        In_Review --> Approved: Fiscal approves
+        In_Review --> Rejected: Fiscal rejects with comments
+        In_Review --> Requires_Changes: Fiscal requests corrections
+
+        Requires_Changes --> In_Review: Technical corrects & resubmits
+        Rejected --> Draft: Technical can edit & retry
+        Approved --> [*]: Unit active
+
+        note right of Approved
+            UnitApprovedEvent dispatched
+            - EmailNotificationHandler
+            - AuditLogHandler
+            - CacheInvalidationHandler
+        end note
+
+        note right of In_Review
+            Role: FISCAL only
+            Validates conformity with
+            municipal regulations
+        end note
+    }
+
+    state "Legitimation Process Workflow" as LegitimationWorkflow {
+        [*] --> Initiated: Manager creates process
+
+        Initiated --> Under_Review: Fiscal analyzes docs
+        Under_Review --> Approved_Legitimation: Fiscal approves
+        Under_Review --> Rejected_Legitimation: Fiscal rejects with legal basis
+        Under_Review --> Pending_Documentation: Fiscal requests additional docs
+
+        Pending_Documentation --> Under_Review: Holder submits docs
+        Approved_Legitimation --> Certificate_Issued: Certificate generated & digitally signed
+        Certificate_Issued --> [*]: Process complete
+
+        note right of Certificate_Issued
+            LegitimationCompletedEvent
+            - Generate PDF certificate
+            - Register property title
+            - Notify municipality
+            - Archive documents
+        end note
+
+        note right of Under_Review
+            Role: FISCAL
+            Validates:
+            - Legal documentation
+            - Ownership proofs
+            - Municipal approval
+            - Compliance Lei 13.465
+        end note
+    }
+
+    state "Offline Sync Workflow" as SyncWorkflow {
+        [*] --> Local_Draft: Create offline
+        Local_Draft --> Pending_Upload: Mark for sync
+        Pending_Upload --> Uploading: Network available
+        Uploading --> Conflict: Server version differs
+        Uploading --> Synced: Success
+        Conflict --> Resolving: User chooses resolution
+        Resolving --> Synced: Conflict resolved
+        Synced --> [*]: Completed
+
+        note right of Conflict
+            Three-way merge:
+            - Baseline (last sync)
+            - Local changes
+            - Server changes
+            User chooses:
+            - Server wins
+            - Local wins
+            - Manual merge
+        end note
+    }

@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: carf-config
+  labels:
+    app: carf
+    component: config
+data:
+  # GEOAPI Backend Configuration
+  keycloak-url: "http://keycloak-service:8080"
+  keycloak-realm: "carf"
+  keycloak-client-id: "geoapi-backend"
+  keycloak-hostname: "keycloak.carf.example.com"
+  redis-url: "redis://redis-service:6379"
+  log-level: "info"
+  cors-origins: "https://carf.example.com"
+
+  # GEOWEB Frontend Configuration
+  api-url: "https://api.carf.example.com/api"
+  keycloak-public-url: "https://keycloak.carf.example.com"
+
+  # Feature Flags
+  enable-swagger: "false"
+  enable-audit-log: "true"
+  feature-flag-offline-sync: "true"
+
+  # Timeouts and Limits
+  database-command-timeout: "60"
+  api-timeout-ms: "60000"
+  file-upload-max-size-mb: "50"
+
+  # External APIs
+  geocoding-api-url: "https://nominatim.openstreetmap.org"
+
+  # SMTP (optional, leave empty to disable)
+  smtp-host: ""
+  smtp-port: "587"
+  smtp-from-email: "noreply@carf.example.com"
+
+  # S3/Storage
+  s3-bucket-name: "carf-prod-storage"
+  s3-region: "us-east-1"

@@ -1,0 +1,200 @@
+# Polyrepo Strategy
+
+Estratégia polyrepo do CARF com **6 repositórios Git independentes** permitindo deploy/versionamento/ownership separados por equipe especializada.
+
+## Repositórios
+
+| Repositório | Descrição | Ownership | URL |
+|-------------|-----------|-----------|-----|
+| **carf-docs** | Documentação central (SSOT) | Tech Writers | https://github.com/Thalesvpr/carf-docs |
+| **carf-geoapi** | Backend .NET 9 | Backend Team | https://github.com/Thalesvpr/carf-geoapi |
+| **carf-geoweb** | Frontend React | Frontend Team | https://github.com/Thalesvpr/carf-geoweb |
+| **carf-reurbcad** | Mobile React Native | Mobile Team | https://github.com/Thalesvpr/carf-reurbcad |
+| **carf-geogis** | Plugin QGIS Python | GIS Team | https://github.com/Thalesvpr/carf-geogis |
+| **carf-webdocs** | Portal VitePress | Docs Team | https://github.com/Thalesvpr/carf-webdocs |
+
+## Vantagens
+
+- **Deploys independentes:** Hotfix no backend sem rebuild do frontend
+- **Ownership claro:** Cada equipe responsável por seu repositório
+- **CI/CD otimizado:** Pipeline roda apenas no repo modificado
+- **Onboarding focado:** Dev frontend clona apenas geoweb, backend apenas geoapi
+- **Controle de acesso:** Permissões granulares por repositório no GitHub
+- **Histórico limpo:** Commits organizados por contexto de negócio
+
+## Desvantagens e Mitigações
+
+| Desvantagem | Mitigação |
+|-------------|-----------|
+| Coordenação de releases complexa | Usar `compatibility-matrix.md` versionando combinações testadas |
+| Code sharing via packages | Criar pacotes NPM/NuGet internos quando necessário |
+| Dependency hell entre repos | Versionamento semântico estrito + renovate/dependabot |
+| Mudanças cross-repo difíceis | PRs coordenados + feature flags para rollout gradual |
+
+Se o projeto crescer muito, considerar migração para **monorepo** com tooling (Nx/Turborepo).
+
+## Setup Local
+
+### Estrutura de Diretórios
+
+Cada repositório de código deve ser clonado na pasta `SRC-CODE` correspondente dentro de `PROJECTS/` para:
+- Manter organização consistente
+- Permitir `.gitignore` das pastas de código
+- Evitar conflitos entre repo de documentação e repos de implementação
+
+```
+carf-docs/                          # Repositório de documentação (este)
+├── CENTRAL/                        # SSOT
+├── PROJECTS/
+│   ├── GEOAPI/
+│   │   ├── DOCS/                   # Docs específicas do backend
+│   │   └── SRC-CODE/               # → git clone carf-geoapi aqui
+│   ├── GEOWEB/
+│   │   ├── DOCS/                   # Docs específicas do frontend
+│   │   └── SRC-CODE/               # → git clone carf-geoweb aqui
+│   ├── REURBCAD/
+│   │   ├── DOCS/                   # Docs específicas do mobile
+│   │   └── SRC-CODE/               # → git clone carf-reurbcad aqui
+│   ├── GEOGIS/
+│   │   ├── DOCS/                   # Docs específicas do plugin
+│   │   └── SRC-CODE/               # → git clone carf-geogis aqui
+│   └── WEBDOCS/
+│       ├── DOCS/                   # Docs específicas do portal
+│       └── SRC-CODE/               # → git clone carf-webdocs aqui
+└── DEVELOPMENT/
+```
+
+### Comandos de Clone
+
+**Passo 1:** Clone o repositório de documentação primeiro:
+
+```bash
+git clone https://github.com/Thalesvpr/carf-docs.git
+cd carf-docs
+```
+
+**Passo 2:** Clone apenas os repositórios que você precisa:
+
+```bash
+# Backend Developer (Backend Team)
+git clone https://github.com/Thalesvpr/carf-geoapi.git PROJECTS/GEOAPI/SRC-CODE
+
+# Frontend Developer (Frontend Team)
+git clone https://github.com/Thalesvpr/carf-geoweb.git PROJECTS/GEOWEB/SRC-CODE
+
+# Mobile Developer (Mobile Team)
+git clone https://github.com/Thalesvpr/carf-reurbcad.git PROJECTS/REURBCAD/SRC-CODE
+
+# GIS Developer (GIS Team)
+git clone https://github.com/Thalesvpr/carf-geogis.git PROJECTS/GEOGIS/SRC-CODE
+
+# Documentation Team
+git clone https://github.com/Thalesvpr/carf-webdocs.git PROJECTS/WEBDOCS/SRC-CODE
+```
+
+**Passo 3:** Acesse o README específico de cada projeto para instruções de build/run/test:
+
+- Backend: `PROJECTS/GEOAPI/SRC-CODE/README.md`
+- Frontend: `PROJECTS/GEOWEB/SRC-CODE/README.md`
+- Mobile: `PROJECTS/REURBCAD/SRC-CODE/README.md`
+- QGIS Plugin: `PROJECTS/GEOGIS/SRC-CODE/README.md`
+- Docs Portal: `PROJECTS/WEBDOCS/SRC-CODE/README.md`
+
+### .gitignore
+
+As pastas `SRC-CODE/` estão no `.gitignore` do repositório `carf-docs`, permitindo que:
+- Cada desenvolvedor clone apenas os repositórios necessários
+- Não haja conflitos entre repositórios aninhados
+- Histórico Git da documentação permaneça limpo
+
+### Exemplos de Uso por Perfil
+
+**Backend Developer:**
+```bash
+git clone https://github.com/Thalesvpr/carf-docs.git
+cd carf-docs
+git clone https://github.com/Thalesvpr/carf-geoapi.git PROJECTS/GEOAPI/SRC-CODE
+# Trabalha apenas no backend, ignora frontend/mobile/plugin
+```
+
+**Frontend Developer:**
+```bash
+git clone https://github.com/Thalesvpr/carf-docs.git
+cd carf-docs
+git clone https://github.com/Thalesvpr/carf-geoweb.git PROJECTS/GEOWEB/SRC-CODE
+# Trabalha apenas no frontend, ignora backend/mobile/plugin
+```
+
+**Full Stack Developer:**
+```bash
+git clone https://github.com/Thalesvpr/carf-docs.git
+cd carf-docs
+git clone https://github.com/Thalesvpr/carf-geoapi.git PROJECTS/GEOAPI/SRC-CODE
+git clone https://github.com/Thalesvpr/carf-geoweb.git PROJECTS/GEOWEB/SRC-CODE
+# Trabalha em backend e frontend, ignora mobile/plugin
+```
+
+**Tech Lead / Arquiteto:**
+```bash
+git clone https://github.com/Thalesvpr/carf-docs.git
+cd carf-docs
+# Clona todos os repositórios
+git clone https://github.com/Thalesvpr/carf-geoapi.git PROJECTS/GEOAPI/SRC-CODE
+git clone https://github.com/Thalesvpr/carf-geoweb.git PROJECTS/GEOWEB/SRC-CODE
+git clone https://github.com/Thalesvpr/carf-reurbcad.git PROJECTS/REURBCAD/SRC-CODE
+git clone https://github.com/Thalesvpr/carf-geogis.git PROJECTS/GEOGIS/SRC-CODE
+git clone https://github.com/Thalesvpr/carf-webdocs.git PROJECTS/WEBDOCS/SRC-CODE
+```
+
+## Workflow de Trabalho
+
+### Trabalhando em um Repositório Específico
+
+```bash
+# Entre na pasta SRC-CODE do projeto
+cd PROJECTS/GEOAPI/SRC-CODE
+
+# Trabalhe normalmente com Git
+git checkout -b feature/nova-funcionalidade
+git add .
+git commit -m "feat: adiciona nova funcionalidade"
+git push origin feature/nova-funcionalidade
+
+# Volte para a raiz da documentação
+cd ../../..
+```
+
+### Atualizando Documentação
+
+```bash
+# Na raiz do carf-docs
+git checkout -b docs/atualiza-requisito
+# Edite arquivos em CENTRAL/, PROJECTS/, etc.
+git add .
+git commit -m "docs: atualiza requisito RF-001"
+git push origin docs/atualiza-requisito
+```
+
+### Sincronizando Mudanças
+
+```bash
+# Atualizar documentação
+git pull origin main
+
+# Atualizar cada repositório de código
+cd PROJECTS/GEOAPI/SRC-CODE && git pull origin main && cd ../../..
+cd PROJECTS/GEOWEB/SRC-CODE && git pull origin main && cd ../../..
+# Repita para outros repositórios conforme necessário
+```
+
+## Compatibilidade entre Repositórios
+
+Consulte o arquivo `CENTRAL/VERSIONING/GIT/06-release-coordination.md` para:
+- Matriz de compatibilidade de versões
+- Processo de coordenação de releases
+- Estratégia de versionamento semântico
+- Procedimentos de hotfix coordenados
+
+---
+
+**Última atualização:** 2026-01-08

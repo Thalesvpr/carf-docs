@@ -1,0 +1,63 @@
+graph TD
+    subgraph UnitAggregate["Unit Aggregate (Root)"]
+        Unit["Unit<br/>Aggregate Root"]
+        Unit --> UnitHolders["Collection&lt;UnitHolder&gt;"]
+        Unit --> Documents["Collection&lt;Document&gt;"]
+        Unit --> Annotations["Collection&lt;Annotation&gt;"]
+        Unit --> SurveyPoints["Collection&lt;SurveyPoint&gt;"]
+
+        Unit -.->|Invariants| Inv1["Min 1 Holder"]
+        Unit -.->|Invariants| Inv2["Ownership ≤ 100%"]
+        Unit -.->|Invariants| Inv3["Only 1 Primary"]
+        Unit -.->|Methods| M1["AddHolder()"]
+        Unit -.->|Methods| M2["RemoveHolder()"]
+        Unit -.->|Methods| M3["ChangeStatus()"]
+        Unit -.->|Events| E1["UnitCreatedEvent"]
+        Unit -.->|Events| E2["UnitApprovedEvent"]
+    end
+
+    subgraph CommunityAggregate["Community Aggregate (Root)"]
+        Community["Community<br/>Aggregate Root"]
+        Community --> Blocks["Collection&lt;Block&gt;"]
+        Community --> Authorizations["Collection&lt;Authorization&gt;"]
+        Community --> CommunityDocs["Collection&lt;Document&gt;"]
+
+        Community -.->|Invariants| CInv1["Min 1 Authorization"]
+        Community -.->|Invariants| CInv2["Blocks within boundary"]
+        Community -.->|Invariants| CInv3["Municipality required"]
+        Community -.->|Methods| CM1["AddBlock()"]
+        Community -.->|Methods| CM2["RemoveBlock()"]
+        Community -.->|Events| CE1["CommunityCreatedEvent"]
+    end
+
+    subgraph LegitimationAggregate["Legitimation Aggregate (Root)"]
+        Legitimation["LegitimationRequest<br/>Aggregate Root"]
+        Legitimation --> Responses["Collection&lt;Response&gt;"]
+        Legitimation --> Certificate["Certificate"]
+        Legitimation --> Memorial["Memorial"]
+        Legitimation --> Plan["UrbanisticPlan"]
+        Legitimation --> LegDocs["Collection&lt;Document&gt;"]
+
+        Legitimation -.->|Invariants| LInv1["Documentation required"]
+        Legitimation -.->|Invariants| LInv2["Certificate only after approval"]
+        Legitimation -.->|Invariants| LInv3["Objections resolved before finalize"]
+        Legitimation -.->|Methods| LM1["SubmitResponse()"]
+        Legitimation -.->|Methods| LM2["ApproveCertificate()"]
+        Legitimation -.->|Events| LE1["LegitimationApprovedEvent"]
+    end
+
+    %% References between aggregates (by ID only, not embedded)
+    Unit -.->|"references<br/>(community_id)"| Community
+    Legitimation -.->|"references<br/>(unit_id)"| Unit
+
+    %% Inter-aggregate communication via Domain Events
+    Unit -.->|"Domain Events<br/>via MediatR"| EventBus["MediatR<br/>Event Bus"]
+    Community -.->|"Domain Events"| EventBus
+    Legitimation -.->|"Domain Events"| EventBus
+
+    EventBus --> Handlers["Event Handlers<br/>EmailNotificationHandler<br/>AuditLogHandler<br/>CacheInvalidationHandler"]
+
+    style Unit fill:#e1f5ff
+    style Community fill:#fff3e0
+    style Legitimation fill:#f3e5f5
+    style EventBus fill:#e8f5e9

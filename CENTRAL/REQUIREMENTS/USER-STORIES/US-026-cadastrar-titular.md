@@ -1,0 +1,12 @@
+---
+modules: [GEOAPI, GEOWEB, REURBCAD]
+epic: compatibility
+---
+
+# US-026: Cadastrar Titular
+
+Como analista, quero cadastrar titular (holder) de unidade para que direitos de posse sejam registrados, onde o sistema permite documentar pessoas físicas ou jurídicas que possuem direitos sobre unidades habitacionais incluindo proprietários, posseiros ou ocupantes, garantindo registro completo de informações identificadoras e documentais necessárias para processos de regularização fundiária. O cenário principal de uso inicia quando um analista precisa registrar um novo titular e acessa formulário de cadastro onde primeiro seleciona tipo de pessoa (Física ou Jurídica) que determina quais campos serão apresentados, permitindo então preencher informações apropriadas sendo para Pessoa Física dados como nome completo, CPF, RG e data de nascimento, ou para Pessoa Jurídica razão social e CNPJ, com opção de incluir endereço completo como informação complementar. Os critérios de aceitação incluem seleção inicial de tipo sendo Pessoa Física ou Pessoa Jurídica que adapta formulário dinamicamente, campos obrigatórios para Pessoa Física incluindo nome completo, CPF validado quanto a formato e dígitos verificadores, RG e data de nascimento em formato válido, campos obrigatórios para Pessoa Jurídica incluindo razão social e CNPJ validado quanto a formato e dígitos verificadores conforme algoritmo oficial, validação automática de CPF e CNPJ onde sistema verifica não apenas formato mas também validade dos dígitos verificadores rejeitando documentos inválidos, e endereço como campo opcional permitindo captura de logradouro, número, complemento, bairro, cidade e CEP quando disponível. Esta funcionalidade é implementada pelos módulos GEOAPI (endpoint POST /api/holders com validações de CPF/CNPJ e regras de negócio) e GEOWEB (formulário dinâmico de titular com máscaras de entrada e validação client-side), garantindo rastreabilidade com RF-084 (Cadastro de Titulares Pessoa Física), RF-090 (Cadastro de Titulares Pessoa Jurídica) e UC-003 (Caso de Uso de Gestão de Titulares), onde titulares são criados no contexto do tenant e podem ser vinculados a múltiplas unidades, incluindo detecção de duplicatas baseada em CPF/CNPJ para evitar registros redundantes.
+
+---
+
+**Última atualização:** 2025-12-30

@@ -1,0 +1,67 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+metadata:
+  name: carf-dev
+
+# Base configuration to build upon
+bases:
+  - ../../BASE
+
+# Override namespace for dev environment
+namespace: carf-dev
+
+# Add dev prefix to all resources
+namePrefix: dev-
+
+# Common labels for dev environment
+commonLabels:
+  environment: dev
+  tier: development
+
+# Override replica counts for dev (reduce resources)
+replicas:
+  - name: geoapi
+    count: 1
+  - name: geoweb
+    count: 1
+  - name: keycloak
+    count: 1
+
+# Override images with dev tags
+images:
+  - name: registry.example.com/carf-geoapi
+    newTag: dev-latest
+  - name: registry.example.com/carf-geoweb
+    newTag: dev-latest
+
+# Patches to reduce resource requirements for dev
+patches:
+  - path: replica-patch.yaml
+  - path: resource-patch.yaml
+
+# ConfigMap overrides for dev environment
+configMapGenerator:
+  - name: carf-config
+    behavior: merge
+    literals:
+      - log-level=debug
+      - enable-swagger=true
+      - cors-origins=http://localhost:3000,http://dev.carf.internal
+      - api-url=http://dev-geoapi-service/api
+      - keycloak-public-url=http://dev-keycloak-service:8080
+      - keycloak-hostname=dev-keycloak.carf.internal
+
+# Secret overrides for dev (still use placeholders, replace at deployment)
+secretGenerator:
+  - name: carf-secrets
+    behavior: replace
+    literals:
+      - postgres-user=dev_user
+      - postgres-password=dev_password_change_me
+      - jwt-secret=dev-jwt-secret-base64-change-me
+      - rabbitmq-user=dev
+      - rabbitmq-pass=dev_password_change_me
+      - keycloak-admin-password=admin_dev
+      - database-url=postgres://dev_user:dev_password_change_me@dev-postgres-0.dev-postgres-headless:5432/carf
+      - rabbitmq-url=amqp://dev:dev_password_change_me@dev-rabbitmq-service:5672

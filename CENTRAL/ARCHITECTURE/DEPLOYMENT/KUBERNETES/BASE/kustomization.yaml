@@ -1,0 +1,51 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+metadata:
+  name: carf-base
+
+namespace: carf-system
+
+commonLabels:
+  project: carf
+  managed-by: kustomize
+
+resources:
+  - geoapi-deployment.yaml
+  - geoapi-service.yaml
+  - geoapi-ingress.yaml
+  - geoweb-deployment.yaml
+  - geoweb-service.yaml
+  - postgres-statefulset.yaml
+  - keycloak-deployment.yaml
+  - redis-deployment.yaml
+  - rabbitmq-deployment.yaml
+  - configmap-template.yaml
+  - secret-template.yaml
+
+# Images can be overridden in overlays
+images:
+  - name: registry.example.com/carf-geoapi
+    newTag: latest
+  - name: registry.example.com/carf-geoweb
+    newTag: latest
+
+# ConfigMap generator (can be overridden in overlays)
+configMapGenerator:
+  - name: carf-config
+    literals:
+      - log-level=info
+      - cors-origins=https://carf.example.com
+
+# Secret generator placeholder (use external secrets in production)
+secretGenerator:
+  - name: carf-secrets
+    literals:
+      - postgres-user=placeholder
+      - postgres-password=placeholder
+      - jwt-secret=placeholder
+      - rabbitmq-user=placeholder
+      - rabbitmq-pass=placeholder
+      - keycloak-admin-password=placeholder
+      - database-url=placeholder
+      - rabbitmq-url=placeholder

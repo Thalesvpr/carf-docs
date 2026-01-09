@@ -1,0 +1,67 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+metadata:
+  name: carf-prod
+
+# Base configuration to build upon
+bases:
+  - ../../BASE
+
+# Override namespace for prod environment
+namespace: carf-prod
+
+# Common labels for production environment
+commonLabels:
+  environment: prod
+  tier: production
+
+# Override replica counts for production (high availability)
+replicas:
+  - name: geoapi
+    count: 3
+  - name: geoweb
+    count: 2
+  - name: keycloak
+    count: 2
+
+# Override images with specific semver tags (never use 'latest' in prod)
+images:
+  - name: registry.example.com/carf-geoapi
+    newTag: v1.2.3
+  - name: registry.example.com/carf-geoweb
+    newTag: v1.2.3
+
+# Patches for production configuration
+patches:
+  - path: replica-patch.yaml
+  - path: resource-patch.yaml
+  - path: hpa-patch.yaml
+  - path: pdb-patch.yaml
+
+# ConfigMap overrides for production environment
+configMapGenerator:
+  - name: carf-config
+    behavior: merge
+    literals:
+      - log-level=warn
+      - enable-swagger=false
+      - cors-origins=https://carf.example.com
+      - api-url=https://api.carf.example.com/api
+      - keycloak-public-url=https://keycloak.carf.example.com
+      - keycloak-hostname=keycloak.carf.example.com
+      - enable-response-compression=true
+      - enable-audit-log=true
+
+# Secret configuration (use External Secrets Operator in production)
+# Do NOT use secretGenerator with literal values in production
+# Instead, reference external secrets from Azure Key Vault or AWS Secrets Manager
+# Uncomment and configure External Secrets Operator:
+#
+# secretGenerator:
+#   - name: carf-secrets
+#     behavior: replace
+#     files:
+#       - postgres-user=secrets/postgres-user.txt
+#       - postgres-password=secrets/postgres-password.txt
+#       # ... etc (mounted from external secrets)

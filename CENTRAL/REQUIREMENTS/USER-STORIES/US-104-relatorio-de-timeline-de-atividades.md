@@ -1,0 +1,12 @@
+---
+modules: [GEOAPI, GEOWEB]
+epic: performance
+---
+
+# US-104: Relatório de Timeline de Atividades
+
+Como gerente de equipe de cadastramento, quero visualizar linha do tempo cronológica de ações realizadas no sistema para que auditar trabalho da equipe seja possível através de reconstrução histórica de operações, identificando padrões de produtividade, períodos de inatividade, e sequência de decisões tomadas em processos específicos. A funcionalidade deve gerar relatório temporal apresentando eventos em ordem cronológica incluindo criação de unidades habitacionais, edições de dados cadastrais, uploads de documentos, transições de status de processos, aprovações e rejeições realizadas, exportações de dados, e operações administrativas de gestão de usuários. Cada evento na timeline deve incluir informações contextuais detalhadas incluindo timestamp preciso com fuso horário, identificação do usuário que executou a ação com nome e role, tipo de operação realizada (CREATE, UPDATE, DELETE, APPROVE, REJECT), entidade afetada com identificador único, resumo das mudanças efetuadas em formato human-readable, e possibilidade de drill-down para detalhes completos do evento. O sistema deve oferecer filtros avançados permitindo segmentação da timeline por intervalo de datas, usuário específico, tipo de operação, comunidade ou projeto, e entidade envolvida, com aplicação combinada de múltiplos filtros para análises granulares. A visualização deve suportar diferentes modos de apresentação incluindo lista cronológica detalhada, agrupamento por dia com contadores de atividades, e visualização gráfica tipo Gantt mostrando distribuição temporal de workload. Os critérios de aceitação incluem endpoint implementado retornando lista paginada de eventos ordenados cronologicamente com filtros aplicáveis, validação de permissões restringindo acesso a gerentes e administradores, tratamento adequado de erros incluindo parâmetros de filtro inválidos ou intervalo de datas muito amplo, documentação OpenAPI descrevendo estrutura de eventos e opções de filtro, e testes unitários e de integração validando ordenação, filtros e performance com grandes volumes. Esta User Story está relacionada ao RF-203 e é implementada através do endpoint GET /api/reports/activity-timeline no backend GEOAPI com consultas otimizadas em audit log, e componente de visualização temporal no frontend GEOWEB, pertencendo ao Epic 10: Relatórios e Exportação. O status atual é proposed, com endpoint existente mas documentação criada posteriormente.
+
+---
+
+**Última atualização:** 2025-12-30

@@ -1,0 +1,47 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: geoapi-pdb
+  labels:
+    app: geoapi
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: geoapi
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: geoweb-pdb
+  labels:
+    app: geoweb
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: geoweb
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: keycloak-pdb
+  labels:
+    app: keycloak
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: keycloak
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: postgres-pdb
+  labels:
+    app: postgres
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: postgres

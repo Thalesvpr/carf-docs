@@ -1,0 +1,339 @@
+version: '3.8'
+
+services:
+  # PostgreSQL with PostGIS
+  postgres:
+    image: registry.example.com/carf-postgres:v1.2.3
+    container_name: carf-postgres-prod
+    environment:
+      POSTGRES_DB: carf_prod
+      POSTGRES_USER_FILE: /run/secrets/postgres_user
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - backend-network
+    restart: always
+    secrets:
+      - postgres_user
+      - postgres_password
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 4G
+        reservations:
+          cpus: '1.0'
+          memory: 2G
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $(cat /run/secrets/postgres_user) -d carf_prod"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  # Keycloak SSO
+  keycloak:
+    image: registry.example.com/carf-keycloak:v1.2.3
+    container_name: carf-keycloak-prod
+    environment:
+      KC_DB: postgres
+      KC_DB_URL_HOST: postgres
+      KC_DB_URL_DATABASE: keycloak_prod
+      KC_DB_USERNAME_FILE: /run/secrets/postgres_user
+      KC_DB_PASSWORD_FILE: /run/secrets/postgres_password
+      KC_HOSTNAME: keycloak.carf.example.com
+      KC_PROXY: edge
+      KC_HTTP_ENABLED: "false"
+      KC_HTTPS_ENABLED: "true"
+      KC_HEALTH_ENABLED: "true"
+    networks:
+      - backend-network
+      - traefik-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: always
+    secrets:
+      - postgres_user
+      - postgres_password
+      - keycloak_admin_password
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 1G
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.keycloak.rule=Host(`keycloak.carf.example.com`)"
+      - "traefik.http.routers.keycloak.entrypoints=websecure"
+      - "traefik.http.routers.keycloak.tls=true"
+      - "traefik.http.routers.keycloak.tls.certresolver=letsencrypt"
+      - "traefik.http.services.keycloak.loadbalancer.server.port=8080"
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail http://localhost:8080/health/ready || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 90s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  # Redis cache
+  redis:
+    image: registry.example.com/carf-redis:v1.2.3
+    container_name: carf-redis-prod
+    networks:
+      - backend-network
+    restart: always
+    volumes:
+      - redis-data:/data
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  # RabbitMQ message broker
+  rabbitmq:
+    image: registry.example.com/carf-rabbitmq:v1.2.3
+    container_name: carf-rabbitmq-prod
+    environment:
+      RABBITMQ_DEFAULT_USER_FILE: /run/secrets/rabbitmq_user
+      RABBITMQ_DEFAULT_PASS_FILE: /run/secrets/rabbitmq_pass
+    networks:
+      - backend-network
+    restart: always
+    secrets:
+      - rabbitmq_user
+      - rabbitmq_pass
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  # GEOAPI backend
+  geoapi:
+    image: registry.example.com/carf-geoapi:v1.2.3
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      DATABASE_URL_FILE: /run/secrets/database_url
+      KEYCLOAK_URL: "http://keycloak:8080"
+      KEYCLOAK_REALM: "carf"
+      KEYCLOAK_CLIENT_ID: "geoapi-backend"
+      JWT_SECRET_FILE: /run/secrets/jwt_secret
+      REDIS_URL: "redis://redis:6379"
+      RABBITMQ_URL_FILE: /run/secrets/rabbitmq_url
+      LOG_LEVEL: warn
+      CORS_ORIGINS: "https://carf.example.com"
+      ENABLE_SWAGGER: "false"
+      SENTRY_DSN_FILE: /run/secrets/sentry_dsn
+      ENABLE_RESPONSE_COMPRESSION: "true"
+    networks:
+      - backend-network
+      - traefik-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+      keycloak:
+        condition: service_healthy
+      redis:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
+    restart: always
+    secrets:
+      - database_url
+      - jwt_secret
+      - rabbitmq_url
+      - sentry_dsn
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 1G
+      placement:
+        constraints:
+          - node.role == worker
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.geoapi.rule=Host(`api.carf.example.com`)"
+      - "traefik.http.routers.geoapi.entrypoints=websecure"
+      - "traefik.http.routers.geoapi.tls=true"
+      - "traefik.http.routers.geoapi.tls.certresolver=letsencrypt"
+      - "traefik.http.services.geoapi.loadbalancer.server.port=8080"
+      - "traefik.http.middlewares.geoapi-ratelimit.ratelimit.average=100"
+      - "traefik.http.middlewares.geoapi-ratelimit.ratelimit.burst=50"
+      - "traefik.http.routers.geoapi.middlewares=geoapi-ratelimit"
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 40s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  # GEOWEB frontend
+  geoweb:
+    image: registry.example.com/carf-geoweb:v1.2.3
+    environment:
+      VITE_API_URL: "https://api.carf.example.com/api"
+      VITE_KEYCLOAK_URL: "https://keycloak.carf.example.com"
+      VITE_KEYCLOAK_REALM: "carf"
+      VITE_KEYCLOAK_CLIENT_ID: "geoweb-spa"
+      VITE_SENTRY_DSN_FILE: /run/secrets/sentry_dsn_frontend
+      VITE_GOOGLE_ANALYTICS_ID_FILE: /run/secrets/ga_id
+    networks:
+      - traefik-network
+    depends_on:
+      - geoapi
+    restart: always
+    secrets:
+      - sentry_dsn_frontend
+      - ga_id
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.geoweb.rule=Host(`carf.example.com`)"
+      - "traefik.http.routers.geoweb.entrypoints=websecure"
+      - "traefik.http.routers.geoweb.tls=true"
+      - "traefik.http.routers.geoweb.tls.certresolver=letsencrypt"
+      - "traefik.http.services.geoweb.loadbalancer.server.port=80"
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  # Traefik reverse proxy
+  traefik:
+    image: traefik:v2.10
+    container_name: carf-traefik-prod
+    command:
+      - "--api.dashboard=false"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.letsencrypt.acme.tlschallenge=true"
+      - "--certificatesresolvers.letsencrypt.acme.email=admin@example.com"
+      - "--certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json"
+      - "--log.level=INFO"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - traefik-letsencrypt:/letsencrypt
+    networks:
+      - traefik-network
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+networks:
+  backend-network:
+    driver: overlay
+    encrypted: true
+  traefik-network:
+    driver: overlay
+
+volumes:
+  postgres-data:
+    driver: local
+  redis-data:
+    driver: local
+  rabbitmq-data:
+    driver: local
+  traefik-letsencrypt:
+    driver: local
+
+secrets:
+  postgres_user:
+    external: true
+  postgres_password:
+    external: true
+  keycloak_admin_password:
+    external: true
+  rabbitmq_user:
+    external: true
+  rabbitmq_pass:
+    external: true
+  database_url:
+    external: true
+  jwt_secret:
+    external: true
+  rabbitmq_url:
+    external: true
+  sentry_dsn:
+    external: true
+  sentry_dsn_frontend:
+    external: true
+  ga_id:
+    external: true
