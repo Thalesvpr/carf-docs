@@ -91,6 +91,6 @@ graph TD
 
 ## Próximos Passos
 
-- Ver [Requisitos](/requisitos/)
-- Consultar [API](/api/)
-- Entender a [Arquitetura](/arquitetura/)
+- Ver [Requisitos](/docs/requisitos/)
+- Consultar [API](/dev/api/)
+- Entender a [Arquitetura](/dev/arquitetura/)

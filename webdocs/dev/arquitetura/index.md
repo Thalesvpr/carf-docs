@@ -135,6 +135,6 @@ CREATE POLICY tenant_isolation ON units
 
 ## Próximos Passos
 
-- Ver [Requisitos](/requisitos/)
-- Consultar [API](/api/)
-- Explorar [Funcionalidades](/funcionalidades/)
+- Ver [Requisitos](/docs/requisitos/)
+- Consultar [API](/dev/api/)
+- Explorar [Funcionalidades](/docs/funcionalidades/)

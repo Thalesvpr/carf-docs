@@ -49,6 +49,6 @@ O sistema deve permitir o cadastro de unidades habitacionais...
 
 ## Próximos Passos
 
-- Ver [Casos de Uso](/funcionalidades/)
-- Consultar [API](/api/)
-- Entender a [Arquitetura](/arquitetura/)
+- Ver [Casos de Uso](/docs/funcionalidades/)
+- Consultar [API](/dev/api/)
+- Entender a [Arquitetura](/dev/arquitetura/)

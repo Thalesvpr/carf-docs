@@ -404,7 +404,7 @@ npm install
 npm run dev
 ```
 
-**Servidor**: http://localhost:5173/
+**Servidor**: `http://localhost:5173/`
 
 ### 7.2 Build para Produção
 
@@ -420,13 +420,13 @@ npm run preview
 
 ### 7.3 Navegação
 
-**Home** → http://localhost:5173/
+**Home** → [/](/)
 - Escolher entre Área Product ou Área Dev
 
-**Área Product** → http://localhost:5173/docs/
+**Área Product** → [/docs/](/docs/)
 - Sidebar com Requisitos, Funcionalidades, Roadmap, Processos
 
-**Área Dev** → http://localhost:5173/dev/
+**Área Dev** → [/dev/](/dev/)
 - Sidebar com Setup, Arquitetura, API, Database, Guias
 
 ---
