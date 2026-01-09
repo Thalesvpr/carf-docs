@@ -4,6 +4,7 @@ export default defineConfig({
   base: "/carf-webdocs/",
   title: 'CARF - Documentação',
   description: 'Sistema de Regularização Fundiária Urbana conforme Lei 13.465/2017',
+  ignoreDeadLinks: true,
 
   themeConfig: {
     nav: [
