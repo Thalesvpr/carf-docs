@@ -2,7 +2,30 @@
   "permissions": {
     "allow": [
       "Bash(git restore:*)",
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "Bash(gh run watch:*)",
+      "Bash(gh run list:*)",
+      "Bash(gh run view:*)",
+      "Bash(cat:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git pull:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm install:*)",
+      "Bash(find:*)",
+      "Bash(tree:*)",
+      "Bash(ls -la \"C:\\\\DEV\\\\CARF\\\\DEV\"\" 2>&1 || echo \"DEV directory not found \")",
+      "Bash(git -C \"C:\\\\DEV\\\\CARF\" status --short)",
+      "Bash(dir /A C:DEVCARFPROJECTSGEOAPI)",
+      "Bash(dir /A C:DEVCARFPROJECTSGEOWEB)",
+      "Bash(git -C C:/DEV/CARF/PROJECTS/GEOAPI/SRC-CODE log --oneline -5)",
+      "Bash(git -C C:/DEV/CARF/PROJECTS/GEOWEB/SRC-CODE log --oneline -5)",
+      "WebSearch",
+      "Bash(dir C:DEVCARFCENTRALINTEGRATIONKEYCLOAK)",
+      "Bash(git rm:*)",
+      "Bash(/tasks)",
+      "Bash(ls:*)"
     ]
   }
 }
