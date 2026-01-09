@@ -1,237 +1,50 @@
-# Arquitetura ADMIN
+# Arquitetura ADMIN - React SPA
 
-Documentação arquitetural do console administrativo.
+Console administrativo React para gerenciamento do ecossistema CARF.
 
-## Stack
+## Decisão Arquitetural: SPA React (não Next.js)
 
-- **Next.js 14** - App Router, React Server Components, Server Actions
-- **@carf/tscore** - Auth, validations, types compartilhados
-- **shadcn/ui** - Component library baseado em Radix UI
-- **TanStack Query** - Client-side data fetching
-- **Tailwind CSS** - Utility-first CSS framework
-- **Bun** - Runtime e package manager
+### Por que NÃO Next.js?
 
-## App Router
+Next.js foi **descartado por segurança**:
+- Keycloak Admin Client API requer client_secret confidencial
+- Secrets em Next.js podem vazar no frontend
+- Backend .NET oferece melhor isolamento
 
-Next.js 14 App Router com Server e Client Components:
+### Arquitetura Segura
 
-```
-app/
-├── layout.tsx            # Root layout com AuthProvider
-├── page.tsx              # Dashboard principal
-├── tenants/
-│   ├── page.tsx          # Lista tenants (RSC)
-│   ├── [id]/
-│   │   ├── page.tsx      # Detalhes tenant (RSC)
-│   │   └── edit/
-│   │       └── page.tsx  # Editar tenant (Client)
-│   └── new/
-│       └── page.tsx      # Criar tenant (Client)
-├── users/
-│   ├── page.tsx          # Lista usuários
-│   └── [id]/
-│       └── page.tsx      # Detalhes usuário
-└── api/
-    └── [...]/            # API routes (raramente usado)
-```
+carf-admin (SPA)  →  GEOAPI /api/admin/*  →  Keycloak Admin API
+   PKCE flow           confidential            client_secret
+(sem secret)       (backend seguro)          (isolado)
 
-## Server Components
+## Stack Tecnológica
 
-Usar RSC para data fetching inicial:
+- React 18 + TypeScript 5
+- Vite 5 - Build tool
+- @carf/tscore - Auth, validations, types
+- shadcn/ui - Component library
+- TanStack Query v5 - Server state
+- Zustand v4 - Client state
+- React Router v6 - Routing
+- Tailwind CSS - Styling
 
-```typescript
-// app/tenants/page.tsx (Server Component)
-import type { Tenant } from '@carf/tscore/types'
+## Segurança
 
-async function getTenants(): Promise<Tenant[]> {
-  const response = await fetch('http://api/tenants', { cache: 'no-store' })
-  return response.json()
-}
+7 Camadas no Backend (GEOAPI /api/admin/*):
+1. OAuth2 JWT authentication
+2. Role-based authorization
+3. Tenant validation
+4. Rate limiting
+5. CORS restrito
+6. Auditoria completa
+7. Keycloak Admin Client confidential
 
-export default async function TenantsPage() {
-  const tenants = await getTenants()
+Ver documentação completa: ../../GEOAPI/DOCS/ARCHITECTURE/02-admin-security.md
 
-  return (
-    <div>
-      {tenants.map((tenant) => (
-        <TenantCard key={tenant.id} tenant={tenant} />
-      ))}
-    </div>
-  )
-}
-```
+## Ver Também
 
-## Client Components
+- Segurança Admin: ../../GEOAPI/DOCS/ARCHITECTURE/02-admin-security.md
+- carf-admin README: ../SRC-CODE/carf-admin/README.md
+- Keycloak Setup: ../../../CENTRAL/INTEGRATION/KEYCLOAK/README.md
 
-Usar Client Components para interatividade:
-
-```typescript
-// app/tenants/new/page.tsx
-'use client'
-
-import { useForm } from 'react-hook-form'
-import { Email } from '@carf/tscore/validations'
-import type { CreateTenantDto } from '@carf/tscore/types'
-
-export default function NewTenantPage() {
-  const { register, handleSubmit } = useForm<CreateTenantDto>()
-
-  const onSubmit = async (data: CreateTenantDto) => {
-    await fetch('/api/tenants', {
-      method: 'POST',
-      body: JSON.stringify(data)
-    })
-  }
-
-  return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      {/* form fields */}
-    </form>
-  )
-}
-```
-
-## Server Actions
-
-Server Actions para mutations:
-
-```typescript
-// app/actions/tenants.ts
-'use server'
-
-import type { CreateTenantDto } from '@carf/tscore/types'
-import { revalidatePath } from 'next/cache'
-
-export async function createTenant(data: CreateTenantDto) {
-  const response = await fetch('http://api/tenants', {
-    method: 'POST',
-    body: JSON.stringify(data)
-  })
-
-  if (!response.ok) {
-    throw new Error('Failed to create tenant')
-  }
-
-  revalidatePath('/tenants')
-  return response.json()
-}
-```
-
-## Autenticação
-
-@carf/tscore/auth/react integrado:
-
-```typescript
-// app/layout.tsx
-import { Providers } from './providers'
-
-export default function RootLayout({ children }) {
-  return (
-    <html>
-      <body>
-        <Providers>{children}</Providers>
-      </body>
-    </html>
-  )
-}
-
-// app/providers.tsx
-'use client'
-
-import { AuthProvider } from '@carf/tscore/auth/react'
-import { KeycloakClient } from '@carf/tscore/auth'
-
-const keycloakClient = new KeycloakClient({
-  url: process.env.NEXT_PUBLIC_KEYCLOAK_URL!,
-  realm: 'carf',
-  clientId: 'admin'
-})
-
-export function Providers({ children }) {
-  return <AuthProvider client={keycloakClient}>{children}</AuthProvider>
-}
-```
-
-## shadcn/ui
-
-Component library baseado em Radix UI:
-
-```typescript
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog'
-
-function CreateTenantDialog() {
-  return (
-    <Dialog>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Criar Tenant</DialogTitle>
-        </DialogHeader>
-        <form>
-          <Label htmlFor="name">Nome</Label>
-          <Input id="name" />
-          <Button type="submit">Criar</Button>
-        </form>
-      </DialogContent>
-    </Dialog>
-  )
-}
-```
-
-## API Client
-
-```typescript
-// lib/api.ts
-import { useAuth } from '@carf/tscore/auth/react'
-
-export async function apiClient(endpoint: string, options: RequestInit = {}) {
-  const { getToken } = useAuth()
-  const token = await getToken()
-
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${endpoint}`, {
-    ...options,
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-      ...options.headers
-    }
-  })
-
-  if (!response.ok) {
-    throw new Error(`API error: ${response.statusText}`)
-  }
-
-  return response.json()
-}
-```
-
-## Deployment
-
-Next.js app deployado via Docker:
-
-```dockerfile
-FROM oven/bun:1 as builder
-WORKDIR /app
-COPY package.json bun.lockb ./
-RUN bun install --frozen-lockfile
-COPY . .
-RUN bun run build
-
-FROM oven/bun:1
-WORKDIR /app
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./
-CMD ["bun", "start"]
-```
-
----
-
-**Última atualização:** 2026-01-09
+Última atualização: 2026-01-09
