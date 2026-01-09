@@ -1,0 +1,21 @@
+{
+  "clientId": "webdocs",
+  "name": "WEBDOCS - Portal de Documentação",
+  "description": "Portal VitePress com documentação técnica e de negócio",
+  "enabled": true,
+  "publicClient": true,
+  "standardFlowEnabled": true,
+  "implicitFlowEnabled": false,
+  "directAccessGrantsEnabled": false,
+  "redirectUris": [
+    "http://localhost:5173/*",
+    "https://thalesvpr.github.io/carf-webdocs/*"
+  ],
+  "webOrigins": ["+"],
+  "attributes": {
+    "pkce.code.challenge.method": "S256",
+    "post.logout.redirect.uris": "+"
+  },
+  "defaultClientScopes": ["openid", "profile", "email", "roles"],
+  "optionalClientScopes": ["offline_access"]
+}

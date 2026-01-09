@@ -1,0 +1,23 @@
+{
+  "clientId": "reurbcad",
+  "name": "REURBCAD - Mobile React Native",
+  "description": "Aplicação móvel para coleta de dados em campo",
+  "enabled": true,
+  "publicClient": true,
+  "standardFlowEnabled": true,
+  "implicitFlowEnabled": false,
+  "directAccessGrantsEnabled": false,
+  "redirectUris": [
+    "carf://callback",
+    "carf://oauth/callback",
+    "http://localhost:19006/*",
+    "exp://localhost:19000/*"
+  ],
+  "webOrigins": [],
+  "attributes": {
+    "pkce.code.challenge.method": "S256",
+    "post.logout.redirect.uris": "carf://logout"
+  },
+  "defaultClientScopes": ["openid", "profile", "email", "roles", "carf-tenant"],
+  "optionalClientScopes": ["offline_access"]
+}

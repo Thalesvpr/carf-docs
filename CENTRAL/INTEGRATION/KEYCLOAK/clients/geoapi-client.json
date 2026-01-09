@@ -1,0 +1,15 @@
+{
+  "clientId": "geoapi",
+  "name": "GEOAPI - Backend .NET",
+  "description": "API REST para operações CRUD e geoespaciais",
+  "enabled": true,
+  "bearerOnly": true,
+  "publicClient": false,
+  "standardFlowEnabled": false,
+  "implicitFlowEnabled": false,
+  "directAccessGrantsEnabled": false,
+  "serviceAccountsEnabled": false,
+  "redirectUris": [],
+  "webOrigins": [],
+  "defaultClientScopes": ["openid", "profile", "email", "roles", "carf-tenant"]
+}
