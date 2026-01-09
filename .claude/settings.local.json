@@ -29,7 +29,8 @@
       "Bash(bun test)",
       "Bash(dir \"C:\\\\DEV\\\\CARF\\\\CENTRAL\" /B)",
       "Bash(dir \"C:\\\\DEV\\\\CARF\\\\PROJECTS\" /B)",
-      "Bash(bun run:*)"
+      "Bash(bun run:*)",
+      "Bash(bun add:*)"
     ]
   }
 }
