@@ -185,6 +185,9 @@
   },
   "active": "a10b4e689194f5ca",
   "lastOpenFiles": [
+    "PROJECTS/ADMIN/SRC-CODE/carf-admin/package.json",
+    "PROJECTS/ADMIN/SRC-CODE/carf-admin/README.md",
+    "PROJECTS/ADMIN/SRC-CODE/carf-admin",
     "PROJECTS/ADMIN/SRC-CODE/README.md",
     "PROJECTS/ADMIN/SRC-CODE",
     "README.md",
@@ -203,7 +206,6 @@
     "PROJECTS/WEBDOCS/SRC-CODE/carf-webdocs/webdocs/src/public",
     "PROJECTS/WEBDOCS/SRC-CODE/carf-webdocs/webdocs/src",
     "PROJECTS/WEBDOCS/SRC-CODE/carf-webdocs/webdocs",
-    "PROJECTS/TSCORE/SRC-CODE/carf-tscore/node_modules/@babel/types/lib/validators/react/isReactComponent.js.map",
     "PROJECTS/TSCORE/SRC-CODE/carf-tscore/node_modules/@babel/types/README.md",
     "PROJECTS/TSCORE/SRC-CODE/carf-tscore/node_modules/@babel/parser/README.md",
     "PROJECTS/TSCORE/SRC-CODE/carf-tscore/node_modules/@babel/parser/CHANGELOG.md",
@@ -218,8 +220,6 @@
     "PROJECTS/TSCORE/SRC-CODE/carf-tscore/node_modules/@types/geojson/README.md",
     "PROJECTS/TSCORE/SRC-CODE/carf-tscore/node_modules/@vue/shared/README.md",
     "PROJECTS/TSCORE/SRC-CODE/carf-tscore/node_modules/@vue/runtime-dom/README.md",
-    "PROJECTS/TSCORE/SRC-CODE/carf-tscore/node_modules/@vue/server-renderer/README.md",
-    "PROJECTS/TSCORE/SRC-CODE/carf-tscore/node_modules/@vue/runtime-core/README.md",
-    "PROJECTS/TSCORE/SRC-CODE/carf-tscore/node_modules/@vue/reactivity/README.md"
+    "PROJECTS/TSCORE/SRC-CODE/carf-tscore/node_modules/@vue/server-renderer/README.md"
   ]
 }

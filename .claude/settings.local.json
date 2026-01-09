@@ -32,7 +32,12 @@
       "Bash(bun run:*)",
       "Bash(bun add:*)",
       "Bash(git check-ignore:*)",
-      "Bash(xargs:*)"
+      "Bash(xargs:*)",
+      "Bash(git log:*)",
+      "Bash(git init:*)",
+      "Bash(git -C \"C:\\\\DEV\\\\CARF\" config:*)",
+      "Bash(git -C \"C:\\\\DEV\\\\CARF\" log --oneline -10)",
+      "Bash(git -C \"C:\\\\DEV\\\\CARF\" remote -v)"
     ]
   }
 }
