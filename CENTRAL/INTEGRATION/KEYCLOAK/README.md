@@ -18,6 +18,18 @@ Um realm "carf" com 6 clients, 4 roles (field-collector, analyst, admin, super-a
 
 [realm-export.json](./realm-export.json) = exportação completa do realm. [docker-compose.yml](./docker-compose.yml) = Keycloak + PostgreSQL. [.env.example](./.env.example) = variáveis de ambiente. `clients/*.json` = configs individuais dos 6 clients.
 
+## Integração
+
+`examples/` tem 6 guias curtos de código: [geoweb](./examples/geoweb-integration.md) (React + keycloak-js + PKCE), [geoapi](./examples/geoapi-integration.md) (.NET + JWT), [reurbcad](./examples/reurbcad-integration.md) (React Native), [geogis](./examples/geogis-integration.md) (Python), [admin](./examples/admin-integration.md) (Admin API), [webdocs](./examples/webdocs-integration.md) (VitePress).
+
+## Operação
+
+`runbooks/` tem 6 guias operacionais: [criar usuário](./runbooks/01-create-user.md) (console + API), [criar tenant](./runbooks/02-create-tenant.md) (attributes + switcher), [rotacionar secrets](./runbooks/03-rotate-secrets.md) (client/admin/db), [troubleshoot](./runbooks/04-troubleshoot-auth.md) (login errors, CORS, tokens), [backup/restore](./runbooks/05-backup-restore.md) (PostgreSQL + realm), [monitoring](./runbooks/06-monitoring.md) (health, metrics, Prometheus, logs).
+
+## Customização
+
+Keycloak customizado em `PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak/`: temas CARF (login/account/email PT-BR, validação CPF com @carf/tscore), Docker image com temas incluídos, scripts de automação (setup, backup, restore, deploy, healthcheck), Makefile. Quickstart: `make dev` inicia ambiente completo.
+
 ---
 
 **Última atualização:** 2026-01-09
