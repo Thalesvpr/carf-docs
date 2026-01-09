@@ -183,6 +183,60 @@ git push origin feature/nova-funcionalidade
 cd ../../..
 ```
 
+### Trabalhando no @carf/tscore (Biblioteca Compartilhada)
+
+Workflow específico para desenvolver na biblioteca compartilhada:
+
+```bash
+# Clonar tscore se ainda não tiver
+git clone https://github.com/Thalesvpr/carf-tscore.git PROJECTS/TSCORE/SRC-CODE
+cd PROJECTS/TSCORE/SRC-CODE
+
+# Instalar dependências
+bun install
+
+# Criar branch para feature
+git checkout -b feature/add-crea-validation
+
+# Desenvolver (ex: adicionar novo value object CREA)
+# Editar src/validations/crea.ts
+# Adicionar testes src/validations/__tests__/crea.test.ts
+
+# Rodar testes
+bun test
+
+# Build para verificar
+bun run build
+
+# Testar localmente em projeto consumidor (GEOWEB)
+npm link
+cd ../../../GEOWEB/SRC-CODE
+npm link @carf/tscore
+# Testar mudanças no GEOWEB
+# Desfazer link quando terminar: npm unlink @carf/tscore && bun install
+
+# Voltar ao tscore para commit
+cd ../../../TSCORE/SRC-CODE
+git add .
+git commit -m "feat: add CREA value object validation"
+git push origin feature/add-crea-validation
+
+# Criar PR no GitHub
+gh pr create --title "feat: Add CREA validation" --body "..."
+
+# Após merge na main, publicar nova versão (CI/CD automático)
+# Ou manualmente:
+npm version minor  # Incrementa versão (0.1.0 → 0.2.0)
+git push --follow-tags  # Dispara CI/CD que publica no GitHub Packages
+```
+
+**Importante:**
+- Sempre rodar `bun test` antes de commitar
+- Usar `npm link` para testar localmente antes de publicar
+- Seguir [Conventional Commits](./03-commit-conventions.md)
+- Atualizar [CHANGELOG.md](../../PROJECTS/TSCORE/SRC-CODE/CHANGELOG.md) antes de publicar
+- Breaking changes requerem MAJOR version bump
+
 ### Atualizando Documentação
 
 ```bash
@@ -203,8 +257,62 @@ git pull origin main
 # Atualizar cada repositório de código
 cd PROJECTS/GEOAPI/SRC-CODE && git pull origin main && cd ../../..
 cd PROJECTS/GEOWEB/SRC-CODE && git pull origin main && cd ../../..
+cd PROJECTS/TSCORE/SRC-CODE && git pull origin main && cd ../../..
 # Repita para outros repositórios conforme necessário
 ```
+
+### Atualizando @carf/tscore em Projetos Consumidores
+
+Quando nova versão do tscore é publicada:
+
+```bash
+# GEOWEB
+cd PROJECTS/GEOWEB/SRC-CODE
+bun update @carf/tscore
+# Verificar CHANGELOG do tscore para breaking changes
+cat node_modules/@carf/tscore/CHANGELOG.md
+# Testar aplicação
+bun dev
+# Commit se houver mudanças necessárias
+git add package.json bun.lockb
+git commit -m "chore: update @carf/tscore to v0.2.0"
+
+# REURBCAD
+cd ../../../REURBCAD/SRC-CODE
+bun update @carf/tscore
+# Testar app mobile
+bun android
+# Commit
+git add package.json bun.lockb
+git commit -m "chore: update @carf/tscore to v0.2.0"
+
+# ADMIN
+cd ../../../ADMIN/SRC-CODE
+bun update @carf/tscore
+# Testar console
+bun dev
+# Commit
+git add package.json bun.lockb
+git commit -m "chore: update @carf/tscore to v0.2.0"
+
+# WEBDOCS
+cd ../../../WEBDOCS/SRC-CODE
+bun update @carf/tscore
+# Testar portal
+bun dev
+# Commit
+git add package.json bun.lockb
+git commit -m "chore: update @carf/tscore to v0.2.0"
+```
+
+**Breaking Changes:**
+Se tscore teve MAJOR version bump (ex: 1.0.0 → 2.0.0):
+1. Ler CHANGELOG completo
+2. Seguir migration guide
+3. Atualizar código consumidor
+4. Rodar todos os testes
+5. Testar manualmente
+6. Criar PR coordenado em cada projeto
 
 ## Compatibilidade entre Repositórios
 
