@@ -1,0 +1,225 @@
+{
+  "main": {
+    "id": "63f9da14970594da",
+    "type": "split",
+    "children": [
+      {
+        "id": "0e670c876225b206",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a7c86de046370174",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CENTRAL/INTEGRATION/KEYCLOAK/README.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "README"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "9213f280aa2d6f66",
+    "type": "split",
+    "children": [
+      {
+        "id": "aacf8dbb1183b9af",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "aad1928f2fff3657",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "383ad3eeabda6aee",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "d39ec273beba0ac8",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "5c80d725b66a9060",
+    "type": "split",
+    "children": [
+      {
+        "id": "223f64cbbf7ee069",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "20c32b3a51125794",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "PROJECTS/GEOGIS/DOCS/REQUIREMENTS/README.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for README"
+            }
+          },
+          {
+            "id": "0bb150a37d92125e",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "PROJECTS/GEOGIS/DOCS/REQUIREMENTS/README.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from README"
+            }
+          },
+          {
+            "id": "71dee1b145d23aaf",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "44cea9e10918dbd7",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "e9f316070e86e5a7",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "PROJECTS/GEOGIS/DOCS/REQUIREMENTS/README.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of README"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "aad1928f2fff3657",
+  "lastOpenFiles": [
+    "CENTRAL/BUSINESS-RULES/LEGITIMATION-RULES/contestation-rules.md",
+    "CENTRAL/BUSINESS-RULES/VALIDATION-RULES/unit-validation.md",
+    "CENTRAL/BUSINESS-RULES/VALIDATION-RULES/holder-validation.md",
+    "CENTRAL/TEMPLATES/README.md",
+    "CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/README.md.tmp.35708.1767916718173",
+    "CENTRAL/VERSIONING/GIT/07-worktree-guide.md",
+    "CENTRAL/VERSIONING/03-semantic-versioning.md",
+    "CENTRAL/VERSIONING/02-github-decision.md",
+    "CENTRAL/VERSIONING/01-git-decision.md",
+    "CENTRAL/VERSIONING/GIT/05-git-hooks.md",
+    "CENTRAL/VERSIONING/GIT/README.md",
+    "CENTRAL/VERSIONING/GIT/06-release-coordination.md",
+    "CENTRAL/VERSIONING/GIT/01-polyrepo-strategy.md",
+    "CENTRAL/VERSIONING/GIT/04-pr-guidelines.md",
+    "CENTRAL/VERSIONING/GIT/03-commit-conventions.md",
+    "CENTRAL/VERSIONING/GIT/02-branching-strategy.md",
+    "CENTRAL/VERSIONING/GIT/00-setup-guide.md",
+    "CENTRAL/VERSIONING/GIT",
+    "CENTRAL/VERSIONING/README.md",
+    "CENTRAL/VERSIONING",
+    "CENTRAL/TEMPLATES/README-template.md",
+    "CENTRAL/OPERATIONS/VERSIONING/README.md",
+    "CENTRAL/TESTING/TEST-CASES/UNIT/README.md",
+    "CENTRAL/TESTING/TEST-CASES/API/README.md",
+    "CENTRAL/TESTING/TEST-CASES/E2E/README.md",
+    "CENTRAL/TESTING/TEST-STRATEGY/README.md",
+    "CENTRAL/TESTING/TEST-STRATEGY/test-pyramid.md",
+    "CENTRAL/TESTING/TEST-STRATEGY/coverage-targets.md",
+    "CENTRAL/TESTING/TEST-CASES/README.md",
+    "CENTRAL/TESTING/TEST-CASES/UNIT",
+    "CENTRAL/TESTING/TEST-CASES/API",
+    "CENTRAL/TESTING/TEST-CASES/E2E",
+    "CENTRAL/TESTING/TEST-STRATEGY",
+    "CENTRAL/TESTING/TEST-CASES",
+    "CENTRAL/TESTING",
+    "CENTRAL/TEMPLATES"
+  ]
+}
