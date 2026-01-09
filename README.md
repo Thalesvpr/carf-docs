@@ -22,6 +22,7 @@ O projeto CARF segue arquitetura **polyrepo** com 7 repositórios Git independen
 | Repositório | Descrição | Tecnologia | URL |
 |-------------|-----------|------------|-----|
 | **carf-docs** | Documentação central (SSOT) | Markdown | [github.com/Thalesvpr/carf-docs](https://github.com/Thalesvpr/carf-docs) |
+| **carf-tscore** | Biblioteca TypeScript compartilhada | TypeScript + Bun | [github.com/Thalesvpr/carf-tscore](https://github.com/Thalesvpr/carf-tscore) |
 | **carf-geoapi** | Backend API REST | .NET 9 + PostgreSQL + PostGIS | [github.com/Thalesvpr/carf-geoapi](https://github.com/Thalesvpr/carf-geoapi) |
 | **carf-geoweb** | Frontend web | React 18 + TypeScript + Tailwind | [github.com/Thalesvpr/carf-geoweb](https://github.com/Thalesvpr/carf-geoweb) |
 | **carf-reurbcad** | App mobile | React Native + WatermelonDB | [github.com/Thalesvpr/carf-reurbcad](https://github.com/Thalesvpr/carf-reurbcad) |
