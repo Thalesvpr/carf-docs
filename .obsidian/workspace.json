@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "REORGANIZATION-PLAN.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "REORGANIZATION-PLAN"
+              "title": "README"
             }
           }
         ]
@@ -185,6 +185,11 @@
   },
   "active": "a10b4e689194f5ca",
   "lastOpenFiles": [
+    "REORGANIZATION-PLAN.md",
+    "sedvSVduR",
+    "sedJSOjk4",
+    "sedf29kDo",
+    "PROJECTS/GEOAPI/DOCS/ARCHITECTURE/02-admin-security.md",
     "PROJECTS/ADMIN/SRC-CODE/carf-admin/package.json",
     "PROJECTS/ADMIN/SRC-CODE/carf-admin/README.md",
     "PROJECTS/ADMIN/SRC-CODE/carf-admin",
@@ -201,11 +206,7 @@
     "PROJECTS/WEBDOCS/SRC-CODE/carf-webdocs/webdocs/src/public/README.md",
     "PROJECTS/WEBDOCS/SRC-CODE/carf-webdocs/webdocs/src/public/funcionalidades",
     "PROJECTS/WEBDOCS/SRC-CODE/carf-webdocs/webdocs/src/public/api",
-    "PROJECTS/WEBDOCS/SRC-CODE/carf-webdocs/webdocs/src/scripts",
     "PROJECTS/WEBDOCS/SRC-CODE/carf-webdocs/webdocs/src/README.md",
-    "PROJECTS/WEBDOCS/SRC-CODE/carf-webdocs/webdocs/src/public",
-    "PROJECTS/WEBDOCS/SRC-CODE/carf-webdocs/webdocs/src",
-    "PROJECTS/WEBDOCS/SRC-CODE/carf-webdocs/webdocs",
     "PROJECTS/TSCORE/SRC-CODE/carf-tscore/node_modules/@babel/types/README.md",
     "PROJECTS/TSCORE/SRC-CODE/carf-tscore/node_modules/@babel/parser/README.md",
     "PROJECTS/TSCORE/SRC-CODE/carf-tscore/node_modules/@babel/parser/CHANGELOG.md",
@@ -219,7 +220,6 @@
     "PROJECTS/TSCORE/SRC-CODE/carf-tscore/node_modules/@types/bun/README.md",
     "PROJECTS/TSCORE/SRC-CODE/carf-tscore/node_modules/@types/geojson/README.md",
     "PROJECTS/TSCORE/SRC-CODE/carf-tscore/node_modules/@vue/shared/README.md",
-    "PROJECTS/TSCORE/SRC-CODE/carf-tscore/node_modules/@vue/runtime-dom/README.md",
-    "PROJECTS/TSCORE/SRC-CODE/carf-tscore/node_modules/@vue/server-renderer/README.md"
+    "PROJECTS/TSCORE/SRC-CODE/carf-tscore/node_modules/@vue/runtime-dom/README.md"
   ]
 }
