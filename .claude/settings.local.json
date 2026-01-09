@@ -48,7 +48,11 @@
       "Bash(git -C \"C:\\\\DEV\\\\CARF\\\\PROJECTS\\\\WEBDOCS\\\\SRC-CODE\\\\carf-webdocs\" show HEAD:README.md)",
       "Bash(git -C \"C:\\\\DEV\\\\CARF\\\\PROJECTS\\\\WEBDOCS\\\\SRC-CODE\\\\carf-webdocs\" log --all --format=\"%H %s\")",
       "Bash(git -C:*)",
-      "Bash(bun install)"
+      "Bash(bun install)",
+      "Bash(for:*)",
+      "Bash(do)",
+      "Bash(echo:*)",
+      "Bash(test:*)"
     ]
   }
 }
