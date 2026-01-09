@@ -1,17 +1,19 @@
 # Polyrepo Strategy
 
-Estratégia polyrepo do CARF com **6 repositórios Git independentes** permitindo deploy/versionamento/ownership separados por equipe especializada.
+Estratégia polyrepo do CARF com **8 repositórios Git independentes** permitindo deploy/versionamento/ownership separados por equipe especializada.
 
 ## Repositórios
 
 | Repositório | Descrição | Ownership | URL |
 |-------------|-----------|-----------|-----|
 | **carf-docs** | Documentação central (SSOT) | Tech Writers | https://github.com/Thalesvpr/carf-docs |
+| **carf-tscore** | Biblioteca TypeScript compartilhada | Frontend Team | https://github.com/Thalesvpr/carf-tscore |
 | **carf-geoapi** | Backend .NET 9 | Backend Team | https://github.com/Thalesvpr/carf-geoapi |
 | **carf-geoweb** | Frontend React | Frontend Team | https://github.com/Thalesvpr/carf-geoweb |
 | **carf-reurbcad** | Mobile React Native | Mobile Team | https://github.com/Thalesvpr/carf-reurbcad |
 | **carf-geogis** | Plugin QGIS Python | GIS Team | https://github.com/Thalesvpr/carf-geogis |
 | **carf-webdocs** | Portal VitePress | Docs Team | https://github.com/Thalesvpr/carf-webdocs |
+| **carf-admin** | Console administrativo Next.js | Admin Team | https://github.com/Thalesvpr/carf-admin |
 
 ## Vantagens
 
@@ -27,7 +29,7 @@ Estratégia polyrepo do CARF com **6 repositórios Git independentes** permitind
 | Desvantagem | Mitigação |
 |-------------|-----------|
 | Coordenação de releases complexa | Usar `compatibility-matrix.md` versionando combinações testadas |
-| Code sharing via packages | Criar pacotes NPM/NuGet internos quando necessário |
+| Code sharing via packages | @carf/tscore NPM package para TypeScript shared code |
 | Dependency hell entre repos | Versionamento semântico estrito + renovate/dependabot |
 | Mudanças cross-repo difíceis | PRs coordenados + feature flags para rollout gradual |
 
@@ -46,6 +48,9 @@ Cada repositório de código deve ser clonado na pasta `SRC-CODE` correspondente
 carf-docs/                          # Repositório de documentação (este)
 ├── CENTRAL/                        # SSOT
 ├── PROJECTS/
+│   ├── TSCORE/
+│   │   ├── DOCS/                   # Docs específicas da lib TypeScript
+│   │   └── SRC-CODE/               # → git clone carf-tscore aqui
 │   ├── GEOAPI/
 │   │   ├── DOCS/                   # Docs específicas do backend
 │   │   └── SRC-CODE/               # → git clone carf-geoapi aqui
@@ -58,9 +63,12 @@ carf-docs/                          # Repositório de documentação (este)
 │   ├── GEOGIS/
 │   │   ├── DOCS/                   # Docs específicas do plugin
 │   │   └── SRC-CODE/               # → git clone carf-geogis aqui
-│   └── WEBDOCS/
-│       ├── DOCS/                   # Docs específicas do portal
-│       └── SRC-CODE/               # → git clone carf-webdocs aqui
+│   ├── WEBDOCS/
+│   │   ├── DOCS/                   # Docs específicas do portal
+│   │   └── SRC-CODE/               # → git clone carf-webdocs aqui
+│   └── ADMIN/
+│       ├── DOCS/                   # Docs específicas do console admin
+│       └── SRC-CODE/               # → git clone carf-admin aqui
 └── DEVELOPMENT/
 ```
 
@@ -76,6 +84,9 @@ cd carf-docs
 **Passo 2:** Clone apenas os repositórios que você precisa:
 
 ```bash
+# TypeScript Shared Library (Frontend/Admin Teams)
+git clone https://github.com/Thalesvpr/carf-tscore.git PROJECTS/TSCORE/SRC-CODE
+
 # Backend Developer (Backend Team)
 git clone https://github.com/Thalesvpr/carf-geoapi.git PROJECTS/GEOAPI/SRC-CODE
 
@@ -90,15 +101,20 @@ git clone https://github.com/Thalesvpr/carf-geogis.git PROJECTS/GEOGIS/SRC-CODE
 
 # Documentation Team
 git clone https://github.com/Thalesvpr/carf-webdocs.git PROJECTS/WEBDOCS/SRC-CODE
+
+# Admin Console (Admin Team)
+git clone https://github.com/Thalesvpr/carf-admin.git PROJECTS/ADMIN/SRC-CODE
 ```
 
 **Passo 3:** Acesse o README específico de cada projeto para instruções de build/run/test:
 
+- TypeScript Library: `PROJECTS/TSCORE/SRC-CODE/README.md`
 - Backend: `PROJECTS/GEOAPI/SRC-CODE/README.md`
 - Frontend: `PROJECTS/GEOWEB/SRC-CODE/README.md`
 - Mobile: `PROJECTS/REURBCAD/SRC-CODE/README.md`
 - QGIS Plugin: `PROJECTS/GEOGIS/SRC-CODE/README.md`
 - Docs Portal: `PROJECTS/WEBDOCS/SRC-CODE/README.md`
+- Admin Console: `PROJECTS/ADMIN/SRC-CODE/README.md`
 
 ### .gitignore
 
@@ -121,8 +137,9 @@ git clone https://github.com/Thalesvpr/carf-geoapi.git PROJECTS/GEOAPI/SRC-CODE
 ```bash
 git clone https://github.com/Thalesvpr/carf-docs.git
 cd carf-docs
+git clone https://github.com/Thalesvpr/carf-tscore.git PROJECTS/TSCORE/SRC-CODE
 git clone https://github.com/Thalesvpr/carf-geoweb.git PROJECTS/GEOWEB/SRC-CODE
-# Trabalha apenas no frontend, ignora backend/mobile/plugin
+# Trabalha em frontend + biblioteca compartilhada, ignora backend/mobile/plugin
 ```
 
 **Full Stack Developer:**
@@ -139,11 +156,13 @@ git clone https://github.com/Thalesvpr/carf-geoweb.git PROJECTS/GEOWEB/SRC-CODE
 git clone https://github.com/Thalesvpr/carf-docs.git
 cd carf-docs
 # Clona todos os repositórios
+git clone https://github.com/Thalesvpr/carf-tscore.git PROJECTS/TSCORE/SRC-CODE
 git clone https://github.com/Thalesvpr/carf-geoapi.git PROJECTS/GEOAPI/SRC-CODE
 git clone https://github.com/Thalesvpr/carf-geoweb.git PROJECTS/GEOWEB/SRC-CODE
 git clone https://github.com/Thalesvpr/carf-reurbcad.git PROJECTS/REURBCAD/SRC-CODE
 git clone https://github.com/Thalesvpr/carf-geogis.git PROJECTS/GEOGIS/SRC-CODE
 git clone https://github.com/Thalesvpr/carf-webdocs.git PROJECTS/WEBDOCS/SRC-CODE
+git clone https://github.com/Thalesvpr/carf-admin.git PROJECTS/ADMIN/SRC-CODE
 ```
 
 ## Workflow de Trabalho
