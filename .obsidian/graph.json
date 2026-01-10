@@ -1,5 +1,5 @@
 {
-  "collapse-filter": true,
+  "collapse-filter": false,
   "search": "",
   "showTags": false,
   "showAttachments": false,
@@ -8,30 +8,121 @@
   "collapse-color-groups": false,
   "colorGroups": [
     {
-      "query": "          path:node_modules",
+      "query": "path:CENTRAL/ARCHITECTURE/",
       "color": {
         "a": 1,
-        "rgb": 14701138
+        "rgb": 15745598
       }
     },
     {
-      "query": "path:",
+      "query": "path:CENTRAL/API/",
       "color": {
         "a": 1,
-        "rgb": 14725458
+        "rgb": 16613908
+      }
+    },
+    {
+      "query": "path:CENTRAL/DOMAIN-MODEL/",
+      "color": {
+        "a": 1,
+        "rgb": 16433413
+      }
+    },
+    {
+      "query": "path:CENTRAL/BUSINESS-RULES/ OR path:CENTRAL/WORKFLOWS/",
+      "color": {
+        "a": 1,
+        "rgb": 16565273
+      }
+    },
+    {
+      "query": "path:PROJECTS/GEOAPI/",
+      "color": {
+        "a": 1,
+        "rgb": 1667522
+      }
+    },
+    {
+      "query": "path:PROJECTS/ADMIN/",
+      "color": {
+        "a": 1,
+        "rgb": 3383024
+      }
+    },
+    {
+      "query": "path:PROJECTS/GEOWEB/",
+      "color": {
+        "a": 1,
+        "rgb": 3650637
+      }
+    },
+    {
+      "query": "path:PROJECTS/GEOGIS/",
+      "color": {
+        "a": 1,
+        "rgb": 5358438
+      }
+    },
+    {
+      "query": "path:PROJECTS/REURBCAD/",
+      "color": {
+        "a": 1,
+        "rgb": 7950578
+      }
+    },
+    {
+      "query": "path:PROJECTS/KEYCLOAK/",
+      "color": {
+        "a": 1,
+        "rgb": 820633
+      }
+    },
+    {
+      "query": "path:PROJECTS/WEBDOCS/",
+      "color": {
+        "a": 1,
+        "rgb": 1226886
+      }
+    },
+    {
+      "query": "path:PROJECTS/LIB/TS/TSCORE/",
+      "color": {
+        "a": 1,
+        "rgb": 15092096
+      }
+    },
+    {
+      "query": "path:PROJECTS/LIB/TS/GEOAPI-CLIENT/",
+      "color": {
+        "a": 1,
+        "rgb": 15754645
+      }
+    },
+    {
+      "query": "path:PROJECTS/LIB/TS/UI-COMPONENTS/",
+      "color": {
+        "a": 1,
+        "rgb": 16739997
+      }
+    },
+    {
+      "query": "path:CENTRAL/TODO/",
+      "color": {
+        "a": 1,
+        "rgb": 16753707
       }
     }
   ],
-  "collapse-display": true,
+  "collapse-display": false,
   "showArrow": false,
   "textFadeMultiplier": 0,
-  "nodeSizeMultiplier": 1,
+  "nodeSizeMultiplier": 1.2,
   "lineSizeMultiplier": 1,
-  "collapse-forces": true,
-  "centerStrength": 0.518713248970312,
-  "repelStrength": 10,
+  "collapse-forces": false,
+  "centerStrength": 0.5,
+  "repelStrength": 12,
   "linkStrength": 1,
-  "linkDistance": 250,
-  "scale": 0.08848389135136808,
+  "linkDistance": 300,
+  "scale": 0.14,
   "close": false
 }

@@ -6,6 +6,14 @@
     "**/.next/**",
     "**/.cache/**",
     "**/bin/**",
-    "**/obj/**"
-  ]
+    "**/obj/**",
+    "node_modules",
+    "**/node_modules",
+    "**/.git/**"
+  ],
+  "alwaysUpdateLinks": true,
+  "showUnsupportedFiles": false,
+  "attachmentFolderPath": "./",
+  "strictLineBreaks": false,
+  "readableLineLength": false
 }
