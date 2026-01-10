@@ -234,7 +234,7 @@ git push --follow-tags  # Dispara CI/CD que publica no GitHub Packages
 - Sempre rodar `bun test` antes de commitar
 - Usar `npm link` para testar localmente antes de publicar
 - Seguir [Conventional Commits](./03-commit-conventions.md)
-- Atualizar [CHANGELOG.md](../../PROJECTS/TSCORE/SRC-CODE/CHANGELOG.md) antes de publicar
+- Atualizar [CHANGELOG.md](../../../PROJECTS/LIB/TS/TSCORE/SRC-CODE/CHANGELOG.md) antes de publicar
 - Breaking changes requerem MAJOR version bump
 
 ### Atualizando Documentação

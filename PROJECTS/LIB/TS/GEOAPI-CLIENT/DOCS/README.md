@@ -48,8 +48,8 @@ Referência completa da API do SDK.
 ## Relação com CENTRAL/
 
 Este SDK implementa o cliente para os endpoints documentados em:
-- [CENTRAL/API/](../../../../CENTRAL/API/README.md) - Especificação dos endpoints REST
-- [CENTRAL/INTEGRATION/KEYCLOAK/](../../../../CENTRAL/INTEGRATION/KEYCLOAK/README.md) - Autenticação OAuth2
+- [CENTRAL/API/](../../../../../CENTRAL/API/README.md) - Especificação dos endpoints REST
+- [CENTRAL/INTEGRATION/KEYCLOAK/](../../../../../CENTRAL/INTEGRATION/KEYCLOAK/README.md) - Autenticação OAuth2
 
 ## Relação com outros projetos
 
@@ -126,7 +126,7 @@ yarn add @carf/geoapi-client @carf/tscore
 
 ## Links Úteis
 
-- [GEOAPI Backend Documentation](../../../../GEOAPI/DOCS/README.md)
-- [CENTRAL API Specification](../../../../CENTRAL/API/README.md)
+- **GEOAPI Backend Documentation**
+- [CENTRAL API Specification](../../../../../CENTRAL/API/README.md)
 - [TSCORE Documentation](../TSCORE/DOCS/README.md)
 - [Axios Documentation](https://axios-http.com/docs/intro)

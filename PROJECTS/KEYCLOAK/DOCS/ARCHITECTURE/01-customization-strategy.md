@@ -189,5 +189,5 @@ ENTRYPOINT ["/opt/keycloak/bin/kc.sh"]
 
 - [Keycloak Documentation](https://www.keycloak.org/documentation)
 - [Server Developer Guide](https://www.keycloak.org/docs/latest/server_development/)
-- [CENTRAL/INTEGRATION/KEYCLOAK/](../../../CENTRAL/INTEGRATION/KEYCLOAK/) - Configurações de integração
-- [ADR-003](../../../CENTRAL/ARCHITECTURE/ADRs/ADR-003-keycloak-autenticacao.md) - Decisão arquitetural sobre Keycloak
+- [CENTRAL/INTEGRATION/KEYCLOAK/](../../../../CENTRAL/INTEGRATION/KEYCLOAK/) - Configurações de integração
+- [ADR-003](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-003-keycloak-autenticacao.md) - Decisão arquitetural sobre Keycloak

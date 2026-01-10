@@ -4,7 +4,7 @@ Documentação arquitetural da biblioteca TypeScript compartilhada.
 
 ## Decisões Arquiteturais
 
-- **[ADR-011](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-011-shared-library-tscore.md)** - Decisão de criar biblioteca compartilhada vs duplicar código vs monorepo
+- ****ADR-011**** - Decisão de criar biblioteca compartilhada vs duplicar código vs monorepo
 
 ## Estrutura de Módulos
 

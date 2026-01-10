@@ -166,13 +166,13 @@ const { user, hasRole, logout } = useAuth()
 
 ## Versionamento
 
-@carf/tscore segue [Semantic Versioning](../../../CENTRAL/VERSIONING/03-semantic-versioning.md):
+@carf/tscore segue **Semantic Versioning**:
 
 - **MAJOR** - Breaking changes (alterar signatures, remover métodos)
 - **MINOR** - Novas features backward-compatible
 - **PATCH** - Bug fixes
 
-Ver [CHANGELOG](../SRC-CODE/CHANGELOG.md) para histórico completo.
+Ver **CHANGELOG** para histórico completo.
 
 ## Desenvolvimento
 
@@ -202,7 +202,7 @@ npm link @carf/tscore
 
 - **Repositório:** https://github.com/Thalesvpr/carf-tscore
 - **NPM Package:** https://github.com/Thalesvpr/carf-tscore/packages
-- **ADR-011:** [Decisão de criar biblioteca compartilhada](../../../CENTRAL/ARCHITECTURE/ADRs/ADR-011-shared-library-tscore.md)
+- **ADR-011:** **Decisão de criar biblioteca compartilhada**
 
 ---
 

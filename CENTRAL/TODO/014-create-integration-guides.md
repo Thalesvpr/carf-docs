@@ -112,7 +112,7 @@ const keycloak = new KeycloakClient({
 
 ## Referências
 
-- [CENTRAL/API/](../../API/)
+- [CENTRAL/API/](../API/)
 - [PROJECTS/*/DOCS/](../../PROJECTS/)
 
 ## Objetivo

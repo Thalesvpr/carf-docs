@@ -74,7 +74,7 @@ Gerenciamento de transações através do DbContext do EF Core.
 
 ## 📊 Decisões Arquiteturais Relacionadas
 
-- [ADR-001: .NET 9 Backend](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-001-dotnet-backend.md)
+- [ADR-001: .NET 9 Backend](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-001-dotnet-9-backend.md)
 - [ADR-002: PostgreSQL + PostGIS](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-002-postgresql-postgis.md)
 - [ADR-003: Keycloak Autenticação](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-003-keycloak-autenticacao.md)
 - [ADR-005: Multi-tenancy RLS](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-005-multi-tenancy-rls.md)

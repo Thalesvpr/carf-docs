@@ -454,8 +454,8 @@ const api = new GeoApiClient({
 
 ## Referências
 
-- [ADR-007: Bun Runtime](../../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-007-bun-runtime-bundler.md)
-- [ADR-011: TSCORE Library](../../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-011-shared-library.md)
-- [CENTRAL API Specification](../../../../../CENTRAL/API/README.md)
-- [GEOAPI Backend Docs](../../../../GEOAPI/DOCS/README.md)
+- [ADR-007: Bun Runtime](../../../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-007-bun-runtime-bundler.md)
+- **ADR-011: TSCORE Library**
+- [CENTRAL API Specification](../../../../../../CENTRAL/API/README.md)
+- **GEOAPI Backend Docs**
 - [Axios Documentation](https://axios-http.com/)

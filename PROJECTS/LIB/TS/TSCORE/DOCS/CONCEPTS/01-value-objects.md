@@ -26,19 +26,19 @@ Um Value Object é um objeto que:
 
 Os Value Objects implementados nesta biblioteca correspondem diretamente aos conceitos documentados em:
 
-📖 **[CENTRAL/DOMAIN-MODEL/00-INDEX.md](../../../../../CENTRAL/DOMAIN-MODEL/00-INDEX.md)** - Índice completo de 25 Value Objects do domínio
+📖 **[CENTRAL/DOMAIN-MODEL/00-INDEX.md](../../../../../../CENTRAL/DOMAIN-MODEL/00-INDEX.md)** - Índice completo de 25 Value Objects do domínio
 
 ### Mapeamento Implementado
 
 | Value Object @carf/tscore | Documentação CENTRAL | Status |
 |---|---|---|
-| `CPF` | [CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/01-cpf.md](../../../../../CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/01-cpf.md) | ✅ Implementado |
-| `CNPJ` | [CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/02-cnpj.md](../../../../../CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/02-cnpj.md) | ✅ Implementado |
-| `Email` | [CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/04-email.md](../../../../../CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/04-email.md) | ✅ Implementado |
-| `PhoneNumber` | [CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/05-phone-number.md](../../../../../CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/05-phone-number.md) | ✅ Implementado |
-| `GeoPoint` | [CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/09-geopoint.md](../../../../../CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/09-geopoint.md) | 🚧 Planejado |
-| `GeoPolygon` | [CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/08-geopolygon.md](../../../../../CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/08-geopolygon.md) | 🚧 Planejado |
-| `Address` | [CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/06-address.md](../../../../../CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/06-address.md) | 🚧 Planejado |
+| `CPF` | [CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/01-cpf.md](../../../../../../CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/01-cpf.md) | ✅ Implementado |
+| `CNPJ` | **CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/02-cnpj.md** | ✅ Implementado |
+| `Email` | **CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/04-email.md** | ✅ Implementado |
+| `PhoneNumber` | **CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/05-phone-number.md** | ✅ Implementado |
+| `GeoPoint` | **CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/09-geopoint.md** | 🚧 Planejado |
+| `GeoPolygon` | **CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/08-geopolygon.md** | 🚧 Planejado |
+| `Address` | **CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/06-address.md** | 🚧 Planejado |
 
 ## Value Objects Implementados
 
@@ -48,14 +48,14 @@ Valida CPF brasileiro com algoritmo de dígitos verificadores conforme Receita F
 
 #### Documentação de Domínio
 
-📖 **[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/01-cpf.md](../../../../../CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/01-cpf.md)** - Especificação completa do conceito CPF
+📖 **[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/01-cpf.md](../../../../../../CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/01-cpf.md)** - Especificação completa do conceito CPF
 
 #### Relacionamentos de Domínio
 
 Este Value Object é usado nas seguintes entidades:
-- **[Holder](../../../../../CENTRAL/DOMAIN-MODEL/ENTITIES/03-holder.md)** - CPF obrigatório para identificação única nacional
-- **[Account](../../../../../CENTRAL/DOMAIN-MODEL/ENTITIES/08-account.md)** - CPF opcional para vinculação de usuário
-- **[Surveyor](../../../../../CENTRAL/DOMAIN-MODEL/ENTITIES/14-surveyor.md)** - CPF obrigatório para topógrafo profissional
+- **[Holder](../../../../../../CENTRAL/DOMAIN-MODEL/ENTITIES/03-holder.md)** - CPF obrigatório para identificação única nacional
+- ****Account**** - CPF opcional para vinculação de usuário
+- ****Surveyor**** - CPF obrigatório para topógrafo profissional
 
 #### Regras de Validação
 
@@ -131,13 +131,13 @@ Valida CNPJ brasileiro com algoritmo de dígitos verificadores conforme Receita 
 
 #### Documentação de Domínio
 
-📖 **[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/02-cnpj.md](../../../../../CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/02-cnpj.md)** - Especificação completa do conceito CNPJ
+📖 ****CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/02-cnpj.md**** - Especificação completa do conceito CNPJ
 
 #### Relacionamentos de Domínio
 
 Este Value Object é usado nas seguintes entidades:
-- **[Holder](../../../../../CENTRAL/DOMAIN-MODEL/ENTITIES/03-holder.md)** - Quando titular é pessoa jurídica
-- **[Tenant](../../../../../CENTRAL/DOMAIN-MODEL/ENTITIES/07-tenant.md)** - CNPJ obrigatório para instituição cliente
+- **[Holder](../../../../../../CENTRAL/DOMAIN-MODEL/ENTITIES/03-holder.md)** - Quando titular é pessoa jurídica
+- **[Tenant](../../../../../../CENTRAL/DOMAIN-MODEL/ENTITIES/07-tenant.md)** - CNPJ obrigatório para instituição cliente
 
 #### Regras de Validação
 
@@ -171,13 +171,13 @@ Valida endereços de email conforme RFC 5322 com sanitização básica.
 
 #### Documentação de Domínio
 
-📖 **[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/04-email.md](../../../../../CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/04-email.md)** - Especificação completa do conceito Email
+📖 ****CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/04-email.md**** - Especificação completa do conceito Email
 
 #### Relacionamentos de Domínio
 
 Este Value Object é usado nas seguintes entidades:
-- **[Holder](../../../../../CENTRAL/DOMAIN-MODEL/ENTITIES/03-holder.md)** - Email para contato e notificações
-- **[Account](../../../../../CENTRAL/DOMAIN-MODEL/ENTITIES/08-account.md)** - Email obrigatório para autenticação
+- **[Holder](../../../../../../CENTRAL/DOMAIN-MODEL/ENTITIES/03-holder.md)** - Email para contato e notificações
+- ****Account**** - Email obrigatório para autenticação
 
 #### Regras de Validação
 
@@ -248,13 +248,13 @@ Valida telefones brasileiros com DDD e formato móvel/fixo.
 
 #### Documentação de Domínio
 
-📖 **[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/05-phone-number.md](../../../../../CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/05-phone-number.md)** - Especificação completa do conceito PhoneNumber
+📖 ****CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/05-phone-number.md**** - Especificação completa do conceito PhoneNumber
 
 #### Relacionamentos de Domínio
 
 Este Value Object é usado nas seguintes entidades:
-- **[Holder](../../../../../CENTRAL/DOMAIN-MODEL/ENTITIES/03-holder.md)** - Telefone para contato
-- **[Account](../../../../../CENTRAL/DOMAIN-MODEL/ENTITIES/08-account.md)** - Telefone opcional
+- **[Holder](../../../../../../CENTRAL/DOMAIN-MODEL/ENTITIES/03-holder.md)** - Telefone para contato
+- ****Account**** - Telefone opcional
 
 #### Regras de Validação
 
@@ -290,8 +290,6 @@ PhoneNumber.clean('(11) 98765-4321')
 
 ### GeoPoint (Ponto Geográfico)
 
-📖 **[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/09-geopoint.md](../../../../../CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/09-geopoint.md)**
-
 ```typescript
 // Planejado para v2.0.0
 import { GeoPoint } from '@carf/tscore/geo'
@@ -305,8 +303,6 @@ point.toGeoJSON() // { type: "Point", coordinates: [...] }
 
 ### GeoPolygon (Polígono Geográfico)
 
-📖 **[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/08-geopolygon.md](../../../../../CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/08-geopolygon.md)**
-
 ```typescript
 // Planejado para v2.0.0
 import { GeoPolygon } from '@carf/tscore/geo'
@@ -318,8 +314,6 @@ polygon.toGeoJSON() // GeoJSON Feature
 ```
 
 ### Address (Endereço Brasileiro)
-
-📖 **[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/06-address.md](../../../../../CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/06-address.md)**
 
 ```typescript
 // Planejado para v2.0.0
@@ -411,19 +405,19 @@ Ver especificações de teste:
 
 ### Documentação CENTRAL
 
-- 📖 [CENTRAL/DOMAIN-MODEL/00-INDEX.md](../../../../../CENTRAL/DOMAIN-MODEL/00-INDEX.md) - Índice completo do domínio
-- 📖 [CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/](../../../../../CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/) - Todos os 25 Value Objects
+- 📖 [CENTRAL/DOMAIN-MODEL/00-INDEX.md](../../../../../../CENTRAL/DOMAIN-MODEL/00-INDEX.md) - Índice completo do domínio
+- 📖 [CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/](../../../../../../CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/) - Todos os 25 Value Objects
 
 ### Outras Bibliotecas
 
 - 🔧 [@carf/geoapi-client](../../../GEOAPI-CLIENT/DOCS/README.md) - Cliente HTTP que usa estes types
-- 🎨 [@carf/ui](../../../UI-COMPONENTS/DOCS/README.md) - Componentes React que validam com VOs
+- 🎨 **@carf/ui** - Componentes React que validam com VOs
 
 ### Projetos Consumidores
 
-- 🌐 [GEOWEB](../../../../GEOWEB/DOCS/README.md) - Frontend React web
-- 📱 [REURBCAD](../../../../REURBCAD/DOCS/README.md) - Mobile React Native
-- 🛠️ [ADMIN](../../../../ADMIN/DOCS/README.md) - Console admin
+- 🌐 **GEOWEB** - Frontend React web
+- 📱 **REURBCAD** - Mobile React Native
+- 🛠️ **ADMIN** - Console admin
 
 ---
 

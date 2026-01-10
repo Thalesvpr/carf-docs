@@ -457,7 +457,7 @@ builder.Services.AddDbContext<CarfDbContext>(options =>
 - Integração nativa com PostgreSQL (Npgsql)
 - PostGIS support via NetTopologySuite
 
-**Ver:** [ADR-001](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-001-dotnet-backend.md)
+**Ver:** [ADR-001](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-001-dotnet-9-backend.md)
 
 ### 2. PostgreSQL + PostGIS vs MongoDB
 
@@ -534,7 +534,7 @@ builder.Services.AddDbContext<CarfDbContext>(options =>
 
 ## Referências
 
-- [ADR-001: .NET 9 Backend](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-001-dotnet-backend.md)
+- [ADR-001: .NET 9 Backend](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-001-dotnet-9-backend.md)
 - [ADR-008: Clean Architecture DDD](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-008-clean-architecture-ddd.md)
 - [ADR-009: CQRS Pattern](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-009-cqrs-pattern.md)
 - [CENTRAL/DOMAIN-MODEL/](../../../../CENTRAL/DOMAIN-MODEL/)

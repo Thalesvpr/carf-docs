@@ -580,6 +580,6 @@ public async Task AdminEndpoints_ExceedRateLimit_Returns429()
 ## Ver Também
 
 - [Keycloak Integration](./01-keycloak-integration.md)
-- [Security Guidelines](../../../CENTRAL/SECURITY/README.md)
+- [Security Guidelines](../../../../CENTRAL/SECURITY/README.md)
 - [Audit Logging](../../CONCEPTS/04-audit-logging.md)
 - [ADMIN Console Architecture](../../ADMIN/DOCS/ARCHITECTURE/README.md)

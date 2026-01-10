@@ -1,0 +1,393 @@
+[*] Verificando links em arquivos Markdown...
+[*] Diretorio raiz: C:\DEV\CARF
+
+[*] Encontrados 900 arquivos Markdown
+
+================================================================================
+RESULTADOS
+================================================================================
+[OK] Total de links internos verificados: 375
+[ERRO] Links quebrados encontrados: 67
+[INFO] Arquivos com links quebrados: 21
+
+================================================================================
+LINKS QUEBRADOS DETALHADOS
+================================================================================
+
+[ARQUIVO] CENTRAL\INTEGRATION\DATABASE\README.md
+   1 link(s) quebrado(s):
+
+   [X] [GEOAPI Database Setup](../../../PROJECTS/GEOAPI/DOCS/HOW-TO/database-setup.md)
+       Resolvido para: C:\DEV\CARF\PROJECTS\GEOAPI\DOCS\HOW-TO\database-setup.md
+       Arquivo nao existe!
+
+--------------------------------------------------------------------------------
+
+[ARQUIVO] CENTRAL\TEMPLATES\PROJECT-DOCS-TEMPLATE.md
+   23 link(s) quebrado(s):
+
+   [X] [01-overview.md](./01-overview.md)
+       Resolvido para: C:\DEV\CARF\CENTRAL\TEMPLATES\01-overview.md
+       Arquivo nao existe!
+
+   [X] [02-layers.md](./02-layers.md)
+       Resolvido para: C:\DEV\CARF\CENTRAL\TEMPLATES\02-layers.md
+       Arquivo nao existe!
+
+   [X] [03-data-flow.md](./03-data-flow.md)
+       Resolvido para: C:\DEV\CARF\CENTRAL\TEMPLATES\03-data-flow.md
+       Arquivo nao existe!
+
+   [X] [04-integration.md](./04-integration.md)
+       Resolvido para: C:\DEV\CARF\CENTRAL\TEMPLATES\04-integration.md
+       Arquivo nao existe!
+
+   [X] [05-deployment.md](./05-deployment.md)
+       Resolvido para: C:\DEV\CARF\CENTRAL\TEMPLATES\05-deployment.md
+       Arquivo nao existe!
+
+   [X] [ADR-XXX](link)
+       Resolvido para: C:\DEV\CARF\CENTRAL\TEMPLATES\link
+       Arquivo nao existe!
+
+   [X] [CENTRAL/ARCHITECTURE/PATTERNS/](link)
+       Resolvido para: C:\DEV\CARF\CENTRAL\TEMPLATES\link
+       Arquivo nao existe!
+
+   [X] [01-key-concepts.md](./01-key-concepts.md)
+       Resolvido para: C:\DEV\CARF\CENTRAL\TEMPLATES\01-key-concepts.md
+       Arquivo nao existe!
+
+   [X] [02-terminology.md](./02-terminology.md)
+       Resolvido para: C:\DEV\CARF\CENTRAL\TEMPLATES\02-terminology.md
+       Arquivo nao existe!
+
+   [X] [03-design-principles.md](./03-design-principles.md)
+       Resolvido para: C:\DEV\CARF\CENTRAL\TEMPLATES\03-design-principles.md
+       Arquivo nao existe!
+
+   [X] [CENTRAL/DOMAIN-MODEL/](link)
+       Resolvido para: C:\DEV\CARF\CENTRAL\TEMPLATES\link
+       Arquivo nao existe!
+
+   [X] [CENTRAL/BUSINESS-RULES/](link)
+       Resolvido para: C:\DEV\CARF\CENTRAL\TEMPLATES\link
+       Arquivo nao existe!
+
+   [X] [01-setup-dev-environment.md](./01-setup-dev-environment.md)
+       Resolvido para: C:\DEV\CARF\CENTRAL\TEMPLATES\01-setup-dev-environment.md
+       Arquivo nao existe!
+
+   [X] [02-build-and-run.md](./02-build-and-run.md)
+       Resolvido para: C:\DEV\CARF\CENTRAL\TEMPLATES\02-build-and-run.md
+       Arquivo nao existe!
+
+   [X] [03-testing.md](./03-testing.md)
+       Resolvido para: C:\DEV\CARF\CENTRAL\TEMPLATES\03-testing.md
+       Arquivo nao existe!
+
+   [X] [04-troubleshooting.md](./04-troubleshooting.md)
+       Resolvido para: C:\DEV\CARF\CENTRAL\TEMPLATES\04-troubleshooting.md
+       Arquivo nao existe!
+
+   [X] [02-build-and-run.md](./02-build-and-run.md)
+       Resolvido para: C:\DEV\CARF\CENTRAL\TEMPLATES\02-build-and-run.md
+       Arquivo nao existe!
+
+   [X] [../../DOCS/README.md](../../DOCS/README.md)
+       Resolvido para: C:\DEV\CARF\DOCS\README.md
+       Arquivo nao existe!
+
+   [X] [Architecture](../../DOCS/ARCHITECTURE/)
+       Resolvido para: C:\DEV\CARF\DOCS\ARCHITECTURE
+       Arquivo nao existe!
+
+   [X] [Concepts](../../DOCS/CONCEPTS/)
+       Resolvido para: C:\DEV\CARF\DOCS\CONCEPTS
+       Arquivo nao existe!
+
+   [X] [How-To Guides](../../DOCS/HOW-TO/)
+       Resolvido para: C:\DEV\CARF\DOCS\HOW-TO
+       Arquivo nao existe!
+
+   [X] [CENTRAL Documentation](../../../../CENTRAL/)
+       Resolvido para: C:\CENTRAL
+       Arquivo nao existe!
+
+   [X] [Related Projects](../../../../PROJECTS/)
+       Resolvido para: C:\PROJECTS
+       Arquivo nao existe!
+
+--------------------------------------------------------------------------------
+
+[ARQUIVO] CENTRAL\TODO\014-create-integration-guides.md
+   1 link(s) quebrado(s):
+
+   [X] [CENTRAL/API/](../../API/)
+       Resolvido para: C:\DEV\CARF\API
+       Arquivo nao existe!
+
+--------------------------------------------------------------------------------
+
+[ARQUIVO] CENTRAL\VERSIONING\GIT\01-polyrepo-strategy.md
+   1 link(s) quebrado(s):
+
+   [X] [CHANGELOG.md](../../PROJECTS/TSCORE/SRC-CODE/CHANGELOG.md)
+       Resolvido para: C:\DEV\CARF\CENTRAL\PROJECTS\TSCORE\SRC-CODE\CHANGELOG.md
+       Arquivo nao existe!
+
+--------------------------------------------------------------------------------
+
+[ARQUIVO] PROJECTS\ADMIN\SRC-CODE\carf-admin\README.md
+   3 link(s) quebrado(s):
+
+   [X] [GEOAPI Admin Endpoints](../../GEOAPI/DOCS/HOW-TO/admin-endpoints.md)
+       Resolvido para: C:\DEV\CARF\PROJECTS\ADMIN\GEOAPI\DOCS\HOW-TO\admin-endpoints.md
+       Arquivo nao existe!
+
+   [X] [Keycloak Admin API](../../../CENTRAL/INTEGRATION/KEYCLOAK/README.md)
+       Resolvido para: C:\DEV\CARF\PROJECTS\CENTRAL\INTEGRATION\KEYCLOAK\README.md
+       Arquivo nao existe!
+
+   [X] [Security Guidelines](../../../CENTRAL/SECURITY/README.md)
+       Resolvido para: C:\DEV\CARF\PROJECTS\CENTRAL\SECURITY\README.md
+       Arquivo nao existe!
+
+--------------------------------------------------------------------------------
+
+[ARQUIVO] PROJECTS\GEOAPI\DOCS\ARCHITECTURE\01-overview.md
+   2 link(s) quebrado(s):
+
+   [X] [ADR-001](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-001-dotnet-backend.md)
+       Resolvido para: C:\DEV\CARF\CENTRAL\ARCHITECTURE\ADRs\ADR-001-dotnet-backend.md
+       Arquivo nao existe!
+
+   [X] [ADR-001: .NET 9 Backend](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-001-dotnet-backend.md)
+       Resolvido para: C:\DEV\CARF\CENTRAL\ARCHITECTURE\ADRs\ADR-001-dotnet-backend.md
+       Arquivo nao existe!
+
+--------------------------------------------------------------------------------
+
+[ARQUIVO] PROJECTS\GEOAPI\DOCS\ARCHITECTURE\02-admin-security.md
+   3 link(s) quebrado(s):
+
+   [X] [Security Guidelines](../../../CENTRAL/SECURITY/README.md)
+       Resolvido para: C:\DEV\CARF\PROJECTS\CENTRAL\SECURITY\README.md
+       Arquivo nao existe!
+
+   [X] [Audit Logging](../../CONCEPTS/04-audit-logging.md)
+       Resolvido para: C:\DEV\CARF\PROJECTS\GEOAPI\CONCEPTS\04-audit-logging.md
+       Arquivo nao existe!
+
+   [X] [ADMIN Console Architecture](../../ADMIN/DOCS/ARCHITECTURE/README.md)
+       Resolvido para: C:\DEV\CARF\PROJECTS\GEOAPI\ADMIN\DOCS\ARCHITECTURE\README.md
+       Arquivo nao existe!
+
+--------------------------------------------------------------------------------
+
+[ARQUIVO] PROJECTS\GEOAPI\DOCS\ARCHITECTURE\05-deployment.md
+   2 link(s) quebrado(s):
+
+   [X] [HOW-TO/01-setup-dev-environment.md](../HOW-TO/01-setup-dev-environment.md)
+       Resolvido para: C:\DEV\CARF\PROJECTS\GEOAPI\DOCS\HOW-TO\01-setup-dev-environment.md
+       Arquivo nao existe!
+
+   [X] [HOW-TO/02-build-and-run.md](../HOW-TO/02-build-and-run.md)
+       Resolvido para: C:\DEV\CARF\PROJECTS\GEOAPI\DOCS\HOW-TO\02-build-and-run.md
+       Arquivo nao existe!
+
+--------------------------------------------------------------------------------
+
+[ARQUIVO] PROJECTS\GEOAPI\DOCS\ARCHITECTURE\README.md
+   1 link(s) quebrado(s):
+
+   [X] [ADR-001: .NET 9 Backend](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-001-dotnet-backend.md)
+       Resolvido para: C:\DEV\CARF\CENTRAL\ARCHITECTURE\ADRs\ADR-001-dotnet-backend.md
+       Arquivo nao existe!
+
+--------------------------------------------------------------------------------
+
+[ARQUIVO] PROJECTS\GEOAPI\DOCS\CONCEPTS\README.md
+   3 link(s) quebrado(s):
+
+   [X] [01-key-concepts.md](./01-key-concepts.md)
+       Resolvido para: C:\DEV\CARF\PROJECTS\GEOAPI\DOCS\CONCEPTS\01-key-concepts.md
+       Arquivo nao existe!
+
+   [X] [02-terminology.md](./02-terminology.md)
+       Resolvido para: C:\DEV\CARF\PROJECTS\GEOAPI\DOCS\CONCEPTS\02-terminology.md
+       Arquivo nao existe!
+
+   [X] [03-design-principles.md](./03-design-principles.md)
+       Resolvido para: C:\DEV\CARF\PROJECTS\GEOAPI\DOCS\CONCEPTS\03-design-principles.md
+       Arquivo nao existe!
+
+--------------------------------------------------------------------------------
+
+[ARQUIVO] PROJECTS\KEYCLOAK\DOCS\ARCHITECTURE\01-customization-strategy.md
+   2 link(s) quebrado(s):
+
+   [X] [CENTRAL/INTEGRATION/KEYCLOAK/](../../../CENTRAL/INTEGRATION/KEYCLOAK/)
+       Resolvido para: C:\DEV\CARF\PROJECTS\CENTRAL\INTEGRATION\KEYCLOAK
+       Arquivo nao existe!
+
+   [X] [ADR-003](../../../CENTRAL/ARCHITECTURE/ADRs/ADR-003-keycloak-autenticacao.md)
+       Resolvido para: C:\DEV\CARF\PROJECTS\CENTRAL\ARCHITECTURE\ADRs\ADR-003-keycloak-autenticacao.md
+       Arquivo nao existe!
+
+--------------------------------------------------------------------------------
+
+[ARQUIVO] PROJECTS\KEYCLOAK\SRC-CODE\carf-keycloak\README.md
+   1 link(s) quebrado(s):
+
+   [X] [Documentação Central](../../../CENTRAL/INTEGRATION/KEYCLOAK/)
+       Resolvido para: C:\DEV\CARF\PROJECTS\CENTRAL\INTEGRATION\KEYCLOAK
+       Arquivo nao existe!
+
+--------------------------------------------------------------------------------
+
+[ARQUIVO] PROJECTS\LIB\TS\GEOAPI-CLIENT\DOCS\API\01-units-api.md
+   3 link(s) quebrado(s):
+
+   [X] [Holders API](./02-holders-api.md)
+       Resolvido para: C:\DEV\CARF\PROJECTS\LIB\TS\GEOAPI-CLIENT\DOCS\API\02-holders-api.md
+       Arquivo nao existe!
+
+   [X] [Communities API](./03-communities-api.md)
+       Resolvido para: C:\DEV\CARF\PROJECTS\LIB\TS\GEOAPI-CLIENT\DOCS\API\03-communities-api.md
+       Arquivo nao existe!
+
+   [X] [Documents API](./06-documents-api.md)
+       Resolvido para: C:\DEV\CARF\PROJECTS\LIB\TS\GEOAPI-CLIENT\DOCS\API\06-documents-api.md
+       Arquivo nao existe!
+
+--------------------------------------------------------------------------------
+
+[ARQUIVO] PROJECTS\LIB\TS\GEOAPI-CLIENT\DOCS\README.md
+   4 link(s) quebrado(s):
+
+   [X] [CENTRAL/API/](../../../../CENTRAL/API/README.md)
+       Resolvido para: C:\DEV\CARF\PROJECTS\CENTRAL\API\README.md
+       Arquivo nao existe!
+
+   [X] [CENTRAL/INTEGRATION/KEYCLOAK/](../../../../CENTRAL/INTEGRATION/KEYCLOAK/README.md)
+       Resolvido para: C:\DEV\CARF\PROJECTS\CENTRAL\INTEGRATION\KEYCLOAK\README.md
+       Arquivo nao existe!
+
+   [X] [CENTRAL API Specification](../../../../CENTRAL/API/README.md)
+       Resolvido para: C:\DEV\CARF\PROJECTS\CENTRAL\API\README.md
+       Arquivo nao existe!
+
+   [X] [TSCORE Documentation](../TSCORE/DOCS/README.md)
+       Resolvido para: C:\DEV\CARF\PROJECTS\LIB\TS\GEOAPI-CLIENT\TSCORE\DOCS\README.md
+       Arquivo nao existe!
+
+--------------------------------------------------------------------------------
+
+[ARQUIVO] PROJECTS\LIB\TS\GEOAPI-CLIENT\SRC-CODE\carf-geoapi-client\README.md
+   3 link(s) quebrado(s):
+
+   [X] [Error Handling](../../DOCS/ARCHITECTURE/02-error-handling.md)
+       Resolvido para: C:\DEV\CARF\PROJECTS\LIB\TS\GEOAPI-CLIENT\DOCS\ARCHITECTURE\02-error-handling.md
+       Arquivo nao existe!
+
+   [X] [Authentication Flow](../../DOCS/ARCHITECTURE/03-authentication-flow.md)
+       Resolvido para: C:\DEV\CARF\PROJECTS\LIB\TS\GEOAPI-CLIENT\DOCS\ARCHITECTURE\03-authentication-flow.md
+       Arquivo nao existe!
+
+   [X] [CONTRIBUTING.md](../../DOCS/CONTRIBUTING.md)
+       Resolvido para: C:\DEV\CARF\PROJECTS\LIB\TS\GEOAPI-CLIENT\DOCS\CONTRIBUTING.md
+       Arquivo nao existe!
+
+--------------------------------------------------------------------------------
+
+[ARQUIVO] PROJECTS\LIB\TS\UI-COMPONENTS\SRC-CODE\carf-ui\README.md
+   2 link(s) quebrado(s):
+
+   [X] [Customization](../../DOCS/HOW-TO/02-customization.md)
+       Resolvido para: C:\DEV\CARF\PROJECTS\LIB\TS\UI-COMPONENTS\DOCS\HOW-TO\02-customization.md
+       Arquivo nao existe!
+
+   [X] [Accessibility](../../DOCS/CONCEPTS/02-accessibility.md)
+       Resolvido para: C:\DEV\CARF\PROJECTS\LIB\TS\UI-COMPONENTS\DOCS\CONCEPTS\02-accessibility.md
+       Arquivo nao existe!
+
+--------------------------------------------------------------------------------
+
+[ARQUIVO] PROJECTS\WEBDOCS\DOCS\README.md
+   2 link(s) quebrado(s):
+
+   [X] [Arquitetura](./ARCHITECTURE/README.md)
+       Resolvido para: C:\DEV\CARF\PROJECTS\WEBDOCS\DOCS\ARCHITECTURE\README.md
+       Arquivo nao existe!
+
+   [X] [Biblioteca compartilhada](../../TSCORE/DOCS/README.md)
+       Resolvido para: C:\DEV\CARF\PROJECTS\TSCORE\DOCS\README.md
+       Arquivo nao existe!
+
+--------------------------------------------------------------------------------
+
+[ARQUIVO] webdocs\dev\arquitetura\index.md
+   3 link(s) quebrado(s):
+
+   [X] [Requisitos](/docs/requisitos/)
+       Resolvido para: C:\docs\requisitos
+       Arquivo nao existe!
+
+   [X] [API](/dev/api/)
+       Resolvido para: C:\dev\api
+       Arquivo nao existe!
+
+   [X] [Funcionalidades](/docs/funcionalidades/)
+       Resolvido para: C:\docs\funcionalidades
+       Arquivo nao existe!
+
+--------------------------------------------------------------------------------
+
+[ARQUIVO] webdocs\dev\guias\integracao-api.md
+   1 link(s) quebrado(s):
+
+   [X] [API Reference completa](/dev/api/)
+       Resolvido para: C:\dev\api
+       Arquivo nao existe!
+
+--------------------------------------------------------------------------------
+
+[ARQUIVO] webdocs\docs\funcionalidades\index.md
+   3 link(s) quebrado(s):
+
+   [X] [Requisitos](/docs/requisitos/)
+       Resolvido para: C:\docs\requisitos
+       Arquivo nao existe!
+
+   [X] [API](/dev/api/)
+       Resolvido para: C:\dev\api
+       Arquivo nao existe!
+
+   [X] [Arquitetura](/dev/arquitetura/)
+       Resolvido para: C:\dev\arquitetura
+       Arquivo nao existe!
+
+--------------------------------------------------------------------------------
+
+[ARQUIVO] webdocs\docs\requisitos\index.md
+   3 link(s) quebrado(s):
+
+   [X] [Casos de Uso](/docs/funcionalidades/)
+       Resolvido para: C:\docs\funcionalidades
+       Arquivo nao existe!
+
+   [X] [API](/dev/api/)
+       Resolvido para: C:\dev\api
+       Arquivo nao existe!
+
+   [X] [Arquitetura](/dev/arquitetura/)
+       Resolvido para: C:\dev\arquitetura
+       Arquivo nao existe!
+
+--------------------------------------------------------------------------------
+
+
+================================================================================
+Verificacao concluida!
+================================================================================

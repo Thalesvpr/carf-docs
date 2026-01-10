@@ -61,7 +61,14 @@
       "Bash([ -f \"themes/carf/login/login.ftl\" ])",
       "Bash([ -f \"themes/carf/account/account.ftl\" ])",
       "Bash([ -f \"themes/carf/email/html/email-verification.ftl\" ])",
-      "Bash(Remove-Item -Path \"C:\\\\DEV\\\\CARF\\\\PROJECTS\\\\LIB\\\\TS\\\\node_modules\" -Recurse -Force)"
+      "Bash(Remove-Item -Path \"C:\\\\DEV\\\\CARF\\\\PROJECTS\\\\LIB\\\\TS\\\\node_modules\" -Recurse -Force)",
+      "Bash(git fetch:*)",
+      "Bash(git merge:*)",
+      "Bash(for file in ARCHITECTURE/*.md CONCEPTS/*.md HOW-TO/*.md REFERENCE/*.md)",
+      "Bash(do:*)",
+      "Bash(python:*)",
+      "Bash(grep:*)",
+      "Bash(findstr:*)"
     ]
   }
 }
