@@ -183,6 +183,10 @@
   },
   "active": "e55f3b0524e5f762",
   "lastOpenFiles": [
+    "PROJECTS/LIB/TS/UI-COMPONENTS/SRC-CODE/carf-ui/node_modules/bl/LICENSE.md",
+    "CENTRAL/ARCHITECTURE/DEPLOYMENT/sedCPzyGk",
+    "CENTRAL/ARCHITECTURE/DEPLOYMENT/sedeH0jIK",
+    "CENTRAL/ARCHITECTURE/DEPLOYMENT/sedabR4TZ",
     "CENTRAL/WORKFLOWS/05-topography-workflow.md",
     "PROJECTS/GEOGIS/DOCS/README.md",
     "PROJECTS/REURBCAD/DOCS/README.md",
@@ -209,15 +213,11 @@
     "PROJECTS/LIB/TS/UI-COMPONENTS/SRC-CODE/carf-ui/node_modules/async/CHANGELOG.md",
     "PROJECTS/LIB/TS/TSCORE/SRC-CODE/CHANGELOG.md",
     "PROJECTS/ADMIN/DOCS/HOW-TO/03-testing.md",
-    "PROJECTS/ADMIN/DOCS/HOW-TO/04-troubleshooting.md",
     "PROJECTS/ADMIN/DOCS/HOW-TO",
     "PROJECTS/ADMIN/DOCS/CONCEPTS",
     "PROJECTS/WEBDOCS/DOCS/HOW-TO",
     "PROJECTS/WEBDOCS/DOCS/CONCEPTS",
     "PROJECTS/WEBDOCS/DOCS/ARCHITECTURE",
-    "baseline-before.txt",
-    "links-report.txt",
-    "clean-broken-links.py",
-    "fix-links.py"
+    "baseline-before.txt"
   ]
 }

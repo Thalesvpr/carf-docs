@@ -1,6 +1,6 @@
 {
   "collapse-filter": false,
-  "search": "",
+  "search": "-path:node_modules -path:dist -path:build -path:.git -path:SRC-CODE/carf-tscore/node_modules -path:SRC-CODE/carf-geoapi-client/node_modules -path:SRC-CODE/carf-ui/node_modules",
   "showTags": false,
   "showAttachments": false,
   "hideUnresolved": false,
@@ -123,6 +123,6 @@
   "repelStrength": 12,
   "linkStrength": 1,
   "linkDistance": 300,
-  "scale": 0.14,
+  "scale": 0.11176338951045003,
   "close": false
 }

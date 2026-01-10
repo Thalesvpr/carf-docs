@@ -1,14 +1,18 @@
 {
   "userIgnoreFilters": [
+    "node_modules/",
+    "node_modules",
+    "**/node_modules",
     "**/node_modules/**",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules",
+    "PROJECTS/LIB/TS/GEOAPI-CLIENT/SRC-CODE/carf-geoapi-client/node_modules",
+    "PROJECTS/LIB/TS/UI-COMPONENTS/SRC-CODE/carf-ui/node_modules",
     "**/dist/**",
     "**/build/**",
     "**/.next/**",
     "**/.cache/**",
     "**/bin/**",
     "**/obj/**",
-    "node_modules",
-    "**/node_modules",
     "**/.git/**"
   ],
   "alwaysUpdateLinks": true,
