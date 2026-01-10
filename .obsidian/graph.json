@@ -29,6 +29,34 @@
       }
     },
     {
+      "query": "path:CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS",
+      "color": {
+        "a": 1,
+        "rgb": 16711935
+      }
+    },
+    {
+      "query": "path:CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS",
+      "color": {
+        "a": 1,
+        "rgb": 10494207
+      }
+    },
+    {
+      "query": "path:CENTRAL/REQUIREMENTS/USE-CASES",
+      "color": {
+        "a": 1,
+        "rgb": 14483455
+      }
+    },
+    {
+      "query": "path:CENTRAL/REQUIREMENTS/USER-STORIES",
+      "color": {
+        "a": 1,
+        "rgb": 9109643
+      }
+    },
+    {
       "query": "path:CENTRAL/REQUIREMENTS/",
       "color": {
         "a": 1,
@@ -46,14 +74,14 @@
       "query": "path:CENTRAL/INTEGRATION/",
       "color": {
         "a": 1,
-        "rgb": 16724736
+        "rgb": 16744448
       }
     },
     {
       "query": "path:CENTRAL/OPERATIONS/",
       "color": {
         "a": 1,
-        "rgb": 16728064
+        "rgb": 16757504
       }
     },
     {
@@ -74,21 +102,21 @@
       "query": "path:CENTRAL/VERSIONING/",
       "color": {
         "a": 1,
-        "rgb": 16711935
+        "rgb": 16747520
       }
     },
     {
       "query": "path:CENTRAL/LIBRARIES/",
       "color": {
         "a": 1,
-        "rgb": 16716947
+        "rgb": 16741120
       }
     },
     {
       "query": "path:CENTRAL/TEMPLATES/",
       "color": {
         "a": 1,
-        "rgb": 16740465
+        "rgb": 16751616
       }
     },
     {
@@ -186,6 +214,6 @@
   "repelStrength": 20,
   "linkStrength": 1,
   "linkDistance": 488,
-  "scale": 0.013348475259046848,
+  "scale": 0.015355905973322361,
   "close": false
 }
