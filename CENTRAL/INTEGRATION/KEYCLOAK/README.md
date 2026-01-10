@@ -1,35 +1,7 @@
-# Keycloak - Autenticação CARF
+# KEYCLOAK
 
-Provedor centralizado de autenticação OAuth2/OIDC para as 6 aplicações CARF (GEOWEB, REURBCAD, GEOAPI, GEOGIS, WEBDOCS, ADMIN) usando realm único "carf" com multi-tenancy dinâmico via atributos de usuário (`tenants: []` e `current_tenant`) integrado com PostgreSQL RLS através do claim `tenant_id` no JWT token.
-
-## Setup Rápido
-
-`docker-compose up -d` no diretório atual sobe Keycloak + PostgreSQL com realm "carf" importado automaticamente via `realm-export.json`. Acesse http://localhost:8080 com admin/admin. Os 6 clients já estão configurados: geoweb (SPA PKCE), reurbcad (Mobile PKCE), geoapi (Bearer-only), geogis (Client credentials), webdocs (Público), admin (SPA PKCE).
-
-## Arquitetura
-
-Um realm "carf" com 6 clients, 4 roles (field-collector, analyst, admin, super-admin), usuários com atributos `tenants: ["prefeitura-a"]` e `current_tenant: "prefeitura-a"` que viram claims no JWT (`tenant_id` e `allowed_tenants`). Frontend tem dropdown pra trocar tenant, chama backend `/api/auth/switch-tenant`, backend atualiza `current_tenant` no Keycloak via Admin API, usuário faz refresh do token e pega novo `tenant_id`. Middleware backend seta `SET app.tenant_id = {tenant_id}` no PostgreSQL, RLS policy filtra dados automaticamente com `WHERE tenant_id = current_setting('app.tenant_id')::uuid`.
-
-## Documentos
-
-[01-architecture.md](./01-architecture.md) explica OAuth2/OIDC, SSO e flows. [02-realm-configuration.md](./02-realm-configuration.md) detalha configuração dos 6 clients e protocol mappers. [03-docker-setup.md](./03-docker-setup.md) tem docker-compose completo. [04-multi-tenancy.md](./04-multi-tenancy.md) mostra código completo do tenant switcher. [05-client-configurations.md](./05-client-configurations.md) tem config individual de cada client. [06-rbac-permissions.md](./06-rbac-permissions.md) define hierarquia de roles. [07-token-management.md](./07-token-management.md) explica refresh e revogação. [08-production-deployment.md](./08-production-deployment.md) deploy K8s. [09-security-best-practices.md](./09-security-best-practices.md) segurança. [10-troubleshooting.md](./10-troubleshooting.md) erros comuns. [11-admin-frontend.md](./11-admin-frontend.md) carf-admin Next.js com Keycloak Admin API. [12-integration-testing.md](./12-integration-testing.md) testes.
-
-## Arquivos
-
-[realm-export.json](./realm-export.json) = exportação completa do realm. [docker-compose.yml](./docker-compose.yml) = Keycloak + PostgreSQL. [.env.example](./.env.example) = variáveis de ambiente. `clients/*.json` = configs individuais dos 6 clients.
-
-## Integração
-
-`examples/` tem 6 guias curtos de código: [geoweb](./examples/geoweb-integration.md) (React + keycloak-js + PKCE), [geoapi](./examples/geoapi-integration.md) (.NET + JWT), [reurbcad](./examples/reurbcad-integration.md) (React Native), [geogis](./examples/geogis-integration.md) (Python), [admin](./examples/admin-integration.md) (Admin API), [webdocs](./examples/webdocs-integration.md) (VitePress).
-
-## Operação
-
-`runbooks/` tem 6 guias operacionais: [criar usuário](./runbooks/01-create-user.md) (console + API), [criar tenant](./runbooks/02-create-tenant.md) (attributes + switcher), [rotacionar secrets](./runbooks/03-rotate-secrets.md) (client/admin/db), [troubleshoot](./runbooks/04-troubleshoot-auth.md) (login errors, CORS, tokens), [backup/restore](./runbooks/05-backup-restore.md) (PostgreSQL + realm), [monitoring](./runbooks/06-monitoring.md) (health, metrics, Prometheus, logs).
-
-## Customização
-
-Keycloak customizado em `PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak/`: temas CARF (login/account/email PT-BR, validação CPF com @carf/tscore), Docker image com temas incluídos, scripts de automação (setup, backup, restore, deploy, healthcheck), Makefile. Quickstart: `make dev` inicia ambiente completo.
+Provedor centralizado de autenticação OAuth2/OIDC para as seis aplicações CARF usando realm único "carf" com multi-tenancy dinâmico via atributos de usuário que viram claims JWT integrados com PostgreSQL RLS isolando dados por tenant automaticamente. Implementa SSO unificado entre GEOWEB REURBCAD GEOAPI GEOGIS WEBDOCS e ADMIN com seis clients pré-configurados (SPA PKCE para web, Mobile PKCE para app, Bearer-only para backend, Client credentials para plugins, Público para docs). Realm possui cinco roles RBAC (super-admin admin manager analyst field-collector) hierárquicos com protocol mappers customizados gerando tokens com tenant_id e allowed_tenants permitindo troca dinâmica de contexto via dropdown frontend e refresh token. Backend middleware extrai claims JWT e configura sessão PostgreSQL com SET app.tenant_id aplicando Row Level Security policies que filtram queries por tenant sem código adicional nas aplicações. Ver documentação técnica em arquivos numerados 01-architecture até 12-integration-testing cobrindo flows OAuth2 configuração realm docker-compose multi-tenancy RBAC token management deployment production security troubleshooting admin-console e testes E2E, além de guias práticos de integração por projeto em examples/ e runbooks operacionais em runbooks/ para criar usuários tenants rotacionar secrets backup-restore e monitoramento. Customizações específicas CARF incluem temas visuais login/account/email em português brasileiro com validação CPF/CNPJ via tscore library, Docker image personalizada com temas embedados, e scripts automação completa via Makefile permitindo quick-start ambiente desenvolvimento com make dev.
 
 ---
 
-**Última atualização:** 2026-01-09
+**Última atualização:** 2026-01-10
