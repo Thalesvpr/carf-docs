@@ -1,6 +1,6 @@
 {
-  "collapse-filter": false,
-  "search": "-path:node_modules -path:dist -path:build -path:.next -path:.cache -path:bin -path:obj",
+  "collapse-filter": true,
+  "search": "",
   "showTags": false,
   "showAttachments": false,
   "hideUnresolved": false,
@@ -8,79 +8,30 @@
   "collapse-color-groups": false,
   "colorGroups": [
     {
-      "query": "path:CENTRAL/",
+      "query": "          path:node_modules",
       "color": {
         "a": 1,
         "rgb": 14701138
       }
     },
     {
-      "query": "path:PROJECTS/GEOAPI/",
+      "query": "path:",
       "color": {
         "a": 1,
         "rgb": 14725458
       }
-    },
-    {
-      "query": "path:PROJECTS/GEOWEB/",
-      "color": {
-        "a": 1,
-        "rgb": 11657298
-      }
-    },
-    {
-      "query": "path:PROJECTS/REURBCAD/",
-      "color": {
-        "a": 1,
-        "rgb": 5431378
-      }
-    },
-    {
-      "query": "path:PROJECTS/ADMIN/",
-      "color": {
-        "a": 1,
-        "rgb": 5431473
-      }
-    },
-    {
-      "query": "path:PROJECTS/KEYCLOAK/",
-      "color": {
-        "a": 1,
-        "rgb": 5419488
-      }
-    },
-    {
-      "query": "path:PROJECTS/LIB/",
-      "color": {
-        "a": 1,
-        "rgb": 5395168
-      }
-    },
-    {
-      "query": "path:PROJECTS/GEOGIS/ OR path:PROJECTS/WEBDOCS/",
-      "color": {
-        "a": 1,
-        "rgb": 11621088
-      }
-    },
-    {
-      "query": "path:CENTRAL/ARCHITECTURE/ADRs/",
-      "color": {
-        "a": 1,
-        "rgb": 14701233
-      }
     }
   ],
-  "collapse-display": false,
+  "collapse-display": true,
   "showArrow": false,
   "textFadeMultiplier": 0,
   "nodeSizeMultiplier": 1,
   "lineSizeMultiplier": 1,
-  "collapse-forces": false,
+  "collapse-forces": true,
   "centerStrength": 0.518713248970312,
   "repelStrength": 10,
   "linkStrength": 1,
   "linkDistance": 250,
-  "scale": 0.11083902200401004,
+  "scale": 0.08848389135136808,
   "close": false
 }

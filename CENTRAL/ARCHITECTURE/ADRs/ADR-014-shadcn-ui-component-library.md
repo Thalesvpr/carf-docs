@@ -14,7 +14,7 @@ Status da decisão é aprovado e implementado desde início do projeto em 2024-Q
 
 ## Implementação
 
-Decisão implementada nos projetos [GEOWEB](../../../PROJECTS/GEOWEB/DOCS/ARCHITECTURE/01-overview.md), [ADMIN](../../../PROJECTS/ADMIN/DOCS/ARCHITECTURE/01-overview.md) e biblioteca [@carf/ui](../../../PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/README.md) utilizando componentes shadcn/ui instalados via `npx shadcn-ui add` copiados para `components/ui/` e customizados conforme design system, Radix UI como dependency fornecendo primitivos acessíveis, Tailwind CSS para styling conforme [UI-COMPONENTS Architecture](../../../PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/ARCHITECTURE/01-overview.md), e componentes documentados em Storybook acessível em `http://localhost:6006` durante desenvolvimento.
+Decisão implementada nos projetos frontend [GEOWEB](../../../PROJECTS/GEOWEB/DOCS/README.md), [ADMIN](../../../PROJECTS/ADMIN/DOCS/ARCHITECTURE/01-overview.md) e biblioteca compartilhada [@carf/ui](../../../PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/README.md) utilizando componentes shadcn/ui instalados via CLI `npx shadcn-ui add button dialog select` copiando source code diretamente para `src/components/ui/` permitindo customização total conforme design system CARF, Radix UI como peer dependency fornecendo primitivos acessíveis headless que shadcn/ui wraps, Tailwind CSS para styling aplicando utility classes responsivas e variant system conforme [UI-COMPONENTS Architecture](../../../PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/ARCHITECTURE/01-overview.md), e componentes documentados em Storybook com stories interativas acessível via `bun run storybook` em `http://localhost:6006` durante desenvolvimento facilitando review de variants estados e accessibility.
 
 ---
 

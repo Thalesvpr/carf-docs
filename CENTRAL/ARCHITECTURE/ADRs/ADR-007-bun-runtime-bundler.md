@@ -18,7 +18,7 @@ Status da decisão é aprovado e implementado desde início do projeto em 2024-Q
 
 ## Implementação
 
-Decisão implementada em todas as bibliotecas TypeScript [@carf/tscore](../../../PROJECTS/LIB/TS/TSCORE/DOCS/ARCHITECTURE/05-deployment.md), [@carf/geoapi-client](../../../PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/ARCHITECTURE/05-deployment.md) e [@carf/ui](../../../PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/ARCHITECTURE/05-deployment.md) usando Bun como package manager (`bun install`) e bundler (`bun run build`) conforme setup environments documentados respectivamente em [TSCORE HOW-TO](../../../PROJECTS/LIB/TS/TSCORE/DOCS/HOW-TO/01-setup-dev-environment.md), [GEOAPI-CLIENT HOW-TO](../../../PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/HOW-TO/01-setup-dev-environment.md) e [UI-COMPONENTS HOW-TO](../../../PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/HOW-TO/01-setup-dev-environment.md), também adotado em frontends [GEOWEB](../../../PROJECTS/GEOWEB/DOCS/HOW-TO/02-build-and-run.md) e [ADMIN](../../../PROJECTS/ADMIN/DOCS/HOW-TO/02-build-and-run.md) substituindo npm/yarn.
+Decisão implementada em todas as bibliotecas TypeScript [@carf/tscore](../../../PROJECTS/LIB/TS/TSCORE/DOCS/README.md), [@carf/geoapi-client](../../../PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/README.md) e [@carf/ui](../../../PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/ARCHITECTURE/05-deployment.md) usando Bun como package manager executando `bun install` para gerenciar dependências e `bun run build` para bundler production builds com tree-shaking automático e code splitting, também adotado em frontends [GEOWEB](../../../PROJECTS/GEOWEB/DOCS/README.md) e [ADMIN](../../../PROJECTS/ADMIN/DOCS/ARCHITECTURE/01-overview.md) substituindo npm/yarn e acelerando desenvolvimento com hot reload instantâneo sub-100ms.
 
 ---
 

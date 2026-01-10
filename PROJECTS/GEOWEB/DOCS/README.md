@@ -2,19 +2,6 @@
 
 Portal web React + Vite para gestão de processos de regularização fundiária urbana (REURB) permitindo técnicos municipais e gestores visualizarem mapas de comunidades, cadastrarem unidades habitacionais online, gerenciarem titulares, acompanharem processos de legitimação, e exportarem relatórios, integrando com backend [GEOAPI](../../GEOAPI/DOCS/ARCHITECTURE/01-overview.md) via [@carf/geoapi-client](../../LIB/TS/GEOAPI-CLIENT/DOCS/README.md) consumindo APIs REST documentadas em [CENTRAL/API](../../../CENTRAL/API/README.md), autenticação via [Keycloak](../../KEYCLOAK/DOCS/README.md) conforme [ADR-003](../../../CENTRAL/ARCHITECTURE/ADRs/ADR-003-keycloak-autenticacao.md), UI com componentes [@carf/ui](../../LIB/TS/UI-COMPONENTS/DOCS/README.md) baseados em [shadcn/ui](../../../CENTRAL/ARCHITECTURE/ADRs/ADR-014-shadcn-ui-component-library.md), mapas interativos com layers WMS visualizando comunidades e unidades georreferenciadas conforme [UC-010](../../../CENTRAL/REQUIREMENTS/USE-CASES/UC-010-configurar-camadas-wms.md), server state via [TanStack Query](../../../CENTRAL/ARCHITECTURE/ADRs/ADR-015-tanstack-query-server-state.md), client state via [Zustand](../../../CENTRAL/ARCHITECTURE/ADRs/ADR-019-zustand-client-state.md), build via [Vite](../../../CENTRAL/ARCHITECTURE/ADRs/ADR-012-vite-bundler-frontend.md), e deployment em [Vercel](../../../CENTRAL/ARCHITECTURE/ADRs/ADR-013-vercel-deployment-platform.md) com preview deployments automáticos.
 
-## Estrutura da Documentação
-
-- **[ARCHITECTURE/](ARCHITECTURE/)** - Decisões de arquitetura e diagramas técnicos
-  - [01-overview.md](ARCHITECTURE/01-overview.md) - Visão geral da arquitetura frontend
-  - [04-integration.md](ARCHITECTURE/04-integration.md) - Integrações com GEOAPI e Keycloak
-  - [05-deployment.md](ARCHITECTURE/05-deployment.md) - Estratégia de deployment Vercel
-- **[CONCEPTS/](CONCEPTS/)** - Conceitos-chave e terminologia
-  - [01-key-concepts.md](CONCEPTS/01-key-concepts.md) - React, SPA, Maps
-- **[HOW-TO/](HOW-TO/)** - Guias práticos
-  - [01-setup-dev-environment.md](HOW-TO/01-setup-dev-environment.md) - Setup ambiente desenvolvimento
-  - [02-build-and-run.md](HOW-TO/02-build-and-run.md) - Build e execução local
-  - [03-testing.md](HOW-TO/03-testing.md) - Testes E2E com Playwright
-
 ## Funcionalidades Principais
 
 **Gestão de Unidades** - CRUD completo de unidades habitacionais com formulários validados client-side via [@carf/tscore](../../LIB/TS/TSCORE/DOCS/CONCEPTS/01-value-objects.md), upload de fotos, desenho de polígonos no mapa, e sincronização com backend [GEOAPI /api/units](../../../CENTRAL/API/UNITS/README.md).

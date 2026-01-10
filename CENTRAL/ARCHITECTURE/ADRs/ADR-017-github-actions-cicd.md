@@ -14,7 +14,7 @@ Status aprovado e implementado desde início 2024-Q3.
 
 ## Implementação
 
-Decisão implementada em todos projetos com workflows `.github/workflows/` executando linting testes build para [GEOAPI](../../../PROJECTS/GEOAPI/DOCS/ARCHITECTURE/05-deployment.md) rodando `dotnet test`, [GEOWEB/ADMIN](../../../PROJECTS/ADMIN/DOCS/ARCHITECTURE/05-deployment.md) rodando `bun run lint` e `bun run build`, [Libraries](../../../PROJECTS/LIB/TS/TSCORE/DOCS/ARCHITECTURE/05-deployment.md) publicando NPM packages em release tags, [WEBDOCS](../../../PROJECTS/WEBDOCS/DOCS/ARCHITECTURE/05-deployment.md) deployando para Vercel via `vercel-action`, conforme [DEPLOYMENT/04-cicd-pipeline.md](../DEPLOYMENT/04-cicd-pipeline.md).
+Decisão implementada em todos projetos CARF com workflows `.github/workflows/` no root de cada repositório executando linting testes build automaticamente em pull requests e pushes, backend [GEOAPI](../../../PROJECTS/GEOAPI/DOCS/ARCHITECTURE/05-deployment.md) rodando `dotnet build` e `dotnet test --collect:"XPlat Code Coverage"` exigindo coverage mínimo 80%, frontends [GEOWEB](../../../PROJECTS/GEOWEB/DOCS/README.md) e [ADMIN](../../../PROJECTS/ADMIN/DOCS/ARCHITECTURE/05-deployment.md) rodando `bun run lint` verificando ESLint rules e `bun run build` gerando bundles production, bibliotecas TypeScript publicando automaticamente NPM packages em GitHub Packages quando release tag é criada, site documentação [WEBDOCS](../../../PROJECTS/WEBDOCS/DOCS/ARCHITECTURE/05-deployment.md) deployando para Vercel via `vercel-action` integrando preview deploys em PRs, conforme [DEPLOYMENT/04-cicd-pipeline.md](../DEPLOYMENT/04-cicd-pipeline.md) documentando estratégia completa.
 
 ---
 

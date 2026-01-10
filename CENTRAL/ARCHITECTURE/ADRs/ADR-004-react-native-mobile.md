@@ -16,7 +16,7 @@ Status da decisão é aprovado e implementado desde início do projeto em 2024-Q
 
 ## Implementação
 
-Decisão implementada pelo projeto [REURBCAD](../../../PROJECTS/REURBCAD/DOCS/README.md) aplicativo mobile React Native + Expo conforme arquitetura documentada em [REURBCAD Architecture Overview](../../../PROJECTS/REURBCAD/DOCS/ARCHITECTURE/01-overview.md), usando offline-first database WatermelonDB conforme [ADR-006](./ADR-006-offline-first-watermelondb.md) para sincronização com backend [GEOAPI](../../../PROJECTS/GEOAPI/DOCS/README.md) via [@carf/geoapi-client](../../../PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/README.md), validações client-side reutilizando [@carf/tscore](../../../PROJECTS/LIB/TS/TSCORE/DOCS/README.md), deployment via EAS seguindo [mobile deployment strategy](../DEPLOYMENT/05-mobile-deployment.md).
+Decisão implementada pelo projeto [REURBCAD](../../../PROJECTS/REURBCAD/DOCS/README.md) aplicativo mobile React Native + Expo para coleta de dados cadastrais em campo usando offline-first database WatermelonDB conforme [ADR-006](./ADR-006-offline-first-watermelondb.md) para sincronização bidirecional com backend GEOAPI REST API via [@carf/geoapi-client](../../../PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/README.md) executando batch sync quando dispositivo conectado em WiFi, validações client-side de CPF CNPJ Email Coordinates reutilizando Value Objects de [@carf/tscore](../../../PROJECTS/LIB/TS/TSCORE/DOCS/README.md), e deployment automatizado via EAS Build cloud service seguindo [mobile deployment strategy](../DEPLOYMENT/05-mobile-deployment.md) gerando APK Android e IPA iOS com code signing.
 
 ---
 
