@@ -8,63 +8,63 @@
   "collapse-color-groups": false,
   "colorGroups": [
     {
-      "query": "",
+      "query": "path:CENTRAL/",
       "color": {
         "a": 1,
         "rgb": 14701138
       }
     },
     {
-      "query": "",
+      "query": "path:PROJECTS/GEOAPI/",
       "color": {
         "a": 1,
         "rgb": 14725458
       }
     },
     {
-      "query": "",
+      "query": "path:PROJECTS/GEOWEB/",
       "color": {
         "a": 1,
         "rgb": 11657298
       }
     },
     {
-      "query": "",
+      "query": "path:PROJECTS/REURBCAD/",
       "color": {
         "a": 1,
         "rgb": 5431378
       }
     },
     {
-      "query": "",
+      "query": "path:PROJECTS/ADMIN/",
       "color": {
         "a": 1,
         "rgb": 5431473
       }
     },
     {
-      "query": "",
+      "query": "path:PROJECTS/KEYCLOAK/",
       "color": {
         "a": 1,
         "rgb": 5419488
       }
     },
     {
-      "query": "",
+      "query": "path:PROJECTS/LIB/",
       "color": {
         "a": 1,
         "rgb": 5395168
       }
     },
     {
-      "query": "",
+      "query": "path:PROJECTS/GEOGIS/ OR path:PROJECTS/WEBDOCS/",
       "color": {
         "a": 1,
         "rgb": 11621088
       }
     },
     {
-      "query": "",
+      "query": "path:CENTRAL/ARCHITECTURE/ADRs/",
       "color": {
         "a": 1,
         "rgb": 14701233
