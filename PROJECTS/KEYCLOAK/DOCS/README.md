@@ -38,7 +38,7 @@ APIs, configurações, schemas, códigos de erro.
 ## 🎯 Guia de Navegação por Objetivo
 
 ### Quero entender como funciona
-1. Leia [CONCEPTS/](./CONCEPTS/) sequencialmente (01→05)
+1. Leia [CONCEPTS/](./CONCEPTS/README.md) sequencialmente (01→05)
 2. Consulte [ARCHITECTURE/README.md](./ARCHITECTURE/README.md) para visão geral
 
 ### Quero customizar temas
@@ -64,17 +64,17 @@ APIs, configurações, schemas, códigos de erro.
 ## 🔗 Documentação Relacionada
 
 ### Central (Integrações e Operações)
-- **[CENTRAL/INTEGRATION/KEYCLOAK/](../../../CENTRAL/INTEGRATION/KEYCLOAK/)** - Configurações realm, clients OAuth2, exemplos de integração (6 apps), runbooks operacionais (6 guias)
+- **[CENTRAL/INTEGRATION/KEYCLOAK/](../../../CENTRAL/INTEGRATION/KEYCLOAK/README.md)** - Configurações realm, clients OAuth2, exemplos de integração (6 apps), runbooks operacionais (6 guias)
 - **[ADR-003](../../../CENTRAL/ARCHITECTURE/ADRs/ADR-003-keycloak-autenticacao.md)** - Decisão de usar Keycloak
 - **[ADR-005](../../../CENTRAL/ARCHITECTURE/ADRs/ADR-005-multi-tenancy-rls.md)** - Estratégia multi-tenancy
 
 ### Source Code
-- **[SRC-CODE/carf-keycloak/](../SRC-CODE/carf-keycloak/)** - Implementação: themes/, extensions/, scripts/, tests/
+- **[SRC-CODE/carf-keycloak/](../SRC-CODE/carf-keycloak/README.md)** - Implementação: themes/, extensions/, scripts/, tests/
 
 ### Outros Projetos
-- **[GEOAPI/DOCS/](../../GEOAPI/DOCS/)** - Backend .NET que valida JWT do Keycloak
-- **[GEOWEB/DOCS/](../../GEOWEB/DOCS/)** - Frontend React com keycloak-js
-- **[ADMIN/DOCS/](../../ADMIN/DOCS/)** - Admin app usando Keycloak Admin API
+- **GEOAPI/DOCS/** - Backend .NET que valida JWT do Keycloak
+- **GEOWEB/DOCS/** - Frontend React com keycloak-js
+- **[ADMIN/DOCS/](../../ADMIN/DOCS/README.md)** - Admin app usando Keycloak Admin API
 
 ## 📋 Convenções de Documentação
 

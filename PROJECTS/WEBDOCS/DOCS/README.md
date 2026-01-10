@@ -244,7 +244,7 @@ WEBDOCS serve:
 
 - **Repositório:** https://github.com/Thalesvpr/carf-webdocs
 - **GitHub Pages:** https://thalesvpr.github.io/carf-webdocs/
-- **@carf/tscore:** [Biblioteca compartilhada](../../TSCORE/DOCS/README.md)
+- **@carf/tscore:** [Biblioteca compartilhada](../../LIB/TS/TSCORE/DOCS/README.md)
 
 ---
 

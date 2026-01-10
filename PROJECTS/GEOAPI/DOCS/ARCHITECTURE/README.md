@@ -84,8 +84,8 @@ Gerenciamento de transações através do DbContext do EF Core.
 
 ## 🔗 Referências
 
-- [CENTRAL/API/](../../../../CENTRAL/API/) - Especificação de endpoints
-- [CENTRAL/DOMAIN-MODEL/](../../../../CENTRAL/DOMAIN-MODEL/) - Modelo de domínio
-- [CENTRAL/BUSINESS-RULES/](../../../../CENTRAL/BUSINESS-RULES/) - Regras de negócio
+- [CENTRAL/API/](../../../../CENTRAL/API/README.md) - Especificação de endpoints
+- [CENTRAL/DOMAIN-MODEL/](../../../../CENTRAL/DOMAIN-MODEL/README.md) - Modelo de domínio
+- [CENTRAL/BUSINESS-RULES/](../../../../CENTRAL/BUSINESS-RULES/README.md) - Regras de negócio
 - [Clean Architecture (Robert C. Martin)](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 - [Domain-Driven Design (Eric Evans)](https://domainlanguage.com/ddd/)

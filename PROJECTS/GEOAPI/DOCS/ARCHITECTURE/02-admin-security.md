@@ -2,7 +2,7 @@
 
 ## Visão Geral
 
-Os endpoints `/api/admin/*` do GEOAPI implementam **7 camadas de segurança** para proteger operações administrativas sensíveis (gerenciamento de tenants, usuários, e configurações do sistema).
+Os endpoints `/api/admin/*` do GEOAPI implementam **7 camadas de segurança** conforme [Security Guidelines CENTRAL](../../../../CENTRAL/SECURITY/README.md) para proteger operações administrativas sensíveis (gerenciamento de tenants, usuários, e configurações do sistema) consumidas pelo [ADMIN Console](../../../ADMIN/DOCS/ARCHITECTURE/README.md).
 
 ## Por que não Next.js para Admin?
 
@@ -247,7 +247,7 @@ app.UseCors("AdminPolicy");  // ← Camada 5: CORS
 
 ### 6. Auditoria Completa
 
-Todas as ações admin são registradas para auditoria.
+Todas as ações admin são registradas para [auditoria](../CONCEPTS/04-audit-logging.md) conforme políticas de compliance.
 
 ```csharp
 // Middleware: AdminAuditMiddleware.cs
@@ -576,10 +576,3 @@ public async Task AdminEndpoints_ExceedRateLimit_Returns429()
     Assert.Equal(HttpStatusCode.TooManyRequests, responses.Last().StatusCode);
 }
 ```
-
-## Ver Também
-
-- [Keycloak Integration](./01-keycloak-integration.md)
-- [Security Guidelines](../../../../CENTRAL/SECURITY/README.md)
-- [Audit Logging](../../CONCEPTS/04-audit-logging.md)
-- [ADMIN Console Architecture](../../ADMIN/DOCS/ARCHITECTURE/README.md)

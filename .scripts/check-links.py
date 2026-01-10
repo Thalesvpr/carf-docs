@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
-Script UNICO para verificar links em arquivos Markdown
+Script MELHORADO para verificar links em arquivos Markdown
+- Varre TODOS os arquivos .md sem discriminação (exceto node_modules/.git)
 - Verifica se arquivo existe MESMO
-- Verifica se arquivo tem CONTEUDO (nao vazio)
-- Output APENAS console (sem criar arquivos)
+- Detecta links com mudança de nível (../../PROJECTS, ../CENTRAL, etc)
+- Output detalhado para debug
 """
 
 import os
@@ -13,14 +14,23 @@ from collections import defaultdict
 LINK_PATTERN = re.compile(r'\[([^\]]+)\]\(([^)]+)\)')
 
 def find_markdown_files(root_dir):
-    """Encontra todos os arquivos .md no projeto"""
+    """Encontra TODOS os arquivos .md (ignora pastas de build/cache)"""
+    # Lista de pastas para ignorar (mesmas do Obsidian)
+    IGNORED_DIRS = {
+        '.git',
+        'node_modules',
+        'dist',
+        'build',
+        '.next',
+        '.cache',
+        'bin',
+        'obj'
+    }
+
     markdown_files = []
     for root, dirs, files in os.walk(root_dir):
-        # Ignorar pastas desnecessarias
-        dirs[:] = [d for d in dirs if d not in [
-            '.git', 'node_modules', '.obsidian', 'dist', 'build', 'out',
-            '.next', '.cache', 'coverage', '.vscode', '.idea'
-        ]]
+        # Ignorar pastas de build/cache
+        dirs[:] = [d for d in dirs if d not in IGNORED_DIRS]
 
         for file in files:
             if file.endswith('.md'):
@@ -35,7 +45,6 @@ def extract_links(file_path):
             content = f.read()
             return LINK_PATTERN.findall(content)
     except Exception as e:
-        print(f"[ERRO] Nao conseguiu ler {file_path}: {e}")
         return []
 
 def is_external_link(link):
@@ -61,18 +70,14 @@ def resolve_link_path(source_file, link_path):
     return absolute_path
 
 def check_file_valid(file_path):
-    """
-    Verifica se arquivo:
-    1. Existe MESMO
-    2. Tem conteudo DENTRO (nao vazio)
-    """
+    """Verifica se arquivo existe e tem conteudo"""
     # Verifica existencia
     if not os.path.exists(file_path):
         return False, "arquivo nao existe"
 
-    # Se for diretorio, ok
+    # Se for diretorio, ERRO - links devem apontar para arquivos
     if os.path.isdir(file_path):
-        return True, None
+        return False, "link aponta para pasta (deve apontar para arquivo)"
 
     # Verifica se arquivo tem conteudo
     try:
@@ -88,20 +93,20 @@ def check_file_valid(file_path):
 
         return True, None
     except Exception as e:
-        return False, f"erro ao ler arquivo: {e}"
+        return False, f"erro ao ler: {e}"
 
 def main():
-    # Raiz do projeto (parent de .scripts/)
+    # Raiz do projeto
     script_dir = os.path.dirname(os.path.abspath(__file__))
     root_dir = os.path.dirname(script_dir)
 
     print("=" * 80)
-    print("VERIFICADOR DE LINKS MARKDOWN - VERSAO UNICA")
+    print("VERIFICADOR DE LINKS MARKDOWN - VERSAO MELHORADA")
     print("=" * 80)
-    print(f"Raiz do projeto: {root_dir}")
+    print(f"Raiz: {root_dir}")
     print()
 
-    # Encontrar arquivos markdown
+    # Encontrar TODOS os arquivos markdown
     markdown_files = find_markdown_files(root_dir)
     print(f"[*] Encontrados {len(markdown_files)} arquivos .md")
     print()
@@ -110,6 +115,12 @@ def main():
     total_internal_links = 0
     total_broken_links = 0
     broken_by_file = defaultdict(list)
+    files_checked = 0
+
+    # Rastreamento de arquivos linkados e isolados
+    linked_files = set()  # Arquivos que RECEBEM links de outros
+    files_with_outgoing_links = set()  # Arquivos que TEM links saindo
+    all_md_files_set = set(os.path.normpath(f) for f in markdown_files)
 
     # Verificar cada arquivo
     for md_file in markdown_files:
@@ -118,6 +129,8 @@ def main():
 
         if not links:
             continue
+
+        files_checked += 1
 
         for link_text, link_path in links:
             # Ignorar externos
@@ -131,7 +144,11 @@ def main():
             if resolved is None:
                 continue
 
-            # VERIFICACAO ROBUSTA: existe E tem conteudo
+            # Registrar que este arquivo TEM links saindo
+            normalized_source = os.path.normpath(md_file)
+            files_with_outgoing_links.add(normalized_source)
+
+            # VERIFICACAO: existe E tem conteudo
             is_valid, error_msg = check_file_valid(resolved)
 
             if not is_valid:
@@ -142,11 +159,18 @@ def main():
                     'resolved': os.path.relpath(resolved, root_dir),
                     'reason': error_msg
                 })
+            else:
+                # Se o link e valido e aponta para um .md, registrar
+                normalized_target = os.path.normpath(resolved)
+                if normalized_target in all_md_files_set:
+                    linked_files.add(normalized_target)
 
     # RESULTADOS
     print("=" * 80)
     print("RESULTADOS")
     print("=" * 80)
+    print(f"Arquivos .md encontrados: {len(markdown_files)}")
+    print(f"Arquivos com links: {files_checked}")
     print(f"Links internos verificados: {total_internal_links}")
     print(f"Links quebrados: {total_broken_links}")
     print(f"Arquivos com problemas: {len(broken_by_file)}")
@@ -177,6 +201,66 @@ def main():
         print("=" * 80)
         print("[SUCCESS] NENHUM LINK QUEBRADO!")
         print("=" * 80)
+
+    # ANALISE DE ARQUIVOS ORFAOS E ISOLADOS
+    orphan_files = []  # Ninguem linka para ele
+    isolated_files = []  # Nao linka para ninguem
+    completely_isolated = []  # Ambos
+
+    for md_file in markdown_files:
+        normalized = os.path.normpath(md_file)
+        relative = os.path.relpath(md_file, root_dir)
+
+        is_orphan = normalized not in linked_files
+        is_isolated = normalized not in files_with_outgoing_links
+
+        if is_orphan and is_isolated:
+            completely_isolated.append(relative)
+        elif is_orphan:
+            orphan_files.append(relative)
+        elif is_isolated:
+            isolated_files.append(relative)
+
+    # Relatorio de arquivos orfaos/isolados
+    if orphan_files or isolated_files or completely_isolated:
+        print("=" * 80)
+        print("ANALISE DE CONECTIVIDADE")
+        print("=" * 80)
+        print()
+
+        if completely_isolated:
+            print(f"[!] COMPLETAMENTE ISOLADOS ({len(completely_isolated)} arquivos)")
+            print("    Nao linkam para ninguem E ninguem linka para eles")
+            print()
+            for file in sorted(completely_isolated)[:20]:  # Mostrar ate 20
+                print(f"    - {file}")
+            if len(completely_isolated) > 20:
+                print(f"    ... e mais {len(completely_isolated) - 20} arquivos")
+            print()
+            print("-" * 80)
+            print()
+
+        if orphan_files:
+            print(f"[!] ORFAOS ({len(orphan_files)} arquivos)")
+            print("    Ninguem linka para eles (mas eles linkam para outros)")
+            print()
+            for file in sorted(orphan_files)[:20]:  # Mostrar ate 20
+                print(f"    - {file}")
+            if len(orphan_files) > 20:
+                print(f"    ... e mais {len(orphan_files) - 20} arquivos")
+            print()
+            print("-" * 80)
+            print()
+
+        if isolated_files:
+            print(f"[!] ISOLADOS ({len(isolated_files)} arquivos)")
+            print("    Nao linkam para ninguem (mas outros linkam para eles)")
+            print()
+            for file in sorted(isolated_files)[:20]:  # Mostrar ate 20
+                print(f"    - {file}")
+            if len(isolated_files) > 20:
+                print(f"    ... e mais {len(isolated_files) - 20} arquivos")
+            print()
 
     print()
     print("Verificacao concluida.")

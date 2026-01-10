@@ -14,6 +14,10 @@ Implementação específica estrutura projeto GEOAPI em pastas Domain (entities 
 
 Status da decisão é aprovado e implementado desde início do projeto em 2024-Q3, com revisão prevista apenas se domínio simplificar drasticamente tornando Clean Architecture overhead desnecessário (improvável) ou se surgir paradigma arquitetural fundamentalmente superior (improvável dado sucesso de Clean Arch em enterprise systems).
 
+## Implementação
+
+Decisão implementada no backend [GEOAPI](../../../PROJECTS/GEOAPI/DOCS/ARCHITECTURE/01-overview.md) estruturado em 4 layers (Domain, Application, Infrastructure, Gateway) conforme diagrama em [GEOAPI Architecture](../../../PROJECTS/GEOAPI/DOCS/ARCHITECTURE/01-overview.md), Domain layer contém aggregates documentados em [CENTRAL/DOMAIN-MODEL/AGGREGATES/](../../DOMAIN-MODEL/AGGREGATES/README.md) como [UnitAggregate](../../DOMAIN-MODEL/AGGREGATES/01-unit-aggregate.md) e [CommunityAggregate](../../DOMAIN-MODEL/AGGREGATES/02-community-aggregate.md), Application layer implementa CQRS conforme [ADR-009](./ADR-009-cqrs-pattern.md), Infrastructure layer integra com PostgreSQL via [ADR-002](./ADR-002-postgresql-postgis.md), conceitos-chave explicados em [GEOAPI Key Concepts](../../../PROJECTS/GEOAPI/DOCS/CONCEPTS/01-key-concepts.md).
+
 ---
 
 **Data:** 2024-09-15

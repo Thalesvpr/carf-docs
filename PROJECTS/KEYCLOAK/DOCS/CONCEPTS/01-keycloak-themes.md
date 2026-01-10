@@ -341,9 +341,3 @@ Manter temas no Git junto com o código.
 - Verificar `locales=` em `theme.properties`
 - Verificar uso de `${msg("key")}` nos templates
 
-## Referências
-
-- [Keycloak Theme Documentation](https://www.keycloak.org/docs/latest/server_development/#_themes)
-- [FreeMarker Manual](https://freemarker.apache.org/docs/)
-- [Material Design Guidelines](https://material.io/design)
-- [WCAG 2.1](https://www.w3.org/WAI/WCAG21/quickref/)

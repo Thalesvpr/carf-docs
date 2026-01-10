@@ -145,6 +145,6 @@ docker exec -i carf-postgres psql -U postgres carf < backup.sql
 
 ## Ver Também
 
-- [GEOAPI Database Setup](../../../PROJECTS/GEOAPI/DOCS/HOW-TO/database-setup.md)
+- [GEOAPI Setup Dev Environment](../../../PROJECTS/GEOAPI/DOCS/HOW-TO/01-setup-dev-environment.md)
 - [PostGIS Documentation](https://postgis.net/documentation/)
 - [Row-Level Security](https://www.postgresql.org/docs/current/ddl-rowsecurity.html)

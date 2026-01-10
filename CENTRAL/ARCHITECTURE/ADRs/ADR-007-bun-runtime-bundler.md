@@ -16,6 +16,10 @@ Monitoramento de performance implementa tracking de métricas de build time em C
 
 Status da decisão é aprovado e implementado desde início do projeto em 2024-Q3, com revisão prevista anualmente para avaliar maturidade de Bun e considerar se benefícios ainda justificam riscos de adoção early-adopter ou se ecosystem convergiu para alternativa superior.
 
+## Implementação
+
+Decisão implementada em todas as bibliotecas TypeScript [@carf/tscore](../../../PROJECTS/LIB/TS/TSCORE/DOCS/ARCHITECTURE/05-deployment.md), [@carf/geoapi-client](../../../PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/ARCHITECTURE/05-deployment.md) e [@carf/ui](../../../PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/ARCHITECTURE/05-deployment.md) usando Bun como package manager (`bun install`) e bundler (`bun run build`) conforme setup environments documentados respectivamente em [TSCORE HOW-TO](../../../PROJECTS/LIB/TS/TSCORE/DOCS/HOW-TO/01-setup-dev-environment.md), [GEOAPI-CLIENT HOW-TO](../../../PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/HOW-TO/01-setup-dev-environment.md) e [UI-COMPONENTS HOW-TO](../../../PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/HOW-TO/01-setup-dev-environment.md), também adotado em frontends [GEOWEB](../../../PROJECTS/GEOWEB/DOCS/HOW-TO/02-build-and-run.md) e [ADMIN](../../../PROJECTS/ADMIN/DOCS/HOW-TO/02-build-and-run.md) substituindo npm/yarn.
+
 ---
 
 **Data:** 2024-09-15

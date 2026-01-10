@@ -4,7 +4,7 @@ Sistema completo para gestão de processos de regularização fundiária urbana 
 
 ## Visão Geral
 
-O CARF é um ecossistema integrado de aplicações para digitalização e automação dos processos de regularização fundiária urbana, permitindo que prefeituras municipais gerenciem de forma eficiente todo o ciclo da REURB - desde o cadastramento de unidades habitacionais em campo até a emissão de títulos de legitimação.
+O CARF é um ecossistema integrado de aplicações para digitalização e automação dos processos de regularização fundiária urbana, permitindo que prefeituras municipais gerenciem de forma eficiente todo o ciclo da REURB desde o cadastramento de unidades habitacionais em campo até a emissão de títulos de legitimação, com documentação técnica centralizada em [CENTRAL/README.md](./CENTRAL/README.md) servindo como Single Source of Truth para arquitetura, requisitos, APIs e workflows REURB, enquanto os projetos individuais de código (backend, frontends, mobile, plugins) estão organizados na pasta PROJECTS/ com seus próprios repositórios Git independentes e documentação específica de implementação.
 
 ### Características Principais
 
@@ -61,7 +61,7 @@ C:\DEV\CARF/                    # Repositório CENTRAL (este)
 │   │   ├── KEYCLOAK/          # Keycloak OAuth2/OIDC + docker-compose
 │   │   └── DATABASE/          # PostgreSQL + PostGIS + docker-compose
 │   ├── OPERATIONS/             # DevOps, CI/CD, Monitoramento
-│   ├── REQUIREMENTS/           # Requisitos funcionais (221+ RF)
+│   ├── REQUIREMENTS/           # Requisitos funcionais e não-funcionais
 │   ├── SECURITY/               # Políticas de segurança e LGPD
 │   ├── TESTING/                # Estratégias e casos de teste
 │   ├── VERSIONING/             # Git workflows, branching, releases
@@ -250,10 +250,116 @@ Toda documentação está em markdown neste repositório:
   - HOW-TO: Tutoriais e guias práticos
   - LAYERS: Estrutura de camadas (quando aplicável)
 
+### Convenções de Documentação
+
+**Formato de Parágrafo Denso:** Todos os arquivos de documentação do projeto (exceto este README.md principal) devem seguir formato de parágrafo denso otimizado para processamento por IA, onde cada seção contém um ou no máximo dois parágrafos contínuos que condensam todas as informações relevantes sem quebras, listas ou seções separadas, permitindo que modelos de linguagem processem o conteúdo de forma mais eficiente e mantenham contexto completo sem fragmentação. Links e referências devem estar embutidos inline dentro do texto do parágrafo usando sintaxe markdown padrão com colchetes e parênteses ao invés de seções separadas de "Referências" ou "Links Relacionados" no final do documento, e código deve ser referenciado com backticks inline ao invés de blocos de exemplo exceto em seções específicas de "## Comandos" quando aplicável.
+
+**Evitar Conteúdo Volátil:** Documentação não deve conter números fixos (como "221+ requisitos" ou "350 arquivos") que ficam desatualizados rapidamente, nem datas específicas (exceto em changelogs e release notes), preferindo termos descritivos como "requisitos funcionais e não-funcionais do sistema" ou "última atualização em CHANGELOG.md". Este README.md principal é a única exceção que permite estrutura livre com múltiplas seções, listas e code blocks para facilitar navegação inicial do projeto.
+
+### Mapa de Dependências
+
+O diagrama abaixo mostra como a documentação centralizada (CENTRAL) se relaciona com as bibliotecas compartilhadas e aplicações:
+
+```mermaid
+graph TD
+    CENTRAL[CENTRAL/<br/>Documentação Central]
+
+    %% Libraries
+    TSCORE[TSCORE<br/>Core Library]
+    GEOCLIENT[GEOAPI-CLIENT<br/>HTTP Client]
+    UI[UI-COMPONENTS<br/>React Components]
+
+    %% Backend
+    GEOAPI[GEOAPI<br/>.NET Backend]
+
+    %% Frontends
+    GEOWEB[GEOWEB<br/>Web App]
+    ADMIN[ADMIN<br/>Admin Console]
+    REURBCAD[REURBCAD<br/>Mobile App]
+    GEOGIS[GEOGIS<br/>QGIS Plugin]
+    WEBDOCS[WEBDOCS<br/>Docs Portal]
+
+    %% Auth
+    KEYCLOAK[KEYCLOAK<br/>Auth Server]
+
+    %% Central connections
+    CENTRAL --> TSCORE
+    CENTRAL --> GEOAPI
+    CENTRAL --> KEYCLOAK
+
+    %% Library dependencies
+    TSCORE --> GEOCLIENT
+    TSCORE --> UI
+    GEOCLIENT --> GEOWEB
+    GEOCLIENT --> ADMIN
+    GEOCLIENT --> REURBCAD
+    UI --> GEOWEB
+    UI --> ADMIN
+
+    %% Backend connections
+    GEOAPI --> GEOCLIENT
+    KEYCLOAK --> TSCORE
+
+    %% Frontend auth
+    GEOWEB -.-> KEYCLOAK
+    ADMIN -.-> KEYCLOAK
+    REURBCAD -.-> KEYCLOAK
+    WEBDOCS -.-> TSCORE
+
+    %% Styling
+    classDef central fill:#e1f5ff,stroke:#01579b,stroke-width:2px
+    classDef library fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef backend fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef frontend fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+
+    class CENTRAL central
+    class TSCORE,GEOCLIENT,UI library
+    class GEOAPI,KEYCLOAK backend
+    class GEOWEB,ADMIN,REURBCAD,GEOGIS,WEBDOCS frontend
+```
+
+### Documentos Mais Referenciados
+
+Os documentos centrais mais importantes e suas relações:
+
+1. **[Domain Model](./CENTRAL/DOMAIN-MODEL/00-INDEX.md)** - Entidades core (Unit, Holder, Community, LegitimationRequest)
+   - Implementado por: TSCORE, GEOAPI
+   - Referenciado por: GEOWEB, REURBCAD, ADMIN
+
+2. **[Architecture ADRs](./CENTRAL/ARCHITECTURE/README.md)** - Decisões arquiteturais
+   - ADR-001: .NET 9 Backend
+   - ADR-003: Keycloak Autenticação
+   - ADR-008: Clean Architecture + DDD
+   - ADR-009: CQRS Pattern
+   - ADR-011: Shared TypeScript Library
+
+3. **[Keycloak Integration](./CENTRAL/INTEGRATION/KEYCLOAK/README.md)** - OAuth2/OIDC, SSO, Multi-tenancy
+   - Implementado por: KEYCLOAK, TSCORE
+   - Usado por: Todas as aplicações
+
+4. **[TSCORE Library](./PROJECTS/LIB/TS/TSCORE/DOCS/README.md)** - Biblioteca core compartilhada
+   - Fornece: Types, validações, auth hooks
+   - Usado por: GEOAPI-CLIENT, UI-COMPONENTS, GEOWEB, ADMIN, REURBCAD, WEBDOCS
+
+5. **[API Specification](./CENTRAL/API/README.md)** - Endpoints REST
+   - Implementado por: GEOAPI
+   - Consumido via: GEOAPI-CLIENT
+
+6. **[Security Policies](./CENTRAL/SECURITY/README.md)** - Políticas de segurança LGPD
+   - Implementado por: GEOAPI, KEYCLOAK
+   - Aplicado em: ADMIN, GEOWEB
+
+7. **[Business Rules](./CENTRAL/BUSINESS-RULES/README.md)** - Regras REURB Lei 13.465/2017
+   - Implementado por: GEOAPI (validações)
+   - Aplicado em: GEOWEB (UI rules)
+
+8. **[Libraries Index](./CENTRAL/LIBRARIES/README.md)** - Índice das 3 bibliotecas TypeScript
+   - Referenciado por: Todos os frontends
+
 ### Índices Principais
 
 - [Arquitetura](./CENTRAL/ARCHITECTURE/README.md) - ADRs e decisões arquiteturais
-- [Requisitos](./CENTRAL/REQUIREMENTS/README.md) - 221+ requisitos funcionais
+- [Requisitos](./CENTRAL/REQUIREMENTS/README.md) - Requisitos funcionais e não-funcionais
 - [API Reference](./CENTRAL/API/README.md) - Endpoints REST documentados
 - [Regras de Negócio](./CENTRAL/BUSINESS-RULES/README.md) - Processos REURB (Lei 13.465)
 - [Keycloak Setup](./CENTRAL/INTEGRATION/KEYCLOAK/README.md) - OAuth2/OIDC, SSO, Multi-tenancy
@@ -312,7 +418,7 @@ Toda documentação está em markdown neste repositório:
 - **Lei 10.257/2001** - Estatuto da Cidade
 - **Decreto 9.310/2018** - Regulamentação REURB
 
-Ver [CENTRAL/WORKFLOWS/](./CENTRAL/WORKFLOWS/) para processos detalhados da REURB.
+Ver [CENTRAL/WORKFLOWS/README.md](./CENTRAL/WORKFLOWS/README.md) para processos detalhados da REURB.
 
 ## Contribuindo
 

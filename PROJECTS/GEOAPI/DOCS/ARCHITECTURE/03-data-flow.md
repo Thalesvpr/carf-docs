@@ -2,7 +2,7 @@
 
 ## Visão Geral
 
-Este documento descreve como os dados fluem através das camadas do GEOAPI, desde a requisição HTTP até a persistência no banco de dados e retorno da resposta.
+Este documento descreve como os dados fluem através das camadas do GEOAPI conforme [arquitetura geral documentada](./01-overview.md) implementando [CQRS Pattern](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-009-cqrs-pattern.md), desde a requisição HTTP até a persistência no banco de dados via [endpoints especificados](../../../../CENTRAL/API/README.md) com [integrações externas](./04-integration.md) e retorno da resposta.
 
 ## Diagrama de Fluxo Geral
 
@@ -575,12 +575,3 @@ CREATE INDEX idx_units_coordinates ON units USING GIST (coordinates);
    - Trigger workflow
    - Publish to message bus (future)
 ```
-
----
-
-## Referências
-
-- [01-overview.md](./01-overview.md) - Arquitetura geral
-- [04-integration.md](./04-integration.md) - Integrações externas
-- [CENTRAL/API/](../../../../CENTRAL/API/) - Especificação de endpoints
-- [ADR-009: CQRS Pattern](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-009-cqrs-pattern.md)

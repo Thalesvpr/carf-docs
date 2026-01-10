@@ -12,7 +12,7 @@ A Units API fornece operações CRUD completas para gerenciamento de unidades ha
 
 📖 **[CENTRAL/DOMAIN-MODEL/AGGREGATES/01-unit-aggregate.md](../../../../../../CENTRAL/DOMAIN-MODEL/AGGREGATES/01-unit-aggregate.md)** - Unit Aggregate Root
 
-📖 **[CENTRAL/REQUIREMENTS/](../../../../../../CENTRAL/REQUIREMENTS/)** - Requisitos funcionais de Units
+📖 **[CENTRAL/REQUIREMENTS/](../../../../../../CENTRAL/REQUIREMENTS/README.md)** - Requisitos funcionais de Units
 
 ## Import
 

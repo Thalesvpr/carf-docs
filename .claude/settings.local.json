@@ -68,7 +68,8 @@
       "Bash(do:*)",
       "Bash(python:*)",
       "Bash(grep:*)",
-      "Bash(findstr:*)"
+      "Bash(findstr:*)",
+      "Bash(tee:*)"
     ]
   }
 }

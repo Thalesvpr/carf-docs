@@ -63,7 +63,7 @@ bun add @carf/geoapi-client @carf/tscore
 bun add @carf/ui @carf/tscore
 ```
 
-**Documentação:** **PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/**
+**Documentação:** [PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/](../../PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/README.md)
 
 ---
 
@@ -164,7 +164,7 @@ As bibliotecas implementam conceitos documentados em CENTRAL/:
 ### Documentação das Bibliotecas
 - [TSCORE Docs](../../PROJECTS/LIB/TS/TSCORE/DOCS/README.md)
 - [GEOAPI-CLIENT Docs](../../PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/README.md)
-- **UI Docs**
+- [UI-COMPONENTS Docs](../../PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/README.md)
 
 ### CENTRAL - Conceitos de Domínio
 - [Domain Model](../DOMAIN-MODEL/00-INDEX.md) - Entidades e Value Objects
@@ -172,9 +172,9 @@ As bibliotecas implementam conceitos documentados em CENTRAL/:
 - [Keycloak Integration](../INTEGRATION/KEYCLOAK/README.md) - Autenticação OAuth2
 
 ### Projetos Consumidores
-- **GEOWEB** - Frontend web React
-- **REURBCAD** - Mobile React Native
-- **ADMIN** - Console admin React
+- **GEOWEB** - Frontend web React (documentação em desenvolvimento)
+- **REURBCAD** - Mobile React Native (documentação em desenvolvimento)
+- [ADMIN](../../PROJECTS/ADMIN/DOCS/README.md) - Console admin React
 - [WEBDOCS](../../PROJECTS/WEBDOCS/DOCS/README.md) - Portal VitePress
 
 ---

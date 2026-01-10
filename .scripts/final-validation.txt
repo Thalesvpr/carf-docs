@@ -1,0 +1,126 @@
+================================================================================
+VERIFICADOR DE LINKS MARKDOWN - VERSAO UNICA
+================================================================================
+Raiz do projeto: C:\DEV\CARF
+
+[*] Encontrados 950 arquivos .md
+
+================================================================================
+RESULTADOS
+================================================================================
+Links internos verificados: 454
+Links quebrados: 18
+Arquivos com problemas: 3
+
+================================================================================
+DETALHES DOS LINKS QUEBRADOS
+================================================================================
+
+[ARQUIVO] CENTRAL\DOCUMENTATION-MAP.md
+          15 link(s) quebrado(s)
+
+  [X] Texto: CENTRAL/DOMAIN-MODEL/
+      Link: ../../CENTRAL/DOMAIN-MODEL/00-INDEX.md
+      Resolve para: ..\CENTRAL\DOMAIN-MODEL\00-INDEX.md
+      Motivo: arquivo nao existe
+
+  [X] Texto: CENTRAL/INTEGRATION/KEYCLOAK/
+      Link: ../../CENTRAL/INTEGRATION/KEYCLOAK/README.md
+      Resolve para: ..\CENTRAL\INTEGRATION\KEYCLOAK\README.md
+      Motivo: arquivo nao existe
+
+  [X] Texto: CENTRAL/API/
+      Link: ../../CENTRAL/API/README.md
+      Resolve para: ..\CENTRAL\API\README.md
+      Motivo: arquivo nao existe
+
+  [X] Texto: PROJECTS/GEOAPI/DOCS/
+      Link: ../../PROJECTS/GEOAPI/DOCS/README.md
+      Resolve para: ..\PROJECTS\GEOAPI\DOCS\README.md
+      Motivo: arquivo nao existe
+
+  [X] Texto: CENTRAL/ARCHITECTURE/PATTERNS/05-frontend-patterns.md
+      Link: ../ARCHITECTURE/PATTERNS/05-frontend-patterns.md
+      Resolve para: ARCHITECTURE\PATTERNS\05-frontend-patterns.md
+      Motivo: arquivo nao existe
+
+  [X] Texto: CENTRAL/API/
+      Link: ../../API/README.md
+      Resolve para: ..\API\README.md
+      Motivo: arquivo nao existe
+
+  [X] Texto: CENTRAL/DOMAIN-MODEL/
+      Link: ../../DOMAIN-MODEL/00-INDEX.md
+      Resolve para: ..\DOMAIN-MODEL\00-INDEX.md
+      Motivo: arquivo nao existe
+
+  [X] Texto: CENTRAL/BUSINESS-RULES/
+      Link: ../../BUSINESS-RULES/README.md
+      Resolve para: ..\BUSINESS-RULES\README.md
+      Motivo: arquivo nao existe
+
+  [X] Texto: CENTRAL/DOMAIN-MODEL/
+      Link: ../../CENTRAL/DOMAIN-MODEL/00-INDEX.md
+      Resolve para: ..\CENTRAL\DOMAIN-MODEL\00-INDEX.md
+      Motivo: arquivo nao existe
+
+  [X] Texto: PROJECTS/GEOAPI/DOCS/
+      Link: ../../PROJECTS/GEOAPI/DOCS/README.md
+      Resolve para: ..\PROJECTS\GEOAPI\DOCS\README.md
+      Motivo: arquivo nao existe
+
+  [X] Texto: CENTRAL/SECURITY/
+      Link: ../../SECURITY/README.md
+      Resolve para: ..\SECURITY\README.md
+      Motivo: arquivo nao existe
+
+  [X] Texto: PROJECTS/GEOAPI/DOCS/ARCHITECTURE/02-admin-security.md
+      Link: ../../PROJECTS/GEOAPI/DOCS/ARCHITECTURE/02-admin-security.md
+      Resolve para: ..\PROJECTS\GEOAPI\DOCS\ARCHITECTURE\02-admin-security.md
+      Motivo: arquivo nao existe
+
+  [X] Texto: GEOAPI Endpoints
+      Link: ../PROJECTS/GEOAPI/DOCS/CONCEPTS/02-endpoints.md
+      Resolve para: PROJECTS\GEOAPI\DOCS\CONCEPTS\02-endpoints.md
+      Motivo: arquivo nao existe
+
+  [X] Texto: GEOWEB Setup
+      Link: ../PROJECTS/GEOWEB/DOCS/HOW-TO/01-setup-dev-environment.md
+      Resolve para: PROJECTS\GEOWEB\DOCS\HOW-TO\01-setup-dev-environment.md
+      Motivo: arquivo nao existe
+
+  [X] Texto: Use Cases
+      Link: ./REQUIREMENTS/03-use-cases.md
+      Resolve para: CENTRAL\REQUIREMENTS\03-use-cases.md
+      Motivo: arquivo nao existe
+
+--------------------------------------------------------------------------------
+
+[ARQUIVO] CENTRAL\LIBRARIES\README.md
+          2 link(s) quebrado(s)
+
+  [X] Texto: GEOWEB
+      Link: ../../PROJECTS/GEOWEB/DOCS/README.md
+      Resolve para: PROJECTS\GEOWEB\DOCS\README.md
+      Motivo: arquivo nao existe
+
+  [X] Texto: REURBCAD
+      Link: ../../PROJECTS/REURBCAD/DOCS/README.md
+      Resolve para: PROJECTS\REURBCAD\DOCS\README.md
+      Motivo: arquivo nao existe
+
+--------------------------------------------------------------------------------
+
+[ARQUIVO] PROJECTS\LIB\TS\UI-COMPONENTS\DOCS\HOW-TO\01-setup-dev-environment.md
+          1 link(s) quebrado(s)
+
+  [X] Texto: \"'`
+      Link: [^\"'`]*
+      Resolve para: PROJECTS\LIB\TS\UI-COMPONENTS\DOCS\HOW-TO\[^\"'`]*
+      Motivo: arquivo nao existe
+
+--------------------------------------------------------------------------------
+
+
+Verificacao concluida.
+

@@ -18,6 +18,10 @@ Event sourcing não é implementado mantendo traditional CRUD com domain events 
 
 Status da decisão é aprovado e implementado desde início do projeto em 2024-Q3, com revisão prevista se complexidade de eventual consistency se tornar problemática para UX (improvável com delays típicos de <5s) ou se escala exigir migration para message bus externo distribuído (planejado para >50k usuarios ativos mensais).
 
+## Implementação
+
+Decisão implementada no backend [GEOAPI Domain Layer](../../../PROJECTS/GEOAPI/DOCS/ARCHITECTURE/01-overview.md) publicando Domain Events (UnitCreatedEvent, LegitimationApprovedEvent) após persistir agregados permitindo comunicação assíncrona entre aggregates desacoplados conforme [Clean Architecture pattern](./ADR-008-clean-architecture-ddd.md), handlers de eventos registrados via MediatR executando side effects como envio de notificações ou atualização de caches, audit logging intercepta events gravando em [audit_logs table](../../../PROJECTS/GEOAPI/DOCS/CONCEPTS/04-audit-logging.md) capturando quem/quando/o_que para compliance, futura integração com message broker (RabbitMQ/Kafka) permitirá eventos distribuídos entre microsserviços.
+
 ---
 
 **Data:** 2024-09-15

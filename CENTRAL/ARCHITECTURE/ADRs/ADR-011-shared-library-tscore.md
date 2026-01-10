@@ -22,6 +22,10 @@ Próximos passos incluem adicionar mais value objects conforme necessário (CREA
 
 Status da decisão é aprovado e implementado desde 2026-01-09, com revisão prevista trimestralmente para avaliar se overhead de manutenção de package separado justifica benefícios ou se crescimento de complexidade sugere migração para monorepo approach com tooling adequado, monitorar adoção em novos projetos TypeScript (futuro carf-admin Next.js deve consumir desde inception), e coletar feedback de desenvolvedores sobre pain points da lib como ergonomia de APIs dificuldade de debug imports confusos para iterar melhorias contínuas maximizando produtividade e satisfaction da equipe.
 
+## Implementação
+
+Decisão implementada pela biblioteca [@carf/tscore](../../../PROJECTS/LIB/TS/TSCORE/DOCS/README.md) exportando 33 types TypeScript representando entidades do sistema conforme [CENTRAL/DOMAIN-MODEL/](../../DOMAIN-MODEL/00-INDEX.md), Value Objects (CPF, CNPJ, Email, Coordinates) com validações built-in documentados em [TSCORE Value Objects](../../../PROJECTS/LIB/TS/TSCORE/DOCS/CONCEPTS/01-value-objects.md), KeycloakClient para autenticação OAuth2 usado em [GEOWEB](../../../PROJECTS/GEOWEB/DOCS/ARCHITECTURE/04-integration.md), [REURBCAD](../../../PROJECTS/REURBCAD/DOCS/ARCHITECTURE/04-integration.md) e [ADMIN](../../../PROJECTS/ADMIN/DOCS/ARCHITECTURE/04-integration.md), consumida também por [@carf/geoapi-client](../../../PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/README.md) tipando requests/responses e [@carf/ui](../../../PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/README.md) tipando props de componentes de domínio (UnitCard, HolderCard).
+
 ---
 
 **Data:** 2026-01-09

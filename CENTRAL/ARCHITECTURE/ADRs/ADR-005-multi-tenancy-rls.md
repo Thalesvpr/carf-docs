@@ -14,6 +14,10 @@ Configuração específica escolhida habilita RLS em todas tabelas multi-tenant 
 
 Status da decisão é aprovado e implementado desde início do projeto em 2024-Q3, com revisão prevista apenas se surgir limitação crítica de escala ou performance que RLS não consiga resolver (improvável dado sucesso de RLS em sistemas enterprise com milhares de tenants).
 
+## Implementação
+
+Decisão implementada em [GEOAPI Infrastructure Layer](../../../PROJECTS/GEOAPI/DOCS/ARCHITECTURE/01-overview.md) configurando Row-Level Security (RLS) policies no PostgreSQL via migrations EF Core aplicando filtros automáticos em queries baseado em `tenant_id` extraído de JWT claims conforme [admin security docs](../../../PROJECTS/GEOAPI/DOCS/ARCHITECTURE/02-admin-security.md), [KEYCLOAK](../../../PROJECTS/KEYCLOAK/DOCS/CONCEPTS/03-multi-tenancy-model.md) gerenciando realms isolados por município com users segregados, frontends [GEOWEB](../../../PROJECTS/GEOWEB/DOCS/ARCHITECTURE/04-integration.md), [REURBCAD](../../../PROJECTS/REURBCAD/DOCS/ARCHITECTURE/04-integration.md) e [ADMIN](../../../PROJECTS/ADMIN/DOCS/ARCHITECTURE/04-integration.md) incluindo `tenant_id` em headers HTTP via interceptor configurado em [@carf/geoapi-client](../../../PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/ARCHITECTURE/01-overview.md).
+
 ---
 
 **Data:** 2024-09-15

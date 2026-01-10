@@ -14,6 +14,10 @@ Configuração específica escolhida utiliza React Native 0.76.0 com New Archite
 
 Status da decisão é aprovado e implementado desde início do projeto em 2024-Q3, com revisão prevista se performance de New Architecture não atender requisitos após testes em dispositivos low-end (improvável dado benchmarks promissores) ou se surgir framework fundamentalmente superior (improvável dado domínio de React Native em 2024).
 
+## Implementação
+
+Decisão implementada pelo projeto [REURBCAD](../../../PROJECTS/REURBCAD/DOCS/README.md) aplicativo mobile React Native + Expo conforme arquitetura documentada em [REURBCAD Architecture Overview](../../../PROJECTS/REURBCAD/DOCS/ARCHITECTURE/01-overview.md), usando offline-first database WatermelonDB conforme [ADR-006](./ADR-006-offline-first-watermelondb.md) para sincronização com backend [GEOAPI](../../../PROJECTS/GEOAPI/DOCS/README.md) via [@carf/geoapi-client](../../../PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/README.md), validações client-side reutilizando [@carf/tscore](../../../PROJECTS/LIB/TS/TSCORE/DOCS/README.md), deployment via EAS seguindo [mobile deployment strategy](../DEPLOYMENT/05-mobile-deployment.md).
+
 ---
 
 **Data:** 2024-09-15

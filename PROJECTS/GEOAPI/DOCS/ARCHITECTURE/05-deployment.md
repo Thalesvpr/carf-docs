@@ -1493,26 +1493,3 @@ spec:
 
 **Ingress com TLS (já mostrado acima)**
 
----
-
-## 📚 Referências
-
-- [Kubernetes Documentation](https://kubernetes.io/docs/)
-- [Docker Best Practices](https://docs.docker.com/develop/dev-best-practices/)
-- [Azure Kubernetes Service (AKS)](https://learn.microsoft.com/en-us/azure/aks/)
-- [GitHub Actions Documentation](https://docs.github.com/en/actions)
-- [Prometheus Operator](https://github.com/prometheus-operator/prometheus-operator)
-- [Grafana Dashboards](https://grafana.com/grafana/dashboards/)
-- [cert-manager Documentation](https://cert-manager.io/docs/)
-- [Trivy Security Scanner](https://aquasecurity.github.io/trivy/)
-
----
-
-## 🔗 Documentos Relacionados
-
-- [01-overview.md](./01-overview.md) - Visão geral da arquitetura
-- [02-admin-security.md](./02-admin-security.md) - Segurança e separação admin
-- [03-data-flow.md](./03-data-flow.md) - Fluxo de dados
-- [04-integration.md](./04-integration.md) - Integrações externas
-- [HOW-TO/01-setup-dev-environment.md](../HOW-TO/01-setup-dev-environment.md) - Setup de desenvolvimento
-- [HOW-TO/02-build-and-run.md](../HOW-TO/02-build-and-run.md) - Build e execução

@@ -178,10 +178,10 @@ Processo de concessão de título de propriedade:
 
 ## 🔗 Referências
 
-- [ARCHITECTURE/](../ARCHITECTURE/) - Arquitetura técnica detalhada
-- [HOW-TO/](../HOW-TO/) - Guias práticos de desenvolvimento
-- [CENTRAL/DOMAIN-MODEL/](../../../../CENTRAL/DOMAIN-MODEL/) - Modelo de domínio completo
-- [CENTRAL/BUSINESS-RULES/](../../../../CENTRAL/BUSINESS-RULES/) - Regras de negócio
+- [ARCHITECTURE/](../ARCHITECTURE/README.md) - Arquitetura técnica detalhada
+- [HOW-TO/](../HOW-TO/README.md) - Guias práticos de desenvolvimento
+- [CENTRAL/DOMAIN-MODEL/](../../../../CENTRAL/DOMAIN-MODEL/README.md) - Modelo de domínio completo
+- [CENTRAL/BUSINESS-RULES/](../../../../CENTRAL/BUSINESS-RULES/README.md) - Regras de negócio
 - [Clean Architecture (Robert C. Martin)](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 - [Domain-Driven Design (Eric Evans)](https://domainlanguage.com/ddd/)
 - [CQRS Pattern](https://martinfowler.com/bliki/CQRS.html)

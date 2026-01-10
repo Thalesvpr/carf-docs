@@ -101,11 +101,11 @@ PROJECTS/{NOME-PROJETO}/
 
 | Documento | Descrição |
 |-----------|-----------|
-| [01-overview.md](./01-overview.md) | Visão geral da arquitetura |
-| [02-layers.md](./02-layers.md) | Camadas e responsabilidades |
-| [03-data-flow.md](./03-data-flow.md) | Fluxo de dados no sistema |
-| [04-integration.md](./04-integration.md) | Integrações com outros sistemas |
-| [05-deployment.md](./05-deployment.md) | Arquitetura de deployment |
+| `01-overview.md` | Visão geral da arquitetura |
+| `02-layers.md` | Camadas e responsabilidades |
+| `03-data-flow.md` | Fluxo de dados no sistema |
+| `04-integration.md` | Integrações com outros sistemas |
+| `05-deployment.md` | Arquitetura de deployment |
 
 ## ADRs Relacionados
 [Links para ADRs do CENTRAL que se aplicam a este projeto]
@@ -155,8 +155,8 @@ PROJECTS/{NOME-PROJETO}/
 | ... | ... | ... | ... |
 
 ## Referências
-- [ADR-XXX](link)
-- [CENTRAL/ARCHITECTURE/PATTERNS/](link)
+- `ADR-XXX` (Link para ADR relevante)
+- `CENTRAL/ARCHITECTURE/PATTERNS/` (Link para padrões arquiteturais)
 ```
 
 ---
@@ -344,9 +344,9 @@ PROJECTS/{NOME-PROJETO}/
 
 | Documento | Descrição |
 |-----------|-----------|
-| [01-key-concepts.md](./01-key-concepts.md) | Conceitos chave do domínio |
-| [02-terminology.md](./02-terminology.md) | Glossário de termos |
-| [03-design-principles.md](./03-design-principles.md) | Princípios de design |
+| `01-key-concepts.md` | Conceitos chave do domínio |
+| `02-terminology.md` | Glossário de termos |
+| `03-design-principles.md` | Princípios de design |
 
 ## Para quem é esta seção
 Esta seção é para desenvolvedores que precisam entender os conceitos fundamentais antes de começar a trabalhar no código.
@@ -375,8 +375,8 @@ Esta seção é para desenvolvedores que precisam entender os conceitos fundamen
 [Conceitos específicos de regularização fundiária que este projeto usa]
 
 ## Referências
-- [CENTRAL/DOMAIN-MODEL/](link)
-- [CENTRAL/BUSINESS-RULES/](link)
+- `CENTRAL/DOMAIN-MODEL/` (Modelo de domínio central)
+- `CENTRAL/BUSINESS-RULES/` (Regras de negócio central)
 ```
 
 ---
@@ -442,9 +442,9 @@ Esta seção é para desenvolvedores que precisam entender os conceitos fundamen
 [Link para style guide ou resumo]
 
 ## Referências
-- [Clean Code](...)
-- [DDD](...)
-- [CENTRAL/ARCHITECTURE/PATTERNS/](...)
+- Clean Code (link exemplo)
+- DDD (link exemplo)
+- CENTRAL/ARCHITECTURE/PATTERNS/ (link exemplo)
 ```
 
 ---
@@ -461,10 +461,10 @@ Esta seção é para desenvolvedores que precisam entender os conceitos fundamen
 
 | Documento | Descrição |
 |-----------|-----------|
-| [01-setup-dev-environment.md](./01-setup-dev-environment.md) | Como configurar ambiente de desenvolvimento |
-| [02-build-and-run.md](./02-build-and-run.md) | Como fazer build e rodar o projeto |
-| [03-testing.md](./03-testing.md) | Como rodar e escrever testes |
-| [04-troubleshooting.md](./04-troubleshooting.md) | Solução de problemas comuns |
+| `01-setup-dev-environment.md` | Como configurar ambiente de desenvolvimento |
+| `02-build-and-run.md` | Como fazer build e rodar o projeto |
+| `03-testing.md` | Como rodar e escrever testes |
+| `04-troubleshooting.md` | Solução de problemas comuns |
 
 ## Para quem são estes guias
 Guias práticos para desenvolvedores que precisam realizar tarefas específicas.
@@ -540,7 +540,7 @@ cp .env.example .env
 [Problemas comuns durante setup e soluções]
 
 ## Próximos Passos
-- [02-build-and-run.md](./02-build-and-run.md)
+- `02-build-and-run.md` (Guia de build e execução)
 ```
 
 ---
@@ -784,11 +784,11 @@ git clone [url]
 
 ## 📚 Documentação
 
-Documentação completa em: [../../DOCS/README.md](../../DOCS/README.md)
+Documentação completa em: `../../DOCS/README.md`
 
-- [Architecture](../../DOCS/ARCHITECTURE/)
-- [Concepts](../../DOCS/CONCEPTS/)
-- [How-To Guides](../../DOCS/HOW-TO/)
+- `../../DOCS/ARCHITECTURE/` (Documentação de arquitetura)
+- `../../DOCS/CONCEPTS/` (Conceitos fundamentais)
+- `../../DOCS/HOW-TO/` (Guias práticos)
 
 ## 🛠️ Stack
 
@@ -797,8 +797,8 @@ Documentação completa em: [../../DOCS/README.md](../../DOCS/README.md)
 
 ## 🔗 Links
 
-- [CENTRAL Documentation](../../../../CENTRAL/)
-- [Related Projects](../../../../PROJECTS/)
+- `../../../../CENTRAL/` (Documentação central do CARF)
+- `../../../../PROJECTS/` (Outros projetos relacionados)
 
 ## 📄 License
 

@@ -2,7 +2,7 @@
 
 ## Visão Geral
 
-Value Objects são objetos imutáveis que representam conceitos do domínio definidos apenas por seus atributos, sem identidade própria. No @carf/tscore, implementamos Value Objects para garantir validação consistente de dados brasileiros em todos os projetos CARF.
+Value Objects são objetos imutáveis que representam conceitos do domínio definidos apenas por seus atributos, sem identidade própria conforme especificado em [CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS](../../../../../../CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/README.md). No @carf/tscore, implementamos Value Objects para garantir validação consistente de dados brasileiros em todos os projetos CARF, sendo consumidos por [@carf/geoapi-client](../../../GEOAPI-CLIENT/DOCS/README.md) para tipagem de requests/responses HTTP, [@carf/ui](../../../UI-COMPONENTS/DOCS/README.md) para validação em componentes React, e aplicações finais [GEOWEB](../../../../GEOWEB/DOCS/README.md), [REURBCAD](../../../../REURBCAD/DOCS/README.md) e [ADMIN](../../../../ADMIN/DOCS/README.md).
 
 ## Conceito de Value Object
 
@@ -400,25 +400,3 @@ Ver especificações de teste:
 - `src/validations/__tests__/cnpj.spec.ts`
 - `src/validations/__tests__/email.spec.ts`
 - `src/validations/__tests__/phone.spec.ts`
-
-## Links Relacionados
-
-### Documentação CENTRAL
-
-- 📖 [CENTRAL/DOMAIN-MODEL/00-INDEX.md](../../../../../../CENTRAL/DOMAIN-MODEL/00-INDEX.md) - Índice completo do domínio
-- 📖 [CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/](../../../../../../CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/) - Todos os 25 Value Objects
-
-### Outras Bibliotecas
-
-- 🔧 [@carf/geoapi-client](../../../GEOAPI-CLIENT/DOCS/README.md) - Cliente HTTP que usa estes types
-- 🎨 **@carf/ui** - Componentes React que validam com VOs
-
-### Projetos Consumidores
-
-- 🌐 **GEOWEB** - Frontend React web
-- 📱 **REURBCAD** - Mobile React Native
-- 🛠️ **ADMIN** - Console admin
-
----
-
-**Última atualização:** 2026-01-09

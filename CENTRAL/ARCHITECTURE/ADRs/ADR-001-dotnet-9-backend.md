@@ -8,6 +8,10 @@ Consequências positivas incluem performance consistente sob alta carga permitin
 
 Status da decisão é aprovado e implementado desde início do projeto em 2024-Q3, com revisão prevista apenas se surgir tecnologia disruptiva que altere fundamentalmente cenário de performance ou se equipe decidir migrar para arquitetura serverless onde cold start de .NET pode ser desvantajoso comparado a alternativas como Go.
 
+## Implementação
+
+Esta decisão é implementada pelo projeto [GEOAPI](../../../PROJECTS/GEOAPI/DOCS/ARCHITECTURE/01-overview.md) que utiliza .NET 9 SDK conforme especificado neste ADR, com estrutura de camadas Clean Architecture documentada em [ADR-008](./ADR-008-clean-architecture-ddd.md) e deployment containerizado via Docker seguindo [DEPLOYMENT/02-containerization.md](../DEPLOYMENT/02-containerization.md), build process automatizado em [CI/CD pipeline](../DEPLOYMENT/04-cicd-pipeline.md) executando `dotnet build` e testes com coverage mínimo 80%, setup de ambiente de desenvolvimento documentado em [GEOAPI HOW-TO Setup](../../../PROJECTS/GEOAPI/DOCS/HOW-TO/01-setup-dev-environment.md).
+
 ---
 
 **Data:** 2024-09-15

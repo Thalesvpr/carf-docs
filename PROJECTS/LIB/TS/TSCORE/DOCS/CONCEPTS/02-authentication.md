@@ -2,7 +2,7 @@
 
 ## Visão Geral
 
-O módulo de autenticação do @carf/tscore fornece integração com Keycloak OAuth2/OIDC para Single Sign-On (SSO) em todos os projetos CARF. Implementa autenticação baseada em tokens JWT com suporte a roles, multi-tenancy e refresh automático.
+O módulo de autenticação do @carf/tscore fornece integração com Keycloak OAuth2/OIDC para Single Sign-On (SSO) em todos os projetos CARF conforme [CENTRAL/INTEGRATION/KEYCLOAK](../../../../../../CENTRAL/INTEGRATION/KEYCLOAK/README.md) e [políticas de segurança CENTRAL/SECURITY](../../../../../../CENTRAL/SECURITY/README.md). Implementa autenticação baseada em tokens JWT com suporte a roles, multi-tenancy e refresh automático, sendo consumido por [@carf/geoapi-client](../../../GEOAPI-CLIENT/DOCS/README.md) para autenticação automática em requisições HTTP.
 
 ## Documentação de Referência
 
@@ -338,11 +338,7 @@ app.mount('#app')
 
 ### Conceito
 
-Multi-tenancy permite que múltiplas instituições (prefeituras, ITERJ, etc.) compartilhem a mesma infraestrutura CARF com isolamento completo de dados.
-
-📖 ****CENTRAL/ARCHITECTURE/MULTI-TENANCY/01-overview.md**** - Arquitetura multi-tenant
-
-📖 **[CENTRAL/DOMAIN-MODEL/ENTITIES/07-tenant.md](../../../../../../CENTRAL/DOMAIN-MODEL/ENTITIES/07-tenant.md)** - Entidade Tenant
+Multi-tenancy permite que múltiplas instituições (prefeituras, ITERJ, etc.) compartilhem a mesma infraestrutura CARF com isolamento completo de dados conforme arquitetura documentada em [CENTRAL/ARCHITECTURE/MULTI-TENANCY](../../../../../../CENTRAL/ARCHITECTURE/MULTI-TENANCY/README.md) usando entidade [Tenant](../../../../../../CENTRAL/DOMAIN-MODEL/ENTITIES/07-tenant.md) para representar cada instituição.
 
 ### Isolamento de Dados
 
@@ -486,25 +482,3 @@ test('redirects to login if not authenticated', () => {
   expect(screen.queryByText('Protected Content')).not.toBeInTheDocument()
 })
 ```
-
-## Links Relacionados
-
-### Documentação CENTRAL
-
-- 📖 [CENTRAL/INTEGRATION/KEYCLOAK/](../../../../../../CENTRAL/INTEGRATION/KEYCLOAK/) - Keycloak setup completo
-- 📖 [CENTRAL/SECURITY/](../../../../../../CENTRAL/SECURITY/) - Políticas de segurança
-- 📖 **CENTRAL/ARCHITECTURE/MULTI-TENANCY/** - Multi-tenancy
-
-### Guias de Integração
-
-- 🌐 [GEOWEB Integration](../../../../../../CENTRAL/INTEGRATION/KEYCLOAK/examples/geoweb-integration.md)
-- 📱 [REURBCAD Integration](../../../../../../CENTRAL/INTEGRATION/KEYCLOAK/examples/reurbcad-integration.md)
-- 🛠️ [ADMIN Integration](../../../../../../CENTRAL/INTEGRATION/KEYCLOAK/examples/admin-integration.md)
-
-### Outras Bibliotecas
-
-- 🔧 [@carf/geoapi-client](../../../GEOAPI-CLIENT/DOCS/README.md) - Cliente HTTP com auth automática
-
----
-
-**Última atualização:** 2026-01-09

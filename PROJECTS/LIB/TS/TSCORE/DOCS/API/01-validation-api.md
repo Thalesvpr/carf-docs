@@ -2,7 +2,7 @@
 
 ## Visão Geral
 
-API completa dos Value Objects de validação fornecidos pelo @carf/tscore. Todos os validadores seguem o padrão de Value Object imutável com validação no construtor.
+API completa dos [Value Objects](../CONCEPTS/01-value-objects.md) de validação fornecidos pelo @carf/tscore conforme especificações de domínio em [CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS](../../../../../../CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/README.md). Todos os validadores seguem o padrão de Value Object imutável com validação no construtor.
 
 ## Import Path
 
@@ -791,13 +791,3 @@ try {
   }
 }
 ```
-
-## Links Relacionados
-
-- 📖 [CONCEPTS: Value Objects](../CONCEPTS/01-value-objects.md) - Conceitos de Value Objects
-- 📖 **HOW-TO: Validação em Forms** - Guia prático
-- 📖 [CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/](../../../../../../CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/) - Especificações de domínio
-
----
-
-**Última atualização:** 2026-01-09

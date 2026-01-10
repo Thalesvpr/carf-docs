@@ -18,6 +18,10 @@ Monitoramento implementa métricas separadas para commands (latency success rate
 
 Status da decisão é aprovado e implementado desde início do projeto em 2024-Q3, com revisão prevista apenas se overhead de manter dois modelos se tornar insustentável (improvável dado benefícios claros) ou se surgir pattern superior para separação de reads e writes.
 
+## Implementação
+
+Decisão implementada no backend [GEOAPI Application Layer](../../../PROJECTS/GEOAPI/DOCS/ARCHITECTURE/01-overview.md) usando MediatR para despachar Commands (CreateUnitCommand, UpdateUnitCommand) e Queries (GetUnitByIdQuery, ListUnitsQuery) para handlers isolados conforme data flow documentado em [GEOAPI Data Flow](../../../PROJECTS/GEOAPI/DOCS/ARCHITECTURE/03-data-flow.md), Commands validados com FluentValidation modificando estado via aggregates [UnitAggregate](../../DOMAIN-MODEL/AGGREGATES/01-unit-aggregate.md), Queries otimizadas com projections EF Core Select ignorando tracking para performance, conceitos explicados em [GEOAPI Terminology](../../../PROJECTS/GEOAPI/DOCS/CONCEPTS/02-terminology.md) definindo Command vs Query.
+
 ---
 
 **Data:** 2024-09-15

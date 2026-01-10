@@ -128,5 +128,5 @@ yarn add @carf/geoapi-client @carf/tscore
 
 - **GEOAPI Backend Documentation**
 - [CENTRAL API Specification](../../../../../CENTRAL/API/README.md)
-- [TSCORE Documentation](../TSCORE/DOCS/README.md)
+- [TSCORE Documentation](../../TSCORE/DOCS/README.md)
 - [Axios Documentation](https://axios-http.com/docs/intro)

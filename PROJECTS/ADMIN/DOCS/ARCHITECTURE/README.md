@@ -2,6 +2,14 @@
 
 Console administrativo React para gerenciamento do ecossistema CARF.
 
+## Documentos Disponíveis
+
+- [01-overview.md](./01-overview.md) - Visão geral da arquitetura React SPA
+- [02-layers.md](./02-layers.md) - Camadas (Presentation, State, API)
+- [03-data-flow.md](./03-data-flow.md) - Fluxo de dados (UI → TanStack Query → GEOAPI)
+- [04-integration.md](./04-integration.md) - Integração com GEOAPI e Keycloak
+- [05-deployment.md](./05-deployment.md) - Deploy para Vercel/Netlify
+
 ## Decisão Arquitetural: SPA React (não Next.js)
 
 ### Por que NÃO Next.js?

@@ -2,7 +2,7 @@
 
 ## Visão Geral
 
-GEOAPI é o backend REST API do ecossistema CARF, responsável por toda a lógica de negócio, persistência de dados e integrações externas. Construído em **.NET 9** seguindo **Clean Architecture**, **Domain-Driven Design (DDD)** e **CQRS Pattern**.
+GEOAPI é o backend REST API do ecossistema CARF, responsável por toda a lógica de negócio, persistência de dados e integrações externas conforme domain model documentado em [CENTRAL/DOMAIN-MODEL](../../../../CENTRAL/DOMAIN-MODEL/README.md). Construído em **.NET 9** seguindo **[Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)** via [ADR-008](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-008-clean-architecture-ddd.md), **[Domain-Driven Design (DDD)](https://domainlanguage.com/ddd/)** e **[CQRS Pattern](https://martinfowler.com/bliki/CQRS.html)** via [ADR-009](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-009-cqrs-pattern.md).
 
 ## Diagrama de Arquitetura
 
@@ -529,15 +529,3 @@ builder.Services.AddDbContext<CarfDbContext>(options =>
 | **Auth** | Keycloak | 24.0 | OAuth2/OIDC |
 | **HTTP Client** | HttpClient | Built-in | Integração com Keycloak |
 | **JSON** | System.Text.Json | Built-in | Serialização/deserialização |
-
----
-
-## Referências
-
-- [ADR-001: .NET 9 Backend](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-001-dotnet-9-backend.md)
-- [ADR-008: Clean Architecture DDD](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-008-clean-architecture-ddd.md)
-- [ADR-009: CQRS Pattern](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-009-cqrs-pattern.md)
-- [CENTRAL/DOMAIN-MODEL/](../../../../CENTRAL/DOMAIN-MODEL/)
-- [Clean Architecture - Robert C. Martin](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
-- [Domain-Driven Design - Eric Evans](https://domainlanguage.com/ddd/)
-- [CQRS Pattern - Martin Fowler](https://martinfowler.com/bliki/CQRS.html)

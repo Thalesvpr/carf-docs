@@ -2,7 +2,7 @@
 
 ## Visão Geral
 
-O @carf/tscore fornece **tipos TypeScript compartilhados** sincronizados com o domain model do backend .NET e usados por todos os frontends (GEOWEB, REURBCAD, ADMIN). Garantimos type safety end-to-end com contratos de API bem definidos.
+O @carf/tscore fornece **tipos TypeScript compartilhados** sincronizados com o [domain model](../../../../../../CENTRAL/DOMAIN-MODEL/README.md) do backend [GEOAPI](../../../../GEOAPI/DOCS/README.md) .NET conforme [geração de código automática](../../../../../../CENTRAL/ARCHITECTURE/CODE-GENERATION/README.md) e usados por todos os frontends (GEOWEB, REURBCAD, ADMIN), sendo consumidos por [@carf/geoapi-client](../../../GEOAPI-CLIENT/DOCS/README.md) para tipagem de requests/responses e [@carf/ui](../../../UI-COMPONENTS/DOCS/README.md) para componentes React tipados. Garantimos type safety end-to-end com contratos de API bem definidos.
 
 ## Documentação de Referência
 
@@ -544,26 +544,3 @@ nswag openapi2tsclient \
   /template:Fetch \
   /typeScriptVersion:5.3
 ```
-
-📖 ****CENTRAL/ARCHITECTURE/CODE-GENERATION/01-type-generation.md**** - Processo completo
-
-## Links Relacionados
-
-### Documentação CENTRAL
-
-- 📖 [CENTRAL/DOMAIN-MODEL/](../../../../../../CENTRAL/DOMAIN-MODEL/) - Todas as 33 entidades e 25 VOs
-- 📖 [CENTRAL/API/](../../../../../../CENTRAL/API/) - Especificação completa da API
-- 📖 **CENTRAL/ARCHITECTURE/CODE-GENERATION/** - Geração de código
-
-### Outras Bibliotecas
-
-- 🔧 [@carf/geoapi-client](../../../GEOAPI-CLIENT/DOCS/README.md) - Cliente HTTP que usa estes types
-- 🎨 **@carf/ui** - Componentes React tipados
-
-### Projetos Backend
-
-- ⚙️ **GEOAPI** - Backend .NET com DTOs
-
----
-
-**Última atualização:** 2026-01-09

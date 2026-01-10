@@ -2,6 +2,10 @@
 
 Schemas JSON para titulares do CARF. HolderCreateRequest (name, cpf validado via dígito verificador, rg opcional, birth_date, phone, email, address objeto, is_main boolean para titular principal, unit_id UUID para vinculação), HolderResponse (id UUID, name, cpf mascarado XXX.XXX.XXX-XX, rg, birth_date, phone, email, address, is_main, unit relação com UnitResponse resumido, created_at, updated_at, tenant_id), HolderUpdateRequest (campos parciais), HolderListResponse (items, pagination), LinkHolderToUnitRequest (holder_id, unit_id, is_main), UnlinkHolderFromUnitRequest (holder_id, unit_id). Validações: CPF único por tenant, max 1 titular principal por unidade, max 3 co-titulares. Endpoints: POST /api/holders, GET /api/holders/{id}, PATCH /api/holders/{id}, DELETE /api/holders/{id}, POST /api/holders/link, POST /api/holders/unlink.
 
+## Implementação e Uso
+
+Endpoint de Posseiros implementado pelo backend [GEOAPI](../../../PROJECTS/GEOAPI/DOCS/ARCHITECTURE/01-overview.md) usando entity [Holder](../../DOMAIN-MODEL/ENTITIES/03-holder.md) vinculada a [UnitAggregate](../../DOMAIN-MODEL/AGGREGATES/01-unit-aggregate.md) conforme regras de negócio em [CENTRAL/BUSINESS-RULES/01-unit-holder-association.md](../../BUSINESS-RULES/01-unit-holder-association.md), consumido por [GEOWEB](../../../PROJECTS/GEOWEB/DOCS/README.md) para gestão de vínculos titular-unidade e [REURBCAD](../../../PROJECTS/REURBCAD/DOCS/README.md) para cadastro em campo com validações CPF/CNPJ via [@carf/tscore](../../../PROJECTS/LIB/TS/TSCORE/DOCS/CONCEPTS/01-value-objects.md), ambos usando cliente tipado [@carf/geoapi-client](../../../PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/README.md) e renderizando com [@carf/ui HolderCard](../../../PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/README.md).
+
 ---
 
 **Última atualização:** 2025-12-29

@@ -514,8 +514,8 @@ const api = new GeoApiClient({
 
 ### Documentação CENTRAL
 
-- 📖 [CENTRAL/API/](../../../../../../CENTRAL/API/) - Especificação da REST API
-- 📖 [CENTRAL/SECURITY/](../../../../../../CENTRAL/SECURITY/) - Segurança e autenticação
+- 📖 [CENTRAL/API/](../../../../../../CENTRAL/API/README.md) - Especificação da REST API
+- 📖 [CENTRAL/SECURITY/](../../../../../../CENTRAL/SECURITY/README.md) - Segurança e autenticação
 - 📖 **CENTRAL/ARCHITECTURE/MULTI-TENANCY/** - Multi-tenancy
 
 ### Outras Seções

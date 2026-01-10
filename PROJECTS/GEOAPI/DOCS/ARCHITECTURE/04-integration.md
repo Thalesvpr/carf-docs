@@ -2379,27 +2379,3 @@ app.UseMetricServer(); // Exposes /metrics endpoint for Prometheus
 app.UseMiddleware<MetricsMiddleware>();
 ```
 
----
-
-## 📚 Referências
-
-- [Keycloak Documentation](https://www.keycloak.org/documentation)
-- [PostgreSQL + PostGIS Documentation](https://postgis.net/documentation/)
-- [Entity Framework Core Documentation](https://docs.microsoft.com/ef/core/)
-- [Polly Resilience Policies](https://github.com/App-vNext/Polly)
-- [Serilog Structured Logging](https://serilog.net/)
-- [Prometheus Metrics](https://prometheus.io/docs/)
-- [OAuth 2.0 RFC 6749](https://datatracker.ietf.org/doc/html/rfc6749)
-- [OIDC Specification](https://openid.net/specs/openid-connect-core-1_0.html)
-
----
-
-## 🔗 Documentos Relacionados
-
-- [01-overview.md](./01-overview.md) - Visão geral da arquitetura
-- [02-admin-security.md](./02-admin-security.md) - Segurança e separação admin
-- [03-data-flow.md](./03-data-flow.md) - Fluxo de dados
-- [05-deployment.md](./05-deployment.md) - Arquitetura de deployment
-- [CENTRAL/API/](../../../../CENTRAL/API/) - Especificação de endpoints
-- [ADR-003: Keycloak Autenticação](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-003-keycloak-autenticacao.md)
-- [ADR-002: PostgreSQL + PostGIS](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-002-postgresql-postgis.md)

@@ -175,8 +175,8 @@ make logs
 
 ### Documentação Central
 - [Integration Guide](../../CENTRAL/INTEGRATION/KEYCLOAK/README.md)
-- [Examples](../../CENTRAL/INTEGRATION/KEYCLOAK/examples/)
-- [Runbooks](../../CENTRAL/INTEGRATION/KEYCLOAK/runbooks/)
+- **Examples** - Ver pasta examples/ com múltiplos arquivos de integração
+- **Runbooks** - Ver pasta runbooks/ com procedimentos operacionais
 
 ### ADRs Relacionadas
 - [ADR-003: Keycloak Authentication](../../CENTRAL/ARCHITECTURE/ADRs/ADR-003-keycloak-autenticacao.md)
