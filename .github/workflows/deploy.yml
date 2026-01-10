@@ -32,12 +32,14 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
+        with:
+          enablement: true
 
       - name: Install dependencies
         run: cd webdocs && npm ci
 
       - name: Build with VitePress
-        run: cd webdocs && npm run docs:build
+        run: cd webdocs && npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

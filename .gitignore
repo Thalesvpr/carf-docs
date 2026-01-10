@@ -15,7 +15,8 @@ pnpm-debug.log*
 dist/
 PROJECTS/TSCORE/SRC-CODE/dist/
 
-## Docs synced (gerados) - apenas VitePress
+## Docs synced (gerados)
+/docs/
 PROJECTS/WEBDOCS/SRC-CODE/docs/
 
 ## Build
@@ -38,3 +39,8 @@ logs/
 ## Environment
 .env
 .env.local
+.claude/
+.obsidian/
+.temp_reports/
+CENTRAL/
+PROJECTS/
