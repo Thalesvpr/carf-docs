@@ -8,256 +8,116 @@
   "collapse-color-groups": false,
   "colorGroups": [
     {
-      "query": "path:CENTRAL/ARCHITECTURE/ADRs",
-      "color": {
-        "a": 1,
-        "rgb": 6697728
-      }
-    },
-    {
       "query": "path:CENTRAL/ARCHITECTURE/",
-      "color": {
-        "a": 1,
-        "rgb": 8921088
-      }
-    },
-    {
-      "query": "path:CENTRAL/API/AUTHENTICATION",
-      "color": {
-        "a": 1,
-        "rgb": 3381759
-      }
-    },
-    {
-      "query": "path:CENTRAL/API/UNITS",
-      "color": {
-        "a": 1,
-        "rgb": 5592575
-      }
-    },
-    {
-      "query": "path:CENTRAL/API/HOLDERS",
-      "color": {
-        "a": 1,
-        "rgb": 7803391
-      }
+      "color": {"a": 1, "rgb": 3355443}
     },
     {
       "query": "path:CENTRAL/API/",
-      "color": {
-        "a": 1,
-        "rgb": 2170623
-      }
-    },
-    {
-      "query": "path:CENTRAL/DOMAIN-MODEL/AGGREGATES",
-      "color": {
-        "a": 1,
-        "rgb": 16750899
-      }
-    },
-    {
-      "query": "path:CENTRAL/DOMAIN-MODEL/ENTITIES",
-      "color": {
-        "a": 1,
-        "rgb": 16740659
-      }
-    },
-    {
-      "query": "path:CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS",
-      "color": {
-        "a": 1,
-        "rgb": 16730419
-      }
+      "color": {"a": 1, "rgb": 2263842}
     },
     {
       "query": "path:CENTRAL/DOMAIN-MODEL/",
-      "color": {
-        "a": 1,
-        "rgb": 16761139
-      }
-    },
-    {
-      "query": "path:CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS",
-      "color": {
-        "a": 1,
-        "rgb": 3381555
-      }
-    },
-    {
-      "query": "path:CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS",
-      "color": {
-        "a": 1,
-        "rgb": 5592371
-      }
-    },
-    {
-      "query": "path:CENTRAL/REQUIREMENTS/USE-CASES",
-      "color": {
-        "a": 1,
-        "rgb": 7803187
-      }
-    },
-    {
-      "query": "path:CENTRAL/REQUIREMENTS/USER-STORIES",
-      "color": {
-        "a": 1,
-        "rgb": 10014003
-      }
+      "color": {"a": 1, "rgb": 16744192}
     },
     {
       "query": "path:CENTRAL/REQUIREMENTS/",
-      "color": {
-        "a": 1,
-        "rgb": 1170739
-      }
+      "color": {"a": 1, "rgb": 9055487}
     },
     {
       "query": "path:CENTRAL/BUSINESS-RULES/",
-      "color": {
-        "a": 1,
-        "rgb": 16766720
-      }
-    },
-    {
-      "query": "path:CENTRAL/INTEGRATION/KEYCLOAK",
-      "color": {
-        "a": 1,
-        "rgb": 1146158
-      }
-    },
-    {
-      "query": "path:CENTRAL/INTEGRATION/DATABASE",
-      "color": {
-        "a": 1,
-        "rgb": 3394662
-      }
+      "color": {"a": 1, "rgb": 16766720}
     },
     {
       "query": "path:CENTRAL/INTEGRATION/",
-      "color": {
-        "a": 1,
-        "rgb": 754326
-      }
+      "color": {"a": 1, "rgb": 65535}
     },
     {
       "query": "path:CENTRAL/OPERATIONS/",
-      "color": {
-        "a": 1,
-        "rgb": 11184810
-      }
+      "color": {"a": 1, "rgb": 6710886}
     },
     {
       "query": "path:CENTRAL/SECURITY/",
-      "color": {
-        "a": 1,
-        "rgb": 16711680
-      }
+      "color": {"a": 1, "rgb": 13369344}
     },
     {
       "query": "path:CENTRAL/TESTING/",
-      "color": {
-        "a": 1,
-        "rgb": 16753920
-      }
+      "color": {"a": 1, "rgb": 16753920}
+    },
+    {
+      "query": "path:CENTRAL/VERSIONING/",
+      "color": {"a": 1, "rgb": 5592405}
+    },
+    {
+      "query": "path:CENTRAL/LIBRARIES/",
+      "color": {"a": 1, "rgb": 10223615}
+    },
+    {
+      "query": "path:CENTRAL/TEMPLATES/",
+      "color": {"a": 1, "rgb": 13382655}
     },
     {
       "query": "path:CENTRAL/TODO/",
-      "color": {
-        "a": 1,
-        "rgb": 16776960
-      }
+      "color": {"a": 1, "rgb": 16776960}
+    },
+    {
+      "query": "path:CENTRAL/WORKFLOWS/",
+      "color": {"a": 1, "rgb": 5592575}
     },
     {
       "query": "path:CENTRAL/",
-      "color": {
-        "a": 1,
-        "rgb": 11184810
-      }
+      "color": {"a": 1, "rgb": 8421504}
     },
     {
       "query": "path:PROJECTS/GEOAPI/",
-      "color": {
-        "a": 1,
-        "rgb": 255
-      }
-    },
-    {
-      "query": "path:PROJECTS/ADMIN/",
-      "color": {
-        "a": 1,
-        "rgb": 4620543
-      }
+      "color": {"a": 1, "rgb": 255}
     },
     {
       "query": "path:PROJECTS/GEOWEB/",
-      "color": {
-        "a": 1,
-        "rgb": 65280
-      }
-    },
-    {
-      "query": "path:PROJECTS/GEOGIS/",
-      "color": {
-        "a": 1,
-        "rgb": 8453888
-      }
-    },
-    {
-      "query": "path:PROJECTS/WEBDOCS/",
-      "color": {
-        "a": 1,
-        "rgb": 11647232
-      }
+      "color": {"a": 1, "rgb": 65280}
     },
     {
       "query": "path:PROJECTS/REURBCAD/",
-      "color": {
-        "a": 1,
-        "rgb": 10027263
-      }
+      "color": {"a": 1, "rgb": 10027263}
+    },
+    {
+      "query": "path:PROJECTS/ADMIN/",
+      "color": {"a": 1, "rgb": 16711935}
+    },
+    {
+      "query": "path:PROJECTS/GEOGIS/",
+      "color": {"a": 1, "rgb": 9109504}
+    },
+    {
+      "query": "path:PROJECTS/WEBDOCS/",
+      "color": {"a": 1, "rgb": 9055487}
     },
     {
       "query": "path:PROJECTS/KEYCLOAK/",
-      "color": {
-        "a": 1,
-        "rgb": 65535
-      }
+      "color": {"a": 1, "rgb": 16761024}
     },
     {
       "query": "path:PROJECTS/LIB/TS/TSCORE/",
-      "color": {
-        "a": 1,
-        "rgb": 16711935
-      }
+      "color": {"a": 1, "rgb": 16711935}
     },
     {
       "query": "path:PROJECTS/LIB/TS/GEOAPI-CLIENT/",
-      "color": {
-        "a": 1,
-        "rgb": 16738740
-      }
+      "color": {"a": 1, "rgb": 16738740}
     },
     {
       "query": "path:PROJECTS/LIB/TS/UI-COMPONENTS/",
-      "color": {
-        "a": 1,
-        "rgb": 16765546
-      }
+      "color": {"a": 1, "rgb": 16765546}
+    },
+    {
+      "query": "path:PROJECTS/LIB/TS/",
+      "color": {"a": 1, "rgb": 13369548}
     },
     {
       "query": "path:PROJECTS/LIB/",
-      "color": {
-        "a": 1,
-        "rgb": 14680319
-      }
+      "color": {"a": 1, "rgb": 14680319}
     },
     {
       "query": "path:PROJECTS/",
-      "color": {
-        "a": 1,
-        "rgb": 16744448
-      }
+      "color": {"a": 1, "rgb": 16744448}
     }
   ],
   "collapse-display": false,
@@ -267,9 +127,9 @@
   "lineSizeMultiplier": 1,
   "collapse-forces": false,
   "centerStrength": 0,
-  "repelStrength": 8.5,
-  "linkStrength": 0.25,
+  "repelStrength": 20,
+  "linkStrength": 1,
   "linkDistance": 488,
-  "scale": 0.026,
+  "scale": 0.024095302712059504,
   "close": false
 }
