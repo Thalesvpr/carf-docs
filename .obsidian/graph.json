@@ -1,6 +1,6 @@
 {
   "collapse-filter": false,
-  "search": "-path:node_modules -path:dist -path:build -path:.git -path:SRC-CODE/carf-tscore/node_modules -path:SRC-CODE/carf-geoapi-client/node_modules -path:SRC-CODE/carf-ui/node_modules",
+  "search": "",
   "showTags": false,
   "showAttachments": false,
   "hideUnresolved": false,
@@ -8,121 +8,268 @@
   "collapse-color-groups": false,
   "colorGroups": [
     {
+      "query": "path:CENTRAL/ARCHITECTURE/ADRs",
+      "color": {
+        "a": 1,
+        "rgb": 6697728
+      }
+    },
+    {
       "query": "path:CENTRAL/ARCHITECTURE/",
       "color": {
         "a": 1,
-        "rgb": 15745598
+        "rgb": 8921088
+      }
+    },
+    {
+      "query": "path:CENTRAL/API/AUTHENTICATION",
+      "color": {
+        "a": 1,
+        "rgb": 3381759
+      }
+    },
+    {
+      "query": "path:CENTRAL/API/UNITS",
+      "color": {
+        "a": 1,
+        "rgb": 5592575
+      }
+    },
+    {
+      "query": "path:CENTRAL/API/HOLDERS",
+      "color": {
+        "a": 1,
+        "rgb": 7803391
       }
     },
     {
       "query": "path:CENTRAL/API/",
       "color": {
         "a": 1,
-        "rgb": 16613908
+        "rgb": 2170623
+      }
+    },
+    {
+      "query": "path:CENTRAL/DOMAIN-MODEL/AGGREGATES",
+      "color": {
+        "a": 1,
+        "rgb": 16750899
+      }
+    },
+    {
+      "query": "path:CENTRAL/DOMAIN-MODEL/ENTITIES",
+      "color": {
+        "a": 1,
+        "rgb": 16740659
+      }
+    },
+    {
+      "query": "path:CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS",
+      "color": {
+        "a": 1,
+        "rgb": 16730419
       }
     },
     {
       "query": "path:CENTRAL/DOMAIN-MODEL/",
       "color": {
         "a": 1,
-        "rgb": 16433413
+        "rgb": 16761139
       }
     },
     {
-      "query": "path:CENTRAL/BUSINESS-RULES/ OR path:CENTRAL/WORKFLOWS/",
+      "query": "path:CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS",
       "color": {
         "a": 1,
-        "rgb": 16565273
+        "rgb": 3381555
       }
     },
     {
-      "query": "path:PROJECTS/GEOAPI/",
+      "query": "path:CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS",
       "color": {
         "a": 1,
-        "rgb": 1667522
+        "rgb": 5592371
       }
     },
     {
-      "query": "path:PROJECTS/ADMIN/",
+      "query": "path:CENTRAL/REQUIREMENTS/USE-CASES",
       "color": {
         "a": 1,
-        "rgb": 3383024
+        "rgb": 7803187
       }
     },
     {
-      "query": "path:PROJECTS/GEOWEB/",
+      "query": "path:CENTRAL/REQUIREMENTS/USER-STORIES",
       "color": {
         "a": 1,
-        "rgb": 3650637
+        "rgb": 10014003
       }
     },
     {
-      "query": "path:PROJECTS/GEOGIS/",
+      "query": "path:CENTRAL/REQUIREMENTS/",
       "color": {
         "a": 1,
-        "rgb": 5358438
+        "rgb": 1170739
       }
     },
     {
-      "query": "path:PROJECTS/REURBCAD/",
+      "query": "path:CENTRAL/BUSINESS-RULES/",
       "color": {
         "a": 1,
-        "rgb": 7950578
+        "rgb": 16766720
       }
     },
     {
-      "query": "path:PROJECTS/KEYCLOAK/",
+      "query": "path:CENTRAL/INTEGRATION/KEYCLOAK",
       "color": {
         "a": 1,
-        "rgb": 820633
+        "rgb": 1146158
       }
     },
     {
-      "query": "path:PROJECTS/WEBDOCS/",
+      "query": "path:CENTRAL/INTEGRATION/DATABASE",
       "color": {
         "a": 1,
-        "rgb": 1226886
+        "rgb": 3394662
       }
     },
     {
-      "query": "path:PROJECTS/LIB/TS/TSCORE/",
+      "query": "path:CENTRAL/INTEGRATION/",
       "color": {
         "a": 1,
-        "rgb": 15092096
+        "rgb": 754326
       }
     },
     {
-      "query": "path:PROJECTS/LIB/TS/GEOAPI-CLIENT/",
+      "query": "path:CENTRAL/OPERATIONS/",
       "color": {
         "a": 1,
-        "rgb": 15754645
+        "rgb": 11184810
       }
     },
     {
-      "query": "path:PROJECTS/LIB/TS/UI-COMPONENTS/",
+      "query": "path:CENTRAL/SECURITY/",
       "color": {
         "a": 1,
-        "rgb": 16739997
+        "rgb": 16711680
+      }
+    },
+    {
+      "query": "path:CENTRAL/TESTING/",
+      "color": {
+        "a": 1,
+        "rgb": 16753920
       }
     },
     {
       "query": "path:CENTRAL/TODO/",
       "color": {
         "a": 1,
-        "rgb": 16753707
+        "rgb": 16776960
+      }
+    },
+    {
+      "query": "path:CENTRAL/",
+      "color": {
+        "a": 1,
+        "rgb": 11184810
+      }
+    },
+    {
+      "query": "path:PROJECTS/GEOAPI/",
+      "color": {
+        "a": 1,
+        "rgb": 255
+      }
+    },
+    {
+      "query": "path:PROJECTS/ADMIN/",
+      "color": {
+        "a": 1,
+        "rgb": 4620543
+      }
+    },
+    {
+      "query": "path:PROJECTS/GEOWEB/",
+      "color": {
+        "a": 1,
+        "rgb": 65280
+      }
+    },
+    {
+      "query": "path:PROJECTS/GEOGIS/",
+      "color": {
+        "a": 1,
+        "rgb": 8453888
+      }
+    },
+    {
+      "query": "path:PROJECTS/WEBDOCS/",
+      "color": {
+        "a": 1,
+        "rgb": 11647232
+      }
+    },
+    {
+      "query": "path:PROJECTS/REURBCAD/",
+      "color": {
+        "a": 1,
+        "rgb": 10027263
+      }
+    },
+    {
+      "query": "path:PROJECTS/KEYCLOAK/",
+      "color": {
+        "a": 1,
+        "rgb": 65535
+      }
+    },
+    {
+      "query": "path:PROJECTS/LIB/TS/TSCORE/",
+      "color": {
+        "a": 1,
+        "rgb": 16711935
+      }
+    },
+    {
+      "query": "path:PROJECTS/LIB/TS/GEOAPI-CLIENT/",
+      "color": {
+        "a": 1,
+        "rgb": 16738740
+      }
+    },
+    {
+      "query": "path:PROJECTS/LIB/TS/UI-COMPONENTS/",
+      "color": {
+        "a": 1,
+        "rgb": 16765546
+      }
+    },
+    {
+      "query": "path:PROJECTS/LIB/",
+      "color": {
+        "a": 1,
+        "rgb": 14680319
+      }
+    },
+    {
+      "query": "path:PROJECTS/",
+      "color": {
+        "a": 1,
+        "rgb": 16744448
       }
     }
   ],
   "collapse-display": false,
   "showArrow": false,
   "textFadeMultiplier": 0,
-  "nodeSizeMultiplier": 1.2,
+  "nodeSizeMultiplier": 1.6,
   "lineSizeMultiplier": 1,
   "collapse-forces": false,
-  "centerStrength": 0.5,
-  "repelStrength": 12,
-  "linkStrength": 1,
-  "linkDistance": 300,
-  "scale": 0.11176338951045003,
+  "centerStrength": 0,
+  "repelStrength": 8.5,
+  "linkStrength": 0.25,
+  "linkDistance": 488,
+  "scale": 0.026,
   "close": false
 }
