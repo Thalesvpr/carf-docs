@@ -39,74 +39,15 @@ Se o projeto crescer muito, considerar migração para **monorepo** com tooling 
 
 ### Estrutura de Diretórios
 
-Cada repositório de código deve ser clonado na pasta `SRC-CODE` correspondente dentro de `PROJECTS/` para:
-- Manter organização consistente
-- Permitir `.gitignore` das pastas de código
-- Evitar conflitos entre repo de documentação e repos de implementação
+Cada repositório de código deve ser clonado na pasta SRC-CODE correspondente dentro de PROJECTS/ mantendo organização consistente permitindo gitignore das pastas de código e evitando conflitos entre repo de documentação e repos de implementação.
 
-```
-carf-docs/                          # Repositório de documentação (este)
-├── CENTRAL/                        # SSOT
-├── PROJECTS/
-│   ├── TSCORE/
-│   │   ├── DOCS/                   # Docs específicas da lib TypeScript
-│   │   └── SRC-CODE/               # → git clone carf-tscore aqui
-│   ├── GEOAPI/
-│   │   ├── DOCS/                   # Docs específicas do backend
-│   │   └── SRC-CODE/               # → git clone carf-geoapi aqui
-│   ├── GEOWEB/
-│   │   ├── DOCS/                   # Docs específicas do frontend
-│   │   └── SRC-CODE/               # → git clone carf-geoweb aqui
-│   ├── REURBCAD/
-│   │   ├── DOCS/                   # Docs específicas do mobile
-│   │   └── SRC-CODE/               # → git clone carf-reurbcad aqui
-│   ├── GEOGIS/
-│   │   ├── DOCS/                   # Docs específicas do plugin
-│   │   └── SRC-CODE/               # → git clone carf-geogis aqui
-│   ├── WEBDOCS/
-│   │   ├── DOCS/                   # Docs específicas do portal
-│   │   └── SRC-CODE/               # → git clone carf-webdocs aqui
-│   └── ADMIN/
-│       ├── DOCS/                   # Docs específicas do console admin
-│       └── SRC-CODE/               # → git clone carf-admin aqui
-└── DEVELOPMENT/
-```
+Estrutura organizada com repositório carf-docs na raiz contendo diretório CENTRAL como SSOT seguido por PROJECTS/ contendo sete projetos sendo TSCORE com subdiretório DOCS para documentação específica da lib TypeScript e SRC-CODE para clonar carf-tscore, GEOAPI com DOCS para documentação específica do backend e SRC-CODE para clonar carf-geoapi, GEOWEB com DOCS para documentação específica do frontend e SRC-CODE para clonar carf-geoweb, REURBCAD com DOCS para documentação específica do mobile e SRC-CODE para clonar carf-reurbcad, GEOGIS com DOCS para documentação específica do plugin e SRC-CODE para clonar carf-geogis, WEBDOCS com DOCS para documentação específica do portal e SRC-CODE para clonar carf-webdocs, e ADMIN com DOCS para documentação específica do console admin e SRC-CODE para clonar carf-admin, finalizando com diretório DEVELOPMENT/ na raiz.
 
 ### Comandos de Clone
 
-**Passo 1:** Clone o repositório de documentação primeiro:
+Primeiro passo executar git clone do repositório https://github.com/Thalesvpr/carf-docs.git seguido por cd carf-docs para entrar no diretório. Segundo passo clonar apenas os repositórios necessários conforme perfil do desenvolvedor sendo TypeScript Shared Library para Frontend/Admin Teams executando git clone https://github.com/Thalesvpr/carf-tscore.git especificando target directory PROJECTS/TSCORE/SRC-CODE, Backend Developer para Backend Team executando git clone https://github.com/Thalesvpr/carf-geoapi.git para PROJECTS/GEOAPI/SRC-CODE, Frontend Developer para Frontend Team executando git clone https://github.com/Thalesvpr/carf-geoweb.git para PROJECTS/GEOWEB/SRC-CODE, Mobile Developer para Mobile Team executando git clone https://github.com/Thalesvpr/carf-reurbcad.git para PROJECTS/REURBCAD/SRC-CODE, GIS Developer para GIS Team executando git clone https://github.com/Thalesvpr/carf-geogis.git para PROJECTS/GEOGIS/SRC-CODE, Documentation Team executando git clone https://github.com/Thalesvpr/carf-webdocs.git para PROJECTS/WEBDOCS/SRC-CODE, e Admin Console para Admin Team executando git clone https://github.com/Thalesvpr/carf-admin.git para PROJECTS/ADMIN/SRC-CODE.
 
-```bash
-git clone https://github.com/Thalesvpr/carf-docs.git
-cd carf-docs
-```
-
-**Passo 2:** Clone apenas os repositórios que você precisa:
-
-```bash
-# TypeScript Shared Library (Frontend/Admin Teams)
-git clone https://github.com/Thalesvpr/carf-tscore.git PROJECTS/TSCORE/SRC-CODE
-
-# Backend Developer (Backend Team)
-git clone https://github.com/Thalesvpr/carf-geoapi.git PROJECTS/GEOAPI/SRC-CODE
-
-# Frontend Developer (Frontend Team)
-git clone https://github.com/Thalesvpr/carf-geoweb.git PROJECTS/GEOWEB/SRC-CODE
-
-# Mobile Developer (Mobile Team)
-git clone https://github.com/Thalesvpr/carf-reurbcad.git PROJECTS/REURBCAD/SRC-CODE
-
-# GIS Developer (GIS Team)
-git clone https://github.com/Thalesvpr/carf-geogis.git PROJECTS/GEOGIS/SRC-CODE
-
-# Documentation Team
-git clone https://github.com/Thalesvpr/carf-webdocs.git PROJECTS/WEBDOCS/SRC-CODE
-
-# Admin Console (Admin Team)
-git clone https://github.com/Thalesvpr/carf-admin.git PROJECTS/ADMIN/SRC-CODE
-```
-
-**Passo 3:** Acesse o README específico de cada projeto para instruções de build/run/test:
+Terceiro passo acessar o README específico de cada projeto para instruções de build/run/test:
 
 - TypeScript Library: (caminho de implementação)
 - Backend: (caminho de implementação)
@@ -125,194 +66,35 @@ As pastas `SRC-CODE/` estão no `.gitignore` do repositório `carf-docs`, permit
 
 ### Exemplos de Uso por Perfil
 
-**Backend Developer:**
-```bash
-git clone https://github.com/Thalesvpr/carf-docs.git
-cd carf-docs
-git clone https://github.com/Thalesvpr/carf-geoapi.git PROJECTS/GEOAPI/SRC-CODE
-# Trabalha apenas no backend, ignora frontend/mobile/plugin
-```
-
-**Frontend Developer:**
-```bash
-git clone https://github.com/Thalesvpr/carf-docs.git
-cd carf-docs
-git clone https://github.com/Thalesvpr/carf-tscore.git PROJECTS/TSCORE/SRC-CODE
-git clone https://github.com/Thalesvpr/carf-geoweb.git PROJECTS/GEOWEB/SRC-CODE
-# Trabalha em frontend + biblioteca compartilhada, ignora backend/mobile/plugin
-```
-
-**Full Stack Developer:**
-```bash
-git clone https://github.com/Thalesvpr/carf-docs.git
-cd carf-docs
-git clone https://github.com/Thalesvpr/carf-geoapi.git PROJECTS/GEOAPI/SRC-CODE
-git clone https://github.com/Thalesvpr/carf-geoweb.git PROJECTS/GEOWEB/SRC-CODE
-# Trabalha em backend e frontend, ignora mobile/plugin
-```
-
-**Tech Lead / Arquiteto:**
-```bash
-git clone https://github.com/Thalesvpr/carf-docs.git
-cd carf-docs
-# Clona todos os repositórios
-git clone https://github.com/Thalesvpr/carf-tscore.git PROJECTS/TSCORE/SRC-CODE
-git clone https://github.com/Thalesvpr/carf-geoapi.git PROJECTS/GEOAPI/SRC-CODE
-git clone https://github.com/Thalesvpr/carf-geoweb.git PROJECTS/GEOWEB/SRC-CODE
-git clone https://github.com/Thalesvpr/carf-reurbcad.git PROJECTS/REURBCAD/SRC-CODE
-git clone https://github.com/Thalesvpr/carf-geogis.git PROJECTS/GEOGIS/SRC-CODE
-git clone https://github.com/Thalesvpr/carf-webdocs.git PROJECTS/WEBDOCS/SRC-CODE
-git clone https://github.com/Thalesvpr/carf-admin.git PROJECTS/ADMIN/SRC-CODE
-```
+Backend Developer executa git clone do repositório carf-docs seguido por cd carf-docs e clona carf-geoapi para PROJECTS/GEOAPI/SRC-CODE trabalhando apenas no backend ignorando frontend mobile e plugin. Frontend Developer executa git clone do carf-docs seguido por cd carf-docs clonando carf-tscore para PROJECTS/TSCORE/SRC-CODE e carf-geoweb para PROJECTS/GEOWEB/SRC-CODE trabalhando em frontend mais biblioteca compartilhada ignorando backend mobile e plugin. Full Stack Developer executa git clone do carf-docs seguido por cd carf-docs clonando carf-geoapi para PROJECTS/GEOAPI/SRC-CODE e carf-geoweb para PROJECTS/GEOWEB/SRC-CODE trabalhando em backend e frontend ignorando mobile e plugin. Tech Lead ou Arquiteto executa git clone do carf-docs seguido por cd carf-docs clonando todos os repositórios sendo carf-tscore para PROJECTS/TSCORE/SRC-CODE, carf-geoapi para PROJECTS/GEOAPI/SRC-CODE, carf-geoweb para PROJECTS/GEOWEB/SRC-CODE, carf-reurbcad para PROJECTS/REURBCAD/SRC-CODE, carf-geogis para PROJECTS/GEOGIS/SRC-CODE, carf-webdocs para PROJECTS/WEBDOCS/SRC-CODE, e carf-admin para PROJECTS/ADMIN/SRC-CODE permitindo visão completa de todos projetos.
 
 ## Workflow de Trabalho
 
 ### Trabalhando em um Repositório Específico
 
-```bash
-# Entre na pasta SRC-CODE do projeto
-cd PROJECTS/GEOAPI/SRC-CODE
-
-# Trabalhe normalmente com Git
-git checkout -b feature/nova-funcionalidade
-git add .
-git commit -m "feat: adiciona nova funcionalidade"
-git push origin feature/nova-funcionalidade
-
-# Volte para a raiz da documentação
-cd ../../..
-```
+Para trabalhar em repositório específico entrar na pasta SRC-CODE do projeto usando cd PROJECTS/GEOAPI/SRC-CODE seguido por operações Git normais criando branch com git checkout menos b feature/nova-funcionalidade adicionando mudanças com git add ponto fazendo commit com git commit menos m "feat: adiciona nova funcionalidade" enviando para remote com git push origin feature/nova-funcionalidade e voltando para raiz da documentação com cd ponto ponto ponto barra ponto ponto ponto barra ponto ponto ponto.
 
 ### Trabalhando no @carf/tscore (Biblioteca Compartilhada)
 
-Workflow específico para desenvolver na biblioteca compartilhada:
+Workflow específico para desenvolver na biblioteca compartilhada inicia clonando tscore se ainda não tiver executando git clone https://github.com/Thalesvpr/carf-tscore.git PROJECTS/TSCORE/SRC-CODE seguido por cd PROJECTS/TSCORE/SRC-CODE e instalando dependências com bun install, criar branch para feature usando git checkout menos b feature/add-crea-validation desenvolvendo exemplo adicionando novo value object CREA editando src/validations/crea.ts e adicionando testes em src/validations/__tests__/crea.test.ts, rodando testes com bun test e build para verificar com bun run build.
 
-```bash
-# Clonar tscore se ainda não tiver
-git clone https://github.com/Thalesvpr/carf-tscore.git PROJECTS/TSCORE/SRC-CODE
-cd PROJECTS/TSCORE/SRC-CODE
+Testar localmente em projeto consumidor GEOWEB executando npm link na pasta tscore seguido por cd ../../../GEOWEB/SRC-CODE e npm link @carf/tscore testando mudanças no GEOWEB desfazendo link quando terminar com npm unlink @carf/tscore && bun install, voltar ao tscore para commit usando cd ../../../TSCORE/SRC-CODE seguido por git add ponto git commit menos m "feat: add CREA value object validation" e git push origin feature/add-crea-validation, criar PR no GitHub executando gh pr create menos menos title "feat: Add CREA validation" menos menos body com descrição.
 
-# Instalar dependências
-bun install
-
-# Criar branch para feature
-git checkout -b feature/add-crea-validation
-
-# Desenvolver (ex: adicionar novo value object CREA)
-# Editar src/validations/crea.ts
-# Adicionar testes src/validations/__tests__/crea.test.ts
-
-# Rodar testes
-bun test
-
-# Build para verificar
-bun run build
-
-# Testar localmente em projeto consumidor (GEOWEB)
-npm link
-cd ../../../GEOWEB/SRC-CODE
-npm link @carf/tscore
-# Testar mudanças no GEOWEB
-# Desfazer link quando terminar: npm unlink @carf/tscore && bun install
-
-# Voltar ao tscore para commit
-cd ../../../TSCORE/SRC-CODE
-git add .
-git commit -m "feat: add CREA value object validation"
-git push origin feature/add-crea-validation
-
-# Criar PR no GitHub
-gh pr create --title "feat: Add CREA validation" --body "..."
-
-# Após merge na main, publicar nova versão (CI/CD automático)
-# Ou manualmente:
-npm version minor  # Incrementa versão (0.1.0 → 0.2.0)
-git push --follow-tags  # Dispara CI/CD que publica no GitHub Packages
-```
-
-**Importante:**
-- Sempre rodar `bun test` antes de commitar
-- Usar `npm link` para testar localmente antes de publicar
-- Seguir [Conventional Commits](./03-commit-conventions.md)
-- Atualizar [CHANGELOG.md](../../../PROJECTS/LIB/TS/TSCORE/SRC-CODE/CHANGELOG.md) antes de publicar
-- Breaking changes requerem MAJOR version bump
+Após merge na main publicar nova versão usando CI/CD automático ou manualmente executando npm version minor incrementando versão de zero ponto um ponto zero para zero ponto dois ponto zero seguido por git push menos menos follow-tags disparando CI/CD que publica no GitHub Packages. Importante sempre rodar bun test antes de commitar usar npm link para testar localmente antes de publicar seguir Conventional Commits atualizar CHANGELOG.md antes de publicar e breaking changes requerem MAJOR version bump.
 
 ### Atualizando Documentação
 
-```bash
-# Na raiz do carf-docs
-git checkout -b docs/atualiza-requisito
-# Edite arquivos em CENTRAL/, PROJECTS/, etc.
-git add .
-git commit -m "docs: atualiza requisito RF-001"
-git push origin docs/atualiza-requisito
-```
+Para atualizar documentação na raiz do carf-docs executar git checkout menos b docs/atualiza-requisito editando arquivos em CENTRAL/ PROJECTS/ ou outros diretórios seguido por git add ponto git commit menos m "docs: atualiza requisito RF-001" e git push origin docs/atualiza-requisito.
 
 ### Sincronizando Mudanças
 
-```bash
-# Atualizar documentação
-git pull origin main
-
-# Atualizar cada repositório de código
-cd PROJECTS/GEOAPI/SRC-CODE && git pull origin main && cd ../../..
-cd PROJECTS/GEOWEB/SRC-CODE && git pull origin main && cd ../../..
-cd PROJECTS/TSCORE/SRC-CODE && git pull origin main && cd ../../..
-# Repita para outros repositórios conforme necessário
-```
+Sincronizar mudanças executando git pull origin main para atualizar documentação seguido por atualização de cada repositório de código navegando para PROJECTS/GEOAPI/SRC-CODE executando git pull origin main e retornando com cd ../../.. repetindo processo para PROJECTS/GEOWEB/SRC-CODE e PROJECTS/TSCORE/SRC-CODE e outros repositórios conforme necessário mantendo todos projetos atualizados com branches main remotas.
 
 ### Atualizando @carf/tscore em Projetos Consumidores
 
-Quando nova versão do tscore é publicada:
+Quando nova versão do tscore é publicada atualizar GEOWEB navegando para PROJECTS/GEOWEB/SRC-CODE executando bun update @carf/tscore verificando CHANGELOG do tscore para breaking changes com cat node_modules/@carf/tscore/CHANGELOG.md testando aplicação com bun dev e commitando se houver mudanças necessárias executando git add package.json bun.lockb seguido por git commit menos m "chore: update @carf/tscore to v0.2.0", atualizar REURBCAD navegando para ../../../REURBCAD/SRC-CODE executando bun update @carf/tscore testando app mobile com bun android e commitando com git add package.json bun.lockb git commit menos m "chore: update @carf/tscore to v0.2.0", atualizar ADMIN navegando para ../../../ADMIN/SRC-CODE executando bun update @carf/tscore testando console com bun dev e commitando com git add package.json bun.lockb git commit menos m "chore: update @carf/tscore to v0.2.0", e atualizar WEBDOCS navegando para ../../../WEBDOCS/SRC-CODE executando bun update @carf/tscore testando portal com bun dev e commitando com git add package.json bun.lockb git commit menos m "chore: update @carf/tscore to v0.2.0".
 
-```bash
-# GEOWEB
-cd PROJECTS/GEOWEB/SRC-CODE
-bun update @carf/tscore
-# Verificar CHANGELOG do tscore para breaking changes
-cat node_modules/@carf/tscore/CHANGELOG.md
-# Testar aplicação
-bun dev
-# Commit se houver mudanças necessárias
-git add package.json bun.lockb
-git commit -m "chore: update @carf/tscore to v0.2.0"
-
-# REURBCAD
-cd ../../../REURBCAD/SRC-CODE
-bun update @carf/tscore
-# Testar app mobile
-bun android
-# Commit
-git add package.json bun.lockb
-git commit -m "chore: update @carf/tscore to v0.2.0"
-
-# ADMIN
-cd ../../../ADMIN/SRC-CODE
-bun update @carf/tscore
-# Testar console
-bun dev
-# Commit
-git add package.json bun.lockb
-git commit -m "chore: update @carf/tscore to v0.2.0"
-
-# WEBDOCS
-cd ../../../WEBDOCS/SRC-CODE
-bun update @carf/tscore
-# Testar portal
-bun dev
-# Commit
-git add package.json bun.lockb
-git commit -m "chore: update @carf/tscore to v0.2.0"
-```
-
-**Breaking Changes:**
-Se tscore teve MAJOR version bump (ex: 1.0.0 → 2.0.0):
-1. Ler CHANGELOG completo
-2. Seguir migration guide
-3. Atualizar código consumidor
-4. Rodar todos os testes
-5. Testar manualmente
-6. Criar PR coordenado em cada projeto
+Breaking Changes se tscore teve MAJOR version bump exemplo um ponto zero ponto zero para dois ponto zero ponto zero seguir processo ler CHANGELOG completo seguir migration guide atualizar código consumidor rodar todos os testes testar manualmente e criar PR coordenado em cada projeto garantindo compatibilidade cross-repo.
 
 ## Compatibilidade entre Repositórios
 

@@ -12,114 +12,37 @@ Worktree soluciona criando múltiplos working directories cada um linked reposit
 
 ### Listar Worktrees Ativos
 
-```bash
-git worktree list
-```
-
-Output mostra path cada worktree branch associada commit HEAD atual status detached HEAD se aplicável bare repository indicação facilitating navigation management awareness workspaces disponíveis active utilizados esquecidos abandonados removidos cleanup maintenance necessário periodicamente evitando lixo acumulado disk space desperdício confusion clutter desorganization.
+Executar comando git worktree list exibindo output mostrando path cada worktree branch associada commit HEAD atual status detached HEAD se aplicável bare repository indicação facilitating navigation management awareness workspaces disponíveis active utilizados esquecidos abandonados removidos cleanup maintenance necessário periodicamente evitando lixo acumulado disk space desperdício confusion clutter desorganization.
 
 ### Criar Novo Worktree
 
-```bash
-# Criar worktree nova branch
-git worktree add ../carf-geoapi-feature-auth feature/RF-001-authentication
-
-# Criar worktree branch existente
-git worktree add ../carf-geoapi-hotfix hotfix/fix-rls-policy
-
-# Criar worktree detached HEAD commit específico
-git worktree add ../carf-geoapi-debug abc123def
-```
-
-Path pode ser relativo ou absoluto preferência organizacional estrutura diretórios convenções time padronização facilitating navigação discovery consistency uniformity aesthetics clean organized tidy workspace pleasant work environment enjoyable developer experience happiness satisfaction morale productivity output quality craftsmanship pride ownership.
+Criar worktree nova branch executando git worktree add ../carf-geoapi-feature-auth feature/RF-001-authentication ou criar worktree branch existente executando git worktree add ../carf-geoapi-hotfix hotfix/fix-rls-policy ou criar worktree detached HEAD commit específico executando git worktree add ../carf-geoapi-debug abc123def onde path pode ser relativo ou absoluto conforme preferência organizacional estrutura diretórios convenções time padronização facilitating navigação discovery consistency uniformity aesthetics clean organized tidy workspace pleasant work environment enjoyable developer experience happiness satisfaction morale productivity output quality craftsmanship pride ownership.
 
 ### Estrutura Diretórios Recomendada
 
-```
-workspace/
-├── carf-geoapi/               # Main worktree (branch main)
-├── carf-geoapi-feature-auth/  # Feature branch worktree
-├── carf-geoapi-hotfix/        # Hotfix branch worktree
-└── carf-geoapi-review/        # PR review worktree
-```
-
-Convenção naming clara explícita self-documenting intuitive understandable sem necessidade documentation mental overhead memorization cognitive load reduced facilitating onboarding newcomers teammates collaboration shared understanding common language vocabulary terminology consistent aligned unified coherent.
+Organizar workspace com diretório raiz contendo carf-geoapi como main worktree em branch main seguido por carf-geoapi-feature-auth para feature branch worktree, carf-geoapi-hotfix para hotfix branch worktree, e carf-geoapi-review para PR review worktree utilizando convenção naming clara explícita self-documenting intuitive understandable sem necessidade documentation mental overhead memorization cognitive load reduced facilitating onboarding newcomers teammates collaboration shared understanding common language vocabulary terminology consistent aligned unified coherent.
 
 ### Trabalhar no Worktree
 
-```bash
-cd ../carf-geoapi-feature-auth
-# Desenvolvimento normal: edit files, git add, git commit, git push
-# IDE pode abrir projeto neste diretório independentemente
-# Terminal sessions separadas para cada worktree
-# Build processes isolated evitando conflicts race conditions
-```
-
-Cada worktree funciona repositório Git normal completo independente commands funcionam esperado commits pushes pulls fetches branches tags remotes configurations settings específicas contextuais adaptadas workflow particular task scenario requirements constraints preferences optimizations custom tailored personalized individual team project organization company enterprise cultural norms conventions best practices standards guidelines policies procedures documentation knowledge base wiki confluence notion obsidian markdown plain text version controlled reviewable searchable discoverable accessible transparent open collaborative shared living breathing evolving updated maintained current relevant accurate truthful honest authentic genuine real pragmatic practical actionable useful valuable meaningful impactful mattering difference lives people users customers stakeholders business society world better place legacy lasting.
+Trabalhar no worktree navegando com cd ../carf-geoapi-feature-auth permitindo desenvolvimento normal editando files executando git add git commit git push onde IDE pode abrir projeto neste diretório independentemente com terminal sessions separadas para cada worktree e build processes isolated evitando conflicts race conditions. Cada worktree funciona repositório Git normal completo independente commands funcionam esperado commits pushes pulls fetches branches tags remotes configurations settings específicas contextuais adaptadas workflow particular task scenario requirements constraints preferences optimizations custom tailored personalized individual team project organization company enterprise cultural norms conventions best practices standards guidelines policies procedures documentation knowledge base wiki confluence notion obsidian markdown plain text version controlled reviewable searchable discoverable accessible transparent open collaborative shared living breathing evolving updated maintained current relevant accurate truthful honest authentic genuine real pragmatic practical actionable useful valuable meaningful impactful mattering difference lives people users customers stakeholders business society world better place legacy lasting.
 
 ### Remover Worktree
 
-```bash
-# Deletar worktree após merge conclusão feature
-cd workspace/carf-geoapi  # Voltar main worktree
-git worktree remove ../carf-geoapi-feature-auth
-
-# Forçar remoção se uncommitted changes existirem
-git worktree remove --force ../carf-geoapi-hotfix
-```
-
-Limpeza periódica importante hygiene maintenance organizacional evitando accumulation stale outdated obsolete forgotten abandoned worktrees consuming disk space causing confusion clutter disorganization inefficiency waste resources computational human attention time energy focus concentration directed productively valuable activities impactful meaningful purposeful intentional deliberate thoughtful mindful present aware conscious engaged participating contributing adding value creating building making real tangible concrete measurable observable verifiable testable falsifiable scientific rigorous methodical systematic structured organized disciplined professional craftsmanship excellence quality standards high bar expectations accountability responsibility integrity honesty transparency authenticity vulnerability courage bravery boldness audacity daring dreaming imagining envisioning creating manifesting reality shaping future possibilities open endless limitless unbounded.
+Deletar worktree após merge conclusão feature voltando para main worktree com cd workspace/carf-geoapi executando git worktree remove ../carf-geoapi-feature-auth ou forçar remoção se uncommitted changes existirem executando git worktree remove menos menos force ../carf-geoapi-hotfix. Limpeza periódica importante hygiene maintenance organizacional evitando accumulation stale outdated obsolete forgotten abandoned worktrees consuming disk space causing confusion clutter disorganization inefficiency waste resources computational human attention time energy focus concentration directed productively valuable activities impactful meaningful purposeful intentional deliberate thoughtful mindful present aware conscious engaged participating contributing adding value creating building making real tangible concrete measurable observable verifiable testable falsifiable scientific rigorous methodical systematic structured organized disciplined professional craftsmanship excellence quality standards high bar expectations accountability responsibility integrity honesty transparency authenticity vulnerability courage bravery boldness audacity daring dreaming imagining envisioning creating manifesting reality shaping future possibilities open endless limitless unbounded.
 
 ## Casos de Uso Comuns
 
 ### Desenvolvimento Feature Paralelo Hotfix Urgente
 
-Desenvolvendo feature complexa multistep multiday effort sudden production incident critical bug requires immediate attention hotfix priority highest dropping everything context switching costly disruptive worktree solves keeping feature work intact preserving state uncommitted changes work-in-progress WIP experimental exploratory tentative uncertain evolving fluid dynamic adaptive responsive flexible.
-
-```bash
-# No meio do desenvolvimento da feature
-cd workspace/carf-geoapi-feature-auth
-# Uncommitted changes existem, código quebrado testes failing normal WIP
-
-# Criar worktree hotfix sem afetar feature
-cd ../carf-geoapi
-git worktree add ../carf-geoapi-hotfix hotfix/fix-critical-bug
-
-# Trabalhar no hotfix isoladamente
-cd ../carf-geoapi-hotfix
-# Fix bug, test, commit, push, deploy production
-
-# Voltar para feature development sem perdas
-cd ../carf-geoapi-feature-auth
-# Continuar exatamente onde parou estado preservado
-```
+Desenvolvendo feature complexa multistep multiday effort sudden production incident critical bug requires immediate attention hotfix priority highest dropping everything context switching costly disruptive worktree solves keeping feature work intact preserving state uncommitted changes work-in-progress WIP experimental exploratory tentative uncertain evolving fluid dynamic adaptive responsive flexible. No meio do desenvolvimento da feature em workspace/carf-geoapi-feature-auth com uncommitted changes existentes código quebrado testes failing normal WIP criar worktree hotfix sem afetar feature voltando para cd ../carf-geoapi executando git worktree add ../carf-geoapi-hotfix hotfix/fix-critical-bug seguido por trabalhar no hotfix isoladamente navegando cd ../carf-geoapi-hotfix fazendo fix bug test commit push deploy production e voltar para feature development sem perdas executando cd ../carf-geoapi-feature-auth continuando exatamente onde parou estado preservado.
 
 ### Code Review Pull Request Colega
 
-Reviewer precisa testar localmente PR pull request colega verificando funcionalidade correctness quality standards adherence checking out branch localmente conflita working directory atual uncommitted changes worktree solves criando isolated environment review testing validation approval feedback constructive respectful empathetic growth-oriented developmental coaching mentoring knowledge sharing learning teaching growing together collective improvement continuous evolution.
-
-```bash
-git worktree add ../carf-geoapi-review feature/RF-045-relatorios
-cd ../carf-geoapi-review
-npm install  # Dependencies podem diferir
-npm test     # Run test suite
-npm start    # Test locally browser interaction manual exploratory
-# Provide feedback comments suggestions improvements approval
-cd ../carf-geoapi  # Return main worktree
-git worktree remove ../carf-geoapi-review
-```
+Reviewer precisa testar localmente PR pull request colega verificando funcionalidade correctness quality standards adherence checking out branch localmente conflita working directory atual uncommitted changes worktree solves criando isolated environment review testing validation approval feedback constructive respectful empathetic growth-oriented developmental coaching mentoring knowledge sharing learning teaching growing together collective improvement continuous evolution. Executar git worktree add ../carf-geoapi-review feature/RF-045-relatorios seguido por cd ../carf-geoapi-review executando npm install pois dependencies podem diferir rodando npm test para run test suite e npm start para test locally browser interaction manual exploratory providing feedback comments suggestions improvements approval depois retornando main worktree com cd ../carf-geoapi e removendo review worktree executando git worktree remove ../carf-geoapi-review.
 
 ### Comparação Implementações Diferentes Branches
 
-Debugging investigation analysis comparison benchmarking performance profiling optimization choosing approach strategy tradeoffs analyzing pros cons advantages disadvantages costs benefits risks opportunities threats SWOT analysis informed decision-making data-driven evidence-based rational logical reasoned thoughtful deliberate careful prudent wise smart intelligent strategic tactical operational executional.
-
-```bash
-git worktree add ../carf-geoapi-approach-a feature/approach-a
-git worktree add ../carf-geoapi-approach-b feature/approach-b
-# Run benchmarks both directories compare results metrics KPIs
-# IDE compare files side-by-side diff tools visual highlighting
-# Decision documented justified explained transparent accountable
-```
+Debugging investigation analysis comparison benchmarking performance profiling optimization choosing approach strategy tradeoffs analyzing pros cons advantages disadvantages costs benefits risks opportunities threats SWOT analysis informed decision-making data-driven evidence-based rational logical reasoned thoughtful deliberate careful prudent wise smart intelligent strategic tactical operational executional. Criar worktrees para ambas abordagens executando git worktree add ../carf-geoapi-approach-a feature/approach-a e git worktree add ../carf-geoapi-approach-b feature/approach-b permitindo run benchmarks both directories compare results metrics KPIs usando IDE compare files side-by-side diff tools visual highlighting garantindo decision documented justified explained transparent accountable.
 
 ## Integração IDE
 

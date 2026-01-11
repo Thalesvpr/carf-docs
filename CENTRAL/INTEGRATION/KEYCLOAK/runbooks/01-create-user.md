@@ -13,53 +13,9 @@
 8. Role mapping → Assign role: `user`, `admin`, etc.
 
 ## Via Admin API
-```bash
-# Get admin token
-TOKEN=$(curl -X POST http://localhost:8080/realms/master/protocol/openid-connect/token \
-  -d "client_id=admin-cli" \
-  -d "username=admin" \
-  -d "password=admin" \
-  -d "grant_type=password" | jq -r '.access_token')
 
-# Create user
-curl -X POST http://localhost:8080/admin/realms/carf/users \
-  -H "Authorization: Bearer $TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "username": "joao.silva",
-    "email": "joao@example.com",
-    "enabled": true,
-    "emailVerified": false,
-    "attributes": {
-      "tenants": ["tenant1"],
-      "current_tenant": ["tenant1"]
-    },
-    "credentials": [{
-      "type": "password",
-      "value": "senha123",
-      "temporary": false
-    }]
-  }'
-
-# Assign role
-USER_ID=$(curl -s http://localhost:8080/admin/realms/carf/users?username=joao.silva \
-  -H "Authorization: Bearer $TOKEN" | jq -r '.[0].id')
-
-ROLE_ID=$(curl -s http://localhost:8080/admin/realms/carf/roles/user \
-  -H "Authorization: Bearer $TOKEN" | jq -r '.id')
-
-curl -X POST "http://localhost:8080/admin/realms/carf/users/$USER_ID/role-mappings/realm" \
-  -H "Authorization: Bearer $TOKEN" \
-  -H "Content-Type: application/json" \
-  -d "[{\"id\":\"$ROLE_ID\",\"name\":\"user\"}]"
-```
+Obter admin token executando curl POST para http://localhost:8080/realms/master/protocol/openid-connect/token com parâmetros client_id admin-cli username admin password admin grant_type password extraindo access_token via jq armazenando em variável TOKEN. Criar usuário executando curl POST para http://localhost:8080/admin/realms/carf/users com Authorization header Bearer TOKEN Content-Type application/json enviando payload JSON contendo username joao.silva email joao@example.com enabled true emailVerified false attributes tenants array tenant1 current_tenant array tenant1 credentials array contendo objeto type password value senha123 temporary false. Atribuir role obtendo USER_ID via curl para endpoint users com query parameter username joao.silva extraindo id do primeiro resultado via jq, obtendo ROLE_ID via curl para endpoint roles/user extraindo id via jq, e executando curl POST para endpoint users/USER_ID/role-mappings/realm enviando array JSON contendo objeto id ROLE_ID name user associando role ao usuário criado.
 
 ## Verificação
-```bash
-# Login do usuário
-curl -X POST http://localhost:8080/realms/carf/protocol/openid-connect/token \
-  -d "client_id=geoweb" \
-  -d "grant_type=password" \
-  -d "username=joao.silva" \
-  -d "password=senha123" | jq '.access_token' | cut -d. -f2 | base64 -d | jq
-```
+
+Verificar login do usuário executando curl POST para http://localhost:8080/realms/carf/protocol/openid-connect/token com parâmetros client_id geoweb grant_type password username joao.silva password senha123 extraindo access_token via jq decodificando payload JWT usando cut minus d ponto minus f2 pipe base64 minus d pipe jq exibindo claims token incluindo tenants current_tenant roles confirmando autenticação bem-sucedida configurações corretas multi-tenancy funcionando.
