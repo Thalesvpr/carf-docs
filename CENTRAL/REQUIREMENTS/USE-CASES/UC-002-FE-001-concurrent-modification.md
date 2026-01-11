@@ -10,55 +10,16 @@ Fluxo de exceção do UC-002 Aprovar Unidade Habitacional ocorrendo no passo 9 (
 **Ponto de Desvio:** Passo 9 do UC-002 (execução de UPDATE no banco)
 
 **Detecção de Concorrência:**
-```sql
--- Backend tenta update com row_version check
-UPDATE units
-SET
-  status = 'Approved',
-  approved_at = NOW(),
-  approved_by = $1,
-  row_version = row_version + 1
-WHERE id = $2
-  AND row_version = $3; -- Expected version enviada pelo frontend
 
--- Se affected_rows = 0, houve concurrent modification
-```
+Backend executa UPDATE units SET status igual Approved approved_at igual NOW() approved_by igual parâmetro um row_version igual row_version mais um WHERE id igual parâmetro dois AND row_version igual parâmetro três verificando expected version enviada pelo frontend, se affected_rows retorna zero indica concurrent modification pois condição row_version falhou significando registro foi modificado por outra transação entre momento leitura inicial e tentativa update, backend lança ConcurrentModificationException retornando HTTP 409 Conflict.
 
 **Resposta de Erro:**
-```json
-{
-  "error": "Unit was already approved by another user",
-  "code": "CONCURRENT_MODIFICATION",
-  "details": {
-    "current_status": "Approved",
-    "approved_by": {
-      "id": "uuid-123",
-      "name": "João Silva"
-    },
-    "approved_at": "2025-12-30T14:23:15Z",
-    "expected_version": 5,
-    "current_version": 6
-  }
-}
-```
+
+Response HTTP 409 retorna objeto JSON contendo error com mensagem Unit was already approved by another user, code igual CONCURRENT_MODIFICATION identificando tipo conflito específico, details objeto contendo current_status igual Approved, approved_by objeto com id uuid-123 name João Silva, approved_at timestamp 2025-12-30T14:23:15Z, expected_version cinco valor enviado pelo frontend, current_version seis valor atual banco indicando incremento ocorreu por outra transação permitindo frontend processar informações contextuais exibir mensagem específica usuário.
 
 **Tratamento Frontend:**
-```typescript
-try {
-  await approveUnit(unitId, expectedVersion);
-} catch (error) {
-  if (error.response?.status === 409 && error.response?.data?.code === 'CONCURRENT_MODIFICATION') {
-    const { approved_by, approved_at } = error.response.data.details;
-    showToast(`Unidade já foi aprovada por ${approved_by.name} em ${formatDate(approved_at)}`, 'warning');
 
-    // Recarregar dados atualizados
-    await refreshUnitDetails(unitId);
-
-    // Desabilitar botão Aprovar
-    setCanApprove(false);
-  }
-}
-```
+Frontend executa try-catch chamando await approveUnit passando unitId expectedVersion, catch verifica se error.response.status igual quatrocentos e nove AND error.response.data.code igual CONCURRENT_MODIFICATION identificando conflito concorrência, extrai approved_by approved_at de error.response.data.details via destructuring, chama showToast interpolando mensagem "Unidade já foi aprovada por ${approved_by.name} em ${formatDate(approved_at)}" com tipo warning exibindo toast laranja contexto específico, executa await refreshUnitDetails com unitId recarregando dados frescos servidor atualizando UI automaticamente, e chama setCanApprove false desabilitando botão Aprovar prevenindo retry impossível operação.
 
 **Retorno:** MANAGER retorna para lista de pendentes, unidade não aparece mais (já aprovada)
 

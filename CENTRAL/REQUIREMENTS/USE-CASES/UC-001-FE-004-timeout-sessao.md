@@ -10,28 +10,8 @@ Fluxo de exceção do UC-001 Cadastrar Unidade Habitacional ocorrendo no passo 1
 **Ponto de Desvio:** Passo 10 do UC-001 (salvamento no servidor quando token expirado)
 
 **Detecção de Expiração:**
-```typescript
-// Axios interceptor
-axios.interceptors.response.use(
-  response => response,
-  async error => {
-    if (error.response?.status === 401 && error.response?.data?.code === 'TOKEN_EXPIRED') {
-      // Tentar renovação automática
-      try {
-        const newToken = await refreshAccessToken();
-        // Re-tentar requisição original com novo token
-        error.config.headers.Authorization = `Bearer ${newToken}`;
-        return axios.request(error.config);
-      } catch (refreshError) {
-        // Refresh falhou, forçar re-login
-        saveFormDataToLocalStorage();
-        redirectToLogin();
-      }
-    }
-    return Promise.reject(error);
-  }
-);
-```
+
+Axios interceptor configurado em interceptors.response.use recebendo callback success retornando response inalterada e callback error async verificando se error.response.status igual quatrocentos e um AND error.response.data.code igual TOKEN_EXPIRED identificando expiração específica diferenciando de outras falhas autenticação, executando try-catch tentando renovação automática chamando await refreshAccessToken obtendo newToken, atualizando error.config.headers.Authorization com Bearer newToken, retornando axios.request com error.config re-executando requisição original transparentemente, catch refreshError indicando refresh token também expirou executando saveFormDataToLocalStorage preservando dados formulário e redirectToLogin forçando re-autenticação completa, finalmente retornando Promise.reject para outros tipos de erro propagarem normalmente.
 
 **Renovação Automática (Sucesso):**
 1. Interceptor detecta 401 TOKEN_EXPIRED
@@ -43,17 +23,7 @@ axios.interceptors.response.use(
 
 **Renovação Falhou (Refresh Expirado):**
 1. POST /api/auth/refresh retorna 401
-2. Sistema salva dados formulário em localStorage:
-```typescript
-localStorage.setItem(`pending_unit_${Date.now()}`, JSON.stringify({
-  code: formData.code,
-  address: formData.address,
-  geometry: formData.geometry,
-  type: formData.type,
-  observations: formData.observations,
-  savedAt: new Date().toISOString()
-}));
-```
+2. Sistema salva dados formulário em localStorage executando localStorage.setItem com chave pending_unit_${Date.now()} contendo JSON.stringify de objeto com propriedades code address geometry type observations do formData e savedAt com new Date().toISOString() preservando timestamp criação permitindo cleanup posterior de dados expirados
 3. Exibe modal "Sessão expirada" com countdown 5s
 4. Redireciona para /login?return_url=/units/new
 5. Após login, verifica localStorage por `pending_unit_*`

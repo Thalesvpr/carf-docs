@@ -15,23 +15,8 @@ Fluxo de exceção do UC-001 Cadastrar Unidade Habitacional ocorrendo no passo 1
 - Interceptação de erros Network Request Failed ou Timeout
 
 **Persistência Local:**
-```typescript
-// WatermelonDB schema
-@model('units_local')
-class UnitLocal extends Model {
-  @field('local_id') localId: string; // UUID local
-  @field('server_id') serverId: string | null; // ID retornado após sync
-  @field('code') code: string;
-  @json('address', sanitizeAddress) address: Address;
-  @json('geometry', sanitizeGeometry) geometry: GeoJSON;
-  @field('type') type: UnitType;
-  @field('needs_sync') needsSync: boolean;
-  @field('sync_status') syncStatus: 'PENDING' | 'SYNCED' | 'FAILED';
-  @field('created_offline') createdOffline: boolean;
-  @field('tentativas') tentativas: number;
-  @date('last_attempt') lastAttempt: Date | null;
-}
-```
+
+Schema WatermelonDB define model units_local decorado com @model contendo campos @field local_id tipo string UUID gerado localmente, @field server_id tipo string nullable recebendo ID retornado após sincronização bem-sucedida, @field code tipo string armazenando código unidade, @json address com sanitizer sanitizeAddress tipo Address objeto endereço completo, @json geometry com sanitizer sanitizeGeometry tipo GeoJSON polígono desenhado, @field type tipo UnitType enumeração casa apartamento comercial, @field needs_sync tipo boolean flag indicando sincronização pendente, @field sync_status tipo union PENDING SYNCED FAILED rastreando estado sincronização, @field created_offline tipo boolean identificando criação offline, @field tentativas tipo number contador falhas sincronização, @date last_attempt tipo Date nullable timestamp última tentativa sincronização permitindo retry logic exponential backoff.
 
 **Processo de Sincronização:**
 1. Listener detecta conexão retornou (isConnected=true)

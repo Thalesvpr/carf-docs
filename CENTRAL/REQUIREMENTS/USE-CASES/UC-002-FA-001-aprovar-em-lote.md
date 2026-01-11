@@ -15,38 +15,12 @@ Fluxo alternativo do UC-002 Aprovar Unidade Habitacional desviando no passo 3 (s
 - Notificações agrupadas por criador (max 100 unidades por email)
 
 **Processamento em Batch:**
-```typescript
-const results = {
-  success: [],
-  failed: []
-};
 
-for (const unitId of selectedUnits) {
-  try {
-    await approveUnit(unitId, managerId, comment);
-    results.success.push(unitId);
-  } catch (error) {
-    results.failed.push({ unitId, error: error.message });
-  }
-}
-
-return {
-  total: selectedUnits.length,
-  approved: results.success.length,
-  failed: results.failed.length,
-  details: results.failed
-};
-```
+Algoritmo batch define objeto results com arrays success e failed inicialmente vazios, itera sobre selectedUnits executando for of em cada unitId, dentro try-catch executa await approveUnit passando unitId managerId comment tentando aprovar unidade individual, se sucesso adiciona unitId ao results.success.push, se exception captura error adicionando objeto contendo unitId e error.message ao results.failed.push preservando detalhes falha, finalmente retorna objeto contendo total como selectedUnits.length approved como results.success.length failed como results.failed.length e details com array results.failed permitindo frontend processar estatísticas e exibir erros específicos por unidade.
 
 **Modal de Resumo:**
-```
-✅ 47 de 50 unidades aprovadas com sucesso
 
-❌ Falhas (3):
-- UH-123: Unidade já foi aprovada por João Silva
-- UH-456: Dados de validação falharam (geometria inválida)
-- UH-789: Titular principal não vinculado
-```
+Modal exibe checkmark verde "47 de 50 unidades aprovadas com sucesso" indicando maioria sucesso seguido por seção falhas com X vermelho "Falhas (3):" listando cada erro específico como "UH-123: Unidade já foi aprovada por João Silva" indicando concurrent modification, "UH-456: Dados de validação falharam (geometria inválida)" indicando validação falhou após seleção, e "UH-789: Titular principal não vinculado" indicando constraint violation regra negócio permitindo MANAGER identificar rapidamente motivo cada falha e decidir ação corretiva individual.
 
 **Retorno:** Atualiza lista removendo sucessos, mantém falhas para retry individual
 

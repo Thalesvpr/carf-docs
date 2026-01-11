@@ -10,29 +10,8 @@ Fluxo de exceção do UC-003 Vincular Titular a Unidade ocorrendo no passo de cr
 **Ponto de Desvio:** Criação de novo titular ao preencher CPF/CNPJ
 
 **Algoritmo de Validação CPF:**
-```typescript
-function validateCpf(cpf: string): { valid: boolean; error?: string } {
-  const digits = cpf.replace(/\D/g, '');
-  if (digits.length !== 11) return { valid: false, error: 'CPF deve ter 11 dígitos' };
-  if (/^(\d)\1{10}$/.test(digits)) return { valid: false, error: 'Sequência repetida inválida' };
 
-  let sum = 0;
-  for (let i = 0; i < 9; i++) sum += parseInt(digits[i]) * (10 - i);
-  let check1 = 11 - (sum % 11);
-  if (check1 >= 10) check1 = 0;
-
-  sum = 0;
-  for (let i = 0; i < 10; i++) sum += parseInt(digits[i]) * (11 - i);
-  let check2 = 11 - (sum % 11);
-  if (check2 >= 10) check2 = 0;
-
-  if (check1 !== parseInt(digits[9]) || check2 !== parseInt(digits[10])) {
-    return { valid: false, error: 'Dígitos verificadores incorretos' };
-  }
-
-  return { valid: true };
-}
-```
+Função validateCpf recebe string cpf retornando objeto com valid boolean e error opcional string, primeiro remove não-dígitos usando replace com regex /\D/g armazenando em digits, verifica se comprimento exato onze retornando valid false error CPF deve ter 11 dígitos se diferente, verifica sequência repetida usando regex /^(\d)\1{10}$/ retornando valid false error Sequência repetida inválida se match, calcula primeiro dígito verificador iterando primeiros nove dígitos somando cada dígito multiplicado por dez menos índice armazenando em sum, calculando check1 como onze menos resto divisão sum por onze ajustando para zero se maior igual dez, calcula segundo dígito verificador iterando primeiros dez dígitos multiplicando por onze menos índice calculando check2 similar check1, compara check1 com nono dígito e check2 com décimo dígito retornando valid false error Dígitos verificadores incorretos se diferentes, finalmente retorna valid true se todas validações passaram confirmando CPF válido conforme algoritmo oficial Receita Federal.
 
 **Retorno:** Usuário corrige CPF/CNPJ e volta ao fluxo de criação de titular
 

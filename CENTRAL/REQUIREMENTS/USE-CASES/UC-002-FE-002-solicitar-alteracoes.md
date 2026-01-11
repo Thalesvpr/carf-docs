@@ -10,84 +10,16 @@ Fluxo de exceção do UC-002 Aprovar Unidade Habitacional desviando no passo 5 (
 **Ponto de Desvio:** Passo 5 do UC-002 (MANAGER revisa informações e identifica problema)
 
 **Formulário de Solicitação:**
-```markdown
-### Descreva as alterações necessárias *
 
-[Textarea obrigatória com mínimo 10 caracteres]
-
-### Checklist de problemas comuns (opcional)
-- [ ] Endereço incompleto (sem número, complemento, ou CEP)
-- [ ] Geometria imprecisa (vértices fora da divisa real)
-- [ ] Fotos faltando ou de baixa qualidade
-- [ ] Titulares incorretos (CPF inválido, percentual errado)
-- [ ] Documentação insuficiente (observações necessárias)
-
-### Prioridade
-( ) Normal  (•) Alta  ( ) Urgente
-```
+Modal exibe seção "Descreva as alterações necessárias" com asterisco indicando obrigatória contendo textarea com validação mínimo dez caracteres, seção opcional "Checklist de problemas comuns" com checkboxes marcáveis incluindo "Endereço incompleto (sem número, complemento, ou CEP)", "Geometria imprecisa (vértices fora da divisa real)", "Fotos faltando ou de baixa qualidade", "Titulares incorretos (CPF inválido, percentual errado)", "Documentação insuficiente (observações necessárias)" permitindo MANAGER marcar relevantes auto-populando textarea com template estruturado, e seção "Prioridade" com radio buttons Normal Alta Urgente sendo Alta pré-selecionada como padrão facilitando feedback padronizado acionável ao criador.
 
 **Atualização de Status:**
-```sql
-BEGIN TRANSACTION;
 
--- Atualizar status da unidade
-UPDATE units
-SET status = 'Requires Changes',
-    updated_at = NOW()
-WHERE id = $1;
-
--- Criar registro de solicitação
-INSERT INTO change_requests (
-  unit_id,
-  requested_by,
-  requested_at,
-  description,
-  priority,
-  status
-) VALUES (
-  $1, -- unit_id
-  $2, -- manager_id
-  NOW(),
-  $3, -- description
-  $4, -- priority
-  'OPEN'
-);
-
--- Adicionar à timeline
-INSERT INTO unit_timeline (
-  unit_id,
-  event_type,
-  actor_id,
-  description,
-  created_at
-) VALUES (
-  $1,
-  'CHANGES_REQUESTED',
-  $2,
-  $3,
-  NOW()
-);
-
-COMMIT;
-```
+Transação SQL inicia BEGIN TRANSACTION executando três operações atômicas sendo UPDATE units SET status igual Requires Changes updated_at igual NOW() WHERE id igual parâmetro um atualizando estado unidade impedindo aprovação até correção, INSERT INTO change_requests com colunas unit_id requested_by requested_at description priority status VALUES parâmetro um unit_id parâmetro dois manager_id NOW() timestamp parâmetro três description parâmetro quatro priority literal OPEN criando registro rastreável solicitação, INSERT INTO unit_timeline com event_type CHANGES_REQUESTED actor_id manager_id description texto alterações created_at NOW() adicionando evento visível timeline auditável, finalmente COMMIT confirmando transação garantindo atomicidade todas mudanças sucesso ou rollback completo se falha.
 
 **Notificação ao Criador:**
-```
-Assunto: Alterações solicitadas para Unidade UH-123
 
-Olá [Nome do Criador],
-
-O gestor [Nome do MANAGER] solicitou alterações na unidade UH-123 antes de aprovar:
-
-[Descrição das alterações]
-
-Por favor, acesse o link abaixo para realizar as correções:
-[Link direto para edição]
-
-Prazo sugerido: 7 dias
-
-Equipe CARF
-```
+Email enviado com assunto "Alterações solicitadas para Unidade UH-123" contendo saudação "Olá [Nome do Criador]" seguido por corpo "O gestor [Nome do MANAGER] solicitou alterações na unidade UH-123 antes de aprovar:" incluindo descrição interpolada das alterações específicas solicitadas, texto "Por favor, acesse o link abaixo para realizar as correções:" com link direto para edição da unidade pré-carregando formulário com dados atuais e banner destacado exibindo solicitação, informação "Prazo sugerido: 7 dias" orientando tempo esperado correção conforme policy tenant, assinatura "Equipe CARF" garantindo comunicação profissional padronizada contexto específico urgência apropriada.
 
 **Fluxo de Correção:**
 1. Criador recebe email com descrição das alterações
