@@ -5,7 +5,7 @@
   "showAttachments": false,
   "hideUnresolved": false,
   "showOrphans": true,
-  "collapse-color-groups": false,
+  "collapse-color-groups": true,
   "colorGroups": [
     {
       "query": "path:CENTRAL/ARCHITECTURE/",
@@ -221,5 +221,6 @@
   "repelStrength": 19.8128898128898,
   "linkStrength": 1,
   "linkDistance": 500,
-  "scale": 0.04736066596417605,
-  "close
+  "scale": 0.0078125,
+  "close": false
+}

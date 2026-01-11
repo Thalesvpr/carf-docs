@@ -167,15 +167,8 @@ Workflow de levantamento topográfico profissional via receptores GNSS RTK colet
 
 #### 5.3 Redação Textual Memorial
 **Formato legal padronizado:**
-```
-MEMORIAL DESCRITIVO
 
-Imóvel situado na Rua Exemplo, nº 123, Bairro Centro, Município de Curitiba, Estado do Paraná.
-
-DESCRIÇÃO GEOMÉTRICA:
-Inicia-se a descrição no vértice V1 de coordenadas E=500.000,00m N=7.200.000,00m (SIRGAS2000/UTM22S); deste segue por uma linha reta com azimute de 45°32'15" e distância de 10,25m até o vértice V2 de coordenadas E=500.007,24m N=7.200.007,27m, confrontando neste lado com a Rua João Silva (via pública);
-
-deste segue por uma linha reta com azimute de 135°45'30" e distância de 12,43m até o vértice V3 de coordenadas E=500.015,98m N=7.199.998,45m, confrontando neste lado com o lote de propriedade de Maria Santos (CPF 123.456.789-00);
+Memorial descritivo inicia com cabeçalho MEMORIAL DESCRITIVO seguido por parágrafo de localização descrevendo Imóvel situado na Rua Exemplo número cento e vinte e três Bairro Centro Município de Curitiba Estado do Paraná, seguido por seção DESCRIÇÃO GEOMÉTRICA iniciando descrição no vértice V1 de coordenadas E igual quinhentos mil metros N igual sete milhões e duzentos mil metros referência SIRGAS2000 UTM fuso vinte e dois sul, deste segue por linha reta com azimute quarenta e cinco graus trinta e dois minutos quinze segundos e distância dez vírgula vinte e cinco metros até vértice V2 coordenadas E quinhentos mil e sete vírgula vinte e quatro N sete milhões duzentos mil e sete vírgula vinte e sete confrontando neste lado com Rua João Silva via pública, deste segue linha reta azimute cento e trinta e cinco graus quarenta e cinco minutos trinta segundos distância doze vírgula quarenta e três metros até vértice V3 coordenadas E quinhentos mil quinze vírgula noventa e oito N sete milhões cento e noventa e nove mil novecentos e noventa e oito vírgula quarenta e cinco confrontando com lote de propriedade Maria Santos CPF cento e vinte e três ponto quatrocentos e cinquenta e seis ponto setecentos e oitenta e nove traço zero zero descrevendo perímetro completo com azimutes distâncias coordenadas e confrontantes conforme padrão legal cartorário.
 
 [... continua para todos os lados fechando polígono ...]
 
@@ -184,7 +177,6 @@ encerrando o polígono no vértice V1, ponto inicial desta descrição.
 ÁREA TOTAL: 127,34 m² (cento e vinte e sete metros quadrados e trinta e quatro decímetros quadrados)
 
 PERÍMETRO: 42,87 m (quarenta e dois metros e oitenta e sete centímetros)
-```
 
 #### 5.4 Persistência em Banco
 1. Memorial salvo como DescriptiveMemorial entity linked to Unit

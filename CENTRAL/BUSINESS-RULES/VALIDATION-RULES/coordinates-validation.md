@@ -16,10 +16,8 @@ Regra de validação de coordenadas geográficas garantindo que pontos estão de
 - Graus minutos segundos: 23°33'01.9"S 46°37'59.9"W (converter para decimal)
 
 **Conversão DMS → Decimal:**
-```
-decimal = graus + (minutos / 60) + (segundos / 3600)
-Aplicar sinal negativo se S (sul) ou W (oeste)
-```
+
+Fórmula calcula decimal igual graus mais minutos dividido por sessenta mais segundos dividido por três mil e seiscentos aplicando sinal negativo se direção for S sul ou W oeste convertendo coordenadas de graus minutos segundos para decimal necessário em cálculos espaciais.
 
 **Exemplo:** 23°33'01.9"S 46°37'59.9"W
 - Latitude: -(23 + 33/60 + 1.9/3600) = -23.550527°

@@ -125,15 +125,9 @@ Números estrangeiros:
 
 **Regex validação (após normalização):**
 
-Móvel brasileiro:
-```
-^55[1-9]{2}9[0-9]{8}$
-```
+Móvel brasileiro: Expressão inicia com circunflexo seguido por cinquenta e cinco literal código país, classe um a nove com chaves dois para DDD válido, literal nove primeiro dígito móvel, classe zero a nove com chaves oito para restante do número, cifrão finalizando match validando formato completo treze dígitos móvel brasileiro.
 
-Fixo brasileiro:
-```
-^55[1-9]{2}[2-5][0-9]{7}$
-```
+Fixo brasileiro: Expressão inicia com circunflexo cinquenta e cinco literal, classe um a nove chaves dois DDD, classe dois a cinco primeiro dígito fixo, classe zero a nove chaves sete restante número, cifrão validando formato completo doze dígitos fixo brasileiro.
 
 **Uso em notificações SMS:**
 - Validar antes de enviar

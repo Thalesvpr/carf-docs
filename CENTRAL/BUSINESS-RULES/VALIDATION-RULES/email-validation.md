@@ -29,9 +29,7 @@ Domínio (após @):
 
 **Regex simplificado (validação básica):**
 
-```
-^[a-zA-Z0-9._+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$
-```
+Expressão regular inicia com circunflexo seguido por classe de caracteres a-zA-Z0-9._+- com quantificador mais permitindo um ou mais caracteres na parte local, seguido por arroba literal, classe a-zA-Z0-9.- com mais para domínio, ponto literal escapado, classe a-zA-Z com chaves dois vírgula para TLD mínimo dois caracteres, finalizando com cifrão garantindo match completo do email, porém validação completa requer parser RFC 5322 não apenas regex.
 
 Validação completa requer parser RFC 5322 (não apenas regex)
 

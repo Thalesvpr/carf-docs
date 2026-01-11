@@ -33,7 +33,8 @@
               "title": "README"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -196,7 +197,7 @@
       "bases:Create new base": false
     }
   },
-  "active": "e55f3b0524e5f762",
+  "active": "149d4d98ab5c0021",
   "lastOpenFiles": [
     "PROJECTS/GEOAPI/DOCS/EXAMPLES/keycloak-integration.md",
     "PROJECTS/WEBDOCS/DOCS/EXAMPLES/keycloak-integration.md",

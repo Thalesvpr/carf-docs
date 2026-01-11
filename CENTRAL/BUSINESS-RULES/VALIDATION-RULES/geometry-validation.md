@@ -33,13 +33,7 @@ Regra de validação de geometrias espaciais garantindo que polígonos represent
 
 **Cálculo de área (Fórmula de Shoelace):**
 
-Para polígono com n vértices (x₁,y₁), (x₂,y₂), ..., (xₙ,yₙ):
-
-```
-Área = |½ × Σ(xᵢ × yᵢ₊₁ - xᵢ₊₁ × yᵢ)| para i=1 até n-1
-```
-
-Onde coordenadas estão em metros (projetadas) para resultado em m²
+Para polígono com n vértices (x₁,y₁), (x₂,y₂), ..., (xₙ,yₙ) fórmula calcula Área igual valor absoluto de meio vezes somatório de xi vezes y índice i mais um menos x índice i mais um vezes yi para i igual um até n menos um onde coordenadas estão em metros projetadas para resultado em metros quadrados aplicando método do determinante para polígonos simples.
 
 **Transformação para cálculo:**
 - Lat/Lng (EPSG:4326) → UTM zona apropriada (metros)
@@ -48,11 +42,7 @@ Onde coordenadas estão em metros (projetadas) para resultado em m²
 
 **Cálculo de perímetro:**
 
-```
-Perímetro = Σ distância(vᵢ, vᵢ₊₁) para i=1 até n-1
-```
-
-Validar razão área/perímetro² (índice de circularidade) para detectar polígonos muito irregulares
+Fórmula calcula Perímetro igual somatório de distância entre vértice i e vértice i mais um para i igual um até n menos um somando comprimento de todas arestas do polígono validando razão área dividido por perímetro ao quadrado índice de circularidade para detectar polígonos muito irregulares ou alongados.
 
 **Detecção de overlap:**
 
@@ -87,24 +77,9 @@ Número de vértices:
 
 **Formatos de entrada:**
 
-WKT (Well-Known Text):
-```
-POLYGON((-46.633 -23.550, -46.632 -23.550, -46.632 -23.551, -46.633 -23.551, -46.633 -23.550))
-```
+WKT (Well-Known Text): Formato textual inicia com palavra-chave POLYGON seguida por parênteses duplos contendo lista de coordenadas longitude latitude separadas por vírgula onde primeiro ponto menos quarenta e seis ponto seis três três espaço menos vinte e três ponto cinco cinco zero representa vértice inicial repetido ao final fechando polígono exemplo POLYGON parênteses parênteses menos quarenta e seis ponto seis três três espaço menos vinte e três ponto cinco cinco zero vírgula vértices intermediários vírgula primeiro ponto repetido parênteses parênteses.
 
-GeoJSON:
-```json
-{
-  "type": "Polygon",
-  "coordinates": [[
-    [-46.633, -23.550],
-    [-46.632, -23.550],
-    [-46.632, -23.551],
-    [-46.633, -23.551],
-    [-46.633, -23.550]
-  ]]
-}
-```
+GeoJSON: Formato JSON estruturado com objeto raiz contendo propriedade type igual string Polygon e propriedade coordinates igual array de arrays onde array externo representa anel exterior e array interno contém coordenadas sendo cada coordenada array de dois números longitude latitude exemplo menos quarenta e seis ponto seis três três vírgula menos vinte e três ponto cinco cinco zero ordenados anti-horário com primeiro ponto repetido ao final fechando polígono conforme especificação GeoJSON RFC 7946.
 
 **Mensagens de erro:**
 - "Geometria inválida: polígono não está fechado"

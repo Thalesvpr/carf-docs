@@ -10,76 +10,20 @@ Fluxo alternativo do UC-003 Vincular Titular a Unidade desviando no passo 3 (adi
 **Ponto de Desvio:** Passo 3 do UC-003 (ao invés de adicionar individual, importa em lote)
 
 **Template de Planilha:**
-```
-| cpf_cnpj      | nome              | data_nascimento | telefone      | email           | relationship_type | ownership_percentage | is_primary | observacoes |
-|---------------|-------------------|-----------------|---------------|-----------------|-------------------|----------------------|------------|-------------|
-| 12345678900   | João Silva Santos | 1980-05-15      | 11987654321   | joao@email.com  | PROPRIETARIO      | 50.00                | SIM        |             |
-| 98765432100   | Maria Souza Lima  | 1985-10-20      | 11912345678   | maria@email.com | CONJUGE           | 50.00                | NAO        | Cônjuge     |
-```
+
+Template Excel contém headers colunas obrigatórias cpf_cnpj nome data_nascimento telefone email relationship_type ownership_percentage is_primary observacoes com linhas exemplo mostrando 12345678900 João Silva Santos 1980-05-15 11987654321 joao@email.com PROPRIETARIO 50.00 SIM vazio para titular proprietário principal cinquenta por cento e 98765432100 Maria Souza Lima 1985-10-20 11912345678 maria@email.com CONJUGE 50.00 NAO Cônjuge para titular cônjuge secundário cinquenta por cento demonstrando formato esperado facilitando preenchimento correto usuário.
 
 **Validações Executadas:**
-```typescript
-const validations = [
-  { field: 'cpf_cnpj', rule: 'required, valid CPF/CNPJ digits', error: 'CPF/CNPJ inválido' },
-  { field: 'nome', rule: 'required, min 3 words', error: 'Nome deve ter nome e sobrenome' },
-  { field: 'relationship_type', rule: 'required, enum [PROPRIETARIO, POSSUIDOR, ...]', error: 'Tipo inválido' },
-  { field: 'ownership_percentage', rule: 'required, 0-100', error: 'Percentual entre 0-100' },
-  { field: 'is_primary', rule: 'boolean (SIM/NAO, TRUE/FALSE, 1/0)', error: 'Usar SIM ou NAO' },
-  { field: 'telefone', rule: 'optional, 10-11 digits', error: 'Telefone inválido' },
-  { field: 'email', rule: 'optional, valid email', error: 'Email inválido' }
-];
-```
+
+Array validations define regras para cada campo sendo cpf_cnpj obrigatório com dígitos verificadores válidos error CPF/CNPJ inválido, nome obrigatório mínimo três palavras error Nome deve ter nome e sobrenome, relationship_type obrigatório enum PROPRIETARIO POSSUIDOR CONJUGE HERDEIRO error Tipo inválido, ownership_percentage obrigatório range zero a cem error Percentual entre 0-100, is_primary boolean aceitando SIM/NAO TRUE/FALSE ou um/zero error Usar SIM ou NAO, telefone opcional dez ou onze dígitos error Telefone inválido, email opcional formato válido regex error Email inválido aplicadas linha por linha acumulando erros sem interromper processamento permitindo correção batch.
 
 **Preview com Correção:**
-```
-✅ João Silva Santos (CPF válido, 50%, Principal)
-❌ Maria Souza (CPF inválido: 123456789) [Editar] [Remover]
-⚠️  José Oliveira (CPF já cadastrado: vincular existente?) [Vincular] [Pular]
 
-Resumo: 1 de 3 linhas válidas, 1 erro, 1 duplicado
-[Filtrar: Apenas Erros] [Filtrar: Apenas Válidos] [Mostrar Todos]
-```
+Tela preview exibe checkmark verde "João Silva Santos (CPF válido, 50%, Principal)" indicando linha válida pronta importar, X vermelho "Maria Souza (CPF inválido: 123456789)" com botões Editar e Remover permitindo correção inline ou exclusão, warning laranja "José Oliveira (CPF já cadastrado: vincular existente?)" com botões Vincular e Pular permitindo decidir ação duplicados, resumo estatístico "1 de 3 linhas válidas, 1 erro, 1 duplicado" com filtros Apenas Erros Apenas Válidos Mostrar Todos facilitando navegação corrigir problemas eficientemente.
 
 **Processamento em Batch:**
-```typescript
-const results = { created: 0, linked: 0, errors: [] };
 
-await db.transaction(async (trx) => {
-  for (const row of validRows) {
-    // Criar ou buscar holder
-    let holderId = await findHolderByCpf(row.cpf_cnpj);
-    if (!holderId) {
-      holderId = await trx('holders').insert({
-        cpf: row.cpf_cnpj,
-        name: row.nome,
-        phone: row.telefone,
-        email: row.email,
-        tenant_id: currentTenantId
-      }).returning('id');
-      results.created++;
-    }
-
-    // Criar vínculo
-    await trx('unit_holders').insert({
-      unit_id: currentUnitId,
-      holder_id: holderId,
-      relationship_type: row.relationship_type,
-      ownership_percentage: row.ownership_percentage,
-      is_primary: row.is_primary === 'SIM' || row.is_primary === 'TRUE'
-    });
-    results.linked++;
-  }
-
-  // Validar regras de negócio globais
-  const sum = await trx('unit_holders')
-    .where('unit_id', currentUnitId)
-    .sum('ownership_percentage');
-
-  if (sum > 100) throw new Error('Soma de percentuais ultrapassa 100%');
-});
-
-return results;
-```
+Algoritmo batch define objeto results com contadores created linked errors zero iniciando transação db.transaction async iterando validRows executando for of em cada row, busca holder existente await findHolderByCpf com row.cpf_cnpj se não encontrado cria novo await trx('holders').insert com campos cpf name phone email tenant_id retornando id incrementando results.created, cria vínculo await trx('unit_holders').insert com unit_id holder_id relationship_type ownership_percentage is_primary convertendo SIM ou TRUE para boolean true incrementando results.linked, valida regras negócio globais somando ownership_percentage com await trx('unit_holders').where('unit_id').sum verificando se sum maior cem lançando Error Soma de percentuais ultrapassa 100% causando rollback transação completa garantindo atomicidade, finalmente retorna results com estatísticas created linked errors permitindo exibir resumo final importação.
 
 **Retorno:** Lista de titulares atualizada com todos importados, timeline registra operação batch
 

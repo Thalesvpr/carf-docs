@@ -58,15 +58,7 @@ Events emitidos por LegitimationRequest aggregate root durante workflow de legit
 
 ### Dispatch de Eventos
 
-Events são despachados **após SaveChanges** garantindo transação foi commitada:
-
-```
-1. Aggregate executa ação (CreateUnit, LinkHolder, ApproveRequest)
-2. Aggregate adiciona event à collection interna
-3. Repository persiste aggregate
-4. SaveChanges commita transação
-5. Event dispatcher publica events para handlers
-```
+Events são despachados **após SaveChanges** garantindo transação foi commitada seguindo sequência onde primeiro Aggregate executa ação como CreateUnit LinkHolder ou ApproveRequest modificando estado interno, segundo Aggregate adiciona event à collection interna preservando ordem cronológica, terceiro Repository persiste aggregate gravando mudanças em memória, quarto SaveChanges commita transação persistindo alterações no banco de dados garantindo atomicidade, quinto Event dispatcher publica events para handlers executando lógica assíncrona fora de transação original prevenindo rollback cascata.
 
 ### Handlers Subscribers
 
