@@ -4,7 +4,11 @@ Sistema completo para gestão de processos de regularização fundiária urbana 
 
 ## Documentação
 
-Ver [CENTRAL/README.md](./CENTRAL/README.md) para índice completo da documentação centralizada incluindo [Arquitetura ADRs](./CENTRAL/ARCHITECTURE/README.md) decisões técnicas cross-project, [Requirements](./CENTRAL/REQUIREMENTS/README.md) casos de uso requisitos funcionais user stories, [Domain Model](./CENTRAL/DOMAIN-MODEL/00-INDEX.md) entidades DDD aggregates value objects eventos domínio, [Business Rules](./CENTRAL/BUSINESS-RULES/README.md) regras REURB Lei 13465/2017, [API Specification](./CENTRAL/API/README.md) endpoints REST schemas JSON, [Keycloak Integration](./CENTRAL/INTEGRATION/KEYCLOAK/README.md) OAuth2/OIDC SSO multi-tenancy, [Database](./CENTRAL/INTEGRATION/DATABASE/README.md) PostgreSQL PostGIS RLS, [Security](./CENTRAL/SECURITY/README.md) políticas LGPD, [Testing](./CENTRAL/TESTING/README.md) pirâmide testes, [Versioning](./CENTRAL/VERSIONING/README.md) Git workflows, e [Workflows](./CENTRAL/WORKFLOWS/README.md) processos REURB legitimação fundiária.
+Ver [CENTRAL/README.md](./CENTRAL/README.md) para índice completo da documentação centralizada cross-project servindo como Single Source of Truth para todo sistema. Documentação de arquitetura inclui [ADRs](./CENTRAL/ARCHITECTURE/README.md) com decisões técnicas registradas, [Requirements](./CENTRAL/REQUIREMENTS/README.md) contendo casos de uso requisitos funcionais e user stories, e [Domain Model](./CENTRAL/DOMAIN-MODEL/00-INDEX.md) definindo entidades DDD aggregates value objects e eventos de domínio seguindo padrões tactical design.
+
+Regras de negócio e validações estão documentadas em [Business Rules](./CENTRAL/BUSINESS-RULES/README.md) implementando Lei 13465/2017 REURB com validações CPF/CNPJ geometrias e workflows de aprovação. Especificações técnicas incluem [API Specification](./CENTRAL/API/README.md) documentando endpoints REST e schemas JSON, além de [Security](./CENTRAL/SECURITY/README.md) definindo políticas LGPD conformidade e estratégias de proteção de dados.
+
+Integrações e infraestrutura cobrem [Keycloak](./CENTRAL/INTEGRATION/KEYCLOAK/README.md) para OAuth2/OIDC SSO e multi-tenancy, [Database](./CENTRAL/INTEGRATION/DATABASE/README.md) com PostgreSQL PostGIS e Row-Level Security, [Testing](./CENTRAL/TESTING/README.md) estratégias de pirâmide de testes, e [Workflows](./CENTRAL/WORKFLOWS/README.md) processos completos de legitimação fundiária seguindo legislação vigente.
 
 ## Projetos
 

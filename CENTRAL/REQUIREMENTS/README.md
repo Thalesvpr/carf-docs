@@ -27,7 +27,9 @@ Especificação completa de requisitos funcionais, não-funcionais, casos de uso
 
 ## Hierarquia de Dependências
 
-Requisitos organizados hierarquicamente onde RF Requisitos Funcionais definem O QUE fazer sendo referenciados por US User Stories especificando QUEM usa e POR QUE que por sua vez são referenciados por UC Use Cases documentando COMO fazer completo incluindo fluxos alternativos e excepcionais, casos de uso identificam módulos implementadores via frontmatter modules resultando em implementação documentada em PROJECTS/*/DOCS/FEATURES/*.md estabelecendo rastreabilidade completa entre especificação e código. Requirements são SOURCE NODES não linkando para implementação mas sendo linkados por PROJECTS/*/FEATURES/ estabelecendo rastreabilidade bidirecional entre especificação e código.
+Requisitos organizados hierarquicamente onde RF Requisitos Funcionais definem O QUE fazer sendo referenciados por US User Stories especificando QUEM usa e POR QUE que por sua vez são referenciados por UC Use Cases documentando COMO fazer completo incluindo fluxos alternativos e excepcionais. Casos de uso identificam módulos implementadores via frontmatter modules resultando em implementação documentada em PROJECTS/*/DOCS/FEATURES/*.md estabelecendo rastreabilidade completa entre especificação e código.
+
+Requirements funcionam como SOURCE NODES não linkando para implementação mas sendo linkados por PROJECTS/*/FEATURES/ estabelecendo rastreabilidade bidirecional entre especificação de produto em CENTRAL/ e código técnico em PROJECTS/.
 
 ## Épicas Principais
 

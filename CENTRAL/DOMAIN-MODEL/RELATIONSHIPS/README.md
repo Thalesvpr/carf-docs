@@ -30,10 +30,7 @@ Relacionamentos recursivos onde entidade referencia a si mesma (ex: Block → pa
 
 **Foreign Key Constraints:** Garantir integridade referencial via database constraints.
 
-Ver também:
-- **[ENTITIES/](../ENTITIES/README.md)** - Definições de entidades
-- **[AGGREGATES/](../AGGREGATES/README.md)** - Fronteiras de agregados
-- **[DIAGRAMS/](../DIAGRAMS/README.md)** - Visualizações gráficas
+Relacionamentos conectam [entidades do domínio](../ENTITIES/README.md) definindo como Unit Holder Community e outras 30+ entidades se associam via foreign keys e tabelas de junção estabelecendo navegação bidirecional entre objetos, respeitando [fronteiras de agregados](../AGGREGATES/README.md) onde relacionamentos entre aggregates diferentes usam apenas IDs nunca referências diretas a objetos garantindo boundaries transacionais claros, com visualizações gráficas completas disponíveis em [diagramas](../DIAGRAMS/README.md) incluindo ERDs UML class diagrams e aggregate boundaries maps facilitando compreensão estrutural do modelo.
 
 ---
 

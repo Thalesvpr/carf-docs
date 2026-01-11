@@ -31,11 +31,7 @@ Diagramas de estado (state machines) mostrando transições de status para Unit 
 
 ## Relacionado
 
-Ver também:
-- **[ENTITIES/](../ENTITIES/README.md)** - Definições de entidades
-- **[AGGREGATES/](../AGGREGATES/README.md)** - Fronteiras de agregados
-- **[RELATIONSHIPS/](../RELATIONSHIPS/README.md)** - Relacionamentos detalhados
-- **[WORKFLOWS/](../../WORKFLOWS/README.md)** - Workflows de negócio
+Diagramas visualizam conceitos documentados textualmente em [entidades](../ENTITIES/README.md) mostrando 33 entities com atributos métodos e invariantes através de UML class diagrams, [agregados](../AGGREGATES/README.md) destacando fronteiras transacionais de Unit Community e LegitimationRequest aggregates com roots e entidades internas, [relacionamentos](../RELATIONSHIPS/README.md) mapeando cardinalidades foreign keys e constraints de integridade referencial via ERDs entity-relationship diagrams, e [workflows de negócio](../../WORKFLOWS/README.md) ilustrando fluxos end-to-end desde coleta campo até legitimação fundiária usando state machines e sequence diagrams.
 
 ---
 

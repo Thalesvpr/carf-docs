@@ -115,19 +115,9 @@ Cada event file segue **dense-paragraph-standard** (200-600 palavras parágrafo 
 
 ## 🔗 Relacionado
 
-**Aggregates:**
-- **[01-unit-aggregate.md](../AGGREGATES/01-unit-aggregate.md)** - Emite Unit events
-- **[02-community-aggregate.md](../AGGREGATES/02-community-aggregate.md)** - Emite Community events
-- **[03-legitimation-request-aggregate.md](../AGGREGATES/03-legitimation-request-aggregate.md)** - Emite Legitimation events
+Domain events são emitidos por três aggregates principais do sistema sendo [Unit aggregate](../AGGREGATES/01-unit-aggregate.md) responsável por eventos de unidades habitacionais, [Community aggregate](../AGGREGATES/02-community-aggregate.md) emitindo eventos de gestão de comunidades e autorizações de acesso, e [LegitimationRequest aggregate](../AGGREGATES/03-legitimation-request-aggregate.md) gerando eventos de workflow de legitimação fundiária conforme Lei 13465/2017. Implementações específicas de handlers executando side effects assíncronos como notificações email invalidação de cache e integração com sistemas externos estão documentadas em camadas Application e Infrastructure do backend .NET com processamento após SaveChanges garantindo eventos só disparam quando transação foi commitada com sucesso.
 
-**Implementações:**
-- (caminho de implementação) - Backend .NET handlers
-- (caminho de implementação) - Application layer handlers
-
-**Ver também:**
-- **[00-INDEX.md](../00-INDEX.md)** - Índice completo do modelo de domínio
-- **[ENTITIES/](../ENTITIES/README.md)** - Entidades do domínio
-- **[VALUE-OBJECTS/](../VALUE-OBJECTS/README.md)** - Value objects
+Documentação complementar inclui [índice completo do modelo de domínio](../00-INDEX.md) listando todas entities value objects aggregates e events do sistema, [entidades do domínio](../ENTITIES/README.md) detalhando 33 entities com identidade persistente e ciclo de vida rastreável, e [value objects](../VALUE-OBJECTS/README.md) definindo 25 objetos de valor imutáveis auto-validados encapsulando regras de negócio em estruturas de dados type-safe.
 
 ---
 

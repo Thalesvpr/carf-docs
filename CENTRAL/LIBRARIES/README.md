@@ -88,23 +88,11 @@ As bibliotecas implementam conceitos documentados em CENTRAL/:
 | @carf/geoapi-client | REST API Endpoints | [API/](../API/README.md) |
 | @carf/ui | Design System, Components | *(standalone)* |
 
-## Links Úteis
+## Documentação e Integrações
 
-### Documentação das Bibliotecas
-- [TSCORE Docs](../../PROJECTS/LIB/TS/TSCORE/DOCS/README.md)
-- [GEOAPI-CLIENT Docs](../../PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/README.md)
-- [UI-COMPONENTS Docs](../../PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/README.md)
+Documentação técnica detalhada de cada biblioteca TypeScript compartilhada inclui [TSCORE](../../PROJECTS/LIB/TS/TSCORE/DOCS/README.md) documentando value objects validações e hooks de autenticação, [GEOAPI-CLIENT](../../PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/README.md) especificando SDK HTTP type-safe para comunicação com backend, e [UI-COMPONENTS](../../PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/README.md) detalhando componentes React reutilizáveis com shadcn/ui e Storybook. Conceitos de domínio implementados pelas bibliotecas estão definidos em [Domain Model](../DOMAIN-MODEL/00-INDEX.md) contendo entidades aggregates e value objects seguindo DDD tactical patterns, [API Specification](../API/README.md) documentando todos endpoints REST JSON do backend GEOAPI, e [Keycloak Integration](../INTEGRATION/KEYCLOAK/README.md) especificando fluxos OAuth2/OIDC para autenticação e multi-tenancy.
 
-### CENTRAL - Conceitos de Domínio
-- [Domain Model](../DOMAIN-MODEL/00-INDEX.md) - Entidades e Value Objects
-- [API Specification](../API/README.md) - Endpoints REST
-- [Keycloak Integration](../INTEGRATION/KEYCLOAK/README.md) - Autenticação OAuth2
-
-### Projetos Consumidores
-- **GEOWEB** - Frontend web React (documentação em desenvolvimento)
-- **REURBCAD** - Mobile React Native (documentação em desenvolvimento)
-- ADMIN - Console admin React
-- WEBDOCS - Portal VitePress
+Projetos consumidores das bibliotecas incluem GEOWEB frontend web React para gestão geoespacial de unidades e comunidades com visualização cartográfica interativa, REURBCAD mobile React Native para coleta de dados em campo com suporte offline-first e sincronização automática, ADMIN console administrativo React Next.js para gerenciamento de usuários tenants e configurações do sistema, e WEBDOCS portal estático VitePress servindo documentação técnica completa do projeto CARF.
 
 ---
 

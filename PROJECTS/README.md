@@ -1,6 +1,10 @@
 # PROJECTS - Aplicações e Bibliotecas
 
-Implementações técnicas do sistema CARF organizadas em 6 aplicações principais e 3 bibliotecas TypeScript compartilhadas, seguindo decisões arquiteturais documentadas em [CENTRAL/ARCHITECTURE](../CENTRAL/ARCHITECTURE/README.md) e implementando [domain model](../CENTRAL/DOMAIN-MODEL/00-INDEX.md) unificado conforme [ADRs](../CENTRAL/ARCHITECTURE/ADRs/ADR-001-dotnet-9-backend.md). Stack tecnológico: backend GEOAPI (.NET 9 + PostgreSQL/PostGIS), frontends [GEOWEB](./GEOWEB/DOCS/README.md) e [ADMIN](./ADMIN/DOCS/README.md) (React + Vite), mobile [REURBCAD](./REURBCAD/DOCS/README.md) (React Native), plugin [GEOGIS](./GEOGIS/DOCS/README.md) (Python QGIS), autenticação [KEYCLOAK](./KEYCLOAK/README.md) (OAuth2/OIDC), documentação [WEBDOCS](./WEBDOCS/DOCS/README.md) (VitePress).
+Implementações técnicas do sistema CARF organizadas em 6 aplicações principais e 3 bibliotecas TypeScript compartilhadas seguindo decisões arquiteturais documentadas em [CENTRAL/ARCHITECTURE](../CENTRAL/ARCHITECTURE/README.md) e implementando [domain model](../CENTRAL/DOMAIN-MODEL/00-INDEX.md) unificado conforme [ADRs](../CENTRAL/ARCHITECTURE/ADRs/ADR-001-dotnet-9-backend.md) registrando escolhas tecnológicas e trade-offs.
+
+Backend e infraestrutura implementados via GEOAPI API REST .NET 9 + PostgreSQL/PostGIS e [KEYCLOAK](./KEYCLOAK/README.md) provendo autenticação OAuth2/OIDC SSO centralizado. Aplicações frontend web incluem [GEOWEB](./GEOWEB/DOCS/README.md) portal React + Vite para gestão geoespacial e [ADMIN](./ADMIN/DOCS/README.md) console administrativo também React + Vite, além de [WEBDOCS](./WEBDOCS/DOCS/README.md) site VitePress para documentação técnica.
+
+Aplicações mobile e GIS desktop compreendem [REURBCAD](./REURBCAD/DOCS/README.md) app React Native offline-first para coleta campo e [GEOGIS](./GEOGIS/DOCS/README.md) plugin Python QGIS para análises espaciais avançadas.
 
 ## Aplicações
 

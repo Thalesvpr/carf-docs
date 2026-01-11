@@ -107,11 +107,7 @@ Business rules documentadas aqui têm implementação específica em:
 
 **Importante:** CENTRAL/BUSINESS-RULES/ documenta regras de negócio de forma technology-agnostic. Implementações específicas (bibliotecas, frameworks, patterns) pertencem a PROJECTS/[PROJECT_NAME]/DOCS/.
 
-Ver também:
-- **CENTRAL/WORKFLOWS/** - Workflows que aplicam business rules
-- **CENTRAL/DOMAIN-MODEL/ENTITIES/** - Entidades sujeitas a validação
-- **CENTRAL/DOMAIN-MODEL/AGGREGATES/** - Invariantes de aggregate roots
-- **CENTRAL/DOMAIN-MODEL/00-INDEX.md** - Índice completo do modelo de domínio
+Business rules são aplicadas durante execução de [workflows](../../WORKFLOWS/README.md) garantindo conformidade em transições de estado e operações coordenadas entre atores e sistema, validando [entidades do domínio](../ENTITIES/README.md) como Unit Holder Community antes de persistência verificando integridade campos obrigatórios e restrições específicas, assegurando [invariantes de aggregate roots](../AGGREGATES/README.md) Unit Community LegitimationRequest mantendo consistência transacional dentro de boundaries, com documentação completa do modelo conceitual disponível no [índice do domínio](../00-INDEX.md) mapeando entities value objects aggregates events relationships e rules em estrutura integrada.
 
 ---
 

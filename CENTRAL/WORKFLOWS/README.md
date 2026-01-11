@@ -17,11 +17,7 @@ NÃO mencionar neste diretório PostgreSQL WatermelonDB React Native QGIS NetTop
 
 ## Relacionado
 
-Ver também:
-- **[BUSINESS-RULES/](../BUSINESS-RULES/README.md)** - Regras de negócio aplicadas durante workflows
-- **[DOMAIN-MODEL/ENTITIES/](../DOMAIN-MODEL/ENTITIES/README.md)** - Entidades manipuladas pelos workflows
-- **[DOMAIN-MODEL/AGGREGATES/](../DOMAIN-MODEL/AGGREGATES/README.md)** - Fronteiras de consistência atravessadas
-- **[DOMAIN-MODEL/00-INDEX.md](../DOMAIN-MODEL/00-INDEX.md)** - Índice completo do modelo de domínio
+Workflows executam operações coordenadas aplicando [regras de negócio](../BUSINESS-RULES/README.md) durante transições de estado e validações garantindo conformidade com Lei 13465/2017 REURB, manipulando [entidades do domínio](../DOMAIN-MODEL/ENTITIES/README.md) como Unit Holder Community LegitimationRequest através de operações CRUD e updates atômicos, atravessando [fronteiras de agregados](../DOMAIN-MODEL/AGGREGATES/README.md) respeitando boundaries transacionais e consistência eventual entre aggregates, com documentação completa do modelo conceitual disponível no [índice do domínio](../DOMAIN-MODEL/00-INDEX.md) mapeando todas entities value objects aggregates events e relationships do sistema CARF.
 
 ---
 

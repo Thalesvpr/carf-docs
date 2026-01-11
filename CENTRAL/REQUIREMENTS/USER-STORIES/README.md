@@ -6,10 +6,7 @@ Histórias de usuário compartilhadas do CARF focadas em funcionalidades cross-c
 
 **[index-by-epic.md](./index-by-epic.md)** - Índice de todas as 140 User Stories organizadas por épica (security, performance, compatibility, scalability)
 
-Ver também:
-- **[../README.md](../README.md)** - Overview completo de Requirements com índices adicionais
-- **[../index-by-module.md](../index-by-module.md)** - Requirements organizados por módulo implementador
-- **[../traceability-matrix.md](../traceability-matrix.md)** - Matriz de rastreabilidade UC→RF→US→RNF
+Documentação complementar de requirements inclui [overview completo](../README.md) apresentando estrutura hierárquica de 11 UCs 221 RFs 140 USs e 85 RNFs com estatísticas de cobertura por módulo e épica, [índice por módulo](../index-by-module.md) organizando requirements conforme projetos implementadores GEOWEB REURBCAD GEOAPI GEOGIS facilitando descoberta de user stories por equipe de desenvolvimento, e [matriz de rastreabilidade](../traceability-matrix.md) mapeando relacionamentos bidirecionais UC→RF→US→RNF estabelecendo conexões explícitas entre casos de uso requisitos funcionais user stories e requisitos não-funcionais.
 
 ---
 
