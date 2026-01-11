@@ -10,55 +10,16 @@ Fluxo de exceção do UC-003 Vincular Titular a Unidade ocorrendo na validação
 **Ponto de Desvio:** Validação quando checkbox is_primary=true e já existe outro principal
 
 **Detecção de Conflito:**
-```sql
-SELECT
-  h.id AS holder_id,
-  h.name AS holder_name,
-  uh.id AS link_id
-FROM unit_holders uh
-JOIN holders h ON h.id = uh.holder_id
-WHERE uh.unit_id = $1
-  AND uh.is_primary = true
-  AND uh.deleted_at IS NULL;
-```
+
+Query SQL executa SELECT com colunas h.id AS holder_id h.name AS holder_name uh.id AS link_id fazendo FROM unit_holders uh JOIN holders h ON h.id igual uh.holder_id WHERE uh.unit_id igual parâmetro um AND uh.is_primary igual true AND uh.deleted_at IS NULL retornando dados do titular principal atual se existir com ID do titular nome completo e ID do registro de vínculo para posterior atualização em transação atômica.
 
 **Modal de Confirmação:**
-```
-⚠️ Titular Principal Já Existe
 
-João Silva Santos já está marcado como titular principal desta unidade.
-
-Deseja desmarcar João Silva e marcar Maria Souza Lima como principal?
-
-⚠️ Apenas um titular pode ser principal por unidade.
-
-[Confirmar e Desmarcar Atual] [Manter Atual] [Cancelar]
-```
+Modal exibe ícone warning laranja com título "Titular Principal Já Existe" seguido por parágrafo interpolado "Nome do Titular Atual já está marcado como titular principal desta unidade." com pergunta "Deseja desmarcar Nome do Atual e marcar Nome do Novo como principal?" explicando regra de negócio em destaque "Apenas um titular pode ser principal por unidade" com ícone warning, finalizando com três botões de ação sendo Confirmar e Desmarcar Atual executando transação atômica descrita abaixo, Manter Atual criando novo vínculo com is_primary false sem alterar existente, e Cancelar abortando operação completa.
 
 **Transação Atômica:**
-```typescript
-await db.transaction(async (trx) => {
-  // Desmarcar atual principal
-  await trx('unit_holders')
-    .where({ unit_id: unitId, is_primary: true })
-    .update({ is_primary: false, updated_at: new Date() });
 
-  // Criar novo vínculo como principal
-  await trx('unit_holders').insert({
-    unit_id: unitId,
-    holder_id: newHolderId,
-    relationship_type: formData.relationship_type,
-    ownership_percentage: formData.ownership_percentage,
-    is_primary: true
-  });
-
-  // Timeline
-  await trx('unit_timeline').insert([
-    { unit_id: unitId, event: 'PRIMARY_UNMARKED', holder_id: currentPrimaryId },
-    { unit_id: unitId, event: 'PRIMARY_MARKED', holder_id: newHolderId }
-  ]);
-});
-```
+Backend executa await db.transaction recebendo callback async com parâmetro trx executando três operações sequenciais sendo primeiro await trx com tabela unit_holders aplicando where com unit_id igual unitId e is_primary igual true executando update com is_primary igual false e updated_at igual new Date() desmarcando titular atual, segundo await trx com tabela unit_holders executando insert com objeto contendo unit_id igual unitId holder_id igual newHolderId relationship_type igual formData.relationship_type ownership_percentage igual formData.ownership_percentage e is_primary igual true criando novo vínculo como principal, terceiro await trx com tabela unit_timeline executando insert com array contendo dois objetos sendo primeiro com unit_id igual unitId event igual PRIMARY_UNMARKED e holder_id igual currentPrimaryId registrando desmarcação e segundo com event igual PRIMARY_MARKED e holder_id igual newHolderId registrando nova marcação garantindo atomicidade completa com rollback automático se qualquer operação falhar.
 
 **Retorno:** Titular vinculado com ajuste de principal, ou operação cancelada
 

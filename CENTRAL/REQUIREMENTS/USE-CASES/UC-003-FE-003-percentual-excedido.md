@@ -10,45 +10,12 @@ Fluxo de exceção do UC-003 Vincular Titular a Unidade ocorrendo na validação
 **Ponto de Desvio:** Validação antes de criar vínculo (soma ultrapassa 100%)
 
 **Cálculo de Excedente:**
-```typescript
-const currentSum = await db('unit_holders')
-  .where({ unit_id: unitId, deleted_at: null })
-  .sum('ownership_percentage as total')
-  .first();
 
-const newPercentage = parseFloat(formData.ownership_percentage);
-const totalAfter = (currentSum?.total || 0) + newPercentage;
-
-if (totalAfter > 100) {
-  const maxAllowed = 100 - (currentSum?.total || 0);
-  throw new ValidationError({
-    field: 'ownership_percentage',
-    message: `Soma ultrapassa 100%. Máximo permitido: ${maxAllowed}%`,
-    details: {
-      current_sum: currentSum?.total || 0,
-      attempting_to_add: newPercentage,
-      total_after: totalAfter,
-      max_allowed: maxAllowed
-    }
-  });
-}
-```
+Backend executa query await db com tabela unit_holders aplicando where com unit_id igual unitId e deleted_at null agregando sum com ownership_percentage as total finalizando com first() armazenando em currentSum, converte formData.ownership_percentage para float usando parseFloat armazenando em newPercentage, calcula totalAfter somando currentSum.total ou zero se nullable mais newPercentage, verifica condição if totalAfter maior cem calculando maxAllowed como cem menos currentSum.total ou zero, lançando ValidationError com field igual ownership_percentage message interpolada "Soma ultrapassa 100%. Máximo permitido: ${maxAllowed}%" e details contendo current_sum igual soma atual attempting_to_add igual percentual novo total_after igual total resultante e max_allowed igual percentual máximo permitido retornando HTTP 400 Bad Request com detalhes completos.
 
 **Modal de Warning:**
-```
-⚠️ Percentuais Ultrapassam 100%
 
-Titulares atuais: 85%
-  • João Silva: 50% (Proprietário)
-  • Maria Souza: 35% (Cônjuge)
-
-Tentando adicionar: 30%
-Total: 115% ❌
-
-Máximo permitido: 15%
-
-[Ajustar para 15%] [Editar Manualmente] [Redistribuir Todos] [Cancelar]
-```
+Modal exibe ícone warning laranja com título "Percentuais Ultrapassam 100%" apresentando seção "Titulares atuais: X%" com lista de bullet points mostrando nome de cada titular percentual e tipo de relacionamento entre parênteses interpolando dados reais como João Silva cinquenta por cento Proprietário e Maria Souza trinta e cinco por cento Cônjuge, seguido por linha destacada "Tentando adicionar: Y%" com valor informado no formulário, linha resultado "Total: Z% ❌" com ícone X vermelho indicando erro, linha informativa "Máximo permitido: W%" calculado como cem menos soma atual, finalizando com quatro botões de ação sendo Ajustar para W% preenchendo automaticamente campo com valor seguro, Editar Manualmente mantendo foco no campo percentual, Redistribuir Todos abrindo tela avançada com sliders proporcionais, e Cancelar abortando operação.
 
 **Retorno:** Usuário ajusta percentual e tenta novamente, ou cancela operação
 

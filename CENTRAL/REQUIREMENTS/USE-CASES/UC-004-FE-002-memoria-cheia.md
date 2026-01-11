@@ -10,49 +10,16 @@ Fluxo de exceção do UC-004 Coletar Dados Campo Mobile ocorrendo no passo 9 (ti
 **Ponto de Desvio:** Passo 9 do UC-004 (ao tentar tirar foto)
 
 **Verificação de Storage:**
-```typescript
-import { getFreeDiskStorage } from 'react-native-device-info';
 
-const checkStorage = async () => {
-  const freeBytes = await getFreeDiskStorage();
-  const freeMB = freeBytes / (1024 * 1024);
-
-  if (freeMB < 100) {
-    showStorageAlert(freeMB);
-    return false;
-  }
-  return true;
-};
-```
+App importa getFreeDiskStorage de pacote react-native-device-info, define função async checkStorage executando await getFreeDiskStorage() retornando freeBytes em bytes, converte para megabytes calculando freeMB igual freeBytes dividido por mil e vinte e quatro vezes mil e vinte e quatro, verifica condição if freeMB menor cem chamando showStorageAlert passando freeMB exibindo modal de alerta e retornando false impedindo tirar foto, caso contrário retorna true permitindo prosseguir com captura verificando preventivamente espaço disponível antes de operação que consome storage.
 
 **Modal de Alerta:**
-```
-🔴 Memória Cheia
 
-Espaço insuficiente: 45 MB livres
-Necessário: 100 MB mínimo
-
-Ações disponíveis:
-• Sincronizar 8 unidades pendentes (libera ~250 MB)
-• Gerenciar 142 fotos locais (ver maiores)
-• Limpar cache de mapas (libera ~80 MB)
-
-[Sincronizar] [Gerenciar Fotos] [Limpar Cache] [Cancelar]
-```
+Modal exibe ícone vermelho círculo com título "Memória Cheia" seguido por linha "Espaço insuficiente: X MB livres" interpolando valor real, linha "Necessário: 100 MB mínimo" mostrando threshold configurado, seção "Ações disponíveis:" com três bullet points sendo Sincronizar N unidades pendentes estimando liberação aproximada em MB calculando tamanho médio de unidade com fotos, Gerenciar M fotos locais abrindo listagem ordenada por tamanho, e Limpar cache de mapas estimando espaço recuperável de tiles WMS temporários, finalizando com quatro botões Sincronizar disparando UC-005, Gerenciar Fotos abrindo tela seleção, Limpar Cache deletando temporários, e Cancelar impedindo captura adicional.
 
 **Liberação de Espaço:**
-```typescript
-// Após sincronização bem-sucedida
-const deleteLocalData = async (syncedUnitIds) => {
-  // Deletar fotos sincronizadas
-  await db.photos.where('unit_id').anyOf(syncedUnitIds).delete();
-  // Deletar unidades locais
-  await db.units_local.where('id').anyOf(syncedUnitIds).delete();
-  // Recalcular storage
-  const freed = await calculateFreedSpace();
-  showToast(`${freed} MB liberados`);
-};
-```
+
+Após sincronização bem-sucedida app define função async deleteLocalData recebendo array syncedUnitIds executando sequencialmente await db.photos.where com unit_id aplicando anyOf com syncedUnitIds chamando delete() removendo todas fotos das unidades sincronizadas, await db.units_local.where com id aplicando anyOf com syncedUnitIds chamando delete() removendo registros de unidades locais já persistidas no servidor, executa await calculateFreedSpace() recalculando espaço disponível armazenando em freed, exibe toast interpolado "X MB liberados" informando quantidade recuperada permitindo FIELD_AGENT continuar coleta com storage limpo.
 
 **Retorno:** Após liberar espaço, FIELD_AGENT pode continuar tirando fotos
 

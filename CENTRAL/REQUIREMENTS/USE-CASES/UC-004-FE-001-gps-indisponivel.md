@@ -10,38 +10,12 @@ Fluxo de exceção do UC-004 Coletar Dados Campo Mobile ocorrendo no passo 6 (ca
 **Ponto de Desvio:** Passo 6 do UC-004 (captura GPS automática falha)
 
 **Verificação de Permissão:**
-```typescript
-import { check, PERMISSIONS, request, openSettings } from 'react-native-permissions';
 
-const checkGPS = async () => {
-  const result = await check(
-    Platform.OS === 'ios'
-      ? PERMISSIONS.IOS.LOCATION_WHEN_IN_USE
-      : PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION
-  );
-
-  if (result === 'denied') {
-    const requestResult = await request(permission);
-    return requestResult === 'granted';
-  }
-
-  return result === 'granted';
-};
-```
+App importa check PERMISSIONS request e openSettings de pacote react-native-permissions, define função async checkGPS executando await check passando ternário Platform.OS igual ios interrogação PERMISSIONS.IOS.LOCATION_WHEN_IN_USE dois pontos PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION armazenando em result, verifica condição if result igual denied executando await request com permission armazenando em requestResult retornando requestResult igual granted se usuário concedeu, caso contrário retorna result igual granted verificando se permissão já estava concedida previamente permitindo app acessar GPS nativo do dispositivo.
 
 **Modal de Alerta:**
-```
-⚠️ GPS Necessário
 
-A precisão da localização depende do GPS ativado.
-
-Sem GPS:
-- Localização aproximada (baixa precisão)
-- Desenho manual obrigatório
-- Marcado para revisão
-
-[Habilitar GPS] [Continuar Sem GPS] [Cancelar]
-```
+Modal exibe ícone warning amarelo com título "GPS Necessário" seguido por parágrafo "A precisão da localização depende do GPS ativado." com seção destacada "Sem GPS:" listando três limitações sendo Localização aproximada com baixa precisão baseada em último ponto conhecido, Desenho manual obrigatório desabilitando opção Caminhar Perímetro, e Marcado para revisão adicionando flag low_accuracy_warning true, finalizando com três botões Habilitar GPS chamando Linking.openSettings(), Continuar Sem GPS prosseguindo com limitações, e Cancelar abortando criação.
 
 **Retorno:** Se habilitar GPS, retorna ao passo 6; se continuar sem, prossegue com limitações
 

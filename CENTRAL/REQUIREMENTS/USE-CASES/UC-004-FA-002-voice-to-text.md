@@ -10,17 +10,8 @@ Fluxo alternativo do UC-004 Coletar Dados Campo Mobile desviando no passo 7 (pre
 **Ponto de Desvio:** Passo 7 do UC-004 (ao invés de digitar, dita)
 
 **Implementação:**
-```typescript
-import Voice from '@react-native-voice/voice';
 
-const startVoiceRecognition = async (fieldName) => {
-  await Voice.start('pt-BR');
-  Voice.onSpeechResults = (e) => {
-    const text = e.value[0];
-    setFieldValue(fieldName, formatText(text));
-  };
-};
-```
+App importa Voice de pacote @react-native-voice/voice, define função async startVoiceRecognition recebendo fieldName como parâmetro, executa await Voice.start passando locale pt-BR ativando reconhecimento de voz em português brasileiro usando engine nativa do dispositivo iOS Speech Recognition ou Android SpeechRecognizer, define callback Voice.onSpeechResults recebendo evento e extraindo text de e.value[0] pegando primeiro resultado transcrito com maior confiança, chama setFieldValue passando fieldName e formatText(text) aplicando formatação básica como capitalização de endereços conversão de números por extenso para dígitos preenchendo campo automaticamente com texto transcrito permitindo FIELD_AGENT revisar e editar se necessário antes de prosseguir.
 
 **Retorno:** Campo preenchido via voz, FIELD_AGENT continua para próximo campo
 

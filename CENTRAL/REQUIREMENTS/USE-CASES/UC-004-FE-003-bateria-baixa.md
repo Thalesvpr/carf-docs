@@ -10,58 +10,16 @@ Fluxo de exceção do UC-004 Coletar Dados Campo Mobile ocorrendo em qualquer mo
 **Ponto de Desvio:** Qualquer momento durante UC-004 (monitora bateria continuamente)
 
 **Monitoramento de Bateria:**
-```typescript
-import Battery from '@react-native-community/battery';
 
-Battery.getBatteryLevel().then((level) => {
-  if (level < 0.15 && !powerSavingMode) {
-    showBatteryWarning(level);
-  } else if (level < 0.05) {
-    emergencySave();
-  }
-});
-```
+App importa Battery de pacote @react-native-community/battery, executa Battery.getBatteryLevel() retornando Promise com level entre zero e um representando percentual, encadeia then recebendo callback com level verificando condição if level menor zero ponto quinze AND NOT powerSavingMode chamando showBatteryWarning passando level exibindo notificação quando bateria atinge quinze por cento, else if level menor zero ponto zero cinco chamando emergencySave() forçando salvamento de emergência quando bateria crítica abaixo cinco por cento evitando perda de dados por desligamento inesperado.
 
 **Modo Economia:**
-```typescript
-const enablePowerSavingMode = async () => {
-  // Desabilitar GPS contínuo
-  await stopGPSTracking();
 
-  // Reduzir framerate do mapa
-  mapView.setFramerate(30);
-
-  // Desabilitar sync automático
-  disableAutoSync();
-
-  // Reduzir brilho
-  await ScreenBrightness.setBrightness(0.7);
-
-  // Auto-save contínuo
-  enableAutoSave(onFieldChange);
-
-  setState({ powerSavingMode: true });
-};
-```
+Função async enablePowerSavingMode executa cinco otimizações sequenciais sendo await stopGPSTracking() desabilitando tracking contínuo mantendo apenas captura pontual reduzindo drain significativo, mapView.setFramerate com trinta reduzindo refresh de sessenta para trinta fps economizando processamento gráfico, disableAutoSync() desabilitando background sync automático mantendo apenas manual on-demand, await ScreenBrightness.setBrightness com zero ponto sete reduzindo brilho para setenta por cento, enableAutoSave passando callback onFieldChange salvando incrementalmente a cada mudança ao invés de apenas no final, finalizando com setState atualizando powerSavingMode para true exibindo badge amarelo "Modo Economia" no header.
 
 **Emergency Save (Bateria <5%):**
-```typescript
-const emergencySave = async () => {
-  showModal({
-    title: '🔴 Bateria Crítica',
-    message: 'Salvando dados...',
-    countdown: 3
-  });
 
-  // Salvar unidade atual mesmo incompleta
-  await saveCurrentUnit({ incomplete: true, reason: 'battery_critical' });
-
-  // Fechar app gracefully após 3s
-  setTimeout(() => {
-    BackHandler.exitApp();
-  }, 3000);
-};
-```
+Função async emergencySave executa showModal passando objeto com title igual "Bateria Crítica" com ícone vermelho, message igual "Salvando dados...", e countdown igual três exibindo contagem regressiva, executa await saveCurrentUnit passando objeto com incomplete igual true e reason igual battery_critical salvando unidade em progresso mesmo parcialmente preenchida marcando flag para revisão posterior, chama setTimeout com callback executando BackHandler.exitApp() e delay três mil milissegundos fechando app gracefully após três segundos permitindo salvamento completo evitando corrupção de SQLite por desligamento abrupto durante escrita.
 
 **Retorno:** Modo economia ativo, FIELD_AGENT continua com limitações ou salva e encerra
 

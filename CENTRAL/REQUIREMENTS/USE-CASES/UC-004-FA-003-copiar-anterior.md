@@ -20,12 +20,8 @@ Fluxo alternativo do UC-004 Coletar Dados Campo Mobile desviando no passo 6 (cap
 - ❌ GPS location (captura novo)
 
 **Query SQLite:**
-```sql
-SELECT * FROM units_local
-WHERE deleted_at IS NULL
-ORDER BY created_at DESC
-LIMIT 1;
-```
+
+App executa SELECT asterisco FROM units_local WHERE deleted_at IS NULL ORDER BY created_at DESC LIMIT um retornando última unidade cadastrada com todos campos incluindo endereço tipo observações para pré-preencher formulário novo permitindo FIELD_AGENT economizar tempo digitação em áreas homogêneas com características repetidas.
 
 **Retorno:** Formulário pré-preenchido, FIELD_AGENT ajusta detalhes específicos
 

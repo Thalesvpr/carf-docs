@@ -10,14 +10,8 @@ Fluxo alternativo do UC-004 Coletar Dados Campo Mobile desviando no passo 12 (ap
 **Ponto de Desvio:** Passo 12 do UC-004 (após salvar, antes de mover para próxima)
 
 **Detecção de Conectividade:**
-```typescript
-import NetInfo from '@react-native-community/netinfo';
 
-const state = await NetInfo.fetch();
-if (state.isConnected && state.isInternetReachable) {
-  showSyncButton();
-}
-```
+App importa NetInfo de pacote @react-native-community/netinfo, executa await NetInfo.fetch() retornando state object com propriedades isConnected e isInternetReachable, verifica condição if state.isConnected AND state.isInternetReachable ambos true indicando conexão ativa com internet alcançável não apenas WiFi sem gateway, chama showSyncButton() exibindo botão flutuante Sincronizar Agora com badge numérico mostrando quantidade de itens pendentes sincronização permitindo FIELD_AGENT disparar processo UC-005 imediatamente ao invés de aguardar sync automático posterior.
 
 **Retorno:** Dados sincronizados, storage local limpo, FIELD_AGENT continua coleta
 

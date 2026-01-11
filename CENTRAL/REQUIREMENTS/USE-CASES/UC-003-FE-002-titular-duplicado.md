@@ -10,33 +10,12 @@ Fluxo de exceção do UC-003 Vincular Titular a Unidade ocorrendo no passo de va
 **Ponto de Desvio:** Validação antes de criar vínculo (após preencher tipo e percentual)
 
 **Detecção de Duplicação:**
-```sql
-SELECT
-  uh.id,
-  h.name,
-  uh.relationship_type,
-  uh.ownership_percentage,
-  uh.is_primary,
-  uh.created_at
-FROM unit_holders uh
-JOIN holders h ON h.id = uh.holder_id
-WHERE uh.unit_id = $1
-  AND uh.holder_id = $2
-  AND uh.deleted_at IS NULL;
-```
+
+Query SQL executa SELECT com colunas uh.id h.name uh.relationship_type uh.ownership_percentage uh.is_primary uh.created_at fazendo FROM unit_holders uh JOIN holders h ON h.id igual uh.holder_id WHERE uh.unit_id igual parâmetro um AND uh.holder_id igual parâmetro dois AND uh.deleted_at IS NULL retornando registro existente se houver duplicação com todos detalhes do vínculo atual incluindo nome do titular tipo de relacionamento percentual de propriedade flag principal e data de criação original.
 
 **Modal de Erro:**
-```
-⚠️ Titular Já Vinculado
 
-João Silva Santos (CPF 123.456.789-00) já está vinculado a esta unidade:
-- Tipo: Proprietário
-- Percentual: 50%
-- Principal: Sim
-- Vinculado em: 15/12/2025
-
-[Editar Vínculo Existente] [Cancelar]
-```
+Modal exibe ícone warning laranja com título "Titular Já Vinculado" seguido por mensagem interpolada "Nome do Titular (CPF formatado) já está vinculado a esta unidade:" com lista de detalhes mostrando Tipo igual ao relationship_type atual como Proprietário Possuidor ou Cônjuge, Percentual igual ownership_percentage formatado como cinquenta por cento, Principal igual is_primary convertido para Sim ou Não, e Vinculado em igual created_at formatado como data brasileira DD/MM/YYYY, finalizando com dois botões Editar Vínculo Existente abrindo modal pré-preenchido e Cancelar fechando sem alterações.
 
 **Retorno:** Se Editar, abre modal de edição; se Cancelar, volta para lista de titulares
 
