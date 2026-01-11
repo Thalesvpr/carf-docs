@@ -1,209 +1,23 @@
-# KEYCLOAK - Sistema de Autenticação e Autorização CARF
+# KEYCLOAK - Sistema de Autenticação CARF
 
-Provedor centralizado OAuth2/OIDC customizado para autenticação, autorização e SSO das 6 aplicações do ecossistema CARF (GEOWEB, REURBCAD, GEOAPI, GEOGIS, WEBDOCS, ADMIN) com multi-tenancy dinâmico, temas personalizados PT-BR, validação CPF integrada, e extensões server-side via SPIs Java.
+Provedor centralizado de autenticação OAuth2/OIDC customizado para ecossistema CARF implementando Single Sign-On unificado entre seis aplicações (GEOWEB portal web, REURBCAD mobile field collection, GEOAPI backend REST, GEOGIS plugin QGIS desktop, WEBDOCS site documentação, ADMIN console administrativo) com multi-tenancy dinâmico via atributos de usuário mapeados como JWT claims permitindo isolamento de dados por município através de integração PostgreSQL Row-Level Security. Customizações específicas CARF incluem temas visuais personalizados para páginas login account email traduzidos português brasileiro com identidade visual municipal, validação client-side de CPF e CNPJ em formulários cadastro usando algoritmos verificadores implementados JavaScript validando dígitos antes submeter prevenindo erros digitação, Docker image personalizada multi-stage build incluindo temas embedados eliminando necessidade volume mounts deploy simplificado, scripts automação completa via Makefile e shell scripts permitindo quick-start ambiente desenvolvimento local com único comando make dev inicializando stack completa Keycloak PostgreSQL SMTP mock server, e testes automatizados E2E Playwright e API tests Node.js validando fluxos autenticação completos incluindo login password reset account management theme rendering garantindo qualidade robustez antes deploy produção.
 
-## 📁 Estrutura do Projeto
+Realm CARF configura seis clients OAuth2/OIDC adaptados para diferentes tipos aplicação sendo geoweb-client e reurbcad-client públicos com PKCE Proof Key for Code Exchange flow prevenindo ataques interceptação authorization code sem necessidade client secret armazenado frontend, geoapi-client confidencial bearer-only validando tokens JWT sem redirecionar usuário ideal para APIs REST stateless, geogis-client confidencial com client secret para service account operations permitindo plugin QGIS executar operações automatizadas batch processing usando client credentials grant type, webdocs-client público read-only acessando apenas endpoints públicos documentação, e admin-client público PKCE com role restrictions super-admin/admin consumindo endpoints /api/admin/* do GEOAPI backend que funciona como proxy seguro para Keycloak Admin API mantendo client secret isolado backend nunca exposto frontend. Protocol mappers customizados injetam claims tenant_id e allowed_tenants em tokens JWT extraídos por middleware backend ASP.NET Core configurando sessão PostgreSQL via SET app.tenant_id ativando RLS policies Row-Level Security filtrando automaticamente todas queries por município sem código adicional aplicações garantindo multi-tenancy seguro por design, allowed_tenants claim contém array de tenant IDs permitindo usuários super-admin ou técnicos municipais trabalhando múltiplos municípios trocar contexto dinamicamente via dropdown frontend executando refresh token obtendo novo access token com tenant_id atualizado refletindo município selecionado.
 
-```
-PROJECTS/KEYCLOAK/
-├── DOCS/                                   # Documentação técnica completa
-│   ├── ARCHITECTURE/                       # Decisões arquiteturais
-│   │   ├── 01-customization-strategy.md    # Estratégia de customização
-│   │   ├── 02-theme-architecture.md        # Arquitetura dos temas
-│   │   └── 03-extension-development.md     # Desenvolvimento de SPIs Java
-│   ├── CONCEPTS/                           # Conceitos fundamentais (ultra-compactos)
-│   │   ├── 01-keycloak-themes.md           # Sistema de temas
-│   │   ├── 02-keycloak-spis.md             # Service Provider Interfaces
-│   │   ├── 03-realm-customization.md       # Customização de realms
-│   │   ├── 04-oauth2-oidc-flows.md         # OAuth2/OIDC grant types e endpoints
-│   │   └── 05-multi-tenancy-strategy.md    # Estratégia multi-tenancy
-│   ├── HOW-TO/                             # Guias práticos
-│   │   ├── 01-develop-themes.md            # Desenvolver temas customizados
-│   │   ├── 02-deploy-extensions.md         # Deploy de SPIs Java
-│   │   ├── 03-setup-dev-environment.md     # Setup ambiente de desenvolvimento
-│   │   ├── 04-build-custom-image.md        # Build Docker image customizada
-│   │   ├── 05-update-keycloak-version.md   # Atualizar versão Keycloak
-│   │   └── 06-configure-production.md      # Configuração produção
-│   ├── REFERENCE/                          # Referências técnicas
-│   │   └── README.md                       # APIs, configurações, schemas
-│   └── README.md                           # Índice da documentação
-│
-└── SRC-CODE/
-    └── carf-keycloak/                      # Implementação customizada
-        ├── themes/carf/                    # Temas personalizados
-        │   ├── login/                      # Tema de login (PT-BR, CPF validation)
-        │   ├── account/                    # Tema de conta
-        │   └── email/                      # Tema de emails
-        ├── extensions/                     # SPIs Java (futuro)
-        │   ├── cpf-validator/              # Authenticator CPF
-        │   ├── tenant-audit/               # Event Listener audit
-        │   └── tenant-mapper/              # Protocol Mapper tenant_id
-        ├── scripts/                        # Scripts de automação
-        │   ├── setup.sh                    # Inicializar ambiente
-        │   ├── backup.sh                   # Backup PostgreSQL + realm
-        │   ├── restore.sh                  # Restaurar backup
-        │   ├── deploy.sh                   # Build e push imagem
-        │   ├── healthcheck.sh              # Validar endpoints
-        │   └── generate-secrets.sh         # Gerar secrets seguros
-        ├── tests/                          # Testes automatizados
-        │   ├── api/                        # Testes API (Node.js)
-        │   ├── e2e/                        # Testes E2E (Playwright)
-        │   └── run-tests.sh                # Runner completo
-        ├── .github/workflows/              # CI/CD
-        │   └── test.yml                    # GitHub Actions workflow
-        ├── Dockerfile                      # Multi-stage build
-        ├── docker-compose.dev.yml          # Desenvolvimento (hot reload)
-        ├── docker-compose.yml              # Produção (imagem custom)
-        ├── Makefile                        # Comandos simplificados
-        ├── BUILD.md                        # Instruções de build/deploy
-        ├── CHANGELOG.md                    # Histórico de versões
-        └── README.md                       # Quickstart e comandos
-```
+Autorização implementa cinco roles RBAC hierárquicos definidos realm CARF sendo super-admin com acesso total todos tenants poderes criar usuários tenants configurações sistema visualizar audit logs cross-tenant executar operações administrativas sensitivas, admin gerenciando próprio tenant criando usuários locais atribuindo roles configurações município específico sem acesso outros municípios, manager coordenando equipes técnicas aprovando unidades habitacionais atribuindo comunidades para teams gerenciando workflows legitimação fundiária dentro município, analyst validando dados técnicos executando análises GIS aprovando geometrias verificando documentação cadastral realizando conferências qualidade dados coletados campo, e field-collector coletando dados em campo via mobile app REURBCAD capturando fotos GPS coordenadas desenhando polígonos cadastrando titulares preenchendo formulários offline sincronizando quando WiFi disponível. Composite roles podem ser criados combinando roles base adicionando permissions granulares por resource específico usando role mappings client scope protocol mappers fine-grained authorization, realm roles aplicam-se globalmente enquanto client roles específicos por aplicação permitindo GEOWEB ter roles adicionais não existentes REURBCAD ou GEOGIS customizando autorização por contexto aplicação.
 
-## 📚 Documentação
+Desenvolvimento local utiliza docker-compose.dev.yml definindo serviços Keycloak conectado PostgreSQL 16 database persistindo realm configuration users sessions, volumes mapeiam diretório themes local permitindo hot reload alterações temas sem rebuild container facilitando iteração rápida desenvolvimento visual, SMTP mock server MailHog captura emails enviados Keycloak permitindo testar fluxos verificação email reset senha sem configurar servidor SMTP real visualizando emails via interface web localhost:8025, e healthcheck scripts validam endpoints disponibilidade antes marcar containers healthy garantindo stack inicializada corretamente antes executar testes. Desenvolvimento temas customizados edita arquivos FreeMarker templates theme.properties messages localization resources CSS JavaScript no diretório themes/carf/login copiados automaticamente container via volume mount, alterações refletidas imediatamente reload browser sem restart container porque Keycloak suporta theme caching desabilitado development mode, validação CPF implementada JavaScript theme resources js integra @carf/tscore biblioteca compartilhada compilada Bun bundle único cpf-validator.js incluído login template executando validação client-side antes submit form exibindo mensagens erro português caso CPF inválido melhorando UX evitando round-trip servidor validação trivial.
 
-### Por Onde Começar
+Build produção executa multi-stage Dockerfile primeiro stage FROM maven:3.9-eclipse-temurin-17 compila extensões Java SPIs Service Provider Interfaces futuras como CPF Validator Authenticator Tenant Audit Event Listener Protocol Mapper gerando JARs, segundo stage FROM quay.io/keycloak/keycloak:24.0 imagem oficial copia JARs compilados para /opt/keycloak/providers/, copia temas customizados themes/carf para /opt/keycloak/themes/, executa kc.sh build otimizando startup production mode pré-compilando providers themes configurações, final stage define entrypoint kc.sh start com args database PostgreSQL hostname port username password obtidos environment variables POSTGRES_DB POSTGRES_USER POSTGRES_PASSWORD, configurações produção habilitam HTTPS obrigatório via proxy edge termination Traefik Nginx load balancer, clustering Infinispan para sessões distribuídas múltiplas instâncias Keycloak compartilhando state permitindo horizontal scaling high availability, e monitoring Prometheus metrics endpoint exposto /metrics coletado Grafana dashboards visualizando latência requests autenticação tokens emitidos usuários ativos sessions rate limiting events auditoria.
 
-#### 1. **Entendendo Conceitos** (`DOCS/CONCEPTS/`)
-Documentos ultra-compactos (estilo GEOAPI) explicando fundamentos:
-- **Themes**: Sistema de customização visual FreeMarker
-- **SPIs**: Extensões server-side Java
-- **Realms**: Configuração OAuth2, clients, roles, users
-- **OAuth2/OIDC**: Grant types, endpoints, JWT structure
-- **Multi-tenancy**: User attributes → JWT claims → RLS
+Testes automatizados garantem qualidade robustez implementando test suites Playwright E2E simulando browser real navegando fluxo login completo preenchendo formulário username password clicando botão submit aguardando redirect validando presença elementos página sucesso verificando tokens armazenados localStorage cookies, test suite password reset navega página esqueci senha preenche email verifica email enviado MailHog clica link reset preenche nova senha confirma login com credenciais novas, test suite account management autentica usuário navega /account edita perfil altera configurações verifica persistência dados, e test suite theme rendering valida elementos visuais presentes logo cores corretas textos português labels apropriados acessibilidade ARIA attributes keyboard navigation tab order focus management. API tests Node.js usando supertest biblioteca HTTP requests verificam endpoints OpenID Connect discovery /.well-known/openid-configuration retorna JSON válido schema correto, token endpoint POST /realms/carf/protocol/openid-connect/token com client credentials retorna access token válido assinatura verificável claims corretos expiry apropriado, refresh token endpoint aceita refresh token retorna novo access token invalidando anterior, e Admin REST API endpoints autenticados via service account token executam operações CRUD users realms clients validando responses status codes error handling. CI/CD GitHub Actions workflow executa tests automaticamente cada push pull request falhando build se algum test quebrado impedindo merge código problemático, coverage reports gerados NYC Istanbul medindo percentual código testado target mínimo 70% coverage crítico paths autenticação validação autorização, e security scanning Trivy escaneia imagem Docker vulnerabilidades CVEs reportando issues severity permitindo patch antes deploy produção mantendo compliance security policies.
 
-#### 2. **Arquitetura** (`DOCS/ARCHITECTURE/`)
-Decisões técnicas detalhadas:
-- **Customization Strategy**: Themes vs Fork vs SaaS
-- **Theme Architecture**: Estrutura, build pipeline, deployment
-- **Extension Development**: Setup Maven, SPIs Java, testing
+Scripts automação simplificam operações comuns desenvolvedores administradores incluindo setup.sh inicializando ambiente completo verificando dependências Docker Docker Compose Bun instaladas clonando repositórios necessários gerando secrets aleatórios criando .env file populando variáveis environment iniciando stack docker-compose aguardando healthchecks passarem executando testes smoke validando endpoints acessíveis, backup.sh exportando realm configuration via Admin REST API salvando JSON completo clients roles users groups protocol mappers executando pg_dump PostgreSQL database gerando SQL dump compactando arquivos timestamped backup-YYYY-MM-DD-HHmmss.tar.gz armazenando local ou enviando S3 bucket remote storage, restore.sh importando realm configuration via kcadm.sh CLI tool Keycloak restaurando PostgreSQL dump via psql recreando database schema data validando integridade referential constraints, deploy.sh buildando Docker image tagging com git commit SHA semantic version number pushing registry Docker Hub GitHub Container Registry AWS ECR executando smoke tests imagem buildada antes push prevenindo deploy imagens quebradas, e generate-secrets.sh gerando secrets criptograficamente seguros usando openssl rand base64 para client secrets database passwords JWT signing keys admin password escrevendo .env file ou HashiCorp Vault AWS Secrets Manager dependendo ambiente deployment garantindo secrets nunca commitados Git hardcoded código.
 
-#### 3. **Guias Práticos** (`DOCS/HOW-TO/`)
-Passo-a-passo para tarefas comuns:
-- Desenvolver e testar temas
-- Build e deploy de extensões
-- Setup ambiente local
-- Atualizar versão do Keycloak
-- Configurar produção
+Documentação técnica completa organizada DOCS/ subdiretório contém ARCHITECTURE/ com decisões arquiteturais extensas diagramas justificativas customization strategy themes vs fork vs SaaS trade-offs, theme architecture estrutura build pipeline integration @carf/tscore performance optimizations, extension development SPIs Java Maven setup interfaces testing Arquillian debugging remoto, CONCEPTS/ com documentos ultra-compactos estilo GEOAPI sentença única detalhes técnicos completos sobre themes system FreeMarker templates properties inheritance i18n deployment, SPIs Service Provider Interfaces Authenticator EventListener ProtocolMapper testing hot-reload, realm customization clients OAuth2 roles user attributes protocol mappers realm-export, OAuth2/OIDC flows grant types PKCE client_credentials refresh JWT structure endpoints token lifecycle, multi-tenancy strategy user attributes mapeados JWT tenant_id integração RLS PostgreSQL tenant switcher frontend, HOW-TO/ com guias práticos passo-a-passo develop themes setup local hot reload testing browsers, deploy extensions build Maven JAR packaging copy /providers/ rollback, setup dev environment Docker Compose IDE config debugging quick iteration, build custom image multi-stage Dockerfile tagging registry push scanning, update Keycloak version changelog compatibility theme fixes staged rollout, configure production PostgreSQL externo HTTPS clustering performance tuning backup, e REFERENCE/ contendo APIs configurações schemas Admin REST API endpoints OIDC discovery theme.properties reference FreeMarker variables available templates env vars realm schema export format error codes HTTP status troubleshooting performance tuning parameters cache TTL connection pool sizes.
 
-#### 4. **Referência Técnica** (`DOCS/REFERENCE/`)
-APIs, configurações, schemas, códigos de erro.
+Integração projetos CARF documentada CENTRAL/INTEGRATION/KEYCLOAK/ especifica configurações realm clients protocol mappers runbooks operacionais seis exemplos código cada aplicação mostrando inicialização cliente OAuth2 PKCE flow SPAs client credentials plugins bearer-only backends setup AuthContext providers React configuração middleware ASP.NET Core JWT Bearer authentication inicialização KeycloakOpenID Python storage tokens secure storage mobile, cada projeto GEOAPI GEOWEB REURBCAD GEOGIS ADMIN WEBDOCS referencia conceitos estabelecidos CENTRAL como fonte única verdade padrões autenticação autorização evitando duplicação garantindo consistência implementações cross-project. ADR-003 documenta decisão usar Keycloak justificando escolha sobre alternativas Auth0 Okta AWS Cognito Azure AD B2C considerando custo licensing open-source self-hosted controle total customizações flexibilidade multi-tenancy suporte protocols OAuth2 OpenID Connect SAML, ADR-005 detalha estratégia multi-tenancy RLS PostgreSQL integração JWT claims SET session variables Row-Level Security policies automáticas isolamento dados por tenant sem código aplicação garantindo security compliance LGPD data sovereignty municípios independentes.
 
-### Documentação Central
+---
 
-Complementar em `CENTRAL/INTEGRATION/KEYCLOAK/`:
-- **Configurações**: Realm export, clients OAuth2, protocol mappers
-- **Integração**: 6 exemplos de código (geoweb, geoapi, reurbcad, geogis, admin, webdocs)
-- **Runbooks**: 6 guias operacionais (criar usuário, tenant, troubleshoot, backup, monitoring)
-- **Docker Compose**: Setup desenvolvimento
-
-## 🚀 Quick Start
-
-```bash
-# Clone e navegue
-cd PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak
-
-# Inicializar (gera secrets, pull images, inicia stack)
-make dev
-
-# Acesse
-open http://localhost:8080
-# User: admin / Pass: admin
-
-# Rodar testes
-make test-all
-
-# Ver logs
-make logs
-```
-
-## 🛠️ Stack Tecnológico
-
-| Componente | Tecnologia | Versão | Justificativa |
-|-----------|-----------|---------|---------------|
-| **Auth Server** | Keycloak | 24.0.0 | OAuth2/OIDC, multi-tenancy, open-source |
-| **Database** | PostgreSQL | 16 | Persistência Keycloak database |
-| **Template Engine** | FreeMarker | 2.3.32 | Temas customizados |
-| **Frontend Build** | Bun | 1.0+ | Bundle @carf/tscore validations |
-| **Extensions** | Java | 17+ | SPIs requerem Java |
-| **Build Tool** | Maven | 3.9+ | Build extensões Java |
-| **Testing** | Playwright + Node.js | - | E2E + API tests |
-| **Container** | Docker | 24+ | Packaging e deployment |
-| **CI/CD** | GitHub Actions | - | Build + test + deploy automatizado |
-
-## 📦 Componentes Implementados
-
-### ✅ Temas Customizados
-- **Login Theme**: PT-BR, validação CPF com @carf/tscore, responsivo, acessível WCAG 2.1 AA
-- **Account Theme**: Editar perfil, trocar senha
-- **Email Theme**: Verificação email, reset senha (HTML + text fallback)
-- **Identidade Visual**: Verde #2C5F2D, logo placeholder, mobile-first
-
-### ✅ Docker
-- **Dockerfile**: Multi-stage build com temas incluídos
-- **docker-compose.dev.yml**: Desenvolvimento com hot reload
-- **docker-compose.yml**: Produção com imagem customizada
-
-### ✅ Scripts de Automação
-- `setup.sh`: Inicializa ambiente completo
-- `backup.sh`: Backup PostgreSQL + realm export
-- `restore.sh`: Restaura backup
-- `deploy.sh`: Build e push imagem
-- `healthcheck.sh`: Valida endpoints
-- `generate-secrets.sh`: Gera secrets seguros
-- `Makefile`: Comandos simplificados
-
-### ✅ Testes Automatizados
-- **API Tests** (4 suites): token, discovery, health, admin
-- **E2E Tests** (4 suites): login, password-reset, account, theme
-- **CI/CD**: GitHub Actions workflow automatizado
-- **Coverage**: 20+ test cases
-
-### 🔄 Em Progresso
-- **Extensions Java**: CPF Validator Authenticator, Tenant Audit Event Listener
-- **Kubernetes**: Deployment manifests, Helm charts
-- **Monitoring**: Prometheus integration, Grafana dashboards
-
-## 🔗 Links Úteis
-
-### Documentação Interna
-- [Architecture Overview](./DOCS/ARCHITECTURE/README.md)
-- [Concepts](./DOCS/CONCEPTS/README.md)
-- [How-To Guides](./DOCS/HOW-TO/README.md)
-- [Reference](./DOCS/REFERENCE/README.md)
-- [Source Code](./SRC-CODE/carf-keycloak/README.md)
-
-### Documentação Central
-- [Integration Guide](../../CENTRAL/INTEGRATION/KEYCLOAK/README.md)
-- **Examples** - Ver pasta examples/ com múltiplos arquivos de integração
-- **Runbooks** - Ver pasta runbooks/ com procedimentos operacionais
-
-### ADRs Relacionadas
-- [ADR-003: Keycloak Authentication](../../CENTRAL/ARCHITECTURE/ADRs/ADR-003-keycloak-autenticacao.md)
-- [ADR-005: Multi-tenancy RLS](../../CENTRAL/ARCHITECTURE/ADRs/ADR-005-multi-tenancy-rls.md)
-
-### Documentação Externa
-- [Keycloak Documentation](https://www.keycloak.org/documentation)
-- [Server Development Guide](https://www.keycloak.org/docs/latest/server_development/)
-- [Admin REST API](https://www.keycloak.org/docs-api/24.0/rest-api/)
-- [OAuth 2.0 RFC 6749](https://datatracker.ietf.org/doc/html/rfc6749)
-- [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html)
-
-## 🎯 Próximos Passos
-
-1. **Implementar SPIs Java** (cpf-validator, tenant-audit, tenant-mapper)
-2. **Kubernetes Deployment** (manifests, Helm charts)
-3. **Monitoring Stack** (Prometheus, Grafana, alerts)
-4. **High Availability** (clustering, load balancing)
-5. **Performance Testing** (load tests, stress tests)
-6. **Security Audit** (penetration testing, vulnerability scanning)
-
-## 📄 Licença
-
-UNLICENSED - Proprietary
-
-## 👥 Equipe
-
-Projeto CARF - Sistema de Regularização Fundiária Urbana
-
-**Última atualização:** 2026-01-09
+**Última atualização:** 2026-01-11

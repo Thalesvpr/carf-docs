@@ -1,143 +1,15 @@
 # KEYCLOAK - Documentação Técnica Completa
 
-Documentação aprofundada sobre customização, desenvolvimento e operação do Keycloak para o projeto CARF.
+Documentação técnica aprofundada sobre customização desenvolvimento e operação do Keycloak para projeto CARF organizada em quatro categorias principais seguindo padrões consistentes de escrita formatação e profundidade apropriada para cada tipo de conteúdo sendo ARCHITECTURE diretório contendo documentos extensos com diagramas ASCII tabelas exemplos código e justificativas técnicas detalhadas cobrindo customization-strategy comparando themes vs fork vs SaaS approach escolhendo themes Docker image custom com CI/CD automação deployment, theme-architecture explicando estrutura arquitetural temas CARF build pipeline integração @carf/tscore biblioteca compartilhada CPF CNPJ validators performance optimizations caching strategies, e extension-development guiando desenvolvimento SPIs Service Provider Interfaces Java com Maven setup interfaces Authenticator EventListener ProtocolMapper testing Arquillian framework debugging remoto IntelliJ IDEA Eclipse breakpoints step-through inspection variables. CONCEPTS diretório agrupa documentos ultra-compactos estilo GEOAPI sentença única contendo todos detalhes técnicos necessários sem narrativa excessiva cobrindo keycloak-themes explicando sistema temas FreeMarker templates theme.properties inheritance i18n português brasileiro deployment strategies, keycloak-spis descrevendo Service Provider Interfaces disponíveis Authenticator customizando fluxos autenticação EventListener auditando eventos login logout ProtocolMapper injetando claims customizados JWT tokens testing hot-reload desenvolvimento iterativo rápido, realm-customization configuração realms CARF definindo clients OAuth2 OIDC six applications públicos confidenciais bearer-only service accounts roles RBAC hierarquia super-admin admin manager analyst field-collector user attributes tenant_id allowed_tenants protocol mappers injetando claims JWT realm-export backup disaster recovery, oauth2-oidc-flows grant types Authorization Code PKCE Client Credentials Refresh Token JWT structure header payload signature algorithms RS256 endpoints token introspection revocation lifecycle expiration refresh strategies, e multi-tenancy-strategy isolamento dados município user attributes mapeados JWT claims tenant_id extraídos middleware backend configurando PostgreSQL session SET app.tenant_id ativando RLS Row-Level Security policies automáticas filtrando queries tenant switcher frontend permitindo usuários múltiplos municípios alternar contexto dinamicamente.
 
-## 📖 Índice por Categoria
+HOW-TO diretório provê guias práticos passo-a-passo para desenvolvedores executarem tarefas específicas desenvolvimento deployment troubleshooting incluindo develop-themes setup local environment docker-compose desenvolvimento iterativo hot reload automático file watching alterações themes refletidas imediatamente browser refresh testing múltiplos browsers Chrome Firefox Safari Edge validando compatibilidade CSS JavaScript rendering, deploy-extensions buildando SPIs Maven compilando JARs packaging artifacts copying /opt/keycloak/providers/ directory restart server rollback versões anteriores caso problemas produção rollback procedures documented, setup-dev-environment configurando ambiente desenvolvimento completo Docker Compose PostgreSQL Keycloak PgAdmin MailHog SMTP mock server IDE configuration IntelliJ IDEA Eclipse Java debugger remote debugging attach process port 8787 breakpoints step-through quick iteration cycles maximizing productivity developer experience, build-custom-image construindo Docker image customizada multi-stage Dockerfile primeiro stage compilando extensions Java segundo stage copiando themes terceiro stage finalizando optimizations tagging semantic versioning git commit SHA pushing registry Docker Hub GitHub Container Registry AWS ECR scanning vulnerabilities Trivy Snyk compliance security policies, update-keycloak-version atualizando versão major minor patch releases lendo changelog breaking changes compatibility issues theme fixes required adaptando templates FreeMarker variables removidos adicionados renomeados staged rollout canary deployment blue-green zero-downtime primeiro staging environment depois production gradual rollout monitorando metrics errors logs rollback se problemas detectados, e configure-production setup produção PostgreSQL externo alta disponibilidade replicação master-slave read replicas HTTPS obrigatório TLS certificates Let's Encrypt automated renewal Traefik Nginx reverse proxy edge termination clustering Infinispan distributed cache sessions sincronizados múltiplas instâncias Keycloak horizontal scaling load balancing sticky sessions performance tuning JVM heap size garbage collection G1GC connection pools HikariCP thread pools ajustando conforme load testing results JMeter Gatling stress testing capacity planning backup automático pg_dump realm export scheduling cron jobs retention policies 30 days monitoring Prometheus metrics Grafana dashboards alerting critical events authentication failures latency spikes availability downtime incidents.
 
-### 🏗️ ARCHITECTURE/ - Decisões Arquiteturais
-Documentos extensos com diagramas, decisões técnicas justificadas e trade-offs.
+REFERENCE diretório concentra referências técnicas APIs configurações schemas códigos erro tabelas specifications sem narrativa descritiva incluindo Admin REST API endpoints criar ler atualizar deletar users realms clients roles groups authenticação via service account token master realm admin user permissions scopes, OIDC discovery endpoint /.well-known/openid-configuration retornando JSON metadata authorization_endpoint token_endpoint userinfo_endpoint jwks_uri issuer supported grant_types response_types scopes claims algorithms, theme.properties reference listando todas propriedades disponíveis parent theme herança styles scripts locales substitutions variables FreeMarker disponíveis templates login.ftl register.ftl error.ftl email templates HTML plain text, environment variables configuração Keycloak KC_DB KC_DB_URL KC_DB_USERNAME KC_DB_PASSWORD KC_HOSTNAME KC_HTTP_ENABLED KC_HTTPS_CERTIFICATE_FILE KC_LOG_LEVEL KC_METRICS_ENABLED influenciando comportamento runtime container Docker Kubernetes ConfigMaps Secrets injection, realm schema export format JSON estrutura completo clients roles users groups authentication flows bindings required actions protocol mappers scopes attributes importação realm-import CLI kcadm.sh automação scripting CI/CD pipelines infrastructure-as-code GitOps ArgoCD Flux, error codes HTTP status troubleshooting 400 Bad Request invalid parameters 401 Unauthorized token expirado inválido 403 Forbidden permissões insuficientes 404 Not Found resource inexistente 500 Internal Server Error logs checking Serilog structured logging ELK stack Elasticsearch Logstash Kibana CloudWatch centralização analysis querying filtering correlation tracing distributed OpenTelemetry spans contexts, e performance tuning parameters cache TTL token lifespan access 5 minutos refresh 30 dias SSO session 8 horas idle timeout absolute timeout connection pool sizes min max idle timeout validation query HikariCP thread pools Undertow worker threads IO threads ajustando load testing profiling VisualVM JProfiler identifying bottlenecks CPU memory network disk I/O optimization strategies.
 
-- **[01-customization-strategy.md](./ARCHITECTURE/01-customization-strategy.md)** - Estratégia completa: themes vs fork vs SaaS, Docker image custom, CI/CD
-- **[02-theme-architecture.md](./ARCHITECTURE/02-theme-architecture.md)** - Arquitetura temas CARF: estrutura, build pipeline, @carf/tscore integration, performance
-- **[03-extension-development.md](./ARCHITECTURE/03-extension-development.md)** - SPIs Java: Maven setup, interfaces, testing Arquillian, debugging remoto
+Documentação relacionada sistema CARF distribui responsabilidades entre CENTRAL integrações cross-project operações runbooks configurações realm clients OAuth2 seis aplicações GEOWEB REURBCAD GEOAPI GEOGIS WEBDOCS ADMIN exemplos código TypeScript Python C# integração cada stack tecnológico específico context providers middleware configuration, decisões arquiteturais ADRs justificando escolha Keycloak comparando alternativas Auth0 SaaS custoso vendor lock-in Okta enterprise pricing AWS Cognito limitações customização Azure AD B2C Microsoft ecosystem lock-in preferindo open-source self-hosted controle total customizações themes SPIs extensions deployment infrastructure Kubernetes on-premise cloud-agnostic multi-cloud evitando dependência single provider, estratégia multi-tenancy RLS PostgreSQL integrando JWT claims session variables Row-Level Security policies automáticas isolamento dados municípios compliance LGPD soberania municipal auditoria rastreabilidade accountability transparency, implementação código-fonte SRC-CODE themes FreeMarker templates CSS JavaScript CPF CNPJ validators client-side UX melhorando antes submissão servidor evitando round-trips desnecessários extensions Java SPIs future implementations custom authenticators two-factor TOTP SMS email magic links passwordless authentication event listeners auditoria avançada logging metrics business intelligence analytics protocol mappers custom claims injetados tokens aplicações consumindo enriching context authorization decisions fine-grained permissions attribute-based access control ABAC future evolution beyond RBAC roles, scripts automação Makefile shell scripts Bash PowerShell cross-platform compatibility Windows Linux macOS WSL developers ambientes diversos quick-start make dev inicializando stack completa único comando abstraindo complexidade Docker Compose networks volumes healthchecks dependencies startup order retry logic resilience, e testes automatizados Playwright E2E simulating browser real user interactions navegando login page preenchendo username password clicando submit aguardando redirect verificando elementos DOM presence accessibility ARIA attributes keyboard navigation tab order focus management screenshot comparisons visual regression detecting UI breaks CSS changes unintended layout shifts API tests Node.js supertest validating OIDC endpoints discovery token introspection revocation user info Admin REST API CRUD operations users realms asserting responses status codes headers body schemas JSON validation ajv json-schema ensuring contracts maintained backward compatibility versioning APIs preventing breaking changes affecting consumers six applications ecosystem.
 
-### 💡 CONCEPTS/ - Conceitos Fundamentais
-Documentos ultra-compactos (estilo GEOAPI) em sentença única com todos os detalhes técnicos.
+Stack tecnológico utiliza Keycloak versão 24.0 ou superior consultando official documentation guias server development admin REST API server administration upgrading procedures migration guides breaking changes adaptations required, Java 17 LTS Long Term Support executando runtime JVM HotSpot OpenJDK distributions Adoptium Azul Zulu Amazon Corretto compatibility ensuring consistency behavior production, FreeMarker 2.3.32 template engine rendering HTML páginas login account email register error info customizadas temas CARF identidade visual municipal logo cores tipografia tradução português brasileiro localização pt-BR messages properties substituindo textos default inglês keys values pairs formatação números datas moedas Brazilian Portuguese conventions, Maven 3.9 build tool dependency management repository central artifacts JARs dependencies transitive resolution scopes compile runtime test provided packaging plugins lifecycle phases clean compile test package install deploy automation CI/CD Jenkins GitHub Actions GitLab CI Azure DevOps, Docker 24 containerization build image multi-stage Dockerfile optimizing layers caching reducing size Alpine base images distroless security hardening scanning vulnerabilities runtime execution Kubernetes orchestration scaling replicas horizontal pod autoscaler HPA resource limits requests CPU memory guarantees quality of service QoS classes, e PostgreSQL 16 database persistence realm configuration users sessions events storing transactional ACID guarantees consistency durability replication streaming logical backups point-in-time recovery PITR high availability failover automatic Patroni clustering multi-master eventual consistency trade-offs CAP theorem choosing consistency availability partition-tolerance balancing requirements SLA 99.9% uptime.
 
-- **[01-keycloak-themes.md](./CONCEPTS/01-keycloak-themes.md)** - Sistema de temas, FreeMarker, theme.properties, herança, i18n, deployment
-- **[02-keycloak-spis.md](./CONCEPTS/02-keycloak-spis.md)** - Service Provider Interfaces: Authenticator, EventListener, ProtocolMapper, testing, hot-reload
-- **[03-realm-customization.md](./CONCEPTS/03-realm-customization.md)** - Configuração realms: clients OAuth2, roles, user attributes, protocol mappers, realm-export
-- **[04-oauth2-oidc-flows.md](./CONCEPTS/04-oauth2-oidc-flows.md)** - Grant types (PKCE, client_credentials, refresh), JWT structure, endpoints, token lifecycle
-- **[05-multi-tenancy-strategy.md](./CONCEPTS/05-multi-tenancy-strategy.md)** - Multi-tenancy: user attributes → JWT tenant_id → RLS PostgreSQL, tenant switcher
+---
 
-### 🔧 HOW-TO/ - Guias Práticos
-Passo-a-passo para tarefas de desenvolvimento e deployment.
-
-- **[01-develop-themes.md](./HOW-TO/01-develop-themes.md)** - Desenvolver temas: setup local, hot reload, testing browsers
-- **[02-deploy-extensions.md](./HOW-TO/02-deploy-extensions.md)** - Deploy SPIs: build Maven, JAR packaging, copy /providers/, rollback
-- **[03-setup-dev-environment.md](./HOW-TO/03-setup-dev-environment.md)** - Setup dev: Docker Compose, IDE config, debugging, quick iteration
-- **[04-build-custom-image.md](./HOW-TO/04-build-custom-image.md)** - Build image: multi-stage Dockerfile, tagging, registry push, scanning
-- **[05-update-keycloak-version.md](./HOW-TO/05-update-keycloak-version.md)** - Atualizar versão: changelog, compatibility, theme fixes, staged rollout
-- **[06-configure-production.md](./HOW-TO/06-configure-production.md)** - Produção: PostgreSQL externo, HTTPS, clustering, performance tuning, backup
-
-### 📚 REFERENCE/ - Referências Técnicas
-APIs, configurações, schemas, códigos de erro.
-
-- **[README.md](./REFERENCE/README.md)** - Admin REST API, OIDC endpoints, theme.properties, FreeMarker vars, env vars, realm schema, error codes, performance tuning
-
-## 🎯 Guia de Navegação por Objetivo
-
-### Quero entender como funciona
-1. Leia [CONCEPTS/](./CONCEPTS/README.md) sequencialmente (01→05)
-2. Consulte [ARCHITECTURE/README.md](./ARCHITECTURE/README.md) para visão geral
-
-### Quero customizar temas
-1. Leia [CONCEPTS/01-keycloak-themes.md](./CONCEPTS/01-keycloak-themes.md)
-2. Siga [HOW-TO/01-develop-themes.md](./HOW-TO/01-develop-themes.md)
-3. Consulte [REFERENCE/README.md](./REFERENCE/README.md) para FreeMarker vars
-
-### Quero criar extensão Java
-1. Leia [CONCEPTS/02-keycloak-spis.md](./CONCEPTS/02-keycloak-spis.md)
-2. Siga [ARCHITECTURE/03-extension-development.md](./ARCHITECTURE/03-extension-development.md)
-3. Use [HOW-TO/02-deploy-extensions.md](./HOW-TO/02-deploy-extensions.md)
-
-### Quero fazer deploy
-1. Siga [HOW-TO/04-build-custom-image.md](./HOW-TO/04-build-custom-image.md)
-2. Configure produção: [HOW-TO/06-configure-production.md](./HOW-TO/06-configure-production.md)
-3. Consulte scripts em `../SRC-CODE/carf-keycloak/scripts/`
-
-### Quero troubleshooting
-1. Consulte [REFERENCE/README.md](./REFERENCE/README.md) para códigos de erro
-2. Veja runbooks em `../../../CENTRAL/INTEGRATION/KEYCLOAK/runbooks/`
-3. Use [HOW-TO/03-setup-dev-environment.md](./HOW-TO/03-setup-dev-environment.md) para debugging
-
-## 🔗 Documentação Relacionada
-
-### Central (Integrações e Operações)
-- **[CENTRAL/INTEGRATION/KEYCLOAK/](../../../CENTRAL/INTEGRATION/KEYCLOAK/README.md)** - Configurações realm, clients OAuth2, exemplos de integração (6 apps), runbooks operacionais (6 guias)
-- **[ADR-003](../../../CENTRAL/ARCHITECTURE/ADRs/ADR-003-keycloak-autenticacao.md)** - Decisão de usar Keycloak
-- **[ADR-005](../../../CENTRAL/ARCHITECTURE/ADRs/ADR-005-multi-tenancy-rls.md)** - Estratégia multi-tenancy
-
-### Source Code
-- **[SRC-CODE/carf-keycloak/](../SRC-CODE/carf-keycloak/README.md)** - Implementação: themes/, extensions/, scripts/, tests/
-
-### Outros Projetos
-- **GEOAPI/DOCS/** - Backend .NET que valida JWT do Keycloak
-- **GEOWEB/DOCS/** - Frontend React com keycloak-js
-- **[ADMIN/DOCS/](../../ADMIN/DOCS/README.md)** - Admin app usando Keycloak Admin API
-
-## 📋 Convenções de Documentação
-
-### Estilo de Escrita
-
-**CONCEPTS/**: Ultra-compacto, sentença única com todos os detalhes técnicos (estilo GEOAPI).
-
-**ARCHITECTURE/**: Extenso, formal, com diagramas ASCII, tabelas, exemplos de código, justificativas de decisões.
-
-**HOW-TO/**: Passo-a-passo claro, comandos com output esperado, troubleshooting ao final.
-
-**REFERENCE/**: Tabelas, listas, snippets, schemas, sem narrativa.
-
-### Atualização
-- Documentar antes de implementar (design docs)
-- Atualizar após mudanças significativas
-- Manter exemplos de código sincronizados com implementação
-- Revisar anualmente ou após major version upgrade
-
-## 🛠️ Stack Tecnológico
-
-| Componente | Versão | Link |
-|-----------|--------|------|
-| **Keycloak** | 24.0.0+ | [Docs](https://www.keycloak.org/documentation) |
-| **Java** | 17+ | [Docs](https://docs.oracle.com/en/java/javase/17/) |
-| **FreeMarker** | 2.3.32 | [Manual](https://freemarker.apache.org/docs/) |
-| **Maven** | 3.9+ | [Guide](https://maven.apache.org/guides/) |
-| **Docker** | 24+ | [Docs](https://docs.docker.com/) |
-| **PostgreSQL** | 16 | [Docs](https://www.postgresql.org/docs/16/) |
-
-## 📖 Recursos Externos
-
-### Keycloak
-- [Server Development Guide](https://www.keycloak.org/docs/latest/server_development/)
-- [Admin REST API](https://www.keycloak.org/docs-api/24.0/rest-api/)
-- [Server Administration Guide](https://www.keycloak.org/docs/latest/server_admin/)
-- [Upgrading Guide](https://www.keycloak.org/docs/latest/upgrading/)
-
-### OAuth2/OIDC
-- [OAuth 2.0 RFC 6749](https://datatracker.ietf.org/doc/html/rfc6749)
-- [PKCE RFC 7636](https://datatracker.ietf.org/doc/html/rfc7636)
-- [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html)
-- [JWT RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519)
-
-### Desenvolvimento
-- [FreeMarker Manual](https://freemarker.apache.org/docs/)
-- [Maven Central](https://search.maven.org/)
-- [Arquillian Testing](http://arquillian.org/guides/)
-- [Docker Best Practices](https://docs.docker.com/develop/dev-best-practices/)
-
-## ✅ Checklist de Qualidade
-
-### Antes de Implementar
-- [ ] Conceitos documentados em CONCEPTS/
-- [ ] Arquitetura documentada em ARCHITECTURE/
-- [ ] Guia prático criado em HOW-TO/
-- [ ] APIs/configs em REFERENCE/
-
-### Após Implementar
-- [ ] Exemplos de código testados
-- [ ] Screenshots atualizados (se aplicável)
-- [ ] Links internos funcionando
-- [ ] Referências externas válidas
-- [ ] Versionamento atualizado
-
-**Última atualização:** 2026-01-09
+**Última atualização:** 2026-01-11
