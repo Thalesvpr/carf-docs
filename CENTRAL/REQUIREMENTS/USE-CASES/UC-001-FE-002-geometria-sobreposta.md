@@ -10,19 +10,8 @@ Fluxo de exceção do UC-001 Cadastrar Unidade Habitacional ocorrendo no passo 9
 **Ponto de Desvio:** Passo 9 do UC-001 (validação de dados antes de salvar)
 
 **Detecção de Sobreposição:**
-```sql
-SELECT
-  u.id,
-  u.code,
-  u.address,
-  ST_Area(ST_Intersection(u.geometry, ST_GeomFromGeoJSON($1))) AS overlap_area_m2,
-  (ST_Area(ST_Intersection(u.geometry, ST_GeomFromGeoJSON($1))) / ST_Area(ST_GeomFromGeoJSON($1)) * 100) AS overlap_percent
-FROM units u
-WHERE u.community_id = $2
-  AND ST_Intersects(u.geometry, ST_GeomFromGeoJSON($1))
-  AND u.deleted_at IS NULL
-ORDER BY overlap_percent DESC;
-```
+
+Query PostGIS executando SELECT nos campos id code address da tabela units calculando overlap_area_m2 usando ST_Area de ST_Intersection entre geometry existente e nova geometria convertida de GeoJSON via ST_GeomFromGeoJSON, calculando overlap_percent como área de interseção dividida por área total da nova geometria multiplicado por cem, filtrando WHERE community_id igual ao tenant atual AND ST_Intersects detectando qualquer sobreposição espacial AND deleted_at IS NULL excluindo unidades soft-deleted, ordenando ORDER BY overlap_percent DESC priorizando conflitos com maior percentual de sobreposição retornando lista de unidades conflitantes com métricas precisas para análise usuário.
 
 **Classificação de Severidade:**
 - WARNING: overlap_percent < 10% (permite override com permissão)
