@@ -57,9 +57,9 @@ CPF válido: 123.456.789-09 ✅
 - `../DOMAIN-MODEL/ENTITIES/02-holder.md` - Entity usando CPF validado
 
 **Implementações:**
-- `PROJECTS/GEOAPI/LAYERS/DOMAIN/VALUE-OBJECTS/Cpf.cs` - Backend .NET
-- `PROJECTS/GEOWEB/UTILS/validators/cpfValidator.ts` - Frontend React
-- `PROJECTS/REURBCAD/UTILS/cpfValidator.ts` - Mobile React Native
+- (caminho de implementação) - Backend .NET
+- (caminho de implementação) - Frontend React
+- (caminho de implementação) - Mobile React Native
 
 **Referências externas:**
 - Receita Federal do Brasil - Algoritmo oficial

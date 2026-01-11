@@ -12,10 +12,6 @@ Configuração utiliza Docker 24+ com multi-stage builds, Kubernetes 1.28+ com H
 
 Status aprovado e implementado desde 2024-Q3.
 
-## Implementação
-
-Decisão implementada no projeto [GEOAPI](../../../PROJECTS/GEOAPI/DOCS/ARCHITECTURE/05-deployment.md) com Dockerfile multi-stage em raiz do projeto building .NET 9 app, deployment em Kubernetes cluster gerenciado (AKS/GKE) com manifests em `k8s/` definindo Deployment Service Ingress ConfigMap Secret, PostgreSQL em StatefulSet com persistent volumes conforme [DEPLOYMENT/03-orchestration.md](../DEPLOYMENT/03-orchestration.md), HPA escalando pods 2-10 baseado CPU, e CI/CD via GitHub Actions building image pushing para registry deployando via `kubectl apply`.
-
 ---
 
 **Data:** 2025-01-10

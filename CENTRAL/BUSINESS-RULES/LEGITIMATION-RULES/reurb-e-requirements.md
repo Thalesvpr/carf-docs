@@ -26,9 +26,9 @@ Requisitos de elegibilidade para modalidade REURB-E (Regularização Fundiária 
 - Valida: `DOMAIN-MODEL/ENTITIES/14-document.md` (documentos adicionais)
 
 **Implementações por projeto:**
-- Backend .NET: `PROJECTS/GEOAPI/LAYERS/DOMAIN/SPECIFICATIONS/ReurbESpecification.cs`
-- Frontend React: `PROJECTS/GEOWEB/COMPONENTS/legitimation/ReurbeEligibilityCheck.tsx`
-- Mobile React Native: `PROJECTS/REURBCAD/SCREENS/LegitimationForm.tsx`
+- Backend .NET: (caminho de implementação)
+- Frontend React: (caminho de implementação)
+- Mobile React Native: (caminho de implementação)
 
 ---
 

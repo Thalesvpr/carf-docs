@@ -12,10 +12,6 @@ Configuração específica escolhida utiliza Vercel CLI 33.x para deploys locais
 
 Status da decisão é aprovado e implementado desde início do projeto em 2024-Q3, com revisão prevista semestralmente para avaliar custos versus benefícios e considerar alternatives se pricing se tornar proibitivo em escala (monitorado com budget alerts em $100/mês threshold).
 
-## Implementação
-
-Decisão implementada nos projetos frontend [GEOWEB](../../../PROJECTS/GEOWEB/DOCS/README.md), [ADMIN](../../../PROJECTS/ADMIN/DOCS/ARCHITECTURE/01-overview.md) e [WEBDOCS](../../../PROJECTS/WEBDOCS/DOCS/ARCHITECTURE/05-deployment.md) com deployment automático via GitHub integration onde Vercel bot escuta pushes executando `bun run build` em cada push para main branch gerando production deploy imediato e preview deploys únicos em PRs permitindo testar mudanças antes merge, configuração em vercel.json define rewrites para SPA routing headers de segurança CORS redirects e cache policies, environment variables `VITE_API_URL` e `VITE_KEYCLOAK_URL` configuradas em Vercel dashboard segregadas por ambiente prod/preview/dev, custom domains como geoweb.carf.gov.br configurados via DNS CNAME record apontando para cname.vercel-dns.com com SSL/TLS automático provisionado via Let's Encrypt, e Vercel Analytics habilitado fornecendo Core Web Vitals metrics (LCP FID CLS) Real User Monitoring e geographic distribution accessíveis em dashboard Analytics tab.
-
 ---
 
 **Data:** 2025-01-10

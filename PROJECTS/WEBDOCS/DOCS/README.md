@@ -238,6 +238,8 @@ WEBDOCS serve:
 
 ## Documentação
 
+- [Conceitos Fundamentais](./CONCEPTS/README.md) - Conceitos técnicos do portal
+- [Guias Práticos](./HOW-TO/README.md) - Tutoriais e instruções
 - [Arquitetura](./ARCHITECTURE/README.md) - Decisões técnicas específicas do WEBDOCS
 
 ## Links
@@ -245,6 +247,14 @@ WEBDOCS serve:
 - **Repositório:** https://github.com/Thalesvpr/carf-webdocs
 - **GitHub Pages:** https://thalesvpr.github.io/carf-webdocs/
 - **@carf/tscore:** [Biblioteca compartilhada](../../LIB/TS/TSCORE/DOCS/README.md)
+
+## Features
+
+Ver [FEATURES/](./FEATURES/README.md) para exemplos interativos de documentação.
+
+## Código Fonte
+
+Ver [carf-webdocs README](../SRC-CODE/carf-webdocs/README.md) para build e deploy do VitePress.
 
 ---
 

@@ -108,13 +108,13 @@ git clone https://github.com/Thalesvpr/carf-admin.git PROJECTS/ADMIN/SRC-CODE
 
 **Passo 3:** Acesse o README específico de cada projeto para instruções de build/run/test:
 
-- TypeScript Library: `PROJECTS/TSCORE/SRC-CODE/README.md`
-- Backend: `PROJECTS/GEOAPI/SRC-CODE/README.md`
-- Frontend: `PROJECTS/GEOWEB/SRC-CODE/README.md`
-- Mobile: `PROJECTS/REURBCAD/SRC-CODE/README.md`
-- QGIS Plugin: `PROJECTS/GEOGIS/SRC-CODE/README.md`
-- Docs Portal: `PROJECTS/WEBDOCS/SRC-CODE/README.md`
-- Admin Console: `PROJECTS/ADMIN/SRC-CODE/README.md`
+- TypeScript Library: (caminho de implementação)
+- Backend: (caminho de implementação)
+- Frontend: (caminho de implementação)
+- Mobile: (caminho de implementação)
+- QGIS Plugin: (caminho de implementação)
+- Docs Portal: (caminho de implementação)
+- Admin Console: (caminho de implementação)
 
 ### .gitignore
 

@@ -1,1 +1,41 @@
-REURBCAD segue estrutura simplificada adaptada para mobile com src/ directory contendo screens/ para components de tela full-screen como ListOccupationsScreen, CreateOccupationScreen cada screen sendo self-contained com local state e navigation props, components/ para UI components reutilizáveis como OccupationCard, PhotoGrid, FormInput shared entre múltiplas screens, services/ para business logic encapsulado como AuthService (OAuth2 logic), SyncService (pull/push WatermelonDB), LocationService (GPS tracking), CameraService (photo capture), models/ para WatermelonDB models definindo database schema como Occupation extends Model com @field decorators, Holder extends Model, Photo extends Model com @relation associations, contexts/ para React Context providers como AuthContext (user, tokens, login/logout), SyncContext (syncStatus, lastSyncTime, queueSize), navigation/ para React Navigation configuration com RootNavigator Stack.Navigator, AuthStack para screens pre-login (LoginScreen, ForgotPasswordScreen), AppStack para screens post-login (HomeScreen, CreateOccupationScreen, SettingsScreen), hooks/ para custom React hooks reutilizáveis como useOccupations() wrapper ao redor WatermelonDB query retornando occupations observable, useSyncQueue() gerenciando pending syncs count, useLocation() GPS coordinates current position, utils/ para helper functions puras como formatDate(), validateCPF(), compressImage(), calculateDistance() sem side effects, constants/ para valores hardcoded como COLORS theme colors object, API_ENDPOINTS object mapping route names to paths, SYNC_INTERVAL milliseconds entre sync attempts, navigation structure RootNavigator renderiza conditional {isAuthenticated ? <AppStack /> : <AuthStack />} onde AppStack = createNativeStackNavigator() com screens HomeScreen → ListOccupationsScreen → OccupationDetailsScreen → EditOccupationScreen flow linear, CreateOccupationScreen modal presentation com headerLeft close button, CapturePhotosScreen fullscreen camera overlay, state management distribuído com React Context para global state (auth, sync status), WatermelonDB observers para data reactivity onde screens usam const occupations = useDatabase().collections.get('occupations').query().observe() retornando observable que automaticamente re-renders quando data changes, useState para local UI state (form inputs, modal open), no Redux porque adds complexity desnecessário mobile apps smaller scope que web, services layer encapsula platform-specific logic AuthService usa react-native-app-auth (iOS ASWebAuthenticationSession, Android Chrome Custom Tabs) hiding details from screens, LocationService usa expo-location wrapping requestPermissionsAsync() e getCurrentPositionAsync() com error handling unified API, CameraService usa expo-camera ou react-native-image-picker depending on use case (custom UI vs system picker), SyncService orchestrates WatermelonDB sync calling backend endpoints /api/sync/pull e /api/sync/push with retry logic exponential backoff, models layer WatermelonDB schema defined in src/models/schema.ts with tableSchema({ name: 'occupations', columns: [{ name: 'address', type: 'string' }, { name: 'area', type: 'number' }, { name: 'synced', type: 'boolean' }] }), migrations managed via schemaMigrations with addColumns, createTable for schema evolution preserving user data during updates, lazy loading relationships via @relation('photos') photos: Query<Photo> não eager loading evitando N+1 queries mobile performance critical.
+# LAYERS - REURBCAD
+
+Estrutura de camadas do código React Native do REURBCAD.
+
+## Camadas da Aplicação
+
+### Auth Service
+
+- **[01-auth-service.md](./01-auth-service.md)** - AuthService class, OAuth2 flow, token management, secure storage
+
+**Responsabilidades:**
+- Gerenciar OAuth2 authorization code flow
+- Store tokens em expo-secure-store
+- Refresh tokens automaticamente
+- Biometric authentication
+
+### Offline Storage
+
+**WatermelonDB:**
+- Models (Unit, Holder, Community, Photo)
+- Sync adapter para GEOAPI
+- Query reactive observers
+
+### Sync Service
+
+**Conflict Resolution:**
+- Detect conflits via timestamps
+- Merge strategies (last-write-wins, manual)
+- Batch sync para performance
+
+### UI Components
+
+**React Native components:**
+- Navigation stack (React Navigation)
+- Maps (react-native-maps)
+- Camera (expo-camera)
+- Forms com validation
+
+---
+
+**Última atualização:** 2026-01-10

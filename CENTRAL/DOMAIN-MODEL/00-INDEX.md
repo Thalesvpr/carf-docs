@@ -152,15 +152,15 @@ Documentação baseada no workflow REAL descoberto via exploração do codebase:
 - ❌ NetTopologySuite, Turf.js (usar: "biblioteca geometria computacional")
 - ❌ Keycloak especificamente (usar: "provedor de identidade OAuth2/OIDC")
 
-**Detalhes de implementação pertencem a:** `PROJECTS/[PROJECT_NAME]/DOCS/`
+**Detalhes de implementação pertencem a:** (detalhes de implementação em cada projeto)
 
 ## Implementações por Projeto
 
 Cada conceito documentado tem implementação específica em:
-- **Backend .NET:** `PROJECTS/GEOAPI/LAYERS/DOMAIN/` (entities, VOs, aggregates, workflows, rules)
-- **Frontend React:** `PROJECTS/GEOWEB/MODELS/` (interfaces TypeScript, validations)
-- **Mobile React Native:** `PROJECTS/REURBCAD/MODELS/` (entities com banco local, sync offline)
-- **Plugin GIS Python:** `PROJECTS/GEOGIS/MODELS/` (classes Python, bulk operations)
+- **Backend .NET:** (detalhes de implementação em cada projeto) (entities, VOs, aggregates, workflows, rules)
+- **Frontend React:** (detalhes de implementação em cada projeto) (interfaces TypeScript, validations)
+- **Mobile React Native:** (detalhes de implementação em cada projeto) (entities com banco local, sync offline)
+- **Plugin GIS Python:** (detalhes de implementação em cada projeto) (classes Python, bulk operations)
 
 ## Status de Completude
 

@@ -122,9 +122,9 @@ Quoted strings (não suportado):
 - `../DOMAIN-MODEL/ENTITIES/08-account.md` - Entity usando email validado
 
 **Implementações:**
-- `PROJECTS/GEOAPI/LAYERS/DOMAIN/VALUE-OBJECTS/Email.cs` - Backend .NET
-- `PROJECTS/GEOWEB/UTILS/validators/emailValidator.ts` - Frontend React
-- `PROJECTS/REURBCAD/UTILS/emailValidator.ts` - Mobile React Native
+- (caminho de implementação) - Backend .NET
+- (caminho de implementação) - Frontend React
+- (caminho de implementação) - Mobile React Native
 
 **Referências externas:**
 - RFC 5322 - Internet Message Format

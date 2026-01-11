@@ -19,10 +19,10 @@ Decisões arquiteturais e design do cliente HTTP.
 ### CONCEPTS/
 Conceitos fundamentais sobre o SDK.
 
-- **01-http-client.md** - Cliente HTTP base (Axios/Fetch)
-- **02-interceptors.md** - Interceptors de request/response
-- **03-type-safety.md** - Type safety e validação em runtime
-- **04-offline-support.md** - Suporte offline (caching)
+- [01-http-client.md](./CONCEPTS/01-http-client.md) - Cliente HTTP base (Axios/Fetch)
+- Interceptors - Request/response interceptors - Interceptors de request/response
+- Type Safety - TypeScript types gerados - Type safety e validação em runtime
+- Offline Support - Queue de requisições - Suporte offline (caching)
 
 ### HOW-TO/
 Guias práticos de uso e integração.
@@ -126,6 +126,7 @@ yarn add @carf/geoapi-client @carf/tscore
 
 ## Links Úteis
 
+- [Source Code README](../SRC-CODE/carf-geoapi-client/README.md) - Repositório e setup
 - **GEOAPI Backend Documentation**
 - [CENTRAL API Specification](../../../../../CENTRAL/API/README.md)
 - [TSCORE Documentation](../../TSCORE/DOCS/README.md)

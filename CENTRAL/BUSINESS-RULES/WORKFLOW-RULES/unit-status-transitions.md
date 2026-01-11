@@ -47,9 +47,9 @@ Regras governando transições de status de Unit (unidade habitacional) ao longo
 - Eventos: `DOMAIN-MODEL/EVENTS/02-unit-status-changed-event.md`
 
 **Implementações por projeto:**
-- Backend .NET: `PROJECTS/GEOAPI/LAYERS/APPLICATION/STATE-MACHINES/UnitStateMachine.cs`
-- Frontend React: `PROJECTS/GEOWEB/COMPONENTS/units/StatusBadge.tsx`
-- Mobile React Native: `PROJECTS/REURBCAD/SCREENS/UnitForm.tsx` (submit button enabled/disabled)
+- Backend .NET: (caminho de implementação)
+- Frontend React: (caminho de implementação)
+- Mobile React Native: (caminho de implementação) (submit button enabled/disabled)
 
 ---
 

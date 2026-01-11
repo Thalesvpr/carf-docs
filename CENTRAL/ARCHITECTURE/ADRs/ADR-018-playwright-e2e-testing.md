@@ -12,10 +12,6 @@ Configuração utiliza Playwright 1.40+ com projects para Chromium/Firefox, base
 
 Status aprovado e implementado desde 2024-Q4.
 
-## Implementação
-
-Decisão implementada em [ADMIN](../../../PROJECTS/ADMIN/DOCS/HOW-TO/03-testing.md) e [GEOWEB](../../../PROJECTS/GEOWEB/DOCS/HOW-TO/03-testing.md) com tests em `e2e/` executados via `bun run test:e2e`, cobrindo fluxos críticos (login criar tenant gerenciar usuários visualizar mapa), rodando em GitHub Actions CI em cada PR conforme [pipeline docs](../DEPLOYMENT/04-cicd-pipeline.md), e relatórios HTML acessíveis em artifacts.
-
 ---
 
 **Data:** 2025-01-10

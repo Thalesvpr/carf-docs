@@ -58,6 +58,7 @@ bun run storybook  # Abre Storybook em http://localhost:6006
 
 ## Links Úteis
 
+- [Source Code README](../SRC-CODE/carf-ui/README.md) - Repositório e setup local
 - [CENTRAL/LIBRARIES/](../../../../../CENTRAL/LIBRARIES/README.md) - Índice de bibliotecas
 - [Storybook Oficial](https://storybook.js.org/)
 - [shadcn/ui](https://ui.shadcn.com/)

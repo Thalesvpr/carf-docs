@@ -44,9 +44,9 @@ Requisitos documentais obrigatórios para processos de regularização fundiári
 - Workflow: Status DOCUMENT_REVIEW verifica completude documental
 
 **Implementações por projeto:**
-- Backend .NET: `PROJECTS/GEOAPI/LAYERS/APPLICATION/VALIDATORS/DocumentRequirementsValidator.cs`
-- Frontend React: `PROJECTS/GEOWEB/COMPONENTS/documents/RequiredDocsList.tsx`
-- Mobile React Native: `PROJECTS/REURBCAD/SCREENS/DocumentUpload.tsx`
+- Backend .NET: (caminho de implementação)
+- Frontend React: (caminho de implementação)
+- Mobile React Native: (caminho de implementação)
 
 ---
 

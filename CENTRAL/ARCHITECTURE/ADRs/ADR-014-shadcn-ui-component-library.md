@@ -12,10 +12,6 @@ Configuração específica utiliza shadcn/ui com theme customizado em tailwind.c
 
 Status da decisão é aprovado e implementado desde início do projeto em 2024-Q3, com revisão prevista se Radix introduzir breaking changes significativos ou se surgir alternativa headless superior.
 
-## Implementação
-
-Decisão implementada nos projetos frontend [GEOWEB](../../../PROJECTS/GEOWEB/DOCS/README.md), [ADMIN](../../../PROJECTS/ADMIN/DOCS/ARCHITECTURE/01-overview.md) e biblioteca compartilhada [@carf/ui](../../../PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/README.md) utilizando componentes shadcn/ui instalados via CLI `npx shadcn-ui add button dialog select` copiando source code diretamente para `src/components/ui/` permitindo customização total conforme design system CARF, Radix UI como peer dependency fornecendo primitivos acessíveis headless que shadcn/ui wraps, Tailwind CSS para styling aplicando utility classes responsivas e variant system conforme [UI-COMPONENTS Architecture](../../../PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/ARCHITECTURE/01-overview.md), e componentes documentados em Storybook com stories interativas acessível via `bun run storybook` em `http://localhost:6006` durante desenvolvimento facilitando review de variants estados e accessibility.
-
 ---
 
 **Data:** 2025-01-10

@@ -1,1 +1,55 @@
-Guias práticos para desenvolvimento no GEOGIS incluindo setup QGIS plugin development environment instalando QGIS Desktop latest version via qgis.org/downloads, configurando Python environment usando QGIS Python console acessando via Plugins → Python Console ou Ctrl+Alt+P verificando versão com `import sys; sys.version`, instalando dependencies via OSGeo4W Shell (Windows) executando `python -m pip install python-keycloak requests` ou terminal (Linux/macOS) com path para QGIS Python como `/usr/bin/python3 -m pip install`, criando plugin structure mkdir ~/.qgis3/python/plugins/geogis com subdirectories src/, ui/, resources/, __init__.py, metadata.txt, implementando authentication via AuthManager class singleton com methods login(), logout(), getAccessToken(), restoreSession() encapsulating OAuth2 logic escolhendo entre service account (client credentials) ou user account (authorization code + PKCE), armazenando tokens em QSettings encrypted via `settings = QSettings('CARF', 'GEOGIS'); settings.setValue('refresh_token', token)`, loading WFS layers do GEOAPI via QgsVectorLayer construindo URI com endpoint, typename, version, CRS, authentication header embedding token, adicionando layer ao map canvas com QgsProject.instance().addMapLayer(layer), querying features com layer.getFeatures() iterating features, filtering via setSubsetString() aplicando SQL WHERE clause, styling layers programatically com QgsSymbolLayerRegistry criando symbols, applying via layer.renderer().setSymbol(), exporting data selecionando features, usando QgsVectorFileWriter.writeAsVectorFormat() com driver 'ESRI Shapefile' ou 'GeoJSON' especificando output path, CRS transformation, field mapping, creating processing algorithms extending QgsProcessingAlgorithm definindo parameters input layers, output destinations, implementing processAlgorithm() com logic usando QGIS API operations, registering algorithm via QgsProcessingProvider, testing plugin instalando via Plugin Manager clicking Install from ZIP selecionando plugin ZIP package ou symlinking development directory para plugins folder, reloading plugin após changes via Plugin Reloader plugin ou restarting QGIS, debugging com import pdb; pdb.set_trace() breakpoints ou logging QgsMessageLog.logMessage(), packaging plugin para distribution criando ZIP archive com required files excluindo .pyc, __pycache__, .git directories, uploading para QGIS Plugin Repository se public ou distributing ZIP privately, e troubleshooting erros comuns como OAuth callback não recebe code verificando redirect_uri matches exactly including trailing slash, token storage falha verificando QGIS password manager enabled em Settings, WFS layer não carrega verificando URL, authentication header, network connectivity curl testing endpoint.
+# HOW-TO - GEOGIS
+
+Guias práticos para desenvolver e usar o plugin GEOGIS QGIS.
+
+## Setup e Instalação
+
+- **[01-setup-keycloak.md](./01-setup-keycloak.md)** - Configurar Keycloak realm, client_id, redirect_uri para plugin QGIS
+- Instalação do plugin copiando pasta para `~/.qgis3/python/plugins/carf-geogis/` ou via ZIP no QGIS Plugin Manager
+
+## Autenticação
+
+- **[02-login-flow.md](./02-login-flow.md)** - OAuth2 login flow: browser OAuth → authorization code → callback local HTTP server → exchange code + PKCE → store tokens encrypted
+- Configuração inicial: abrir Settings dialog, definir GEOAPI base URL e Keycloak realm/client_id
+
+## Uso da API
+
+- **[03-api-requests.md](./03-api-requests.md)** - Load Layers, listar comunidades via GET /api/communities, download geometries GeoJSON, adicionar ao map canvas
+
+## Análises Espaciais
+
+**Processing Toolbox algorithms:**
+- Buffer - criar área influência
+- Intersect - identificar overlaps
+- Validate Geometry - detectar polígonos inválidos
+
+## Exportação
+
+**Export features:**
+- Selecionar features desejadas
+- Clicar Export button
+- Escolher formato (Shapefile ou GeoJSON)
+- Definir output path
+- Preservar attributes e CRS
+
+## Sincronização de Edições
+
+**Sync workflow:**
+1. Modificar geometries no QGIS via editing tools
+2. Clicar Sync Changes button
+3. Detectar features modified comparando com server version
+4. Resolver conflicts via merge strategy
+5. Upload changes via PATCH /api/units/:id endpoint
+6. Validar server-side
+
+## Troubleshooting
+
+**Erros comuns:**
+- "Plugin failed to load" → verificar metadata.txt e `pip install -r requirements.txt` no QGIS Python environment
+- "Authentication failed" → verificar Keycloak acessível e client_id/redirect_uri corretos
+- "Layer loading failed" → verificar connectivity GEOAPI e WFS endpoint habilitado
+- "Export failed" → verificar permissions write em output directory e CRS transformation suportada pelo GDAL
+
+---
+
+**Última atualização:** 2026-01-10

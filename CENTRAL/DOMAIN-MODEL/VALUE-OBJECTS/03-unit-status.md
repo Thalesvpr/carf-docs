@@ -2,12 +2,8 @@
 
 Value object enum representando estado da unidade habitacional no workflow de cadastro análise e aprovação para regularização fundiária controlando transições válidas e permissões de operação. Valores possíveis conceituais incluem DRAFT rascunho inicial onde unidade está sendo cadastrada com dados incompletos permitindo edição livre sem validações estritas, PENDING_ANALYSIS pendente de análise técnica onde cadastro foi finalizado e aguarda revisão por analista com dados completos validados, IN_REVIEW em revisão ativa onde analista está verificando documentação dados e conformidade com critérios de elegibilidade, APPROVED aprovado onde unidade passou em todas validações e está apta para legitimação gerando certidões e documentos oficiais, REJECTED rejeitado onde unidade não atende critérios sendo excluída do processo com justificativa registrada, e REQUIRES_CHANGES requer correções onde analista identificou problemas sanáveis solicitando ajustes para resubmissão. Transições válidas no workflow incluem DRAFT pode transitar para PENDING_ANALYSIS quando usuário finaliza cadastro clicando submeter após validar campos obrigatórios, PENDING_ANALYSIS pode transitar para IN_REVIEW quando analista assume responsabilidade iniciando análise, IN_REVIEW pode transitar para APPROVED se tudo conforme REJECTED se inelegível ou REQUIRES_CHANGES se necessita ajustes, REQUIRES_CHANGES retorna para DRAFT permitindo correções pelo técnico de campo, e estados terminais APPROVED REJECTED normalmente não permitem retrocesso exceto com permissão especial e justificativa auditada. Regras de negócio associadas incluem apenas usuários com role ANALYST ou superior podem transitar de PENDING_ANALYSIS para IN_REVIEW, apenas MANAGER pode aprovar ou rejeitar transitando para APPROVED REJECTED, edição de dados é permitida apenas em DRAFT e REQUIRES_CHANGES bloqueada em demais status preservando integridade após análise, cada transição deve registrar quem executou quando e opcionalmente justificativa para auditoria completa, mudanças de status disparam domain events como UnitStatusChangedEvent permitindo notificações automáticas ao responsável via email ou app, e relatórios e dashboards filtram unidades por status mostrando funil de progresso do processo de regularização.
 
-**Implementações por projeto:**
-- Backend .NET: `PROJECTS/GEOAPI/LAYERS/DOMAIN/VALUE-OBJECTS/07-unit-status.md` (enum C#)
-- Frontend React: `PROJECTS/GEOWEB/TYPES/unit-status.ts` (type union literal)
-- Mobile React Native: `PROJECTS/REURBCAD/TYPES/unit-status.ts` (enum ou literal)
-- Plugin GIS Python: `PROJECTS/GEOGIS/ENUMS/unit_status.py` (Enum class)
+**Módulos:** GEOAPI, GEOWEB, REURBCAD, GEOGIS
 
 ---
 
-**Última atualização:** 2025-01-05
+**Última atualização:** 2026-01-10

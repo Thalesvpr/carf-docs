@@ -16,10 +16,6 @@ Monitoramento de performance implementa tracking de métricas de build time em C
 
 Status da decisão é aprovado e implementado desde início do projeto em 2024-Q3, com revisão prevista anualmente para avaliar maturidade de Bun e considerar se benefícios ainda justificam riscos de adoção early-adopter ou se ecosystem convergiu para alternativa superior.
 
-## Implementação
-
-Decisão implementada em todas as bibliotecas TypeScript [@carf/tscore](../../../PROJECTS/LIB/TS/TSCORE/DOCS/README.md), [@carf/geoapi-client](../../../PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/README.md) e [@carf/ui](../../../PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/ARCHITECTURE/05-deployment.md) usando Bun como package manager executando `bun install` para gerenciar dependências e `bun run build` para bundler production builds com tree-shaking automático e code splitting, também adotado em frontends [GEOWEB](../../../PROJECTS/GEOWEB/DOCS/README.md) e [ADMIN](../../../PROJECTS/ADMIN/DOCS/ARCHITECTURE/01-overview.md) substituindo npm/yarn e acelerando desenvolvimento com hot reload instantâneo sub-100ms.
-
 ---
 
 **Data:** 2024-09-15

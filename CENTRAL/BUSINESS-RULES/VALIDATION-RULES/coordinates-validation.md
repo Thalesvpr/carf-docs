@@ -99,9 +99,9 @@ Múltiplos pontos (perímetro):
 - Bounds oficiais do território brasileiro
 
 **Implementações:**
-- `PROJECTS/GEOAPI/LAYERS/DOMAIN/VALUE-OBJECTS/GeoPoint.cs` - Backend .NET
-- `PROJECTS/GEOWEB/UTILS/validators/coordinatesValidator.ts` - Frontend React
-- `PROJECTS/REURBCAD/UTILS/geoValidator.ts` - Mobile React Native
+- (caminho de implementação) - Backend .NET
+- (caminho de implementação) - Frontend React
+- (caminho de implementação) - Mobile React Native
 
 ---
 

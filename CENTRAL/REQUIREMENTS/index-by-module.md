@@ -1,0 +1,1074 @@
+# Requirements por Módulo
+Índice completo de todos os requirements organizados por módulo implementador (GEOWEB, REURBCAD, GEOAPI, GEOGIS, ADMIN, KEYCLOAK).
+---
+
+## GEOWEB (387 requirements)
+
+### Use Cases (11)
+- [UC-001: Cadastrar Unidade Habitacional](./USE-CASES/UC-001-cadastrar-unidade-habitacional.md) - security
+- [UC-002: Aprovar Unidade Habitacional](./USE-CASES/UC-002-aprovar-unidade-habitacional.md) - performance
+- [UC-003: Vincular Titular a Unidade](./USE-CASES/UC-003-vincular-titular-unidade.md) - security
+- [UC-004: Coletar Dados em Campo (Mobile)](./USE-CASES/UC-004-coletar-dados-campo-mobile.md) - security
+- [UC-005: Sincronizar Dados Offline](./USE-CASES/UC-005-sincronizar-dados-offline.md) - security
+- [UC-006: Gerar Relatório de Comunidade](./USE-CASES/UC-006-gerar-relatorio-comunidade.md) - scalability
+- [UC-007: Exportar Dados Geográficos](./USE-CASES/UC-007-exportar-dados-geograficos.md) - scalability
+- [UC-008: Importar Shapefile](./USE-CASES/UC-008-importar-shapefile.md) - scalability
+- [UC-009: Gerenciar Processo de Legitimação Fundiária](./USE-CASES/UC-009-gerenciar-processo-legitimacao.md) - scalability
+- [UC-010: Configurar Camadas WMS/WMTS](./USE-CASES/UC-010-configurar-camadas-wms.md) - performance
+- [UC-011: Gerenciar Equipes Técnicas](./USE-CASES/UC-011-gerenciar-equipes-tecnicas.md) - security
+
+### Functional Requirements (189)
+- [RF-001: Integração com Keycloak](./FUNCTIONAL-REQUIREMENTS/RF-001-integração-com-keycloak.md) - security
+- [RF-002: Fluxo Authorization Code + PKCE](./FUNCTIONAL-REQUIREMENTS/RF-002-fluxo-authorization-code-pkce.md) - security
+- [RF-003: Client Credentials Flow](./FUNCTIONAL-REQUIREMENTS/RF-003-client-credentials-flow.md) - security
+- [RF-004: Refresh Token Automático](./FUNCTIONAL-REQUIREMENTS/RF-004-refresh-token-automático.md) - security
+- [RF-005: Validação JWT em Todas Requisições](./FUNCTIONAL-REQUIREMENTS/RF-005-validação-jwt-em-todas-requisições.md) - security
+- [RF-007: SUPER_ADMIN - Acesso Total](./FUNCTIONAL-REQUIREMENTS/RF-007-super_admin-acesso-total.md) - security
+- [RF-008: ADMIN - Gestão de Tenant](./FUNCTIONAL-REQUIREMENTS/RF-008-admin-gestão-de-tenant.md) - security
+- [RF-009: MANAGER - Aprovação de Workflows](./FUNCTIONAL-REQUIREMENTS/RF-009-manager-aprovação-de-workflows.md) - scalability
+- [RF-010: ANALYST - Cadastro e Edição](./FUNCTIONAL-REQUIREMENTS/RF-010-analyst-cadastro-e-edição.md) - units
+- [RF-011: FIELD_AGENT - Coleta de Dados](./FUNCTIONAL-REQUIREMENTS/RF-011-field_agent-coleta-de-dados.md) - approval
+- [RF-012: Controle de Acesso por Recurso](./FUNCTIONAL-REQUIREMENTS/RF-012-controle-de-acesso-por-recurso.md) - security
+- [RF-014: Logout e Revogação de Token](./FUNCTIONAL-REQUIREMENTS/RF-014-logout-e-revogação-de-token.md) - security
+- [RF-015: Sessão Expirada - Redirecionamento](./FUNCTIONAL-REQUIREMENTS/RF-015-sessão-expirada-redirecionamento.md) - security
+- [RF-016: Auditoria de Acessos](./FUNCTIONAL-REQUIREMENTS/RF-016-auditoria-de-acessos.md) - security
+- [RF-017: Criar Tenant](./FUNCTIONAL-REQUIREMENTS/RF-017-criar-tenant.md) - reliability
+- [RF-018: Editar Tenant](./FUNCTIONAL-REQUIREMENTS/RF-018-editar-tenant.md) - audit
+- [RF-019: Desativar Tenant](./FUNCTIONAL-REQUIREMENTS/RF-019-desativar-tenant.md) - security
+- [RF-020: Listar Tenants](./FUNCTIONAL-REQUIREMENTS/RF-020-listar-tenants.md) - usability
+- [RF-021: Criar Usuário](./FUNCTIONAL-REQUIREMENTS/RF-021-criar-usuário.md) - teams
+- [RF-022: Editar Usuário](./FUNCTIONAL-REQUIREMENTS/RF-022-editar-usuário.md) - security
+- [RF-023: Desativar Usuário](./FUNCTIONAL-REQUIREMENTS/RF-023-desativar-usuário.md) - security
+- [RF-024: Listar Usuários](./FUNCTIONAL-REQUIREMENTS/RF-024-listar-usuários.md) - usability
+- [RF-025: Atribuir Role a Usuário](./FUNCTIONAL-REQUIREMENTS/RF-025-atribuir-role-a-usuário.md) - audit
+- [RF-026: Criar Equipe (Team)](./FUNCTIONAL-REQUIREMENTS/RF-026-criar-equipe-team.md) - teams
+- [RF-027: Editar Equipe](./FUNCTIONAL-REQUIREMENTS/RF-027-editar-equipe.md) - teams
+- [RF-028: Listar Equipes](./FUNCTIONAL-REQUIREMENTS/RF-028-listar-equipes.md) - teams
+- [RF-029: Vincular Usuário a Equipe](./FUNCTIONAL-REQUIREMENTS/RF-029-vincular-usuário-a-equipe.md) - usability
+- [RF-030: Filtrar Comunidades por Equipe](./FUNCTIONAL-REQUIREMENTS/RF-030-filtrar-comunidades-por-equipe.md) - security
+- [RF-031: Perfil de Usuário](./FUNCTIONAL-REQUIREMENTS/RF-031-perfil-de-usuário.md) - authentication
+- [RF-032: Redefinir Senha](./FUNCTIONAL-REQUIREMENTS/RF-032-redefinir-senha.md) - reliability
+- [RF-033: Notificações In-App](./FUNCTIONAL-REQUIREMENTS/RF-033-notificações-in-app.md) - scalability
+- [RF-034: Criar Comunidade](./FUNCTIONAL-REQUIREMENTS/RF-034-criar-comunidade.md) - compatibility
+- [RF-035: Editar Comunidade](./FUNCTIONAL-REQUIREMENTS/RF-035-editar-comunidade.md) - units
+- [RF-036: Desativar Comunidade](./FUNCTIONAL-REQUIREMENTS/RF-036-desativar-comunidade.md) - communities
+- [RF-037: Listar Comunidades](./FUNCTIONAL-REQUIREMENTS/RF-037-listar-comunidades.md) - usability
+- [RF-038: Visualizar Comunidade no Mapa](./FUNCTIONAL-REQUIREMENTS/RF-038-visualizar-comunidade-no-mapa.md) - compatibility
+- [RF-039: Tipos de Comunidade](./FUNCTIONAL-REQUIREMENTS/RF-039-tipos-de-comunidade.md) - communities
+- [RF-041: Estatísticas de Comunidade](./FUNCTIONAL-REQUIREMENTS/RF-041-estatísticas-de-comunidade.md) - performance
+- [RF-042: Timeline de Comunidade](./FUNCTIONAL-REQUIREMENTS/RF-042-timeline-de-comunidade.md) - communities
+- [RF-043: Exportar Comunidade](./FUNCTIONAL-REQUIREMENTS/RF-043-exportar-comunidade.md) - compatibility
+- [RF-044: Dashboard de Comunidade](./FUNCTIONAL-REQUIREMENTS/RF-044-dashboard-de-comunidade.md) - performance
+- [RF-045: Anexar Documentos à Comunidade](./FUNCTIONAL-REQUIREMENTS/RF-045-anexar-documentos-à-comunidade.md) - compatibility
+- [RF-046: Configurar Camadas WMS para Comunidade](./FUNCTIONAL-REQUIREMENTS/RF-046-configurar-camadas-wms-para-comunidade.md) - performance
+- [RF-047: Clonar Comunidade](./FUNCTIONAL-REQUIREMENTS/RF-047-clonar-comunidade.md) - compatibility
+- [RF-048: Atribuir Comunidade a Equipe](./FUNCTIONAL-REQUIREMENTS/RF-048-atribuir-comunidade-a-equipe.md) - teams
+- [RF-049: Criar Unidade](./FUNCTIONAL-REQUIREMENTS/RF-049-criar-unidade.md) - units
+- [RF-050: Editar Unidade](./FUNCTIONAL-REQUIREMENTS/RF-050-editar-unidade.md) - units
+- [RF-051: Excluir Unidade](./FUNCTIONAL-REQUIREMENTS/RF-051-excluir-unidade.md) - reliability
+- [RF-052: Listar Unidades](./FUNCTIONAL-REQUIREMENTS/RF-052-listar-unidades.md) - performance
+- [RF-053: Visualizar Unidade no Mapa](./FUNCTIONAL-REQUIREMENTS/RF-053-visualizar-unidade-no-mapa.md) - performance
+- [RF-056: Status de Unidade](./FUNCTIONAL-REQUIREMENTS/RF-056-status-de-unidade.md) - approval
+- [RF-057: Aprovar Unidade](./FUNCTIONAL-REQUIREMENTS/RF-057-aprovar-unidade.md) - maintainability
+- [RF-060: Timeline de Unidade](./FUNCTIONAL-REQUIREMENTS/RF-060-timeline-de-unidade.md) - units
+- [RF-061: Vincular Titular a Unidade](./FUNCTIONAL-REQUIREMENTS/RF-061-vincular-titular-a-unidade.md) - usability
+- [RF-062: Múltiplos Titulares por Unidade](./FUNCTIONAL-REQUIREMENTS/RF-062-multiplos-titulares-por-unidade.md) - units
+- [RF-063: Anexar Fotos a Unidade](./FUNCTIONAL-REQUIREMENTS/RF-063-anexar-fotos-a-unidade.md) - performance
+- [RF-064: Anexar Documentos a Unidade](./FUNCTIONAL-REQUIREMENTS/RF-064-anexar-documentos-a-unidade.md) - performance
+- [RF-065: Buscar Unidade por Localização](./FUNCTIONAL-REQUIREMENTS/RF-065-buscar-unidade-por-localizacao.md) - performance
+- [RF-066: Desenhar Unidade no Mapa](./FUNCTIONAL-REQUIREMENTS/RF-066-desenhar-unidade-no-mapa.md) - compatibility
+- [RF-067: Importar Unidades via Shapefile](./FUNCTIONAL-REQUIREMENTS/RF-067-importar-unidades-via-shapefile.md) - compatibility
+- [RF-068: Calcular Área da Unidade](./FUNCTIONAL-REQUIREMENTS/RF-068-calcular-area-da-unidade.md) - performance
+- [RF-069: Validar Sobreposição de Unidades](./FUNCTIONAL-REQUIREMENTS/RF-069-validar-sobreposicao-de-unidades.md) - units
+- [RF-070: Criar Quadra](./FUNCTIONAL-REQUIREMENTS/RF-070-criar-quadra.md) - units
+- [RF-071: Editar Quadra](./FUNCTIONAL-REQUIREMENTS/RF-071-editar-quadra.md) - units
+- [RF-072: Listar Quadras](./FUNCTIONAL-REQUIREMENTS/RF-072-listar-quadras.md) - performance
+- [RF-073: Visualizar Quadra no Mapa](./FUNCTIONAL-REQUIREMENTS/RF-073-visualizar-quadra-no-mapa.md) - units
+- [RF-074: Criar Lote](./FUNCTIONAL-REQUIREMENTS/RF-074-criar-lote.md) - units
+- [RF-075: Vincular Unidade a Lote](./FUNCTIONAL-REQUIREMENTS/RF-075-vincular-unidade-a-lote.md) - units
+- [RF-076: Numeração Automática de Unidades](./FUNCTIONAL-REQUIREMENTS/RF-076-numeracao-automatica-de-unidades.md) - compatibility
+- [RF-077: Campos Personalizados de Unidade](./FUNCTIONAL-REQUIREMENTS/RF-077-campos-personalizados-de-unidade.md) - compatibility
+- [RF-078: Clonar Unidade](./FUNCTIONAL-REQUIREMENTS/RF-078-clonar-unidade.md) - units
+- [RF-079: Mesclar Unidades](./FUNCTIONAL-REQUIREMENTS/RF-079-mesclar-unidades.md) - units
+- [RF-080: Dividir Unidade](./FUNCTIONAL-REQUIREMENTS/RF-080-dividir-unidade.md) - units
+- [RF-081: Comentários em Unidade](./FUNCTIONAL-REQUIREMENTS/RF-081-comentarios-em-unidade.md) - maintainability
+- [RF-082: Exportar Unidades](./FUNCTIONAL-REQUIREMENTS/RF-082-exportar-unidades.md) - reliability
+- [RF-083: Imprimir Ficha de Unidade](./FUNCTIONAL-REQUIREMENTS/RF-083-imprimir-ficha-de-unidade.md) - usability
+- [RF-084: Criar Titular](./FUNCTIONAL-REQUIREMENTS/RF-084-criar-titular.md) - holders
+- [RF-085: Editar Titular](./FUNCTIONAL-REQUIREMENTS/RF-085-editar-titular.md) - holders
+- [RF-086: Excluir Titular](./FUNCTIONAL-REQUIREMENTS/RF-086-excluir-titular.md) - holders
+- [RF-087: Listar Titulares](./FUNCTIONAL-REQUIREMENTS/RF-087-listar-titulares.md) - performance
+- [RF-088: Tipos de Titular](./FUNCTIONAL-REQUIREMENTS/RF-088-tipos-de-titular.md) - performance
+- [RF-090: Campos de Pessoa Jurídica](./FUNCTIONAL-REQUIREMENTS/RF-090-campos-de-pessoa-juridica.md) - holders
+- [RF-091: Tipos de Relacionamento com Unidade](./FUNCTIONAL-REQUIREMENTS/RF-091-tipos-de-relacionamento-com-unidade.md) - maintainability
+- [RF-092: Percentual de Propriedade](./FUNCTIONAL-REQUIREMENTS/RF-092-percentual-de-propriedade.md) - holders
+- [RF-093: Titular Principal](./FUNCTIONAL-REQUIREMENTS/RF-093-titular-principal.md) - usability
+- [RF-094: Histórico de Titulares](./FUNCTIONAL-REQUIREMENTS/RF-094-historico-de-titulares.md) - maintainability
+- [RF-095: Buscar Titular por CPF](./FUNCTIONAL-REQUIREMENTS/RF-095-buscar-titular-por-cpf.md) - usability
+- [RF-096: Validar CPF/CNPJ](./FUNCTIONAL-REQUIREMENTS/RF-096-validar-cpfcnpj.md) - security
+- [RF-097: Upload de Documentos do Titular](./FUNCTIONAL-REQUIREMENTS/RF-097-upload-de-documentos-do-titular.md) - usability
+- [RF-098: Foto do Titular](./FUNCTIONAL-REQUIREMENTS/RF-098-foto-do-titular.md) - performance
+- [RF-099: Listar Unidades de um Titular](./FUNCTIONAL-REQUIREMENTS/RF-099-listar-unidades-de-um-titular.md) - units
+- [RF-100: Exportar Lista de Titulares](./FUNCTIONAL-REQUIREMENTS/RF-100-exportar-lista-de-titulares.md) - reliability
+- [RF-101: Mesclar Titulares Duplicados](./FUNCTIONAL-REQUIREMENTS/RF-101-mesclar-titulares-duplicados.md) - holders
+- [RF-102: Upload de Documentos](./FUNCTIONAL-REQUIREMENTS/RF-102-upload-de-documentos.md) - security
+- [RF-103: Tipos de Documento](./FUNCTIONAL-REQUIREMENTS/RF-103-tipos-de-documento.md) - usability
+- [RF-104: Vincular Documento a Entidade](./FUNCTIONAL-REQUIREMENTS/RF-104-vincular-documento-a-entidade.md) - performance
+- [RF-105: Listar Documentos](./FUNCTIONAL-REQUIREMENTS/RF-105-listar-documentos.md) - performance
+- [RF-107: Excluir Documento](./FUNCTIONAL-REQUIREMENTS/RF-107-excluir-documento.md) - reliability
+- [RF-108: Upload de Fotos](./FUNCTIONAL-REQUIREMENTS/RF-108-upload-de-fotos.md) - compatibility
+- [RF-109: Tipos de Foto](./FUNCTIONAL-REQUIREMENTS/RF-109-tipos-de-foto.md) - usability
+- [RF-111: Galeria de Fotos](./FUNCTIONAL-REQUIREMENTS/RF-111-galeria-de-fotos.md) - performance
+- [RF-112: Ordenar Fotos](./FUNCTIONAL-REQUIREMENTS/RF-112-ordenar-fotos.md) - maintainability
+- [RF-113: Excluir Foto](./FUNCTIONAL-REQUIREMENTS/RF-113-excluir-foto.md) - reliability
+- [RF-114: Compressão de Fotos](./FUNCTIONAL-REQUIREMENTS/RF-114-compressão-de-fotos.md) - performance
+- [RF-115: Geração de Miniaturas](./FUNCTIONAL-REQUIREMENTS/RF-115-geração-de-miniaturas.md) - performance
+- [RF-117: Visualizar Foto no Mapa](./FUNCTIONAL-REQUIREMENTS/RF-117-visualizar-foto-no-mapa.md) - usability
+- [RF-118: Metadados de Arquivos](./FUNCTIONAL-REQUIREMENTS/RF-118-metadados-de-arquivos.md) - compatibility
+- [RF-119: Scan de Vírus](./FUNCTIONAL-REQUIREMENTS/RF-119-scan-de-vírus.md) - security
+- [RF-120: Versionamento de Documentos](./FUNCTIONAL-REQUIREMENTS/RF-120-versionamento-de-documentos.md) - audit
+- [RF-121: Anexar Descrição a Foto](./FUNCTIONAL-REQUIREMENTS/RF-121-anexar-descrição-a-foto.md) - maintainability
+- [RF-122: Tirar Foto com Câmera (Mobile)](./FUNCTIONAL-REQUIREMENTS/RF-122-tirar-foto-com-câmera-mobile.md) - security
+- [RF-123: Selecionar Foto da Galeria (Mobile)](./FUNCTIONAL-REQUIREMENTS/RF-123-selecionar-foto-da-galeria-mobile.md) - security
+- [RF-124: Exportar Documentos/Fotos](./FUNCTIONAL-REQUIREMENTS/RF-124-exportar-documentosfotos.md) - reliability
+- [RF-126: Notificação de Limite de Armazenamento](./FUNCTIONAL-REQUIREMENTS/RF-126-notificação-de-limite-de-armazenamento.md) - compatibility
+- [RF-127: Criar Camada (Layer)](./FUNCTIONAL-REQUIREMENTS/RF-127-criar-camada-layer.md) - units
+- [RF-128: Editar Camada](./FUNCTIONAL-REQUIREMENTS/RF-128-editar-camada.md) - audit
+- [RF-129: Excluir Camada](./FUNCTIONAL-REQUIREMENTS/RF-129-excluir-camada.md) - reliability
+- [RF-130: Listar Camadas](./FUNCTIONAL-REQUIREMENTS/RF-130-listar-camadas.md) - performance
+- [RF-132: Criar Feature](./FUNCTIONAL-REQUIREMENTS/RF-132-criar-feature.md) - cross-cutting
+- [RF-133: Editar Feature](./FUNCTIONAL-REQUIREMENTS/RF-133-editar-feature.md) - audit
+- [RF-135: Listar Features](./FUNCTIONAL-REQUIREMENTS/RF-135-listar-features.md) - other
+- [RF-136: Atributos Customizados de Features](./FUNCTIONAL-REQUIREMENTS/RF-136-atributos-customizados-de-features.md) - other
+- [RF-137: Estilos de Camadas](./FUNCTIONAL-REQUIREMENTS/RF-137-estilos-de-camadas.md) - performance
+- [RF-138: Simbologia por Atributo](./FUNCTIONAL-REQUIREMENTS/RF-138-simbologia-por-atributo.md) - performance
+- [RF-139: Importar Shapefile em Camada](./FUNCTIONAL-REQUIREMENTS/RF-139-importar-shapefile-em-camada.md) - compatibility
+- [RF-141: Exportar Camada](./FUNCTIONAL-REQUIREMENTS/RF-141-exportar-camada.md) - reliability
+- [RF-145: Medição de Distância](./FUNCTIONAL-REQUIREMENTS/RF-145-medição-de-distância.md) - other
+- [RF-146: Medição de Área](./FUNCTIONAL-REQUIREMENTS/RF-146-medição-de-área.md) - units
+- [RF-147: Snap to Features](./FUNCTIONAL-REQUIREMENTS/RF-147-snap-to-features.md) - other
+- [RF-148: Ordenação de Camadas](./FUNCTIONAL-REQUIREMENTS/RF-148-ordenação-de-camadas.md) - performance
+- [RF-149: Visibilidade de Camadas](./FUNCTIONAL-REQUIREMENTS/RF-149-visibilidade-de-camadas.md) - performance
+- [RF-150: Zoom para Camada](./FUNCTIONAL-REQUIREMENTS/RF-150-zoom-para-camada.md) - usability
+- [RF-151: Popup de Feature](./FUNCTIONAL-REQUIREMENTS/RF-151-popup-de-feature.md) - compatibility
+- [RF-152: Seleção Múltipla de Features](./FUNCTIONAL-REQUIREMENTS/RF-152-seleção-múltipla-de-features.md) - units
+- [RF-153: Anotações (Annotations)](./FUNCTIONAL-REQUIREMENTS/RF-153-anotações-annotations.md) - usability
+- [RF-154: Editar Anotação](./FUNCTIONAL-REQUIREMENTS/RF-154-editar-anotação.md) - usability
+- [RF-155: Excluir Anotação](./FUNCTIONAL-REQUIREMENTS/RF-155-excluir-anotação.md) - reliability
+- [RF-156: Filtrar Anotações por Autor](./FUNCTIONAL-REQUIREMENTS/RF-156-filtrar-anotações-por-autor.md) - performance
+- [RF-157: Criar Levantamento](./FUNCTIONAL-REQUIREMENTS/RF-157-criar-levantamento.md) - reliability
+- [RF-158: Editar Levantamento](./FUNCTIONAL-REQUIREMENTS/RF-158-editar-levantamento.md) - communities
+- [RF-159: Listar Levantamentos](./FUNCTIONAL-REQUIREMENTS/RF-159-listar-levantamentos.md) - performance
+- [RF-161: Visualizar Pontos no Mapa](./FUNCTIONAL-REQUIREMENTS/RF-161-visualizar-pontos-no-mapa.md) - cross-cutting
+- [RF-164: Calcular Perfil Topográfico](./FUNCTIONAL-REQUIREMENTS/RF-164-calcular-perfil-topográfico.md) - other
+- [RF-165: Ajustar Sistema de Coordenadas](./FUNCTIONAL-REQUIREMENTS/RF-165-ajustar-sistema-de-coordenadas.md) - compatibility
+- [RF-167: Anexar Memorial Descritivo](./FUNCTIONAL-REQUIREMENTS/RF-167-anexar-memorial-descritivo.md) - maintainability
+- [RF-171: Dashboard de Levantamentos](./FUNCTIONAL-REQUIREMENTS/RF-171-dashboard-de-levantamentos.md) - other
+- [RF-172: Criar Processo de Legitimação](./FUNCTIONAL-REQUIREMENTS/RF-172-criar-processo-de-legitimação.md) - approval
+- [RF-173: Editar Processo](./FUNCTIONAL-REQUIREMENTS/RF-173-editar-processo.md) - maintainability
+- [RF-174: Listar Processos](./FUNCTIONAL-REQUIREMENTS/RF-174-listar-processos.md) - usability
+- [RF-175: Status de Processo](./FUNCTIONAL-REQUIREMENTS/RF-175-status-de-processo.md) - maintainability
+- [RF-176: Anexar Documentos ao Processo](./FUNCTIONAL-REQUIREMENTS/RF-176-anexar-documentos-ao-processo.md) - security
+- [RF-177: Gerar Termo de Legitimação](./FUNCTIONAL-REQUIREMENTS/RF-177-gerar-termo-de-legitimação.md) - security
+- [RF-178: Assinatura Digital de Termo](./FUNCTIONAL-REQUIREMENTS/RF-178-assinatura-digital-de-termo.md) - security
+- [RF-179: Timeline de Processo](./FUNCTIONAL-REQUIREMENTS/RF-179-timeline-de-processo.md) - legitimation
+- [RF-180: Notificação de Mudança de Status](./FUNCTIONAL-REQUIREMENTS/RF-180-notificação-de-mudança-de-status.md) - maintainability
+- [RF-181: Relatório de Processos](./FUNCTIONAL-REQUIREMENTS/RF-181-relatório-de-processos.md) - compatibility
+- [RF-182: Modo Offline (Mobile)](./FUNCTIONAL-REQUIREMENTS/RF-182-modo-offline-mobile.md) - other
+- [RF-183: Download Inicial de Dados](./FUNCTIONAL-REQUIREMENTS/RF-183-download-inicial-de-dados.md) - communities
+- [RF-184: Criar Unidade Offline](./FUNCTIONAL-REQUIREMENTS/RF-184-criar-unidade-offline.md) - compatibility
+- [RF-185: Editar Unidade Offline](./FUNCTIONAL-REQUIREMENTS/RF-185-editar-unidade-offline.md) - units
+- [RF-187: Sincronização Manual](./FUNCTIONAL-REQUIREMENTS/RF-187-sincronização-manual.md) - reliability
+- [RF-188: Sincronização Automática](./FUNCTIONAL-REQUIREMENTS/RF-188-sincronização-automática.md) - reliability
+- [RF-190: Detecção de Conflitos](./FUNCTIONAL-REQUIREMENTS/RF-190-detecção-de-conflitos.md) - other
+- [RF-191: Resolução de Conflitos](./FUNCTIONAL-REQUIREMENTS/RF-191-resolução-de-conflitos.md) - audit
+- [RF-195: Indicador de Pendências](./FUNCTIONAL-REQUIREMENTS/RF-195-indicador-de-pendências.md) - holders
+- [RF-196: Log de Sincronização](./FUNCTIONAL-REQUIREMENTS/RF-196-log-de-sincronização.md) - audit
+- [RF-198: Exportar Unidades em KML/KMZ](./FUNCTIONAL-REQUIREMENTS/RF-198-exportar-unidades-em-kmlkmz.md) - compatibility
+- [RF-199: Exportar Unidades em GeoJSON](./FUNCTIONAL-REQUIREMENTS/RF-199-exportar-unidades-em-geojson.md) - compatibility
+- [RF-200: Exportar Unidades em CSV](./FUNCTIONAL-REQUIREMENTS/RF-200-exportar-unidades-em-csv.md) - compatibility
+- [RF-201: Exportar Unidades em Excel](./FUNCTIONAL-REQUIREMENTS/RF-201-exportar-unidades-em-excel.md) - reports
+- [RF-202: Exportar com Fotos/Documentos](./FUNCTIONAL-REQUIREMENTS/RF-202-exportar-com-fotosdocumentos.md) - reports
+- [RF-203: Relatório de Unidades por Status](./FUNCTIONAL-REQUIREMENTS/RF-203-relatório-de-unidades-por-status.md) - maintainability
+- [RF-204: Relatório de Titulares](./FUNCTIONAL-REQUIREMENTS/RF-204-relatório-de-titulares.md) - maintainability
+- [RF-206: Relatório de Atividades de Usuários](./FUNCTIONAL-REQUIREMENTS/RF-206-relatório-de-atividades-de-usuários.md) - maintainability
+- [RF-207: Geração Assíncrona de Relatórios](./FUNCTIONAL-REQUIREMENTS/RF-207-geração-assíncrona-de-relatórios.md) - scalability
+- [RF-208: Template Personalizável de Relatórios](./FUNCTIONAL-REQUIREMENTS/RF-208-template-personalizável-de-relatórios.md) - usability
+- [RF-209: Ficha Técnica de Unidade (PDF)](./FUNCTIONAL-REQUIREMENTS/RF-209-ficha-técnica-de-unidade-pdf.md) - usability
+- [RF-210: Mapa de Situação (PDF)](./FUNCTIONAL-REQUIREMENTS/RF-210-mapa-de-situação-pdf.md) - performance
+- [RF-211: Agendamento de Relatórios](./FUNCTIONAL-REQUIREMENTS/RF-211-agendamento-de-relatórios.md) - reports
+- [RF-212: Adicionar Camada WMS](./FUNCTIONAL-REQUIREMENTS/RF-212-adicionar-camada-wms.md) - compatibility
+- [RF-213: Adicionar Camada WMTS](./FUNCTIONAL-REQUIREMENTS/RF-213-adicionar-camada-wmts.md) - performance
+- [RF-214: Testar Conexão WMS/WMTS](./FUNCTIONAL-REQUIREMENTS/RF-214-testar-conexão-wmswmts.md) - performance
+- [RF-215: Listar Camadas WMS/WMTS](./FUNCTIONAL-REQUIREMENTS/RF-215-listar-camadas-wmswmts.md) - reliability
+- [RF-216: Editar Camada WMS/WMTS](./FUNCTIONAL-REQUIREMENTS/RF-216-editar-camada-wmswmts.md) - performance
+- [RF-217: Excluir Camada WMS/WMTS](./FUNCTIONAL-REQUIREMENTS/RF-217-excluir-camada-wmswmts.md) - usability
+- [RF-218: Ordenação de Camadas Base](./FUNCTIONAL-REQUIREMENTS/RF-218-ordenação-de-camadas-base.md) - performance
+- [RF-219: Basemaps Padrão](./FUNCTIONAL-REQUIREMENTS/RF-219-basemaps-padrão.md) - performance
+- [RF-220: Trocar Basemap](./FUNCTIONAL-REQUIREMENTS/RF-220-trocar-basemap.md) - other
+- [RF-221: Proxy de WMS/WMTS](./FUNCTIONAL-REQUIREMENTS/RF-221-proxy-de-wmswmts.md) - performance
+
+### User Stories (127)
+- [US-001: Login com OAuth2](./USER-STORIES/US-001-login-com-oauth2.md) - security
+- [US-003: Logout](./USER-STORIES/US-003-logout.md) - security
+- [US-004: Controle de Acesso por Role](./USER-STORIES/US-004-controle-de-acesso-por-role.md) - security
+- [US-005: Criar API Key](./USER-STORIES/US-005-criar-api-key.md) - security
+- [US-006: Revogar API Key](./USER-STORIES/US-006-revogar-api-key.md) - compatibility
+- [US-007: Redefinir Senha](./USER-STORIES/US-007-redefinir-senha.md) - security
+- [US-008: Visualizar Perfil](./USER-STORIES/US-008-visualizar-perfil.md) - security
+- [US-013: Configurar Camadas WMS para Comunidade](./USER-STORIES/US-013-configurar-camadas-wms-para-comunidade.md) - performance
+- [US-014: Criar Unidade Habitacional](./USER-STORIES/US-014-criar-unidade-habitacional.md) - compatibility
+- [US-015: Editar Unidade](./USER-STORIES/US-015-editar-unidade.md) - compatibility
+- [US-016: Excluir Unidade](./USER-STORIES/US-016-excluir-unidade.md) - compatibility
+- [US-017: Listar Unidades com Filtros](./USER-STORIES/US-017-listar-unidades-com-filtros.md) - performance
+- [US-019: Desenhar Geometria no Mapa](./USER-STORIES/US-019-desenhar-geometria-no-mapa.md) - compatibility
+- [US-020: Importar Unidades via Shapefile](./USER-STORIES/US-020-importar-unidades-via-shapefile.md) - compatibility
+- [US-023: Exportar Unidades Selecionadas](./USER-STORIES/US-023-exportar-unidades-selecionadas.md) - compatibility
+- [US-026: Cadastrar Titular](./USER-STORIES/US-026-cadastrar-titular.md) - compatibility
+- [US-027: Editar Titular](./USER-STORIES/US-027-editar-titular.md) - compatibility
+- [US-029: Vincular Titular a Unidade](./USER-STORIES/US-029-vincular-titular-a-unidade.md) - compatibility
+- [US-030: Gerenciar Equipes Técnicas](./USER-STORIES/US-030-gerenciar-equipes-técnicas.md) - compatibility
+- [US-031: Listar Titulares com Filtros](./USER-STORIES/US-031-listar-titulares-com-filtros.md) - performance
+- [US-033: Excluir Titular](./USER-STORIES/US-033-excluir-titular.md) - reliability
+- [US-034: Aprovar Unidade](./USER-STORIES/US-034-aprovar-unidade.md) - security
+- [US-035: Rejeitar Unidade](./USER-STORIES/US-035-rejeitar-unidade.md) - compatibility
+- [US-036: Solicitar Alterações](./USER-STORIES/US-036-solicitar-alterações.md) - compatibility
+- [US-037: Aprovar em Lote](./USER-STORIES/US-037-aprovar-em-lote.md) - scalability
+- [US-038: Ver Status de Aprovação](./USER-STORIES/US-038-ver-status-de-aprovação.md) - compatibility
+- [US-040: Cadastrar Unidade Offline](./USER-STORIES/US-040-cadastrar-unidade-offline.md) - reliability
+- [US-041: Desenhar Geometria com GPS](./USER-STORIES/US-041-desenhar-geometria-com-gps.md) - reliability
+- [US-042: Tirar Fotos com Câmera](./USER-STORIES/US-042-tirar-fotos-com-câmera.md) - maintainability
+- [US-043: Selecionar Fotos da Galeria](./USER-STORIES/US-043-selecionar-fotos-da-galeria.md) - maintainability
+- [US-044: Cadastrar Titular no Campo](./USER-STORIES/US-044-cadastrar-titular-no-campo.md) - reliability
+- [US-045: Ver Mapa Offline](./USER-STORIES/US-045-ver-mapa-offline.md) - reliability
+- [US-046: Ver Contador de Pendências](./USER-STORIES/US-046-ver-contador-de-pendências.md) - communities
+- [US-047: Copiar Dados da Última Unidade](./USER-STORIES/US-047-copiar-dados-da-última-unidade.md) - reliability
+- [US-048: Alerta de Bateria Baixa](./USER-STORIES/US-048-alerta-de-bateria-baixa.md) - audit
+- [US-049: Trabalhar Sem GPS](./USER-STORIES/US-049-trabalhar-sem-gps.md) - units
+- [US-050: Sincronizar Manualmente](./USER-STORIES/US-050-sincronizar-manualmente.md) - reliability
+- [US-051: Sincronização Automática](./USER-STORIES/US-051-sincronização-automática.md) - compatibility
+- [US-052: Ver Progresso de Sincronização](./USER-STORIES/US-052-ver-progresso-de-sincronização.md) - audit
+- [US-054: Resolver Conflitos de Dados](./USER-STORIES/US-054-resolver-conflitos-de-dados.md) - compatibility
+- [US-055: Limpar Dados Sincronizados](./USER-STORIES/US-055-limpar-dados-sincronizados.md) - reliability
+- [US-056: Visualizar Unidades no Mapa](./USER-STORIES/US-056-visualizar-unidades-no-mapa.md) - performance
+- [US-057: Filtrar Unidades no Mapa](./USER-STORIES/US-057-filtrar-unidades-no-mapa.md) - reliability
+- [US-058: Busca Espacial](./USER-STORIES/US-058-busca-espacial.md) - performance
+- [US-059: Medição de Distância e Área](./USER-STORIES/US-059-medição-de-distânciaárea.md) - reliability
+- [US-060: Camadas de Mapa Base](./USER-STORIES/US-060-camadas-de-mapa-base.md) - performance
+- [US-062: Geocodificação de Endereço](./USER-STORIES/US-062-geocodificação-de-endereço.md) - reliability
+- [US-063: Imprimir Mapa](./USER-STORIES/US-063-imprimir-mapa.md) - reliability
+- [US-064: Adicionar Camadas WMS](./USER-STORIES/US-064-adicionar-camadas-wms.md) - performance
+- [US-065: Upload de Documentos](./USER-STORIES/US-065-upload-de-documentos.md) - maintainability
+- [US-066: Visualizar Documentos](./USER-STORIES/US-066-visualizar-documentos.md) - performance
+- [US-067: Excluir Documento](./USER-STORIES/US-067-excluir-documento.md) - reliability
+- [US-068: OCR em Documentos](./USER-STORIES/US-068-ocr-em-documentos.md) - scalability
+- [US-069: Galeria de Fotos da Unidade](./USER-STORIES/US-069-galeria-de-fotos-da-unidade.md) - performance
+- [US-072: Exportar em Shapefile](./USER-STORIES/US-072-exportar-em-shapefile.md) - compatibility
+- [US-073: Exportar em Excel/CSV](./USER-STORIES/US-073-exportar-em-excelcsv.md) - performance
+- [US-074: Gerar Relatório de Comunidade](./USER-STORIES/US-074-gerar-relatório-de-comunidade.md) - compatibility
+- [US-075: Agendar Relatório Recorrente](./USER-STORIES/US-075-agendar-relatório-recorrente.md) - compatibility
+- [US-076: Baixar Relatório Gerado](./USER-STORIES/US-076-baixar-relatório-gerado.md) - compatibility
+- [US-077: Dashboard de KPIs](./USER-STORIES/US-077-dashboard-de-kpis.md) - performance
+- [US-078: Criar Processo de Legitimação](./USER-STORIES/US-078-criar-processo-de-legitimação.md) - compatibility
+- [US-079: Submeter Processo para Aprovação](./USER-STORIES/US-079-submeter-processo-para-aprovação.md) - reliability
+- [US-080: Aprovar ou Rejeitar Processo](./USER-STORIES/US-080-aprovarrejeitar-processo.md) - reliability
+- [US-081: Gerar Termo de Legitimação (PDF)](./USER-STORIES/US-081-gerar-termo-de-legitimação-pdf.md) - reliability
+- [US-082: Exportar Mapa como Imagem](./USER-STORIES/US-082-exportar-mapa-como-imagem.md) - performance
+- [US-083: Gerenciar Usuários do Tenant](./USER-STORIES/US-083-gerenciar-usuários-do-tenant.md) - security
+- [US-084: Configurar Tenant](./USER-STORIES/US-084-configurar-tenant.md) - compatibility
+- [US-085: Audit Log Global](./USER-STORIES/US-085-audit-log-global.md) - performance
+- [US-086: Backup Manual](./USER-STORIES/US-086-backup-manual.md) - security
+- [US-100: Ver Estatísticas de Comunidade](./USER-STORIES/US-100-ver-estatisticas-de-comunidade.md) - performance
+- [US-101: Obter Estatísticas do Dashboard](./USER-STORIES/US-101-obter-estatisticas-do-dashboard.md) - performance
+- [US-102: Obter Status de Exportação](./USER-STORIES/US-102-obter-status-de-exportacao.md) - performance
+- [US-103: Cancelar Exportação](./USER-STORIES/US-103-cancelar-exportacao.md) - maintainability
+- [US-104: Relatório de Timeline de Atividades](./USER-STORIES/US-104-relatorio-de-timeline-de-atividades.md) - performance
+- [US-105: Relatório Sumário de Comunidade](./USER-STORIES/US-105-relatorio-sumario-de-comunidade.md) - security
+- [US-106: Relatório de Estatísticas de Titulares](./USER-STORIES/US-106-relatorio-de-estatisticas-de-titulares.md) - security
+- [US-107: Relatório de Cobertura Espacial](./USER-STORIES/US-107-relatorio-de-cobertura-espacial.md) - maintainability
+- [US-108: Relatório de Distribuição por Status](./USER-STORIES/US-108-relatorio-de-distribuicao-por-status.md) - maintainability
+- [US-109: Exportar Unidade Individual](./USER-STORIES/US-109-exportar-unidade-individual.md) - security
+- [US-110: Visualizar Atividades de Usuário](./USER-STORIES/US-110-visualizar-atividades-de-usuario.md) - security
+- [US-111: Listar Comunidades de Usuário](./USER-STORIES/US-111-listar-comunidades-de-usuario.md) - usability
+- [US-112: Gerenciar Roles de Usuário](./USER-STORIES/US-112-gerenciar-roles-de-usuario.md) - security
+- [US-113: Remover Role Específica de Usuário](./USER-STORIES/US-113-remover-role-especifica-de-usuario.md) - security
+- [US-114: Gerenciar Comunidades de Equipe](./USER-STORIES/US-114-gerenciar-comunidades-de-equipe.md) - maintainability
+- [US-115: Remover Comunidade de Equipe](./USER-STORIES/US-115-remover-comunidade-de-equipe.md) - maintainability
+- [US-116: Listar Tenants](./USER-STORIES/US-116-listar-tenants.md) - performance
+- [US-117: Reativar Tenant](./USER-STORIES/US-117-reativar-tenant.md) - security
+- [US-118: Suspender Tenant](./USER-STORIES/US-118-suspender-tenant.md) - security
+- [US-119: Gerenciar Serviços WMS/WMTS](./USER-STORIES/US-119-gerenciar-servicos-wmswmts.md) - security
+- [US-120: Visualizar Geoserviço](./USER-STORIES/US-120-visualizar-geoservico.md) - security
+- [US-121: Listar Layers de Geoservico](./USER-STORIES/US-121-listar-layers-de-geoservico.md) - compatibility
+- [US-122: Acessar Geoservico via Proxy](./USER-STORIES/US-122-acessar-geoservico-via-proxy.md) - security
+- [US-123: Testar Conexao com Geoservico](./USER-STORIES/US-123-testar-conexao-com-geoservico.md) - performance
+- [US-124: Obter Dados do Usuario Autenticado](./USER-STORIES/US-124-obter-dados-do-usuario-autenticado.md) - security
+- [US-125: Gerenciar Quadras](./USER-STORIES/US-125-gerenciar-quadras.md) - compatibility
+- [US-126: Visualizar Detalhes de Quadra](./USER-STORIES/US-126-visualizar-detalhes-de-quadra.md) - compatibility
+- [US-127: Obter Geometria de Quadra](./USER-STORIES/US-127-obter-geometria-de-quadra.md) - performance
+- [US-128: Listar Lotes de Quadra](./USER-STORIES/US-128-listar-lotes-de-quadra.md) - performance
+- [US-129: Listar Comunidades](./USER-STORIES/US-129-listar-comunidades.md) - performance
+- [US-130: Visualizar Detalhes de Comunidade](./USER-STORIES/US-130-visualizar-detalhes-de-comunidade.md) - performance
+- [US-131: Listar Unidades de Comunidade](./USER-STORIES/US-131-listar-unidades-de-comunidade.md) - performance
+- [US-132: Gerenciar Lotes](./USER-STORIES/US-132-gerenciar-lotes.md) - compatibility
+- [US-133: Visualizar Detalhes de Lote](./USER-STORIES/US-133-visualizar-detalhes-de-lote.md) - compatibility
+- [US-134: Obter Geometria de Lote](./USER-STORIES/US-134-obter-geometria-de-lote.md) - performance
+- [US-135: Listar Unidades de Lote](./USER-STORIES/US-135-listar-unidades-de-lote.md) - performance
+- [US-136: Obter Geometria de Unidade](./USER-STORIES/US-136-obter-geometria-de-unidade.md) - performance
+- [US-137: Ver Historico de Alteracoes de Unidade](./USER-STORIES/US-137-ver-historico-de-alteracoes-de-unidade.md) - performance
+- [US-138: Listar Unidades de Titular](./USER-STORIES/US-138-listar-unidades-de-titular.md) - performance
+- [US-139: Vincular Titular a Unidade](./USER-STORIES/US-139-vincular-titular-a-unidade.md) - compatibility
+- [US-140: Alterar Status de Unidade](./USER-STORIES/US-140-alterar-status-de-unidade.md) - compatibility
+- [US-141: Submeter Unidade para Revisao](./USER-STORIES/US-141-submeter-unidade-para-revisao.md) - compatibility
+- [US-142: Realizar Ajustamento Topografico](./USER-STORIES/US-142-realizar-ajustamento-topografico.md) - compatibility
+- [US-143: Gerenciar Campanhas de Levantamento](./USER-STORIES/US-143-gerenciar-campanhas-de-levantamento.md) - compatibility
+- [US-144: Visualizar Campanha de Levantamento](./USER-STORIES/US-144-visualizar-campanha-de-levantamento.md) - performance
+- [US-145: Finalizar Campanha](./USER-STORIES/US-145-finalizar-campanha.md) - performance
+- [US-146: Iniciar Campanha](./USER-STORIES/US-146-iniciar-campanha.md) - compatibility
+- [US-147: Gerenciar Medicoes](./USER-STORIES/US-147-gerenciar-medicoes.md) - compatibility
+- [US-148: Visualizar Medicao](./USER-STORIES/US-148-visualizar-medicao.md) - compatibility
+- [US-149: Gerenciar Pontos Topograficos](./USER-STORIES/US-149-gerenciar-pontos-topograficos.md) - compatibility
+- [US-150: Visualizar Ponto Topografico](./USER-STORIES/US-150-visualizar-ponto-topografico.md) - compatibility
+- [US-151: Gerenciar Anotacoes no Mapa](./USER-STORIES/US-151-gerenciar-anotacoes-no-mapa.md) - compatibility
+- [US-152: Visualizar Anotacao](./USER-STORIES/US-152-visualizar-anotacao.md) - compatibility
+- [US-153: Comentar em Anotacao](./USER-STORIES/US-153-comentar-em-anotacao.md) - compatibility
+- [US-154: Resolver Anotacao](./USER-STORIES/US-154-resolver-anotacao.md) - performance
+- [US-155: Gerenciar Camadas Vetoriais](./USER-STORIES/US-155-gerenciar-camadas-vetoriais.md) - performance
+- [US-156: Visualizar Detalhes de Camada](./USER-STORIES/US-156-visualizar-detalhes-de-camada.md) - security
+- [US-157: Listar Features de Camada](./USER-STORIES/US-157-listar-features-de-camada.md) - scalability
+
+### Non-Functional Requirements (60)
+- [RNF-004: Tempo de Carregamento - Frontend](./NON-FUNCTIONAL-REQUIREMENTS/RNF-004-tempo-carregamento-frontend.md) - performance
+- [RNF-005: Tempo de Carregamento - Mapa](./NON-FUNCTIONAL-REQUIREMENTS/RNF-005-tempo-carregamento-mapa.md) - performance
+- [RNF-006: Upload de Arquivos](./NON-FUNCTIONAL-REQUIREMENTS/RNF-006-upload-arquivos.md) - scalability
+- [RNF-010: Renderização de Geometrias](./NON-FUNCTIONAL-REQUIREMENTS/RNF-010-renderizacao-geometrias.md) - performance
+- [RNF-012: Cache de Dados](./NON-FUNCTIONAL-REQUIREMENTS/RNF-012-cache-dados.md) - scalability
+- [RNF-014: Consumo de Memória - Mobile](./NON-FUNCTIONAL-REQUIREMENTS/RNF-014-consumo-memoria-mobile.md) - usability
+- [RNF-015: Tamanho do Bundle - Frontend](./NON-FUNCTIONAL-REQUIREMENTS/RNF-015-tamanho-bundle-frontend.md) - performance
+- [RNF-016: Autenticação OAuth2](./NON-FUNCTIONAL-REQUIREMENTS/RNF-016-autenticacao-oauth2.md) - security
+- [RNF-017: Expiração de Tokens](./NON-FUNCTIONAL-REQUIREMENTS/RNF-017-expiracao-tokens.md) - security
+- [RNF-018: HTTPS Obrigatório](./NON-FUNCTIONAL-REQUIREMENTS/RNF-018-https-obrigatorio.md) - security
+- [RNF-020: Validação de Input](./NON-FUNCTIONAL-REQUIREMENTS/RNF-020-validacao-input.md) - security
+- [RNF-024: Auditoria de Ações](./NON-FUNCTIONAL-REQUIREMENTS/RNF-024-auditoria-acoes.md) - performance
+- [RNF-026: Proteção contra CSRF](./NON-FUNCTIONAL-REQUIREMENTS/RNF-026-protecao-csrf.md) - scalability
+- [RNF-027: Armazenamento Seguro de Senhas](./NON-FUNCTIONAL-REQUIREMENTS/RNF-027-armazenamento-seguro-senhas.md) - security
+- [RNF-028: Proteção de API Keys](./NON-FUNCTIONAL-REQUIREMENTS/RNF-028-protecao-api-keys.md) - security
+- [RNF-030: Proteção de Dados Pessoais (LGPD)](./NON-FUNCTIONAL-REQUIREMENTS/RNF-030-protecao-dados-pessoais-lgpd.md) - security
+- [RNF-031: Timeout de Sessão](./NON-FUNCTIONAL-REQUIREMENTS/RNF-031-timeout-sessao.md) - security
+- [RNF-032: Permissões Granulares](./NON-FUNCTIONAL-REQUIREMENTS/RNF-032-permissoes-granulares.md) - scalability
+- [RNF-036: Uptime](./NON-FUNCTIONAL-REQUIREMENTS/RNF-036-uptime.md) - scalability
+- [RNF-037: Recuperação de Falhas](./NON-FUNCTIONAL-REQUIREMENTS/RNF-037-recuperacao-automatica-falhas.md) - reliability
+- [RNF-038: Backup de Dados](./NON-FUNCTIONAL-REQUIREMENTS/RNF-038-backup-automatico-dados.md) - performance
+- [RNF-039: RPO (Recovery Point Objective)](./NON-FUNCTIONAL-REQUIREMENTS/RNF-039-rpo-objetivo-ponto-recuperacao.md) - performance
+- [RNF-040: RTO (Recovery Time Objective)](./NON-FUNCTIONAL-REQUIREMENTS/RNF-040-rto-objetivo-tempo-recuperacao.md) - reliability
+- [RNF-041: Graceful Degradation](./NON-FUNCTIONAL-REQUIREMENTS/RNF-041-degradacao-graciosa-sistema.md) - performance
+- [RNF-042: Zero Downtime Deployment](./NON-FUNCTIONAL-REQUIREMENTS/RNF-042-deploy-zero-downtime.md) - performance
+- [RNF-043: Monitoramento de Erros](./NON-FUNCTIONAL-REQUIREMENTS/RNF-043-monitoramento-erros-aplicacao.md) - security
+- [RNF-045: Validação de Integridade](./NON-FUNCTIONAL-REQUIREMENTS/RNF-045-validacao-integridade-dados.md) - performance
+- [RNF-046: Responsividade - Web](./NON-FUNCTIONAL-REQUIREMENTS/RNF-046-responsividade-web.md) - usability
+- [RNF-047: Internacionalização](./NON-FUNCTIONAL-REQUIREMENTS/RNF-047-internacionalizacao-i18n.md) - usability
+- [RNF-048: Acessibilidade (WCAG 2.1)](./NON-FUNCTIONAL-REQUIREMENTS/RNF-048-acessibilidade-wcag.md) - usability
+- [RNF-049: Feedback Visual](./NON-FUNCTIONAL-REQUIREMENTS/RNF-049-feedback-visual-operacoes.md) - performance
+- [RNF-050: Mensagens de Erro Claras](./NON-FUNCTIONAL-REQUIREMENTS/RNF-050-mensagens-erro-claras.md) - security
+- [RNF-051: Undo/Redo](./NON-FUNCTIONAL-REQUIREMENTS/RNF-051-undo-redo-acoes.md) - reliability
+- [RNF-052: Consistência de UI](./NON-FUNCTIONAL-REQUIREMENTS/RNF-052-consistencia-ui-design-system.md) - usability
+- [RNF-053: Onboarding](./NON-FUNCTIONAL-REQUIREMENTS/RNF-053-onboarding-tour-guiado.md) - usability
+- [RNF-054: Busca Intuitiva](./NON-FUNCTIONAL-REQUIREMENTS/RNF-054-busca-intuitiva-autocomplete.md) - performance
+- [RNF-055: Atalhos de Teclado](./NON-FUNCTIONAL-REQUIREMENTS/RNF-055-atalhos-teclado.md) - reliability
+- [RNF-056: Cobertura de Testes](./NON-FUNCTIONAL-REQUIREMENTS/RNF-056-cobertura-de-testes.md) - maintainability
+- [RNF-057: Documentação de Código](./NON-FUNCTIONAL-REQUIREMENTS/RNF-057-documentacao-de-codigo.md) - usability
+- [RNF-058: Linting e Formatação](./NON-FUNCTIONAL-REQUIREMENTS/RNF-058-linting-e-formatacao.md) - compatibility
+- [RNF-059: Versionamento Semântico](./NON-FUNCTIONAL-REQUIREMENTS/RNF-059-versionamento-semantico.md) - performance
+- [RNF-060: Ambiente de Desenvolvimento Replicável](./NON-FUNCTIONAL-REQUIREMENTS/RNF-060-ambiente-de-desenvolvimento-replicavel.md) - security
+- [RNF-062: Modularidade](./NON-FUNCTIONAL-REQUIREMENTS/RNF-062-modularidade.md) - usability
+- [RNF-063: Tratamento de Exceções](./NON-FUNCTIONAL-REQUIREMENTS/RNF-063-tratamento-de-excecoes.md) - security
+- [RNF-064: Refatoração Contínua](./NON-FUNCTIONAL-REQUIREMENTS/RNF-064-refatoracao-continua.md) - security
+- [RNF-065: Rollback de Deploy](./NON-FUNCTIONAL-REQUIREMENTS/RNF-065-rollback-de-deploy.md) - reliability
+- [RNF-072: Usuários Simultâneos](./NON-FUNCTIONAL-REQUIREMENTS/RNF-072-usuarios-simultaneos.md) - scalability
+- [RNF-073: Volume de Dados - Unidades](./NON-FUNCTIONAL-REQUIREMENTS/RNF-073-volume-de-dados-unidades.md) - scalability
+- [RNF-074: Volume de Dados - Arquivos](./NON-FUNCTIONAL-REQUIREMENTS/RNF-074-volume-dados-arquivos.md) - scalability
+- [RNF-076: Conexões de Banco](./NON-FUNCTIONAL-REQUIREMENTS/RNF-076-conexoes-banco.md) - scalability
+- [RNF-077: Cache Distribuído](./NON-FUNCTIONAL-REQUIREMENTS/RNF-077-cache-distribuido.md) - scalability
+- [RNF-078: Job Queue](./NON-FUNCTIONAL-REQUIREMENTS/RNF-078-job-queue.md) - scalability
+- [RNF-081: Formatos de Importação](./NON-FUNCTIONAL-REQUIREMENTS/RNF-081-formatos-importacao.md) - compatibility
+- [RNF-082: Formatos de Exportação](./NON-FUNCTIONAL-REQUIREMENTS/RNF-082-formatos-exportacao.md) - maintainability
+- [RNF-083: Sistemas de Coordenadas](./NON-FUNCTIONAL-REQUIREMENTS/RNF-083-sistemas-coordenadas.md) - compatibility
+- [RNF-084: Integração WMS/WMTS](./NON-FUNCTIONAL-REQUIREMENTS/RNF-084-integracao-wms-wmts.md) - performance
+- [RNF-086: OpenAPI Spec](./NON-FUNCTIONAL-REQUIREMENTS/RNF-086-openapi-spec.md) - security
+- [RNF-087: Webhooks (Futuro)](./NON-FUNCTIONAL-REQUIREMENTS/RNF-087-webhooks.md) - scalability
+- [RNF-088: OAuth2 Providers](./NON-FUNCTIONAL-REQUIREMENTS/RNF-088-oauth2-providers.md) - security
+- [RNF-089: Timezone](./NON-FUNCTIONAL-REQUIREMENTS/RNF-089-timezone.md) - usability
+
+## REURBCAD (221 requirements)
+
+### Use Cases (9)
+- [UC-001: Cadastrar Unidade Habitacional](./USE-CASES/UC-001-cadastrar-unidade-habitacional.md) - security
+- [UC-002: Aprovar Unidade Habitacional](./USE-CASES/UC-002-aprovar-unidade-habitacional.md) - performance
+- [UC-003: Vincular Titular a Unidade](./USE-CASES/UC-003-vincular-titular-unidade.md) - security
+- [UC-004: Coletar Dados em Campo (Mobile)](./USE-CASES/UC-004-coletar-dados-campo-mobile.md) - security
+- [UC-005: Sincronizar Dados Offline](./USE-CASES/UC-005-sincronizar-dados-offline.md) - security
+- [UC-007: Exportar Dados Geográficos](./USE-CASES/UC-007-exportar-dados-geograficos.md) - scalability
+- [UC-008: Importar Shapefile](./USE-CASES/UC-008-importar-shapefile.md) - scalability
+- [UC-010: Configurar Camadas WMS/WMTS](./USE-CASES/UC-010-configurar-camadas-wms.md) - performance
+- [UC-011: Gerenciar Equipes Técnicas](./USE-CASES/UC-011-gerenciar-equipes-tecnicas.md) - security
+
+### Functional Requirements (112)
+- [RF-001: Integração com Keycloak](./FUNCTIONAL-REQUIREMENTS/RF-001-integração-com-keycloak.md) - security
+- [RF-006: 5 Níveis de Acesso (Roles)](./FUNCTIONAL-REQUIREMENTS/RF-006-5-níveis-de-acesso-roles.md) - security
+- [RF-011: FIELD_AGENT - Coleta de Dados](./FUNCTIONAL-REQUIREMENTS/RF-011-field_agent-coleta-de-dados.md) - approval
+- [RF-012: Controle de Acesso por Recurso](./FUNCTIONAL-REQUIREMENTS/RF-012-controle-de-acesso-por-recurso.md) - security
+- [RF-016: Auditoria de Acessos](./FUNCTIONAL-REQUIREMENTS/RF-016-auditoria-de-acessos.md) - security
+- [RF-019: Desativar Tenant](./FUNCTIONAL-REQUIREMENTS/RF-019-desativar-tenant.md) - security
+- [RF-023: Desativar Usuário](./FUNCTIONAL-REQUIREMENTS/RF-023-desativar-usuário.md) - security
+- [RF-033: Notificações In-App](./FUNCTIONAL-REQUIREMENTS/RF-033-notificações-in-app.md) - scalability
+- [RF-041: Estatísticas de Comunidade](./FUNCTIONAL-REQUIREMENTS/RF-041-estatísticas-de-comunidade.md) - performance
+- [RF-045: Anexar Documentos à Comunidade](./FUNCTIONAL-REQUIREMENTS/RF-045-anexar-documentos-à-comunidade.md) - compatibility
+- [RF-048: Atribuir Comunidade a Equipe](./FUNCTIONAL-REQUIREMENTS/RF-048-atribuir-comunidade-a-equipe.md) - teams
+- [RF-051: Excluir Unidade](./FUNCTIONAL-REQUIREMENTS/RF-051-excluir-unidade.md) - reliability
+- [RF-054: Campos Obrigatórios de Unidade](./FUNCTIONAL-REQUIREMENTS/RF-054-campos-obrigatorios-de-unidade.md) - units
+- [RF-056: Status de Unidade](./FUNCTIONAL-REQUIREMENTS/RF-056-status-de-unidade.md) - approval
+- [RF-058: Rejeitar Unidade](./FUNCTIONAL-REQUIREMENTS/RF-058-rejeitar-unidade.md) - approval
+- [RF-059: Solicitar Alterações](./FUNCTIONAL-REQUIREMENTS/RF-059-solicitar-alteracoes.md) - approval
+- [RF-061: Vincular Titular a Unidade](./FUNCTIONAL-REQUIREMENTS/RF-061-vincular-titular-a-unidade.md) - usability
+- [RF-062: Múltiplos Titulares por Unidade](./FUNCTIONAL-REQUIREMENTS/RF-062-multiplos-titulares-por-unidade.md) - units
+- [RF-063: Anexar Fotos a Unidade](./FUNCTIONAL-REQUIREMENTS/RF-063-anexar-fotos-a-unidade.md) - performance
+- [RF-064: Anexar Documentos a Unidade](./FUNCTIONAL-REQUIREMENTS/RF-064-anexar-documentos-a-unidade.md) - performance
+- [RF-065: Buscar Unidade por Localização](./FUNCTIONAL-REQUIREMENTS/RF-065-buscar-unidade-por-localizacao.md) - performance
+- [RF-068: Calcular Área da Unidade](./FUNCTIONAL-REQUIREMENTS/RF-068-calcular-area-da-unidade.md) - performance
+- [RF-072: Listar Quadras](./FUNCTIONAL-REQUIREMENTS/RF-072-listar-quadras.md) - performance
+- [RF-075: Vincular Unidade a Lote](./FUNCTIONAL-REQUIREMENTS/RF-075-vincular-unidade-a-lote.md) - units
+- [RF-076: Numeração Automática de Unidades](./FUNCTIONAL-REQUIREMENTS/RF-076-numeracao-automatica-de-unidades.md) - compatibility
+- [RF-077: Campos Personalizados de Unidade](./FUNCTIONAL-REQUIREMENTS/RF-077-campos-personalizados-de-unidade.md) - compatibility
+- [RF-081: Comentários em Unidade](./FUNCTIONAL-REQUIREMENTS/RF-081-comentarios-em-unidade.md) - maintainability
+- [RF-082: Exportar Unidades](./FUNCTIONAL-REQUIREMENTS/RF-082-exportar-unidades.md) - reliability
+- [RF-083: Imprimir Ficha de Unidade](./FUNCTIONAL-REQUIREMENTS/RF-083-imprimir-ficha-de-unidade.md) - usability
+- [RF-085: Editar Titular](./FUNCTIONAL-REQUIREMENTS/RF-085-editar-titular.md) - holders
+- [RF-089: Campos de Pessoa Física](./FUNCTIONAL-REQUIREMENTS/RF-089-campos-de-pessoa-fisica.md) - usability
+- [RF-090: Campos de Pessoa Jurídica](./FUNCTIONAL-REQUIREMENTS/RF-090-campos-de-pessoa-juridica.md) - holders
+- [RF-091: Tipos de Relacionamento com Unidade](./FUNCTIONAL-REQUIREMENTS/RF-091-tipos-de-relacionamento-com-unidade.md) - maintainability
+- [RF-092: Percentual de Propriedade](./FUNCTIONAL-REQUIREMENTS/RF-092-percentual-de-propriedade.md) - holders
+- [RF-093: Titular Principal](./FUNCTIONAL-REQUIREMENTS/RF-093-titular-principal.md) - usability
+- [RF-094: Histórico de Titulares](./FUNCTIONAL-REQUIREMENTS/RF-094-historico-de-titulares.md) - maintainability
+- [RF-095: Buscar Titular por CPF](./FUNCTIONAL-REQUIREMENTS/RF-095-buscar-titular-por-cpf.md) - usability
+- [RF-096: Validar CPF/CNPJ](./FUNCTIONAL-REQUIREMENTS/RF-096-validar-cpfcnpj.md) - security
+- [RF-098: Foto do Titular](./FUNCTIONAL-REQUIREMENTS/RF-098-foto-do-titular.md) - performance
+- [RF-101: Mesclar Titulares Duplicados](./FUNCTIONAL-REQUIREMENTS/RF-101-mesclar-titulares-duplicados.md) - holders
+- [RF-103: Tipos de Documento](./FUNCTIONAL-REQUIREMENTS/RF-103-tipos-de-documento.md) - usability
+- [RF-107: Excluir Documento](./FUNCTIONAL-REQUIREMENTS/RF-107-excluir-documento.md) - reliability
+- [RF-108: Upload de Fotos](./FUNCTIONAL-REQUIREMENTS/RF-108-upload-de-fotos.md) - compatibility
+- [RF-109: Tipos de Foto](./FUNCTIONAL-REQUIREMENTS/RF-109-tipos-de-foto.md) - usability
+- [RF-110: Geotagging de Fotos](./FUNCTIONAL-REQUIREMENTS/RF-110-geotagging-de-fotos.md) - usability
+- [RF-112: Ordenar Fotos](./FUNCTIONAL-REQUIREMENTS/RF-112-ordenar-fotos.md) - maintainability
+- [RF-114: Compressão de Fotos](./FUNCTIONAL-REQUIREMENTS/RF-114-compressão-de-fotos.md) - performance
+- [RF-117: Visualizar Foto no Mapa](./FUNCTIONAL-REQUIREMENTS/RF-117-visualizar-foto-no-mapa.md) - usability
+- [RF-119: Scan de Vírus](./FUNCTIONAL-REQUIREMENTS/RF-119-scan-de-vírus.md) - security
+- [RF-121: Anexar Descrição a Foto](./FUNCTIONAL-REQUIREMENTS/RF-121-anexar-descrição-a-foto.md) - maintainability
+- [RF-122: Tirar Foto com Câmera (Mobile)](./FUNCTIONAL-REQUIREMENTS/RF-122-tirar-foto-com-câmera-mobile.md) - security
+- [RF-123: Selecionar Foto da Galeria (Mobile)](./FUNCTIONAL-REQUIREMENTS/RF-123-selecionar-foto-da-galeria-mobile.md) - security
+- [RF-125: Limite de Armazenamento por Tenant](./FUNCTIONAL-REQUIREMENTS/RF-125-limite-de-armazenamento-por-tenant.md) - compatibility
+- [RF-126: Notificação de Limite de Armazenamento](./FUNCTIONAL-REQUIREMENTS/RF-126-notificação-de-limite-de-armazenamento.md) - compatibility
+- [RF-127: Criar Camada (Layer)](./FUNCTIONAL-REQUIREMENTS/RF-127-criar-camada-layer.md) - units
+- [RF-129: Excluir Camada](./FUNCTIONAL-REQUIREMENTS/RF-129-excluir-camada.md) - reliability
+- [RF-130: Listar Camadas](./FUNCTIONAL-REQUIREMENTS/RF-130-listar-camadas.md) - performance
+- [RF-132: Criar Feature](./FUNCTIONAL-REQUIREMENTS/RF-132-criar-feature.md) - cross-cutting
+- [RF-134: Excluir Feature](./FUNCTIONAL-REQUIREMENTS/RF-134-excluir-feature.md) - performance
+- [RF-135: Listar Features](./FUNCTIONAL-REQUIREMENTS/RF-135-listar-features.md) - other
+- [RF-136: Atributos Customizados de Features](./FUNCTIONAL-REQUIREMENTS/RF-136-atributos-customizados-de-features.md) - other
+- [RF-138: Simbologia por Atributo](./FUNCTIONAL-REQUIREMENTS/RF-138-simbologia-por-atributo.md) - performance
+- [RF-148: Ordenação de Camadas](./FUNCTIONAL-REQUIREMENTS/RF-148-ordenação-de-camadas.md) - performance
+- [RF-152: Seleção Múltipla de Features](./FUNCTIONAL-REQUIREMENTS/RF-152-seleção-múltipla-de-features.md) - units
+- [RF-153: Anotações (Annotations)](./FUNCTIONAL-REQUIREMENTS/RF-153-anotações-annotations.md) - usability
+- [RF-154: Editar Anotação](./FUNCTIONAL-REQUIREMENTS/RF-154-editar-anotação.md) - usability
+- [RF-155: Excluir Anotação](./FUNCTIONAL-REQUIREMENTS/RF-155-excluir-anotação.md) - reliability
+- [RF-156: Filtrar Anotações por Autor](./FUNCTIONAL-REQUIREMENTS/RF-156-filtrar-anotações-por-autor.md) - performance
+- [RF-157: Criar Levantamento](./FUNCTIONAL-REQUIREMENTS/RF-157-criar-levantamento.md) - reliability
+- [RF-159: Listar Levantamentos](./FUNCTIONAL-REQUIREMENTS/RF-159-listar-levantamentos.md) - performance
+- [RF-160: Importar Pontos de Levantamento](./FUNCTIONAL-REQUIREMENTS/RF-160-importar-pontos-de-levantamento.md) - compatibility
+- [RF-161: Visualizar Pontos no Mapa](./FUNCTIONAL-REQUIREMENTS/RF-161-visualizar-pontos-no-mapa.md) - cross-cutting
+- [RF-164: Calcular Perfil Topográfico](./FUNCTIONAL-REQUIREMENTS/RF-164-calcular-perfil-topográfico.md) - other
+- [RF-165: Ajustar Sistema de Coordenadas](./FUNCTIONAL-REQUIREMENTS/RF-165-ajustar-sistema-de-coordenadas.md) - compatibility
+- [RF-168: Validar Fechamento de Poligonal](./FUNCTIONAL-REQUIREMENTS/RF-168-validar-fechamento-de-poligonal.md) - reliability
+- [RF-169: Integração com Estação Total](./FUNCTIONAL-REQUIREMENTS/RF-169-integração-com-estação-total.md) - compatibility
+- [RF-170: Integração com GNSS](./FUNCTIONAL-REQUIREMENTS/RF-170-integração-com-gnss.md) - compatibility
+- [RF-171: Dashboard de Levantamentos](./FUNCTIONAL-REQUIREMENTS/RF-171-dashboard-de-levantamentos.md) - other
+- [RF-173: Editar Processo](./FUNCTIONAL-REQUIREMENTS/RF-173-editar-processo.md) - maintainability
+- [RF-175: Status de Processo](./FUNCTIONAL-REQUIREMENTS/RF-175-status-de-processo.md) - maintainability
+- [RF-176: Anexar Documentos ao Processo](./FUNCTIONAL-REQUIREMENTS/RF-176-anexar-documentos-ao-processo.md) - security
+- [RF-177: Gerar Termo de Legitimação](./FUNCTIONAL-REQUIREMENTS/RF-177-gerar-termo-de-legitimação.md) - security
+- [RF-178: Assinatura Digital de Termo](./FUNCTIONAL-REQUIREMENTS/RF-178-assinatura-digital-de-termo.md) - security
+- [RF-180: Notificação de Mudança de Status](./FUNCTIONAL-REQUIREMENTS/RF-180-notificação-de-mudança-de-status.md) - maintainability
+- [RF-181: Relatório de Processos](./FUNCTIONAL-REQUIREMENTS/RF-181-relatório-de-processos.md) - compatibility
+- [RF-182: Modo Offline (Mobile)](./FUNCTIONAL-REQUIREMENTS/RF-182-modo-offline-mobile.md) - other
+- [RF-183: Download Inicial de Dados](./FUNCTIONAL-REQUIREMENTS/RF-183-download-inicial-de-dados.md) - communities
+- [RF-184: Criar Unidade Offline](./FUNCTIONAL-REQUIREMENTS/RF-184-criar-unidade-offline.md) - compatibility
+- [RF-185: Editar Unidade Offline](./FUNCTIONAL-REQUIREMENTS/RF-185-editar-unidade-offline.md) - units
+- [RF-186: Tirar Fotos Offline](./FUNCTIONAL-REQUIREMENTS/RF-186-tirar-fotos-offline.md) - maintainability
+- [RF-187: Sincronização Manual](./FUNCTIONAL-REQUIREMENTS/RF-187-sincronização-manual.md) - reliability
+- [RF-188: Sincronização Automática](./FUNCTIONAL-REQUIREMENTS/RF-188-sincronização-automática.md) - reliability
+- [RF-189: Delta Sync (Sincronização Incremental)](./FUNCTIONAL-REQUIREMENTS/RF-189-delta-sync-sincronização-incremental.md) - compatibility
+- [RF-190: Detecção de Conflitos](./FUNCTIONAL-REQUIREMENTS/RF-190-detecção-de-conflitos.md) - other
+- [RF-191: Resolução de Conflitos](./FUNCTIONAL-REQUIREMENTS/RF-191-resolução-de-conflitos.md) - audit
+- [RF-192: Endpoint de Pull](./FUNCTIONAL-REQUIREMENTS/RF-192-endpoint-de-pull.md) - compatibility
+- [RF-193: Endpoint de Push](./FUNCTIONAL-REQUIREMENTS/RF-193-endpoint-de-push.md) - compatibility
+- [RF-194: Limpeza de Dados Locais](./FUNCTIONAL-REQUIREMENTS/RF-194-limpeza-de-dados-locais.md) - communities
+- [RF-200: Exportar Unidades em CSV](./FUNCTIONAL-REQUIREMENTS/RF-200-exportar-unidades-em-csv.md) - compatibility
+- [RF-201: Exportar Unidades em Excel](./FUNCTIONAL-REQUIREMENTS/RF-201-exportar-unidades-em-excel.md) - reports
+- [RF-202: Exportar com Fotos/Documentos](./FUNCTIONAL-REQUIREMENTS/RF-202-exportar-com-fotosdocumentos.md) - reports
+- [RF-203: Relatório de Unidades por Status](./FUNCTIONAL-REQUIREMENTS/RF-203-relatório-de-unidades-por-status.md) - maintainability
+- [RF-204: Relatório de Titulares](./FUNCTIONAL-REQUIREMENTS/RF-204-relatório-de-titulares.md) - maintainability
+- [RF-205: Relatório de Progresso de Cadastramento](./FUNCTIONAL-REQUIREMENTS/RF-205-relatório-de-progresso-de-cadastramento.md) - teams
+- [RF-206: Relatório de Atividades de Usuários](./FUNCTIONAL-REQUIREMENTS/RF-206-relatório-de-atividades-de-usuários.md) - maintainability
+- [RF-207: Geração Assíncrona de Relatórios](./FUNCTIONAL-REQUIREMENTS/RF-207-geração-assíncrona-de-relatórios.md) - scalability
+- [RF-208: Template Personalizável de Relatórios](./FUNCTIONAL-REQUIREMENTS/RF-208-template-personalizável-de-relatórios.md) - usability
+- [RF-209: Ficha Técnica de Unidade (PDF)](./FUNCTIONAL-REQUIREMENTS/RF-209-ficha-técnica-de-unidade-pdf.md) - usability
+- [RF-210: Mapa de Situação (PDF)](./FUNCTIONAL-REQUIREMENTS/RF-210-mapa-de-situação-pdf.md) - performance
+- [RF-218: Ordenação de Camadas Base](./FUNCTIONAL-REQUIREMENTS/RF-218-ordenação-de-camadas-base.md) - performance
+- [RF-219: Basemaps Padrão](./FUNCTIONAL-REQUIREMENTS/RF-219-basemaps-padrão.md) - performance
+- [RF-220: Trocar Basemap](./FUNCTIONAL-REQUIREMENTS/RF-220-trocar-basemap.md) - other
+
+### User Stories (57)
+- [US-015: Editar Unidade](./USER-STORIES/US-015-editar-unidade.md) - compatibility
+- [US-017: Listar Unidades com Filtros](./USER-STORIES/US-017-listar-unidades-com-filtros.md) - performance
+- [US-021: Validar Sobreposição de Geometrias](./USER-STORIES/US-021-validar-sobreposição-de-geometrias.md) - performance
+- [US-022: Calcular Área Automaticamente](./USER-STORIES/US-022-calcular-área-automaticamente.md) - units
+- [US-024: Ver Timeline de Alterações](./USER-STORIES/US-024-ver-timeline-de-alterações.md) - compatibility
+- [US-025: Comentar em Unidade](./USER-STORIES/US-025-comentar-em-unidade.md) - security
+- [US-026: Cadastrar Titular](./USER-STORIES/US-026-cadastrar-titular.md) - compatibility
+- [US-027: Editar Titular](./USER-STORIES/US-027-editar-titular.md) - compatibility
+- [US-028: Buscar Titular por CPF](./USER-STORIES/US-028-buscar-titular-por-cpf.md) - performance
+- [US-030: Gerenciar Equipes Técnicas](./USER-STORIES/US-030-gerenciar-equipes-técnicas.md) - compatibility
+- [US-035: Rejeitar Unidade](./USER-STORIES/US-035-rejeitar-unidade.md) - compatibility
+- [US-039: Notificação de Aprovação/Rejeição](./USER-STORIES/US-039-notificação-de-aprovaçãorejeição.md) - compatibility
+- [US-040: Cadastrar Unidade Offline](./USER-STORIES/US-040-cadastrar-unidade-offline.md) - reliability
+- [US-041: Desenhar Geometria com GPS](./USER-STORIES/US-041-desenhar-geometria-com-gps.md) - reliability
+- [US-042: Tirar Fotos com Câmera](./USER-STORIES/US-042-tirar-fotos-com-câmera.md) - maintainability
+- [US-043: Selecionar Fotos da Galeria](./USER-STORIES/US-043-selecionar-fotos-da-galeria.md) - maintainability
+- [US-044: Cadastrar Titular no Campo](./USER-STORIES/US-044-cadastrar-titular-no-campo.md) - reliability
+- [US-045: Ver Mapa Offline](./USER-STORIES/US-045-ver-mapa-offline.md) - reliability
+- [US-046: Ver Contador de Pendências](./USER-STORIES/US-046-ver-contador-de-pendências.md) - communities
+- [US-047: Copiar Dados da Última Unidade](./USER-STORIES/US-047-copiar-dados-da-última-unidade.md) - reliability
+- [US-048: Alerta de Bateria Baixa](./USER-STORIES/US-048-alerta-de-bateria-baixa.md) - audit
+- [US-049: Trabalhar Sem GPS](./USER-STORIES/US-049-trabalhar-sem-gps.md) - units
+- [US-050: Sincronizar Manualmente](./USER-STORIES/US-050-sincronizar-manualmente.md) - reliability
+- [US-051: Sincronização Automática](./USER-STORIES/US-051-sincronização-automática.md) - compatibility
+- [US-052: Ver Progresso de Sincronização](./USER-STORIES/US-052-ver-progresso-de-sincronização.md) - audit
+- [US-053: Delta Sync Bidirecional](./USER-STORIES/US-053-delta-sync-bidirecional.md) - performance
+- [US-054: Resolver Conflitos de Dados](./USER-STORIES/US-054-resolver-conflitos-de-dados.md) - compatibility
+- [US-055: Limpar Dados Sincronizados](./USER-STORIES/US-055-limpar-dados-sincronizados.md) - reliability
+- [US-068: OCR em Documentos](./USER-STORIES/US-068-ocr-em-documentos.md) - scalability
+- [US-069: Galeria de Fotos da Unidade](./USER-STORIES/US-069-galeria-de-fotos-da-unidade.md) - performance
+- [US-070: Geolocalização de Fotos](./USER-STORIES/US-070-geolocalização-de-fotos.md) - performance
+- [US-079: Submeter Processo para Aprovação](./USER-STORIES/US-079-submeter-processo-para-aprovação.md) - reliability
+- [US-080: Aprovar ou Rejeitar Processo](./USER-STORIES/US-080-aprovarrejeitar-processo.md) - reliability
+- [US-082: Exportar Mapa como Imagem](./USER-STORIES/US-082-exportar-mapa-como-imagem.md) - performance
+- [US-107: Relatório de Cobertura Espacial](./USER-STORIES/US-107-relatorio-de-cobertura-espacial.md) - maintainability
+- [US-108: Relatório de Distribuição por Status](./USER-STORIES/US-108-relatorio-de-distribuicao-por-status.md) - maintainability
+- [US-115: Remover Comunidade de Equipe](./USER-STORIES/US-115-remover-comunidade-de-equipe.md) - maintainability
+- [US-118: Suspender Tenant](./USER-STORIES/US-118-suspender-tenant.md) - security
+- [US-119: Gerenciar Serviços WMS/WMTS](./USER-STORIES/US-119-gerenciar-servicos-wmswmts.md) - security
+- [US-124: Obter Dados do Usuario Autenticado](./USER-STORIES/US-124-obter-dados-do-usuario-autenticado.md) - security
+- [US-128: Listar Lotes de Quadra](./USER-STORIES/US-128-listar-lotes-de-quadra.md) - performance
+- [US-133: Visualizar Detalhes de Lote](./USER-STORIES/US-133-visualizar-detalhes-de-lote.md) - compatibility
+- [US-135: Listar Unidades de Lote](./USER-STORIES/US-135-listar-unidades-de-lote.md) - performance
+- [US-138: Listar Unidades de Titular](./USER-STORIES/US-138-listar-unidades-de-titular.md) - performance
+- [US-143: Gerenciar Campanhas de Levantamento](./USER-STORIES/US-143-gerenciar-campanhas-de-levantamento.md) - compatibility
+- [US-144: Visualizar Campanha de Levantamento](./USER-STORIES/US-144-visualizar-campanha-de-levantamento.md) - performance
+- [US-145: Finalizar Campanha](./USER-STORIES/US-145-finalizar-campanha.md) - performance
+- [US-146: Iniciar Campanha](./USER-STORIES/US-146-iniciar-campanha.md) - compatibility
+- [US-147: Gerenciar Medicoes](./USER-STORIES/US-147-gerenciar-medicoes.md) - compatibility
+- [US-148: Visualizar Medicao](./USER-STORIES/US-148-visualizar-medicao.md) - compatibility
+- [US-149: Gerenciar Pontos Topograficos](./USER-STORIES/US-149-gerenciar-pontos-topograficos.md) - compatibility
+- [US-150: Visualizar Ponto Topografico](./USER-STORIES/US-150-visualizar-ponto-topografico.md) - compatibility
+- [US-151: Gerenciar Anotacoes no Mapa](./USER-STORIES/US-151-gerenciar-anotacoes-no-mapa.md) - compatibility
+- [US-152: Visualizar Anotacao](./USER-STORIES/US-152-visualizar-anotacao.md) - compatibility
+- [US-153: Comentar em Anotacao](./USER-STORIES/US-153-comentar-em-anotacao.md) - compatibility
+- [US-156: Visualizar Detalhes de Camada](./USER-STORIES/US-156-visualizar-detalhes-de-camada.md) - security
+- [US-157: Listar Features de Camada](./USER-STORIES/US-157-listar-features-de-camada.md) - scalability
+
+### Non-Functional Requirements (43)
+- [RNF-006: Upload de Arquivos](./NON-FUNCTIONAL-REQUIREMENTS/RNF-006-upload-arquivos.md) - scalability
+- [RNF-008: Sincronização Offline - Pull](./NON-FUNCTIONAL-REQUIREMENTS/RNF-008-sincronizacao-offline-pull.md) - compatibility
+- [RNF-009: Sincronização Offline - Push](./NON-FUNCTIONAL-REQUIREMENTS/RNF-009-sincronizacao-offline-push.md) - scalability
+- [RNF-012: Cache de Dados](./NON-FUNCTIONAL-REQUIREMENTS/RNF-012-cache-dados.md) - scalability
+- [RNF-014: Consumo de Memória - Mobile](./NON-FUNCTIONAL-REQUIREMENTS/RNF-014-consumo-memoria-mobile.md) - usability
+- [RNF-017: Expiração de Tokens](./NON-FUNCTIONAL-REQUIREMENTS/RNF-017-expiracao-tokens.md) - security
+- [RNF-022: CORS Restritivo](./NON-FUNCTIONAL-REQUIREMENTS/RNF-022-cors-restritivo.md) - security
+- [RNF-024: Auditoria de Ações](./NON-FUNCTIONAL-REQUIREMENTS/RNF-024-auditoria-acoes.md) - performance
+- [RNF-026: Proteção contra CSRF](./NON-FUNCTIONAL-REQUIREMENTS/RNF-026-protecao-csrf.md) - scalability
+- [RNF-027: Armazenamento Seguro de Senhas](./NON-FUNCTIONAL-REQUIREMENTS/RNF-027-armazenamento-seguro-senhas.md) - security
+- [RNF-031: Timeout de Sessão](./NON-FUNCTIONAL-REQUIREMENTS/RNF-031-timeout-sessao.md) - security
+- [RNF-036: Uptime](./NON-FUNCTIONAL-REQUIREMENTS/RNF-036-uptime.md) - scalability
+- [RNF-037: Recuperação de Falhas](./NON-FUNCTIONAL-REQUIREMENTS/RNF-037-recuperacao-automatica-falhas.md) - reliability
+- [RNF-038: Backup de Dados](./NON-FUNCTIONAL-REQUIREMENTS/RNF-038-backup-automatico-dados.md) - performance
+- [RNF-039: RPO (Recovery Point Objective)](./NON-FUNCTIONAL-REQUIREMENTS/RNF-039-rpo-objetivo-ponto-recuperacao.md) - performance
+- [RNF-040: RTO (Recovery Time Objective)](./NON-FUNCTIONAL-REQUIREMENTS/RNF-040-rto-objetivo-tempo-recuperacao.md) - reliability
+- [RNF-041: Graceful Degradation](./NON-FUNCTIONAL-REQUIREMENTS/RNF-041-degradacao-graciosa-sistema.md) - performance
+- [RNF-042: Zero Downtime Deployment](./NON-FUNCTIONAL-REQUIREMENTS/RNF-042-deploy-zero-downtime.md) - performance
+- [RNF-043: Monitoramento de Erros](./NON-FUNCTIONAL-REQUIREMENTS/RNF-043-monitoramento-erros-aplicacao.md) - security
+- [RNF-044: Logs Estruturados](./NON-FUNCTIONAL-REQUIREMENTS/RNF-044-logs-estruturados-centralizados.md) - compatibility
+- [RNF-045: Validação de Integridade](./NON-FUNCTIONAL-REQUIREMENTS/RNF-045-validacao-integridade-dados.md) - performance
+- [RNF-046: Responsividade - Web](./NON-FUNCTIONAL-REQUIREMENTS/RNF-046-responsividade-web.md) - usability
+- [RNF-047: Internacionalização](./NON-FUNCTIONAL-REQUIREMENTS/RNF-047-internacionalizacao-i18n.md) - usability
+- [RNF-048: Acessibilidade (WCAG 2.1)](./NON-FUNCTIONAL-REQUIREMENTS/RNF-048-acessibilidade-wcag.md) - usability
+- [RNF-050: Mensagens de Erro Claras](./NON-FUNCTIONAL-REQUIREMENTS/RNF-050-mensagens-erro-claras.md) - security
+- [RNF-053: Onboarding](./NON-FUNCTIONAL-REQUIREMENTS/RNF-053-onboarding-tour-guiado.md) - usability
+- [RNF-054: Busca Intuitiva](./NON-FUNCTIONAL-REQUIREMENTS/RNF-054-busca-intuitiva-autocomplete.md) - performance
+- [RNF-055: Atalhos de Teclado](./NON-FUNCTIONAL-REQUIREMENTS/RNF-055-atalhos-teclado.md) - reliability
+- [RNF-057: Documentação de Código](./NON-FUNCTIONAL-REQUIREMENTS/RNF-057-documentacao-de-codigo.md) - usability
+- [RNF-058: Linting e Formatação](./NON-FUNCTIONAL-REQUIREMENTS/RNF-058-linting-e-formatacao.md) - compatibility
+- [RNF-060: Ambiente de Desenvolvimento Replicável](./NON-FUNCTIONAL-REQUIREMENTS/RNF-060-ambiente-de-desenvolvimento-replicavel.md) - security
+- [RNF-062: Modularidade](./NON-FUNCTIONAL-REQUIREMENTS/RNF-062-modularidade.md) - usability
+- [RNF-064: Refatoração Contínua](./NON-FUNCTIONAL-REQUIREMENTS/RNF-064-refatoracao-continua.md) - security
+- [RNF-065: Rollback de Deploy](./NON-FUNCTIONAL-REQUIREMENTS/RNF-065-rollback-de-deploy.md) - reliability
+- [RNF-072: Usuários Simultâneos](./NON-FUNCTIONAL-REQUIREMENTS/RNF-072-usuarios-simultaneos.md) - scalability
+- [RNF-073: Volume de Dados - Unidades](./NON-FUNCTIONAL-REQUIREMENTS/RNF-073-volume-de-dados-unidades.md) - scalability
+- [RNF-074: Volume de Dados - Arquivos](./NON-FUNCTIONAL-REQUIREMENTS/RNF-074-volume-dados-arquivos.md) - scalability
+- [RNF-075: Pico de Carga](./NON-FUNCTIONAL-REQUIREMENTS/RNF-075-pico-carga.md) - scalability
+- [RNF-076: Conexões de Banco](./NON-FUNCTIONAL-REQUIREMENTS/RNF-076-conexoes-banco.md) - scalability
+- [RNF-077: Cache Distribuído](./NON-FUNCTIONAL-REQUIREMENTS/RNF-077-cache-distribuido.md) - scalability
+- [RNF-079: Rate de Sincronização](./NON-FUNCTIONAL-REQUIREMENTS/RNF-079-rate-sincronizacao.md) - scalability
+- [RNF-083: Sistemas de Coordenadas](./NON-FUNCTIONAL-REQUIREMENTS/RNF-083-sistemas-coordenadas.md) - compatibility
+- [RNF-088: OAuth2 Providers](./NON-FUNCTIONAL-REQUIREMENTS/RNF-088-oauth2-providers.md) - security
+
+## GEOAPI (293 requirements)
+
+### Use Cases (3)
+- [UC-003: Vincular Titular a Unidade](./USE-CASES/UC-003-vincular-titular-unidade.md) - security
+- [UC-005: Sincronizar Dados Offline](./USE-CASES/UC-005-sincronizar-dados-offline.md) - security
+- [UC-010: Configurar Camadas WMS/WMTS](./USE-CASES/UC-010-configurar-camadas-wms.md) - performance
+
+### Functional Requirements (93)
+- [RF-001: Integração com Keycloak](./FUNCTIONAL-REQUIREMENTS/RF-001-integração-com-keycloak.md) - security
+- [RF-003: Client Credentials Flow](./FUNCTIONAL-REQUIREMENTS/RF-003-client-credentials-flow.md) - security
+- [RF-004: Refresh Token Automático](./FUNCTIONAL-REQUIREMENTS/RF-004-refresh-token-automático.md) - security
+- [RF-005: Validação JWT em Todas Requisições](./FUNCTIONAL-REQUIREMENTS/RF-005-validação-jwt-em-todas-requisições.md) - security
+- [RF-006: 5 Níveis de Acesso (Roles)](./FUNCTIONAL-REQUIREMENTS/RF-006-5-níveis-de-acesso-roles.md) - security
+- [RF-008: ADMIN - Gestão de Tenant](./FUNCTIONAL-REQUIREMENTS/RF-008-admin-gestão-de-tenant.md) - security
+- [RF-012: Controle de Acesso por Recurso](./FUNCTIONAL-REQUIREMENTS/RF-012-controle-de-acesso-por-recurso.md) - security
+- [RF-013: Isolamento de Dados por Tenant](./FUNCTIONAL-REQUIREMENTS/RF-013-isolamento-de-dados-por-tenant.md) - security
+- [RF-014: Logout e Revogação de Token](./FUNCTIONAL-REQUIREMENTS/RF-014-logout-e-revogação-de-token.md) - security
+- [RF-016: Auditoria de Acessos](./FUNCTIONAL-REQUIREMENTS/RF-016-auditoria-de-acessos.md) - security
+- [RF-017: Criar Tenant](./FUNCTIONAL-REQUIREMENTS/RF-017-criar-tenant.md) - reliability
+- [RF-019: Desativar Tenant](./FUNCTIONAL-REQUIREMENTS/RF-019-desativar-tenant.md) - security
+- [RF-021: Criar Usuário](./FUNCTIONAL-REQUIREMENTS/RF-021-criar-usuário.md) - teams
+- [RF-023: Desativar Usuário](./FUNCTIONAL-REQUIREMENTS/RF-023-desativar-usuário.md) - security
+- [RF-032: Redefinir Senha](./FUNCTIONAL-REQUIREMENTS/RF-032-redefinir-senha.md) - reliability
+- [RF-033: Notificações In-App](./FUNCTIONAL-REQUIREMENTS/RF-033-notificações-in-app.md) - scalability
+- [RF-039: Tipos de Comunidade](./FUNCTIONAL-REQUIREMENTS/RF-039-tipos-de-comunidade.md) - communities
+- [RF-041: Estatísticas de Comunidade](./FUNCTIONAL-REQUIREMENTS/RF-041-estatísticas-de-comunidade.md) - performance
+- [RF-045: Anexar Documentos à Comunidade](./FUNCTIONAL-REQUIREMENTS/RF-045-anexar-documentos-à-comunidade.md) - compatibility
+- [RF-051: Excluir Unidade](./FUNCTIONAL-REQUIREMENTS/RF-051-excluir-unidade.md) - reliability
+- [RF-054: Campos Obrigatórios de Unidade](./FUNCTIONAL-REQUIREMENTS/RF-054-campos-obrigatorios-de-unidade.md) - units
+- [RF-055: Tipos de Unidade](./FUNCTIONAL-REQUIREMENTS/RF-055-tipos-de-unidade.md) - other
+- [RF-056: Status de Unidade](./FUNCTIONAL-REQUIREMENTS/RF-056-status-de-unidade.md) - approval
+- [RF-062: Múltiplos Titulares por Unidade](./FUNCTIONAL-REQUIREMENTS/RF-062-multiplos-titulares-por-unidade.md) - units
+- [RF-064: Anexar Documentos a Unidade](./FUNCTIONAL-REQUIREMENTS/RF-064-anexar-documentos-a-unidade.md) - performance
+- [RF-065: Buscar Unidade por Localização](./FUNCTIONAL-REQUIREMENTS/RF-065-buscar-unidade-por-localizacao.md) - performance
+- [RF-068: Calcular Área da Unidade](./FUNCTIONAL-REQUIREMENTS/RF-068-calcular-area-da-unidade.md) - performance
+- [RF-075: Vincular Unidade a Lote](./FUNCTIONAL-REQUIREMENTS/RF-075-vincular-unidade-a-lote.md) - units
+- [RF-076: Numeração Automática de Unidades](./FUNCTIONAL-REQUIREMENTS/RF-076-numeracao-automatica-de-unidades.md) - compatibility
+- [RF-077: Campos Personalizados de Unidade](./FUNCTIONAL-REQUIREMENTS/RF-077-campos-personalizados-de-unidade.md) - compatibility
+- [RF-093: Titular Principal](./FUNCTIONAL-REQUIREMENTS/RF-093-titular-principal.md) - usability
+- [RF-095: Buscar Titular por CPF](./FUNCTIONAL-REQUIREMENTS/RF-095-buscar-titular-por-cpf.md) - usability
+- [RF-096: Validar CPF/CNPJ](./FUNCTIONAL-REQUIREMENTS/RF-096-validar-cpfcnpj.md) - security
+- [RF-102: Upload de Documentos](./FUNCTIONAL-REQUIREMENTS/RF-102-upload-de-documentos.md) - security
+- [RF-106: Download de Documento](./FUNCTIONAL-REQUIREMENTS/RF-106-download-de-documento.md) - performance
+- [RF-107: Excluir Documento](./FUNCTIONAL-REQUIREMENTS/RF-107-excluir-documento.md) - reliability
+- [RF-108: Upload de Fotos](./FUNCTIONAL-REQUIREMENTS/RF-108-upload-de-fotos.md) - compatibility
+- [RF-112: Ordenar Fotos](./FUNCTIONAL-REQUIREMENTS/RF-112-ordenar-fotos.md) - maintainability
+- [RF-113: Excluir Foto](./FUNCTIONAL-REQUIREMENTS/RF-113-excluir-foto.md) - reliability
+- [RF-114: Compressão de Fotos](./FUNCTIONAL-REQUIREMENTS/RF-114-compressão-de-fotos.md) - performance
+- [RF-115: Geração de Miniaturas](./FUNCTIONAL-REQUIREMENTS/RF-115-geração-de-miniaturas.md) - performance
+- [RF-116: Armazenamento em S3/MinIO](./FUNCTIONAL-REQUIREMENTS/RF-116-armazenamento-em-s3minio.md) - scalability
+- [RF-117: Visualizar Foto no Mapa](./FUNCTIONAL-REQUIREMENTS/RF-117-visualizar-foto-no-mapa.md) - usability
+- [RF-119: Scan de Vírus](./FUNCTIONAL-REQUIREMENTS/RF-119-scan-de-vírus.md) - security
+- [RF-121: Anexar Descrição a Foto](./FUNCTIONAL-REQUIREMENTS/RF-121-anexar-descrição-a-foto.md) - maintainability
+- [RF-122: Tirar Foto com Câmera (Mobile)](./FUNCTIONAL-REQUIREMENTS/RF-122-tirar-foto-com-câmera-mobile.md) - security
+- [RF-124: Exportar Documentos/Fotos](./FUNCTIONAL-REQUIREMENTS/RF-124-exportar-documentosfotos.md) - reliability
+- [RF-125: Limite de Armazenamento por Tenant](./FUNCTIONAL-REQUIREMENTS/RF-125-limite-de-armazenamento-por-tenant.md) - compatibility
+- [RF-126: Notificação de Limite de Armazenamento](./FUNCTIONAL-REQUIREMENTS/RF-126-notificação-de-limite-de-armazenamento.md) - compatibility
+- [RF-127: Criar Camada (Layer)](./FUNCTIONAL-REQUIREMENTS/RF-127-criar-camada-layer.md) - units
+- [RF-128: Editar Camada](./FUNCTIONAL-REQUIREMENTS/RF-128-editar-camada.md) - audit
+- [RF-129: Excluir Camada](./FUNCTIONAL-REQUIREMENTS/RF-129-excluir-camada.md) - reliability
+- [RF-130: Listar Camadas](./FUNCTIONAL-REQUIREMENTS/RF-130-listar-camadas.md) - performance
+- [RF-131: Tipos de Geometria](./FUNCTIONAL-REQUIREMENTS/RF-131-tipos-de-geometria.md) - performance
+- [RF-132: Criar Feature](./FUNCTIONAL-REQUIREMENTS/RF-132-criar-feature.md) - cross-cutting
+- [RF-133: Editar Feature](./FUNCTIONAL-REQUIREMENTS/RF-133-editar-feature.md) - audit
+- [RF-134: Excluir Feature](./FUNCTIONAL-REQUIREMENTS/RF-134-excluir-feature.md) - performance
+- [RF-135: Listar Features](./FUNCTIONAL-REQUIREMENTS/RF-135-listar-features.md) - other
+- [RF-138: Simbologia por Atributo](./FUNCTIONAL-REQUIREMENTS/RF-138-simbologia-por-atributo.md) - performance
+- [RF-140: Importar GeoJSON em Camada](./FUNCTIONAL-REQUIREMENTS/RF-140-importar-geojson-em-camada.md) - compatibility
+- [RF-142: Busca Espacial de Features](./FUNCTIONAL-REQUIREMENTS/RF-142-busca-espacial-de-features.md) - performance
+- [RF-143: Análise Espacial: Buffer](./FUNCTIONAL-REQUIREMENTS/RF-143-análise-espacial-buffer.md) - units
+- [RF-144: Análise Espacial: Intersect](./FUNCTIONAL-REQUIREMENTS/RF-144-análise-espacial-intersect.md) - performance
+- [RF-148: Ordenação de Camadas](./FUNCTIONAL-REQUIREMENTS/RF-148-ordenação-de-camadas.md) - performance
+- [RF-155: Excluir Anotação](./FUNCTIONAL-REQUIREMENTS/RF-155-excluir-anotação.md) - reliability
+- [RF-156: Filtrar Anotações por Autor](./FUNCTIONAL-REQUIREMENTS/RF-156-filtrar-anotações-por-autor.md) - performance
+- [RF-158: Editar Levantamento](./FUNCTIONAL-REQUIREMENTS/RF-158-editar-levantamento.md) - communities
+- [RF-159: Listar Levantamentos](./FUNCTIONAL-REQUIREMENTS/RF-159-listar-levantamentos.md) - performance
+- [RF-161: Visualizar Pontos no Mapa](./FUNCTIONAL-REQUIREMENTS/RF-161-visualizar-pontos-no-mapa.md) - cross-cutting
+- [RF-164: Calcular Perfil Topográfico](./FUNCTIONAL-REQUIREMENTS/RF-164-calcular-perfil-topográfico.md) - other
+- [RF-165: Ajustar Sistema de Coordenadas](./FUNCTIONAL-REQUIREMENTS/RF-165-ajustar-sistema-de-coordenadas.md) - compatibility
+- [RF-173: Editar Processo](./FUNCTIONAL-REQUIREMENTS/RF-173-editar-processo.md) - maintainability
+- [RF-175: Status de Processo](./FUNCTIONAL-REQUIREMENTS/RF-175-status-de-processo.md) - maintainability
+- [RF-176: Anexar Documentos ao Processo](./FUNCTIONAL-REQUIREMENTS/RF-176-anexar-documentos-ao-processo.md) - security
+- [RF-177: Gerar Termo de Legitimação](./FUNCTIONAL-REQUIREMENTS/RF-177-gerar-termo-de-legitimação.md) - security
+- [RF-178: Assinatura Digital de Termo](./FUNCTIONAL-REQUIREMENTS/RF-178-assinatura-digital-de-termo.md) - security
+- [RF-181: Relatório de Processos](./FUNCTIONAL-REQUIREMENTS/RF-181-relatório-de-processos.md) - compatibility
+- [RF-189: Delta Sync (Sincronização Incremental)](./FUNCTIONAL-REQUIREMENTS/RF-189-delta-sync-sincronização-incremental.md) - compatibility
+- [RF-192: Endpoint de Pull](./FUNCTIONAL-REQUIREMENTS/RF-192-endpoint-de-pull.md) - compatibility
+- [RF-193: Endpoint de Push](./FUNCTIONAL-REQUIREMENTS/RF-193-endpoint-de-push.md) - compatibility
+- [RF-199: Exportar Unidades em GeoJSON](./FUNCTIONAL-REQUIREMENTS/RF-199-exportar-unidades-em-geojson.md) - compatibility
+- [RF-200: Exportar Unidades em CSV](./FUNCTIONAL-REQUIREMENTS/RF-200-exportar-unidades-em-csv.md) - compatibility
+- [RF-201: Exportar Unidades em Excel](./FUNCTIONAL-REQUIREMENTS/RF-201-exportar-unidades-em-excel.md) - reports
+- [RF-203: Relatório de Unidades por Status](./FUNCTIONAL-REQUIREMENTS/RF-203-relatório-de-unidades-por-status.md) - maintainability
+- [RF-204: Relatório de Titulares](./FUNCTIONAL-REQUIREMENTS/RF-204-relatório-de-titulares.md) - maintainability
+- [RF-206: Relatório de Atividades de Usuários](./FUNCTIONAL-REQUIREMENTS/RF-206-relatório-de-atividades-de-usuários.md) - maintainability
+- [RF-208: Template Personalizável de Relatórios](./FUNCTIONAL-REQUIREMENTS/RF-208-template-personalizável-de-relatórios.md) - usability
+- [RF-210: Mapa de Situação (PDF)](./FUNCTIONAL-REQUIREMENTS/RF-210-mapa-de-situação-pdf.md) - performance
+- [RF-213: Adicionar Camada WMTS](./FUNCTIONAL-REQUIREMENTS/RF-213-adicionar-camada-wmts.md) - performance
+- [RF-216: Editar Camada WMS/WMTS](./FUNCTIONAL-REQUIREMENTS/RF-216-editar-camada-wmswmts.md) - performance
+- [RF-219: Basemaps Padrão](./FUNCTIONAL-REQUIREMENTS/RF-219-basemaps-padrão.md) - performance
+- [RF-220: Trocar Basemap](./FUNCTIONAL-REQUIREMENTS/RF-220-trocar-basemap.md) - other
+- [RF-221: Proxy de WMS/WMTS](./FUNCTIONAL-REQUIREMENTS/RF-221-proxy-de-wmswmts.md) - performance
+
+### User Stories (132)
+- [US-001: Login com OAuth2](./USER-STORIES/US-001-login-com-oauth2.md) - security
+- [US-002: Renovar Token Automaticamente](./USER-STORIES/US-002-renovar-token-automaticamente.md) - security
+- [US-003: Logout](./USER-STORIES/US-003-logout.md) - security
+- [US-004: Controle de Acesso por Role](./USER-STORIES/US-004-controle-de-acesso-por-role.md) - security
+- [US-005: Criar API Key](./USER-STORIES/US-005-criar-api-key.md) - security
+- [US-006: Revogar API Key](./USER-STORIES/US-006-revogar-api-key.md) - compatibility
+- [US-007: Redefinir Senha](./USER-STORIES/US-007-redefinir-senha.md) - security
+- [US-008: Visualizar Perfil](./USER-STORIES/US-008-visualizar-perfil.md) - security
+- [US-013: Configurar Camadas WMS para Comunidade](./USER-STORIES/US-013-configurar-camadas-wms-para-comunidade.md) - performance
+- [US-014: Criar Unidade Habitacional](./USER-STORIES/US-014-criar-unidade-habitacional.md) - compatibility
+- [US-015: Editar Unidade](./USER-STORIES/US-015-editar-unidade.md) - compatibility
+- [US-016: Excluir Unidade](./USER-STORIES/US-016-excluir-unidade.md) - compatibility
+- [US-017: Listar Unidades com Filtros](./USER-STORIES/US-017-listar-unidades-com-filtros.md) - performance
+- [US-018: Visualizar Detalhes da Unidade](./USER-STORIES/US-018-visualizar-detalhes-da-unidade.md) - compatibility
+- [US-019: Desenhar Geometria no Mapa](./USER-STORIES/US-019-desenhar-geometria-no-mapa.md) - compatibility
+- [US-020: Importar Unidades via Shapefile](./USER-STORIES/US-020-importar-unidades-via-shapefile.md) - compatibility
+- [US-021: Validar Sobreposição de Geometrias](./USER-STORIES/US-021-validar-sobreposição-de-geometrias.md) - performance
+- [US-022: Calcular Área Automaticamente](./USER-STORIES/US-022-calcular-área-automaticamente.md) - units
+- [US-023: Exportar Unidades Selecionadas](./USER-STORIES/US-023-exportar-unidades-selecionadas.md) - compatibility
+- [US-024: Ver Timeline de Alterações](./USER-STORIES/US-024-ver-timeline-de-alterações.md) - compatibility
+- [US-025: Comentar em Unidade](./USER-STORIES/US-025-comentar-em-unidade.md) - security
+- [US-026: Cadastrar Titular](./USER-STORIES/US-026-cadastrar-titular.md) - compatibility
+- [US-027: Editar Titular](./USER-STORIES/US-027-editar-titular.md) - compatibility
+- [US-028: Buscar Titular por CPF](./USER-STORIES/US-028-buscar-titular-por-cpf.md) - performance
+- [US-029: Vincular Titular a Unidade](./USER-STORIES/US-029-vincular-titular-a-unidade.md) - compatibility
+- [US-030: Gerenciar Equipes Técnicas](./USER-STORIES/US-030-gerenciar-equipes-técnicas.md) - compatibility
+- [US-031: Listar Titulares com Filtros](./USER-STORIES/US-031-listar-titulares-com-filtros.md) - performance
+- [US-032: Visualizar Histórico de Titulares](./USER-STORIES/US-032-visualizar-histórico-de-titulares.md) - compatibility
+- [US-033: Excluir Titular](./USER-STORIES/US-033-excluir-titular.md) - reliability
+- [US-034: Aprovar Unidade](./USER-STORIES/US-034-aprovar-unidade.md) - security
+- [US-035: Rejeitar Unidade](./USER-STORIES/US-035-rejeitar-unidade.md) - compatibility
+- [US-036: Solicitar Alterações](./USER-STORIES/US-036-solicitar-alterações.md) - compatibility
+- [US-037: Aprovar em Lote](./USER-STORIES/US-037-aprovar-em-lote.md) - scalability
+- [US-038: Ver Status de Aprovação](./USER-STORIES/US-038-ver-status-de-aprovação.md) - compatibility
+- [US-041: Desenhar Geometria com GPS](./USER-STORIES/US-041-desenhar-geometria-com-gps.md) - reliability
+- [US-042: Tirar Fotos com Câmera](./USER-STORIES/US-042-tirar-fotos-com-câmera.md) - maintainability
+- [US-043: Selecionar Fotos da Galeria](./USER-STORIES/US-043-selecionar-fotos-da-galeria.md) - maintainability
+- [US-044: Cadastrar Titular no Campo](./USER-STORIES/US-044-cadastrar-titular-no-campo.md) - reliability
+- [US-045: Ver Mapa Offline](./USER-STORIES/US-045-ver-mapa-offline.md) - reliability
+- [US-050: Sincronizar Manualmente](./USER-STORIES/US-050-sincronizar-manualmente.md) - reliability
+- [US-051: Sincronização Automática](./USER-STORIES/US-051-sincronização-automática.md) - compatibility
+- [US-053: Delta Sync Bidirecional](./USER-STORIES/US-053-delta-sync-bidirecional.md) - performance
+- [US-054: Resolver Conflitos de Dados](./USER-STORIES/US-054-resolver-conflitos-de-dados.md) - compatibility
+- [US-056: Visualizar Unidades no Mapa](./USER-STORIES/US-056-visualizar-unidades-no-mapa.md) - performance
+- [US-057: Filtrar Unidades no Mapa](./USER-STORIES/US-057-filtrar-unidades-no-mapa.md) - reliability
+- [US-058: Busca Espacial](./USER-STORIES/US-058-busca-espacial.md) - performance
+- [US-059: Medição de Distância e Área](./USER-STORIES/US-059-medição-de-distânciaárea.md) - reliability
+- [US-060: Camadas de Mapa Base](./USER-STORIES/US-060-camadas-de-mapa-base.md) - performance
+- [US-061: Ver Sobreposições Visuais](./USER-STORIES/US-061-ver-sobreposições-visuais.md) - performance
+- [US-062: Geocodificação de Endereço](./USER-STORIES/US-062-geocodificação-de-endereço.md) - reliability
+- [US-063: Imprimir Mapa](./USER-STORIES/US-063-imprimir-mapa.md) - reliability
+- [US-064: Adicionar Camadas WMS](./USER-STORIES/US-064-adicionar-camadas-wms.md) - performance
+- [US-065: Upload de Documentos](./USER-STORIES/US-065-upload-de-documentos.md) - maintainability
+- [US-066: Visualizar Documentos](./USER-STORIES/US-066-visualizar-documentos.md) - performance
+- [US-067: Excluir Documento](./USER-STORIES/US-067-excluir-documento.md) - reliability
+- [US-068: OCR em Documentos](./USER-STORIES/US-068-ocr-em-documentos.md) - scalability
+- [US-069: Galeria de Fotos da Unidade](./USER-STORIES/US-069-galeria-de-fotos-da-unidade.md) - performance
+- [US-070: Geolocalização de Fotos](./USER-STORIES/US-070-geolocalização-de-fotos.md) - performance
+- [US-071: Compressão de Fotos](./USER-STORIES/US-071-compressão-de-fotos.md) - scalability
+- [US-072: Exportar em Shapefile](./USER-STORIES/US-072-exportar-em-shapefile.md) - compatibility
+- [US-073: Exportar em Excel/CSV](./USER-STORIES/US-073-exportar-em-excelcsv.md) - performance
+- [US-074: Gerar Relatório de Comunidade](./USER-STORIES/US-074-gerar-relatório-de-comunidade.md) - compatibility
+- [US-075: Agendar Relatório Recorrente](./USER-STORIES/US-075-agendar-relatório-recorrente.md) - compatibility
+- [US-076: Baixar Relatório Gerado](./USER-STORIES/US-076-baixar-relatório-gerado.md) - compatibility
+- [US-077: Dashboard de KPIs](./USER-STORIES/US-077-dashboard-de-kpis.md) - performance
+- [US-078: Criar Processo de Legitimação](./USER-STORIES/US-078-criar-processo-de-legitimação.md) - compatibility
+- [US-079: Submeter Processo para Aprovação](./USER-STORIES/US-079-submeter-processo-para-aprovação.md) - reliability
+- [US-080: Aprovar ou Rejeitar Processo](./USER-STORIES/US-080-aprovarrejeitar-processo.md) - reliability
+- [US-081: Gerar Termo de Legitimação (PDF)](./USER-STORIES/US-081-gerar-termo-de-legitimação-pdf.md) - reliability
+- [US-082: Exportar Mapa como Imagem](./USER-STORIES/US-082-exportar-mapa-como-imagem.md) - performance
+- [US-083: Gerenciar Usuários do Tenant](./USER-STORIES/US-083-gerenciar-usuários-do-tenant.md) - security
+- [US-084: Configurar Tenant](./USER-STORIES/US-084-configurar-tenant.md) - compatibility
+- [US-085: Audit Log Global](./USER-STORIES/US-085-audit-log-global.md) - performance
+- [US-086: Backup Manual](./USER-STORIES/US-086-backup-manual.md) - security
+- [US-100: Ver Estatísticas de Comunidade](./USER-STORIES/US-100-ver-estatisticas-de-comunidade.md) - performance
+- [US-101: Obter Estatísticas do Dashboard](./USER-STORIES/US-101-obter-estatisticas-do-dashboard.md) - performance
+- [US-102: Obter Status de Exportação](./USER-STORIES/US-102-obter-status-de-exportacao.md) - performance
+- [US-103: Cancelar Exportação](./USER-STORIES/US-103-cancelar-exportacao.md) - maintainability
+- [US-104: Relatório de Timeline de Atividades](./USER-STORIES/US-104-relatorio-de-timeline-de-atividades.md) - performance
+- [US-105: Relatório Sumário de Comunidade](./USER-STORIES/US-105-relatorio-sumario-de-comunidade.md) - security
+- [US-106: Relatório de Estatísticas de Titulares](./USER-STORIES/US-106-relatorio-de-estatisticas-de-titulares.md) - security
+- [US-107: Relatório de Cobertura Espacial](./USER-STORIES/US-107-relatorio-de-cobertura-espacial.md) - maintainability
+- [US-108: Relatório de Distribuição por Status](./USER-STORIES/US-108-relatorio-de-distribuicao-por-status.md) - maintainability
+- [US-109: Exportar Unidade Individual](./USER-STORIES/US-109-exportar-unidade-individual.md) - security
+- [US-110: Visualizar Atividades de Usuário](./USER-STORIES/US-110-visualizar-atividades-de-usuario.md) - security
+- [US-111: Listar Comunidades de Usuário](./USER-STORIES/US-111-listar-comunidades-de-usuario.md) - usability
+- [US-112: Gerenciar Roles de Usuário](./USER-STORIES/US-112-gerenciar-roles-de-usuario.md) - security
+- [US-113: Remover Role Específica de Usuário](./USER-STORIES/US-113-remover-role-especifica-de-usuario.md) - security
+- [US-114: Gerenciar Comunidades de Equipe](./USER-STORIES/US-114-gerenciar-comunidades-de-equipe.md) - maintainability
+- [US-115: Remover Comunidade de Equipe](./USER-STORIES/US-115-remover-comunidade-de-equipe.md) - maintainability
+- [US-116: Listar Tenants](./USER-STORIES/US-116-listar-tenants.md) - performance
+- [US-117: Reativar Tenant](./USER-STORIES/US-117-reativar-tenant.md) - security
+- [US-118: Suspender Tenant](./USER-STORIES/US-118-suspender-tenant.md) - security
+- [US-119: Gerenciar Serviços WMS/WMTS](./USER-STORIES/US-119-gerenciar-servicos-wmswmts.md) - security
+- [US-120: Visualizar Geoserviço](./USER-STORIES/US-120-visualizar-geoservico.md) - security
+- [US-121: Listar Layers de Geoservico](./USER-STORIES/US-121-listar-layers-de-geoservico.md) - compatibility
+- [US-122: Acessar Geoservico via Proxy](./USER-STORIES/US-122-acessar-geoservico-via-proxy.md) - security
+- [US-123: Testar Conexao com Geoservico](./USER-STORIES/US-123-testar-conexao-com-geoservico.md) - performance
+- [US-124: Obter Dados do Usuario Autenticado](./USER-STORIES/US-124-obter-dados-do-usuario-autenticado.md) - security
+- [US-125: Gerenciar Quadras](./USER-STORIES/US-125-gerenciar-quadras.md) - compatibility
+- [US-126: Visualizar Detalhes de Quadra](./USER-STORIES/US-126-visualizar-detalhes-de-quadra.md) - compatibility
+- [US-127: Obter Geometria de Quadra](./USER-STORIES/US-127-obter-geometria-de-quadra.md) - performance
+- [US-128: Listar Lotes de Quadra](./USER-STORIES/US-128-listar-lotes-de-quadra.md) - performance
+- [US-129: Listar Comunidades](./USER-STORIES/US-129-listar-comunidades.md) - performance
+- [US-130: Visualizar Detalhes de Comunidade](./USER-STORIES/US-130-visualizar-detalhes-de-comunidade.md) - performance
+- [US-131: Listar Unidades de Comunidade](./USER-STORIES/US-131-listar-unidades-de-comunidade.md) - performance
+- [US-132: Gerenciar Lotes](./USER-STORIES/US-132-gerenciar-lotes.md) - compatibility
+- [US-133: Visualizar Detalhes de Lote](./USER-STORIES/US-133-visualizar-detalhes-de-lote.md) - compatibility
+- [US-134: Obter Geometria de Lote](./USER-STORIES/US-134-obter-geometria-de-lote.md) - performance
+- [US-135: Listar Unidades de Lote](./USER-STORIES/US-135-listar-unidades-de-lote.md) - performance
+- [US-136: Obter Geometria de Unidade](./USER-STORIES/US-136-obter-geometria-de-unidade.md) - performance
+- [US-137: Ver Historico de Alteracoes de Unidade](./USER-STORIES/US-137-ver-historico-de-alteracoes-de-unidade.md) - performance
+- [US-138: Listar Unidades de Titular](./USER-STORIES/US-138-listar-unidades-de-titular.md) - performance
+- [US-139: Vincular Titular a Unidade](./USER-STORIES/US-139-vincular-titular-a-unidade.md) - compatibility
+- [US-140: Alterar Status de Unidade](./USER-STORIES/US-140-alterar-status-de-unidade.md) - compatibility
+- [US-141: Submeter Unidade para Revisao](./USER-STORIES/US-141-submeter-unidade-para-revisao.md) - compatibility
+- [US-142: Realizar Ajustamento Topografico](./USER-STORIES/US-142-realizar-ajustamento-topografico.md) - compatibility
+- [US-143: Gerenciar Campanhas de Levantamento](./USER-STORIES/US-143-gerenciar-campanhas-de-levantamento.md) - compatibility
+- [US-144: Visualizar Campanha de Levantamento](./USER-STORIES/US-144-visualizar-campanha-de-levantamento.md) - performance
+- [US-145: Finalizar Campanha](./USER-STORIES/US-145-finalizar-campanha.md) - performance
+- [US-146: Iniciar Campanha](./USER-STORIES/US-146-iniciar-campanha.md) - compatibility
+- [US-147: Gerenciar Medicoes](./USER-STORIES/US-147-gerenciar-medicoes.md) - compatibility
+- [US-148: Visualizar Medicao](./USER-STORIES/US-148-visualizar-medicao.md) - compatibility
+- [US-149: Gerenciar Pontos Topograficos](./USER-STORIES/US-149-gerenciar-pontos-topograficos.md) - compatibility
+- [US-150: Visualizar Ponto Topografico](./USER-STORIES/US-150-visualizar-ponto-topografico.md) - compatibility
+- [US-151: Gerenciar Anotacoes no Mapa](./USER-STORIES/US-151-gerenciar-anotacoes-no-mapa.md) - compatibility
+- [US-152: Visualizar Anotacao](./USER-STORIES/US-152-visualizar-anotacao.md) - compatibility
+- [US-153: Comentar em Anotacao](./USER-STORIES/US-153-comentar-em-anotacao.md) - compatibility
+- [US-154: Resolver Anotacao](./USER-STORIES/US-154-resolver-anotacao.md) - performance
+- [US-155: Gerenciar Camadas Vetoriais](./USER-STORIES/US-155-gerenciar-camadas-vetoriais.md) - performance
+- [US-156: Visualizar Detalhes de Camada](./USER-STORIES/US-156-visualizar-detalhes-de-camada.md) - security
+- [US-157: Listar Features de Camada](./USER-STORIES/US-157-listar-features-de-camada.md) - scalability
+
+### Non-Functional Requirements (65)
+- [RNF-001: Tempo de Resposta - Endpoints de Leitura](./NON-FUNCTIONAL-REQUIREMENTS/RNF-001-tempo-resposta-endpoints-leitura.md) - performance
+- [RNF-002: Tempo de Resposta - Endpoints de Escrita](./NON-FUNCTIONAL-REQUIREMENTS/RNF-002-tempo-resposta-endpoints-escrita.md) - performance
+- [RNF-003: Tempo de Resposta - Queries Espaciais](./NON-FUNCTIONAL-REQUIREMENTS/RNF-003-tempo-resposta-queries-espaciais.md) - performance
+- [RNF-008: Sincronização Offline - Pull](./NON-FUNCTIONAL-REQUIREMENTS/RNF-008-sincronizacao-offline-pull.md) - compatibility
+- [RNF-009: Sincronização Offline - Push](./NON-FUNCTIONAL-REQUIREMENTS/RNF-009-sincronizacao-offline-push.md) - scalability
+- [RNF-011: Paginação de Listagens](./NON-FUNCTIONAL-REQUIREMENTS/RNF-011-paginacao-listagens.md) - performance
+- [RNF-012: Cache de Dados](./NON-FUNCTIONAL-REQUIREMENTS/RNF-012-cache-dados.md) - scalability
+- [RNF-013: Consumo de Memória - Backend](./NON-FUNCTIONAL-REQUIREMENTS/RNF-013-consumo-memoria-backend.md) - scalability
+- [RNF-017: Expiração de Tokens](./NON-FUNCTIONAL-REQUIREMENTS/RNF-017-expiracao-tokens.md) - security
+- [RNF-019: Criptografia de Dados Sensíveis](./NON-FUNCTIONAL-REQUIREMENTS/RNF-019-criptografia-dados-sensiveis.md) - performance
+- [RNF-020: Validação de Input](./NON-FUNCTIONAL-REQUIREMENTS/RNF-020-validacao-input.md) - security
+- [RNF-021: Rate Limiting](./NON-FUNCTIONAL-REQUIREMENTS/RNF-021-rate-limiting.md) - scalability
+- [RNF-022: CORS Restritivo](./NON-FUNCTIONAL-REQUIREMENTS/RNF-022-cors-restritivo.md) - security
+- [RNF-023: Content Security Policy](./NON-FUNCTIONAL-REQUIREMENTS/RNF-023-content-security-policy.md) - security
+- [RNF-024: Auditoria de Ações](./NON-FUNCTIONAL-REQUIREMENTS/RNF-024-auditoria-acoes.md) - performance
+- [RNF-025: Isolamento de Tenants](./NON-FUNCTIONAL-REQUIREMENTS/RNF-025-isolamento-tenants.md) - security
+- [RNF-026: Proteção contra CSRF](./NON-FUNCTIONAL-REQUIREMENTS/RNF-026-protecao-csrf.md) - scalability
+- [RNF-027: Armazenamento Seguro de Senhas](./NON-FUNCTIONAL-REQUIREMENTS/RNF-027-armazenamento-seguro-senhas.md) - security
+- [RNF-028: Proteção de API Keys](./NON-FUNCTIONAL-REQUIREMENTS/RNF-028-protecao-api-keys.md) - security
+- [RNF-029: Scan de Malware em Uploads](./NON-FUNCTIONAL-REQUIREMENTS/RNF-029-scan-malware-uploads.md) - security
+- [RNF-030: Proteção de Dados Pessoais (LGPD)](./NON-FUNCTIONAL-REQUIREMENTS/RNF-030-protecao-dados-pessoais-lgpd.md) - security
+- [RNF-032: Permissões Granulares](./NON-FUNCTIONAL-REQUIREMENTS/RNF-032-permissoes-granulares.md) - scalability
+- [RNF-033: Secrets Management](./NON-FUNCTIONAL-REQUIREMENTS/RNF-033-secrets-management.md) - security
+- [RNF-034: SQL Injection Prevention](./NON-FUNCTIONAL-REQUIREMENTS/RNF-034-sql-injection-prevention.md) - security
+- [RNF-035: Monitoramento de Segurança](./NON-FUNCTIONAL-REQUIREMENTS/RNF-035-monitoramento-seguranca.md) - security
+- [RNF-036: Uptime](./NON-FUNCTIONAL-REQUIREMENTS/RNF-036-uptime.md) - scalability
+- [RNF-037: Recuperação de Falhas](./NON-FUNCTIONAL-REQUIREMENTS/RNF-037-recuperacao-automatica-falhas.md) - reliability
+- [RNF-038: Backup de Dados](./NON-FUNCTIONAL-REQUIREMENTS/RNF-038-backup-automatico-dados.md) - performance
+- [RNF-039: RPO (Recovery Point Objective)](./NON-FUNCTIONAL-REQUIREMENTS/RNF-039-rpo-objetivo-ponto-recuperacao.md) - performance
+- [RNF-040: RTO (Recovery Time Objective)](./NON-FUNCTIONAL-REQUIREMENTS/RNF-040-rto-objetivo-tempo-recuperacao.md) - reliability
+- [RNF-041: Graceful Degradation](./NON-FUNCTIONAL-REQUIREMENTS/RNF-041-degradacao-graciosa-sistema.md) - performance
+- [RNF-042: Zero Downtime Deployment](./NON-FUNCTIONAL-REQUIREMENTS/RNF-042-deploy-zero-downtime.md) - performance
+- [RNF-043: Monitoramento de Erros](./NON-FUNCTIONAL-REQUIREMENTS/RNF-043-monitoramento-erros-aplicacao.md) - security
+- [RNF-045: Validação de Integridade](./NON-FUNCTIONAL-REQUIREMENTS/RNF-045-validacao-integridade-dados.md) - performance
+- [RNF-047: Internacionalização](./NON-FUNCTIONAL-REQUIREMENTS/RNF-047-internacionalizacao-i18n.md) - usability
+- [RNF-049: Feedback Visual](./NON-FUNCTIONAL-REQUIREMENTS/RNF-049-feedback-visual-operacoes.md) - performance
+- [RNF-051: Undo/Redo](./NON-FUNCTIONAL-REQUIREMENTS/RNF-051-undo-redo-acoes.md) - reliability
+- [RNF-052: Consistência de UI](./NON-FUNCTIONAL-REQUIREMENTS/RNF-052-consistencia-ui-design-system.md) - usability
+- [RNF-053: Onboarding](./NON-FUNCTIONAL-REQUIREMENTS/RNF-053-onboarding-tour-guiado.md) - usability
+- [RNF-054: Busca Intuitiva](./NON-FUNCTIONAL-REQUIREMENTS/RNF-054-busca-intuitiva-autocomplete.md) - performance
+- [RNF-055: Atalhos de Teclado](./NON-FUNCTIONAL-REQUIREMENTS/RNF-055-atalhos-teclado.md) - reliability
+- [RNF-056: Cobertura de Testes](./NON-FUNCTIONAL-REQUIREMENTS/RNF-056-cobertura-de-testes.md) - maintainability
+- [RNF-057: Documentação de Código](./NON-FUNCTIONAL-REQUIREMENTS/RNF-057-documentacao-de-codigo.md) - usability
+- [RNF-058: Linting e Formatação](./NON-FUNCTIONAL-REQUIREMENTS/RNF-058-linting-e-formatacao.md) - compatibility
+- [RNF-059: Versionamento Semântico](./NON-FUNCTIONAL-REQUIREMENTS/RNF-059-versionamento-semantico.md) - performance
+- [RNF-060: Ambiente de Desenvolvimento Replicável](./NON-FUNCTIONAL-REQUIREMENTS/RNF-060-ambiente-de-desenvolvimento-replicavel.md) - security
+- [RNF-061: Observabilidade](./NON-FUNCTIONAL-REQUIREMENTS/RNF-061-observabilidade.md) - scalability
+- [RNF-062: Modularidade](./NON-FUNCTIONAL-REQUIREMENTS/RNF-062-modularidade.md) - usability
+- [RNF-063: Tratamento de Exceções](./NON-FUNCTIONAL-REQUIREMENTS/RNF-063-tratamento-de-excecoes.md) - security
+- [RNF-064: Refatoração Contínua](./NON-FUNCTIONAL-REQUIREMENTS/RNF-064-refatoracao-continua.md) - security
+- [RNF-065: Rollback de Deploy](./NON-FUNCTIONAL-REQUIREMENTS/RNF-065-rollback-de-deploy.md) - reliability
+- [RNF-071: Escala Horizontal - Backend](./NON-FUNCTIONAL-REQUIREMENTS/RNF-071-escala-horizontal-backend.md) - scalability
+- [RNF-072: Usuários Simultâneos](./NON-FUNCTIONAL-REQUIREMENTS/RNF-072-usuarios-simultaneos.md) - scalability
+- [RNF-073: Volume de Dados - Unidades](./NON-FUNCTIONAL-REQUIREMENTS/RNF-073-volume-de-dados-unidades.md) - scalability
+- [RNF-074: Volume de Dados - Arquivos](./NON-FUNCTIONAL-REQUIREMENTS/RNF-074-volume-dados-arquivos.md) - scalability
+- [RNF-076: Conexões de Banco](./NON-FUNCTIONAL-REQUIREMENTS/RNF-076-conexoes-banco.md) - scalability
+- [RNF-077: Cache Distribuído](./NON-FUNCTIONAL-REQUIREMENTS/RNF-077-cache-distribuido.md) - scalability
+- [RNF-079: Rate de Sincronização](./NON-FUNCTIONAL-REQUIREMENTS/RNF-079-rate-sincronizacao.md) - scalability
+- [RNF-080: Database Sharding (Futuro)](./NON-FUNCTIONAL-REQUIREMENTS/RNF-080-database-sharding.md) - scalability
+- [RNF-085: API REST Padrão](./NON-FUNCTIONAL-REQUIREMENTS/RNF-085-api-rest-padrao.md) - security
+- [RNF-086: OpenAPI Spec](./NON-FUNCTIONAL-REQUIREMENTS/RNF-086-openapi-spec.md) - security
+- [RNF-087: Webhooks (Futuro)](./NON-FUNCTIONAL-REQUIREMENTS/RNF-087-webhooks.md) - scalability
+- [RNF-088: OAuth2 Providers](./NON-FUNCTIONAL-REQUIREMENTS/RNF-088-oauth2-providers.md) - security
+- [RNF-089: Timezone](./NON-FUNCTIONAL-REQUIREMENTS/RNF-089-timezone.md) - usability
+- [RNF-090: Charset](./NON-FUNCTIONAL-REQUIREMENTS/RNF-090-charset.md) - usability
+
+## GEOGIS (109 requirements)
+
+### Use Cases (2)
+- [UC-007: Exportar Dados Geográficos](./USE-CASES/UC-007-exportar-dados-geograficos.md) - scalability
+- [UC-008: Importar Shapefile](./USE-CASES/UC-008-importar-shapefile.md) - scalability
+
+### Functional Requirements (59)
+- [RF-001: Integração com Keycloak](./FUNCTIONAL-REQUIREMENTS/RF-001-integração-com-keycloak.md) - security
+- [RF-003: Client Credentials Flow](./FUNCTIONAL-REQUIREMENTS/RF-003-client-credentials-flow.md) - security
+- [RF-012: Controle de Acesso por Recurso](./FUNCTIONAL-REQUIREMENTS/RF-012-controle-de-acesso-por-recurso.md) - security
+- [RF-016: Auditoria de Acessos](./FUNCTIONAL-REQUIREMENTS/RF-016-auditoria-de-acessos.md) - security
+- [RF-019: Desativar Tenant](./FUNCTIONAL-REQUIREMENTS/RF-019-desativar-tenant.md) - security
+- [RF-023: Desativar Usuário](./FUNCTIONAL-REQUIREMENTS/RF-023-desativar-usuário.md) - security
+- [RF-034: Criar Comunidade](./FUNCTIONAL-REQUIREMENTS/RF-034-criar-comunidade.md) - compatibility
+- [RF-040: Importar Shapefile de Comunidade](./FUNCTIONAL-REQUIREMENTS/RF-040-importar-shapefile-de-comunidade.md) - performance
+- [RF-041: Estatísticas de Comunidade](./FUNCTIONAL-REQUIREMENTS/RF-041-estatísticas-de-comunidade.md) - performance
+- [RF-043: Exportar Comunidade](./FUNCTIONAL-REQUIREMENTS/RF-043-exportar-comunidade.md) - compatibility
+- [RF-045: Anexar Documentos à Comunidade](./FUNCTIONAL-REQUIREMENTS/RF-045-anexar-documentos-à-comunidade.md) - compatibility
+- [RF-051: Excluir Unidade](./FUNCTIONAL-REQUIREMENTS/RF-051-excluir-unidade.md) - reliability
+- [RF-056: Status de Unidade](./FUNCTIONAL-REQUIREMENTS/RF-056-status-de-unidade.md) - approval
+- [RF-062: Múltiplos Titulares por Unidade](./FUNCTIONAL-REQUIREMENTS/RF-062-multiplos-titulares-por-unidade.md) - units
+- [RF-064: Anexar Documentos a Unidade](./FUNCTIONAL-REQUIREMENTS/RF-064-anexar-documentos-a-unidade.md) - performance
+- [RF-067: Importar Unidades via Shapefile](./FUNCTIONAL-REQUIREMENTS/RF-067-importar-unidades-via-shapefile.md) - compatibility
+- [RF-075: Vincular Unidade a Lote](./FUNCTIONAL-REQUIREMENTS/RF-075-vincular-unidade-a-lote.md) - units
+- [RF-076: Numeração Automática de Unidades](./FUNCTIONAL-REQUIREMENTS/RF-076-numeracao-automatica-de-unidades.md) - compatibility
+- [RF-082: Exportar Unidades](./FUNCTIONAL-REQUIREMENTS/RF-082-exportar-unidades.md) - reliability
+- [RF-093: Titular Principal](./FUNCTIONAL-REQUIREMENTS/RF-093-titular-principal.md) - usability
+- [RF-117: Visualizar Foto no Mapa](./FUNCTIONAL-REQUIREMENTS/RF-117-visualizar-foto-no-mapa.md) - usability
+- [RF-119: Scan de Vírus](./FUNCTIONAL-REQUIREMENTS/RF-119-scan-de-vírus.md) - security
+- [RF-126: Notificação de Limite de Armazenamento](./FUNCTIONAL-REQUIREMENTS/RF-126-notificação-de-limite-de-armazenamento.md) - compatibility
+- [RF-127: Criar Camada (Layer)](./FUNCTIONAL-REQUIREMENTS/RF-127-criar-camada-layer.md) - units
+- [RF-129: Excluir Camada](./FUNCTIONAL-REQUIREMENTS/RF-129-excluir-camada.md) - reliability
+- [RF-130: Listar Camadas](./FUNCTIONAL-REQUIREMENTS/RF-130-listar-camadas.md) - performance
+- [RF-131: Tipos de Geometria](./FUNCTIONAL-REQUIREMENTS/RF-131-tipos-de-geometria.md) - performance
+- [RF-132: Criar Feature](./FUNCTIONAL-REQUIREMENTS/RF-132-criar-feature.md) - cross-cutting
+- [RF-133: Editar Feature](./FUNCTIONAL-REQUIREMENTS/RF-133-editar-feature.md) - audit
+- [RF-137: Estilos de Camadas](./FUNCTIONAL-REQUIREMENTS/RF-137-estilos-de-camadas.md) - performance
+- [RF-138: Simbologia por Atributo](./FUNCTIONAL-REQUIREMENTS/RF-138-simbologia-por-atributo.md) - performance
+- [RF-139: Importar Shapefile em Camada](./FUNCTIONAL-REQUIREMENTS/RF-139-importar-shapefile-em-camada.md) - compatibility
+- [RF-141: Exportar Camada](./FUNCTIONAL-REQUIREMENTS/RF-141-exportar-camada.md) - reliability
+- [RF-160: Importar Pontos de Levantamento](./FUNCTIONAL-REQUIREMENTS/RF-160-importar-pontos-de-levantamento.md) - compatibility
+- [RF-161: Visualizar Pontos no Mapa](./FUNCTIONAL-REQUIREMENTS/RF-161-visualizar-pontos-no-mapa.md) - cross-cutting
+- [RF-162: Gerar Curvas de Nível](./FUNCTIONAL-REQUIREMENTS/RF-162-gerar-curvas-de-nível.md) - other
+- [RF-163: Gerar Modelo Digital de Elevação (MDE)](./FUNCTIONAL-REQUIREMENTS/RF-163-gerar-modelo-digital-de-elevação-mde.md) - compatibility
+- [RF-164: Calcular Perfil Topográfico](./FUNCTIONAL-REQUIREMENTS/RF-164-calcular-perfil-topográfico.md) - other
+- [RF-165: Ajustar Sistema de Coordenadas](./FUNCTIONAL-REQUIREMENTS/RF-165-ajustar-sistema-de-coordenadas.md) - compatibility
+- [RF-166: Exportar Levantamento](./FUNCTIONAL-REQUIREMENTS/RF-166-exportar-levantamento.md) - maintainability
+- [RF-169: Integração com Estação Total](./FUNCTIONAL-REQUIREMENTS/RF-169-integração-com-estação-total.md) - compatibility
+- [RF-172: Criar Processo de Legitimação](./FUNCTIONAL-REQUIREMENTS/RF-172-criar-processo-de-legitimação.md) - approval
+- [RF-173: Editar Processo](./FUNCTIONAL-REQUIREMENTS/RF-173-editar-processo.md) - maintainability
+- [RF-175: Status de Processo](./FUNCTIONAL-REQUIREMENTS/RF-175-status-de-processo.md) - maintainability
+- [RF-176: Anexar Documentos ao Processo](./FUNCTIONAL-REQUIREMENTS/RF-176-anexar-documentos-ao-processo.md) - security
+- [RF-177: Gerar Termo de Legitimação](./FUNCTIONAL-REQUIREMENTS/RF-177-gerar-termo-de-legitimação.md) - security
+- [RF-178: Assinatura Digital de Termo](./FUNCTIONAL-REQUIREMENTS/RF-178-assinatura-digital-de-termo.md) - security
+- [RF-181: Relatório de Processos](./FUNCTIONAL-REQUIREMENTS/RF-181-relatório-de-processos.md) - compatibility
+- [RF-197: Exportar Unidades em Shapefile](./FUNCTIONAL-REQUIREMENTS/RF-197-exportar-unidades-em-shapefile.md) - compatibility
+- [RF-200: Exportar Unidades em CSV](./FUNCTIONAL-REQUIREMENTS/RF-200-exportar-unidades-em-csv.md) - compatibility
+- [RF-201: Exportar Unidades em Excel](./FUNCTIONAL-REQUIREMENTS/RF-201-exportar-unidades-em-excel.md) - reports
+- [RF-203: Relatório de Unidades por Status](./FUNCTIONAL-REQUIREMENTS/RF-203-relatório-de-unidades-por-status.md) - maintainability
+- [RF-204: Relatório de Titulares](./FUNCTIONAL-REQUIREMENTS/RF-204-relatório-de-titulares.md) - maintainability
+- [RF-206: Relatório de Atividades de Usuários](./FUNCTIONAL-REQUIREMENTS/RF-206-relatório-de-atividades-de-usuários.md) - maintainability
+- [RF-208: Template Personalizável de Relatórios](./FUNCTIONAL-REQUIREMENTS/RF-208-template-personalizável-de-relatórios.md) - usability
+- [RF-210: Mapa de Situação (PDF)](./FUNCTIONAL-REQUIREMENTS/RF-210-mapa-de-situação-pdf.md) - performance
+- [RF-212: Adicionar Camada WMS](./FUNCTIONAL-REQUIREMENTS/RF-212-adicionar-camada-wms.md) - compatibility
+- [RF-219: Basemaps Padrão](./FUNCTIONAL-REQUIREMENTS/RF-219-basemaps-padrão.md) - performance
+- [RF-220: Trocar Basemap](./FUNCTIONAL-REQUIREMENTS/RF-220-trocar-basemap.md) - other
+
+### User Stories (19)
+- [US-019: Desenhar Geometria no Mapa](./USER-STORIES/US-019-desenhar-geometria-no-mapa.md) - compatibility
+- [US-020: Importar Unidades via Shapefile](./USER-STORIES/US-020-importar-unidades-via-shapefile.md) - compatibility
+- [US-023: Exportar Unidades Selecionadas](./USER-STORIES/US-023-exportar-unidades-selecionadas.md) - compatibility
+- [US-072: Exportar em Shapefile](./USER-STORIES/US-072-exportar-em-shapefile.md) - compatibility
+- [US-076: Baixar Relatório Gerado](./USER-STORIES/US-076-baixar-relatório-gerado.md) - compatibility
+- [US-107: Relatório de Cobertura Espacial](./USER-STORIES/US-107-relatorio-de-cobertura-espacial.md) - maintainability
+- [US-108: Relatório de Distribuição por Status](./USER-STORIES/US-108-relatorio-de-distribuicao-por-status.md) - maintainability
+- [US-126: Visualizar Detalhes de Quadra](./USER-STORIES/US-126-visualizar-detalhes-de-quadra.md) - compatibility
+- [US-127: Obter Geometria de Quadra](./USER-STORIES/US-127-obter-geometria-de-quadra.md) - performance
+- [US-131: Listar Unidades de Comunidade](./USER-STORIES/US-131-listar-unidades-de-comunidade.md) - performance
+- [US-133: Visualizar Detalhes de Lote](./USER-STORIES/US-133-visualizar-detalhes-de-lote.md) - compatibility
+- [US-134: Obter Geometria de Lote](./USER-STORIES/US-134-obter-geometria-de-lote.md) - performance
+- [US-135: Listar Unidades de Lote](./USER-STORIES/US-135-listar-unidades-de-lote.md) - performance
+- [US-136: Obter Geometria de Unidade](./USER-STORIES/US-136-obter-geometria-de-unidade.md) - performance
+- [US-145: Finalizar Campanha](./USER-STORIES/US-145-finalizar-campanha.md) - performance
+- [US-149: Gerenciar Pontos Topograficos](./USER-STORIES/US-149-gerenciar-pontos-topograficos.md) - compatibility
+- [US-151: Gerenciar Anotacoes no Mapa](./USER-STORIES/US-151-gerenciar-anotacoes-no-mapa.md) - compatibility
+- [US-155: Gerenciar Camadas Vetoriais](./USER-STORIES/US-155-gerenciar-camadas-vetoriais.md) - performance
+- [US-157: Listar Features de Camada](./USER-STORIES/US-157-listar-features-de-camada.md) - scalability
+
+### Non-Functional Requirements (29)
+- [RNF-007: Exportação de Dados](./NON-FUNCTIONAL-REQUIREMENTS/RNF-007-exportacao-dados.md) - security
+- [RNF-012: Cache de Dados](./NON-FUNCTIONAL-REQUIREMENTS/RNF-012-cache-dados.md) - scalability
+- [RNF-024: Auditoria de Ações](./NON-FUNCTIONAL-REQUIREMENTS/RNF-024-auditoria-acoes.md) - performance
+- [RNF-027: Armazenamento Seguro de Senhas](./NON-FUNCTIONAL-REQUIREMENTS/RNF-027-armazenamento-seguro-senhas.md) - security
+- [RNF-036: Uptime](./NON-FUNCTIONAL-REQUIREMENTS/RNF-036-uptime.md) - scalability
+- [RNF-037: Recuperação de Falhas](./NON-FUNCTIONAL-REQUIREMENTS/RNF-037-recuperacao-automatica-falhas.md) - reliability
+- [RNF-038: Backup de Dados](./NON-FUNCTIONAL-REQUIREMENTS/RNF-038-backup-automatico-dados.md) - performance
+- [RNF-039: RPO (Recovery Point Objective)](./NON-FUNCTIONAL-REQUIREMENTS/RNF-039-rpo-objetivo-ponto-recuperacao.md) - performance
+- [RNF-040: RTO (Recovery Time Objective)](./NON-FUNCTIONAL-REQUIREMENTS/RNF-040-rto-objetivo-tempo-recuperacao.md) - reliability
+- [RNF-041: Graceful Degradation](./NON-FUNCTIONAL-REQUIREMENTS/RNF-041-degradacao-graciosa-sistema.md) - performance
+- [RNF-042: Zero Downtime Deployment](./NON-FUNCTIONAL-REQUIREMENTS/RNF-042-deploy-zero-downtime.md) - performance
+- [RNF-045: Validação de Integridade](./NON-FUNCTIONAL-REQUIREMENTS/RNF-045-validacao-integridade-dados.md) - performance
+- [RNF-046: Responsividade - Web](./NON-FUNCTIONAL-REQUIREMENTS/RNF-046-responsividade-web.md) - usability
+- [RNF-055: Atalhos de Teclado](./NON-FUNCTIONAL-REQUIREMENTS/RNF-055-atalhos-teclado.md) - reliability
+- [RNF-057: Documentação de Código](./NON-FUNCTIONAL-REQUIREMENTS/RNF-057-documentacao-de-codigo.md) - usability
+- [RNF-058: Linting e Formatação](./NON-FUNCTIONAL-REQUIREMENTS/RNF-058-linting-e-formatacao.md) - compatibility
+- [RNF-060: Ambiente de Desenvolvimento Replicável](./NON-FUNCTIONAL-REQUIREMENTS/RNF-060-ambiente-de-desenvolvimento-replicavel.md) - security
+- [RNF-062: Modularidade](./NON-FUNCTIONAL-REQUIREMENTS/RNF-062-modularidade.md) - usability
+- [RNF-064: Refatoração Contínua](./NON-FUNCTIONAL-REQUIREMENTS/RNF-064-refatoracao-continua.md) - security
+- [RNF-065: Rollback de Deploy](./NON-FUNCTIONAL-REQUIREMENTS/RNF-065-rollback-de-deploy.md) - reliability
+- [RNF-072: Usuários Simultâneos](./NON-FUNCTIONAL-REQUIREMENTS/RNF-072-usuarios-simultaneos.md) - scalability
+- [RNF-073: Volume de Dados - Unidades](./NON-FUNCTIONAL-REQUIREMENTS/RNF-073-volume-de-dados-unidades.md) - scalability
+- [RNF-074: Volume de Dados - Arquivos](./NON-FUNCTIONAL-REQUIREMENTS/RNF-074-volume-dados-arquivos.md) - scalability
+- [RNF-076: Conexões de Banco](./NON-FUNCTIONAL-REQUIREMENTS/RNF-076-conexoes-banco.md) - scalability
+- [RNF-077: Cache Distribuído](./NON-FUNCTIONAL-REQUIREMENTS/RNF-077-cache-distribuido.md) - scalability
+- [RNF-081: Formatos de Importação](./NON-FUNCTIONAL-REQUIREMENTS/RNF-081-formatos-importacao.md) - compatibility
+- [RNF-082: Formatos de Exportação](./NON-FUNCTIONAL-REQUIREMENTS/RNF-082-formatos-exportacao.md) - maintainability
+- [RNF-084: Integração WMS/WMTS](./NON-FUNCTIONAL-REQUIREMENTS/RNF-084-integracao-wms-wmts.md) - performance
+- [RNF-088: OAuth2 Providers](./NON-FUNCTIONAL-REQUIREMENTS/RNF-088-oauth2-providers.md) - security
+
+## ADMIN
+Nenhum requirement associado.
+
+## KEYCLOAK
+Nenhum requirement associado.
+
+---
+
+## Resumo por Módulo
+| Módulo | UCs | RFs | USs | RNFs | Total |
+|--------|-----|-----|-----|------|-------|
+| GEOWEB | 11 | 189 | 127 | 60 | 387 |
+| REURBCAD | 9 | 112 | 57 | 43 | 221 |
+| GEOAPI | 3 | 93 | 132 | 65 | 293 |
+| GEOGIS | 2 | 59 | 19 | 29 | 109 |
+| ADMIN | 0 | 0 | 0 | 0 | 0 |
+| KEYCLOAK | 0 | 0 | 0 | 0 | 0 |
+
+---
+**Última atualização:** 2026-01-10

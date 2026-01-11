@@ -4,16 +4,16 @@ Estratégia versionamento completa CARF abrangendo ferramenta controle versão G
 
 ## Estrutura Diretório
 
-### 01-git-decision.md
+### [01-git-decision.md](./01-git-decision.md)
 Decisão escolha Git ferramenta controle versão justificativa alternativas consideradas Mercurial SVN Perforce CVS configurações recomendadas user.name user.email autocrlf pull.rebase aliases úteis Git LFS Large File Storage binários integração CI/CD GitHub Actions webhooks notificações treinamento time onboarding fundamentals advanced topics resources Pro Git book tutorials.
 
-### 02-github-decision.md
+### [02-github-decision.md](./02-github-decision.md)
 Decisão escolha GitHub plataforma hospedagem justificativa alternativas consideradas GitLab Bitbucket Azure Repos self-hosted Gitea configurações organização teams permissions branch protection code owners workflows secrets self-hosted runners Dependabot CodeQL segurança colaboração issues pull requests community transparency accountability.
 
-### 03-semantic-versioning.md
+### [03-semantic-versioning.md](./03-semantic-versioning.md)
 Formato versionamento MAJOR.MINOR.PATCH estratégia releases coordenadas polyrepo changelog manutenção CHANGELOG.md conventional commits API versioning header api-version database migrations additive deprecate before remove coordenação sprint planning dependencies compatibility integration testing QA regression prevention.
 
-### GIT/
+### [GIT/](./GIT/README.md)
 Subdiretório contendo workflow Git específico projeto incluindo 00-setup-guide.md instalação configuração inicial 01-polyrepo-strategy.md justificativa múltiplos repositórios versus monorepo 02-branching-strategy.md trunk-based development feature branches short-lived max 2 dias 03-commit-conventions.md conventional commits feat fix docs style refactor test chore 04-pr-guidelines.md pull request process review approval checklist 05-git-hooks.md pre-commit lint staged post-commit notifications 06-release-coordination.md coordenação releases tags versões compatíveis dependencies.
 
 ## Fluxo Versionamento Típico

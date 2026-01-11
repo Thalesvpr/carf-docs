@@ -19,350 +19,72 @@ Antes de começar, certifique-se de ter instalado:
 
 ### Para Desenvolvedores (Apenas o que você precisa)
 
-**1. Clone o repositório de documentação:**
+**1. Clone o repositório de documentação:** Executar git clone do repositório carf-docs do GitHub seguido por cd carf-docs para entrar no diretório.
 
-```bash
-git clone https://github.com/Thalesvpr/carf-docs.git
-cd carf-docs
-```
+**2. Clone apenas seu projeto:** Backend developers clonam carf-geoapi para PROJECTS/GEOAPI/SRC-CODE, frontend developers clonam carf-geoweb para PROJECTS/GEOWEB/SRC-CODE, mobile developers clonam carf-reurbcad para PROJECTS/REURBCAD/SRC-CODE, GIS developers clonam carf-geogis para PROJECTS/GEOGIS/SRC-CODE, documentation team clona carf-webdocs para PROJECTS/WEBDOCS/SRC-CODE usando git clone com target directory apropriado.
 
-**2. Clone apenas seu projeto:**
-
-```bash
-# Escolha UM dos comandos abaixo:
-
-# Backend Developer
-git clone https://github.com/Thalesvpr/carf-geoapi.git PROJECTS/GEOAPI/SRC-CODE
-
-# Frontend Developer
-git clone https://github.com/Thalesvpr/carf-geoweb.git PROJECTS/GEOWEB/SRC-CODE
-
-# Mobile Developer
-git clone https://github.com/Thalesvpr/carf-reurbcad.git PROJECTS/REURBCAD/SRC-CODE
-
-# GIS Developer
-git clone https://github.com/Thalesvpr/carf-geogis.git PROJECTS/GEOGIS/SRC-CODE
-
-# Documentation Team
-git clone https://github.com/Thalesvpr/carf-webdocs.git PROJECTS/WEBDOCS/SRC-CODE
-```
-
-**3. Siga as instruções do projeto:**
-
-Acesse o README do projeto que você clonou:
-- `PROJECTS/GEOAPI/SRC-CODE/README.md`
-- `PROJECTS/GEOWEB/SRC-CODE/README.md`
-- `PROJECTS/REURBCAD/SRC-CODE/README.md`
-- `PROJECTS/GEOGIS/SRC-CODE/README.md`
-- `PROJECTS/WEBDOCS/SRC-CODE/README.md`
+**3. Siga as instruções do projeto:** Acesse o README do projeto que você clonou em PROJECTS/*/SRC-CODE/README.md para instruções específicas de setup build e desenvolvimento.
 
 ## Setup Completo
 
 ### Para Tech Leads, Arquitetos e DevOps
 
-**1. Clone o repositório de documentação:**
+**1. Clone o repositório de documentação:** Executar git clone do repositório carf-docs do GitHub seguido por cd carf-docs para entrar no diretório.
 
-```bash
-git clone https://github.com/Thalesvpr/carf-docs.git
-cd carf-docs
-```
+**2. Clone todos os repositórios:** Executar git clone para cada projeto especificando target directory sendo carf-geoapi para PROJECTS/GEOAPI/SRC-CODE, carf-geoweb para PROJECTS/GEOWEB/SRC-CODE, carf-reurbcad para PROJECTS/REURBCAD/SRC-CODE, carf-geogis para PROJECTS/GEOGIS/SRC-CODE, e carf-webdocs para PROJECTS/WEBDOCS/SRC-CODE completando setup de todos cinco repositórios independentes.
 
-**2. Clone todos os repositórios:**
-
-```bash
-# Backend .NET
-git clone https://github.com/Thalesvpr/carf-geoapi.git PROJECTS/GEOAPI/SRC-CODE
-
-# Frontend React
-git clone https://github.com/Thalesvpr/carf-geoweb.git PROJECTS/GEOWEB/SRC-CODE
-
-# Mobile React Native
-git clone https://github.com/Thalesvpr/carf-reurbcad.git PROJECTS/REURBCAD/SRC-CODE
-
-# Plugin QGIS
-git clone https://github.com/Thalesvpr/carf-geogis.git PROJECTS/GEOGIS/SRC-CODE
-
-# Portal de Documentação
-git clone https://github.com/Thalesvpr/carf-webdocs.git PROJECTS/WEBDOCS/SRC-CODE
-```
-
-**3. Verificar estrutura:**
-
-```bash
-tree -L 3 -d PROJECTS/
-```
-
-Esperado:
-```
-PROJECTS/
-├── GEOAPI/
-│   ├── DOCS/
-│   └── SRC-CODE/          # ← Repositório carf-geoapi
-├── GEOGIS/
-│   ├── DOCS/
-│   └── SRC-CODE/          # ← Repositório carf-geogis
-├── GEOWEB/
-│   ├── DOCS/
-│   └── SRC-CODE/          # ← Repositório carf-geoweb
-├── REURBCAD/
-│   ├── DOCS/
-│   └── SRC-CODE/          # ← Repositório carf-reurbcad
-└── WEBDOCS/
-    ├── DOCS/
-    └── SRC-CODE/          # ← Repositório carf-webdocs
-```
+**3. Verificar estrutura:** Executar tree comando com flags -L 3 -d PROJECTS/ para visualizar estrutura de diretórios esperada mostrando cada projeto com subdiretórios DOCS versionado em carf-docs e SRC-CODE contendo repositório Git independente ignorado por gitignore garantindo separação correta entre documentação e código-fonte.
 
 ## Estrutura de Diretórios Explicada
 
-```
-carf-docs/                              # Repositório de documentação
-├── .gitignore                          # Ignora pastas SRC-CODE/
-├── README.md                           # Visão geral do projeto
-│
-├── CENTRAL/                            # Single Source of Truth
-│   ├── REQUIREMENTS/                   # 222 requisitos funcionais
-│   ├── ARCHITECTURE/                   # ADRs, deployment, patterns
-│   ├── API/                            # Contratos REST
-│   ├── TECHNICAL/                      # Modelo de domínio
-│   ├── GIT/                            # Estratégia polyrepo (você está aqui!)
-│   ├── INTEGRATION/                    # Protocolos de integração
-│   └── SECURITY/                       # Políticas de segurança
-│
-├── PROJECTS/                           # Projetos individuais
-│   ├── GEOAPI/
-│   │   ├── DOCS/                       # Docs específicas do backend (versionado em carf-docs)
-│   │   └── SRC-CODE/                   # Código-fonte do backend (repo independente, gitignored)
-│   ├── GEOWEB/
-│   │   ├── DOCS/                       # Docs específicas do frontend
-│   │   └── SRC-CODE/                   # Código-fonte do frontend (repo independente, gitignored)
-│   ├── REURBCAD/
-│   │   ├── DOCS/                       # Docs específicas do mobile
-│   │   └── SRC-CODE/                   # Código-fonte do mobile (repo independente, gitignored)
-│   ├── GEOGIS/
-│   │   ├── DOCS/                       # Docs específicas do plugin
-│   │   └── SRC-CODE/                   # Código-fonte do plugin (repo independente, gitignored)
-│   └── WEBDOCS/
-│       ├── DOCS/                       # Docs específicas do portal
-│       └── SRC-CODE/                   # Código-fonte do portal (repo independente, gitignored)
-│
-└── DEVELOPMENT/                        # Infraestrutura e operações
-    └── INFRASTRUCTURE/
-        └── OPERATIONS/
-```
+Repositório carf-docs organizado com gitignore configurado ignorando pastas SRC-CODE, README.md com visão geral do projeto, diretório CENTRAL como Single Source of Truth contendo REQUIREMENTS com duzentos e vinte e dois requisitos funcionais, ARCHITECTURE com ADRs deployment patterns, API com contratos REST, TECHNICAL com modelo de domínio, GIT com estratégia polyrepo, INTEGRATION com protocolos de integração, e SECURITY com políticas de segurança, seguido por diretório PROJECTS contendo projetos individuais GEOAPI GEOWEB REURBCAD GEOGIS e WEBDOCS cada um com subdiretório DOCS versionado no carf-docs e subdiretório SRC-CODE com repositório Git independente gitignored, finalizando com DEVELOPMENT contendo INFRASTRUCTURE e OPERATIONS para infraestrutura e operações do sistema.
 
 ## Como o .gitignore Funciona
 
-O arquivo `.gitignore` na raiz do `carf-docs` contém:
-
-```gitignore
-# Repositórios de código (polyrepo)
-PROJECTS/GEOAPI/SRC-CODE/
-PROJECTS/GEOWEB/SRC-CODE/
-PROJECTS/REURBCAD/SRC-CODE/
-PROJECTS/GEOGIS/SRC-CODE/
-PROJECTS/WEBDOCS/SRC-CODE/
-```
-
-Isso significa:
-- ✅ Pastas `PROJECTS/*/DOCS/` são versionadas no `carf-docs`
-- ❌ Pastas `PROJECTS/*/SRC-CODE/` são ignoradas pelo `carf-docs`
-- ✅ Cada pasta `SRC-CODE/` é um repositório Git independente
-- ✅ Você pode trabalhar em múltiplos repos sem conflitos
+Arquivo gitignore na raiz do carf-docs contém entradas para PROJECTS/GEOAPI/SRC-CODE/, PROJECTS/GEOWEB/SRC-CODE/, PROJECTS/REURBCAD/SRC-CODE/, PROJECTS/GEOGIS/SRC-CODE/, e PROJECTS/WEBDOCS/SRC-CODE/ garantindo que pastas DOCS são versionadas no carf-docs enquanto pastas SRC-CODE são ignoradas permitindo cada SRC-CODE ser repositório Git independente sem conflitos possibilitando trabalhar em múltiplos repos simultaneamente sem interferência.
 
 ## Workflow de Trabalho
 
 ### Cenário 1: Atualizar Documentação
 
-```bash
-# Na raiz do carf-docs
-cd ~/carf-docs
-
-# Criar branch
-git checkout -b docs/atualiza-rf-001
-
-# Editar arquivos
-vim CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/RF-001-*.md
-
-# Commit e push
-git add .
-git commit -m "docs: atualiza requisito RF-001 com novos critérios"
-git push origin docs/atualiza-rf-001
-
-# Criar PR no GitHub
-gh pr create --title "docs: atualiza RF-001" --body "Atualiza critérios de aceitação"
-```
+Na raiz do carf-docs criar branch docs/atualiza-rf-001 usando git checkout menos b, editar arquivos em CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/, fazer commit com mensagem descritiva usando git add ponto git commit menos m mensagem, push origin branch, e criar PR no GitHub usando gh pr create especificando título e body descrevendo mudanças na documentação.
 
 ### Cenário 2: Desenvolver Feature no Backend
 
-```bash
-# Entre no repositório do backend
-cd ~/carf-docs/PROJECTS/GEOAPI/SRC-CODE
-
-# Criar branch
-git checkout -b feature/nova-api-endpoint
-
-# Desenvolver
-vim src/Gateway/Controllers/UnitsController.cs
-
-# Commit e push
-git add .
-git commit -m "feat: adiciona endpoint GET /units/search"
-git push origin feature/nova-api-endpoint
-
-# Criar PR no carf-geoapi
-gh pr create --title "feat: adiciona busca de unidades" --body "Implementa RF-052"
-```
+Entrar no repositório backend em PROJECTS/GEOAPI/SRC-CODE, criar branch feature/nova-api-endpoint usando git checkout menos b, desenvolver editando arquivos como Controllers em src/Gateway/Controllers/, fazer commit com mensagem feat adicionando descrição do endpoint, push origin branch, e criar PR no carf-geoapi especificando RF implementado no body do PR.
 
 ### Cenário 3: Mudança Cross-Repo (Backend + Frontend)
 
-```bash
-# 1. Backend primeiro
-cd ~/carf-docs/PROJECTS/GEOAPI/SRC-CODE
-git checkout -b feature/new-filter-api
-# ... implementa API ...
-git commit -m "feat: adiciona filtro avançado de unidades"
-git push origin feature/new-filter-api
-
-# 2. Frontend depois (usando a mesma branch pattern)
-cd ~/carf-docs/PROJECTS/GEOWEB/SRC-CODE
-git checkout -b feature/new-filter-ui
-# ... implementa UI ...
-git commit -m "feat: adiciona UI para filtro avançado"
-git push origin feature/new-filter-ui
-
-# 3. Criar PRs coordenados
-cd ~/carf-docs/PROJECTS/GEOAPI/SRC-CODE
-gh pr create --title "feat: API filtro avançado" --body "Backend para #123"
-
-cd ~/carf-docs/PROJECTS/GEOWEB/SRC-CODE
-gh pr create --title "feat: UI filtro avançado" --body "Frontend para #124. Depende de: Thalesvpr/carf-geoapi#123"
-```
+Implementar backend primeiro criando branch feature/new-filter-api em PROJECTS/GEOAPI/SRC-CODE desenvolvendo API commitando com mensagem feat, seguido por frontend criando branch feature/new-filter-ui em PROJECTS/GEOWEB/SRC-CODE implementando UI commitando com mensagem feat, finalmente criar PRs coordenados usando gh pr create onde PR do frontend referencia PR do backend no body indicando dependência entre mudanças cross-repo garantindo ordem correta de merge.
 
 ### Cenário 4: Atualizar Todos os Repositórios
 
-```bash
-# Script para atualizar todos os repos
-cd ~/carf-docs
-
-# Atualizar documentação
-git pull origin main
-
-# Atualizar cada repositório de código
-for project in GEOAPI GEOWEB REURBCAD GEOGIS WEBDOCS; do
-  if [ -d "PROJECTS/$project/SRC-CODE/.git" ]; then
-    echo "Atualizando $project..."
-    cd "PROJECTS/$project/SRC-CODE"
-    git pull origin main
-    cd ../../..
-  fi
-done
-```
-
-Salve esse script como `.scripts/update-all-repos.sh` para reutilizar.
+Atualizar documentação executando git pull origin main na raiz do carf-docs seguido por loop para cada projeto em GEOAPI GEOWEB REURBCAD GEOGIS WEBDOCS verificando se diretório PROJECTS/projeto/SRC-CODE/.git existe navegando para diretório executando git pull origin main retornando para raiz repetindo para próximo projeto até atualizar todos repositórios de código, processo pode ser automatizado criando script .scripts/update-all-repos.sh para reutilização.
 
 ## Verificação de Saúde
 
 ### Verificar Estado de Todos os Repositórios
 
-```bash
-# Criar script de verificação
-cat > .scripts/check-repos-status.sh <<'EOF'
-#!/bin/bash
-echo "=== CARF Docs ==="
-git status -sb
-
-for project in GEOAPI GEOWEB REURBCAD GEOGIS WEBDOCS; do
-  if [ -d "PROJECTS/$project/SRC-CODE/.git" ]; then
-    echo ""
-    echo "=== $project ==="
-    cd "PROJECTS/$project/SRC-CODE"
-    git status -sb
-    cd ../../..
-  fi
-done
-EOF
-
-chmod +x .scripts/check-repos-status.sh
-.scripts/check-repos-status.sh
-```
+Criar script .scripts/check-repos-status.sh executando git status menos sb para carf-docs seguido por loop para cada projeto executando git status menos sb em PROJECTS/projeto/SRC-CODE mostrando branch atual e estado de working directory de cada repositório permitindo visualização rápida de estado de todos repos simultaneamente, tornar script executável com chmod mais x e executar para verificação completa.
 
 ### Verificar Branches
 
-```bash
-# Ver branch atual de cada repo
-for project in GEOAPI GEOWEB REURBCAD GEOGIS WEBDOCS; do
-  if [ -d "PROJECTS/$project/SRC-CODE/.git" ]; then
-    cd "PROJECTS/$project/SRC-CODE"
-    echo "$project: $(git branch --show-current)"
-    cd ../../..
-  fi
-done
-```
+Executar loop para cada projeto navegando para PROJECTS/projeto/SRC-CODE executando git branch menos menos show-current exibindo branch atual de cada repositório permitindo confirmar que todos estão em branches corretas antes de começar desenvolvimento ou após trocar contexto entre features.
 
 ## Troubleshooting
 
-### Erro: "fatal: not a git repository"
+**Erro fatal not a git repository:** Verificar se está na pasta correta usando pwd, se em PROJECTS/GEOAPI/SRC-CODE mas vazia clonar repositório carf-geoapi para esse local usando git clone com target directory especificado.
 
-**Problema:** Você está tentando usar comandos Git em uma pasta que não é um repositório.
+**Erro destination path already exists:** Remover pasta existente usando rm menos rf PROJECTS/projeto/SRC-CODE com cuidado seguido por git clone novamente para target directory limpo.
 
-**Solução:**
-```bash
-# Verifique se está na pasta correta
-pwd
+**Conflito Your branch and origin/main have diverged:** Opção 1 usar git pull menos menos rebase origin main recomendado, Opção 2 usar git pull origin main para merge, Opção 3 usar git fetch origin seguido por git reset menos menos hard origin/main perdendo mudanças locais apenas se necessário.
 
-# Se estiver em PROJECTS/GEOAPI/SRC-CODE mas ela estiver vazia:
-cd ~/carf-docs
-git clone https://github.com/Thalesvpr/carf-geoapi.git PROJECTS/GEOAPI/SRC-CODE
-```
-
-### Erro: "destination path already exists"
-
-**Problema:** Você tentou clonar um repositório que já existe.
-
-**Solução:**
-```bash
-# Remova a pasta existente (cuidado!)
-rm -rf PROJECTS/GEOAPI/SRC-CODE
-
-# Clone novamente
-git clone https://github.com/Thalesvpr/carf-geoapi.git PROJECTS/GEOAPI/SRC-CODE
-```
-
-### Conflito: "Your branch and 'origin/main' have diverged"
-
-**Problema:** Suas mudanças locais divergiram do remoto.
-
-**Solução:**
-```bash
-# Opção 1: Rebase (recomendado)
-git pull --rebase origin main
-
-# Opção 2: Merge
-git pull origin main
-
-# Opção 3: Reset (perde mudanças locais!)
-git fetch origin
-git reset --hard origin/main
-```
-
-### Esqueci de clonar na pasta SRC-CODE correta
-
-**Problema:** Você clonou o repositório no lugar errado.
-
-**Solução:**
-```bash
-# Mover para o local correto
-mv carf-geoapi PROJECTS/GEOAPI/SRC-CODE
-
-# Ou remover e clonar novamente
-rm -rf carf-geoapi
-git clone https://github.com/Thalesvpr/carf-geoapi.git PROJECTS/GEOAPI/SRC-CODE
-```
+**Esqueci de clonar na pasta SRC-CODE correta:** Mover repositório clonado para local correto usando mv carf-projeto PROJECTS/PROJETO/SRC-CODE ou remover pasta errada e clonar novamente para target directory correto evitando confusão de estrutura.
 
 ## Próximos Passos
 
 1. ✅ Setup concluído
-2. 📖 Ler documentação específica do projeto em `PROJECTS/{PROJECT}/DOCS/README.md`
+2. 📖 Ler documentação específica do projeto em PROJECTS/*/DOCS/README.md
 3. 🔧 Configurar ambiente de desenvolvimento (Docker, variáveis de ambiente, etc.)
 4. 🏃 Executar projeto localmente
 5. 🧪 Rodar testes
@@ -378,4 +100,4 @@ git clone https://github.com/Thalesvpr/carf-geoapi.git PROJECTS/GEOAPI/SRC-CODE
 
 ---
 
-**Última atualização:** 2026-01-08
+**Última atualização:** 2026-01-10

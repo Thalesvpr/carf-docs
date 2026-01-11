@@ -93,10 +93,10 @@ Sistema estabelece acordos de nível de serviço (SLA - Service Level Agreement)
 
 **Implementações por projeto:**
 
-- Backend .NET: `PROJECTS/GEOAPI/SERVICES/SlaMonitoringService.cs`
-- Backend .NET: `PROJECTS/GEOAPI/JOBS/DeadlineCheckJob.cs` (scheduled hourly)
-- Frontend React: `PROJECTS/GEOWEB/COMPONENTS/dashboard/SlaIndicators.tsx`
-- Frontend React: `PROJECTS/GEOWEB/COMPONENTS/legitimation/DeadlineWarning.tsx`
+- Backend .NET: (caminho de implementação)
+- Backend .NET: (caminho de implementação) (scheduled hourly)
+- Frontend React: (caminho de implementação)
+- Frontend React: (caminho de implementação)
 
 ---
 

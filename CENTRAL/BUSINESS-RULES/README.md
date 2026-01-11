@@ -6,6 +6,12 @@ Business rules são restrições validações e políticas de negócio que gover
 
 Regras de negócio organizadas em 3 categorias principais conforme natureza e aplicação:
 
+- **[VALIDATION-RULES/](./VALIDATION-RULES/README.md)** - Regras de validação de dados (CPF, CNPJ, geometrias, coordenadas, emails)
+- **[WORKFLOW-RULES/](./WORKFLOW-RULES/README.md)** - Regras de transição de status e permissões (state machines, roles, SLAs)
+- **[LEGITIMATION-RULES/](./LEGITIMATION-RULES/README.md)** - Regras específicas de legitimação fundiária conforme Lei 13.465/2017
+
+---
+
 ### VALIDATION-RULES/ - Regras de Validação
 
 Regras que garantem integridade e consistência de dados de entidades validando campos relacionamentos e restrições antes de persistência.
@@ -91,10 +97,10 @@ Business rules implementam e asseguram compliance com requisitos funcionais e le
 ## Implementações
 
 Business rules documentadas aqui têm implementação específica em:
-- **Backend .NET**: `PROJECTS/GEOAPI/LAYERS/DOMAIN/RULES/` (classes validation, workflow engines)
-- **Frontend React**: `PROJECTS/GEOWEB/VALIDATIONS/` (client-side validation functions)
-- **Mobile React Native**: `PROJECTS/REURBCAD/VALIDATIONS/` (offline validation before sync)
-- **Plugin GIS Python**: `PROJECTS/GEOGIS/validators/` (bulk validation scripts)
+- **Backend .NET**: (caminho de implementação) (classes validation, workflow engines)
+- **Frontend React**: (caminho de implementação) (client-side validation functions)
+- **Mobile React Native**: (caminho de implementação) (offline validation before sync)
+- **Plugin GIS Python**: (caminho de implementação) (bulk validation scripts)
 
 **Importante:** CENTRAL/BUSINESS-RULES/ documenta regras de negócio de forma technology-agnostic. Implementações específicas (bibliotecas, frameworks, patterns) pertencem a PROJECTS/[PROJECT_NAME]/DOCS/.
 

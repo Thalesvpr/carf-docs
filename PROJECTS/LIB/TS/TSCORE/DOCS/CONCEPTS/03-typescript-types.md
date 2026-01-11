@@ -2,7 +2,7 @@
 
 ## Visão Geral
 
-O @carf/tscore fornece **tipos TypeScript compartilhados** sincronizados com o [domain model](../../../../../../CENTRAL/DOMAIN-MODEL/README.md) do backend [GEOAPI](../../../../GEOAPI/DOCS/README.md) .NET conforme [geração de código automática](../../../../../../CENTRAL/ARCHITECTURE/CODE-GENERATION/README.md) e usados por todos os frontends (GEOWEB, REURBCAD, ADMIN), sendo consumidos por [@carf/geoapi-client](../../../GEOAPI-CLIENT/DOCS/README.md) para tipagem de requests/responses e [@carf/ui](../../../UI-COMPONENTS/DOCS/README.md) para componentes React tipados. Garantimos type safety end-to-end com contratos de API bem definidos.
+O @carf/tscore fornece **tipos TypeScript compartilhados** sincronizados com o [domain model](../../../../../../CENTRAL/DOMAIN-MODEL/README.md) do backend GEOAPI .NET conforme geração de código automática e usados por todos os frontends (GEOWEB, REURBCAD, ADMIN), sendo consumidos por [@carf/geoapi-client](../../../GEOAPI-CLIENT/DOCS/README.md) para tipagem de requests/responses e [@carf/ui](../../../UI-COMPONENTS/DOCS/README.md) para componentes React tipados. Garantimos type safety end-to-end com contratos de API bem definidos.
 
 ## Documentação de Referência
 

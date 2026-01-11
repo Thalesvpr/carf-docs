@@ -145,9 +145,9 @@ Correção automática:
 - `../LEGITIMATION-RULES/reurb-e-requirements.md` - Limite 500m² área
 
 **Implementações:**
-- `PROJECTS/GEOAPI/LAYERS/DOMAIN/VALIDATORS/GeometryValidator.cs` - Backend .NET (NetTopologySuite)
-- `PROJECTS/GEOWEB/UTILS/validators/geometryValidator.ts` - Frontend React (Turf.js)
-- `PROJECTS/GEOGIS/validators/geometry.py` - Plugin QGIS (Shapely)
+- (caminho de implementação) - Backend .NET (NetTopologySuite)
+- (caminho de implementação) - Frontend React (Turf.js)
+- (caminho de implementação) - Plugin QGIS (Shapely)
 
 ---
 

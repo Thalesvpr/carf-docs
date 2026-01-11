@@ -12,10 +12,6 @@ Configuração específica escolhida utiliza Vite 5.1+ com @vitejs/plugin-react 
 
 Status da decisão é aprovado e implementado desde início do projeto em 2024-Q3, com revisão prevista anualmente para avaliar se Vite continua sendo best-in-class ou se surgiu bundler fundamentalmente superior (improvável dado momentum atual de Vite no ecosystem).
 
-## Implementação
-
-Decisão implementada nos projetos frontend [GEOWEB](../../../PROJECTS/GEOWEB/DOCS/README.md) e [ADMIN](../../../PROJECTS/ADMIN/DOCS/ARCHITECTURE/01-overview.md) utilizando `vite` como dev server com comando `bun run dev` iniciando servidor localhost:5173 com HMR instantâneo e `vite build` para produção gerando bundle otimizado conforme scripts em package.json, configuração em vite.config.ts define plugins como React SWC aliases path mappings e optimization settings como code splitting, deployment para [Vercel](./ADR-013-vercel-deployment-platform.md) executa `bun run build` gerando `dist/` folder com assets otimizados HTML CSS JS minificados, e variáveis de ambiente `VITE_API_URL` e `VITE_KEYCLOAK_URL` injetadas em build time via import.meta.env permitindo configuração per-environment dev/staging/prod sem rebuild.
-
 ---
 
 **Data:** 2025-01-10

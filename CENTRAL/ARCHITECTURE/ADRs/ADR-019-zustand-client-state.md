@@ -12,10 +12,6 @@ Configuração utiliza Zustand 4.x com store separadas por domínio (uiStore aut
 
 Status aprovado e implementado desde 2024-Q3.
 
-## Implementação
-
-Decisão implementada em [GEOWEB](../../../PROJECTS/GEOWEB/DOCS/ARCHITECTURE/01-overview.md) e [ADMIN](../../../PROJECTS/ADMIN/DOCS/ARCHITECTURE/01-overview.md) usando Zustand stores para client state (UI flags modals selected items filters) conforme [ADMIN Data Flow](../../../PROJECTS/ADMIN/DOCS/ARCHITECTURE/03-data-flow.md), separado de server state gerenciado por [TanStack Query](./ADR-015-tanstack-query-server-state.md), stores definidas em `stores/` exportando hooks (useUIStore useAuthStore), e persistence de preferences user via localStorage middleware.
-
 ---
 
 **Data:** 2025-01-10

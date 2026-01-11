@@ -10,11 +10,8 @@ Análise espacial de sobreposição usa operação de detecção de sobreposiç�
 
 Contestações frivolous (manifestamente improcedentes) podem ser sumariamente rejeitadas por analista senior sem análise completa quando contestante não fornece evidências mínimas repete contestação já rejeitada anteriormente ou age de má-fé para retardar processo, penalidades por contestação frivolous incluem advertência formal registro em histórico do contestante e possível bloqueio de futuras contestações por período se recorrência for detectada, e titular pode contra-contestar alegando frivolity e solicitando indenização por danos se atraso causado por contestação improcedente gerou prejuízo mensurável.
 
-**Implementações por projeto:**
-- Backend .NET: `PROJECTS/GEOAPI/LAYERS/DOMAIN/ENTITIES/05-contestation.md`
-- Frontend React: `PROJECTS/GEOWEB/MODELS/ENTITIES/contestation.ts`
-- Mobile React Native: `PROJECTS/REURBCAD/MODELS/ENTITIES/contestation.ts`
+**Módulos:** GEOAPI, GEOWEB, REURBCAD, GEOGIS
 
 ---
 
-**Última atualização:** 2025-01-05
+**Última atualização:** 2026-01-10

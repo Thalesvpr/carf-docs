@@ -4,12 +4,8 @@ Entidade representando lote individual dentro de quadra urbana usado em parcelam
 
 rável para lidar com imprecisões de levantamento), área calculada a partir da geometria deve corresponder aproximadamente à área declarada em documentação legal (diferença tolerável de até 5% para acomodar variações de medição), e soft delete preserva histórico de parcelamento mesmo que lote seja unificado ou subdividido posteriormente. Workflow típico em loteamento formal inicia com importação de planta de loteamento aprovada via shapefile contendo geometrias e códigos dos lotes, criação automática de registros Plot vinculados a Blocks correspondentes, validação de não sobreposição e contenção dentro de quadras, e posterior vinculação de Units construídas dentro de cada lote. Workflow em regularização de área irregular pode criar Plots retroativamente baseado em levantamento topográfico das edificações existentes, definindo lotes que melhor representam ocupação real do terreno para posterior registro em cartório. Sistema suporta subdivisão de Plot criando múltiplos Plots filhos a partir de um Plot pai (desmembramento) registrando relacionamento hierárquico para rastreabilidade, e unificação de múltiplos Plots adjacentes em Plot único (remembramento) marcando Plots originais como deletados e criando novo Plot com geometria unificada. Plot é conceito principalmente urbano refletindo parcelamento formal do solo conforme legislação municipal, em áreas rurais ou ocupações informais sem loteamento aprovado o uso de Plot é opcional ou inexistente (Units associadas diretamente a Community ou Block sem intermediário formal).
 
-**Implementações por projeto:**
-- Backend .NET: `PROJECTS/GEOAPI/LAYERS/DOMAIN/ENTITIES/13-plot.md`
-- Frontend React: `PROJECTS/GEOWEB/MODELS/ENTITIES/plot.ts`
-- Mobile React Native: `PROJECTS/REURBCAD/MODELS/ENTITIES/plot.ts`
-- Plugin GIS Python: `PROJECTS/GEOGIS/MODELS/plot.py`
+**Módulos:** GEOAPI, GEOWEB, REURBCAD, GEOGIS
 
 ---
 
-**Última atualização:** 2025-01-05
+**Última atualização:** 2026-01-10

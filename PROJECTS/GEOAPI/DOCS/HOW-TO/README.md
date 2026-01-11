@@ -1,1 +1,24 @@
-Guias práticos para desenvolvimento no GEOAPI incluindo configurar Keycloak authentication em appsettings.json com Authority, Audience e RequireHttpsMetadata, adicionar middleware AddJwtBearer em Program.cs com TokenValidationParameters configurados corretamente incluindo RoleClaimType para mapear realm_access.roles, implementar TenantMiddleware para setar app.tenant_id no PostgreSQL após autenticação usando ExecuteSqlRawAsync, proteger endpoints com [Authorize] e [Authorize(Roles = "role1,role2")] attributes, extrair claims do token usando ClaimsPrincipalExtensions helper methods, validar tokens manualmente em testes de integração obtendo token real do Keycloak via password grant ou usando tokens mockados com claims necessários, configurar CORS para permitir origins dos frontends (localhost dev e domínios prod), testar autenticação end-to-end iniciando Keycloak local, criando usuário de teste via Admin Console, obtendo token via curl POST ao token endpoint, enviando request ao GEOAPI com Authorization header e verificando que RLS filtra corretamente por tenant, e troubleshoot erros comuns como 401 Unauthorized verificando que token está no header correto, 403 Forbidden verificando roles do usuário, "Signature validation failed" reiniciando backend para recarregar chaves públicas, RLS retornando vazio verificando que middleware setou app.tenant_id corretamente com log statement, e "Unable to obtain configuration" verificando conectividade com Keycloak e que `.well-known/openid-configuration` está acessível.
+# HOW-TO - GEOAPI
+
+Guias práticos para desenvolvimento e configuração do GEOAPI backend .NET.
+
+## Autenticação e Keycloak
+
+- **[01-configure-keycloak.md](./01-configure-keycloak.md)** - Configurar Keycloak authentication em appsettings.json, adicionar middleware AddJwtBearer, configurar TokenValidationParameters e RoleClaimType
+- **[02-validate-tokens.md](./02-validate-tokens.md)** - Validar tokens JWT manualmente em testes de integração, obter token via password grant, usar tokens mockados
+- **[03-test-authentication.md](./03-test-authentication.md)** - Testar autenticação end-to-end, iniciar Keycloak local, criar usuário de teste, verificar RLS por tenant
+
+## Build e Execução
+
+- **[02-build-and-run.md](./02-build-and-run.md)** - Build, run e deploy do GEOAPI em diferentes ambientes
+
+## Conceitos Relacionados
+
+Ver também:
+- [ARCHITECTURE/](../ARCHITECTURE/README.md) - Decisões arquiteturais específicas do GEOAPI
+- [CONCEPTS/](../CONCEPTS/README.md) - Conceitos fundamentais (Clean Architecture, CQRS, DDD)
+- [CENTRAL/INTEGRATION/KEYCLOAK/](../../../../CENTRAL/INTEGRATION/KEYCLOAK/README.md) - Documentação completa Keycloak
+
+---
+
+**Última atualização:** 2026-01-10

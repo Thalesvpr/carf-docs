@@ -22,12 +22,7 @@ Provedor centralizado de autenticação OAuth2/OIDC para as seis aplicações CA
 
 ## Guias de Integração por Projeto
 
-- **[examples/geoweb-integration.md](./examples/geoweb-integration.md)** - Integração GEOWEB (React SPA + PKCE)
-- **[examples/reurbcad-integration.md](./examples/reurbcad-integration.md)** - Integração REURBCAD (React Native + PKCE)
-- **[examples/geoapi-integration.md](./examples/geoapi-integration.md)** - Integração GEOAPI (.NET Bearer-only)
-- **[examples/geogis-integration.md](./examples/geogis-integration.md)** - Integração GEOGIS (QGIS Plugin + Client Credentials)
-- **[examples/webdocs-integration.md](./examples/webdocs-integration.md)** - Integração WEBDOCS (SPA docs público)
-- **[examples/admin-integration.md](./examples/admin-integration.md)** - Integração ADMIN (SPA admin)
+Exemplos de código para integração Keycloak estão documentados na pasta EXAMPLES de cada projeto com implementações específicas incluindo inicialização de cliente OAuth2 configuração de endpoints PKCE flow para SPAs client credentials para plugins e bearer-only para backends mostrando setup completo de AuthContext providers protected routes e token management strategies adaptadas para cada stack tecnológico React .NET React Native Python seguindo padrões estabelecidos em client-configurations.md e architecture.md deste diretório CENTRAL/INTEGRATION/KEYCLOAK.
 
 ## Runbooks Operacionais
 
@@ -37,6 +32,18 @@ Provedor centralizado de autenticação OAuth2/OIDC para as seis aplicações CA
 - **[runbooks/04-troubleshoot-auth.md](./runbooks/04-troubleshoot-auth.md)** - Troubleshooting autenticação failed
 - **[runbooks/05-backup-restore.md](./runbooks/05-backup-restore.md)** - Backup e restore configuração Keycloak
 - **[runbooks/06-monitoring.md](./runbooks/06-monitoring.md)** - Monitoramento health e métricas
+
+## Tema Customizado CARF
+
+Ver arquivos no diretório de código-fonte do tema:
+- **[BUILD.md](../../../PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak/BUILD.md)** - Instruções de build do tema customizado
+- **[CHANGELOG.md](../../../PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak/CHANGELOG.md)** - Histórico de versões do tema
+- **[tests/README.md](../../../PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak/tests/README.md)** - Testes do tema customizado
+
+### Recursos do Tema
+
+- **[Imagens](../../../PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak/themes/carf/login/resources/img/README.md)** - Assets de imagens (logo, ícones, backgrounds)
+- **[JavaScript](../../../PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak/themes/carf/login/resources/js/README.md)** - Scripts customizados (validação CPF/CNPJ)
 
 ---
 

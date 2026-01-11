@@ -10,11 +10,8 @@ Permission strings seguem convenção {resource}.{action}.{scope} sempre lowerca
 
 Casos de uso especiais incluem temporary permissions com expires_at permitindo acesso temporário a consultor externo para gerar relatório específico com auto-revoke após deadline, delegated permissions onde MANAGER delega units.approve.community_only para ANALYST específico por período mantendo accountability, conditional permissions baseadas em regras como units.approve só disponível em horário comercial ou processes.reject exigindo justificativa obrigatória validada em domain service, e hierarchical permissions onde permission em Community parent propaga para Blocks e Units children automaticamente simplificando atribuição em hierarquias geográficas complexas.
 
-**Implementações por projeto:**
-- Backend .NET: `PROJECTS/GEOAPI/LAYERS/DOMAIN/VALUE-OBJECTS/05-permissions-matrix.md` (authorization policies)
-- Frontend React: `PROJECTS/GEOWEB/UTILS/permissions.ts` (can() helper function)
-- Mobile React Native: `PROJECTS/REURBCAD/UTILS/permissions.ts` (offline permissions cache)
+**Módulos:** GEOAPI, GEOWEB, REURBCAD, GEOGIS
 
 ---
 
-**Última atualização:** 2025-01-05
+**Última atualização:** 2026-01-10

@@ -69,7 +69,13 @@
       "Bash(python:*)",
       "Bash(grep:*)",
       "Bash(findstr:*)",
-      "Bash(tee:*)"
+      "Bash(tee:*)",
+      "Bash(dir /B \"PROJECTS\\\\GEOAPI\\\\DOCS\")",
+      "Bash(if [ -f \"PROJECTS/$proj/DOCS/README.md\" ])",
+      "Bash(then)",
+      "Bash(fi)",
+      "Bash(if [ -f \"PROJECTS/$proj/README.md\" ])",
+      "Bash(wc:*)"
     ]
   }
 }

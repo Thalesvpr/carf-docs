@@ -1,7 +1,24 @@
 # CENTRAL - Fonte Única de Verdade
 
-Documentação central do CARF servindo como fonte única de verdade SSOT para requisitos decisões arquiteturais compartilhadas entre cinco projetos GEOAPI GEOWEB REURBCAD GEOGIS WEBDOCS organizados em estrutura plana primeiro nível facilitando navegação descoberta acesso direto conceitos principais. REQUIREMENTS organiza 221 requisitos funcionais 73 casos uso cross-cutting histórias usuário compartilhadas. ARCHITECTURE documenta 10 ADRs decisões arquiteturais padrões design sistêmicos Clean Architecture CQRS DDD frontend React offline-first mobile GIS spatial estratégias deployment containerização Kubernetes CI/CD mobile stores static sites. DOMAIN-MODEL especifica 33 entities 25 value objects 3 aggregates events diagramas ER seguindo DDD. BUSINESS-RULES detalha validações CPF área coordenadas SIRGAS2000 regras legitimação Lei 13465/2017 REURB-S REURB-E workflows aprovação transições estado permissões RBAC. WORKFLOWS descreve 6 fluxos negócio end-to-end numerados ordem lógica temporal desde configuração WMS coleta campo sincronização offline validação analista levantamento topográfico até legitimação final. API define contratos REST JSON comunicação entre componentes autenticação units holders communities reports legitimation. SECURITY especifica políticas segurança autenticação Keycloak RBAC 5 níveis encryption AES-256 TLS 1.3 LGPD compliance incident response breach notification. INTEGRATION detalha protocolos comunicação entre projetos Keycloak setup APIs externas CPF CEP Geocoding patterns retry circuit breaker. TESTING define estratégia test pyramid coverage targets 80% domain 60% application 40% infrastructure cases por tipo API E2E Unit Integration. VERSIONING agrupa decisões Git ferramenta controle versão GitHub plataforma hospedagem Semantic Versioning MAJOR.MINOR.PATCH releases coordenadas polyrepo changelog API versioning database migrations GIT/ subdiretório workflow branching commits PR guidelines hooks. OPERATIONS agrupa maintenance monitoring Grafana Prometheus logging runbooks troubleshooting. TEMPLATES fornece modelos padronizados RFs UCs USs READMEs garantindo consistência documentação. Para implementação técnica detalhada específica tecnologias concretas PostgreSQL WatermelonDB React Native QGIS consulte PROJECTS/*/DOCS/ conforme princípio technology-agnostic separação documentação conceitual agnóstica versus implementação específica.
+Documentação central do CARF servindo como fonte única de verdade para requisitos, decisões arquiteturais e modelo de domínio compartilhados entre todos os projetos do sistema, organizados em estrutura plana facilitando navegação e descoberta conforme [conventions](../README.md) estabelecidas.
+
+## Áreas Principais
+
+- **[REQUIREMENTS/](./REQUIREMENTS/README.md)** - Casos de uso, user stories e requisitos funcionais/não-funcionais do sistema
+- **[ARCHITECTURE/](./ARCHITECTURE/README.md)** - ADRs documentando decisões arquiteturais e padrões de design
+- **[DOMAIN-MODEL/](./DOMAIN-MODEL/README.md)** - Entities, aggregates, value objects e workflows de negócio seguindo DDD
+- **[BUSINESS-RULES/](./BUSINESS-RULES/README.md)** - Regras de validação e workflows de aprovação conforme Lei 13.465/2017
+- **[WORKFLOWS/](./WORKFLOWS/README.md)** - Fluxos de trabalho end-to-end do sistema
+- **[INTEGRATION/](./INTEGRATION/README.md)** - Integrações externas (Keycloak OAuth2, PostgreSQL+PostGIS)
+- **[API/](./API/README.md)** - Contratos REST JSON entre componentes
+- **[OPERATIONS/](./OPERATIONS/README.md)** - Monitoring, logging, maintenance e troubleshooting
+- **SECURITY** - Políticas de segurança e compliance LGPD
+- **TESTING** - Estratégia test pyramid e coverage targets
+- **VERSIONING** - Git workflow, semantic versioning e changelog
+- **TEMPLATES** - Modelos padronizados para documentação
+
+Para implementação técnica específica por projeto, consulte PROJECTS (GEOAPI backend .NET, GEOWEB portal web React, REURBCAD mobile React Native, GEOGIS plugin QGIS, WEBDOCS site documentação).
 
 ---
 
-**Última atualização:** 2025-01-08
+**Última atualização:** 2026-01-10

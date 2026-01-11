@@ -1,5 +1,7 @@
 # GEOGIS - Plugin QGIS para Operações GIS Avançadas
 
+**[📋 Overview de Implementação](./OVERVIEW.md)** - Mapeamento completo de requirements, domain model e arquitetura técnica
+
 Plugin QGIS Python para operações GIS avançadas complementando portal web GEOWEB com análises espaciais complexas, permitindo técnicos GIS especializados executarem geoprocessamento de dados CARF diretamente em QGIS desktop, integrando com backend [GEOAPI](../../GEOAPI/DOCS/ARCHITECTURE/01-overview.md) via REST API consumindo endpoints WFS (Web Feature Service) e WMS (Web Map Service) expostos por PostGIS conforme [ADR-002](../../../CENTRAL/ARCHITECTURE/ADRs/ADR-002-postgresql-postgis.md), autenticação via token JWT obtido de [Keycloak](../../KEYCLOAK/DOCS/README.md), importação/exportação de Shapefiles GeoJSON KML sincronizando com [GEOAPI /api/communities](../../../CENTRAL/API/COMMUNITIES/README.md), análises de overlay buffer intersection difference gerando novos layers, validação de topologia detectando polígonos inválidos auto-overlaps gaps, e cálculos geométricos precisos (área perímetro centroid) conforme padrões OGC Simple Features.
 
 ## Funcionalidades Principais
@@ -14,6 +16,15 @@ Plugin QGIS Python para operações GIS avançadas complementando portal web GEO
 
 **Sincronização Bidirecional** - Download incremental apenas de dados modificados desde última sync, upload de edições com conflict detection, e merge changes com estratégia configurable.
 
+Ver [índice completo de features implementadas](./FEATURES/README.md) mapeando casos de uso do sistema.
+
+## Documentação
+
+- **[Arquitetura](./ARCHITECTURE/README.md)** - Decisões técnicas de integração Keycloak e estrutura do plugin
+- **[Conceitos](./CONCEPTS/README.md)** - Autenticação, armazenamento de tokens, integração com API
+- **[Guias Práticos](./HOW-TO/README.md)** - Setup Keycloak, login flow, API requests, instalação do plugin
+- **[Camadas](./LAYERS/README.md)** - Estrutura de código do plugin (AuthManager, API Client, UI)
+
 ## Stack Tecnológico
 
 - **Framework:** QGIS 3.28+ LTR + PyQGIS API
@@ -21,6 +32,10 @@ Plugin QGIS Python para operações GIS avançadas complementando portal web GEO
 - **GIS Libraries:** GDAL/OGR, Shapely, PyProj
 - **API Client:** requests + JWT authentication
 - **Database:** PostgreSQL + PostGIS via WFS/WMS conforme [ADR-002](../../../CENTRAL/ARCHITECTURE/ADRs/ADR-002-postgresql-postgis.md)
+
+## Código Fonte
+
+Ver [carf-geogis README](../SRC-CODE/carf-geogis/README.md) para instruções de instalação do plugin e desenvolvimento local.
 
 ---
 

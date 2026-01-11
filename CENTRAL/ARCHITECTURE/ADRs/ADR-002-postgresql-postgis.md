@@ -12,10 +12,6 @@ Configuração específica escolhida utiliza PostgreSQL 16.1 (última versão es
 
 Status da decisão é aprovado e implementado desde início do projeto em 2024-Q3, com revisão prevista apenas se PostgreSQL introduzir breaking changes em major version futura ou se surgir alternativa open-source com vantagens substanciais (improvável dado domínio atual de PostGIS).
 
-## Implementação
-
-Decisão implementada em [GEOAPI Infrastructure Layer](../../../PROJECTS/GEOAPI/DOCS/ARCHITECTURE/01-overview.md) usando Entity Framework Core 8 com provider Npgsql.EntityFrameworkCore.PostgreSQL e extensão NetTopologySuite para tipos geográficos mapeando PostGIS geometry columns, migrations aplicadas via `dotnet ef database update` conforme [HOW-TO Build and Run](../../../PROJECTS/GEOAPI/DOCS/HOW-TO/02-build-and-run.md), container PostgreSQL 16 + PostGIS 3.4 orquestrado via Docker Compose em dev e Kubernetes StatefulSet em prod seguindo [DEPLOYMENT/03-orchestration.md](../DEPLOYMENT/03-orchestration.md), conexão gerenciada via multi-tenancy RLS conforme [ADR-005](./ADR-005-multi-tenancy-rls.md).
-
 ---
 
 **Data:** 2024-09-15

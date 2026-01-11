@@ -200,6 +200,8 @@ npm link @carf/tscore
 
 ## Links
 
+- [Source Code README](../SRC-CODE/carf-tscore/README.md) - Repositório e setup local
+- [CHANGELOG.md](../SRC-CODE/carf-tscore/CHANGELOG.md) - Histórico completo de versões e mudanças
 - **Repositório:** https://github.com/Thalesvpr/carf-tscore
 - **NPM Package:** https://github.com/Thalesvpr/carf-tscore/packages
 - **ADR-011:** **Decisão de criar biblioteca compartilhada**

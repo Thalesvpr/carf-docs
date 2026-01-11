@@ -1,1 +1,23 @@
-Conceitos fundamentais do GEOWEB incluindo Feature-Sliced Design (FSD) arquitetura modular com separation of concerns onde app layer contém configuração global (providers, router, theme), features layer contém funcionalidades isoladas (auth, units, holders cada um com próprio api/, components/, hooks/, types/ não compartilhando código entre si), entities layer contém modelos de domínio reutilizáveis (User, Unit, Holder types) usados por múltiplas features, shared layer contém componentes UI genéricos (Button, Input, Modal) utils (formatters, validators) e constants (API_URL, ROLES) reutilizáveis por toda aplicação, State Management distribuído onde TanStack Query gerencia server state com caching automático por queryKey, stale-while-revalidate strategy background refetch, optimistic updates via onMutate callback, automatic retry on failure, Zustand gerencia UI state local como sidebar open boolean, active modal string, applied filters object persisted em sessionStorage, React Context gerencia authentication state via AuthContext provendo user, isAuthenticated, login/logout methods acessíveis via useAuth() hook em qualquer component, Authentication flow OAuth2 Authorization Code + PKCE onde usuário não autenticado é redirecionado para Keycloak login screen, faz login com username/password, Keycloak gera authorization code e redirect de volta para app com code na URL query, keycloak-js library automaticamente exchange code por tokens enviando code_verifier para PKCE validation, armazena tokens em memória, popula user state, redirect para rota original que usuário tentava acessar, Authorization baseada em roles extraídas do JWT token realm_access.roles claim com 4 níveis (field-collector, analyst, admin, super-admin) verificadas via hasRole() helper ou PrivateRoute component props, role-based rendering condicional de UI elements como botões Validar apenas para analyst+, botões Excluir apenas para admin+, menu Gestão Usuários apenas para admin+, Multi-tenancy onde user pode ter allowedTenants array com múltiplas prefeituras, TenantSwitcher dropdown permite trocar entre elas, ao trocar backend atualiza current_tenant no Keycloak e frontend força token refresh para obter novo tenant_id claim, reload page limpa cache TanStack Query garantindo dados corretos do novo tenant, API calls automáticos via Axios interceptor que adiciona Authorization header em todo request, detecta 401 Unauthorized para redirecionar ao login quando token expira, detecta outros erros para mostrar toast notifications, Routing com React Router v6 usando BrowserRouter, Routes/Route JSX, PrivateRoute wrapper para rotas protegidas que checa authentication e roles, Navigate component para redirects programáticos, useNavigate hook para navigation em event handlers, UI Components usando Tailwind CSS utility-first styling, responsive design mobile-first com breakpoints sm/md/lg/xl, dark mode support via class="dark" no html root, shadcn/ui components library (Button, Input, Dialog, Select) customizados com Tailwind classes, Radix UI headless primitives para acessibilidade ARIA compliant, e Error Handling com try/catch em async operations, Error Boundary components para runtime errors React, toast notifications para user feedback visual, console.error para debugging com stack traces preservadas.
+# CONCEPTS - GEOWEB
+
+Conceitos fundamentais do portal GEOWEB React.
+
+## Autenticação e Autorização
+
+- **[01-authentication.md](./01-authentication.md)** - OAuth2/OIDC flow, useAuth hook, token management, refresh logic
+- **[02-protected-routes.md](./02-protected-routes.md)** - ProtectedRoute component, role-based routing, unauthorized redirects
+- **[03-tenant-switcher.md](./03-tenant-switcher.md)** - Switch entre tenants permitidos, atualização de contexto, re-fetch de dados
+
+## Padrões React
+
+**Component Architecture** - Composição de componentes reutilizáveis, separação de UI e lógica, custom hooks
+
+**State Management:**
+- **Server State** - TanStack Query para cache de dados da API, invalidation, refetch
+- **Client State** - Zustand para auth state, tenant context, UI preferences
+
+**Form Handling** - React Hook Form + Zod validation, field-level errors, submit optimistic updates
+
+---
+
+**Última atualização:** 2026-01-10

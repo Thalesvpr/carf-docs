@@ -14,10 +14,6 @@ Configuração específica escolhida utiliza WatermelonDB 0.27+ com JSI habilita
 
 Status da decisão é aprovado e implementado desde início do projeto em 2024-Q3, com revisão prevista apenas se WatermelonDB demonstrar limitações críticas de performance ou sync (improvável dado adoção por apps enterprise como TrailGuide e ProductHunt) ou se surgir solução offline-first fundamentalmente superior.
 
-## Implementação
-
-Decisão implementada no projeto mobile [REURBCAD](../../../PROJECTS/REURBCAD/DOCS/README.md) usando WatermelonDB como local database SQLite para armazenar unidades habitacionais, titulares (holders) e fotos georreferenciadas coletadas offline em campo via use case [UC-004: Coletar Dados Campo Mobile](../../REQUIREMENTS/USE-CASES/UC-004-coletar-dados-campo-mobile.md), sincronização bidirecional com backend GEOAPI conforme [UC-005: Sincronizar Dados Offline](../../REQUIREMENTS/USE-CASES/UC-005-sincronizar-dados-offline.md) detectando conflitos via timestamps comparing server vs local updated_at e resolvendo automaticamente com estratégia last-write-wins preservando modificação mais recente, models WatermelonDB definindo schema local espelhando domain entities e gerados automaticamente de types [@carf/tscore](../../../PROJECTS/LIB/TS/TSCORE/DOCS/README.md) garantindo consistência estrutural entre mobile local database e backend PostgreSQL.
-
 ---
 
 **Data:** 2024-09-15

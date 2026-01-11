@@ -4,7 +4,7 @@ Aggregates são clusters de entidades e value objects tratados como unidade coes
 
 ## Aggregate Roots (3 principais)
 
-### 01-unit-aggregate.md - Unit Aggregate
+### [01-unit-aggregate.md](./01-unit-aggregate.md) - Unit Aggregate
 **Aggregate Root:** Unit (unidade habitacional)
 
 **Boundaries (fronteira):**
@@ -36,7 +36,7 @@ Aggregates são clusters de entidades e value objects tratados como unidade coes
 
 ---
 
-### 02-community-aggregate.md - Community Aggregate
+### [02-community-aggregate.md](./02-community-aggregate.md) - Community Aggregate
 **Aggregate Root:** Community (comunidade/assentamento)
 
 **Boundaries (fronteira):**
@@ -66,7 +66,7 @@ Aggregates são clusters de entidades e value objects tratados como unidade coes
 
 ---
 
-### 03-legitimation-request-aggregate.md - LegitimationRequest Aggregate
+### [03-legitimation-request-aggregate.md](./03-legitimation-request-aggregate.md) - LegitimationRequest Aggregate
 **Aggregate Root:** LegitimationRequest (processo de legitimação fundiária)
 
 **Boundaries (fronteira):**
@@ -118,20 +118,6 @@ Aggregates são clusters de entidades e value objects tratados como unidade coes
 
 **Invariants Enforcement:** Aggregate root garante que invariantes de negócio sempre são respeitados
 
-## Implementações
-
-Aggregates documentados aqui têm implementação específica em:
-- **Backend .NET**: `PROJECTS/GEOAPI/LAYERS/DOMAIN/AGGREGATES/` (classes com operações e validações)
-- **Frontend React**: Gerenciamento de estado via contexts ou stores respeitando boundaries
-- **Mobile React Native**: Sincronização respeita fronteiras de aggregates (sync granular por aggregate)
-- **Plugin GIS Python**: Operações em lote respeitam transactional boundaries
-
-Ver também:
-- **CENTRAL/DOMAIN-MODEL/ENTITIES/** - Entidades que compõem aggregates
-- **CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/** - Objetos de valor usados em aggregates
-- **CENTRAL/WORKFLOWS/** - Workflows que atravessam múltiplos aggregates
-- **CENTRAL/DOMAIN-MODEL/00-INDEX.md** - Índice completo do modelo de domínio
-
 ---
 
-**Última atualização:** 2025-01-08
+**Última atualização:** 2026-01-10

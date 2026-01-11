@@ -1,6 +1,15 @@
 # Business Rules - Regras de Negócio do Sistema
 
+> **NOTA:** Esta estrutura é legada. A documentação principal de business rules foi movida para [CENTRAL/BUSINESS-RULES/](../../BUSINESS-RULES/README.md).
+
 Business rules são restrições validações e políticas de negócio que governam comportamento do sistema assegurando compliance legal integridade de dados e aderência a processos estabelecidos através de regras explícitas verificáveis e rastreáveis.
+
+## Documentação Principal
+
+Ver **[CENTRAL/BUSINESS-RULES/](../../BUSINESS-RULES/README.md)** para documentação completa organizada em:
+- **[VALIDATION-RULES](../../BUSINESS-RULES/VALIDATION-RULES/README.md)** - 11 regras de validação
+- **[WORKFLOW-RULES](../../BUSINESS-RULES/WORKFLOW-RULES/README.md)** - 5 regras de workflow
+- **[LEGITIMATION-RULES](../../BUSINESS-RULES/LEGITIMATION-RULES/README.md)** - 6 regras de legitimação fundiária
 
 ## Estrutura
 
@@ -39,8 +48,8 @@ Regras que governam transições de status através de state machines definindo 
 Regras específicas de processos de legitimação fundiária conforme Lei 13465/2017 estabelecendo requisitos diferenciados por modalidade REURB-S vs REURB-E e regras de contestações administrativas.
 
 **Arquivos:**
-- **reurb-s-requirements.md** - Requisitos REURB-S (interesse social: baixa renda, área ≤250sqm, gratuito, documentação simplificada)
-- **reurb-e-requirements.md** - Requisitos REURB-E (interesse específico: área ≤500sqm, taxa cobrada, documentação completa, licenças ambientais)
+- **[reurb-s-requirements.md](./LEGITIMATION-RULES/reurb-s-requirements.md)** - Requisitos REURB-S (interesse social: baixa renda, área ≤250sqm, gratuito, documentação simplificada)
+- **[reurb-e-requirements.md](./LEGITIMATION-RULES/reurb-e-requirements.md)** - Requisitos REURB-E (interesse específico: área ≤500sqm, taxa cobrada, documentação completa, licenças ambientais)
 - **contestation-rules.md** - Regras de contestações administrativas (período 30 dias, legitimidade, análise, decisão, recursos)
 
 **Aplicação:** Validação durante workflow de legitimação conforme modalidade selecionada verificando elegibilidade documentação obrigatória custos aplicáveis e condicionantes impostas
@@ -91,10 +100,10 @@ Business rules implementam e asseguram compliance com requisitos funcionais e le
 ## Implementações
 
 Business rules documentadas aqui têm implementação específica em:
-- **Backend .NET**: `PROJECTS/GEOAPI/LAYERS/DOMAIN/RULES/` (classes validation, workflow engines)
-- **Frontend React**: `PROJECTS/GEOWEB/VALIDATIONS/` (client-side validation functions)
-- **Mobile React Native**: `PROJECTS/REURBCAD/VALIDATIONS/` (offline validation before sync)
-- **Plugin GIS Python**: `PROJECTS/GEOGIS/validators/` (bulk validation scripts)
+- **Backend .NET**: (caminho de implementação) (classes validation, workflow engines)
+- **Frontend React**: (caminho de implementação) (client-side validation functions)
+- **Mobile React Native**: (caminho de implementação) (offline validation before sync)
+- **Plugin GIS Python**: (caminho de implementação) (bulk validation scripts)
 
 **Importante:** CENTRAL/BUSINESS-RULES/ documenta regras de negócio de forma technology-agnostic. Implementações específicas (bibliotecas, frameworks, patterns) pertencem a PROJECTS/[PROJECT_NAME]/DOCS/.
 

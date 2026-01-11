@@ -2,12 +2,8 @@
 
 Entidade aggregate root central do sistema representando unidade habitacional em processo de regularização fundiária urbana ou rural. Campos conceituais incluem identificador único global, código identificador legível único por comunidade, endereço completo estruturado (logradouro número complemento bairro cidade estado CEP), geometria espacial poligonal delimitando perímetro da propriedade, área calculada em metros quadrados, tipo de ocupação (residencial comercial mista institucional), número de moradores, situação fundiária atual, status no workflow de regularização (rascunho pendente análise em revisão aprovado rejeitado requer correções), observações textuais livres, dados customizados estruturados em JSON para campos específicos de tenant, referência à comunidade que agrupa espacialmente, referência opcional a quadra urbana, referência opcional a lote individual, e metadados de auditoria (criado em atualizado em deletado em versão para concorrência). Relacionamentos incluem pertence obrigatoriamente a uma Community (N:1), pode estar dentro de Block quadra urbana (N:1 opcional), pode estar vinculado a Plot lote (N:1 opcional), possui múltiplos Holders titulares pessoas físicas (N:N via UnitHolder especificando tipo de vínculo proprietário cônjuge morador e percentual de propriedade), possui múltiplos Documents anexos (1:N polimórfico fotos documentos plantas), possui múltiplas Annotations anotações (1:N polimórfica notas alertas issues lembretes), e pode ter múltiplos SurveyPoints pontos topográficos (1:N marcos do perímetro). Regras de negócio estabelecem que área deve ser maior que zero, endereço logradouro obrigatório, ao menos um Holder deve estar vinculado antes de aprovar unidade, código deve ser único dentro da comunidade, geometria quando preenchida deve ser polígono válido fechado sem auto-interseções, status segue workflow específico permitindo apenas transições válidas (DRAFT pode ir para PENDING_ANALYSIS, PENDING_ANALYSIS para IN_REVIEW APPROVED REJECTED, IN_REVIEW para REQUIRES_CHANGES APPROVED REJECTED, REQUIRES_CHANGES volta para DRAFT, estados finais APPROVED REJECTED não permitem retrocesso sem justificativa), mudanças em status APPROVED ou superior disparam eventos de domínio para notificações, e soft delete é obrigatório mantendo histórico completo preservando DeletedAt ao invés de exclusão física.
 
-**Implementações por projeto:**
-- Backend .NET: `PROJECTS/GEOAPI/LAYERS/DOMAIN/ENTITIES/02-unit.md`
-- Frontend React: `PROJECTS/GEOWEB/MODELS/ENTITIES/unit.ts`
-- Mobile React Native: `PROJECTS/REURBCAD/MODELS/ENTITIES/unit.ts`
-- Plugin GIS Python: `PROJECTS/GEOGIS/MODELS/unit.py`
+**Módulos:** GEOAPI, GEOWEB, REURBCAD, GEOGIS
 
 ---
 
-**Última atualização:** 2025-01-05
+**Última atualização:** 2026-01-10

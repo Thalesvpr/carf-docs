@@ -1,1 +1,26 @@
-Guias práticos para desenvolvimento no GEOWEB incluindo setup local com npm install, criar .env.local com VITE_KEYCLOAK_URL, VITE_KEYCLOAK_REALM, VITE_KEYCLOAK_CLIENT_ID, VITE_API_URL, npm run dev para dev server em localhost:5173, configurar Keycloak integration criando src/lib/keycloak.ts com Keycloak instance, src/contexts/AuthContext.tsx com provider e useAuth hook, wrapping App com AuthProvider em main.tsx, implementar protected routes criando PrivateRoute component que checa isAuthenticated e roles, usar em Router.tsx para proteger rotas específicas, implementar tenant switcher criando TenantSwitcher component com dropdown de allowedTenants, adicionar no Navbar, configurar API client criando axios instance em src/lib/api.ts com baseURL do .env, interceptor request que adiciona Authorization header automaticamente chamando getToken() do AuthContext, interceptor response que detecta 401 e redireciona para login, usar useApi() hook em components para fazer requests, implementar role-based UI usando hasRole(['analyst']) para renderização condicional de buttons/menus, criar formulários com React Hook Form + Zod validation para type-safe form handling, integrar TanStack Query criando QueryClientProvider em App, usar useQuery para data fetching com caching automático, useMutation para create/update/delete operations com optimistic updates via onMutate, invalidateQueries após mutation success para refetch data updated, estilizar com Tailwind CSS utility classes, criar componentes reutilizáveis em src/shared/ui/ seguindo shadcn/ui patterns, implementar dark mode toggle usando class="dark" no html root e dark: prefix em Tailwind classes, testar localmente iniciando Keycloak docker-compose, criando user de teste via Admin Console com tenants attribute, acessando http://localhost:5173, fazendo login, verificando que token contém tenant_id claim, testando tenant switcher se user tem múltiplos tenants, testando role-based rendering com diferentes roles, verificando que API calls incluem Authorization header no Network tab DevTools, e troubleshoot erros comuns como redirect loop infinito verificando onLoad config, CORS error configurando backend CORS policy, token não inclui tenant_id verificando protocol mappers no Keycloak client, query cache não invalida após mutation chamando invalidateQueries com queryKey correto.
+# HOW-TO - GEOWEB
+
+Guias práticos para desenvolvimento e configuração do GEOWEB.
+
+## Autenticação
+
+- **[01-setup-keycloak.md](./01-setup-keycloak.md)** - Configurar Keycloak client, redirect URIs, CORS origins, roles
+- **[02-login-logout.md](./02-login-logout.md)** - Implementar login/logout buttons, useAuth hook, AuthProvider setup
+- **[03-refresh-tokens.md](./03-refresh-tokens.md)** - Token refresh automático, interceptor de 401, retry failed requests
+
+## Desenvolvimento Local
+
+**Setup inicial:**
+1. Clone do repositório
+2. `npm install` ou `bun install`
+3. Configurar `.env.local` com VITE_KEYCLOAK_URL e VITE_GEOAPI_URL
+4. `npm run dev` para servidor de desenvolvimento
+
+**Build para produção:**
+1. `npm run build`
+2. Testa build com `npm run preview`
+3. Deploy para Vercel via `vercel deploy`
+
+---
+
+**Última atualização:** 2026-01-10

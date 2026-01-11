@@ -1,1 +1,47 @@
-GEOGIS layers structure organizada em src/ directory contendo módulos Python com responsabilidades específicas sendo auth/ module encapsulando OAuth2 authentication logic com auth_manager.py definindo AuthManager singleton class methods login_service_account(), login_user(), getAccessToken(), logout(), restoreSession(), token_storage.py wrapping QSettings encrypted storage, api/ module para HTTP requests GEOAPI com api_client.py definindo ApiClient class wrapping requests.Session() métodos get(), post(), put(), delete() e domain-specific methods get_occupations(), create_occupation(), get_layers(), sync_service.py implementando data synchronization logic pull/push, ui/ module para PyQt5 dialogs e widgets com login_dialog.py definindo LoginDialog QDialog com service account vs user account radio buttons, settings_dialog.py com SettingsDialog para configurar API URL, Keycloak settings, theme preferences, layer_selector_dialog.py com LayerSelectorDialog tree view mostrando available layers com checkboxes select múltiplos, layers/ module para QGIS layer management com wfs_loader.py loading WFS layers do GEOAPI construindo URI com authentication, wms_loader.py loading WMS raster tiles, style_manager.py aplicando QGIS symbology automaticamente baseado layer type, layer_cache.py caching loaded layers evitando re-fetches, processing/ module para QGIS Processing algorithms custom tools com validate_geometry_algorithm.py extending QgsProcessingAlgorithm validando geometries topological errors, calculate_area_algorithm.py calculando areas accurate accounting CRS distortion, export_shapefile_algorithm.py batch exporting selected features preserving attributes, processing_provider.py registering algorithms com QGIS Processing framework, utils/ module para helper functions genéricas com http_utils.py retry logic, timeout handling, url_utils.py parsing, encoding, qgis_utils.py wrappers ao redor PyQGIS API simplifying common operations, resources/ directory para assets com icons/ PNG/SVG icons para toolbar actions, ui/ Qt Designer .ui files compiled to Python, plugin lifecycle __init__.py definindo classFactory(iface) function returning plugin instance, metadata.txt descrevendo plugin name, version, qgisMinimumVersion, author, repository URL, main plugin class em geogis_plugin.py definindo initGui() adicionando toolbar actions "Login" icon login.png connected to show_login_dialog(), "Load Layers" icon layers.png connected to load_layers(), "Settings" icon settings.png connected to show_settings_dialog(), menu items adicionados via iface.addPluginToMenu(), unload() removendo UI elements, toolbar actions disabled até authentication success então enabled após login, load_layers() method obtendo available layers via api_client.get_layers(), showing LayerSelectorDialog com tree view, user selects layers, iterating selections calling wfs_loader.load_layer() para cada, adding loaded layers to map canvas, applying styles via style_manager, error handling try/except em cada method catching exceptions showing QMessageBox.critical() com error details, logging QgsMessageLog.logMessage() para debugging sem interrupting user workflow.
+# LAYERS - GEOGIS
+
+Estrutura de camadas do código do plugin GEOGIS QGIS.
+
+## Camadas do Plugin
+
+### Auth Manager
+
+- **[01-auth-manager.md](./01-auth-manager.md)** - AuthManager singleton class gerenciando tokens OAuth2, QSettings encrypted, refresh token logic
+
+**Responsabilidades:**
+- OAuth2 authentication flow (Client Credentials e Authorization Code + PKCE)
+- Token storage em QSettings encrypted via QGIS password manager
+- Token refresh automático antes de expirar
+- Logout e clear credentials
+
+### API Client
+
+**HTTP Client:**
+- requests.Session() com retry strategy
+- Interceptor adicionando Authorization header automaticamente
+- Endpoints para communities, units, holders
+
+### UI Components
+
+**Dialogs PyQt5:**
+- LoginDialog - interface de login OAuth2
+- SettingsDialog - configuração GEOAPI URL e Keycloak
+- LayerSelectorDialog - seleção de layers para carregar
+
+### WFS/WMS Loader
+
+**Layer Loading:**
+- WFS protocol para vector data
+- WMS protocol para raster tiles
+- Custom symbology QGIS styles
+
+### Processing Algorithms
+
+**Custom Tools:**
+- ValidateGeometry - validação topológica
+- CalculateArea - cálculo preciso de áreas
+- ExportShapefile - export para formatos GIS
+
+---
+
+**Última atualização:** 2026-01-10

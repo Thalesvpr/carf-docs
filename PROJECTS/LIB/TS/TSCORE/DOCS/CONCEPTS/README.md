@@ -354,6 +354,12 @@ const updateDto: UpdateUnitDto = {
 - `*WithRelations` - Entity + related entities
 - `*WithStats` - Entity + computed statistics
 
+## Ver também
+
+- [Value Objects Detalhados](./01-value-objects.md) - Implementações completas de CPF, CNPJ, Email, Phone
+- [Autenticação Keycloak](./02-authentication.md) - OAuth2/OIDC integration
+- [TypeScript Types](./03-typescript-types.md) - Entities, Enums, DTOs do domínio CARF
+
 ---
 
 **Última atualização:** 2026-01-09

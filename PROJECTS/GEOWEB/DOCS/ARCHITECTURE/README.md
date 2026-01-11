@@ -1,1 +1,20 @@
-Arquitetura do frontend GEOWEB - React 18 com TypeScript seguindo Feature-Sliced Design (FSD) dividido em layers app (providers, router, global styles), features (módulos isolados como auth, units, holders, communities cada um com api/, components/, hooks/, types/), entities (modelos de domínio compartilhados), shared (componentes UI reutilizáveis, utils, constants), state management distribuído com TanStack Query para server state (cache automático, optimistic updates, background sync), Zustand para UI state local (sidebar aberto, modal ativo, filtros aplicados), React Router v6 para navegação com rotas protegidas usando PrivateRoute component que verifica isAuthenticated do AuthContext e redireciona para /login se não autenticado, integração Keycloak via keycloak-js library que gerencia tokens em memória (não localStorage por segurança), implementa Authorization Code + PKCE flow automaticamente ao chamar keycloak.init({ onLoad: 'login-required', pkceMethod: 'S256' }), refresh automático de tokens a cada 4 minutos antes de expirar via keycloak.updateToken(60), AuthContext provê user state com id, username, email, tenantId, allowedTenants, roles extraídos do JWT token parsed, além de métodos login(), logout(), switchTenant(), hasRole(), getToken() usados por toda aplicação, TenantSwitcher component dropdown que lista allowedTenants do usuário e ao trocar chama switchTenant() que POST /api/auth/switch-tenant no backend para atualizar current_tenant no Keycloak depois força token refresh para obter novo tenant_id claim e reload da página para limpar cache de dados do tenant anterior, e API client usando Axios com interceptor que adiciona Authorization header automaticamente em todo request chamando getToken() do AuthContext, intercepta 401 responses para redirecionar ao login quando token expira, intercepta outros erros para mostrar toast notifications com mensagens user-friendly.
+# ARCHITECTURE - GEOWEB
+
+Arquitetura do portal web GEOWEB React + Vite.
+
+## Integrações
+
+- **[01-keycloak-integration.md](./01-keycloak-integration.md)** - Integração OAuth2/OIDC com Keycloak, useAuth hook, AuthProvider, protected routes
+- **[02-tscore-integration.md](./02-tscore-integration.md)** - Uso da biblioteca @carf/tscore para value objects (CPF, Email), types compartilhados, auth hooks
+
+## Decisões Arquiteturais
+
+Ver também [CENTRAL/ARCHITECTURE/ADRs](../../../../CENTRAL/ARCHITECTURE/ADRs/README.md) para decisões cross-project:
+- [ADR-012](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-012-vite-bundler-frontend.md) - Vite bundler
+- [ADR-014](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-014-shadcn-ui-component-library.md) - shadcn/ui components
+- [ADR-015](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-015-tanstack-query-server-state.md) - TanStack Query
+- [ADR-019](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-019-zustand-client-state.md) - Zustand state management
+
+---
+
+**Última atualização:** 2026-01-10

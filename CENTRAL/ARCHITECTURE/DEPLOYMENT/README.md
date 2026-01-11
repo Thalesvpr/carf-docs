@@ -6,6 +6,32 @@ Estratégia de deployment do CARF documentando ambientes (dev local com docker-c
 
 Configurações de deployment organizadas em DOCKER (subpasta DOCKERFILES/ com Dockerfile para cada projeto, COMPOSE/ com docker-compose.yml para dev/staging/prod orquestrando containers de GEOAPI, PostgreSQL, Keycloak, Redis, e GEOWEB servido via nginx), KUBERNETES (subpasta BASE/ com manifests genéricos de Deployment, Service, Ingress, ConfigMap, Secret; OVERLAYS/ com customizações por ambiente usando Kustomize), e CONFIGS (nginx.conf para reverse proxy e SSL termination, env-vars.md documentando variáveis de ambiente obrigatórias/opcionais por projeto, health checks endpoints).
 
+## Documentação Detalhada
+
+### Pipeline CI/CD
+- **[04-cicd-pipeline.md](./04-cicd-pipeline.md)** - Pipeline completo GitHub Actions: build → test → deploy
+
+### Containerização Docker
+- **[02-containerization.md](./02-containerization.md)** - Estratégia de containerização e Docker best practices
+- **[DOCKER/](./DOCKER/README.md)** - Dockerfiles por projeto, docker-compose para orquestração local/staging
+  - [DOCKERFILES/](./DOCKER/DOCKERFILES/README.md) - Dockerfiles multi-stage otimizados por projeto
+  - [COMPOSE/](./DOCKER/COMPOSE/README.md) - Docker Compose files para dev/staging/prod
+
+### Orquestração Kubernetes
+- **[KUBERNETES/](./KUBERNETES/README.md)** - Manifests Kubernetes com Kustomize para customização por ambiente
+  - [BASE/](./KUBERNETES/BASE/README.md) - Manifests base genéricos (Deployment, Service, Ingress)
+  - [OVERLAYS/](./KUBERNETES/OVERLAYS/README.md) - Customizações por ambiente
+    - [DEV/](./KUBERNETES/OVERLAYS/DEV/README.md) - Configurações desenvolvimento
+    - [PROD/](./KUBERNETES/OVERLAYS/PROD/README.md) - Configurações produção
+
+### Configurações e Variáveis
+- **[CONFIGS/](./CONFIGS/README.md)** - Arquivos de configuração nginx, variáveis de ambiente, health checks
+  - [env-vars.md](./CONFIGS/env-vars.md) - Variáveis de ambiente por projeto
+  - [health-checks.md](./CONFIGS/health-checks.md) - Endpoints e estratégias de health checking
+
+### Deployments Específicos
+- [06-static-site-deployment.md](./06-static-site-deployment.md) - Deploy de sites estáticos (WEBDOCS) em GitHub Pages/Netlify
+
 ---
 
 **Última atualização:** 2025-12-29

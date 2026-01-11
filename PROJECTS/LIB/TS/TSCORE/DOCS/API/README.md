@@ -536,6 +536,10 @@ try {
 }
 ```
 
+## Ver também
+
+- [Validation API](./01-validation-api.md) - Detalhes de implementação dos value objects de validação
+
 ---
 
 **Última atualização:** 2026-01-09

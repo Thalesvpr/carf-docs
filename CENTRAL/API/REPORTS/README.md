@@ -4,7 +4,7 @@ Schemas JSON para geração de relatórios do CARF. ReportGenerateRequest (type 
 
 ## Implementação e Uso
 
-Endpoint de Relatórios implementado pelo backend [GEOAPI](../../../PROJECTS/GEOAPI/DOCS/ARCHITECTURE/01-overview.md) gerando PDFs via library específica com templates customizáveis por tenant conforme [ADR-005: Multi-tenancy](../../ARCHITECTURE/ADRs/ADR-005-multi-tenancy-rls.md), consumido por [GEOWEB](../../../PROJECTS/GEOWEB/DOCS/README.md) para exportação de dados de comunidade via [UC-006: Gerar Relatório Comunidade](../../REQUIREMENTS/USE-CASES/UC-006-gerar-relatorio-comunidade.md) e [UC-007: Exportar Dados Geográficos](../../REQUIREMENTS/USE-CASES/UC-007-exportar-dados-geograficos.md) gerando Shapefiles para QGIS, acessado via [@carf/geoapi-client](../../../PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/README.md) com download direto de blobs.
+Endpoint de Relatórios implementado pelo backend GEOAPI gerando PDFs via library específica com templates customizáveis por tenant conforme [ADR-005: Multi-tenancy](../../ARCHITECTURE/ADRs/ADR-005-multi-tenancy-rls.md), consumido por GEOWEB para exportação de dados de comunidade via [UC-006: Gerar Relatório Comunidade](../../REQUIREMENTS/USE-CASES/UC-006-gerar-relatorio-comunidade.md) e [UC-007: Exportar Dados Geográficos](../../REQUIREMENTS/USE-CASES/UC-007-exportar-dados-geograficos.md) gerando Shapefiles para QGIS, acessado via @carf/geoapi-client com download direto de blobs.
 
 ---
 

@@ -85,11 +85,11 @@ Sistema implementa mecanismo abrangente de notificações automáticas disparada
 
 **Implementações por projeto:**
 
-- Backend .NET: `PROJECTS/GEOAPI/SERVICES/NotificationService.cs`
-- Backend .NET: `PROJECTS/GEOAPI/JOBS/SendNotificationsJob.cs` (background)
-- Backend .NET: `PROJECTS/GEOAPI/TEMPLATES/email-templates/` (Razor views)
-- Frontend React: `PROJECTS/GEOWEB/COMPONENTS/notifications/NotificationCenter.tsx`
-- Frontend React: `PROJECTS/GEOWEB/COMPONENTS/notifications/NotificationBadge.tsx`
+- Backend .NET: (caminho de implementação)
+- Backend .NET: (caminho de implementação) (background)
+- Backend .NET: (caminho de implementação) (Razor views)
+- Frontend React: (caminho de implementação)
+- Frontend React: (caminho de implementação)
 
 ---
 

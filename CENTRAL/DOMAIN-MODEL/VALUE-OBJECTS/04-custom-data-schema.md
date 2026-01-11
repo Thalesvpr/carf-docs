@@ -6,11 +6,8 @@ Validação de CustomData ocorre em múltiplas camadas com frontend validando co
 
 Schema evolution implementa versioning onde Tenant.Settings.schemaVersion incrementa quando schema muda, Units antigas preservam CustomData no schema antigo sem necessidade de migration imediata, e application code valida contra schema correspondente à versão da Unit permitindo coexistência de múltiplas versões durante transição gradual, migrations podem ser forçadas via background job que lê Units antigas valida CustomData contra schema novo adicionando defaults para campos novos e persistindo versão atualizada, e deprecation de campos antigos marca campo como deprecated em schema mas mantém compatibilidade por período de grace antes de remover completamente. Tenant.Settings.fields configuration define cada campo CustomData com key name label type enum options required conditional logic (exemplo campo hasSepticTank só aparece se hasPipedWater false) e validation rules adicionais (exemplo floors max 3 para REURB-S max 5 para REURB-E), UI renderiza form dinamicamente baseado em configuration permitindo prefeituras ajustarem formulário sem code changes, e export de Units inclui CustomData expandido em colunas separadas no CSV ou como nested object em GeoJSON mantendo estrutura original.
 
-**Implementações por projeto:**
-- Backend .NET: `PROJECTS/GEOAPI/LAYERS/DOMAIN/VALUE-OBJECTS/04-custom-data-schema.md` (validação estrutural)
-- Frontend React: `PROJECTS/GEOWEB/UTILS/value-objects/custom-data-schema.ts` (validação client-side)
-- Mobile React Native: `PROJECTS/REURBCAD/UTILS/custom-data-schema.ts` (validação offline)
+**Módulos:** GEOAPI, GEOWEB, REURBCAD, GEOGIS
 
 ---
 
-**Última atualização:** 2025-01-05
+**Última atualização:** 2026-01-10

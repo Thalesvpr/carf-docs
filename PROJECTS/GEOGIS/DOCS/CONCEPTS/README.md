@@ -1,1 +1,76 @@
-Conceitos fundamentais do GEOGIS incluindo QGIS Plugin Architecture onde plugin é Python package com metadata.txt descrevendo name, version, description, author, qgisMinimumVersion, __init__.py exportando classFactory() function retornando plugin instance, main plugin class com initGui() e unload() lifecycle hooks, plugin instalado em ~/.qgis3/python/plugins/ directory carregado dinamicamente pelo QGIS ao startup, PyQGIS API provê acesso completo QGIS functionality via iface (QgisInterface) para manipular map canvas, layers, toolbars, menus, QgsVectorLayer para vector data geometries+attributes, QgsRasterLayer para raster data tiles+bands, QgsProject para project state save/load, QgsProcessingAlgorithm para custom tools Processing Toolbox, OAuth2 Python adaptations usando python-keycloak library wrapping OAuth2 protocol implementation, authorization code flow requer local HTTP server listening callback porque desktop app diferente de web app sem server-side component, http.server.HTTPServer simples single-request handler suficiente para receive callback depois shutdown, code_verifier PKCE generated with secrets.token_urlsafe(64) producing URL-safe base64 string, code_challenge calculated with base64.urlsafe_b64encode(hashlib.sha256(code_verifier.encode()).digest()).decode().rstrip('=') SHA256 hash no padding, Token Storage QSettings usando QGIS password manager encrypted platform-specific backends Keychain (macOS), KWallet/Secret Service (Linux), Windows Credential Manager garantindo tokens não plain text em config files, QSettings API simples setValue(key, value) e value(key, defaultValue) abstracting platform differences, WFS/WMS Protocols onde WFS (Web Feature Service) retorna vector data XML/GML ou GeoJSON com geometries+attributes queryable client-side filtering via CQL_FILTER parameter, WMS (Web Map Service) retorna raster tiles PNG/JPEG rendered server-side não queryable apenas visualization, QGIS suporta ambos via Add WFS/WMS Layer dialog ou programatically QgsVectorLayer('url typename', 'layer_name', 'WFS'), Authentication WFS/WMS pode usar authcfg parameter com auth config ID storing credentials encrypted, ou custom headers adicionados via uri += '&headers=Authorization: Bearer token' embedding token na connection string, Shapefile Export via QgsVectorFileWriter.writeAsVectorFormat() com parameters layer source, output_path, encoding 'UTF-8', dest_crs para CRS transformation, driver_name 'ESRI Shapefile', layer_options para compression/spatial_index, preserving attributes schema automaticamente, GeoJSON Export similar usando driver_name 'GeoJSON' ou manual json.dumps() iterando features convertendo geometries para dict via feature.geometry().asJson(), Processing Algorithms custom tools registered via QgsProcessingProvider com method addAlgorithm(MyAlgorithm()) onde MyAlgorithm extends QgsProcessingAlgorithm defining name(), displayName(), group(), createInstance(), initAlgorithm() adding parameters, processAlgorithm() implementing logic, executado via processing.run('plugin:algorithm_id', parameters) ou GUI Processing Toolbox drag-drop workflow builder chaining algorithms, e Error Handling QGIS message bar iface.messageBar().pushMessage('Title', 'Message', level=Qgis.Critical, duration=5) showing user-facing notifications, QgsMessageLog.logMessage('Debug info', 'GEOGIS', level=Qgis.Info) logging para Messages panel debugging sem interrupting workflow, try/except catching exceptions gracefully showing error dialog QMessageBox.critical() com stack trace details.
+# CONCEPTS - GEOGIS
+
+Conceitos fundamentais do plugin GEOGIS Python para QGIS.
+
+## Autenticação e Tokens
+
+- **[01-authentication.md](./01-authentication.md)** - OAuth2 Python adaptations, authorization code flow, PKCE implementation
+- **[02-token-storage.md](./02-token-storage.md)** - QSettings usando QGIS password manager encrypted (Keychain, KWallet, Windows Credential Manager)
+
+## QGIS Plugin Architecture
+
+Plugin é Python package com:
+- **metadata.txt** descrevendo name, version, description, author, qgisMinimumVersion
+- **__init__.py** exportando classFactory() function retornando plugin instance
+- **Main plugin class** com initGui() e unload() lifecycle hooks
+- **Instalação** em ~/.qgis3/python/plugins/ directory carregado dinamicamente pelo QGIS ao startup
+
+## PyQGIS API
+
+**iface (QgisInterface)** - Acesso completo QGIS functionality para manipular map canvas, layers, toolbars, menus
+
+**Tipos de Layers:**
+- QgsVectorLayer para vector data geometries+attributes
+- QgsRasterLayer para raster data tiles+bands
+- QgsProject para project state save/load
+- QgsProcessingAlgorithm para custom tools Processing Toolbox
+
+## WFS/WMS Protocols
+
+**WFS (Web Feature Service):**
+- Retorna vector data XML/GML ou GeoJSON com geometries+attributes queryable
+- Client-side filtering via CQL_FILTER parameter
+
+**WMS (Web Map Service):**
+- Retorna raster tiles PNG/JPEG rendered server-side
+- Não queryable apenas visualization
+
+**Authentication WFS/WMS:**
+- authcfg parameter com auth config ID storing credentials encrypted
+- Custom headers: `uri += '&headers=Authorization: Bearer token'`
+
+## Shapefile/GeoJSON Export
+
+**Shapefile Export** via `QgsVectorFileWriter.writeAsVectorFormat()` com parameters:
+- layer source, output_path, encoding 'UTF-8'
+- dest_crs para CRS transformation
+- driver_name 'ESRI Shapefile'
+- layer_options para compression/spatial_index
+- Preserving attributes schema automaticamente
+
+**GeoJSON Export** usando driver_name 'GeoJSON' ou manual json.dumps()
+
+## Processing Algorithms
+
+Custom tools registered via `QgsProcessingProvider` com:
+- `addAlgorithm(MyAlgorithm())` onde MyAlgorithm extends QgsProcessingAlgorithm
+- Defining: name(), displayName(), group(), createInstance()
+- initAlgorithm() adding parameters
+- processAlgorithm() implementing logic
+- Executado via `processing.run('plugin:algorithm_id', parameters)` ou GUI Processing Toolbox
+
+## Error Handling
+
+**User-facing notifications:**
+- `iface.messageBar().pushMessage('Title', 'Message', level=Qgis.Critical, duration=5)`
+
+**Logging:**
+- `QgsMessageLog.logMessage('Debug info', 'GEOGIS', level=Qgis.Info)`
+
+**Exception handling:**
+- try/except catching exceptions gracefully
+- QMessageBox.critical() com stack trace details
+
+---
+
+**Última atualização:** 2026-01-10

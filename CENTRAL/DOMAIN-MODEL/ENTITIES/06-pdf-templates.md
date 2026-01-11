@@ -10,10 +10,8 @@ Planta Técnica elementos gráficos incluem título do desenho com identificaç�
 
 Certidão de Regularização template inclui timbre oficial da Prefeitura com brasão logo endereço, título centralizado CERTIDÃO DE REGULARIZAÇÃO FUNDIÁRIA TIPO PROVISIONAL ou DEFINITIVE, número único sequencial CERT-{ano}-{sequencial} rastreável, preâmbulo formal O Secretário Municipal de Habitação no uso de suas atribuições legais CERTIFICA que, qualificação completa dos titulares nome nacionalidade estado civil profissão CPF RG domicílio, descrição do imóvel com endereço área limites confrontações matrícula se existir, fundamentação legal citando Lei 13.465/2017 artigos específicos Decreto Municipal processo administrativo número, declaração de regularidade A presente unidade habitacional encontra-se regularizada nos termos da legislação vigente tendo sido verificado o cumprimento de todos requisitos legais urbanísticos e ambientais, condicionantes listando obrigações do titular manter uso residencial não parcelar sem anuência vedada alienação antes de conversão em definitivo, efeitos jurídicos Esta certidão tem força de escritura pública para fins de registro produzindo efeitos erga omnes servindo como título hábil para conversão em propriedade definitiva após decurso de prazo legal, prazo de validade Válida até {data} podendo ser convertida em título definitivo mediante comprovação de cumprimento de condicionantes, local e data Cidade Estado em {data por extenso}, assinatura digital do gestor com certificado ICP-Brasil ou eletrônica, QR code para validação online, e rodapé com disclaimer Este documento possui validade jurídica conforme Lei 13.465/2017 podendo ser verificado em {URL}. PDF gerado é registrado em blockchain público (via Ethereum ou similar) ou timestamp authority garantindo proof of existence e immutability, hash SHA-256 do PDF é publicado permitindo qualquer pessoa verificar integridade do documento comparando hash, e revogação de certidão por descoberta de fraude ou vício é registrada em sistema público invalidando QR code e alertando em tentativa de validação.
 
-**Implementações por projeto:**
-- Backend .NET: `PROJECTS/GEOAPI/LAYERS/DOMAIN/ENTITIES/06-pdf-templates.md` (PDF generation service)
-- Frontend React: `PROJECTS/GEOWEB/COMPONENTS/pdf-preview.tsx` (preview antes de gerar)
+**Módulos:** GEOAPI (backend - geração PDF)
 
 ---
 
-**Última atualização:** 2025-01-05
+**Última atualização:** 2026-01-10

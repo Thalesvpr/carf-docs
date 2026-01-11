@@ -69,10 +69,10 @@ Regras governando workflow completo de LegitimationRequest (solicitação de reg
 - Certidão: `DOMAIN-MODEL/ENTITIES/27-legitimation-certificate.md` (gerada em APPROVED)
 
 **Implementações por projeto:**
-- Backend .NET: `PROJECTS/GEOAPI/LAYERS/APPLICATION/STATE-MACHINES/LegitimationStateMachine.cs`
-- Backend .NET: `PROJECTS/GEOAPI/LAYERS/APPLICATION/SERVICES/LegitimationWorkflowService.cs`
-- Frontend React: `PROJECTS/GEOWEB/COMPONENTS/legitimation/StatusTimeline.tsx`
-- Frontend React: `PROJECTS/GEOWEB/COMPONENTS/legitimation/WorkflowDiagram.tsx`
+- Backend .NET: (caminho de implementação)
+- Backend .NET: (caminho de implementação)
+- Frontend React: (caminho de implementação)
+- Frontend React: (caminho de implementação)
 
 ---
 

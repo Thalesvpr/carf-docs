@@ -4,7 +4,7 @@ Schemas JSON para comunidades do CARF. CommunityCreateRequest (name, description
 
 ## Implementação e Uso
 
-Endpoint de Comunidades implementado pelo backend [GEOAPI](../../../PROJECTS/GEOAPI/DOCS/ARCHITECTURE/01-overview.md) usando aggregate [CommunityAggregate](../../DOMAIN-MODEL/AGGREGATES/02-community-aggregate.md) agrupando múltiplas unidades geográficas conforme [ADR-002: PostGIS](../../ARCHITECTURE/ADRs/ADR-002-postgresql-postgis.md), consumido por [GEOWEB](../../../PROJECTS/GEOWEB/DOCS/README.md) para visualização de mapas com layers WMS conforme [UC-010: Configurar Camadas WMS](../../REQUIREMENTS/USE-CASES/UC-010-configurar-camadas-wms.md) e [GEOGIS](../../../PROJECTS/GEOGIS/DOCS/README.md) para operações GIS avançadas, ambos via [@carf/geoapi-client](../../../PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/README.md).
+Endpoint de Comunidades implementado pelo backend GEOAPI usando aggregate [CommunityAggregate](../../DOMAIN-MODEL/AGGREGATES/02-community-aggregate.md) agrupando múltiplas unidades geográficas conforme [ADR-002: PostGIS](../../ARCHITECTURE/ADRs/ADR-002-postgresql-postgis.md), consumido por GEOWEB para visualização de mapas com layers WMS conforme [UC-010: Configurar Camadas WMS](../../REQUIREMENTS/USE-CASES/UC-010-configurar-camadas-wms.md) e GEOGIS para operações GIS avançadas, ambos via @carf/geoapi-client.
 
 ---
 

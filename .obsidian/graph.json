@@ -39,28 +39,28 @@
       "query": "path:CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS",
       "color": {
         "a": 1,
-        "rgb": 10494207
-      }
-    },
-    {
-      "query": "path:CENTRAL/REQUIREMENTS/USE-CASES",
-      "color": {
-        "a": 1,
-        "rgb": 14483455
+        "rgb": 8388863
       }
     },
     {
       "query": "path:CENTRAL/REQUIREMENTS/USER-STORIES",
       "color": {
         "a": 1,
-        "rgb": 9109643
+        "rgb": 12255487
+      }
+    },
+    {
+      "query": "path:CENTRAL/REQUIREMENTS/USE-CASES",
+      "color": {
+        "a": 1,
+        "rgb": 13893887
       }
     },
     {
       "query": "path:CENTRAL/REQUIREMENTS/",
       "color": {
         "a": 1,
-        "rgb": 16738740
+        "rgb": 16711854
       }
     },
     {
@@ -88,7 +88,7 @@
       "query": "path:CENTRAL/SECURITY/",
       "color": {
         "a": 1,
-        "rgb": 16711680
+        "rgb": 16766208
       }
     },
     {
@@ -179,7 +179,7 @@
       "query": "path:PROJECTS/WEBDOCS/",
       "color": {
         "a": 1,
-        "rgb": 12845306
+        "rgb": 64221
       }
     },
     {
@@ -193,7 +193,7 @@
       "query": "path:PROJECTS/LIB/",
       "color": {
         "a": 1,
-        "rgb": 5131259
+        "rgb": 12829439
       }
     },
     {
@@ -202,18 +202,25 @@
         "a": 1,
         "rgb": 255
       }
+    },
+    {
+      "query": "path:/",
+      "color": {
+        "a": 1,
+        "rgb": 16777215
+      }
     }
   ],
   "collapse-display": false,
-  "showArrow": false,
-  "textFadeMultiplier": 0,
-  "nodeSizeMultiplier": 1.6,
-  "lineSizeMultiplier": 1,
+  "showArrow": true,
+  "textFadeMultiplier": 1.2,
+  "nodeSizeMultiplier": 2.20363825363825,
+  "lineSizeMultiplier": 0.614449064449065,
   "collapse-forces": false,
-  "centerStrength": 0,
-  "repelStrength": 20,
+  "centerStrength": 0.0301455301455301,
+  "repelStrength": 19.8128898128898,
   "linkStrength": 1,
-  "linkDistance": 488,
-  "scale": 0.015355905973322361,
+  "linkDistance": 500,
+  "scale": 0.0078125,
   "close": false
 }

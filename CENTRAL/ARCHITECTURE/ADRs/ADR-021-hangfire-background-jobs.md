@@ -12,10 +12,6 @@ Configuração utiliza Hangfire 1.8+ com PostgreSQL storage, dashboard habilitad
 
 Status aprovado e implementado desde 2024-Q3.
 
-## Implementação
-
-Decisão implementada no backend [GEOAPI](../../../PROJECTS/GEOAPI/DOCS/ARCHITECTURE/01-overview.md) com Hangfire configurado em Program.cs usando PostgreSQL storage, recurring jobs para sync de dados externos agendados via cron expressions, fire-and-forget jobs para envio de emails geração de relatórios, dashboard acessível em `/hangfire` protegido por authorization middleware, e retry automático em falhas conforme [GEOAPI Data Flow](../../../PROJECTS/GEOAPI/DOCS/ARCHITECTURE/03-data-flow.md).
-
 ---
 
 **Data:** 2025-01-10

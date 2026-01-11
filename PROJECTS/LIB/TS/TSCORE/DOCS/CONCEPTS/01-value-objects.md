@@ -2,7 +2,7 @@
 
 ## Visão Geral
 
-Value Objects são objetos imutáveis que representam conceitos do domínio definidos apenas por seus atributos, sem identidade própria conforme especificado em [CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS](../../../../../../CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/README.md). No @carf/tscore, implementamos Value Objects para garantir validação consistente de dados brasileiros em todos os projetos CARF, sendo consumidos por [@carf/geoapi-client](../../../GEOAPI-CLIENT/DOCS/README.md) para tipagem de requests/responses HTTP, [@carf/ui](../../../UI-COMPONENTS/DOCS/README.md) para validação em componentes React, e aplicações finais [GEOWEB](../../../../GEOWEB/DOCS/README.md), [REURBCAD](../../../../REURBCAD/DOCS/README.md) e [ADMIN](../../../../ADMIN/DOCS/README.md).
+Value Objects são objetos imutáveis que representam conceitos do domínio definidos apenas por seus atributos, sem identidade própria conforme especificado em [CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS](../../../../../../CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/README.md). No @carf/tscore, implementamos Value Objects para garantir validação consistente de dados brasileiros em todos os projetos CARF, sendo consumidos por [@carf/geoapi-client](../../../GEOAPI-CLIENT/DOCS/README.md) para tipagem de requests/responses HTTP, [@carf/ui](../../../UI-COMPONENTS/DOCS/README.md) para validação em componentes React, e aplicações finais [GEOWEB](../../../../../GEOWEB/DOCS/README.md), [REURBCAD](../../../../../REURBCAD/DOCS/README.md) e [ADMIN](../../../../../ADMIN/DOCS/README.md).
 
 ## Conceito de Value Object
 

@@ -12,10 +12,6 @@ Configuração específica escolhida utiliza Keycloak 23.0.3 (última versão es
 
 Status da decisão é aprovado e implementado desde início do projeto em 2024-Q3, com revisão prevista apenas se Keycloak introduzir breaking changes em major version futura ou se surgir solução open-source superior (improvável dado domínio atual de Keycloak em mercado enterprise).
 
-## Implementação
-
-Decisão implementada através do projeto [KEYCLOAK](../../../PROJECTS/KEYCLOAK/DOCS/README.md) hospedando servidor Keycloak com realms customizados por tenant implementando multi-tenancy model com isolamento por município, integração client-side via [@carf/tscore KeycloakClient](../../../PROJECTS/LIB/TS/TSCORE/DOCS/CONCEPTS/02-authentication.md) utilizado nos frontends [GEOWEB](../../../PROJECTS/GEOWEB/DOCS/README.md), [REURBCAD](../../../PROJECTS/REURBCAD/DOCS/README.md) e [ADMIN](../../../PROJECTS/ADMIN/DOCS/ARCHITECTURE/04-integration.md) executando OAuth2 + PKCE flow para obtenção de tokens JWT, validação server-side de tokens JWT no backend [GEOAPI](../../../PROJECTS/GEOAPI/DOCS/ARCHITECTURE/02-admin-security.md) via middleware ASP.NET Core verificando assinatura RSA com public key do realm, e gestão de usuários via Keycloak Admin API REST permitindo CRUD de users roles e attributes.
-
 ---
 
 **Data:** 2024-09-15

@@ -338,7 +338,7 @@ app.mount('#app')
 
 ### Conceito
 
-Multi-tenancy permite que múltiplas instituições (prefeituras, ITERJ, etc.) compartilhem a mesma infraestrutura CARF com isolamento completo de dados conforme arquitetura documentada em [CENTRAL/ARCHITECTURE/MULTI-TENANCY](../../../../../../CENTRAL/ARCHITECTURE/MULTI-TENANCY/README.md) usando entidade [Tenant](../../../../../../CENTRAL/DOMAIN-MODEL/ENTITIES/07-tenant.md) para representar cada instituição.
+Multi-tenancy permite que múltiplas instituições (prefeituras, ITERJ, etc.) compartilhem a mesma infraestrutura CARF com isolamento completo de dados conforme arquitetura documentada em CENTRAL/ARCHITECTURE/MULTI-TENANCY usando entidade [Tenant](../../../../../../CENTRAL/DOMAIN-MODEL/ENTITIES/07-tenant.md) para representar cada instituição.
 
 ### Isolamento de Dados
 

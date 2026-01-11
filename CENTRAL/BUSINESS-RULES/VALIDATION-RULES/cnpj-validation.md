@@ -67,9 +67,9 @@ Validação primeiro dígito:
 - `../DOMAIN-MODEL/ENTITIES/02-holder.md` - Entity usando CNPJ quando PJ
 
 **Implementações:**
-- `PROJECTS/GEOAPI/LAYERS/DOMAIN/VALUE-OBJECTS/Cnpj.cs` - Backend .NET
-- `PROJECTS/GEOWEB/UTILS/validators/cnpjValidator.ts` - Frontend React
-- `PROJECTS/REURBCAD/UTILS/cnpjValidator.ts` - Mobile React Native
+- (caminho de implementação) - Backend .NET
+- (caminho de implementação) - Frontend React
+- (caminho de implementação) - Mobile React Native
 
 **Referências externas:**
 - Receita Federal do Brasil - Algoritmo oficial

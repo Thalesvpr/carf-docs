@@ -59,10 +59,10 @@ Sistema implementa controle de acesso baseado em papéis (RBAC - Role-Based Acce
 
 **Implementações por projeto:**
 
-- Backend .NET: `PROJECTS/GEOAPI/LAYERS/APPLICATION/AUTHORIZATION/PermissionMatrix.cs`
-- Backend .NET: `PROJECTS/GEOAPI/LAYERS/APPLICATION/AUTHORIZATION/RolePermissions.cs`
-- Frontend React: `PROJECTS/GEOWEB/AUTH/permissions-config.ts`
-- Frontend React: `PROJECTS/GEOWEB/AUTH/usePermissions.hook.ts`
+- Backend .NET: (caminho de implementação)
+- Backend .NET: (caminho de implementação)
+- Frontend React: (caminho de implementação)
+- Frontend React: (caminho de implementação)
 
 ---
 

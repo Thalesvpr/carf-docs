@@ -6,7 +6,7 @@ O projeto CARF possui 3 bibliotecas TypeScript compartilhadas publicadas como np
 
 ## Bibliotecas
 
-### [@carf/tscore](../../PROJECTS/LIB/TS/TSCORE/DOCS/README.md)
+### @carf/tscore
 
 **Biblioteca core** com validações, types e autenticação.
 
@@ -17,16 +17,13 @@ O projeto CARF possui 3 bibliotecas TypeScript compartilhadas publicadas como np
 - ✅ Composables Vue 3
 - ✅ Cliente Keycloak OAuth2/OIDC
 
-**Instalação:**
-```bash
-bun add @carf/tscore
-```
+**Instalação:** Executar comando bun add @carf/tscore no projeto consumidor.
 
-**Documentação:** [PROJECTS/LIB/TS/TSCORE/DOCS/](../../PROJECTS/LIB/TS/TSCORE/DOCS/README.md)
+**Documentação:** PROJECTS/LIB/TS/TSCORE/DOCS/
 
 ---
 
-### [@carf/geoapi-client](../../PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/README.md)
+### @carf/geoapi-client
 
 **Cliente HTTP** type-safe para comunicação com GEOAPI backend.
 
@@ -38,12 +35,9 @@ bun add @carf/tscore
 - ✅ Suporte a offline caching
 - ✅ Upload/download de arquivos
 
-**Instalação:**
-```bash
-bun add @carf/geoapi-client @carf/tscore
-```
+**Instalação:** Executar comando bun add @carf/geoapi-client @carf/tscore instalando ambas bibliotecas como dependencies.
 
-**Documentação:** [PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/](../../PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/README.md)
+**Documentação:** PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/
 
 ---
 
@@ -58,52 +52,15 @@ bun add @carf/geoapi-client @carf/tscore
 - ✅ Acessibilidade WCAG 2.1 AA
 - ✅ Storybook documentation
 
-**Instalação:**
-```bash
-bun add @carf/ui @carf/tscore
-```
+**Instalação:** Executar comando bun add @carf/ui @carf/tscore instalando biblioteca de componentes UI com dependência tscore.
 
-**Documentação:** [PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/](../../PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/README.md)
+**Documentação:** PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/
 
 ---
 
 ## Arquitetura
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    Aplicações Frontend                       │
-│  ┌─────────┐  ┌──────────┐  ┌───────┐  ┌──────────┐       │
-│  │ GEOWEB  │  │ REURBCAD │  │ ADMIN │  │ WEBDOCS  │       │
-│  └────┬────┘  └─────┬────┘  └───┬───┘  └─────┬────┘       │
-└───────┼────────────┼────────────┼─────────────┼────────────┘
-        │            │            │             │
-        └────────────┴────────────┴─────────────┘
-                     │
-        ┌────────────┴───────────────────────────────┐
-        │    Bibliotecas TypeScript Compartilhadas   │
-        │  ┌─────────────────────────────────────┐   │
-        │  │         @carf/ui                    │   │
-        │  │  (Componentes React + shadcn/ui)    │   │
-        │  └───────────────┬─────────────────────┘   │
-        │                  │                          │
-        │  ┌───────────────▼─────────────────────┐   │
-        │  │      @carf/geoapi-client            │   │
-        │  │   (SDK HTTP para GEOAPI backend)    │   │
-        │  └───────────────┬─────────────────────┘   │
-        │                  │                          │
-        │  ┌───────────────▼─────────────────────┐   │
-        │  │         @carf/tscore                │   │
-        │  │ (Types, Validations, Auth hooks)    │   │
-        │  └─────────────────────────────────────┘   │
-        └────────────────┬───────────────────────────┘
-                         │
-        ┌────────────────▼───────────────┐
-        │    GEOAPI Backend (.NET 9)     │
-        │  - REST API                    │
-        │  - PostgreSQL + PostGIS        │
-        │  - Keycloak OAuth2             │
-        └────────────────────────────────┘
-```
+Arquitetura em camadas onde aplicações frontend GEOWEB REURBCAD ADMIN e WEBDOCS consomem três bibliotecas TypeScript compartilhadas organizadas hierarquicamente sendo @carf/ui camada superior contendo componentes React com shadcn/ui dependendo de @carf/geoapi-client camada intermediária provendo SDK HTTP type-safe para comunicação com backend GEOAPI que por sua vez depende de @carf/tscore camada base contendo types validations e auth hooks compartilhados, eliminando duplicação de código e garantindo consistência entre frontends, todas bibliotecas eventualmente comunicando com GEOAPI backend .NET 9 expondo REST API conectado a PostgreSQL com PostGIS para dados espaciais e Keycloak para autenticação OAuth2.
 
 ## Estratégia de Versionamento
 
@@ -115,39 +72,11 @@ Todas as libs seguem **Semantic Versioning**:
 
 ## Publicação
 
-Packages são publicados no **GitHub Packages**:
-
-```bash
-# Configurar .npmrc
-echo "@carf:registry=https://npm.pkg.github.com" >> .npmrc
-echo "//npm.pkg.github.com/:_authToken=\${GITHUB_TOKEN}" >> .npmrc
-
-# Publicar (requer permissões)
-cd PROJECTS/LIB/TS/TSCORE/SRC-CODE
-bun run build
-npm publish
-```
+Packages são publicados no GitHub Packages configurando arquivo .npmrc com registry @carf apontando para https://npm.pkg.github.com e authToken usando variável GITHUB_TOKEN para autenticação, processo de publicação requer permissões adequadas executando build via bun run build no diretório da biblioteca seguido por npm publish que envia package para GitHub Packages registry.
 
 ## Desenvolvimento Local
 
-Para desenvolver nas libs localmente e testar em outro projeto:
-
-```bash
-# Na lib (ex: tscore)
-cd PROJECTS/LIB/TS/TSCORE/SRC-CODE
-bun link
-
-# No projeto consumidor (ex: geoweb)
-cd PROJECTS/GEOWEB/SRC-CODE
-bun link @carf/tscore
-
-# Fazer alterações na lib
-cd PROJECTS/LIB/TS/TSCORE/SRC-CODE
-# ... editar código ...
-bun run build  # Rebuild após mudanças
-
-# Projeto consumidor usa versão local automaticamente
-```
+Desenvolvimento local de bibliotecas permite testar mudanças antes de publicar executando bun link no diretório da biblioteca criando symlink global seguido por bun link @carf/nome-biblioteca no projeto consumidor linkando para versão local, alterações na biblioteca requerem rebuild via bun run build após edições sendo automaticamente refletidas no projeto consumidor linkado sem necessidade de republicar package permitindo iteração rápida e validação de mudanças antes de commit.
 
 ## Relacionamento com CENTRAL/
 
@@ -174,8 +103,8 @@ As bibliotecas implementam conceitos documentados em CENTRAL/:
 ### Projetos Consumidores
 - **GEOWEB** - Frontend web React (documentação em desenvolvimento)
 - **REURBCAD** - Mobile React Native (documentação em desenvolvimento)
-- [ADMIN](../../PROJECTS/ADMIN/DOCS/README.md) - Console admin React
-- [WEBDOCS](../../PROJECTS/WEBDOCS/DOCS/README.md) - Portal VitePress
+- ADMIN - Console admin React
+- WEBDOCS - Portal VitePress
 
 ---
 

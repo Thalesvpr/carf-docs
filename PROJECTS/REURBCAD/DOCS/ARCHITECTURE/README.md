@@ -1,1 +1,17 @@
-Arquitetura do mobile REURBCAD - React Native com TypeScript seguindo offline-first strategy usando WatermelonDB como banco local SQLite para armazenar dados coletados em campo sem conexão internet, sincronização incremental pull/push quando online detectado via NetInfo listener, integração Keycloak via react-native-app-auth ou expo-auth-session (se Expo) implementando OAuth2 Authorization Code + PKCE flow abrindo browser nativo via Linking API para login no Keycloak, recebendo authorization code via deep link callback registrado no AndroidManifest.xml e Info.plist com scheme com.carf.reurbcad://oauth/callback, exchange code por tokens incluindo offline_access scope para obter offline refresh token válido por 30 dias permitindo sincronização background sem re-login, armazenamento seguro de tokens em Keychain (iOS) e Keystore (Android) via expo-secure-store nunca AsyncStorage porque inseguro, AuthContext provider similar ao web mas adaptado para mobile com persistent session restoration ao abrir app, GPS tracking background usando expo-location ou react-native-geolocation-service para capturar coordenadas precisas durante coleta de ocupações salvando latitude/longitude em WatermelonDB, câmera integrada via expo-camera ou react-native-image-picker para capturar fotos de imóveis com compressão automática e upload assíncrono quando online, navegação React Navigation v6 com Stack Navigator para fluxo linear de coleta (ListOccupations → CreateOccupation → CapturePhotos → Review → Submit), estado local gerenciado via React Context para UI state e WatermelonDB observers para data reactivity onde mudanças no banco automaticamente atualizam UI sem refetch manual, e sincronização conflict resolution via three-way merge comparando local/remote/base timestamps usando last-write-wins strategy ou manual resolution UI se conflitos complexos detectados.
+# ARCHITECTURE - REURBCAD
+
+Arquitetura do aplicativo mobile REURBCAD React Native + Expo.
+
+## Integração Keycloak
+
+- **[01-keycloak-integration.md](./01-keycloak-integration.md)** - OAuth2/OIDC em React Native, deep linking, PKCE flow, token storage seguro
+
+**Mobile-specific challenges:**
+- Deep linking para callback OAuth
+- Secure storage via expo-secure-store
+- Offline token refresh
+- Biometric authentication
+
+---
+
+**Última atualização:** 2026-01-10

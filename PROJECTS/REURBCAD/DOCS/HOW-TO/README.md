@@ -1,1 +1,25 @@
-Guias práticos para desenvolvimento no REURBCAD incluindo setup local com npm install ou yarn install, criar .env com API_URL, KEYCLOAK_URL, KEYCLOAK_REALM, KEYCLOAK_CLIENT_ID configurando variáveis ambiente, configurar deep link scheme em app.json (Expo) ou AndroidManifest.xml + Info.plist (bare RN) com scheme com.carf.reurbcad e path /oauth/callback, implementar AuthService class encapsulando OAuth2 logic com methods login(), logout(), getAccessToken(), restoreSession() usando react-native-app-auth ou expo-auth-session, armazenar tokens em SecureStore nunca AsyncStorage com setItemAsync('refresh_token', token), criar AuthContext provider wrapping App em main entrypoint, configurar WatermelonDB criando schema.ts com models Occupation, Holder, Photo definindo @field properties, migrations para schema changes, database.ts com SQLiteAdapter initialization, implementar sync strategy com pull/push methods calling backend /api/sync/pull com lastPulledAt timestamp e /api/sync/push com local changes batch, configurar GPS tracking com expo-location ou react-native-geolocation-service requestando permissions FINE_LOCATION (Android) e WhenInUse (iOS), capturando coordenadas com getCurrentPositionAsync({ accuracy: HIGH }), salvando latitude/longitude em Occupation model, implementar camera integration com expo-camera ou react-native-image-picker requestando permissions CAMERA, capturando photos com launchCameraAsync({ quality: 0.7, allowsEditing: true }), salvando localmente em FileSystem.documentDirectory com unique filename UUID, storing path em Photo model relacionado a Occupation, upload assíncrono quando online via FormData multipart, criar navigation stack com React Navigation createNativeStackNavigator definindo screens ListOccupations, CreateOccupation, CapturePhotos, ReviewData com navigationOptions title e headerBackTitle, implementar offline detection com NetInfo.addEventListener('change', state => setIsOnline(state.isConnected)), mostrando banner "Sem conexão" quando offline, queueing API calls em AsyncStorage quando offline, processing queue quando conexão restabelecida, otimizar performance com FlashList ao invés de FlatList para listas longas, Image component com cache via react-native-fast-image, memoization de components com React.memo(), batch WatermelonDB operations com database.write(), testar em emulator Android Studio AVD ou iOS Simulator, testar offline mode desabilitando WiFi/cellular via Airplane Mode verificando que app continua funcional, testar deep link abrindo URL com adb shell am start ou xcrun simctl openurl, testar permissions negadas simulando user recusa verificando fallback behavior graceful, debugar com React Native Debugger ou Flipper visualizando network calls, Redux state (se usado), AsyncStorage contents, e troubleshoot erros comuns como deep link não funciona verificando scheme registered corretamente, refresh token expirado forçando re-login verificando Offline Session settings Keycloak, sync conflicts usando last-write-wins ou manual resolution UI, GPS inaccurate aumentando accuracy level para HIGH e timeout, camera permission denied mostrando Settings link para user enable manualmente.
+# HOW-TO - REURBCAD
+
+Guias práticos para desenvolvimento do REURBCAD React Native.
+
+## Autenticação
+
+- **[01-setup-keycloak.md](./01-setup-keycloak.md)** - Configurar Keycloak redirect URIs para deep links (exp://...)
+- **[02-handle-callbacks.md](./02-handle-callbacks.md)** - Configurar deep linking, Linking.addEventListener, parse authorization code
+- **[03-test-offline.md](./03-test-offline.md)** - Testar autenticação offline, biometric, token refresh
+
+## Desenvolvimento Local
+
+**Setup:**
+1. `npm install` ou `yarn install`
+2. Configurar `.env` com KEYCLOAK_URL, GEOAPI_URL
+3. `npx expo start` para iniciar Metro bundler
+4. Executar em emulador ou device físico
+
+**Build:**
+- Android: `eas build --platform android`
+- iOS: `eas build --platform ios`
+
+---
+
+**Última atualização:** 2026-01-10

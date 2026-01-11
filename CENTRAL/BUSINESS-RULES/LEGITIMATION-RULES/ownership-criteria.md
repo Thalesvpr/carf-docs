@@ -39,9 +39,9 @@ Critérios de titularidade estabelecendo quem pode ser titular beneficiário de 
 - Regra: `ownership_percentage` soma = 100%, `is_primary_holder` = true para 1 titular
 
 **Implementações por projeto:**
-- Backend .NET: `PROJECTS/GEOAPI/LAYERS/DOMAIN/VALUE-OBJECTS/OwnershipPercentage.cs`
-- Frontend React: `PROJECTS/GEOWEB/COMPONENTS/holders/OwnershipManager.tsx`
-- Mobile React Native: `PROJECTS/REURBCAD/SCREENS/HolderLinkingForm.tsx`
+- Backend .NET: (caminho de implementação)
+- Frontend React: (caminho de implementação)
+- Mobile React Native: (caminho de implementação)
 
 ---
 

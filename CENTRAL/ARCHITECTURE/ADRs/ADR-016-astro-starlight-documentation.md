@@ -12,10 +12,6 @@ Configuração utiliza Astro 4.1+ com Starlight plugin, content em `src/content/
 
 Status aprovado e implementado desde 2024-Q4.
 
-## Implementação
-
-Decisão implementada no projeto [WEBDOCS](../../../PROJECTS/WEBDOCS/DOCS/README.md) usando Astro 4 + Starlight conforme [WEBDOCS Architecture](../../../PROJECTS/WEBDOCS/DOCS/ARCHITECTURE/01-overview.md), Markdown files em `src/content/docs/` sincronizados de CENTRAL via `scripts/sync-docs.sh`, build via `bun run build` gerando `dist/` com HTML estático, deployment em [Vercel](./ADR-013-vercel-deployment-platform.md), e search via Pagefind indexing todo conteúdo.
-
 ---
 
 **Data:** 2025-01-10

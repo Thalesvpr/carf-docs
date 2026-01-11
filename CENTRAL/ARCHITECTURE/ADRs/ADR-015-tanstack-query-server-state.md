@@ -12,10 +12,6 @@ Configuração específica usa QueryClient com staleTime: 30000 (30s), cacheTime
 
 Status da decisão é aprovado e implementado desde 2024-Q3.
 
-## Implementação
-
-Decisão implementada em frontends [GEOWEB](../../../PROJECTS/GEOWEB/DOCS/README.md) e [ADMIN](../../../PROJECTS/ADMIN/DOCS/ARCHITECTURE/01-overview.md) usando TanStack Query hooks useQuery para leitura (ex: listar unidades filtrar por comunidade) useMutation para escrita (criar atualizar deletar unidades) e useInfiniteQuery para paginação infinita consumindo API via [@carf/geoapi-client](../../../PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/README.md), QueryClient configurado em App.tsx com staleTime=5min cacheTime=30min permitindo reuso agressivo de cache, invalidação automática via queryClient.invalidateQueries(['units']) após mutations bem-sucedidas refetchando dados stale conforme data flow pattern, e React Query Devtools habilitado em development mode visualizando cache status queries pendentes e facilit debugging.
-
 ---
 
 **Data:** 2025-01-10

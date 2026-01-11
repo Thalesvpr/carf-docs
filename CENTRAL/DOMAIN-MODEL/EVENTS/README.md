@@ -10,7 +10,7 @@ Domain events representam fatos de negócio significativos que ocorreram no sist
 
 ## 📋 Conceito Base
 
-**00-domain-event.md** - Interface e padrões de domain events, lifecycle, propriedades base, handlers subscribers, dispatch após SaveChanges, idempotência
+**[00-domain-event.md](./00-domain-event.md)** - Interface e padrões de domain events, lifecycle, propriedades base, handlers subscribers, dispatch após SaveChanges, idempotência
 
 ---
 
@@ -18,11 +18,11 @@ Domain events representam fatos de negócio significativos que ocorreram no sist
 
 Events emitidos por Unit aggregate root durante lifecycle de unidade habitacional:
 
-1. **01-unit-created-event.md** - Unidade habitacional criada (DRAFT inicial)
-2. **02-holder-linked-event.md** - Titular vinculado via UnitHolder (ownership estabelecido)
-3. **03-holder-unlinked-event.md** - Titular desvinculado (ownership removido)
-4. **04-unit-status-changed-event.md** - Status workflow alterado (DRAFT→PENDING→APPROVED etc)
-5. **05-document-uploaded-event.md** - Documento/foto anexado (validação, thumbnails, checklist)
+1. **[01-unit-created-event.md](./01-unit-created-event.md)** - Unidade habitacional criada (DRAFT inicial)
+2. **[02-holder-linked-event.md](./02-holder-linked-event.md)** - Titular vinculado via UnitHolder (ownership estabelecido)
+3. **[03-holder-unlinked-event.md](./03-holder-unlinked-event.md)** - Titular desvinculado (ownership removido)
+4. **[04-unit-status-changed-event.md](./04-unit-status-changed-event.md)** - Status workflow alterado (DRAFT→PENDING→APPROVED etc)
+5. **[05-document-uploaded-event.md](./05-document-uploaded-event.md)** - Documento/foto anexado (validação, thumbnails, checklist)
 
 ---
 
@@ -30,12 +30,12 @@ Events emitidos por Unit aggregate root durante lifecycle de unidade habitaciona
 
 Events emitidos por Community aggregate root durante gestão de comunidades:
 
-6. **06-community-created-event.md** - Comunidade/assentamento criado (área de regularização estabelecida)
-7. **07-community-boundary-changed-event.md** - Perímetro espacial alterado (validar units dentro, recalcular área)
-8. **08-access-granted-event.md** - Acesso concedido via CommunityAuthorization (Team ou Account)
-9. **09-access-revoked-event.md** - Acesso revogado (limpeza dados offline, invalidar cache)
-10. **10-block-added-event.md** - Quadra urbana adicionada (subdivisão territorial)
-11. **11-community-archived-event.md** - Comunidade arquivada (regularização concluída ou cancelada)
+6. **[06-community-created-event.md](./06-community-created-event.md)** - Comunidade/assentamento criado (área de regularização estabelecida)
+7. **[07-community-boundary-changed-event.md](./07-community-boundary-changed-event.md)** - Perímetro espacial alterado (validar units dentro, recalcular área)
+8. **[08-access-granted-event.md](./08-access-granted-event.md)** - Acesso concedido via CommunityAuthorization (Team ou Account)
+9. **[09-access-revoked-event.md](./09-access-revoked-event.md)** - Acesso revogado (limpeza dados offline, invalidar cache)
+10. **[10-block-added-event.md](./10-block-added-event.md)** - Quadra urbana adicionada (subdivisão territorial)
+11. **[11-community-archived-event.md](./11-community-archived-event.md)** - Comunidade arquivada (regularização concluída ou cancelada)
 
 ---
 
@@ -43,14 +43,14 @@ Events emitidos por Community aggregate root durante gestão de comunidades:
 
 Events emitidos por LegitimationRequest aggregate root durante workflow de legitimação fundiária Lei 13465/2017:
 
-12. **12-request-submitted-event.md** - Processo submetido (início prazo 120 dias, atribuir analista)
-13. **13-response-added-event.md** - Parecer técnico/jurídico adicionado (análise registrada)
-14. **14-request-approved-event.md** - Processo aprovado (regularização deferida)
-15. **15-certificate-issued-event.md** - Certidão emitida (documento oficial, QR code, cartório)
-16. **16-contestation-received-event.md** - Contestação recebida (terceiro se opõe, pausar workflow)
-17. **17-deadline-approaching-event.md** - Prazo se aproximando (alerta 120 dias, priorizar análise)
-18. **18-request-rejected-event.md** - Processo rejeitado (indeferido, motivos fundamentados)
-19. **19-correction-requested-event.md** - Correções solicitadas (pausar até resubmissão)
+12. **[12-request-submitted-event.md](./12-request-submitted-event.md)** - Processo submetido (início prazo 120 dias, atribuir analista)
+13. **[13-response-added-event.md](./13-response-added-event.md)** - Parecer técnico/jurídico adicionado (análise registrada)
+14. **[14-request-approved-event.md](./14-request-approved-event.md)** - Processo aprovado (regularização deferida)
+15. **[15-certificate-issued-event.md](./15-certificate-issued-event.md)** - Certidão emitida (documento oficial, QR code, cartório)
+16. **[16-contestation-received-event.md](./16-contestation-received-event.md)** - Contestação recebida (terceiro se opõe, pausar workflow)
+17. **[17-deadline-approaching-event.md](./17-deadline-approaching-event.md)** - Prazo se aproximando (alerta 120 dias, priorizar análise)
+18. **[18-request-rejected-event.md](./18-request-rejected-event.md)** - Processo rejeitado (indeferido, motivos fundamentados)
+19. **[19-correction-requested-event.md](./19-correction-requested-event.md)** - Correções solicitadas (pausar até resubmissão)
 
 ---
 
@@ -101,7 +101,7 @@ Cada event file segue **dense-paragraph-standard** (200-600 palavras parágrafo 
 
 **Tecnologia-agnóstico:** Não menciona PostgreSQL, WatermelonDB, .NET, React Native (apenas conceitos)
 
-**Implementações:** Links para `PROJECTS/[PROJECT]/LAYERS/DOMAIN/EVENTS/` com implementações específicas
+**Implementações:** Links para (caminho de implementação) com implementações específicas
 
 ---
 
@@ -124,17 +124,18 @@ Cada event file segue **dense-paragraph-standard** (200-600 palavras parágrafo 
 ## 🔗 Relacionado
 
 **Aggregates:**
-- `AGGREGATES/01-unit-aggregate.md` - Emite Unit events
-- `AGGREGATES/02-community-aggregate.md` - Emite Community events
-- `AGGREGATES/03-legitimation-request-aggregate.md` - Emite Legitimation events
-
-**Padrões:**
-- `../../ARCHITECTURE/ADR-010-event-driven-architecture.md` - Event-driven patterns
-- `../../ARCHITECTURE/eventual-consistency.md` - Consistency entre aggregates
+- **[01-unit-aggregate.md](../AGGREGATES/01-unit-aggregate.md)** - Emite Unit events
+- **[02-community-aggregate.md](../AGGREGATES/02-community-aggregate.md)** - Emite Community events
+- **[03-legitimation-request-aggregate.md](../AGGREGATES/03-legitimation-request-aggregate.md)** - Emite Legitimation events
 
 **Implementações:**
-- `PROJECTS/GEOAPI/LAYERS/DOMAIN/EVENTS/` - Backend .NET handlers
-- `PROJECTS/GEOAPI/LAYERS/APPLICATION/EVENT-HANDLERS/` - Application layer handlers
+- (caminho de implementação) - Backend .NET handlers
+- (caminho de implementação) - Application layer handlers
+
+**Ver também:**
+- **[00-INDEX.md](../00-INDEX.md)** - Índice completo do modelo de domínio
+- **[ENTITIES/](../ENTITIES/README.md)** - Entidades do domínio
+- **[VALUE-OBJECTS/](../VALUE-OBJECTS/README.md)** - Value objects
 
 ---
 
