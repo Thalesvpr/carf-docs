@@ -82,7 +82,8 @@
       "Bash(if [ -d \"PROJECTS/$project/DOCS\" ])",
       "Bash(then ls PROJECTS/$project/DOCS/)",
       "Bash(bash:*)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Bash(git reset:*)"
     ]
   }
 }

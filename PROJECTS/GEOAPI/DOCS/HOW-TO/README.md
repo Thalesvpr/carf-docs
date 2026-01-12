@@ -24,4 +24,4 @@ Ver também:
 
 ---
 
-**Última atualização:** 2026-01-10
+**Última atualização:** 2026-01-12

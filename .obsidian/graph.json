@@ -5,34 +5,69 @@
   "showAttachments": false,
   "hideUnresolved": false,
   "showOrphans": true,
-  "collapse-color-groups": true,
+  "collapse-color-groups": false,
   "colorGroups": [
     {
-      "query": "path:CENTRAL/ file:README.md",
+      "query": "path:CENTRAL",
       "color": {
         "a": 1,
         "rgb": 16711680
       }
     },
     {
-      "query": "path:CENTRAL",
+      "query": "path:PROJECTS/GEOWEB file:README.md",
       "color": {
         "a": 1,
-        "rgb": 16741120
+        "rgb": 5431492
+      }
+    },
+    {
+      "query": "path:PROJECTS/GEOWEB  ",
+      "color": {
+        "a": 1,
+        "rgb": 4358262
+      }
+    },
+    {
+      "query": "path:PROJECTS/LIB  file:README.md",
+      "color": {
+        "a": 1,
+        "rgb": 16754916
+      }
+    },
+    {
+      "query": "path:PROJECTS/LIB  ",
+      "color": {
+        "a": 1,
+        "rgb": 7424869
+      }
+    },
+    {
+      "query": "path:PROJECTS/KEYCLOAK  file:README.md",
+      "color": {
+        "a": 1,
+        "rgb": 16774912
+      }
+    },
+    {
+      "query": "path:PROJECTS/KEYCLOAK ",
+      "color": {
+        "a": 1,
+        "rgb": 16580230
       }
     },
     {
       "query": "path:PROJECTS/GEOAPI file:README.md ",
       "color": {
         "a": 1,
-        "rgb": 65484
+        "rgb": 65331
       }
     },
     {
       "query": "path:PROJECTS/GEOAPI ",
       "color": {
         "a": 1,
-        "rgb": 31334
+        "rgb": 1341952
       }
     },
     {
@@ -46,7 +81,7 @@
       "query": "path:PROJECTS  ",
       "color": {
         "a": 1,
-        "rgb": 8032511
+        "rgb": 6121890
       }
     },
     {
@@ -63,10 +98,10 @@
   "nodeSizeMultiplier": 1.30717255717256,
   "lineSizeMultiplier": 0.512577962577963,
   "collapse-forces": false,
-  "centerStrength": 0.391891891891892,
-  "repelStrength": 16.4864864864865,
-  "linkStrength": 0.865904365904366,
+  "centerStrength": 0.475051975051975,
+  "repelStrength": 20,
+  "linkStrength": 1,
   "linkDistance": 30,
-  "scale": 0.05932616453409038,
+  "scale": 0.04736066596417592,
   "close": false
 }

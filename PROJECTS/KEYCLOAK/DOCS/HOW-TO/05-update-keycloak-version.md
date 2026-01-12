@@ -1,109 +1,15 @@
 # Atualizar Versão do Keycloak
 
-**Nível**: Avançado | **Tempo**: 2-4 horas
+Atualização de versão Keycloak nível avançado requer 2-4 horas e planejamento cuidadoso. Review changelog em keycloak.org/docs/latest/release_notes procurando breaking changes deprecations removals com grep no CHANGELOG.md.
 
-## 1. Review Changelog
+Testar em ambiente isolado criando Dockerfile.test com nova versão FROM quay.io/keycloak/keycloak:25.0.0, build e test docker build -f Dockerfile.test -t carf/keycloak:25.0.0-test ., rodar em porta diferente docker run -p 9090:8080 carf/keycloak:25.0.0-test start-dev, testar temas acessando http://localhost:9090/realms/carf/account.
 
-```bash
-# Check release notes
-https://www.keycloak.org/docs/latest/release_notes/
+Ajustar temas se necessário verificando deprecated FreeMarker vars com grep -r deprecated themes/carf/, editar templates vim themes/carf/login/login.ftl, testar rendering via curl ao endpoint auth. Recompilar SPIs Java navegando para extensions, editando pom.xml com nova keycloak.version, rebuild mvn clean package, verificar compatibilidade de interfaces mvn test.
 
-# Breaking changes
-grep -i "break\|deprecat\|remov" CHANGELOG.md
-```
+Database migrations gerenciadas automaticamente pelo Keycloak via Liquibase mas verificar backup antes make backup, monitorar logs durante migração docker logs keycloak grep liquibase. Staged rollout começando em dev com docker-compose up -d e testes, depois staging via kubectl set image deployment/keycloak, depois production canary com replicas=1 monitorando 24h, depois production full com scale replicas=3.
 
-## 2. Test em Ambiente Isolado
+Rollback plan via kubectl rollout undo deployment/keycloak -n production para quick rollback, ou specific revision via rollout history e rollout undo --to-revision=2, database rollback se migrations falharam via make restore FILE=backups/pre-upgrade-backup.tar.gz. Checklist inclui changelog reviewed, backup criado, testado em ambiente isolado, temas ajustados e testados, SPIs recompilados, database migrations validadas, deployed em dev staging production, monitoring 24h pós-deploy, rollback plan documentado.
 
-```bash
-# Dockerfile.test
-FROM quay.io/keycloak/keycloak:25.0.0
+---
 
-# Build e test
-docker build -f Dockerfile.test -t carf/keycloak:25.0.0-test .
-docker run -p 9090:8080 carf/keycloak:25.0.0-test start-dev
-
-# Test temas
-open http://localhost:9090/realms/carf/account
-```
-
-## 3. Ajustar Temas (se necessário)
-
-```bash
-# Check deprecated FreeMarker vars
-grep -r "deprecated" themes/carf/
-
-# Update templates
-vim themes/carf/login/login.ftl
-
-# Test rendering
-curl http://localhost:9090/realms/carf/protocol/openid-connect/auth?...
-```
-
-## 4. Recompilar SPIs
-
-```bash
-cd extensions
-
-# Update Keycloak version
-vim pom.xml
-# <keycloak.version>25.0.0</keycloak.version>
-
-# Rebuild
-mvn clean package
-
-# Test interfaces compatibility
-mvn test
-```
-
-## 5. Database Migrations
-
-Keycloak gerencia migrations automaticamente, mas verifique:
-
-```bash
-# Backup antes de migrar
-make backup
-
-# Check migration logs
-docker logs keycloak | grep liquibase
-```
-
-## 6. Staged Rollout
-
-```bash
-# 1. Dev
-docker-compose -f docker-compose.dev.yml up -d
-# Test
-
-# 2. Staging
-kubectl set image deployment/keycloak keycloak=carf/keycloak:25.0.0 -n staging
-# Test
-
-# 3. Production (canary)
-kubectl set image deployment/keycloak keycloak=carf/keycloak:25.0.0 -n production --replicas=1
-# Monitor 24h
-
-# 4. Production (full)
-kubectl scale deployment/keycloak --replicas=3 -n production
-```
-
-## 7. Rollback Plan
-
-```bash
-# Quick rollback
-kubectl rollout undo deployment/keycloak -n production
-
-# Database rollback (if migrations failed)
-make restore FILE=backups/pre-upgrade-backup.tar.gz
-```
-
-## Checklist
-
-- [ ] Changelog reviewed
-- [ ] Backup criado
-- [ ] Testado em ambiente isolado
-- [ ] Temas ajustados e testados
-- [ ] SPIs recompilados
-- [ ] Database migrations validadas
-- [ ] Deployed em dev → staging → production
-- [ ] Monitoring 24h pós-deploy
-- [ ] Rollback plan documentado
+**Última atualização:** 2026-01-12

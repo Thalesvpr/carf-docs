@@ -1,0 +1,7 @@
+# Realm Export Schema
+
+Estrutura JSON realm-export.json para versionamento configuration as code importável via --import-realm startup flag. Campos root incluem id e realm identificadores, displayName nome UI, enabled boolean ativação, sslRequired external/all/none requisito TLS. Registration registrationAllowed boolean auto-registro, loginWithEmailAllowed email como username, duplicateEmailsAllowed unicidade, resetPasswordAllowed recuperação senha, editUsernameAllowed alteração username. Brute force bruteForceProtected habilitação, permanentLockout lock permanente, maxFailureWaitSeconds wait máximo, failureFactor tentativas antes lock. Token lifespans accessTokenLifespan segundos access token (300 = 5min), ssoSessionIdleTimeout idle timeout (1800 = 30min), ssoSessionMaxLifespan max lifetime (36000 = 10h), offlineSessionIdleTimeout offline tokens, accessCodeLifespan authorization code. Themes loginTheme accountTheme emailTheme nomes themes customizados. i18n internationalizationEnabled boolean, supportedLocales array locales, defaultLocale padrão. Arrays clients define OAuth2 clients com clientId protocol redirectUris webOrigins publicClient bearerOnly serviceAccountsEnabled, roles define realm e client roles com name description composite, users para seed inicial, clientScopes escopos compartilhados, defaultClientScopes atribuídos automaticamente.
+
+---
+
+**Última atualização:** 2026-01-12

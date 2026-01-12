@@ -1,0 +1,8 @@
+# IDateTimeProvider
+
+
+Interface fornecendo data e hora atual de forma injetável permitindo testes determinísticos com datas fixas ao invés de depender de DateTime.Now estático que torna testes não reproduzíveis. Propriedades Now retornando DateTime.UtcNow em produção ou data fixa em testes, Today retornando DateTime.UtcNow.Date apenas componente de data sem hora, e UtcNow explicitamente UTC para operações que exigem clareza de timezone. Implementações incluem SystemDateTimeProvider em produção retornando valores reais do sistema, e FixedDateTimeProvider em testes permitindo congelar tempo em data específica tipo new FixedDateTimeProvider(new DateTime(2025 12 30)) garantindo que múltiplas chamadas retornam mesmo valor reproduzindo cenários temporais. Usada em BaseEntity onde CreatedAt UpdatedAt são populados chamando IDateTimeProvider.Now ao invés de DateTime.Now permitindo testes validarem timestamps exatos, em Session onde ExpiresAt calculado como Now.AddHours(24) pode ser testado fixando hora inicial, em validações de negócio verificando se LegitimationResponse.DueDate < Now considerando vencimento testável fixando Now após DueDate, e em queries filtradas por período onde filtros temporais podem ser testados deterministicamente. Registrada como singleton em DI container em produção garantindo mesma instância reutilizada, ou como scoped em testes permitindo cada teste ter provider independente com data customizada, e integra com audit logging onde AuditLog.CreatedAt usa provider garantindo consistência temporal entre entidades e logs mesmo em testes.
+
+---
+
+**Última atualização:** 2026-01-12
