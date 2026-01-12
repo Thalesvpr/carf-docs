@@ -122,7 +122,7 @@ def run_audit():
 
 def generate_summary_report(results, total_errors, total_warnings):
     """Gera relatório consolidado"""
-    report_dir = Path("validation-reports")
+    report_dir = Path(".validation-reports")
     report_dir.mkdir(exist_ok=True)
 
     report_path = report_dir / "BRUTAL-AUDIT.md"
@@ -226,7 +226,7 @@ def generate_summary_report(results, total_errors, total_warnings):
 
 def save_detailed_outputs(results):
     """Salva outputs detalhados de cada validação"""
-    report_dir = Path("validation-reports")
+    report_dir = Path(".validation-reports")
     detail_dir = report_dir / "details"
     detail_dir.mkdir(exist_ok=True)
 
@@ -260,7 +260,7 @@ def main():
     save_detailed_outputs(results)
 
     print(f"[OK] Relatório consolidado: {report_path}")
-    print(f"[OK] Outputs detalhados: validation-reports/details/")
+    print(f"[OK] Outputs detalhados: .validation-reports/details/")
     print()
 
     # Resumo final

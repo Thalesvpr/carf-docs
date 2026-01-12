@@ -41,3 +41,7 @@ logs/
 .env.local
 .claude/
 .temp_reports/
+
+## Validation Reports (temporários, regenerados por audit-brutal.py)
+.validation-reports/
+!.validation-reports/README.md
