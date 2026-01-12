@@ -26,15 +26,15 @@ import { AuthProvider } from '@carf/tscore/auth/react'
 import { KeycloakClient } from '@carf/tscore/auth'
 
 const keycloakClient = new KeycloakClient({
-  url: import.meta.env.VITE_KEYCLOAK_URL,
-  realm: 'carf',
-  clientId: 'geoweb'
+ url: import.meta.env.VITE_KEYCLOAK_URL,
+ realm: 'carf',
+ clientId: 'geoweb'
 })
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <AuthProvider client={keycloakClient}>
-    <App />
-  </AuthProvider>
+ <AuthProvider client={keycloakClient}>
+ <App />
+ </AuthProvider>
 )
 ```
 
@@ -45,27 +45,27 @@ import { useForm } from 'react-hook-form'
 import { CPF, CNPJ } from '@carf/tscore/validations'
 
 function HolderForm() {
-  const { register, handleSubmit, formState: { errors } } = useForm()
+ const { register, handleSubmit, formState: { errors } } = useForm()
 
-  const onSubmit = (data) => {
-    try {
-      const cpf = new CPF(data.cpf)
-      // CPF válido, prosseguir
-    } catch (error) {
-      alert('CPF inválido')
-    }
-  }
+ const onSubmit = (data) => {
+ try {
+ const cpf = new CPF(data.cpf)
+ // CPF válido, prosseguir
+ } catch (error) {
+ alert('CPF inválido')
+ }
+ }
 
-  return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input
-        {...register('cpf', {
-          validate: (value) => CPF.validate(value) || 'CPF inválido'
-        })}
-      />
-      {errors.cpf && <span>{errors.cpf.message}</span>}
-    </form>
-  )
+ return (
+ <form onSubmit={handleSubmit(onSubmit)}>
+ <input
+ {...register('cpf', {
+ validate: (value) => CPF.validate(value) || 'CPF inválido'
+ })}
+ />
+ {errors.cpf && <span>{errors.cpf.message}</span>}
+ </form>
+ )
 }
 ```
 
@@ -76,13 +76,13 @@ import type { Unit } from '@carf/tscore/types'
 import { useQuery } from '@tanstack/react-query'
 
 function useUnits(communityId: string) {
-  return useQuery({
-    queryKey: ['units', communityId],
-    queryFn: async (): Promise<Unit[]> => {
-      const response = await fetch(`/api/units?communityId=${communityId}`)
-      return response.json()
-    }
-  })
+ return useQuery({
+ queryKey: ['units', communityId],
+ queryFn: async (): Promise<Unit[]> => {
+ const response = await fetch(`/api/units?communityId=${communityId}`)
+ return response.json()
+ }
+ })
 }
 ```
 
@@ -108,17 +108,17 @@ import { Unit, Holder } from '@carf/tscore/types'
 import { database } from './database' // WatermelonDB
 
 async function createHolderOffline(data) {
-  // Validar antes de salvar offline
-  const cpf = new CPF(data.cpf) // Throw se inválido
-  const phone = new Phone(data.phone)
+ // Validar antes de salvar offline
+ const cpf = new CPF(data.cpf) // Throw se inválido
+ const phone = new Phone(data.phone)
 
-  await database.write(async () => {
-    await database.get('holders').create((holder) => {
-      holder.cpf = cpf.toString()
-      holder.phone = phone.toString()
-      holder.name = data.name
-    })
-  })
+ await database.write(async () => {
+ await database.get('holders').create((holder) => {
+ holder.cpf = cpf.toString()
+ holder.phone = phone.toString()
+ holder.name = data.name
+ })
+ })
 }
 ```
 
@@ -130,21 +130,21 @@ import type { Unit } from '@carf/tscore/types'
 import { UnitStatus } from '@carf/tscore/types'
 
 export class UnitModel extends Model {
-  static table = 'units'
+ static table = 'units'
 
-  @field('code') code!: string
-  @field('status') status!: UnitStatus
-  @field('area') area!: number
+ @field('code') code!: string
+ @field('status') status!: UnitStatus
+ @field('area') area!: number
 
-  // Converter para type @carf/tscore
-  toType(): Unit {
-    return {
-      id: this.id,
-      code: this.code,
-      status: this.status,
-      // ... outros campos
-    }
-  }
+ // Converter para type @carf/tscore
+ toType(): Unit {
+ return {
+ id: this.id,
+ code: this.code,
+ status: this.status,
+ // ... outros campos
+ }
+ }
 }
 ```
 
@@ -172,26 +172,26 @@ import { AuthProvider } from '@carf/tscore/auth/react'
 import { KeycloakClient } from '@carf/tscore/auth'
 
 const keycloakClient = new KeycloakClient({
-  url: process.env.NEXT_PUBLIC_KEYCLOAK_URL!,
-  realm: 'carf',
-  clientId: 'admin'
+ url: process.env.NEXT_PUBLIC_KEYCLOAK_URL!,
+ realm: 'carf',
+ clientId: 'admin'
 })
 
 export function Providers({ children }: { children: React.ReactNode }) {
-  return <AuthProvider client={keycloakClient}>{children}</AuthProvider>
+ return <AuthProvider client={keycloakClient}>{children}</AuthProvider>
 }
 
 // app/layout.tsx
 import { Providers } from './providers'
 
 export default function RootLayout({ children }) {
-  return (
-    <html>
-      <body>
-        <Providers>{children}</Providers>
-      </body>
-    </html>
-  )
+ return (
+ <html>
+ <body>
+ <Providers>{children}</Providers>
+ </body>
+ </html>
+ )
 }
 ```
 
@@ -206,21 +206,21 @@ import { Role } from '@carf/tscore/types'
 import { cookies } from 'next/headers'
 
 export async function deleteUser(userId: string) {
-  const token = cookies().get('access_token')?.value
-  if (!token) throw new Error('Unauthorized')
+ const token = cookies().get('access_token')?.value
+ if (!token) throw new Error('Unauthorized')
 
-  // Validar role no backend
-  const keycloak = new KeycloakClient({...})
-  const user = await keycloak.getUser()
-  if (!user || !user.roles.includes(Role.ADMIN)) {
-    throw new Error('Forbidden')
-  }
+ // Validar role no backend
+ const keycloak = new KeycloakClient({...})
+ const user = await keycloak.getUser()
+ if (!user || !user.roles.includes(Role.ADMIN)) {
+ throw new Error('Forbidden')
+ }
 
-  // Prosseguir com deleção
-  await fetch(`/api/users/${userId}`, {
-    method: 'DELETE',
-    headers: { Authorization: `Bearer ${token}` }
-  })
+ // Prosseguir com deleção
+ await fetch(`/api/users/${userId}`, {
+ method: 'DELETE',
+ headers: { Authorization: `Bearer ${token}` }
+ })
 }
 ```
 
@@ -247,16 +247,16 @@ import { initAuth } from '@carf/tscore/auth/vue'
 import { KeycloakClient } from '@carf/tscore/auth'
 
 const keycloakClient = new KeycloakClient({
-  url: import.meta.env.VITE_KEYCLOAK_URL,
-  realm: 'carf',
-  clientId: 'webdocs'
+ url: import.meta.env.VITE_KEYCLOAK_URL,
+ realm: 'carf',
+ clientId: 'webdocs'
 })
 
 export default {
-  extends: DefaultTheme,
-  enhanceApp({ app }) {
-    initAuth(app, keycloakClient)
-  }
+ extends: DefaultTheme,
+ enhanceApp({ app }) {
+ initAuth(app, keycloakClient)
+ }
 }
 ```
 
@@ -271,20 +271,20 @@ const cpfInput = ref('')
 const cpfError = ref<string | null>(null)
 
 function validateCPF() {
-  try {
-    new CPF(cpfInput.value)
-    cpfError.value = null
-  } catch (error) {
-    cpfError.value = 'CPF inválido'
-  }
+ try {
+ new CPF(cpfInput.value)
+ cpfError.value = null
+ } catch (error) {
+ cpfError.value = 'CPF inválido'
+ }
 }
 </script>
 
 <template>
-  <div>
-    <input v-model="cpfInput" @blur="validateCPF" placeholder="CPF" />
-    <span v-if="cpfError" class="error">{{ cpfError }}</span>
-  </div>
+ <div>
+ <input v-model="cpfInput" @blur="validateCPF" placeholder="CPF" />
+ <span v-if="cpfError" class="error">{{ cpfError }}</span>
+ </div>
 </template>
 ```
 
@@ -296,27 +296,27 @@ function validateCPF() {
 import { CPF, Email, Phone } from '@carf/tscore/validations'
 
 function validateHolder(data: any) {
-  const errors: Record<string, string> = {}
+ const errors: Record<string, string> = {}
 
-  try {
-    new CPF(data.cpf)
-  } catch {
-    errors.cpf = 'CPF inválido'
-  }
+ try {
+ new CPF(data.cpf)
+ } catch {
+ errors.cpf = 'CPF inválido'
+ }
 
-  try {
-    new Email(data.email)
-  } catch {
-    errors.email = 'Email inválido'
-  }
+ try {
+ new Email(data.email)
+ } catch {
+ errors.email = 'Email inválido'
+ }
 
-  try {
-    new Phone(data.phone)
-  } catch {
-    errors.phone = 'Telefone inválido'
-  }
+ try {
+ new Phone(data.phone)
+ } catch {
+ errors.phone = 'Telefone inválido'
+ }
 
-  return Object.keys(errors).length > 0 ? errors : null
+ return Object.keys(errors).length > 0 ? errors : null
 }
 ```
 
@@ -327,20 +327,20 @@ import { z } from 'zod'
 import { CPF, CNPJ, Email } from '@carf/tscore/validations'
 
 const holderSchema = z.object({
-  name: z.string().min(1),
-  cpf: z.string().refine(
-    (val) => CPF.validate(val),
-    { message: 'CPF inválido' }
-  ),
-  email: z.string().refine(
-    (val) => Email.validate(val),
-    { message: 'Email inválido' }
-  )
+ name: z.string().min(1),
+ cpf: z.string().refine(
+ (val) => CPF.validate(val),
+ { message: 'CPF inválido' }
+ ),
+ email: z.string().refine(
+ (val) => Email.validate(val),
+ { message: 'Email inválido' }
+ )
 })
 
 // Usar com React Hook Form
 const { register, handleSubmit } = useForm({
-  resolver: zodResolver(holderSchema)
+ resolver: zodResolver(holderSchema)
 })
 ```
 
@@ -351,11 +351,11 @@ import type { Unit, Holder } from '@carf/tscore/types'
 import { EntityType } from '@carf/tscore/types'
 
 function isUnit(entity: unknown): entity is Unit {
-  return typeof entity === 'object' && entity !== null && 'code' in entity
+ return typeof entity === 'object' && entity !== null && 'code' in entity
 }
 
 function isPessoaFisica(holder: Holder): holder is Holder & { cpf: string } {
-  return holder.type === EntityType.PESSOA_FISICA && !!holder.cpf
+ return holder.type === EntityType.PESSOA_FISICA && !!holder.cpf
 }
 ```
 
@@ -366,18 +366,18 @@ import type { Unit } from '@carf/tscore/types'
 
 // Backend retorna dates como strings ISO
 interface UnitDTO {
-  id: string
-  code: string
-  createdAt: string // ISO string
-  updatedAt: string // ISO string
+ id: string
+ code: string
+ createdAt: string // ISO string
+ updatedAt: string // ISO string
 }
 
 function mapUnitDtoToUnit(dto: UnitDTO): Unit {
-  return {
-    ...dto,
-    createdAt: new Date(dto.createdAt),
-    updatedAt: new Date(dto.updatedAt)
-  }
+ return {
+ ...dto,
+ createdAt: new Date(dto.createdAt),
+ updatedAt: new Date(dto.updatedAt)
+ }
 }
 ```
 
@@ -410,7 +410,7 @@ bun install
 // Testar passo a passo
 const cpf = '123.456.789-09'
 console.log(CPF.normalize(cpf)) // "12345678909"
-console.log(CPF.validate(cpf))  // true ou false
+console.log(CPF.validate(cpf)) // true ou false
 
 // Gerar CPF válido para teste: https://www.4devs.com.br/gerador_de_cpf
 ```

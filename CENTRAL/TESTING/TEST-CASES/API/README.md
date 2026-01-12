@@ -1,7 +1,7 @@
 # API
 
-Testes API REST do CARF. authentication-api-tests.md (login credenciais válidas retorna 200 + JWT, inválidas 401, token expirado refresh válido retorna novo token, logout invalida refresh). units-api-tests.md (POST cria unidade retorna 201 + Location header, validação falha 422 errors array, GET by id 200 + json, 404 not found, PATCH atualiza campos parciais, DELETE 204, filtros query params retornam subset correto, paginação page/pageSize). holders-api-tests.md, communities-api-tests.md, reports-api-tests.md, legitimation-api-tests.md seguem padrão similar testando CRUD, validações, autorizações RBAC, multi-tenancy isolation. Integration tests rodando contra banco de dados em containers isolados.
+Testes API REST CARF incluem authentication login credenciais válidas retorna duzentos JWT inválidas quatrocentos e um token expirado refresh válido retorna novo token logout invalida refresh units POST cria unidade retorna duzentos e um Location header validação falha quatrocentos e vinte e dois errors array GET by id duzentos JSON quatrocentos e quatro not found PATCH atualiza campos parciais DELETE duzentos e quatro filtros query params retornam subset correto paginação page pageSize holders communities reports legitimation seguem padrão similar testando CRUD validações autorizações RBAC multi-tenancy isolation integration tests rodando contra banco dados containers isolados garantindo endpoints comportam conforme especificação OpenAPI validando responses status codes headers body schemas detectando breaking changes API regressões funcionalidades critical paths sistema.
 
 ---
 
-**Última atualização:** 2025-01-05
+**Última atualização:** 2026-01-11

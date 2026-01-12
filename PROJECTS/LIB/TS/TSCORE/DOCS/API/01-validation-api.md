@@ -2,7 +2,7 @@
 
 ## Visão Geral
 
-API completa dos [Value Objects](../CONCEPTS/01-value-objects.md) de validação fornecidos pelo @carf/tscore conforme especificações de domínio em [CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS](../../../../../../CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/README.md). Todos os validadores seguem o padrão de Value Object imutável com validação no construtor.
+API completa dos [Value Objects](../CONCEPTS/01-value-objects.md) de validação fornecidos pelo @carf/tscore conforme especificações de domínio em . Todos os validadores seguem o padrão de Value Object imutável com validação no construtor.
 
 ## Import Path
 
@@ -14,7 +14,7 @@ import { CPF, CNPJ, Email, PhoneNumber } from '@carf/tscore/validations'
 
 Valida e manipula CPF brasileiro com dígitos verificadores.
 
-📖 **[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/01-cpf.md](../../../../../../CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/01-cpf.md)** - Especificação do domínio
+📖 **** - Especificação do domínio
 
 ### Constructor
 
@@ -32,8 +32,8 @@ Cria instância de CPF validado.
 
 **Exemplo:**
 ```typescript
-const cpf = new CPF('123.456.789-09')  // ✅
-const cpf2 = new CPF('12345678909')    // ✅
+const cpf = new CPF('123.456.789-09') // ✅
+const cpf2 = new CPF('12345678909') // ✅
 const cpf3 = new CPF('000.000.000-00') // ❌ Throws ValidationError
 ```
 
@@ -85,7 +85,7 @@ Converte para string sem máscara (alias para `.value`).
 ```typescript
 const cpf = new CPF('123.456.789-09')
 console.log(cpf.toString()) // "12345678909"
-console.log(`CPF: ${cpf}`)  // "CPF: 12345678909"
+console.log(`CPF: ${cpf}`) // "CPF: 12345678909"
 ```
 
 #### equals()
@@ -130,7 +130,7 @@ Valida CPF sem lançar exceção.
 ```typescript
 CPF.isValid('123.456.789-09') // true
 CPF.isValid('000.000.000-00') // false
-CPF.isValid('abc')            // false
+CPF.isValid('abc') // false
 ```
 
 #### format()
@@ -170,22 +170,22 @@ Remove máscara do CPF.
 **Exemplo:**
 ```typescript
 CPF.clean('123.456.789-09') // "12345678909"
-CPF.clean('12345678909')     // "12345678909"
+CPF.clean('12345678909') // "12345678909"
 ```
 
 ### Validações Aplicadas
 
 1. **Formato:** Exatamente 11 dígitos numéricos
 2. **CPFs Conhecidos Inválidos:**
-   - `00000000000`, `11111111111`, `22222222222`, ..., `99999999999`
+ - `00000000000`, `11111111111`, `22222222222`, ..., `99999999999`
 3. **Dígito Verificador 1 (d1):**
-   - Cálculo: `d1 = 11 - ((Σ(cpf[i] * (10-i)) % 11)`
-   - Se resultado >= 10, d1 = 0
+ - Cálculo: `d1 = 11 - ((Σ(cpf[i] * (10-i)) % 11)`
+ - Se resultado >= 10, d1 = 0
 4. **Dígito Verificador 2 (d2):**
-   - Cálculo: `d2 = 11 - ((Σ(cpf[i] * (11-i)) % 11)`
-   - Se resultado >= 10, d2 = 0
+ - Cálculo: `d2 = 11 - ((Σ(cpf[i] * (11-i)) % 11)`
+ - Se resultado >= 10, d2 = 0
 
-📖 **Algoritmo completo:** [CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/01-cpf.md](../../../../../../CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/01-cpf.md)
+📖 **Algoritmo completo:** 
 
 ---
 
@@ -211,8 +211,8 @@ Cria instância de CNPJ validado.
 
 **Exemplo:**
 ```typescript
-const cnpj = new CNPJ('11.444.777/0001-61')  // ✅
-const cnpj2 = new CNPJ('11444777000161')      // ✅
+const cnpj = new CNPJ('11.444.777/0001-61') // ✅
+const cnpj2 = new CNPJ('11444777000161') // ✅
 const cnpj3 = new CNPJ('00.000.000/0000-00') // ❌ Throws ValidationError
 ```
 
@@ -345,14 +345,14 @@ Remove máscara do CNPJ.
 **Exemplo:**
 ```typescript
 CNPJ.clean('11.444.777/0001-61') // "11444777000161"
-CNPJ.clean('11444777000161')      // "11444777000161"
+CNPJ.clean('11444777000161') // "11444777000161"
 ```
 
 ### Validações Aplicadas
 
 1. **Formato:** Exatamente 14 dígitos numéricos
 2. **CNPJs Conhecidos Inválidos:**
-   - `00000000000000`, `11111111111111`, etc.
+ - `00000000000000`, `11111111111111`, etc.
 3. **Dígitos Verificadores:** Algoritmo mod-11 similar ao CPF
 
 ---
@@ -379,9 +379,9 @@ Cria instância de Email validado e normalizado.
 
 **Exemplo:**
 ```typescript
-const email = new Email('user@example.com')     // ✅
-const email2 = new Email('USER@EXAMPLE.COM')    // ✅ (normalizado para lowercase)
-const email3 = new Email('invalid-email')       // ❌ Throws ValidationError
+const email = new Email('user@example.com') // ✅
+const email2 = new Email('USER@EXAMPLE.COM') // ✅ (normalizado para lowercase)
+const email3 = new Email('invalid-email') // ❌ Throws ValidationError
 ```
 
 ### Properties
@@ -487,8 +487,8 @@ Valida email sem lançar exceção.
 **Exemplo:**
 ```typescript
 Email.isValid('user@example.com') // true
-Email.isValid('invalid-email')    // false
-Email.isValid('@example.com')     // false
+Email.isValid('invalid-email') // false
+Email.isValid('@example.com') // false
 ```
 
 #### normalize()
@@ -540,10 +540,10 @@ Cria instância de PhoneNumber validado.
 
 **Exemplo:**
 ```typescript
-const phone = new PhoneNumber('(11) 98765-4321')  // ✅ Móvel
-const phone2 = new PhoneNumber('11987654321')      // ✅
-const phone3 = new PhoneNumber('(11) 3456-7890')  // ✅ Fixo
-const phone4 = new PhoneNumber('123')             // ❌ Throws ValidationError
+const phone = new PhoneNumber('(11) 98765-4321') // ✅ Móvel
+const phone2 = new PhoneNumber('11987654321') // ✅
+const phone3 = new PhoneNumber('(11) 3456-7890') // ✅ Fixo
+const phone4 = new PhoneNumber('123') // ❌ Throws ValidationError
 ```
 
 ### Properties
@@ -706,7 +706,7 @@ Valida telefone sem lançar exceção.
 **Exemplo:**
 ```typescript
 PhoneNumber.isValid('(11) 98765-4321') // true
-PhoneNumber.isValid('123')             // false
+PhoneNumber.isValid('123') // false
 ```
 
 #### format()
@@ -728,7 +728,7 @@ Formata telefone sem criar instância.
 **Exemplo:**
 ```typescript
 PhoneNumber.format('11987654321') // "(11) 98765-4321"
-PhoneNumber.format('1134567890')  // "(11) 3456-7890"
+PhoneNumber.format('1134567890') // "(11) 3456-7890"
 ```
 
 #### clean()
@@ -747,7 +747,7 @@ Remove máscara do telefone.
 **Exemplo:**
 ```typescript
 PhoneNumber.clean('(11) 98765-4321') // "11987654321"
-PhoneNumber.clean('11987654321')      // "11987654321"
+PhoneNumber.clean('11987654321') // "11987654321"
 ```
 
 ### Validações Aplicadas
@@ -767,10 +767,10 @@ Exceção lançada quando validação falha.
 
 ```typescript
 class ValidationError extends Error {
-  constructor(message: string) {
-    super(message)
-    this.name = 'ValidationError'
-  }
+ constructor(message: string) {
+ super(message)
+ this.name = 'ValidationError'
+ }
 }
 ```
 
@@ -780,14 +780,14 @@ class ValidationError extends Error {
 import { CPF, ValidationError } from '@carf/tscore/validations'
 
 try {
-  const cpf = new CPF(userInput)
-  console.log('CPF válido:', cpf.format())
+ const cpf = new CPF(userInput)
+ console.log('CPF válido:', cpf.format())
 } catch (error) {
-  if (error instanceof ValidationError) {
-    console.error('Validação falhou:', error.message)
-    // Mostrar mensagem para usuário
-  } else {
-    throw error // Re-lança erros desconhecidos
-  }
+ if (error instanceof ValidationError) {
+ console.error('Validação falhou:', error.message)
+ // Mostrar mensagem para usuário
+ } else {
+ throw error // Re-lança erros desconhecidos
+ }
 }
 ```

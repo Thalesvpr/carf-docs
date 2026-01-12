@@ -4,7 +4,7 @@ Schemas JSON para processos de legitimação fundiária do CARF. LegitimationPro
 
 ## Implementação e Uso
 
-Endpoint de Processos de Legitimação implementado pelo backend GEOAPI usando aggregate [LegitimationRequestAggregate](../../DOMAIN-MODEL/AGGREGATES/03-legitimation-request-aggregate.md) com workflow state machine conforme [regras de transição de status](../../DOMAIN-MODEL/BUSINESS-RULES/WORKFLOW-RULES/legitimation-status-transitions.md) validando fluxo de aprovação documentado em [UC-009: Gerenciar Processo de Legitimação](../../REQUIREMENTS/USE-CASES/UC-009-gerenciar-processo-legitimacao.md), consumido por GEOWEB para interface de aprovação administrativa e ADMIN para audit trail via endpoint admin-specific `/api/admin/legitimation` documentado em [GEOAPI Admin Security](../../../PROJECTS/GEOAPI/DOCS/ARCHITECTURE/02-admin-security.md).
+Endpoint de Processos de Legitimação implementado pelo backend GEOAPI usando aggregate [LegitimationRequestAggregate](../../DOMAIN-MODEL/AGGREGATES/03-legitimation-request-aggregate.md) com workflow state machine conforme [regras de transição de status](../../BUSINESS-RULES/WORKFLOW-RULES/legitimation-status-transitions.md) validando fluxo de aprovação documentado em [UC-009: Gerenciar Processo de Legitimação](../../REQUIREMENTS/USE-CASES/UC-009-gerenciar-processo-legitimacao.md), consumido por GEOWEB para interface de aprovação administrativa e ADMIN para audit trail via endpoint admin-specific `/api/admin/legitimation` documentado em .
 
 ---
 

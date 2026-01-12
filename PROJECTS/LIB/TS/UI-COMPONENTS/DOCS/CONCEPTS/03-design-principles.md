@@ -1,69 +1,7 @@
-# Design Principles - @carf/ui
+# Design Principles
 
-## Princípios de Design
+Princípios design @carf/ui estabelecem Composition over Configuration preferindo composição subcomponentes ao invés props booleanas excessivas onde Card.Header Card.Content Card.Footer oferece flexibilidade máxima sem explosão props evitando component bloat maintaining single responsibility principle, Accessibility First onde todos componentes têm ARIA completo implementado ANTES adição biblioteca acessibilidade não feature opcional requisito fundamental nenhum componente merged sem passar testes axe-core garantindo quality standards compliance WCAG 2.1 AA governmental requirements Brazilian legislation PWD inclusion, Mobile-First Responsive design mobile primeiro adaptando desktop breakpoints Tailwind (sm md lg xl) garantindo experiência otimizada todos dispositivos touch gestures tap targets mínimos 44x44px spacing adequado preventing fat finger errors improving usability smartphones tablets wearables, Design Tokens via CSS Variables permitindo customização fácil cores tipografia espaçamentos via globals.css sem modificar código componentes facilitando white-labeling multi-brand deployment tenant-specific theming runtime switching dark mode light mode high contrast accessibility modes, Performance Optimization code splitting lazy loading tree shaking bundle size monitoring lighthouse audits Core Web Vitals LCP FID CLS maintaining fast responsive UI minimizing JavaScript payload leveraging React concurrent rendering Suspense transitions improving perceived performance user experience satisfaction, Consistency via Storybook documenting every component state variant disabled loading error success hover focus active dark mode variants establishing single source truth design implementation collaboration designers developers QA testers stakeholders, Testability via Testing Library React Testing Library user-centric queries accessibility tree assertions keyboard interactions focus management mocking API calls fixtures factories ensuring reliable predictable behavior preventing regressions bugs shipping production maintaining quality standards CI/CD pipelines automated checks gates preventing merges failing tests coverage thresholds enforcing discipline quality culture continuous improvement, e Developer Experience providing excellent DX TypeScript types autocomplete IntelliSense VSCode suggestions comprehensive documentation examples Storybook playground live editing hot reload fast feedback loops minimal boilerplate sensible defaults escape hatches customization needs balancing convention flexibility empowering developers productive efficient happy enjoying work crafting delightful user interfaces serving citizens municipal workers field technicians analysts managers administrators democratizing access technology tools enabling regularization fundiária urbana social justice housing rights dignidade moradia adequada constitutional fundamental human right.
 
-### 1. Composition over Configuration
+---
 
-Preferir composição de subcomponentes ao invés de props booleanas excessivas. Exemplo: `<Card><CardHeader /><CardContent /></Card>` é melhor que `<Card hasHeader={true} hasFooter={false}>`. Isso permite flexibilidade máxima sem explosão de props.
-
-### 2. Accessibility First
-
-Todos os componentes têm ARIA completo implementado ANTES de serem adicionados à biblioteca. Acessibilidade não é uma feature opcional, é um requisito fundamental. Nenhum componente é merged sem passar em testes axe-core.
-
-### 3. Mobile-First Responsive
-
-Design para mobile primeiro, depois adapta para desktop com breakpoints Tailwind (sm: 640px, md: 768px, lg: 1024px, xl: 1280px). Garante experiência otimizada em todos os dispositivos.
-
-### 4. Performance
-
-- **Lazy loading** - Componentes pesados carregados on-demand
-- **Code splitting** - Bundle separado por componente
-- **React.memo** - Previne re-renders desnecessários em componentes pesados
-- **Tree-shaking** - Importações individuais minimizam bundle size
-
-### 5. Type Safety
-
-- Uso de generics quando aplicável: `<DataTable<Unit>>` infere tipos da data
-- Props 100% tipadas com TypeScript
-- Erros de tipo em tempo de compilação
-- Autocompletion completo em IDEs
-
-### 6. Testability
-
-- **Testing Library** - Testes focados em comportamento do usuário
-- **Accessibility tests** - axe-core em todos os componentes
-- **Snapshot tests** - Previne regressões visuais
-- **Coverage mínimo** - 80% para merge
-
-## Exemplo Prático
-
-```tsx
-// ❌ Configuration (evitar)
-<Card
-  hasHeader={true}
-  hasFooter={true}
-  headerSize="large"
-  footerAlign="right"
->
-  Content
-</Card>
-
-// ✅ Composition (preferir)
-<Card>
-  <CardHeader className="text-lg">
-    Header
-  </CardHeader>
-  <CardContent>
-    Content
-  </CardContent>
-  <CardFooter className="justify-end">
-    <Button>Action</Button>
-  </CardFooter>
-</Card>
-```
-
-## Referências
-
-- [Composition vs Configuration](https://www.joshwcomeau.com/react/demystifying-styled-components/)
-- [Accessibility First Design](https://www.w3.org/WAI/fundamentals/accessibility-intro/)
-- [Mobile-First Responsive Design](https://tailwindcss.com/docs/responsive-design)
+**Última atualização:** 2026-01-11

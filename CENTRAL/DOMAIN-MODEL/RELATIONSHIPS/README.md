@@ -1,37 +1,11 @@
-# RELATIONSHIPS - Relacionamentos Entre Entidades
+# RELATIONSHIPS
 
-Documentação detalhada de relacionamentos entre entidades do domínio CARF especificando cardinalidade foreign keys constraints de integridade relacionamentos polimórficos e navegação bidirecional.
+Relacionamentos entre entidades domínio CARF especificando cardinalidade foreign keys constraints integridade referencial relacionamentos polimórficos navegação bidirecional entre objetos mapeando como Unit Holder Community Document e demais 33 entities se associam via one-to-many one-to-one many-to-many relationships respeitando aggregate boundaries onde relacionamentos entre aggregates diferentes usam apenas IDs nunca referências diretas a objetos garantindo boundaries transacionais claros conforme padrões DDD tactical design incluindo relacionamentos auto-referenciados hierárquicos como Block parent_block_id UnitAddress parent_address_id cascade delete behaviors CASCADE SET NULL RESTRICT definidos database constraints PostgreSQL.
 
-## Documentação
+## Documentos
 
-- **[entity-relationships.md](./entity-relationships.md)** - Mapeamento completo de todos relacionamentos entre entidades (1:1, 1:N, N:N)
-
-## Tipos de Relacionamentos
-
-### One-to-Many (1:N)
-Relacionamentos onde uma entidade pai possui múltiplas entidades filhas (ex: Community → Units, Unit → Documents).
-
-### Many-to-Many (N:N)
-Relacionamentos N:N com tabela de junção (ex: Unit ↔ Holder via UnitHolder, Account ↔ Team via TeamMember).
-
-### Polymorphic
-Relacionamentos polimórficos onde entidade pode referenciar múltiplos tipos (ex: Document → entity_type + entity_id referencia Unit, Holder, Community, etc.).
-
-### Self-Referencing
-Relacionamentos recursivos onde entidade referencia a si mesma (ex: Block → parent_block_id para hierarquia).
-
-## Princípios de Design
-
-**Aggregate Boundaries:** Relacionamentos entre aggregates são apenas por ID, não por objeto completo.
-
-**Bidirectional Navigation:** Quando necessária navegação bidirecional, documentar owner side e inverse side.
-
-**Cascade Delete:** Especificar comportamento de cascade para deletes (CASCADE, SET NULL, RESTRICT).
-
-**Foreign Key Constraints:** Garantir integridade referencial via database constraints.
-
-Relacionamentos conectam [entidades do domínio](../ENTITIES/README.md) definindo como Unit Holder Community e outras 30+ entidades se associam via foreign keys e tabelas de junção estabelecendo navegação bidirecional entre objetos, respeitando [fronteiras de agregados](../AGGREGATES/README.md) onde relacionamentos entre aggregates diferentes usam apenas IDs nunca referências diretas a objetos garantindo boundaries transacionais claros, com visualizações gráficas completas disponíveis em [diagramas](../DIAGRAMS/README.md) incluindo ERDs UML class diagrams e aggregate boundaries maps facilitando compreensão estrutural do modelo.
+- **[entity-relationships.md](./entity-relationships.md)** - Mapeamento completo relacionamentos entidades cardinalidades constraints
 
 ---
 
-**Última atualização:** 2026-01-10
+**Última atualização:** 2026-01-11

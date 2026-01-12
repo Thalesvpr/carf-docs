@@ -127,4 +127,3 @@ Developer → Git Push → GitHub Actions
 - [Keycloak Themes](https://www.keycloak.org/docs/latest/server_development/#_themes)
 - [Keycloak SPIs](https://www.keycloak.org/docs/latest/server_development/#_providers)
 - [FreeMarker Documentation](https://freemarker.apache.org/docs/)
-- [ADR-003: Keycloak Authentication](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-003-keycloak-autenticacao.md)

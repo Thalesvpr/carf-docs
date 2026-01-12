@@ -1,14 +1,12 @@
 # KUBERNETES
 
-Manifests Kubernetes do CARF usando Kustomize. BASE contém manifests genéricos (Deployment, Service, Ingress, ConfigMap, Secret templates) sem environment-specific values. OVERLAYS contém customizações por ambiente (DEV com 1 replica, resources requests baixos; PROD com 3 replicas, HPA autoscaling, resources limits, liveness/readiness probes agressivos). Kustomization.yaml em cada overlay referencia base/ e aplica patches (replicas, image tags, env vars). Deploy: kubectl apply -k overlays/prod/. Namespaces separados: carf-dev, carf-staging, carf-prod. RBAC com ServiceAccounts e RoleBindings limitando permissions.
+Manifests Kubernetes CARF usando Kustomize BASE contém manifests genéricos Deployment Service Ingress ConfigMap Secret templates sem environment-specific values OVERLAYS contém customizações ambiente DEV uma replica resources requests baixos PROD três replicas HPA autoscaling resources limits liveness readiness probes agressivos kustomization arquivo cada overlay referencia base aplica patches replicas image tags env vars deploy kubectl apply k overlays prod namespaces separados carf-dev carf-staging carf-prod RBAC ServiceAccounts RoleBindings limitando permissions garantindo isolamento segurança configuração declarativa versionada Git facilitando rollback disaster recovery infrastructure as code.
 
 ## Estrutura
 
-- **[BASE/](./BASE/README.md)** - Manifests Kubernetes base genéricos (Deployment, Service, Ingress, ConfigMap, Secret)
-- **[OVERLAYS/](./OVERLAYS/README.md)** - Customizações por ambiente usando Kustomize
-  - [DEV/](./OVERLAYS/DEV/README.md) - Configurações desenvolvimento (1 replica, recursos baixos)
-  - [PROD/](./OVERLAYS/PROD/README.md) - Configurações produção (3+ replicas, HPA, recursos altos)
+- **[BASE/](./BASE/README.md)** - Manifests genéricos Deployment Service Ingress ConfigMap Secret templates
+- **[OVERLAYS/](./OVERLAYS/README.md)** - Customizações ambiente DEV PROD patches replicas resources HPA PDB
 
 ---
 
-**Última atualização:** 2025-12-29
+**Última atualização:** 2026-01-11

@@ -4,7 +4,7 @@ Schemas JSON para titulares do CARF. HolderCreateRequest (name, cpf validado via
 
 ## Implementação e Uso
 
-Endpoint de Posseiros implementado pelo backend GEOAPI usando entity [Holder](../../DOMAIN-MODEL/ENTITIES/03-holder.md) vinculada a [UnitAggregate](../../DOMAIN-MODEL/AGGREGATES/01-unit-aggregate.md) conforme regras de negócio validando máximo 1 titular principal por unidade habitacional e até 3 co-titulares adicionais, consumido por frontend GEOWEB para gestão interativa de vínculos titular-unidade com UI para adicionar remover promover co-titular a principal e mobile REURBCAD para cadastro em campo offline com validações client-side de CPF/CNPJ Email via @carf/tscore Value Objects, ambos usando cliente tipado @carf/geoapi-client para requisições HTTP type-safe e renderizando UI com componente [@carf/ui HolderCard](../../../PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/README.md) exibindo nome CPF mascarado e status de titular principal.
+Endpoint de Posseiros implementado pelo backend GEOAPI usando entity [Holder](../../DOMAIN-MODEL/ENTITIES/03-holder.md) vinculada a [UnitAggregate](../../DOMAIN-MODEL/AGGREGATES/01-unit-aggregate.md) conforme regras de negócio validando máximo 1 titular principal por unidade habitacional e até 3 co-titulares adicionais, consumido por frontend GEOWEB para gestão interativa de vínculos titular-unidade com UI para adicionar remover promover co-titular a principal e mobile REURBCAD para cadastro em campo offline com validações client-side de CPF/CNPJ Email via @carf/tscore Value Objects, ambos usando cliente tipado @carf/geoapi-client para requisições HTTP type-safe e renderizando UI com componente exibindo nome CPF mascarado e status de titular principal.
 
 ---
 

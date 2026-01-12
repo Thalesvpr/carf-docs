@@ -1,7 +1,7 @@
 # RUNBOOKS
 
-Runbooks troubleshooting do CARF. common-issues.md lista problemas frequentes (connection pool exhausted, JWT expired, RLS policy block, slow queries com soluções específicas). troubleshooting.md guia sistemático (reproduzir issue, coletar logs, verificar metrics Grafana, distributed tracing correlation ID, testar componentes isoladamente, aplicar fix, validar, post-mortem root cause).
+Runbooks troubleshooting CARF documentam problemas frequentes connection pool exhausted JWT expired RLS policy block slow queries soluções específicas guia sistemático troubleshooting reproduzir issue coletar logs verificar metrics Grafana distributed tracing correlation ID testar componentes isoladamente aplicar fix validar post-mortem root cause identificando causa raiz implementando correção permanente prevenindo recorrências futuras garantindo resolução rápida incidentes operacionais minimizando downtime impacto usuários.
 
 ---
 
-**Última atualização:** 2025-12-29
+**Última atualização:** 2026-01-11

@@ -2,7 +2,7 @@
 
 ## Visão Geral
 
-@carf/ui é uma biblioteca de componentes React construída em **Atomic Design**, **[shadcn/ui](https://ui.shadcn.com/)** e **[Tailwind CSS](https://tailwindcss.com/)**, fornecendo componentes reutilizáveis para GEOWEB e ADMIN com design consistente, acessibilidade WCAG 2.1 AA e performance otimizada seguindo padrões documentados em [CENTRAL/ARCHITECTURE/PATTERNS/05-frontend-patterns.md](../../../../../../CENTRAL/ARCHITECTURE/PATTERNS/05-frontend-patterns.md). A biblioteca exporta dois tipos de componentes: (1) **Componentes Genéricos** - customizações de shadcn/ui (Button, Input, Dialog, Table, Select) com tema CARF, e (2) **Componentes de Domínio** - específicos do REURB (UnitCard, HolderCard, MapView, CommunityList, LegitimationStatusBadge) que encapsulam lógica de apresentação de entidades do sistema, consumindo types de `@carf/tscore` e podendo integrar com `@carf/geoapi-client` para data fetching.
+@carf/ui é uma biblioteca de componentes React construída em **Atomic Design**, **[shadcn/ui](https://ui.shadcn.com/)** e **[Tailwind CSS](https://tailwindcss.com/)**, fornecendo componentes reutilizáveis para GEOWEB e ADMIN com design consistente, acessibilidade WCAG 2.1 AA e performance otimizada seguindo padrões documentados em . A biblioteca exporta dois tipos de componentes: (1) **Componentes Genéricos** - customizações de shadcn/ui (Button, Input, Dialog, Table, Select) com tema CARF, e (2) **Componentes de Domínio** - específicos do REURB (UnitCard, HolderCard, MapView, CommunityList, LegitimationStatusBadge) que encapsulam lógica de apresentação de entidades do sistema, consumindo types de `@carf/tscore` e podendo integrar com `@carf/geoapi-client` para data fetching.
 
 ## Diagrama de Arquitetura
 

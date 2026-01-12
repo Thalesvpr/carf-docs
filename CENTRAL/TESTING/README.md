@@ -1,20 +1,12 @@
 # TESTING
 
-Estratégia de testes do CARF organizada em TEST-STRATEGY (test-pyramid.md defendendo proporção 70% unit / 20% integration / 10% e2e, coverage-targets.md definindo mínimo 80% coverage para domain layer, 60% para application, ferramentas de testes unitários para backend, framework de testes para frontend, framework de testes E2E para mobile) e TEST-CASES organizados por tipo ao invés de módulo: API (authentication-api-tests.md com cenários de login válido/inválido, token expiration, refresh; units-api-tests.md com CRUD completo, validações, filtros, paginação; holders, communities, reports, legitimation seguem padrão similar), E2E (unit-creation-flow.md testando jornada completa de cadastrar unidade→vincular titular→aprovar; offline-sync-flow.md para REURBCAD testar coleta offline→sincronização→resolução de conflitos), e UNIT (domain-unit-tests.md testando entidades, value objects, aggregates isoladamente; application-tests.md testando use cases com mocks de repositories). Inclui fixtures, factories, e test data builders para setup rápido.
+Estratégia testes CARF organizada TEST-STRATEGY test-pyramid defendendo proporção setenta por cento unit vinte por cento integration dez por cento e2e coverage-targets definindo mínimo oitenta por cento coverage domain layer sessenta por cento application ferramentas testes unitários backend framework testes frontend framework testes E2E mobile TEST-CASES organizados tipo API authentication-api-tests cenários login válido inválido token expiration refresh units-api-tests CRUD completo validações filtros paginação holders communities reports legitimation padrão similar E2E unit-creation-flow testando jornada completa cadastrar unidade vincular titular aprovar offline-sync-flow REURBCAD testar coleta offline sincronização resolução conflitos UNIT domain-unit-tests testando entidades value objects aggregates isoladamente application-tests testando use cases mocks repositories inclui fixtures factories test data builders setup rápido garantindo qualidade confiabilidade código detectando regressões antecipadamente facilitando manutenção refatoração segura.
 
-## Estrutura de Testes
+## Estrutura
 
-### Estratégia de Testes
-Ver [TEST-STRATEGY/](./TEST-STRATEGY/README.md):
-- [test-pyramid.md](./TEST-STRATEGY/test-pyramid.md) - Pirâmide de testes (70% unit / 20% integration / 10% e2e)
-- [coverage-targets.md](./TEST-STRATEGY/coverage-targets.md) - Metas de cobertura por camada
-
-### Casos de Teste
-Ver [TEST-CASES/](./TEST-CASES/README.md):
-- [API/](./TEST-CASES/API/README.md) - Testes de API REST endpoints
-- [E2E/](./TEST-CASES/E2E/README.md) - Testes end-to-end de fluxos completos
-- [UNIT/](./TEST-CASES/UNIT/README.md) - Testes unitários de domain e application
+- **[TEST-STRATEGY/](./TEST-STRATEGY/README.md)** - Pirâmide testes coverage targets ferramentas
+- **[TEST-CASES/](./TEST-CASES/README.md)** - Casos teste organizados API E2E UNIT
 
 ---
 
-**Última atualização:** 2025-01-05
+**Última atualização:** 2026-01-11

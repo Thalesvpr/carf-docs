@@ -13,6 +13,5 @@ A biblioteca segue arquitetura de **Atomic Design** (atoms → molecules → org
 
 ## Referências
 
-- [CENTRAL/ARCHITECTURE/PATTERNS/05-frontend-patterns.md](../../../../../../CENTRAL/ARCHITECTURE/PATTERNS/05-frontend-patterns.md)
 - [React Server Components](https://react.dev/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components)
 - [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/)

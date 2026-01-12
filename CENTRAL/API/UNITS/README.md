@@ -4,7 +4,7 @@ Schemas JSON para unidades habitacionais do CARF. UnitCreateRequest (address obj
 
 ## Implementação e Uso
 
-Endpoint de Unidades implementado pelo backend GEOAPI usando aggregate [UnitAggregate](../../DOMAIN-MODEL/AGGREGATES/01-unit-aggregate.md) conforme [ADR-008: Clean Architecture + DDD](../../ARCHITECTURE/ADRs/ADR-008-clean-architecture-ddd.md), persistido em PostgreSQL+PostGIS via [ADR-002: PostGIS](../../ARCHITECTURE/ADRs/ADR-002-postgresql-postgis.md) com multi-tenancy isolado por [ADR-005: RLS](../../ARCHITECTURE/ADRs/ADR-005-multi-tenancy-rls.md), consumido por GEOWEB para CRUD web com validações client-side via @carf/tscore e REURBCAD para coleta em campo offline sincronizando via @carf/geoapi-client, ambos renderizando UI com componentes de [@carf/ui UnitCard](../../../PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/README.md).
+Endpoint de Unidades implementado pelo backend GEOAPI usando aggregate [UnitAggregate](../../DOMAIN-MODEL/AGGREGATES/01-unit-aggregate.md) conforme [ADR-008: Clean Architecture + DDD](../../ARCHITECTURE/ADRs/ADR-008-clean-architecture-ddd.md), persistido em PostgreSQL+PostGIS via [ADR-002: PostGIS](../../ARCHITECTURE/ADRs/ADR-002-postgresql-postgis.md) com multi-tenancy isolado por [ADR-005: RLS](../../ARCHITECTURE/ADRs/ADR-005-multi-tenancy-rls.md), consumido por GEOWEB para CRUD web com validações client-side via @carf/tscore e REURBCAD para coleta em campo offline sincronizando via @carf/geoapi-client, ambos renderizando UI com componentes de .
 
 ---
 

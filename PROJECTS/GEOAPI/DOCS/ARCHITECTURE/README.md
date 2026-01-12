@@ -74,18 +74,8 @@ Gerenciamento de transações através do DbContext do EF Core.
 
 ## 📊 Decisões Arquiteturais Relacionadas
 
-- [ADR-001: .NET 9 Backend](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-001-dotnet-9-backend.md)
-- [ADR-002: PostgreSQL + PostGIS](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-002-postgresql-postgis.md)
-- [ADR-003: Keycloak Autenticação](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-003-keycloak-autenticacao.md)
-- [ADR-005: Multi-tenancy RLS](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-005-multi-tenancy-rls.md)
-- [ADR-008: Clean Architecture DDD](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-008-clean-architecture-ddd.md)
-- [ADR-009: CQRS Pattern](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-009-cqrs-pattern.md)
-- [ADR-010: Event-Driven Architecture](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-010-event-driven-architecture.md)
+Implementação GEOAPI baseia-se em decisões arquiteturais documentadas em Architecture Decision Records incluindo ADR-001 escolha .NET 9 como framework backend principal, ADR-002 adoção PostgreSQL com extensão PostGIS para dados geoespaciais, ADR-003 integração Keycloak como provedor autenticação OAuth2 OIDC, ADR-005 implementação multi-tenancy via Row-Level Security PostgreSQL, ADR-008 aplicação Clean Architecture com Domain-Driven Design separando camadas responsabilidades, ADR-009 padrão CQRS separando comandos queries usando MediatR, ADR-010 arquitetura orientada eventos para comunicação desacoplada entre componentes garantindo consistência eventual escalabilidade horizontal permitindo evolução independente módulos sistema conforme requisitos negócio crescimento base usuários municípios atendidos.
 
 ## 🔗 Referências
 
-- [CENTRAL/API/](../../../../CENTRAL/API/README.md) - Especificação de endpoints
-- [CENTRAL/DOMAIN-MODEL/](../../../../CENTRAL/DOMAIN-MODEL/README.md) - Modelo de domínio
-- [CENTRAL/BUSINESS-RULES/](../../../../CENTRAL/BUSINESS-RULES/README.md) - Regras de negócio
-- [Clean Architecture (Robert C. Martin)](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
-- [Domain-Driven Design (Eric Evans)](https://domainlanguage.com/ddd/)
+Especificação completa REST API endpoints request response schemas encontra-se documentada em CENTRAL/API descrevendo contratos HTTP métodos status codes autenticação headers query parameters body payloads validation rules rate limiting CORS policies versionamento compatibilidade retroativa clientes frontend mobile web, modelo domínio entities aggregates value objects domain events business rules constraints invariantes documentados CENTRAL/DOMAIN-MODEL e CENTRAL/BUSINESS-RULES estabelecendo linguagem ubíqua bounded contexts compartilhados entre todas aplicações ecossistema CARF garantindo consistência semântica conceitual através projetos GEOWEB REURBCAD ADMIN GEOGIS mantendo alinhamento requirements originais especificados CENTRAL facilitando manutenção evolução coordenada sistema distribuído. Fundamentos teóricos Clean Architecture descritos por Robert C. Martin e Domain-Driven Design por Eric Evans fornecem base conceitual padrões práticas aplicadas implementação GEOAPI.

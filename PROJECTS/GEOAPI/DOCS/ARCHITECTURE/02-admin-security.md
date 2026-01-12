@@ -2,7 +2,7 @@
 
 ## Visão Geral
 
-Os endpoints `/api/admin/*` do GEOAPI implementam **7 camadas de segurança** conforme [Security Guidelines CENTRAL](../../../../CENTRAL/SECURITY/README.md) para proteger operações administrativas sensíveis (gerenciamento de tenants, usuários, e configurações do sistema) consumidas pelo [ADMIN Console](../../../ADMIN/DOCS/ARCHITECTURE/README.md).
+Os endpoints `/api/admin/*` do GEOAPI implementam **7 camadas de segurança** conforme para proteger operações administrativas sensíveis (gerenciamento de tenants, usuários, e configurações do sistema) consumidas pelo [ADMIN Console](../../../ADMIN/DOCS/ARCHITECTURE/README.md).
 
 ## Por que não Next.js para Admin?
 

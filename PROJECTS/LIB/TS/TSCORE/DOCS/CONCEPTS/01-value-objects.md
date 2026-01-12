@@ -2,7 +2,7 @@
 
 ## Visão Geral
 
-Value Objects são objetos imutáveis que representam conceitos do domínio definidos apenas por seus atributos, sem identidade própria conforme especificado em [CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS](../../../../../../CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/README.md). No @carf/tscore, implementamos Value Objects para garantir validação consistente de dados brasileiros em todos os projetos CARF, sendo consumidos por [@carf/geoapi-client](../../../GEOAPI-CLIENT/DOCS/README.md) para tipagem de requests/responses HTTP, [@carf/ui](../../../UI-COMPONENTS/DOCS/README.md) para validação em componentes React, e aplicações finais [GEOWEB](../../../../../GEOWEB/DOCS/README.md), [REURBCAD](../../../../../REURBCAD/DOCS/README.md) e [ADMIN](../../../../../ADMIN/DOCS/README.md).
+Value Objects são objetos imutáveis representando conceitos do domínio definidos apenas por atributos sem identidade própria. @carf/tscore implementa Value Objects garantindo validação consistente de dados brasileiros em todos projetos CARF consumidos por geoapi-client para tipagem requests/responses HTTP, ui-components para validação em componentes React, e aplicações finais GEOWEB, REURBCAD e ADMIN.
 
 ## Conceito de Value Object
 
@@ -24,21 +24,19 @@ Um Value Object é um objeto que:
 
 ## Relação com CENTRAL/DOMAIN-MODEL
 
-Os Value Objects implementados nesta biblioteca correspondem diretamente aos conceitos documentados em:
-
-📖 **[CENTRAL/DOMAIN-MODEL/00-INDEX.md](../../../../../../CENTRAL/DOMAIN-MODEL/00-INDEX.md)** - Índice completo de 25 Value Objects do domínio
+Os Value Objects implementados nesta biblioteca correspondem diretamente aos conceitos documentados em CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/ fornecendo índice completo de 25 Value Objects do domínio.
 
 ### Mapeamento Implementado
 
 | Value Object @carf/tscore | Documentação CENTRAL | Status |
 |---|---|---|
-| `CPF` | [CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/01-cpf.md](../../../../../../CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/01-cpf.md) | ✅ Implementado |
-| `CNPJ` | **CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/02-cnpj.md** | ✅ Implementado |
-| `Email` | **CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/04-email.md** | ✅ Implementado |
-| `PhoneNumber` | **CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/05-phone-number.md** | ✅ Implementado |
-| `GeoPoint` | **CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/09-geopoint.md** | 🚧 Planejado |
-| `GeoPolygon` | **CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/08-geopolygon.md** | 🚧 Planejado |
-| `Address` | **CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/06-address.md** | 🚧 Planejado |
+| `CPF` | | ✅ Implementado |
+| `CNPJ` | ✅ Implementado |
+| `Email` | ✅ Implementado |
+| `PhoneNumber` | ✅ Implementado |
+| `GeoPoint` | 🚧 Planejado |
+| `GeoPolygon` | 🚧 Planejado |
+| `Address` | 🚧 Planejado |
 
 ## Value Objects Implementados
 
@@ -48,12 +46,12 @@ Valida CPF brasileiro com algoritmo de dígitos verificadores conforme Receita F
 
 #### Documentação de Domínio
 
-📖 **[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/01-cpf.md](../../../../../../CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/01-cpf.md)** - Especificação completa do conceito CPF
+📖 **** - Especificação completa do conceito CPF
 
 #### Relacionamentos de Domínio
 
 Este Value Object é usado nas seguintes entidades:
-- **[Holder](../../../../../../CENTRAL/DOMAIN-MODEL/ENTITIES/03-holder.md)** - CPF obrigatório para identificação única nacional
+- **** - CPF obrigatório para identificação única nacional
 - ****Account**** - CPF opcional para vinculação de usuário
 - ****Surveyor**** - CPF obrigatório para topógrafo profissional
 
@@ -73,15 +71,15 @@ import { CPF } from '@carf/tscore/validations'
 const cpf = new CPF('123.456.789-09') // Lança erro se inválido
 
 // Métodos disponíveis
-cpf.value         // "12345678909" (sempre sem máscara)
-cpf.format()      // "123.456.789-09" (com máscara)
-cpf.toString()    // "12345678909" (sem máscara)
+cpf.value // "12345678909" (sempre sem máscara)
+cpf.format() // "123.456.789-09" (com máscara)
+cpf.toString() // "12345678909" (sem máscara)
 cpf.equals(other) // Compara igualdade entre CPFs
 
 // Validação estática
 CPF.isValid('123.456.789-09') // true/false
-CPF.format('12345678909')     // "123.456.789-09"
-CPF.clean('123.456.789-09')   // "12345678909"
+CPF.format('12345678909') // "123.456.789-09"
+CPF.clean('123.456.789-09') // "12345678909"
 ```
 
 #### Exemplos de Uso em Entidades
@@ -92,23 +90,23 @@ import type { Holder } from '@carf/tscore/types'
 
 // Criando Holder com CPF validado
 const holder: Holder = {
-  id: crypto.randomUUID(),
-  cpf: new CPF('123.456.789-09').value, // Armazena sem máscara
-  name: 'João da Silva',
-  email: 'joao@example.com',
-  // ... outros campos
+ id: crypto.randomUUID(),
+ cpf: new CPF('123.456.789-09').value, // Armazena sem máscara
+ name: 'João da Silva',
+ email: 'joao@example.com',
+ // ... outros campos
 }
 
 // Validação em formulário React
 function HolderForm() {
-  const handleSubmit = (data: any) => {
-    try {
-      const cpf = new CPF(data.cpf) // Valida antes de enviar
-      // Enviar para API...
-    } catch (error) {
-      alert('CPF inválido!')
-    }
-  }
+ const handleSubmit = (data: any) => {
+ try {
+ const cpf = new CPF(data.cpf) // Valida antes de enviar
+ // Enviar para API...
+ } catch (error) {
+ alert('CPF inválido!')
+ }
+ }
 }
 ```
 
@@ -117,12 +115,12 @@ function HolderForm() {
 ```typescript
 // Válidos
 new CPF('123.456.789-09') // ✅
-new CPF('12345678909')     // ✅
+new CPF('12345678909') // ✅
 
 // Inválidos
-new CPF('000.000.000-00')  // ❌ CPF conhecido inválido
-new CPF('123.456.789-00')  // ❌ Dígito verificador errado
-new CPF('abc')             // ❌ Formato inválido
+new CPF('000.000.000-00') // ❌ CPF conhecido inválido
+new CPF('123.456.789-00') // ❌ Dígito verificador errado
+new CPF('abc') // ❌ Formato inválido
 ```
 
 ### 2. CNPJ (Cadastro Nacional de Pessoa Jurídica)
@@ -136,8 +134,8 @@ Valida CNPJ brasileiro com algoritmo de dígitos verificadores conforme Receita 
 #### Relacionamentos de Domínio
 
 Este Value Object é usado nas seguintes entidades:
-- **[Holder](../../../../../../CENTRAL/DOMAIN-MODEL/ENTITIES/03-holder.md)** - Quando titular é pessoa jurídica
-- **[Tenant](../../../../../../CENTRAL/DOMAIN-MODEL/ENTITIES/07-tenant.md)** - CNPJ obrigatório para instituição cliente
+- **** - Quando titular é pessoa jurídica
+- **** - CNPJ obrigatório para instituição cliente
 
 #### Regras de Validação
 
@@ -154,9 +152,9 @@ import { CNPJ } from '@carf/tscore/validations'
 const cnpj = new CNPJ('11.444.777/0001-61')
 
 // Métodos disponíveis
-cnpj.value         // "11444777000161" (sem máscara)
-cnpj.format()      // "11.444.777/0001-61" (com máscara)
-cnpj.toString()    // "11444777000161"
+cnpj.value // "11444777000161" (sem máscara)
+cnpj.format() // "11.444.777/0001-61" (com máscara)
+cnpj.toString() // "11444777000161"
 cnpj.equals(other) // Compara igualdade
 
 // Validação estática
@@ -176,7 +174,7 @@ Valida endereços de email conforme RFC 5322 com sanitização básica.
 #### Relacionamentos de Domínio
 
 Este Value Object é usado nas seguintes entidades:
-- **[Holder](../../../../../../CENTRAL/DOMAIN-MODEL/ENTITIES/03-holder.md)** - Email para contato e notificações
+- **** - Email para contato e notificações
 - ****Account**** - Email obrigatório para autenticação
 
 #### Regras de Validação
@@ -195,11 +193,11 @@ import { Email } from '@carf/tscore/validations'
 const email = new Email('user@example.com')
 
 // Métodos disponíveis
-email.value          // "user@example.com" (normalizado lowercase)
-email.local          // "user" (parte local)
-email.domain         // "example.com"
-email.toString()     // "user@example.com"
-email.equals(other)  // Compara igualdade
+email.value // "user@example.com" (normalizado lowercase)
+email.local // "user" (parte local)
+email.domain // "example.com"
+email.toString() // "user@example.com"
+email.equals(other) // Compara igualdade
 
 // Validação estática
 Email.isValid('user@example.com') // true/false
@@ -214,31 +212,31 @@ import type { Holder } from '@carf/tscore/types'
 
 // Criando Holder com Email validado
 const holder: Holder = {
-  id: crypto.randomUUID(),
-  cpf: '12345678909',
-  name: 'Maria Santos',
-  email: new Email('maria@example.com').value,
-  // ... outros campos
+ id: crypto.randomUUID(),
+ cpf: '12345678909',
+ name: 'Maria Santos',
+ email: new Email('maria@example.com').value,
+ // ... outros campos
 }
 
 // Hook React para validação
 import { useState } from 'react'
 
 function useEmailValidation() {
-  const [error, setError] = useState<string | null>(null)
+ const [error, setError] = useState<string | null>(null)
 
-  const validate = (value: string) => {
-    try {
-      new Email(value)
-      setError(null)
-      return true
-    } catch (err) {
-      setError('Email inválido')
-      return false
-    }
-  }
+ const validate = (value: string) => {
+ try {
+ new Email(value)
+ setError(null)
+ return true
+ } catch (err) {
+ setError('Email inválido')
+ return false
+ }
+ }
 
-  return { validate, error }
+ return { validate, error }
 }
 ```
 
@@ -253,7 +251,7 @@ Valida telefones brasileiros com DDD e formato móvel/fixo.
 #### Relacionamentos de Domínio
 
 Este Value Object é usado nas seguintes entidades:
-- **[Holder](../../../../../../CENTRAL/DOMAIN-MODEL/ENTITIES/03-holder.md)** - Telefone para contato
+- **** - Telefone para contato
 - ****Account**** - Telefone opcional
 
 #### Regras de Validação
@@ -272,13 +270,13 @@ import { PhoneNumber } from '@carf/tscore/validations'
 const phone = new PhoneNumber('(11) 98765-4321')
 
 // Métodos disponíveis
-phone.value          // "11987654321" (sem máscara)
-phone.ddd            // "11"
-phone.number         // "987654321"
-phone.format()       // "(11) 98765-4321"
-phone.toString()     // "11987654321"
-phone.isMobile()     // true
-phone.isLandline()   // false
+phone.value // "11987654321" (sem máscara)
+phone.ddd // "11"
+phone.number // "987654321"
+phone.format() // "(11) 98765-4321"
+phone.toString() // "11987654321"
+phone.isMobile() // true
+phone.isLandline() // false
 
 // Validação estática
 PhoneNumber.isValid('(11) 98765-4321')
@@ -295,9 +293,9 @@ PhoneNumber.clean('(11) 98765-4321')
 import { GeoPoint } from '@carf/tscore/geo'
 
 const point = new GeoPoint(-23.5505, -46.6333)
-point.latitude   // -23.5505
-point.longitude  // -46.6333
-point.toWKT()    // "POINT(-46.6333 -23.5505)"
+point.latitude // -23.5505
+point.longitude // -46.6333
+point.toWKT() // "POINT(-46.6333 -23.5505)"
 point.toGeoJSON() // { type: "Point", coordinates: [...] }
 ```
 
@@ -308,7 +306,7 @@ point.toGeoJSON() // { type: "Point", coordinates: [...] }
 import { GeoPolygon } from '@carf/tscore/geo'
 
 const polygon = GeoPolygon.fromWKT('POLYGON((...))')
-polygon.area()     // Área em m²
+polygon.area() // Área em m²
 polygon.perimeter() // Perímetro em m
 polygon.toGeoJSON() // GeoJSON Feature
 ```
@@ -320,13 +318,13 @@ polygon.toGeoJSON() // GeoJSON Feature
 import { Address } from '@carf/tscore/validations'
 
 const address = new Address({
-  street: 'Rua das Flores',
-  number: '123',
-  complement: 'Apto 45',
-  neighborhood: 'Centro',
-  city: 'São Paulo',
-  state: 'SP',
-  zipCode: '01310-100'
+ street: 'Rua das Flores',
+ number: '123',
+ complement: 'Apto 45',
+ neighborhood: 'Centro',
+ city: 'São Paulo',
+ state: 'SP',
+ zipCode: '01310-100'
 })
 ```
 
@@ -337,26 +335,26 @@ const address = new Address({
 ```typescript
 // src/validations/value-object.base.ts
 export abstract class ValueObject<T> {
-  protected readonly _value: T
+ protected readonly _value: T
 
-  constructor(value: T) {
-    this.validate(value)
-    this._value = value
-  }
+ constructor(value: T) {
+ this.validate(value)
+ this._value = value
+ }
 
-  protected abstract validate(value: T): void
+ protected abstract validate(value: T): void
 
-  public get value(): T {
-    return this._value
-  }
+ public get value(): T {
+ return this._value
+ }
 
-  public equals(other: ValueObject<T>): boolean {
-    return this._value === other._value
-  }
+ public equals(other: ValueObject<T>): boolean {
+ return this._value === other._value
+ }
 
-  public toString(): string {
-    return String(this._value)
-  }
+ public toString(): string {
+ return String(this._value)
+ }
 }
 ```
 
@@ -368,21 +366,21 @@ import { CPF, Email, PhoneNumber } from '@carf/tscore/validations'
 
 // 2. Criar instância (lança erro se inválido)
 try {
-  const cpf = new CPF(userInput)
-  const email = new Email(userInput)
-  const phone = new PhoneNumber(userInput)
+ const cpf = new CPF(userInput)
+ const email = new Email(userInput)
+ const phone = new PhoneNumber(userInput)
 } catch (error) {
-  console.error('Validação falhou:', error.message)
+ console.error('Validação falhou:', error.message)
 }
 
 // 3. Usar em tipos
 import type { Holder } from '@carf/tscore/types'
 
 const holder: Holder = {
-  cpf: new CPF('123.456.789-09').value,
-  email: new Email('user@example.com').value,
-  phone: new PhoneNumber('(11) 98765-4321').value,
-  // ...
+ cpf: new CPF('123.456.789-09').value,
+ email: new Email('user@example.com').value,
+ phone: new PhoneNumber('(11) 98765-4321').value,
+ // ...
 }
 ```
 

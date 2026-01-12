@@ -12,11 +12,11 @@ Documentação arquitetural da biblioteca TypeScript compartilhada.
 
 ```
 @carf/tscore/
-├── validations     # Value Objects com validações
-├── types           # TypeScript types domain
-├── auth            # Cliente Keycloak base
-├── auth/react      # React hooks e components
-└── auth/vue        # Vue composables
+├── validations # Value Objects com validações
+├── types # TypeScript types domain
+├── auth # Cliente Keycloak base
+├── auth/react # React hooks e components
+└── auth/vue # Vue composables
 ```
 
 ## Subpath Exports
@@ -25,14 +25,14 @@ Package.json exports permitem importação modular e tree-shaking:
 
 ```json
 {
-  "exports": {
-    ".": "./dist/index.js",
-    "./validations": "./dist/validations/index.js",
-    "./types": "./dist/types/index.js",
-    "./auth": "./dist/auth/index.js",
-    "./auth/react": "./dist/auth/react/index.js",
-    "./auth/vue": "./dist/auth/vue/index.js"
-  }
+ "exports": {
+ ".": "./dist/index.js",
+ "./validations": "./dist/validations/index.js",
+ "./types": "./dist/types/index.js",
+ "./auth": "./dist/auth/index.js",
+ "./auth/react": "./dist/auth/react/index.js",
+ "./auth/vue": "./dist/auth/vue/index.js"
+ }
 }
 ```
 
@@ -47,14 +47,14 @@ React e Vue são peer dependencies opcionais:
 
 ```json
 {
-  "peerDependencies": {
-    "react": "^18.0.0",
-    "vue": "^3.0.0"
-  },
-  "peerDependenciesMeta": {
-    "react": { "optional": true },
-    "vue": { "optional": true }
-  }
+ "peerDependencies": {
+ "react": "^18.0.0",
+ "vue": "^3.0.0"
+ },
+ "peerDependenciesMeta": {
+ "react": { "optional": true },
+ "vue": { "optional": true }
+ }
 }
 ```
 
@@ -88,22 +88,22 @@ CI/CD workflow automatizado:
 name: Publish
 
 on:
-  push:
-    tags:
-      - 'v*.*.*'
+ push:
+ tags:
+ - 'v*.*.*'
 
 jobs:
-  publish:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: oven-sh/setup-bun@v1
-      - run: bun install
-      - run: bun test
-      - run: bun run build
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+ publish:
+ runs-on: ubuntu-latest
+ steps:
+ - uses: actions/checkout@v3
+ - uses: oven-sh/setup-bun@v1
+ - run: bun install
+ - run: bun test
+ - run: bun run build
+ - run: npm publish
+ env:
+ NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ## Integração com Projetos Consumidores
@@ -116,9 +116,9 @@ Projetos GEOWEB, REURBCAD, ADMIN, WEBDOCS consomem via NPM:
 
 # package.json
 {
-  "dependencies": {
-    "@carf/tscore": "^0.1.0"
-  }
+ "dependencies": {
+ "@carf/tscore": "^0.1.0"
+ }
 }
 ```
 
@@ -154,22 +154,22 @@ Types TypeScript em @carf/tscore devem estar sincronizados com C# models do back
 ```csharp
 public class Unit
 {
-    public Guid Id { get; set; }
-    public string Code { get; set; }
-    public UnitStatus Status { get; set; }
-    public Polygon? Geometry { get; set; }
-    // ...
+ public Guid Id { get; set; }
+ public string Code { get; set; }
+ public UnitStatus Status { get; set; }
+ public Polygon? Geometry { get; set; }
+ // ...
 }
 ```
 
 **Frontend (TypeScript):**
 ```typescript
 export interface Unit {
-  id: string
-  code: string
-  status: UnitStatus
-  geometry?: GeoJSON.Polygon | null
-  // ...
+ id: string
+ code: string
+ status: UnitStatus
+ geometry?: GeoJSON.Polygon | null
+ // ...
 }
 ```
 
@@ -191,13 +191,13 @@ import { describe, test, expect } from 'bun:test'
 import { CPF } from '../cpf'
 
 describe('CPF', () => {
-  test('should validate valid CPF', () => {
-    expect(CPF.validate('123.456.789-09')).toBe(true)
-  })
+ test('should validate valid CPF', () => {
+ expect(CPF.validate('123.456.789-09')).toBe(true)
+ })
 
-  test('should reject invalid CPF', () => {
-    expect(CPF.validate('123.456.789-00')).toBe(false)
-  })
+ test('should reject invalid CPF', () => {
+ expect(CPF.validate('123.456.789-00')).toBe(false)
+ })
 })
 ```
 

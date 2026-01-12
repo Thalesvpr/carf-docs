@@ -8,13 +8,13 @@ Documentação completa da API pública.
 
 ```typescript
 class CPF {
-  constructor(cpf: string)
-  static validate(cpf: string): boolean
-  static normalize(cpf: string): string
-  format(): string
-  toString(): string
-  toJSON(): string
-  equals(other: CPF): boolean
+ constructor(cpf: string)
+ static validate(cpf: string): boolean
+ static normalize(cpf: string): string
+ format(): string
+ toString(): string
+ toJSON(): string
+ equals(other: CPF): boolean
 }
 ```
 
@@ -31,8 +31,8 @@ class CPF {
 **Exemplos:**
 ```typescript
 const cpf = new CPF('123.456.789-09')
-cpf.format()    // "123.456.789-09"
-cpf.toString()  // "12345678909"
+cpf.format() // "123.456.789-09"
+cpf.toString() // "12345678909"
 
 CPF.validate('123.456.789-09') // true
 CPF.normalize('123.456.789-09') // "12345678909"
@@ -42,13 +42,13 @@ CPF.normalize('123.456.789-09') // "12345678909"
 
 ```typescript
 class CNPJ {
-  constructor(cnpj: string)
-  static validate(cnpj: string): boolean
-  static normalize(cnpj: string): string
-  format(): string
-  toString(): string
-  toJSON(): string
-  equals(other: CNPJ): boolean
+ constructor(cnpj: string)
+ static validate(cnpj: string): boolean
+ static normalize(cnpj: string): string
+ format(): string
+ toString(): string
+ toJSON(): string
+ equals(other: CNPJ): boolean
 }
 ```
 
@@ -65,20 +65,20 @@ class CNPJ {
 **Exemplos:**
 ```typescript
 const cnpj = new CNPJ('11.444.777/0001-61')
-cnpj.format()    // "11.444.777/0001-61"
-cnpj.toString()  // "11444777000161"
+cnpj.format() // "11.444.777/0001-61"
+cnpj.toString() // "11444777000161"
 ```
 
 ### Email
 
 ```typescript
 class Email {
-  constructor(email: string)
-  static validate(email: string): boolean
-  static normalize(email: string): string
-  toString(): string
-  toJSON(): string
-  equals(other: Email): boolean
+ constructor(email: string)
+ static validate(email: string): boolean
+ static normalize(email: string): string
+ toString(): string
+ toJSON(): string
+ equals(other: Email): boolean
 }
 ```
 
@@ -110,13 +110,13 @@ Email.validate('invalid@') // false
 
 ```typescript
 class Phone {
-  constructor(phone: string)
-  static validate(phone: string): boolean
-  static normalize(phone: string): string
-  format(): string
-  toString(): string
-  toJSON(): string
-  equals(other: Phone): boolean
+ constructor(phone: string)
+ static validate(phone: string): boolean
+ static normalize(phone: string): string
+ format(): string
+ toString(): string
+ toJSON(): string
+ equals(other: Phone): boolean
 }
 ```
 
@@ -142,7 +142,7 @@ const phone = new Phone('11987654321')
 phone.format() // "(11) 98765-4321"
 
 Phone.validate('(11) 98765-4321') // true
-Phone.validate('(11) 3456-7890')  // true (fixo)
+Phone.validate('(11) 3456-7890') // true (fixo)
 ```
 
 ## Types
@@ -153,24 +153,24 @@ Phone.validate('(11) 3456-7890')  // true (fixo)
 
 ```typescript
 interface Unit {
-  id: string
-  code: string
-  status: UnitStatus
-  street: string
-  number?: string | null
-  complement?: string | null
-  neighborhood?: string | null
-  city: string
-  state: string
-  zipCode?: string | null
-  geometry?: GeoJSON.Polygon | null
-  area?: number | null
-  builtArea?: number | null
-  communityId: string
-  customData?: Record<string, any> | null
-  createdAt: Date
-  updatedAt: Date
-  version: number
+ id: string
+ code: string
+ status: UnitStatus
+ street: string
+ number?: string | null
+ complement?: string | null
+ neighborhood?: string | null
+ city: string
+ state: string
+ zipCode?: string | null
+ geometry?: GeoJSON.Polygon | null
+ area?: number | null
+ builtArea?: number | null
+ communityId: string
+ customData?: Record<string, any> | null
+ createdAt: Date
+ updatedAt: Date
+ version: number
 }
 ```
 
@@ -178,29 +178,29 @@ interface Unit {
 
 ```typescript
 interface Holder {
-  id: string
-  type: EntityType
-  name: string
-  cpf?: string | null
-  cnpj?: string | null
-  rg?: string | null
-  birthDate?: Date | null
-  nationality?: string | null
-  maritalStatus?: string | null
-  occupation?: string | null
-  email?: string | null
-  phone?: string | null
-  street?: string | null
-  number?: string | null
-  complement?: string | null
-  neighborhood?: string | null
-  city?: string | null
-  state?: string | null
-  zipCode?: string | null
-  customData?: Record<string, any> | null
-  createdAt: Date
-  updatedAt: Date
-  version: number
+ id: string
+ type: EntityType
+ name: string
+ cpf?: string | null
+ cnpj?: string | null
+ rg?: string | null
+ birthDate?: Date | null
+ nationality?: string | null
+ maritalStatus?: string | null
+ occupation?: string | null
+ email?: string | null
+ phone?: string | null
+ street?: string | null
+ number?: string | null
+ complement?: string | null
+ neighborhood?: string | null
+ city?: string | null
+ state?: string | null
+ zipCode?: string | null
+ customData?: Record<string, any> | null
+ createdAt: Date
+ updatedAt: Date
+ version: number
 }
 ```
 
@@ -208,19 +208,19 @@ interface Holder {
 
 ```typescript
 interface Community {
-  id: string
-  name: string
-  code?: string | null
-  type: CommunityType
-  description?: string | null
-  boundary?: GeoJSON.Polygon | null
-  area?: number | null
-  tenantId: string
-  isActive: boolean
-  customData?: Record<string, any> | null
-  createdAt: Date
-  updatedAt: Date
-  version: number
+ id: string
+ name: string
+ code?: string | null
+ type: CommunityType
+ description?: string | null
+ boundary?: GeoJSON.Polygon | null
+ area?: number | null
+ tenantId: string
+ isActive: boolean
+ customData?: Record<string, any> | null
+ createdAt: Date
+ updatedAt: Date
+ version: number
 }
 ```
 
@@ -232,12 +232,12 @@ Ver todas 36+ entities em código-fonte `src/types/entities/`
 
 ```typescript
 enum UnitStatus {
-  DRAFT = 'DRAFT'
-  PENDING = 'PENDING'
-  IN_REVIEW = 'IN_REVIEW'
-  APPROVED = 'APPROVED'
-  REJECTED = 'REJECTED'
-  REQUIRES_CHANGES = 'REQUIRES_CHANGES'
+ DRAFT = 'DRAFT'
+ PENDING = 'PENDING'
+ IN_REVIEW = 'IN_REVIEW'
+ APPROVED = 'APPROVED'
+ REJECTED = 'REJECTED'
+ REQUIRES_CHANGES = 'REQUIRES_CHANGES'
 }
 ```
 
@@ -245,11 +245,11 @@ enum UnitStatus {
 
 ```typescript
 enum Role {
-  SUPER_ADMIN = 'SUPER_ADMIN'
-  ADMIN = 'ADMIN'
-  MANAGER = 'MANAGER'
-  ANALYST = 'ANALYST'
-  FIELD_AGENT = 'FIELD_AGENT'
+ SUPER_ADMIN = 'SUPER_ADMIN'
+ ADMIN = 'ADMIN'
+ MANAGER = 'MANAGER'
+ ANALYST = 'ANALYST'
+ FIELD_AGENT = 'FIELD_AGENT'
 }
 
 const RoleHierarchy: Record<Role, number>
@@ -271,17 +271,17 @@ hasRolePermission(Role.ANALYST, Role.MANAGER) // false
 
 ```typescript
 enum LegitimationStatus {
-  DRAFT = 'DRAFT'
-  SUBMITTED = 'SUBMITTED'
-  UNDER_REVIEW = 'UNDER_REVIEW'
-  AWAITING_DOCUMENTATION = 'AWAITING_DOCUMENTATION'
-  PUBLIC_NOTICE = 'PUBLIC_NOTICE'
-  CONTESTED = 'CONTESTED'
-  ANALYZING_CONTESTATION = 'ANALYZING_CONTESTATION'
-  APPROVED = 'APPROVED'
-  REJECTED = 'REJECTED'
-  CERTIFICATE_ISSUED = 'CERTIFICATE_ISSUED'
-  ARCHIVED = 'ARCHIVED'
+ DRAFT = 'DRAFT'
+ SUBMITTED = 'SUBMITTED'
+ UNDER_REVIEW = 'UNDER_REVIEW'
+ AWAITING_DOCUMENTATION = 'AWAITING_DOCUMENTATION'
+ PUBLIC_NOTICE = 'PUBLIC_NOTICE'
+ CONTESTED = 'CONTESTED'
+ ANALYZING_CONTESTATION = 'ANALYZING_CONTESTATION'
+ APPROVED = 'APPROVED'
+ REJECTED = 'REJECTED'
+ CERTIFICATE_ISSUED = 'CERTIFICATE_ISSUED'
+ ARCHIVED = 'ARCHIVED'
 }
 ```
 
@@ -289,11 +289,11 @@ enum LegitimationStatus {
 
 ```typescript
 enum EntityType {
-  PESSOA_FISICA = 'PESSOA_FISICA'
-  PESSOA_JURIDICA = 'PESSOA_JURIDICA'
-  GOVERNMENT = 'GOVERNMENT'
-  NGO = 'NGO'
-  OTHER = 'OTHER'
+ PESSOA_FISICA = 'PESSOA_FISICA'
+ PESSOA_JURIDICA = 'PESSOA_JURIDICA'
+ GOVERNMENT = 'GOVERNMENT'
+ NGO = 'NGO'
+ OTHER = 'OTHER'
 }
 ```
 
@@ -301,12 +301,12 @@ enum EntityType {
 
 ```typescript
 enum CommunityType {
-  URBAN_SLUM = 'URBAN_SLUM'
-  RURAL_SETTLEMENT = 'RURAL_SETTLEMENT'
-  INDIGENOUS_LAND = 'INDIGENOUS_LAND'
-  QUILOMBOLA = 'QUILOMBOLA'
-  FISHING_COMMUNITY = 'FISHING_COMMUNITY'
-  OTHER = 'OTHER'
+ URBAN_SLUM = 'URBAN_SLUM'
+ RURAL_SETTLEMENT = 'RURAL_SETTLEMENT'
+ INDIGENOUS_LAND = 'INDIGENOUS_LAND'
+ QUILOMBOLA = 'QUILOMBOLA'
+ FISHING_COMMUNITY = 'FISHING_COMMUNITY'
+ OTHER = 'OTHER'
 }
 ```
 
@@ -316,19 +316,19 @@ enum CommunityType {
 
 ```typescript
 interface CreateUnitDto {
-  code: string
-  street: string
-  city: string
-  state: string
-  communityId: string
-  number?: string
-  complement?: string
-  neighborhood?: string
-  zipCode?: string
-  geometry?: GeoJSON.Polygon
-  area?: number
-  builtArea?: number
-  customData?: Record<string, any>
+ code: string
+ street: string
+ city: string
+ state: string
+ communityId: string
+ number?: string
+ complement?: string
+ neighborhood?: string
+ zipCode?: string
+ geometry?: GeoJSON.Polygon
+ area?: number
+ builtArea?: number
+ customData?: Record<string, any>
 }
 ```
 
@@ -336,19 +336,19 @@ interface CreateUnitDto {
 
 ```typescript
 interface UpdateUnitDto {
-  code?: string
-  status?: UnitStatus
-  street?: string
-  number?: string
-  complement?: string
-  neighborhood?: string
-  city?: string
-  state?: string
-  zipCode?: string
-  geometry?: GeoJSON.Polygon
-  area?: number
-  builtArea?: number
-  customData?: Record<string, any>
+ code?: string
+ status?: UnitStatus
+ street?: string
+ number?: string
+ complement?: string
+ neighborhood?: string
+ city?: string
+ state?: string
+ zipCode?: string
+ geometry?: GeoJSON.Polygon
+ area?: number
+ builtArea?: number
+ customData?: Record<string, any>
 }
 ```
 
@@ -358,16 +358,16 @@ interface UpdateUnitDto {
 
 ```typescript
 class KeycloakClient {
-  constructor(config: KeycloakConfig)
-  async init(): Promise<void>
-  login(redirectUri?: string): void
-  async handleCallback(code: string, state: string): Promise<void>
-  async logout(redirectUri?: string): Promise<void>
-  async getToken(): Promise<string>
-  getUser(): User | null
-  hasRole(role: Role): boolean
-  hasRolePermission(requiredRole: Role): boolean
-  isAuthenticated(): boolean
+ constructor(config: KeycloakConfig)
+ async init(): Promise<void>
+ login(redirectUri?: string): void
+ async handleCallback(code: string, state: string): Promise<void>
+ async logout(redirectUri?: string): Promise<void>
+ async getToken(): Promise<string>
+ getUser(): User | null
+ hasRole(role: Role): boolean
+ hasRolePermission(requiredRole: Role): boolean
+ isAuthenticated(): boolean
 }
 ```
 
@@ -375,26 +375,26 @@ class KeycloakClient {
 
 ```typescript
 interface KeycloakConfig {
-  url: string        // http://localhost:8080
-  realm: string      // carf
-  clientId: string   // geoweb, admin, etc
+ url: string // http://localhost:8080
+ realm: string // carf
+ clientId: string // geoweb, admin, etc
 }
 
 interface User {
-  id: string
-  username: string
-  email?: string
-  name?: string
-  roles: Role[]
-  tenantId?: string
-  customClaims?: Record<string, any>
+ id: string
+ username: string
+ email?: string
+ name?: string
+ roles: Role[]
+ tenantId?: string
+ customClaims?: Record<string, any>
 }
 
 interface AuthTokens {
-  accessToken: string
-  refreshToken: string
-  idToken: string
-  expiresAt: number
+ accessToken: string
+ refreshToken: string
+ idToken: string
+ expiresAt: number
 }
 ```
 
@@ -418,14 +418,14 @@ interface AuthTokens {
 function useAuth(): AuthContextValue
 
 interface AuthContextValue {
-  user: User | null
-  isLoading: boolean
-  isAuthenticated: boolean
-  login: () => void
-  logout: () => Promise<void>
-  hasRole: (role: Role) => boolean
-  hasPermission: (requiredRole: Role) => boolean
-  getToken: () => Promise<string>
+ user: User | null
+ isLoading: boolean
+ isAuthenticated: boolean
+ login: () => void
+ logout: () => Promise<void>
+ hasRole: (role: Role) => boolean
+ hasPermission: (requiredRole: Role) => boolean
+ getToken: () => Promise<string>
 }
 ```
 
@@ -440,15 +440,15 @@ const { user, isAuthenticated, hasRole } = useAuth()
 function AuthProvider(props: AuthProviderProps): JSX.Element
 
 interface AuthProviderProps {
-  client: KeycloakClient
-  children: React.ReactNode
+ client: KeycloakClient
+ children: React.ReactNode
 }
 ```
 
 **Uso:**
 ```typescript
 <AuthProvider client={keycloakClient}>
-  <App />
+ <App />
 </AuthProvider>
 ```
 
@@ -458,16 +458,16 @@ interface AuthProviderProps {
 function ProtectedRoute(props: ProtectedRouteProps): JSX.Element
 
 interface ProtectedRouteProps {
-  children: React.ReactNode
-  requiredRoles?: Role[]
-  fallback?: React.ReactNode
+ children: React.ReactNode
+ requiredRoles?: Role[]
+ fallback?: React.ReactNode
 }
 ```
 
 **Uso:**
 ```typescript
 <ProtectedRoute requiredRoles={[Role.ADMIN]}>
-  <AdminPanel />
+ <AdminPanel />
 </ProtectedRoute>
 ```
 
@@ -479,14 +479,14 @@ interface ProtectedRouteProps {
 function useAuth(): AuthComposable
 
 interface AuthComposable {
-  user: Ref<User | null>
-  isLoading: Ref<boolean>
-  isAuthenticated: Ref<boolean>
-  login: () => void
-  logout: () => Promise<void>
-  hasRole: (role: Role) => boolean
-  hasPermission: (requiredRole: Role) => boolean
-  getToken: () => Promise<string>
+ user: Ref<User | null>
+ isLoading: Ref<boolean>
+ isAuthenticated: Ref<boolean>
+ login: () => void
+ logout: () => Promise<void>
+ hasRole: (role: Role) => boolean
+ hasPermission: (requiredRole: Role) => boolean
+ getToken: () => Promise<string>
 }
 ```
 
@@ -519,7 +519,7 @@ app.mount('#app')
 
 ```typescript
 class ValidationError extends Error {
-  constructor(message: string)
+ constructor(message: string)
 }
 ```
 
@@ -528,11 +528,11 @@ Lançado por value objects quando validação falha.
 **Exemplo:**
 ```typescript
 try {
-  new CPF('000.000.000-00')
+ new CPF('000.000.000-00')
 } catch (error) {
-  if (error instanceof ValidationError) {
-    console.error(error.message) // "CPF inválido"
-  }
+ if (error instanceof ValidationError) {
+ console.error(error.message) // "CPF inválido"
+ }
 }
 ```
 

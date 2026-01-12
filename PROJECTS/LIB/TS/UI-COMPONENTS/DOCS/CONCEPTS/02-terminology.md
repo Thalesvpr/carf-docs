@@ -1,41 +1,7 @@
-# Terminology - @carf/ui
+# Terminology
 
-## Glossário de Termos
+Glossário termos técnicos arquitetura @carf/ui incluindo Atomic Design onde Atom representa componente indivisível (Button Input Badge) menor unidade UI, Molecule combinação atoms (FormField composto Label Input ErrorMessage) grupo funcional simples, Organism grupo molecules (LoginForm UnitCard) seção completa interface, componentes React incluindo Compound Component componente subcomponentes relacionados (Dialog.Header Card.Footer) permitindo composição flexível, Controlled Component state gerenciado externamente via props (value onChange), Uncontrolled Component state interno ref access (defaultValue ref), Design System coleção design tokens guidelines patterns components assegurando consistência visual UX através produtos, CSS Variables (custom properties) valores reutilizáveis CSS (--primary --font-sans) permitindo theming dinâmico runtime sem recompilação, Storybook ferramenta desenvolvimento isolado components documenting testing visual regression, Testing Library filosofia testing user-centric querying elementos DOM como usuário real vê (byRole byLabelText) ao invés implementation details (byTestId), e Radix UI biblioteca primitives acessíveis headless unstyled fornecendo behavior keyboard navigation ARIA sem opiniões styling permitindo customização completa Tailwind CSS shadcn/ui layer abstraindo complexity accessibility focus managing roving tabindex modal trap restoring portal rendering z-index stacking contexts collision detection positioning algorithms dropdown menu select combobox popover tooltip dialog sheet alert ensuring robust accessible components foundation @carf/ui built upon.
 
-### Atomic Design
+---
 
-- **Atom** - Componente indivisível (Button, Input, Badge). Menor unidade de UI.
-- **Molecule** - Combinação de atoms (FormField = Label + Input + ErrorMessage). Grupo funcional simples.
-- **Organism** - Grupo de molecules (LoginForm, UnitCard). Seção completa de interface.
-
-### Componentes React
-
-- **Compound Component** - Componente com subcomponentes relacionados (Dialog.Header, Card.Footer). Permite composição flexível.
-- **Controlled Component** - State gerenciado externamente via props (`value` e `onChange`).
-- **Uncontrolled Component** - State interno com ref access (`defaultValue` e `ref`).
-- **Render Prop** - Função como children para customização (`renderRow={(item) => <Custom />}`).
-
-### Design Tokens
-
-- **Design Token** - CSS variable que define tema (`--primary`, `--radius`, `--font-sans`).
-- **Theme** - Conjunto de design tokens definindo visual da aplicação.
-- **CSS Variable** - Valor reutilizável em CSS (`var(--primary)`).
-
-### shadcn/ui
-
-- **Primitive** - Componente base do Radix UI sem estilos.
-- **Variant** - Versão alternativa de componente (Button: `default`, `outline`, `ghost`).
-- **Slot** - Placeholder para children em compound components.
-
-## Termos do Domínio CARF
-
-- **UnitCard** - Componente que exibe informações de uma Unidade (código, endereço, área).
-- **HolderCard** - Componente que exibe informações de um Posseiro (nome, CPF, contato).
-- **MapView** - Componente de mapa geográfico com Leaflet.
-- **LegitimationStatusBadge** - Badge colorido para status de legitimação (PENDING, APPROVED, REJECTED).
-
-## Referências
-
-- [Atomic Design - Brad Frost](https://bradfrost.com/blog/post/atomic-web-design/)
-- [React Glossary](https://react.dev/learn/glossary)
-- [shadcn/ui Docs](https://ui.shadcn.com/docs)
+**Última atualização:** 2026-01-11

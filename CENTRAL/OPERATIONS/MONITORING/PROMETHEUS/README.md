@@ -1,7 +1,7 @@
 # PROMETHEUS
 
-Configuração Prometheus monitoring do CARF. prometheus.yml (scrape configs GEOAPI /metrics, PostgreSQL exporter, Keycloak /metrics, node exporter CPU/memory/disk). alerts.yml regras (HighCPU > 80 porcento 5min, HighMemory > 90 porcento, HighErrorRate 5xx > 1 porcento, HighLatency p99 > 1s, DatabaseConnectionsHigh). AlertManager routing Slack/email/PagerDuty. Recording rules pre-computando aggregations para Grafana.
+Configuração Prometheus monitoring CARF incluindo scrape configs GEOAPI endpoint metrics PostgreSQL exporter Keycloak metrics node exporter CPU memory disk network regras alertas HighCPU maior oitenta por cento cinco minutos HighMemory maior noventa por cento HighErrorRate 5xx maior um por cento HighLatency p99 maior um segundo DatabaseConnectionsHigh AlertManager routing Slack email PagerDuty recording rules pré-computando aggregations Grafana garantindo observabilidade proativa detecção problemas antes impactar usuários.
 
 ---
 
-**Última atualização:** 2025-12-29
+**Última atualização:** 2026-01-11

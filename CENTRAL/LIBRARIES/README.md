@@ -82,15 +82,15 @@ Desenvolvimento local de bibliotecas permite testar mudanças antes de publicar 
 
 As bibliotecas implementam conceitos documentados em CENTRAL/:
 
-| Biblioteca | Implementa Conceitos de | Documentação CENTRAL |
-|------------|-------------------------|----------------------|
-| @carf/tscore | Value Objects, Types, Auth | [DOMAIN-MODEL/](../DOMAIN-MODEL/00-INDEX.md) |
-| @carf/geoapi-client | REST API Endpoints | [API/](../API/README.md) |
-| @carf/ui | Design System, Components | *(standalone)* |
+| Biblioteca          | Implementa Conceitos de    | Documentação CENTRAL     |
+| ------------------- | -------------------------- | ------------------------ |
+| @carf/tscore        | Value Objects, Types, Auth |                          |
+| @carf/geoapi-client | REST API Endpoints         | [API/](../API/README.md) |
+| @carf/ui            | Design System, Components  | *(standalone)*           |
 
 ## Documentação e Integrações
 
-Documentação técnica detalhada de cada biblioteca TypeScript compartilhada inclui [TSCORE](../../PROJECTS/LIB/TS/TSCORE/DOCS/README.md) documentando value objects validações e hooks de autenticação, [GEOAPI-CLIENT](../../PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/README.md) especificando SDK HTTP type-safe para comunicação com backend, e [UI-COMPONENTS](../../PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/README.md) detalhando componentes React reutilizáveis com shadcn/ui e Storybook. Conceitos de domínio implementados pelas bibliotecas estão definidos em [Domain Model](../DOMAIN-MODEL/00-INDEX.md) contendo entidades aggregates e value objects seguindo DDD tactical patterns, [API Specification](../API/README.md) documentando todos endpoints REST JSON do backend GEOAPI, e [Keycloak Integration](../INTEGRATION/KEYCLOAK/README.md) especificando fluxos OAuth2/OIDC para autenticação e multi-tenancy.
+Documentação técnica detalhada de cada biblioteca TypeScript compartilhada inclui documentando value objects validações e hooks de autenticação, especificando SDK HTTP type-safe para comunicação com backend, e detalhando componentes React reutilizáveis com shadcn/ui e Storybook. Conceitos de domínio implementados pelas bibliotecas estão definidos em contendo entidades aggregates e value objects seguindo DDD tactical patterns, [API Specification](../API/README.md) documentando todos endpoints REST JSON do backend GEOAPI, e [Keycloak Integration](../INTEGRATION/KEYCLOAK/README.md) especificando fluxos OAuth2/OIDC para autenticação e multi-tenancy.
 
 Projetos consumidores das bibliotecas incluem GEOWEB frontend web React para gestão geoespacial de unidades e comunidades com visualização cartográfica interativa, REURBCAD mobile React Native para coleta de dados em campo com suporte offline-first e sincronização automática, ADMIN console administrativo React Next.js para gerenciamento de usuários tenants e configurações do sistema, e WEBDOCS portal estático VitePress servindo documentação técnica completa do projeto CARF.
 

@@ -15,8 +15,6 @@ Caso de uso permitindo usuários autorizados (ANALYST com permissão para criar 
 **Fluxos de Exceção:**
 - [UC-001-FE-001: Validação falha](UC-001-FE-001-validacao-falha.md)
 - [UC-001-FE-002: Geometria sobreposta](UC-001-FE-002-geometria-sobreposta.md)
-- [UC-001-FE-003: Perda de conexão (mobile)](UC-001-FE-003-perda-conexao-mobile.md)
-- [UC-001-FE-004: Timeout de sessão](UC-001-FE-004-timeout-sessao.md)
 
 **Regras de Negócio:**
 - RN-001: Código de unidade deve ser único dentro da comunidade (constraint banco CommunityId + Code)

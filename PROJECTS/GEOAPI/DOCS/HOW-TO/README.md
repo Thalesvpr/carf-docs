@@ -2,6 +2,10 @@
 
 Guias práticos para desenvolvimento e configuração do GEOAPI backend .NET.
 
+## Setup Inicial
+
+- **[01-setup-dev-environment.md](./01-setup-dev-environment.md)** - Setup completo ambiente desenvolvimento: instalar .NET 9 SDK Docker, clonar repositório, subir PostgreSQL PostGIS, configurar Keycloak, aplicar migrations, rodar API
+
 ## Autenticação e Keycloak
 
 - **[01-configure-keycloak.md](./01-configure-keycloak.md)** - Configurar Keycloak authentication em appsettings.json, adicionar middleware AddJwtBearer, configurar TokenValidationParameters e RoleClaimType
@@ -17,7 +21,6 @@ Guias práticos para desenvolvimento e configuração do GEOAPI backend .NET.
 Ver também:
 - [ARCHITECTURE/](../ARCHITECTURE/README.md) - Decisões arquiteturais específicas do GEOAPI
 - [CONCEPTS/](../CONCEPTS/README.md) - Conceitos fundamentais (Clean Architecture, CQRS, DDD)
-- [CENTRAL/INTEGRATION/KEYCLOAK/](../../../../CENTRAL/INTEGRATION/KEYCLOAK/README.md) - Documentação completa Keycloak
 
 ---
 

@@ -1,129 +1,19 @@
 # Geometry Validation
 
-Regra de validação de geometrias espaciais garantindo que polígonos representando unidades habitacionais comunidades e blocos são válidos topologicamente e compatíveis com requisitos de regularização fundiária onde validação inclui verificação de polígono fechado (primeiro ponto igual ao último), ausência de auto-interseção (arestas não se cruzam), sentido de rotação correto (anti-horário para exterior horário para buracos), área calculada dentro de limites legais (REURB-S até 250m² REURB-E até 500m²), perímetro coerente com área, e detecção de sobreposição entre geometrias adjacentes. Geometrias podem ser fornecidas em formatos padrão WKT (Well-Known Text) ou GeoJSON sendo convertidas internamente para representação canônica antes de validação e armazenamento. Cálculo de área utiliza fórmula de Shoelace (método do determinante) para polígonos simples em coordenadas planas projetadas considerando que para áreas pequenas (< 1km²) distorção de projeção é desprezível, caso contrário transformar para projeção equivalente ou usar cálculo esférico. Validação de overlap entre unidades detecta sobreposição de polígonos indicando conflito fundiário ou erro de cadastro onde overlap maior que threshold de tolerância (tipicamente 1m² ou 1% da menor área) dispara alerta para revisão manual.
+Regra validação geometrias espaciais garantindo polígonos representando unidades habitacionais comunidades blocos são válidos topologicamente compatíveis requisitos regularização fundiária onde validação inclui verificação polígono fechado primeiro ponto igual último ausência auto-interseção arestas não cruzam sentido rotação correto anti-horário exterior horário buracos área calculada dentro limites legais REURB-S até duzentos cinquenta metros quadrados REURB-E até quinhentos metros quadrados perímetro coerente área detecção sobreposição geometrias adjacentes geometrias fornecidas formatos padrão WKT Well-Known Text ou GeoJSON convertidas internamente representação canônica antes validação armazenamento cálculo área utiliza fórmula Shoelace método determinante polígonos simples coordenadas planas projetadas considerando áreas pequenas menor um quilômetro quadrado distorção projeção desprezível caso contrário transformar projeção equivalente usar cálculo esférico validação overlap unidades detecta sobreposição polígonos indicando conflito fundiário erro cadastro onde overlap maior threshold tolerância tipicamente um metro quadrado ou um por cento menor área dispara alerta revisão manual.
 
-**Tipos de geometria suportados:**
-- Polygon (polígono simples sem buracos) - Caso mais comum para unidades
-- MultiPolygon (múltiplos polígonos) - Propriedades não contíguas
-- Polygon with holes (polígono com buracos internos) - Edificações com pátios
+Tipos geometria suportados incluem Polygon polígono simples sem buracos caso mais comum unidades MultiPolygon múltiplos polígonos propriedades não contíguas Polygon with holes polígono buracos internos edificações pátios validações topológicas obrigatórias garantem polígono fechado primeiro ponto igual último ponto mesmas coordenadas mínimo quatro pontos três vértices mais fechamento sem auto-interseção nenhuma aresta cruza outra aresta mesmo polígono algoritmo verificar interseção cada par arestas não adjacentes sentido rotação anel exterior anti-horário CCW counter-clockwise anéis interiores buracos horário CW clockwise determinar sentido somar x dois menos x um vezes y dois mais y um cada aresta se negativo igual CCW área válida área maior zero não degenerado área maior igual área mínima exemplo vinte metros quadrados construção habitável área menor igual área máxima duzentos cinquenta metros quadrados REURB-S quinhentos metros quadrados REURB-E vértices distintos nenhum vértice duplicado exceto primeiro último distância vértices consecutivos maior threshold exemplo zero ponto um metro.
 
-**Validações topológicas obrigatórias:**
+Cálculo área fórmula Shoelace para polígono com n vértices x um y um x dois y dois até x n y n calcula Área igual valor absoluto meio vezes somatório xi vezes y índice i mais um menos x índice i mais um vezes yi para i igual um até n menos um onde coordenadas estão metros projetadas resultado metros quadrados aplicando método determinante polígonos simples transformação cálculo Latitude Longitude EPSG quatro três dois seis para UTM zona apropriada metros Brasil fusos UTM dezoito a vinte e cinco escolher fuso centroide exemplo São Paulo igual UTM zona vinte e três S EPSG trinta e um nove oito três cálculo perímetro fórmula calcula Perímetro igual somatório distância vértice i e vértice i mais um para i igual um até n menos um somando comprimento todas arestas polígono validando razão área dividido perímetro ao quadrado índice circularidade detectar polígonos muito irregulares alongados índice circularidade igual quatro pi vezes área dividido perímetro ao quadrado valores próximos um circular menor zero ponto um muito irregular.
 
-1. **Polígono fechado:**
-   - Primeiro ponto = último ponto (mesmas coordenadas)
-   - Mínimo 4 pontos (3 vértices + fechamento)
+Detecção overlap entre Units calcula interseção geometrias área overlap maior threshold um metro quadrado ou um por cento menor área alertar analista revisão Unit fora Community boundary validar Unit geometry está contido Community boundary tolerância aceitar menor um por cento área fora erro GPS Unit fora Block aplicável validar Unit geometry está contido Block geometry mesmo critério tolerância validações qualidade relação área perímetro detectar polígonos muito alongados irregulares valores próximos um circular menor zero ponto um muito irregular número vértices mínimo quatro triângulo mais fechamento máximo razoável cem simplificar se muito complexo alerta maior cinquenta vértices provável digitalização detalhada desnecessária ângulos internos evitar ângulos muito agudos menor quinze graus indicam erro digitalização vértices redundantes.
 
-2. **Sem auto-interseção:**
-   - Nenhuma aresta cruza outra aresta do mesmo polígono
-   - Algoritmo: Verificar interseção de cada par de arestas não adjacentes
+Formatos entrada WKT Well-Known Text formato textual inicia palavra-chave POLYGON seguida parênteses duplos contendo lista coordenadas longitude latitude separadas vírgula primeiro ponto repetido final fechando polígono exemplo POLYGON parênteses parênteses menos quarenta e seis ponto seis três três menos vinte e três ponto cinco cinco zero vírgula vértices intermediários vírgula primeiro ponto repetido parênteses parênteses GeoJSON formato JSON estruturado objeto raiz contendo propriedade type igual string Polygon propriedade coordinates igual array arrays array externo representa anel exterior array interno contém coordenadas cada coordenada array dois números longitude latitude exemplo menos quarenta e seis ponto seis três três vírgula menos vinte e três ponto cinco cinco zero ordenados anti-horário primeiro ponto repetido final fechando polígono conforme especificação GeoJSON RFC 7946 mensagens erro geometria inválida polígono não está fechado geometria inválida auto-interseção detectada geometria inválida sentido rotação incorreto área inválida excede limite duzentos cinquenta metros quadrados REURB-S área inválida menor vinte metros quadrados área mínima habitável sobreposição detectada unidade adjacente cinco ponto dois metros quadrados revisar unidade fora perímetro comunidade doze por cento área externa.
 
-3. **Sentido de rotação:**
-   - Anel exterior: anti-horário (CCW - counter-clockwise)
-   - Anéis interiores (buracos): horário (CW - clockwise)
-   - Determinar sentido: Somar (x2-x1)(y2+y1) para cada aresta, se negativo = CCW
+Exceções casos especiais propriedades não contíguas usar MultiPolygon ao invés Polygon cada parte validada individualmente somar áreas todas partes edificações pátio interno Polygon with holes anel exterior mais anéis interiores validar sentido cada anel área igual área externa menos área buracos correção automática inverter sentido rotação se incorreto remover vértices duplicados simplificar geometria reduzir vértices mantendo forma.
 
-4. **Área válida:**
-   - Área > 0 (não degenerado)
-   - Área >= área mínima (ex: 20m² para construção habitável)
-   - Área <= área máxima (250m² REURB-S, 500m² REURB-E)
-
-5. **Vértices distintos:**
-   - Nenhum vértice duplicado exceto primeiro/último
-   - Distância entre vértices consecutivos > threshold (ex: 0.1m)
-
-**Cálculo de área (Fórmula de Shoelace):**
-
-Para polígono com n vértices (x₁,y₁), (x₂,y₂), ..., (xₙ,yₙ) fórmula calcula Área igual valor absoluto de meio vezes somatório de xi vezes y índice i mais um menos x índice i mais um vezes yi para i igual um até n menos um onde coordenadas estão em metros projetadas para resultado em metros quadrados aplicando método do determinante para polígonos simples.
-
-**Transformação para cálculo:**
-- Lat/Lng (EPSG:4326) → UTM zona apropriada (metros)
-- Brasil: Fusos UTM 18-25, escolher fuso do centroide
-- Exemplo: São Paulo = UTM zona 23S (EPSG:31983)
-
-**Cálculo de perímetro:**
-
-Fórmula calcula Perímetro igual somatório de distância entre vértice i e vértice i mais um para i igual um até n menos um somando comprimento de todas arestas do polígono validando razão área dividido por perímetro ao quadrado índice de circularidade para detectar polígonos muito irregulares ou alongados.
-
-**Detecção de overlap:**
-
-1. **Overlap entre Units:**
-   - Calcular interseção de geometrias
-   - Área de overlap > threshold (1m² ou 1% menor área)
-   - Alertar analista para revisão
-
-2. **Unit fora de Community boundary:**
-   - Validar que Unit.geometry está contido em Community.boundary
-   - Tolerância: aceitar < 1% da área fora (erro de GPS)
-
-3. **Unit fora de Block (se aplicável):**
-   - Validar que Unit.geometry está contido em Block.geometry
-   - Mesmo critério de tolerância
-
-**Validações de qualidade:**
-
-Relação área/perímetro:
-- Detectar polígonos muito alongados ou irregulares
-- Índice de circularidade = 4π × área / perímetro²
-- Valores próximos a 1 = circular, < 0.1 = muito irregular
-
-Número de vértices:
-- Mínimo: 4 (triângulo + fechamento)
-- Máximo razoável: 100 (simplificar se muito complexo)
-- Alerta se > 50 vértices (provável digitalização detalhada desnecessária)
-
-Ângulos internos:
-- Evitar ângulos muito agudos (< 15°)
-- Indicam erro de digitalização ou vértices redundantes
-
-**Formatos de entrada:**
-
-WKT (Well-Known Text): Formato textual inicia com palavra-chave POLYGON seguida por parênteses duplos contendo lista de coordenadas longitude latitude separadas por vírgula onde primeiro ponto menos quarenta e seis ponto seis três três espaço menos vinte e três ponto cinco cinco zero representa vértice inicial repetido ao final fechando polígono exemplo POLYGON parênteses parênteses menos quarenta e seis ponto seis três três espaço menos vinte e três ponto cinco cinco zero vírgula vértices intermediários vírgula primeiro ponto repetido parênteses parênteses.
-
-GeoJSON: Formato JSON estruturado com objeto raiz contendo propriedade type igual string Polygon e propriedade coordinates igual array de arrays onde array externo representa anel exterior e array interno contém coordenadas sendo cada coordenada array de dois números longitude latitude exemplo menos quarenta e seis ponto seis três três vírgula menos vinte e três ponto cinco cinco zero ordenados anti-horário com primeiro ponto repetido ao final fechando polígono conforme especificação GeoJSON RFC 7946.
-
-**Mensagens de erro:**
-- "Geometria inválida: polígono não está fechado"
-- "Geometria inválida: auto-interseção detectada"
-- "Geometria inválida: sentido de rotação incorreto"
-- "Área inválida: excede limite de 250m² para REURB-S"
-- "Área inválida: menor que 20m² (área mínima habitável)"
-- "Sobreposição detectada com unidade adjacente: 5.2m² (revisar)"
-- "Unidade fora do perímetro da comunidade: 12% da área externa"
-
-**Exceções e casos especiais:**
-
-Propriedades não contíguas:
-- Usar MultiPolygon ao invés de Polygon
-- Cada parte validada individualmente
-- Somar áreas de todas partes
-
-Edificações com pátio interno:
-- Polygon with holes (anel exterior + anéis interiores)
-- Validar sentido de cada anel
-- Área = área externa - área buracos
-
-Correção automática:
-- Inverter sentido de rotação se incorreto
-- Remover vértices duplicados
-- Simplificar geometria (reduzir vértices mantendo forma)
+Relacionado domain model GeoPolygon value object implementando validação Unit entity usando geometria validada legitimation-rules reurb-s-requirements limite duzentos cinquenta metros quadrados área reurb-e-requirements limite quinhentos metros quadrados área implementações backend .NET NetTopologySuite frontend React Turf.js Plugin QGIS Shapely PostGIS spatial validation ST_IsValid.
 
 ---
 
-## 🔗 Relacionado
-
-**Domain Model:**
-- `../DOMAIN-MODEL/VALUE-OBJECTS/11-geo-polygon.md` - Value Object implementando validação
-- `../DOMAIN-MODEL/ENTITIES/01-unit.md` - Entity usando geometria validada
-
-**LEGITIMATION-RULES:**
-- `../LEGITIMATION-RULES/reurb-s-requirements.md` - Limite 250m² área
-- `../LEGITIMATION-RULES/reurb-e-requirements.md` - Limite 500m² área
-
-**Implementações:**
-- (caminho de implementação) - Backend .NET (NetTopologySuite)
-- (caminho de implementação) - Frontend React (Turf.js)
-- (caminho de implementação) - Plugin QGIS (Shapely)
-
----
-
-**Última atualização:** 2025-01-06
+**Última atualização:** 2026-01-11

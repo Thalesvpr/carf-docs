@@ -4,57 +4,13 @@ Sistema completo para gestão de processos de regularização fundiária urbana 
 
 ## Documentação
 
-Ver [CENTRAL/README.md](./CENTRAL/README.md) para índice completo da documentação centralizada cross-project servindo como Single Source of Truth para todo sistema. Documentação de arquitetura inclui [ADRs](./CENTRAL/ARCHITECTURE/README.md) com decisões técnicas registradas, [Requirements](./CENTRAL/REQUIREMENTS/README.md) contendo casos de uso requisitos funcionais e user stories, e [Domain Model](./CENTRAL/DOMAIN-MODEL/00-INDEX.md) definindo entidades DDD aggregates value objects e eventos de domínio seguindo padrões tactical design.
+- **[CENTRAL](./CENTRAL/README.md)** - Documentação centralizada cross-project
+- **[PROJECTS](./PROJECTS/README.md)** - Projetos de implementação
 
-Regras de negócio e validações estão documentadas em [Business Rules](./CENTRAL/BUSINESS-RULES/README.md) implementando Lei 13465/2017 REURB com validações CPF/CNPJ geometrias e workflows de aprovação. Especificações técnicas incluem [API Specification](./CENTRAL/API/README.md) documentando endpoints REST e schemas JSON, além de [Security](./CENTRAL/SECURITY/README.md) definindo políticas LGPD conformidade e estratégias de proteção de dados.
-
-Integrações e infraestrutura cobrem [Keycloak](./CENTRAL/INTEGRATION/KEYCLOAK/README.md) para OAuth2/OIDC SSO e multi-tenancy, [Database](./CENTRAL/INTEGRATION/DATABASE/README.md) com PostgreSQL PostGIS e Row-Level Security, [Testing](./CENTRAL/TESTING/README.md) estratégias de pirâmide de testes, e [Workflows](./CENTRAL/WORKFLOWS/README.md) processos completos de legitimação fundiária seguindo legislação vigente.
-
-## Projetos
-
-Cada projeto tem repositório Git independente em PROJECTS/[PROJETO]/SRC-CODE/carf-[projeto]/ com documentação específica em PROJECTS/[PROJETO]/DOCS/:
-
-**Backend:** [GEOAPI](./PROJECTS/GEOAPI/DOCS/README.md) - API REST .NET 9 implementando Clean Architecture + DDD + CQRS + Event Sourcing com camadas Domain/Application/Infrastructure/Presentation consumindo PostgreSQL + PostGIS via Entity Framework Core aplicando Row-Level Security multi-tenancy autenticação Keycloak OAuth2 validação tokens JWT autorização role-based políticas super-admin/admin/manager/analyst/field-agent background jobs Hangfire processamento assíncrono relatórios shapefiles sincronização mobile logging Serilog metrics Prometheus tracing OpenTelemetry deployment Docker Kubernetes health checks.
-
-**Frontend Web:** [GEOWEB](./PROJECTS/GEOWEB/DOCS/README.md) - Portal React 18 + Vite + TypeScript consumindo GEOAPI via @carf/geoapi-client HTTP client tipado implementando autenticação Keycloak PKCE flow protected routes role-based access tenant switcher multi-tenancy server state TanStack Query client state Zustand UI shadcn/ui + Radix + Tailwind mapas Leaflet WMS layers ortofotos forms React Hook Form + Zod validation deployment Vercel edge functions CDN.
-
-**Mobile:** [REURBCAD](./PROJECTS/REURBCAD/DOCS/README.md) - App React Native + Expo offline-first WatermelonDB SQLite persistência local coleta campo GPS camera fotos georreferenciadas desenho polígonos sincronização bidirecional GEOAPI conflict detection merge strategies autenticação Keycloak deep linking OAuth callback secure storage expo-secure-store Keychain iOS KeyStore Android biometric unlock build EAS Build deploy APK/IPA.
-
-**Plugin GIS:** [GEOGIS](./PROJECTS/GEOGIS/DOCS/README.md) - Plugin QGIS Python 3.11 + PyQGIS integrando GEOAPI WFS/WMS endpoints autenticação JWT token storage QSettings encrypted análises espaciais buffer intersection validation topologia export Shapefile GeoJSON Processing algorithms batch operations.
-
-**Console Admin:** [ADMIN](./PROJECTS/ADMIN/DOCS/README.md) - Console React SPA consumindo GEOAPI endpoints /api/admin/* que chamam Keycloak Admin Client API backend confidential protegendo client_secret implementando gestão usuários tenants roles via backend .NET isolado garantindo sete camadas segurança OAuth2 JWT role-based authorization tenant validation rate limiting CORS auditoria completa.
-
-**Portal Docs:** [WEBDOCS](./PROJECTS/WEBDOCS/DOCS/README.md) - Portal VitePress + Vue 3 documentação interativa exemplos código API endpoints features requisitos roadmap.
-
-**Biblioteca Shared:** [TSCORE](./PROJECTS/LIB/TS/TSCORE/DOCS/README.md) - Biblioteca TypeScript compartilhada @carf/tscore publicada GitHub Packages contendo value objects CPF CNPJ Email Phone validações brasileiras types entities enums DTOs sincronizados backend .NET hooks React useAuth useKeycloak ProtectedRoute composables Vue initAuth autenticação Keycloak OAuth2 token management role checking eliminando duplicação código entre GEOWEB REURBCAD ADMIN WEBDOCS.
-
-## Stack Tecnológica
-
-**Backend:** .NET 9 + ASP.NET Core + PostgreSQL 16 + PostGIS 3.4 + Entity Framework Core + Keycloak 24 OAuth2/OIDC + MediatR CQRS + FluentValidation + Serilog + Hangfire background jobs + Docker + Kubernetes.
-
-**Frontend:** React 18 + TypeScript 5 + Vite + TanStack Query server state + Zustand client state + Tailwind CSS + shadcn/ui components + Leaflet mapas + React Hook Form + Zod validation + Vercel deployment.
-
-**Mobile:** React Native + Expo SDK + WatermelonDB SQLite offline + React Navigation + expo-camera + expo-location GPS + expo-secure-store + EAS Build.
-
-**GIS:** Python 3.11 + PyQGIS + GDAL/OGR + Shapely + requests HTTP + QSettings encrypted storage.
-
-**Shared:** TypeScript + Bun runtime + React 18 hooks + Vue 3 composables publicado NPM @carf/tscore.
-
-## Setup Rápido
-
-Subir infraestrutura local PostgreSQL + PostGIS em CENTRAL/INTEGRATION/DATABASE via docker-compose up -d e Keycloak + PostgreSQL em CENTRAL/INTEGRATION/KEYCLOAK via docker-compose up -d acessando Admin Console http://localhost:8080 com credenciais admin/admin importando realm-export.json configuração completa clients roles users. Rodar backend navegando PROJECTS/GEOAPI/SRC-CODE/carf-geoapi executando dotnet restore && dotnet ef database update && dotnet run. Rodar frontend navegando PROJECTS/GEOWEB/SRC-CODE/carf-geoweb executando npm install && npm run dev acessando http://localhost:5173. Ver instruções detalhadas em cada PROJECTS/[PROJETO]/SRC-CODE/carf-[projeto]/README.md e guias HOW-TO em PROJECTS/[PROJETO]/DOCS/HOW-TO/ para setup desenvolvimento build deploy troubleshooting específico de cada projeto.
-
-## Legislação
-
-Sistema implementa requisitos Lei 13.465/2017 Regularização Fundiária Urbana (REURB) distinguindo modalidades REURB-S interesse social população baixa renda área até 250m² gratuito documentação simplificada e REURB-E interesse específico área até 500m² taxa cobrada documentação completa licenças ambientais, Estatuto da Cidade Lei 10.257/2001, e Decreto 9.310/2018 regulamentação REURB com workflows documentados CENTRAL/WORKFLOWS/ detalhando processos legitimação fundiária cadastramento aprovação notificação edital contestações decisão emissão certidões conforme legislação vigente.
-
-## Contribuindo
-
-Identificar repositório apropriado PROJECTS/[PROJETO]/SRC-CODE/carf-[projeto]/ criar branch feature/nome-feature commits seguindo [Conventional Commits](./CENTRAL/VERSIONING/GIT/03-commit-conventions.md) formato feat(escopo): descrição push origin feature/nome-feature abrir Pull Request seguindo [PR Guidelines](./CENTRAL/VERSIONING/GIT/04-pr-guidelines.md) processo review approval checklist e [Branching Strategy](./CENTRAL/VERSIONING/GIT/02-branching-strategy.md) trunk-based development. Documentação compartilhada editar CENTRAL/ documentação específica editar PROJECTS/[PROJETO]/DOCS/ código-fonte editar PROJECTS/[PROJETO]/SRC-CODE/carf-[projeto]/ cada repo Git independente com CI/CD próprio.
 
 ---
 
 **Versão:** v1.0.0 MVP
-**Status:** 🚧 Em desenvolvimento
+**Status:** 🚧 Em PLANEJAMENTO
 **Licença:** UNLICENSED (Proprietário)
-**Última atualização:** 2026-01-10
+**Última atualização:** 2026-01-11

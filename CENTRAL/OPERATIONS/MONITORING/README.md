@@ -1,13 +1,13 @@
 # MONITORING
 
-Configuração de observabilidade do CARF organizada em PROMETHEUS (prometheus.yml com scrape configs para GEOAPI /metrics endpoint, PostgreSQL exporter, Keycloak metrics; alerts.yml com regras de alerta para high CPU, memory, disk, error rate, latency p99), GRAFANA (subpasta dashboards/ com JSON exports de dashboards para GEOAPI (requests/sec, latency, error rate), PostgreSQL (connections, queries, cache hit ratio), e Infrastructure (CPU, memory, disk, network); provisioning/ com datasources e dashboards auto-provisionados), e LOGGING (log-aggregation.md documentando stack Loki ou ELK para centralizar logs de todos containers, structured logging JSON com correlation IDs para distributed tracing; log-retention.md com política de 90 dias para logs normais, 1 ano para audit logs). Define SLOs (Service Level Objectives: 99.5% uptime, p99 latency < 500ms) e SLIs (Service Level Indicators) monitorados.
+Configuração observabilidade CARF organizada PROMETHEUS scrape configs GEOAPI metrics endpoint PostgreSQL exporter Keycloak metrics node exporter regras alertas HighCPU HighMemory HighErrorRate HighLatency DatabaseConnectionsHigh AlertManager routing Slack email PagerDuty recording rules GRAFANA dashboards JSON exports GEOAPI PostgreSQL Infrastructure provisioning datasources dashboards auto-provisionados LOGGING agregação logs Loki Promtail structured logging JSON correlation IDs distributed tracing retention noventa dias audit um ano archive S3 define SLOs Service Level Objectives noventa e nove ponto cinco por cento uptime p99 latency menor quinhentos milissegundos SLIs Service Level Indicators monitorados garantindo observabilidade proativa detecção problemas troubleshooting ágil compliance.
 
 ## Estrutura
 
-- **[PROMETHEUS/](./PROMETHEUS/README.md)** - Prometheus scrape configs, alert rules e recording rules
-- **[GRAFANA/](./GRAFANA/README.md)** - Dashboards JSON e provisioning automático
-- **[LOGGING/](./LOGGING/README.md)** - Agregação de logs com Loki/ELK e políticas de retention
+- **[PROMETHEUS/](./PROMETHEUS/README.md)** - Scrape configs metrics exporters alertas AlertManager recording rules
+- **[GRAFANA/](./GRAFANA/README.md)** - Dashboards JSON datasources provisioning visualizações métricas
+- **[LOGGING/](./LOGGING/README.md)** - Loki Promtail structured logs correlation IDs retention policies
 
 ---
 
-**Última atualização:** 2025-12-29
+**Última atualização:** 2026-01-11

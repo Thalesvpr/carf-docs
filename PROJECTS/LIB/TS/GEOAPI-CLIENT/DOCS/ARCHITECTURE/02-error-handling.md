@@ -8,34 +8,34 @@ Error handling no @carf/geoapi-client implementa retry logic automático com exp
 
 ```typescript
 export class ApiError extends Error {
-  constructor(
-    public status: number,
-    public code: string,
-    message: string,
-    public details?: Record<string, any>,
-    public timestamp?: Date,
-    public requestId?: string
-  ) {
-    super(message)
-    this.name = 'ApiError'
+ constructor(
+ public status: number,
+ public code: string,
+ message: string,
+ public details?: Record<string, any>,
+ public timestamp?: Date,
+ public requestId?: string
+ ) {
+ super(message)
+ this.name = 'ApiError'
 
-    // Mantém stack trace no V8
-    if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, ApiError)
-    }
-  }
+ // Mantém stack trace no V8
+ if (Error.captureStackTrace) {
+ Error.captureStackTrace(this, ApiError)
+ }
+ }
 
-  isClientError(): boolean {
-    return this.status >= 400 && this.status < 500
-  }
+ isClientError(): boolean {
+ return this.status >= 400 && this.status < 500
+ }
 
-  isServerError(): boolean {
-    return this.status >= 500
-  }
+ isServerError(): boolean {
+ return this.status >= 500
+ }
 
-  isNetworkError(): boolean {
-    return this.status === 0 || this.code === 'NETWORK_ERROR'
-  }
+ isNetworkError(): boolean {
+ return this.status === 0 || this.code === 'NETWORK_ERROR'
+ }
 }
 ```
 
@@ -47,32 +47,32 @@ export class ApiError extends Error {
 import axiosRetry from 'axios-retry'
 
 const client = axios.create({
-  baseURL: 'https://api.carf.gov.br',
-  timeout: 30000,
+ baseURL: 'https://api.carf.gov.br',
+ timeout: 30000,
 })
 
 axiosRetry(client, {
-  retries: 3,
-  retryDelay: axiosRetry.exponentialDelay,
-  retryCondition: (error) => {
-    // Retry em erros de network
-    if (axiosRetry.isNetworkError(error)) return true
+ retries: 3,
+ retryDelay: axiosRetry.exponentialDelay,
+ retryCondition: (error) => {
+ // Retry em erros de network
+ if (axiosRetry.isNetworkError(error)) return true
 
-    // Retry em 5xx
-    if (error.response?.status >= 500) return true
+ // Retry em 5xx
+ if (error.response?.status >= 500) return true
 
-    // Retry em 429 (Rate Limit)
-    if (error.response?.status === 429) return true
+ // Retry em 429 (Rate Limit)
+ if (error.response?.status === 429) return true
 
-    // Não retry em 4xx (client errors)
-    return false
-  },
-  onRetry: (retryCount, error, requestConfig) => {
-    console.warn(`Retry attempt ${retryCount} for ${requestConfig.url}`, {
-      error: error.message,
-      status: error.response?.status,
-    })
-  },
+ // Não retry em 4xx (client errors)
+ return false
+ },
+ onRetry: (retryCount, error, requestConfig) => {
+ console.warn(`Retry attempt ${retryCount} for ${requestConfig.url}`, {
+ error: error.message,
+ status: error.response?.status,
+ })
+ },
 })
 ```
 
@@ -89,70 +89,70 @@ Tentativa 4: Aguarda 4 segundos
 
 ```typescript
 class CircuitBreaker {
-  private failureCount = 0
-  private lastFailureTime?: Date
-  private state: 'CLOSED' | 'OPEN' | 'HALF_OPEN' = 'CLOSED'
+ private failureCount = 0
+ private lastFailureTime?: Date
+ private state: 'CLOSED' | 'OPEN' | 'HALF_OPEN' = 'CLOSED'
 
-  constructor(
-    private threshold = 5,
-    private timeout = 30000  // 30s
-  ) {}
+ constructor(
+ private threshold = 5,
+ private timeout = 30000 // 30s
+ ) {}
 
-  async execute<T>(fn: () => Promise<T>): Promise<T> {
-    if (this.state === 'OPEN') {
-      if (this.shouldAttemptReset()) {
-        this.state = 'HALF_OPEN'
-      } else {
-        throw new ApiError(
-          503,
-          'CIRCUIT_OPEN',
-          'Service temporarily unavailable. Circuit breaker is open.'
-        )
-      }
-    }
+ async execute<T>(fn: () => Promise<T>): Promise<T> {
+ if (this.state === 'OPEN') {
+ if (this.shouldAttemptReset()) {
+ this.state = 'HALF_OPEN'
+ } else {
+ throw new ApiError(
+ 503,
+ 'CIRCUIT_OPEN',
+ 'Service temporarily unavailable. Circuit breaker is open.'
+ )
+ }
+ }
 
-    try {
-      const result = await fn()
-      this.onSuccess()
-      return result
-    } catch (error) {
-      this.onFailure()
-      throw error
-    }
-  }
+ try {
+ const result = await fn()
+ this.onSuccess()
+ return result
+ } catch (error) {
+ this.onFailure()
+ throw error
+ }
+ }
 
-  private onSuccess() {
-    this.failureCount = 0
-    this.state = 'CLOSED'
-  }
+ private onSuccess() {
+ this.failureCount = 0
+ this.state = 'CLOSED'
+ }
 
-  private onFailure() {
-    this.failureCount++
-    this.lastFailureTime = new Date()
+ private onFailure() {
+ this.failureCount++
+ this.lastFailureTime = new Date()
 
-    if (this.failureCount >= this.threshold) {
-      this.state = 'OPEN'
-      console.warn('Circuit breaker opened due to repeated failures')
-    }
-  }
+ if (this.failureCount >= this.threshold) {
+ this.state = 'OPEN'
+ console.warn('Circuit breaker opened due to repeated failures')
+ }
+ }
 
-  private shouldAttemptReset(): boolean {
-    if (!this.lastFailureTime) return false
+ private shouldAttemptReset(): boolean {
+ if (!this.lastFailureTime) return false
 
-    const now = new Date().getTime()
-    const lastFailure = this.lastFailureTime.getTime()
+ const now = new Date().getTime()
+ const lastFailure = this.lastFailureTime.getTime()
 
-    return now - lastFailure >= this.timeout
-  }
+ return now - lastFailure >= this.timeout
+ }
 }
 
 // Uso no client
 const circuitBreaker = new CircuitBreaker()
 
 async function fetchUnits() {
-  return circuitBreaker.execute(() => {
-    return axios.get('/api/units')
-  })
+ return circuitBreaker.execute(() => {
+ return axios.get('/api/units')
+ })
 }
 ```
 
@@ -160,38 +160,38 @@ async function fetchUnits() {
 
 ```typescript
 client.interceptors.response.use(
-  (response) => response,
-  (error: AxiosError) => {
-    // Network error
-    if (!error.response) {
-      throw new ApiError(
-        0,
-        'NETWORK_ERROR',
-        'Não foi possível conectar ao servidor. Verifique sua conexão.',
-        { originalError: error.message }
-      )
-    }
+ (response) => response,
+ (error: AxiosError) => {
+ // Network error
+ if (!error.response) {
+ throw new ApiError(
+ 0,
+ 'NETWORK_ERROR',
+ 'Não foi possível conectar ao servidor. Verifique sua conexão.',
+ { originalError: error.message }
+ )
+ }
 
-    const { status, data } = error.response
+ const { status, data } = error.response
 
-    // Parse error response do backend
-    const errorData = data as {
-      code?: string
-      message?: string
-      details?: Record<string, any>
-      timestamp?: string
-      requestId?: string
-    }
+ // Parse error response do backend
+ const errorData = data as {
+ code?: string
+ message?: string
+ details?: Record<string, any>
+ timestamp?: string
+ requestId?: string
+ }
 
-    throw new ApiError(
-      status,
-      errorData.code || 'UNKNOWN_ERROR',
-      errorData.message || error.message,
-      errorData.details,
-      errorData.timestamp ? new Date(errorData.timestamp) : new Date(),
-      errorData.requestId
-    )
-  }
+ throw new ApiError(
+ status,
+ errorData.code || 'UNKNOWN_ERROR',
+ errorData.message || error.message,
+ errorData.details,
+ errorData.timestamp ? new Date(errorData.timestamp) : new Date(),
+ errorData.requestId
+ )
+ }
 )
 ```
 
@@ -203,27 +203,27 @@ client.interceptors.response.use(
 import { ApiError } from '@carf/geoapi-client'
 
 async function loadUnits() {
-  try {
-    const units = await api.units.list()
-    return units
-  } catch (error) {
-    if (error instanceof ApiError) {
-      // Erro conhecido do backend
-      console.error(`API Error [${error.code}]:`, error.message)
+ try {
+ const units = await api.units.list()
+ return units
+ } catch (error) {
+ if (error instanceof ApiError) {
+ // Erro conhecido do backend
+ console.error(`API Error [${error.code}]:`, error.message)
 
-      if (error.status === 404) {
-        toast.error('Unidades não encontradas')
-      } else if (error.status === 403) {
-        toast.error('Você não tem permissão para acessar as unidades')
-      } else if (error.isServerError()) {
-        toast.error('Erro no servidor. Tente novamente mais tarde.')
-      }
-    } else {
-      // Erro inesperado
-      console.error('Unexpected error:', error)
-      toast.error('Erro inesperado. Contate o suporte.')
-    }
-  }
+ if (error.status === 404) {
+ toast.error('Unidades não encontradas')
+ } else if (error.status === 403) {
+ toast.error('Você não tem permissão para acessar as unidades')
+ } else if (error.isServerError()) {
+ toast.error('Erro no servidor. Tente novamente mais tarde.')
+ }
+ } else {
+ // Erro inesperado
+ console.error('Unexpected error:', error)
+ toast.error('Erro inesperado. Contate o suporte.')
+ }
+ }
 }
 ```
 
@@ -234,55 +234,55 @@ import { Component, ReactNode } from 'react'
 import { ApiError } from '@carf/geoapi-client'
 
 interface Props {
-  children: ReactNode
+ children: ReactNode
 }
 
 interface State {
-  hasError: boolean
-  error?: ApiError
+ hasError: boolean
+ error?: ApiError
 }
 
 export class ApiErrorBoundary extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props)
-    this.state = { hasError: false }
-  }
+ constructor(props: Props) {
+ super(props)
+ this.state = { hasError: false }
+ }
 
-  static getDerivedStateFromError(error: Error): State {
-    if (error instanceof ApiError) {
-      return { hasError: true, error }
-    }
-    return { hasError: true }
-  }
+ static getDerivedStateFromError(error: Error): State {
+ if (error instanceof ApiError) {
+ return { hasError: true, error }
+ }
+ return { hasError: true }
+ }
 
-  componentDidCatch(error: Error) {
-    if (error instanceof ApiError) {
-      console.error('API Error caught by boundary:', {
-        code: error.code,
-        status: error.status,
-        message: error.message,
-        requestId: error.requestId,
-      })
-    }
-  }
+ componentDidCatch(error: Error) {
+ if (error instanceof ApiError) {
+ console.error('API Error caught by boundary:', {
+ code: error.code,
+ status: error.status,
+ message: error.message,
+ requestId: error.requestId,
+ })
+ }
+ }
 
-  render() {
-    if (this.state.hasError) {
-      const { error } = this.state
+ render() {
+ if (this.state.hasError) {
+ const { error } = this.state
 
-      if (error?.status === 403) {
-        return <div>Você não tem permissão para acessar este recurso.</div>
-      }
+ if (error?.status === 403) {
+ return <div>Você não tem permissão para acessar este recurso.</div>
+ }
 
-      if (error?.isServerError()) {
-        return <div>Erro no servidor. Tente novamente mais tarde.</div>
-      }
+ if (error?.isServerError()) {
+ return <div>Erro no servidor. Tente novamente mais tarde.</div>
+ }
 
-      return <div>Ocorreu um erro inesperado.</div>
-    }
+ return <div>Ocorreu um erro inesperado.</div>
+ }
 
-    return this.props.children
-  }
+ return this.props.children
+ }
 }
 ```
 
@@ -293,32 +293,32 @@ import { useQuery } from '@tanstack/react-query'
 import { ApiError } from '@carf/geoapi-client'
 
 function UnitsPage() {
-  const { data, error, isLoading } = useQuery({
-    queryKey: ['units'],
-    queryFn: () => api.units.list(),
-    retry: (failureCount, error) => {
-      // Não retry em client errors (4xx)
-      if (error instanceof ApiError && error.isClientError()) {
-        return false
-      }
-      // Retry até 3 vezes em outros erros
-      return failureCount < 3
-    },
-  })
+ const { data, error, isLoading } = useQuery({
+ queryKey: ['units'],
+ queryFn: () => api.units.list(),
+ retry: (failureCount, error) => {
+ // Não retry em client errors (4xx)
+ if (error instanceof ApiError && error.isClientError()) {
+ return false
+ }
+ // Retry até 3 vezes em outros erros
+ return failureCount < 3
+ },
+ })
 
-  if (error instanceof ApiError) {
-    if (error.status === 404) {
-      return <div>Nenhuma unidade encontrada</div>
-    }
+ if (error instanceof ApiError) {
+ if (error.status === 404) {
+ return <div>Nenhuma unidade encontrada</div>
+ }
 
-    if (error.status === 403) {
-      return <div>Sem permissão</div>
-    }
+ if (error.status === 403) {
+ return <div>Sem permissão</div>
+ }
 
-    return <div>Erro: {error.message}</div>
-  }
+ return <div>Erro: {error.message}</div>
+ }
 
-  // ...render data
+ // ...render data
 }
 ```
 
@@ -357,29 +357,29 @@ function UnitsPage() {
 
 ```typescript
 function logError(error: ApiError) {
-  // Em produção, enviar para Sentry, LogRocket, etc.
-  console.error('API Error:', {
-    code: error.code,
-    status: error.status,
-    message: error.message,
-    details: error.details,
-    requestId: error.requestId,
-    timestamp: error.timestamp,
-    stack: error.stack,
-  })
+ // Em produção, enviar para Sentry, LogRocket, etc.
+ console.error('API Error:', {
+ code: error.code,
+ status: error.status,
+ message: error.message,
+ details: error.details,
+ requestId: error.requestId,
+ timestamp: error.timestamp,
+ stack: error.stack,
+ })
 
-  // Exemplo com Sentry
-  if (typeof Sentry !== 'undefined') {
-    Sentry.captureException(error, {
-      tags: {
-        errorCode: error.code,
-        statusCode: error.status.toString(),
-      },
-      extra: {
-        requestId: error.requestId,
-        details: error.details,
-      },
-    })
-  }
+ // Exemplo com Sentry
+ if (typeof Sentry !== 'undefined') {
+ Sentry.captureException(error, {
+ tags: {
+ errorCode: error.code,
+ statusCode: error.status.toString(),
+ },
+ extra: {
+ requestId: error.requestId,
+ details: error.details,
+ },
+ })
+ }
 }
 ```

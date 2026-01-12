@@ -1,7 +1,7 @@
 # LOGGING
 
-Agregação logs do CARF. log-aggregation.md documenta stack Loki (Promtail collecting, Loki central, Grafana Explore querying LogQL). Structured logging JSON (Serilog fields timestamp/level/message/correlation_id/tenant_id/user_id). Correlation IDs propagados headers X-Correlation-ID distributed tracing. log-retention.md política (logs 90d, audit 1yr, errors 180d, compress após 7d, archive S3). Alerting on log patterns (error spikes, new exception types).
+Agregação logs CARF usando stack Loki Promtail collecting Loki central Grafana Explore querying LogQL structured logging JSON Serilog fields timestamp level message correlation_id tenant_id user_id correlation IDs propagados headers X-Correlation-ID distributed tracing política retention logs noventa dias audit um ano errors cento oitenta dias compress após sete dias archive S3 alerting log patterns error spikes new exception types garantindo rastreabilidade troubleshooting eficiente compliance LGPD auditoria transparência accountability.
 
 ---
 
-**Última atualização:** 2025-12-29
+**Última atualização:** 2026-01-11

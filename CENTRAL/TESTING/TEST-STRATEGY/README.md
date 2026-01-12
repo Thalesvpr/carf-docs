@@ -1,7 +1,12 @@
 # TEST-STRATEGY
 
-Estratégia de testes CARF. test-pyramid.md defende proporção 70 porcento unit / 20 porcento integration / 10 porcento e2e minimizando testes lentos caros. coverage-targets.md define mínimo 80 porcento coverage domain layer (business logic crítica), 60 porcento application (use cases), 40 porcento infrastructure (acceptable pois testa frameworks). Ferramentas: framework de testes unitários backend com asserções fluentes, framework de testes frontend com biblioteca de testes de componentes, framework de testes E2E mobile. CI pipeline falha se coverage abaixo targets. Mutation testing opcional via ferramenta de análise de mutações detectando dead code.
+Estratégia testes CARF defende test-pyramid proporção setenta por cento unit vinte por cento integration dez por cento e2e minimizando testes lentos caros priorizando feedback rápido coverage-targets definem mínimo oitenta por cento coverage domain layer business logic crítica sessenta por cento application use cases quarenta por cento infrastructure acceptable testa frameworks ferramentas framework testes unitários backend asserções fluentes framework testes frontend biblioteca testes componentes framework testes E2E mobile CI pipeline falha coverage abaixo targets mutation testing opcional ferramenta análise mutações detectando dead code garantindo qualidade confiabilidade testes detectando testes fracos não validam comportamento real.
+
+## Documentos
+
+- **[test-pyramid.md](./test-pyramid.md)** - Pirâmide testes proporção setenta vinte dez justificativa
+- **[coverage-targets.md](./coverage-targets.md)** - Metas coverage oitenta sessenta quarenta por camada
 
 ---
 
-**Última atualização:** 2025-01-05
+**Última atualização:** 2026-01-11

@@ -10,15 +10,10 @@ Caso de uso permitindo usuários autorizados (ADMIN com permissão teams.create 
 **Fluxos Alternativos:**
 - [UC-011-FA-001: Editar equipe existente](UC-011-FA-001-editar-equipe.md)
 - [UC-011-FA-002: Alterar líder da equipe](UC-011-FA-002-alterar-lider.md)
-- [UC-011-FA-003: Remover membro da equipe](UC-011-FA-003-remover-membro.md)
-- [UC-011-FA-004: Desativar equipe](UC-011-FA-004-desativar-equipe.md)
 
 **Fluxos de Exceção:**
 - [UC-011-FE-001: Nome de equipe duplicado](UC-011-FE-001-nome-duplicado.md)
 - [UC-011-FE-002: Líder inválido ou inativo](UC-011-FE-002-lider-invalido.md)
-- [UC-011-FE-003: Tentativa de remover líder como membro](UC-011-FE-003-remover-lider.md)
-- [UC-011-FE-004: Equipe sem membros](UC-011-FE-004-sem-membros.md)
-- [UC-011-FE-005: Usuário já pertence a outra equipe](UC-011-FE-005-usuario-duplicado.md)
 
 **Regras de Negócio:**
 - RN-001: Nome da equipe deve ser único dentro do tenant validado via constraint UNIQUE

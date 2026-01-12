@@ -1,38 +1,14 @@
-# DIAGRAMS - Diagramas do Modelo de Domínio
+# DIAGRAMS
 
-Diagramas conceituais do modelo de domínio CARF incluindo diagramas de classe entity-relationship diagrams (ERD) diagramas de agregados e visualizações de workflows de negócio documentando graficamente relacionamentos cardinalidade fronteiras de consistência e fluxos de dados entre entidades do sistema.
+Diagramas conceituais modelo domínio CARF visualizando graficamente estrutura entities aggregates value objects relacionamentos entre 33 entidades através de UML class diagrams entity-relationship diagrams ERD mostrando cardinalidades foreign keys constraints integridade referencial aggregate boundaries diagrams destacando transactional boundaries aggregate roots entidades internas invariantes garantidos state machine diagrams ilustrando transições status workflows Unit LegitimationRequest sequence diagrams mostrando interações entre componentes sistema durante operações negócio criados usando PlantUML Mermaid draw.io ferramentas diagrams-as-code versionáveis Git sincronizados com implementação real .NET TypeScript garantindo documentação sempre atualizada refletindo arquitetura corrente.
 
-## Tipos de Diagramas
+## Diagramas
 
-### Class Diagrams
-Diagramas de classe mostrando entidades value objects e aggregates com seus atributos métodos e relacionamentos seguindo notação UML.
-
-### Entity-Relationship Diagrams (ERD)
-ERDs detalhando relacionamentos entre entidades com cardinalidade (1:1, 1:N, N:N) foreign keys e constraints de integridade referencial.
-
-### Aggregate Diagrams
-Diagramas mostrando fronteiras de aggregates com aggregate roots entidades internas e invariantes garantidos destacando boundaries transacionais.
-
-### Workflow Diagrams
-Diagramas de estado (state machines) mostrando transições de status para Unit e LegitimationRequest com triggers e condições de transição.
-
-## Ferramentas Recomendadas
-
-**Para criação de diagramas:**
-- **PlantUML** - Diagramas como código versionáveis
-- **Mermaid** - Diagramas markdown-embeddable para documentação
-- **draw.io** - Editor visual para diagramas complexos
-- **Lucidchart** - Colaboração em tempo real
-
-**Para sincronização código-diagrama:**
-- **Entity Framework Core Power Tools** - Reverse engineer para ERD
-- **SchemaSpy** - Geração automática de ERD de database
-- **TypeDoc** - Documentação TypeScript com diagramas
-
-## Relacionado
-
-Diagramas visualizam conceitos documentados textualmente em [entidades](../ENTITIES/README.md) mostrando 33 entities com atributos métodos e invariantes através de UML class diagrams, [agregados](../AGGREGATES/README.md) destacando fronteiras transacionais de Unit Community e LegitimationRequest aggregates com roots e entidades internas, [relacionamentos](../RELATIONSHIPS/README.md) mapeando cardinalidades foreign keys e constraints de integridade referencial via ERDs entity-relationship diagrams, e [workflows de negócio](../../WORKFLOWS/README.md) ilustrando fluxos end-to-end desde coleta campo até legitimação fundiária usando state machines e sequence diagrams.
+- **[aggregates-diagram.mmd](./aggregates-diagram.mmd)** - Aggregate boundaries Unit Community LegitimationRequest roots entities invariantes
+- **[er-diagram.mmd](./er-diagram.mmd)** - Entity-relationship diagram completo cardinalidades foreign keys constraints
+- **[multi-tenancy-diagram.mmd](./multi-tenancy-diagram.mmd)** - Fluxo multi-tenancy JWT middleware RLS PostgreSQL isolamento
+- **[workflows-diagram.mmd](./workflows-diagram.mmd)** - State machines Unit status Legitimation process Offline sync
 
 ---
 
-**Última atualização:** 2026-01-10
+**Última atualização:** 2026-01-11

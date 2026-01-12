@@ -1,6 +1,6 @@
 {
-  "collapse-filter": false,
-  "search": "",
+  "collapse-filter": true,
+  "search": "-path:CENTRAL/API  ",
   "showTags": false,
   "showAttachments": false,
   "hideUnresolved": false,
@@ -8,219 +8,65 @@
   "collapse-color-groups": true,
   "colorGroups": [
     {
-      "query": "path:CENTRAL/ARCHITECTURE/",
-      "color": {
-        "a": 1,
-        "rgb": 16744192
-      }
-    },
-    {
-      "query": "path:CENTRAL/API/",
-      "color": {
-        "a": 1,
-        "rgb": 16753920
-      }
-    },
-    {
-      "query": "path:CENTRAL/DOMAIN-MODEL/",
-      "color": {
-        "a": 1,
-        "rgb": 16750848
-      }
-    },
-    {
-      "query": "path:CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS",
-      "color": {
-        "a": 1,
-        "rgb": 16711935
-      }
-    },
-    {
-      "query": "path:CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS",
-      "color": {
-        "a": 1,
-        "rgb": 8388863
-      }
-    },
-    {
-      "query": "path:CENTRAL/REQUIREMENTS/USER-STORIES",
-      "color": {
-        "a": 1,
-        "rgb": 12255487
-      }
-    },
-    {
-      "query": "path:CENTRAL/REQUIREMENTS/USE-CASES",
-      "color": {
-        "a": 1,
-        "rgb": 13893887
-      }
-    },
-    {
-      "query": "path:CENTRAL/REQUIREMENTS/",
-      "color": {
-        "a": 1,
-        "rgb": 16711854
-      }
-    },
-    {
-      "query": "path:CENTRAL/BUSINESS-RULES/",
-      "color": {
-        "a": 1,
-        "rgb": 16776960
-      }
-    },
-    {
-      "query": "path:CENTRAL/INTEGRATION/",
-      "color": {
-        "a": 1,
-        "rgb": 16744448
-      }
-    },
-    {
-      "query": "path:CENTRAL/OPERATIONS/",
-      "color": {
-        "a": 1,
-        "rgb": 16757504
-      }
-    },
-    {
-      "query": "path:CENTRAL/SECURITY/",
-      "color": {
-        "a": 1,
-        "rgb": 16766208
-      }
-    },
-    {
-      "query": "path:CENTRAL/TESTING/",
-      "color": {
-        "a": 1,
-        "rgb": 16760832
-      }
-    },
-    {
-      "query": "path:CENTRAL/VERSIONING/",
-      "color": {
-        "a": 1,
-        "rgb": 16747520
-      }
-    },
-    {
-      "query": "path:CENTRAL/LIBRARIES/",
-      "color": {
-        "a": 1,
-        "rgb": 16741120
-      }
-    },
-    {
-      "query": "path:CENTRAL/TEMPLATES/",
-      "color": {
-        "a": 1,
-        "rgb": 16751616
-      }
-    },
-    {
-      "query": "path:CENTRAL/TODO/",
-      "color": {
-        "a": 1,
-        "rgb": 16763904
-      }
-    },
-    {
-      "query": "path:CENTRAL/WORKFLOWS/",
-      "color": {
-        "a": 1,
-        "rgb": 16733696
-      }
-    },
-    {
-      "query": "path:CENTRAL/",
+      "query": "path:CENTRAL/ file:README.md",
       "color": {
         "a": 1,
         "rgb": 16711680
       }
     },
     {
-      "query": "path:PROJECTS/GEOAPI/",
+      "query": "path:CENTRAL",
       "color": {
         "a": 1,
-        "rgb": 65390
+        "rgb": 16741120
       }
     },
     {
-      "query": "path:PROJECTS/GEOWEB/",
+      "query": "path:PROJECTS/GEOAPI file:README.md ",
       "color": {
         "a": 1,
-        "rgb": 43775
+        "rgb": 65484
       }
     },
     {
-      "query": "path:PROJECTS/REURBCAD/",
+      "query": "path:PROJECTS/GEOAPI ",
       "color": {
         "a": 1,
-        "rgb": 54783
+        "rgb": 31334
       }
     },
     {
-      "query": "path:PROJECTS/ADMIN/",
-      "color": {
-        "a": 1,
-        "rgb": 28021
-      }
-    },
-    {
-      "query": "path:PROJECTS/GEOGIS/",
-      "color": {
-        "a": 1,
-        "rgb": 7070207
-      }
-    },
-    {
-      "query": "path:PROJECTS/WEBDOCS/",
-      "color": {
-        "a": 1,
-        "rgb": 64221
-      }
-    },
-    {
-      "query": "path:PROJECTS/KEYCLOAK/",
-      "color": {
-        "a": 1,
-        "rgb": 13137662
-      }
-    },
-    {
-      "query": "path:PROJECTS/LIB/",
-      "color": {
-        "a": 1,
-        "rgb": 12829439
-      }
-    },
-    {
-      "query": "path:PROJECTS/",
+      "query": "path:PROJECTS/ file:README.md",
       "color": {
         "a": 1,
         "rgb": 255
       }
     },
     {
-      "query": "path:/",
+      "query": "path:PROJECTS  ",
       "color": {
         "a": 1,
-        "rgb": 16777215
+        "rgb": 8032511
+      }
+    },
+    {
+      "query": "file:README.md",
+      "color": {
+        "a": 1,
+        "rgb": 16119285
       }
     }
   ],
-  "collapse-display": false,
+  "collapse-display": true,
   "showArrow": true,
-  "textFadeMultiplier": 1.2,
-  "nodeSizeMultiplier": 2.20363825363825,
-  "lineSizeMultiplier": 0.614449064449065,
+  "textFadeMultiplier": -3,
+  "nodeSizeMultiplier": 1.30717255717256,
+  "lineSizeMultiplier": 0.512577962577963,
   "collapse-forces": false,
-  "centerStrength": 0.0301455301455301,
-  "repelStrength": 19.8128898128898,
-  "linkStrength": 1,
-  "linkDistance": 500,
-  "scale": 0.0078125,
+  "centerStrength": 0.391891891891892,
+  "repelStrength": 16.4864864864865,
+  "linkStrength": 0.865904365904366,
+  "linkDistance": 30,
+  "scale": 0.5643272017989799,
   "close": false
 }

@@ -4,7 +4,7 @@ Containerização Docker do CARF garantindo portabilidade entre ambientes cloud 
 
 ## Projetos Containerizados
 
-Containerização via Docker é aplicada em [GEOAPI](../../../PROJECTS/GEOAPI/DOCS/ARCHITECTURE/05-deployment.md) com multi-stage build otimizado para .NET 9 gerando imagem final slim, [KEYCLOAK](../../../PROJECTS/KEYCLOAK/DOCS/README.md) usando imagem oficial Keycloak customizada com temas CARF empacotados, e [PostgreSQL+PostGIS](../../INTEGRATION/DATABASE/README.md) para banco de dados geográfico com persistent volumes garantindo durabilidade, todos orquestrados via Docker Compose em dev e Kubernetes em prod com manifests em DEPLOYMENT/CONFIGS/, enquanto [GEOWEB](../../../PROJECTS/GEOWEB/DOCS/README.md) e [WEBDOCS](../../../PROJECTS/WEBDOCS/DOCS/ARCHITECTURE/05-deployment.md) usam [Vercel](../ADRs/ADR-013-vercel-deployment-platform.md) serverless sem necessidade de containers.
+Containerização via Docker é aplicada em com multi-stage build otimizado para .NET 9 gerando imagem final slim, usando imagem oficial Keycloak customizada com temas CARF empacotados, e [PostgreSQL+PostGIS](../../INTEGRATION/DATABASE/README.md) para banco de dados geográfico com persistent volumes garantindo durabilidade, todos orquestrados via Docker Compose em dev e Kubernetes em prod com manifests em DEPLOYMENT/CONFIGS/, enquanto e usam [Vercel](../ADRs/ADR-013-vercel-deployment-platform.md) serverless sem necessidade de containers.
 
 ---
 

@@ -17,9 +17,9 @@ import { CPF } from '@carf/tscore/validations'
 const cpf = new CPF('123.456.789-09')
 
 // Métodos
-cpf.format()    // "123.456.789-09"
-cpf.toString()  // "12345678909"
-cpf.toJSON()    // "12345678909"
+cpf.format() // "123.456.789-09"
+cpf.toString() // "12345678909"
+cpf.toJSON() // "12345678909"
 
 // Validação sem instanciar
 CPF.validate('123.456.789-09') // true
@@ -45,8 +45,8 @@ import { CNPJ } from '@carf/tscore/validations'
 
 const cnpj = new CNPJ('11.444.777/0001-61')
 
-cnpj.format()    // "11.444.777/0001-61"
-cnpj.toString()  // "11444777000161"
+cnpj.format() // "11.444.777/0001-61"
+cnpj.toString() // "11444777000161"
 
 CNPJ.validate('11.444.777/0001-61') // true
 ```
@@ -88,12 +88,12 @@ import { Phone } from '@carf/tscore/validations'
 
 const phone = new Phone('(11) 98765-4321')
 
-phone.format()   // "(11) 98765-4321"
+phone.format() // "(11) 98765-4321"
 phone.toString() // "11987654321"
 
 Phone.validate('(11) 98765-4321') // true (celular 9 dígitos)
-Phone.validate('(11) 3456-7890')  // true (fixo 8 dígitos)
-Phone.validate('(11) 1234-5678')  // false (começa com 1)
+Phone.validate('(11) 3456-7890') // true (fixo 8 dígitos)
+Phone.validate('(11) 1234-5678') // false (começa com 1)
 ```
 
 **Regras:**
@@ -113,19 +113,19 @@ import type { Unit } from '@carf/tscore/types'
 import { UnitStatus } from '@carf/tscore/types'
 
 const unit: Unit = {
-  id: string
-  code: string
-  status: UnitStatus
-  street: string
-  number?: string | null
-  city: string
-  state: string
-  geometry?: GeoJSON.Polygon | null
-  area?: number | null
-  communityId: string
-  createdAt: Date
-  updatedAt: Date
-  version: number
+ id: string
+ code: string
+ status: UnitStatus
+ street: string
+ number?: string | null
+ city: string
+ state: string
+ geometry?: GeoJSON.Polygon | null
+ area?: number | null
+ communityId: string
+ createdAt: Date
+ updatedAt: Date
+ version: number
 }
 ```
 
@@ -136,14 +136,14 @@ import type { Holder } from '@carf/tscore/types'
 import { EntityType } from '@carf/tscore/types'
 
 const holder: Holder = {
-  id: string
-  type: EntityType
-  name: string
-  cpf?: string | null
-  cnpj?: string | null
-  email?: string | null
-  phone?: string | null
-  // ... outros campos
+ id: string
+ type: EntityType
+ name: string
+ cpf?: string | null
+ cnpj?: string | null
+ email?: string | null
+ phone?: string | null
+ // ... outros campos
 }
 ```
 
@@ -154,12 +154,12 @@ import type { Community } from '@carf/tscore/types'
 import { CommunityType } from '@carf/tscore/types'
 
 const community: Community = {
-  id: string
-  name: string
-  type: CommunityType
-  boundary?: GeoJSON.Polygon | null
-  tenantId: string
-  // ... outros campos
+ id: string
+ name: string
+ type: CommunityType
+ boundary?: GeoJSON.Polygon | null
+ tenantId: string
+ // ... outros campos
 }
 ```
 
@@ -175,19 +175,19 @@ Estados do workflow de aprovação:
 import { UnitStatus } from '@carf/tscore/types'
 
 enum UnitStatus {
-  DRAFT = 'DRAFT'                    // Rascunho
-  PENDING = 'PENDING'                // Aguardando análise
-  IN_REVIEW = 'IN_REVIEW'            // Em análise
-  APPROVED = 'APPROVED'              // Aprovada
-  REJECTED = 'REJECTED'              // Rejeitada
-  REQUIRES_CHANGES = 'REQUIRES_CHANGES' // Requer alterações
+ DRAFT = 'DRAFT' // Rascunho
+ PENDING = 'PENDING' // Aguardando análise
+ IN_REVIEW = 'IN_REVIEW' // Em análise
+ APPROVED = 'APPROVED' // Aprovada
+ REJECTED = 'REJECTED' // Rejeitada
+ REQUIRES_CHANGES = 'REQUIRES_CHANGES' // Requer alterações
 }
 
 // Transições válidas
 DRAFT → PENDING
 PENDING → IN_REVIEW → APPROVED
-              ↓
-         REJECTED ou REQUIRES_CHANGES
+ ↓
+ REJECTED ou REQUIRES_CHANGES
 ```
 
 ### Role
@@ -198,11 +198,11 @@ Hierarquia de permissões:
 import { Role, hasRolePermission } from '@carf/tscore/types'
 
 enum Role {
-  SUPER_ADMIN = 'SUPER_ADMIN'  // Nível 5
-  ADMIN = 'ADMIN'              // Nível 4
-  MANAGER = 'MANAGER'          // Nível 3
-  ANALYST = 'ANALYST'          // Nível 2
-  FIELD_AGENT = 'FIELD_AGENT'  // Nível 1
+ SUPER_ADMIN = 'SUPER_ADMIN' // Nível 5
+ ADMIN = 'ADMIN' // Nível 4
+ MANAGER = 'MANAGER' // Nível 3
+ ANALYST = 'ANALYST' // Nível 2
+ FIELD_AGENT = 'FIELD_AGENT' // Nível 1
 }
 
 // Verificação hierárquica
@@ -218,17 +218,17 @@ Estados do processo REURB Lei 13.465/2017:
 import { LegitimationStatus } from '@carf/tscore/types'
 
 enum LegitimationStatus {
-  DRAFT = 'DRAFT'
-  SUBMITTED = 'SUBMITTED'
-  UNDER_REVIEW = 'UNDER_REVIEW'
-  AWAITING_DOCUMENTATION = 'AWAITING_DOCUMENTATION'
-  PUBLIC_NOTICE = 'PUBLIC_NOTICE'
-  CONTESTED = 'CONTESTED'
-  ANALYZING_CONTESTATION = 'ANALYZING_CONTESTATION'
-  APPROVED = 'APPROVED'
-  REJECTED = 'REJECTED'
-  CERTIFICATE_ISSUED = 'CERTIFICATE_ISSUED'
-  ARCHIVED = 'ARCHIVED'
+ DRAFT = 'DRAFT'
+ SUBMITTED = 'SUBMITTED'
+ UNDER_REVIEW = 'UNDER_REVIEW'
+ AWAITING_DOCUMENTATION = 'AWAITING_DOCUMENTATION'
+ PUBLIC_NOTICE = 'PUBLIC_NOTICE'
+ CONTESTED = 'CONTESTED'
+ ANALYZING_CONTESTATION = 'ANALYZING_CONTESTATION'
+ APPROVED = 'APPROVED'
+ REJECTED = 'REJECTED'
+ CERTIFICATE_ISSUED = 'CERTIFICATE_ISSUED'
+ ARCHIVED = 'ARCHIVED'
 }
 ```
 
@@ -242,9 +242,9 @@ Cliente OAuth2/OIDC para Keycloak:
 import { KeycloakClient } from '@carf/tscore/auth'
 
 const client = new KeycloakClient({
-  url: 'http://localhost:8080',
-  realm: 'carf',
-  clientId: 'geoweb'
+ url: 'http://localhost:8080',
+ realm: 'carf',
+ clientId: 'geoweb'
 })
 
 // Inicializar (carrega tokens de localStorage)
@@ -280,26 +280,26 @@ import { useAuth } from '@carf/tscore/auth/react'
 import { Role } from '@carf/tscore/types'
 
 function Component() {
-  const {
-    user,              // User | null
-    isLoading,         // boolean
-    isAuthenticated,   // boolean
-    login,             // () => void
-    logout,            // () => Promise<void>
-    hasRole,           // (role: Role) => boolean
-    hasPermission,     // (role: Role) => boolean
-    getToken           // () => Promise<string>
-  } = useAuth()
+ const {
+ user, // User | null
+ isLoading, // boolean
+ isAuthenticated, // boolean
+ login, // () => void
+ logout, // () => Promise<void>
+ hasRole, // (role: Role) => boolean
+ hasPermission, // (role: Role) => boolean
+ getToken // () => Promise<string>
+ } = useAuth()
 
-  if (isLoading) return <Loading />
-  if (!isAuthenticated) return <Login />
+ if (isLoading) return <Loading />
+ if (!isAuthenticated) return <Login />
 
-  return (
-    <div>
-      <p>Olá, {user.name}</p>
-      {hasRole(Role.ADMIN) && <AdminPanel />}
-    </div>
-  )
+ return (
+ <div>
+ <p>Olá, {user.name}</p>
+ {hasRole(Role.ADMIN) && <AdminPanel />}
+ </div>
+ )
 }
 ```
 
@@ -311,14 +311,14 @@ import { useAuth } from '@carf/tscore/auth/vue'
 import { Role } from '@carf/tscore/types'
 
 const {
-  user,              // Ref<User | null>
-  isLoading,         // Ref<boolean>
-  isAuthenticated,   // Ref<boolean>
-  login,             // () => void
-  logout,            // () => Promise<void>
-  hasRole,           // (role: Role) => boolean
-  hasPermission,     // (role: Role) => boolean
-  getToken           // () => Promise<string>
+ user, // Ref<User | null>
+ isLoading, // Ref<boolean>
+ isAuthenticated, // Ref<boolean>
+ login, // () => void
+ logout, // () => Promise<void>
+ hasRole, // (role: Role) => boolean
+ hasPermission, // (role: Role) => boolean
+ getToken // () => Promise<string>
 } = useAuth()
 </script>
 ```
@@ -332,19 +332,19 @@ import type { CreateUnitDto, UpdateUnitDto } from '@carf/tscore/types'
 
 // POST /api/units
 const createDto: CreateUnitDto = {
-  code: 'UN-001',
-  street: 'Rua Example',
-  city: 'São Paulo',
-  state: 'SP',
-  communityId: 'uuid'
-  // Campos obrigatórios apenas
+ code: 'UN-001',
+ street: 'Rua Example',
+ city: 'São Paulo',
+ state: 'SP',
+ communityId: 'uuid'
+ // Campos obrigatórios apenas
 }
 
 // PATCH /api/units/:id
 const updateDto: UpdateUnitDto = {
-  street?: 'Nova Rua',
-  number?: '123'
-  // Todos campos opcionais
+ street?: 'Nova Rua',
+ number?: '123'
+ // Todos campos opcionais
 }
 ```
 

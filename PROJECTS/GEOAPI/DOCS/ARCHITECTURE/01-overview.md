@@ -2,7 +2,7 @@
 
 ## Visão Geral
 
-GEOAPI é o backend REST API do ecossistema CARF, responsável por toda a lógica de negócio, persistência de dados e integrações externas conforme domain model documentado em [CENTRAL/DOMAIN-MODEL](../../../../CENTRAL/DOMAIN-MODEL/README.md). Construído em **.NET 9** seguindo **[Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)** via [ADR-008](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-008-clean-architecture-ddd.md), **[Domain-Driven Design (DDD)](https://domainlanguage.com/ddd/)** e **[CQRS Pattern](https://martinfowler.com/bliki/CQRS.html)** via [ADR-009](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-009-cqrs-pattern.md).
+GEOAPI é o backend REST API do ecossistema CARF, responsável por toda a lógica de negócio, persistência de dados e integrações externas conforme domain model documentado em . Construído em **.NET 9** seguindo **[Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)** via , **[Domain-Driven Design (DDD)](https://domainlanguage.com/ddd/)** e **[CQRS Pattern](https://martinfowler.com/bliki/CQRS.html)** via .
 
 ## Diagrama de Arquitetura
 
@@ -457,7 +457,7 @@ builder.Services.AddDbContext<CarfDbContext>(options =>
 - Integração nativa com PostgreSQL (Npgsql)
 - PostGIS support via NetTopologySuite
 
-**Ver:** [ADR-001](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-001-dotnet-9-backend.md)
+**Ver:** 
 
 ### 2. PostgreSQL + PostGIS vs MongoDB
 
@@ -470,7 +470,7 @@ builder.Services.AddDbContext<CarfDbContext>(options =>
 - Row-Level Security (multi-tenancy)
 - Maturidade e confiabilidade
 
-**Ver:** [ADR-002](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-002-postgresql-postgis.md)
+**Ver:** 
 
 ### 3. Keycloak vs Auth0
 
@@ -484,7 +484,7 @@ builder.Services.AddDbContext<CarfDbContext>(options =>
 - Customizável (themes, SPIs)
 - Sem custos de licença
 
-**Ver:** [ADR-003](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-003-keycloak-autenticacao.md)
+**Ver:** 
 
 ### 4. CQRS com MediatR vs Services Tradicionais
 
@@ -496,7 +496,7 @@ builder.Services.AddDbContext<CarfDbContext>(options =>
 - Pipeline de validação e logging
 - Escalabilidade (futuramente: event sourcing)
 
-**Ver:** [ADR-009](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-009-cqrs-pattern.md)
+**Ver:** 
 
 ### 5. Multi-tenancy via RLS vs Schema-per-tenant
 
@@ -509,7 +509,7 @@ builder.Services.AddDbContext<CarfDbContext>(options =>
 - Migrations unificadas
 - Backup/restore simplificado
 
-**Ver:** [ADR-005](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-005-multi-tenancy-rls.md)
+**Ver:** 
 
 ---
 

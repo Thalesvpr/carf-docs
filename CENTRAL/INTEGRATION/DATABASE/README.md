@@ -41,6 +41,5 @@ Iniciar PostgreSQL executando docker-compose up menos d rodando container backgr
 
 ## Ver Também
 
-- [GEOAPI Setup Dev Environment](../../../PROJECTS/GEOAPI/DOCS/HOW-TO/01-setup-dev-environment.md)
 - [PostGIS Documentation](https://postgis.net/documentation/)
 - [Row-Level Security](https://www.postgresql.org/docs/current/ddl-rowsecurity.html)

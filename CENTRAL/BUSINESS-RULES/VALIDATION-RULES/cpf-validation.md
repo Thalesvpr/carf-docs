@@ -1,70 +1,11 @@
 # CPF Validation
 
-Regra de validação de Cadastro de Pessoa Física brasileiro garantindo que apenas números válidos são aceitos no sistema onde validação inclui verificação de formato (11 dígitos numéricos), rejeição de sequências conhecidas como inválidas (00000000000 até 99999999999 todos iguais), e cálculo de dígitos verificadores usando algoritmo oficial da Receita Federal do Brasil. CPF pode ser fornecido formatado com pontos e hífen (###.###.###-##) ou apenas dígitos sendo normalizado para comparação e armazenamento removendo caracteres não numéricos antes de validação. Algoritmo de validação calcula primeiro dígito verificador multiplicando primeiros 9 dígitos por sequência decrescente 10 9 8 7 6 5 4 3 2 somando resultados calculando resto da divisão por 11 e invertendo (11 menos resto) considerando 0 se resultado for 10 ou 11, depois calcula segundo dígito verificador multiplicando primeiros 9 dígitos mais primeiro verificador por sequência 11 10 9 8 7 6 5 4 3 2 aplicando mesma lógica de resto e inversão. Validação de unicidade por tenant é responsabilidade de camada de application consultando repository para verificar se CPF já está vinculado a outro Holder evitando duplicação de titulares mas permitindo mesmo CPF em diferentes tenants isolados.
+Regra validação Cadastro Pessoa Física brasileiro garantindo apenas números válidos aceitos sistema onde validação inclui verificação formato (11 dígitos numéricos) rejeição sequências conhecidas inválidas (00000000000 até 99999999999 todos iguais) cálculo dígitos verificadores usando algoritmo oficial Receita Federal Brasil com CPF fornecido formatado pontos hífen (###.###.###-##) ou apenas dígitos normalizado comparação armazenamento removendo caracteres não numéricos antes validação calculando primeiro dígito verificador multiplicando primeiros 9 dígitos por sequência decrescente 10 9 8 7 6 5 4 3 2 somando resultados calculando resto divisão por 11 invertendo (11 menos resto) considerando 0 se resultado 10 ou 11 depois calculando segundo dígito verificador multiplicando primeiros 9 dígitos mais primeiro verificador por sequência 11 10 9 8 7 6 5 4 3 2 aplicando mesma lógica resto inversão com validação unicidade por tenant responsabilidade camada application consultando repository verificar CPF já vinculado outro Holder evitando duplicação titulares permitindo mesmo CPF diferentes tenants isolados formato aceito 11 dígitos numéricos ou ###.###.###-## normalizado automaticamente CPFs inválidos conhecidos 00000000000 11111111111 22222222222 até 99999999999 sequências repetidas armazenamento apenas dígitos numéricos sem formatação facilitando queries comparações exibição formatado pontos hífen legibilidade humana mensagens erro "CPF inválido deve conter 11 dígitos" "sequência repetida não permitida" "dígitos verificadores incorretos" "CPF já cadastrado sistema" validação unicidade exceção CPF 000.000.000-00 tecnicamente inválido pode aparecer sistemas legados devendo rejeitado novos cadastros.
 
-**Formato aceito:** 11 dígitos numéricos ou ###.###.###-## (normalizado automaticamente)
+Algoritmo dígito verificador calcula primeiro dígito posição 10 multiplicando dígitos 1-9 por 10 9 8 7 6 5 4 3 2 somando resultados soma d1×10 d2×9 d3×8 d4×7 d5×6 d6×5 d7×4 d8×3 d9×2 calculando resto soma mod 11 dígito verificador dv1 sendo 0 se resto menor 2 caso contrário 11 menos resto depois calculando segundo dígito posição 11 multiplicando dígitos 1-9 mais dv1 por 11 10 9 8 7 6 5 4 3 2 somando soma d1×11 d2×10 d3×9 d4×8 d5×7 d6×6 d7×5 d8×4 d9×3 dv1×2 calculando resto soma mod 11 dígito verificador dv2 sendo 0 se resto menor 2 caso contrário 11 menos resto exemplo CPF 123.456.789-09 validação primeiro dígito 1×10 2×9 3×8 4×7 5×6 6×5 7×4 8×3 9×2 igual 210 resto 210 mod 11 igual 1 dv1 11 menos 1 igual 10 mas resultado maior igual 10 então dv1 0 validação segundo dígito 1×11 2×10 3×9 4×8 5×7 6×6 7×5 8×4 9×3 0×2 igual 255 resto 255 mod 11 igual 2 dv2 11 menos 2 igual 9 CPF válido 123.456.789-09.
 
-**CPFs inválidos conhecidos:** 00000000000, 11111111111, 22222222222, ..., 99999999999 (sequências repetidas)
-
-**Algoritmo dígito verificador:**
-
-Primeiro dígito (posição 10):
-1. Multiplicar dígitos 1-9 por: 10, 9, 8, 7, 6, 5, 4, 3, 2
-2. Somar resultados: soma = d1×10 + d2×9 + d3×8 + d4×7 + d5×6 + d6×5 + d7×4 + d8×3 + d9×2
-3. Calcular resto: resto = soma mod 11
-4. Dígito verificador: dv1 = (resto < 2) ? 0 : (11 - resto)
-
-Segundo dígito (posição 11):
-1. Multiplicar dígitos 1-9 + dv1 por: 11, 10, 9, 8, 7, 6, 5, 4, 3, 2
-2. Somar resultados: soma = d1×11 + d2×10 + d3×9 + d4×8 + d5×7 + d6×6 + d7×5 + d8×4 + d9×3 + dv1×2
-3. Calcular resto: resto = soma mod 11
-4. Dígito verificador: dv2 = (resto < 2) ? 0 : (11 - resto)
-
-**Exemplo:** CPF 123.456.789-09
-
-Validação primeiro dígito:
-- 1×10 + 2×9 + 3×8 + 4×7 + 5×6 + 6×5 + 7×4 + 8×3 + 9×2 = 210
-- 210 mod 11 = 1
-- dv1 = 11 - 1 = 10, mas como resultado ≥ 10 então dv1 = 0
-
-Validação segundo dígito:
-- 1×11 + 2×10 + 3×9 + 4×8 + 5×7 + 6×6 + 7×5 + 8×4 + 9×3 + 0×2 = 255
-- 255 mod 11 = 2
-- dv2 = 11 - 2 = 9
-
-CPF válido: 123.456.789-09 ✅
-
-**Normalização:** Remover caracteres não numéricos antes de validar (aceitar "123.456.789-09" ou "12345678909")
-
-**Armazenamento:** Apenas dígitos numéricos sem formatação facilitando queries e comparações
-
-**Exibição:** Formatado com pontos e hífen para legibilidade humana (###.###.###-##)
-
-**Mensagens de erro:**
-- "CPF inválido: deve conter 11 dígitos"
-- "CPF inválido: sequência repetida não permitida"
-- "CPF inválido: dígitos verificadores incorretos"
-- "CPF já cadastrado no sistema" (validação de unicidade)
-
-**Exceções:** CPF 000.000.000-00 é tecnicamente inválido mas pode aparecer em sistemas legados devendo ser rejeitado em novos cadastros
+Relacionado domain model inclui CPF value object implementando validação Holder entity usando CPF validado implementações backend .NET frontend React mobile React Native conforme Receita Federal Brasil algoritmo oficial ABNT NBR 9524 Cadastro pessoa física.
 
 ---
 
-## 🔗 Relacionado
-
-**Domain Model:**
-- `../DOMAIN-MODEL/VALUE-OBJECTS/01-cpf.md` - Value Object implementando validação
-- `../DOMAIN-MODEL/ENTITIES/02-holder.md` - Entity usando CPF validado
-
-**Implementações:**
-- (caminho de implementação) - Backend .NET
-- (caminho de implementação) - Frontend React
-- (caminho de implementação) - Mobile React Native
-
-**Referências externas:**
-- Receita Federal do Brasil - Algoritmo oficial
-- ABNT NBR 9524 - Cadastro de pessoa física
-
----
-
-**Última atualização:** 2025-01-06
+**Última atualização:** 2026-01-11

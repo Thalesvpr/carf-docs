@@ -22,8 +22,6 @@ Mapa completo mostrando dependências UC → RF → US → RNF para todos os 11 
 - [US-021: Validar Sobreposição de Geometrias](./USER-STORIES/US-021-validar-sobreposição-de-geometrias.md)
 
 ### Implementado em
-- [GEOWEB: Unit Management](../../PROJECTS/GEOWEB/DOCS/FEATURES/unit-management.md)
-- [REURBCAD: Field Collection](../../PROJECTS/REURBCAD/DOCS/FEATURES/field-collection.md)
 
 ---
 
@@ -41,7 +39,6 @@ Mapa completo mostrando dependências UC → RF → US → RNF para todos os 11 
 - [US-036: Solicitar Alterações](./USER-STORIES/US-036-solicitar-alterações.md)
 
 ### Implementado em
-- [GEOWEB: Unit Management](../../PROJECTS/GEOWEB/DOCS/FEATURES/unit-management.md)
 
 ---
 
@@ -64,8 +61,6 @@ Mapa completo mostrando dependências UC → RF → US → RNF para todos os 11 
 - [US-044: Cadastrar Titular no Campo](./USER-STORIES/US-044-cadastrar-titular-no-campo.md)
 
 ### Implementado em
-- [GEOWEB: Holder Management](../../PROJECTS/GEOWEB/DOCS/FEATURES/holder-management.md)
-- [REURBCAD: Holder Management](../../PROJECTS/REURBCAD/DOCS/FEATURES/holder-management.md)
 
 ---
 
@@ -89,7 +84,6 @@ Mapa completo mostrando dependências UC → RF → US → RNF para todos os 11 
 - [US-044: Cadastrar Titular no Campo](./USER-STORIES/US-044-cadastrar-titular-no-campo.md)
 
 ### Implementado em
-- [REURBCAD: Field Collection](../../PROJECTS/REURBCAD/DOCS/FEATURES/field-collection.md)
 
 ---
 
@@ -113,7 +107,6 @@ Mapa completo mostrando dependências UC → RF → US → RNF para todos os 11 
 - [US-052: Ver Progresso de Sincronização](./USER-STORIES/US-052-ver-progresso-de-sincronização.md)
 
 ### Implementado em
-- [REURBCAD: Offline Sync](../../PROJECTS/REURBCAD/DOCS/FEATURES/offline-sync.md)
 
 ---
 
@@ -133,7 +126,6 @@ Mapa completo mostrando dependências UC → RF → US → RNF para todos os 11 
 - [US-075: Agendar Relatório Recorrente](./USER-STORIES/US-075-agendar-relatório-recorrente.md)
 
 ### Implementado em
-- [GEOWEB: Reporting](../../PROJECTS/GEOWEB/DOCS/FEATURES/reporting.md)
 
 ---
 
@@ -155,7 +147,6 @@ Mapa completo mostrando dependências UC → RF → US → RNF para todos os 11 
 - [US-073: Exportar em Excel/CSV](./USER-STORIES/US-073-exportar-em-excelcsv.md)
 
 ### Implementado em
-- [GEOWEB: Reporting](../../PROJECTS/GEOWEB/DOCS/FEATURES/reporting.md)
 
 ---
 
@@ -173,9 +164,6 @@ Mapa completo mostrando dependências UC → RF → US → RNF para todos os 11 
 - [US-020: Importar Unidades via Shapefile](./USER-STORIES/US-020-importar-unidades-via-shapefile.md)
 
 ### Implementado em
-- [GEOWEB: Shapefile Import](../../PROJECTS/GEOWEB/DOCS/FEATURES/shapefile-import.md)
-- [REURBCAD: Shapefile Import](../../PROJECTS/REURBCAD/DOCS/FEATURES/shapefile-import.md)
-- [GEOGIS: Shapefile Import](../../PROJECTS/GEOGIS/DOCS/FEATURES/shapefile-import.md)
 
 ---
 
@@ -199,7 +187,6 @@ Mapa completo mostrando dependências UC → RF → US → RNF para todos os 11 
 - [US-081: Gerar Termo de Legitimação (PDF)](./USER-STORIES/US-081-gerar-termo-de-legitimação-pdf.md)
 
 ### Implementado em
-- [GEOWEB: Legitimation Process](../../PROJECTS/GEOWEB/DOCS/FEATURES/legitimation-process.md)
 
 ---
 
@@ -220,7 +207,6 @@ Mapa completo mostrando dependências UC → RF → US → RNF para todos os 11 
 - [US-119: Gerenciar Serviços WMS/WMTS](./USER-STORIES/US-119-gerenciar-servicos-wmswmts.md)
 
 ### Implementado em
-- [GEOWEB: Gis Integration](../../PROJECTS/GEOWEB/DOCS/FEATURES/gis-integration.md)
 
 ---
 
@@ -237,8 +223,6 @@ Mapa completo mostrando dependências UC → RF → US → RNF para todos os 11 
 - [US-030: Gerenciar Equipes Técnicas](./USER-STORIES/US-030-gerenciar-equipes-técnicas.md)
 
 ### Implementado em
-- [GEOWEB: Team Management](../../PROJECTS/GEOWEB/DOCS/FEATURES/team-management.md)
-- [REURBCAD: Team Management](../../PROJECTS/REURBCAD/DOCS/FEATURES/team-management.md)
 
 ---
 

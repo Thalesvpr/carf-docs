@@ -1,5 +1,7 @@
-# Key Concepts - @carf/ui
+# Key Concepts
 
-## Conceitos-Chave
+@carf/ui fundamenta-se em três conceitos principais seguindo Atomic Design e Compound Components sendo Design Tokens CSS variables definindo tema visual customizáveis por aplicações consumidoras via globals.css permitindo trocar cores espaçamentos sem modificar código componentes, Atomic Design hierarquia composição onde Atoms (Button Input) combinam em Molecules (FormField Label Input Error) formando Organisms (LoginForm múltiplos FormFields Button) escalando Templates Pages aplicações consumidoras, e Compound Components padrão React onde componentes complexos exportam subcomponentes (Card.Header Card.Content Card.Footer) permitindo composição flexível separação responsabilidades implementado via Context API compartilhar state interno entre partes componente sem prop drilling.
 
-@carf/ui é fundamentada em três conceitos principais seguindo [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/) e [Compound Components](https://kentcdodds.com/blog/compound-components-with-react-hooks/): **(1) Design Tokens** - CSS variables (`--primary`, `--radius`, `--font-sans`) que definem tema visual e podem ser customizadas por aplicações consumidoras via `globals.css` permitindo trocar cores e espaçamentos sem modificar código dos componentes, **(2) Atomic Design** - hierarquia de composição onde Atoms (Button, Input) são combinados em Molecules (FormField = Label + Input + Error) que formam Organisms (LoginForm = múltiplos FormFields + Button) escalando para Templates e Pages nas aplicações consumidoras, e **(3) Compound Components** - padrão React onde componentes complexos exportam subcomponentes (`Card.Header`, `Card.Content`, `Card.Footer`) permitindo composição flexível e separação de responsabilidades implementado via Context API para compartilhar state interno entre partes do componente sem prop drilling.
+---
+
+**Última atualização:** 2026-01-11

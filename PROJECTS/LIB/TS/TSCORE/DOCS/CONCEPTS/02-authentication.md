@@ -2,11 +2,11 @@
 
 ## Visão Geral
 
-O módulo de autenticação do @carf/tscore fornece integração com Keycloak OAuth2/OIDC para Single Sign-On (SSO) em todos os projetos CARF conforme [CENTRAL/INTEGRATION/KEYCLOAK](../../../../../../CENTRAL/INTEGRATION/KEYCLOAK/README.md) e [políticas de segurança CENTRAL/SECURITY](../../../../../../CENTRAL/SECURITY/README.md). Implementa autenticação baseada em tokens JWT com suporte a roles, multi-tenancy e refresh automático, sendo consumido por [@carf/geoapi-client](../../../GEOAPI-CLIENT/DOCS/README.md) para autenticação automática em requisições HTTP.
+O módulo de autenticação do @carf/tscore fornece integração com Keycloak OAuth2/OIDC para Single Sign-On (SSO) em todos os projetos CARF conforme. Implementa autenticação baseada em tokens JWT com suporte a roles, multi-tenancy e refresh automático, sendo consumido por geoapi-client para autenticação automática em requisições HTTP.
 
 ## Documentação de Referência
 
-📖 **[CENTRAL/INTEGRATION/KEYCLOAK/README.md](../../../../../../CENTRAL/INTEGRATION/KEYCLOAK/README.md)** - Configuração completa do Keycloak
+📖 **** - Configuração completa do Keycloak
 
 📖 ****CENTRAL/SECURITY/01-authentication.md**** - Arquitetura de autenticação do sistema
 
@@ -17,34 +17,34 @@ O módulo de autenticação do @carf/tscore fornece integração com Keycloak OA
 O CARF utiliza autenticação federada via Keycloak com o seguinte fluxo:
 
 ```
-┌─────────────┐      ┌──────────────┐      ┌─────────────┐      ┌──────────┐
-│   Cliente   │      │   Keycloak   │      │   GEOAPI    │      │ Database │
-│ (GEOWEB/APP)│      │  (Auth)      │      │  (Backend)  │      │ (RLS)    │
-└──────┬──────┘      └──────┬───────┘      └──────┬──────┘      └────┬─────┘
-       │                    │                     │                   │
-       │  1. Login Request  │                     │                   │
-       ├───────────────────>│                     │                   │
-       │                    │                     │                   │
-       │  2. User Credentials                     │                   │
-       ├───────────────────>│                     │                   │
-       │                    │                     │                   │
-       │  3. JWT Token      │                     │                   │
-       │<───────────────────┤                     │                   │
-       │                    │                     │                   │
-       │  4. API Request (JWT in Bearer header)   │                   │
-       ├──────────────────────────────────────────>│                   │
-       │                    │                     │                   │
-       │                    │  5. Validate Token  │                   │
-       │                    │<────────────────────┤                   │
-       │                    │                     │                   │
-       │                    │  6. Token Valid     │                   │
-       │                    ├────────────────────>│                   │
-       │                    │                     │                   │
-       │                    │                     │  7. Query with RLS│
-       │                    │                     ├──────────────────>│
-       │                    │                     │                   │
-       │  8. Response       │                     │                   │
-       │<───────────────────────────────────────────┤                   │
+┌─────────────┐ ┌──────────────┐ ┌─────────────┐ ┌──────────┐
+│ Cliente │ │ Keycloak │ │ GEOAPI │ │ Database │
+│ (GEOWEB/APP)│ │ (Auth) │ │ (Backend) │ │ (RLS) │
+└──────┬──────┘ └──────┬───────┘ └──────┬──────┘ └────┬─────┘
+ │ │ │ │
+ │ 1. Login Request │ │ │
+ ├───────────────────>│ │ │
+ │ │ │ │
+ │ 2. User Credentials │ │
+ ├───────────────────>│ │ │
+ │ │ │ │
+ │ 3. JWT Token │ │ │
+ │<───────────────────┤ │ │
+ │ │ │ │
+ │ 4. API Request (JWT in Bearer header) │ │
+ ├──────────────────────────────────────────>│ │
+ │ │ │ │
+ │ │ 5. Validate Token │ │
+ │ │<────────────────────┤ │
+ │ │ │ │
+ │ │ 6. Token Valid │ │
+ │ ├────────────────────>│ │
+ │ │ │ │
+ │ │ │ 7. Query with RLS│
+ │ │ ├──────────────────>│
+ │ │ │ │
+ │ 8. Response │ │ │
+ │<───────────────────────────────────────────┤ │
 ```
 
 ### 1. Authorization Code Flow with PKCE
@@ -66,18 +66,18 @@ Token JWT contém claims customizados para multi-tenancy:
 
 ```json
 {
-  "sub": "550e8400-e29b-41d4-a716-446655440000",
-  "email": "usuario@example.com",
-  "name": "João da Silva",
-  "preferred_username": "joao.silva",
-  "realm_access": {
-    "roles": ["analyst", "field-collector"]
-  },
-  "tenant_id": "tenant-sp-prefeitura",
-  "allowed_tenants": ["tenant-sp-prefeitura", "tenant-rj-iterj"],
-  "current_tenant": "tenant-sp-prefeitura",
-  "exp": 1704931200,
-  "iat": 1704844800
+ "sub": "550e8400-e29b-41d4-a716-446655440000",
+ "email": "usuario@example.com",
+ "name": "João da Silva",
+ "preferred_username": "joao.silva",
+ "realm_access": {
+ "roles": ["analyst", "field-collector"]
+ },
+ "tenant_id": "tenant-sp-prefeitura",
+ "allowed_tenants": ["tenant-sp-prefeitura", "tenant-rj-iterj"],
+ "current_tenant": "tenant-sp-prefeitura",
+ "exp": 1704931200,
+ "iat": 1704844800
 }
 ```
 
@@ -89,11 +89,11 @@ O CARF define 5 níveis de autorização (RBAC):
 
 | Role | Descrição | Permissões | Docs |
 |------|-----------|------------|------|
-| `super-admin` | Super administrador global | Acesso total, gerencia tenants | **CENTRAL/SECURITY/ROLES/super-admin.md** |
-| `admin` | Administrador do tenant | Gerencia usuários e configurações | **CENTRAL/SECURITY/ROLES/admin.md** |
-| `manager` | Gestor de processos | Aprova legitimações, gera relatórios | **CENTRAL/SECURITY/ROLES/manager.md** |
-| `analyst` | Analista técnico | Valida unidades, corrige geometrias | **CENTRAL/SECURITY/ROLES/analyst.md** |
-| `field-collector` | Coletor de campo | Apenas coleta dados mobile | **CENTRAL/SECURITY/ROLES/field-collector.md** |
+| `super-admin` | Super administrador global | Acesso total, gerencia tenants 
+| `admin` | Administrador do tenant | Gerencia usuários e configurações 
+| `manager` | Gestor de processos | Aprova legitimações, gera relatórios 
+| `analyst` | Analista técnico | Valida unidades, corrige geometrias 
+| `field-collector` | Coletor de campo | Apenas coleta dados mobile 
 
 📖 ****CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/23-role.md**** - Value Object Role
 
@@ -107,9 +107,9 @@ Classe principal que gerencia autenticação com Keycloak.
 import { KeycloakClient } from '@carf/tscore/auth'
 
 const client = new KeycloakClient({
-  url: 'https://keycloak.carf.gov.br',
-  realm: 'carf',
-  clientId: 'geoweb-client'
+ url: 'https://keycloak.carf.gov.br',
+ realm: 'carf',
+ clientId: 'geoweb-client'
 })
 
 // Inicializar autenticação
@@ -117,9 +117,9 @@ await client.init()
 
 // Verificar se usuário está autenticado
 if (client.isAuthenticated()) {
-  const token = client.getToken()
-  const user = client.getUser()
-  const roles = client.getRoles()
+ const token = client.getToken()
+ const user = client.getUser()
+ const roles = client.getRoles()
 }
 
 // Fazer login
@@ -130,7 +130,7 @@ await client.logout()
 
 // Refresh token automático
 client.onTokenExpired(() => {
-  client.refreshToken()
+ client.refreshToken()
 })
 ```
 
@@ -140,12 +140,12 @@ Cada projeto CARF tem configuração específica:
 
 | Projeto | Client ID | Flow | Redirect URI | Docs |
 |---------|-----------|------|--------------|------|
-| GEOWEB | `geoweb-client` | PKCE | `http://localhost:3000/callback` | [examples/geoweb-integration.md](../../../../../../CENTRAL/INTEGRATION/KEYCLOAK/examples/geoweb-integration.md) |
-| REURBCAD | `reurbcad-mobile` | PKCE | `reurbcad://callback` | [examples/reurbcad-integration.md](../../../../../../CENTRAL/INTEGRATION/KEYCLOAK/examples/reurbcad-integration.md) |
-| ADMIN | `admin-console` | PKCE | `http://localhost:5173/callback` | [examples/admin-integration.md](../../../../../../CENTRAL/INTEGRATION/KEYCLOAK/examples/admin-integration.md) |
-| WEBDOCS | `webdocs` | PKCE | `http://localhost:5174/callback` | [examples/webdocs-integration.md](../../../../../../CENTRAL/INTEGRATION/KEYCLOAK/examples/webdocs-integration.md) |
-| GEOGIS | `geogis-plugin` | Client Credentials | N/A | [examples/geogis-integration.md](../../../../../../CENTRAL/INTEGRATION/KEYCLOAK/examples/geogis-integration.md) |
-| GEOAPI | `geoapi-backend` | Client Credentials | N/A | [examples/geoapi-integration.md](../../../../../../CENTRAL/INTEGRATION/KEYCLOAK/examples/geoapi-integration.md) |
+| GEOWEB | `geoweb-client` | PKCE | `http://localhost:3000/callback` | |
+| REURBCAD | `reurbcad-mobile` | PKCE | `reurbcad://callback` | |
+| ADMIN | `admin-console` | PKCE | `http://localhost:5173/callback` | |
+| WEBDOCS | `webdocs` | PKCE | `http://localhost:5174/callback` | |
+| GEOGIS | `geogis-plugin` | Client Credentials | N/A | |
+| GEOAPI | `geoapi-backend` | Client Credentials | N/A | |
 
 ### React Hooks
 
@@ -157,37 +157,37 @@ Hook principal para acesso a dados de autenticação.
 import { useAuth } from '@carf/tscore/auth/react'
 
 function UserProfile() {
-  const {
-    user,           // Dados do usuário autenticado
-    isAuthenticated, // Boolean: está autenticado?
-    isLoading,      // Boolean: carregando?
-    token,          // JWT access token
-    roles,          // Array de roles do usuário
-    hasRole,        // Função: verifica se tem role
-    hasAnyRole,     // Função: verifica se tem ao menos uma role
-    hasAllRoles,    // Função: verifica se tem todas as roles
-    login,          // Função: fazer login
-    logout,         // Função: fazer logout
-    refreshToken,   // Função: renovar token
-    tenant,         // Tenant atual do usuário
-    switchTenant,   // Função: trocar tenant
-  } = useAuth()
+ const {
+ user, // Dados do usuário autenticado
+ isAuthenticated, // Boolean: está autenticado?
+ isLoading, // Boolean: carregando?
+ token, // JWT access token
+ roles, // Array de roles do usuário
+ hasRole, // Função: verifica se tem role
+ hasAnyRole, // Função: verifica se tem ao menos uma role
+ hasAllRoles, // Função: verifica se tem todas as roles
+ login, // Função: fazer login
+ logout, // Função: fazer logout
+ refreshToken, // Função: renovar token
+ tenant, // Tenant atual do usuário
+ switchTenant, // Função: trocar tenant
+ } = useAuth()
 
-  if (isLoading) return <Spinner />
-  if (!isAuthenticated) return <LoginPage />
+ if (isLoading) return <Spinner />
+ if (!isAuthenticated) return <LoginPage />
 
-  return (
-    <div>
-      <h1>Olá, {user?.name}</h1>
-      <p>Email: {user?.email}</p>
-      <p>Tenant: {tenant?.name}</p>
+ return (
+ <div>
+ <h1>Olá, {user?.name}</h1>
+ <p>Email: {user?.email}</p>
+ <p>Tenant: {tenant?.name}</p>
 
-      {hasRole('admin') && <AdminPanel />}
-      {hasAnyRole(['analyst', 'manager']) && <AnalysisTools />}
+ {hasRole('admin') && <AdminPanel />}
+ {hasAnyRole(['analyst', 'manager']) && <AnalysisTools />}
 
-      <button onClick={logout}>Sair</button>
-    </div>
-  )
+ <button onClick={logout}>Sair</button>
+ </div>
+ )
 }
 ```
 
@@ -200,50 +200,50 @@ import { ProtectedRoute } from '@carf/tscore/auth/react'
 import { Role } from '@carf/tscore/types'
 
 function App() {
-  return (
-    <Router>
-      <Routes>
-        {/* Rota pública */}
-        <Route path="/login" element={<LoginPage />} />
+ return (
+ <Router>
+ <Routes>
+ {/* Rota pública */}
+ <Route path="/login" element={<LoginPage />} />
 
-        {/* Rota protegida - qualquer usuário autenticado */}
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        />
+ {/* Rota protegida - qualquer usuário autenticado */}
+ <Route
+ path="/dashboard"
+ element={
+ <ProtectedRoute>
+ <Dashboard />
+ </ProtectedRoute>
+ }
+ />
 
-        {/* Rota protegida - requer role específica */}
-        <Route
-          path="/admin"
-          element={
-            <ProtectedRoute requiredRoles={[Role.ADMIN, Role.SUPER_ADMIN]}>
-              <AdminPage />
-            </ProtectedRoute>
-          }
-        />
+ {/* Rota protegida - requer role específica */}
+ <Route
+ path="/admin"
+ element={
+ <ProtectedRoute requiredRoles={[Role.ADMIN, Role.SUPER_ADMIN]}>
+ <AdminPage />
+ </ProtectedRoute>
+ }
+ />
 
-        {/* Rota protegida - requer todas as roles */}
-        <Route
-          path="/advanced"
-          element={
-            <ProtectedRoute
-              requiredRoles={[Role.ANALYST, Role.MANAGER]}
-              requireAll={true}
-            >
-              <AdvancedPage />
-            </ProtectedRoute>
-          }
-        />
+ {/* Rota protegida - requer todas as roles */}
+ <Route
+ path="/advanced"
+ element={
+ <ProtectedRoute
+ requiredRoles={[Role.ANALYST, Role.MANAGER]}
+ requireAll={true}
+ >
+ <AdvancedPage />
+ </ProtectedRoute>
+ }
+ />
 
-        {/* Rota de fallback */}
-        <Route path="/unauthorized" element={<UnauthorizedPage />} />
-      </Routes>
-    </Router>
-  )
+ {/* Rota de fallback */}
+ <Route path="/unauthorized" element={<UnauthorizedPage />} />
+ </Routes>
+ </Router>
+ )
 }
 ```
 
@@ -256,23 +256,23 @@ import { AuthProvider } from '@carf/tscore/auth/react'
 import { KeycloakClient } from '@carf/tscore/auth'
 
 const keycloakClient = new KeycloakClient({
-  url: import.meta.env.VITE_KEYCLOAK_URL,
-  realm: 'carf',
-  clientId: 'geoweb-client'
+ url: import.meta.env.VITE_KEYCLOAK_URL,
+ realm: 'carf',
+ clientId: 'geoweb-client'
 })
 
 function App() {
-  return (
-    <AuthProvider
-      client={keycloakClient}
-      onTokenExpired={(client) => client.refreshToken()}
-      onTokenRefreshError={(error) => console.error(error)}
-    >
-      <Router>
-        {/* Suas rotas aqui */}
-      </Router>
-    </AuthProvider>
-  )
+ return (
+ <AuthProvider
+ client={keycloakClient}
+ onTokenExpired={(client) => client.refreshToken()}
+ onTokenRefreshError={(error) => console.error(error)}
+ >
+ <Router>
+ {/* Suas rotas aqui */}
+ </Router>
+ </AuthProvider>
+ )
 }
 ```
 
@@ -287,29 +287,29 @@ import { useAuth } from '@carf/tscore/auth/vue'
 import { computed } from 'vue'
 
 export default {
-  setup() {
-    const {
-      user,
-      isAuthenticated,
-      isLoading,
-      hasRole,
-      login,
-      logout
-    } = useAuth()
+ setup() {
+ const {
+ user,
+ isAuthenticated,
+ isLoading,
+ hasRole,
+ login,
+ logout
+ } = useAuth()
 
-    const canManage = computed(() =>
-      hasRole('manager') || hasRole('admin')
-    )
+ const canManage = computed(() =>
+ hasRole('manager') || hasRole('admin')
+ )
 
-    return {
-      user,
-      isAuthenticated,
-      isLoading,
-      canManage,
-      login,
-      logout
-    }
-  }
+ return {
+ user,
+ isAuthenticated,
+ isLoading,
+ canManage,
+ login,
+ logout
+ }
+ }
 }
 ```
 
@@ -324,9 +324,9 @@ import { KeycloakClient } from '@carf/tscore/auth'
 import App from './App.vue'
 
 const keycloakClient = new KeycloakClient({
-  url: import.meta.env.VITE_KEYCLOAK_URL,
-  realm: 'carf',
-  clientId: 'webdocs'
+ url: import.meta.env.VITE_KEYCLOAK_URL,
+ realm: 'carf',
+ clientId: 'webdocs'
 })
 
 const app = createApp(App)
@@ -338,7 +338,7 @@ app.mount('#app')
 
 ### Conceito
 
-Multi-tenancy permite que múltiplas instituições (prefeituras, ITERJ, etc.) compartilhem a mesma infraestrutura CARF com isolamento completo de dados conforme arquitetura documentada em CENTRAL/ARCHITECTURE/MULTI-TENANCY usando entidade [Tenant](../../../../../../CENTRAL/DOMAIN-MODEL/ENTITIES/07-tenant.md) para representar cada instituição.
+Multi-tenancy permite que múltiplas instituições (prefeituras, ITERJ, etc.) compartilhem a mesma infraestrutura CARF com isolamento completo de dados conforme arquitetura documentada em CENTRAL/ARCHITECTURE/MULTI-TENANCY usando entidade para representar cada instituição.
 
 ### Isolamento de Dados
 
@@ -351,7 +351,7 @@ O isolamento ocorre em 3 camadas:
 ```sql
 -- Exemplo de RLS Policy
 CREATE POLICY tenant_isolation ON units
-  USING (tenant_id = current_setting('app.current_tenant_id')::uuid);
+ USING (tenant_id = current_setting('app.current_tenant_id')::uuid);
 ```
 
 📖 ****CENTRAL/INTEGRATION/DATABASE/02-row-level-security.md**** - Configuração RLS
@@ -364,18 +364,18 @@ Usuários com acesso a múltiplos tenants podem alternar:
 import { useAuth } from '@carf/tscore/auth/react'
 
 function TenantSwitcher() {
-  const { tenant, allowedTenants, switchTenant } = useAuth()
+ const { tenant, allowedTenants, switchTenant } = useAuth()
 
-  return (
-    <select
-      value={tenant?.id}
-      onChange={(e) => switchTenant(e.target.value)}
-    >
-      {allowedTenants.map(t => (
-        <option key={t.id} value={t.id}>{t.name}</option>
-      ))}
-    </select>
-  )
+ return (
+ <select
+ value={tenant?.id}
+ onChange={(e) => switchTenant(e.target.value)}
+ >
+ {allowedTenants.map(t => (
+ <option key={t.id} value={t.id}>{t.name}</option>
+ ))}
+ </select>
+ )
 }
 ```
 
@@ -402,20 +402,20 @@ Tokens são renovados automaticamente antes de expirar:
 
 ```typescript
 const client = new KeycloakClient({
-  url: '...',
-  realm: 'carf',
-  clientId: 'geoweb-client',
-  refreshTokenMinValidity: 300 // Renova 5min antes de expirar
+ url: '...',
+ realm: 'carf',
+ clientId: 'geoweb-client',
+ refreshTokenMinValidity: 300 // Renova 5min antes de expirar
 })
 
 // Refresh automático
 client.onTokenExpired(async () => {
-  try {
-    await client.refreshToken()
-  } catch (error) {
-    // Token refresh falhou - redirecionar para login
-    await client.login()
-  }
+ try {
+ await client.refreshToken()
+ } catch (error) {
+ // Token refresh falhou - redirecionar para login
+ await client.login()
+ }
 })
 ```
 
@@ -445,19 +445,19 @@ import { vi } from 'vitest'
 
 // Mock Keycloak client
 vi.mock('@carf/tscore/auth', () => ({
-  KeycloakClient: vi.fn().mockImplementation(() => ({
-    init: vi.fn().mockResolvedValue(true),
-    isAuthenticated: vi.fn().mockReturnValue(true),
-    getToken: vi.fn().mockReturnValue('mock-jwt-token'),
-    getUser: vi.fn().mockReturnValue({
-      id: '123',
-      name: 'Test User',
-      email: 'test@example.com'
-    }),
-    getRoles: vi.fn().mockReturnValue(['analyst']),
-    login: vi.fn(),
-    logout: vi.fn()
-  }))
+ KeycloakClient: vi.fn().mockImplementation(() => ({
+ init: vi.fn().mockResolvedValue(true),
+ isAuthenticated: vi.fn().mockReturnValue(true),
+ getToken: vi.fn().mockReturnValue('mock-jwt-token'),
+ getUser: vi.fn().mockReturnValue({
+ id: '123',
+ name: 'Test User',
+ email: 'test@example.com'
+ }),
+ getRoles: vi.fn().mockReturnValue(['analyst']),
+ login: vi.fn(),
+ logout: vi.fn()
+ }))
 }))
 ```
 
@@ -469,16 +469,16 @@ import { ProtectedRoute } from '@carf/tscore/auth/react'
 import { AuthProvider } from '@carf/tscore/auth/react'
 
 test('redirects to login if not authenticated', () => {
-  const mockClient = createMockClient({ isAuthenticated: false })
+ const mockClient = createMockClient({ isAuthenticated: false })
 
-  render(
-    <AuthProvider client={mockClient}>
-      <ProtectedRoute>
-        <div>Protected Content</div>
-      </ProtectedRoute>
-    </AuthProvider>
-  )
+ render(
+ <AuthProvider client={mockClient}>
+ <ProtectedRoute>
+ <div>Protected Content</div>
+ </ProtectedRoute>
+ </AuthProvider>
+ )
 
-  expect(screen.queryByText('Protected Content')).not.toBeInTheDocument()
+ expect(screen.queryByText('Protected Content')).not.toBeInTheDocument()
 })
 ```
