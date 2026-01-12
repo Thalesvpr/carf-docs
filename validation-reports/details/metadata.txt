@@ -1,0 +1,39 @@
+Validação: Metadata
+================================================================================
+
+STDOUT:
+================================================================================
+[VALIDATION] Metadata
+================================================================================
+
+[*] Validating metadata in 631 important files...
+
+Total files checked: 631
+Missing metadata: 630
+Outdated metadata (>12 months): 0
+
+[ERRORS] 630 files missing metadata:
+  [X] PROJECTS/WEBDOCS/DOCS/ARCHITECTURE/README.md missing 'Última atualização: YYYY-MM-DD'
+  [X] CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/RF-079-mesclar-unidades.md missing 'Última atualização: YYYY-MM-DD'
+  [X] PROJECTS/GEOGIS/DOCS/FEATURES/shapefile-import.md missing 'Última atualização: YYYY-MM-DD'
+  [X] CENTRAL/ARCHITECTURE/ADRs/ADR-020-docker-kubernetes-orchestration.md missing 'Última atualização: YYYY-MM-DD'
+  [X] CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/RF-185-editar-unidade-offline.md missing 'Última atualização: YYYY-MM-DD'
+  [X] CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/RF-221-proxy-de-wmswmts.md missing 'Última atualização: YYYY-MM-DD'
+  [X] CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/RNF-059-versionamento-semantico.md missing 'Última atualização: YYYY-MM-DD'
+  [X] CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/RNF-078-job-queue.md missing 'Última atualização: YYYY-MM-DD'
+  [X] CENTRAL/ARCHITECTURE/PATTERNS/04-domain-events.md missing 'Última atualização: YYYY-MM-DD'
+  [X] CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/RF-061-vincular-titular-a-unidade.md missing 'Última atualização: YYYY-MM-DD'
+  [X] CENTRAL/REQUIREMENTS/USER-STORIES/US-139-vincular-titular-a-unidade.md missing 'Última atualização: YYYY-MM-DD'
+  [X] CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/RF-022-editar-usuário.md missing 'Última atualização: YYYY-MM-DD'
+  [X] CENTRAL/REQUIREMENTS/USER-STORIES/US-047-copiar-dados-da-última-unidade.md missing 'Última atualização: YYYY-MM-DD'
+  [X] CENTRAL/REQUIREMENTS/USER-STORIES/US-083-gerenciar-usuários-do-tenant.md missing 'Última atualização: YYYY-MM-DD'
+  [X] CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/RF-186-tirar-fotos-offline.md missing 'Última atualização: YYYY-MM-DD'
+  ... and 615 more
+
+================================================================================
+Errors: 630
+Warnings: 0
+================================================================================
+
+
+STDERR:

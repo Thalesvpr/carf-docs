@@ -1,0 +1,39 @@
+Validação: Feature Sections
+================================================================================
+
+STDOUT:
+================================================================================
+[VALIDATION] Feature Sections
+================================================================================
+
+[*] Validating 21 feature files...
+
+Total features: 21
+Features with missing sections: 21
+Total missing sections: 61
+
+[ERRORS] 61 missing sections:
+  [X] PROJECTS/ADMIN/DOCS/FEATURES/team-management.md missing required section: ## Validações
+  [X] PROJECTS/ADMIN/DOCS/FEATURES/team-management.md missing required section: ## API Integration ou ## Integração API
+  [X] PROJECTS/ADMIN/DOCS/FEATURES/team-management.md missing required section: ## Relacionamentos ou ## Domain Model
+  [X] PROJECTS/ADMIN/DOCS/FEATURES/user-management.md missing required section: ## Validações
+  [X] PROJECTS/ADMIN/DOCS/FEATURES/user-management.md missing required section: ## API Integration ou ## Integração API
+  [X] PROJECTS/ADMIN/DOCS/FEATURES/user-management.md missing required section: ## Relacionamentos ou ## Domain Model
+  [X] PROJECTS/GEOGIS/DOCS/FEATURES/gis-integration.md missing required section: ## Validações
+  [X] PROJECTS/GEOGIS/DOCS/FEATURES/gis-integration.md missing required section: ## API Integration ou ## Integração API
+  [X] PROJECTS/GEOGIS/DOCS/FEATURES/gis-integration.md missing required section: ## Relacionamentos ou ## Domain Model
+  [X] PROJECTS/GEOGIS/DOCS/FEATURES/shapefile-import.md missing required section: ## Validações
+  [X] PROJECTS/GEOGIS/DOCS/FEATURES/shapefile-import.md missing required section: ## API Integration ou ## Integração API
+  [X] PROJECTS/GEOGIS/DOCS/FEATURES/shapefile-import.md missing required section: ## Relacionamentos ou ## Domain Model
+  [X] PROJECTS/GEOWEB/DOCS/FEATURES/gis-integration.md missing required section: ## Validações
+  [X] PROJECTS/GEOWEB/DOCS/FEATURES/holder-management.md missing required section: ## Validações
+  [X] PROJECTS/GEOWEB/DOCS/FEATURES/holder-management.md missing required section: ## API Integration ou ## Integração API
+  ... and 46 more
+
+================================================================================
+Errors: 61
+Warnings: 0
+================================================================================
+
+
+STDERR:

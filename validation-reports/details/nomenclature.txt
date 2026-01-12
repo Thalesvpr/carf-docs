@@ -1,0 +1,49 @@
+Validação: Nomenclature
+================================================================================
+
+STDOUT:
+================================================================================
+[VALIDATION] Nomenclature
+================================================================================
+
+[*] Validating nomenclature in 907 files...
+
+[ERRORS] 765 nomenclature violations:
+  [X] 724 violations of: REURB deve ser qualificado como REURB-S ou REURB-E
+  [X] 2 violations of: Use 'PostgreSQL' ao invés de 'Postgres'
+  [X] 39 violations of: Use 'React Native' ao invés de 'react-native' em prosa
+
+  Rule: REURB deve ser qualificado como REURB-S ou REURB-E
+  Correct: REURB-S (social) ou REURB-E (econômico)
+    • CENTRAL/README.md:3
+      Found: 'REURBC'
+    • CENTRAL/ARCHITECTURE/README.md:3
+      Found: 'REURBC'
+    • CENTRAL/LIBRARIES/README.md:5
+      Found: 'REURBC'
+    ... and 721 more
+
+  Rule: Use 'PostgreSQL' ao invés de 'Postgres'
+  Correct: PostgreSQL
+    • CENTRAL/ARCHITECTURE/DEPLOYMENT/04-cicd-pipeline.md:3
+      Found: 'Postgres'
+    • PROJECTS/KEYCLOAK/DOCS/HOW-TO/README.md:14
+      Found: 'Postgres'
+
+  Rule: Use 'React Native' ao invés de 'react-native' em prosa
+  Correct: React Native
+    • CENTRAL/REQUIREMENTS/USE-CASES/UC-004-coletar-dados-campo-mobile.md:8
+      Found: 'react-native'
+    • CENTRAL/REQUIREMENTS/USE-CASES/UC-004-coletar-dados-campo-mobile.md:8
+      Found: 'react-native'
+    • CENTRAL/REQUIREMENTS/USE-CASES/UC-004-FA-001-sincronizar-imediato.md:14
+      Found: 'react-native'
+    ... and 36 more
+
+================================================================================
+Errors: 3
+Warnings: 0
+================================================================================
+
+
+STDERR:

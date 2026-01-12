@@ -1,0 +1,43 @@
+Validação: File Structure
+================================================================================
+
+STDOUT:
+================================================================================
+[VALIDATION] File Structure
+================================================================================
+
+[*] Validating file structure in 907 files...
+
+Total files checked: 632
+Total violations: 2001
+
+[ERRORS] 2001 structure violations:
+  [X] CENTRAL/README.md (section): Missing section: ##?\s+Descrição
+  [X] CENTRAL/README.md (section): Missing section: ##?\s+Links
+  [X] CENTRAL/API/README.md (section): Missing section: ##?\s+Descrição
+  [X] CENTRAL/API/README.md (section): Missing section: ##?\s+Links
+  [X] CENTRAL/ARCHITECTURE/README.md (section): Missing section: ##?\s+Descrição
+  [X] CENTRAL/ARCHITECTURE/README.md (section): Missing section: ##?\s+Links
+  [X] CENTRAL/BUSINESS-RULES/README.md (section): Missing section: ##?\s+Descrição
+  [X] CENTRAL/BUSINESS-RULES/README.md (section): Missing section: ##?\s+Links
+  [X] CENTRAL/DOMAIN-MODEL/README.md (section): Missing section: ##?\s+Descrição
+  [X] CENTRAL/DOMAIN-MODEL/README.md (section): Missing section: ##?\s+Links
+  [X] CENTRAL/INTEGRATION/README.md (section): Missing section: ##?\s+Descrição
+  [X] CENTRAL/INTEGRATION/README.md (section): Missing section: ##?\s+Links
+  [X] CENTRAL/LIBRARIES/README.md (section): Missing section: ##?\s+Descrição
+  [X] CENTRAL/LIBRARIES/README.md (section): Missing section: ##?\s+Links
+  [X] CENTRAL/OPERATIONS/README.md (section): Missing section: ##?\s+Descrição
+  [X] CENTRAL/OPERATIONS/README.md (section): Missing section: ##?\s+Links
+  [X] CENTRAL/REQUIREMENTS/README.md (section): Missing section: ##?\s+Descrição
+  [X] CENTRAL/REQUIREMENTS/README.md (section): Missing section: ##?\s+Links
+  [X] CENTRAL/SECURITY/README.md (section): Missing section: ##?\s+Descrição
+  [X] CENTRAL/SECURITY/README.md (section): Missing section: ##?\s+Links
+  ... and 1981 more
+
+================================================================================
+Errors: 2001
+Warnings: 0
+================================================================================
+
+
+STDERR:

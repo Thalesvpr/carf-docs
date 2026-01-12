@@ -1,0 +1,31 @@
+Validação: Stack Versions
+================================================================================
+
+STDOUT:
+================================================================================
+[VALIDATION] Stack Versions
+================================================================================
+
+[ERRORS] 14 version inconsistencies:
+  [X] GEOWEB: React version mismatch in PROJECTS/GEOWEB/DOCS/FEATURES/README.md - found '18.3', expected 18
+  [X] GEOWEB: Vite version mismatch in PROJECTS/GEOWEB/DOCS/FEATURES/README.md - found '5.0', expected 5
+  [X] GEOWEB: TypeScript version mismatch in PROJECTS/GEOWEB/DOCS/FEATURES/README.md - found '5.3', expected 5
+  [X] GEOAPI: PostGIS version mismatch in PROJECTS/GEOAPI/DOCS/ARCHITECTURE/01-overview.md - found '3.4', expected 3
+  [X] GEOAPI: PostGIS version mismatch in PROJECTS/GEOAPI/DOCS/ARCHITECTURE/01-overview.md - found '3.4', expected 3
+  [X] GEOAPI: PostGIS version mismatch in PROJECTS/GEOAPI/DOCS/ARCHITECTURE/04-integration.md - found '3.4', expected 3
+  [X] GEOAPI: PostGIS version mismatch in PROJECTS/GEOAPI/DOCS/ARCHITECTURE/README.md - found '3.4', expected 3
+  [X] KEYCLOAK: Keycloak version mismatch in PROJECTS/KEYCLOAK/DOCS/README.md - found '24.0', expected 23
+  [X] KEYCLOAK: Keycloak version mismatch in PROJECTS/KEYCLOAK/DOCS/ARCHITECTURE/02-theme-architecture.md - found '2', expected 23
+  [X] KEYCLOAK: Keycloak version mismatch in PROJECTS/KEYCLOAK/DOCS/CONCEPTS/01-keycloak-themes.md - found '3', expected 23
+  [X] KEYCLOAK: Keycloak version mismatch in PROJECTS/KEYCLOAK/DOCS/FEATURES/README.md - found '23.0', expected 23
+  [X] GEOGIS: Python version mismatch in PROJECTS/GEOGIS/DOCS/README.md - found '3.9', expected 3.11
+  [X] GEOGIS: Python version mismatch in PROJECTS/GEOGIS/DOCS/ARCHITECTURE/README.md - found '3', expected 3.11
+  [X] GEOGIS: QGIS version mismatch in PROJECTS/GEOGIS/DOCS/README.md - found '3.28', expected 3.34
+
+================================================================================
+Errors: 14
+Warnings: 0
+================================================================================
+
+
+STDERR:

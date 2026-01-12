@@ -1,0 +1,34 @@
+Validação: RF Coverage
+================================================================================
+
+STDOUT:
+================================================================================
+[VALIDATION] RF Coverage
+================================================================================
+
+[*] Found 221 Functional Requirements (RF-001 to RF-221)
+
+Total RFs: 221
+Covered: 31
+Orphans: 190
+
+[ERRORS] 190 orphan RFs (not implemented):
+  [X] RF-004 not implemented in any FEATURES
+  [X] RF-010 not implemented in any FEATURES
+  [X] RF-011 not implemented in any FEATURES
+  [X] RF-016 not implemented in any FEATURES
+  [X] RF-017 not implemented in any FEATURES
+  [X] RF-025 not implemented in any FEATURES
+  [X] RF-027 not implemented in any FEATURES
+  [X] RF-028 not implemented in any FEATURES
+  [X] RF-029 not implemented in any FEATURES
+  [X] RF-030 not implemented in any FEATURES
+  ... and 180 more
+
+================================================================================
+Errors: 190
+Warnings: 0
+================================================================================
+
+
+STDERR:

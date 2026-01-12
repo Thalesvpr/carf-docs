@@ -1,0 +1,41 @@
+Validação: Central Isolation
+================================================================================
+
+STDOUT:
+================================================================================
+LINT: Central Isolation Validation
+================================================================================
+
+[1/4] Checking markdown links CENTRAL -> PROJECTS...
+  [OK] No markdown links to PROJECTS/
+
+[2/4] Checking code blocks with PROJECTS/ paths...
+  [OK] No code blocks with PROJECTS/ paths
+
+[3/4] Checking PROJECTS/*/DOCS/OVERVIEW.md exists...
+  [ERROR] Missing 5 OVERVIEW.md file(s)
+    - PROJECTS\GEOAPI\DOCS\OVERVIEW.md
+    - PROJECTS\GEOWEB\DOCS\OVERVIEW.md
+    - PROJECTS\REURBCAD\DOCS\OVERVIEW.md
+    - PROJECTS\GEOGIS\DOCS\OVERVIEW.md
+    - PROJECTS\ADMIN\DOCS\OVERVIEW.md
+
+[4/4] Checking FEATURES link to CENTRAL/REQUIREMENTS...
+  [WARNING] Found 21 feature(s) without CENTRAL links
+    - PROJECTS\ADMIN\DOCS\FEATURES\team-management.md
+    - PROJECTS\ADMIN\DOCS\FEATURES\user-management.md
+    - PROJECTS\GEOGIS\DOCS\FEATURES\gis-integration.md
+    - PROJECTS\GEOGIS\DOCS\FEATURES\shapefile-import.md
+    - PROJECTS\GEOWEB\DOCS\FEATURES\gis-integration.md
+    ... and 16 more
+
+================================================================================
+SUMMARY
+================================================================================
+  Errors: 5
+  Warnings: 21
+
+[FAIL] Validation failed with errors
+
+
+STDERR:

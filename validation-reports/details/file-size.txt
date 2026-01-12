@@ -1,0 +1,52 @@
+Validação: File Size
+================================================================================
+
+STDOUT:
+================================================================================
+[VALIDATION] File Size
+================================================================================
+
+[*] Validating file sizes in 907 files...
+
+Total files checked: 717
+Too small: 162
+Too large: 193
+
+[ERRORS] 162 files below minimum:
+  [X] CENTRAL/INTEGRATION/README.md (README) too small: 69w < 150w (missing 81w)
+  [X] CENTRAL/TESTING/README.md (README) too small: 144w < 150w (missing 6w)
+  [X] CENTRAL/TESTING/TEST-CASES/README.md (README) too small: 116w < 150w (missing 34w)
+  [X] CENTRAL/TESTING/TEST-STRATEGY/README.md (README) too small: 121w < 150w (missing 29w)
+  [X] CENTRAL/TESTING/TEST-CASES/API/README.md (README) too small: 122w < 150w (missing 28w)
+  [X] CENTRAL/TESTING/TEST-CASES/E2E/README.md (README) too small: 102w < 150w (missing 48w)
+  [X] CENTRAL/TESTING/TEST-CASES/UNIT/README.md (README) too small: 81w < 150w (missing 69w)
+  [X] CENTRAL/REQUIREMENTS/USE-CASES/UC-001-FA-001-desenhar-geometria-offline.md (UC) too small: 330w < 400w (missing 70w)
+  [X] CENTRAL/REQUIREMENTS/USE-CASES/UC-001-FA-002-importar-geometria-gps.md (UC) too small: 363w < 400w (missing 37w)
+  [X] CENTRAL/REQUIREMENTS/USE-CASES/UC-003-FE-001-cpf-invalido.md (UC) too small: 380w < 400w (missing 20w)
+  [X] CENTRAL/REQUIREMENTS/USE-CASES/UC-003-FE-002-titular-duplicado.md (UC) too small: 337w < 400w (missing 63w)
+  [X] CENTRAL/REQUIREMENTS/USE-CASES/UC-004-FA-001-sincronizar-imediato.md (UC) too small: 226w < 400w (missing 174w)
+  [X] CENTRAL/REQUIREMENTS/USE-CASES/UC-004-FA-002-voice-to-text.md (UC) too small: 282w < 400w (missing 118w)
+  [X] CENTRAL/REQUIREMENTS/USE-CASES/UC-004-FA-003-copiar-anterior.md (UC) too small: 267w < 400w (missing 133w)
+  [X] CENTRAL/REQUIREMENTS/USE-CASES/UC-004-FE-001-gps-indisponivel.md (UC) too small: 368w < 400w (missing 32w)
+  ... and 147 more
+
+[WARNINGS] 193 files above maximum:
+  [WARN] CENTRAL/LIBRARIES/README.md (README) too large: 652w > 500w (exceeds by 152w)
+  [WARN] CENTRAL/REQUIREMENTS/README.md (README) too large: 510w > 500w (exceeds by 10w)
+  [WARN] CENTRAL/REQUIREMENTS/USE-CASES/UC-002-FE-002-solicitar-alteracoes.md (UC) too large: 836w > 700w (exceeds by 136w)
+  [WARN] CENTRAL/REQUIREMENTS/USE-CASES/UC-003-FA-001-importar-planilha.md (UC) too large: 973w > 700w (exceeds by 273w)
+  [WARN] CENTRAL/REQUIREMENTS/USE-CASES/UC-003-vincular-titular-unidade.md (UC) too large: 720w > 700w (exceeds by 20w)
+  [WARN] CENTRAL/REQUIREMENTS/USE-CASES/UC-004-coletar-dados-campo-mobile.md (UC) too large: 844w > 700w (exceeds by 144w)
+  [WARN] CENTRAL/REQUIREMENTS/USE-CASES/UC-005-sincronizar-dados-offline.md (UC) too large: 824w > 700w (exceeds by 124w)
+  [WARN] CENTRAL/REQUIREMENTS/USE-CASES/UC-007-exportar-dados-geograficos.md (UC) too large: 876w > 700w (exceeds by 176w)
+  [WARN] CENTRAL/REQUIREMENTS/USE-CASES/UC-008-importar-shapefile.md (UC) too large: 1019w > 700w (exceeds by 319w)
+  [WARN] CENTRAL/REQUIREMENTS/USE-CASES/UC-009-gerenciar-processo-legitimacao.md (UC) too large: 1051w > 700w (exceeds by 351w)
+  ... and 183 more
+
+================================================================================
+Errors: 162
+Warnings: 193
+================================================================================
+
+
+STDERR:

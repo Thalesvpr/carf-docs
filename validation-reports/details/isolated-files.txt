@@ -1,0 +1,54 @@
+Validação: Isolated Files
+================================================================================
+
+STDOUT:
+Found 18 completely isolated files:
+
+
+## ADMIN (1 files)
+--------------------------------------------------------------------------------
+PROJECTS\ADMIN\SRC-CODE\carf-admin\README.md
+
+## GEOAPI (1 files)
+--------------------------------------------------------------------------------
+PROJECTS\GEOAPI\SRC-CODE\carf-geoapi\README.md
+
+## GEOGIS (1 files)
+--------------------------------------------------------------------------------
+PROJECTS\GEOGIS\SRC-CODE\carf-geogis\README.md
+
+## GEOWEB (1 files)
+--------------------------------------------------------------------------------
+PROJECTS\GEOWEB\SRC-CODE\carf-geoweb\README.md
+
+## LIB (2 files)
+--------------------------------------------------------------------------------
+PROJECTS\LIB\TS\TSCORE\SRC-CODE\carf-tscore\CHANGELOG.md
+PROJECTS\LIB\TS\TSCORE\SRC-CODE\carf-tscore\README.md
+
+## OTHER (9 files)
+--------------------------------------------------------------------------------
+AUDIT-PLAN.md
+PROJECTS\KEYCLOAK\SRC-CODE\carf-keycloak\BUILD.md
+PROJECTS\KEYCLOAK\SRC-CODE\carf-keycloak\CHANGELOG.md
+PROJECTS\KEYCLOAK\SRC-CODE\carf-keycloak\README.md
+PROJECTS\KEYCLOAK\SRC-CODE\carf-keycloak\tests\README.md
+PROJECTS\KEYCLOAK\SRC-CODE\carf-keycloak\themes\carf\login\resources\img\README.md
+PROJECTS\KEYCLOAK\SRC-CODE\carf-keycloak\themes\carf\login\resources\js\README.md
+validation-reports\BRUTAL-AUDIT.md
+validation-reports\SNAPSHOT-2026-01-12.md
+
+## REURBCAD (1 files)
+--------------------------------------------------------------------------------
+PROJECTS\REURBCAD\SRC-CODE\carf-reurbcad\README.md
+
+## WEBDOCS (2 files)
+--------------------------------------------------------------------------------
+PROJECTS\WEBDOCS\SRC-CODE\carf-webdocs\webdocs\src\public\requisitos\README.md
+PROJECTS\WEBDOCS\SRC-CODE\carf-webdocs\webdocs\src\public\roadmap\README.md
+
+
+Total: 18 files
+
+
+STDERR:

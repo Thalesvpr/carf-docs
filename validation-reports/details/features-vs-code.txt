@@ -1,0 +1,19 @@
+Validação: Features vs Code
+================================================================================
+
+STDOUT:
+================================================================================
+[VALIDATION] Features vs Code (Heuristic)
+================================================================================
+
+[NOTE] This is a heuristic validation based on common patterns.
+[NOTE] False positives/negatives are expected.
+
+[[OK]] Features and code appear aligned (heuristic)
+================================================================================
+Errors: 0
+Warnings: 0
+================================================================================
+
+
+STDERR:

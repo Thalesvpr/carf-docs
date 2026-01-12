@@ -1,0 +1,122 @@
+Validação: Broken Links
+================================================================================
+
+STDOUT:
+================================================================================
+VERIFICADOR DE LINKS MARKDOWN - VERSAO MELHORADA
+================================================================================
+Raiz: C:\DEV\CARF
+
+[*] Encontrados 975 arquivos .md
+
+================================================================================
+RESULTADOS
+================================================================================
+Arquivos .md encontrados: 975
+Arquivos com links: 162
+Links internos verificados: 2164
+Links quebrados: 3
+Arquivos com problemas: 2
+
+================================================================================
+DETALHES DOS LINKS QUEBRADOS
+================================================================================
+
+[ARQUIVO] VALIDATION-PLAN.md
+          2 link(s) quebrado(s)
+
+  [X] Texto: texto
+      Link: caminho
+      Resolve para: caminho
+      Motivo: arquivo nao existe
+
+  [X] Texto: .*\
+      Link: \..*\.md
+      Resolve para: ..\..\..*\.md
+      Motivo: arquivo nao existe
+
+--------------------------------------------------------------------------------
+
+[ARQUIVO] VALIDATION-RULES.md
+          1 link(s) quebrado(s)
+
+  [X] Texto: Nome
+      Link: path
+      Resolve para: path
+      Motivo: arquivo nao existe
+
+--------------------------------------------------------------------------------
+
+================================================================================
+ANALISE DE CONECTIVIDADE
+================================================================================
+
+[!] COMPLETAMENTE ISOLADOS (18 arquivos)
+    Nao linkam para ninguem E ninguem linka para eles
+
+    - AUDIT-PLAN.md
+    - PROJECTS\ADMIN\SRC-CODE\carf-admin\README.md
+    - PROJECTS\GEOAPI\SRC-CODE\carf-geoapi\README.md
+    - PROJECTS\GEOGIS\SRC-CODE\carf-geogis\README.md
+    - PROJECTS\GEOWEB\SRC-CODE\carf-geoweb\README.md
+    - PROJECTS\KEYCLOAK\SRC-CODE\carf-keycloak\BUILD.md
+    - PROJECTS\KEYCLOAK\SRC-CODE\carf-keycloak\CHANGELOG.md
+    - PROJECTS\KEYCLOAK\SRC-CODE\carf-keycloak\README.md
+    - PROJECTS\KEYCLOAK\SRC-CODE\carf-keycloak\tests\README.md
+    - PROJECTS\KEYCLOAK\SRC-CODE\carf-keycloak\themes\carf\login\resources\img\README.md
+    - PROJECTS\KEYCLOAK\SRC-CODE\carf-keycloak\themes\carf\login\resources\js\README.md
+    - PROJECTS\LIB\TS\TSCORE\SRC-CODE\carf-tscore\CHANGELOG.md
+    - PROJECTS\LIB\TS\TSCORE\SRC-CODE\carf-tscore\README.md
+    - PROJECTS\REURBCAD\SRC-CODE\carf-reurbcad\README.md
+    - PROJECTS\WEBDOCS\SRC-CODE\carf-webdocs\webdocs\src\public\requisitos\README.md
+    - PROJECTS\WEBDOCS\SRC-CODE\carf-webdocs\webdocs\src\public\roadmap\README.md
+    - validation-reports\BRUTAL-AUDIT.md
+    - validation-reports\SNAPSHOT-2026-01-12.md
+
+--------------------------------------------------------------------------------
+
+[!] ORFAOS (8 arquivos)
+    Ninguem linka para eles (mas eles linkam para outros)
+
+    - PROJECTS\KEYCLOAK\README.md
+    - PROJECTS\LIB\TS\GEOAPI-CLIENT\SRC-CODE\carf-geoapi-client\README.md
+    - PROJECTS\LIB\TS\TSCORE\SRC-CODE\CHANGELOG.md
+    - PROJECTS\LIB\TS\UI-COMPONENTS\SRC-CODE\carf-ui\README.md
+    - PROJECTS\WEBDOCS\SRC-CODE\carf-webdocs\README.md
+    - README.md
+    - VALIDATION-PLAN.md
+    - VALIDATION-RULES.md
+
+--------------------------------------------------------------------------------
+
+[!] ISOLADOS (821 arquivos)
+    Nao linkam para ninguem (mas outros linkam para eles)
+
+    - CENTRAL\ARCHITECTURE\ADRs\ADR-001-dotnet-9-backend.md
+    - CENTRAL\ARCHITECTURE\ADRs\ADR-002-postgresql-postgis.md
+    - CENTRAL\ARCHITECTURE\ADRs\ADR-003-keycloak-autenticacao.md
+    - CENTRAL\ARCHITECTURE\ADRs\ADR-004-react-native-mobile.md
+    - CENTRAL\ARCHITECTURE\ADRs\ADR-005-multi-tenancy-rls.md
+    - CENTRAL\ARCHITECTURE\ADRs\ADR-006-offline-first-watermelondb.md
+    - CENTRAL\ARCHITECTURE\ADRs\ADR-007-bun-runtime-bundler.md
+    - CENTRAL\ARCHITECTURE\ADRs\ADR-008-clean-architecture-ddd.md
+    - CENTRAL\ARCHITECTURE\ADRs\ADR-009-cqrs-pattern.md
+    - CENTRAL\ARCHITECTURE\ADRs\ADR-010-event-driven-architecture.md
+    - CENTRAL\ARCHITECTURE\ADRs\ADR-011-shared-library-tscore.md
+    - CENTRAL\ARCHITECTURE\ADRs\ADR-012-vite-bundler-frontend.md
+    - CENTRAL\ARCHITECTURE\ADRs\ADR-013-vercel-deployment-platform.md
+    - CENTRAL\ARCHITECTURE\ADRs\ADR-014-shadcn-ui-component-library.md
+    - CENTRAL\ARCHITECTURE\ADRs\ADR-015-tanstack-query-server-state.md
+    - CENTRAL\ARCHITECTURE\ADRs\ADR-016-astro-starlight-documentation.md
+    - CENTRAL\ARCHITECTURE\ADRs\ADR-017-github-actions-cicd.md
+    - CENTRAL\ARCHITECTURE\ADRs\ADR-018-playwright-e2e-testing.md
+    - CENTRAL\ARCHITECTURE\ADRs\ADR-019-zustand-client-state.md
+    - CENTRAL\ARCHITECTURE\ADRs\ADR-020-docker-kubernetes-orchestration.md
+    ... e mais 801 arquivos
+
+
+Verificacao concluida.
+
+
+
+STDERR:
