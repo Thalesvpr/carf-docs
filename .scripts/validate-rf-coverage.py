@@ -13,7 +13,7 @@ def find_all_rfs():
         return []
 
     rfs = []
-    for rf_file in rf_dir.glob("RF-*.md"):
+    for rf_file in rf_dir.rglob("RF-*.md"):
         # Extrai número RF do filename
         match = re.match(r"RF-(\d{3})", rf_file.stem)
         if match:

@@ -4,10 +4,27 @@ Requisitos não-funcionais do CARF especificando atributos de qualidade e restri
 
 ## Navegação
 
-**[index-by-epic.md](./index-by-epic.md)** - Índice de todos os 85 Requisitos Não-Funcionais organizados por épica (performance, security, scalability, compatibility, usability)
-
-Documentação complementar de requirements inclui [overview completo](../README.md) apresentando estrutura hierárquica de 11 UCs 221 RFs 140 USs e 85 RNFs com estatísticas de cobertura por módulo e épica, [índice por módulo](../index-by-module.md) organizando requirements conforme projetos implementadores GEOWEB REURBCAD GEOAPI GEOGIS facilitando descoberta de atributos de qualidade por equipe de desenvolvimento, e [matriz de rastreabilidade](../traceability-matrix.md) mapeando relacionamentos bidirecionais UC→RF→US→RNF estabelecendo conexões explícitas entre casos de uso requisitos funcionais user stories e requisitos não-funcionais.
+Documentação complementar de requirements inclui [overview completo](../README.md) apresentando estrutura hierárquica de 11 UCs 221 RFs 140 USs e 85 RNFs com estatísticas de cobertura por módulo e épica organizando requirements conforme projetos implementadores GEOWEB REURBCAD GEOAPI GEOGIS facilitando descoberta de atributos de qualidade por equipe de desenvolvimento estabelecendo conexões explícitas entre casos de uso requisitos funcionais user stories e requisitos não-funcionais.
 
 ---
 
 **Última atualização:** 2026-01-10
+
+---
+
+<!-- GENERATED:START - Não edite abaixo desta linha -->
+## Índice por Domínio (85 requisitos)
+
+| # | Domínio | Arquivos |
+|:--|:--------|:--------:|
+| 01 | [Performance](./01-performance/README.md) | 8 |
+| 02 | [Segurança](./02-security/README.md) | 17 |
+| 03 | [Confiabilidade](./03-reliability/README.md) | 12 |
+| 04 | [Usabilidade](./04-usability/README.md) | 13 |
+| 05 | [Escalabilidade](./05-scalability/README.md) | 19 |
+| 06 | [Compatibilidade](./06-compatibility/README.md) | 7 |
+| 07 | [Manutenibilidade](./07-maintainability/README.md) | 6 |
+| 08 | [Interoperabilidade](./08-interoperability/README.md) | 3 |
+
+*Gerado automaticamente em 2026-01-13 19:11*
+<!-- GENERATED:END -->

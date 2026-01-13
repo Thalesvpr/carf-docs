@@ -4,20 +4,57 @@
     "type": "split",
     "children": [
       {
-        "id": "73f6e6824ac8f9dc",
+        "id": "d676ebd7363871d6",
         "type": "tabs",
         "children": [
           {
-            "id": "0a221fd44f0e8a8b",
+            "id": "7f169666e23f46a9",
             "type": "leaf",
             "state": {
               "type": "graph",
               "state": {},
               "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "title": "Visualização em gráfico"
+            }
+          },
+          {
+            "id": "70cf73baeaf23580",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "graph",
+              "state": {},
+              "pinned": true,
+              "icon": "lucide-git-fork",
+              "title": "Visualização em gráfico"
+            }
+          },
+          {
+            "id": "a00e0754602f309c",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Nova aba"
+            }
+          },
+          {
+            "id": "c00800a826cea57f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/01-performance/RNF-001-tempo-resposta-endpoints-leitura.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "RNF-001-tempo-resposta-endpoints-leitura"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -40,7 +77,7 @@
                 "autoReveal": false
               },
               "icon": "lucide-folder-closed",
-              "title": "Files"
+              "title": "Explorador de arquivos"
             }
           },
           {
@@ -74,8 +111,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 400.5
   },
   "right": {
     "id": "5c80d725b66a9060",
@@ -171,52 +207,52 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Open quick switcher": false,
-      "graph:Open graph view": false,
-      "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
-      "templates:Insert template": false,
-      "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "switcher:Abrir a troca rápida": false,
+      "graph:Abrir visualização em gráfico": false,
+      "canvas:Criar novo canvas": false,
+      "daily-notes:Abrir a nota de hoje": false,
+      "templates:Inserir modelo": false,
+      "command-palette:Abrir paleta de comandos": false,
+      "bases:Criar nova base": false
     }
   },
-  "active": "0a221fd44f0e8a8b",
+  "active": "70cf73baeaf23580",
   "lastOpenFiles": [
-    "tmpclaude-ece5-cwd",
-    "tmpclaude-f2b8-cwd",
-    "tmpclaude-3b0d-cwd",
-    "tmpclaude-af75-cwd",
-    "CENTRAL/REQUIREMENTS/USE-CASES/UC-001-cadastrar-unidade-habitacional.md",
+    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/01-performance/RNF-001-tempo-resposta-endpoints-leitura.md",
+    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/RNF-001-tempo-resposta-endpoints-leitura.md",
+    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/01-performance/README.md",
+    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/RNF-004-tempo-carregamento-frontend.md",
+    "CENTRAL/REQUIREMENTS/USE-CASES/UC-001-cadastrar-unidade-habitacional/README.md",
+    "CENTRAL/REQUIREMENTS/USE-CASES/README.md",
+    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/README.md",
+    "CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/08-documents-media/README.md",
+    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/RNF-003-tempo-resposta-queries-espaciais.md",
+    "CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/01-auth-security/README.md",
+    "CENTRAL/REQUIREMENTS/USER-STORIES/README.md",
+    "CENTRAL/REQUIREMENTS/USER-STORIES/09-layers-features/README.md",
     "CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/README.md",
-    "CENTRAL/REQUIREMENTS/README.md",
-    "README.md",
-    "tmpclaude-6a1b-cwd",
-    "tmpclaude-37e0-cwd",
-    "tmpclaude-d551-cwd",
-    "tmpclaude-d2f5-cwd",
-    "tmpclaude-d76e-cwd",
-    "tmpclaude-db25-cwd",
-    "tmpclaude-aca7-cwd",
-    "CENTRAL/DOMAIN-MODEL/AGGREGATES/README.md",
-    "PROJECTS/GEOGIS/DOCS/REQUIREMENTS/README.md",
-    "PROJECTS/WEBDOCS/DOCS/LAYERS/README.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/USE-CASES/README.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/USE-CASES/19-index-reurbcad-compatibility-ucs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/USE-CASES/18-index-reurbcad-scalability-ucs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/USE-CASES/17-index-reurbcad-portability-ucs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/USE-CASES/16-index-reurbcad-maintainability-ucs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/USE-CASES/15-index-reurbcad-usability-ucs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/USE-CASES/13-index-reurbcad-security-ucs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/USE-CASES/12-index-reurbcad-performance-ucs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/USE-CASES/08-index-reurbcad-teams-ucs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/13-index-reurbcad-security-rnfs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/12-index-reurbcad-performance-rnfs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/README.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/19-index-reurbcad-compatibility-rfs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/18-index-reurbcad-scalability-rfs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/16-index-reurbcad-maintainability-rfs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/15-index-reurbcad-usability-rfs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/14-index-reurbcad-reliability-rfs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/13-index-reurbcad-security-rfs.md"
+    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/05-scalability/README.md",
+    "CENTRAL/REQUIREMENTS/USE-CASES/index-by-epic.md",
+    "CENTRAL/REQUIREMENTS/USER-STORIES/03-users-teams/README.md",
+    "PROJECTS/ADMIN/README.md",
+    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/08-interoperability/README.md",
+    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/07-maintainability/README.md",
+    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/06-compatibility/README.md",
+    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/04-usability/README.md",
+    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/03-reliability/README.md",
+    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/02-security/README.md",
+    "CENTRAL/REQUIREMENTS/USE-CASES/UC-011-gerenciar-equipes-tecnicas/README.md",
+    "CENTRAL/REQUIREMENTS/USE-CASES/UC-010-configurar-camadas-wms/README.md",
+    "CENTRAL/REQUIREMENTS/USE-CASES/UC-009-gerenciar-processo-legitimacao/README.md",
+    "move-requirements.sh",
+    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/08-interoperability",
+    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/07-maintainability",
+    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/06-compatibility",
+    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/05-scalability",
+    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/04-usability",
+    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/03-reliability",
+    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/02-security",
+    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/01-performance",
+    "CENTRAL/REQUIREMENTS/USE-CASES/UC-011-gerenciar-equipes-tecnicas"
   ]
 }

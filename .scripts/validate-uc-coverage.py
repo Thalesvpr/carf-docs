@@ -29,7 +29,7 @@ def check_uc_coverage():
     total_ucs = 0
 
     # Iterar UCs principais
-    for uc in sorted(uc_dir.glob('UC-*.md')):
+    for uc in sorted(uc_dir.rglob('UC-*.md')):
         if 'FA-' in uc.name or 'FE-' in uc.name:
             continue
 
