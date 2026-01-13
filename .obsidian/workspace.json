@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "d676ebd7363871d6",
+        "id": "73f6e6824ac8f9dc",
         "type": "tabs",
         "children": [
           {
-            "id": "7f169666e23f46a9",
+            "id": "0a221fd44f0e8a8b",
             "type": "leaf",
             "state": {
               "type": "graph",
@@ -74,7 +74,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "5c80d725b66a9060",
@@ -179,19 +180,23 @@
       "bases:Create new base": false
     }
   },
-  "active": "7f169666e23f46a9",
+  "active": "0a221fd44f0e8a8b",
   "lastOpenFiles": [
+    "tmpclaude-ece5-cwd",
+    "tmpclaude-f2b8-cwd",
+    "tmpclaude-3b0d-cwd",
+    "tmpclaude-af75-cwd",
+    "CENTRAL/REQUIREMENTS/USE-CASES/UC-001-cadastrar-unidade-habitacional.md",
+    "CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/README.md",
+    "CENTRAL/REQUIREMENTS/README.md",
+    "README.md",
+    "tmpclaude-6a1b-cwd",
+    "tmpclaude-37e0-cwd",
+    "tmpclaude-d551-cwd",
+    "tmpclaude-d2f5-cwd",
+    "tmpclaude-d76e-cwd",
+    "tmpclaude-db25-cwd",
     "tmpclaude-aca7-cwd",
-    "tmpclaude-9ae9-cwd",
-    "tmpclaude-46f7-cwd",
-    "tmpclaude-515d-cwd",
-    "tmpclaude-3eac-cwd",
-    "tmpclaude-0f7f-cwd",
-    "tmpclaude-3232-cwd",
-    "tmpclaude-ce50-cwd",
-    "tmpclaude-0719-cwd",
-    "tmpclaude-8030-cwd",
-    "tmpclaude-0aad-cwd",
     "CENTRAL/DOMAIN-MODEL/AGGREGATES/README.md",
     "PROJECTS/GEOGIS/DOCS/REQUIREMENTS/README.md",
     "PROJECTS/WEBDOCS/DOCS/LAYERS/README.md",
@@ -212,10 +217,6 @@
     "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/16-index-reurbcad-maintainability-rfs.md",
     "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/15-index-reurbcad-usability-rfs.md",
     "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/14-index-reurbcad-reliability-rfs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/13-index-reurbcad-security-rfs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/12-index-reurbcad-performance-rfs.md",
-    "PROJECTS/GEOWEB/DOCS/REQUIREMENTS/USER-STORIES/16-index-geoweb-maintainability-uss.md",
-    "PROJECTS/GEOWEB/DOCS/REQUIREMENTS/USER-STORIES/15-index-geoweb-usability-uss.md",
-    "PROJECTS/GEOWEB/DOCS/REQUIREMENTS/USER-STORIES/14-index-geoweb-reliability-uss.md"
+    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/13-index-reurbcad-security-rfs.md"
   ]
 }
