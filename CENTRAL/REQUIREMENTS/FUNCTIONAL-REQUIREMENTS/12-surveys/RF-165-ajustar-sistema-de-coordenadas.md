@@ -10,3 +10,4 @@ O sistema permite configurar o SRID (Spatial Reference Identifier) do levantamen
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

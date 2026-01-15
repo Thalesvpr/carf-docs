@@ -10,3 +10,4 @@ O aplicativo mobile permite captura de fotos através da câmera do dispositivo 
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

@@ -8,12 +8,19 @@ As [regras de workflow](./WORKFLOW-RULES/README.md) governam transições de sta
 
 As [regras de legitimação](./LEGITIMATION-RULES/README.md) estabelecem requisitos específicos conforme Lei 13.465/2017, diferenciando as modalidades REURB-S (interesse social) e REURB-E (interesse específico) quanto a área, custos e documentação obrigatória.
 
-## Categorias
-
-- **[VALIDATION-RULES/](./VALIDATION-RULES/README.md)** - Validação de dados e formatos
-- **[WORKFLOW-RULES/](./WORKFLOW-RULES/README.md)** - Transições de status e permissões
-- **[LEGITIMATION-RULES/](./LEGITIMATION-RULES/README.md)** - Regras da Lei 13.465/2017
-
 ---
 
-**Última atualização:** 2026-01-14
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Pronto
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (22 arquivos)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+|  | [Legitimation Rules](./LEGITIMATION-RULES/README.md) | 6 |
+|  | [Validation Rules](./VALIDATION-RULES/README.md) | 11 |
+|  | [Workflow Rules](./WORKFLOW-RULES/README.md) | 5 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

@@ -10,3 +10,4 @@ Usuários com role SUPER_ADMIN podem desativar tenant utilizando soft delete ond
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

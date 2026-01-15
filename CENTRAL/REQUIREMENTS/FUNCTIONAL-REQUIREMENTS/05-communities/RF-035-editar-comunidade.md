@@ -10,3 +10,4 @@ Usuários com role ADMIN podem editar dados de comunidades existentes onde atual
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

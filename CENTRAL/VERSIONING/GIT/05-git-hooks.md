@@ -5,3 +5,4 @@ Git hooks automatizando checks do CARF via Husky. pre-commit (lint staged files 
 ---
 
 **Última atualização:** 2025-12-29
+**Status do arquivo**: Pronto

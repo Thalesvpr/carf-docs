@@ -10,3 +10,4 @@ Usuários com role SUPER_ADMIN e ADMIN do próprio tenant podem editar configura
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

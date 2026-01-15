@@ -10,3 +10,19 @@ Manifests Kubernetes CARF usando Kustomize BASE contém manifests genéricos Dep
 ---
 
 **Última atualização:** 2026-01-11
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Pronto
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (0 arquivos)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+|  | [Base](./BASE/README.md) | 0 |
+|  | [Overlays](./OVERLAYS/README.md) | 0 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

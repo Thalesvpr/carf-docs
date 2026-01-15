@@ -23,3 +23,22 @@ A política de [controle de acesso](./05-access-control-policy.md) define MFA ob
 ---
 
 **Última atualização:** 2026-01-14
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Pronto
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (5 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-authentication-policy](./01-authentication-policy.md) | Authentication Policy |
+| [02-authorization-policy](./02-authorization-policy.md) | Authorization Policy |
+| [03-encryption-policy](./03-encryption-policy.md) | Encryption Policy |
+| [04-lgpd-compliance-policy](./04-lgpd-compliance-policy.md) | LGPD Compliance Policy |
+| [05-access-control-policy](./05-access-control-policy.md) | Access Control Policy |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

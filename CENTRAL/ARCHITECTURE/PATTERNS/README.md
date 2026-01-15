@@ -25,4 +25,22 @@ Os [padrões GIS](./07-gis-spatial-patterns.md) documentam uso de índices espac
 
 ---
 
-**Última atualização:** 2026-01-14
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Aguardando (nova geração) index gerado por script.
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (7 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-clean-architecture](./01-clean-architecture.md) | Clean Architecture |
+| [02-cqrs](./02-cqrs.md) | CQRS |
+| [03-repository-uow](./03-repository-uow.md) | Repository & Unit of Work |
+| [04-domain-events](./04-domain-events.md) | Domain Events |
+| [05-frontend-patterns](./05-frontend-patterns.md) | Frontend Patterns |
+| [06-mobile-offline-first](./06-mobile-offline-first.md) | Mobile Offline-First |
+| [07-gis-spatial-patterns](./07-gis-spatial-patterns.md) | GIS Spatial Patterns |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

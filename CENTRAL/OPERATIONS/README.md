@@ -8,12 +8,20 @@ A [manutenção](./MAINTENANCE/README.md) inclui backup incremental diário do P
 
 Os [runbooks](./RUNBOOKS/README.md) documentam troubleshooting de problemas frequentes como connection pool exhausted, JWT expired, RLS policy block e slow queries, com guia sistemático para reproduzir, coletar logs, verificar métricas e aplicar fix.
 
-## Estrutura
-
-- **[MONITORING/](./MONITORING/README.md)** - Prometheus, Grafana e Loki
-- **[MAINTENANCE/](./MAINTENANCE/README.md)** - Backup, restore e manutenção de banco
-- **[RUNBOOKS/](./RUNBOOKS/README.md)** - Troubleshooting de problemas comuns
-
 ---
 
-**Última atualização:** 2026-01-14
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Aguardando index gerado por script.
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (0 arquivos)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+|  | [Maintenance](./MAINTENANCE/README.md) | 0 |
+|  | [Monitoring](./MONITORING/README.md) | 0 |
+|  | [Runbooks](./RUNBOOKS/README.md) | 0 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

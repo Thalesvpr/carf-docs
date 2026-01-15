@@ -18,3 +18,5 @@ Status da decisão é aprovado e implementado desde 2024-Q3.
 **Status:** Aprovado e Implementado
 **Decisor:** Equipe de Arquitetura + Frontend
 **Última revisão:** 2025-01-10
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Pronto

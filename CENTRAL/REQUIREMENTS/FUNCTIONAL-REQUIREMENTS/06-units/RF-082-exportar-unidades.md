@@ -10,3 +10,4 @@ O sistema deve permitir exportação de unidades selecionadas ou filtradas em m�
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

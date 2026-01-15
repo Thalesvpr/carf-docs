@@ -2,10 +2,10 @@
 
 ---
 
-<!-- GENERATED:START - Não edite abaixo desta linha -->
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (11 requisitos)
 
-| ID | Título |
+| ID | Titulo |
 |:---|:-------|
 | [RF-142](./RF-142-busca-espacial-de-features.md) | Busca Espacial de Features |
 | [RF-143](./RF-143-análise-espacial-buffer.md) | Análise Espacial: Buffer |
@@ -19,5 +19,7 @@
 | [RF-151](./RF-151-popup-de-feature.md) | Popup de Feature |
 | [RF-152](./RF-152-seleção-múltipla-de-features.md) | Seleção Múltipla de Features |
 
-*Gerado automaticamente em 2026-01-13 19:11*
+*Gerado automaticamente em 2026-01-15 17:41*
 <!-- GENERATED:END -->
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Pronto

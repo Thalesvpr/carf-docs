@@ -1,25 +1,29 @@
 # WORKFLOWS
 
-Workflows descrevem sequências de atividades coordenadas entre atores humanos e sistema, atravessando múltiplos aggregates para completar processos de negócio end-to-end.
+Fluxos de trabalho end-to-end do CARF documentando sequências de atividades coordenadas entre atores humanos e sistema, atravessando múltiplos aggregates para completar processos de negócio completos desde configuração inicial até certificação final.
 
-A documentação segue princípio technology-agnostic, usando termos genéricos como "banco de dados relacional" e "ferramenta GIS desktop" sem mencionar tecnologias específicas. Detalhes de implementação pertencem a PROJECTS/*/DOCS/.
+O [workflow de integração WMS](./01-wms-integration-workflow.md) documenta consumo de ortofotos via servidores WMS/WMTS conforme padrões OGC, desde levantamento aerofotogramétrico até publicação de tiles para visualização no sistema. O [workflow de coleta em campo](./02-field-data-collection-workflow.md) descreve o processo de cadastramento de unidades e titulares usando dispositivo móvel com suporte offline.
 
-A ordem dos workflows reflete a sequência temporal do processo real, desde configuração inicial até certificação final.
+O [workflow de sincronização offline](./03-offline-sync-workflow.md) detalha a reconciliação bidirecional entre dispositivo móvel e servidor quando conexão é restabelecida, incluindo resolução de conflitos. O [workflow de validação por analista](./04-analyst-validation-workflow.md) cobre revisão e aprovação de dados coletados em campo pelo analista técnico.
 
-## Workflows Documentados
-
-1. **[01-wms-integration-workflow.md](./01-wms-integration-workflow.md)** - Configuração e consumo de ortofotos via WMS/WMTS OGC para visualização de imagens aéreas como base cartográfica.
-
-2. **[02-field-data-collection-workflow.md](./02-field-data-collection-workflow.md)** - Coleta de dados em campo usando app mobile offline-first, capturando geometrias, fotos e informações de titulares.
-
-3. **[03-offline-sync-workflow.md](./03-offline-sync-workflow.md)** - Sincronização bidirecional entre mobile e backend com detecção e resolução de conflitos.
-
-4. **[04-analyst-validation-workflow.md](./04-analyst-validation-workflow.md)** - Validação e correção em massa de geometrias usando ferramenta GIS desktop com ortofotos sobrepostas.
-
-5. **[05-topography-workflow.md](./05-topography-workflow.md)** - Levantamento topográfico profissional com GNSS e pós-processamento via estações RBMC para precisão centimétrica.
-
-6. **[06-legitimation-workflow.md](./06-legitimation-workflow.md)** - Processo completo de legitimação fundiária conforme Lei 13.465/2017, desde submissão até emissão de certidão.
+O [workflow de topografia](./05-topography-workflow.md) documenta levantamento topográfico com receptor GNSS para georreferenciamento preciso de vértices. E o [workflow de legitimação](./06-legitimation-workflow.md) descreve o processo completo de legitimação fundiária conforme Lei 13.465/2017, desde solicitação até emissão de certificado.
 
 ---
 
-**Última atualização:** 2026-01-14
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Pronto
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (6 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-wms-integration-workflow](./01-wms-integration-workflow.md) | WMS Integration Workflow |
+| [02-field-data-collection-workflow](./02-field-data-collection-workflow.md) | Field Data Collection Workflow |
+| [03-offline-sync-workflow](./03-offline-sync-workflow.md) | Offline Sync Workflow (Sincronização Offline Bidirecional) |
+| [04-analyst-validation-workflow](./04-analyst-validation-workflow.md) | Analyst Validation Workflow |
+| [05-topography-workflow](./05-topography-workflow.md) | Topography Workflow |
+| [06-legitimation-workflow](./06-legitimation-workflow.md) | Legitimation Workflow |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

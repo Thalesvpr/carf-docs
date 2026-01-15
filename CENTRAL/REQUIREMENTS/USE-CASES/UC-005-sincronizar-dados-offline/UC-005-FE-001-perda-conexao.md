@@ -14,3 +14,4 @@ Fluxo de exceção do UC-005 Sincronizar Dados Offline ocorrendo em qualquer fas
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

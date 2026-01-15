@@ -7,3 +7,4 @@ Entidade representando pessoa física titular ocupante ou interessado em unidade
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Pronto

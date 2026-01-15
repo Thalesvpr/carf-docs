@@ -57,3 +57,5 @@ Upload para Azure Blob Storage instalando Azure CLI seguido por executar az stor
 - Backups semanais: 4 semanas
 - Backups mensais: 12 meses
 - Backups anuais: 7 anos
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Pronto

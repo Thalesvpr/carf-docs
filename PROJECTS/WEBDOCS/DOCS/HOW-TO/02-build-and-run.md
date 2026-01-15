@@ -39,3 +39,9 @@ dist/
 
 - [Astro Build](https://docs.astro.build/en/reference/cli-reference/#astro-build)
 - [Vercel Deployment](https://vercel.com/docs/deployments/overview)
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Contém code blocks - considerar converter para prosa.

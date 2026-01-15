@@ -9,4 +9,4 @@ Como analista, quero adicionar comentários em unidades para que equipe colabore
 
 ---
 
-**Última atualização:** 2025-12-30
+**Última atualização:** 2025-12-30**Status do arquivo**: Pronto

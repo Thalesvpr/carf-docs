@@ -2,10 +2,10 @@
 
 ---
 
-<!-- GENERATED:START - Não edite abaixo desta linha -->
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (19 requisitos)
 
-| ID | Título |
+| ID | Titulo |
 |:---|:-------|
 | [RNF-006](./RNF-006-upload-arquivos.md) | Upload de Arquivos |
 | [RNF-009](./RNF-009-sincronizacao-offline-push.md) | Sincronização Offline - Push |
@@ -27,5 +27,11 @@
 | [RNF-080](./RNF-080-database-sharding.md) | Database Sharding (Futuro) |
 | [RNF-087](./RNF-087-webhooks.md) | Webhooks (Futuro) |
 
-*Gerado automaticamente em 2026-01-13 19:11*
+*Gerado automaticamente em 2026-01-15 17:41*
 <!-- GENERATED:END -->
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Falta parágrafo denso introdutório.

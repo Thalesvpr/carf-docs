@@ -9,4 +9,4 @@ Como gestor, quero excluir titular cadastrado por engano para que base fique lim
 
 ---
 
-**Última atualização:** 2025-12-30
+**Última atualização:** 2025-12-30**Status do arquivo**: Pronto

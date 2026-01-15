@@ -2,10 +2,10 @@
 
 ---
 
-<!-- GENERATED:START - Não edite abaixo desta linha -->
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (15 requisitos)
 
-| ID | Título |
+| ID | Titulo |
 |:---|:-------|
 | [RF-034](./RF-034-criar-comunidade.md) | Criar Comunidade |
 | [RF-035](./RF-035-editar-comunidade.md) | Editar Comunidade |
@@ -23,5 +23,7 @@
 | [RF-047](./RF-047-clonar-comunidade.md) | Clonar Comunidade |
 | [RF-048](./RF-048-atribuir-comunidade-a-equipe.md) | Atribuir Comunidade a Equipe |
 
-*Gerado automaticamente em 2026-01-13 19:11*
+*Gerado automaticamente em 2026-01-15 17:41*
 <!-- GENERATED:END -->
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Pronto

@@ -6,3 +6,4 @@ Exception indicando que usuário autenticado não tem permissão para executar o
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

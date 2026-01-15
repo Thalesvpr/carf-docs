@@ -29,7 +29,19 @@
       "Bash(do if [ -f \"$dest\" ])",
       "Bash(then echo \"✓ $dest\")",
       "Bash(else echo \"✗ $dest \\(NÃO EXISTE\\)\")",
-      "Bash(fi)"
+      "Bash(fi)",
+      "Bash(gh pr view:*)",
+      "Bash(dir:*)",
+      "Bash(findstr:*)",
+      "Bash(find:*)",
+      "Bash(git mv:*)",
+      "Bash(while read link)",
+      "Bash(do:*)",
+      "Bash(if [[ ! \"$link\" =~ ^http ]])",
+      "Bash(then)",
+      "Bash(if [ -e \"$link\" ])",
+      "Bash(echo:*)",
+      "Bash(else)"
     ],
     "deny": [],
     "ask": []

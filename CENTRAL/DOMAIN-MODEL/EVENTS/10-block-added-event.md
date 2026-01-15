@@ -7,3 +7,4 @@ Domain event emitido por Community aggregate root quando novo Block quadra urban
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Pronto

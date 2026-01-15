@@ -6,3 +6,4 @@ Domain event emitido quando conflito de sincronização offline é detectado dur
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

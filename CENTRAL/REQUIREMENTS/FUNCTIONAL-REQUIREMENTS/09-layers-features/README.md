@@ -2,10 +2,10 @@
 
 ---
 
-<!-- GENERATED:START - Não edite abaixo desta linha -->
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (15 requisitos)
 
-| ID | Título |
+| ID | Titulo |
 |:---|:-------|
 | [RF-127](./RF-127-criar-camada-layer.md) | Criar Camada (Layer) |
 | [RF-128](./RF-128-editar-camada.md) | Editar Camada |
@@ -23,5 +23,7 @@
 | [RF-140](./RF-140-importar-geojson-em-camada.md) | Importar GeoJSON em Camada |
 | [RF-141](./RF-141-exportar-camada.md) | Exportar Camada |
 
-*Gerado automaticamente em 2026-01-13 19:11*
+*Gerado automaticamente em 2026-01-15 17:41*
 <!-- GENERATED:END -->
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Pronto

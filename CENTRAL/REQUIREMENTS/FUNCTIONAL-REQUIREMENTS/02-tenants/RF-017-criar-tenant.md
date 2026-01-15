@@ -10,3 +10,4 @@ Usuários com role SUPER_ADMIN devem poder criar novos tenants no sistema onde f
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

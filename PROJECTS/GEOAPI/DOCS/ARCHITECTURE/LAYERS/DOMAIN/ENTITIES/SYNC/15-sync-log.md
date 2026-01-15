@@ -9,3 +9,4 @@ Métodos incluem DetectConflict() comparando BaseVersion RowVersion atual retorn
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

@@ -22,3 +22,28 @@ Entidades de domínio do GEOAPI encapsulando lógica e regras de negócio organi
 ---
 
 **Última atualização:** 2026-01-12
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (33 arquivos)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+|  | [Annotations](./ANNOTATIONS/README.md) | 1 |
+|  | [Audit](./AUDIT/README.md) | 1 |
+|  | [Auth](./AUTH/README.md) | 2 |
+|  | [Base](./BASE/README.md) | 2 |
+|  | [Communities](./COMMUNITIES/README.md) | 3 |
+|  | [Core](./CORE/README.md) | 2 |
+|  | [Documents](./DOCUMENTS/README.md) | 1 |
+|  | [Gis](./GIS/README.md) | 4 |
+|  | [Holders](./HOLDERS/README.md) | 2 |
+|  | [Legitimation](./LEGITIMATION/README.md) | 5 |
+|  | [Surveying](./SURVEYING/README.md) | 5 |
+|  | [Sync](./SYNC/README.md) | 1 |
+|  | [Teams](./TEAMS/README.md) | 3 |
+|  | [Units](./UNITS/README.md) | 1 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Incompleto
+Descrição: Muitas listas com bullets (14) antes do rodapé - considerar converter para parágrafo denso.

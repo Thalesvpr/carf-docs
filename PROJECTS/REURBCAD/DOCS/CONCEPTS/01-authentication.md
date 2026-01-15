@@ -5,3 +5,9 @@ Armazena refresh_token em SecureStore com await SecureStore.setItemAsync('refres
 Offline_access scope crítico para obter offline refresh token com validade estendida (30 dias idle, 60 dias max) configurado no Keycloak realm permitindo field collectors trabalhar semanas sem re-login mesmo offline porque quando voltam online refresh ainda válido, logout implementado com revoke(config, { tokenToRevoke: refreshToken }) fazendo POST ao /protocol/openid-connect/revoke invalidando token no server side, depois limpa SecureStore com deleteItemAsync('refresh_token') e seta this.accessToken = null, this.refreshToken = null.
 
 API integration usa interceptor Axios que antes de request chama accessToken = await AuthService.getAccessToken() garantindo token válido e adiciona Authorization: Bearer ${accessToken}, se response 401 tenta refresh uma vez, se falha novamente força logout, network offline handling onde se NetInfo.isConnected=false API calls são queued localmente em AsyncStorage com pending_requests array cada item { url, method, body, headers, timestamp }, quando conexão restabelecida processa queue sequencialmente retry failed requests com exponential backoff.
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Falta título H1 na primeira linha.

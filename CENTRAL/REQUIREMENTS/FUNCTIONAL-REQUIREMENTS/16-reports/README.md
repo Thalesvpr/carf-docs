@@ -2,10 +2,10 @@
 
 ---
 
-<!-- GENERATED:START - Não edite abaixo desta linha -->
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (9 requisitos)
 
-| ID | Título |
+| ID | Titulo |
 |:---|:-------|
 | [RF-203](./RF-203-relatório-de-unidades-por-status.md) | Relatório de Unidades por Status |
 | [RF-204](./RF-204-relatório-de-titulares.md) | Relatório de Titulares |
@@ -17,5 +17,7 @@
 | [RF-210](./RF-210-mapa-de-situação-pdf.md) | Mapa de Situação (PDF) |
 | [RF-211](./RF-211-agendamento-de-relatórios.md) | Agendamento de Relatórios |
 
-*Gerado automaticamente em 2026-01-13 19:11*
+*Gerado automaticamente em 2026-01-15 17:41*
 <!-- GENERATED:END -->
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Pronto

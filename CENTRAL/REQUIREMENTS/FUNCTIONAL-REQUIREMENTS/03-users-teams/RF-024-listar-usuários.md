@@ -10,3 +10,4 @@ Usuários com role ADMIN podem listar usuários do próprio tenant onde paginaç
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

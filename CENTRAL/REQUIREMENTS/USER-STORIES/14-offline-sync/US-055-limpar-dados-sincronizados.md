@@ -10,3 +10,4 @@ Como agente de campo, quero limpar dados locais que já foram sincronizados com 
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

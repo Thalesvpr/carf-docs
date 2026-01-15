@@ -10,3 +10,4 @@ O sistema deve permitir que usuários façam upload de documentos em formatos di
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

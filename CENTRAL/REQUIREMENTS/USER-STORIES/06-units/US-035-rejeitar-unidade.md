@@ -9,4 +9,4 @@ Como gestor, quero rejeitar unidade com motivo para que analista corrija, onde o
 
 ---
 
-**Última atualização:** 2025-12-30
+**Última atualização:** 2025-12-30**Status do arquivo**: Pronto

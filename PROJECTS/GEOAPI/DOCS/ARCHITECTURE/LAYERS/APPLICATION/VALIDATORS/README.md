@@ -22,3 +22,5 @@ FluentValidation validators do GEOAPI validando commands e DTOs antes de execuç
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Incompleto
+Descrição: Falta seção GENERATED com índice automático; Muitas listas com bullets (11) antes do rodapé - considerar converter para parágrafo denso.

@@ -10,3 +10,4 @@ O sistema permite o upload de documentos de memorial descritivo em formato PDF v
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

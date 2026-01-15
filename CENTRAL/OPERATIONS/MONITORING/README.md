@@ -10,12 +10,23 @@ O [Logging](./LOGGING/README.md) usa Loki com Promtail para agregação de logs 
 
 SLOs definidos: 99.5% uptime e p99 latency menor que 500ms.
 
-## Estrutura
-
-- **[PROMETHEUS/](./PROMETHEUS/README.md)** - Métricas, alertas e recording rules
-- **[GRAFANA/](./GRAFANA/README.md)** - Dashboards e visualizações
-- **[LOGGING/](./LOGGING/README.md)** - Loki, Promtail e retention policies
-
 ---
 
 **Última atualização:** 2026-01-14
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Pronto
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (0 arquivos)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+|  | [Grafana](./GRAFANA/README.md) | 0 |
+|  | [Logging](./LOGGING/README.md) | 0 |
+|  | [Prometheus](./PROMETHEUS/README.md) | 0 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

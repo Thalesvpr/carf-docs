@@ -14,3 +14,4 @@ Fluxo de exceção do UC-010 Configurar Camadas WMS ocorrendo no passo 7 quando 
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

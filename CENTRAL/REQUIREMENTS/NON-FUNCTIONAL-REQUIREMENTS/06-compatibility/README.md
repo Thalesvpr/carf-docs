@@ -2,10 +2,10 @@
 
 ---
 
-<!-- GENERATED:START - Não edite abaixo desta linha -->
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (7 requisitos)
 
-| ID | Título |
+| ID | Titulo |
 |:---|:-------|
 | [RNF-007](./RNF-007-exportacao-dados.md) | Exportação de Dados |
 | [RNF-008](./RNF-008-sincronizacao-offline-pull.md) | Sincronização Offline - Pull |
@@ -15,5 +15,11 @@
 | [RNF-083](./RNF-083-sistemas-coordenadas.md) | Sistemas de Coordenadas |
 | [RNF-084](./RNF-084-integracao-wms-wmts.md) | Integração WMS/WMTS |
 
-*Gerado automaticamente em 2026-01-13 19:11*
+*Gerado automaticamente em 2026-01-15 17:41*
 <!-- GENERATED:END -->
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Falta parágrafo denso introdutório.

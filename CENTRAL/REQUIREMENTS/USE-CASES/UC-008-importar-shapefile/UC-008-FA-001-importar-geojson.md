@@ -14,3 +14,4 @@ Fluxo alternativo do UC-008 Importar Shapefile desviando no passo 5.1 Upload ond
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

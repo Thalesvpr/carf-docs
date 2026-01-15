@@ -7,3 +7,4 @@ Entidade aggregate root central representando instituição cliente no sistema m
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Pronto

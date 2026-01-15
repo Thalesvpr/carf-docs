@@ -5,3 +5,4 @@
 ---
 
 **Última atualização:** 2026-01-09
+**Status do arquivo**: Pronto

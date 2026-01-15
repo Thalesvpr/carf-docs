@@ -9,4 +9,4 @@ Como gestor, quero aprovar unidade cadastrada para que ela passe para próxima e
 
 ---
 
-**Última atualização:** 2025-12-30
+**Última atualização:** 2025-12-30**Status do arquivo**: Pronto

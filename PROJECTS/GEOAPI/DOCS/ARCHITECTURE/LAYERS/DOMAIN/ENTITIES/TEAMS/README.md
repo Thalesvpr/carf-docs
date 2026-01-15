@@ -11,3 +11,16 @@ Entities gerenciamento equipes técnicas campo do GEOAPI organizando field agent
 ---
 
 **Última atualização:** 2026-01-12
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (3 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [05-team](./05-team.md) | Team |
+| [18-team-member](./18-team-member.md) | TeamMember |
+| [19-community-authorization](./19-community-authorization.md) | CommunityAuthorization |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Pronto

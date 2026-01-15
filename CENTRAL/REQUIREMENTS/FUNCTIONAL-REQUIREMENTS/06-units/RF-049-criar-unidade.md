@@ -10,3 +10,4 @@ Usuários autorizados (ANALYST FIELD_AGENT MANAGER) podem criar novas unidades c
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

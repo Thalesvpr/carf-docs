@@ -6,3 +6,4 @@ Domain event emitido quando nova 02-unit é criada indicando que unidade habitac
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

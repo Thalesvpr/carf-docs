@@ -8,15 +8,23 @@ A API de [comunidades](./COMMUNITIES/README.md) agrega unidades geograficamente 
 
 Segue padrões RESTful com versionamento via header, HATEOAS para navegação e rate limiting por tenant.
 
-## Domínios
-
-- **[AUTHENTICATION/](./AUTHENTICATION/README.md)** - Login, refresh token, logout, validação JWT
-- **[UNITS/](./UNITS/README.md)** - Unidades habitacionais
-- **[HOLDERS/](./HOLDERS/README.md)** - Titulares e vinculações
-- **[COMMUNITIES/](./COMMUNITIES/README.md)** - Comunidades e agregações
-- **[LEGITIMATION/](./LEGITIMATION/README.md)** - Processos de legitimação fundiária
-- **[REPORTS/](./REPORTS/README.md)** - Geração de relatórios e exports
-
 ---
 
-**Última atualização:** 2026-01-14
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Aguardando index gerado por script.
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (0 arquivos)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+|  | [Authentication](./AUTHENTICATION/README.md) | 0 |
+|  | [Communities](./COMMUNITIES/README.md) | 0 |
+|  | [Holders](./HOLDERS/README.md) | 0 |
+|  | [Legitimation](./LEGITIMATION/README.md) | 0 |
+|  | [Reports](./REPORTS/README.md) | 0 |
+|  | [Units](./UNITS/README.md) | 0 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

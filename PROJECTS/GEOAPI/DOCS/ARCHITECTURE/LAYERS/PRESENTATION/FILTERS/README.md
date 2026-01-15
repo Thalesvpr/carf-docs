@@ -13,3 +13,5 @@ Action filters do GEOAPI aplicando cross-cutting concerns específicos a control
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Incompleto
+Descrição: Falta seção GENERATED com índice automático.

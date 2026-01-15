@@ -10,3 +10,4 @@ Como gestor com autoridade de aprovação, quero analisar e decidir aprovar ou r
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

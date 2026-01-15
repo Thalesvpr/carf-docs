@@ -5,3 +5,4 @@ Pull Request guidelines do CARF garantindo qualidade. Template PR (título descr
 ---
 
 **Última atualização:** 2025-12-29
+**Status do arquivo**: Pronto

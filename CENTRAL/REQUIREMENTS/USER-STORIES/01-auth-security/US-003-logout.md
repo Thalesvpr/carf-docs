@@ -9,4 +9,4 @@ Como usuário autenticado, quero fazer logout do sistema para que minha sessão 
 
 ---
 
-**Última atualização:** 2025-12-30
+**Última atualização:** 2025-12-30**Status do arquivo**: Pronto

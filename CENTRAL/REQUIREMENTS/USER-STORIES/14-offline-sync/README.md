@@ -2,10 +2,10 @@
 
 ---
 
-<!-- GENERATED:START - Não edite abaixo desta linha -->
-## Arquivos (11 requisitos)
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (11 user stories)
 
-| ID | Título |
+| ID | Titulo |
 |:---|:-------|
 | [US-040](./US-040-cadastrar-unidade-offline.md) | Cadastrar Unidade Offline |
 | [US-041](./US-041-desenhar-geometria-com-gps.md) | Desenhar Geometria com GPS |
@@ -19,5 +19,11 @@
 | [US-054](./US-054-resolver-conflitos-de-dados.md) | Resolver Conflitos de Dados |
 | [US-055](./US-055-limpar-dados-sincronizados.md) | Limpar Dados Sincronizados |
 
-*Gerado automaticamente em 2026-01-13 19:11*
+*Gerado automaticamente em 2026-01-15 17:41*
 <!-- GENERATED:END -->
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Falta parágrafo denso introdutório.

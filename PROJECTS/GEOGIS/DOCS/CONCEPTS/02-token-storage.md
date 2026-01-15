@@ -5,3 +5,9 @@ Sensitive values como access_token refresh_token client_secret devem usar QSetti
 Debugging QSettings values via Settings Options Advanced Settings tree navegando CARF GEOGIS vendo keys mas values mostrados como encrypted strings não plaintext tokens migration de plain text storage se plugin versions antigas armazenavam tokens insecure então migration code em plugin upgrade lê old settings.value('token') salva via setValue() triggering encryption remove old key evitando deixar plain text residual token expiration tracking armazena expires_at timestamp via settings.setValue('expires_at', datetime.now().isoformat()) convertendo datetime para ISO string porque QSettings não suporta datetime objects directly ao ler converte back com datetime.fromisoformat(settings.value('expires_at')).
 
 Backup considerations QSettings backup via QGIS profile export import não inclui encrypted password manager entries então após restore em novo machine user precisa re-login porque tokens não transferred alternativa armazenar apenas refresh_token porque long-lived dias semanas ao invés de access_token short-lived minutos reduzindo re-authentication frequency multi-profile support QGIS permite múltiplos profiles cada com QSettings isolated então user pode ter profile "Dev" conectando localhost Keycloak e profile "Prod" conectando production Keycloak sem interference switching profiles maintains separate authentication sessions credentials.
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Falta título H1 na primeira linha.

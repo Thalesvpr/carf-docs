@@ -14,3 +14,4 @@ Fluxo alternativo do UC-006 Gerar Relatório de Comunidade desviando no passo 8 
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

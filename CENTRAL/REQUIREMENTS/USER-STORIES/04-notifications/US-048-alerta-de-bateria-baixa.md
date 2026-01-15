@@ -10,3 +10,4 @@ Como agente de campo, quero ser alertado quando a bateria do dispositivo estiver
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

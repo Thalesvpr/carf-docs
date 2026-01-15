@@ -10,3 +10,4 @@ O sistema deve permitir que usuários autorizados baixem documentos anexados atr
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

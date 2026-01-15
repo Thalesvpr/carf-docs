@@ -2,10 +2,10 @@
 
 ---
 
-<!-- GENERATED:START - Não edite abaixo desta linha -->
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (6 requisitos)
 
-| ID | Título |
+| ID | Titulo |
 |:---|:-------|
 | [RNF-056](./RNF-056-cobertura-de-testes.md) | Cobertura de Testes |
 | [RNF-059](./RNF-059-versionamento-semantico.md) | Versionamento Semântico |
@@ -14,5 +14,11 @@
 | [RNF-064](./RNF-064-refatoracao-continua.md) | Refatoração Contínua |
 | [RNF-082](./RNF-082-formatos-exportacao.md) | Formatos de Exportação |
 
-*Gerado automaticamente em 2026-01-13 19:11*
+*Gerado automaticamente em 2026-01-15 17:41*
 <!-- GENERATED:END -->
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Falta parágrafo denso introdutório.

@@ -13,3 +13,18 @@ Conceitos fundamentais Keycloak e customização CARF explicando themes system e
 ---
 
 **Última atualização:** 2026-01-12
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (5 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-keycloak-themes](./01-keycloak-themes.md) | Conceitos: Keycloak Themes |
+| [02-keycloak-spis](./02-keycloak-spis.md) | 02-keycloak-spis |
+| [03-realm-customization](./03-realm-customization.md) | 03-realm-customization |
+| [04-oauth2-oidc-flows](./04-oauth2-oidc-flows.md) | 04-oauth2-oidc-flows |
+| [05-multi-tenancy-strategy](./05-multi-tenancy-strategy.md) | 05-multi-tenancy-strategy |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Pronto

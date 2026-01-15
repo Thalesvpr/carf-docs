@@ -10,3 +10,19 @@ Kustomize overlays customizando base por ambiente. Estrutura: cada ambiente (DEV
 ---
 
 **Última atualização:** 2025-12-29
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Pronto
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (0 arquivos)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+|  | [Dev](./DEV/README.md) | 0 |
+|  | [Prod](./PROD/README.md) | 0 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

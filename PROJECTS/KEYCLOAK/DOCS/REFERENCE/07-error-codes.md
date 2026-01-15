@@ -5,3 +5,4 @@ Códigos erro OAuth2/OIDC retornados em responses seguindo RFC 6749. invalid_req
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

@@ -10,3 +10,4 @@ Como sistema, quero comprimir automaticamente fotos antes de armazenar permanent
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

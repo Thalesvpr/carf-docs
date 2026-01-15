@@ -14,3 +14,4 @@ Fluxo alternativo do UC-005 Sincronizar Dados Offline desviando no gatilho de in
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

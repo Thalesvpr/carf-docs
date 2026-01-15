@@ -24,3 +24,5 @@ Estratégias de mapeamento entre domain entities e DTOs do GEOAPI usando AutoMap
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Incompleto
+Descrição: Falta seção GENERATED com índice automático; Muitas listas com bullets (11) antes do rodapé - considerar converter para parágrafo denso.

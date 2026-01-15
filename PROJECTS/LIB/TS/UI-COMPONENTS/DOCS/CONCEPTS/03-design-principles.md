@@ -5,3 +5,4 @@ Princípios design @carf/ui estabelecem Composition over Configuration preferind
 ---
 
 **Última atualização:** 2026-01-11
+**Status do arquivo**: Pronto

@@ -6,3 +6,4 @@ Interface genérica de repositório definindo operações CRUD padrão para toda
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

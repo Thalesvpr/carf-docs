@@ -10,3 +10,4 @@ Este requisito estabelece que todos os arquivos uploaded devem ser escaneados pa
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

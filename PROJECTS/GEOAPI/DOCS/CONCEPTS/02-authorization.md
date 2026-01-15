@@ -3,3 +3,9 @@ Authorization no GEOAPI implementa role-based access control RBAC com 4 realm ro
 Validação de roles acontece em 3 níveis sendo primeiro nível [Authorize] attribute em controllers que bloqueia acesso se usuário não autenticado retornando 401 Unauthorized segundo nível [Authorize(Roles = "analyst,admin,super-admin")] que permite acesso apenas para roles especificadas retornando 403 Forbidden se usuário tem role insuficiente terceiro nível validação programática dentro de handlers usando HasAnyRole(["admin", "super-admin"]) para lógica condicional como admin só pode gerenciar usuários do próprio tenant enquanto super-admin pode gerenciar todos.
 
 RLS integration funciona em paralelo onde além de roles o tenant_id claim é extraído e usado para setar app.tenant_id no PostgreSQL garantindo que queries só retornam dados do tenant correto mesmo que usuário tenha role admin prevenindo acesso acidental a dados de outros tenants e composite roles no Keycloak evitam duplicação onde ao atribuir role admin ao usuário ele automaticamente ganha analyst e field-collector facilitando gestão de permissões e garantindo consistência hierárquica RBAC model inheritance.
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Falta título H1 na primeira linha.

@@ -4,10 +4,18 @@ Relacionamentos entre entidades do domínio CARF, especificando cardinalidades, 
 
 Relacionamentos entre aggregates diferentes usam apenas IDs, nunca referências diretas a objetos, garantindo fronteiras transacionais claras conforme padrões DDD. Inclui relacionamentos auto-referenciados hierárquicos e cascade delete behaviors definidos nas constraints do PostgreSQL.
 
-## Documentos
-
-- **[entity-relationships.md](./entity-relationships.md)** - Mapeamento completo de relacionamentos e cardinalidades
-
 ---
 
-**Última atualização:** 2026-01-14
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Aguardando (nova geração) index gerado por script.
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (1 arquivo)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-entity-relationships](./01-entity-relationships.md) | Entity Relationships |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

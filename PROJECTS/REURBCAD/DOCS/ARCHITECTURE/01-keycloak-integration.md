@@ -5,3 +5,9 @@ Login() method chama authorize(config) que abre browser nativo via ASWebAuthenti
 Logout() method chama revoke(config, { tokenToRevoke: refreshToken }) invalidando token no Keycloak depois limpa tokens local com SecureStore.deleteItemAsync(), restoreSession() method chamado no app startup tenta obter refresh_token do SecureStore, se existe tenta refresh para obter accessToken válido, se sucesso usuário já logado, se falha força login, API calls usam interceptor que adiciona Authorization header obtendo token com await AuthService.getAccessToken() antes de cada request, se request retorna 401 tenta refresh uma vez, se falha novamente força logout.
 
 Tenant switching implementado fazendo POST /api/auth/switch-tenant no backend com novo tenantId, backend valida allowed_tenants claim e atualiza current_tenant no Keycloak, frontend força refresh com getAccessToken() passando flag para bypass cache obtendo novo token com tenant_id claim atualizado, limpa WatermelonDB local com database.write(async () => { await database.unsafeResetDatabase() }) para evitar mixing de dados de diferentes tenants, re-sincroniza dados do novo tenant via syncData(), e offline tokens critical porque field collectors trabalham áreas sem internet então refresh token deve durar 30 dias configurado no Keycloak realm settings Offline Session Idle: 30 days permitindo sync quando voltam para área com conexão.
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Falta título H1 na primeira linha.

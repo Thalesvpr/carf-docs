@@ -10,3 +10,4 @@ O sistema deve permitir que usuários com perfil MANAGER aprovem unidades que es
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

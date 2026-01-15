@@ -10,11 +10,19 @@ A criptografia usa AES-256 para dados em repouso, TLS 1.3 para dados em trânsit
 
 As [políticas](./POLICIES/README.md) definem regras de autenticação, autorização, criptografia e LGPD. Os [procedimentos de incidentes](./INCIDENTS/README.md) cobrem classificação, resposta, contenção e post-mortem.
 
-## Estrutura
-
-- **[POLICIES/](./POLICIES/README.md)** - Políticas de segurança e compliance
-- **[INCIDENTS/](./INCIDENTS/README.md)** - Resposta a incidentes e auditoria
-
 ---
 
-**Última atualização:** 2026-01-14
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Aguardando index gerado por script.
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (9 arquivos)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+|  | [Incidents](./INCIDENTS/README.md) | 4 |
+|  | [Policies](./POLICIES/README.md) | 5 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

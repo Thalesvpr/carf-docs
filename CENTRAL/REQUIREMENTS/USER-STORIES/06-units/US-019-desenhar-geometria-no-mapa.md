@@ -9,4 +9,4 @@ Como analista trabalhando na web, quero desenhar polígono diretamente no mapa p
 
 ---
 
-**Última atualização:** 2025-12-30
+**Última atualização:** 2025-12-30**Status do arquivo**: Pronto

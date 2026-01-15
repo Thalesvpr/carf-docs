@@ -17,3 +17,17 @@ bun add @carf/ui @carf/tscore
 ---
 
 **Última atualização:** 2026-01-11
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (12 arquivos)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+|  | [Architecture](./ARCHITECTURE/README.md) | 4 |
+|  | [Concepts](./CONCEPTS/README.md) | 4 |
+|  | [How To](./HOW-TO/README.md) | 4 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Incompleto
+Descrição: Contém code blocks - considerar converter para prosa.

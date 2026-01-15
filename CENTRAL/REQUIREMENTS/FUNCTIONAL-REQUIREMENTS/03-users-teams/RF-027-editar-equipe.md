@@ -10,3 +10,4 @@ Usuários com role ADMIN podem editar dados de equipes existentes onde atualiza�
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

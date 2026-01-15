@@ -5,3 +5,8 @@ Agregação logs CARF usando stack Loki Promtail collecting Loki central Grafana
 ---
 
 **Última atualização:** 2026-01-11
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Pronto

@@ -6,3 +6,4 @@ Interface responsável por despachar domain events coletados de aggregate roots 
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

@@ -10,3 +10,4 @@ O sistema deve permitir que administradores (perfil ADMIN) excluam titulares da 
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

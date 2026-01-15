@@ -9,4 +9,4 @@ Como gestor, quero aprovar múltiplas unidades de uma vez para que processo seja
 
 ---
 
-**Última atualização:** 2025-12-30
+**Última atualização:** 2025-12-30**Status do arquivo**: Pronto

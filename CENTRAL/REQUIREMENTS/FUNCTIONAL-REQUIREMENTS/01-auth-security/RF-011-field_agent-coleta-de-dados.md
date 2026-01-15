@@ -10,3 +10,4 @@ Usuários com role FIELD_AGENT utilizando aplicativo mobile REURBCAD podem cadas
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

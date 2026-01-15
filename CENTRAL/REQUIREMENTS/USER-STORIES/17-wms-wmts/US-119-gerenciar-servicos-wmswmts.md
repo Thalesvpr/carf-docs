@@ -10,3 +10,4 @@ Como administrador de tenant necessitando integrar dados geoespaciais externos, 
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

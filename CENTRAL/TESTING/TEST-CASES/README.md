@@ -10,12 +10,23 @@ Os [testes unitários](./UNIT/README.md) cobrem código isolado: domain-tests pa
 
 Fixtures, factories e test data builders facilitam o setup rápido dos testes.
 
-## Estrutura
-
-- **[API/](./API/README.md)** - Testes de API REST
-- **[E2E/](./E2E/README.md)** - Testes end-to-end
-- **[UNIT/](./UNIT/README.md)** - Testes unitários
-
 ---
 
 **Última atualização:** 2026-01-14
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Pronto
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (0 arquivos)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+|  | [Api](./API/README.md) | 0 |
+|  | [E2e](./E2E/README.md) | 0 |
+|  | [Unit](./UNIT/README.md) | 0 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

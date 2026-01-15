@@ -18,3 +18,4 @@ App importa Voice de pacote @react-native-voice/voice, define função async sta
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

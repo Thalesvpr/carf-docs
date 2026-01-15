@@ -10,3 +10,4 @@ Sistema deve suportar cinco níveis hierárquicos de acesso baseados em roles se
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

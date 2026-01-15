@@ -5,3 +5,4 @@ Política de controle de acesso do CARF gerenciando ciclo de vida usuários e pe
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

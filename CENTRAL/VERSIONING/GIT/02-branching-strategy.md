@@ -5,3 +5,4 @@ Trunk-based development do CARF com feature branches curtas. Branch main sempre 
 ---
 
 **Última atualização:** 2025-12-29
+**Status do arquivo**: Pronto

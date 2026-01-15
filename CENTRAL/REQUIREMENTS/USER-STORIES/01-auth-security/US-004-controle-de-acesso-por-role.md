@@ -9,4 +9,4 @@ Como administrador, quero que usuários vejam apenas funcionalidades do seu role
 
 ---
 
-**Última atualização:** 2025-12-30
+**Última atualização:** 2025-12-30**Status do arquivo**: Pronto

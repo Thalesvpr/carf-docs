@@ -10,3 +10,4 @@ Como agente de campo, quero que os dados sincronizem automaticamente quando o di
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

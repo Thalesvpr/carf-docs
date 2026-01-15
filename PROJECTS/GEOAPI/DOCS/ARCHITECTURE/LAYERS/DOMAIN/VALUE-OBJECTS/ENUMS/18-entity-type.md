@@ -9,3 +9,4 @@ Usado em Annotation.EntityType e Annotation.EntityId criando relacionamento poli
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

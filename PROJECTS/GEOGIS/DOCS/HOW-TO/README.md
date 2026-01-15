@@ -53,3 +53,17 @@ Guias práticos para desenvolver e usar o plugin GEOGIS QGIS.
 ---
 
 **Última atualização:** 2026-01-10
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (3 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-setup-keycloak](./01-setup-keycloak.md) | 01-setup-keycloak |
+| [02-login-flow](./02-login-flow.md) | 02-login-flow |
+| [03-api-requests](./03-api-requests.md) | 03-api-requests |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Incompleto
+Descrição: Falta parágrafo denso introdutório; Muitas listas com bullets (17) antes do rodapé - considerar converter para parágrafo denso.

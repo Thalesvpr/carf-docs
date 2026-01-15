@@ -2,10 +2,10 @@
 
 ---
 
-<!-- GENERATED:START - Não edite abaixo desta linha -->
-## Arquivos (9 requisitos)
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (9 user stories)
 
-| ID | Título |
+| ID | Titulo |
 |:---|:-------|
 | [US-042](./US-042-tirar-fotos-com-câmera.md) | Tirar Fotos com Câmera |
 | [US-043](./US-043-selecionar-fotos-da-galeria.md) | Selecionar Fotos da Galeria |
@@ -17,5 +17,11 @@
 | [US-070](./US-070-geolocalização-de-fotos.md) | Geolocalização de Fotos |
 | [US-071](./US-071-compressão-de-fotos.md) | Compressão de Fotos |
 
-*Gerado automaticamente em 2026-01-13 19:11*
+*Gerado automaticamente em 2026-01-15 17:41*
 <!-- GENERATED:END -->
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Falta parágrafo denso introdutório.

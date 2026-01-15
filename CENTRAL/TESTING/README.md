@@ -8,11 +8,19 @@ Os [casos de teste](./TEST-CASES/README.md) estão organizados por tipo: testes 
 
 Inclui fixtures, factories e test data builders para setup rápido, evitando código duplicado nos testes.
 
-## Estrutura
-
-- **[TEST-STRATEGY/](./TEST-STRATEGY/README.md)** - Pirâmide de testes e coverage targets
-- **[TEST-CASES/](./TEST-CASES/README.md)** - Casos de teste organizados por tipo
-
 ---
 
-**Última atualização:** 2026-01-14
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Aguardando index gerado por script.
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (2 arquivos)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+|  | [Test Cases](./TEST-CASES/README.md) | 0 |
+|  | [Test Strategy](./TEST-STRATEGY/README.md) | 2 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

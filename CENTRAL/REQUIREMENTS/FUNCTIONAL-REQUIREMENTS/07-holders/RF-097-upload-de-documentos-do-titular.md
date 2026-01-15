@@ -10,3 +10,4 @@ O sistema deve permitir anexação de documentos pessoais a registros de titular
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

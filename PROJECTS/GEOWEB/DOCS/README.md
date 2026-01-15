@@ -13,3 +13,18 @@ Portal web React TypeScript para gestão REURB mapas interativos cadastro unidad
 ---
 
 **Última atualização:** 2026-01-11
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (16 arquivos)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+|  | [Architecture](./ARCHITECTURE/README.md) | 2 |
+|  | [Concepts](./CONCEPTS/README.md) | 3 |
+|  | [Features](./FEATURES/README.md) | 7 |
+|  | [How To](./HOW-TO/README.md) | 3 |
+|  | [Layers](./LAYERS/README.md) | 1 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Pronto

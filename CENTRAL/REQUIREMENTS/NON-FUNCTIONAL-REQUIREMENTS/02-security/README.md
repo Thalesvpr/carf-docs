@@ -2,10 +2,10 @@
 
 ---
 
-<!-- GENERATED:START - Não edite abaixo desta linha -->
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (17 requisitos)
 
-| ID | Título |
+| ID | Titulo |
 |:---|:-------|
 | [RNF-016](./RNF-016-autenticacao-oauth2.md) | Autenticação OAuth2 |
 | [RNF-017](./RNF-017-expiracao-tokens.md) | Expiração de Tokens |
@@ -25,5 +25,11 @@
 | [RNF-034](./RNF-034-sql-injection-prevention.md) | SQL Injection Prevention |
 | [RNF-035](./RNF-035-monitoramento-seguranca.md) | Monitoramento de Segurança |
 
-*Gerado automaticamente em 2026-01-13 19:11*
+*Gerado automaticamente em 2026-01-15 17:41*
 <!-- GENERATED:END -->
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Falta parágrafo denso introdutório.

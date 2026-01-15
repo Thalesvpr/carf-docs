@@ -10,3 +10,4 @@ O sistema oferece capacidade de gerar curvas de nível a partir de pontos topogr
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

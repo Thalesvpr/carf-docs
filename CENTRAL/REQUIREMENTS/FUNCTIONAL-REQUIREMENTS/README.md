@@ -12,28 +12,29 @@ Servem como fonte única de verdade - os projetos referenciam estes requisitos a
 
 ---
 
-<!-- GENERATED:START - Não edite abaixo desta linha -->
-## Índice por Domínio (221 requisitos)
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (221 requisitos)
 
-| # | Domínio | Arquivos |
+| # | Dominio | Arquivos |
 |:--|:--------|:--------:|
-| 01 | [Autenticação e Segurança](./01-auth-security/README.md) | 16 |
-| 02 | [Gestão de Tenants](./02-tenants/README.md) | 4 |
-| 03 | [Usuários e Equipes](./03-users-teams/README.md) | 12 |
-| 04 | [Notificações](./04-notifications/README.md) | 1 |
-| 05 | [Gestão de Comunidades](./05-communities/README.md) | 15 |
-| 06 | [Gestão de Unidades](./06-units/README.md) | 35 |
-| 07 | [Gestão de Titulares](./07-holders/README.md) | 18 |
-| 08 | [Documentos e Mídia](./08-documents-media/README.md) | 25 |
+| 01 | [Autenticacao e Seguranca](./01-auth-security/README.md) | 16 |
+| 02 | [Gestao de Tenants](./02-tenants/README.md) | 4 |
+| 03 | [Usuarios e Equipes](./03-users-teams/README.md) | 12 |
+| 04 | [Notificacoes](./04-notifications/README.md) | 1 |
+| 05 | [Gestao de Comunidades](./05-communities/README.md) | 15 |
+| 06 | [Gestao de Unidades](./06-units/README.md) | 35 |
+| 07 | [Gestao de Titulares](./07-holders/README.md) | 18 |
+| 08 | [Documentos e Midia](./08-documents-media/README.md) | 25 |
 | 09 | [Camadas e Features](./09-layers-features/README.md) | 15 |
-| 10 | [Análise Espacial](./10-spatial-analysis/README.md) | 11 |
-| 11 | [Anotações](./11-annotations/README.md) | 4 |
-| 12 | [Levantamentos Topográficos](./12-surveys/README.md) | 15 |
-| 13 | [Processos de Legitimação](./13-legitimation/README.md) | 10 |
-| 14 | [Modo Offline e Sincronização](./14-offline-sync/README.md) | 15 |
-| 15 | [Exportação de Dados](./15-data-export/README.md) | 6 |
-| 16 | [Relatórios](./16-reports/README.md) | 9 |
-| 17 | [Integrações WMS/WMTS](./17-wms-wmts/README.md) | 10 |
+| 10 | [Analise Espacial](./10-spatial-analysis/README.md) | 11 |
+| 11 | [Anotacoes](./11-annotations/README.md) | 4 |
+| 12 | [Levantamentos Topograficos](./12-surveys/README.md) | 15 |
+| 13 | [Processos de Legitimacao](./13-legitimation/README.md) | 10 |
+| 14 | [Modo Offline e Sincronizacao](./14-offline-sync/README.md) | 15 |
+| 15 | [Exportacao de Dados](./15-data-export/README.md) | 6 |
+| 16 | [Relatorios](./16-reports/README.md) | 9 |
+| 17 | [Integracoes WMS/WMTS](./17-wms-wmts/README.md) | 10 |
 
-*Gerado automaticamente em 2026-01-13 19:11*
+*Gerado automaticamente em 2026-01-15 17:41*
 <!-- GENERATED:END -->
+**Status do arquivo**: Pronto

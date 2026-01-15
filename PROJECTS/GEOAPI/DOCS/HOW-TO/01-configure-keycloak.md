@@ -11,3 +11,4 @@ Configurar CORS com builder.Services.AddCors adicionando policy que permite orig
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

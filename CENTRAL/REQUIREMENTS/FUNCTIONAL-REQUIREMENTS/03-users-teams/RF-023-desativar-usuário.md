@@ -10,3 +10,4 @@ Usuários com role ADMIN podem desativar usuário utilizando soft delete onde us
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

@@ -16,4 +16,18 @@ O [LegitimationRequestAggregate](./03-legitimation-request-aggregate.md) tem Leg
 
 ---
 
-**Última atualização:** 2026-01-14
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Aguardando (nova geração) index gerado por script.
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (3 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-unit-aggregate](./01-unit-aggregate.md) | Unit Aggregate |
+| [02-community-aggregate](./02-community-aggregate.md) | Community Aggregate |
+| [03-legitimation-request-aggregate](./03-legitimation-request-aggregate.md) | LegitimationRequest Aggregate |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

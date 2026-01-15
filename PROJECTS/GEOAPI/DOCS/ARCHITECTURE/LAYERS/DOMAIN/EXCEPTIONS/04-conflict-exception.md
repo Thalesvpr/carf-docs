@@ -6,3 +6,4 @@ Exception indicando conflito de estado ou unicidade onde operação não pode se
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

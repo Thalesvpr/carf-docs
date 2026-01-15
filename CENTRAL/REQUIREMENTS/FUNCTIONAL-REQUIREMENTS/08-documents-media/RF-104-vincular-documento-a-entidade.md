@@ -10,3 +10,4 @@ O sistema deve permitir vinculação polimórfica de documentos a diferentes tip
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

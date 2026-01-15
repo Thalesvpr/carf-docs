@@ -10,3 +10,4 @@ Este requisito estabelece que usuários devem poder controlar visibilidade de ca
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

@@ -11,3 +11,16 @@ Arquitetura de customização Keycloak CARF baseada em três pilares: themes Fre
 ---
 
 **Última atualização:** 2026-01-12
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (3 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-customization-strategy](./01-customization-strategy.md) | Estratégia de Customização do Keycloak |
+| [02-theme-architecture](./02-theme-architecture.md) | Arquitetura de Temas Keycloak |
+| [03-extension-development](./03-extension-development.md) | Extension Development - SPIs Java |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Pronto

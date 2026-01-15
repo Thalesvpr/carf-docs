@@ -22,3 +22,5 @@ Implementação React para trocar tenant via Admin API definindo função async 
 ## Isolamento de Dados (Backend)
 
 Backend .NET implementa RLS com tenant_id do JWT extraindo claim executando var tenantId igual User.FindFirst com parâmetro tenant_id acessando propriedade Value seguido por var data igual await context.Properties aplicando filtro Where com lambda p TenantId igual igual tenantId executando ToListAsync retornando apenas registros matching tenant atual garantindo isolamento completo dados nível application layer complementando PostgreSQL RLS database layer defesa em profundidade múltiplas camadas segurança multi-tenancy robusta confiável auditável compliance LGPD separação tenant obrigatória crítica.
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Pronto

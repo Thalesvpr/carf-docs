@@ -14,3 +14,5 @@ SignalR hubs do GEOAPI fornecendo comunicação real-time bidirecional entre ser
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Incompleto
+Descrição: Falta seção GENERATED com índice automático; Muitas listas com bullets (6) antes do rodapé - considerar converter para parágrafo denso.

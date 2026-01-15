@@ -283,3 +283,9 @@ Quando encontrar um problema:
 - [Tailwind CSS Troubleshooting](https://tailwindcss.com/docs/installation#troubleshooting)
 - [Vite Troubleshooting](https://vitejs.dev/guide/troubleshooting)
 - [Storybook Troubleshooting](https://storybook.js.org/docs/react/configure/troubleshooting)
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Muitas listas com bullets (6) antes do rodapé - considerar converter para parágrafo denso; Contém code blocks - considerar converter para prosa.

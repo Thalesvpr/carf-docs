@@ -5,3 +5,4 @@ Política de autorização RBAC (Role-Based Access Control) do CARF controlando 
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

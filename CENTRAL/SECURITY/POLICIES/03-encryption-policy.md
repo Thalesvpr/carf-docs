@@ -5,3 +5,4 @@ Política de criptografia do CARF protegendo dados em trânsito e em repouso con
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

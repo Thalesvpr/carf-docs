@@ -9,3 +9,4 @@ Em testes de integração criar tokens mock usando JwtSecurityTokenHandler Write
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

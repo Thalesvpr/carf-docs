@@ -11,3 +11,4 @@ Endpoints admin disponíveis incluem tenants GET POST PUT DELETE /api/admin/tena
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

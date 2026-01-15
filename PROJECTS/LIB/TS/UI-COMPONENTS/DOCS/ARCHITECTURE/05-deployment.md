@@ -40,3 +40,9 @@ git tag v0.1.1
 git push --tags
 npm publish  # Publica no GitHub Packages
 ```
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Contém code blocks - considerar converter para prosa.

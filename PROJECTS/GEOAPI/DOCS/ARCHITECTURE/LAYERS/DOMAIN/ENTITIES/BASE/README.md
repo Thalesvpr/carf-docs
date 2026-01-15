@@ -10,3 +10,15 @@ Classes base abstratas fornecendo funcionalidade comum para todas entities do GE
 ---
 
 **Última atualização:** 2026-01-12
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (2 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [00-base-entity](./00-base-entity.md) | BaseEntity |
+| [01-base-aggregate-root](./01-base-aggregate-root.md) | BaseAggregateRoot |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Pronto

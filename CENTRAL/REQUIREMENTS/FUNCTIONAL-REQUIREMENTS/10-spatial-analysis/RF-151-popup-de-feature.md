@@ -10,3 +10,4 @@ Este requisito estabelece que ao clicar em feature renderizada no mapa o sistema
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

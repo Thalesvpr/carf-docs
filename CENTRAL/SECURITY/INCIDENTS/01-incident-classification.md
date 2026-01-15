@@ -5,3 +5,4 @@ Classificação de incidentes de segurança do CARF por severidade e tipo orient
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

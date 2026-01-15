@@ -2,10 +2,10 @@
 
 ---
 
-<!-- GENERATED:START - Não edite abaixo desta linha -->
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (18 requisitos)
 
-| ID | Título |
+| ID | Titulo |
 |:---|:-------|
 | [RF-084](./RF-084-criar-titular.md) | Criar Titular |
 | [RF-085](./RF-085-editar-titular.md) | Editar Titular |
@@ -26,5 +26,7 @@
 | [RF-100](./RF-100-exportar-lista-de-titulares.md) | Exportar Lista de Titulares |
 | [RF-101](./RF-101-mesclar-titulares-duplicados.md) | Mesclar Titulares Duplicados |
 
-*Gerado automaticamente em 2026-01-13 19:11*
+*Gerado automaticamente em 2026-01-15 17:41*
 <!-- GENERATED:END -->
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Pronto

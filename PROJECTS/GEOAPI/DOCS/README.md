@@ -12,3 +12,17 @@ Backend REST API .NET 9 do sistema CARF. Fornece endpoints para unidades habitac
 ---
 
 **Última atualização:** 2026-01-12
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (89 arquivos)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+|  | [Architecture](./ARCHITECTURE/README.md) | 78 |
+|  | [Concepts](./CONCEPTS/README.md) | 6 |
+|  | [Features](./FEATURES/README.md) | 0 |
+|  | [How To](./HOW-TO/README.md) | 5 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Pronto

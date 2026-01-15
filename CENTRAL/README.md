@@ -6,23 +6,32 @@ A base da especificação está nos [requisitos do projeto](./REQUIREMENTS/READM
 
 O [modelo de domínio](./DOMAIN-MODEL/README.md) define as entidades, agregados e value objects seguindo DDD. As [regras de negócio](./BUSINESS-RULES/README.md) especificam validações e workflows de aprovação conforme a Lei 13.465/2017. Os [fluxos do sistema](./WORKFLOWS/README.md) descrevem processos completos como coleta em campo e validação por analistas.
 
-As [integrações](./INTEGRATION/README.md) documentam conexões com Keycloak e PostgreSQL. Os [contratos da API](./API/README.md) definem endpoints e schemas. As [políticas de segurança](./SECURITY/README.md) cobrem conformidade LGPD. A [estratégia de testes](./TESTING/README.md) define a pirâmide de testes. O [monitoramento](./OPERATIONS/README.md) cobre logging e manutenção. O [versionamento](./VERSIONING/README.md) define o workflow Git. E as [bibliotecas compartilhadas](./LIBRARIES/README.md) documentam código reutilizado entre projetos.
-
-## Estrutura
-
-- **[REQUIREMENTS/](./REQUIREMENTS/README.md)** - Casos de uso, requisitos funcionais e user stories
-- **[ARCHITECTURE/](./ARCHITECTURE/README.md)** - ADRs e padrões arquiteturais
-- **[DOMAIN-MODEL/](./DOMAIN-MODEL/README.md)** - Entidades, agregados e value objects
-- **[BUSINESS-RULES/](./BUSINESS-RULES/README.md)** - Regras de validação e workflows
-- **[API/](./API/README.md)** - Contratos REST e schemas
-- **[INTEGRATION/](./INTEGRATION/README.md)** - Integrações Keycloak e PostgreSQL
-- **[SECURITY/](./SECURITY/README.md)** - Políticas de segurança e LGPD
-- **[TESTING/](./TESTING/README.md)** - Estratégia de testes
-- **[OPERATIONS/](./OPERATIONS/README.md)** - Monitoramento e manutenção
-- **[VERSIONING/](./VERSIONING/README.md)** - Git workflow e versionamento
-- **[WORKFLOWS/](./WORKFLOWS/README.md)** - Fluxos end-to-end do sistema
-- **[LIBRARIES/](./LIBRARIES/README.md)** - Bibliotecas compartilhadas
+As [integrações](./INTEGRATION/README.md) documentam conexões com Keycloak e PostgreSQL. Os [contratos da API](./API/README.md) definem endpoints e schemas. As [políticas de segurança](./SECURITY/README.md) cobrem conformidade LGPD. A [estratégia de testes](./TESTING/README.md) define a pirâmide de testes. O [monitoramento](./OPERATIONS/README.md) cobre logging e manutenção. O [versionamento](./VERSIONING/README.md) define o workflow Git. As [bibliotecas compartilhadas](./LIBRARIES/README.md) documentam código reutilizado entre projetos. E os [padrões de documentação](./STANDARDS/README.md) definem convenções de nomenclatura, estrutura de arquivos e metadados de status.
 
 ---
 
-**Última atualização:** 2026-01-14
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Aguardando index gerado por script.
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (704 arquivos)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+|  | [Api](./API/README.md) | 0 |
+|  | [Architecture](./ARCHITECTURE/README.md) | 36 |
+|  | [Business Rules](./BUSINESS-RULES/README.md) | 22 |
+|  | [Domain Model](./DOMAIN-MODEL/README.md) | 85 |
+|  | [Integration](./INTEGRATION/README.md) | 12 |
+|  | [Libraries](./LIBRARIES/README.md) | 3 |
+|  | [Operations](./OPERATIONS/README.md) | 0 |
+|  | [Requirements](./REQUIREMENTS/README.md) | 512 |
+|  | [Security](./SECURITY/README.md) | 9 |
+|  | [Standards](./STANDARDS/README.md) | 6 |
+|  | [Testing](./TESTING/README.md) | 2 |
+|  | [Versioning](./VERSIONING/README.md) | 11 |
+|  | [Workflows](./WORKFLOWS/README.md) | 6 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

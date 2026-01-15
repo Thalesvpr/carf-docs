@@ -8,13 +8,21 @@ A hierarquia funciona assim: requisitos funcionais definem O QUE fazer, user sto
 
 Os requisitos são organizados por épicas temáticas como Security, Performance e Usability, cruzando com os módulos implementadores para mostrar cobertura e identificar gaps no backlog.
 
-## Estrutura
-
-- **[USE-CASES/](./USE-CASES/README.md)** - Casos de uso e fluxos completos
-- **[FUNCTIONAL-REQUIREMENTS/](./FUNCTIONAL-REQUIREMENTS/README.md)** - Requisitos funcionais atômicos
-- **[USER-STORIES/](./USER-STORIES/README.md)** - User stories formato BDD
-- **[NON-FUNCTIONAL-REQUIREMENTS/](./NON-FUNCTIONAL-REQUIREMENTS/README.md)** - Requisitos não-funcionais e qualidade
-
 ---
 
-**Última atualização:** 2026-01-14
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Aguardando index gerado por script.
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (512 arquivos)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+|  | [Functional Requirements](./FUNCTIONAL-REQUIREMENTS/README.md) | 221 |
+|  | [Non Functional Requirements](./NON-FUNCTIONAL-REQUIREMENTS/README.md) | 85 |
+|  | [Use Cases](./USE-CASES/README.md) | 66 |
+|  | [User Stories](./USER-STORIES/README.md) | 140 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

@@ -8,4 +8,6 @@ Ambiente produção usa docker-compose.prod.yml com resource limits definindo me
 
 ---
 
-**Última atualização:** 2026-01-10
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: o ramo inteiro esta incompleto. Precisa de supervisão para corrigir.

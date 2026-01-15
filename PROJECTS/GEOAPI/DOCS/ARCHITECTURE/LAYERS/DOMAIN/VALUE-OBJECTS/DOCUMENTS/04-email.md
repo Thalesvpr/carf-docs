@@ -9,3 +9,4 @@ Usado em Account para email do usuário vinculado ao Keycloak garantindo unicida
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

@@ -5,3 +5,4 @@ Política de compliance LGPD (Lei Geral de Proteção de Dados) do CARF garantin
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

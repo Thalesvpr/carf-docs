@@ -74,3 +74,16 @@ Custom tools registered via `QgsProcessingProvider` com:
 ---
 
 **Última atualização:** 2026-01-10
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (2 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-authentication](./01-authentication.md) | 01-authentication |
+| [02-token-storage](./02-token-storage.md) | 02-token-storage |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Incompleto
+Descrição: Falta parágrafo denso introdutório; Muitas listas com bullets (30) antes do rodapé - considerar converter para parágrafo denso.

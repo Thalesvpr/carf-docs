@@ -5,3 +5,4 @@ Configuração Keycloak via environment variables para containerização seguind
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

@@ -32,3 +32,4 @@ Caso de uso permitindo app mobile REURBCAD sincronizar dados coletados offline p
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

@@ -10,3 +10,4 @@ Usuário pode visualizar comunidade no mapa web interativo onde polígono da com
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

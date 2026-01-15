@@ -8,21 +8,6 @@ A autorização usa RBAC hierárquica com cinco roles: super-admin, admin, manag
 
 O ambiente de desenvolvimento usa Docker Compose com seis clients pré-configurados, cada um com settings específicos para PKCE, bearer-only ou confidential conforme o tipo de aplicação.
 
-## Documentos
-
-- **[01-architecture.md](./01-architecture.md)** - Flows OAuth2/OIDC e sequence diagrams
-- **[02-realm-configuration.md](./02-realm-configuration.md)** - Configuração do realm e token lifetimes
-- **[03-docker-setup.md](./03-docker-setup.md)** - Ambiente de desenvolvimento local
-- **[04-multi-tenancy.md](./04-multi-tenancy.md)** - Estratégia de isolamento com RLS
-- **[05-client-configurations.md](./05-client-configurations.md)** - Configuração dos seis clients OAuth2
-- **[06-rbac-permissions.md](./06-rbac-permissions.md)** - Matriz de autorização e roles
-- **[07-token-management.md](./07-token-management.md)** - Ciclo de vida dos tokens
-- **[08-production-deployment.md](./08-production-deployment.md)** - Setup de cluster high-availability
-- **[09-security-best-practices.md](./09-security-best-practices.md)** - Rotação de secrets e auditoria
-- **[10-troubleshooting.md](./10-troubleshooting.md)** - Diagnóstico de problemas comuns
-- **[11-admin-frontend.md](./11-admin-frontend.md)** - Admin Console para gestão de usuários
-- **[12-integration-testing.md](./12-integration-testing.md)** - Testes de integração
-
 ## Runbooks
 
 - **[runbooks/01-create-user.md](./runbooks/01-create-user.md)** - Criar usuário com roles e tenant
@@ -35,3 +20,29 @@ O ambiente de desenvolvimento usa Docker Compose com seis clients pré-configura
 ---
 
 **Última atualização:** 2026-01-14
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Pronto
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (12 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-architecture](./01-architecture.md) | Arquitetura de Autenticação Keycloak |
+| [02-realm-configuration](./02-realm-configuration.md) | Configuração do Realm Keycloak |
+| [03-docker-setup](./03-docker-setup.md) | Docker Setup Keycloak |
+| [04-multi-tenancy](./04-multi-tenancy.md) | Multi-Tenancy Dinâmico |
+| [05-client-configurations](./05-client-configurations.md) | Configurações dos 6 Clients |
+| [06-rbac-permissions](./06-rbac-permissions.md) | RBAC e Permissões |
+| [07-token-management](./07-token-management.md) | Gerenciamento de Tokens |
+| [08-production-deployment](./08-production-deployment.md) | Deploy em Produção |
+| [09-security-best-practices](./09-security-best-practices.md) | Segurança - Best Practices |
+| [10-troubleshooting](./10-troubleshooting.md) | Troubleshooting |
+| [11-admin-frontend](./11-admin-frontend.md) | Admin Frontend (carf-admin) |
+| [12-integration-testing](./12-integration-testing.md) | Testes de Integração Keycloak |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

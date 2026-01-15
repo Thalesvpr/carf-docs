@@ -10,3 +10,4 @@ O sistema disponibiliza funcionalidade de exportação de dados de levantamento 
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

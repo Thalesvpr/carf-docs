@@ -10,3 +10,4 @@ Como analista, quero extrair automaticamente texto de documentos escaneados ou i
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

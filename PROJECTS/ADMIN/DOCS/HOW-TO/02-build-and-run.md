@@ -27,3 +27,9 @@ vercel --prod
 
 - [Vite Build](https://vitejs.dev/guide/build.html)
 - [Vercel Deployment](https://vercel.com/docs)
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Contém code blocks - considerar converter para prosa.

@@ -10,3 +10,4 @@ Como analista, quero imprimir ou exportar o mapa atual com suas camadas e filtro
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

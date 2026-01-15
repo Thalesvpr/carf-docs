@@ -5,3 +5,9 @@ Login flow consiste em usuário clica Login ou tenta acessar rota protegida, key
 Logout implementado com botão Logout que chama handleLogout async function executando `await keycloak.logout({ redirectUri: window.location.origin })` que faz GET ao http://localhost:8080/realms/carf/protocol/openid-connect/logout com query params post_logout_redirect_uri=http://localhost:5173, id_token_hint (keycloak.idToken), Keycloak invalida sessão SSO deletando cookie, faz logout de todas as 6 aplicações CARF com SSO ativo (GEOWEB, REURBCAD, GEOAPI, GEOGIS, WEBDOCS, ADMIN), redirect de volta para redirectUri especificado, keycloak-js limpa tokens da memória, AuthContext seta isAuthenticated=false, user=null, usuário vê landing page pública ou login screen.
 
 Session timeout handling implementado no token refresh interceptor onde se keycloak.updateToken() falha significa sessão SSO expirou (30min idle ou 10h max) então automaticamente chama keycloak.login() redirecionando para re-autenticação, Remember Me feature habilitado no Keycloak realm settings permite sessão SSO estendida de 24h idle e 7 dias max se user marca checkbox Remember Me no login screen.
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Falta título H1 na primeira linha.

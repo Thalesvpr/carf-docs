@@ -10,3 +10,4 @@ Usuários com role MANAGER possuem responsabilidade primária de aprovar ou reje
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

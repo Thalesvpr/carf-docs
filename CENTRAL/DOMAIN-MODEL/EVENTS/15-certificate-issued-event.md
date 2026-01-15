@@ -7,3 +7,4 @@ Domain event emitido por LegitimationRequest aggregate root quando certidão de 
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Pronto

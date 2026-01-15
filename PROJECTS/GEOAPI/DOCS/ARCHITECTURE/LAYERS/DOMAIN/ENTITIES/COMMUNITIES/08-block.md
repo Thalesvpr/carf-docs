@@ -9,3 +9,4 @@ Hierarquia espacial opcional permitindo Communities sem Blocks áreas rurais ass
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

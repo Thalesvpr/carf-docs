@@ -9,3 +9,4 @@ Usado em SurveyPoint.Status controlando fluxo COLLECTED → PROCESSED → {APPRO
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

@@ -32,3 +32,22 @@ npm version patch
 git push --tags
 npm publish
 ```
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (4 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [02-build-and-run](./02-build-and-run.md) | Build and Run - @carf/ui |
+| [02-customization](./02-customization.md) | Customization - @carf/ui |
+| [03-testing](./03-testing.md) | Testing - @carf/ui |
+| [04-troubleshooting](./04-troubleshooting.md) | Troubleshooting - @carf/ui |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Falta parágrafo denso introdutório; Contém code blocks - considerar converter para prosa.

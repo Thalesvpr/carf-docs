@@ -10,3 +10,4 @@ O sistema possibilita importação de dados coletados por receptores GNSS (Globa
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

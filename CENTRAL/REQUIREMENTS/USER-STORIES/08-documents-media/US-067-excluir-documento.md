@@ -10,3 +10,4 @@ Como analista, quero excluir documentos anexados por engano ou que se tornaram o
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

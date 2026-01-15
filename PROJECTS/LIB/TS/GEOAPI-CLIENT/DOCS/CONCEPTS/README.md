@@ -9,3 +9,15 @@ Conceitos fundamentais sobre SDK cliente HTTP TypeScript.
 ---
 
 **Última atualização:** 2026-01-11
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (1 arquivo)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-http-client](./01-http-client.md) | HTTP Client - Cliente HTTP Base |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Incompleto
+Descrição: Falta parágrafo denso introdutório.

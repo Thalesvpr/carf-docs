@@ -2,10 +2,10 @@
 
 ---
 
-<!-- GENERATED:START - Não edite abaixo desta linha -->
-## Arquivos (27 requisitos)
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (27 user stories)
 
-| ID | Título |
+| ID | Titulo |
 |:---|:-------|
 | [US-014](./US-014-criar-unidade-habitacional.md) | Criar Unidade Habitacional |
 | [US-015](./US-015-editar-unidade.md) | Editar Unidade |
@@ -35,5 +35,11 @@
 | [US-140](./US-140-alterar-status-de-unidade.md) | Alterar Status de Unidade |
 | [US-141](./US-141-submeter-unidade-para-revisao.md) | Submeter Unidade para Revisao |
 
-*Gerado automaticamente em 2026-01-13 19:11*
+*Gerado automaticamente em 2026-01-15 17:41*
 <!-- GENERATED:END -->
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Falta parágrafo denso introdutório.

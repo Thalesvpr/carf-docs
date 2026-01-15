@@ -16,3 +16,4 @@ Workflow de integração com servidores WMS (Web Map Service) e WMTS (Web Map Ti
 ---
 
 **Última atualização:** 2025-01-05
+**Status do arquivo**: Pronto

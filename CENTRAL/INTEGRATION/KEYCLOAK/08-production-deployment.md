@@ -5,3 +5,4 @@ Usar `kc.sh start` ao invés de `start-dev`, configurar SSL/TLS com certificado 
 ---
 
 **Última atualização:** 2026-01-09
+**Status do arquivo**: Pronto

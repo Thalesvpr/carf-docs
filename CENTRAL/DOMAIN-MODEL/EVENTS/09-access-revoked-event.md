@@ -7,3 +7,4 @@ Domain event emitido por Community aggregate root quando CommunityAuthorization 
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Pronto

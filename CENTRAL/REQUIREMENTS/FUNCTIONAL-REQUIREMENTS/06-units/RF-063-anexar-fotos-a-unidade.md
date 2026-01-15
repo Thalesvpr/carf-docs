@@ -10,3 +10,4 @@ O sistema deve permitir que usuários façam upload múltiplo de fotografias rel
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

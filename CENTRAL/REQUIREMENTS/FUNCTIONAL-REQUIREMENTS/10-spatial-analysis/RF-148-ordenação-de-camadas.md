@@ -10,3 +10,4 @@ Este requisito especifica que usuários devem poder reordenar camadas no painel 
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

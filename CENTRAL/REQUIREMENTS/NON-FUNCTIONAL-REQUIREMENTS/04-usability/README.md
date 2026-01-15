@@ -2,10 +2,10 @@
 
 ---
 
-<!-- GENERATED:START - Não edite abaixo desta linha -->
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (13 requisitos)
 
-| ID | Título |
+| ID | Titulo |
 |:---|:-------|
 | [RNF-014](./RNF-014-consumo-memoria-mobile.md) | Consumo de Memória - Mobile |
 | [RNF-046](./RNF-046-responsividade-web.md) | Responsividade - Web |
@@ -21,5 +21,11 @@
 | [RNF-089](./RNF-089-timezone.md) | Timezone |
 | [RNF-090](./RNF-090-charset.md) | Charset |
 
-*Gerado automaticamente em 2026-01-13 19:11*
+*Gerado automaticamente em 2026-01-15 17:41*
 <!-- GENERATED:END -->
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Falta parágrafo denso introdutório.

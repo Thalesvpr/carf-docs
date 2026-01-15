@@ -6,3 +6,4 @@ Interface fornecendo TenantId do contexto atual da requisição extraído de JWT
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

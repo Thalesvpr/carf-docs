@@ -30,3 +30,4 @@ Query PostGIS executando SELECT nos campos id code address da tabela units calcu
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

@@ -7,3 +7,4 @@ Entidade representando ponto topográfico coletado via GNSS/GPS em campo com met
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Pronto

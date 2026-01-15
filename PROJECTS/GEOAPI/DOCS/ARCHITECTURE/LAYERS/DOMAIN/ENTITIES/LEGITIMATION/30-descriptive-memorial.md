@@ -9,3 +9,4 @@ Métodos incluem GeneratePdf() template NBR 13133 IPdfGenerator cabeçalho ART c
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

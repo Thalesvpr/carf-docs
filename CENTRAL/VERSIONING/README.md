@@ -8,13 +8,28 @@ O [Semantic Versioning](./03-semantic-versioning.md) define o formato MAJOR.MINO
 
 O [workflow Git](./GIT/README.md) define branching strategy com trunk-based development, conventional commits para changelog automático, PR guidelines com code review obrigatório, e git hooks para linting e testes.
 
-## Estrutura
-
-- **[01-git-decision.md](./01-git-decision.md)** - Decisão por Git
-- **[02-github-decision.md](./02-github-decision.md)** - Decisão por GitHub
-- **[03-semantic-versioning.md](./03-semantic-versioning.md)** - Formato MAJOR.MINOR.PATCH
-- **[GIT/](./GIT/README.md)** - Workflow Git do projeto
-
 ---
 
-**Última atualização:** 2026-01-14
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Aguardando index gerado por script.
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (8 arquivos)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+|  | [Git](./GIT/README.md) | 8 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+
+## Arquivos (3 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-git-decision](./01-git-decision.md) | Decisão Git - Sistema Controle Versão |
+| [02-github-decision](./02-github-decision.md) | Decisão GitHub - Plataforma Hospedagem Código |
+| [03-semantic-versioning](./03-semantic-versioning.md) | Versionamento Numérico - Semantic Versioning |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

@@ -10,3 +10,4 @@ Usuários com role ADMIN podem anexar documentos administrativos à comunidade o
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

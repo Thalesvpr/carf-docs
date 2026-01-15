@@ -2,10 +2,10 @@
 
 ---
 
-<!-- GENERATED:START - Não edite abaixo desta linha -->
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (10 requisitos)
 
-| ID | Título |
+| ID | Titulo |
 |:---|:-------|
 | [RF-212](./RF-212-adicionar-camada-wms.md) | Adicionar Camada WMS |
 | [RF-213](./RF-213-adicionar-camada-wmts.md) | Adicionar Camada WMTS |
@@ -18,5 +18,7 @@
 | [RF-220](./RF-220-trocar-basemap.md) | Trocar Basemap |
 | [RF-221](./RF-221-proxy-de-wmswmts.md) | Proxy de WMS/WMTS |
 
-*Gerado automaticamente em 2026-01-13 19:11*
+*Gerado automaticamente em 2026-01-15 17:41*
 <!-- GENERATED:END -->
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Pronto

@@ -10,3 +10,4 @@ Como gestor, quero criar processo formal de legitimação fundiária vinculado a
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

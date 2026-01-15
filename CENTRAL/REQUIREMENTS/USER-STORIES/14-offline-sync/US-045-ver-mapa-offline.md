@@ -10,3 +10,4 @@ Como agente de campo, quero visualizar mapa base offline no dispositivo mobile p
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

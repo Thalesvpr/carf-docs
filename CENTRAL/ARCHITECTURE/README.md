@@ -8,14 +8,22 @@ Os [padrões arquiteturais](./PATTERNS/README.md) definem como aplicar Clean Arc
 
 As [estratégias de deployment](./DEPLOYMENT/README.md) cobrem containerização Docker, orquestração Kubernetes, pipelines CI/CD com GitHub Actions, deployment mobile para App Store e Google Play, e sites estáticos.
 
-Para implementação técnica específica de cada projeto, consulte a documentação em **PROJECTS/\*/DOCS/**.
-
-## Estrutura
-
-- **[ADRs/](./ADRs/README.md)** - Architecture Decision Records
-- **[DEPLOYMENT/](./DEPLOYMENT/README.md)** - Estratégias de deployment e infraestrutura
-- **[PATTERNS/](./PATTERNS/README.md)** - Padrões arquiteturais aplicados
+Para implementação técnica específica de cada projeto, consulte a documentação em PROJECTS/*/DOCS/.
 
 ---
 
-**Última atualização:** 2026-01-14
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Aguardando index gerado por script.
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (36 arquivos)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+|  | [Adrs](./ADRs/README.md) | 21 |
+|  | [Deployment](./DEPLOYMENT/README.md) | 8 |
+|  | [Patterns](./PATTERNS/README.md) | 7 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

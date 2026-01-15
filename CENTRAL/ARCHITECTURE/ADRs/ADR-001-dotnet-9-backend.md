@@ -14,3 +14,5 @@ Status da decisão é aprovado e implementado desde início do projeto em 2024-Q
 **Status:** Aprovado e Implementado
 **Decisor:** Equipe de Arquitetura
 **Última revisão:** 2025-01-05
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Pronto

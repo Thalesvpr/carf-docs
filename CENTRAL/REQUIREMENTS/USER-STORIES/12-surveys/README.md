@@ -2,10 +2,10 @@
 
 ---
 
-<!-- GENERATED:START - Não edite abaixo desta linha -->
-## Arquivos (9 requisitos)
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (9 user stories)
 
-| ID | Título |
+| ID | Titulo |
 |:---|:-------|
 | [US-142](./US-142-realizar-ajustamento-topografico.md) | Realizar Ajustamento Topografico |
 | [US-143](./US-143-gerenciar-campanhas-de-levantamento.md) | Gerenciar Campanhas de Levantamento |
@@ -17,5 +17,11 @@
 | [US-149](./US-149-gerenciar-pontos-topograficos.md) | Gerenciar Pontos Topograficos |
 | [US-150](./US-150-visualizar-ponto-topografico.md) | Visualizar Ponto Topografico |
 
-*Gerado automaticamente em 2026-01-13 19:11*
+*Gerado automaticamente em 2026-01-15 17:41*
 <!-- GENERATED:END -->
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Falta parágrafo denso introdutório.

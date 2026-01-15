@@ -10,3 +10,4 @@ Como gerente de cadastramento territorial, quero visualizar análise de cobertur
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

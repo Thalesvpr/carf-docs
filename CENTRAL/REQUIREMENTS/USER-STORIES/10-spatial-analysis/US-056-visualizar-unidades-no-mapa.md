@@ -10,3 +10,4 @@ Como analista, quero visualizar unidades cadastradas plotadas no mapa interativo
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

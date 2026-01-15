@@ -9,3 +9,14 @@ Entity gerenciamento sincronização offline mobile do GEOAPI rastreando operaç
 ---
 
 **Última atualização:** 2026-01-12
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (1 arquivo)
+
+| ID | Titulo |
+|:---|:-------|
+| [15-sync-log](./15-sync-log.md) | SyncLog |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Pronto

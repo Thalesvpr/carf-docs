@@ -3,3 +3,9 @@ Protected routes no GEOWEB implementadas via PrivateRoute component wrapper que 
 Usado em Router.tsx com estrutura `<Route path="/occupations" element={<PrivateRoute roles={['field-collector', 'analyst', 'admin', 'super-admin']}><Occupations /></PrivateRoute>} />` para rota que requer pelo menos field-collector role, `<Route path="/validate" element={<PrivateRoute roles={['analyst', 'admin', 'super-admin']}><ValidateOccupations /></PrivateRoute>} />` para rota que requer pelo menos analyst role, `<Route path="/admin" element={<PrivateRoute roles={['admin', 'super-admin']}><AdminPanel /></PrivateRoute>} />` para rota que requer pelo menos admin role, hasRole() implementation recebe roles array e retorna `roles.some(role => user?.roles.includes(role))` checando se alguma role do array está presente no user.roles extraído do JWT token realm_access.roles claim, role checking case-sensitive então "admin" diferente de "Admin".
 
 Roles validadas no frontend são apenas UX protection não security porque usuário malicioso pode manipular JavaScript então backend SEMPRE valida roles novamente via [Authorize(Roles = "role1,role2")] em controllers garantindo real security, redirect behavior usa replace prop no Navigate para não adicionar /login ou /forbidden ao history stack prevenindo que usuário use back button para tentar acessar rota protegida novamente sem autenticação válida.
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Falta título H1 na primeira linha.

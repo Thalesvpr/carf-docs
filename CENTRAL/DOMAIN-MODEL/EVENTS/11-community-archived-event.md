@@ -7,3 +7,4 @@ Domain event emitido por Community aggregate root quando comunidade é arquivada
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Pronto

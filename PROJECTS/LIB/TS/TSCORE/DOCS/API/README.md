@@ -543,3 +543,15 @@ try {
 ---
 
 **Última atualização:** 2026-01-09
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (1 arquivo)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-validation-api](./01-validation-api.md) | Validation API - Referência Completa |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Incompleto
+Descrição: Falta parágrafo denso introdutório; Muitas listas com bullets (46) antes do rodapé - considerar converter para parágrafo denso; Contém code blocks - considerar converter para prosa.

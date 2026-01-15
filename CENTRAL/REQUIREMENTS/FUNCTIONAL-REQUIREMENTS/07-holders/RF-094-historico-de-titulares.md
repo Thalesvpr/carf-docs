@@ -10,3 +10,4 @@ O sistema deve registrar histórico completo de titulares de cada unidade habita
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

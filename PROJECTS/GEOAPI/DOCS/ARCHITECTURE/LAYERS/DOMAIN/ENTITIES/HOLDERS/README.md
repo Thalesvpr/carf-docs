@@ -10,3 +10,15 @@ Entities gerenciamento titulares do GEOAPI representando pessoas físicas reivin
 ---
 
 **Última atualização:** 2026-01-12
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (2 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [03-holder](./03-holder.md) | Holder |
+| [20-unit-holder](./20-unit-holder.md) | UnitHolder |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Pronto

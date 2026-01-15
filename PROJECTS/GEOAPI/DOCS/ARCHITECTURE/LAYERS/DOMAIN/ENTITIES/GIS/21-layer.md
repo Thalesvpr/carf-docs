@@ -9,3 +9,4 @@ Relacionamento principal LayerFeature através coleção Features onde Layer con
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

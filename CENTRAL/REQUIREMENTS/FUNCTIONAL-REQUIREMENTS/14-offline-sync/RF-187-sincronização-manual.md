@@ -10,3 +10,4 @@ O sistema disponibiliza botão de sincronização manual facilmente acessível n
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

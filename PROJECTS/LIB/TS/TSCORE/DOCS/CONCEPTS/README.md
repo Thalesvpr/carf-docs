@@ -363,3 +363,17 @@ const updateDto: UpdateUnitDto = {
 ---
 
 **Última atualização:** 2026-01-09
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (3 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-value-objects](./01-value-objects.md) | Value Objects - Objetos de Valor |
+| [02-authentication](./02-authentication.md) | Authentication - Autenticação com Keycloak |
+| [03-typescript-types](./03-typescript-types.md) | TypeScript Types - Tipos Compartilhados |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Incompleto
+Descrição: Muitas listas com bullets (24) antes do rodapé - considerar converter para parágrafo denso; Contém code blocks - considerar converter para prosa.

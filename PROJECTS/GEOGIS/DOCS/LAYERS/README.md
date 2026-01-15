@@ -45,3 +45,15 @@ Estrutura de camadas do código do plugin GEOGIS QGIS.
 ---
 
 **Última atualização:** 2026-01-10
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (1 arquivo)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-auth-manager](./01-auth-manager.md) | 01-auth-manager |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Incompleto
+Descrição: Falta parágrafo denso introdutório; Muitas listas com bullets (17) antes do rodapé - considerar converter para parágrafo denso.

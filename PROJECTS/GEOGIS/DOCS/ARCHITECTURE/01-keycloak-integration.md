@@ -5,3 +5,9 @@ Local HTTP server via http.server.HTTPServer listening em porta 8888 recebe call
 getAccessToken() method checa if datetime.now() < self.expires_at - timedelta(minutes=1) retorna cached token caso contrário faz refresh com kc.refresh_token(refresh_token) POST ao token endpoint obtendo novo access_token atualizando QSettings e expires_at se refresh falha session expirou chama logout() limpando tokens e mostrando LoginDialog forçando re-authentication API client requests.Session() configurado com base_url = GEOAPI_URL session.headers.update Authorization Bearer getAccessToken adding header antes de cada request retry strategy com urllib3.util.retry.Retry(total=3, backoff_factor=1, status_forcelist=[429, 500, 502, 503, 504]) handling transient failures timeout configurado session.request(method, url, timeout=30) prevenindo hangs indefinidos error handling try except requests.exceptions.HTTPError catching 401 Unauthorized triggering token refresh retry uma vez se falha novamente força logout.
 
 Service account configuration no Keycloak client settings com Service Accounts Enabled: ON Valid Redirect URIs: http://localhost:8888/callback para browser flow Web Origins: * Access Type: confidential client secret gerado copiado para plugin settings user account flow melhor para audit porque logs mostram which user performed action ao invés de generic service account mas service account útil para operações automated scheduled tasks sem user presence background processing batch imports exports overnight sync jobs.
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Falta título H1 na primeira linha.

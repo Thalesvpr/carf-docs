@@ -41,3 +41,5 @@ E2E tests usam HttpClient fornecido por WebApplicationFactory enviando requests 
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Incompleto
+Descrição: Falta seção GENERATED com índice automático; Muitas listas com bullets (16) antes do rodapé - considerar converter para parágrafo denso.

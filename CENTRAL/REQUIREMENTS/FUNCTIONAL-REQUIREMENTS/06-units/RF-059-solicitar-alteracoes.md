@@ -10,3 +10,4 @@ O sistema deve permitir que gestores com perfil MANAGER solicitem alterações e
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

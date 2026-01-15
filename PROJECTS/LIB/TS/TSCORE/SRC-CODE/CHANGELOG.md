@@ -44,3 +44,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ---
 
 **Note:** This changelog follows semantic versioning. For upgrade guides and migration instructions, see DOCS/README.md.
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Muitas listas com bullets (18) antes do rodapé - considerar converter para parágrafo denso.

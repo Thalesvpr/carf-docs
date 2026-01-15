@@ -10,3 +10,4 @@ O sistema deve oferecer listagem de quadras com capacidade de filtragem por comu
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

@@ -15,3 +15,21 @@ Objetos de valor imutáveis sem identidade própria comparados por valor ao inv�
 ---
 
 **Última atualização:** 2026-01-12
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (23 arquivos)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+|  | [Address](./ADDRESS/README.md) | 1 |
+|  | [Base](./BASE/README.md) | 1 |
+|  | [Documents](./DOCUMENTS/README.md) | 4 |
+|  | [Enums](./ENUMS/README.md) | 8 |
+|  | [Geo](./GEO/README.md) | 2 |
+|  | [Security](./SECURITY/README.md) | 1 |
+|  | [Status](./STATUS/README.md) | 6 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Incompleto
+Descrição: Muitas listas com bullets (7) antes do rodapé - considerar converter para parágrafo denso.

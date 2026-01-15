@@ -10,3 +10,4 @@ Como agente de campo, quero visualizar quantas unidades ainda faltam sincronizar
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

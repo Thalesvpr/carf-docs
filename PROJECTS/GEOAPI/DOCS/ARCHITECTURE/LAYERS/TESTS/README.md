@@ -11,3 +11,16 @@ Estratégia testes GEOAPI implementando pirâmide três níveis: unitários vali
 ---
 
 **Última atualização:** 2026-01-12
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (0 arquivos)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+|  | [E2e](./E2E/README.md) | 0 |
+|  | [Integration](./INTEGRATION/README.md) | 0 |
+|  | [Unit](./UNIT/README.md) | 0 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Pronto

@@ -10,3 +10,4 @@ O sistema deve implementar um fluxo de aprovação de unidades baseado em estado
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

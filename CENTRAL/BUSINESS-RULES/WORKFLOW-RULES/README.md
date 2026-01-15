@@ -8,14 +8,23 @@ O workflow de legitimação fundiária possui onze estados conforme Lei 13.465/2
 
 Os SLAs definem prazos para cada etapa com alertas automáticos. Notificações são disparadas em mudanças de status relevantes.
 
-## Regras
-
-- **[unit-status-transitions.md](./unit-status-transitions.md)** - State machine de unidade com seis estados
-- **[legitimation-status-transitions.md](./legitimation-status-transitions.md)** - State machine de legitimação com onze estados
-- **[role-permissions.md](./role-permissions.md)** - Mapeamento de roles e permissões por transição
-- **[sla-rules.md](./sla-rules.md)** - Prazos e alertas de SLA
-- **[notification-triggers.md](./notification-triggers.md)** - Triggers de notificação por email
 
 ---
 
-**Última atualização:** 2026-01-14
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: O ramo completo ta sem numeração.
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (5 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-unit-status-transitions](./01-unit-status-transitions.md) | Unit Status Transitions |
+| [02-legitimation-status-transitions](./02-legitimation-status-transitions.md) | Legitimation Status Transitions |
+| [03-role-permissions](./03-role-permissions.md) | Role Permissions Matrix |
+| [04-sla-rules](./04-sla-rules.md) | SLA Rules |
+| [05-notification-triggers](./05-notification-triggers.md) | Notification Triggers (Gatilhos de Notificação) |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

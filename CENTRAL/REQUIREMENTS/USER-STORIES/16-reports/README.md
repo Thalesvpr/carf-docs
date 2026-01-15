@@ -2,10 +2,10 @@
 
 ---
 
-<!-- GENERATED:START - Não edite abaixo desta linha -->
-## Arquivos (12 requisitos)
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (12 user stories)
 
-| ID | Título |
+| ID | Titulo |
 |:---|:-------|
 | [US-074](./US-074-gerar-relatório-de-comunidade.md) | Gerar Relatório de Comunidade |
 | [US-075](./US-075-agendar-relatório-recorrente.md) | Agendar Relatório Recorrente |
@@ -20,5 +20,11 @@
 | [US-107](./US-107-relatorio-de-cobertura-espacial.md) | Relatório de Cobertura Espacial |
 | [US-108](./US-108-relatorio-de-distribuicao-por-status.md) | Relatório de Distribuição por Status |
 
-*Gerado automaticamente em 2026-01-13 19:11*
+*Gerado automaticamente em 2026-01-15 17:41*
 <!-- GENERATED:END -->
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Falta parágrafo denso introdutório.

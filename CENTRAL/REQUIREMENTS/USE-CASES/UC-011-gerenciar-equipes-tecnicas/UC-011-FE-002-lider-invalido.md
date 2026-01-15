@@ -14,3 +14,4 @@ Fluxo de exceção do UC-011 Gerenciar Equipes Técnicas ocorrendo no passo 7 du
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

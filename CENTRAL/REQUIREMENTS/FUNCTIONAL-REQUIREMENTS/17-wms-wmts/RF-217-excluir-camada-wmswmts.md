@@ -10,3 +10,4 @@ O sistema permite remoção de serviços WMS/WMTS configurados através de opera
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

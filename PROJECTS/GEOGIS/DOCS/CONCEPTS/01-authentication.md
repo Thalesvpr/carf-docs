@@ -5,3 +5,9 @@ User Account mode usando Authorization Code + PKCE Flow para operations requirin
 Main thread exchange code por tokens fazendo POST ao token endpoint com grant_type=authorization_code client_id code code_verifier original unhashed redirect_uri response JSON parsed extraindo access_token refresh_token expires_in armazenamento tokens via QSettings.setValue('access_token', token) encrypted QSettings.setValue('refresh_token', refresh_token) encrypted self.expires_at = datetime.now() + timedelta(seconds=expires_in) token refresh implementado em getAccessToken() checking if datetime.now() < self.expires_at - timedelta(minutes=1) retorna cached senão faz refresh com keycloak_openid.refresh_token(refresh_token) POST ao token endpoint se refresh sucesso atualiza tokens e expires_at se falha session expirou força logout() limpando QSettings e mostrando LoginDialog novamente.
 
 API requests usam token via requests.Session().headers.update Authorization Bearer auth_manager.getAccessToken adicionando header automaticamente retry logic se 401 Unauthorized tenta refresh uma vez se falha força re-authentication logout implementado com keycloak_openid.logout(refresh_token) POST ao logout endpoint invalidando sessão depois QSettings.remove('access_token') QSettings.remove('refresh_token') self.access_token = None cleaning state mode selection via Settings dialog radio buttons "Service Account (automated)" vs "User Account (interactive)" saving preference em QSettings plugin checks mode on startup restaurando session appropriate flow.
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Falta título H1 na primeira linha.

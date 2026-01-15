@@ -9,3 +9,4 @@ Permite Plot sem Unit representando lote vago não cadastrado e Unit sem PlotId 
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

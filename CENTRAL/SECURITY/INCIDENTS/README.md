@@ -12,13 +12,24 @@ A [notificação de breach](./03-breach-notification.md) segue LGPD com comunica
 
 O [audit logging](./04-audit-logging.md) registra eventos de autenticação, alterações em dados críticos, mudanças de permissões e acessos admin em formato JSON estruturado com retenção de 5 anos e integração SIEM.
 
-## Documentos
-
-- **[01-incident-classification.md](./01-incident-classification.md)** - Classificação e severidade
-- **[02-incident-response-plan.md](./02-incident-response-plan.md)** - Plano de resposta
-- **[03-breach-notification.md](./03-breach-notification.md)** - Notificação LGPD
-- **[04-audit-logging.md](./04-audit-logging.md)** - Logging e auditoria
-
 ---
 
 **Última atualização:** 2026-01-14
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Pronto
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (4 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-incident-classification](./01-incident-classification.md) | Incident Classification |
+| [02-incident-response-plan](./02-incident-response-plan.md) | Incident Response Plan |
+| [03-breach-notification](./03-breach-notification.md) | Breach Notification |
+| [04-audit-logging](./04-audit-logging.md) | Audit Logging |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

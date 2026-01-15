@@ -13,3 +13,18 @@ Camada de aplicação do GEOAPI orquestrando use cases e coordenando fluxo entre
 ---
 
 **Última atualização:** 2026-01-12
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (0 arquivos)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+|  | [Commands](./COMMANDS/README.md) | 0 |
+|  | [Dtos](./DTOS/README.md) | 0 |
+|  | [Mappers](./MAPPERS/README.md) | 0 |
+|  | [Queries](./QUERIES/README.md) | 0 |
+|  | [Validators](./VALIDATORS/README.md) | 0 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Pronto

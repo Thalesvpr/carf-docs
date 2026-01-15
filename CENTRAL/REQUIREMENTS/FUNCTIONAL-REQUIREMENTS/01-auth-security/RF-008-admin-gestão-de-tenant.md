@@ -10,3 +10,4 @@ Usuários com role ADMIN podem gerenciar todos recursos dentro do seu tenant esp
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

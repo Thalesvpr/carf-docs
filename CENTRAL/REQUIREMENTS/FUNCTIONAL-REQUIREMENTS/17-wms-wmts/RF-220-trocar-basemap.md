@@ -10,3 +10,4 @@ O sistema disponibiliza seletor intuitivo de basemap que permite usuário altern
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

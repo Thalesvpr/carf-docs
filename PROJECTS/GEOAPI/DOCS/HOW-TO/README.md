@@ -25,3 +25,19 @@ Ver também em GEOAPI/DOCS:
 ---
 
 **Última atualização:** 2026-01-12
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (5 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-configure-keycloak](./01-configure-keycloak.md) | Configure Keycloak |
+| [01-setup-dev-environment](./01-setup-dev-environment.md) | Setup Dev Environment - GEOAPI |
+| [02-build-and-run](./02-build-and-run.md) | Build and Run |
+| [02-validate-tokens](./02-validate-tokens.md) | Validate Tokens |
+| [03-test-authentication](./03-test-authentication.md) | Test Authentication |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Incompleto
+Descrição: Falta parágrafo denso introdutório; Muitas listas com bullets (7) antes do rodapé - considerar converter para parágrafo denso.

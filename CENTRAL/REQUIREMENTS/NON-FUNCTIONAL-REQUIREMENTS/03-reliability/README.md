@@ -2,10 +2,10 @@
 
 ---
 
-<!-- GENERATED:START - Não edite abaixo desta linha -->
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (12 requisitos)
 
-| ID | Título |
+| ID | Titulo |
 |:---|:-------|
 | [RNF-036](./RNF-036-uptime.md) | Uptime |
 | [RNF-037](./RNF-037-recuperacao-automatica-falhas.md) | Recuperação de Falhas |
@@ -20,5 +20,11 @@
 | [RNF-055](./RNF-055-atalhos-teclado.md) | Atalhos de Teclado |
 | [RNF-065](./RNF-065-rollback-de-deploy.md) | Rollback de Deploy |
 
-*Gerado automaticamente em 2026-01-13 19:11*
+*Gerado automaticamente em 2026-01-15 17:41*
 <!-- GENERATED:END -->
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Falta parágrafo denso introdutório.

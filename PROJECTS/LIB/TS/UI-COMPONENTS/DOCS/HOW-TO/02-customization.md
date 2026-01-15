@@ -155,3 +155,9 @@ Componentes automaticamente refletem o novo tema sem rebuild.
 - [shadcn/ui Theming](https://ui.shadcn.com/docs/theming)
 - [Tailwind CSS Customization](https://tailwindcss.com/docs/theme)
 - [CSS Variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Contém code blocks - considerar converter para prosa.

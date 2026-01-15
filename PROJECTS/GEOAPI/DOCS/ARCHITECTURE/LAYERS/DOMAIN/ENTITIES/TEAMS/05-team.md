@@ -9,3 +9,4 @@ Métodos negócio incluem AddMember(accountId role) validando account existe nã
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

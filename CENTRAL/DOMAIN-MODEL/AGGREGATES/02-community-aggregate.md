@@ -7,3 +7,4 @@ Aggregate pattern do Domain-Driven Design estabelecendo Community como aggregate
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Pronto

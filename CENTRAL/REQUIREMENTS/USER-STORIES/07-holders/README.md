@@ -2,10 +2,10 @@
 
 ---
 
-<!-- GENERATED:START - Não edite abaixo desta linha -->
-## Arquivos (9 requisitos)
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (9 user stories)
 
-| ID | Título |
+| ID | Titulo |
 |:---|:-------|
 | [US-026](./US-026-cadastrar-titular.md) | Cadastrar Titular |
 | [US-027](./US-027-editar-titular.md) | Editar Titular |
@@ -17,5 +17,11 @@
 | [US-138](./US-138-listar-unidades-de-titular.md) | Listar Unidades de Titular |
 | [US-139](./US-139-vincular-titular-a-unidade.md) | Vincular Titular a Unidade |
 
-*Gerado automaticamente em 2026-01-13 19:11*
+*Gerado automaticamente em 2026-01-15 17:41*
 <!-- GENERATED:END -->
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Falta parágrafo denso introdutório.

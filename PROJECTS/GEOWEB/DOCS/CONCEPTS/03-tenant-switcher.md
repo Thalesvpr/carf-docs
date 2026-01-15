@@ -3,3 +3,9 @@ TenantSwitcher component dropdown permite usuário trocar entre múltiplas prefe
 onChange={(e) => handleSwitch(e.target.value)} que checa if (tenantId === user.tenantId) return early evitando switch desnecessário para mesmo tenant, seta isLoading=true desabilitando dropdown, faz try/catch onde switchTenant(tenantId) primeiro valida if (!user.allowedTenants.includes(tenantId)) throw Error('Tenant not allowed') prevenindo switch para tenant não autorizado, depois POST /api/auth/switch-tenant com body { tenantId } no backend que valida allowed_tenants claim do JWT token e se autorizado atualiza current_tenant attribute no Keycloak user via Admin API chamando kcAdmin.users.update({ id: userId, attributes: { current_tenant: [tenantId] } }), backend retorna 200 OK se sucesso ou 403 Forbidden se tenant não autorizado.
 
 Frontend força token refresh com await keycloak.updateToken(-1) passando -1 para forçar refresh mesmo que token não esteja próximo de expirar obtendo novo access_token com tenant_id claim atualizado, chama await loadUserProfile() para atualizar user state com novo tenantId, faz window.location.reload() para recarregar página completa limpando TanStack Query cache garantindo que todas as queries são re-fetched com novo tenant context e RLS no backend filtra dados corretamente, catch block loga erro e mostra alert('Erro ao trocar de prefeitura') para user feedback, finally block seta isLoading=false re-habilitando dropdown, tenant display pode ser melhorado mapeando tenant IDs para nomes amigáveis via lookup table ou fetch de /api/tenants endpoint que retorna array de { id, name, displayName } objects permitindo mostrar "Prefeitura de São Paulo" ao invés de "prefeitura-sp" UUID raw.
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Falta título H1 na primeira linha.

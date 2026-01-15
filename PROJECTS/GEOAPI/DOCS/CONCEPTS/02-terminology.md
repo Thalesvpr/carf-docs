@@ -81,3 +81,8 @@
 - **Legitimação Fundiária** - Instrumento de regularização que transfere propriedade (LegitimationRequest).
 - **CRI** - Cartório de Registro de Imóveis. Registra propriedade.
 
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Muitas listas com bullets (46) antes do rodapé - considerar converter para parágrafo denso.

@@ -10,3 +10,4 @@ Como analista, quero visualizar unidades com sobreposições geométricas destac
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

@@ -6,11 +6,19 @@ O [Keycloak](./KEYCLOAK/README.md) é o provedor de autenticação centralizada 
 
 O [banco de dados](./DATABASE/README.md) usa PostgreSQL 16 com extensão PostGIS 3.4 para dados geoespaciais e Row-Level Security para isolamento automático de dados entre tenants.
 
-## Estrutura
-
-- **[KEYCLOAK/](./KEYCLOAK/README.md)** - Autenticação OAuth2/OIDC e SSO multi-tenant
-- **[DATABASE/](./DATABASE/README.md)** - PostgreSQL + PostGIS com Row-Level Security
-
 ---
 
-**Última atualização:** 2026-01-14
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Aguardando index gerado por script.
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (12 arquivos)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+|  | [Database](./DATABASE/README.md) | 0 |
+|  | [Keycloak](./KEYCLOAK/README.md) | 12 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

@@ -4,13 +4,13 @@ Portal web SPA React TypeScript implementando interface completa gestão regular
 
 ## Features Implementadas
 
-- **[unit-management.md](./unit-management.md)** - CRUD unidades habitacionais wizard multi-step validações Zod aprovação workflow status transitions TanStack Table pagination filtering React Leaflet map visualization
-- **[holder-management.md](./holder-management.md)** - CRUD titulares pessoas físicas validação CPF vinculação unidades many-to-many relationship upload documentos React Dropzone compression storage blob
-- **[gis-integration.md](./gis-integration.md)** - Integração SIG React Leaflet visualização mapas interativos layers Units Communities WMS WMTS drawing tools polygon capture spatial queries PostGIS ST_Intersects validation
-- **[legitimation-process.md](./legitimation-process.md)** - Workflow management processos legitimação REURB-S REURB-E checklist tasks timeline tracking documents approval permissions MANAGER ADMIN state machine transitions
-- **[reporting.md](./reporting.md)** - Geração relatórios dashboard metrics charts Recharts aggregated data exportação PDF CSV Excel async processing job tracking download
-- **[shapefile-import.md](./shapefile-import.md)** - Importação bulk shapefiles wizard upload validation attribute mapping topology checking CRS compatibility preview map async processing NetTopologySuite
-- **[team-management.md](./team-management.md)** - CRUD equipes técnicas assignment members communities roles COORDINATOR ANALYST FIELD_AGENT notifications email push audit logging
+- **[unit-management.md](./01-unit-management.md)** - CRUD unidades habitacionais wizard multi-step validações Zod aprovação workflow status transitions TanStack Table pagination filtering React Leaflet map visualization
+- **[holder-management.md](./02-holder-management.md)** - CRUD titulares pessoas físicas validação CPF vinculação unidades many-to-many relationship upload documentos React Dropzone compression storage blob
+- **[gis-integration.md](./04-gis-integration.md)** - Integração SIG React Leaflet visualização mapas interativos layers Units Communities WMS WMTS drawing tools polygon capture spatial queries PostGIS ST_Intersects validation
+- **[legitimation-process.md](./06-legitimation-process.md)** - Workflow management processos legitimação REURB-S REURB-E checklist tasks timeline tracking documents approval permissions MANAGER ADMIN state machine transitions
+- **[reporting.md](./07-reporting.md)** - Geração relatórios dashboard metrics charts Recharts aggregated data exportação PDF CSV Excel async processing job tracking download
+- **[shapefile-import.md](./05-shapefile-import.md)** - Importação bulk shapefiles wizard upload validation attribute mapping topology checking CRS compatibility preview map async processing NetTopologySuite
+- **[team-management.md](./03-team-management.md)** - CRUD equipes técnicas assignment members communities roles COORDINATOR ANALYST FIELD_AGENT notifications email push audit logging
 
 Funcionalidades principais incluem Unit Management CRUD completo unidades habitacionais com formulários multi-step validações inline persistência GEOAPI aprovação workflow status transitions pending approved rejected comments justification tracking auditoria, Holder Management CRUD titulares pessoas físicas validações CPF RG vinculação múltiplas unidades relacionamento one-to-many many-to-many upload documentos photos storage blob, GIS Integration visualização mapas React Leaflet com layers Units Communities boundaries base maps OpenStreetMap satellite imagery overlay WMS WMTS external sources IBGE MapBiomas drawing tools polygon capture editing spatial queries intersection containment buffer analysis, Reporting geração relatórios comunidade units dashboard aggregated metrics occupancy status approval rates export PDF Excel CSV formats charts visualization via Recharts pie bar line graphs, Team Management CRUD equipes técnicas atribuição membros roles comunidades coordenação trabalho campo visualização assignments filtering, Legitimation Process workflow management status tracking documentation requirements checklist validation approval signatures digital timestamps legal compliance REURB-S REURB-E distinct flows, Shapefile Import upload validation attribute mapping preview geometries bulk insert error handling duplicate detection conflict resolution progress tracking.
 
@@ -23,3 +23,21 @@ Relacionamento requirements implementando UC-001 cadastro unidades UC-002 aprova
 ---
 
 **Última atualização:** 2026-01-11
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (7 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-unit-management](./01-unit-management.md) | Unit Management - Gestão de Unidades |
+| [02-holder-management](./02-holder-management.md) | Holder Management - Gestão de Titulares |
+| [03-team-management](./03-team-management.md) | Team Management - Gestão de Equipes |
+| [04-gis-integration](./04-gis-integration.md) | GIS Integration - Integração SIG |
+| [05-shapefile-import](./05-shapefile-import.md) | Shapefile Import - Importação |
+| [06-legitimation-process](./06-legitimation-process.md) | Legitimation Process - Processo de Legitimação |
+| [07-reporting](./07-reporting.md) | Reporting - Relatórios |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Incompleto
+Descrição: Muitas listas com bullets (7) antes do rodapé - considerar converter para parágrafo denso.

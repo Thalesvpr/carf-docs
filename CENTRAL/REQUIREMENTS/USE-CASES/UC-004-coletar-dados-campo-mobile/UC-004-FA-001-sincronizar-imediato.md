@@ -18,3 +18,4 @@ App importa NetInfo de pacote @react-native-community/netinfo, executa await Net
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

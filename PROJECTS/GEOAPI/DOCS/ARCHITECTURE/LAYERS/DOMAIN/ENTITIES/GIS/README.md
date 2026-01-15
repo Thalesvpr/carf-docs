@@ -12,3 +12,17 @@ Entities serviços GIS do GEOAPI gerenciando layers vetoriais e raster para visu
 ---
 
 **Última atualização:** 2026-01-12
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (4 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [21-layer](./21-layer.md) | Layer |
+| [22-layer-feature](./22-layer-feature.md) | LayerFeature |
+| [23-wms-server](./23-wms-server.md) | WmsServer |
+| [24-wms-layer](./24-wms-layer.md) | WmsLayer |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Pronto

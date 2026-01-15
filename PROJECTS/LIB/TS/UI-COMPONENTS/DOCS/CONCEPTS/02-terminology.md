@@ -5,3 +5,4 @@ Glossário termos técnicos arquitetura @carf/ui incluindo Atomic Design onde At
 ---
 
 **Última atualização:** 2026-01-11
+**Status do arquivo**: Pronto

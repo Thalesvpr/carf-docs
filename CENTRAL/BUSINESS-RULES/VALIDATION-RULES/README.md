@@ -10,18 +10,40 @@ As validações de entidades complexas verificam unicidade de CPF por tenant, re
 
 ## Regras
 
-- **[cpf-validation.md](./cpf-validation.md)** - CPF com dígitos verificadores mod 11
-- **[cnpj-validation.md](./cnpj-validation.md)** - CNPJ com quatorze dígitos
-- **[documents-validation.md](./documents-validation.md)** - RG e formatos por UF
-- **[email-validation.md](./email-validation.md)** - Email conforme RFC 5322
-- **[phone-validation.md](./phone-validation.md)** - Telefone brasileiro com DDD
-- **[coordinates-validation.md](./coordinates-validation.md)** - Coordenadas dentro do Brasil
-- **[geographic-validation.md](./geographic-validation.md)** - Limites espaciais
-- **[geometry-validation.md](./geometry-validation.md)** - Polígonos e topologia PostGIS
-- **[holder-validation.md](./holder-validation.md)** - Titular e relacionamentos
-- **[unit-validation.md](./unit-validation.md)** - Unidade, código e geometria
-- **[business-validation.md](./business-validation.md)** - Regras de negócio complexas
+- **[cpf-validation.md](./04-cpf-validation.md)** - CPF com dígitos verificadores mod 11
+- **[cnpj-validation.md](./02-cnpj-validation.md)** - CNPJ com quatorze dígitos
+- **[documents-validation.md](./05-documents-validation.md)** - RG e formatos por UF
+- **[email-validation.md](./06-email-validation.md)** - Email conforme RFC 5322
+- **[phone-validation.md](./10-phone-validation.md)** - Telefone brasileiro com DDD
+- **[coordinates-validation.md](./03-coordinates-validation.md)** - Coordenadas dentro do Brasil
+- **[geographic-validation.md](./07-geographic-validation.md)** - Limites espaciais
+- **[geometry-validation.md](./08-geometry-validation.md)** - Polígonos e topologia PostGIS
+- **[holder-validation.md](./09-holder-validation.md)** - Titular e relacionamentos
+- **[unit-validation.md](./11-unit-validation.md)** - Unidade, código e geometria
+- **[business-validation.md](./01-business-validation.md)** - Regras de negócio complexas
 
 ---
 
-**Última atualização:** 2026-01-14
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição:  O ramo completo ta sem numeração.
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (11 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-business-validation](./01-business-validation.md) | BUSINESS |
+| [02-cnpj-validation](./02-cnpj-validation.md) | CNPJ Validation |
+| [03-coordinates-validation](./03-coordinates-validation.md) | Coordinates Validation |
+| [04-cpf-validation](./04-cpf-validation.md) | CPF Validation |
+| [05-documents-validation](./05-documents-validation.md) | DOCUMENTS |
+| [06-email-validation](./06-email-validation.md) | Email Validation |
+| [07-geographic-validation](./07-geographic-validation.md) | GEOGRAPHIC |
+| [08-geometry-validation](./08-geometry-validation.md) | Geometry Validation |
+| [09-holder-validation](./09-holder-validation.md) | Holder Validation Rules |
+| [10-phone-validation](./10-phone-validation.md) | Phone Validation |
+| [11-unit-validation](./11-unit-validation.md) | Unit Validation Rules |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

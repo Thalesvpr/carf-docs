@@ -6,14 +6,22 @@ A arquitetura é composta por [projetos independentes](./PROJECTS/README.md) que
 
 A documentação fica organizada em duas partes principais. A [documentação central](./CENTRAL/README.md) contém a especificação do sistema como um todo, servindo como **fonte única de verdade** para requisitos, arquitetura e regras de negócio. Os [projetos de implementação](./PROJECTS/README.md) contêm a documentação técnica **específica** de cada um, explicando como implementam o que está especificado.
 
-## Documentação
-
-- **[CENTRAL/](./CENTRAL/README.md)** - Documentação centralizada cross-project
-- **[PROJECTS/](./PROJECTS/README.md)** - Projetos de implementação
-
 ---
 
 **Versão:** v1.0.0 MVP
-**Status:** Em planejamento
 **Licença:** Proprietário
-**Última atualização:** 2026-01-14
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Aguardando index gerado por script.
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (905 arquivos)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+|  | [Central](./CENTRAL/README.md) | 704 |
+|  | [Projects](./PROJECTS/README.md) | 201 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

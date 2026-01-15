@@ -7,3 +7,4 @@ Método AddDomainEvent(event) adiciona domain event lista eventos pendentes desp
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

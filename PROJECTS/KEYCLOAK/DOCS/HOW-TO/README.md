@@ -14,3 +14,20 @@ Guias práticos para desenvolvimento deployment e operação do Keycloak CARF co
 ---
 
 **Última atualização:** 2026-01-12
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (6 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-develop-themes](./01-develop-themes.md) | Como Desenvolver Temas para Keycloak |
+| [02-deploy-extensions](./02-deploy-extensions.md) | Deploy de Extensões Java (SPIs) |
+| [03-setup-dev-environment](./03-setup-dev-environment.md) | Setup Ambiente de Desenvolvimento |
+| [04-build-custom-image](./04-build-custom-image.md) | Build Custom Docker Image |
+| [05-update-keycloak-version](./05-update-keycloak-version.md) | Atualizar Versão do Keycloak |
+| [06-configure-production](./06-configure-production.md) | Configurar Ambiente de Produção |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Incompleto
+Descrição: Muitas listas com bullets (6) antes do rodapé - considerar converter para parágrafo denso.

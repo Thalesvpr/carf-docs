@@ -69,4 +69,50 @@ Entidades do domínio CARF representando elementos centrais com identidade únic
 
 ---
 
-**Última atualização:** 2026-01-14
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Aguardando (nova geração) index gerado por script.
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (35 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [00-base-entity](./00-base-entity.md) | BaseEntity (Entidade Base) |
+| [01-base-aggregate-root](./01-base-aggregate-root.md) | BaseAggregateRoot (Raiz de Agregado Base) |
+| [02-unit](./02-unit.md) | Unit (Unidade Habitacional) |
+| [03-holder](./03-holder.md) | Holder (Titular) |
+| [04-community](./04-community.md) | Community (Comunidade/Assentamento) |
+| [05-contestation](./05-contestation.md) | Contestation (Contestação de Processo) |
+| [06-pdf-templates](./06-pdf-templates.md) | PDF Templates (Memorial Descritivo, Planta Técnica, Certidão) |
+| [07-tenant](./07-tenant.md) | Tenant (Instituição Cliente) |
+| [08-account](./08-account.md) | Account (Usuário do Sistema) |
+| [09-team](./09-team.md) | Team (Equipe de Trabalho) |
+| [10-team-member](./10-team-member.md) | TeamMember (Membro de Equipe) |
+| [11-community-authorization](./11-community-authorization.md) | CommunityAuthorization (Autorização de Acesso à Comunidade) |
+| [12-block](./12-block.md) | Block (Quadra Urbana) |
+| [13-plot](./13-plot.md) | Plot (Lote Individual) |
+| [14-document](./14-document.md) | Document (Anexo Polimórfico) |
+| [15-annotation](./15-annotation.md) | Annotation (Anotação Polimórfica) |
+| [16-unit-holder](./16-unit-holder.md) | UnitHolder (Vínculo Unidade-Titular) |
+| [17-sync-log](./17-sync-log.md) | SyncLog (Registro de Sincronização Offline) |
+| [18-audit-log](./18-audit-log.md) | AuditLog (Log de Auditoria) |
+| [19-surveyor](./19-surveyor.md) | Surveyor (Topógrafo Profissional) |
+| [20-survey-point](./20-survey-point.md) | SurveyPoint (Ponto Topográfico GPS) |
+| [21-rbmc-station](./21-rbmc-station.md) | RbmcStation (Estação RBMC IBGE) |
+| [22-survey-processing](./22-survey-processing.md) | SurveyProcessing (Processamento de Levantamento GPS) |
+| [23-monograph](./23-monograph.md) | Monograph (Monografia de Marco Topográfico) |
+| [24-descriptive-memorial](./24-descriptive-memorial.md) | DescriptiveMemorial (Memorial Descritivo Técnico) |
+| [25-legitimation-request](./25-legitimation-request.md) | LegitimationRequest (Processo de Legitimação Fundiária) |
+| [26-legitimation-response](./26-legitimation-response.md) | LegitimationResponse (Parecer Técnico de Legitimação) |
+| [27-legitimation-certificate](./27-legitimation-certificate.md) | LegitimationCertificate (Certidão de Legitimação Fundiária) |
+| [28-legitimation-plan](./28-legitimation-plan.md) | LegitimationPlan (Planta Técnica de Legitimação) |
+| [29-wms-server](./29-wms-server.md) | WmsServer (Servidor WMS/WMTS de Mapas) |
+| [30-wms-layer](./30-wms-layer.md) | WmsLayer (Camada WMS Individual) |
+| [31-layer](./31-layer.md) | Layer (Camada Vetorial Customizada) |
+| [32-layer-feature](./32-layer-feature.md) | LayerFeature (Geometria Individual em Camada) |
+| [33-session](./33-session.md) | Session (Sessão de Usuário Autenticado) |
+| [34-api-key](./34-api-key.md) | ApiKey (Chave de API para Integrações) |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

@@ -10,3 +10,4 @@ Este requisito estabelece que administradores devem poder excluir camadas GIS at
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

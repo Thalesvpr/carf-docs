@@ -8,15 +8,23 @@ Os [aggregates](./AGGREGATES/README.md) agrupam entidades em clusters coesos com
 
 Os [relacionamentos](./RELATIONSHIPS/README.md) mapeiam como as entidades se associam, definindo cardinalidades e constraints. E os [diagramas](./DIAGRAMS/README.md) visualizam a estrutura através de UML, ERD e state machines.
 
-## Estrutura
-
-- **[ENTITIES/](./ENTITIES/README.md)** - Entidades do domínio
-- **[VALUE-OBJECTS/](./VALUE-OBJECTS/README.md)** - Value objects imutáveis
-- **[AGGREGATES/](./AGGREGATES/README.md)** - Aggregates e boundaries transacionais
-- **[EVENTS/](./EVENTS/README.md)** - Domain events
-- **[RELATIONSHIPS/](./RELATIONSHIPS/README.md)** - Relacionamentos entre entidades
-- **[DIAGRAMS/](./DIAGRAMS/README.md)** - Diagramas UML e ERD
-
 ---
 
-**Última atualização:** 2026-01-14
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Aguardando index gerado por script.
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (85 arquivos)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+|  | [Aggregates](./AGGREGATES/README.md) | 3 |
+|  | [Diagrams](./DIAGRAMS/README.md) | 0 |
+|  | [Entities](./ENTITIES/README.md) | 35 |
+|  | [Events](./EVENTS/README.md) | 20 |
+|  | [Relationships](./RELATIONSHIPS/README.md) | 1 |
+|  | [Value Objects](./VALUE-OBJECTS/README.md) | 26 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

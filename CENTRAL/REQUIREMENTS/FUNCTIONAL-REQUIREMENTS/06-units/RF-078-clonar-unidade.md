@@ -10,3 +10,4 @@ O sistema deve permitir que usuários clonem unidades habitacionais existentes c
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

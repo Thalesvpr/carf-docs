@@ -9,4 +9,4 @@ Como analista, quero ver status de aprovação de unidades para que eu saiba qua
 
 ---
 
-**Última atualização:** 2025-12-30
+**Última atualização:** 2025-12-30**Status do arquivo**: Pronto

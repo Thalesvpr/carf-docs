@@ -10,3 +10,4 @@ Sistema deve calcular automaticamente estatísticas agregadas de comunidade incl
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

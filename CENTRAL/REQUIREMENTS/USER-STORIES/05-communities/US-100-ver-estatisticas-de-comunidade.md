@@ -10,3 +10,4 @@ Como gerente de projeto de regularização fundiária, quero visualizar KPIs con
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

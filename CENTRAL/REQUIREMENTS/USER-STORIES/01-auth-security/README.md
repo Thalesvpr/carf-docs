@@ -2,10 +2,10 @@
 
 ---
 
-<!-- GENERATED:START - Não edite abaixo desta linha -->
-## Arquivos (9 requisitos)
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (9 user stories)
 
-| ID | Título |
+| ID | Titulo |
 |:---|:-------|
 | [US-001](./US-001-login-com-oauth2.md) | Login com OAuth2 |
 | [US-002](./US-002-renovar-token-automaticamente.md) | Renovar Token Automaticamente |
@@ -17,5 +17,11 @@
 | [US-008](./US-008-visualizar-perfil.md) | Visualizar Perfil |
 | [US-124](./US-124-obter-dados-do-usuario-autenticado.md) | Obter Dados do Usuario Autenticado |
 
-*Gerado automaticamente em 2026-01-13 19:11*
+*Gerado automaticamente em 2026-01-15 17:41*
 <!-- GENERATED:END -->
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Falta parágrafo denso introdutório.

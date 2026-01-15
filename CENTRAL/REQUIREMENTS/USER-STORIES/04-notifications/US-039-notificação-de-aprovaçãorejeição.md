@@ -9,4 +9,4 @@ Como analista, quero receber notificação quando unidade for aprovada/rejeitada
 
 ---
 
-**Última atualização:** 2025-12-30
+**Última atualização:** 2025-12-30**Status do arquivo**: Pronto

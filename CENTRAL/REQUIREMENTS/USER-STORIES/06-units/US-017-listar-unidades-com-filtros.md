@@ -9,4 +9,4 @@ Como analista, quero filtrar unidades por status, tipo, comunidade para que eu e
 
 ---
 
-**Última atualização:** 2025-12-30
+**Última atualização:** 2025-12-30**Status do arquivo**: Pronto

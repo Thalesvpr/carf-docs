@@ -10,3 +10,4 @@ Este requisito estabelece que o sistema deve suportar categorização de fotos a
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

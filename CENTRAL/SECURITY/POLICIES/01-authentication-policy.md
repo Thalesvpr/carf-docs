@@ -5,3 +5,4 @@ Política de autenticação do CARF via Keycloak SSO garantindo identidade verif
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

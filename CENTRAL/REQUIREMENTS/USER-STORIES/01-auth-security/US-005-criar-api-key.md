@@ -9,4 +9,4 @@ Como administrador, quero gerar API keys para integrações para que sistemas ex
 
 ---
 
-**Última atualização:** 2025-12-30
+**Última atualização:** 2025-12-30**Status do arquivo**: Pronto

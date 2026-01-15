@@ -59,3 +59,5 @@ Verificar protocol mapper tenant_id configurado executando curl GET para admin/r
 ## Logs do Keycloak
 
 Visualizar logs Keycloak em tempo real executando docker-compose menos f docker-compose.dev.yml logs menos f keycloak seguindo output contínuo identificando errors warnings eventos autenticação, filtrar erros de autenticação executando docker-compose logs keycloak pipe grep menos i login barra vertical error barra vertical failed exibindo apenas linhas relevantes troubleshooting login failures, aumentar log level para debug executando KC_LOG_LEVEL igual debug docker-compose up menos d habilitando verbose logging detalhado OAuth flows SAML requests database queries facilitando debugging profundo problemas complexos autenticação multi-tenancy RLS.
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Pronto

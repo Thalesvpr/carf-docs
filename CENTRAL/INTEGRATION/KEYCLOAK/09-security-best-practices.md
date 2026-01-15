@@ -5,3 +5,4 @@ Password policy: mínimo 8 caracteres, 1 dígito, 1 maiúscula, 1 minúscula, 1 
 ---
 
 **Última atualização:** 2026-01-09
+**Status do arquivo**: Pronto

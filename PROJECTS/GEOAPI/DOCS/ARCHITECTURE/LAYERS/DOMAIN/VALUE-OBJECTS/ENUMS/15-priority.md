@@ -9,3 +9,4 @@ Usado em LegitimationRequest.Priority influenciando ordem de análise na fila de
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

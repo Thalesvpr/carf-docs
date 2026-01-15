@@ -9,4 +9,4 @@ Como gestor, quero exportar unidades filtradas para que eu gere relatórios exte
 
 ---
 
-**Última atualização:** 2025-12-30
+**Última atualização:** 2025-12-30**Status do arquivo**: Pronto

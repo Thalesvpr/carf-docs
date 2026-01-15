@@ -38,4 +38,35 @@ Os eventos são organizados por aggregate. O Unit aggregate emite eventos durant
 
 ---
 
-**Última atualização:** 2026-01-14
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Aguardando (nova geração) index gerado por script.
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (20 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [00-domain-event](./00-domain-event.md) | DomainEvent (Evento de Domínio) |
+| [01-unit-created-event](./01-unit-created-event.md) | UnitCreatedEvent |
+| [02-holder-linked-event](./02-holder-linked-event.md) | HolderLinkedEvent |
+| [03-holder-unlinked-event](./03-holder-unlinked-event.md) | HolderUnlinkedEvent |
+| [04-unit-status-changed-event](./04-unit-status-changed-event.md) | UnitStatusChangedEvent |
+| [05-document-uploaded-event](./05-document-uploaded-event.md) | DocumentUploadedEvent |
+| [06-community-created-event](./06-community-created-event.md) | CommunityCreatedEvent |
+| [07-community-boundary-changed-event](./07-community-boundary-changed-event.md) | CommunityBoundaryChangedEvent |
+| [08-access-granted-event](./08-access-granted-event.md) | AccessGrantedEvent |
+| [09-access-revoked-event](./09-access-revoked-event.md) | AccessRevokedEvent |
+| [10-block-added-event](./10-block-added-event.md) | BlockAddedEvent |
+| [11-community-archived-event](./11-community-archived-event.md) | CommunityArchivedEvent |
+| [12-request-submitted-event](./12-request-submitted-event.md) | RequestSubmittedEvent |
+| [13-response-added-event](./13-response-added-event.md) | ResponseAddedEvent |
+| [14-request-approved-event](./14-request-approved-event.md) | RequestApprovedEvent |
+| [15-certificate-issued-event](./15-certificate-issued-event.md) | CertificateIssuedEvent |
+| [16-contestation-received-event](./16-contestation-received-event.md) | ContestationReceivedEvent |
+| [17-deadline-approaching-event](./17-deadline-approaching-event.md) | DeadlineApproachingEvent |
+| [18-request-rejected-event](./18-request-rejected-event.md) | RequestRejectedEvent |
+| [19-correction-requested-event](./19-correction-requested-event.md) | CorrectionRequestedEvent |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

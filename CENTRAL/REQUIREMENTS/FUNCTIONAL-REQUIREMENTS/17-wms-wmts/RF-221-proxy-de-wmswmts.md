@@ -10,3 +10,4 @@ A GEOAPI pode atuar como proxy intermediário para serviços WMS/WMTS externos a
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto

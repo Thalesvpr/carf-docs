@@ -7,3 +7,4 @@ Value object imutável representando formato e validação de chave API usada pa
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Pronto

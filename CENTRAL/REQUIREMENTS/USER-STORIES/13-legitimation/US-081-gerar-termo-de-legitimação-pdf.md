@@ -10,3 +10,4 @@ Como gestor do sistema de regularização fundiária, quero gerar termo de legit
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Pronto
