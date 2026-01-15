@@ -1,13 +1,21 @@
 # ARCHITECTURE
 
-Documentação da arquitetura sistêmica do CARF organizada em DEPLOYMENT (estratégias multi-ambiente dev/staging/prod, containerização, orquestração Kubernetes, CI/CD, mobile deployment, static sites), PATTERNS (padrões arquiteturais como Clean Architecture, CQRS, Repository/UoW, Domain Events, frontend patterns React, offline-first mobile, GIS spatial patterns), e ADRs (Architecture Decision Records documentando decisões críticas polyrepo, Keycloak auth, RLS multi-tenancy, offline-first). Define princípios arquiteturais separation of concerns, dependency inversion, single responsibility, e fail-fast com circuit breakers aplicados nos cinco projetos (GEOAPI, GEOWEB, REURBCAD, GEOGIS, WEBDOCS). Para implementação técnica detalhada de cada projeto consulte PROJECTS/*/DOCS/ contendo guias práticos por camada, conceitos específicos, e how-tos de desenvolvimento (exemplo: PROJECTS/GEOAPI/DOCS/LAYERS/ documenta Domain/Application/Infrastructure em .NET).
+Documentação da arquitetura sistêmica do CARF definindo princípios, padrões e estratégias de deployment aplicados nos projetos.
+
+Os [ADRs](./ADRs/README.md) documentam decisões arquiteturais críticas como escolha de tecnologias, padrões de autenticação e estratégias de multi-tenancy, registrando contexto, alternativas avaliadas e consequências de cada decisão.
+
+Os [padrões arquiteturais](./PATTERNS/README.md) definem como aplicar Clean Architecture, CQRS, Repository, Domain Events e padrões específicos para frontend React e aplicações offline-first mobile.
+
+As [estratégias de deployment](./DEPLOYMENT/README.md) cobrem containerização Docker, orquestração Kubernetes, pipelines CI/CD com GitHub Actions, deployment mobile para App Store e Google Play, e sites estáticos.
+
+Para implementação técnica específica de cada projeto, consulte a documentação em **PROJECTS/\*/DOCS/**.
 
 ## Estrutura
 
-- **[ADRs](./ADRs/README.md)** - Architecture Decision Records documentando decisões arquiteturais críticas com contexto, alternativas avaliadas, decisão tomada e consequências
-- **[DEPLOYMENT](./DEPLOYMENT/README.md)** - Estratégias deployment multi-ambiente, containerização Docker, orquestração Kubernetes, CI/CD pipelines, mobile deployment, static sites
-- **[PATTERNS](./PATTERNS/README.md)** - Padrões arquiteturais aplicados (Clean Architecture, CQRS, Repository/UoW, Domain Events, Frontend Patterns, Offline-First, GIS Spatial)
+- **[ADRs/](./ADRs/README.md)** - Architecture Decision Records
+- **[DEPLOYMENT/](./DEPLOYMENT/README.md)** - Estratégias de deployment e infraestrutura
+- **[PATTERNS/](./PATTERNS/README.md)** - Padrões arquiteturais aplicados
 
 ---
 
-**Última atualização:** 2025-12-29
+**Última atualização:** 2026-01-14

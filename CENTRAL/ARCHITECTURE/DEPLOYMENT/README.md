@@ -1,22 +1,26 @@
 # DEPLOYMENT
 
-Estratégia deployment CARF documentando ambientes dev local docker-compose staging cloud homologando releases prod Kubernetes multi-node infraestrutura cloud AWS EKS Azure AKS managed PostgreSQL RDS Azure Database load balancer ALB Application Gateway CDN CloudFront Azure CDN assets estáticos on-premises Kubernetes bare-metal PostgreSQL self-hosted replicação HAProxy load balancer pipeline CI/CD GitHub Actions push build test docker build push registry deploy staging smoke tests deploy prod approval manual blue-green deployment zero-downtime canary releases liberar dez por cento tráfego nova versão monitorar error rate gradualmente aumentar rollback procedures reverter deployment kubectl rollout undo restaurar database snapshot necessário configurações organizadas DOCKER subpasta DOCKERFILES Dockerfile cada projeto COMPOSE docker-compose orquestrando containers KUBERNETES BASE manifests genéricos Deployment Service Ingress ConfigMap Secret OVERLAYS customizações ambiente Kustomize CONFIGS nginx reverse proxy SSL termination env-vars variáveis ambiente health checks endpoints.
+Estratégias de deployment do CARF cobrindo os diferentes ambientes e plataformas onde o sistema é executado.
+
+Os [ambientes](./01-environments.md) incluem desenvolvimento local com Docker Compose, staging em cloud para homologação de releases, e produção em Kubernetes multi-node. A [containerização](./02-containerization.md) usa Docker com multi-stage builds. A [orquestração](./03-orchestration.md) é feita com Kubernetes e Kustomize para customizações por ambiente.
+
+O [pipeline CI/CD](./04-cicd-pipeline.md) usa GitHub Actions para build, test e deploy automatizado com blue-green deployment e rollback. O [deployment mobile](./05-mobile-deployment.md) cobre publicação na App Store e Google Play. E os [sites estáticos](./06-static-site-deployment.md) usam GitHub Pages e Netlify.
 
 ## Documentos
 
-- **[01-environments.md](./01-environments.md)** - Ambientes dev staging prod
-- **[02-containerization.md](./02-containerization.md)** - Docker multi-stage builds security
-- **[03-orchestration.md](./03-orchestration.md)** - Kubernetes Kustomize overlays
-- **[04-cicd-pipeline.md](./04-cicd-pipeline.md)** - GitHub Actions workflow completo
-- **[05-mobile-deployment.md](./05-mobile-deployment.md)** - React Native App Store Google Play
-- **[06-static-site-deployment.md](./06-static-site-deployment.md)** - VitePress GitHub Pages Netlify
+- **[01-environments.md](./01-environments.md)** - Ambientes dev, staging e prod
+- **[02-containerization.md](./02-containerization.md)** - Docker multi-stage builds
+- **[03-orchestration.md](./03-orchestration.md)** - Kubernetes e Kustomize
+- **[04-cicd-pipeline.md](./04-cicd-pipeline.md)** - GitHub Actions workflow
+- **[05-mobile-deployment.md](./05-mobile-deployment.md)** - App Store e Google Play
+- **[06-static-site-deployment.md](./06-static-site-deployment.md)** - GitHub Pages e Netlify
 
 ## Configurações
 
-- **[DOCKER/](./DOCKER/README.md)** - Dockerfiles multi-stage docker-compose orquestração containers
-- **[KUBERNETES/](./KUBERNETES/README.md)** - Manifests Kustomize BASE OVERLAYS patches ambiente
-- **[CONFIGS/](./CONFIGS/README.md)** - Nginx reverse proxy SSL env-vars health checks
+- **[CONFIGS/](./CONFIGS/README.md)** - Variáveis de ambiente e health checks
+- **[DOCKER/](./DOCKER/README.md)** - Dockerfiles e Compose
+- **[KUBERNETES/](./KUBERNETES/README.md)** - Manifests base e overlays
 
 ---
 
-**Última atualização:** 2026-01-11
+**Última atualização:** 2026-01-14

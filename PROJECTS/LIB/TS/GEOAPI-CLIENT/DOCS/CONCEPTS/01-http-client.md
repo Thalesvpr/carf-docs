@@ -522,7 +522,7 @@ const api = new GeoApiClient({
 
 - 📖 **API Reference: Error Handling**
 - 📖 **HOW-TO: Basic Usage**
-- 📖 [ARCHITECTURE: Client Architecture](../ARCHITECTURE/01-client-architecture.md)
+- 📖 ARCHITECTURE: Client Architecture (ver ARCHITECTURE/01-client-architecture)
 
 ### Bibliotecas Relacionadas
 

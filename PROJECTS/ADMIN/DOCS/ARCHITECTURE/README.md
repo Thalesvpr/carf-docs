@@ -47,12 +47,12 @@ carf-admin (SPA)  →  GEOAPI /api/admin/*  →  Keycloak Admin API
 6. Auditoria completa
 7. Keycloak Admin Client confidential
 
-Ver documentação completa: ../../GEOAPI/DOCS/ARCHITECTURE/02-admin-security.md
+Ver documentação completa em GEOAPI/DOCS/ARCHITECTURE/02-admin-security.md
 
 ## Ver Também
 
-- Segurança Admin: ../../GEOAPI/DOCS/ARCHITECTURE/02-admin-security.md
-- carf-admin README: ../SRC-CODE/carf-admin/README.md
-- Keycloak Setup: ../../../CENTRAL/INTEGRATION/KEYCLOAK/README.md
+- Segurança Admin: GEOAPI/DOCS/ARCHITECTURE/02-admin-security.md
+- carf-admin README: ADMIN/SRC-CODE/carf-admin/README.md
+- Keycloak Setup: CENTRAL/INTEGRATION/KEYCLOAK/README.md
 
 Última atualização: 2026-01-09

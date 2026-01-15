@@ -36,10 +36,17 @@
       }
     },
     {
+      "query": "path:CENTRAL file:README.md",
+      "color": {
+        "a": 1,
+        "rgb": 16711705
+      }
+    },
+    {
       "query": "path:CENTRAL",
       "color": {
         "a": 1,
-        "rgb": 16711680
+        "rgb": 8654864
       }
     },
     {
@@ -130,6 +137,6 @@
   "repelStrength": 20,
   "linkStrength": 1,
   "linkDistance": 30,
-  "scale": 0.030182893511167975,
+  "scale": 0.08132164508092356,
   "close": false
 }

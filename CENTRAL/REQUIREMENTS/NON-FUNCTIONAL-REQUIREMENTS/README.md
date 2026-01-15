@@ -1,14 +1,12 @@
 # NON-FUNCTIONAL-REQUIREMENTS
 
-Requisitos não-funcionais do CARF especificando atributos de qualidade e restrições técnicas do sistema incluindo performance (tempo resposta, throughput, latência), escalabilidade (concurrent users, data volume), disponibilidade (uptime, SLA), segurança (autenticação, autorização, criptografia, LGPD), usabilidade (acessibilidade WCAG, responsividade), compatibilidade (browsers, devices, OS), e manutenibilidade (code coverage, technical debt). Cada RNF segue nomenclatura RNF-NNN-titulo-descritivo.md, possui metadados YAML (categoria, prioridade, impacto), descrição detalhada da restrição ou atributo de qualidade, métricas quantificáveis para verificação (ex: tempo resposta < 200ms p95, uptime > 99.5%), e rastreabilidade para UCs e RFs afetados. Organizados por categoria: performance (RNF-001 a RNF-030), security (RNF-031 a RNF-045), scalability (RNF-046 a RNF-060), compatibility (RNF-061 a RNF-075), e usability (RNF-076 a RNF-085).
+Requisitos não-funcionais do CARF especificando atributos de qualidade e restrições técnicas do sistema. Cada requisito possui descrição detalhada, métricas quantificáveis para verificação, e rastreabilidade para casos de uso e requisitos funcionais afetados.
 
-## Navegação
-
-Documentação complementar de requirements inclui [overview completo](../README.md) apresentando estrutura hierárquica de 11 UCs 221 RFs 140 USs e 85 RNFs com estatísticas de cobertura por módulo e épica organizando requirements conforme projetos implementadores GEOWEB REURBCAD GEOAPI GEOGIS facilitando descoberta de atributos de qualidade por equipe de desenvolvimento estabelecendo conexões explícitas entre casos de uso requisitos funcionais user stories e requisitos não-funcionais.
+As categorias incluem performance com tempo de resposta e throughput, segurança com autenticação e compliance LGPD, escalabilidade para usuários concorrentes e volume de dados, usabilidade com acessibilidade WCAG, e compatibilidade com browsers e dispositivos.
 
 ---
 
-**Última atualização:** 2026-01-10
+**Última atualização:** 2026-01-14
 
 ---
 

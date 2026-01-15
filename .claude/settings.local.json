@@ -21,7 +21,15 @@
       "Bash(grep:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git reset:*)"
+      "Bash(git reset:*)",
+      "Bash(git checkout:*)",
+      "Bash(git push)",
+      "Bash(git fetch:*)",
+      "Bash(for dest in \"CENTRAL/ARCHITECTURE/DEPLOYMENT/PROD/README.md\" \"CENTRAL/ARCHITECTURE/DEPLOYMENT/DEV/README.md\" \"CENTRAL/ARCHITECTURE/DEPLOYMENT/OVERLAYS/README.md\" \"CENTRAL/ARCHITECTURE/DEPLOYMENT/BASE/README.md\" \"CENTRAL/ARCHITECTURE/DEPLOYMENT/COMPOSE/README.md\" \"CENTRAL/ARCHITECTURE/DEPLOYMENT/DOCKERFILES/README.md\" \"CENTRAL/ARCHITECTURE/DEPLOYMENT/env-vars.md\" \"CENTRAL/ARCHITECTURE/DEPLOYMENT/health-checks.md\")",
+      "Bash(do if [ -f \"$dest\" ])",
+      "Bash(then echo \"✓ $dest\")",
+      "Bash(else echo \"✗ $dest \\(NÃO EXISTE\\)\")",
+      "Bash(fi)"
     ],
     "deny": [],
     "ask": []

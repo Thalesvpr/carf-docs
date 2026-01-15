@@ -62,7 +62,7 @@ Debugging investigation analysis comparison benchmarking performance profiling o
 
 ## Relacionado
 
-Ver também CENTRAL/VERSIONING/GIT/02-branching-strategy.md para workflow branches trunk-based development feature branches short-lived max 2 dias integration continuous CI pipeline automated testing quality gates enforcement preventing regressions defects bugs issues problems failures incidents outages downtime unavailability disruption impact users customers business operations reputation trust confidence reliability dependability consistency predictability stability robustness resilience antifragility thriving chaos uncertainty volatility ambiguity complexity VUCA world navigating successfully adaptively responsively flexibly agilely iteratively incrementally experimentally empirically data-driven evidence-based learning growing evolving transforming transcending limitations boundaries expanding possibilities horizons imagining creating manifesting.
+Para workflow de branches trunk-based development e feature branches short-lived, consulte 02-branching-strategy.
 
 ---
 

@@ -1,14 +1,18 @@
 # USE-CASES
 
-Casos de uso cross-cutting do CARF documentando fluxos de negócio que atravessam múltiplos projetos. Cada UC segue nomenclatura UC-NNN-titulo-descritivo.md, possui metadados YAML, atores (Administrador, Técnico, Fiscal, Cidadão, Sistema), objetivo claro, pré-condições que devem estar satisfeitas, fluxo principal passo-a-passo, fluxos alternativos para variações do cenário, fluxos de exceção para erros e validações, pós-condições garantidas após execução bem-sucedida, e rastreabilidade para RFs implementados e USs derivadas. Exemplos incluem cadastrar unidade habitacional (GEOWEB cadastra → GEOAPI valida → REURBCAD sincroniza → GEOGIS visualiza), gerenciar usuários sistema (autenticação Keycloak cross-project), e gerar relatório comunidade (agregação de dados multi-fonte). UCs específicos de cada projeto ficam em PROJECTS/*/REQUIREMENTS/USE-CASES/.
+Casos de uso do CARF documentando fluxos de negócio que atravessam múltiplos projetos. Cada caso de uso possui atores definidos, objetivo claro, pré-condições, fluxo principal passo-a-passo, fluxos alternativos para variações, fluxos de exceção para erros, e pós-condições garantidas após execução.
+
+Exemplos incluem cadastrar unidade habitacional onde GEOWEB cadastra, GEOAPI valida, REURBCAD sincroniza e GEOGIS visualiza. Ou gerenciar usuários do sistema com autenticação Keycloak cross-project. Ou gerar relatório de comunidade agregando dados de múltiplas fontes.
+
+Cada UC identifica os módulos implementadores via frontmatter YAML e inclui rastreabilidade para requisitos funcionais e user stories relacionadas.
 
 ## Navegação
 
-Documentação complementar de requirements inclui [overview completo](../README.md) apresentando estrutura hierárquica de 11 UCs 221 RFs 140 USs e 85 RNFs com estatísticas de cobertura por módulo e épica organizando requirements conforme projetos implementadores GEOWEB REURBCAD GEOAPI GEOGIS facilitando descoberta de features por equipe de desenvolvimento estabelecendo conexões explícitas entre casos de uso requisitos funcionais user stories e requisitos não-funcionais.
+- **[Índice por Épica](./index-by-epic.md)** - UCs agrupados por Security, Performance, Scalability
 
 ---
 
-**Última atualização:** 2026-01-10
+**Última atualização:** 2026-01-14
 
 ---
 

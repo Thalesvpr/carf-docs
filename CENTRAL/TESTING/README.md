@@ -1,12 +1,18 @@
 # TESTING
 
-Estratégia testes CARF organizada TEST-STRATEGY test-pyramid defendendo proporção setenta por cento unit vinte por cento integration dez por cento e2e coverage-targets definindo mínimo oitenta por cento coverage domain layer sessenta por cento application ferramentas testes unitários backend framework testes frontend framework testes E2E mobile TEST-CASES organizados tipo API authentication-api-tests cenários login válido inválido token expiration refresh units-api-tests CRUD completo validações filtros paginação holders communities reports legitimation padrão similar E2E unit-creation-flow testando jornada completa cadastrar unidade vincular titular aprovar offline-sync-flow REURBCAD testar coleta offline sincronização resolução conflitos UNIT domain-unit-tests testando entidades value objects aggregates isoladamente application-tests testando use cases mocks repositories inclui fixtures factories test data builders setup rápido garantindo qualidade confiabilidade código detectando regressões antecipadamente facilitando manutenção refatoração segura.
+Estratégia de testes do CARF garantindo qualidade e confiabilidade do código.
+
+A [estratégia](./TEST-STRATEGY/README.md) segue a pirâmide de testes com proporção de 70% unitários, 20% integração e 10% E2E, priorizando feedback rápido. As metas de coverage são 80% para domain layer, 60% para application e 40% para infrastructure. O pipeline CI falha se o coverage ficar abaixo dos targets.
+
+Os [casos de teste](./TEST-CASES/README.md) estão organizados por tipo: testes de API para endpoints REST, testes E2E para jornadas completas do usuário, e testes unitários para domain e application layers.
+
+Inclui fixtures, factories e test data builders para setup rápido, evitando código duplicado nos testes.
 
 ## Estrutura
 
-- **[TEST-STRATEGY/](./TEST-STRATEGY/README.md)** - Pirâmide testes coverage targets ferramentas
-- **[TEST-CASES/](./TEST-CASES/README.md)** - Casos teste organizados API E2E UNIT
+- **[TEST-STRATEGY/](./TEST-STRATEGY/README.md)** - Pirâmide de testes e coverage targets
+- **[TEST-CASES/](./TEST-CASES/README.md)** - Casos de teste organizados por tipo
 
 ---
 
-**Última atualização:** 2026-01-11
+**Última atualização:** 2026-01-14

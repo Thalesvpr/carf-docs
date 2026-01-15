@@ -2,7 +2,7 @@
 
 ## Visão Geral
 
-API completa dos [Value Objects](../CONCEPTS/01-value-objects.md) de validação fornecidos pelo @carf/tscore conforme especificações de domínio em . Todos os validadores seguem o padrão de Value Object imutável com validação no construtor.
+API completa dos Value Objects (ver CONCEPTS/01-value-objects) de validação fornecidos pelo @carf/tscore conforme especificações de domínio em . Todos os validadores seguem o padrão de Value Object imutável com validação no construtor.
 
 ## Import Path
 

@@ -8,16 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "7f169666e23f46a9",
-            "type": "leaf",
-            "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Visualização em gráfico"
-            }
-          },
-          {
             "id": "70cf73baeaf23580",
             "type": "leaf",
             "pinned": true,
@@ -30,31 +20,50 @@
             }
           },
           {
-            "id": "a00e0754602f309c",
+            "id": "7dbf162192468d15",
             "type": "leaf",
+            "pinned": true,
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "CENTRAL/README.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
               "icon": "lucide-file",
-              "title": "Nova aba"
+              "title": "README"
             }
           },
           {
-            "id": "c00800a826cea57f",
+            "id": "9a1d87f611832e18",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/01-performance/RNF-001-tempo-resposta-endpoints-leitura.md",
+                "file": "CENTRAL/LIBRARIES/README.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "RNF-001-tempo-resposta-endpoints-leitura"
+              "title": "README"
+            }
+          },
+          {
+            "id": "436b69713c75598f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "PROJECTS/GEOGIS/README.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "README"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -111,7 +120,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 400.5
+    "width": 244.5
   },
   "right": {
     "id": "5c80d725b66a9060",
@@ -218,41 +227,41 @@
   },
   "active": "70cf73baeaf23580",
   "lastOpenFiles": [
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/01-performance/RNF-001-tempo-resposta-endpoints-leitura.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/RNF-001-tempo-resposta-endpoints-leitura.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/01-performance/README.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/RNF-004-tempo-carregamento-frontend.md",
-    "CENTRAL/REQUIREMENTS/USE-CASES/UC-001-cadastrar-unidade-habitacional/README.md",
-    "CENTRAL/REQUIREMENTS/USE-CASES/README.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/README.md",
-    "CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/08-documents-media/README.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/RNF-003-tempo-resposta-queries-espaciais.md",
-    "CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/01-auth-security/README.md",
-    "CENTRAL/REQUIREMENTS/USER-STORIES/README.md",
-    "CENTRAL/REQUIREMENTS/USER-STORIES/09-layers-features/README.md",
-    "CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/README.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/05-scalability/README.md",
-    "CENTRAL/REQUIREMENTS/USE-CASES/index-by-epic.md",
-    "CENTRAL/REQUIREMENTS/USER-STORIES/03-users-teams/README.md",
-    "PROJECTS/ADMIN/README.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/08-interoperability/README.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/07-maintainability/README.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/06-compatibility/README.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/04-usability/README.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/03-reliability/README.md",
+    "PROJECTS/GEOGIS/README.md",
+    "CENTRAL/LIBRARIES/README.md",
+    "CENTRAL/OPERATIONS/README.md",
+    "CENTRAL/BUSINESS-RULES/README.md",
+    "CENTRAL/README.md",
+    "CENTRAL/TESTING/README.md",
+    "CENTRAL/SECURITY/README.md",
+    "CENTRAL/INTEGRATION/DATABASE/README.md",
+    "CENTRAL/INTEGRATION/README.md",
     "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/02-security/README.md",
-    "CENTRAL/REQUIREMENTS/USE-CASES/UC-011-gerenciar-equipes-tecnicas/README.md",
-    "CENTRAL/REQUIREMENTS/USE-CASES/UC-010-configurar-camadas-wms/README.md",
-    "CENTRAL/REQUIREMENTS/USE-CASES/UC-009-gerenciar-processo-legitimacao/README.md",
+    "CENTRAL/VERSIONING/README.md",
+    "CENTRAL/WORKFLOWS/README.md",
+    "README.md",
+    "PROJECTS/KEYCLOAK/DOCS/FEATURES/theme-customization.md",
+    "CENTRAL/REQUIREMENTS/README.md",
+    "CENTRAL/DOMAIN-MODEL/README.md",
+    "CENTRAL/ARCHITECTURE/README.md",
+    "CENTRAL/API/README.md",
+    "CENTRAL/ARCHITECTURE/PATTERNS/README.md",
+    "CENTRAL/DOMAIN-MODEL/ENTITIES/README.md",
+    "CENTRAL/SECURITY/POLICIES/README.md",
+    "CENTRAL/INTEGRATION/KEYCLOAK/README.md",
+    "CENTRAL/REQUIREMENTS/USE-CASES/README.md",
+    "CENTRAL/DOMAIN-MODEL/EVENTS/README.md",
+    "CENTRAL/REQUIREMENTS/USER-STORIES/README.md",
+    "PROJECTS/README.md",
+    "README.md.tmp.17916.1768426118416",
+    "README.md.tmp.17916.1768424479317",
+    "README.md.tmp.17916.1768423442830",
     "move-requirements.sh",
     "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/08-interoperability",
     "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/07-maintainability",
     "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/06-compatibility",
     "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/05-scalability",
     "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/04-usability",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/03-reliability",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/02-security",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/01-performance",
-    "CENTRAL/REQUIREMENTS/USE-CASES/UC-011-gerenciar-equipes-tecnicas"
+    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/03-reliability"
   ]
 }

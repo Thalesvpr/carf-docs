@@ -1,18 +1,14 @@
 # FUNCTIONAL-REQUIREMENTS
 
-Requisitos funcionais do CARF especificando o que o sistema deve fazer sem detalhar como implementar. Cada RF segue nomenclatura RF-NNN-titulo-descritivo.md, possui metadados YAML (epic, módulo, prioridade, story_points), descrição objetiva focada no comportamento esperado, critérios de aceitação em formato checklist testável, e rastreabilidade bidirecional para UCs e USs que implementam o requisito. Organizados por domínio: autenticação e autorização (login, JWT, RBAC, multi-tenancy), unidades habitacionais (CRUD, validação geográfica, cálculo de área), titulares (cadastro, CPF, vinculação), comunidades (agregação, relatórios), processos de legitimação (workflow aprovação, documentos Lei 13.465/2017), relatórios (PDF, Excel, GeoJSON, Shapefile), e auditoria (logs de acesso, alterações). Servem como fonte única de verdade (SSOT) - projetos linkam via _INDEX ao invés de duplicar.
+Requisitos funcionais do CARF especificando o que o sistema deve fazer sem detalhar como implementar. Cada requisito possui descrição objetiva focada no comportamento esperado, critérios de aceitação em formato testável, e rastreabilidade para casos de uso e user stories relacionadas.
 
-## Navegação
+Os requisitos estão organizados por domínio: autenticação e autorização, unidades habitacionais, titulares, comunidades, processos de legitimação conforme Lei 13.465/2017, relatórios em diversos formatos, e auditoria de alterações.
 
-Índice de todos os 221 Requisitos Funcionais organizados por épica (security: 87, performance: 104, compatibility: 88, scalability: 45)
-
-Documentação complementar de requirements inclui [overview completo](../README.md) apresentando estrutura hierárquica de 11 UCs 221 RFs 140 USs e 85 RNFs com estatísticas de cobertura por módulo e épica organizando requirements conforme projetos implementadores GEOWEB REURBCAD GEOAPI GEOGIS facilitando descoberta de funcionalidades por equipe de desenvolvimento estabelecendo conexões explícitas entre casos de uso requisitos funcionais user stories e requisitos não-funcionais.
-
-
+Servem como fonte única de verdade - os projetos referenciam estes requisitos ao invés de duplicá-los.
 
 ---
 
-**Última atualização:** 2025-12-29
+**Última atualização:** 2026-01-14
 
 ---
 

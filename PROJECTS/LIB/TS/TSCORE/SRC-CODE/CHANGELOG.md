@@ -43,4 +43,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-**Note:** This changelog follows semantic versioning. For upgrade guides and migration instructions, see [DOCS/](../DOCS/README.md).
+**Note:** This changelog follows semantic versioning. For upgrade guides and migration instructions, see DOCS/README.md.

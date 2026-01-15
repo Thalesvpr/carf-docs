@@ -98,11 +98,7 @@ Breaking Changes se tscore teve MAJOR version bump exemplo um ponto zero ponto z
 
 ## Compatibilidade entre Repositórios
 
-Consulte o arquivo `CENTRAL/VERSIONING/GIT/06-release-coordination.md` para:
-- Matriz de compatibilidade de versões
-- Processo de coordenação de releases
-- Estratégia de versionamento semântico
-- Procedimentos de hotfix coordenados
+Para matriz de compatibilidade de versões, processo de coordenação de releases, estratégia de versionamento semântico e procedimentos de hotfix coordenados, consulte 06-release-coordination.
 
 ---
 

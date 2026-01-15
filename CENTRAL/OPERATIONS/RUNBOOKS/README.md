@@ -1,7 +1,31 @@
 # RUNBOOKS
 
-Runbooks troubleshooting CARF documentam problemas frequentes connection pool exhausted JWT expired RLS policy block slow queries soluções específicas guia sistemático troubleshooting reproduzir issue coletar logs verificar metrics Grafana distributed tracing correlation ID testar componentes isoladamente aplicar fix validar post-mortem root cause identificando causa raiz implementando correção permanente prevenindo recorrências futuras garantindo resolução rápida incidentes operacionais minimizando downtime impacto usuários.
+Runbooks de troubleshooting do CARF para resolução rápida de incidentes operacionais.
+
+## Problemas Frequentes
+
+- Connection pool exhausted
+- JWT expired
+- RLS policy block
+- Slow queries
+
+## Guia de Troubleshooting
+
+1. Reproduzir o issue
+2. Coletar logs com correlation ID
+3. Verificar métricas no Grafana
+4. Usar distributed tracing para rastrear
+5. Testar componentes isoladamente
+6. Aplicar fix
+7. Validar correção
+
+## Post-mortem
+
+Após resolução, documentar:
+- Root cause identificado
+- Correção permanente implementada
+- Ações para prevenir recorrência
 
 ---
 
-**Última atualização:** 2026-01-11
+**Última atualização:** 2026-01-14

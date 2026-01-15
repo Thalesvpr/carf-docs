@@ -92,11 +92,7 @@ Executar loop para cada projeto navegando para PROJECTS/projeto/SRC-CODE executa
 
 ## Referências
 
-- [Polyrepo Strategy](01-polyrepo-strategy.md)
-- [Branching Strategy](02-branching-strategy.md)
-- [Commit Conventions](03-commit-conventions.md)
-- [PR Guidelines](04-pr-guidelines.md)
-- [Release Coordination](06-release-coordination.md)
+Consulte 01-polyrepo-strategy para justificativa da arquitetura, 02-branching-strategy para workflow de branches, 03-commit-conventions para formato de commits, 04-pr-guidelines para processo de PR, e 06-release-coordination para coordenação de releases.
 
 ---
 

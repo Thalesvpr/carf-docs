@@ -1,22 +1,28 @@
 # PATTERNS
 
-Padrões arquiteturais aplicados no CARF documentando Clean Architecture (camadas Domain/Application/Infrastructure/Gateway com dependency inversion, domain no centro sem dependências externas), CQRS (Command Query Responsibility Segregation separando writes commands via MediatR de reads queries otimizadas com Dapper), Repository Pattern (abstração de persistência com interfaces IUnitRepository, IHolderRepository implementadas por EF Core), Unit of Work (gerenciamento transacional coordenando múltiplos repositories em transação única), Domain Events (eventos disparados por aggregates para comunicação entre bounded contexts mantendo consistência eventual), Specification Pattern (encapsular regras de filtro complexas reutilizáveis), Factory Pattern (criar aggregates complexos com validações), e Strategy Pattern (múltiplas estratégias de cálculo de área, validação de documentos). Define quando aplicar cada pattern e trade-offs.
+Padrões arquiteturais aplicados no CARF, documentando quando usar cada um e seus trade-offs.
+
+Os padrões de backend incluem [Clean Architecture](./01-clean-architecture.md) com camadas Domain, Application, Infrastructure e Gateway onde o domain fica no centro sem dependências externas. O [CQRS](./02-cqrs.md) separa comandos de escrita via MediatR de queries de leitura otimizadas. O [Repository com Unit of Work](./03-repository-uow.md) abstrai persistência e gerencia transações. E os [Domain Events](./04-domain-events.md) permitem comunicação entre bounded contexts.
+
+Os padrões de frontend cobrem [composição de componentes React](./05-frontend-patterns.md) com custom hooks e gerenciamento de estado. O [offline-first mobile](./06-mobile-offline-first.md) define sincronização local-first com resolução de conflitos.
+
+Os [padrões GIS](./07-gis-spatial-patterns.md) documentam uso de índices espaciais PostGIS, funções ST_*, formatos WKT/GeoJSON e validação de topologia.
 
 ## Padrões Documentados
 
-### Backend Patterns (.NET)
-- **[01-clean-architecture.md](./01-clean-architecture.md)** - Clean Architecture com camadas Domain/Application/Infrastructure/Gateway, dependency inversion, domain independente
-- **[02-cqrs.md](./02-cqrs.md)** - Command Query Responsibility Segregation separando writes (MediatR commands) de reads (queries otimizadas)
-- **[03-repository-uow.md](./03-repository-uow.md)** - Repository Pattern + Unit of Work para abstração de persistência e gerenciamento transacional
-- **[04-domain-events.md](./04-domain-events.md)** - Domain Events para comunicação entre bounded contexts mantendo consistência eventual
+### Backend (.NET)
+- **[01-clean-architecture.md](./01-clean-architecture.md)** - Camadas e dependency inversion
+- **[02-cqrs.md](./02-cqrs.md)** - Separação de commands e queries
+- **[03-repository-uow.md](./03-repository-uow.md)** - Abstração de persistência
+- **[04-domain-events.md](./04-domain-events.md)** - Comunicação entre bounded contexts
 
-### Frontend Patterns (React/React Native)
-- **[05-frontend-patterns.md](./05-frontend-patterns.md)** - Padrões React (Component composition, Custom hooks, Context API, State management)
-- **[06-mobile-offline-first.md](./06-mobile-offline-first.md)** - Offline-first architecture para React Native com sincronização local-first e conflict resolution
+### Frontend (React/React Native)
+- **[05-frontend-patterns.md](./05-frontend-patterns.md)** - Composição, hooks e state management
+- **[06-mobile-offline-first.md](./06-mobile-offline-first.md)** - Sincronização e resolução de conflitos
 
-### GIS/Spatial Patterns
-- **[07-gis-spatial-patterns.md](./07-gis-spatial-patterns.md)** - Padrões geoespaciais PostGIS (Spatial indexes, ST_* functions, WKT/GeoJSON, topology validation)
+### GIS/Spatial
+- **[07-gis-spatial-patterns.md](./07-gis-spatial-patterns.md)** - PostGIS, índices espaciais e topologia
 
 ---
 
-**Última atualização:** 2025-12-29
+**Última atualização:** 2026-01-14

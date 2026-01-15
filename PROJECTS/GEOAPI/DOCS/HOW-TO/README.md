@@ -18,9 +18,9 @@ Guias práticos para desenvolvimento e configuração do GEOAPI backend .NET.
 
 ## Conceitos Relacionados
 
-Ver também:
-- [ARCHITECTURE/](../ARCHITECTURE/README.md) - Decisões arquiteturais específicas do GEOAPI
-- [CONCEPTS/](../CONCEPTS/README.md) - Conceitos fundamentais (Clean Architecture, CQRS, DDD)
+Ver também em GEOAPI/DOCS:
+- ARCHITECTURE - Decisões arquiteturais específicas do GEOAPI
+- CONCEPTS - Conceitos fundamentais (Clean Architecture, CQRS, DDD)
 
 ---
 

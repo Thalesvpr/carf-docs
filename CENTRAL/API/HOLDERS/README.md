@@ -1,11 +1,27 @@
 # HOLDERS
 
-Schemas JSON para titulares do CARF. HolderCreateRequest (name, cpf validado via dígito verificador, rg opcional, birth_date, phone, email, address objeto, is_main boolean para titular principal, unit_id UUID para vinculação), HolderResponse (id UUID, name, cpf mascarado XXX.XXX.XXX-XX, rg, birth_date, phone, email, address, is_main, unit relação com UnitResponse resumido, created_at, updated_at, tenant_id), HolderUpdateRequest (campos parciais), HolderListResponse (items, pagination), LinkHolderToUnitRequest (holder_id, unit_id, is_main), UnlinkHolderFromUnitRequest (holder_id, unit_id). Validações: CPF único por tenant, max 1 titular principal por unidade, max 3 co-titulares. Endpoints: POST /api/holders, GET /api/holders/{id}, PATCH /api/holders/{id}, DELETE /api/holders/{id}, POST /api/holders/link, POST /api/holders/unlink.
+Schemas JSON para titulares do CARF.
 
-## Implementação e Uso
+O HolderCreateRequest contém name, cpf validado via dígito verificador, rg opcional, birth_date, phone, email, address e is_main para indicar titular principal. O HolderResponse retorna cpf mascarado e relação com a unidade.
 
-Endpoint de Posseiros implementado pelo backend GEOAPI usando entity [Holder](../../DOMAIN-MODEL/ENTITIES/03-holder.md) vinculada a [UnitAggregate](../../DOMAIN-MODEL/AGGREGATES/01-unit-aggregate.md) conforme regras de negócio validando máximo 1 titular principal por unidade habitacional e até 3 co-titulares adicionais, consumido por frontend GEOWEB para gestão interativa de vínculos titular-unidade com UI para adicionar remover promover co-titular a principal e mobile REURBCAD para cadastro em campo offline com validações client-side de CPF/CNPJ Email via @carf/tscore Value Objects, ambos usando cliente tipado @carf/geoapi-client para requisições HTTP type-safe e renderizando UI com componente exibindo nome CPF mascarado e status de titular principal.
+Validações: CPF único por tenant, máximo 1 titular principal por unidade, máximo 3 co-titulares.
+
+## Endpoints
+
+- POST /api/holders - Criar titular
+- GET /api/holders/{id} - Obter titular
+- PATCH /api/holders/{id} - Atualizar parcialmente
+- DELETE /api/holders/{id} - Remover titular
+- POST /api/holders/link - Vincular titular a unidade
+- POST /api/holders/unlink - Desvincular titular
+
+## Schemas
+
+- HolderCreateRequest / HolderResponse
+- HolderUpdateRequest
+- HolderListResponse
+- LinkHolderToUnitRequest / UnlinkHolderFromUnitRequest
 
 ---
 
-**Última atualização:** 2025-12-29
+**Última atualização:** 2026-01-14

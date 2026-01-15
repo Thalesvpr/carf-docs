@@ -1,14 +1,20 @@
 # VERSIONING
 
-Estratégia versionamento completa CARF abrangendo ferramenta controle versão Git plataforma hospedagem GitHub e esquema numeração Semantic Versioning coordenando releases polyrepo cinco projetos independentes GEOAPI GEOWEB REURBCAD GEOGIS WEBDOCS garantindo compatibilidade rastreabilidade gestão dependências comunicação clara significado mudanças stakeholders desenvolvedores operações usuários finais organizando 01-git-decision.md justificando escolha Git ferramenta distribuída performance branching merging workflows offline-first ecossistema ferramentas comunidade documentação treinamento configurações recomendadas user.name user.email autocrlf pull.rebase aliases úteis Git LFS Large File Storage binários integração CI/CD GitHub Actions webhooks notificações treinamento time onboarding fundamentals advanced topics resources Pro Git book tutorials, 02-github-decision.md justificando escolha GitHub plataforma colaboração pull requests code review issues actions marketplace segurança Dependabot CodeQL configurações organização teams permissions branch protection code owners workflows secrets self-hosted runners alternativas consideradas GitLab Bitbucket Azure Repos self-hosted Gitea, 03-semantic-versioning.md especificando formato MAJOR.MINOR.PATCH estratégia releases coordenadas polyrepo changelog manutenção CHANGELOG.md conventional commits API versioning header api-version database migrations additive deprecate before remove coordenação sprint planning dependencies compatibility integration testing QA regression prevention, GIT/ subdiretório contendo workflow Git específico projeto incluindo 00-setup-guide.md instalação configuração inicial 01-polyrepo-strategy.md justificativa múltiplos repositórios versus monorepo 02-branching-strategy.md trunk-based development feature branches short-lived max 2 dias 03-commit-conventions.md conventional commits feat fix docs style refactor test chore 04-pr-guidelines.md pull request process review approval checklist 05-git-hooks.md pre-commit lint staged post-commit notifications 06-release-coordination.md coordenação releases tags versões compatíveis dependencies. Fluxo versionamento típico desenvolvimento feature inicia branch feature/RF-123-nova-funcionalidade commits convencionais feat(units): add polygon validation commits atômicos focados single responsibility pull request criado reviewers solicitados dois approvals mínimo CI checks passing lint tests coverage gates merge squash main branch preservando histórico limpo release preparação tag v1.5.0 criada trigger CI/CD build test deploy staging smoke tests validação funcional QA exploratory testing aprovação stakeholders deploy production blue-green zero downtime monitoring error rates latency health checks alerting incidents rollback automático se necessário changelog atualizado CHANGELOG.md documentando mudanças Added Changed Fixed Security comunicando usuários release notes GitHub publicadas compatibilidade especificada GEOAPI v1.5.0 requires GEOWEB v2.3.x REURBCAD v0.8.5+ dependencies claras evitando combinações incompatíveis.
+Estratégia de versionamento do CARF coordenando releases entre os projetos independentes.
+
+A [decisão por Git](./01-git-decision.md) justifica a escolha como ferramenta de controle de versão pela performance, branching, workflows offline-first e ecossistema de ferramentas. A [decisão por GitHub](./02-github-decision.md) justifica a plataforma pela colaboração via pull requests, code review, Actions para CI/CD e segurança com Dependabot e CodeQL.
+
+O [Semantic Versioning](./03-semantic-versioning.md) define o formato MAJOR.MINOR.PATCH para comunicar claramente o significado das mudanças. Releases são coordenadas entre projetos com compatibility matrix especificando versões compatíveis.
+
+O [workflow Git](./GIT/README.md) define branching strategy com trunk-based development, conventional commits para changelog automático, PR guidelines com code review obrigatório, e git hooks para linting e testes.
 
 ## Estrutura
 
-- **[01-git-decision.md](./01-git-decision.md)** - Decisão escolha Git ferramenta controle versão
-- **[02-github-decision.md](./02-github-decision.md)** - Decisão escolha GitHub plataforma hospedagem
-- **[03-semantic-versioning.md](./03-semantic-versioning.md)** - Formato versionamento MAJOR.MINOR.PATCH
-- **[GIT](./GIT/README.md)** - Workflow Git específico projeto
+- **[01-git-decision.md](./01-git-decision.md)** - Decisão por Git
+- **[02-github-decision.md](./02-github-decision.md)** - Decisão por GitHub
+- **[03-semantic-versioning.md](./03-semantic-versioning.md)** - Formato MAJOR.MINOR.PATCH
+- **[GIT/](./GIT/README.md)** - Workflow Git do projeto
 
 ---
 
-**Última atualização:** 2026-01-11
+**Última atualização:** 2026-01-14

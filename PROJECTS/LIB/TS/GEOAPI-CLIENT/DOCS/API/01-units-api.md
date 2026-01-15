@@ -668,7 +668,7 @@ import type {
 } from '@carf/tscore/types'
 ```
 
-📖 **[@carf/tscore Documentation](../../../TSCORE/DOCS/README.md)** - Documentação completa de types
+📖 **@carf/tscore Documentation** - Documentação completa de types (ver TSCORE/DOCS/)
 
 ## Links Relacionados
 
