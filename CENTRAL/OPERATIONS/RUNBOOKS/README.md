@@ -34,3 +34,20 @@ Após resolução, documentar:
 
 **Última atualização:** 2026-01-15
 **Status do arquivo**: Pronto
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (8 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-connection-pool-exhausted](./01-connection-pool-exhausted.md) | Connection Pool Exhausted |
+| [02-jwt-token-expired](./02-jwt-token-expired.md) | JWT Token Expired |
+| [03-rls-policy-violation](./03-rls-policy-violation.md) | RLS Policy Violation |
+| [04-slow-query-detection](./04-slow-query-detection.md) | Slow Query Detection |
+| [05-service-health-check](./05-service-health-check.md) | Service Health Check |
+| [06-database-backup-restore](./06-database-backup-restore.md) | Database Backup e Restore |
+| [07-cache-invalidation](./07-cache-invalidation.md) | Cache Invalidation |
+| [08-storage-quota-exceeded](./08-storage-quota-exceeded.md) | Storage Quota Exceeded |
+
+*Gerado automaticamente em 2026-01-16 01:15*
+<!-- GENERATED:END -->
