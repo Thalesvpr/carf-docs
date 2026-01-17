@@ -26,4 +26,4 @@ Após sincronização bem-sucedida app define função async deleteLocalData rec
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

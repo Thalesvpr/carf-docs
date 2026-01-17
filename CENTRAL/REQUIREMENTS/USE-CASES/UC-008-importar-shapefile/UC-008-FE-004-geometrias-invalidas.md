@@ -14,4 +14,4 @@ Fluxo de exceção do UC-008 Importar Shapefile ocorrendo no passo 10.2 durante 
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

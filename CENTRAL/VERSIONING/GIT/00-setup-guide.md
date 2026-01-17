@@ -97,4 +97,4 @@ Consulte 01-polyrepo-strategy para justificativa da arquitetura, 02-branching-st
 ---
 
 **Última atualização:** 2026-01-10
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

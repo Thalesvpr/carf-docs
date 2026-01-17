@@ -11,7 +11,7 @@ As [regras de legitimação](./LEGITIMATION-RULES/README.md) estabelecem requisi
 ---
 
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Indice por Dominio (22 arquivos)

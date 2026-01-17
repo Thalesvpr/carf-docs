@@ -10,4 +10,4 @@ Como gestor, quero exportar dados de unidades em formato Shapefile para que inte
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

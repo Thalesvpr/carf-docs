@@ -10,4 +10,4 @@ O sistema deve permitir upload de foto 3x4 de titulares tipo PESSOA_FISICA para 
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

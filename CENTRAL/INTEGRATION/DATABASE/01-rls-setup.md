@@ -130,4 +130,4 @@ SELECT count(*) FROM units; -- Deve retornar apenas units do tenant-b
 ---
 
 **Última atualização:** 2026-01-16
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

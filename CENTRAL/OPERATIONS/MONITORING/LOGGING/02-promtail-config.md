@@ -203,4 +203,4 @@ kubectl logs -l app=promtail -n monitoring --tail=50
 ---
 
 **Última atualização:** 2026-01-16
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

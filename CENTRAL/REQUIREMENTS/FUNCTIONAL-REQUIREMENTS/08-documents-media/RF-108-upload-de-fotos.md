@@ -10,4 +10,4 @@ Este requisito especifica que usuários devem poder fazer upload de fotos no sis
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

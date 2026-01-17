@@ -10,4 +10,4 @@ O sistema implementa mecanismo automatizado de notificação que informa o titul
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

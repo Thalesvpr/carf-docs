@@ -10,4 +10,4 @@ Aplicações web GEOWEB e REURBCAD devem utilizar fluxo OAuth2 Authorization Cod
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

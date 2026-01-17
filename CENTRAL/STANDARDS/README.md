@@ -9,7 +9,7 @@ Os [tipos de documento](./04-document-types.md) especificam seções obrigatóri
 ---
 
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (6 arquivos)

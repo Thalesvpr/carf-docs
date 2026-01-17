@@ -22,9 +22,5 @@ O CommunityCreateRequest contém name, description, polygon GeoJSON agregando m�
 
 ---
 
-**Última atualização:** 2026-01-14
-
----
-
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

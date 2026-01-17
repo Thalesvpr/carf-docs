@@ -9,8 +9,7 @@ O [banco de dados](./DATABASE/README.md) usa PostgreSQL 16 com extensão PostGIS
 ---
 
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição: Aguardando index gerado por script.
+**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Indice por Dominio (12 arquivos)

@@ -10,4 +10,4 @@ Usuário autenticado pode visualizar e editar seu próprio perfil onde exibiçã
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

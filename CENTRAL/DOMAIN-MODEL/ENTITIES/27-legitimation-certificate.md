@@ -7,4 +7,4 @@ Entidade representando certidão oficial de legitimação fundiária emitida ap�
 ---
 
 **Última atualização:** 2026-01-10
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

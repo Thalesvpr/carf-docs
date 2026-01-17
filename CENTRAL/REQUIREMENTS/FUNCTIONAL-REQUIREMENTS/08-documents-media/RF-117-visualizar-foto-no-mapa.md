@@ -10,4 +10,4 @@ Este requisito estabelece que fotos com coordenadas geográficas geotag devem se
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

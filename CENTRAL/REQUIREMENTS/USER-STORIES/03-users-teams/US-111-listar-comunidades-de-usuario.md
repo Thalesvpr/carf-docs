@@ -10,4 +10,4 @@ Como gerente responsável por gestão de acessos granulares, quero visualizar qu
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

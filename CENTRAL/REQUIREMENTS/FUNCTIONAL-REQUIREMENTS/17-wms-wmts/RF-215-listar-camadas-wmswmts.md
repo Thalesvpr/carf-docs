@@ -10,4 +10,4 @@ O sistema fornece interface administrativa de listagem que exibe todos os servi�
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

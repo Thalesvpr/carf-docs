@@ -9,4 +9,4 @@ Return On Investment testes unitários altíssimo executam rápido milissegundos
 ---
 
 **Última atualização:** 2025-01-07
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

@@ -9,4 +9,4 @@ Como agente de campo, quero cadastrar unidade sem internet para que trabalho nã
 
 ---
 
-**Última atualização:** 2025-12-30**Status do arquivo**: Pronto
+**Última atualização:** 2025-12-30**Status do arquivo**: Review

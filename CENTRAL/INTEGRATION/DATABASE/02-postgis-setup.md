@@ -132,4 +132,4 @@ WHERE NOT ST_IsValid(boundary);
 ---
 
 **Última atualização:** 2026-01-16
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

@@ -7,4 +7,4 @@ Domain event emitido por Community aggregate root quando geometria boundary deli
 ---
 
 **Última atualização:** 2026-01-10
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

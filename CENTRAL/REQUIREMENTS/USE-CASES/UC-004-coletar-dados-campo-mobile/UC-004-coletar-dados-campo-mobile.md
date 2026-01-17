@@ -31,4 +31,4 @@ Caso de uso permitindo FIELD_AGENT agente de campo usar app mobile REURBCAD Reac
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

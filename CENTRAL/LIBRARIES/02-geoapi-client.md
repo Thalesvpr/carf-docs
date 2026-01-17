@@ -21,4 +21,4 @@ Documentação de implementação disponível em PROJECTS/LIB/TS/GEOAPI-CLIENT/D
 ---
 
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

@@ -9,12 +9,8 @@ Containerização Docker do CARF. DOCKERFILES contém Dockerfile por projeto (Do
 
 ---
 
-**Última atualização:** 2025-12-29
-
----
-
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Indice por Dominio (0 arquivos)

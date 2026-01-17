@@ -10,4 +10,4 @@ O sistema deve apresentar lista completa de todas as unidades habitacionais vinc
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

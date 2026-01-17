@@ -9,4 +9,4 @@ Como gestor, quero criar e gerenciar equipes de trabalho para que tarefas sejam 
 
 ---
 
-**Última atualização:** 2025-12-30**Status do arquivo**: Pronto
+**Última atualização:** 2025-12-30**Status do arquivo**: Review

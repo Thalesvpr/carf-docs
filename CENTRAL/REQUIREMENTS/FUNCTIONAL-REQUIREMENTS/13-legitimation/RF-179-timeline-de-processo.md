@@ -10,4 +10,4 @@ O sistema apresenta visualização cronológica completa do histórico de tramit
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

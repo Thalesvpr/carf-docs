@@ -5,4 +5,4 @@ Repository Pattern abstrai persistência com interfaces domain (IUnitRepository,
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

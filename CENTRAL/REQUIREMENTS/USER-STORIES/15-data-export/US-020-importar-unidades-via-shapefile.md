@@ -9,4 +9,4 @@ Como gestor, quero importar unidades de um shapefile para que cadastro em massa 
 
 ---
 
-**Última atualização:** 2025-12-30**Status do arquivo**: Pronto
+**Última atualização:** 2025-12-30**Status do arquivo**: Review

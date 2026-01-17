@@ -10,4 +10,4 @@ Interface deve exibir histórico cronológico de alterações da comunidade onde
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

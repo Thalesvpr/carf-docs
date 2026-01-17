@@ -4,12 +4,8 @@ Configuração Grafana dashboards CARF incluindo DASHBOARDS JSON exports geoapi-
 
 ---
 
-**Última atualização:** 2026-01-11
-
----
-
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Indice por Dominio (0 arquivos)

@@ -10,4 +10,4 @@ Este requisito estabelece que aplicativo mobile REURBCAD deve permitir que usuá
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

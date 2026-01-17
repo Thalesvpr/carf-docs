@@ -10,4 +10,4 @@ Como gestor, quero exportar dados tabulares de unidades em formatos Excel (XLSX)
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

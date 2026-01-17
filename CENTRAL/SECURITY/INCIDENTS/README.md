@@ -14,12 +14,8 @@ O [audit logging](./04-audit-logging.md) registra eventos de autenticação, alt
 
 ---
 
-**Última atualização:** 2026-01-14
-
----
-
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (4 arquivos)

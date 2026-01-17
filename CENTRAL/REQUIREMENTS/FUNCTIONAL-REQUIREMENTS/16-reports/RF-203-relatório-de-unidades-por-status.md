@@ -10,4 +10,4 @@ O sistema gera relatório consolidado que agrega unidades territoriais por statu
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

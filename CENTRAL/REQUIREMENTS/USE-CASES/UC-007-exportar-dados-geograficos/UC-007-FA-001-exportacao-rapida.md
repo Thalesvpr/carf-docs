@@ -14,4 +14,4 @@ Fluxo alternativo do UC-007 Exportar Dados Geográficos desviando no passo 9 ond
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

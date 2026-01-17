@@ -18,4 +18,4 @@ Função validateCpf recebe string cpf retornando objeto com valid boolean e err
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

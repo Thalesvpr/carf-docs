@@ -9,4 +9,4 @@ Como usuário autenticado, quero visualizar meu perfil e permissões para que eu
 
 ---
 
-**Última atualização:** 2025-12-30**Status do arquivo**: Pronto
+**Última atualização:** 2025-12-30**Status do arquivo**: Review

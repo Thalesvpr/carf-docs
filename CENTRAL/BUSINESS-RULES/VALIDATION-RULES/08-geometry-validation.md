@@ -17,4 +17,4 @@ Relacionado domain model GeoPolygon value object implementando validação Unit 
 ---
 
 **Última atualização:** 2026-01-11
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

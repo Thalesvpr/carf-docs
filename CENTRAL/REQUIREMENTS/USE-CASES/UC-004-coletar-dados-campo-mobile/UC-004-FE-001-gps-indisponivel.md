@@ -22,4 +22,4 @@ Modal exibe ícone warning amarelo com título "GPS Necessário" seguido por par
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

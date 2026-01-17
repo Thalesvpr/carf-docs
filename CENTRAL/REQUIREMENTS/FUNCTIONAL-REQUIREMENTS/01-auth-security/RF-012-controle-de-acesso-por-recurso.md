@@ -10,4 +10,4 @@ Sistema deve verificar permissões específicas para cada operação CRUD (Creat
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

@@ -9,4 +9,4 @@ Como analista cadastral, quero editar dados de unidade existente para que corre�
 
 ---
 
-**Última atualização:** 2025-12-30**Status do arquivo**: Pronto
+**Última atualização:** 2025-12-30**Status do arquivo**: Review

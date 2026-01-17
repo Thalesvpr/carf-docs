@@ -10,4 +10,4 @@ O sistema deve suportar categorização de documentos através de tipos predefin
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

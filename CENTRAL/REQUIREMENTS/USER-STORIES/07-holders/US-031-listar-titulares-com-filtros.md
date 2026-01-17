@@ -9,4 +9,4 @@ Como analista, quero filtrar titulares por nome, CPF, tipo para que eu encontre 
 
 ---
 
-**Última atualização:** 2025-12-30**Status do arquivo**: Pronto
+**Última atualização:** 2025-12-30**Status do arquivo**: Review

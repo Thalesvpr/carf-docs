@@ -10,4 +10,4 @@ Este requisito especifica que administradores de tenant devem ser notificados pr
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

@@ -10,4 +10,4 @@ O sistema deve permitir que usuários editem dados cadastrais de quadras existen
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

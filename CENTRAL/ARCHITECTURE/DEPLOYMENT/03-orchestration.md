@@ -9,4 +9,4 @@ Kubernetes orquestra deployments de com HPA (Horizontal Pod Autoscaler) escaland
 ---
 
 **Última atualização:** 2026-01-10
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

@@ -9,4 +9,4 @@ Como gestor, quero excluir unidades cadastradas por engano para que base de dado
 
 ---
 
-**Última atualização:** 2025-12-30**Status do arquivo**: Pronto
+**Última atualização:** 2025-12-30**Status do arquivo**: Review

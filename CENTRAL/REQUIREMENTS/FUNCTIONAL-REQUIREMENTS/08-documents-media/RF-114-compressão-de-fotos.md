@@ -10,4 +10,4 @@ Este requisito especifica que o sistema deve automaticamente comprimir fotos dur
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

@@ -11,8 +11,7 @@ Os [relacionamentos](./RELATIONSHIPS/README.md) mapeiam como as entidades se ass
 ---
 
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição: Aguardando index gerado por script.
+**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Indice por Dominio (85 arquivos)

@@ -9,12 +9,8 @@ Kustomize overlays customizando base por ambiente. Estrutura: cada ambiente (DEV
 
 ---
 
-**Última atualização:** 2025-12-29
-
----
-
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Indice por Dominio (0 arquivos)

@@ -9,4 +9,4 @@ Como sistema, quero calcular área da geometria automaticamente para que usuári
 
 ---
 
-**Última atualização:** 2025-12-30**Status do arquivo**: Pronto
+**Última atualização:** 2025-12-30**Status do arquivo**: Review

@@ -10,4 +10,4 @@ O sistema possibilita exportação de unidades territoriais em formato KML (Keyh
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

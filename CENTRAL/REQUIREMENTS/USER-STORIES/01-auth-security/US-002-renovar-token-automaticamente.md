@@ -9,4 +9,4 @@ Como usuário com sessão ativa, quero que meu token seja renovado automaticamen
 
 ---
 
-**Última atualização:** 2025-12-30**Status do arquivo**: Pronto
+**Última atualização:** 2025-12-30**Status do arquivo**: Review

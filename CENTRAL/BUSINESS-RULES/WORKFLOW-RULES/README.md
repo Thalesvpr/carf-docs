@@ -12,8 +12,7 @@ Os SLAs definem prazos para cada etapa com alertas automáticos. Notificações 
 ---
 
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição: O ramo completo ta sem numeração.
+**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (5 arquivos)

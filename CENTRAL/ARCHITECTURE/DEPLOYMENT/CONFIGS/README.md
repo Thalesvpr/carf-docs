@@ -5,7 +5,7 @@ Arquivos de configuração deployment do CARF. O [env-vars](./01-env-vars.md) do
 ---
 
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (2 arquivos)

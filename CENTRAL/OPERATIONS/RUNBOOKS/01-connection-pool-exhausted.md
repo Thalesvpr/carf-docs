@@ -83,4 +83,4 @@ Monitorar métrica `pg_stat_activity_count` no Prometheus com alerta quando cone
 ---
 
 **Última atualização:** 2026-01-16
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

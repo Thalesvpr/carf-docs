@@ -10,4 +10,4 @@ O sistema possibilita a geração de Modelo Digital de Elevação através da in
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

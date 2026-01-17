@@ -10,4 +10,4 @@ Como agente de campo, quero iniciar processo de sincronização manualmente para
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

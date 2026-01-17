@@ -90,4 +90,4 @@ kubectl logs job/pg-backup-xxxxx -n carf
 ---
 
 **Última atualização:** 2026-01-16
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

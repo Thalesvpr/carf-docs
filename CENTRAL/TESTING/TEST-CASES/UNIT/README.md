@@ -5,4 +5,4 @@ Testes unitários isolados sem dependências externas. domain-unit-tests.md test
 ---
 
 **Última atualização:** 2025-01-05
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

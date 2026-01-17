@@ -9,4 +9,4 @@ Como analista, quero cadastrar titular (holder) de unidade para que direitos de 
 
 ---
 
-**Última atualização:** 2025-12-30**Status do arquivo**: Pronto
+**Última atualização:** 2025-12-30**Status do arquivo**: Review

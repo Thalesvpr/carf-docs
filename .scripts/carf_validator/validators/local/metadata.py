@@ -1,5 +1,6 @@
 """Validador de metadata footer."""
 
+import re
 from datetime import datetime, timedelta
 from typing import List
 
@@ -48,6 +49,17 @@ class MetadataValidator(LocalValidator):
     ) -> List[ValidationIssue]:
         issues = []
 
+        # Detectar múltiplas datas de atualização (aplica a todos os tipos)
+        date_matches = re.findall(r'\*\*Última atualização:\*\*', doc.content)
+        if len(date_matches) > 1:
+            issues.append(ValidationIssue(
+                severity=Severity.ERROR,
+                code="META009",
+                message=f"Documento tem {len(date_matches)} campos 'Última atualização'",
+                file_path=doc.path,
+                suggestion="Remova as datas duplicadas, mantenha apenas uma no footer",
+            ))
+
         # Validação específica para ADR
         if doc.doc_type == DocumentType.ADR:
             issues.extend(self._validate_adr_metadata(doc))
@@ -88,6 +100,33 @@ class MetadataValidator(LocalValidator):
                     file_path=doc.path,
                     suggestion="Adicione **Status do arquivo**: Pronto",
                 ))
+            else:
+                # Detectar status problemáticos
+                status_lower = doc.metadata.file_status.lower()
+                if status_lower == 'review':
+                    issues.append(ValidationIssue(
+                        severity=Severity.INFO,
+                        code="META010",
+                        message="README aguardando revisão humana",
+                        file_path=doc.path,
+                        suggestion="Revise o conteúdo e mude status para 'Pronto' quando aprovado",
+                    ))
+                elif status_lower in ('incompleto', 'incomplete'):
+                    issues.append(ValidationIssue(
+                        severity=Severity.WARNING,
+                        code="META007",
+                        message="README marcado como 'Incompleto'",
+                        file_path=doc.path,
+                        suggestion="Complete o documento ou regenere o índice com carf_tree_sync",
+                    ))
+                elif status_lower in ('errado', 'error'):
+                    issues.append(ValidationIssue(
+                        severity=Severity.ERROR,
+                        code="META008",
+                        message="README marcado como 'Errado'",
+                        file_path=doc.path,
+                        suggestion="Corrija os problemas indicados na descrição",
+                    ))
 
         return issues
 

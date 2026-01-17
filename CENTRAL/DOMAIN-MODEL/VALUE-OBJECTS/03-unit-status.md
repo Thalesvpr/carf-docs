@@ -7,4 +7,4 @@ Value object enum representando estado da unidade habitacional no workflow de ca
 ---
 
 **Última atualização:** 2026-01-10
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

@@ -11,4 +11,4 @@ Como Topografo quero ver detalhes de um ponto para que possa validar coordenadas
 
 **Ultima atualizacao:** 2025-12-30
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

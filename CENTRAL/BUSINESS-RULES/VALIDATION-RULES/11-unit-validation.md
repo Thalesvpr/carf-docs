@@ -10,4 +10,4 @@ Regras de validação aplicadas a entity Unit (unidade habitacional) garantindo 
 ---
 
 **Última atualização:** 2025-01-05
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

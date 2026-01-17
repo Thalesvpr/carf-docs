@@ -10,4 +10,4 @@ Como agente de campo, quero cadastrar unidades sem sinal GPS disponível para qu
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

@@ -170,4 +170,4 @@ curl -G http://loki:3100/loki/api/v1/query \
 ---
 
 **Última atualização:** 2026-01-16
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

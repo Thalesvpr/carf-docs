@@ -7,4 +7,4 @@ Entidade representando sessão ativa de usuário autenticado no sistema rastrean
 ---
 
 **Última atualização:** 2026-01-10
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

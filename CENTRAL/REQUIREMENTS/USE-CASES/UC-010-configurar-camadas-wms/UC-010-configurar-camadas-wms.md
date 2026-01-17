@@ -31,4 +31,4 @@ Caso de uso permitindo ADMIN com permissão geoservices.create adicionar servido
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

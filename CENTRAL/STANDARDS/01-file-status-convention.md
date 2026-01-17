@@ -12,7 +12,7 @@ Architecture Decision Records possuem metadados específicos além dos padrões.
 
 ## Valores de Status
 
-O status Pronto indica que o arquivo está completo, revisado e não possui pendências, podendo ser considerado fonte confiável de informação. O status Incompleto indica que o arquivo existe mas possui conteúdo faltante, seja aguardando geração automática por script, seja aguardando redação manual de seções específicas. O status Errado indica que a estrutura do arquivo viola as convenções estabelecidas e precisa ser refatorado, seja por ter conteúdo que deveria estar fragmentado em arquivos filhos, seja por não seguir o padrão de seus irmãos.
+O status Pronto indica que o arquivo está completo, revisado por humano e aprovado, podendo ser considerado fonte confiável de informação. O status Review indica que o arquivo foi gerado ou corrigido automaticamente e aguarda revisão humana para aprovação final. O status Incompleto indica que o arquivo existe mas possui conteúdo faltante, seja aguardando geração automática por script, seja aguardando redação manual de seções específicas. O status Errado indica que a estrutura do arquivo viola as convenções estabelecidas e precisa ser refatorado, seja por ter conteúdo que deveria estar fragmentado em arquivos filhos, seja por não seguir o padrão de seus irmãos.
 
 ## Formato
 
@@ -29,4 +29,4 @@ Os scripts em .scripts/carf_validator validam automaticamente a presença dos me
 ---
 
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

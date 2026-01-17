@@ -10,4 +10,4 @@ Usuários com role ANALYST podem cadastrar e editar unidades titulares documento
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

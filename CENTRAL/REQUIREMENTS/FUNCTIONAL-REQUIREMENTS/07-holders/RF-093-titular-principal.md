@@ -10,4 +10,4 @@ O sistema deve permitir marcação de um dos titulares vinculados a cada unidade
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

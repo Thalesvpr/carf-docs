@@ -10,4 +10,4 @@ O sistema permite que usuários com perfil ADMIN adicionem dinamicamente camadas
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

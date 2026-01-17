@@ -10,4 +10,4 @@ Usuários com role ADMIN podem listar equipes do tenant onde paginação impleme
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

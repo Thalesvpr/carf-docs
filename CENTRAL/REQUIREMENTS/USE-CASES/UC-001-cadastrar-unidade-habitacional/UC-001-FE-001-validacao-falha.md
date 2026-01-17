@@ -25,4 +25,4 @@ Resposta HTTP 400 Bad Request retornando objeto JSON contendo propriedade errors
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

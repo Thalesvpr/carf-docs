@@ -13,4 +13,4 @@ Relacionado domain model UserRole value object cinco roles enum Account entity r
 ---
 
 **Última atualização:** 2026-01-11
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

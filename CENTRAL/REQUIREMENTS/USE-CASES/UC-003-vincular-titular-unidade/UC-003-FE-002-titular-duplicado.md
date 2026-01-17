@@ -22,4 +22,4 @@ Modal exibe ícone warning laranja com título "Titular Já Vinculado" seguido p
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

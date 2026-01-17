@@ -11,7 +11,7 @@ O [workflow de topografia](./05-topography-workflow.md) documenta levantamento t
 ---
 
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (6 arquivos)

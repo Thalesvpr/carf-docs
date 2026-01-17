@@ -11,4 +11,4 @@ Relacionado domain model UnitStatus value object enum Unit aggregate state machi
 ---
 
 **Última atualização:** 2026-01-11
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

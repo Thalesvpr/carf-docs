@@ -4,9 +4,5 @@ Configuração Prometheus monitoring CARF incluindo scrape configs GEOAPI endpoi
 
 ---
 
-**Última atualização:** 2026-01-11
-
----
-
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

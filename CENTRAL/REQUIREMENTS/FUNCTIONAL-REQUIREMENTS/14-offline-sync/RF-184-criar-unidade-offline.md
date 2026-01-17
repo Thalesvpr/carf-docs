@@ -10,4 +10,4 @@ O sistema permite criação completa de unidades territoriais no aplicativo mobi
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

@@ -10,4 +10,4 @@ O sistema permite iniciar processo formal de legitimação fundiária vinculado 
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

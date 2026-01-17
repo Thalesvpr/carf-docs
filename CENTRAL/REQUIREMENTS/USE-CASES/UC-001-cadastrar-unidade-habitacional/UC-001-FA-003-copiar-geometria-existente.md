@@ -27,4 +27,4 @@ Fluxo alternativo do UC-001 Cadastrar Unidade Habitacional desviando no passo 5 
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

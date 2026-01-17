@@ -11,4 +11,4 @@ Como Analista quero ver dados completos de uma comunidade para que possa acessar
 
 **Ultima atualizacao:** 2025-12-30
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

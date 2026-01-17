@@ -12,12 +12,8 @@ SLOs definidos: 99.5% uptime e p99 latency menor que 500ms.
 
 ---
 
-**Última atualização:** 2026-01-14
-
----
-
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Indice por Dominio (0 arquivos)

@@ -14,4 +14,4 @@ Fluxo de exceção do UC-009 Gerenciar Processo de Legitimação desviando no pa
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

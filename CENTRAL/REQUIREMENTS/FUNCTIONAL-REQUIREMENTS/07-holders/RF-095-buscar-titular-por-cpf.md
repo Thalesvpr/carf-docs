@@ -10,4 +10,4 @@ O sistema deve oferecer busca rápida de titulares através de CPF ou CNPJ utili
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

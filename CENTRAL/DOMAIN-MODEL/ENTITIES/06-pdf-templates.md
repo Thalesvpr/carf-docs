@@ -15,4 +15,4 @@ Certidão de Regularização template inclui timbre oficial da Prefeitura com br
 ---
 
 **Última atualização:** 2026-01-10
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

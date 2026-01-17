@@ -7,4 +7,4 @@ Entidade representando usuário do sistema sincronizado com provedor de autentic
 ---
 
 **Última atualização:** 2026-01-10
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

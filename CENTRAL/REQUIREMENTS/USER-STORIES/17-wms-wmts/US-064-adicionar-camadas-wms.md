@@ -10,4 +10,4 @@ Como gestor, quero adicionar camadas WMS (Web Map Service) externas ao mapa para
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

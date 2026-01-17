@@ -10,4 +10,4 @@ Plugin QGIS (GEOGIS) deve utilizar fluxo OAuth2 Client Credentials para autentic
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

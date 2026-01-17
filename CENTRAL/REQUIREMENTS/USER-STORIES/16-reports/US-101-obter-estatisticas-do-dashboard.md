@@ -10,4 +10,4 @@ Como gerente operacional do tenant, quero visualizar KPIs do dashboard principal
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

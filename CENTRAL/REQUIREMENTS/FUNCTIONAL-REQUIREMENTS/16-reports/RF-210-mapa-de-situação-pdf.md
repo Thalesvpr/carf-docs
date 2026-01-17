@@ -10,4 +10,4 @@ O sistema possibilita geração automatizada de Mapa de Situação em formato PD
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

@@ -10,4 +10,4 @@ Regras de validação aplicadas a entity Holder (titular de unidade habitacional
 ---
 
 **Última atualização:** 2025-01-05
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

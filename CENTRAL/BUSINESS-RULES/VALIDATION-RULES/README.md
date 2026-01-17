@@ -25,8 +25,7 @@ As validações de entidades complexas verificam unicidade de CPF por tenant, re
 ---
 
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição:  O ramo completo ta sem numeração.
+**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (11 arquivos)

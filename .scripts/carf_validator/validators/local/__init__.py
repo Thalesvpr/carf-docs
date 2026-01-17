@@ -11,6 +11,7 @@ from .content_bullets import ContentBulletsValidator
 from .prose_continuity import ProseContinuityValidator
 from .readme_structure import ReadmeStructureValidator
 from .link_format import LinkFormatValidator
+from .code_blocks import CodeBlocksValidator
 
 __all__ = [
     "FrontmatterValidator",
@@ -24,4 +25,5 @@ __all__ = [
     "ProseContinuityValidator",
     "ReadmeStructureValidator",
     "LinkFormatValidator",
+    "CodeBlocksValidator",
 ]

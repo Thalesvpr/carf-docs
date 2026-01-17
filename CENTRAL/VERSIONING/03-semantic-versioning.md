@@ -35,4 +35,4 @@ Releases oito projetos coordenadas reuniões sprint planning review retrospectiv
 ---
 
 **Última atualização:** 2025-01-08
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

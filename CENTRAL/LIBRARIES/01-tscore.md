@@ -21,4 +21,4 @@ Documentação de implementação disponível em PROJECTS/LIB/TS/TSCORE/DOCS/ co
 ---
 
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

@@ -12,12 +12,8 @@ A [coordenação de releases](./06-release-coordination.md) mantém compatibilit
 
 ---
 
-**Última atualização:** 2026-01-14
-
----
-
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (8 arquivos)

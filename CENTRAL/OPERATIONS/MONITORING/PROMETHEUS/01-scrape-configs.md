@@ -121,4 +121,4 @@ curl -s http://prometheus:9090/api/v1/targets | jq '.data.activeTargets[] | sele
 ---
 
 **Última atualização:** 2026-01-16
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

@@ -7,4 +7,4 @@ Agregado de domínio tendo Unit como raiz controlando consistência transacional
 ---
 
 **Última atualização:** 2026-01-10
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

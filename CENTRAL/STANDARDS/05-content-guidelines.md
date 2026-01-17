@@ -25,4 +25,4 @@ Os scripts em .scripts/carf_validator validam tamanho com códigos SIZE001 e SIZ
 ---
 
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

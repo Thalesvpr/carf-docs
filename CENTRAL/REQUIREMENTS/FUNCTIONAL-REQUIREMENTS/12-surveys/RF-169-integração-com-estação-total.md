@@ -10,4 +10,4 @@ O sistema oferece capacidade de importar dados provenientes de estações totais
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

@@ -10,4 +10,4 @@ Como analista que iniciou exportação por engano ou com parâmetros incorretos,
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

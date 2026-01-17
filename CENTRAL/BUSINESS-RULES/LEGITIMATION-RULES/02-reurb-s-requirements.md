@@ -28,4 +28,4 @@ Requisitos de elegibilidade para modalidade REURB-S (Regularização Fundiária 
 ---
 
 **Última atualização:** 2025-01-06
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

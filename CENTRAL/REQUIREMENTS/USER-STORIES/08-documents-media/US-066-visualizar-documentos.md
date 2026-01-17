@@ -10,4 +10,4 @@ Como analista, quero visualizar documentos previamente anexados a unidades para 
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

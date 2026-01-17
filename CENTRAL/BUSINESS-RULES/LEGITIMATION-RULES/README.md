@@ -20,8 +20,7 @@ O período de contestação de 30 dias permite que terceiros apresentem oposiç�
 ---
 
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição: Aguardando O ramo completo ta sem numeração.
+**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (6 arquivos)

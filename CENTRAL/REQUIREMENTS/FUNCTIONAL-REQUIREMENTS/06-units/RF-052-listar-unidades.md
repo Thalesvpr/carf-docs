@@ -10,4 +10,4 @@ Usuários podem listar unidades com paginação e filtros avançados onde pagina
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

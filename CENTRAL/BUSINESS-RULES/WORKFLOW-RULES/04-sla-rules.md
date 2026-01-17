@@ -13,4 +13,4 @@ Relacionado domain model LegitimationRequest entity deadline_date field Legitima
 ---
 
 **Última atualização:** 2026-01-11
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

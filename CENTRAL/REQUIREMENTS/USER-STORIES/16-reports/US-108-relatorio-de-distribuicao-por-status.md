@@ -10,4 +10,4 @@ Como gerente acompanhando progresso operacional de cadastramento, quero visualiz
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

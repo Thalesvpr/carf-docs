@@ -10,4 +10,4 @@ O sistema deve oferecer geração automática de códigos identificadores para u
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

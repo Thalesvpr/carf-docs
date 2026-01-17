@@ -9,4 +9,4 @@ Todos os projetos CARF seguem estratégia tri-ambiente (Dev/Staging/Prod) docume
 ---
 
 **Última atualização:** 2026-01-10
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

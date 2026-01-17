@@ -14,4 +14,4 @@ Fluxo alternativo do UC-010 Configurar Camadas WMS desviando no passo 4 onde ao 
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

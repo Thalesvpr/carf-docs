@@ -10,4 +10,4 @@ Como analista, quero buscar unidades desenhando uma área de interesse diretamen
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

@@ -21,4 +21,4 @@ Status da decisão é aprovado e implementado desde início do projeto em 2024-Q
 **Decisor:** Equipe de Arquitetura + Mobile
 **Última revisão:** 2025-01-05
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

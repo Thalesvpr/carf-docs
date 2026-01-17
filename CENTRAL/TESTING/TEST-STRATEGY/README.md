@@ -10,12 +10,8 @@ Mutation testing opcional pode ser usado para detectar testes fracos que não va
 
 ---
 
-**Última atualização:** 2026-01-14
-
----
-
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (2 arquivos)

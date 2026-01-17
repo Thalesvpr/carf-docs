@@ -7,4 +7,4 @@ Matriz completa de casos edge de sobreposição espacial entre Units Community B
 ---
 
 **Última atualização:** 2026-01-10
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

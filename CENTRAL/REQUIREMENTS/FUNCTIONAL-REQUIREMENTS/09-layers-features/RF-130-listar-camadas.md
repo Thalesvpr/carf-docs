@@ -10,4 +10,4 @@ Este requisito especifica que o sistema deve fornecer endpoint e interface para 
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

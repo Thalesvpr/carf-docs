@@ -9,4 +9,4 @@ Como usuário que esqueceu senha, quero receber email para redefinir senha para 
 
 ---
 
-**Última atualização:** 2025-12-30**Status do arquivo**: Pronto
+**Última atualização:** 2025-12-30**Status do arquivo**: Review

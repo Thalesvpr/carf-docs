@@ -11,4 +11,4 @@ Como Analista quero listar todas as unidades de uma comunidade para que possa vi
 
 **Ultima atualizacao:** 2025-12-30
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

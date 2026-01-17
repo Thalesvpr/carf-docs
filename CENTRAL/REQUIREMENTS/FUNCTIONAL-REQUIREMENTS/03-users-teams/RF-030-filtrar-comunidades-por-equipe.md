@@ -10,4 +10,4 @@ Usuários regulares (não ADMIN) visualizam apenas comunidades atribuídas à su
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

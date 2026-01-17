@@ -7,8 +7,7 @@ As categorias incluem performance com tempo de resposta e throughput, segurança
 ---
 
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição: Aguardando (nova geração) index gerado por script.
+**Status do arquivo**: Review
 
 ---
 

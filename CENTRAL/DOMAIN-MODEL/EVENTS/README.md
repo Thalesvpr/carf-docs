@@ -39,8 +39,7 @@ Os eventos são organizados por aggregate. O Unit aggregate emite eventos durant
 ---
 
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição: Aguardando (nova geração) index gerado por script.
+**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (20 arquivos)

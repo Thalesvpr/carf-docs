@@ -29,4 +29,4 @@ Issues tracking bugs features enhancements discussions roadmap planning communit
 ---
 
 **Última atualização:** 2025-01-08
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

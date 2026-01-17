@@ -136,4 +136,4 @@ docker-compose -f docker-compose.prod.yml exec geoapi curl localhost:8080/health
 ---
 
 **Última atualização:** 2026-01-16
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

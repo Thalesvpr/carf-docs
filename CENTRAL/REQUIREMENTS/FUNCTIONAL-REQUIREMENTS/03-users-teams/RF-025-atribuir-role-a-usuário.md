@@ -10,4 +10,4 @@ Usuários com role ADMIN podem atribuir ou alterar role de usuários do tenant o
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

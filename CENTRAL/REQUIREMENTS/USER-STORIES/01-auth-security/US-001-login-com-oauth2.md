@@ -9,4 +9,4 @@ Como usuário do sistema, quero fazer login via OAuth2 com Keycloak para que eu 
 
 ---
 
-**Última atualização:** 2025-12-30**Status do arquivo**: Pronto
+**Última atualização:** 2025-12-30**Status do arquivo**: Review

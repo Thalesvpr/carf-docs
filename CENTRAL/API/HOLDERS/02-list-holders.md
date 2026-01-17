@@ -106,4 +106,4 @@ curl -X GET "https://api.carf.com.br/api/holders?community_id=550e8400..." \
 ---
 
 **Última atualização:** 2026-01-16
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

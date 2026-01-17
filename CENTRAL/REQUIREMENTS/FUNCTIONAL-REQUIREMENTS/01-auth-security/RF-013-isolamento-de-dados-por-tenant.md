@@ -10,4 +10,4 @@ Usuários só podem acessar dados pertencentes ao seu tenant implementado atrav�
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

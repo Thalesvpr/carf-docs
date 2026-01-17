@@ -37,4 +37,4 @@ Servem como fonte única de verdade - os projetos referenciam estes requisitos a
 
 *Gerado automaticamente em 2026-01-15 17:41*
 <!-- GENERATED:END -->
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

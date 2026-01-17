@@ -9,4 +9,4 @@ Como analista, quero ver histórico de titulares de uma unidade para que eu rast
 
 ---
 
-**Última atualização:** 2025-12-30**Status do arquivo**: Pronto
+**Última atualização:** 2025-12-30**Status do arquivo**: Review

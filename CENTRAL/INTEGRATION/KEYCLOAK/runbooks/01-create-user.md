@@ -20,4 +20,4 @@ Obter admin token executando curl POST para http://localhost:8080/realms/master/
 
 Verificar login do usuário executando curl POST para http://localhost:8080/realms/carf/protocol/openid-connect/token com parâmetros client_id geoweb grant_type password username joao.silva password senha123 extraindo access_token via jq decodificando payload JWT usando cut minus d ponto minus f2 pipe base64 minus d pipe jq exibindo claims token incluindo tenants current_tenant roles confirmando autenticação bem-sucedida configurações corretas multi-tenancy funcionando.
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

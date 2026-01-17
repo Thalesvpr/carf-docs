@@ -10,4 +10,4 @@ O sistema oferece funcionalidade de agendamento que permite configurar geração
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

@@ -7,4 +7,4 @@ Entidade polimórfica representando arquivo anexado a qualquer entidade do siste
 ---
 
 **Última atualização:** 2026-01-10
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

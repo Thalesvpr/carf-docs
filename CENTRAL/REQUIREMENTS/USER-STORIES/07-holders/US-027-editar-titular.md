@@ -9,4 +9,4 @@ Como analista, quero editar dados de titular para que correções sejam aplicada
 
 ---
 
-**Última atualização:** 2025-12-30**Status do arquivo**: Pronto
+**Última atualização:** 2025-12-30**Status do arquivo**: Review

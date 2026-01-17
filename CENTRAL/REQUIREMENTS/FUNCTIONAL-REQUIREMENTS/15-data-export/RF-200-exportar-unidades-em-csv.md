@@ -10,4 +10,4 @@ O sistema possibilita exportação de dados tabulares de unidades em formato CSV
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

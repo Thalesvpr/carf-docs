@@ -10,4 +10,4 @@ Como administrador responsável por manutenção de integrações geoespaciais, 
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

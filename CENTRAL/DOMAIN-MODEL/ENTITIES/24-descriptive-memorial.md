@@ -7,4 +7,4 @@ Entidade representando memorial descritivo técnico do perímetro de imóvel con
 ---
 
 **Última atualização:** 2026-01-10
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

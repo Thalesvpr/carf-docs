@@ -11,4 +11,4 @@ Como Topografo quero ver detalhes de uma medicao para que possa validar dados co
 
 **Ultima atualizacao:** 2025-12-30
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

@@ -10,4 +10,4 @@ Como agente de campo, quero anexar fotos já existentes na galeria do dispositiv
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

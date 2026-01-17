@@ -11,8 +11,7 @@ Os requisitos são organizados por épicas temáticas como Security, Performance
 ---
 
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição: Aguardando index gerado por script.
+**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Indice por Dominio (512 arquivos)

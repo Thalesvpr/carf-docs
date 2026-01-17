@@ -10,4 +10,4 @@ Usuários com role SUPER_ADMIN devem ter acesso irrestrito a todas funcionalidad
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

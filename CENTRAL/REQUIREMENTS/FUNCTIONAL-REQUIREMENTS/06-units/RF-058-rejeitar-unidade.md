@@ -10,4 +10,4 @@ O sistema deve permitir que usuários com perfil MANAGER rejeitem unidades inade
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

@@ -9,4 +9,4 @@ Containerização via Docker é aplicada em com multi-stage build otimizado para
 ---
 
 **Última atualização:** 2026-01-10
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

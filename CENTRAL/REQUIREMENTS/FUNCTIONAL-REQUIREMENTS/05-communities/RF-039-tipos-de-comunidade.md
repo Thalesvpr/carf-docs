@@ -10,4 +10,4 @@ Sistema deve suportar tipos predefinidos de comunidade sendo Assentamento Inform
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

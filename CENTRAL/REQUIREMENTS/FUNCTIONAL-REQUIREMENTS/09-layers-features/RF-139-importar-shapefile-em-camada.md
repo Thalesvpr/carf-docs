@@ -10,4 +10,4 @@ Este requisito estabelece que usuários autorizados devem poder importar shapefi
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

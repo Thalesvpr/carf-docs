@@ -10,4 +10,4 @@ Como agente de campo, quero capturar geometria usando GPS do celular para que a 
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

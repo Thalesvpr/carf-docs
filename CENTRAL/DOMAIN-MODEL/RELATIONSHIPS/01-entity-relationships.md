@@ -5,4 +5,4 @@ Mapeamento completo de relacionamentos entre entidades do domínio especificando
 ---
 
 **Última atualização:** 2025-01-05
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

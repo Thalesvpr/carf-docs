@@ -10,4 +10,4 @@ O sistema possibilita download inicial de dados de comunidade específica para d
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

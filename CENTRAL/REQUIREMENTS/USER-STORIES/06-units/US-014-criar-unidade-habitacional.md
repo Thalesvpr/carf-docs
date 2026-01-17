@@ -9,4 +9,4 @@ Como analista cadastral, quero cadastrar nova unidade com geometria para que pro
 
 ---
 
-**Última atualização:** 2025-12-30**Status do arquivo**: Pronto
+**Última atualização:** 2025-12-30**Status do arquivo**: Review

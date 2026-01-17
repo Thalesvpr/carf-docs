@@ -103,4 +103,4 @@ Para matriz de compatibilidade de versões, processo de coordenação de release
 ---
 
 **Última atualização:** 2026-01-08
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

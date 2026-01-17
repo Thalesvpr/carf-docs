@@ -56,8 +56,11 @@ class FileSizeValidator(LocalValidator):
                 suggestion=f"Adicione mais {min_words - word_count} palavras de conteúdo",
             ))
         elif word_count > max_words:
+            # Severidade WARNING se exceder muito (>1.5x), INFO se moderado
+            excess_ratio = word_count / max_words
+            severity = Severity.WARNING if excess_ratio > 1.5 else Severity.INFO
             issues.append(ValidationIssue(
-                severity=Severity.INFO,
+                severity=severity,
                 code="SIZE002",
                 message=f"Documento muito longo: {word_count} palavras (máximo: {max_words})",
                 file_path=doc.path,

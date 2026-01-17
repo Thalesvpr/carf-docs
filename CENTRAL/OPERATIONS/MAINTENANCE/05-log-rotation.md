@@ -109,4 +109,4 @@ find /var/log/containers -name "*.log" -mtime +3 -delete
 ---
 
 **Última atualização:** 2026-01-16
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

@@ -10,4 +10,4 @@ Usuários com role ADMIN podem editar dados de usuários pertencentes ao mesmo t
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

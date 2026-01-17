@@ -55,8 +55,7 @@ Value objects são conceitos sem identidade própria, definidos exclusivamente p
 ---
 
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição: Aguardando (nova geração) index gerado por script.
+**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (26 arquivos)

@@ -10,4 +10,4 @@ O sistema gera automaticamente Ficha Técnica completa de unidade territorial em
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

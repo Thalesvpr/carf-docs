@@ -10,4 +10,4 @@ O sistema deve permitir que administradores (perfil ADMIN) mesclem múltiplas un
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

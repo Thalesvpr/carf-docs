@@ -10,4 +10,4 @@ Como analista, quero visualizar a localização geográfica de cada foto no mapa
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

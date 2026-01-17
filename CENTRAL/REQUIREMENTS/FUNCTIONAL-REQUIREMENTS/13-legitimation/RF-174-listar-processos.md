@@ -10,4 +10,4 @@ O sistema oferece interface de listagem abrangente de processos de legitimação
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

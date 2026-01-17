@@ -9,4 +9,4 @@ Como analista, quero vincular titular a unidade para que propriedade seja docume
 
 ---
 
-**Última atualização:** 2025-12-30**Status do arquivo**: Pronto
+**Última atualização:** 2025-12-30**Status do arquivo**: Review

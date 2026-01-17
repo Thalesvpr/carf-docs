@@ -5,4 +5,4 @@ Procedimento de notificação vazamento dados do CARF conforme LGPD Art. 48 comu
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

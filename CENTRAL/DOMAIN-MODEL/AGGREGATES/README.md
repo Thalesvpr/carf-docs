@@ -17,8 +17,7 @@ O [LegitimationRequestAggregate](./03-legitimation-request-aggregate.md) tem Leg
 ---
 
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição: Aguardando (nova geração) index gerado por script.
+**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (3 arquivos)

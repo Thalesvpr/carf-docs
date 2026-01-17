@@ -5,4 +5,4 @@ Validações geográficas do CARF. coordinates-validation.md valida latitude -90
 ---
 
 **Última atualização:** 2025-01-05
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

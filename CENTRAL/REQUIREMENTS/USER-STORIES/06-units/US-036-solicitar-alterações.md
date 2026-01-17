@@ -9,4 +9,4 @@ Como gestor, quero solicitar alterações em unidade para que analista corrija s
 
 ---
 
-**Última atualização:** 2025-12-30**Status do arquivo**: Pronto
+**Última atualização:** 2025-12-30**Status do arquivo**: Review

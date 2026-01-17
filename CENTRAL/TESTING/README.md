@@ -11,8 +11,7 @@ Inclui fixtures, factories e test data builders para setup rápido, evitando có
 ---
 
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição: Aguardando index gerado por script.
+**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Indice por Dominio (2 arquivos)

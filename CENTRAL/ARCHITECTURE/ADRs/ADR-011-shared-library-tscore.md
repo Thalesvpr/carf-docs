@@ -29,4 +29,4 @@ Status da decisão é aprovado e implementado desde 2026-01-09, com revisão pre
 **Decisor:** Equipe de Arquitetura + Frontend Team
 **Última revisão:** 2026-01-09
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

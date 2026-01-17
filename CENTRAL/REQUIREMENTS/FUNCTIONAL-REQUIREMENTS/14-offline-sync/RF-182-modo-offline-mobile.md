@@ -10,4 +10,4 @@ O aplicativo mobile funciona completamente offline permitindo coleta e gestão d
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

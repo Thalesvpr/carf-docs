@@ -5,4 +5,4 @@ Hierarquia: super-admin (tudo) > admin (gestão tenant) > analyst (validação) 
 ---
 
 **Última atualização:** 2026-01-09
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

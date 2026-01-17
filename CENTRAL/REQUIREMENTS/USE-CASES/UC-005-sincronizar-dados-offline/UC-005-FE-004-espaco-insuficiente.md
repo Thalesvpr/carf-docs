@@ -14,4 +14,4 @@ Fluxo de exceção do UC-005 Sincronizar Dados Offline ocorrendo na fase PULL qu
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

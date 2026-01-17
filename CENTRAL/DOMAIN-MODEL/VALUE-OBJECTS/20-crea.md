@@ -7,4 +7,4 @@ Value object imutável representando número de registro profissional no Conselh
 ---
 
 **Última atualização:** 2026-01-10
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

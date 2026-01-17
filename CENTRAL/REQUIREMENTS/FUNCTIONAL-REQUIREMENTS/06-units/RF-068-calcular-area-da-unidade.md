@@ -10,4 +10,4 @@ O sistema deve calcular automaticamente a área de cada unidade habitacional a p
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

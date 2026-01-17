@@ -10,4 +10,4 @@ Como gestor, quero gerar relatório consolidado contendo estatísticas e indicad
 ---
 
 **Última atualização:** 2025-12-30
-**Status do arquivo**: Pronto
+**Status do arquivo**: Review

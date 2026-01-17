@@ -20,5 +20,4 @@ Códigos HTTP: 200 OK sucesso, 401 Unauthorized credenciais inválidas, 403 Forb
 ---
 
 **Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição: o ramo inteiro esta incompleto. Precisa de supervisão para corrigir.
+**Status do arquivo**: Review
