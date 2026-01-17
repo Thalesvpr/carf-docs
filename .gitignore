@@ -1,5 +1,6 @@
 ## Repositórios Git Independentes (não rastrear no CENTRAL)
-PROJECTS/*/SRC-CODE/carf-*/
+## Cada projeto tem seu próprio repo - docs não tracka código fonte
+**/SRC-CODE/
 
 ## Node
 node_modules/
