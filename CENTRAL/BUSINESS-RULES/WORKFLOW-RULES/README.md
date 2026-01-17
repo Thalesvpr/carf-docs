@@ -1,15 +1,29 @@
 # WORKFLOW-RULES
 
-Regras workflow aprovação CARF incluindo unit-status-transitions state machine Unit seis estados DRAFT PENDING_ANALYSIS IN_REVIEW APPROVED REJECTED REQUIRES_CHANGES transições permitidas DRAFT para PENDING_ANALYSIS requer titular principal coordenadas PENDING_ANALYSIS para IN_REVIEW requer role Técnico IN_REVIEW para APPROVED REJECTED requer role Fiscal irreversibilidade APPROVED final REJECTED pode voltar DRAFT após correções legitimation-status-transitions state machine LegitimationRequest onze estados workflow conforme Lei 13465/2017 DRAFT SUBMITTED UNDER_ANALYSIS DOCUMENT_REVIEW TECHNICAL_REVIEW PUBLIC_NOTICE CONTESTATION_PERIOD RESOLUTION APPROVED REJECTED NEEDS_CORRECTION role-permissions mapeia role por transição Técnico cadastra DRAFT submete PENDING_ANALYSIS move IN_REVIEW Fiscal aprova rejeita sla-rules define SLAs PENDING_ANALYSIS para IN_REVIEW cinco dias úteis IN_REVIEW para Decisão dez dias úteis alertas enviados oitenta por cento SLA notification-triggers especifica quando notificar status change email titular aprovação gera PDF título rejeição email com motivo workflow implementado via state pattern LegitimationProcess entity.
+Regras de workflow do CARF governando transições de status através de state machines que definem quais mudanças são permitidas baseadas no status atual, role do usuário e pré-condições.
 
-## Regras
+O workflow de unidade habitacional possui seis estados: DRAFT, PENDING_ANALYSIS, IN_REVIEW, APPROVED, REJECTED e REQUIRES_CHANGES. Transições são controladas por role - Técnico pode cadastrar e submeter, Fiscal pode aprovar ou rejeitar. Status APPROVED é final e irreversível.
 
-- **[legitimation-status-transitions.md](./legitimation-status-transitions.md)** - State machine LegitimationRequest onze estados Lei 13465/2017
-- **[notification-triggers.md](./notification-triggers.md)** - Triggers notificações email status changes aprovação rejeição
-- **[role-permissions.md](./role-permissions.md)** - Mapeamento roles permissions transições Técnico Fiscal
-- **[sla-rules.md](./sla-rules.md)** - SLAs workflow prazos cinco dez dias alertas
-- **[unit-status-transitions.md](./unit-status-transitions.md)** - State machine Unit seis estados transições permitidas
+O workflow de legitimação fundiária possui onze estados conforme Lei 13.465/2017, incluindo períodos de análise documental, parecer técnico, edital público e prazo para contestações.
+
+Os SLAs definem prazos para cada etapa com alertas automáticos. Notificações são disparadas em mudanças de status relevantes.
+
 
 ---
 
-**Última atualização:** 2026-01-11
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Review
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (5 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-unit-status-transitions](./01-unit-status-transitions.md) | Unit Status Transitions |
+| [02-legitimation-status-transitions](./02-legitimation-status-transitions.md) | Legitimation Status Transitions |
+| [03-role-permissions](./03-role-permissions.md) | Role Permissions Matrix |
+| [04-sla-rules](./04-sla-rules.md) | SLA Rules |
+| [05-notification-triggers](./05-notification-triggers.md) | Notification Triggers (Gatilhos de Notificação) |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

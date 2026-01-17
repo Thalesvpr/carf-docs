@@ -12,3 +12,17 @@ Value objects representando documentos brasileiros validados incluindo CPF CNPJ 
 ---
 
 **Última atualização:** 2026-01-12
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (4 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-cpf](./01-cpf.md) | Cpf |
+| [04-email](./04-email.md) | Email |
+| [06-phone-number](./06-phone-number.md) | PhoneNumber |
+| [11-crea](./11-crea.md) | Crea |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Pronto

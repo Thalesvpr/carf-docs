@@ -6,3 +6,4 @@ Domain event emitido quando 29-legitimation-certificate é oficialmente emitida 
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

@@ -7,3 +7,4 @@ Value object imutável representando coordenada geográfica validada composta po
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Review

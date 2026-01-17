@@ -11,3 +11,4 @@ Gerar token com claims tenant_id=test-tenant sub=test-user realm_access.roles=an
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

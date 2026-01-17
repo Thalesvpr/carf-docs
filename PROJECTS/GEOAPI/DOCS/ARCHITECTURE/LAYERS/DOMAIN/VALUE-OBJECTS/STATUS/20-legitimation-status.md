@@ -9,3 +9,4 @@ Usado em LegitimationRequest.Status controlando workflow com validações rigoro
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

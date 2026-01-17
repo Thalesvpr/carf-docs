@@ -1,11 +1,27 @@
 # UNITS
 
-Schemas JSON para unidades habitacionais do CARF. UnitCreateRequest (address objeto com street/number/neighborhood/city/state/zip, coordinates objeto com latitude/longitude, area_m2 calculada ou manual, polygon GeoJSON para área, photos array de URLs, notes texto livre), UnitResponse (id UUID, address, coordinates, area_m2, polygon, status enum Rascunho/Pendente/Aprovado/Rejeitado, created_at, updated_at, created_by, tenant_id), UnitUpdateRequest (campos parciais permitindo PATCH), UnitListResponse (items array de UnitResponse, pagination objeto com page/page_size/total_count/total_pages), UnitFilterRequest (query params: status, city, neighborhood, area_min, area_max, created_after, created_before, sort_by, order asc/desc). CRUD completo: POST /api/units, GET /api/units/{id}, PATCH /api/units/{id}, DELETE /api/units/{id}, GET /api/units com filtros e paginação.
+Schemas JSON para unidades habitacionais do CARF.
 
-## Implementação e Uso
+O UnitCreateRequest contém address (street, number, neighborhood, city, state, zip), coordinates (latitude, longitude), area_m2, polygon GeoJSON e photos. O UnitResponse inclui id UUID, status (Rascunho, Pendente, Aprovado, Rejeitado), timestamps e tenant_id.
 
-Endpoint de Unidades implementado pelo backend GEOAPI usando aggregate [UnitAggregate](../../DOMAIN-MODEL/AGGREGATES/01-unit-aggregate.md) conforme [ADR-008: Clean Architecture + DDD](../../ARCHITECTURE/ADRs/ADR-008-clean-architecture-ddd.md), persistido em PostgreSQL+PostGIS via [ADR-002: PostGIS](../../ARCHITECTURE/ADRs/ADR-002-postgresql-postgis.md) com multi-tenancy isolado por [ADR-005: RLS](../../ARCHITECTURE/ADRs/ADR-005-multi-tenancy-rls.md), consumido por GEOWEB para CRUD web com validações client-side via @carf/tscore e REURBCAD para coleta em campo offline sincronizando via @carf/geoapi-client, ambos renderizando UI com componentes de .
+O UnitFilterRequest permite filtros por status, city, neighborhood, área mínima/máxima, datas e ordenação.
+
+## Endpoints
+
+- POST /api/units - Criar unidade
+- GET /api/units/{id} - Obter unidade
+- PATCH /api/units/{id} - Atualizar parcialmente
+- DELETE /api/units/{id} - Remover unidade
+- GET /api/units - Listar com filtros e paginação
+
+## Schemas
+
+- UnitCreateRequest / UnitResponse
+- UnitUpdateRequest
+- UnitListResponse
+- UnitFilterRequest
 
 ---
 
-**Última atualização:** 2025-12-29
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Review

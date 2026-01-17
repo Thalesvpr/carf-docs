@@ -9,3 +9,4 @@ Usado em TeamMember.Role para definir papel de cada Account dentro da Team, vali
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

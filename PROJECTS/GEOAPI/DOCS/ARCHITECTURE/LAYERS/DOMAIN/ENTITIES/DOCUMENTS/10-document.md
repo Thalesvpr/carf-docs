@@ -9,3 +9,4 @@ Métodos incluem GenerateStoragePath() path único S3, GenerateThumbnail() previ
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

@@ -9,3 +9,4 @@ Relacionamento principal WmsLayer através coleção Layers cada servidor múlti
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

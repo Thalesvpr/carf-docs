@@ -9,3 +9,4 @@ Métodos incluem Activate()/Deactivate() controlando IsActive impedindo assinatu
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

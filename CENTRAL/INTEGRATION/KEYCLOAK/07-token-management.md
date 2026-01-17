@@ -5,3 +5,4 @@ access_token dura 5min (300s), id_token dura 5min, refresh_token dura conforme s
 ---
 
 **Última atualização:** 2026-01-09
+**Status do arquivo**: Review

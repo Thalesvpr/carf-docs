@@ -7,3 +7,4 @@ Value object enum representando nível de prioridade ou urgência de item permit
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Review

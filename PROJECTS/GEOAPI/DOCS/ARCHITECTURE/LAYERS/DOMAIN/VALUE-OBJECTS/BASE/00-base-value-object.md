@@ -9,3 +9,4 @@ Usado como base para todos os value objects do domínio incluindo Cpf, Email, Ge
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

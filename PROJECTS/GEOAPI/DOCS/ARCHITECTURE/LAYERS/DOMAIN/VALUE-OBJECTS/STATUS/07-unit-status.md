@@ -9,3 +9,4 @@ Usado em Unit para controlar workflow com domain event UnitStatusChangedEvent di
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

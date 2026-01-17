@@ -96,3 +96,8 @@ Em dev mode (`bun run dev`), mudanças são refletidas instantaneamente:
 5. Página atualiza sem reload completo
 ```
 
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Contém code blocks - considerar converter para prosa.

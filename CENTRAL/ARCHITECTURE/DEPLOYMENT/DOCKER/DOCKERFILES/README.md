@@ -12,4 +12,6 @@ Instruções HEALTHCHECK adicionadas em cada Dockerfile para integração com Do
 
 ---
 
-**Última atualização:** 2026-01-10
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Review
+

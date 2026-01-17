@@ -6,3 +6,4 @@ Exception indicando que entidade solicitada não foi encontrada por identificado
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

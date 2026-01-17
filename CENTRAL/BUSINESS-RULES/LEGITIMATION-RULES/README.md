@@ -1,16 +1,38 @@
-# Legitimation Rules
+# LEGITIMATION-RULES
 
-Regras negócio específicas processos regularização fundiária urbana rural REURB conforme Lei 13465/2017 estabelecendo critérios elegibilidade requisitos documentais limites área modalidades atendimento procedimentos legais devem cumpridos emissão certidão regularização fundiária garantindo conformidade legislação brasileira assegurando direitos beneficiários regras complementam validação técnica definindo quando como unidade habitacional pode legitimada considerando aspectos jurídicos sociais econômicos processo regularização fundiária modalidade REURB-S interesse social atende população baixa renda isenção custos critérios simplificados enquanto REURB-E interesse específico atende demais casos custos compartilhados documentação adicional requerida regras estabelecem limites área conforme modalidade critérios titularidade incluindo número máximo titulares unidade percentuais propriedade permitidos requisitos documentais obrigatórios modalidade especificando documentos pessoais comprovantes ocupação documentos técnicos necessários base legal Lei 13465/2017 detalhando prazos procedimentos direitos beneficiários durante processo legitimação aplicação regras garante processos legitimação cumprem requisitos legais minimizando risco contestações judiciais invalidação certidões emitidas protegendo beneficiários órgão público responsável regularização relacionado domain model aplica-se LegitimationRequest aggregate valida LegitimationRequest entity eventos afetados RequestSubmittedEvent até CorrectionRequestedEvent implementações backend .NET frontend React mobile React Native.
+Regras de negócio específicas para processos de regularização fundiária urbana conforme Lei 13.465/2017, estabelecendo critérios de elegibilidade, requisitos documentais e procedimentos legais para emissão de certidão.
+
+A modalidade REURB-S (interesse social) atende população de baixa renda com área até 250m², isenção de custos e documentação simplificada. A modalidade REURB-E (interesse específico) atende demais casos com área até 500m², custos compartilhados e documentação completa.
+
+As regras definem critérios de titularidade incluindo número máximo de titulares por unidade e percentuais de propriedade permitidos. Os requisitos documentais especificam documentos pessoais, comprovantes de ocupação e documentos técnicos obrigatórios por modalidade.
+
+O período de contestação de 30 dias permite que terceiros apresentem oposição, que deve ser analisada antes da aprovação final.
 
 ## Regras
 
-- **[contestation-rules.md](./contestation-rules.md)** - Regras contestações administrativas período trinta dias legitimidade análise decisão recursos
-- **[documentation-requirements.md](./documentation-requirements.md)** - Requisitos documentais modalidade documentos pessoais comprovantes ocupação certidões obrigatórias
-- **[lei-13465-2017.md](./lei-13465-2017.md)** - Lei Federal 13465/2017 base legal prazos direitos beneficiários vedações
-- **[ownership-criteria.md](./ownership-criteria.md)** - Critérios titularidade titular primário co-titulares percentuais propriedade posse qualificada
-- **[reurb-e-requirements.md](./reurb-e-requirements.md)** - Requisitos REURB-E interesse específico área custos documentação técnica
-- **[reurb-s-requirements.md](./reurb-s-requirements.md)** - Requisitos REURB-S interesse social área renda isenção custos procedimentos simplificados
+- **[lei-13465-2017.md](./01-lei-13465-2017.md)** - Base legal, prazos e direitos dos beneficiários
+- **[reurb-s-requirements.md](./02-reurb-s-requirements.md)** - Requisitos REURB-S interesse social
+- **[reurb-e-requirements.md](./03-reurb-e-requirements.md)** - Requisitos REURB-E interesse específico
+- **[ownership-criteria.md](./04-ownership-criteria.md)** - Critérios de titularidade e percentuais
+- **[documentation-requirements.md](./05-documentation-requirements.md)** - Documentos obrigatórios por modalidade
+- **[contestation-rules.md](./06-contestation-rules.md)** - Regras de contestação e recursos
 
 ---
 
-**Última atualização:** 2026-01-11
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Review
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (6 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-lei-13465-2017](./01-lei-13465-2017.md) | Lei 13.465/2017 (Base Legal Regularização Fundiária) |
+| [02-reurb-s-requirements](./02-reurb-s-requirements.md) | REURB-S Requirements (Requisitos REURB Interesse Social) |
+| [03-reurb-e-requirements](./03-reurb-e-requirements.md) | REURB-E Requirements (Requisitos REURB Interesse Específico) |
+| [04-ownership-criteria](./04-ownership-criteria.md) | Ownership Criteria (Critérios de Titularidade) |
+| [05-documentation-requirements](./05-documentation-requirements.md) | Documentation Requirements (Requisitos Documentais) |
+| [06-contestation-rules](./06-contestation-rules.md) | Contestation Rules |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

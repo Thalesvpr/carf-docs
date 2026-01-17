@@ -16,3 +16,22 @@ Interfaces definidas na camada Domain e implementadas no Infrastructure seguindo
 ---
 
 **Última atualização:** 2026-01-12
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (8 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [00-i-repository](./00-i-repository.md) | IRepository<T> |
+| [01-i-unit-of-work](./01-i-unit-of-work.md) | IUnitOfWork |
+| [02-i-date-time-provider](./02-i-date-time-provider.md) | IDateTimeProvider |
+| [03-i-tenant-provider](./03-i-tenant-provider.md) | ITenantProvider |
+| [04-i-domain-event-dispatcher](./04-i-domain-event-dispatcher.md) | IDomainEventDispatcher |
+| [05-i-current-user](./05-i-current-user.md) | ICurrentUser |
+| [06-i-file-storage](./06-i-file-storage.md) | IFileStorage |
+| [07-i-pdf-generator](./07-i-pdf-generator.md) | IPdfGenerator |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Incompleto
+Descrição: Muitas listas com bullets (8) antes do rodapé - considerar converter para parágrafo denso.

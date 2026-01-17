@@ -32,3 +32,9 @@ bun run dev  # http://localhost:4321
 
 - [Astro Installation](https://docs.astro.build/en/install/auto/)
 - [Starlight Setup](https://starlight.astro.build/getting-started/)
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Muitas listas com bullets (6) antes do rodapé - considerar converter para parágrafo denso; Contém code blocks - considerar converter para prosa.

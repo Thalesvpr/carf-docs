@@ -7,3 +7,4 @@ Entidade representando planta técnica gráfica do imóvel elaborada por topógr
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Review

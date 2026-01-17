@@ -222,3 +222,5 @@ Value objects são instanciados frequentemente, otimizações:
 ---
 
 **Última atualização:** 2026-01-09
+**Status do arquivo**: Incompleto
+Descrição: Falta parágrafo denso introdutório; Falta seção GENERATED com índice automático; Muitas listas com bullets (21) antes do rodapé - considerar converter para parágrafo denso; Contém code blocks - considerar converter para prosa.

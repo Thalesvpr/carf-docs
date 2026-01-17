@@ -9,3 +9,4 @@ Relacionamentos incluem Account vinculados, Community do tenant, Unit cadastrada
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

@@ -13,3 +13,4 @@ Rollback plan via kubectl rollout undo deployment/keycloak -n production para qu
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

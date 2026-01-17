@@ -9,3 +9,4 @@ Relacionamentos N:N com Holder via UnitHolder especificando tipo vínculo (propr
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

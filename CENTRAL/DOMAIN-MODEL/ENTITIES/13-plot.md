@@ -9,3 +9,4 @@ rável para lidar com imprecisões de levantamento), área calculada a partir da
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Review

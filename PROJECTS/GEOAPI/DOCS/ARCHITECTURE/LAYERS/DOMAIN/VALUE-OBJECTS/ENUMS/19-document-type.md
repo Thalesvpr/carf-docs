@@ -9,3 +9,4 @@ Usado em Document.Type validando upload conforme categoria, apresentando ícones
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

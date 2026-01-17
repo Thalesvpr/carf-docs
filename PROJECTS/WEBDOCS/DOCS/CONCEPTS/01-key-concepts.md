@@ -68,3 +68,7 @@ docs.forEach(doc => {
 })
 ```
 
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Pronto

@@ -3,3 +3,9 @@ Service Provider Interfaces (SPIs) do Keycloak são pontos de extensão server-s
 Todas SPIs registradas via factory pattern implementando ProviderFactory com getId/init/postInit/close seguindo Service Loader pattern Java lendo META-INF/services/org.keycloak.provider.Spi para descoberta automática durante boot do Keycloak, buildadas via Maven com keycloak-server-spi como provided dependency gerando JAR uber (fat JAR com dependencies shaded exceto Keycloak APIs), hot-reloadable em modo dev mas exigindo restart em produção, configuradas via Admin Console em Authentication → Flows para Authenticators ou Realm Settings → Events → Config para Event Listeners ou Client Scopes → Mappers para Protocol Mappers.
 
 Testadas via Arquillian framework com keycloak-testsuite e KeycloakTestingClient para testes de integração rodando Keycloak embedded, versionadas junto com código em `PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak/extensions/` estruturado como Maven multi-module com pom parent definindo Keycloak version, debuggable via remote JVM debug habilitando JAVA_OPTS com `-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8787` e anexando IntelliJ/Eclipse debugger para step debugging durante requisições reais facilitando troubleshooting de lógica complexa como custom CPF authentication validator ou tenant-based authorization rules.
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Falta título H1 na primeira linha.

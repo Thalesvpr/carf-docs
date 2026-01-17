@@ -3,3 +3,9 @@ Secure storage no REURBCAD usa expo-secure-store (Expo) ou react-native-keychain
 Biometric authentication integration opcional via expo-local-authentication antes de acessar SecureStore adicionando layer extra exigindo fingerprint/face antes de ler refresh_token, usage pattern ao salvar token após login success `await SecureStore.setItemAsync('refresh_token', refreshToken, { keychainAccessible: SecureStore.AFTER_FIRST_UNLOCK })` com options especificando accessibility level, ao restaurar sessão app startup `const refreshToken = await SecureStore.getItemAsync('refresh_token')` que retorna null se não existe ou string encrypted se existe, ao logout `await SecureStore.deleteItemAsync('refresh_token')` que remove permanentemente do Keychain/Keystore, error handling try/catch porque setItemAsync pode falhar se storage full (raro) ou device encryption disabled (user setting), nunca armazenar access_token em SecureStore porque dura apenas 5 min e overhead de encryption/decryption desnecessário, manter em memória como class property que é wiped quando app killed pelo OS, data além de tokens como user preferences, theme settings podem usar AsyncStorage porque não sensitive, mas tenant_id e user_id sensíveis também devem usar SecureStore ou pelo menos encrypt via crypto library antes AsyncStorage.
 
 Backup considerations iOS iCloud Keychain backup inclui Keychain items por padrão mas kSecAttrAccessibleAfterFirstUnlock items são excluded garantindo refresh_token não vazado via backup, Android KeyStore items nunca backed up automaticamente protegendo tokens, migration de AsyncStorage para SecureStore em app update requer ler tokens de AsyncStorage, salvar em SecureStore, deletar de AsyncStorage via database.clear() evitando deixar tokens plain text após migration.
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Falta título H1 na primeira linha.

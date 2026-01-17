@@ -1,0 +1,10 @@
+---
+modules: [REURBCAD]
+epic: scalability
+---
+
+# RNF-075: Pico de Carga
+
+O sistema deve aguentar três vezes a carga normal por curtos períodos garantindo resiliência durante eventos de uso intenso como sincronizações em massa ou acessos simultâneos durante expedientes de trabalho de campo, onde a arquitetura deve ser capaz de absorver spikes temporários sem degradação severa de performance ou indisponibilidade. A implementação deve configurar burst capacity permitindo alocação temporária de recursos adicionais durante picos de demanda, incluindo scaling rápido de containers ou instâncias conforme necessário para atender ao aumento súbito de requisições. O sistema deve implementar queue para processos não-críticos garantindo que operações de baixa prioridade sejam enfileiradas e processadas posteriormente quando a carga retornar ao normal, evitando sobrecarga de recursos críticos e priorizando operações essenciais como autenticação e consultas urgentes. A solução deve implementar graceful degradation permitindo que o sistema continue operacional mesmo sob carga extrema através da desabilitação temporária de funcionalidades não-essenciais, mantendo serviços core disponíveis enquanto features secundárias podem apresentar latência aumentada ou serem temporariamente suspensas. Os critérios de aceitação incluem testes de carga que simulem 3x o volume normal de requisições validando que o sistema mantém funcionalidade básica, onde tempos de resposta podem aumentar mas erro rates devem permanecer controláveis e nenhum dado deve ser perdido. A prioridade é classificada como should-have reconhecendo que picos de carga são previsíveis em cenários de campo mas podem ser mitigados com planejamento operacional e sincronizações escalonadas.
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Review

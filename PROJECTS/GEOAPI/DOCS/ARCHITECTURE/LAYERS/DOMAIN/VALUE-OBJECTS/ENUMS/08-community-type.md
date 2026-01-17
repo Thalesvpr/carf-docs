@@ -9,3 +9,4 @@ Usado em Community.Type para definir regras de validação específicas (ex: QUI
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

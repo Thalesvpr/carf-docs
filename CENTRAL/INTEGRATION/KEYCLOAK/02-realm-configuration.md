@@ -5,3 +5,4 @@ Realm "carf" configurado com seis clients distintos sendo geoweb reurbcad webdoc
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Review

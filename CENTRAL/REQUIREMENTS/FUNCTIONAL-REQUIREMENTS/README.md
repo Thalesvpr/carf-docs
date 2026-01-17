@@ -1,13 +1,40 @@
 # FUNCTIONAL-REQUIREMENTS
 
-Requisitos funcionais do CARF especificando o que o sistema deve fazer sem detalhar como implementar. Cada RF segue nomenclatura RF-NNN-titulo-descritivo.md, possui metadados YAML (epic, módulo, prioridade, story_points), descrição objetiva focada no comportamento esperado, critérios de aceitação em formato checklist testável, e rastreabilidade bidirecional para UCs e USs que implementam o requisito. Organizados por domínio: autenticação e autorização (login, JWT, RBAC, multi-tenancy), unidades habitacionais (CRUD, validação geográfica, cálculo de área), titulares (cadastro, CPF, vinculação), comunidades (agregação, relatórios), processos de legitimação (workflow aprovação, documentos Lei 13.465/2017), relatórios (PDF, Excel, GeoJSON, Shapefile), e auditoria (logs de acesso, alterações). Servem como fonte única de verdade (SSOT) - projetos linkam via _INDEX ao invés de duplicar.
+Requisitos funcionais do CARF especificando o que o sistema deve fazer sem detalhar como implementar. Cada requisito possui descrição objetiva focada no comportamento esperado, critérios de aceitação em formato testável, e rastreabilidade para casos de uso e user stories relacionadas.
 
-## Navegação
+Os requisitos estão organizados por domínio: autenticação e autorização, unidades habitacionais, titulares, comunidades, processos de legitimação conforme Lei 13.465/2017, relatórios em diversos formatos, e auditoria de alterações.
 
-**[index-by-epic.md](./index-by-epic.md)** - Índice de todos os 221 Requisitos Funcionais organizados por épica (security: 87, performance: 104, compatibility: 88, scalability: 45)
-
-Documentação complementar de requirements inclui [overview completo](../README.md) apresentando estrutura hierárquica de 11 UCs 221 RFs 140 USs e 85 RNFs com estatísticas de cobertura por módulo e épica, [índice por módulo](../index-by-module.md) organizando requirements conforme projetos implementadores GEOWEB REURBCAD GEOAPI GEOGIS facilitando descoberta de funcionalidades por equipe de desenvolvimento, e [matriz de rastreabilidade](../traceability-matrix.md) mapeando relacionamentos bidirecionais UC→RF→US→RNF estabelecendo conexões explícitas entre casos de uso requisitos funcionais user stories e requisitos não-funcionais.
+Servem como fonte única de verdade - os projetos referenciam estes requisitos ao invés de duplicá-los.
 
 ---
 
-**Última atualização:** 2025-12-29
+**Última atualização:** 2026-01-14
+
+---
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (221 requisitos)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+| 01 | [Autenticacao e Seguranca](./01-auth-security/README.md) | 16 |
+| 02 | [Gestao de Tenants](./02-tenants/README.md) | 4 |
+| 03 | [Usuarios e Equipes](./03-users-teams/README.md) | 12 |
+| 04 | [Notificacoes](./04-notifications/README.md) | 1 |
+| 05 | [Gestao de Comunidades](./05-communities/README.md) | 15 |
+| 06 | [Gestao de Unidades](./06-units/README.md) | 35 |
+| 07 | [Gestao de Titulares](./07-holders/README.md) | 18 |
+| 08 | [Documentos e Midia](./08-documents-media/README.md) | 25 |
+| 09 | [Camadas e Features](./09-layers-features/README.md) | 15 |
+| 10 | [Analise Espacial](./10-spatial-analysis/README.md) | 11 |
+| 11 | [Anotacoes](./11-annotations/README.md) | 4 |
+| 12 | [Levantamentos Topograficos](./12-surveys/README.md) | 15 |
+| 13 | [Processos de Legitimacao](./13-legitimation/README.md) | 10 |
+| 14 | [Modo Offline e Sincronizacao](./14-offline-sync/README.md) | 15 |
+| 15 | [Exportacao de Dados](./15-data-export/README.md) | 6 |
+| 16 | [Relatorios](./16-reports/README.md) | 9 |
+| 17 | [Integracoes WMS/WMTS](./17-wms-wmts/README.md) | 10 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Review

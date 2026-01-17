@@ -11,3 +11,16 @@ Entities organização espacial territorial do GEOAPI estruturando assentamentos
 ---
 
 **Última atualização:** 2026-01-12
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (3 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [04-community](./04-community.md) | Community |
+| [08-block](./08-block.md) | Block |
+| [09-plot](./09-plot.md) | Plot |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Pronto

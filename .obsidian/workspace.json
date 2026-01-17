@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "8e2904269476d561",
+        "id": "e9073b12103837a2",
         "type": "tabs",
         "children": [
           {
-            "id": "e55f3b0524e5f762",
+            "id": "64700822131d2339",
             "type": "leaf",
             "pinned": true,
             "state": {
@@ -16,63 +16,7 @@
               "state": {},
               "pinned": true,
               "icon": "lucide-git-fork",
-              "title": "Graph view"
-            }
-          },
-          {
-            "id": "69762f1f2d01fe5a",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "CENTRAL/README.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "README"
-            }
-          },
-          {
-            "id": "fd5228bdfc12c6ac",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "README.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "README"
-            }
-          },
-          {
-            "id": "b2d0f3679760eaeb",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "README.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "README"
-            }
-          },
-          {
-            "id": "1a299baf0ceb3a8a",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "CENTRAL/DOMAIN-MODEL/AGGREGATES/README.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "README"
+              "title": "Visualização em gráfico"
             }
           }
         ]
@@ -98,7 +42,7 @@
                 "autoReveal": false
               },
               "icon": "lucide-folder-closed",
-              "title": "Files"
+              "title": "Explorador de arquivos"
             }
           },
           {
@@ -132,7 +76,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 498.5
   },
   "right": {
     "id": "5c80d725b66a9060",
@@ -228,52 +172,52 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Open quick switcher": false,
-      "graph:Open graph view": false,
-      "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
-      "templates:Insert template": false,
-      "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "switcher:Abrir a troca rápida": false,
+      "graph:Abrir visualização em gráfico": false,
+      "canvas:Criar novo canvas": false,
+      "daily-notes:Abrir a nota de hoje": false,
+      "templates:Inserir modelo": false,
+      "command-palette:Abrir paleta de comandos": false,
+      "bases:Criar nova base": false
     }
   },
-  "active": "e55f3b0524e5f762",
+  "active": "64700822131d2339",
   "lastOpenFiles": [
-    "tmpclaude-0719-cwd",
-    "tmpclaude-8030-cwd",
-    "tmpclaude-0aad-cwd",
-    "tmpclaude-c955-cwd",
-    "tmpclaude-079f-cwd",
-    "tmpclaude-ad96-cwd",
-    "tmpclaude-c9cf-cwd",
-    "tmpclaude-1525-cwd",
-    "tmpclaude-570e-cwd",
-    "tmpclaude-e81e-cwd",
-    "tmpclaude-42a4-cwd",
-    "CENTRAL/DOMAIN-MODEL/AGGREGATES/README.md",
-    "PROJECTS/GEOGIS/DOCS/REQUIREMENTS/README.md",
-    "PROJECTS/WEBDOCS/DOCS/LAYERS/README.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/USE-CASES/README.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/USE-CASES/19-index-reurbcad-compatibility-ucs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/USE-CASES/18-index-reurbcad-scalability-ucs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/USE-CASES/17-index-reurbcad-portability-ucs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/USE-CASES/16-index-reurbcad-maintainability-ucs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/USE-CASES/15-index-reurbcad-usability-ucs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/USE-CASES/13-index-reurbcad-security-ucs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/USE-CASES/12-index-reurbcad-performance-ucs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/USE-CASES/08-index-reurbcad-teams-ucs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/13-index-reurbcad-security-rnfs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/12-index-reurbcad-performance-rnfs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/README.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/19-index-reurbcad-compatibility-rfs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/18-index-reurbcad-scalability-rfs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/16-index-reurbcad-maintainability-rfs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/15-index-reurbcad-usability-rfs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/14-index-reurbcad-reliability-rfs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/13-index-reurbcad-security-rfs.md",
-    "PROJECTS/REURBCAD/DOCS/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/12-index-reurbcad-performance-rfs.md",
-    "PROJECTS/GEOWEB/DOCS/REQUIREMENTS/USER-STORIES/16-index-geoweb-maintainability-uss.md",
-    "PROJECTS/GEOWEB/DOCS/REQUIREMENTS/USER-STORIES/15-index-geoweb-usability-uss.md",
-    "PROJECTS/GEOWEB/DOCS/REQUIREMENTS/USER-STORIES/14-index-geoweb-reliability-uss.md"
+    "CENTRAL/SECURITY/POLICIES/ZuNCi0Nu",
+    "CENTRAL/SECURITY/INCIDENTS/rg5n7eo8",
+    "CENTRAL/TESTING/TEST-STRATEGY/X48w7jrh",
+    "CENTRAL/TESTING/TEST-CASES/qNuIs2nm",
+    "CENTRAL/VERSIONING/GIT/9SLMDLBV",
+    "CENTRAL/OPERATIONS/RUNBOOKS/H1oa1yz6",
+    "CENTRAL/OPERATIONS/MONITORING/2E0D9WBB",
+    "CENTRAL/OPERATIONS/MONITORING/PROMETHEUS/mBj0U9tM",
+    "CENTRAL/OPERATIONS/MONITORING/LOGGING/ZXxCflqu",
+    "CENTRAL/OPERATIONS/MONITORING/GRAFANA/ZFGgShJg",
+    "CENTRAL/OPERATIONS/MONITORING/GRAFANA/PROVISIONING/EduFT4g6",
+    "CENTRAL/ARCHITECTURE/ADRs/README.md",
+    "CENTRAL/ARCHITECTURE/DEPLOYMENT/CONFIGS/02-health-checks.md",
+    "validation-report.md",
+    "CENTRAL/ARCHITECTURE/DEPLOYMENT/CONFIGS/01-env-vars.md",
+    "CENTRAL/ARCHITECTURE/PATTERNS/README.md",
+    "CENTRAL/ARCHITECTURE/README.md",
+    "CENTRAL/OPERATIONS/MAINTENANCE/01-backup-procedures.md",
+    "CENTRAL/ARCHITECTURE/DEPLOYMENT/DOCKER/README.md",
+    "CENTRAL/ARCHITECTURE/DEPLOYMENT/DOCKER/DOCKERFILES/README.md",
+    "CENTRAL/ARCHITECTURE/DEPLOYMENT/DOCKER/COMPOSE/README.md",
+    "CENTRAL/ARCHITECTURE/DEPLOYMENT/DOCKER/COMPOSE/02-docker-compose-prod.md",
+    "CENTRAL/ARCHITECTURE/DEPLOYMENT/DOCKER/COMPOSE/01-docker-compose-dev.md",
+    "CENTRAL/BUSINESS-RULES/README.md",
+    "CENTRAL/LIBRARIES/README.md",
+    "CENTRAL/INTEGRATION/KEYCLOAK/12-integration-testing.md",
+    "CENTRAL/REQUIREMENTS/USE-CASES/UC-001-cadastrar-unidade-habitacional/UC-001-FE-002-geometria-sobreposta.md",
+    "CENTRAL/REQUIREMENTS/USE-CASES/UC-001-cadastrar-unidade-habitacional/UC-001-FE-001-validacao-falha.md",
+    "CENTRAL/REQUIREMENTS/USE-CASES/UC-001-cadastrar-unidade-habitacional/UC-001-FA-003-copiar-geometria-existente.md",
+    "CENTRAL/REQUIREMENTS/USE-CASES/UC-001-cadastrar-unidade-habitacional/UC-001-FA-002-importar-geometria-gps.md",
+    "CENTRAL/REQUIREMENTS/USE-CASES/UC-001-cadastrar-unidade-habitacional/UC-001-FA-001-desenhar-geometria-offline.md",
+    "CENTRAL/REQUIREMENTS/USE-CASES/UC-001-cadastrar-unidade-habitacional/UC-001-cadastrar-unidade-habitacional.md",
+    "CENTRAL/REQUIREMENTS/USE-CASES/UC-001-cadastrar-unidade-habitacional/README.md",
+    "CENTRAL/ARCHITECTURE/PATTERNS/02-cqrs.md",
+    "CENTRAL/ARCHITECTURE/PATTERNS/01-clean-architecture.md",
+    "CENTRAL/ARCHITECTURE/PATTERNS/03-repository-uow.md"
   ]
 }

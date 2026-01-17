@@ -7,3 +7,4 @@ Entidade representando camada individual de mapa servida por WmsServer configura
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Review

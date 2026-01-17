@@ -1,13 +1,26 @@
 # OPERATIONS
 
-Procedimentos operacionais CARF organizados MAINTENANCE backup incremental diário PostgreSQL pg_dump duas horas madrugada retention trinta dias local S3 Glacier long-term restore procedures RTO RPO database maintenance VACUUM ANALYZE semanal REINDEX trimestral bloat maior trinta por cento monitoring slow queries scheduled cron Kubernetes CronJob checklist pré-manutenção notificar usuários read-only mode backup fresh pós-manutenção smoke tests verify integrity monitoring alerts MONITORING observabilidade Prometheus scrape configs GEOAPI PostgreSQL Keycloak alertas HighCPU maior oitenta por cento HighMemory maior noventa por cento HighErrorRate 5xx maior um por cento HighLatency p99 maior um segundo DatabaseConnectionsHigh AlertManager routing Slack email PagerDuty Grafana dashboards GEOAPI PostgreSQL Infrastructure provisioning datasources Prometheus Loki PostgreSQL auto-provisionados Logging agregação logs Loki Promtail structured JSON Serilog correlation IDs distributed tracing retention logs noventa dias audit um ano compress após sete dias archive S3 RUNBOOKS troubleshooting problemas frequentes connection pool exhausted JWT expired RLS policy block slow queries soluções específicas guia sistemático reproduzir issue coletar logs verificar metrics Grafana distributed tracing testar componentes isoladamente aplicar fix validar post-mortem root cause identificando causa raiz implementando correção permanente prevenindo recorrências futuras garantindo resolução rápida incidentes operacionais minimizando downtime impacto usuários define procedures incident response detecção triagem mitigação resolução post-mortem escalation matrix on-call rotation scripts automação limpar cache restart graceful verify data integrity.
+Procedimentos operacionais do CARF para monitoramento, manutenção e troubleshooting.
 
-## Estrutura
+O [monitoramento](./MONITORING/README.md) usa Prometheus para métricas, Grafana para dashboards e Loki para agregação de logs. Alertas são configurados para CPU, memória, taxa de erros, latência e conexões de banco. SLOs definem 99.5% uptime e p99 latency menor que 500ms.
 
-- **[MONITORING/](./MONITORING/README.md)** - Observabilidade Prometheus Grafana Logging Loki
-- **[MAINTENANCE/](./MAINTENANCE/README.md)** - Backup restore database maintenance procedures
-- **[RUNBOOKS/](./RUNBOOKS/README.md)** - Troubleshooting problemas comuns guias sistemáticos
+A [manutenção](./MAINTENANCE/README.md) inclui backup incremental diário do PostgreSQL às 2h com retenção de 30 dias local e S3 Glacier para long-term. Rotinas de VACUUM ANALYZE rodam semanalmente e REINDEX trimestralmente. Checklists garantem notificação de usuários, modo read-only e smoke tests após manutenção.
+
+Os [runbooks](./RUNBOOKS/README.md) documentam troubleshooting de problemas frequentes como connection pool exhausted, JWT expired, RLS policy block e slow queries, com guia sistemático para reproduzir, coletar logs, verificar métricas e aplicar fix.
 
 ---
 
-**Última atualização:** 2026-01-11
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Review
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (0 arquivos)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+|  | [Maintenance](./MAINTENANCE/README.md) | 0 |
+|  | [Monitoring](./MONITORING/README.md) | 0 |
+|  | [Runbooks](./RUNBOOKS/README.md) | 0 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

@@ -10,3 +10,15 @@ Value objects geoespaciais representando coordenadas pontos e polígonos utiliza
 ---
 
 **Última atualização:** 2026-01-12
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (2 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [02-geo-polygon](./02-geo-polygon.md) | GeoPolygon |
+| [03-geo-point](./03-geo-point.md) | GeoPoint |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Pronto

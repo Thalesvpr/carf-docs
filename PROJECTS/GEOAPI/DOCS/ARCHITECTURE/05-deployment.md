@@ -15,3 +15,4 @@ Monitoring Prometheus scrape /metrics endpoint coletando request duration reques
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

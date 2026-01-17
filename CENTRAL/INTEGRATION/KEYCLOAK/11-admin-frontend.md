@@ -5,3 +5,4 @@ Console administrativo Next.js 14 + React 18 + TypeScript + TanStack Query + Tai
 ---
 
 **Última atualização:** 2026-01-09
+**Status do arquivo**: Review

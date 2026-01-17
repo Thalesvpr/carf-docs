@@ -8,10 +8,45 @@
   "collapse-color-groups": false,
   "colorGroups": [
     {
+      "query": "path:CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS  ",
+      "color": {
+        "a": 1,
+        "rgb": 15316999
+      }
+    },
+    {
+      "query": "path:CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS  ",
+      "color": {
+        "a": 1,
+        "rgb": 10645249
+      }
+    },
+    {
+      "query": "path:CENTRAL/REQUIREMENTS/USE-CASES  ",
+      "color": {
+        "a": 1,
+        "rgb": 16409600
+      }
+    },
+    {
+      "query": "path:CENTRAL/REQUIREMENTS/USER-STORIES  ",
+      "color": {
+        "a": 1,
+        "rgb": 14810880
+      }
+    },
+    {
+      "query": "path:CENTRAL file:README.md",
+      "color": {
+        "a": 1,
+        "rgb": 16711705
+      }
+    },
+    {
       "query": "path:CENTRAL",
       "color": {
         "a": 1,
-        "rgb": 16711680
+        "rgb": 8654864
       }
     },
     {
@@ -102,6 +137,6 @@
   "repelStrength": 20,
   "linkStrength": 1,
   "linkDistance": 30,
-  "scale": 0.04089912578005863,
+  "scale": 0.030182893511167957,
   "close": false
 }

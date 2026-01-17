@@ -7,3 +7,4 @@ Domain event emitido por Unit aggregate root quando titular pessoa física é vi
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Review

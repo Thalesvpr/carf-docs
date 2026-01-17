@@ -6,3 +6,4 @@ Exception base abstrata para todas exceções de domínio representando violaç�
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

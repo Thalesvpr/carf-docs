@@ -15,3 +15,4 @@ Casos de uso especiais incluem temporary permissions com expires_at permitindo a
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Review

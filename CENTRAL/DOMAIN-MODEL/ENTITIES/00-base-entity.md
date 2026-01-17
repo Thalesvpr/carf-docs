@@ -7,3 +7,4 @@ Classe base abstrata conceitual que todas entidades de domínio herdam fornecend
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Review

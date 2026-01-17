@@ -102,3 +102,9 @@ git status            # ✓ Working tree clean
 - [npm publish](https://docs.npmjs.com/cli/v10/commands/npm-publish)
 - [Semantic Versioning](https://semver.org/)
 - [GitHub Packages](https://docs.github.com/en/packages)
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Muitas listas com bullets (10) antes do rodapé - considerar converter para parágrafo denso; Contém code blocks - considerar converter para prosa.

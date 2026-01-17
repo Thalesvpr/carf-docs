@@ -668,7 +668,7 @@ import type {
 } from '@carf/tscore/types'
 ```
 
-📖 **[@carf/tscore Documentation](../../../TSCORE/DOCS/README.md)** - Documentação completa de types
+📖 **@carf/tscore Documentation** - Documentação completa de types (ver TSCORE/DOCS/)
 
 ## Links Relacionados
 
@@ -681,3 +681,5 @@ import type {
 ---
 
 **Última atualização:** 2026-01-09
+**Status do arquivo**: Incompleto
+Descrição: Contém code blocks - considerar converter para prosa.

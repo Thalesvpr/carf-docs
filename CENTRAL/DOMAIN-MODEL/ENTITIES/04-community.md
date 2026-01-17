@@ -7,3 +7,4 @@ Entidade aggregate root representando comunidade assentamento ou núcleo urbano 
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Review

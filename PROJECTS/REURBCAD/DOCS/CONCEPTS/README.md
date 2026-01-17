@@ -17,3 +17,17 @@ Conceitos fundamentais do REURBCAD React Native.
 ---
 
 **Última atualização:** 2026-01-10
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (3 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-authentication](./01-authentication.md) | 01-authentication |
+| [02-offline-authentication](./02-offline-authentication.md) | 02-offline-authentication |
+| [03-secure-storage](./03-secure-storage.md) | 03-secure-storage |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Incompleto
+Descrição: Falta parágrafo denso introdutório.

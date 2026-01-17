@@ -109,3 +109,8 @@ sidebar: [
 ]
 ```
 
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Contém code blocks - considerar converter para prosa.

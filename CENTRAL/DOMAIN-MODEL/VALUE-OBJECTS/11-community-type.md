@@ -7,3 +7,4 @@ Value object enum representando classificação da comunidade conforme caracter�
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Review

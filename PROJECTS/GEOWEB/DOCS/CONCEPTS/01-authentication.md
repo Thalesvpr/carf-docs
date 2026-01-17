@@ -3,3 +3,9 @@ Authentication no GEOWEB usa keycloak-js library que gerencia OAuth2 Authorizati
 AuthContext wrapper React provê interface limpa com useAuth() hook retornando { user, isAuthenticated, login, logout, getToken }, setupTokenRefresh() em AuthContext configura setInterval de 240000ms (4 minutos) que chama keycloak.updateToken(60) checando se token expira em menos de 60 segundos e se sim faz POST ao /protocol/openid-connect/token com grant_type=refresh_token e refresh_token obtendo novo access_token atualizando keycloak.token, se refresh falha (sessão SSO expirou) chama keycloak.login() redirecionando para login novamente.
 
 Logout chama keycloak.logout({ redirectUri: window.location.origin }) que faz GET ao /protocol/openid-connect/logout invalidando sessão SSO fazendo logout de todas as 6 aplicações CARF simultaneamente (GEOWEB, REURBCAD, GEOAPI, GEOGIS, WEBDOCS, ADMIN) e redirect de volta para origin, token usage em API calls via Axios interceptor que antes de cada request chama await keycloak.updateToken(5) garantindo token válido e adiciona `Authorization: Bearer ${keycloak.token}` no header, se backend retorna 401 com "Token is not active" interceptor response detecta e chama keycloak.login() forçando re-autenticação.
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Falta título H1 na primeira linha.

@@ -7,3 +7,4 @@ Entidade representando estação de referência da Rede Brasileira de Monitorame
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Review

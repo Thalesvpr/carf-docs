@@ -1,11 +1,27 @@
 # LEGITIMATION
 
-Schemas JSON para processos de legitimação fundiária do CARF. LegitimationProcessCreateRequest (unit_id, process_type enum REURB-S/REURB-E conforme Lei 13.465/2017, documents array de DocumentUploadRequest com type/file_url, notes), LegitimationProcessResponse (id UUID, unit relação, process_type, status enum Iniciado/Em Análise/Aprovado/Rejeitado/Cancelado, documents array, workflow_history array de status transitions com timestamp/user/comments, started_at, completed_at, tenant_id), TransitionStatusRequest (process_id, new_status, comments obrigatório para Rejeitado), DocumentUploadRequest (type enum CPF/RG/Comprovante Residência/Planta/Foto, file objeto com name/size/mime_type, upload_url pre-signed S3). Workflow: Iniciado → Em Análise (requer role Técnico) → Aprovado/Rejeitado (requer role Fiscal). Validações: documentos obrigatórios conforme process_type, critérios Lei 13.465 (área max, renda, tempo ocupação).
+Schemas JSON para processos de legitimação fundiária do CARF conforme Lei 13.465/2017.
 
-## Implementação e Uso
+O LegitimationProcessCreateRequest contém unit_id, process_type (REURB-S ou REURB-E), documents array e notes. O LegitimationProcessResponse inclui status, workflow_history com transições e timestamps.
 
-Endpoint de Processos de Legitimação implementado pelo backend GEOAPI usando aggregate [LegitimationRequestAggregate](../../DOMAIN-MODEL/AGGREGATES/03-legitimation-request-aggregate.md) com workflow state machine conforme [regras de transição de status](../../BUSINESS-RULES/WORKFLOW-RULES/legitimation-status-transitions.md) validando fluxo de aprovação documentado em [UC-009: Gerenciar Processo de Legitimação](../../REQUIREMENTS/USE-CASES/UC-009-gerenciar-processo-legitimacao.md), consumido por GEOWEB para interface de aprovação administrativa e ADMIN para audit trail via endpoint admin-specific `/api/admin/legitimation` documentado em .
+Workflow: Iniciado → Em Análise (requer role Técnico) → Aprovado/Rejeitado (requer role Fiscal). Transição para Rejeitado requer comentários obrigatórios.
+
+Validações: documentos obrigatórios conforme modalidade, critérios da Lei 13.465 (área máxima, renda, tempo de ocupação).
+
+## Endpoints
+
+- POST /api/legitimation - Iniciar processo
+- GET /api/legitimation/{id} - Obter processo com histórico
+- POST /api/legitimation/{id}/transition - Transicionar status
+- POST /api/legitimation/{id}/documents - Upload de documentos
+
+## Schemas
+
+- LegitimationProcessCreateRequest / LegitimationProcessResponse
+- TransitionStatusRequest
+- DocumentUploadRequest
 
 ---
 
-**Última atualização:** 2025-12-29
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Review

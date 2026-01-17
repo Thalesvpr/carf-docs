@@ -216,3 +216,9 @@ function UnitForm() {
 ### Por que Radix UI como base?
 
 [Radix UI](https://www.radix-ui.com/) fornece primitivos acessíveis que servem como base para shadcn/ui, garantindo **Acessibilidade** WAI-ARIA compliant out of the box, arquitetura **Headless** com separação entre lógica e apresentação, e **Composabilidade** que permite criar variantes facilmente sem sacrificar usabilidade ou performance.
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Muitas listas com bullets (10) antes do rodapé - considerar converter para parágrafo denso; Contém code blocks - considerar converter para prosa.

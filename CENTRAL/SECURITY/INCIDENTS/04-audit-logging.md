@@ -5,3 +5,4 @@ Logging de auditoria do CARF rastreando ações críticas para compliance, troub
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Review

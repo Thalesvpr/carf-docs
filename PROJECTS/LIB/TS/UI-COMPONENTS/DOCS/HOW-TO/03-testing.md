@@ -227,3 +227,9 @@ bun test -u
 - [Vitest](https://vitest.dev/)
 - [jest-axe](https://github.com/nickcolley/jest-axe)
 - [User Event](https://testing-library.com/docs/user-event/intro)
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Contém code blocks - considerar converter para prosa.

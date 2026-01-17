@@ -9,3 +9,4 @@ Consultas de auditoria via endpoint /api/audit-logs restrito a ADMIN/SUPER_ADMIN
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

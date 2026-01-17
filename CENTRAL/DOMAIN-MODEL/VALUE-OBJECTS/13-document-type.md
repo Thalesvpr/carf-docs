@@ -7,3 +7,4 @@ Value object enum representando classificação de documento anexado definindo p
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Review

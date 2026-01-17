@@ -1,11 +1,20 @@
 # RELATIONSHIPS
 
-Relacionamentos entre entidades domínio CARF especificando cardinalidade foreign keys constraints integridade referencial relacionamentos polimórficos navegação bidirecional entre objetos mapeando como Unit Holder Community Document e demais 33 entities se associam via one-to-many one-to-one many-to-many relationships respeitando aggregate boundaries onde relacionamentos entre aggregates diferentes usam apenas IDs nunca referências diretas a objetos garantindo boundaries transacionais claros conforme padrões DDD tactical design incluindo relacionamentos auto-referenciados hierárquicos como Block parent_block_id UnitAddress parent_address_id cascade delete behaviors CASCADE SET NULL RESTRICT definidos database constraints PostgreSQL.
+Relacionamentos entre entidades do domínio CARF, especificando cardinalidades, foreign keys e constraints de integridade referencial.
 
-## Documentos
-
-- **[entity-relationships.md](./entity-relationships.md)** - Mapeamento completo relacionamentos entidades cardinalidades constraints
+Relacionamentos entre aggregates diferentes usam apenas IDs, nunca referências diretas a objetos, garantindo fronteiras transacionais claras conforme padrões DDD. Inclui relacionamentos auto-referenciados hierárquicos e cascade delete behaviors definidos nas constraints do PostgreSQL.
 
 ---
 
-**Última atualização:** 2026-01-11
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Review
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (1 arquivo)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-entity-relationships](./01-entity-relationships.md) | Entity Relationships |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

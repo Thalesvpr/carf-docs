@@ -354,3 +354,9 @@ docker run -e JAVA_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,a
 - [Authenticator SPI](https://www.keycloak.org/docs/latest/server_development/#_auth_spi)
 - [Event Listener SPI](https://www.keycloak.org/docs/latest/server_development/#_events_spi)
 - [Protocol Mapper SPI](https://www.keycloak.org/docs/latest/server_development/#_protocol_mappers)
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Contém code blocks - considerar converter para prosa.

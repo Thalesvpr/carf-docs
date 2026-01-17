@@ -7,3 +7,4 @@ Domain event emitido por Community aggregate root quando nova CommunityAuthoriza
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Review

@@ -7,3 +7,4 @@ Entidade representando servidor de mapas OGC WMS ou WMTS configurado fornecendo 
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Review

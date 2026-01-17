@@ -7,3 +7,4 @@ Value object enum representando papel ou função de membro dentro de Team defin
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Review

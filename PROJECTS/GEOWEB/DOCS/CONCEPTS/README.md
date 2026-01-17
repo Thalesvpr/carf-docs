@@ -21,3 +21,17 @@ Conceitos fundamentais do portal GEOWEB React.
 ---
 
 **Última atualização:** 2026-01-10
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (3 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-authentication](./01-authentication.md) | 01-authentication |
+| [02-protected-routes](./02-protected-routes.md) | 02-protected-routes |
+| [03-tenant-switcher](./03-tenant-switcher.md) | 03-tenant-switcher |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Incompleto
+Descrição: Falta parágrafo denso introdutório.

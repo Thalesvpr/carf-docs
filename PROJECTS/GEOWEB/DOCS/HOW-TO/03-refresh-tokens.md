@@ -5,3 +5,9 @@ Keycloak valida refresh_token checando que pertence ao client correto e sessão 
 Interval de 4 minutos escolhido porque access token dura 5 minutos então refresh acontece 1 minuto antes de expirar prevenindo janela de requests falhando com 401 entre token expirar e refresh completar, updateToken(60) com parâmetro 60 segundos significa refresh se expira em menos de 1 minuto então mesmo que setInterval delay pequeno apenas refresha quando necessário evitando calls desnecessários, edge case de user fecha tab antes de refresh interval executar não é problema porque ao re-abrir app keycloak.init() checa se sessão SSO válida via checkLoginIframe=true que usa iframe hidden fazendo silent authentication sem redirect, se sessão válida obtém novo access token automaticamente, se sessão expirou redireciona para login.
 
 Manual refresh forçado possível chamando await keycloak.updateToken(-1) com -1 forçando refresh imediato mesmo que token não esteja próximo de expirar útil após tenant switch para obter novo tenant_id claim ou após backend atualizar user roles para refletir mudanças imediatamente sem esperar interval.
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Falta título H1 na primeira linha.

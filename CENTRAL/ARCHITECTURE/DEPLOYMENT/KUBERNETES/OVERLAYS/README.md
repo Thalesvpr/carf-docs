@@ -4,9 +4,21 @@ Kustomize overlays customizando base por ambiente. Estrutura: cada ambiente (DEV
 
 ## Ambientes
 
-- **[DEV/](./DEV/README.md)** - Overlay desenvolvimento (1 replica, recursos mínimos, image:latest)
-- **[PROD/](./PROD/README.md)** - Overlay produção (3+ replicas, HPA, resources limits, versões fixas)
+- **[DEV](./DEV/README.md)** - Configuração desenvolvimento
+- **[PROD](./PROD/README.md)** - Configuração produção
 
 ---
 
-**Última atualização:** 2025-12-29
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Review
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (0 arquivos)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+|  | [Dev](./DEV/README.md) | 0 |
+|  | [Prod](./PROD/README.md) | 0 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

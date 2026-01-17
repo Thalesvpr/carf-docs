@@ -9,3 +9,4 @@ Usado em SurveyPoint.Type para classificar pontos coletados, validado em Monogra
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

@@ -9,3 +9,4 @@ Métodos incluem GenerateDwg() netDXF plotando polígono Vertices textos medidas
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

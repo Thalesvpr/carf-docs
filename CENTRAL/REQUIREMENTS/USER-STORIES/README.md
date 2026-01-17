@@ -1,13 +1,38 @@
 # USER-STORIES
 
-Histórias de usuário compartilhadas do CARF focadas em funcionalidades cross-cutting como autenticação (login SSO Keycloak, refresh token, logout), auditoria (rastreamento de alterações, logs de acesso, compliance LGPD), e multi-tenancy (isolamento de dados por município via RLS, seleção de tenant). Cada US segue nomenclatura US-NNN-titulo-descritivo.md, possui metadados YAML (epic, persona, prioridade, story_points), formato narrativo "Como [persona] quero [ação] para [objetivo]" explicando contexto e motivação, critérios de aceitação em formato Gherkin (Given/When/Then) testáveis automaticamente, e rastreabilidade para RFs e UCs relacionados. USs específicas de cada projeto (backend .NET, frontend React, mobile React Native, plugin QGIS) ficam em PROJECTS/*/REQUIREMENTS/USER-STORIES/ organizadas por epic e módulo.
+Histórias de usuário do CARF no formato "Como [persona] quero [ação] para [objetivo]", explicando contexto e motivação de cada funcionalidade. Cada user story possui critérios de aceitação em formato Gherkin testável e rastreabilidade para requisitos funcionais e casos de uso relacionados.
 
-## Navegação
-
-**[index-by-epic.md](./index-by-epic.md)** - Índice de todas as 140 User Stories organizadas por épica (security, performance, compatibility, scalability)
-
-Documentação complementar de requirements inclui [overview completo](../README.md) apresentando estrutura hierárquica de 11 UCs 221 RFs 140 USs e 85 RNFs com estatísticas de cobertura por módulo e épica, [índice por módulo](../index-by-module.md) organizando requirements conforme projetos implementadores GEOWEB REURBCAD GEOAPI GEOGIS facilitando descoberta de user stories por equipe de desenvolvimento, e [matriz de rastreabilidade](../traceability-matrix.md) mapeando relacionamentos bidirecionais UC→RF→US→RNF estabelecendo conexões explícitas entre casos de uso requisitos funcionais user stories e requisitos não-funcionais.
+As stories estão organizadas por domínio, cobrindo funcionalidades como autenticação com SSO Keycloak, auditoria para compliance LGPD, e isolamento multi-tenant por município.
 
 ---
 
-**Última atualização:** 2025-12-29
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Review
+
+---
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (140 user stories)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+| 01 | [Autenticacao e Seguranca](./01-auth-security/README.md) | 9 |
+| 02 | [Gestao de Tenants](./02-tenants/README.md) | 5 |
+| 03 | [Usuarios e Equipes](./03-users-teams/README.md) | 7 |
+| 04 | [Notificacoes](./04-notifications/README.md) | 3 |
+| 05 | [Gestao de Comunidades](./05-communities/README.md) | 4 |
+| 06 | [Gestao de Unidades](./06-units/README.md) | 27 |
+| 07 | [Gestao de Titulares](./07-holders/README.md) | 9 |
+| 08 | [Documentos e Midia](./08-documents-media/README.md) | 9 |
+| 09 | [Camadas e Features](./09-layers-features/README.md) | 3 |
+| 10 | [Analise Espacial](./10-spatial-analysis/README.md) | 10 |
+| 11 | [Anotacoes](./11-annotations/README.md) | 4 |
+| 12 | [Levantamentos Topograficos](./12-surveys/README.md) | 9 |
+| 13 | [Processos de Legitimacao](./13-legitimation/README.md) | 4 |
+| 14 | [Modo Offline e Sincronizacao](./14-offline-sync/README.md) | 11 |
+| 15 | [Exportacao de Dados](./15-data-export/README.md) | 7 |
+| 16 | [Relatorios](./16-reports/README.md) | 12 |
+| 17 | [Integracoes WMS/WMTS](./17-wms-wmts/README.md) | 7 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

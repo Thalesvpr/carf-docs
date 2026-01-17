@@ -17,3 +17,19 @@ CQRS separa Commands que modificam estado com validação complexa de Queries qu
 
 **Última atualização:** 2026-01-12
 
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (6 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-authentication](./01-authentication.md) | 01-authentication |
+| [01-key-concepts](./01-key-concepts.md) | Key Concepts |
+| [02-authorization](./02-authorization.md) | 02-authorization |
+| [02-terminology](./02-terminology.md) | Terminology - GEOAPI |
+| [03-design-principles](./03-design-principles.md) | Design Principles |
+| [04-audit-logging](./04-audit-logging.md) | Audit Logging |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Incompleto
+Descrição: Muitas listas com bullets (6) antes do rodapé - considerar converter para parágrafo denso.

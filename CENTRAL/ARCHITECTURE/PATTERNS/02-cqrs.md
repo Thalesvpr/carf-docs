@@ -5,3 +5,4 @@ Command Query Responsibility Segregation separa operações write (commands modi
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Review

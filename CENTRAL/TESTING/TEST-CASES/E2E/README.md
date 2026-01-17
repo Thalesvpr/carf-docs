@@ -4,4 +4,6 @@ Testes end-to-end jornadas completas usuário incluem unit-creation-flow usuári
 
 ---
 
-**Última atualização:** 2026-01-11
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Review
+

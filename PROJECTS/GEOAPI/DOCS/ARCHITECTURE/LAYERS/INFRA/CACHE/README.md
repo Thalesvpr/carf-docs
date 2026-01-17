@@ -23,3 +23,5 @@ Implementação caching distribuído do GEOAPI usando Redis para cache de querie
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Incompleto
+Descrição: Falta seção GENERATED com índice automático; Muitas listas com bullets (8) antes do rodapé - considerar converter para parágrafo denso.

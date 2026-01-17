@@ -7,3 +7,4 @@ Entidade representando monografia descritiva de marco topográfico permanente do
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Review

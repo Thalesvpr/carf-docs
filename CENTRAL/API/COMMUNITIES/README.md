@@ -1,11 +1,26 @@
 # COMMUNITIES
 
-Schemas JSON para comunidades do CARF. CommunityCreateRequest (name, description, polygon GeoJSON agregando múltiplas unidades, city, state, total_units calculado automaticamente), CommunityResponse (id UUID, name, description, polygon, city, state, total_units, total_holders agregado, units array de UnitResponse resumidos, demographics objeto com gender_distribution/age_distribution/income_range calculados, created_at, updated_at, tenant_id), CommunityUpdateRequest (campos parciais), CommunityListResponse (items, pagination), AddUnitToCommunityRequest (community_id, unit_id), RemoveUnitFromCommunityRequest (community_id, unit_id). Cálculos automáticos: total_units conta unidades vinculadas, demographics agrega dados de holders. Endpoints: POST /api/communities, GET /api/communities/{id}, PATCH /api/communities/{id}, DELETE /api/communities/{id}, POST /api/communities/add-unit, POST /api/communities/remove-unit.
+Schemas JSON para comunidades do CARF.
 
-## Implementação e Uso
+O CommunityCreateRequest contém name, description, polygon GeoJSON agregando múltiplas unidades, city e state. O CommunityResponse inclui total_units calculado automaticamente, total_holders agregado e demographics com distribuição por gênero, idade e renda.
 
-Endpoint de Comunidades implementado pelo backend GEOAPI usando aggregate [CommunityAggregate](../../DOMAIN-MODEL/AGGREGATES/02-community-aggregate.md) agrupando múltiplas unidades geográficas conforme [ADR-002: PostGIS](../../ARCHITECTURE/ADRs/ADR-002-postgresql-postgis.md), consumido por GEOWEB para visualização de mapas com layers WMS conforme [UC-010: Configurar Camadas WMS](../../REQUIREMENTS/USE-CASES/UC-010-configurar-camadas-wms.md) e GEOGIS para operações GIS avançadas, ambos via @carf/geoapi-client.
+## Endpoints
+
+- POST /api/communities - Criar comunidade
+- GET /api/communities/{id} - Obter comunidade com agregações
+- PATCH /api/communities/{id} - Atualizar parcialmente
+- DELETE /api/communities/{id} - Remover comunidade
+- POST /api/communities/add-unit - Adicionar unidade
+- POST /api/communities/remove-unit - Remover unidade
+
+## Schemas
+
+- CommunityCreateRequest / CommunityResponse
+- CommunityUpdateRequest
+- CommunityListResponse
+- AddUnitToCommunityRequest / RemoveUnitFromCommunityRequest
 
 ---
 
-**Última atualização:** 2025-12-29
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Review

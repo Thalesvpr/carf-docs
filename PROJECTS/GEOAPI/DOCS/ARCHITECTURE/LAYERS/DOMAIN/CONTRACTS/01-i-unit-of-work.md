@@ -6,3 +6,4 @@ Interface definindo controle de transação agrupando múltiplas operações de 
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

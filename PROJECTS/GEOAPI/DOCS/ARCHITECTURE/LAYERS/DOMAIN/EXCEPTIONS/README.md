@@ -13,3 +13,18 @@ Exceções específicas de domínio representando violações de regras de negó
 ---
 
 **Última atualização:** 2026-01-12
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (5 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [00-domain-exception](./00-domain-exception.md) | DomainException |
+| [01-validation-exception](./01-validation-exception.md) | ValidationException |
+| [02-not-found-exception](./02-not-found-exception.md) | NotFoundException |
+| [03-access-denied-exception](./03-access-denied-exception.md) | AccessDeniedException |
+| [04-conflict-exception](./04-conflict-exception.md) | ConflictException |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Pronto

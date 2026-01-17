@@ -7,3 +7,4 @@ Entidade junction representando relacionamento N:N entre Unit unidade habitacion
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Review

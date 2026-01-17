@@ -1,16 +1,29 @@
 # DOMAIN-MODEL
 
-Modelo domínio conceitual sistema CARF definindo entidades value objects agregados relacionamentos forma agnóstica tecnologia servindo fonte única verdade implementações múltiplos projetos organizando ENTITIES definindo 33 entidades domínio Unit Holder Community LegitimationRequest Document Annotation Team Account VALUE-OBJECTS contendo 26 value objects imutáveis CPF CNPJ Email PhoneNumber GeoPolygon Status UnitType AGGREGATES agrupando três aggregates principais Unit Community LegitimationRequest seguindo padrões DDD tactical design aggregate roots boundaries transacionais invariantes EVENTS especificando 19 domain events integração desacoplada entre aggregates comunicação assíncrona side effects RELATIONSHIPS mapeando relacionamentos entre entidades one-to-many many-to-many polimórficos foreign keys constraints integridade referencial DIAGRAMS visualizando estrutura através UML class diagrams entity-relationship diagrams ERD aggregate boundaries state machines.
+Modelo de domínio conceitual do sistema CARF, definindo entidades, value objects, agregados e relacionamentos de forma agnóstica a tecnologia, servindo como **fonte única de verdade** para implementações nos projetos.
 
-## Estrutura
+As [entidades](./ENTITIES/README.md) representam os elementos centrais do domínio com identidade única e ciclo de vida rastreável, como Unit, Holder, Community e LegitimationRequest. Os [value objects](./VALUE-OBJECTS/README.md) são objetos imutáveis definidos por seus atributos, como CPF, GeoPolygon e Status, que encapsulam validações e regras de negócio.
 
-- **[ENTITIES/](./ENTITIES/README.md)** - 33 entidades do domínio
-- **[VALUE-OBJECTS/](./VALUE-OBJECTS/README.md)** - 26 value objects imutáveis
-- **[AGGREGATES/](./AGGREGATES/README.md)** - Unit Community LegitimationRequest aggregates
-- **[EVENTS/](./EVENTS/README.md)** - 19 domain events
-- **[RELATIONSHIPS/](./RELATIONSHIPS/README.md)** - Relacionamentos entre entidades
-- **[DIAGRAMS/](./DIAGRAMS/README.md)** - Diagramas UML ERD class diagrams
+Os [aggregates](./AGGREGATES/README.md) agrupam entidades em clusters coesos com fronteiras transacionais bem definidas, seguindo padrões DDD. Os [domain events](./EVENTS/README.md) representam fatos de negócio significativos que permitem comunicação desacoplada entre aggregates.
+
+Os [relacionamentos](./RELATIONSHIPS/README.md) mapeiam como as entidades se associam, definindo cardinalidades e constraints. E os [diagramas](./DIAGRAMS/README.md) visualizam a estrutura através de UML, ERD e state machines.
 
 ---
 
-**Última atualização:** 2026-01-11
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Review
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (85 arquivos)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+|  | [Aggregates](./AGGREGATES/README.md) | 3 |
+|  | [Diagrams](./DIAGRAMS/README.md) | 0 |
+|  | [Entities](./ENTITIES/README.md) | 35 |
+|  | [Events](./EVENTS/README.md) | 20 |
+|  | [Relationships](./RELATIONSHIPS/README.md) | 1 |
+|  | [Value Objects](./VALUE-OBJECTS/README.md) | 26 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

@@ -9,3 +9,4 @@ Usado em RbmcStation.Location para coordenadas de estações da Rede Brasileira 
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

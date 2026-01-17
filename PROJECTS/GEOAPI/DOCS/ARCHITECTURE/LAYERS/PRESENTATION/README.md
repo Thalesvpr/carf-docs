@@ -13,3 +13,18 @@ Camada de apresentação do GEOAPI expondo API REST HTTP via controllers ASP.NET
 ---
 
 **Última atualização:** 2026-01-12
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (0 arquivos)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+|  | [Configuration](./CONFIGURATION/README.md) | 0 |
+|  | [Controllers](./CONTROLLERS/README.md) | 0 |
+|  | [Filters](./FILTERS/README.md) | 0 |
+|  | [Hubs](./HUBS/README.md) | 0 |
+|  | [Middlewares](./MIDDLEWARES/README.md) | 0 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Pronto

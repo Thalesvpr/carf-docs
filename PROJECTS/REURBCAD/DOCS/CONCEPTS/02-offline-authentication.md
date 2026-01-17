@@ -5,3 +5,9 @@ Workflow típico field collector faz login segunda-feira com conexão WiFi obten
 Token storage seguro crítico porque se device perdido/roubado token poderia ser extraído, SecureStore usa hardware-backed encryption Keychain (iOS with Secure Enclave) e Keystore (Android with TEE - Trusted Execution Environment) prevenindo acesso mesmo com device rooted/jailbroken, nunca AsyncStorage porque plain text JSON visível em backups ou com root access, session expiration configurada no Keycloak realm settings com Offline Session Idle = 30 days significa 30 dias sem nenhum refresh attempt, Offline Session Max = 60 days significa 60 dias desde login inicial mesmo se refresh frequency regular, best practice field collectors devem fazer login semanal quando tem conexão para renovar sessão offline evitando expiração.
 
 Multi-device consideration se user loga mesmo account em tablet + phone cada device tem próprio refresh_token independente com sessões offline separadas não compartilhadas, security trade-off offline tokens mais longos aumentam convenience mas também attack window se device comprometido, mitigação via device PIN/biometric required para abrir app e auto-lock após inatividade.
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Falta título H1 na primeira linha.

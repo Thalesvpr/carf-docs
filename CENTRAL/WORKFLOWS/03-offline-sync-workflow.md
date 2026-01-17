@@ -10,3 +10,4 @@ Workflow completo de sincronização bidirecional entre banco de dados local no 
 ---
 
 **Última atualização:** 2025-01-05
+**Status do arquivo**: Review

@@ -5,3 +5,4 @@ Estrutura JSON realm-export.json para versionamento configuration as code import
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

@@ -6,3 +6,4 @@ Interface fornecendo dados do usuário autenticado atual extraídos de JWT token
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

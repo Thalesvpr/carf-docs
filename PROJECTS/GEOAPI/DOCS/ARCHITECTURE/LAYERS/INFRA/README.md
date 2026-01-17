@@ -13,3 +13,18 @@ Camada de infraestrutura do GEOAPI implementando todas interfaces definidas no D
 ---
 
 **Última atualização:** 2026-01-12
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (0 arquivos)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+|  | [Cache](./CACHE/README.md) | 0 |
+|  | [Integrations](./INTEGRATIONS/README.md) | 0 |
+|  | [Jobs](./JOBS/README.md) | 0 |
+|  | [Persistence](./PERSISTENCE/README.md) | 0 |
+|  | [Storage](./STORAGE/README.md) | 0 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Pronto

@@ -7,3 +7,4 @@ Entidade aggregate root central do sistema representando unidade habitacional em
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Review

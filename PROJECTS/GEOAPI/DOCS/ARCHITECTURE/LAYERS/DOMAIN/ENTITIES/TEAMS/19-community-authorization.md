@@ -9,3 +9,4 @@ Regra negócio estabelece TeamId AccountId mutuamente exclusivos validado constr
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

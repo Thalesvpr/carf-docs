@@ -5,3 +5,4 @@ geoweb (SPA React): public client, standard flow, PKCE S256, redirectUris=[http:
 ---
 
 **Última atualização:** 2026-01-09
+**Status do arquivo**: Review

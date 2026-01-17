@@ -1,22 +1,36 @@
 # CENTRAL
 
-Documentação central CARF servindo fonte única verdade requisitos decisões arquiteturais modelo domínio compartilhados todos projetos sistema organizados estrutura plana facilitando navegação descoberta especificação produto negócio organizada REQUIREMENTS contendo quatrocentos cinquenta e sete arquivos casos uso user stories requisitos funcionais não-funcionais sistema estabelecendo rastreabilidade bidirecional UC RF US RNF entre specification implementation PROJECTS FEATURES ARCHITECTURE documentando ADRs Architecture Decision Records registrando decisões críticas polyrepo Keycloak auth RLS multi-tenancy offline-first além padrões design Clean Architecture CQRS Repository UoW Domain Events frontend patterns React offline-first mobile GIS spatial patterns aplicados cinco projetos GEOAPI GEOWEB REURBCAD GEOGIS WEBDOCS DOMAIN-MODEL definindo entities aggregates value objects workflows negócio seguindo DDD tactical patterns UnitAggregate root coordenando Unit UnitHolders Documents Annotations encapsulando invariantes negócio validações server-side BUSINESS-RULES especificando regras validação workflows aprovação conforme Lei 13465/2017 REURB implementando state machine transitions DRAFT PENDING APPROVED REJECTED holder-validation CPF único LGPD compliance unit-validation geometria válida sem overlaps spatial queries PostGIS fluxos processos documentados WORKFLOWS descrevendo end-to-end workflows sistema legitimação fundiária field data collection workflow coleta campo mobile offline-first WatermelonDB sync bidirectional analyst validation workflow correção massa QGIS desktop ortofotos WMS topologia topography workflow levantamento GNSS RTK precisão centímetros memorial descritivo monografia técnica assinado responsável técnico CREA integrações técnicas cobrem INTEGRATION especificando conexões externas Keycloak OAuth2 OIDC SSO multi-tenancy realm único carf clients pré-configurados SPA PKCE Mobile Bearer-only PostgreSQL PostGIS persistence RLS policies isolando dados tenant API definindo contratos REST JSON schemas endpoints CRUD units holders communities legitimation paginação filtros ordenação HATEOAS versionamento header OPERATIONS detalhando monitoring Prometheus metrics logging Serilog estruturado maintenance troubleshooting health checks deployment strategies políticas padrões incluem SECURITY conformidade LGPD consentimento direito esquecimento portabilidade DPO registro processamento ANPD criptografia AES-256 dados repouso TLS 1.3 dados trânsito bcrypt hashing senhas auditoria completa retention cinco anos MFA obrigatório roles elevados TESTING estratégia test pyramid unit tests coverage oitenta por cento integration tests Testcontainers e2e tests Playwright VERSIONING Git workflow trunk-based development Conventional Commits semantic versioning branching strategy PR guidelines LIBRARIES documentando bibliotecas compartilhadas TypeScript carf tscore validações CPF CNPJ formatações carf ui componentes React shadcn Tailwind carf geoapi-client SDK HTTP TypeScript type-safe facilitando reuso código consistência cross-project reduzindo duplicação bugs.
+Documentação central do CARF servindo como **fonte única de verdade** para requisitos, decisões arquiteturais e modelo de domínio compartilhados por todos os projetos do sistema.
 
-## Estrutura
+A base da especificação está nos [requisitos do projeto](./REQUIREMENTS/README.md), que contém os casos de uso, user stories, requisitos funcionais e não-funcionais, estabelecendo rastreabilidade entre o que foi especificado e o que está implementado. As decisões técnicas estão registradas como [ADRs](./ARCHITECTURE/README.md), documentando escolhas sobre autenticação, multi-tenancy e padrões de design.
 
-- **[REQUIREMENTS/](./REQUIREMENTS/README.md)** - Casos uso requisitos funcionais user stories
-- **[ARCHITECTURE/](./ARCHITECTURE/README.md)** - ADRs padrões arquiteturais deployment
-- **[DOMAIN-MODEL/](./DOMAIN-MODEL/README.md)** - Entities aggregates value objects workflows DDD
-- **[BUSINESS-RULES/](./BUSINESS-RULES/README.md)** - Regras validação workflows Lei 13465/2017
-- **[API/](./API/README.md)** - Contratos REST schemas JSON endpoints
-- **[INTEGRATION/](./INTEGRATION/README.md)** - Integrações Keycloak PostgreSQL DATABASE
-- **[SECURITY/](./SECURITY/README.md)** - Políticas segurança LGPD compliance
-- **[TESTING/](./TESTING/README.md)** - Estratégia testes pyramid coverage
-- **[OPERATIONS/](./OPERATIONS/README.md)** - Monitoring logging maintenance troubleshooting
-- **[VERSIONING/](./VERSIONING/README.md)** - Git workflow versionamento semantic
-- **[WORKFLOWS/](./WORKFLOWS/README.md)** - Workflows end-to-end sistema legitimação
-- **[LIBRARIES/](./LIBRARIES/README.md)** - Bibliotecas compartilhadas TypeScript React
+O [modelo de domínio](./DOMAIN-MODEL/README.md) define as entidades, agregados e value objects seguindo DDD. As [regras de negócio](./BUSINESS-RULES/README.md) especificam validações e workflows de aprovação conforme a Lei 13.465/2017. Os [fluxos do sistema](./WORKFLOWS/README.md) descrevem processos completos como coleta em campo e validação por analistas.
+
+As [integrações](./INTEGRATION/README.md) documentam conexões com Keycloak e PostgreSQL. Os [contratos da API](./API/README.md) definem endpoints e schemas. As [políticas de segurança](./SECURITY/README.md) cobrem conformidade LGPD. A [estratégia de testes](./TESTING/README.md) define a pirâmide de testes. O [monitoramento](./OPERATIONS/README.md) cobre logging e manutenção. O [versionamento](./VERSIONING/README.md) define o workflow Git. As [bibliotecas compartilhadas](./LIBRARIES/README.md) documentam código reutilizado entre projetos. E os [padrões de documentação](./STANDARDS/README.md) definem convenções de nomenclatura, estrutura de arquivos e metadados de status.
 
 ---
 
-**Última atualização:** 2026-01-11
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Review
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (704 arquivos)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+|  | [Api](./API/README.md) | 0 |
+|  | [Architecture](./ARCHITECTURE/README.md) | 36 |
+|  | [Business Rules](./BUSINESS-RULES/README.md) | 22 |
+|  | [Domain Model](./DOMAIN-MODEL/README.md) | 85 |
+|  | [Integration](./INTEGRATION/README.md) | 12 |
+|  | [Libraries](./LIBRARIES/README.md) | 3 |
+|  | [Operations](./OPERATIONS/README.md) | 0 |
+|  | [Requirements](./REQUIREMENTS/README.md) | 512 |
+|  | [Security](./SECURITY/README.md) | 9 |
+|  | [Standards](./STANDARDS/README.md) | 6 |
+|  | [Testing](./TESTING/README.md) | 2 |
+|  | [Versioning](./VERSIONING/README.md) | 11 |
+|  | [Workflows](./WORKFLOWS/README.md) | 6 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

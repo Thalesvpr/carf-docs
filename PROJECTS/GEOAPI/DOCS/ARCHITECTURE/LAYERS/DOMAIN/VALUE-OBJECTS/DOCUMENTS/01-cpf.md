@@ -9,3 +9,4 @@ Usado em Holder como identificador único dentro do tenant (um titular = um CPF)
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

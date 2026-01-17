@@ -5,3 +5,4 @@ Domain Events desacoplam side effects (enviar email, invalidar cache, atualizar 
 ---
 
 **Última atualização:** 2025-12-30
+**Status do arquivo**: Review

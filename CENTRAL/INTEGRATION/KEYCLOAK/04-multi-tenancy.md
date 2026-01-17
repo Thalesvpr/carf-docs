@@ -5,3 +5,4 @@ Estratégia: 1 realm "carf" + atributos `tenants: ["prefeitura-a", "prefeitura-b
 ---
 
 **Última atualização:** 2026-01-09
+**Status do arquivo**: Review

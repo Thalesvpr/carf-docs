@@ -1,12 +1,25 @@
 # TEST-STRATEGY
 
-Estratégia testes CARF defende test-pyramid proporção setenta por cento unit vinte por cento integration dez por cento e2e minimizando testes lentos caros priorizando feedback rápido coverage-targets definem mínimo oitenta por cento coverage domain layer business logic crítica sessenta por cento application use cases quarenta por cento infrastructure acceptable testa frameworks ferramentas framework testes unitários backend asserções fluentes framework testes frontend biblioteca testes componentes framework testes E2E mobile CI pipeline falha coverage abaixo targets mutation testing opcional ferramenta análise mutações detectando dead code garantindo qualidade confiabilidade testes detectando testes fracos não validam comportamento real.
+Estratégia de testes do CARF baseada na pirâmide de testes.
 
-## Documentos
+A [pirâmide de testes](./02-test-pyramid.md) define a proporção: 70% testes unitários para feedback rápido, 20% testes de integração para validar componentes juntos, e 10% testes E2E para jornadas críticas. Isso minimiza testes lentos e caros enquanto mantém cobertura adequada.
 
-- **[test-pyramid.md](./test-pyramid.md)** - Pirâmide testes proporção setenta vinte dez justificativa
-- **[coverage-targets.md](./coverage-targets.md)** - Metas coverage oitenta sessenta quarenta por camada
+Os [coverage targets](./01-coverage-targets.md) definem mínimos por camada: 80% para domain layer onde está a lógica de negócio crítica, 60% para application layer com use cases, e 40% para infrastructure que testa frameworks. O pipeline CI falha se o coverage ficar abaixo desses targets.
+
+Mutation testing opcional pode ser usado para detectar testes fracos que não validam comportamento real.
 
 ---
 
-**Última atualização:** 2026-01-11
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Review
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (2 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-coverage-targets](./01-coverage-targets.md) | METAS DE COBERTURA |
+| [02-test-pyramid](./02-test-pyramid.md) | PIRÂMIDE DE TESTES |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

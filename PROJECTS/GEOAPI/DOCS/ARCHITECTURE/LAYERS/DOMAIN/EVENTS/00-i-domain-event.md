@@ -6,3 +6,4 @@ Interface marcadora base para todos domain events indicando que classe represent
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

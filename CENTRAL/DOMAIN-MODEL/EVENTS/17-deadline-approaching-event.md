@@ -7,3 +7,4 @@ Domain event emitido por job scheduler quando prazo legal de 120 dias para concl
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Review

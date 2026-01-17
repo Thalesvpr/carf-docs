@@ -3,3 +3,9 @@ Authentication no GEOAPI usa OAuth2 OIDC com Keycloak onde frontend GEOWEB REURB
 Middleware valida issuer checando que vem do realm carf valida audience verificando que token foi emitido para este backend geoapi valida lifetime checando que token não expirou comparando exp claim com timestamp atual sem tolerância ClockSkew=Zero popula HttpContext.User com ClaimsPrincipal contendo todos os claims do token permitindo acesso via User.FindFirst("claim_name") em controllers e middleware e em caso de falha retorna 401 Unauthorized com WWW-Authenticate header informando erro token inválido expirado ou malformado.
 
 Token refresh é responsabilidade do frontend que usa refresh_token para obter novo access token antes de expirar 5 minutos via endpoint /protocol/openid-connect/token com grant_type=refresh_token e logout invalida sessão SSO no Keycloak via endpoint /protocol/openid-connect/logout com id_token_hint e post_logout_redirect_uri fazendo logout de todas as 6 aplicações simultaneamente mantendo Single Sign-Out consistente prevenindo sessões órfãs ativas outros clients após logout principal.
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Falta título H1 na primeira linha.

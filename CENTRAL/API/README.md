@@ -1,16 +1,29 @@
 # API
 
-Contratos de API REST organizados por domínio de negócio: AUTHENTICATION (schemas de login, refresh token, logout, validação JWT), UNITS (unidades habitacionais com CRUD, validação geográfica, cálculo de área), HOLDERS (titulares com validação CPF, vinculação a unidades, histórico), COMMUNITIES (comunidades com agregação de unidades, relatórios demográficos), REPORTS (geração de relatórios PDF/Excel, exportação GeoJSON/Shapefile), e LEGITIMATION (processos de legitimação fundiária com workflow de aprovação). Cada domínio contém schemas JSON de request/response, validações de payload, códigos HTTP esperados, headers obrigatórios, paginação, filtros, ordenação, e exemplos de uso. Segue padrões RESTful com versionamento via header (api-version), HATEOAS para navegação, e rate limiting por tenant.
+Contratos de API REST do CARF organizados por domínio de negócio. Cada domínio contém schemas JSON de request/response, validações de payload, códigos HTTP esperados, headers obrigatórios, paginação, filtros e exemplos de uso.
 
-## Domínios de API
+A API de [autenticação](./AUTHENTICATION/README.md) define schemas para login, refresh token, logout e validação JWT via Keycloak. A API de [unidades](./UNITS/README.md) cobre CRUD de unidades habitacionais com validação geográfica e cálculo de área. A API de [titulares](./HOLDERS/README.md) gerencia pessoas físicas com validação de CPF e vinculação a unidades.
 
-- **[AUTHENTICATION/](./AUTHENTICATION/README.md)** - Autenticação OAuth2/OIDC (login, refresh token, logout, validação JWT)
-- **[UNITS/](./UNITS/README.md)** - Unidades habitacionais (CRUD, validação geográfica, cálculo de área)
-- **[HOLDERS/](./HOLDERS/README.md)** - Titulares (validação CPF, vinculação a unidades, histórico)
-- **[COMMUNITIES/](./COMMUNITIES/README.md)** - Comunidades (agregação de unidades, relatórios demográficos)
-- **[LEGITIMATION/](./LEGITIMATION/README.md)** - Processos de legitimação fundiária (workflow de aprovação Lei 13465/2017)
-- **[REPORTS/](./REPORTS/README.md)** - Geração de relatórios (PDF, Excel, GeoJSON, Shapefile)
+A API de [comunidades](./COMMUNITIES/README.md) agrega unidades geograficamente e gera dados demográficos. A API de [legitimação](./LEGITIMATION/README.md) implementa o workflow de aprovação conforme Lei 13.465/2017. E a API de [relatórios](./REPORTS/README.md) gera exports em PDF, Excel, GeoJSON e Shapefile.
+
+Segue padrões RESTful com versionamento via header, HATEOAS para navegação e rate limiting por tenant.
 
 ---
 
-**Última atualização:** 2025-12-29
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Review
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (0 arquivos)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+|  | [Authentication](./AUTHENTICATION/README.md) | 0 |
+|  | [Communities](./COMMUNITIES/README.md) | 0 |
+|  | [Holders](./HOLDERS/README.md) | 0 |
+|  | [Legitimation](./LEGITIMATION/README.md) | 0 |
+|  | [Reports](./REPORTS/README.md) | 0 |
+|  | [Units](./UNITS/README.md) | 0 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->

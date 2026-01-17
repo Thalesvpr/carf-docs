@@ -7,3 +7,5 @@ Consulte LAYERS para documentação técnica detalhada de cada funcionalidade im
 ---
 
 **Última atualização:** 2026-01-11
+**Status do arquivo**: Incompleto
+Descrição: Falta seção GENERATED com índice automático.

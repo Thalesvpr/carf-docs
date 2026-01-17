@@ -7,3 +7,4 @@ Entidade representando permissão granular de acesso a uma comunidade específic
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Review

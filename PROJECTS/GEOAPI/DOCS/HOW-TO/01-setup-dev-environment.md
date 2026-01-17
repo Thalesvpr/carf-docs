@@ -13,3 +13,4 @@ Documentação .NET 9 SDK instalação configuração PATH variáveis ambiente t
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

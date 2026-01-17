@@ -7,3 +7,4 @@ Domain event emitido por Unit aggregate root sempre que status workflow de unida
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Review

@@ -7,3 +7,4 @@ Entidade polimórfica representando anotação, comentário, alerta ou issue vin
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Review

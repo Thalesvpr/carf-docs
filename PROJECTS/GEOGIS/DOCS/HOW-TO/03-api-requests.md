@@ -5,3 +5,9 @@ Handling errors response.raise_for_status() raising HTTPError se status 4xx 5xx 
 Usage em plugin code api_client = ApiClient(auth_manager) occupations = api_client.get_occupations(filters={'status': 'pending'}) obtendo filtered data iterating for occ in occupations: print(occ['address']) processing results error handling try except catching requests.exceptions.ConnectionError se network down showing message "Unable to connect to server" catching requests.exceptions.Timeout se request exceeds 30s showing "Request timed out" catching requests.exceptions.HTTPError se status error showing status code e message logging errors QgsMessageLog.logMessage() para debugging messages panel.
 
 WFS layer loading especial caso usando API metadata construindo WFS URI uri = f"url={API_URL}/wfs&typename=occupations&version=2.0.0&srsname=EPSG:4326&authcfg={auth_cfg_id}" onde auth_cfg_id é QGIS authentication config ID storing Keycloak token criando layer layer = QgsVectorLayer(uri, 'Occupations', 'WFS') checking if not layer.isValid() showing error adding to map QgsProject.instance().addMapLayer(layer) alternative embedding token directly em URI uri += f"&headers=Authorization: Bearer {token}" mas menos secure porque token visible em project file XML upload files multipart form-data usando files = {'file': open('shapefile.shp', 'rb')} e api_client.post('/api/upload', files=files) com requests automatically handling multipart encoding download files binary content response = api_client.session.get('/api/export/shapefile', stream=True) então with open('output.zip', 'wb') as f: for chunk in response.iter_content(chunk_size=8192): f.write(chunk) streaming para avoid loading entire file em memória efficient handling large exports batch processing.
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Falta título H1 na primeira linha.

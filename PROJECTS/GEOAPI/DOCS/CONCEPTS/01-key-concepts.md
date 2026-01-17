@@ -9,4 +9,4 @@ Aggregates principais incluem UnitAggregate com Unit como root agregando Holders
 ---
 
 **Última atualização:** 2026-01-12
-
+**Status do arquivo**: Pronto

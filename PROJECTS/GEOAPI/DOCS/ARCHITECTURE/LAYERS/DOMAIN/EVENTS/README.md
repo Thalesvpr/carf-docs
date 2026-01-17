@@ -12,3 +12,17 @@ Domain events emitidos pelas entidades aggregate roots quando mudanças signific
 ---
 
 **Última atualização:** 2026-01-12
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (4 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [00-i-domain-event](./00-i-domain-event.md) | IDomainEvent |
+| [01-unit-created-event](./01-unit-created-event.md) | UnitCreatedEvent |
+| [02-sync-conflict-event](./02-sync-conflict-event.md) | SyncConflictEvent |
+| [03-legitimation-certificate-issued-event](./03-legitimation-certificate-issued-event.md) | LegitimationCertificateIssuedEvent |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Pronto

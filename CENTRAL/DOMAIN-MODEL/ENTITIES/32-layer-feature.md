@@ -7,3 +7,4 @@ Entidade representando geometria individual (ponto linha ou polígono) dentro de
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Review

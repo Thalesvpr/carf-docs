@@ -4,11 +4,11 @@ Aplicativo mobile React Native Expo implementando coleta de dados offline-first 
 
 ## Features Implementadas
 
-- **[field-collection.md](./field-collection.md)** - Coleta campo wizard multi-step formulário cadastro unidades BasicInfo Address Area Geolocation PhotoCapture validações Zod React Hook Form persistência offline WatermelonDB queue sync
-- **[holder-management.md](./holder-management.md)** - CRUD titulares mobile formulário validação CPF RG vinculação unidades many-to-many upload documentos Expo Camera Image Picker persistência offline sync
-- **[offline-sync.md](./offline-sync.md)** - Sincronização bidirecional queue-based pull push changes conflict resolution retry logic WatermelonDB sync adapter GEOAPI endpoints background Expo Background Fetch
-- **[shapefile-import.md](./shapefile-import.md)** - Importação shapefiles mobile Expo Document Picker validation topology CRS attribute mapping preview map turf.js offline queue upload multipart async processing
-- **[team-management.md](./team-management.md)** - Visualização readonly teams membros líder comunidades assignment filtering units por team coordenação campo sync unidirecional server down mobile
+- **[field-collection.md](./01-field-collection.md)** - Coleta campo wizard multi-step formulário cadastro unidades BasicInfo Address Area Geolocation PhotoCapture validações Zod React Hook Form persistência offline WatermelonDB queue sync
+- **[holder-management.md](./02-holder-management.md)** - CRUD titulares mobile formulário validação CPF RG vinculação unidades many-to-many upload documentos Expo Camera Image Picker persistência offline sync
+- **[offline-sync.md](./03-offline-sync.md)** - Sincronização bidirecional queue-based pull push changes conflict resolution retry logic WatermelonDB sync adapter GEOAPI endpoints background Expo Background Fetch
+- **[shapefile-import.md](./04-shapefile-import.md)** - Importação shapefiles mobile Expo Document Picker validation topology CRS attribute mapping preview map turf.js offline queue upload multipart async processing
+- **[team-management.md](./05-team-management.md)** - Visualização readonly teams membros líder comunidades assignment filtering units por team coordenação campo sync unidirecional server down mobile
 
 Funcionalidades principais incluem Field Collection permitindo cadastrar unidades via formulário wizard com steps informações básicas endereço área geolocalização via GPS nativo Expo Location fotografias via Expo Camera ou Image Picker validações CPF endereço área mínima persistindo localmente WatermelonDB collections units holders occupations com status pending_sync até conexão disponível, Offline Sync gerenciando queue de changes create update delete operações acumuladas offline sincronizando automaticamente via background task Expo Background Fetch detectando network via NetInfo chamando GEOAPI endpoints POST PUT DELETE batch processando responses sucesso falha retry logic exponential backoff conflict resolution comparando timestamps server vs local decidindo winner merge strategy, Holder Management CRUD completo titulares mobile formulários nome CPF RG documentação upload photos vincular múltiplas unidades relacionamento one-to-many persistindo localmente offline disponível visualização detalhes edição remoção soft delete, Team Management visualização readonly equipes atribuídas ao field collector listando membros líder comunidades responsáveis sincronizando assignments do servidor permitindo filtrar unidades por team assignment facilitando organização trabalho campo, Shapefile Import permitindo carregar shapefiles via file picker Expo Document Picker processando geometries via turf.js ou similar validando polygons CRS convertendo para format compatível GEOAPI upload multipart quando online ou queueing para sync posterior.
 
@@ -21,3 +21,18 @@ Relacionamento requirements implementando UC-004 coleta campo mobile UC-001 cada
 ---
 
 **Última atualização:** 2026-01-11
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (5 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-field-collection](./01-field-collection.md) | Field Collection - Coleta em Campo |
+| [02-holder-management](./02-holder-management.md) | Holder Management - Gestão de Titulares |
+| [03-offline-sync](./03-offline-sync.md) | Offline Sync - Sincronização |
+| [04-shapefile-import](./04-shapefile-import.md) | Shapefile Import - Importação |
+| [05-team-management](./05-team-management.md) | Team Management - Gestão de Equipes |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Pronto

@@ -10,3 +10,15 @@ Entities core multi-tenancy do GEOAPI implementando isolamento dados por tenant 
 ---
 
 **Última atualização:** 2026-01-12
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (2 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [06-account](./06-account.md) | Account |
+| [07-tenant](./07-tenant.md) | Tenant |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Pronto

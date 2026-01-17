@@ -1,0 +1,12 @@
+---
+modules: [GEOAPI, GEOWEB, REURBCAD]
+epic: compatibility
+---
+
+# US-030: Gerenciar Equipes Técnicas
+
+Como gestor, quero criar e gerenciar equipes de trabalho para que tarefas sejam atribuídas, onde o sistema permite organizar usuários em grupos lógicos facilitando coordenação de trabalho em campo, atribuição de responsabilidades e gestão de comunidades por equipes específicas, garantindo estrutura organizacional clara e rastreabilidade de responsabilidades. O cenário principal de uso inicia quando gestor acessa módulo de gestão de equipes e cria nova equipe fornecendo nome descritivo e descrição opcional, permitindo então adicionar membros selecionando usuários do tenant, definir líder da equipe que terá permissões adicionais de coordenação, e gerenciar ciclo de vida da equipe incluindo ativação e desativação conforme necessidades do projeto. Os critérios de aceitação incluem criação de equipe fornecendo nome obrigatório que identifica a equipe e descrição opcional detalhando propósito e escopo de atuação, adição e remoção de membros onde gestor seleciona usuários existentes no tenant para incluir na equipe e pode removê-los posteriormente quando deixam o grupo, definição de líder da equipe selecionando um dos membros como coordenador que receberá permissões específicas de gestão da equipe, listagem de equipes ativas apresentando todas as equipes em operação com informações de membros e líder, e desativação de equipe através de soft delete que marca equipe como inativa sem deletar registros históricos preservando rastreabilidade de atribuições passadas. Esta funcionalidade é implementada pelos módulos GEOAPI (endpoints POST /api/teams para criar, GET /api/teams para listar, PUT /api/teams/{id} para atualizar, DELETE /api/teams/{id} para desativar, POST /api/teams/{id}/members para adicionar membro e DELETE /api/teams/{id}/members/{userId} para remover) e GEOWEB (interface de gestão de equipes com formulários de criação/edição e tabela de listagem), garantindo rastreabilidade com RF-050 (Gestão de Equipes) e UC-011 (Caso de Uso de Administração de Equipes), onde equipes podem ser vinculadas a comunidades específicas e trabalhos são atribuídos a equipes ao invés de indivíduos facilitando redistribuição de carga, incluindo audit log de mudanças em composição de equipes e relatórios de produtividade por equipe.
+
+---
+
+**Última atualização:** 2025-12-30**Status do arquivo**: Review

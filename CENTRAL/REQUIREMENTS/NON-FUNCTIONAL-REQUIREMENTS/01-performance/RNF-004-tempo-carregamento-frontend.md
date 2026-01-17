@@ -1,0 +1,10 @@
+---
+modules: [GEOWEB]
+epic: performance
+---
+
+# RNF-004: Tempo de Carregamento - Frontend
+
+O módulo GEOWEB deve carregar a página inicial em até 3 segundos medidos através da métrica First Contentful Paint (FCP), que representa o momento em que o primeiro conteúdo visível é renderizado na tela do usuário, proporcionando feedback visual imediato de que a aplicação está carregando e respondendo. Este requisito estabelece métricas específicas de performance onde o FCP deve ser menor ou igual a 3 segundos e o LCP (Largest Contentful Paint) deve ser menor ou igual a 4 segundos, sendo que o LCP mede quando o maior elemento de conteúdo visível é renderizado completamente. Os critérios de aceitação incluem obter uma pontuação de performance de 80 ou superior no Google Lighthouse, que é uma ferramenta automatizada de auditoria de qualidade de páginas web que avalia múltiplos aspectos de performance, além da implementação obrigatória de code splitting para dividir o código JavaScript em chunks menores que podem ser carregados sob demanda, e lazy loading de componentes que permite carregar componentes React apenas quando são necessários ao invés de incluí-los no bundle inicial. Este requisito é classificado como Should-have porque embora seja importante para a experiência do usuário e satisfação geral com a aplicação, tempos de carregamento ligeiramente superiores não impedem o uso do sistema, mas podem afetar a percepção de qualidade e modernidade da aplicação. A implementação deve considerar técnicas como otimização de imagens através de formatos modernos (WebP, AVIF), minimização e compressão de assets (CSS, JavaScript), uso de CDN para servir recursos estáticos, implementação de service workers para caching de recursos, pré-carregamento de recursos críticos através de resource hints (preload, prefetch), e eliminação de JavaScript não utilizado através de tree shaking durante o processo de build.
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Review

@@ -2,7 +2,7 @@
 
 ## Fluxo de Autenticação
 
-Authentication flow no @carf/geoapi-client usa [OAuth2 Authorization Code](https://oauth.net/2/grant-types/authorization-code/) + PKCE via `@carf/tscore` [KeycloakClient](../../../TSCORE/DOCS/CONCEPTS/02-authentication.md) conforme integração documentada em , cliente HTTP recebe instância de `AuthClient` no construtor armazenando reference para buscar access token antes de cada request, interceptor axios adiciona header `Authorization: Bearer ${token}` automaticamente em todas as requisições chamando `authClient.getAccessToken()` que retorna token cached se válido ou faz refresh se expirado usando refresh_token, se refresh falha (401 Unauthorized ou refresh_token expirado) interceptor emite evento `auth:session-expired` para aplicação consumidora redirecionar para login, requests com 401 são automaticamente retried UMA VEZ após refresh token, requests com 403 Forbidden não são retried (usuário não tem permissão), e logout limpa tokens chamando `authClient.logout()` que invalida sessão no Keycloak e remove tokens do storage.
+Authentication flow no @carf/geoapi-client usa [OAuth2 Authorization Code](https://oauth.net/2/grant-types/authorization-code/) + PKCE via `@carf/tscore` KeycloakClient (ver TSCORE/DOCS/CONCEPTS/02-authentication) conforme integração documentada em , cliente HTTP recebe instância de `AuthClient` no construtor armazenando reference para buscar access token antes de cada request, interceptor axios adiciona header `Authorization: Bearer ${token}` automaticamente em todas as requisições chamando `authClient.getAccessToken()` que retorna token cached se válido ou faz refresh se expirado usando refresh_token, se refresh falha (401 Unauthorized ou refresh_token expirado) interceptor emite evento `auth:session-expired` para aplicação consumidora redirecionar para login, requests com 401 são automaticamente retried UMA VEZ após refresh token, requests com 403 Forbidden não são retried (usuário não tem permissão), e logout limpa tokens chamando `authClient.logout()` que invalida sessão no Keycloak e remove tokens do storage.
 
 ## Diagrama de Fluxo
 
@@ -413,3 +413,9 @@ if (process.env.NODE_ENV === 'production' && !config.baseURL.startsWith('https:/
  throw new Error('API URL must use HTTPS in production')
 }
 ```
+
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Contém code blocks - considerar converter para prosa.

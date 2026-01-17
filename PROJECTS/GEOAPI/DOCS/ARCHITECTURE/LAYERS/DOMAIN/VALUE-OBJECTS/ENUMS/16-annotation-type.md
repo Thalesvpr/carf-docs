@@ -9,3 +9,4 @@ Usado em Annotation.Type controlando validações e comportamento, dispara notif
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

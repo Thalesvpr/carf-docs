@@ -5,3 +5,4 @@ Keycloak Admin REST API base URL /admin/realms/carf autenticada via Bearer token
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

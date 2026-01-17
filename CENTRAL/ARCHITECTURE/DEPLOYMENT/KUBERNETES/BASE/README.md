@@ -19,4 +19,6 @@ Diretório base contém manifests Kubernetes genéricos do sistema CARF comparti
 
 ---
 
-**Última atualização:** 2026-01-11
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Review
+

@@ -13,3 +13,18 @@ Entities workflow legitimação fundiária do GEOAPI implementando processo lega
 ---
 
 **Última atualização:** 2026-01-12
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (5 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [14-legitimation-request](./14-legitimation-request.md) | LegitimationRequest |
+| [28-legitimation-response](./28-legitimation-response.md) | LegitimationResponse |
+| [29-legitimation-certificate](./29-legitimation-certificate.md) | LegitimationCertificate |
+| [30-descriptive-memorial](./30-descriptive-memorial.md) | DescriptiveMemorial |
+| [31-legitimation-plan](./31-legitimation-plan.md) | LegitimationPlan |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Pronto

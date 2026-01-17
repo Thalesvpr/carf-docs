@@ -9,3 +9,4 @@ Integra Layer através FK herdando StyleConfig renderização, suporta indexaç�
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

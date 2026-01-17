@@ -13,3 +13,4 @@ Troubleshooting comum inclui tema não recarrega resolvido limpando cache browse
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

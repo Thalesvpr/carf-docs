@@ -451,3 +451,5 @@ cat node_modules/@carf/tscore/CHANGELOG.md
 ---
 
 **Última atualização:** 2026-01-09
+**Status do arquivo**: Incompleto
+Descrição: Falta parágrafo denso introdutório; Falta seção GENERATED com índice automático; Contém code blocks - considerar converter para prosa.

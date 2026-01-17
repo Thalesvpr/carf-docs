@@ -185,3 +185,8 @@ ENTRYPOINT ["/opt/keycloak/bin/kc.sh"]
 - Validação de roles e permissões
 - Testes de fluxos OAuth2/OIDC
 
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Muitas listas com bullets (47) antes do rodapé - considerar converter para parágrafo denso; Contém code blocks - considerar converter para prosa.

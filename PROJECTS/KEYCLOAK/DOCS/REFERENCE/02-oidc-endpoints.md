@@ -5,3 +5,4 @@ OIDC endpoints do realm CARF seguindo especificação OpenID Connect Core 1.0 co
 ---
 
 **Última atualização:** 2026-01-12
+**Status do arquivo**: Pronto

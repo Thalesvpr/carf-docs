@@ -341,3 +341,8 @@ Manter temas no Git junto com o código.
 - Verificar `locales=` em `theme.properties`
 - Verificar uso de `${msg("key")}` nos templates
 
+---
+
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Incompleto
+Descrição: Muitas listas com bullets (42) antes do rodapé - considerar converter para parágrafo denso; Contém code blocks - considerar converter para prosa.

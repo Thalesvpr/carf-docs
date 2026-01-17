@@ -7,3 +7,4 @@ Entidade junction representando relacionamento N:N entre Account e Team com role
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Review

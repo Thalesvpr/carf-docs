@@ -15,3 +15,21 @@ Referência técnica Keycloak cobrindo Admin REST API endpoints autenticação t
 ---
 
 **Última atualização:** 2026-01-12
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (7 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-admin-api](./01-admin-api.md) | Admin REST API |
+| [02-oidc-endpoints](./02-oidc-endpoints.md) | OpenID Connect Endpoints |
+| [03-theme-properties](./03-theme-properties.md) | Theme Properties |
+| [04-freemarker-variables](./04-freemarker-variables.md) | FreeMarker Variables |
+| [05-environment-variables](./05-environment-variables.md) | Environment Variables |
+| [06-realm-export-schema](./06-realm-export-schema.md) | Realm Export Schema |
+| [07-error-codes](./07-error-codes.md) | Error Codes |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
+**Status do arquivo**: Incompleto
+Descrição: Muitas listas com bullets (7) antes do rodapé - considerar converter para parágrafo denso.

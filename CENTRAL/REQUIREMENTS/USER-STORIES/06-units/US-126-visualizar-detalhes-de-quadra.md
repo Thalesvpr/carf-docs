@@ -1,0 +1,14 @@
+---
+modules: [GEOAPI, GEOWEB, GEOGIS]
+epic: compatibility
+---
+
+# US-126: Visualizar Detalhes de Quadra
+
+Como Analista quero ver dados de uma quadra para que possa acessar informacoes completas da divisao territorial incluindo codigo nome geometria area e relacionamentos com lotes e unidades, onde o endpoint implementado em GEOAPI expoe a rota /api/blocks/{id} permitindo consulta detalhada de uma quadra especifica atraves do identificador unico, garantindo validacao de permissoes baseada em roles onde usuarios autenticados com role Analyst ou superior podem visualizar detalhes de quadras pertencentes ao seu tenant, incluindo tratamento de erro 404 Not Found quando ID informado nao existe ou pertence a outro tenant, permitindo que a resposta inclua objeto Block completo com propriedades id code name geometry area communityId communityName createdAt updatedAt createdBy e array de lotes associados, onde a propriedade geometry retorna GeoJSON Polygon ou MultiPolygon com coordenadas em sistema de referencia EPSG:4326 permitindo renderizacao direta em mapas Leaflet ou OpenLayers, garantindo rastreabilidade ao requisito funcional RF-075 que especifica visualizacao de divisao territorial, incluindo relacionamento eager loading com entidade Community para exibir nome da comunidade sem necessidade de requisicao adicional, permitindo que o frontend GEOWEB renderize painel lateral com informacoes da quadra incluindo mapa de localizacao lista de lotes contidos e estatisticas como total de unidades habitacionais dentro da quadra, onde a implementacao em GEOAPI utiliza Entity Framework Core com Include para carregar relacionamentos de forma eficiente evitando N+1 queries, garantindo que alteracoes na geometria da quadra sejam auditadas com rastreamento de usuario responsavel e timestamp da modificacao, incluindo calculo em tempo real de metricas agregadas como quantidade de lotes quantidade de unidades area total ocupada e area disponivel dentro da quadra, permitindo export dos dados da quadra em formatos JSON GeoJSON e Shapefile para uso em sistemas GIS externos como QGIS e ArcGIS, garantindo testes unitarios que validam serializacao correta do modelo Block incluindo conversao de tipos geometricos NetTopologySuite para GeoJSON, incluindo testes de integracao que verificam recuperacao de quadra com relacionamentos carregados e validacao de isolamento multi-tenant onde usuario de um tenant nao acessa quadras de outro tenant.
+
+---
+
+**Ultima atualizacao:** 2025-12-30
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Review

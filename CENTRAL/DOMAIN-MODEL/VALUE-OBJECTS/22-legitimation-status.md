@@ -7,3 +7,4 @@ Value object enum imutável representando estado atual de processo de legitimaç
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Review

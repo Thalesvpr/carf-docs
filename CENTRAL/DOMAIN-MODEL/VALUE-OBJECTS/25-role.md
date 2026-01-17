@@ -7,3 +7,4 @@ Value object enum imutável representando papel funcional de usuário no sistema
 ---
 
 **Última atualização:** 2026-01-10
+**Status do arquivo**: Review

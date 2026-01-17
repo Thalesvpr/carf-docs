@@ -1,13 +1,28 @@
 # MONITORING
 
-Configuração observabilidade CARF organizada PROMETHEUS scrape configs GEOAPI metrics endpoint PostgreSQL exporter Keycloak metrics node exporter regras alertas HighCPU HighMemory HighErrorRate HighLatency DatabaseConnectionsHigh AlertManager routing Slack email PagerDuty recording rules GRAFANA dashboards JSON exports GEOAPI PostgreSQL Infrastructure provisioning datasources dashboards auto-provisionados LOGGING agregação logs Loki Promtail structured logging JSON correlation IDs distributed tracing retention noventa dias audit um ano archive S3 define SLOs Service Level Objectives noventa e nove ponto cinco por cento uptime p99 latency menor quinhentos milissegundos SLIs Service Level Indicators monitorados garantindo observabilidade proativa detecção problemas troubleshooting ágil compliance.
+Configuração de observabilidade do CARF.
 
-## Estrutura
+O [Prometheus](./PROMETHEUS/README.md) coleta métricas do GEOAPI, PostgreSQL exporter, Keycloak e node exporter. Alertas configurados incluem HighCPU (>80%), HighMemory (>90%), HighErrorRate (5xx >1%), HighLatency (p99 >1s) e DatabaseConnectionsHigh. AlertManager roteia para Slack, email e PagerDuty.
 
-- **[PROMETHEUS/](./PROMETHEUS/README.md)** - Scrape configs metrics exporters alertas AlertManager recording rules
-- **[GRAFANA/](./GRAFANA/README.md)** - Dashboards JSON datasources provisioning visualizações métricas
-- **[LOGGING/](./LOGGING/README.md)** - Loki Promtail structured logs correlation IDs retention policies
+O [Grafana](./GRAFANA/README.md) exibe dashboards para GEOAPI, PostgreSQL e Infrastructure. Datasources e dashboards são auto-provisionados via JSON exports.
+
+O [Logging](./LOGGING/README.md) usa Loki com Promtail para agregação de logs em formato JSON estruturado. Correlation IDs permitem distributed tracing. Retenção de 90 dias para logs gerais e 1 ano para audit, com archive em S3 após 7 dias.
+
+SLOs definidos: 99.5% uptime e p99 latency menor que 500ms.
 
 ---
 
-**Última atualização:** 2026-01-11
+**Última atualização:** 2026-01-15
+**Status do arquivo**: Review
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (0 arquivos)
+
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+|  | [Grafana](./GRAFANA/README.md) | 0 |
+|  | [Logging](./LOGGING/README.md) | 0 |
+|  | [Prometheus](./PROMETHEUS/README.md) | 0 |
+
+*Gerado automaticamente em 2026-01-15 17:41*
+<!-- GENERATED:END -->
