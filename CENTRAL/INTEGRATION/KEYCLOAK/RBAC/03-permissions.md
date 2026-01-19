@@ -16,5 +16,6 @@ Permissões de super-admin: tudo de admin mais criar tenant (POST /tenants), del
 
 ---
 
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

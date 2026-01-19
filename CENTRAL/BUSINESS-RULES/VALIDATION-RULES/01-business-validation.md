@@ -4,5 +4,6 @@ Validações de regras de negócio do CARF. age-validation.md titular deve ter >
 
 ---
 
-**Última atualização:** 2025-01-05
-**Status do arquivo**: Review
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

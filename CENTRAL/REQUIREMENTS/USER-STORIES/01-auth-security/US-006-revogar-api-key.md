@@ -10,3 +10,9 @@ Como administrador, quero revogar API keys comprometidas para que acessos não a
 ---
 
 **Última atualização:** 2025-12-30**Status do arquivo**: Review
+
+---
+
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

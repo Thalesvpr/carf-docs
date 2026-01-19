@@ -6,5 +6,6 @@ Classe base abstrata conceitual que aggregate roots herdam estendendo BaseEntity
 
 ---
 
-**Última atualização:** 2026-01-10
-**Status do arquivo**: Review
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

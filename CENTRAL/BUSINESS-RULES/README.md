@@ -24,3 +24,9 @@ As [regras de legitimação](./LEGITIMATION-RULES/README.md) estabelecem requisi
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
+
+---
+
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

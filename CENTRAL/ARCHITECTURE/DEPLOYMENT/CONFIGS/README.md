@@ -17,3 +17,9 @@ Arquivos de configuração deployment do CARF. O [env-vars](./01-env-vars.md) do
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
+
+---
+
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

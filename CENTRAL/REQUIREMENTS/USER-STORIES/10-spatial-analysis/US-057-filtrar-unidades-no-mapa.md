@@ -11,3 +11,9 @@ Como analista, quero filtrar as unidades visíveis no mapa por diferentes crité
 
 **Última atualização:** 2025-12-30
 **Status do arquivo**: Review
+
+---
+
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

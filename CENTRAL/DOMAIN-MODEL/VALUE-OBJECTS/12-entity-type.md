@@ -6,5 +6,6 @@ Value object enum representando tipo de entidade do sistema usado em relacioname
 
 ---
 
-**Última atualização:** 2026-01-10
-**Status do arquivo**: Review
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

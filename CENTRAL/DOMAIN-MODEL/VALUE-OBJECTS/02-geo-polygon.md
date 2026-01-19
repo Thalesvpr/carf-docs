@@ -6,5 +6,6 @@ Value object imutável representando geometria poligonal georreferenciada delimi
 
 ---
 
-**Última atualização:** 2026-01-10
-**Status do arquivo**: Review
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

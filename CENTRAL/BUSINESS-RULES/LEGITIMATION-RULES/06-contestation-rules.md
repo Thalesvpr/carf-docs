@@ -9,5 +9,6 @@ Regras governando contestações administrativas de processos de legitimação f
 
 ---
 
-**Última atualização:** 2025-01-05
-**Status do arquivo**: Review
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

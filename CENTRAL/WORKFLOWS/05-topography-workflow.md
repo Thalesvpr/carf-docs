@@ -15,5 +15,6 @@ Workflow de levantamento topográfico profissional executado por topógrafo lice
 
 ---
 
-**Última atualização:** 2025-01-05
-**Status do arquivo**: Review
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

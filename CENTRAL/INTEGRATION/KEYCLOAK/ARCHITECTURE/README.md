@@ -20,3 +20,9 @@ A [visão geral](./01-overview.md) apresenta o Keycloak como provedor centraliza
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
+
+---
+
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

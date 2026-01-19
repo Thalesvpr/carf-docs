@@ -45,5 +45,6 @@ Critérios de titularidade estabelecendo quem pode ser titular beneficiário de 
 
 ---
 
-**Última atualização:** 2025-01-06
-**Status do arquivo**: Review
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

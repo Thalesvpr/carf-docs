@@ -11,3 +11,9 @@ Este requisito estabelece que cada tenant deve ter quota configurável de armaze
 
 **Última atualização:** 2025-12-30
 **Status do arquivo**: Review
+
+---
+
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

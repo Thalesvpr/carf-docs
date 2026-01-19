@@ -4,5 +4,6 @@ Sistema CARF requer configuração de variáveis de ambiente específicas por pr
 
 ---
 
-**Última atualização:** 2026-01-10
-**Status do arquivo**: ERROR
+**Status:** ERROR
+**Atualizado:** 2026-01-19
+**Descrição:** 

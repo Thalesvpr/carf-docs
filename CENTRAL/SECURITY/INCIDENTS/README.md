@@ -29,3 +29,9 @@ O [audit logging](./04-audit-logging.md) registra eventos de autenticação, alt
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
+
+---
+
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

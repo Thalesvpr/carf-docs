@@ -15,3 +15,9 @@ Fluxo de exceção do UC-006 Gerar Relatório de Comunidade ocorrendo no passo 1
 
 **Última atualização:** 2025-12-30
 **Status do arquivo**: Review
+
+---
+
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

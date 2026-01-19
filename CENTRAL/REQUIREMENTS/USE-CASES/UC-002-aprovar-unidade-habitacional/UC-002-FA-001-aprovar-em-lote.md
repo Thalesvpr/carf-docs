@@ -28,3 +28,9 @@ Modal exibe checkmark verde "47 de 50 unidades aprovadas com sucesso" indicando 
 
 **Última atualização:** 2025-12-30
 **Status do arquivo**: Review
+
+---
+
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

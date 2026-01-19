@@ -29,3 +29,9 @@ App executa SELECT asterisco FROM units_local WHERE deleted_at IS NULL ORDER BY 
 
 **Última atualização:** 2025-12-30
 **Status do arquivo**: Review
+
+---
+
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

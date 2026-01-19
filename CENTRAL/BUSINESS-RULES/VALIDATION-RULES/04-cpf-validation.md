@@ -8,5 +8,6 @@ Relacionado domain model inclui CPF value object implementando validação Holde
 
 ---
 
-**Última atualização:** 2026-01-11
-**Status do arquivo**: Review
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

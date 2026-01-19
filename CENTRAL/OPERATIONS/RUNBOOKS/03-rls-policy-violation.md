@@ -88,5 +88,6 @@ curl -H "Authorization: Bearer $TOKEN_TENANT_B" https://api.carf.com.br/api/unit
 
 ---
 
-**Última atualização:** 2026-01-16
-**Status do arquivo**: Review
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

@@ -16,5 +16,6 @@ Workflow completo de processo de legitimação fundiária conforme Lei 13465/201
 
 ---
 
-**Última atualização:** 2025-01-05
-**Status do arquivo**: Review
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

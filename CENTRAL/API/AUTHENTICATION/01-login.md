@@ -123,5 +123,6 @@ O access_token contém:
 
 ---
 
-**Última atualização:** 2026-01-16
-**Status do arquivo**: Review
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

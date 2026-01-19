@@ -23,3 +23,9 @@ O [criar usuário](./01-create-user.md) guia criação de usuários com roles e 
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
+
+---
+
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

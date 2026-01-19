@@ -6,5 +6,6 @@ Entidade representando job de pós-processamento diferencial de dados GPS brutos
 
 ---
 
-**Última atualização:** 2026-01-10
-**Status do arquivo**: Review
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

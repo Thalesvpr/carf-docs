@@ -12,5 +12,6 @@ Token inválido (assinatura incorreta, expirado, audience errado) resulta em 401
 
 ---
 
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

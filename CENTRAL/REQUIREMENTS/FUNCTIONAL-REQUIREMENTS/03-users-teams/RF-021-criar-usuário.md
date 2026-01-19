@@ -11,3 +11,9 @@ Usuários com roles ADMIN e SUPER_ADMIN podem criar novos usuários no tenant on
 
 **Última atualização:** 2025-12-30
 **Status do arquivo**: Review
+
+---
+
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

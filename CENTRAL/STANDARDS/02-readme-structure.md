@@ -32,5 +32,6 @@ Os scripts em .scripts/carf_validator validam estrutura de README com códigos R
 
 ---
 
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

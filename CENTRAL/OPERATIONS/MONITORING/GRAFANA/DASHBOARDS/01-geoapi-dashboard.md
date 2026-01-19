@@ -83,5 +83,6 @@ Dashboard para acompanhamento em tempo real de métricas da GEOAPI incluindo thr
 
 ---
 
-**Última atualização:** 2026-01-16
-**Status do arquivo**: Review
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

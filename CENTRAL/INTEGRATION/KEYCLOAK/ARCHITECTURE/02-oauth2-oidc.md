@@ -10,5 +10,6 @@ Refresh Token Strategy configurada com max reuse zero garantindo uso único onde
 
 ---
 
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

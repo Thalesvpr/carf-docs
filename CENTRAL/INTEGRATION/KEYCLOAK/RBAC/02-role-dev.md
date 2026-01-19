@@ -10,5 +10,6 @@ No Keycloak a role dev é realm role simples sem composite roles associadas. Dev
 
 ---
 
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

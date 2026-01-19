@@ -4,5 +4,6 @@ Definição mínimos cobertura código testes automatizados justificando domain 
 
 ---
 
-**Última atualização:** 2025-01-07
-**Status do arquivo**: Review
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

@@ -15,3 +15,9 @@ Fluxo de exceção do UC-007 Exportar Dados Geográficos ocorrendo no passo 11.3
 
 **Última atualização:** 2025-12-30
 **Status do arquivo**: Review
+
+---
+
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

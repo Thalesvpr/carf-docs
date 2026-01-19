@@ -80,3 +80,9 @@ Obter token de acesso executando curl POST para endpoint realms barra master bar
 - [ ] Revisão de eventos semanalmente
 **Última atualização:** 2026-01-15
 **Status do arquivo**: Review
+
+---
+
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

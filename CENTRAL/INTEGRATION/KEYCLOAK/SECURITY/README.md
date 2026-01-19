@@ -20,3 +20,9 @@ As [boas práticas](./01-best-practices.md) cobrem configurações recomendadas 
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
+
+---
+
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

@@ -32,5 +32,6 @@ Requisitos de elegibilidade para modalidade REURB-E (Regularização Fundiária 
 
 ---
 
-**Última atualização:** 2025-01-06
-**Status do arquivo**: Review
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

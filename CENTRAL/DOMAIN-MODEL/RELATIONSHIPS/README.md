@@ -18,3 +18,9 @@ Relacionamentos entre aggregates diferentes usam apenas IDs, nunca referências 
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
+
+---
+
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

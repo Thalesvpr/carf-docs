@@ -4,5 +4,6 @@ Sistema CARF implementa endpoints de health checks readiness probes e liveness p
 
 ---
 
-**Última atualização:** 2026-01-10
-**Status do arquivo**: ERROR
+**Status:** ERROR
+**Atualizado:** 2026-01-19
+**Descrição:** 

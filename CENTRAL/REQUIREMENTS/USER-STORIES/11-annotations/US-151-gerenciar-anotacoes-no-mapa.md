@@ -12,3 +12,9 @@ Como Analista quero criar e listar anotacoes no mapa para que possa marcar ponto
 **Ultima atualizacao:** 2025-12-30
 **Última atualização:** 2026-01-15
 **Status do arquivo**: Review
+
+---
+
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

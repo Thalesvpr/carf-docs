@@ -25,3 +25,9 @@ As [políticas](./POLICIES/README.md) definem regras de autenticação, autoriza
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
+
+---
+
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

@@ -28,5 +28,6 @@ Issues tracking bugs features enhancements discussions roadmap planning communit
 
 ---
 
-**Última atualização:** 2025-01-08
-**Status do arquivo**: Review
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

@@ -17,3 +17,9 @@ Testes API REST CARF incluem authentication login credenciais válidas retorna d
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
+
+---
+
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

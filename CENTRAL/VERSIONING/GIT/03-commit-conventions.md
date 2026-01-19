@@ -4,5 +4,6 @@ Conventional Commits do CARF para changelogs automáticos. Formato: type(scope):
 
 ---
 
-**Última atualização:** 2025-12-29
-**Status do arquivo**: Review
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

@@ -24,5 +24,6 @@ Onboarding desenvolvedores novos inclui Git fundamentals workshop 2 horas concei
 
 ---
 
-**Última atualização:** 2025-01-08
-**Status do arquivo**: Review
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

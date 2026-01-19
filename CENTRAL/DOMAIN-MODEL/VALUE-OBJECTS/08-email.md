@@ -6,5 +6,6 @@ Value object imutável representando endereço de email válido conforme RFC 532
 
 ---
 
-**Última atualização:** 2026-01-10
-**Status do arquivo**: Review
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

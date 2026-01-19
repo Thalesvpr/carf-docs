@@ -36,3 +36,9 @@ Validações: documentos obrigatórios conforme modalidade, critérios da Lei 13
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
+
+---
+
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

@@ -36,3 +36,9 @@ O período de contestação de 30 dias permite que terceiros apresentem oposiç�
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
+
+---
+
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

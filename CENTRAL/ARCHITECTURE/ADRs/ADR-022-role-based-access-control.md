@@ -14,9 +14,6 @@ Consequências positivas incluem simplicidade de gestão de acessos via Admin Co
 
 ---
 
-**Data:** 2026-01-17
-**Status:** Aprovado e Implementado
-**Decisor:** Equipe de Arquitetura + Segurança
-**Última revisão:** 2026-01-17
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

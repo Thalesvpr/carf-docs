@@ -10,5 +10,6 @@ Schema evolution implementa versioning onde Tenant.Settings.schemaVersion increm
 
 ---
 
-**Última atualização:** 2026-01-10
-**Status do arquivo**: Review
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

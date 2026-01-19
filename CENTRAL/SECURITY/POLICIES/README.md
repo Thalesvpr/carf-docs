@@ -38,3 +38,9 @@ A política de [controle de acesso](./05-access-control-policy.md) define MFA ob
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
+
+---
+
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

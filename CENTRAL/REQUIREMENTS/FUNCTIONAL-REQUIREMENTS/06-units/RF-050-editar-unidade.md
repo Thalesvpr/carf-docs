@@ -11,3 +11,9 @@ Usuários com roles ANALYST e MANAGER podem editar dados de unidades existentes 
 
 **Última atualização:** 2025-12-30
 **Status do arquivo**: Review
+
+---
+
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

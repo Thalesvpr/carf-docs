@@ -12,5 +12,6 @@ Relacionado domain model LegitimationStatus value object onze estados enum Legit
 
 ---
 
-**Última atualização:** 2026-01-11
-**Status do arquivo**: Review
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

@@ -11,3 +11,9 @@ O sistema deve capturar conjunto abrangente de campos para titulares do tipo PES
 
 **Última atualização:** 2025-12-30
 **Status do arquivo**: Review
+
+---
+
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

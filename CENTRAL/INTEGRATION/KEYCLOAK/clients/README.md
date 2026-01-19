@@ -23,3 +23,9 @@ O [GEOWEB](./01-geoweb.md) é SPA React usando public client com PKCE. O [REURBC
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
+
+---
+
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

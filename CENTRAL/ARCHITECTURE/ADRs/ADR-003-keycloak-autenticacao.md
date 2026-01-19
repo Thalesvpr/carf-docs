@@ -14,9 +14,6 @@ Status da decisão é aprovado e implementado desde início do projeto em 2024-Q
 
 ---
 
-**Data:** 2024-09-15
-**Status:** Aprovado e Implementado
-**Decisor:** Equipe de Arquitetura + Segurança
-**Última revisão:** 2025-01-05
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

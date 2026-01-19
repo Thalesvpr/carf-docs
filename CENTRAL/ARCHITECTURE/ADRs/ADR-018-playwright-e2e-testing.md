@@ -14,9 +14,6 @@ Status aprovado e implementado desde 2024-Q4.
 
 ---
 
-**Data:** 2025-01-10
-**Status:** Aprovado e Implementado
-**Decisor:** Equipe de Arquitetura + QA
-**Última revisão:** 2025-01-10
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

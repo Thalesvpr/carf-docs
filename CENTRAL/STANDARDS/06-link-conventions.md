@@ -28,5 +28,6 @@ Os scripts em .scripts/carf_validator validam formato de links com códigos LINK
 
 ---
 
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

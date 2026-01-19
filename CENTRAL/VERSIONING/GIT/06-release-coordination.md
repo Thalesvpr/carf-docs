@@ -4,5 +4,6 @@ Coordenação releases polyrepo do CARF. compatibility-matrix.md documenta vers�
 
 ---
 
-**Última atualização:** 2025-12-29
-**Status do arquivo**: Review
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

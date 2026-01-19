@@ -59,3 +59,9 @@ Upload para Azure Blob Storage instalando Azure CLI seguido por executar az stor
 - Backups anuais: 7 anos
 **Última atualização:** 2026-01-15
 **Status do arquivo**: Review
+
+---
+
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

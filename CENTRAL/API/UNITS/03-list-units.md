@@ -130,5 +130,6 @@ curl -X GET "https://api.carf.com.br/api/units?bbox=-46.64,-23.55,-46.63,-23.54"
 
 ---
 
-**Última atualização:** 2026-01-16
-**Status do arquivo**: Review
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 

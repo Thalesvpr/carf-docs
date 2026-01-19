@@ -31,3 +31,9 @@ A [hierarquia de roles](./01-roles-hierarchy.md) define seis níveis: `user` (ba
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
+
+---
+
+**Status:** Review
+**Atualizado:** 2026-01-19
+**Descrição:** 
