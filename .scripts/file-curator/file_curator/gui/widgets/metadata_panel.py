@@ -168,12 +168,15 @@ class MetadataPanel(QFrame):
         self.type_row = MetadataRow("Type")
         scroll_layout.addWidget(self.type_row)
 
-        # File's own metadata (from footer)
-        self.file_status_row = MetadataRow("Status do arquivo")
+        # File's own metadata (from footer - standardized format)
+        self.file_status_row = MetadataRow("Status")
         scroll_layout.addWidget(self.file_status_row)
 
-        self.file_updated_row = MetadataRow("Última atualização")
+        self.file_updated_row = MetadataRow("Atualizado")
         scroll_layout.addWidget(self.file_updated_row)
+
+        self.file_description_row = MetadataRow("Descrição")
+        scroll_layout.addWidget(self.file_description_row)
 
         # Separator for extra metadata
         sep2 = QFrame()
@@ -242,9 +245,10 @@ class MetadataPanel(QFrame):
         self.path_row.set_value(file_item.relative_path)
         self.type_row.set_value(file_item.doc_type or "Unknown")
 
-        # File's own metadata
+        # File's own metadata (standardized format)
         self.file_status_row.set_value(file_item.file_status or "-")
         self.file_updated_row.set_value(file_item.file_last_updated or "-")
+        self.file_description_row.set_value(file_item.file_description or "-")
 
         self.modules_row.set_value(
             ", ".join(file_item.frontmatter_modules)
@@ -289,6 +293,7 @@ class MetadataPanel(QFrame):
         self.type_row.set_value("-")
         self.file_status_row.set_value("-")
         self.file_updated_row.set_value("-")
+        self.file_description_row.set_value("-")
         self.modules_row.set_value("-")
         self.epic_row.set_value("-")
         self.size_row.set_value("-")

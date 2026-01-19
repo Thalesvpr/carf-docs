@@ -55,9 +55,10 @@ class FileItem:
     created_at: datetime = field(default_factory=datetime.now)
     updated_at: Optional[datetime] = None
     last_reviewed_at: Optional[datetime] = None
-    # File's own metadata (from footer)
-    file_status: Optional[str] = None  # "Status do arquivo" from the file
-    file_last_updated: Optional[str] = None  # "Última atualização" from the file
+    # File's own metadata (from footer) - new standardized format
+    file_status: Optional[str] = None  # "Status" from the file
+    file_last_updated: Optional[str] = None  # "Atualizado" from the file
+    file_description: Optional[str] = None  # "Descrição" from the file
     footer_metadata: dict = field(default_factory=dict)  # All footer metadata
     # Links in the document
     links: list = field(default_factory=list)  # List of LinkInfo objects

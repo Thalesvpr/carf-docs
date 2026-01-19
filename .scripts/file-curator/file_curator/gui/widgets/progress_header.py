@@ -1,5 +1,7 @@
 """Progress header showing session info and progress."""
 
+from typing import Any
+
 from PySide6.QtWidgets import (
     QWidget,
     QHBoxLayout,
@@ -10,7 +12,6 @@ from PySide6.QtWidgets import (
 )
 from PySide6.QtCore import Qt
 
-from ...models.session import CurationSession
 from ..theme import COLORS
 
 
@@ -130,11 +131,12 @@ class ProgressHeader(QFrame):
 
         layout.addLayout(stats_layout)
 
-    def set_session(self, session: CurationSession | None) -> None:
-        """Set the session to display.
+    def set_session(self, session: Any) -> None:
+        """Set the session/progress info to display.
 
         Args:
-            session: Session to display
+            session: Object with name, root_path (optional), total_files,
+                     approved_count, rejected_count, pending_count attributes
         """
         if session is None:
             self.title_label.setText("File Curator")
@@ -147,18 +149,20 @@ class ProgressHeader(QFrame):
             return
 
         self.title_label.setText(session.name)
-        self.subtitle_label.setText(str(session.root_path))
+        root_path = getattr(session, "root_path", None)
+        self.subtitle_label.setText(str(root_path) if root_path else "")
         self.update_progress(session)
 
-    def update_progress(self, session: CurationSession) -> None:
+    def update_progress(self, session: Any) -> None:
         """Update progress display.
 
         Args:
-            session: Session with updated counts
+            session: Object with total_files, approved_count, rejected_count, pending_count
         """
         total = session.total_files
         decided = session.approved_count + session.rejected_count
-        remaining = session.pending_count + session.skipped_count
+        skipped = getattr(session, "skipped_count", 0)
+        remaining = session.pending_count + skipped
 
         self.progress_bar.setMaximum(total if total > 0 else 1)
         self.progress_bar.setValue(decided)

@@ -94,8 +94,16 @@ class FrontmatterParser:
         # Parse footer metadata (CARF format)
         footer_metadata = self._extract_footer_metadata(content)
         result["footer_metadata"] = footer_metadata
-        result["file_status"] = footer_metadata.get("Status do arquivo")
-        result["last_updated"] = footer_metadata.get("Última atualização")
+        # Support both old and new format
+        result["file_status"] = (
+            footer_metadata.get("Status") or
+            footer_metadata.get("Status do arquivo")
+        )
+        result["last_updated"] = (
+            footer_metadata.get("Atualizado") or
+            footer_metadata.get("Última atualização")
+        )
+        result["description"] = footer_metadata.get("Descrição", "")
 
         # Extract title
         result["title"] = self._extract_title(content, frontmatter)
@@ -372,6 +380,7 @@ class ParsedContent:
         self.footer_metadata = data.get("footer_metadata", {})
         self.file_status = data.get("file_status")
         self.last_updated = data.get("last_updated")
+        self.description = data.get("description", "")
         # Links
         self.links: list[LinkInfo] = data.get("links", [])
 
@@ -412,56 +421,71 @@ class ContentParser:
         return ParsedContent(data)
 
 
-def update_file_status(path: Path, new_status: str) -> bool:
+def update_file_status(path: Path, new_status: str, update_date: bool = True) -> bool:
     """Update the file status in a markdown file's footer metadata.
 
-    Looks for **Status do arquivo**: <value> and updates it.
+    Looks for **Status:** <value> and updates it (new standardized format).
 
     Args:
         path: Path to the markdown file
         new_status: New status value (e.g., "Approved", "Rejected", "Review")
+        update_date: Whether to also update the Atualizado date
 
     Returns:
         True if updated successfully, False otherwise
     """
+    from datetime import date
+
     try:
         content = path.read_text(encoding="utf-8")
     except (OSError, IOError, UnicodeDecodeError):
         return False
 
-    # Pattern to match the status line
+    # Pattern to match the new format: **Status:** value
     status_pattern = re.compile(
-        r"(\*\*Status do arquivo\*\*\s*:\s*)(.+?)(\s*$)",
+        r"(\*\*Status:\*\*\s*)(.+?)(\s*$)",
         re.MULTILINE,
     )
 
     match = status_pattern.search(content)
-    if not match:
-        # Status line doesn't exist - try to add it
-        # Look for the footer section (after last ---)
-        if "\n---\n" in content:
-            # Add status after the last ---
-            parts = content.rsplit("\n---\n", 1)
-            if len(parts) == 2:
-                new_content = (
-                    parts[0] + "\n---\n" +
-                    f"**Status do arquivo**: {new_status}\n" +
-                    parts[1]
-                )
-            else:
-                return False
-        else:
-            # Add footer section at the end
-            new_content = (
-                content.rstrip() + "\n\n---\n\n" +
-                f"**Status do arquivo**: {new_status}\n"
-            )
-    else:
+    if match:
         # Replace existing status
         new_content = status_pattern.sub(
             rf"\g<1>{new_status}\3",
             content,
         )
+    else:
+        # Try old format: **Status do arquivo**: value
+        old_pattern = re.compile(
+            r"(\*\*Status do arquivo\*\*\s*:\s*)(.+?)(\s*$)",
+            re.MULTILINE,
+        )
+        if old_pattern.search(content):
+            new_content = old_pattern.sub(
+                rf"\g<1>{new_status}\3",
+                content,
+            )
+        else:
+            # Status line doesn't exist - add footer section
+            new_content = (
+                content.rstrip() + "\n\n---\n\n" +
+                f"**Status:** {new_status}\n" +
+                f"**Atualizado:** {date.today().isoformat()}\n" +
+                "**Descrição:** \n"
+            )
+
+    # Update the date if requested
+    if update_date:
+        today = date.today().isoformat()
+        date_pattern = re.compile(
+            r"(\*\*Atualizado:\*\*\s*)(.+?)(\s*$)",
+            re.MULTILINE,
+        )
+        if date_pattern.search(new_content):
+            new_content = date_pattern.sub(
+                rf"\g<1>{today}\3",
+                new_content,
+            )
 
     try:
         path.write_text(new_content, encoding="utf-8")

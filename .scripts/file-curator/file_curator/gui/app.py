@@ -1,4 +1,4 @@
-"""Main application entry point for File Curator GUI."""
+"""Main application entry point for File Curator GUI - Simplified version."""
 
 import sys
 from pathlib import Path
@@ -10,7 +10,6 @@ from PySide6.QtGui import QFont
 
 from .main_window import MainWindow
 from .theme import get_stylesheet
-from ..state.database import Database
 
 
 def _get_package_data_dir() -> Path:
@@ -21,7 +20,7 @@ def _get_package_data_dir() -> Path:
 
 
 class FileCuratorApp:
-    """File Curator application manager."""
+    """File Curator application manager - simplified without database."""
 
     def __init__(
         self,
@@ -35,19 +34,14 @@ class FileCuratorApp:
             project_root: Project root path for file scanning
         """
         self.data_dir = data_dir or _get_package_data_dir()
-        self.project_root = project_root or Path.cwd()
+        self.project_root = project_root
 
         # Ensure directories exist
         self.data_dir.mkdir(parents=True, exist_ok=True)
-        (self.data_dir / "sessions").mkdir(exist_ok=True)
         (self.data_dir / "logs").mkdir(exist_ok=True)
-
-        # Database path
-        self.db_path = self.data_dir / "curator.db"
 
         self.app: Optional[QApplication] = None
         self.main_window: Optional[MainWindow] = None
-        self.db: Optional[Database] = None
 
     def run(self) -> int:
         """Run the application.
@@ -58,7 +52,7 @@ class FileCuratorApp:
         # Create Qt application
         self.app = QApplication(sys.argv)
         self.app.setApplicationName("File Curator")
-        self.app.setApplicationVersion("0.2.0")
+        self.app.setApplicationVersion("0.3.0")
         self.app.setOrganizationName("CARF Project")
 
         # Set application-wide font
@@ -70,12 +64,11 @@ class FileCuratorApp:
         # Apply stylesheet
         self.app.setStyleSheet(get_stylesheet())
 
-        # Initialize database
-        self.db = Database(self.db_path)
-        self.db.initialize()
-
-        # Create main window
-        self.main_window = MainWindow(self.db, self.data_dir)
+        # Create main window (no database needed)
+        self.main_window = MainWindow(
+            data_dir=self.data_dir,
+            project_root=self.project_root,
+        )
         self.main_window.show()
 
         # Show welcome dialog
@@ -83,11 +76,6 @@ class FileCuratorApp:
 
         # Run event loop
         return self.app.exec()
-
-    def cleanup(self) -> None:
-        """Clean up resources."""
-        if self.db:
-            self.db.close()
 
 
 def main(data_dir: Optional[Path] = None, project_root: Optional[Path] = None) -> int:
@@ -101,7 +89,4 @@ def main(data_dir: Optional[Path] = None, project_root: Optional[Path] = None) -
         Exit code
     """
     app = FileCuratorApp(data_dir, project_root)
-    try:
-        return app.run()
-    finally:
-        app.cleanup()
+    return app.run()
