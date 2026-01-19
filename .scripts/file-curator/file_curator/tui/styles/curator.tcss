@@ -1,0 +1,123 @@
+/* File Curator TUI Styles */
+
+/* Global */
+Screen {
+    background: $background;
+}
+
+/* Common containers */
+.container {
+    padding: 1;
+}
+
+.panel {
+    border: round $surface;
+    padding: 1;
+}
+
+/* Typography */
+.title {
+    text-style: bold;
+    text-align: center;
+}
+
+.subtitle {
+    color: $text-muted;
+    text-align: center;
+}
+
+.section-label {
+    text-style: bold;
+    margin: 1 0;
+}
+
+/* Status colors */
+.status-pending {
+    color: $text-muted;
+}
+
+.status-approved {
+    color: $success;
+}
+
+.status-rejected {
+    color: $error;
+}
+
+.status-skipped {
+    color: $warning;
+}
+
+/* Buttons */
+Button {
+    margin: 0 1;
+}
+
+Button.primary {
+    background: $primary;
+}
+
+Button.success {
+    background: $success;
+}
+
+Button.error {
+    background: $error;
+}
+
+/* Data tables */
+DataTable {
+    height: auto;
+}
+
+DataTable > .datatable--cursor {
+    background: $primary;
+}
+
+/* Progress bars */
+ProgressBar {
+    padding: 1 0;
+}
+
+ProgressBar > .bar--bar {
+    color: $success;
+}
+
+/* Text areas */
+TextArea {
+    border: solid $surface;
+}
+
+TextArea:focus {
+    border: solid $primary;
+}
+
+/* Inputs */
+Input {
+    border: solid $surface;
+}
+
+Input:focus {
+    border: solid $primary;
+}
+
+/* Scrollable containers */
+ScrollableContainer {
+    scrollbar-background: $surface;
+    scrollbar-color: $primary;
+}
+
+/* Help screen */
+#help-content {
+    padding: 2;
+}
+
+#help-content .key {
+    background: $primary;
+    padding: 0 1;
+}
+
+/* Markdown */
+Markdown {
+    margin: 1 0;
+}
