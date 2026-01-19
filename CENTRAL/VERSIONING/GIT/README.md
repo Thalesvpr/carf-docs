@@ -29,5 +29,5 @@ A [coordenação de releases](./06-release-coordination.md) mantém compatibilit
 | [06-release-coordination](./06-release-coordination.md) | Release Coordination |
 | [07-worktree-guide](./07-worktree-guide.md) | Git Worktree - Trabalho Paralelo em Múltiplas Branches |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

@@ -31,7 +31,7 @@ Enumerações tipadas representando classificações fixas do domínio incluindo
 | [18-entity-type](./18-entity-type.md) | EntityType |
 | [19-document-type](./19-document-type.md) | DocumentType |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Incompleto
 Descrição: Muitas listas com bullets (8) antes do rodapé - considerar converter para parágrafo denso.

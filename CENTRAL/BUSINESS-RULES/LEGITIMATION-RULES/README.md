@@ -34,5 +34,5 @@ O período de contestação de 30 dias permite que terceiros apresentem oposiç�
 | [05-documentation-requirements](./05-documentation-requirements.md) | Documentation Requirements (Requisitos Documentais) |
 | [06-contestation-rules](./06-contestation-rules.md) | Contestation Rules |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

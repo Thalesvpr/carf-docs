@@ -12,12 +12,12 @@ O [banco de dados](./DATABASE/README.md) usa PostgreSQL 16 com extensão PostGIS
 **Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (12 arquivos)
+## Indice por Dominio (28 arquivos)
 
 | # | Dominio | Arquivos |
 |:--|:--------|:--------:|
-|  | [Database](./DATABASE/README.md) | 0 |
-|  | [Keycloak](./KEYCLOAK/README.md) | 12 |
+|  | [Database](./DATABASE/README.md) | 2 |
+|  | [Keycloak](./KEYCLOAK/README.md) | 26 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

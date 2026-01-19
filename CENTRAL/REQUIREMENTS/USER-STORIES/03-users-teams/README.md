@@ -15,7 +15,7 @@
 | [US-114](./US-114-gerenciar-comunidades-de-equipe.md) | Gerenciar Comunidades de Equipe |
 | [US-115](./US-115-remover-comunidade-de-equipe.md) | Remover Comunidade de Equipe |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
 ---

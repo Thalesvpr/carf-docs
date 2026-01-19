@@ -67,3 +67,14 @@ docker exec -i carf-postgres psql -U postgres -d carf < backup.sql
 
 **Última atualização:** 2026-01-15
 **Status do arquivo**: Review
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (2 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-rls-setup](./01-rls-setup.md) | RLS Setup |
+| [02-postgis-setup](./02-postgis-setup.md) | PostGIS Setup |
+
+*Gerado automaticamente em 2026-01-17 11:57*
+<!-- GENERATED:END -->

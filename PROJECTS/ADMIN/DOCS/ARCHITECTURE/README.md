@@ -70,7 +70,7 @@ Ver documentação completa em GEOAPI/DOCS/ARCHITECTURE/02-admin-security.md
 | [04-integration](./04-integration.md) | Integration - ADMIN |
 | [05-deployment](./05-deployment.md) | Deployment - ADMIN |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Incompleto
 Descrição: Falta parágrafo denso introdutório; Muitas listas com bullets (19) antes do rodapé - considerar converter para parágrafo denso.

@@ -15,7 +15,7 @@
 | [UC-005](./UC-005-FE-004-espaco-insuficiente.md) | FE-004: Espaço Insuficiente (Pull) |
 | [UC-005](./UC-005-sincronizar-dados-offline.md) | Sincronizar Dados Offline |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
 ---

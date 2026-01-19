@@ -14,16 +14,16 @@ Segue padrões RESTful com versionamento via header, HATEOAS para navegação e 
 **Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (0 arquivos)
+## Indice por Dominio (14 arquivos)
 
 | # | Dominio | Arquivos |
 |:--|:--------|:--------:|
-|  | [Authentication](./AUTHENTICATION/README.md) | 0 |
-|  | [Communities](./COMMUNITIES/README.md) | 0 |
-|  | [Holders](./HOLDERS/README.md) | 0 |
-|  | [Legitimation](./LEGITIMATION/README.md) | 0 |
-|  | [Reports](./REPORTS/README.md) | 0 |
-|  | [Units](./UNITS/README.md) | 0 |
+|  | [Authentication](./AUTHENTICATION/README.md) | 3 |
+|  | [Communities](./COMMUNITIES/README.md) | 2 |
+|  | [Holders](./HOLDERS/README.md) | 2 |
+|  | [Legitimation](./LEGITIMATION/README.md) | 2 |
+|  | [Reports](./REPORTS/README.md) | 2 |
+|  | [Units](./UNITS/README.md) | 3 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

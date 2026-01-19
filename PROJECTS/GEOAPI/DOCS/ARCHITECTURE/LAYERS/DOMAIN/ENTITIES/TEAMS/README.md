@@ -21,6 +21,6 @@ Entities gerenciamento equipes técnicas campo do GEOAPI organizando field agent
 | [18-team-member](./18-team-member.md) | TeamMember |
 | [19-community-authorization](./19-community-authorization.md) | CommunityAuthorization |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Pronto

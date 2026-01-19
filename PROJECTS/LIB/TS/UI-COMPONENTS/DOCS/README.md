@@ -27,7 +27,7 @@ bun add @carf/ui @carf/tscore
 |  | [Concepts](./CONCEPTS/README.md) | 4 |
 |  | [How To](./HOW-TO/README.md) | 4 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Incompleto
 Descrição: Contém code blocks - considerar converter para prosa.

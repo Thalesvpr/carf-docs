@@ -25,3 +25,14 @@ Validações: documentos obrigatórios conforme modalidade, critérios da Lei 13
 
 **Última atualização:** 2026-01-15
 **Status do arquivo**: Review
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (2 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-submit-legitimation](./01-submit-legitimation.md) | Submit Legitimation |
+| [02-workflow-actions](./02-workflow-actions.md) | Workflow Actions |
+
+*Gerado automaticamente em 2026-01-17 11:57*
+<!-- GENERATED:END -->

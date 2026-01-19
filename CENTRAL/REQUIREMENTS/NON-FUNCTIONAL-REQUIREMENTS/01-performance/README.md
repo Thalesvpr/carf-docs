@@ -16,7 +16,7 @@
 | [RNF-011](./RNF-011-paginacao-listagens.md) | Paginação de Listagens |
 | [RNF-015](./RNF-015-tamanho-bundle-frontend.md) | Tamanho do Bundle - Frontend |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
 ---

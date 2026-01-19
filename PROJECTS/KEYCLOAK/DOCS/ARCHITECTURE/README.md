@@ -21,6 +21,6 @@ Arquitetura de customização Keycloak CARF baseada em três pilares: themes Fre
 | [02-theme-architecture](./02-theme-architecture.md) | Arquitetura de Temas Keycloak |
 | [03-extension-development](./03-extension-development.md) | Extension Development - SPIs Java |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Pronto

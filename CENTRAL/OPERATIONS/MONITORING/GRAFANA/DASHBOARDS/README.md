@@ -6,3 +6,15 @@ Dashboards Grafana JSON exports incluem geoapi-dashboard requests por segundo p5
 
 **Última atualização:** 2026-01-15
 **Status do arquivo**: Review
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (3 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-geoapi-dashboard](./01-geoapi-dashboard.md) | GEOAPI Dashboard |
+| [02-postgres-dashboard](./02-postgres-dashboard.md) | PostgreSQL Dashboard |
+| [03-infrastructure-dashboard](./03-infrastructure-dashboard.md) | Infrastructure Dashboard |
+
+*Gerado automaticamente em 2026-01-17 11:57*
+<!-- GENERATED:END -->

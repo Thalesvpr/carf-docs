@@ -23,7 +23,7 @@
 | [RF-170](./RF-170-integração-com-gnss.md) | Integração com GNSS |
 | [RF-171](./RF-171-dashboard-de-levantamentos.md) | Dashboard de Levantamentos |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Última atualização:** 2026-01-15
 **Status do arquivo**: Review

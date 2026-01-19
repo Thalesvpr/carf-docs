@@ -21,16 +21,16 @@ bun add @carf/geoapi-client @carf/tscore
 **Última atualização:** 2026-01-11
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (5 arquivos)
+## Indice por Dominio (6 arquivos)
 
 | # | Dominio | Arquivos |
 |:--|:--------|:--------:|
 |  | [Api](./API/README.md) | 1 |
 |  | [Architecture](./ARCHITECTURE/README.md) | 3 |
 |  | [Concepts](./CONCEPTS/README.md) | 1 |
-|  | [How To](./HOW-TO/README.md) | 0 |
+|  | [How To](./HOW-TO/README.md) | 1 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 
 ## Arquivos (1 arquivo)
 
@@ -38,7 +38,7 @@ bun add @carf/geoapi-client @carf/tscore
 |:---|:-------|
 | [CONTRIBUTING](./CONTRIBUTING.md) | Contributing to @carf/geoapi-client |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Incompleto
 Descrição: Contém code blocks - considerar converter para prosa.

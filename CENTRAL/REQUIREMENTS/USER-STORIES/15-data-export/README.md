@@ -15,7 +15,7 @@
 | [US-103](./US-103-cancelar-exportacao.md) | Cancelar Exportação |
 | [US-109](./US-109-exportar-unidade-individual.md) | Exportar Unidade Individual |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
 ---

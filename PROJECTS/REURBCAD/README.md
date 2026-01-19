@@ -15,6 +15,6 @@ Aplicativo mobile React Native + Expo para coleta de dados em campo. Funciona of
 |:--|:--------|:--------:|
 |  | [Docs](./DOCS/README.md) | 13 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Pronto

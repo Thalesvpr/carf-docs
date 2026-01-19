@@ -17,7 +17,7 @@
 | [US-138](./US-138-listar-unidades-de-titular.md) | Listar Unidades de Titular |
 | [US-139](./US-139-vincular-titular-a-unidade.md) | Vincular Titular a Unidade |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
 ---

@@ -17,7 +17,7 @@
 | [US-008](./US-008-visualizar-perfil.md) | Visualizar Perfil |
 | [US-124](./US-124-obter-dados-do-usuario-autenticado.md) | Obter Dados do Usuario Autenticado |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
 ---

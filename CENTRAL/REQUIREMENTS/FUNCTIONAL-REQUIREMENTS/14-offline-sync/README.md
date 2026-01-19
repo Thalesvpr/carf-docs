@@ -23,7 +23,7 @@
 | [RF-195](./RF-195-indicador-de-pendências.md) | Indicador de Pendências |
 | [RF-196](./RF-196-log-de-sincronização.md) | Log de Sincronização |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Última atualização:** 2026-01-15
 **Status do arquivo**: Review

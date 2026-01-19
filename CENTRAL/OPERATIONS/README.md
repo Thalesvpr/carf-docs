@@ -14,13 +14,13 @@ Os [runbooks](./RUNBOOKS/README.md) documentam troubleshooting de problemas freq
 **Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (0 arquivos)
+## Indice por Dominio (24 arquivos)
 
 | # | Dominio | Arquivos |
 |:--|:--------|:--------:|
-|  | [Maintenance](./MAINTENANCE/README.md) | 0 |
-|  | [Monitoring](./MONITORING/README.md) | 0 |
-|  | [Runbooks](./RUNBOOKS/README.md) | 0 |
+|  | [Maintenance](./MAINTENANCE/README.md) | 5 |
+|  | [Monitoring](./MONITORING/README.md) | 11 |
+|  | [Runbooks](./RUNBOOKS/README.md) | 8 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

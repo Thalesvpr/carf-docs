@@ -13,12 +13,12 @@ Containerização Docker do CARF. DOCKERFILES contém Dockerfile por projeto (Do
 **Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (0 arquivos)
+## Indice por Dominio (4 arquivos)
 
 | # | Dominio | Arquivos |
 |:--|:--------|:--------:|
-|  | [Compose](./COMPOSE/README.md) | 0 |
-|  | [Dockerfiles](./DOCKERFILES/README.md) | 0 |
+|  | [Compose](./COMPOSE/README.md) | 2 |
+|  | [Dockerfiles](./DOCKERFILES/README.md) | 2 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

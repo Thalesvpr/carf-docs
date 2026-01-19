@@ -34,5 +34,5 @@ As stories estão organizadas por domínio, cobrindo funcionalidades como autent
 | 16 | [Relatorios](./16-reports/README.md) | 12 |
 | 17 | [Integracoes WMS/WMTS](./17-wms-wmts/README.md) | 7 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

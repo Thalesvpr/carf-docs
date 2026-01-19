@@ -40,3 +40,13 @@ Queries CQRS do GEOAPI representando operações apenas-leitura (reads) otimizad
 **Última atualização:** 2026-01-12
 **Status do arquivo**: Incompleto
 Descrição: Falta seção GENERATED com índice automático; Muitas listas com bullets (19) antes do rodapé - considerar converter para parágrafo denso.
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (1 arquivo)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-unit-queries](./01-unit-queries.md) | Unit Queries |
+
+*Gerado automaticamente em 2026-01-17 11:57*
+<!-- GENERATED:END -->

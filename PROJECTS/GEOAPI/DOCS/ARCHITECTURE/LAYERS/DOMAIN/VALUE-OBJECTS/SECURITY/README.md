@@ -17,6 +17,6 @@ Value objects relacionados segurança incluindo chaves API tokens e credenciais 
 |:---|:-------|
 | [12-api-key-value](./12-api-key-value.md) | ApiKeyValue |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Pronto

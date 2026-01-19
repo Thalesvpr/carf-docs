@@ -15,3 +15,13 @@ Instruções HEALTHCHECK adicionadas em cada Dockerfile para integração com Do
 **Última atualização:** 2026-01-15
 **Status do arquivo**: Review
 
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (2 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-geoapi-dockerfile](./01-geoapi-dockerfile.md) | GEOAPI Dockerfile |
+| [02-geoweb-dockerfile](./02-geoweb-dockerfile.md) | GEOWEB Dockerfile |
+
+*Gerado automaticamente em 2026-01-17 11:57*
+<!-- GENERATED:END -->

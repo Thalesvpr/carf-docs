@@ -10,18 +10,18 @@ O [backend .NET](./GEOAPI/README.md) fornece a API REST com dados geoespaciais. 
 **Status do arquivo**: Pronto
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (201 arquivos)
+## Indice por Dominio (267 arquivos)
 
 | # | Dominio | Arquivos |
 |:--|:--------|:--------:|
 |  | [Admin](./ADMIN/README.md) | 14 |
-|  | [Geoapi](./GEOAPI/README.md) | 89 |
+|  | [Geoapi](./GEOAPI/README.md) | 108 |
 |  | [Geogis](./GEOGIS/README.md) | 9 |
 |  | [Geoweb](./GEOWEB/README.md) | 16 |
 |  | [Keycloak](./KEYCLOAK/README.md) | 26 |
-|  | [Lib](./LIB/README.md) | 22 |
+|  | [Lib](./LIB/README.md) | 25 |
 |  | [Reurbcad](./REURBCAD/README.md) | 13 |
-|  | [Webdocs](./WEBDOCS/README.md) | 12 |
+|  | [Webdocs](./WEBDOCS/README.md) | 56 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

@@ -19,6 +19,6 @@ Entities autenticação do GEOAPI gerenciando sessões usuário e API keys para 
 | [16-session](./16-session.md) | Session |
 | [17-api-key](./17-api-key.md) | ApiKey |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Pronto

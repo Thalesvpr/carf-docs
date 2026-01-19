@@ -22,5 +22,5 @@ As [regras de legitimação](./LEGITIMATION-RULES/README.md) estabelecem requisi
 |  | [Validation Rules](./VALIDATION-RULES/README.md) | 11 |
 |  | [Workflow Rules](./WORKFLOW-RULES/README.md) | 5 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

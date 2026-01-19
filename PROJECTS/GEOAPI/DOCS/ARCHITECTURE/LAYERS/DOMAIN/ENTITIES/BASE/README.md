@@ -19,6 +19,6 @@ Classes base abstratas fornecendo funcionalidade comum para todas entities do GE
 | [00-base-entity](./00-base-entity.md) | BaseEntity |
 | [01-base-aggregate-root](./01-base-aggregate-root.md) | BaseAggregateRoot |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Pronto

@@ -22,3 +22,13 @@ Diretório base contém manifests Kubernetes genéricos do sistema CARF comparti
 **Última atualização:** 2026-01-15
 **Status do arquivo**: Review
 
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (2 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-deployments](./01-deployments.md) | Base Deployments |
+| [02-ingress-configmap](./02-ingress-configmap.md) | Ingress e ConfigMap |
+
+*Gerado automaticamente em 2026-01-17 11:57*
+<!-- GENERATED:END -->

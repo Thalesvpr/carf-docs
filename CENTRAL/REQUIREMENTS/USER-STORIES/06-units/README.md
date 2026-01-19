@@ -35,7 +35,7 @@
 | [US-140](./US-140-alterar-status-de-unidade.md) | Alterar Status de Unidade |
 | [US-141](./US-141-submeter-unidade-para-revisao.md) | Submeter Unidade para Revisao |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
 ---

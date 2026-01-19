@@ -45,5 +45,5 @@ Após resolução, documentar:
 | [07-cache-invalidation](./07-cache-invalidation.md) | Cache Invalidation |
 | [08-storage-quota-exceeded](./08-storage-quota-exceeded.md) | Storage Quota Exceeded |
 
-*Gerado automaticamente em 2026-01-16 01:15*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

@@ -25,6 +25,6 @@ Exceções específicas de domínio representando violações de regras de negó
 | [03-access-denied-exception](./03-access-denied-exception.md) | AccessDeniedException |
 | [04-conflict-exception](./04-conflict-exception.md) | ConflictException |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Pronto

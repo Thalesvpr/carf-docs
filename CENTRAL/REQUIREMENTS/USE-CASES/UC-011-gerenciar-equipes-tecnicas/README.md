@@ -13,7 +13,7 @@
 | [UC-011](./UC-011-FE-002-lider-invalido.md) | FE-002: Líder Inválido ou Inativo |
 | [UC-011](./UC-011-gerenciar-equipes-tecnicas.md) | Gerenciar Equipes Técnicas |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
 ---

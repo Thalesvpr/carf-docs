@@ -23,5 +23,5 @@ Os requisitos são organizados por épicas temáticas como Security, Performance
 |  | [Use Cases](./USE-CASES/README.md) | 66 |
 |  | [User Stories](./USER-STORIES/README.md) | 140 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

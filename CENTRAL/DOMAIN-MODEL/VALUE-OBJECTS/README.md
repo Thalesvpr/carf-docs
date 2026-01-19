@@ -89,5 +89,5 @@ Value objects são conceitos sem identidade própria, definidos exclusivamente p
 | [24-certificate-situation](./24-certificate-situation.md) | CertificateSituation (Situação do Imóvel para Certidão) |
 | [25-role](./25-role.md) | Role (Papel de Usuário no Sistema) |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

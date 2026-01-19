@@ -10,7 +10,7 @@ Os ADRs são imutáveis - novas decisões criam novos registros ao invés de edi
 **Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (21 arquivos)
+## Arquivos (22 arquivos)
 
 | ID | Titulo |
 |:---|:-------|
@@ -35,6 +35,7 @@ Os ADRs são imutáveis - novas decisões criam novos registros ao invés de edi
 | [ADR-019](./ADR-019-zustand-client-state.md) | Escolha do Zustand para Client State Management |
 | [ADR-020](./ADR-020-docker-kubernetes-orchestration.md) | Escolha do Docker + Kubernetes para Orquestração Backend |
 | [ADR-021](./ADR-021-hangfire-background-jobs.md) | Escolha do Hangfire para Background Jobs |
+| [ADR-022](./ADR-022-role-based-access-control.md) | Hierarquia de Roles com Composite Roles no Keycloak |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

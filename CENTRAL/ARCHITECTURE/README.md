@@ -16,13 +16,13 @@ Para implementação técnica específica de cada projeto, consulte a documenta�
 **Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (36 arquivos)
+## Indice por Dominio (45 arquivos)
 
 | # | Dominio | Arquivos |
 |:--|:--------|:--------:|
-|  | [Adrs](./ADRs/README.md) | 21 |
-|  | [Deployment](./DEPLOYMENT/README.md) | 8 |
+|  | [Adrs](./ADRs/README.md) | 22 |
+|  | [Deployment](./DEPLOYMENT/README.md) | 16 |
 |  | [Patterns](./PATTERNS/README.md) | 7 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

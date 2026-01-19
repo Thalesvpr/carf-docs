@@ -17,7 +17,7 @@
 | [US-070](./US-070-geolocalização-de-fotos.md) | Geolocalização de Fotos |
 | [US-071](./US-071-compressão-de-fotos.md) | Compressão de Fotos |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
 ---

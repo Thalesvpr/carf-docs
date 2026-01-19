@@ -13,7 +13,7 @@
 | [US-117](./US-117-reativar-tenant.md) | Reativar Tenant |
 | [US-118](./US-118-suspender-tenant.md) | Suspender Tenant |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
 ---

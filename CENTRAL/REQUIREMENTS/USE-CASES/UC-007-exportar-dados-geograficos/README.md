@@ -14,7 +14,7 @@
 | [UC-007](./UC-007-FE-002-geometrias-invalidas.md) | FE-002: Geometrias Inválidas |
 | [UC-007](./UC-007-FE-003-erro-reprojecao.md) | FE-003: Erro de Reprojeção |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
 ---

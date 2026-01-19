@@ -25,5 +25,5 @@ As categorias incluem performance com tempo de resposta e throughput, segurança
 | 07 | [Manutenibilidade](./07-maintainability/README.md) | 6 |
 | 08 | [Interoperabilidade](./08-interoperability/README.md) | 3 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

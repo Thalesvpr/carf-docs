@@ -21,7 +21,7 @@ Decisões arquiteturais design cliente HTTP TypeScript para GEOAPI.
 | [02-error-handling](./02-error-handling.md) | Error Handling - @carf/geoapi-client |
 | [03-authentication-flow](./03-authentication-flow.md) | Authentication Flow - @carf/geoapi-client |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Incompleto
 Descrição: Falta parágrafo denso introdutório.

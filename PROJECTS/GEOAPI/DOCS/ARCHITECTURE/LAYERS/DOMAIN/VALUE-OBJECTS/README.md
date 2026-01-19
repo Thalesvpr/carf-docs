@@ -29,7 +29,7 @@ Objetos de valor imutáveis sem identidade própria comparados por valor ao inv�
 |  | [Security](./SECURITY/README.md) | 1 |
 |  | [Status](./STATUS/README.md) | 6 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Incompleto
 Descrição: Muitas listas com bullets (7) antes do rodapé - considerar converter para parágrafo denso.

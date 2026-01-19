@@ -24,3 +24,14 @@ O CommunityCreateRequest contém name, description, polygon GeoJSON agregando m�
 
 **Última atualização:** 2026-01-15
 **Status do arquivo**: Review
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (2 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-create-community](./01-create-community.md) | Create Community |
+| [02-list-communities](./02-list-communities.md) | List Communities |
+
+*Gerado automaticamente em 2026-01-17 11:57*
+<!-- GENERATED:END -->

@@ -31,7 +31,7 @@ Conceitos fundamentais do portal GEOWEB React.
 | [02-protected-routes](./02-protected-routes.md) | 02-protected-routes |
 | [03-tenant-switcher](./03-tenant-switcher.md) | 03-tenant-switcher |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Incompleto
 Descrição: Falta parágrafo denso introdutório.

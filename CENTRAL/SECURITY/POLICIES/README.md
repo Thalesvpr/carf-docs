@@ -36,5 +36,5 @@ A política de [controle de acesso](./05-access-control-policy.md) define MFA ob
 | [04-lgpd-compliance-policy](./04-lgpd-compliance-policy.md) | LGPD Compliance Policy |
 | [05-access-control-policy](./05-access-control-policy.md) | Access Control Policy |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

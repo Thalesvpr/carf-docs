@@ -8,12 +8,12 @@ Configuração Grafana dashboards CARF incluindo DASHBOARDS JSON exports geoapi-
 **Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (0 arquivos)
+## Indice por Dominio (5 arquivos)
 
 | # | Dominio | Arquivos |
 |:--|:--------|:--------:|
-|  | [Dashboards](./DASHBOARDS/README.md) | 0 |
-|  | [Provisioning](./PROVISIONING/README.md) | 0 |
+|  | [Dashboards](./DASHBOARDS/README.md) | 3 |
+|  | [Provisioning](./PROVISIONING/README.md) | 2 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

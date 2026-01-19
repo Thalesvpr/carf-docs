@@ -17,6 +17,6 @@ Classes base para todos value objects do dom√≠nio fornecendo comportamento imut√
 |:---|:-------|
 | [00-base-value-object](./00-base-value-object.md) | BaseValueObject |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Pronto

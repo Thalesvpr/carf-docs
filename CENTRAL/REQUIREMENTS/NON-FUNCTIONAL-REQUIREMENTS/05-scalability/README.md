@@ -27,7 +27,7 @@
 | [RNF-080](./RNF-080-database-sharding.md) | Database Sharding (Futuro) |
 | [RNF-087](./RNF-087-webhooks.md) | Webhooks (Futuro) |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
 ---

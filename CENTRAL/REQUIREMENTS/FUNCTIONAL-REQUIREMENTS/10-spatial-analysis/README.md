@@ -19,7 +19,7 @@
 | [RF-151](./RF-151-popup-de-feature.md) | Popup de Feature |
 | [RF-152](./RF-152-seleção-múltipla-de-features.md) | Seleção Múltipla de Features |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Última atualização:** 2026-01-15
 **Status do arquivo**: Review

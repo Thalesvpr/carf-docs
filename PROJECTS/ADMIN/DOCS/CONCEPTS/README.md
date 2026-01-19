@@ -19,7 +19,7 @@ ADMIN aplica **React SPA** para máxima segurança mantendo secrets no backend, 
 | [02-terminology](./02-terminology.md) | Terminology - ADMIN |
 | [03-design-principles](./03-design-principles.md) | Design Principles - ADMIN |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
 ---

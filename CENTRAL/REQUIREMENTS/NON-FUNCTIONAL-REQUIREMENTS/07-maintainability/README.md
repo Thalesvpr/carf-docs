@@ -14,7 +14,7 @@
 | [RNF-064](./RNF-064-refatoracao-continua.md) | Refatoração Contínua |
 | [RNF-082](./RNF-082-formatos-exportacao.md) | Formatos de Exportação |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
 ---

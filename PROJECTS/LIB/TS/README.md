@@ -11,15 +11,15 @@ Bibliotecas TypeScript compartilhadas entre GEOWEB, REURBCAD e ADMIN.
 **Última atualização:** 2026-01-12
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (22 arquivos)
+## Indice por Dominio (25 arquivos)
 
 | # | Dominio | Arquivos |
 |:--|:--------|:--------:|
-|  | [Geoapi Client](./GEOAPI-CLIENT/README.md) | 6 |
-|  | [Tscore](./TSCORE/README.md) | 4 |
+|  | [Geoapi Client](./GEOAPI-CLIENT/README.md) | 7 |
+|  | [Tscore](./TSCORE/README.md) | 6 |
 |  | [Components](./UI-COMPONENTS/README.md) | 12 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Incompleto
 Descrição: Falta parágrafo denso introdutório.

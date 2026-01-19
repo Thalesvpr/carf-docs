@@ -15,7 +15,7 @@
 | [UC-004](./UC-004-FE-002-memoria-cheia.md) | FE-002: Memória Cheia |
 | [UC-004](./UC-004-FE-003-bateria-baixa.md) | FE-003: Bateria Baixa |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
 ---

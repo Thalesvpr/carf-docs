@@ -6,3 +6,15 @@ Agregação logs CARF usando stack Loki Promtail collecting Loki central Grafana
 
 **Última atualização:** 2026-01-15
 **Status do arquivo**: Review
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (3 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-loki-config](./01-loki-config.md) | Loki Configuration |
+| [02-promtail-config](./02-promtail-config.md) | Promtail Configuration |
+| [03-logql-queries](./03-logql-queries.md) | LogQL Queries |
+
+*Gerado automaticamente em 2026-01-17 11:57*
+<!-- GENERATED:END -->

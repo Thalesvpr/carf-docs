@@ -15,6 +15,6 @@ Portal web React 18 para gestão de unidades habitacionais, comunidades e proces
 |:--|:--------|:--------:|
 |  | [Docs](./DOCS/README.md) | 16 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Pronto

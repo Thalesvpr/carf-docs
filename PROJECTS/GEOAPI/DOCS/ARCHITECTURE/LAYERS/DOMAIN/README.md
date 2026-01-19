@@ -25,7 +25,7 @@ Camada de domínio com regras de negócio puras sem dependências externas.
 |  | [Exceptions](./EXCEPTIONS/README.md) | 5 |
 |  | [Value Objects](./VALUE-OBJECTS/README.md) | 23 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Incompleto
 Descrição: Falta parágrafo denso introdutório.

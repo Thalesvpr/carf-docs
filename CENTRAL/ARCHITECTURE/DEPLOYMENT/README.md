@@ -12,15 +12,15 @@ O [pipeline CI/CD](./04-cicd-pipeline.md) usa GitHub Actions para build, test e 
 **Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (2 arquivos)
+## Indice por Dominio (10 arquivos)
 
 | # | Dominio | Arquivos |
 |:--|:--------|:--------:|
 |  | [Configs](./CONFIGS/README.md) | 2 |
-|  | [Docker](./DOCKER/README.md) | 0 |
-|  | [Kubernetes](./KUBERNETES/README.md) | 0 |
+|  | [Docker](./DOCKER/README.md) | 4 |
+|  | [Kubernetes](./KUBERNETES/README.md) | 4 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 
 ## Arquivos (6 arquivos)
 
@@ -33,5 +33,5 @@ O [pipeline CI/CD](./04-cicd-pipeline.md) usa GitHub Actions para build, test e 
 | [05-mobile-deployment](./05-mobile-deployment.md) | Mobile Deployment |
 | [06-static-site-deployment](./06-static-site-deployment.md) | Static Site Deployment |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

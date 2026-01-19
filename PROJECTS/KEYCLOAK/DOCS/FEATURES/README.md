@@ -25,6 +25,6 @@ Customizações Keycloak implementadas para CARF incluindo temas visuais identid
 | [04-admin-integration](./04-admin-integration.md) | Admin Integration - Integração Admin |
 | [05-theme-customization](./05-theme-customization.md) | Theme Customization - Customização de Tema |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Pronto

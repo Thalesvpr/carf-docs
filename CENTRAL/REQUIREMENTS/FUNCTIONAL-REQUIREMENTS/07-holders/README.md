@@ -26,7 +26,7 @@
 | [RF-100](./RF-100-exportar-lista-de-titulares.md) | Exportar Lista de Titulares |
 | [RF-101](./RF-101-mesclar-titulares-duplicados.md) | Mesclar Titulares Duplicados |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Última atualização:** 2026-01-15
 **Status do arquivo**: Review

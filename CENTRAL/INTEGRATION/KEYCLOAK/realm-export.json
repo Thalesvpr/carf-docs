@@ -619,18 +619,7 @@
   },
   "internationalizationEnabled": false,
   "supportedLocales": [],
-  "authenticationFlows": [],
-  "authenticatorConfig": [],
-  "requiredActions": [],
-  "browserFlow": "browser",
-  "registrationFlow": "registration",
-  "directGrantFlow": "direct grant",
-  "resetCredentialsFlow": "reset credentials",
-  "clientAuthenticationFlow": "clients",
-  "dockerAuthenticationFlow": "docker auth",
   "users": [],
-  "federatedUsers": [],
   "scopeMappings": [],
-  "clientScopeMappings": {},
-  "protocolMappers": []
+  "clientScopeMappings": {}
 }

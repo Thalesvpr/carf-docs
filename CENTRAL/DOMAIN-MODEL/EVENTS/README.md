@@ -67,5 +67,5 @@ Os eventos são organizados por aggregate. O Unit aggregate emite eventos durant
 | [18-request-rejected-event](./18-request-rejected-event.md) | RequestRejectedEvent |
 | [19-correction-requested-event](./19-correction-requested-event.md) | CorrectionRequestedEvent |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

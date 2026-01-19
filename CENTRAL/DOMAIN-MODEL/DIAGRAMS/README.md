@@ -16,3 +16,13 @@ Os diagramas são criados usando PlantUML e Mermaid, versionados no Git e sincro
 **Última atualização:** 2026-01-15
 **Status do arquivo**: Review
 
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (2 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-aggregates](./01-aggregates.md) | Aggregates Diagram |
+| [02-er-diagram](./02-er-diagram.md) | ER Diagram |
+
+*Gerado automaticamente em 2026-01-17 11:57*
+<!-- GENERATED:END -->

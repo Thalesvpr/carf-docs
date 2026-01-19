@@ -21,7 +21,7 @@
 | [RNF-089](./RNF-089-timezone.md) | Timezone |
 | [RNF-090](./RNF-090-charset.md) | Charset |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
 ---

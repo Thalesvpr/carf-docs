@@ -24,16 +24,16 @@ bun add @carf/tscore
 **Última atualização:** 2026-01-11
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (4 arquivos)
+## Indice por Dominio (6 arquivos)
 
 | # | Dominio | Arquivos |
 |:--|:--------|:--------:|
 |  | [Api](./API/README.md) | 1 |
-|  | [Architecture](./ARCHITECTURE/README.md) | 0 |
+|  | [Architecture](./ARCHITECTURE/README.md) | 1 |
 |  | [Concepts](./CONCEPTS/README.md) | 3 |
-|  | [How To](./HOW-TO/README.md) | 0 |
+|  | [How To](./HOW-TO/README.md) | 1 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Incompleto
 Descrição: Contém code blocks - considerar converter para prosa.

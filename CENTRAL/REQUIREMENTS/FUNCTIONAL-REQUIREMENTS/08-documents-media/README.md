@@ -33,7 +33,7 @@
 | [RF-125](./RF-125-limite-de-armazenamento-por-tenant.md) | Limite de Armazenamento por Tenant |
 | [RF-126](./RF-126-notificação-de-limite-de-armazenamento.md) | Notificação de Limite de Armazenamento |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Última atualização:** 2026-01-15
 **Status do arquivo**: Review

@@ -14,23 +14,23 @@ As [integrações](./INTEGRATION/README.md) documentam conexões com Keycloak e 
 **Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (704 arquivos)
+## Indice por Dominio (774 arquivos)
 
 | # | Dominio | Arquivos |
 |:--|:--------|:--------:|
-|  | [Api](./API/README.md) | 0 |
-|  | [Architecture](./ARCHITECTURE/README.md) | 36 |
+|  | [Api](./API/README.md) | 14 |
+|  | [Architecture](./ARCHITECTURE/README.md) | 45 |
 |  | [Business Rules](./BUSINESS-RULES/README.md) | 22 |
-|  | [Domain Model](./DOMAIN-MODEL/README.md) | 85 |
-|  | [Integration](./INTEGRATION/README.md) | 12 |
+|  | [Domain Model](./DOMAIN-MODEL/README.md) | 87 |
+|  | [Integration](./INTEGRATION/README.md) | 28 |
 |  | [Libraries](./LIBRARIES/README.md) | 3 |
-|  | [Operations](./OPERATIONS/README.md) | 0 |
+|  | [Operations](./OPERATIONS/README.md) | 24 |
 |  | [Requirements](./REQUIREMENTS/README.md) | 512 |
 |  | [Security](./SECURITY/README.md) | 9 |
 |  | [Standards](./STANDARDS/README.md) | 6 |
-|  | [Testing](./TESTING/README.md) | 2 |
+|  | [Testing](./TESTING/README.md) | 7 |
 |  | [Versioning](./VERSIONING/README.md) | 11 |
 |  | [Workflows](./WORKFLOWS/README.md) | 6 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

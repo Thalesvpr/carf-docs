@@ -12,7 +12,7 @@
 | [US-080](./US-080-aprovarrejeitar-processo.md) | Aprovar ou Rejeitar Processo |
 | [US-081](./US-081-gerar-termo-de-legitimação-pdf.md) | Gerar Termo de Legitimação (PDF) |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
 ---

@@ -12,7 +12,7 @@
 | [US-153](./US-153-comentar-em-anotacao.md) | Comentar em Anotacao |
 | [US-154](./US-154-resolver-anotacao.md) | Resolver Anotacao |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
 ---

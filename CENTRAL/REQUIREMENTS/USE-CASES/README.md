@@ -30,5 +30,5 @@ Cada UC identifica os módulos implementadores via frontmatter YAML e inclui ras
 |  | [010 Configurar Camadas Wms](./UC-010-configurar-camadas-wms/README.md) | 7 |
 |  | [011 Gerenciar Equipes Tecnicas](./UC-011-gerenciar-equipes-tecnicas/README.md) | 5 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

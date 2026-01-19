@@ -6,3 +6,14 @@ Grafana provisioning automático incluindo datasources Prometheus Loki PostgreSQ
 
 **Última atualização:** 2026-01-15
 **Status do arquivo**: Review
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (2 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-datasources](./01-datasources.md) | Datasources Provisioning |
+| [02-dashboards](./02-dashboards.md) | Dashboards Provisioning |
+
+*Gerado automaticamente em 2026-01-17 11:57*
+<!-- GENERATED:END -->

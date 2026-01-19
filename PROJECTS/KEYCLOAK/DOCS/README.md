@@ -25,6 +25,6 @@ Customizações Keycloak para sistema CARF incluindo temas PT-BR validação CPF
 |  | [How To](./HOW-TO/README.md) | 6 |
 |  | [Reference](./REFERENCE/README.md) | 7 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Pronto

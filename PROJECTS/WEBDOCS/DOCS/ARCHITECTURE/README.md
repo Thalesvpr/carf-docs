@@ -1,48 +1,25 @@
-# Arquitetura - WEBDOCS
+# Architecture
 
-## Documentos Disponíveis
+Documentação da arquitetura técnica do WEBDOCS cobrindo stack, estrutura do projeto, autenticação, renderização e deploy.
 
-- [01-overview.md](./01-overview.md) - Visão geral da arquitetura Astro/Starlight
-- [02-layers.md](./02-layers.md) - Camadas (Content, Components, Layout)
-- [03-data-flow.md](./03-data-flow.md) - Fluxo de dados (Markdown → HTML)
-- [04-integration.md](./04-integration.md) - Integração com CENTRAL e search
-- [05-deployment.md](./05-deployment.md) - Deploy para Vercel/GitHub Pages
-
-## Conceitos Arquiteturais
-
-WEBDOCS é site estático gerado com **Astro 4 + Starlight** consumindo documentação de `CENTRAL/` via sync automatizado, compilando Markdown em HTML com syntax highlighting, search via **Pagefind**, e deploy para **Vercel** com preview deployments em PRs.
-
-## Stack
-
-- Astro 4 - SSG framework
-- Starlight - Documentation theme
-- MDX - Markdown + JSX
-- Shiki - Syntax highlighting
-- Pagefind - Search indexing
-- Vercel - Hosting + CI/CD
-
-## Referências
-
-- [Astro](https://astro.build/)
-- [Starlight](https://starlight.astro.build/)
-- [Pagefind](https://pagefind.app/)
-
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (5 arquivos)
-
-| ID | Titulo |
-|:---|:-------|
-| [01-overview](./01-overview.md) | Overview da Arquitetura - WEBDOCS |
-| [02-layers](./02-layers.md) | Layers - WEBDOCS |
-| [03-data-flow](./03-data-flow.md) | Data Flow - WEBDOCS |
-| [04-integration](./04-integration.md) | Integration - WEBDOCS |
-| [05-deployment](./05-deployment.md) | Deployment - WEBDOCS |
-
-*Gerado automaticamente em 2026-01-15 17:41*
-<!-- GENERATED:END -->
+A [visão geral](./01-overview.md) apresenta stack tecnológico e diagrama de componentes. A [estrutura do projeto](./02-estrutura-projeto.md) documenta organização de pastas em SRC-CODE. A [autenticação](./03-autenticacao.md) explica integração com Keycloak. As [rotas protegidas](./04-rotas-protegidas.md) detalham middleware de autorização. A [renderização](./05-renderizacao.md) cobre modo híbrido SSG/SSR. O [build e deploy](./06-build-deploy.md) documenta pipeline de CI/CD e Vercel.
 
 ---
 
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição: Muitas listas com bullets (14) antes do rodapé - considerar converter para parágrafo denso.
+**Última atualização:** 2026-01-17
+**Status do arquivo**: Review
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (6 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-overview](./01-overview.md) | Visão Geral da Arquitetura |
+| [02-estrutura-projeto](./02-estrutura-projeto.md) | Estrutura do Projeto |
+| [03-autenticacao](./03-autenticacao.md) | Autenticação |
+| [04-rotas-protegidas](./04-rotas-protegidas.md) | Rotas Protegidas |
+| [05-renderizacao](./05-renderizacao.md) | Renderização |
+| [06-build-deploy](./06-build-deploy.md) | Build e Deploy |
+
+*Gerado automaticamente em 2026-01-17 11:57*
+<!-- GENERATED:END -->

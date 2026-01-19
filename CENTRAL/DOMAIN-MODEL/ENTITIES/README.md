@@ -113,5 +113,5 @@ Entidades do domínio CARF representando elementos centrais com identidade únic
 | [33-session](./33-session.md) | Session (Sessão de Usuário Autenticado) |
 | [34-api-key](./34-api-key.md) | ApiKey (Chave de API para Integrações) |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

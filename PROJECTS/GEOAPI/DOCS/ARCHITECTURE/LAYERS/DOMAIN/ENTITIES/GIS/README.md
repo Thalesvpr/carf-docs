@@ -23,6 +23,6 @@ Entities serviços GIS do GEOAPI gerenciando layers vetoriais e raster para visu
 | [23-wms-server](./23-wms-server.md) | WmsServer |
 | [24-wms-layer](./24-wms-layer.md) | WmsLayer |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Pronto

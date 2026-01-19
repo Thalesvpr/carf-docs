@@ -14,7 +14,7 @@
 | [UC-008](./UC-008-FE-004-geometrias-invalidas.md) | FE-004: Geometrias Inválidas |
 | [UC-008](./UC-008-importar-shapefile.md) | Importar Shapefile |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
 ---

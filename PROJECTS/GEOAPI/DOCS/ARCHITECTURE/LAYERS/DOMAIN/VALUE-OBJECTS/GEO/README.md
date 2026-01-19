@@ -19,6 +19,6 @@ Value objects geoespaciais representando coordenadas pontos e polígonos utiliza
 | [02-geo-polygon](./02-geo-polygon.md) | GeoPolygon |
 | [03-geo-point](./03-geo-point.md) | GeoPoint |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Pronto

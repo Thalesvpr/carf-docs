@@ -41,5 +41,5 @@ Os [padrões GIS](./07-gis-spatial-patterns.md) documentam uso de índices espac
 | [06-mobile-offline-first](./06-mobile-offline-first.md) | Mobile Offline-First |
 | [07-gis-spatial-patterns](./07-gis-spatial-patterns.md) | GIS Spatial Patterns |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

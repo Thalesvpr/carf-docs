@@ -6,3 +6,13 @@ Testes unitários isolados sem dependências externas. domain-unit-tests.md test
 
 **Última atualização:** 2025-01-05
 **Status do arquivo**: Review
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (1 arquivo)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-domain-tests](./01-domain-tests.md) | Domain Unit Tests |
+
+*Gerado automaticamente em 2026-01-17 11:57*
+<!-- GENERATED:END -->

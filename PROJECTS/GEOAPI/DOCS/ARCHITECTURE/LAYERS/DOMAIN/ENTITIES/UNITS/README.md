@@ -17,6 +17,6 @@ Entity central do GEOAPI representando unidade habitacional ou propriedade, serv
 |:---|:-------|
 | [02-unit](./02-unit.md) | Unit |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Pronto

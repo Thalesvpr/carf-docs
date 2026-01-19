@@ -11,7 +11,7 @@
 | [US-046](./US-046-ver-contador-de-pendências.md) | Ver Contador de Pendências |
 | [US-048](./US-048-alerta-de-bateria-baixa.md) | Alerta de Bateria Baixa |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
 ---

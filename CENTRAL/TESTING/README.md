@@ -14,12 +14,12 @@ Inclui fixtures, factories e test data builders para setup rápido, evitando có
 **Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (2 arquivos)
+## Indice por Dominio (7 arquivos)
 
 | # | Dominio | Arquivos |
 |:--|:--------|:--------:|
-|  | [Test Cases](./TEST-CASES/README.md) | 0 |
+|  | [Test Cases](./TEST-CASES/README.md) | 5 |
 |  | [Test Strategy](./TEST-STRATEGY/README.md) | 2 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

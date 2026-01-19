@@ -26,7 +26,7 @@ A biblioteca segue arquitetura de **Atomic Design** (atoms → molecules → org
 | [04-integration](./04-integration.md) | Integration - @carf/ui |
 | [05-deployment](./05-deployment.md) | Deployment - @carf/ui |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
 ---

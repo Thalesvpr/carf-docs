@@ -31,7 +31,7 @@ Interfaces definidas na camada Domain e implementadas no Infrastructure seguindo
 | [06-i-file-storage](./06-i-file-storage.md) | IFileStorage |
 | [07-i-pdf-generator](./07-i-pdf-generator.md) | IPdfGenerator |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Incompleto
 Descrição: Muitas listas com bullets (8) antes do rodapé - considerar converter para parágrafo denso.

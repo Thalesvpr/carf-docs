@@ -7,3 +7,13 @@ Testes API REST CARF incluem authentication login credenciais válidas retorna d
 **Última atualização:** 2026-01-15
 **Status do arquivo**: Review
 
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (2 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-authentication-tests](./01-authentication-tests.md) | Authentication API Tests |
+| [02-units-tests](./02-units-tests.md) | Units API Tests |
+
+*Gerado automaticamente em 2026-01-17 11:57*
+<!-- GENERATED:END -->

@@ -26,3 +26,14 @@ Validações: CPF único por tenant, máximo 1 titular principal por unidade, m�
 
 **Última atualização:** 2026-01-15
 **Status do arquivo**: Review
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (2 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-create-holder](./01-create-holder.md) | Create Holder |
+| [02-list-holders](./02-list-holders.md) | List Holders |
+
+*Gerado automaticamente em 2026-01-17 11:57*
+<!-- GENERATED:END -->

@@ -29,7 +29,7 @@ Referência técnica Keycloak cobrindo Admin REST API endpoints autenticação t
 | [06-realm-export-schema](./06-realm-export-schema.md) | Realm Export Schema |
 | [07-error-codes](./07-error-codes.md) | Error Codes |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Incompleto
 Descrição: Muitas listas com bullets (7) antes do rodapé - considerar converter para parágrafo denso.

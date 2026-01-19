@@ -42,3 +42,13 @@ Testes unitários devem executar rapidamente (< 100ms cada) sem IO operations co
 **Última atualização:** 2026-01-12
 **Status do arquivo**: Incompleto
 Descrição: Falta seção GENERATED com índice automático; Muitas listas com bullets (17) antes do rodapé - considerar converter para parágrafo denso.
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (1 arquivo)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-domain-unit-tests](./01-domain-unit-tests.md) | Domain Unit Tests |
+
+*Gerado automaticamente em 2026-01-17 11:57*
+<!-- GENERATED:END -->

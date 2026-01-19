@@ -1,28 +1,24 @@
-# Conceitos - WEBDOCS
+# Concepts
 
-## Documentos Disponíveis
+Fundamentos tecnológicos do WEBDOCS explicando conceitos essenciais para entender e desenvolver o portal de documentação.
 
-- [01-key-concepts.md](./01-key-concepts.md) - SSG, MDX, content collections, islands
-- [02-terminology.md](./02-terminology.md) - Glossário Astro (slots, islands, layouts)
-- [03-design-principles.md](./03-design-principles.md) - SEO-first, performance, acessibilidade
-
-## Conceitos Fundamentais
-
-WEBDOCS aplica **Static Site Generation (SSG)** compilando todo conteúdo em HTML no build time, **MDX** permitindo componentes React em Markdown, **Content Collections** com type safety via Zod, e **Islands Architecture** hidratando apenas componentes interativos necessários.
-
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (3 arquivos)
-
-| ID | Titulo |
-|:---|:-------|
-| [01-key-concepts](./01-key-concepts.md) | Key Concepts - WEBDOCS |
-| [02-terminology](./02-terminology.md) | Terminology - WEBDOCS |
-| [03-design-principles](./03-design-principles.md) | Design Principles - WEBDOCS |
-
-*Gerado automaticamente em 2026-01-15 17:41*
-<!-- GENERATED:END -->
+O [Astro Starlight](./01-astro-starlight.md) explica o framework e theme usados para gerar o site. As [Content Collections](./02-content-collections.md) documentam sistema de gerenciamento de conteúdo do Astro com validação Zod. O [MDX](./03-mdx.md) cobre extensão do Markdown com componentes. O [Decap CMS](./04-decap-cms.md) explica o sistema de edição visual Git-based. O [Pagefind](./05-pagefind.md) documenta a engine de busca client-side.
 
 ---
 
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Pronto
+**Última atualização:** 2026-01-17
+**Status do arquivo**: Review
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (5 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-astro-starlight](./01-astro-starlight.md) | Astro Starlight |
+| [02-content-collections](./02-content-collections.md) | Content Collections |
+| [03-mdx](./03-mdx.md) | MDX |
+| [04-decap-cms](./04-decap-cms.md) | Decap CMS |
+| [05-pagefind](./05-pagefind.md) | Pagefind |
+
+*Gerado automaticamente em 2026-01-17 11:57*
+<!-- GENERATED:END -->

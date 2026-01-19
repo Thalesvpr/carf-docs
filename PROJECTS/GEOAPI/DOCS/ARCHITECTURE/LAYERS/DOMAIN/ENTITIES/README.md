@@ -43,7 +43,7 @@ Entidades de domínio do GEOAPI encapsulando lógica e regras de negócio organi
 |  | [Teams](./TEAMS/README.md) | 3 |
 |  | [Units](./UNITS/README.md) | 1 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Incompleto
 Descrição: Muitas listas com bullets (14) antes do rodapé - considerar converter para parágrafo denso.

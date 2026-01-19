@@ -16,3 +16,13 @@ SignalR hubs do GEOAPI fornecendo comunicação real-time bidirecional entre ser
 **Última atualização:** 2026-01-12
 **Status do arquivo**: Incompleto
 Descrição: Falta seção GENERATED com índice automático; Muitas listas com bullets (6) antes do rodapé - considerar converter para parágrafo denso.
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (1 arquivo)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-notification-hub](./01-notification-hub.md) | Notification Hub |
+
+*Gerado automaticamente em 2026-01-17 11:57*
+<!-- GENERATED:END -->

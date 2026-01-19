@@ -23,7 +23,7 @@ Ver também para decisões cross-project:
 | [01-keycloak-integration](./01-keycloak-integration.md) | 01-keycloak-integration |
 | [02-tscore-integration](./02-tscore-integration.md) | Integração @carf/tscore no GEOWEB |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Incompleto
 Descrição: Falta parágrafo denso introdutório.

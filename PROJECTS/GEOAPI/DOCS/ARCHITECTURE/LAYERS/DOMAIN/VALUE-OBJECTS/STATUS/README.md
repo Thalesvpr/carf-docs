@@ -27,7 +27,7 @@ Value objects representando estados e transições workflow das entidades princi
 | [21-decision](./21-decision.md) | Decision |
 | [22-certificate-situation](./22-certificate-situation.md) | CertificateSituation |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Incompleto
 Descrição: Muitas listas com bullets (6) antes do rodapé - considerar converter para parágrafo denso.

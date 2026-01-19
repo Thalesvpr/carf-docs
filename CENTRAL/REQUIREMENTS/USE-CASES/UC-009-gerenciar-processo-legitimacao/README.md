@@ -14,7 +14,7 @@
 | [UC-009](./UC-009-FE-003-processo-indeferido.md) | FE-003: Processo Indeferido |
 | [UC-009](./UC-009-gerenciar-processo-legitimacao.md) | Gerenciar Processo de Legitimação Fundiária |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
 ---

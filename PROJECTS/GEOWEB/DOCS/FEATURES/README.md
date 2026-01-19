@@ -37,7 +37,7 @@ Relacionamento requirements implementando UC-001 cadastro unidades UC-002 aprova
 | [06-legitimation-process](./06-legitimation-process.md) | Legitimation Process - Processo de Legitimação |
 | [07-reporting](./07-reporting.md) | Reporting - Relatórios |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Incompleto
 Descrição: Muitas listas com bullets (7) antes do rodapé - considerar converter para parágrafo denso.

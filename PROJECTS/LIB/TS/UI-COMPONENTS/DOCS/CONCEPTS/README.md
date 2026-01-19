@@ -21,7 +21,7 @@
 | [02-terminology](./02-terminology.md) | Terminology |
 | [03-design-principles](./03-design-principles.md) | Design Principles |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
 ---

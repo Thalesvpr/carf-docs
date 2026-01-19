@@ -21,3 +21,15 @@ Códigos HTTP: 200 OK sucesso, 401 Unauthorized credenciais inválidas, 403 Forb
 
 **Última atualização:** 2026-01-15
 **Status do arquivo**: Review
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (3 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-login](./01-login.md) | Login |
+| [02-refresh-token](./02-refresh-token.md) | Refresh Token |
+| [03-logout](./03-logout.md) | Logout |
+
+*Gerado automaticamente em 2026-01-17 11:57*
+<!-- GENERATED:END -->

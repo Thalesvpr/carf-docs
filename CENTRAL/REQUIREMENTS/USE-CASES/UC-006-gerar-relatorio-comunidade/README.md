@@ -14,7 +14,7 @@
 | [UC-006](./UC-006-FE-003-erro-pdf.md) | FE-003: Erro ao Gerar PDF |
 | [UC-006](./UC-006-gerar-relatorio-comunidade.md) | Gerar Relatório de Comunidade |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
 ---

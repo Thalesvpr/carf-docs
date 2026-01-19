@@ -10,3 +10,14 @@ Ambiente produção usa docker-compose.prod.yml com resource limits definindo me
 
 **Última atualização:** 2026-01-15
 **Status do arquivo**: Review
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (2 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-docker-compose-dev](./01-docker-compose-dev.md) | Docker Compose Development |
+| [02-docker-compose-prod](./02-docker-compose-prod.md) | Docker Compose Production |
+
+*Gerado automaticamente em 2026-01-17 11:57*
+<!-- GENERATED:END -->

@@ -16,13 +16,13 @@ SLOs definidos: 99.5% uptime e p99 latency menor que 500ms.
 **Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (0 arquivos)
+## Indice por Dominio (11 arquivos)
 
 | # | Dominio | Arquivos |
 |:--|:--------|:--------:|
-|  | [Grafana](./GRAFANA/README.md) | 0 |
-|  | [Logging](./LOGGING/README.md) | 0 |
-|  | [Prometheus](./PROMETHEUS/README.md) | 0 |
+|  | [Grafana](./GRAFANA/README.md) | 5 |
+|  | [Logging](./LOGGING/README.md) | 3 |
+|  | [Prometheus](./PROMETHEUS/README.md) | 3 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

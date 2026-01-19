@@ -21,5 +21,5 @@ Mutation testing opcional pode ser usado para detectar testes fracos que não va
 | [01-coverage-targets](./01-coverage-targets.md) | METAS DE COBERTURA |
 | [02-test-pyramid](./02-test-pyramid.md) | PIRÂMIDE DE TESTES |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

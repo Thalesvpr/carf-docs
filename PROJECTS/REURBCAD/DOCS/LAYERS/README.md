@@ -47,7 +47,7 @@ Estrutura de camadas do código React Native do REURBCAD.
 |:---|:-------|
 | [01-auth-service](./01-auth-service.md) | 01-auth-service |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Incompleto
 Descrição: Falta parágrafo denso introdutório; Muitas listas com bullets (15) antes do rodapé - considerar converter para parágrafo denso.

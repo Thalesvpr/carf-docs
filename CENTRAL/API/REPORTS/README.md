@@ -26,3 +26,14 @@ Processamento assíncrono com armazenamento temporário e expiração em 7 dias.
 
 **Última atualização:** 2026-01-15
 **Status do arquivo**: Review
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (2 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-pdf-export](./01-pdf-export.md) | PDF Export |
+| [02-data-export](./02-data-export.md) | Data Export |
+
+*Gerado automaticamente em 2026-01-17 11:57*
+<!-- GENERATED:END -->

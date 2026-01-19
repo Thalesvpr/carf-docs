@@ -20,7 +20,7 @@
 | [RNF-055](./RNF-055-atalhos-teclado.md) | Atalhos de Teclado |
 | [RNF-065](./RNF-065-rollback-de-deploy.md) | Rollback de Deploy |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
 ---

@@ -25,7 +25,7 @@ bun run dev  # http://localhost:5173
 | [03-testing](./03-testing.md) | Testing - ADMIN |
 | [04-troubleshooting](./04-troubleshooting.md) | Troubleshooting - ADMIN |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
 ---

@@ -19,7 +19,7 @@
 | [US-054](./US-054-resolver-conflitos-de-dados.md) | Resolver Conflitos de Dados |
 | [US-055](./US-055-limpar-dados-sincronizados.md) | Limpar Dados Sincronizados |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
 ---

@@ -13,3 +13,12 @@ Overlay Kubernetes para ambiente de desenvolvimento sobrescreve configurações 
 **Última atualização:** 2026-01-15
 **Status do arquivo**: Review
 
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (1 arquivo)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-kustomization](./01-kustomization.md) | DEV Overlay |
+
+*Gerado automaticamente em 2026-01-17 11:57*
+<!-- GENERATED:END -->

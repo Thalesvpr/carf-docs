@@ -23,6 +23,6 @@ Domain events emitidos pelas entidades aggregate roots quando mudanças signific
 | [02-sync-conflict-event](./02-sync-conflict-event.md) | SyncConflictEvent |
 | [03-legitimation-certificate-issued-event](./03-legitimation-certificate-issued-event.md) | LegitimationCertificateIssuedEvent |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Pronto

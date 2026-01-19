@@ -20,5 +20,5 @@ Arquitetura em camadas onde @carf/ui depende de @carf/geoapi-client que depende 
 | [02-geoapi-client](./02-geoapi-client.md) | @carf/geoapi-client |
 | [03-ui-components](./03-ui-components.md) | @carf/ui |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

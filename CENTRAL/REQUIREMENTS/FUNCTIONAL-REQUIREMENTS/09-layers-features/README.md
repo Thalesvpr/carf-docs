@@ -23,7 +23,7 @@
 | [RF-140](./RF-140-importar-geojson-em-camada.md) | Importar GeoJSON em Camada |
 | [RF-141](./RF-141-exportar-camada.md) | Exportar Camada |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Última atualização:** 2026-01-15
 **Status do arquivo**: Review

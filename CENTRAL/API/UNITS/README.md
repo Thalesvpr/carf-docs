@@ -25,3 +25,15 @@ O UnitFilterRequest permite filtros por status, city, neighborhood, área mínim
 
 **Última atualização:** 2026-01-15
 **Status do arquivo**: Review
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (3 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-create-unit](./01-create-unit.md) | Create Unit |
+| [02-get-unit](./02-get-unit.md) | Get Unit |
+| [03-list-units](./03-list-units.md) | List Units |
+
+*Gerado automaticamente em 2026-01-17 11:57*
+<!-- GENERATED:END -->

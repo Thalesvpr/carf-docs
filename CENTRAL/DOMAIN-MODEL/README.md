@@ -14,16 +14,16 @@ Os [relacionamentos](./RELATIONSHIPS/README.md) mapeiam como as entidades se ass
 **Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (85 arquivos)
+## Indice por Dominio (87 arquivos)
 
 | # | Dominio | Arquivos |
 |:--|:--------|:--------:|
 |  | [Aggregates](./AGGREGATES/README.md) | 3 |
-|  | [Diagrams](./DIAGRAMS/README.md) | 0 |
+|  | [Diagrams](./DIAGRAMS/README.md) | 2 |
 |  | [Entities](./ENTITIES/README.md) | 35 |
 |  | [Events](./EVENTS/README.md) | 20 |
 |  | [Relationships](./RELATIONSHIPS/README.md) | 1 |
 |  | [Value Objects](./VALUE-OBJECTS/README.md) | 26 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

@@ -23,6 +23,6 @@ Console React SPA para gestão de tenants usuários e configurações sistema CA
 |  | [Features](./FEATURES/README.md) | 2 |
 |  | [How To](./HOW-TO/README.md) | 4 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Pronto

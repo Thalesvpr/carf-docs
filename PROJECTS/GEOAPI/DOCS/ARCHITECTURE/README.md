@@ -19,13 +19,13 @@ Arquitetura do GEOAPI backend .NET 9 com Clean Architecture, DDD e CQRS.
 **Última atualização:** 2026-01-12
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (73 arquivos)
+## Indice por Dominio (91 arquivos)
 
 | # | Dominio | Arquivos |
 |:--|:--------|:--------:|
-|  | [Layers](./LAYERS/README.md) | 73 |
+|  | [Layers](./LAYERS/README.md) | 91 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 
 ## Arquivos (5 arquivos)
 
@@ -37,7 +37,7 @@ Arquitetura do GEOAPI backend .NET 9 com Clean Architecture, DDD e CQRS.
 | [04-integration](./04-integration.md) | Integrações |
 | [05-deployment](./05-deployment.md) | Deployment |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Incompleto
 Descrição: Falta parágrafo denso introdutório; Muitas listas com bullets (6) antes do rodapé - considerar converter para parágrafo denso.

@@ -44,5 +44,5 @@ As validações de entidades complexas verificam unicidade de CPF por tenant, re
 | [10-phone-validation](./10-phone-validation.md) | Phone Validation |
 | [11-unit-validation](./11-unit-validation.md) | Unit Validation Rules |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

@@ -57,7 +57,7 @@ Registrados via `QgsProcessingProvider` permitindo usuário executar via Process
 |:---|:-------|
 | [01-keycloak-integration](./01-keycloak-integration.md) | 01-keycloak-integration |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Incompleto
 Descrição: Muitas listas com bullets (17) antes do rodapé - considerar converter para parágrafo denso.

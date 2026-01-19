@@ -25,3 +25,13 @@ Implementação IFileStorage para gerenciamento arquivos (documentos, fotos, PDF
 **Última atualização:** 2026-01-12
 **Status do arquivo**: Incompleto
 Descrição: Falta seção GENERATED com índice automático; Muitas listas com bullets (8) antes do rodapé - considerar converter para parágrafo denso.
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (1 arquivo)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-file-storage](./01-file-storage.md) | File Storage |
+
+*Gerado automaticamente em 2026-01-17 11:57*
+<!-- GENERATED:END -->

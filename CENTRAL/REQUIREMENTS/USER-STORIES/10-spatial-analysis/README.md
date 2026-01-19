@@ -18,7 +18,7 @@
 | [US-063](./US-063-imprimir-mapa.md) | Imprimir Mapa |
 | [US-082](./US-082-exportar-mapa-como-imagem.md) | Exportar Mapa como Imagem |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
 ---

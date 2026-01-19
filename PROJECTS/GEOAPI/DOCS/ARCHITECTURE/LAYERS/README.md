@@ -15,16 +15,16 @@ Camadas da Clean Architecture do GEOAPI seguindo Dependency Inversion Principle 
 **Última atualização:** 2026-01-12
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (73 arquivos)
+## Indice por Dominio (91 arquivos)
 
 | # | Dominio | Arquivos |
 |:--|:--------|:--------:|
-|  | [Application](./APPLICATION/README.md) | 0 |
+|  | [Application](./APPLICATION/README.md) | 5 |
 |  | [Domain](./DOMAIN/README.md) | 73 |
-|  | [Infra](./INFRA/README.md) | 0 |
-|  | [Presentation](./PRESENTATION/README.md) | 0 |
-|  | [Tests](./TESTS/README.md) | 0 |
+|  | [Infra](./INFRA/README.md) | 5 |
+|  | [Presentation](./PRESENTATION/README.md) | 5 |
+|  | [Tests](./TESTS/README.md) | 3 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Pronto

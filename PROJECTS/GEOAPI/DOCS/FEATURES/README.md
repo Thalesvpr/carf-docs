@@ -9,3 +9,13 @@ Consulte LAYERS para documentação técnica detalhada de cada funcionalidade im
 **Última atualização:** 2026-01-11
 **Status do arquivo**: Incompleto
 Descrição: Falta seção GENERATED com índice automático.
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (1 arquivo)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-unit-management](./01-unit-management.md) | Unit Management Feature |
+
+*Gerado automaticamente em 2026-01-17 11:57*
+<!-- GENERATED:END -->

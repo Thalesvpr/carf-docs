@@ -15,5 +15,5 @@ Arquivos de configuração deployment do CARF. O [env-vars](./01-env-vars.md) do
 | [01-env-vars](./01-env-vars.md) | VARIÁVEIS DE AMBIENTE |
 | [02-health-checks](./02-health-checks.md) | HEALTH CHECKS |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

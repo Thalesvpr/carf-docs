@@ -20,7 +20,7 @@
 | [US-107](./US-107-relatorio-de-cobertura-espacial.md) | Relatório de Cobertura Espacial |
 | [US-108](./US-108-relatorio-de-distribuicao-por-status.md) | Relatório de Distribuição por Status |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
 ---

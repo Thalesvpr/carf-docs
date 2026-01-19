@@ -23,6 +23,6 @@ Value objects representando documentos brasileiros validados incluindo CPF CNPJ 
 | [06-phone-number](./06-phone-number.md) | PhoneNumber |
 | [11-crea](./11-crea.md) | Crea |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Pronto

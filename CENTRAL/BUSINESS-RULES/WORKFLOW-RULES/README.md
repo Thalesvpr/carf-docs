@@ -25,5 +25,5 @@ Os SLAs definem prazos para cada etapa com alertas automáticos. Notificações 
 | [04-sla-rules](./04-sla-rules.md) | SLA Rules |
 | [05-notification-triggers](./05-notification-triggers.md) | Notification Triggers (Gatilhos de Notificação) |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

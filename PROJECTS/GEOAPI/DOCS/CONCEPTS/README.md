@@ -29,7 +29,7 @@ CQRS separa Commands que modificam estado com validação complexa de Queries qu
 | [03-design-principles](./03-design-principles.md) | Design Principles |
 | [04-audit-logging](./04-audit-logging.md) | Audit Logging |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Incompleto
 Descrição: Muitas listas com bullets (6) antes do rodapé - considerar converter para parágrafo denso.

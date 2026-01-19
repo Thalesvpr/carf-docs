@@ -14,7 +14,7 @@
 | [UC-001](./UC-001-FE-001-validacao-falha.md) | FE-001: Validação Falha |
 | [UC-001](./UC-001-FE-002-geometria-sobreposta.md) | FE-002: Geometria Sobreposta |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
 ---

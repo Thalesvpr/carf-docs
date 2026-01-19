@@ -12,7 +12,7 @@
 | [RF-155](./RF-155-excluir-anotação.md) | Excluir Anotação |
 | [RF-156](./RF-156-filtrar-anotações-por-autor.md) | Filtrar Anotações por Autor |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Última atualização:** 2026-01-15
 **Status do arquivo**: Review

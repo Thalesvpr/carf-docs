@@ -13,12 +13,12 @@ Kustomize overlays customizando base por ambiente. Estrutura: cada ambiente (DEV
 **Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (0 arquivos)
+## Indice por Dominio (2 arquivos)
 
 | # | Dominio | Arquivos |
 |:--|:--------|:--------:|
-|  | [Dev](./DEV/README.md) | 0 |
-|  | [Prod](./PROD/README.md) | 0 |
+|  | [Dev](./DEV/README.md) | 1 |
+|  | [Prod](./PROD/README.md) | 1 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

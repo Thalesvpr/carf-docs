@@ -33,7 +33,7 @@ Guias práticos para desenvolvimento do REURBCAD React Native.
 | [02-handle-callbacks](./02-handle-callbacks.md) | 02-handle-callbacks |
 | [03-test-offline](./03-test-offline.md) | 03-test-offline |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Incompleto
 Descrição: Falta parágrafo denso introdutório.

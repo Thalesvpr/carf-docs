@@ -23,5 +23,5 @@ Os [tipos de documento](./04-document-types.md) especificam seções obrigatóri
 | [05-content-guidelines](./05-content-guidelines.md) | Diretrizes de Conteúdo |
 | [06-link-conventions](./06-link-conventions.md) | Convenções de Links |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

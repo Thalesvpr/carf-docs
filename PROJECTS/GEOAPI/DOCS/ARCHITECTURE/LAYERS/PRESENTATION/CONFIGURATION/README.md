@@ -17,3 +17,13 @@ Configuração startup do GEOAPI em Program.cs registrando serviços no DI conta
 **Última atualização:** 2026-01-12
 **Status do arquivo**: Incompleto
 Descrição: Falta seção GENERATED com índice automático; Muitas listas com bullets (7) antes do rodapé - considerar converter para parágrafo denso.
+
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (1 arquivo)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-di-registration](./01-di-registration.md) | DI Registration |
+
+*Gerado automaticamente em 2026-01-17 11:57*
+<!-- GENERATED:END -->

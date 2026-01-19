@@ -18,7 +18,7 @@
 | [RF-220](./RF-220-trocar-basemap.md) | Trocar Basemap |
 | [RF-221](./RF-221-proxy-de-wmswmts.md) | Proxy de WMS/WMTS |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Última atualização:** 2026-01-15
 **Status do arquivo**: Review

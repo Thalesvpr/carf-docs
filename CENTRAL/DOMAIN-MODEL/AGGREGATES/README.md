@@ -28,5 +28,5 @@ O [LegitimationRequestAggregate](./03-legitimation-request-aggregate.md) tem Leg
 | [02-community-aggregate](./02-community-aggregate.md) | Community Aggregate |
 | [03-legitimation-request-aggregate](./03-legitimation-request-aggregate.md) | LegitimationRequest Aggregate |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

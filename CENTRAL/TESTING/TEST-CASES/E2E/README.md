@@ -7,3 +7,13 @@ Testes end-to-end jornadas completas usuário incluem unit-creation-flow usuári
 **Última atualização:** 2026-01-15
 **Status do arquivo**: Review
 
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (2 arquivos)
+
+| ID | Titulo |
+|:---|:-------|
+| [01-cadastro-flow](./01-cadastro-flow.md) | Fluxo de Cadastro E2E |
+| [02-offline-sync-flow](./02-offline-sync-flow.md) | Fluxo Offline Sync E2E |
+
+*Gerado automaticamente em 2026-01-17 11:57*
+<!-- GENERATED:END -->

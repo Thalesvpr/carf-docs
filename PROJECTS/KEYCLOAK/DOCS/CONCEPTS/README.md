@@ -25,6 +25,6 @@ Conceitos fundamentais Keycloak e customização CARF explicando themes system e
 | [04-oauth2-oidc-flows](./04-oauth2-oidc-flows.md) | 04-oauth2-oidc-flows |
 | [05-multi-tenancy-strategy](./05-multi-tenancy-strategy.md) | 05-multi-tenancy-strategy |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 **Status do arquivo**: Pronto

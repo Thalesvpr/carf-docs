@@ -16,13 +16,13 @@ Fixtures, factories e test data builders facilitam o setup rápido dos testes.
 **Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (0 arquivos)
+## Indice por Dominio (5 arquivos)
 
 | # | Dominio | Arquivos |
 |:--|:--------|:--------:|
-|  | [Api](./API/README.md) | 0 |
-|  | [E2e](./E2E/README.md) | 0 |
-|  | [Unit](./UNIT/README.md) | 0 |
+|  | [Api](./API/README.md) | 2 |
+|  | [E2e](./E2E/README.md) | 2 |
+|  | [Unit](./UNIT/README.md) | 1 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

@@ -23,5 +23,5 @@ As [políticas](./POLICIES/README.md) definem regras de autenticação, autoriza
 |  | [Incidents](./INCIDENTS/README.md) | 4 |
 |  | [Policies](./POLICIES/README.md) | 5 |
 
-*Gerado automaticamente em 2026-01-15 17:41*
+*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
