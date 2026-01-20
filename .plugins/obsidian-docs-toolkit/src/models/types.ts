@@ -44,15 +44,19 @@ export type Module = typeof VALID_MODULES[number];
 
 /**
  * Frontmatter structure for CARF documents
+ *
+ * Campos obrigatórios: status, updated
+ * Campos opcionais: id, type, modules, epic, created, description
  */
 export interface CARFFrontmatter {
-  id: string;
-  type: DocType;
-  modules: Module[];
-  epic?: string;
   status: Status;
-  created: string;
   updated: string;
+  id?: string;
+  type?: DocType;
+  modules?: Module[];
+  epic?: string;
+  created?: string;
+  description?: string;
 }
 
 /**

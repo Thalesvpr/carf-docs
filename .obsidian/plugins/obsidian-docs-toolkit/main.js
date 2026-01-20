@@ -7,9 +7,6 @@ var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __esm = (fn, res) => function __init() {
-  return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
-};
 var __export = (target, all) => {
   for (var name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
@@ -23,91 +20,6 @@ var __copyProps = (to, from, except, desc) => {
   return to;
 };
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-
-// src/models/types.ts
-var types_exports = {};
-__export(types_exports, {
-  DEFAULT_PATHS: () => DEFAULT_PATHS,
-  DocType: () => DocType,
-  NAMING_PATTERNS: () => NAMING_PATTERNS,
-  REQUIRED_SECTIONS: () => REQUIRED_SECTIONS,
-  STALE_THRESHOLD_DAYS: () => STALE_THRESHOLD_DAYS,
-  Severity: () => Severity,
-  Status: () => Status,
-  TITLE_PATTERNS: () => TITLE_PATTERNS,
-  VALID_MODULES: () => VALID_MODULES
-});
-var DocType, Status, Severity, VALID_MODULES, DEFAULT_PATHS, REQUIRED_SECTIONS, TITLE_PATTERNS, NAMING_PATTERNS, STALE_THRESHOLD_DAYS;
-var init_types = __esm({
-  "src/models/types.ts"() {
-    DocType = /* @__PURE__ */ ((DocType5) => {
-      DocType5["RF"] = "RF";
-      DocType5["RNF"] = "RNF";
-      DocType5["UC"] = "UC";
-      DocType5["US"] = "US";
-      DocType5["ARCH"] = "ARCH";
-      DocType5["README"] = "README";
-      DocType5["OTHER"] = "OTHER";
-      return DocType5;
-    })(DocType || {});
-    Status = /* @__PURE__ */ ((Status2) => {
-      Status2["REVIEW"] = "review";
-      Status2["APPROVED"] = "approved";
-      Status2["REJECTED"] = "rejected";
-      return Status2;
-    })(Status || {});
-    Severity = /* @__PURE__ */ ((Severity2) => {
-      Severity2["ERROR"] = "error";
-      Severity2["WARNING"] = "warning";
-      Severity2["INFO"] = "info";
-      return Severity2;
-    })(Severity || {});
-    VALID_MODULES = [
-      "GEOAPI",
-      "GEOWEB",
-      "ADMIN",
-      "KEYCLOAK",
-      "WEBDOCS"
-    ];
-    DEFAULT_PATHS = {
-      CENTRAL: "CENTRAL",
-      PROJECTS: "PROJECTS",
-      REQUIREMENTS: "CENTRAL/REQUIREMENTS",
-      FUNCTIONAL: "CENTRAL/REQUIREMENTS/FUNCTIONAL",
-      NON_FUNCTIONAL: "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL",
-      USE_CASES: "CENTRAL/REQUIREMENTS/USE-CASES",
-      USER_STORIES: "CENTRAL/REQUIREMENTS/USER-STORIES"
-    };
-    REQUIRED_SECTIONS = {
-      ["RF" /* RF */]: ["Crit\xE9rios de Aceita\xE7\xE3o", "Regras de Neg\xF3cio"],
-      ["RNF" /* RNF */]: ["Crit\xE9rios de Aceita\xE7\xE3o", "M\xE9tricas"],
-      ["UC" /* UC */]: ["Atores", "Pr\xE9-condi\xE7\xF5es", "Fluxo Principal", "Fluxos Alternativos", "P\xF3s-condi\xE7\xF5es"],
-      ["US" /* US */]: ["Crit\xE9rios de Aceita\xE7\xE3o"],
-      ["ARCH" /* ARCH */]: [],
-      ["README" /* README */]: [],
-      ["OTHER" /* OTHER */]: []
-    };
-    TITLE_PATTERNS = {
-      ["RF" /* RF */]: /^# RF-\d{3}: .+$/,
-      ["RNF" /* RNF */]: /^# RNF-\d{3}: .+$/,
-      ["UC" /* UC */]: /^# UC-\d{3}: .+$/,
-      ["US" /* US */]: /^# US-\d{3}: .+$/,
-      ["ARCH" /* ARCH */]: /^# .+$/,
-      ["README" /* README */]: /^# .+$/,
-      ["OTHER" /* OTHER */]: /^# .+$/
-    };
-    NAMING_PATTERNS = {
-      ["RF" /* RF */]: /^RF-\d{3}-.+\.md$/,
-      ["RNF" /* RNF */]: /^RNF-\d{3}-.+\.md$/,
-      ["UC" /* UC */]: /^\d{2}-UC-\d{3}-.+\.md$|^UC-\d{3}-.+\.md$/,
-      ["US" /* US */]: /^US-\d{3}-.+\.md$/,
-      ["ARCH" /* ARCH */]: /^\d{2}-.+\.md$/,
-      ["README" /* README */]: /^README\.md$/,
-      ["OTHER" /* OTHER */]: /.+\.md$/
-    };
-    STALE_THRESHOLD_DAYS = 180;
-  }
-});
 
 // main.ts
 var main_exports = {};
@@ -198,8 +110,60 @@ var DocsToolkitSettingTab = class extends import_obsidian.PluginSettingTab {
 // src/store/DocumentStore.ts
 var import_obsidian4 = require("obsidian");
 
+// src/models/types.ts
+var DocType = /* @__PURE__ */ ((DocType5) => {
+  DocType5["RF"] = "RF";
+  DocType5["RNF"] = "RNF";
+  DocType5["UC"] = "UC";
+  DocType5["US"] = "US";
+  DocType5["ARCH"] = "ARCH";
+  DocType5["README"] = "README";
+  DocType5["OTHER"] = "OTHER";
+  return DocType5;
+})(DocType || {});
+var Status = /* @__PURE__ */ ((Status2) => {
+  Status2["REVIEW"] = "review";
+  Status2["APPROVED"] = "approved";
+  Status2["REJECTED"] = "rejected";
+  return Status2;
+})(Status || {});
+var VALID_MODULES = [
+  "GEOAPI",
+  "GEOWEB",
+  "ADMIN",
+  "KEYCLOAK",
+  "WEBDOCS"
+];
+var REQUIRED_SECTIONS = {
+  ["RF" /* RF */]: ["Crit\xE9rios de Aceita\xE7\xE3o", "Regras de Neg\xF3cio"],
+  ["RNF" /* RNF */]: ["Crit\xE9rios de Aceita\xE7\xE3o", "M\xE9tricas"],
+  ["UC" /* UC */]: ["Atores", "Pr\xE9-condi\xE7\xF5es", "Fluxo Principal", "Fluxos Alternativos", "P\xF3s-condi\xE7\xF5es"],
+  ["US" /* US */]: ["Crit\xE9rios de Aceita\xE7\xE3o"],
+  ["ARCH" /* ARCH */]: [],
+  ["README" /* README */]: [],
+  ["OTHER" /* OTHER */]: []
+};
+var TITLE_PATTERNS = {
+  ["RF" /* RF */]: /^# RF-\d{3}: .+$/,
+  ["RNF" /* RNF */]: /^# RNF-\d{3}: .+$/,
+  ["UC" /* UC */]: /^# UC-\d{3}: .+$/,
+  ["US" /* US */]: /^# US-\d{3}: .+$/,
+  ["ARCH" /* ARCH */]: /^# .+$/,
+  ["README" /* README */]: /^# .+$/,
+  ["OTHER" /* OTHER */]: /^# .+$/
+};
+var NAMING_PATTERNS = {
+  ["RF" /* RF */]: /^RF-\d{3}-.+\.md$/,
+  ["RNF" /* RNF */]: /^RNF-\d{3}-.+\.md$/,
+  ["UC" /* UC */]: /^\d{2}-UC-\d{3}-.+\.md$|^UC-\d{3}-.+\.md$/,
+  ["US" /* US */]: /^US-\d{3}-.+\.md$/,
+  ["ARCH" /* ARCH */]: /^\d{2}-.+\.md$/,
+  ["README" /* README */]: /^README\.md$/,
+  ["OTHER" /* OTHER */]: /.+\.md$/
+};
+var STALE_THRESHOLD_DAYS = 180;
+
 // src/models/Document.ts
-init_types();
 var Document = class {
   constructor(file, frontmatter, content, sections, links, title) {
     this.file = file;
@@ -280,7 +244,6 @@ var Document = class {
 };
 
 // src/models/Issue.ts
-init_types();
 var Issue = class {
   constructor(file, validator, severity, message, line = null, column = null, suggestion = null) {
     this.file = file;
@@ -366,9 +329,6 @@ function calculateIssueSummary(issues) {
     info: issues.filter((i) => i.severity === "info" /* INFO */).length
   };
 }
-
-// src/store/DocumentStore.ts
-init_types();
 
 // src/validators/BrokenLinksValidator.ts
 var import_obsidian2 = require("obsidian");
@@ -460,7 +420,6 @@ var BrokenLinksValidator = class extends LocalValidator {
 };
 
 // src/validators/FrontmatterValidator.ts
-init_types();
 var FrontmatterValidator = class extends LocalValidator {
   constructor() {
     super(...arguments);
@@ -564,7 +523,6 @@ var FrontmatterValidator = class extends LocalValidator {
 };
 
 // src/validators/OrphansValidator.ts
-init_types();
 var OrphansValidator = class extends GlobalValidator {
   constructor() {
     super(...arguments);
@@ -644,7 +602,6 @@ var OrphansValidator = class extends GlobalValidator {
 };
 
 // src/validators/StructureValidator.ts
-init_types();
 var StructureValidator = class extends LocalValidator {
   constructor() {
     super(...arguments);
@@ -686,7 +643,6 @@ var StructureValidator = class extends LocalValidator {
 };
 
 // src/validators/TitleValidator.ts
-init_types();
 var TitleValidator = class extends LocalValidator {
   constructor() {
     super(...arguments);
@@ -774,7 +730,6 @@ var TitleValidator = class extends LocalValidator {
 };
 
 // src/validators/StaleValidator.ts
-init_types();
 var StaleValidator = class extends LocalValidator {
   constructor() {
     super(...arguments);
@@ -857,7 +812,6 @@ var EmptyFoldersValidator = class extends GlobalValidator {
 };
 
 // src/validators/NamingValidator.ts
-init_types();
 var NamingValidator = class extends LocalValidator {
   constructor() {
     super(...arguments);
@@ -993,7 +947,7 @@ var DocumentStore = class extends import_obsidian4.Events {
     };
   }
   getReviewQueue() {
-    return Array.from(this.documents.values()).filter((d) => d.file.name !== "README.md" && d.status === "review" /* REVIEW */).map((d) => d.file);
+    return Array.from(this.documents.values()).filter((d) => d.file.name !== "README.md").sort((a, b) => a.file.path.localeCompare(b.file.path)).map((d) => d.file);
   }
   getDocument(path) {
     return this.documents.get(path);
@@ -1072,10 +1026,12 @@ var DocumentStore = class extends import_obsidian4.Events {
   }
   /**
    * Set status for a document. Updates frontmatter and emits 'state-changed'.
+   * @param description - Optional rejection reason (cleared when status is not rejected)
    */
-  async setStatus(file, status) {
+  async setStatus(file, status, description) {
     const content = await this.app.vault.read(file);
-    const newContent = this.updateStatusInContent(content, status);
+    const desc = status === "rejected" /* REJECTED */ ? description : void 0;
+    const newContent = this.updateStatusInContent(content, status, desc);
     await this.app.vault.modify(file, newContent);
   }
   // --- Internal Helpers ---
@@ -1095,33 +1051,36 @@ var DocumentStore = class extends import_obsidian4.Events {
     return new Document(file, frontmatter, content, sections, links, title);
   }
   parseFrontmatter(content) {
-    const match = content.match(/^---\n([\s\S]*?)\n---/);
+    const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
     if (!match)
       return null;
     try {
-      const { parseYaml: parseYaml2 } = require("obsidian");
-      const yaml = parseYaml2(match[1]);
-      if (!yaml || !yaml.id || !yaml.type || !yaml.status)
-        return null;
-      const { DocType: DocType5, Status: S, VALID_MODULES: VALID_MODULES2 } = (init_types(), __toCommonJS(types_exports));
-      const type = yaml.type.toUpperCase();
-      if (!Object.values(DocType5).includes(type))
+      const yaml = (0, import_obsidian4.parseYaml)(match[1]);
+      if (!yaml || !yaml.status)
         return null;
       const status = yaml.status.toLowerCase();
-      if (!Object.values(S).includes(status))
+      if (!Object.values(Status).includes(status))
         return null;
-      let modules = [];
+      let type;
+      if (yaml.type) {
+        const upperType = yaml.type.toUpperCase();
+        if (Object.values(DocType).includes(upperType)) {
+          type = upperType;
+        }
+      }
+      let modules;
       if (Array.isArray(yaml.modules)) {
-        modules = yaml.modules.map((m) => m.toUpperCase()).filter((m) => VALID_MODULES2.includes(m));
+        modules = yaml.modules.map((m) => m.toUpperCase()).filter((m) => VALID_MODULES.includes(m));
       }
       return {
-        id: yaml.id,
+        status,
+        updated: yaml.updated || this.formatDate(new Date()),
+        id: yaml.id || void 0,
         type,
         modules,
         epic: yaml.epic || void 0,
-        status,
-        created: yaml.created || this.formatDate(new Date()),
-        updated: yaml.updated || this.formatDate(new Date())
+        created: yaml.created || void 0,
+        description: yaml.description || void 0
       };
     } catch (e) {
       return null;
@@ -1191,23 +1150,41 @@ var DocumentStore = class extends import_obsidian4.Events {
   formatDate(date) {
     return date.toISOString().split("T")[0];
   }
-  updateStatusInContent(content, status) {
+  updateStatusInContent(content, status, description) {
     const today = this.formatDate(new Date());
     let newContent = content.replace(
-      /^(---\n[\s\S]*?status:\s*)\w+/m,
+      /^(---\r?\n[\s\S]*?status:\s*)\w+/m,
       `$1${status}`
     );
     newContent = newContent.replace(
-      /^(---\n[\s\S]*?updated:\s*)\S+/m,
+      /^(---\r?\n[\s\S]*?updated:\s*)\S+/m,
       `$1${today}`
     );
+    if (description) {
+      if (/^---\r?\n[\s\S]*?description:/m.test(newContent)) {
+        newContent = newContent.replace(
+          /^(---\r?\n[\s\S]*?description:\s*).*/m,
+          `$1"${description.replace(/"/g, '\\"')}"`
+        );
+      } else {
+        newContent = newContent.replace(
+          /^(---\r?\n[\s\S]*?)(---)/m,
+          `$1description: "${description.replace(/"/g, '\\"')}"
+$2`
+        );
+      }
+    } else {
+      newContent = newContent.replace(
+        /^(---\r?\n[\s\S]*?)description:.*\r?\n/m,
+        `$1`
+      );
+    }
     return newContent;
   }
 };
 
 // src/services/MetadataService.ts
 var import_obsidian5 = require("obsidian");
-init_types();
 var MetadataService = class {
   constructor(app) {
     this.app = app;
@@ -1436,7 +1413,6 @@ ${bodyContent}`;
 
 // src/services/IndexService.ts
 var import_obsidian6 = require("obsidian");
-init_types();
 var IndexService = class {
   constructor(app, metadataService) {
     this.pendingSyncs = /* @__PURE__ */ new Set();
@@ -1589,7 +1565,6 @@ ${endMarker}
 
 // src/services/MigrationService.ts
 var import_obsidian7 = require("obsidian");
-init_types();
 var MigrationService = class {
   constructor(app, metadataService) {
     this.app = app;
@@ -1801,19 +1776,26 @@ ${content}`;
    */
   frontmatterToYaml(fm) {
     const lines = [];
-    lines.push(`id: ${fm.id}`);
-    lines.push(`type: ${fm.type}`);
-    if (fm.modules.length > 0) {
+    lines.push(`status: ${fm.status}`);
+    lines.push(`updated: ${fm.updated}`);
+    if (fm.id) {
+      lines.push(`id: ${fm.id}`);
+    }
+    if (fm.type) {
+      lines.push(`type: ${fm.type}`);
+    }
+    if (fm.modules && fm.modules.length > 0) {
       lines.push(`modules: [${fm.modules.join(", ")}]`);
-    } else {
-      lines.push(`modules: []`);
     }
     if (fm.epic) {
       lines.push(`epic: ${fm.epic}`);
     }
-    lines.push(`status: ${fm.status}`);
-    lines.push(`created: ${fm.created}`);
-    lines.push(`updated: ${fm.updated}`);
+    if (fm.created) {
+      lines.push(`created: ${fm.created}`);
+    }
+    if (fm.description) {
+      lines.push(`description: "${fm.description}"`);
+    }
     return lines.join("\n") + "\n";
   }
   /**
@@ -1838,222 +1820,603 @@ ${content}`;
   }
 };
 
-// src/views/DashboardView.ts
+// src/views/CurationPanelView.ts
 var import_obsidian8 = require("obsidian");
-init_types();
-var DASHBOARD_VIEW_TYPE = "docs-toolkit-dashboard";
-var DashboardView = class extends import_obsidian8.ItemView {
-  constructor(leaf, store, onStartReview) {
-    super(leaf);
-    this.expanded = false;
-    this.store = store;
-    this.onStartReview = onStartReview;
-  }
-  getViewType() {
-    return DASHBOARD_VIEW_TYPE;
-  }
-  getDisplayText() {
-    return "Docs";
-  }
-  getIcon() {
-    return "file-check";
-  }
-  async onOpen() {
-    this.containerEl.children[1].addClass("docs-toolkit-dashboard");
-    this.registerEvent(
-      // @ts-ignore - Events class is compatible
-      this.store.on("state-changed", () => this.render())
-    );
-    this.render();
-  }
-  render() {
-    const el = this.containerEl.children[1];
-    el.empty();
-    const state = this.store.getState();
-    if (this.store.isLoading()) {
-      el.createSpan({ text: "loading...", cls: "docs-loading" });
-      return;
-    }
-    const docs = state.documents.filter((d) => d.file.name !== "README.md");
-    const approved = docs.filter((d) => d.status === "approved" /* APPROVED */).length;
-    const pending = docs.filter((d) => d.status === "review" /* REVIEW */).length;
-    const docPaths = new Set(docs.map((d) => d.file.path));
-    const issues = state.issues.filter((i) => docPaths.has(i.file.path));
-    const errors = issues.filter((i) => i.severity === "error").length;
-    const warnings = issues.filter((i) => i.severity === "warning").length;
-    const statsLine = el.createDiv({ cls: "docs-stats-line" });
-    statsLine.createSpan({ text: `${approved}/${docs.length}`, cls: "docs-stat-main" });
-    statsLine.createSpan({ text: " approved", cls: "docs-stat-label" });
-    if (pending > 0) {
-      const pendingLine = el.createDiv({ cls: "docs-pending-line" });
-      pendingLine.createSpan({ text: `${pending} pending`, cls: "docs-pending-count" });
-      const reviewBtn = pendingLine.createEl("button", { text: "Review", cls: "docs-review-btn" });
-      reviewBtn.onclick = () => this.onStartReview();
-    }
-    if (errors > 0 || warnings > 0) {
-      const issuesLine = el.createDiv({ cls: "docs-issues-line" });
-      const parts = [];
-      if (errors > 0)
-        parts.push(`${errors} errors`);
-      if (warnings > 0)
-        parts.push(`${warnings} warnings`);
-      const summary = issuesLine.createSpan({ text: parts.join(" \xB7 "), cls: "docs-issues-summary" });
-      summary.onclick = () => {
-        this.expanded = !this.expanded;
-        this.render();
-      };
-      if (this.expanded && issues.length > 0) {
-        const list = el.createDiv({ cls: "docs-issues-list" });
-        for (const issue of issues.slice(0, 20)) {
-          const row = list.createDiv({ cls: "docs-issue-row" });
-          row.textContent = `${issue.icon} ${issue.file.basename}: ${issue.message}`;
-          row.onclick = () => this.openIssue(issue);
-        }
-        if (issues.length > 20) {
-          list.createDiv({ text: `+${issues.length - 20} more`, cls: "docs-more" });
-        }
-      }
-    }
-  }
-  async openIssue(issue) {
-    var _a;
-    const leaf = this.app.workspace.getLeaf(false);
-    await leaf.openFile(issue.file);
-    if (issue.line) {
-      const editor = (_a = leaf.view) == null ? void 0 : _a.editor;
-      if (editor)
-        editor.setCursor({ line: issue.line - 1, ch: 0 });
-    }
-  }
-};
-
-// src/views/ReviewView.ts
-var import_obsidian9 = require("obsidian");
-init_types();
-var REVIEW_VIEW_TYPE = "docs-toolkit-review";
-var ReviewView = class extends import_obsidian9.ItemView {
+var CURATION_PANEL_VIEW_TYPE = "docs-toolkit-curation";
+var CurationPanelView = class extends import_obsidian8.ItemView {
   constructor(leaf, store, metadataService) {
     super(leaf);
-    this.index = 0;
+    // Current position in queue
+    this.currentIndex = 0;
+    // Expanded sections
+    this.issuesExpanded = false;
     this.store = store;
     this.metadataService = metadataService;
   }
   getViewType() {
-    return REVIEW_VIEW_TYPE;
+    return CURATION_PANEL_VIEW_TYPE;
   }
   getDisplayText() {
-    return "Review";
+    return "Curation";
   }
   getIcon() {
     return "check-square";
   }
   async onOpen() {
-    this.containerEl.children[1].addClass("docs-rv");
+    this.containerEl.children[1].addClass("docs-curation-panel");
     this.registerEvent(
       // @ts-ignore - Events class is compatible
       this.store.on("state-changed", () => this.render())
     );
+    this.registerEvent(
+      this.app.workspace.on("active-leaf-change", () => this.syncWithActiveFile())
+    );
     this.registerDomEvent(document, "keydown", this.onKey.bind(this));
     this.render();
   }
+  /**
+   * Get the review queue (pending files)
+   */
   getQueue() {
     return this.store.getReviewQueue();
   }
+  /**
+   * Get current file being reviewed
+   */
+  getCurrentFile() {
+    const queue = this.getQueue();
+    if (queue.length === 0)
+      return null;
+    if (this.currentIndex >= queue.length)
+      this.currentIndex = queue.length - 1;
+    if (this.currentIndex < 0)
+      this.currentIndex = 0;
+    return queue[this.currentIndex];
+  }
+  /**
+   * Sync panel with currently active file in editor
+   */
+  syncWithActiveFile() {
+    const activeFile = this.app.workspace.getActiveFile();
+    if (!activeFile)
+      return;
+    const queue = this.getQueue();
+    const index = queue.findIndex((f) => f.path === activeFile.path);
+    if (index !== -1 && index !== this.currentIndex) {
+      this.currentIndex = index;
+      this.render();
+    }
+  }
+  /**
+   * Main render function
+   */
   render() {
     const el = this.containerEl.children[1];
     el.empty();
-    const queue = this.getQueue();
-    if (queue.length === 0) {
-      const empty = el.createDiv({ cls: "docs-rv-empty" });
-      empty.createEl("div", { text: "\u2713", cls: "docs-rv-done-icon" });
-      empty.createEl("div", { text: "All done", cls: "docs-rv-done-text" });
+    const state = this.store.getState();
+    if (this.store.isLoading()) {
+      el.createDiv({ text: "Loading...", cls: "docs-cp-loading" });
       return;
     }
-    if (this.index >= queue.length)
-      this.index = queue.length - 1;
-    if (this.index < 0)
-      this.index = 0;
-    const file = queue[this.index];
-    const doc = this.store.getDocument(file.path);
-    const issues = this.store.getIssuesForFile(file.path);
-    const header = el.createDiv({ cls: "docs-rv-header" });
-    header.createSpan({ text: `${this.index + 1}/${queue.length}`, cls: "docs-rv-counter" });
-    header.createSpan({ text: "  " });
-    header.createSpan({ text: (doc == null ? void 0 : doc.id) || file.basename, cls: "docs-rv-id" });
-    if (issues.length > 0) {
-      const issuesEl = el.createDiv({ cls: "docs-rv-issues" });
-      issuesEl.createDiv({ text: `${issues.length} issue${issues.length > 1 ? "s" : ""}:`, cls: "docs-rv-issues-title" });
-      for (const issue of issues.slice(0, 5)) {
-        issuesEl.createDiv({ text: `\xB7 ${issue.message}`, cls: "docs-rv-issue" });
-      }
-      if (issues.length > 5) {
-        issuesEl.createDiv({ text: `+${issues.length - 5} more`, cls: "docs-rv-more" });
-      }
+    const docs = state.documents.filter((d) => d.file.name !== "README.md");
+    const approved = docs.filter((d) => d.status === "approved" /* APPROVED */).length;
+    const rejected = docs.filter((d) => d.status === "rejected" /* REJECTED */).length;
+    const pending = docs.filter((d) => d.status === "review" /* REVIEW */).length;
+    const total = docs.length;
+    this.renderProgress(el, { approved, rejected, pending, total });
+    const queue = this.getQueue();
+    const currentFile = this.getCurrentFile();
+    if (queue.length === 0) {
+      this.renderAllDone(el);
+      return;
     }
-    if (doc && !doc.frontmatter) {
-      const initBtn = el.createEl("button", {
-        text: "init yaml",
-        cls: "docs-rv-init"
+    if (currentFile) {
+      this.renderCurrentFile(el, currentFile, queue.length);
+    }
+    this.renderActions(el, currentFile, queue.length);
+  }
+  /**
+   * Render progress section
+   */
+  renderProgress(el, stats) {
+    const section = el.createDiv({ cls: "docs-cp-section docs-cp-progress" });
+    const mainLine = section.createDiv({ cls: "docs-cp-main-stat" });
+    mainLine.createSpan({ text: `${stats.approved}`, cls: "docs-cp-stat-num docs-cp-approved" });
+    mainLine.createSpan({ text: `/${stats.total}`, cls: "docs-cp-stat-total" });
+    mainLine.createSpan({ text: " approved", cls: "docs-cp-stat-label" });
+    const secondaryLine = section.createDiv({ cls: "docs-cp-secondary-stats" });
+    if (stats.pending > 0) {
+      secondaryLine.createSpan({ text: `${stats.pending} pending`, cls: "docs-cp-pending" });
+    }
+    if (stats.rejected > 0) {
+      if (stats.pending > 0)
+        secondaryLine.createSpan({ text: " \xB7 " });
+      secondaryLine.createSpan({ text: `${stats.rejected} rejected`, cls: "docs-cp-rejected" });
+    }
+    const progressBar = section.createDiv({ cls: "docs-cp-progress-bar" });
+    const percentage = stats.total > 0 ? stats.approved / stats.total * 100 : 0;
+    const fill = progressBar.createDiv({ cls: "docs-cp-progress-fill" });
+    fill.style.width = `${percentage}%`;
+  }
+  /**
+   * Render all done state
+   */
+  renderAllDone(el) {
+    const section = el.createDiv({ cls: "docs-cp-section docs-cp-done" });
+    section.createDiv({ text: "\u2713", cls: "docs-cp-done-icon" });
+    section.createDiv({ text: "All done!", cls: "docs-cp-done-text" });
+    section.createDiv({ text: "No pending files to review", cls: "docs-cp-done-sub" });
+  }
+  /**
+   * Render current file section
+   */
+  renderCurrentFile(el, file, queueLength) {
+    const section = el.createDiv({ cls: "docs-cp-section docs-cp-current" });
+    const header = section.createDiv({ cls: "docs-cp-current-header" });
+    header.createSpan({ text: `${this.currentIndex + 1}/${queueLength}`, cls: "docs-cp-counter" });
+    const doc = this.store.getDocument(file.path);
+    const fileName = section.createDiv({ cls: "docs-cp-filename" });
+    fileName.createSpan({ text: (doc == null ? void 0 : doc.id) || file.basename, cls: "docs-cp-file-id" });
+    const pathParts = file.path.split("/");
+    if (pathParts.length > 2) {
+      const shortPath = pathParts.slice(0, -1).join("/");
+      section.createDiv({ text: shortPath, cls: "docs-cp-filepath" });
+    }
+    const meta = section.createDiv({ cls: "docs-cp-meta" });
+    if (doc == null ? void 0 : doc.frontmatter) {
+      const fm = doc.frontmatter;
+      const statusBadge = meta.createSpan({
+        text: fm.status || "review",
+        cls: `docs-cp-status-badge docs-cp-status-${fm.status || "review"}`
       });
+      if (fm.updated) {
+        meta.createSpan({ text: ` \xB7 ${fm.updated}`, cls: "docs-cp-updated" });
+      }
+      if (fm.description) {
+        section.createDiv({ text: fm.description, cls: "docs-cp-description" });
+      }
+    } else {
+      const warning = section.createDiv({ cls: "docs-cp-warning" });
+      warning.createSpan({ text: "\u26A0 No YAML frontmatter" });
+      const initBtn = warning.createEl("button", { text: "init", cls: "docs-cp-init-btn" });
       initBtn.onclick = () => this.initYaml(file);
     }
-    const actions = el.createDiv({ cls: "docs-rv-actions" });
-    const prevBtn = actions.createEl("button", { text: "\u2190", cls: "docs-rv-btn" });
-    prevBtn.disabled = this.index === 0;
-    prevBtn.onclick = () => this.prev();
-    const rejectBtn = actions.createEl("button", { text: "\u2717", cls: "docs-rv-btn docs-rv-reject" });
-    rejectBtn.onclick = () => this.reject(file);
-    const approveBtn = actions.createEl("button", { text: "\u2713", cls: "docs-rv-btn docs-rv-approve" });
-    approveBtn.onclick = () => this.approve(file);
-    const nextBtn = actions.createEl("button", { text: "\u2192", cls: "docs-rv-btn" });
-    nextBtn.disabled = this.index >= queue.length - 1;
-    nextBtn.onclick = () => this.next();
-    const openBtn = actions.createEl("button", { text: "open", cls: "docs-rv-btn docs-rv-open" });
-    openBtn.onclick = () => this.openInEditor(file);
+    const issues = this.store.getIssuesForFile(file.path);
+    if (issues.length > 0) {
+      const issuesSection = section.createDiv({ cls: "docs-cp-issues" });
+      const issuesHeader = issuesSection.createDiv({ cls: "docs-cp-issues-header" });
+      issuesHeader.createSpan({ text: `\u26A0 ${issues.length} issue${issues.length > 1 ? "s" : ""}` });
+      issuesHeader.onclick = () => {
+        this.issuesExpanded = !this.issuesExpanded;
+        this.render();
+      };
+      if (this.issuesExpanded) {
+        const issuesList = issuesSection.createDiv({ cls: "docs-cp-issues-list" });
+        for (const issue of issues.slice(0, 5)) {
+          issuesList.createDiv({ text: `\xB7 ${issue.message}`, cls: "docs-cp-issue" });
+        }
+        if (issues.length > 5) {
+          issuesList.createDiv({ text: `+${issues.length - 5} more`, cls: "docs-cp-more" });
+        }
+      }
+    }
   }
+  /**
+   * Render actions section
+   */
+  renderActions(el, file, queueLength) {
+    const section = el.createDiv({ cls: "docs-cp-section docs-cp-actions" });
+    const doc = file ? this.store.getDocument(file.path) : null;
+    const currentStatus = doc == null ? void 0 : doc.status;
+    const row = section.createDiv({ cls: "docs-cp-actions-row" });
+    const prevBtn = row.createEl("button", { text: "\u2190", cls: "docs-cp-btn docs-cp-nav" });
+    prevBtn.disabled = this.currentIndex === 0;
+    prevBtn.title = "Previous (\u2190)";
+    prevBtn.onclick = () => this.navigate(-1);
+    const rejectBtn = row.createEl("button", { text: "\u2717", cls: "docs-cp-btn docs-cp-reject-btn" });
+    rejectBtn.disabled = !file || currentStatus === "rejected" /* REJECTED */;
+    rejectBtn.title = "Reject (R)";
+    rejectBtn.onclick = () => file && this.reject(file);
+    const reviewBtn = row.createEl("button", { text: "\u25CB", cls: "docs-cp-btn docs-cp-review-btn" });
+    reviewBtn.disabled = !file || currentStatus === "review" /* REVIEW */;
+    reviewBtn.title = "Back to Review (V)";
+    reviewBtn.onclick = () => file && this.setReview(file);
+    const approveBtn = row.createEl("button", { text: "\u2713", cls: "docs-cp-btn docs-cp-approve-btn" });
+    approveBtn.disabled = !file || currentStatus === "approved" /* APPROVED */;
+    approveBtn.title = "Approve (A)";
+    approveBtn.onclick = () => file && this.approve(file);
+    const nextBtn = row.createEl("button", { text: "\u2192", cls: "docs-cp-btn docs-cp-nav" });
+    nextBtn.disabled = this.currentIndex >= queueLength - 1;
+    nextBtn.title = "Next (\u2192)";
+    nextBtn.onclick = () => this.navigate(1);
+    const hints = section.createDiv({ cls: "docs-cp-hints" });
+    hints.createSpan({ text: "\u2190 \u2192 nav \xB7 A approve \xB7 V review \xB7 R reject" });
+  }
+  // === ACTIONS ===
+  /**
+   * Navigate to previous/next file
+   */
+  async navigate(delta) {
+    const queue = this.getQueue();
+    const newIndex = this.currentIndex + delta;
+    if (newIndex < 0 || newIndex >= queue.length)
+      return;
+    this.currentIndex = newIndex;
+    await this.openCurrentFile();
+    this.render();
+  }
+  /**
+   * Approve current file (clears rejection reason)
+   */
   async approve(file) {
     await this.store.setStatus(file, "approved" /* APPROVED */);
   }
-  async reject(file) {
-    await this.store.setStatus(file, "rejected" /* REJECTED */);
+  /**
+   * Reject current file (prompts for reason)
+   */
+  reject(file) {
+    new RejectModal(this.app, async (reason) => {
+      await this.store.setStatus(file, "rejected" /* REJECTED */, reason);
+    }).open();
   }
-  next() {
-    const queue = this.getQueue();
-    if (this.index < queue.length - 1) {
-      this.index++;
-      this.render();
-    }
+  /**
+   * Set file back to review status (clears rejection reason)
+   */
+  async setReview(file) {
+    await this.store.setStatus(file, "review" /* REVIEW */);
   }
-  prev() {
-    if (this.index > 0) {
-      this.index--;
-      this.render();
-    }
-  }
-  async openInEditor(file) {
-    const leaf = this.app.workspace.getLeaf(false);
-    await leaf.openFile(file);
-  }
+  /**
+   * Initialize YAML frontmatter
+   */
   async initYaml(file) {
     await this.metadataService.initFrontmatter(file);
   }
+  /**
+   * Open current file in main editor area
+   */
+  async openCurrentFile() {
+    const file = this.getCurrentFile();
+    if (!file)
+      return;
+    const leaf = this.app.workspace.getLeaf(false);
+    await leaf.openFile(file);
+  }
+  /**
+   * Keyboard handler
+   */
   onKey(e) {
     if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement)
       return;
-    const queue = this.getQueue();
-    if (queue.length === 0)
+    if (e.ctrlKey || e.metaKey || e.altKey)
       return;
-    const file = queue[this.index];
-    if (!file)
+    const file = this.getCurrentFile();
+    switch (e.key) {
+      case "ArrowLeft":
+        e.preventDefault();
+        this.navigate(-1);
+        break;
+      case "ArrowRight":
+        e.preventDefault();
+        this.navigate(1);
+        break;
+      case "a":
+      case "A":
+        if (file) {
+          e.preventDefault();
+          this.approve(file);
+        }
+        break;
+      case "r":
+      case "R":
+        if (file) {
+          e.preventDefault();
+          this.reject(file);
+        }
+        break;
+      case "v":
+      case "V":
+        if (file) {
+          e.preventDefault();
+          this.setReview(file);
+        }
+        break;
+    }
+  }
+};
+var RejectModal = class extends import_obsidian8.Modal {
+  constructor(app, onSubmit) {
+    super(app);
+    this.reason = "";
+    this.onSubmit = onSubmit;
+  }
+  onOpen() {
+    const { contentEl, modalEl } = this;
+    modalEl.addClass("docs-reject-modal");
+    const label = contentEl.createEl("label", { text: "Motivo da rejei\xE7\xE3o" });
+    label.style.fontSize = "12px";
+    label.style.color = "var(--text-muted)";
+    label.style.marginBottom = "6px";
+    label.style.display = "block";
+    const textArea = new import_obsidian8.TextAreaComponent(contentEl);
+    textArea.setPlaceholder("O que precisa ser corrigido?");
+    textArea.inputEl.style.width = "100%";
+    textArea.inputEl.style.height = "80px";
+    textArea.inputEl.style.resize = "none";
+    textArea.onChange((value) => {
+      this.reason = value;
+    });
+    setTimeout(() => textArea.inputEl.focus(), 10);
+    const footer = contentEl.createDiv();
+    footer.style.display = "flex";
+    footer.style.justifyContent = "space-between";
+    footer.style.alignItems = "center";
+    footer.style.marginTop = "8px";
+    const hint = footer.createSpan({ text: "Ctrl+Enter para confirmar" });
+    hint.style.fontSize = "11px";
+    hint.style.color = "var(--text-faint)";
+    const submitBtn = footer.createEl("button", { text: "Rejeitar", cls: "mod-warning" });
+    submitBtn.style.padding = "4px 12px";
+    submitBtn.onclick = () => this.submit();
+    textArea.inputEl.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        this.submit();
+      }
+      if (e.key === "Escape") {
+        this.close();
+      }
+    });
+  }
+  submit() {
+    if (this.reason.trim()) {
+      this.onSubmit(this.reason.trim());
+      this.close();
+    }
+  }
+  onClose() {
+    this.contentEl.empty();
+  }
+};
+
+// src/views/IssuesPanelView.ts
+var import_obsidian9 = require("obsidian");
+var ISSUES_PANEL_VIEW_TYPE = "docs-toolkit-issues";
+var IssuesPanelView = class extends import_obsidian9.ItemView {
+  constructor(leaf, store) {
+    super(leaf);
+    this.filterMode = "all";
+    this.groupMode = "file";
+    this.collapsedFiles = /* @__PURE__ */ new Set();
+    this.store = store;
+  }
+  getViewType() {
+    return ISSUES_PANEL_VIEW_TYPE;
+  }
+  getDisplayText() {
+    return "Problems";
+  }
+  getIcon() {
+    return "alert-triangle";
+  }
+  async onOpen() {
+    this.containerEl.children[1].addClass("docs-issues-panel");
+    this.registerEvent(
+      // @ts-ignore
+      this.store.on("state-changed", () => this.render())
+    );
+    this.render();
+  }
+  /**
+   * Get filtered issues based on current filter mode
+   */
+  getFilteredIssues() {
+    const state = this.store.getState();
+    let issues = [...state.issues];
+    if (this.filterMode === "errors") {
+      issues = issues.filter((i) => i.severity === "error" /* ERROR */);
+    } else if (this.filterMode === "warnings") {
+      issues = issues.filter((i) => i.severity === "warning" /* WARNING */);
+    }
+    issues.sort(Issue.compare);
+    return issues;
+  }
+  /**
+   * Group issues by file
+   */
+  groupByFile(issues) {
+    const grouped = /* @__PURE__ */ new Map();
+    for (const issue of issues) {
+      const path = issue.file.path;
+      if (!grouped.has(path)) {
+        grouped.set(path, []);
+      }
+      grouped.get(path).push(issue);
+    }
+    return grouped;
+  }
+  /**
+   * Main render function
+   */
+  render() {
+    const el = this.containerEl.children[1];
+    el.empty();
+    const state = this.store.getState();
+    const allIssues = state.issues;
+    const filteredIssues = this.getFilteredIssues();
+    const errorCount = allIssues.filter((i) => i.severity === "error" /* ERROR */).length;
+    const warningCount = allIssues.filter((i) => i.severity === "warning" /* WARNING */).length;
+    const infoCount = allIssues.filter((i) => i.severity === "info" /* INFO */).length;
+    this.renderToolbar(el, { errorCount, warningCount, infoCount, total: filteredIssues.length });
+    if (filteredIssues.length === 0) {
+      this.renderEmpty(el);
       return;
-    if (e.key === "ArrowLeft")
-      this.prev();
-    else if (e.key === "ArrowRight")
-      this.next();
-    else if (e.key.toLowerCase() === "a" && !e.ctrlKey)
-      this.approve(file);
-    else if (e.key.toLowerCase() === "r" && !e.ctrlKey)
-      this.reject(file);
+    }
+    if (this.groupMode === "file") {
+      this.renderGroupedByFile(el, filteredIssues);
+    } else {
+      this.renderFlat(el, filteredIssues);
+    }
+  }
+  /**
+   * Render toolbar with filters and counts
+   */
+  renderToolbar(el, counts) {
+    const toolbar = el.createDiv({ cls: "docs-ip-toolbar" });
+    const filters = toolbar.createDiv({ cls: "docs-ip-filters" });
+    const allBtn = filters.createEl("button", {
+      cls: `docs-ip-filter-btn ${this.filterMode === "all" ? "active" : ""}`
+    });
+    allBtn.innerHTML = `<span class="docs-ip-filter-icon">\u2299</span> All`;
+    allBtn.onclick = () => {
+      this.filterMode = "all";
+      this.render();
+    };
+    const errBtn = filters.createEl("button", {
+      cls: `docs-ip-filter-btn docs-ip-filter-error ${this.filterMode === "errors" ? "active" : ""}`
+    });
+    errBtn.innerHTML = `<span class="docs-ip-icon-error">\u2717</span> ${counts.errorCount}`;
+    errBtn.onclick = () => {
+      this.filterMode = "errors";
+      this.render();
+    };
+    const warnBtn = filters.createEl("button", {
+      cls: `docs-ip-filter-btn docs-ip-filter-warning ${this.filterMode === "warnings" ? "active" : ""}`
+    });
+    warnBtn.innerHTML = `<span class="docs-ip-icon-warning">\u26A0</span> ${counts.warningCount}`;
+    warnBtn.onclick = () => {
+      this.filterMode = "warnings";
+      this.render();
+    };
+    const actions = toolbar.createDiv({ cls: "docs-ip-actions" });
+    const groupBtn = actions.createEl("button", {
+      cls: "docs-ip-group-btn",
+      attr: { title: this.groupMode === "file" ? "Group by file" : "Flat list" }
+    });
+    groupBtn.innerHTML = this.groupMode === "file" ? "\u{1F4C1}" : "\u2261";
+    groupBtn.onclick = () => {
+      this.groupMode = this.groupMode === "file" ? "flat" : "file";
+      this.render();
+    };
+    if (this.groupMode === "file") {
+      const collapseBtn = actions.createEl("button", {
+        cls: "docs-ip-collapse-btn",
+        attr: { title: "Collapse all" }
+      });
+      collapseBtn.innerHTML = "\u229F";
+      collapseBtn.onclick = () => {
+        const grouped = this.groupByFile(this.getFilteredIssues());
+        for (const path of grouped.keys()) {
+          this.collapsedFiles.add(path);
+        }
+        this.render();
+      };
+      const expandBtn = actions.createEl("button", {
+        cls: "docs-ip-expand-btn",
+        attr: { title: "Expand all" }
+      });
+      expandBtn.innerHTML = "\u229E";
+      expandBtn.onclick = () => {
+        this.collapsedFiles.clear();
+        this.render();
+      };
+    }
+  }
+  /**
+   * Render empty state
+   */
+  renderEmpty(el) {
+    const empty = el.createDiv({ cls: "docs-ip-empty" });
+    empty.createDiv({ text: "\u2713", cls: "docs-ip-empty-icon" });
+    empty.createDiv({ text: "No problems", cls: "docs-ip-empty-text" });
+  }
+  /**
+   * Render issues grouped by file
+   */
+  renderGroupedByFile(el, issues) {
+    const list = el.createDiv({ cls: "docs-ip-list" });
+    const grouped = this.groupByFile(issues);
+    for (const [path, fileIssues] of grouped) {
+      const file = fileIssues[0].file;
+      const isCollapsed = this.collapsedFiles.has(path);
+      const fileHeader = list.createDiv({ cls: "docs-ip-file-header" });
+      const toggle = fileHeader.createSpan({ cls: "docs-ip-toggle" });
+      toggle.innerHTML = isCollapsed ? "\u25B6" : "\u25BC";
+      fileHeader.createSpan({ text: "\u{1F4C4}", cls: "docs-ip-file-icon" });
+      const fileName = fileHeader.createSpan({ cls: "docs-ip-file-name" });
+      fileName.textContent = file.basename;
+      const filePath = fileHeader.createSpan({ cls: "docs-ip-file-path" });
+      const pathParts = path.split("/");
+      if (pathParts.length > 2) {
+        filePath.textContent = pathParts.slice(0, -1).join("/");
+      }
+      const errCount = fileIssues.filter((i) => i.severity === "error" /* ERROR */).length;
+      const warnCount = fileIssues.filter((i) => i.severity === "warning" /* WARNING */).length;
+      const badges = fileHeader.createSpan({ cls: "docs-ip-file-badges" });
+      if (errCount > 0) {
+        badges.createSpan({ text: `${errCount}`, cls: "docs-ip-badge docs-ip-badge-error" });
+      }
+      if (warnCount > 0) {
+        badges.createSpan({ text: `${warnCount}`, cls: "docs-ip-badge docs-ip-badge-warning" });
+      }
+      fileHeader.onclick = () => {
+        if (isCollapsed) {
+          this.collapsedFiles.delete(path);
+        } else {
+          this.collapsedFiles.add(path);
+        }
+        this.render();
+      };
+      if (!isCollapsed) {
+        const issuesContainer = list.createDiv({ cls: "docs-ip-file-issues" });
+        for (const issue of fileIssues) {
+          this.renderIssueRow(issuesContainer, issue, false);
+        }
+      }
+    }
+  }
+  /**
+   * Render flat list of issues
+   */
+  renderFlat(el, issues) {
+    const list = el.createDiv({ cls: "docs-ip-list docs-ip-flat" });
+    for (const issue of issues) {
+      this.renderIssueRow(list, issue, true);
+    }
+  }
+  /**
+   * Render a single issue row
+   */
+  renderIssueRow(container, issue, showFile) {
+    const row = container.createDiv({ cls: `docs-ip-row docs-ip-${issue.severity}` });
+    const icon = row.createSpan({ cls: "docs-ip-row-icon" });
+    icon.innerHTML = issue.icon;
+    const message = row.createSpan({ cls: "docs-ip-row-message" });
+    message.textContent = issue.message;
+    const source = row.createSpan({ cls: "docs-ip-row-source" });
+    if (showFile) {
+      source.createSpan({ text: issue.file.basename, cls: "docs-ip-row-file" });
+    }
+    if (issue.line) {
+      source.createSpan({ text: `:${issue.line}`, cls: "docs-ip-row-line" });
+    }
+    const tag = row.createSpan({ cls: "docs-ip-row-tag" });
+    tag.textContent = issue.validator;
+    row.onclick = () => this.navigateToIssue(issue);
+  }
+  /**
+   * Navigate to the file/line of an issue
+   */
+  async navigateToIssue(issue) {
+    var _a;
+    const leaf = this.app.workspace.getLeaf(false);
+    await leaf.openFile(issue.file);
+    if (issue.line) {
+      const editor = (_a = leaf.view) == null ? void 0 : _a.editor;
+      if (editor) {
+        editor.setCursor({ line: issue.line - 1, ch: 0 });
+        editor.scrollIntoView({ from: { line: issue.line - 1, ch: 0 }, to: { line: issue.line - 1, ch: 0 } }, true);
+      }
+    }
   }
 };
 
@@ -2203,9 +2566,13 @@ var SyncIndexCommand = class {
 };
 
 // main.ts
-init_types();
 var DOCS_ICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M9 15l2 2 4-4"></path></svg>`;
 var DocsToolkitPlugin = class extends import_obsidian13.Plugin {
+  constructor() {
+    super(...arguments);
+    // Reference to curation panel
+    this.curationPanel = null;
+  }
   async onload() {
     console.log("Loading Docs Toolkit Plugin");
     await this.loadSettings();
@@ -2222,23 +2589,27 @@ var DocsToolkitPlugin = class extends import_obsidian13.Plugin {
     this.migrateFooterCommand = new MigrateFooterCommand(this.app, this.migrationService);
     this.syncIndexCommand = new SyncIndexCommand(this.app, this.indexService);
     this.registerView(
-      DASHBOARD_VIEW_TYPE,
-      (leaf) => new DashboardView(leaf, this.store, () => this.activateReview())
+      CURATION_PANEL_VIEW_TYPE,
+      (leaf) => {
+        this.curationPanel = new CurationPanelView(leaf, this.store, this.metadataService);
+        return this.curationPanel;
+      }
     );
     this.registerView(
-      REVIEW_VIEW_TYPE,
-      (leaf) => new ReviewView(leaf, this.store, this.metadataService)
+      ISSUES_PANEL_VIEW_TYPE,
+      (leaf) => new IssuesPanelView(leaf, this.store)
     );
     this.registerCommands();
     this.registerVaultEvents();
+    this.registerFolderContextMenu();
     this.store.on("state-changed", () => this.updateStatusBar());
     this.statusBarItem = this.addStatusBarItem();
     this.statusBarItem.setText("Docs: Loading...");
     this.statusBarItem.addClass("docs-toolkit-status-bar");
-    this.statusBarItem.onclick = () => this.activateDashboard();
+    this.statusBarItem.onclick = () => this.activateCurationPanel();
     this.addSettingTab(new DocsToolkitSettingTab(this.app, this));
-    this.addRibbonIcon("docs-icon", "Open Docs Toolkit Dashboard", () => {
-      this.activateDashboard();
+    this.addRibbonIcon("docs-icon", "Open Curation Panel", () => {
+      this.activateCurationPanel();
     });
     this.app.workspace.onLayoutReady(() => {
       this.store.loadAll();
@@ -2268,13 +2639,13 @@ var DocsToolkitPlugin = class extends import_obsidian13.Plugin {
     });
     this.addCommand({
       id: "approve",
-      name: "Approve",
+      name: "Approve Current File",
       hotkeys: [{ modifiers: ["Ctrl", "Shift"], key: "a" }],
       callback: () => this.approveCurrentFile()
     });
     this.addCommand({
       id: "reject",
-      name: "Reject",
+      name: "Reject Current File",
       hotkeys: [{ modifiers: ["Ctrl", "Shift"], key: "r" }],
       callback: () => this.rejectCurrentFile()
     });
@@ -2289,14 +2660,14 @@ var DocsToolkitPlugin = class extends import_obsidian13.Plugin {
       callback: () => this.syncIndexCommand.executeAll()
     });
     this.addCommand({
-      id: "open-dashboard",
-      name: "Open Dashboard",
-      callback: () => this.activateDashboard()
+      id: "open-curation-panel",
+      name: "Open Curation Panel",
+      callback: () => this.activateCurationPanel()
     });
     this.addCommand({
-      id: "open-review",
-      name: "Open Review Mode",
-      callback: () => this.activateReview()
+      id: "open-issues-panel",
+      name: "Open Issues Panel",
+      callback: () => this.activateIssuesPanel()
     });
   }
   /**
@@ -2380,13 +2751,64 @@ var DocsToolkitPlugin = class extends import_obsidian13.Plugin {
     );
   }
   /**
+   * Register context menu for folders
+   */
+  registerFolderContextMenu() {
+    this.registerEvent(
+      this.app.workspace.on("file-menu", (menu, file) => {
+        if (!(file instanceof import_obsidian13.TFolder))
+          return;
+        if (!Document.isInCARFPath(file.path))
+          return;
+        menu.addSeparator();
+        menu.addItem((item) => {
+          item.setTitle("Set all as Review").setIcon("refresh-cw").onClick(async () => {
+            await this.setFolderStatus(file, "review" /* REVIEW */);
+          });
+        });
+        menu.addItem((item) => {
+          item.setTitle("Set all as Approved").setIcon("check").onClick(async () => {
+            await this.setFolderStatus(file, "approved" /* APPROVED */);
+          });
+        });
+      })
+    );
+  }
+  /**
+   * Set status for all files in a folder
+   */
+  async setFolderStatus(folder, status) {
+    const files = this.getFilesInFolder(folder);
+    let count = 0;
+    for (const file of files) {
+      if (file.name === "README.md")
+        continue;
+      await this.store.setStatus(file, status);
+      count++;
+    }
+    new import_obsidian13.Notice(`${count} files set to ${status}`);
+  }
+  /**
+   * Get all markdown files in a folder (recursive)
+   */
+  getFilesInFolder(folder) {
+    const files = [];
+    for (const child of folder.children) {
+      if (child instanceof import_obsidian13.TFile && child.extension === "md") {
+        files.push(child);
+      } else if (child instanceof import_obsidian13.TFolder) {
+        files.push(...this.getFilesInFolder(child));
+      }
+    }
+    return files;
+  }
+  /**
    * Update status bar with current stats
    */
   updateStatusBar() {
     const state = this.store.getState();
     const docs = state.documents.filter((d) => d.file.name !== "README.md");
     const approved = docs.filter((d) => d.status === "approved" /* APPROVED */).length;
-    const rejected = docs.filter((d) => d.status === "rejected" /* REJECTED */).length;
     const review = docs.filter((d) => d.status === "review" /* REVIEW */).length;
     const issues = state.summary.errors + state.summary.warnings;
     this.statusBarItem.setText(
@@ -2412,19 +2834,19 @@ var DocsToolkitPlugin = class extends import_obsidian13.Plugin {
     await this.store.setStatus(file, "rejected" /* REJECTED */);
   }
   /**
-   * Activate the dashboard view
+   * Activate the curation panel in the right sidebar
    */
-  async activateDashboard() {
+  async activateCurationPanel() {
     const { workspace } = this.app;
     let leaf = null;
-    const leaves = workspace.getLeavesOfType(DASHBOARD_VIEW_TYPE);
+    const leaves = workspace.getLeavesOfType(CURATION_PANEL_VIEW_TYPE);
     if (leaves.length > 0) {
       leaf = leaves[0];
     } else {
       leaf = workspace.getRightLeaf(false);
       if (leaf) {
         await leaf.setViewState({
-          type: DASHBOARD_VIEW_TYPE,
+          type: CURATION_PANEL_VIEW_TYPE,
           active: true
         });
       }
@@ -2434,19 +2856,19 @@ var DocsToolkitPlugin = class extends import_obsidian13.Plugin {
     }
   }
   /**
-   * Activate the review view
+   * Activate the issues panel (like VS Code's Problems panel)
    */
-  async activateReview() {
+  async activateIssuesPanel() {
     const { workspace } = this.app;
     let leaf = null;
-    const leaves = workspace.getLeavesOfType(REVIEW_VIEW_TYPE);
+    const leaves = workspace.getLeavesOfType(ISSUES_PANEL_VIEW_TYPE);
     if (leaves.length > 0) {
       leaf = leaves[0];
     } else {
-      leaf = workspace.getLeaf(true);
+      leaf = workspace.getLeaf("split", "horizontal");
       if (leaf) {
         await leaf.setViewState({
-          type: REVIEW_VIEW_TYPE,
+          type: ISSUES_PANEL_VIEW_TYPE,
           active: true
         });
       }

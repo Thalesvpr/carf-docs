@@ -1,222 +1,685 @@
-/* Docs Toolkit Plugin - Minimal Styles */
+/* Docs Toolkit Plugin - Curation Panel Styles */
 
-/* Dashboard */
-.docs-dashboard {
+/* ============================================
+   CURATION PANEL
+   ============================================
+   Painel lateral de curadoria contínua.
+   O review acontece olhando o arquivo na área principal
+   e decidindo usando os controles deste painel.
+   ============================================ */
+
+.docs-curation-panel {
   padding: 16px;
   font-size: 13px;
-}
-
-.docs-loading {
-  color: var(--text-faint);
-}
-
-.docs-stats-line {
-  margin-bottom: 8px;
-}
-
-.docs-stat-main {
-  font-weight: 600;
-  font-size: 15px;
-}
-
-.docs-stat-label {
-  color: var(--text-muted);
-}
-
-.docs-pending-line {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;
 }
 
-.docs-pending-count {
-  color: var(--text-muted);
-}
-
-.docs-review-btn {
-  padding: 3px 10px;
-  border: 1px solid var(--text-muted);
-  border-radius: 3px;
-  background: transparent;
-  color: var(--text-muted);
-  font-size: 11px;
-  cursor: pointer;
-}
-
-.docs-review-btn:hover {
-  border-color: var(--text-normal);
-  color: var(--text-normal);
-}
-
-.docs-issues-line {
-  margin-top: 8px;
-}
-
-.docs-issues-summary {
+/* Loading state */
+.docs-cp-loading {
   color: var(--text-faint);
-  font-size: 12px;
-  cursor: pointer;
+  text-align: center;
+  padding: 20px;
 }
 
-.docs-issues-summary:hover {
-  color: var(--text-muted);
-}
+/* ============================================
+   SECTIONS
+   ============================================ */
 
-.docs-issues-list {
-  margin-top: 8px;
-  padding-left: 4px;
-}
-
-.docs-issue-row {
-  padding: 2px 0;
-  font-size: 11px;
-  color: var(--text-muted);
-  cursor: pointer;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.docs-issue-row:hover {
-  color: var(--text-normal);
-}
-
-.docs-more {
-  font-size: 11px;
-  color: var(--text-faint);
-  margin-top: 4px;
-}
-
-/* Review View */
-.docs-rv {
-  padding: 24px;
-  font-size: 14px;
-}
-
-.docs-rv-header {
-  margin-bottom: 16px;
-}
-
-.docs-rv-counter {
-  color: var(--text-muted);
-  font-size: 13px;
-}
-
-.docs-rv-id {
-  font-weight: 600;
-  font-size: 16px;
-}
-
-.docs-rv-issues {
+.docs-cp-section {
+  padding: 12px;
   background: var(--background-secondary);
-  border-radius: 4px;
-  padding: 10px 12px;
-  margin-bottom: 16px;
-  font-size: 12px;
+  border-radius: 6px;
 }
 
-.docs-rv-issues-title {
-  color: var(--text-muted);
+/* ============================================
+   PROGRESS SECTION
+   ============================================ */
+
+.docs-cp-progress {
+  background: transparent;
+  padding: 0;
+}
+
+.docs-cp-main-stat {
   margin-bottom: 4px;
 }
 
-.docs-rv-issue {
+.docs-cp-stat-num {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.docs-cp-approved {
+  color: #4ade80;
+}
+
+.docs-cp-stat-total {
+  font-size: 16px;
+  color: var(--text-muted);
+}
+
+.docs-cp-stat-label {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.docs-cp-secondary-stats {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.docs-cp-pending {
+  color: var(--text-accent);
+}
+
+.docs-cp-rejected {
+  color: #f87171;
+}
+
+/* Progress bar */
+.docs-cp-progress-bar {
+  height: 4px;
+  background: var(--background-modifier-border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.docs-cp-progress-fill {
+  height: 100%;
+  background: #4ade80;
+  transition: width 0.3s ease;
+}
+
+/* ============================================
+   ALL DONE STATE
+   ============================================ */
+
+.docs-cp-done {
+  text-align: center;
+  padding: 32px 16px;
+}
+
+.docs-cp-done-icon {
+  font-size: 32px;
+  color: #4ade80;
+  margin-bottom: 8px;
+}
+
+.docs-cp-done-text {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-normal);
+  margin-bottom: 4px;
+}
+
+.docs-cp-done-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ============================================
+   CURRENT FILE SECTION
+   ============================================ */
+
+.docs-cp-current {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.docs-cp-current-header {
+  margin-bottom: 8px;
+}
+
+.docs-cp-counter {
+  font-size: 11px;
+  color: var(--text-faint);
+  font-family: var(--font-monospace);
+}
+
+.docs-cp-filename {
+  margin-bottom: 4px;
+}
+
+.docs-cp-file-id {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-normal);
+}
+
+.docs-cp-filepath {
+  font-size: 11px;
+  color: var(--text-faint);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 8px;
+}
+
+/* Metadata */
+.docs-cp-meta {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.docs-cp-status-badge {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.docs-cp-status-review {
+  background: rgba(251, 191, 36, 0.2);
+  color: #fbbf24;
+}
+
+.docs-cp-status-approved {
+  background: rgba(74, 222, 128, 0.2);
+  color: #4ade80;
+}
+
+.docs-cp-status-rejected {
+  background: rgba(248, 113, 113, 0.2);
+  color: #f87171;
+}
+
+.docs-cp-updated {
+  color: var(--text-faint);
+}
+
+.docs-cp-description {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+  padding: 8px;
+  background: var(--background-primary);
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+/* Warning (no frontmatter) */
+.docs-cp-warning {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  border-radius: 4px;
+  font-size: 12px;
+  color: #fbbf24;
+  margin-bottom: 8px;
+}
+
+.docs-cp-init-btn {
+  padding: 2px 8px;
+  font-size: 10px;
+  background: transparent;
+  border: 1px solid #fbbf24;
+  border-radius: 3px;
+  color: #fbbf24;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.docs-cp-init-btn:hover {
+  background: rgba(251, 191, 36, 0.2);
+}
+
+/* Issues */
+.docs-cp-issues {
+  background: var(--background-primary);
+  border-radius: 4px;
+  padding: 8px;
+  margin-top: 8px;
+}
+
+.docs-cp-issues-header {
+  font-size: 12px;
+  color: #fbbf24;
+  cursor: pointer;
+}
+
+.docs-cp-issues-header:hover {
+  text-decoration: underline;
+}
+
+.docs-cp-issues-list {
+  margin-top: 6px;
+  font-size: 11px;
+}
+
+.docs-cp-issue {
   color: var(--text-muted);
   padding: 2px 0;
 }
 
-.docs-rv-more {
+.docs-cp-more {
   color: var(--text-faint);
-  font-size: 11px;
-  margin-top: 4px;
+  font-style: italic;
 }
 
-.docs-rv-init {
-  padding: 5px 12px;
-  margin-bottom: 16px;
-  border: 1px dashed var(--text-faint);
-  border-radius: 4px;
+/* ============================================
+   ACTIONS SECTION
+   ============================================ */
+
+.docs-cp-actions {
   background: transparent;
-  color: var(--text-faint);
-  font-size: 11px;
-  cursor: pointer;
+  padding: 0;
 }
 
-.docs-rv-init:hover {
-  border-color: var(--text-muted);
-  color: var(--text-muted);
-}
-
-.docs-rv-actions {
+.docs-cp-actions-row {
   display: flex;
   gap: 8px;
-  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
 }
 
-.docs-rv-btn {
-  padding: 6px 12px;
+.docs-cp-btn {
+  flex: 1;
+  padding: 10px 8px;
   border: 1px solid var(--background-modifier-border);
-  border-radius: 4px;
-  background: transparent;
+  border-radius: 6px;
+  background: var(--background-secondary);
   color: var(--text-muted);
-  font-size: 13px;
+  font-size: 16px;
   cursor: pointer;
-  min-width: 32px;
+  transition: all 0.15s ease;
+  max-width: 60px;
 }
 
-.docs-rv-btn:hover:not(:disabled) {
+.docs-cp-btn:hover:not(:disabled) {
   color: var(--text-normal);
   border-color: var(--text-muted);
+  background: var(--background-secondary-alt);
 }
 
-.docs-rv-btn:disabled {
+.docs-cp-btn:disabled {
   opacity: 0.3;
   cursor: not-allowed;
 }
 
-.docs-rv-approve {
+.docs-cp-nav {
+  background: transparent;
+}
+
+.docs-cp-approve-btn {
   border-color: #4ade80;
   color: #4ade80;
 }
 
-.docs-rv-approve:hover:not(:disabled) {
+.docs-cp-approve-btn:hover:not(:disabled) {
+  background: rgba(74, 222, 128, 0.15);
   border-color: #22c55e;
   color: #22c55e;
 }
 
-.docs-rv-reject {
+.docs-cp-reject-btn {
   border-color: #f87171;
   color: #f87171;
 }
 
-.docs-rv-reject:hover:not(:disabled) {
+.docs-cp-reject-btn:hover:not(:disabled) {
+  background: rgba(248, 113, 113, 0.15);
   border-color: #ef4444;
   color: #ef4444;
 }
 
-.docs-rv-open {
-  margin-left: auto;
-  font-size: 11px;
+.docs-cp-review-btn {
+  border-color: #fbbf24;
+  color: #fbbf24;
 }
 
-.docs-rv-empty {
+.docs-cp-review-btn:hover:not(:disabled) {
+  background: rgba(251, 191, 36, 0.15);
+  border-color: #f59e0b;
+  color: #f59e0b;
+}
+
+/* Skip button */
+.docs-cp-skip-row {
   text-align: center;
-  padding: 40px;
+  margin-bottom: 12px;
+}
+
+.docs-cp-skip-btn {
+  padding: 4px 16px;
+  font-size: 11px;
+  background: transparent;
+  border: 1px dashed var(--background-modifier-border);
+  border-radius: 4px;
+  color: var(--text-faint);
+  cursor: pointer;
+}
+
+.docs-cp-skip-btn:hover:not(:disabled) {
+  color: var(--text-muted);
+  border-color: var(--text-muted);
+}
+
+.docs-cp-skip-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Keyboard hints */
+.docs-cp-hints {
+  text-align: center;
+  font-size: 10px;
+  color: var(--text-faint);
+  font-family: var(--font-monospace);
+}
+
+/* ============================================
+   SESSION SECTION
+   ============================================ */
+
+.docs-cp-session {
+  font-size: 11px;
+  color: var(--text-faint);
+  background: transparent;
+  padding: 8px 0 0 0;
+  border-top: 1px solid var(--background-modifier-border);
+  display: flex;
+  justify-content: space-between;
+}
+
+.docs-cp-session-time {
+  font-family: var(--font-monospace);
+}
+
+/* ============================================
+   STATUS BAR
+   ============================================ */
+
+.docs-toolkit-status-bar {
+  cursor: pointer;
+}
+
+.docs-toolkit-status-bar:hover {
+  text-decoration: underline;
+}
+
+/* ============================================
+   ISSUES PANEL (VS Code-style Problems panel)
+   ============================================
+   Painel de erros e warnings inspirado no
+   painel "Problems" do VS Code.
+   ============================================ */
+
+.docs-issues-panel {
+  padding: 0;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* ============================================
+   TOOLBAR
+   ============================================ */
+
+.docs-ip-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 12px;
+  background: var(--background-secondary);
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.docs-ip-filters {
+  display: flex;
+  gap: 4px;
+}
+
+.docs-ip-filter-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.docs-ip-filter-btn:hover {
+  background: var(--background-modifier-hover);
+  color: var(--text-normal);
+}
+
+.docs-ip-filter-btn.active {
+  background: var(--background-modifier-active-hover);
+  color: var(--text-normal);
+}
+
+.docs-ip-filter-icon {
+  font-size: 12px;
+}
+
+.docs-ip-icon-error {
+  color: #f87171;
+}
+
+.docs-ip-icon-warning {
+  color: #fbbf24;
+}
+
+.docs-ip-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.docs-ip-group-btn,
+.docs-ip-collapse-btn,
+.docs-ip-expand-btn {
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.docs-ip-group-btn:hover,
+.docs-ip-collapse-btn:hover,
+.docs-ip-expand-btn:hover {
+  background: var(--background-modifier-hover);
+  color: var(--text-normal);
+}
+
+/* ============================================
+   EMPTY STATE
+   ============================================ */
+
+.docs-ip-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  color: var(--text-faint);
+}
+
+.docs-ip-empty-icon {
+  font-size: 32px;
+  color: #4ade80;
+  margin-bottom: 8px;
+}
+
+.docs-ip-empty-text {
+  font-size: 14px;
+}
+
+/* ============================================
+   ISSUES LIST
+   ============================================ */
+
+.docs-ip-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* File header (grouped mode) */
+.docs-ip-file-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: var(--background-secondary);
+  cursor: pointer;
+  user-select: none;
+}
+
+.docs-ip-file-header:hover {
+  background: var(--background-modifier-hover);
+}
+
+.docs-ip-toggle {
+  font-size: 10px;
+  color: var(--text-muted);
+  width: 12px;
+}
+
+.docs-ip-file-icon {
+  font-size: 12px;
+}
+
+.docs-ip-file-name {
+  font-weight: 500;
+  color: var(--text-normal);
+}
+
+.docs-ip-file-path {
+  flex: 1;
+  font-size: 11px;
+  color: var(--text-faint);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-left: 8px;
+}
+
+.docs-ip-file-badges {
+  display: flex;
+  gap: 4px;
+}
+
+.docs-ip-badge {
+  padding: 1px 6px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.docs-ip-badge-error {
+  background: rgba(248, 113, 113, 0.2);
+  color: #f87171;
+}
+
+.docs-ip-badge-warning {
+  background: rgba(251, 191, 36, 0.2);
+  color: #fbbf24;
+}
+
+/* Issues under file */
+.docs-ip-file-issues {
+  border-left: 2px solid var(--background-modifier-border);
+  margin-left: 17px;
+}
+
+/* Issue row */
+.docs-ip-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  cursor: pointer;
+  transition: background 0.1s ease;
+}
+
+.docs-ip-row:hover {
+  background: var(--background-modifier-hover);
+}
+
+.docs-ip-row-icon {
+  width: 16px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.docs-ip-error .docs-ip-row-icon {
+  color: #f87171;
+}
+
+.docs-ip-warning .docs-ip-row-icon {
+  color: #fbbf24;
+}
+
+.docs-ip-info .docs-ip-row-icon {
+  color: #60a5fa;
+}
+
+.docs-ip-row-message {
+  flex: 1;
+  color: var(--text-normal);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.docs-ip-row-source {
+  display: flex;
+  gap: 2px;
+  font-size: 11px;
+  color: var(--text-faint);
+  flex-shrink: 0;
+}
+
+.docs-ip-row-file {
   color: var(--text-muted);
 }
 
-.docs-rv-done-icon {
-  font-size: 24px;
-  color: #4ade80;
+.docs-ip-row-line {
+  color: var(--text-faint);
+  font-family: var(--font-monospace);
 }
 
-.docs-rv-done-text {
-  font-size: 12px;
-  margin-top: 8px;
+.docs-ip-row-tag {
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 10px;
+  background: var(--background-secondary);
+  color: var(--text-muted);
+  flex-shrink: 0;
 }
 
-/* Status bar */
-.docs-status-bar {
-  cursor: pointer;
+/* Flat list mode */
+.docs-ip-flat .docs-ip-row {
+  padding-left: 12px;
+}
+
+/* ============================================
+   REJECT MODAL
+   ============================================ */
+
+.docs-reject-modal {
+  width: 400px !important;
+}
+
+.docs-reject-modal .modal-content {
+  padding: 16px;
 }

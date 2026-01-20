@@ -1,7 +1,7 @@
-import { App, Events, TFile, TFolder } from "obsidian";
+import { App, Events, TFile, TFolder, parseYaml } from "obsidian";
 import { Document } from "../models/Document";
 import { Issue, IssueSummary, calculateIssueSummary } from "../models/Issue";
-import { Status } from "../models/types";
+import { Status, DocType, VALID_MODULES, CARFFrontmatter, Module } from "../models/types";
 import { Validator } from "../validators/Validator";
 
 // Import all validators
@@ -88,8 +88,11 @@ export class DocumentStore extends Events {
   }
 
   getReviewQueue(): TFile[] {
+    // Returns ALL documents (not just review status)
+    // List only reacts to file creation/deletion, not status changes
     return Array.from(this.documents.values())
-      .filter(d => d.file.name !== "README.md" && d.status === Status.REVIEW)
+      .filter(d => d.file.name !== "README.md")
+      .sort((a, b) => a.file.path.localeCompare(b.file.path))
       .map(d => d.file);
   }
 
@@ -188,10 +191,13 @@ export class DocumentStore extends Events {
 
   /**
    * Set status for a document. Updates frontmatter and emits 'state-changed'.
+   * @param description - Optional rejection reason (cleared when status is not rejected)
    */
-  async setStatus(file: TFile, status: Status): Promise<void> {
+  async setStatus(file: TFile, status: Status, description?: string): Promise<void> {
     const content = await this.app.vault.read(file);
-    const newContent = this.updateStatusInContent(content, status);
+    // Clear description if not rejected, otherwise set it
+    const desc = status === Status.REJECTED ? description : undefined;
+    const newContent = this.updateStatusInContent(content, status, desc);
     await this.app.vault.modify(file, newContent);
     // updateDocument will be called by vault 'modify' event
   }
@@ -216,37 +222,45 @@ export class DocumentStore extends Events {
     return new Document(file, frontmatter, content, sections, links, title);
   }
 
-  private parseFrontmatter(content: string): import("../models/types").CARFFrontmatter | null {
-    const match = content.match(/^---\n([\s\S]*?)\n---/);
+  private parseFrontmatter(content: string): CARFFrontmatter | null {
+    // Handle both Unix (\n) and Windows (\r\n) line endings
+    const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
     if (!match) return null;
 
     try {
-      const { parseYaml } = require("obsidian");
       const yaml = parseYaml(match[1]);
-      if (!yaml || !yaml.id || !yaml.type || !yaml.status) return null;
+      if (!yaml || !yaml.status) return null;
 
-      const { DocType, Status: S, VALID_MODULES } = require("../models/types");
-      const type = yaml.type.toUpperCase();
-      if (!Object.values(DocType).includes(type)) return null;
-
+      // Validate status
       const status = yaml.status.toLowerCase();
-      if (!Object.values(S).includes(status)) return null;
+      if (!Object.values(Status).includes(status)) return null;
 
-      let modules: import("../models/types").Module[] = [];
+      // Optional: validate type if present
+      let type: DocType | undefined;
+      if (yaml.type) {
+        const upperType = yaml.type.toUpperCase();
+        if (Object.values(DocType).includes(upperType)) {
+          type = upperType;
+        }
+      }
+
+      // Optional: validate modules if present
+      let modules: Module[] | undefined;
       if (Array.isArray(yaml.modules)) {
         modules = yaml.modules
           .map((m: string) => m.toUpperCase())
-          .filter((m: string) => VALID_MODULES.includes(m)) as import("../models/types").Module[];
+          .filter((m: string) => (VALID_MODULES as readonly string[]).includes(m)) as Module[];
       }
 
       return {
-        id: yaml.id,
+        status,
+        updated: yaml.updated || this.formatDate(new Date()),
+        id: yaml.id || undefined,
         type,
         modules,
         epic: yaml.epic || undefined,
-        status,
-        created: yaml.created || this.formatDate(new Date()),
-        updated: yaml.updated || this.formatDate(new Date())
+        created: yaml.created || undefined,
+        description: yaml.description || undefined
       };
     } catch {
       return null;
@@ -331,20 +345,44 @@ export class DocumentStore extends Events {
     return date.toISOString().split("T")[0];
   }
 
-  private updateStatusInContent(content: string, status: Status): string {
+  private updateStatusInContent(content: string, status: Status, description?: string): string {
     const today = this.formatDate(new Date());
 
     // Update status in frontmatter
     let newContent = content.replace(
-      /^(---\n[\s\S]*?status:\s*)\w+/m,
+      /^(---\r?\n[\s\S]*?status:\s*)\w+/m,
       `$1${status}`
     );
 
     // Update 'updated' field
     newContent = newContent.replace(
-      /^(---\n[\s\S]*?updated:\s*)\S+/m,
+      /^(---\r?\n[\s\S]*?updated:\s*)\S+/m,
       `$1${today}`
     );
+
+    // Handle description field (motivo de rejeição)
+    if (description) {
+      // Add or update description
+      if (/^---\r?\n[\s\S]*?description:/m.test(newContent)) {
+        // Update existing
+        newContent = newContent.replace(
+          /^(---\r?\n[\s\S]*?description:\s*).*/m,
+          `$1"${description.replace(/"/g, '\\"')}"`
+        );
+      } else {
+        // Add before closing ---
+        newContent = newContent.replace(
+          /^(---\r?\n[\s\S]*?)(---)/m,
+          `$1description: "${description.replace(/"/g, '\\"')}"\n$2`
+        );
+      }
+    } else {
+      // Remove description if exists
+      newContent = newContent.replace(
+        /^(---\r?\n[\s\S]*?)description:.*\r?\n/m,
+        `$1`
+      );
+    }
 
     return newContent;
   }

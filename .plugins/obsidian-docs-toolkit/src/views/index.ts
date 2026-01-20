@@ -1,2 +1,2 @@
-export * from "./DashboardView";
-export * from "./ReviewView";
+export * from "./CurationPanelView";
+export * from "./IssuesPanelView";

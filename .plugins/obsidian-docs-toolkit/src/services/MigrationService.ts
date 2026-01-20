@@ -293,22 +293,30 @@ export class MigrationService {
    */
   private frontmatterToYaml(fm: CARFFrontmatter): string {
     const lines: string[] = [];
-    lines.push(`id: ${fm.id}`);
-    lines.push(`type: ${fm.type}`);
 
-    if (fm.modules.length > 0) {
-      lines.push(`modules: [${fm.modules.join(", ")}]`);
-    } else {
-      lines.push(`modules: []`);
+    // Required fields
+    lines.push(`status: ${fm.status}`);
+    lines.push(`updated: ${fm.updated}`);
+
+    // Optional fields
+    if (fm.id) {
+      lines.push(`id: ${fm.id}`);
     }
-
+    if (fm.type) {
+      lines.push(`type: ${fm.type}`);
+    }
+    if (fm.modules && fm.modules.length > 0) {
+      lines.push(`modules: [${fm.modules.join(", ")}]`);
+    }
     if (fm.epic) {
       lines.push(`epic: ${fm.epic}`);
     }
-
-    lines.push(`status: ${fm.status}`);
-    lines.push(`created: ${fm.created}`);
-    lines.push(`updated: ${fm.updated}`);
+    if (fm.created) {
+      lines.push(`created: ${fm.created}`);
+    }
+    if (fm.description) {
+      lines.push(`description: "${fm.description}"`);
+    }
 
     return lines.join("\n") + "\n";
   }

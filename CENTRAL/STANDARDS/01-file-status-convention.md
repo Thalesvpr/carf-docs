@@ -9,13 +9,12 @@ Todo arquivo markdown em CENTRAL e PROJECTS deve incluir metadados no frontmatte
 
 ## Frontmatter Obrigatório
 
-Todo arquivo `.md` deve começar com um bloco YAML frontmatter contendo os campos obrigatórios. O campo `status` indica o estado atual do documento. O campo `updated` indica a data da última modificação no formato `YYYY-MM-DD`. O campo `description` é opcional e descreve o que precisa ser corrigido ou completado.
+Todo arquivo `.md` deve começar com um bloco YAML frontmatter contendo os campos obrigatórios. O campo `status` indica o estado atual do documento. O campo `updated` indica a data da última modificação no formato `YYYY-MM-DD`.
 
 ```yaml
 ---
 status: review
 updated: 2026-01-20
-description: "Aguardando revisão humana"
 ---
 ```
 
@@ -25,7 +24,9 @@ description: "Aguardando revisão humana"
 |-------|------|-------------|-----------|
 | `status` | string | Sim | Estado do documento: `review`, `approved`, `rejected` |
 | `updated` | date | Sim | Data da última modificação em `YYYY-MM-DD` |
-| `description` | string | Não | Texto explicando o que precisa ser corrigido |
+| `description` | string | Não | Motivo da rejeição (apenas quando `status: rejected`) |
+
+O campo `description` é o **motivo de rejeição**. Ele só deve estar presente quando o status é `rejected`. Quando o documento é aprovado ou volta para review, o campo é automaticamente removido.
 
 ## Valores de Status
 
@@ -37,7 +38,7 @@ O status `rejected` indica que o arquivo possui problemas estruturais, viola con
 
 ## Exemplos
 
-Arquivo aprovado após revisão humana:
+Arquivo aprovado (sem description):
 
 ```yaml
 ---
@@ -46,17 +47,16 @@ updated: 2026-01-20
 ---
 ```
 
-Arquivo aguardando revisão:
+Arquivo aguardando revisão (sem description):
 
 ```yaml
 ---
 status: review
 updated: 2026-01-20
-description: "Gerado automaticamente, aguarda validação"
 ---
 ```
 
-Arquivo com problemas identificados:
+Arquivo rejeitado (com motivo da rejeição):
 
 ```yaml
 ---

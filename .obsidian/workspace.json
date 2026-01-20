@@ -16,24 +16,25 @@
               "state": {},
               "pinned": true,
               "icon": "lucide-git-fork",
-              "title": "Visualização em gráfico"
+              "title": "Graph view"
             }
           },
           {
-            "id": "9ea61b8fb0c12317",
+            "id": "33d87f41fb697bab",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CENTRAL/DESIGN-SYSTEM/README.md",
+                "file": "CENTRAL/ARCHITECTURE/DEPLOYMENT/KUBERNETES/OVERLAYS/PROD/01-kustomization.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "README"
+              "title": "01-kustomization"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -53,10 +54,10 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": true
               },
               "icon": "lucide-folder-closed",
-              "title": "Explorador de arquivos"
+              "title": "Files"
             }
           },
           {
@@ -168,69 +169,82 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "PROJECTS/GEOGIS/DOCS/REQUIREMENTS/README.md",
+                "file": "CENTRAL/BUSINESS-RULES/WORKFLOW-RULES/04-sla-rules.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of README"
+              "title": "Outline of 04-sla-rules"
+            }
+          },
+          {
+            "id": "971ab6c0fdc33177",
+            "type": "leaf",
+            "state": {
+              "type": "docs-toolkit-curation",
+              "state": {},
+              "icon": "check-square",
+              "title": "Curation"
             }
           }
-        ]
+        ],
+        "currentTab": 5
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 397.5
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Abrir a troca rápida": false,
-      "graph:Abrir visualização em gráfico": false,
-      "canvas:Criar novo canvas": false,
-      "daily-notes:Abrir a nota de hoje": false,
-      "templates:Inserir modelo": false,
-      "command-palette:Abrir paleta de comandos": false,
-      "bases:Criar nova base": false
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "obsidian-docs-toolkit:Open Curation Panel": false
     }
   },
-  "active": "64700822131d2339",
+  "active": "971ab6c0fdc33177",
   "lastOpenFiles": [
-    "CENTRAL/DESIGN-SYSTEM/README.md",
-    "nul",
-    "PROJECTS/WEBDOCS/DOCS/SPECS/19-component-showcase.md",
-    "CENTRAL/DESIGN-SYSTEM/03-spacing.md",
-    "CENTRAL/DESIGN-SYSTEM/02-typography.md",
-    "CENTRAL/DESIGN-SYSTEM/01-colors.md",
-    "PROJECTS/README.md",
-    "README.md",
-    "CENTRAL/VERSIONING/README.md",
-    "PROJECTS/WEBDOCS/DOCS/SPECS/18-sidebar-navigation.md",
-    "PROJECTS/WEBDOCS/DOCS/ARCHITECTURE/11-error-handling.md",
-    "PROJECTS/WEBDOCS/DOCS/ARCHITECTURE/10-integracao-libs.md",
-    "PROJECTS/WEBDOCS/DOCS/ARCHITECTURE/09-fluxo-dados.md",
-    "PROJECTS/WEBDOCS/DOCS/ARCHITECTURE/08-padroes-componentes.md",
-    "PROJECTS/WEBDOCS/DOCS/ARCHITECTURE/07-estrutura-codigo.md",
-    "PROJECTS/WEBDOCS/DOCS/SPECS/17-validation-rules.md",
-    "PROJECTS/WEBDOCS/DOCS/SPECS/16-source-alignment.md",
-    "PROJECTS/WEBDOCS/DOCS/SPECS/15-decap-cms-config.md",
-    "PROJECTS/WEBDOCS/DOCS/SPECS/14-auth-endpoints.md",
-    "PROJECTS/WEBDOCS/DOCS/SPECS/13-componentes.md",
-    "PROJECTS/WEBDOCS/DOCS/SPECS/12-env-vars.md",
-    "PROJECTS/WEBDOCS/DOCS/SPECS/11-astro-config.md",
-    "CENTRAL/ECOSYSTEM/README.md",
-    "CENTRAL/ECOSYSTEM/applications.json",
-    "CENTRAL/ECOSYSTEM",
-    "CENTRAL/DESIGN-SYSTEM",
-    "CENTRAL/VERSIONING/03-semantic-versioning.md",
-    "CENTRAL/VERSIONING/GIT/07-worktree-guide.md",
-    "CENTRAL/VERSIONING/GIT/06-release-coordination.md",
-    "CENTRAL/SECURITY/POLICIES/ZuNCi0Nu",
-    "CENTRAL/SECURITY/INCIDENTS/rg5n7eo8",
-    "CENTRAL/TESTING/TEST-STRATEGY/X48w7jrh",
-    "CENTRAL/TESTING/TEST-CASES/qNuIs2nm",
-    "CENTRAL/VERSIONING/GIT/9SLMDLBV",
-    "CENTRAL/OPERATIONS/RUNBOOKS/H1oa1yz6"
+    "CENTRAL/ARCHITECTURE/PATTERNS/01-clean-architecture.md",
+    "CENTRAL/ARCHITECTURE/PATTERNS/02-cqrs.md",
+    "CENTRAL/ARCHITECTURE/PATTERNS/03-repository-uow.md",
+    "CENTRAL/ARCHITECTURE/PATTERNS/04-domain-events.md",
+    "CENTRAL/ARCHITECTURE/PATTERNS/05-frontend-patterns.md",
+    "CENTRAL/ARCHITECTURE/PATTERNS/06-mobile-offline-first.md",
+    "CENTRAL/ARCHITECTURE/PATTERNS/07-gis-spatial-patterns.md",
+    "CENTRAL/BUSINESS-RULES/LEGITIMATION-RULES/01-lei-13465-2017.md",
+    "CENTRAL/BUSINESS-RULES/LEGITIMATION-RULES/02-reurb-s-requirements.md",
+    "CENTRAL/BUSINESS-RULES/LEGITIMATION-RULES/03-reurb-e-requirements.md",
+    "CENTRAL/BUSINESS-RULES/LEGITIMATION-RULES/04-ownership-criteria.md",
+    "CENTRAL/BUSINESS-RULES/LEGITIMATION-RULES/05-documentation-requirements.md",
+    "CENTRAL/BUSINESS-RULES/LEGITIMATION-RULES/06-contestation-rules.md",
+    "CENTRAL/BUSINESS-RULES/VALIDATION-RULES/01-business-validation.md",
+    "CENTRAL/BUSINESS-RULES/VALIDATION-RULES/02-cnpj-validation.md",
+    "CENTRAL/BUSINESS-RULES/VALIDATION-RULES/03-coordinates-validation.md",
+    "CENTRAL/BUSINESS-RULES/VALIDATION-RULES/04-cpf-validation.md",
+    "CENTRAL/BUSINESS-RULES/VALIDATION-RULES/05-documents-validation.md",
+    "CENTRAL/BUSINESS-RULES/VALIDATION-RULES/06-email-validation.md",
+    "CENTRAL/BUSINESS-RULES/VALIDATION-RULES/07-geographic-validation.md",
+    "CENTRAL/BUSINESS-RULES/VALIDATION-RULES/08-geometry-validation.md",
+    "CENTRAL/BUSINESS-RULES/VALIDATION-RULES/09-holder-validation.md",
+    "CENTRAL/BUSINESS-RULES/VALIDATION-RULES/10-phone-validation.md",
+    "CENTRAL/BUSINESS-RULES/VALIDATION-RULES/11-unit-validation.md",
+    "CENTRAL/BUSINESS-RULES/WORKFLOW-RULES/01-unit-status-transitions.md",
+    "CENTRAL/BUSINESS-RULES/WORKFLOW-RULES/02-legitimation-status-transitions.md",
+    "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/public/img/logo.svg",
+    "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/public/img",
+    "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/public",
+    "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/src/login/KcPageStorybook.tsx",
+    "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/src/login/pages/Info.tsx",
+    "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/src/login/pages/Error.tsx",
+    "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/src/login/pages/LoginResetPassword.tsx",
+    "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/src/login/pages/Register.tsx",
+    "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/src/login/pages/Login.tsx",
+    "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/src/login/pages",
+    "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/src/kc.gen.ts"
   ]
 }
