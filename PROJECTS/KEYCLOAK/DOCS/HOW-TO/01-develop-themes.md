@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # Como Desenvolver Temas para Keycloak
 
 Desenvolvimento de temas Keycloak CARF requer Docker instalado, editor VS Code recomendado, conhecimento básico HTML CSS JavaScript e FreeMarker opcional. Estrutura de diretórios navegando para PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak criando themes/carf/login/resources/css js img e messages, themes/carf/account/resources/css js, themes/carf/email/html text.
@@ -23,8 +28,3 @@ Debugging via Browser DevTools F12 Inspector para HTML CSS, Console para erros J
 Build produção minificar CSS JS instalando csso-cli uglify-js via npm install -g, minificar csso login.css -o login.min.css uglifyjs login.js -o login.min.js, atualizar theme.properties styles=css/login.min.css scripts=js/login.min.js, build imagem Docker docker build -t carf-keycloak:latest -f docker/Dockerfile.custom.
 
 Próximos passos desenvolver tema Account, tema Email, adicionar mais páginas register.ftl error.ftl, implementar testes automatizados, documentar guia contribuição. Referências Keycloak Theme SPI keycloak.org/docs/latest/server_development/#_themes, FreeMarker Documentation freemarker.apache.org/docs, CSS Variables MDN developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties.
-
----
-
-**Última atualização:** 2026-01-12
-**Status do arquivo**: Pronto

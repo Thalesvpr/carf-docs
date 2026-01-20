@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Docker Compose Development
 
 Configuração Docker Compose para ambiente de desenvolvimento local.
@@ -139,9 +144,3 @@ docker-compose -f docker-compose.dev.yml down -v
 - **GEOAPI**: Volume mount + `dotnet watch` no container
 - **GEOWEB**: Volume mount + `npm run dev`
 - Mudanças refletem sem rebuild
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

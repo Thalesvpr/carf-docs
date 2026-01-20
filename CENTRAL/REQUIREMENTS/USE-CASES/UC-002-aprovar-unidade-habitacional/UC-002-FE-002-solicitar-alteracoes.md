@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB, REURBCAD]
-epic: scalability
+status: review
+updated: 2025-12-30
 ---
 
 # UC-002-FE-002: Solicitar Alterações
@@ -31,14 +31,3 @@ Email enviado com assunto "Alterações solicitadas para Unidade UH-123" contend
 7. Timeline registra "Correções aplicadas pelo criador em DD/MM/YYYY"
 
 **Retorno:** Unidade sai da lista Pending Approval, entra em Requires Changes aguardando correção
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

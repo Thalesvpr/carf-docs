@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Swagger Embutido
 
 Seção /dev/swagger/ renderiza Swagger UI interativo permitindo desenvolvedores explorar e testar endpoints da GEOAPI diretamente no portal de documentação com autenticação real usando token JWT do usuário logado.
@@ -11,8 +16,3 @@ Inicialização do swagger-ui-dist acontece client-side após hidratação. Scri
 Customização visual via CSS sobrescreve cores do Swagger UI para manter consistência com tema CARF. Variáveis CSS mapeiam cores primárias, backgrounds, e tipografia. Header e topbar do Swagger são escondidos para não conflitar com navegação do WEBDOCS.
 
 Try-it-out permite executar requisições reais contra GEOAPI usando token do desenvolvedor logado. Útil para testar endpoints durante desenvolvimento sem configurar ferramentas externas. Responses são exibidos com syntax highlighting e opção de copiar.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

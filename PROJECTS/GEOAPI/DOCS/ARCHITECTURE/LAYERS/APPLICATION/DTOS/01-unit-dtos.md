@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-16
+---
+
 # Unit DTOs
 
 Data Transfer Objects para unidades habitacionais.
@@ -98,8 +103,3 @@ public record CentroidDto(
     double Longitude
 );
 ```
-
----
-
-**Última atualização:** 2026-01-16
-**Status do arquivo**: Pronto

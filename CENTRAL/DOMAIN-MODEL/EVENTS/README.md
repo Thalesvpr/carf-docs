@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # EVENTS
 
 Domain events representam fatos de negócio significativos ocorridos no sistema. São disparados pelos aggregate roots após mudanças de estado bem-sucedidas, permitindo comunicação desacoplada entre aggregates e execução de side effects assíncronos como notificações, invalidação de cache e integrações.
@@ -36,10 +41,6 @@ Os eventos são organizados por aggregate. O Unit aggregate emite eventos durant
 - **[18-request-rejected-event.md](./18-request-rejected-event.md)** - Processo rejeitado
 - **[19-correction-requested-event.md](./19-correction-requested-event.md)** - Correções solicitadas
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (20 arquivos)
@@ -70,8 +71,30 @@ Os eventos são organizados por aggregate. O Unit aggregate emite eventos durant
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/DOMAIN-MODEL/EVENTS/00-domain-event.md|DomainEvent (Evento de Domínio)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/EVENTS/01-unit-created-event.md|UnitCreatedEvent]]
+- ○ [[CENTRAL/DOMAIN-MODEL/EVENTS/02-holder-linked-event.md|HolderLinkedEvent]]
+- ○ [[CENTRAL/DOMAIN-MODEL/EVENTS/03-holder-unlinked-event.md|HolderUnlinkedEvent]]
+- ○ [[CENTRAL/DOMAIN-MODEL/EVENTS/04-unit-status-changed-event.md|UnitStatusChangedEvent]]
+- ○ [[CENTRAL/DOMAIN-MODEL/EVENTS/05-document-uploaded-event.md|DocumentUploadedEvent]]
+- ○ [[CENTRAL/DOMAIN-MODEL/EVENTS/06-community-created-event.md|CommunityCreatedEvent]]
+- ○ [[CENTRAL/DOMAIN-MODEL/EVENTS/07-community-boundary-changed-event.md|CommunityBoundaryChangedEvent]]
+- ○ [[CENTRAL/DOMAIN-MODEL/EVENTS/08-access-granted-event.md|AccessGrantedEvent]]
+- ○ [[CENTRAL/DOMAIN-MODEL/EVENTS/09-access-revoked-event.md|AccessRevokedEvent]]
+- ○ [[CENTRAL/DOMAIN-MODEL/EVENTS/10-block-added-event.md|BlockAddedEvent]]
+- ○ [[CENTRAL/DOMAIN-MODEL/EVENTS/11-community-archived-event.md|CommunityArchivedEvent]]
+- ○ [[CENTRAL/DOMAIN-MODEL/EVENTS/12-request-submitted-event.md|RequestSubmittedEvent]]
+- ○ [[CENTRAL/DOMAIN-MODEL/EVENTS/13-response-added-event.md|ResponseAddedEvent]]
+- ○ [[CENTRAL/DOMAIN-MODEL/EVENTS/14-request-approved-event.md|RequestApprovedEvent]]
+- ○ [[CENTRAL/DOMAIN-MODEL/EVENTS/15-certificate-issued-event.md|CertificateIssuedEvent]]
+- ○ [[CENTRAL/DOMAIN-MODEL/EVENTS/16-contestation-received-event.md|ContestationReceivedEvent]]
+- ○ [[CENTRAL/DOMAIN-MODEL/EVENTS/17-deadline-approaching-event.md|DeadlineApproachingEvent]]
+- ○ [[CENTRAL/DOMAIN-MODEL/EVENTS/18-request-rejected-event.md|RequestRejectedEvent]]
+- ○ [[CENTRAL/DOMAIN-MODEL/EVENTS/19-correction-requested-event.md|CorrectionRequestedEvent]]
+
+<!-- CARF-INDEX-END -->

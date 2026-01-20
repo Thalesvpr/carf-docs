@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # ENUMS
 
 Enumerações tipadas representando classificações fixas do domínio incluindo tipos comunidades papéis equipe prioridades tipos documentos e anotações garantindo valores válidos compile-time.
@@ -12,26 +17,3 @@ Enumerações tipadas representando classificações fixas do domínio incluindo
 - **[17-role.md](./17-role.md)** - Roles sistema (ADMIN MANAGER ANALYST FIELD_AGENT)
 - **[18-entity-type.md](./18-entity-type.md)** - Tipos entidade para auditoria polimórfica
 - **[19-document-type.md](./19-document-type.md)** - Tipos documento anexo (RG CPF COMPROVANTE)
-
----
-
-**Última atualização:** 2026-01-12
-
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (8 arquivos)
-
-| ID | Titulo |
-|:---|:-------|
-| [08-community-type](./08-community-type.md) | CommunityType |
-| [10-team-role](./10-team-role.md) | TeamRole |
-| [13-point-type](./13-point-type.md) | PointType |
-| [15-priority](./15-priority.md) | Priority |
-| [16-annotation-type](./16-annotation-type.md) | AnnotationType |
-| [17-role](./17-role.md) | Role |
-| [18-entity-type](./18-entity-type.md) | EntityType |
-| [19-document-type](./19-document-type.md) | DocumentType |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Incompleto
-Descrição: Muitas listas com bullets (8) antes do rodapé - considerar converter para parágrafo denso.

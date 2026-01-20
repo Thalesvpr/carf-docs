@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-20
+---
+
 # Estratégia Polyrepo
 
 Arquitetura polyrepo do CARF com repositórios Git independentes permitindo deploy, versionamento e ownership separados por equipe especializada. A lista completa de repositórios está documentada em 04-repository-catalog.md.
@@ -25,9 +30,3 @@ Para manter todos os repositórios atualizados, executar git pull na raiz do car
 ## Evolução Futura
 
 Se o projeto crescer significativamente com mais equipes e interdependências frequentes entre repositórios, considerar migração para monorepo com tooling como Nx ou Turborepo. A decisão deve ser reavaliada quando overhead de coordenação superar benefícios de isolamento.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-20
-**Descrição:**

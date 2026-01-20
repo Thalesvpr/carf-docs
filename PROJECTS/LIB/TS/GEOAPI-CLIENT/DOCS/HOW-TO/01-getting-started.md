@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-16
+---
+
 # Getting Started
 
 Guia de início rápido para o GEOAPI Client TypeScript.
@@ -106,8 +111,3 @@ function useCreateUnit() {
   });
 }
 ```
-
----
-
-**Última atualização:** 2026-01-16
-**Status do arquivo**: Pronto

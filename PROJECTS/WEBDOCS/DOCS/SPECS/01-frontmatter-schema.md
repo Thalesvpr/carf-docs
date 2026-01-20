@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Frontmatter Schema
 
 Schema Zod define campos obrigatórios e opcionais do frontmatter para todos documentos do WEBDOCS. Validação acontece em build time garantindo consistência.
@@ -13,8 +18,3 @@ Campos especiais incluem draft como boolean ocultando página do build e navega�
 Schema extensível permite campos adicionais para casos específicos sem modificar schema base. Campos desconhecidos são preservados no frontmatter mas não validados. Usar com moderação para não fragmentar estrutura.
 
 Arquivo de definição em src/content/config.ts exporta schema usado por Astro Content Collections. Alterações no schema requerem atualização de documentos existentes para conformidade.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

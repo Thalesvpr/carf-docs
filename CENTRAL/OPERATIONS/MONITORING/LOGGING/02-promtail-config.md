@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Promtail Configuration
 
 Configuração do Promtail para coleta e envio de logs ao Loki.
@@ -199,9 +204,3 @@ curl http://promtail:9080/metrics | grep promtail_read_lines_total
 # Logs do próprio promtail
 kubectl logs -l app=promtail -n monitoring --tail=50
 ```
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB, REURBCAD]
-epic: authentication
+status: review
+updated: 2025-12-30
 ---
 
 # UC-004-FE-003: Bateria Baixa
@@ -22,14 +22,3 @@ Função async enablePowerSavingMode executa cinco otimizações sequenciais sen
 Função async emergencySave executa showModal passando objeto com title igual "Bateria Crítica" com ícone vermelho, message igual "Salvando dados...", e countdown igual três exibindo contagem regressiva, executa await saveCurrentUnit passando objeto com incomplete igual true e reason igual battery_critical salvando unidade em progresso mesmo parcialmente preenchida marcando flag para revisão posterior, chama setTimeout com callback executando BackHandler.exitApp() e delay três mil milissegundos fechando app gracefully após três segundos permitindo salvamento completo evitando corrupção de SQLite por desligamento abrupto durante escrita.
 
 **Retorno:** Modo economia ativo, FIELD_AGENT continua com limitações ou salva e encerra
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

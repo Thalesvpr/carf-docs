@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # ADR-021: Escolha do Hangfire para Background Jobs
 
 Decisão arquitetural escolhendo Hangfire como solução de background job processing para backend GEOAPI justificada por integração nativa com .NET eliminando necessidade de message broker externo simplificando arquitetura, persistent storage em PostgreSQL garantindo jobs não sejam perdidos em restart mantendo reliability, dashboard web integrado fornecendo observability de jobs (succeeded failed processing scheduled) sem ferramentas externas, automatic retry com exponential backoff em falhas transientes resiliente a issues temporários de database/network, scheduled jobs (cron) para tasks periódicos (sync dados externos nightly reports cleanup old data), fire-and-forget jobs para tasks assíncronas (enviar email processar imagem gerar relatório) sem bloquear request HTTP, delayed jobs executando em momento futuro específico (ex: reminder 24h após cadastro), recurring jobs com cron expressions flexíveis, e ausência de infraestrutura adicional (RabbitMQ Kafka Redis Queue) reduzindo complexidade operacional.
@@ -11,9 +16,3 @@ Consequências positivas incluem simplicidade de implementação, dashboard buil
 Configuração utiliza Hangfire 1.8+ com PostgreSQL storage, dashboard habilitado em `/hangfire` com authorization exigindo role ADMIN, recurringjobs para sync diário, e retention policy deletando succeeded jobs após 7 dias mantendo database compacto.
 
 Status aprovado e implementado desde 2024-Q3.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

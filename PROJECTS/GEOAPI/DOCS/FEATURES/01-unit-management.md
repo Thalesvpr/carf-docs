@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-16
+---
+
 # Unit Management Feature
 
 Documentação da feature de gerenciamento de unidades habitacionais.
@@ -99,8 +104,3 @@ Critérios de Aceitação:
 | Aprovar | | | ✓ | ✓ |
 | Rejeitar | | | ✓ | ✓ |
 | Excluir | ✓ | ✓ | ✓ | ✓ |
-
----
-
-**Última atualização:** 2026-01-16
-**Status do arquivo**: Pronto

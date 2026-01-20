@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # ADR-010: Escolha de Event-Driven Architecture com Domain Events
 
 Decisão arquitetural escolhendo arquitetura orientada a eventos usando Domain Events para comunicação assíncrona entre aggregates e bounded contexts justificada por decoupling entre componentes permitindo evolução independente onde mudanças em fluxo de aprovação não afetam módulo de notificações ou relatórios reduzindo blast radius de bugs e facilitando deployment incremental, escalabilidade melhorada processando side effects assíncronos (envio de emails geração de PDFs cálculo de estatísticas) fora do request path crítico mantendo latência de API sub-200ms conforme RNF-002 mesmo com operações pesadas, resiliência aumentada com retry automático de event handlers falhados garantindo eventual consistency onde falha temporária em envio de email não impede aprovação de processo crítico, auditoria natural onde domain events representam fatos históricos imutáveis (UnitApproved ProcessRejected HolderLinked) fornecendo audit trail completo de todas mudanças de estado business-relevant sem código adicional de logging, extensibilidade facilitada onde novos requisitos (exemplo enviar notificação ao cidadão quando unidade aprovada) são implementados adicionando novo event handler sem modificar código existente seguindo Open-Closed Principle, e preparação para eventual migração para message bus distribuído (RabbitMQ Kafka) se escala exigir processamento em workers separados embora atualmente events sejam processados in-process.
@@ -17,9 +22,3 @@ Implementação específica usa MediatR INotification para domain events com pip
 Event sourcing não é implementado mantendo traditional CRUD com domain events para side effects apenas, sendo suficiente para requisitos atuais com audit trail via soft deletes e event log, mas arquitetura permite migration futura para event sourcing se compliance exigir immutable audit trail completo.
 
 Status da decisão é aprovado e implementado desde início do projeto em 2024-Q3, com revisão prevista se complexidade de eventual consistency se tornar problemática para UX (improvável com delays típicos de <5s) ou se escala exigir migration para message bus externo distribuído (planejado para >50k usuarios ativos mensais).
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

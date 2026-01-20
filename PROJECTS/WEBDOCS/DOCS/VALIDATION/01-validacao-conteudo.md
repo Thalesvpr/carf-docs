@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Validação de Conteúdo
 
 Checks automáticos validam integridade do conteúdo antes de deploy garantindo que links funcionam, frontmatter está correto, e estrutura segue padrões.
@@ -13,8 +18,3 @@ Validação de imagens verifica que referências de imagem apontam para arquivos
 Execução local via comando npm run validate executa todos checks de conteúdo. Útil para validar antes de commit. Pre-commit hook opcional pode executar validação automaticamente impedindo commits com erros.
 
 Erros de validação são reportados com path do arquivo, linha quando possível, e descrição do problema. Exit code não-zero falha CI impedindo deploy de conteúdo inválido.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

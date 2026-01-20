@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Content Collections
 
 Content Collections são sistema nativo do Astro para gerenciar conteúdo estruturado com validação de schema. Arquivos Markdown ou MDX em src/content/ são automaticamente parseados, validados contra schema Zod, e disponibilizados via API type-safe.
@@ -9,8 +14,3 @@ Starlight estende Content Collections adicionando collection docs com schema pr�
 Queries usam funções getCollection() e getEntry() retornando objetos tipados com data (frontmatter validado), body (conteúdo Markdown), e slug (identificador único). Erros de validação são reportados no build time prevenindo documentos malformados de serem publicados.
 
 Frontmatter schema do WEBDOCS inclui campos title (obrigatório), description (obrigatório para SEO), lastUpdated (data automática), audience (user ou dev), e section (guia, sistema, manuais, api, dev).
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

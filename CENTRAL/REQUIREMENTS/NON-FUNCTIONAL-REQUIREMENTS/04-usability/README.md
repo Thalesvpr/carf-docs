@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Usabilidade
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (13 requisitos)
@@ -24,13 +28,24 @@
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
 
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
+<!-- CARF-INDEX-START -->
+## Documentos
 
----
+### Em Revisão
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/04-usability/RNF-014-consumo-memoria-mobile.md|RNF-014: Consumo de Memória - Mobile]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/04-usability/RNF-046-responsividade-web.md|RNF-046: Responsividade - Web]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/04-usability/RNF-047-internacionalizacao-i18n.md|RNF-047: Internacionalização]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/04-usability/RNF-048-acessibilidade-wcag.md|RNF-048: Acessibilidade (WCAG 2.1)]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/04-usability/RNF-049-feedback-visual-operacoes.md|RNF-049: Feedback Visual]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/04-usability/RNF-050-mensagens-erro-claras.md|RNF-050: Mensagens de Erro Claras]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/04-usability/RNF-052-consistencia-ui-design-system.md|RNF-052: Consistência de UI]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/04-usability/RNF-053-onboarding-tour-guiado.md|RNF-053: Onboarding]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/04-usability/RNF-054-busca-intuitiva-autocomplete.md|RNF-054: Busca Intuitiva]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/04-usability/RNF-057-documentacao-de-codigo.md|RNF-057: Documentação de Código]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/04-usability/RNF-062-modularidade.md|RNF-062: Modularidade]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/04-usability/RNF-089-timezone.md|RNF-089: Timezone]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/04-usability/RNF-090-charset.md|RNF-090: Charset]]
+
+<!-- CARF-INDEX-END -->

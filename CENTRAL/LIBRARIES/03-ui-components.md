@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # @carf/ui
 
 Biblioteca de componentes React reutilizáveis baseada em shadcn/ui com Tailwind CSS, oferecendo UI consistente e acessível para todas as aplicações frontend CARF.
@@ -19,9 +24,3 @@ Executar comando bun add @carf/ui @carf/tscore instalando biblioteca de componen
 ## Documentação Técnica
 
 Documentação de implementação disponível em PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/ contendo catálogo de componentes, guia de theming e Storybook.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

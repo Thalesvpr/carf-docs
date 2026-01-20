@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Data Flow - ADMIN
 
 ## Fluxo de Dados
@@ -29,9 +34,3 @@ function TenantManagementPage() {
 // 3-6. Fluxo automático via @carf/geoapi-client
 // 8. UI atualiza automaticamente
 ```
-
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição: Contém code blocks - considerar converter para prosa.

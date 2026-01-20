@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-20
+---
+
 # Configurações de Repositório
 
 Configurações padronizadas para repositórios GitHub do CARF garantindo consistência, segurança e experiência uniforme de desenvolvimento em todos os projetos.
@@ -25,9 +30,3 @@ Para configurar repository settings usar gh api repos/OWNER/REPO com método PAT
 ## Template de Repositório
 
 Ao criar novo repositório CARF, usar carf-docs como referência para estrutura de diretórios. Incluir arquivos README.md, LICENSE, .gitignore apropriado para stack e .github/ com templates de PR e issue.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-20
-**Descrição:**

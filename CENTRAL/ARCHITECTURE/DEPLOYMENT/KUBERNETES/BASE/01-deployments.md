@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-16
+---
+
 # Base Deployments
 
 Manifests Kubernetes base para deployments do CARF usando Kustomize.
@@ -145,14 +150,3 @@ resources:
   - ingress.yaml
   - serviceaccount.yaml
 ```
-
----
-
-**Última atualização:** 2026-01-16
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

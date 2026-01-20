@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Pagefind
 
 Pagefind é engine de busca estática que indexa conteúdo no build time e executa queries inteiramente no cliente sem necessidade de servidor de busca. Índice comprimido é carregado sob demanda resultando em busca instantânea com bundle size mínimo.
@@ -9,8 +14,3 @@ Integração com Starlight é built-in configurada automaticamente. Componente d
 Atributos data-pagefind controlam indexação granular. data-pagefind-body marca região principal de conteúdo ignorando navegação e footer. data-pagefind-ignore exclui seções específicas como código ou elementos decorativos. data-pagefind-meta adiciona metadados customizados aos resultados.
 
 Vantagens sobre Algolia DocSearch incluem custo zero (Algolia é pago para sites não open source), privacidade (queries não saem do navegador), e controle total sobre indexação. Limitações incluem ausência de analytics de busca e necessidade de rebuild para atualizar índice.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

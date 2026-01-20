@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Git Worktree - Trabalho Paralelo em Múltiplas Branches
 
 Git worktree permite trabalhar em múltiplas branches simultaneamente sem necessidade clones duplicados ou troca constante branches eliminando context switching overhead preservando working directory state cada branch isolada filesystem paths distintos enabling parallel development features bugfixes reviews sem interferência mútua confusion stashing uncommitted changes cleaning workspace switching back forth repeatedly disruptive flow interrupting focus concentration productivity diminishing quality output mistakes errors rework waste.
@@ -63,9 +68,3 @@ Debugging investigation analysis comparison benchmarking performance profiling o
 ## Relacionado
 
 Para workflow de branches trunk-based development e feature branches short-lived, consulte 02-branching-strategy.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

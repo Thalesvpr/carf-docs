@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-16
+---
+
 # Units Controller
 
 Controller REST para operações de unidades habitacionais.
@@ -87,8 +92,3 @@ public class UnitsController : ControllerBase
     }
 }
 ```
-
----
-
-**Última atualização:** 2026-01-16
-**Status do arquivo**: Pronto

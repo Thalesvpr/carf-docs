@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB, REURBCAD]
-epic: usability
+status: review
+updated: 2025-12-30
 ---
 
 # UC-001-FA-003: Copiar Geometria de Unidade Existente
@@ -23,14 +23,3 @@ Fluxo alternativo do UC-001 Cadastrar Unidade Habitacional desviando no passo 5 
 - Validação de bounds (geometria dentro da comunidade)
 
 **Retorno:** Volta ao passo 6 do UC-001 (cálculo de área) com geometria copiada e ajustada
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

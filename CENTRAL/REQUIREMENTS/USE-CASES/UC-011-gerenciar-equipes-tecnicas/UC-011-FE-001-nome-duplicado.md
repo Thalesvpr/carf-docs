@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB, REURBCAD]
-epic: teams
+status: review
+updated: 2025-12-30
 ---
 
 # UC-011-FE-001: Nome de Equipe Duplicado
@@ -10,14 +10,3 @@ Fluxo de exceção do UC-011 Gerenciar Equipes Técnicas ocorrendo no passo 7 du
 **Ponto de Desvio:** Passo 7 do UC-011 (validação antes de INSERT)
 
 **Retorno:** Criação bloqueada, usuário altera nome e retenta
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

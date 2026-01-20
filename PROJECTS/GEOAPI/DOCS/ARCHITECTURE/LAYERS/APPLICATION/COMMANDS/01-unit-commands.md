@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-16
+---
+
 # Unit Commands
 
 Commands CQRS para operações de escrita em unidades habitacionais.
@@ -79,8 +84,3 @@ public record DeleteUnitCommand(Guid UnitId) : IRequest<Result>;
 // Soft delete apenas em status Rascunho
 // Unidades aprovadas não podem ser deletadas
 ```
-
----
-
-**Última atualização:** 2026-01-16
-**Status do arquivo**: Pronto

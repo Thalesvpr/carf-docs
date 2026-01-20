@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-20
+---
+
 # Coordenação de Releases
 
 Processo de coordenação de releases entre os repositórios do CARF garantindo compatibilidade, qualidade e deployments sem downtime.
@@ -29,9 +34,3 @@ Cada release produz release notes agregadas documentando mudanças em todos os r
 ## Matriz de Compatibilidade
 
 Consulte 03-compatibility-matrix.md para tabela detalhada de versões compatíveis entre repositórios, atualizada a cada release coordenada.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-20
-**Descrição:**

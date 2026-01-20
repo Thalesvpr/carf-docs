@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-11
+---
+
 # Theme Customization - Customização de Tema
 
 Customização tema Keycloak implementada criando theme CARF personalizado aplicando identidade visual municipal branding logo cores fontes layout páginas login account email através de diretório /opt/keycloak/themes/carf/ contendo subdirectories login account email cada com structure theme.properties definindo parent base herdando templates padrão overriding específicos, resources/css/ contendo styles.css customizações visuais cores primária secundária backgrounds borders radius shadows, resources/img/ contendo logo-carf.png favicon.ico illustrations backgrounds, messages/ contendo messages_pt_BR.properties i18n traduções labels textos português Brasil, templates FreeMarker .ftl files login.ftl login-update-profile.ftl register.ftl error.ftl override HTML structure adicionando elementos custom classes IDs facilitando styling CSS.
@@ -7,8 +12,3 @@ Customizações visuais implementadas via CSS variables root selector definindo 
 Templates FreeMarker customizados login.ftl adicionando section header com logo tagline "Sistema de Regularização Fundiária Urbana" subtitle município nome configurável, form fields reordering username email password campos adicionando campo CPF custom input type text name cpf placeholder "000.000.000-00" pattern regex validation, footer links suporte contato privacy policy terms service, register.ftl formulário cadastro adicional fields firstName lastName cpf telefone attributes mapeando user attributes Keycloak, error.ftl página erro customizada mensagens amigáveis português instruções troubleshooting links voltar home contact support, login-update-profile.ftl forçando usuário completar perfil first login campos obrigatórios cpf telefone validações inline, messages_pt_BR.properties traduções completas português Brasil loginTitle "Entrar no Sistema CARF" usernameOrEmail "CPF ou E-mail" password "Senha" doLogIn "Entrar" registerTitle "Cadastrar Nova Conta" errors "invalidUsernameOrEmailMessage" "CPF ou e-mail inválido", theme.properties configurando parent base styles css/styles.css locales pt-BR import common resources.
 
 Deployment tema build Maven ou manual copy arquivos /opt/keycloak/themes/carf/ Docker volume mount bind development -v ./themes/carf:/opt/keycloak/themes/carf production build image COPY themes Dockerfile, ativação tema Admin Console Realm Settings Themes tab selecionando Login Theme carf Account Theme carf Email Theme carf aplicando Save, cache clearing Admin Console Events Config tab Update Theme forçando reload templates CSS alterações reflected immediately desenvolvimento hot-reload production restart required, testing login flow navegando /realms/carf/protocol/openid-connect/auth verificando logo cores layout português validações CPF custom field, customizações avançadas JavaScript adicionando resources/js/custom.js scripts validações client-side AJAX calls dynamic content event listeners keypress input blur, email templates email/html/ email/text/ subdirectories contendo email-verification.ftl password-reset.ftl customizando emails transactional SMTP branding consistent visual identity.
-
----
-
-**Última atualização:** 2026-01-11
-**Status do arquivo**: Pronto

@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # LAYERS
 
 Camadas da Clean Architecture do GEOAPI seguindo Dependency Inversion Principle separando responsabilidades domain application infrastructure presentation com testes automatizados em cada nível.
@@ -9,22 +14,3 @@ Camadas da Clean Architecture do GEOAPI seguindo Dependency Inversion Principle 
 - **[INFRA/](./INFRA/README.md)** - Implementações técnicas (EF Core, Keycloak, S3)
 - **[PRESENTATION/](./PRESENTATION/README.md)** - API REST controllers middlewares filters hubs SignalR
 - **[TESTS/](./TESTS/README.md)** - Testes unitários integração E2E por camada
-
----
-
-**Última atualização:** 2026-01-12
-
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (91 arquivos)
-
-| # | Dominio | Arquivos |
-|:--|:--------|:--------:|
-|  | [Application](./APPLICATION/README.md) | 5 |
-|  | [Domain](./DOMAIN/README.md) | 73 |
-|  | [Infra](./INFRA/README.md) | 5 |
-|  | [Presentation](./PRESENTATION/README.md) | 5 |
-|  | [Tests](./TESTS/README.md) | 3 |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Pronto

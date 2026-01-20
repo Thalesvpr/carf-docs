@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # INCIDENTS
 
 Resposta a incidentes de segurança do CARF.
@@ -12,10 +17,6 @@ A [notificação de breach](./03-breach-notification.md) segue LGPD com comunica
 
 O [audit logging](./04-audit-logging.md) registra eventos de autenticação, alterações em dados críticos, mudanças de permissões e acessos admin em formato JSON estruturado com retenção de 5 anos e integração SIEM.
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (4 arquivos)
@@ -30,8 +31,14 @@ O [audit logging](./04-audit-logging.md) registra eventos de autenticação, alt
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/SECURITY/INCIDENTS/01-incident-classification.md|Incident Classification]]
+- ○ [[CENTRAL/SECURITY/INCIDENTS/02-incident-response-plan.md|Incident Response Plan]]
+- ○ [[CENTRAL/SECURITY/INCIDENTS/03-breach-notification.md|Breach Notification]]
+- ○ [[CENTRAL/SECURITY/INCIDENTS/04-audit-logging.md|Audit Logging]]
+
+<!-- CARF-INDEX-END -->

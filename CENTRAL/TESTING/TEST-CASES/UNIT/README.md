@@ -1,11 +1,12 @@
+---
+status: review
+updated: 2025-01-05
+---
+
 # UNIT
 
 Testes unitários isolados sem dependências externas. domain-unit-tests.md testa entities (Unit.CalculateArea retorna área correta dado polygon, Unit constructor valida status inicial Rascunho, CPF value object valida formato rejeita inválido), value objects imutáveis equality by value, aggregates invariantes (UnitAggregate.AddHolder valida max 1 is_main). application-tests.md testa use cases (CreateUnitCommandHandler mock IUnitRepository, valida chamou Add com entity correto, publicou UnitCreatedEvent), validators (CreateUnitValidator valida required fields, CPF format, coordinates bounds). Fast rodando milissegundos, deterministicos sem flakiness, coverage alto business logic.
 
----
-
-**Última atualização:** 2025-01-05
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (1 arquivo)
@@ -17,8 +18,11 @@ Testes unitários isolados sem dependências externas. domain-unit-tests.md test
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/TESTING/TEST-CASES/UNIT/01-domain-tests.md|Domain Unit Tests]]
+
+<!-- CARF-INDEX-END -->

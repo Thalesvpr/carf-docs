@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-10
+---
+
 # HOW-TO - GEOGIS
 
 Guias práticos para desenvolver e usar o plugin GEOGIS QGIS.
@@ -50,20 +55,13 @@ Guias práticos para desenvolver e usar o plugin GEOGIS QGIS.
 - "Layer loading failed" → verificar connectivity GEOAPI e WFS endpoint habilitado
 - "Export failed" → verificar permissions write em output directory e CRS transformation suportada pelo GDAL
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Última atualização:** 2026-01-10
+### Em Revisão
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (3 arquivos)
+- ○ [[PROJECTS/GEOGIS/DOCS/HOW-TO/01-setup-keycloak.md|01-setup-keycloak]]
+- ○ [[PROJECTS/GEOGIS/DOCS/HOW-TO/02-login-flow.md|02-login-flow]]
+- ○ [[PROJECTS/GEOGIS/DOCS/HOW-TO/03-api-requests.md|03-api-requests]]
 
-| ID | Titulo |
-|:---|:-------|
-| [01-setup-keycloak](./01-setup-keycloak.md) | 01-setup-keycloak |
-| [02-login-flow](./02-login-flow.md) | 02-login-flow |
-| [03-api-requests](./03-api-requests.md) | 03-api-requests |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Incompleto
-Descrição: Falta parágrafo denso introdutório; Muitas listas com bullets (17) antes do rodapé - considerar converter para parágrafo denso.
+<!-- CARF-INDEX-END -->

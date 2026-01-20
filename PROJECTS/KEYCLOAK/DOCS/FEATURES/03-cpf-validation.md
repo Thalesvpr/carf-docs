@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-11
+---
+
 # CPF Validation - Validação CPF
 
 Validação CPF implementada Keycloak adicionando campo custom formulários login registration update-profile com validação client-side JavaScript antes submit backend validation via User Profile Attributes configurado Admin Console através de modificações theme templates FreeMarker adicionando input cpf type text pattern regex, JavaScript validator function validateCPF implementando algoritmo Mod11 checking dígitos verificadores rejeitando sequenciais 000.000.000-00 111.111.111-11 conhecidos inválidos, User Profile Attributes configurando cpf attribute obrigatório validação pattern regex formato 11 dígitos sem pontuação ou com 000.000.000-00 formatado, Required Actions forçando usuário preencher CPF first login se attribute não presente migração usuários legados.
@@ -7,8 +12,3 @@ Validação client-side JavaScript implementada resources/js/cpf-validator.js fu
 User Profile Attributes configuração Admin Console Realm Settings User Profile tab clicando Create attribute name cpf Display name "CPF" Required checkbox marcado Validations adicionando Pattern validator regular expression dígitos apenas ^\d{11}$ ou formatado ^\d{3}\.\d{3}\.\d{3}-\d{2}$ Error message "CPF deve conter 11 dígitos", adicionando custom validator se Keycloak versão suporta JavaScript validators inline ou SPI Java custom validator class CPFValidator implementing Validator interface method validate checking algorithm returning ValidationError se inválido, Permissions configurando quem pode view edit attribute Admin pode editar User pode view apenas edit disabled protegendo alterações maliciosas, Annotations adicionando metadata attribute group "Personal Information" displayOrder 2 após nome antes email, aplicando configuração Save propagando todos formulários registration update-profile admin user creation automatically incluindo campo CPF validações enforced.
 
 Backend validation via SPI Java opcional implementando custom Validator SPI class CPFAttributeValidator extends AbstractSimpleValidator overriding doValidate method recebendo value String parsing dígitos verificando algorithm retornando ValidationResult success ou failure com error message, building JAR Maven projeto keycloak-cpf-validator dependencies keycloak-server-spi scope provided, copiando JAR /opt/keycloak/providers/ restart Keycloak, configurando validator Admin Console User Profile Attributes cpf Validations adding custom CPF Validator selecionando class name, testing criando user Admin Console Users Add user preenchendo cpf inválido 123.456.789-00 verificando error mensagem impedindo save, testing registration form navegando /realms/carf/protocol/openid-connect/registrations preenchendo campos cpf inválido submit verificando bloqueio validação mensagem erro, migration script existing users sem cpf Required Action UPDATE_PROFILE forçando completar perfil próximo login incluindo cpf obrigatório, API validation endpoints /api/users POST PATCH validando cpf uniqueness tenant via query SELECT checking existing cpf impedindo duplicates mesmo tenant different tenants permitido multi-tenancy isolation.
-
----
-
-**Última atualização:** 2026-01-11
-**Status do arquivo**: Pronto

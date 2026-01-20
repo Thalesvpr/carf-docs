@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Create Holder
 
 Schema e comportamento do endpoint de criação de titulares.
@@ -138,9 +143,3 @@ curl -X POST https://api.carf.com.br/api/holders \
     "unit_id": "550e8400-e29b-41d4-a716-446655440001"
   }'
 ```
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

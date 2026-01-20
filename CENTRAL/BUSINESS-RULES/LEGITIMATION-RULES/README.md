@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # LEGITIMATION-RULES
 
 Regras de negócio específicas para processos de regularização fundiária urbana conforme Lei 13.465/2017, estabelecendo critérios de elegibilidade, requisitos documentais e procedimentos legais para emissão de certidão.
@@ -17,10 +22,6 @@ O período de contestação de 30 dias permite que terceiros apresentem oposiç�
 - **[documentation-requirements.md](./05-documentation-requirements.md)** - Documentos obrigatórios por modalidade
 - **[contestation-rules.md](./06-contestation-rules.md)** - Regras de contestação e recursos
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (6 arquivos)
@@ -37,8 +38,16 @@ O período de contestação de 30 dias permite que terceiros apresentem oposiç�
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/BUSINESS-RULES/LEGITIMATION-RULES/01-lei-13465-2017.md|Lei 13.465/2017 (Base Legal Regularização Fundiária)]]
+- ○ [[CENTRAL/BUSINESS-RULES/LEGITIMATION-RULES/02-reurb-s-requirements.md|REURB-S Requirements (Requisitos REURB Interesse Social)]]
+- ○ [[CENTRAL/BUSINESS-RULES/LEGITIMATION-RULES/03-reurb-e-requirements.md|REURB-E Requirements (Requisitos REURB Interesse Específico)]]
+- ○ [[CENTRAL/BUSINESS-RULES/LEGITIMATION-RULES/04-ownership-criteria.md|Ownership Criteria (Critérios de Titularidade)]]
+- ○ [[CENTRAL/BUSINESS-RULES/LEGITIMATION-RULES/05-documentation-requirements.md|Documentation Requirements (Requisitos Documentais)]]
+- ○ [[CENTRAL/BUSINESS-RULES/LEGITIMATION-RULES/06-contestation-rules.md|Contestation Rules]]
+
+<!-- CARF-INDEX-END -->

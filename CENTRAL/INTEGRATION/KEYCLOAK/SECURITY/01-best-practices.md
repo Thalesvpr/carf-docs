@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Boas Práticas
 
 HTTPS obrigatório em produção configurado via KC_HOSTNAME_STRICT_HTTPS=true. Certificados TLS gerenciados por cert-manager com renovação automática 30 dias antes da expiração. Headers de segurança (HSTS, X-Frame-Options, X-Content-Type-Options) configurados no Ingress NGINX.
@@ -9,9 +14,3 @@ Política de senha configurada em Realm Settings > Authentication > Password Pol
 Tokens com vida curta: access token 5 minutos, refresh token 30 minutos idle e 8 horas máximo. Refresh token rotation ativado invalida token anterior após cada uso. Algoritmo RS256 para assinatura com chaves RSA de 2048 bits rotacionadas anualmente.
 
 Audit logging habilitado para todos os eventos de autenticação e administração. Logs exportados para SIEM corporativo via syslog ou integração direta. Retenção de 90 dias para compliance e investigação de incidentes.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

@@ -1,6 +1,6 @@
 ---
-modules: [GEOAPI, GEOWEB, REURBCAD]
-epic: performance
+status: review
+updated: 2025-12-30
 ---
 
 # UC-001-FA-001: Desenhar Geometria Offline (Mobile)
@@ -16,14 +16,3 @@ Fluxo alternativo do UC-001 Cadastrar Unidade Habitacional desviando no passo 5 
 - SyncService para sincronização incremental
 
 **Retorno:** Volta ao passo 6 do UC-001 (cálculo de área) com geometria capturada via GPS salva localmente
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

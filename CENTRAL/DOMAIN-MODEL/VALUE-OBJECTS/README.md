@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # VALUE-OBJECTS
 
 Value objects são conceitos sem identidade própria, definidos exclusivamente por seus atributos. São imutáveis e encapsulam validações e regras de negócio, garantindo integridade na camada de domínio.
@@ -52,10 +57,6 @@ Value objects são conceitos sem identidade própria, definidos exclusivamente p
 - **[05-permissions-matrix.md](./05-permissions-matrix.md)** - Matriz de permissões CRUD
 - **[06-spatial-overlap-matrix.md](./06-spatial-overlap-matrix.md)** - Matriz de sobreposições espaciais
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (26 arquivos)
@@ -92,8 +93,36 @@ Value objects são conceitos sem identidade própria, definidos exclusivamente p
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/00-base-value-object.md|BaseValueObject (Value Object Base)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/01-cpf.md|CPF (Cadastro de Pessoa Física)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/02-geo-polygon.md|GeoPolygon (Polígono Geográfico)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/03-unit-status.md|UnitStatus (Status da Unidade)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/04-custom-data-schema.md|CustomData Schema (Unit.CustomData e Tenant.Settings)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/05-permissions-matrix.md|Permissions Matrix (Matriz de Permissões Granulares)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/06-spatial-overlap-matrix.md|Spatial Overlap Detection (Detecção de Sobreposição Espacial)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/07-geo-point.md|GeoPoint (Ponto Geográfico)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/08-email.md|Email (Endereço de Email Validado)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/09-phone-number.md|PhoneNumber (Número de Telefone Brasileiro)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/10-address.md|Address (Endereço Brasileiro Estruturado)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/11-community-type.md|CommunityType (Tipo de Comunidade)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/12-entity-type.md|EntityType (Tipo de Entidade para Polimorfismo)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/13-document-type.md|DocumentType (Tipo de Documento)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/14-annotation-type.md|AnnotationType (Tipo de Anotação)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/15-priority.md|Priority (Prioridade)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/16-team-role.md|TeamRole (Papel dentro de Equipe)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/17-sync-status.md|SyncStatus (Status de Sincronização)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/18-point-type.md|PointType (Tipo de Marco Topográfico)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/19-point-status.md|PointStatus (Status do Ponto Topográfico)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/20-crea.md|Crea (Registro Profissional CREA)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/21-api-key-value.md|ApiKeyValue (Valor de Chave API)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/22-legitimation-status.md|LegitimationStatus (Status do Processo de Legitimação)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/23-decision.md|Decision (Decisão de Análise)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/24-certificate-situation.md|CertificateSituation (Situação do Imóvel para Certidão)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/25-role.md|Role (Papel de Usuário no Sistema)]]
+
+<!-- CARF-INDEX-END -->

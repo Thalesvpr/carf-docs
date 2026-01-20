@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB]
-epic: performance
+status: review
+updated: 2025-12-30
 ---
 
 # UC-006-FE-003: Erro ao Gerar PDF
@@ -10,14 +10,3 @@ Fluxo de exceção do UC-006 Gerar Relatório de Comunidade ocorrendo no passo 1
 **Ponto de Desvio:** Passo 11.6 do UC-006 (conversão para PDF falha)
 
 **Retorno:** HTML salvo como fallback, usuário pode baixar ou retentar PDF
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

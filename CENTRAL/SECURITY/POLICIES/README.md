@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # POLICIES
 
 Políticas de segurança do CARF definindo regras e controles obrigatórios.
@@ -20,10 +25,6 @@ A política de [controle de acesso](./05-access-control-policy.md) define MFA ob
 - **[04-lgpd-compliance-policy.md](./04-lgpd-compliance-policy.md)** - Compliance LGPD
 - **[05-access-control-policy.md](./05-access-control-policy.md)** - Controle de acesso e auditoria
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (5 arquivos)
@@ -39,8 +40,15 @@ A política de [controle de acesso](./05-access-control-policy.md) define MFA ob
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/SECURITY/POLICIES/01-authentication-policy.md|Authentication Policy]]
+- ○ [[CENTRAL/SECURITY/POLICIES/02-authorization-policy.md|Authorization Policy]]
+- ○ [[CENTRAL/SECURITY/POLICIES/03-encryption-policy.md|Encryption Policy]]
+- ○ [[CENTRAL/SECURITY/POLICIES/04-lgpd-compliance-policy.md|LGPD Compliance Policy]]
+- ○ [[CENTRAL/SECURITY/POLICIES/05-access-control-policy.md|Access Control Policy]]
+
+<!-- CARF-INDEX-END -->

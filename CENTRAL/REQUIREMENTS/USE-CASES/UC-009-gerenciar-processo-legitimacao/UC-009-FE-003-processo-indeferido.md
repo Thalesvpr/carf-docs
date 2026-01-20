@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB]
-epic: security
+status: review
+updated: 2025-12-30
 ---
 
 # UC-009-FE-003: Processo Indeferido
@@ -10,14 +10,3 @@ Fluxo de exceção do UC-009 Gerenciar Processo de Legitimação desviando no pa
 **Ponto de Desvio:** Passo 13.4 do UC-009 (MANAGER escolhe indeferir)
 
 **Retorno:** Processo arquivado definitivamente, notificação enviada, novo processo requerido se necessário
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

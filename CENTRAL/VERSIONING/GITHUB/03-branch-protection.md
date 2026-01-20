@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-20
+---
+
 # Proteção de Branches
 
 Regras de proteção da branch main em todos os repositórios CARF garantindo qualidade do código através de reviews obrigatórios, checks automatizados e restrições de push direto.
@@ -36,9 +41,3 @@ Para configurar branch protection usar gh api repos/OWNER/REPO/branches/main/pro
 ## Bypass em Emergências
 
 Em situações críticas de produção, maintainers podem solicitar bypass temporário das proteções para hotfix urgente. O bypass deve ser documentado em issue, revertido imediatamente após o hotfix e revisado em postmortem para evitar recorrência.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-20
-**Descrição:**

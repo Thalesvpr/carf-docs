@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-20
+---
+
 # Configuração de Organização
 
 Estrutura organizacional do GitHub para o projeto CARF definindo times, permissões e políticas de acesso que garantem segurança e colaboração eficiente entre desenvolvedores.
@@ -31,9 +36,3 @@ Para adicionar membro a um time usar comando gh api especificando endpoint /orgs
 ## Audit Log
 
 GitHub mantém log de auditoria de todas as ações administrativas incluindo adição e remoção de membros, mudanças de permissão, criação e exclusão de repositórios. Maintainers devem revisar o audit log mensalmente para detectar atividades suspeitas ou não autorizadas.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-20
-**Descrição:**

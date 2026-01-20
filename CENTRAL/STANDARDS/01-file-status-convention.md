@@ -1,33 +1,97 @@
+---
+status: review
+updated: 2026-01-20
+---
+
 # Convenção de Status de Arquivo
 
-Todo arquivo markdown em CENTRAL e PROJECTS deve incluir metadados de rodapé indicando seu estado atual de completude.
+Todo arquivo markdown em CENTRAL e PROJECTS deve incluir metadados no frontmatter YAML indicando seu estado atual de completude.
 
-## Metadados Obrigatórios
+## Frontmatter Obrigatório
 
-O rodapé de cada arquivo deve conter campos separados por linha horizontal. O campo Última atualização indica a data da última modificação no formato AAAA-MM-DD. O campo Status do arquivo indica o estado atual com um dos três valores permitidos, sendo obrigatório apenas para READMEs. O campo Descrição é obrigatório apenas quando o status não for Pronto, explicando o que falta para conclusão.
+Todo arquivo `.md` deve começar com um bloco YAML frontmatter contendo os campos obrigatórios. O campo `status` indica o estado atual do documento. O campo `updated` indica a data da última modificação no formato `YYYY-MM-DD`. O campo `description` é opcional e descreve o que precisa ser corrigido ou completado.
 
-## Metadados de ADR
+```yaml
+---
+status: review
+updated: 2026-01-20
+description: "Aguardando revisão humana"
+---
+```
 
-Architecture Decision Records possuem metadados específicos além dos padrões. O campo Data indica quando a decisão foi tomada no formato AAAA-MM-DD. O campo Status indica o estado da decisão com valores como Proposto, Aprovado, Aprovado e Implementado, Deprecado ou Substituído. O campo Decisor indica quem tomou a decisão, podendo ser nome individual ou Equipe de Arquitetura.
+## Campos
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|-------------|-----------|
+| `status` | string | Sim | Estado do documento: `review`, `approved`, `rejected` |
+| `updated` | date | Sim | Data da última modificação em `YYYY-MM-DD` |
+| `description` | string | Não | Texto explicando o que precisa ser corrigido |
 
 ## Valores de Status
 
-O status Pronto indica que o arquivo está completo, revisado por humano e aprovado, podendo ser considerado fonte confiável de informação. O status Review indica que o arquivo foi gerado ou corrigido automaticamente e aguarda revisão humana para aprovação final. O status Incompleto indica que o arquivo existe mas possui conteúdo faltante, seja aguardando geração automática por script, seja aguardando redação manual de seções específicas. O status Errado indica que a estrutura do arquivo viola as convenções estabelecidas e precisa ser refatorado, seja por ter conteúdo que deveria estar fragmentado em arquivos filhos, seja por não seguir o padrão de seus irmãos.
+O status `approved` indica que o arquivo está completo, revisado por humano e aprovado, podendo ser considerado fonte confiável de informação.
 
-## Formato
+O status `review` indica que o arquivo foi gerado ou corrigido automaticamente e aguarda revisão humana para aprovação final. Este é o valor padrão para novos arquivos.
 
-O rodapé segue o padrão com linha horizontal seguida dos campos em negrito. O campo Última atualização vem primeiro com a data. O campo Status do arquivo vem em seguida com o valor para READMEs. O campo Descrição aparece apenas para status Incompleto ou Errado explicando a pendência. Documentos com mais de 12 meses sem atualização são considerados desatualizados e devem ser revisados.
+O status `rejected` indica que o arquivo possui problemas estruturais, viola convenções ou precisa de refatoração significativa.
 
-## Exemplos de Descrições
+## Exemplos
 
-Para arquivos aguardando índice gerado automaticamente usar Aguardando index gerado por script. Para arquivos que precisam de mais conteúdo manual usar Aguardando redação da seção X. Para arquivos com estrutura errada usar explicação do que precisa mudar como O README deve ter somente parágrafo denso e o conteúdo deve ser fragmentado em arquivos numerados.
+Arquivo aprovado após revisão humana:
+
+```yaml
+---
+status: approved
+updated: 2026-01-20
+---
+```
+
+Arquivo aguardando revisão:
+
+```yaml
+---
+status: review
+updated: 2026-01-20
+description: "Gerado automaticamente, aguarda validação"
+---
+```
+
+Arquivo com problemas identificados:
+
+```yaml
+---
+status: rejected
+updated: 2026-01-20
+description: "README muito extenso, fragmentar em arquivos numerados"
+---
+```
+
+## Regras
+
+Todos os arquivos `.md` devem ter frontmatter, incluindo READMEs. Se não houver status definido, o padrão é `review`. Se não houver data, usa-se a data atual. Documentos com mais de 6 meses sem atualização são considerados desatualizados e devem ser revisados.
 
 ## Validação
 
-Os scripts em .scripts/carf_validator validam automaticamente a presença dos metadados obrigatórios e reportam arquivos sem rodapé ou com formato incorreto. Os códigos de erro META001 a META006 identificam problemas específicos de metadados.
+O script `normalize_yaml.py` em `.scripts/` normaliza automaticamente o frontmatter de todos os arquivos. O plugin Obsidian Docs Toolkit valida a presença dos metadados obrigatórios e permite aprovar ou rejeitar documentos rapidamente.
 
+```bash
+# Verificar o que seria modificado
+python .scripts/normalize_yaml.py --dry-run
+
+# Aplicar normalização
+python .scripts/normalize_yaml.py
+```
+
+## Metadados de ADR
+
+Architecture Decision Records possuem metadados adicionais específicos. O campo `adr_date` indica quando a decisão foi tomada. O campo `adr_status` indica o estado da decisão com valores como `proposed`, `accepted`, `deprecated` ou `superseded`. O campo `deciders` indica quem tomou a decisão.
+
+```yaml
 ---
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+status: approved
+updated: 2026-01-20
+adr_date: 2026-01-15
+adr_status: accepted
+deciders: "Equipe de Arquitetura"
+---
+```

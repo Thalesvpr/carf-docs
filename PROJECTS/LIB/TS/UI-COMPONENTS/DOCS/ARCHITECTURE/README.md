@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Arquitetura - @carf/ui
 
 ## Documentos Disponíveis
@@ -28,9 +33,3 @@ A biblioteca segue arquitetura de **Atomic Design** (atoms → molecules → org
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
-
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição: Muitas listas com bullets (6) antes do rodapé - considerar converter para parágrafo denso.

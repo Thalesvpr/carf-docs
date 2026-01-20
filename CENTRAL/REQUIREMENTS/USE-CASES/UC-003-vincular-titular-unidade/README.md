@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # UC-003-vincular-titular-unidade
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (6 casos de uso)
@@ -17,13 +21,17 @@
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
 
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
+<!-- CARF-INDEX-START -->
+## Documentos
 
----
+### Em Revisão
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-003-vincular-titular-unidade/UC-003-FA-001-importar-planilha.md|UC-003-FA-001: Importar Titulares de Planilha]]
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-003-vincular-titular-unidade/UC-003-FE-001-cpf-invalido.md|UC-003-FE-001: CPF/CNPJ Inválido]]
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-003-vincular-titular-unidade/UC-003-FE-002-titular-duplicado.md|UC-003-FE-002: Titular Já Vinculado]]
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-003-vincular-titular-unidade/UC-003-FE-003-percentual-excedido.md|UC-003-FE-003: Soma de Percentuais > 100%]]
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-003-vincular-titular-unidade/UC-003-FE-004-multiplos-principais.md|UC-003-FE-004: Múltiplos Titulares Principais]]
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-003-vincular-titular-unidade/UC-003-vincular-titular-unidade.md|UC-003: Vincular Titular a Unidade]]
+
+<!-- CARF-INDEX-END -->

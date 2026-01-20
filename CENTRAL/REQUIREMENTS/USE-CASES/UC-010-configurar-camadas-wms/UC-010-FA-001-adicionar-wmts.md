@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB]
-epic: performance
+status: review
+updated: 2025-12-30
 ---
 
 # UC-010-FA-001: Adicionar WMTS
@@ -10,14 +10,3 @@ Fluxo alternativo do UC-010 Configurar Camadas WMS desviando no passo 4 onde ao 
 **Ponto de Desvio:** Passo 4 do UC-010 (seleção de tipo)
 
 **Retorno:** Camada WMTS configurada com TileMatrixSet e Format específicos
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

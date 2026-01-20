@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-14
+---
+
 # FUNCTIONAL-REQUIREMENTS
 
 Requisitos funcionais do CARF especificando o que o sistema deve fazer sem detalhar como implementar. Cada requisito possui descrição objetiva focada no comportamento esperado, critérios de aceitação em formato testável, e rastreabilidade para casos de uso e user stories relacionadas.
@@ -6,11 +11,6 @@ Os requisitos estão organizados por domínio: autenticação e autorização, u
 
 Servem como fonte única de verdade - os projetos referenciam estes requisitos ao invés de duplicá-los.
 
----
-
-**Última atualização:** 2026-01-14
-
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Indice por Dominio (221 requisitos)
@@ -37,10 +37,26 @@ Servem como fonte única de verdade - os projetos referenciam estes requisitos a
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
-**Status do arquivo**: Review
 
----
+<!-- CARF-INDEX-START -->
+## Subpastas
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/01-auth-security/README|01-auth-security]]
+- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/02-tenants/README|02-tenants]]
+- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/03-users-teams/README|03-users-teams]]
+- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/04-notifications/README|04-notifications]]
+- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/05-communities/README|05-communities]]
+- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/README|06-units]]
+- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/07-holders/README|07-holders]]
+- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/08-documents-media/README|08-documents-media]]
+- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/09-layers-features/README|09-layers-features]]
+- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/10-spatial-analysis/README|10-spatial-analysis]]
+- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/11-annotations/README|11-annotations]]
+- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/12-surveys/README|12-surveys]]
+- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/13-legitimation/README|13-legitimation]]
+- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/14-offline-sync/README|14-offline-sync]]
+- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/15-data-export/README|15-data-export]]
+- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/16-reports/README|16-reports]]
+- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/17-wms-wmts/README|17-wms-wmts]]
+
+<!-- CARF-INDEX-END -->

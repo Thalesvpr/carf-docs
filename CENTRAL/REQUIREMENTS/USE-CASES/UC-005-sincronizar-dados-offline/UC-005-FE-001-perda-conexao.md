@@ -1,6 +1,6 @@
 ---
-modules: [REURBCAD]
-epic: authentication
+status: review
+updated: 2025-12-30
 ---
 
 # UC-005-FE-001: Perda de Conexão Durante Sync
@@ -10,14 +10,3 @@ Fluxo de exceção do UC-005 Sincronizar Dados Offline ocorrendo em qualquer fas
 **Ponto de Desvio:** Qualquer momento durante PULL ou PUSH (monitora conectividade continuamente)
 
 **Retorno:** Sincronização pausada com checkpoint salvo, retomada quando conexão volta
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

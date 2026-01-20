@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Deployment - ADMIN
 
 ## Deploy
@@ -32,9 +37,3 @@ bun run build  # → dist/
 # Preview locally
 bun run preview  # → http://localhost:4173
 ```
-
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição: Contém code blocks - considerar converter para prosa.

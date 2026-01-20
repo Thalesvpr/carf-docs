@@ -1,3 +1,13 @@
+---
+id: ""
+type: ARCH
+modules: []
+epic: ""
+status: review
+created: 2026-01-20
+updated: 2026-01-20
+---
+
 # Pipeline de CI
 
 GitHub Actions executa validações automáticas em pull requests e deploys garantindo qualidade antes de merge e publicação.
@@ -17,6 +27,3 @@ Job de Lighthouse CI executa após deploy de preview medindo performance e geran
 Deploy para produção acontece automaticamente após merge em main quando todos checks passam. Vercel detecta push e inicia deploy. Rollback automático se health check falhar após deploy.
 
 ---
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

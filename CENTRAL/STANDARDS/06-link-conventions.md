@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Convenções de Links
 
 Links internos entre documentos seguem convenções específicas que garantem navegabilidade e evitam referências quebradas.
@@ -25,9 +30,3 @@ Links que apontam para arquivos inexistentes são erros críticos que devem ser 
 ## Validação
 
 Os scripts em .scripts/carf_validator validam formato de links com códigos LINK001 a LINK005, links quebrados com código BLINK001, isolamento com códigos ISOL001 e ISOL002, e referências cruzadas com código XREF001.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

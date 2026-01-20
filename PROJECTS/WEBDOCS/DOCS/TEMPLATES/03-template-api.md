@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Template de API
 
 Template para páginas da seção /api/ que documentam conceitos e uso da API GEOAPI de forma não-técnica complementando Swagger.
@@ -13,8 +18,3 @@ Seção de operações lista ações possíveis (criar, listar, atualizar, etc) 
 Seção de permissões indica quais roles podem executar cada operação. Tabela simples com operação e roles necessárias. Link para documentação de roles para entender hierarquia.
 
 Seção de exemplos de uso descreve cenários comuns em linguagem de negócio. Exemplo: "Para cadastrar unidade coletada em campo, primeiro valide os dados do titular, depois..."
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

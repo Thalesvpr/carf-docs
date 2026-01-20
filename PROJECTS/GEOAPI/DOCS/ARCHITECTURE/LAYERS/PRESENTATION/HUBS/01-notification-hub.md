@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-16
+---
+
 # Notification Hub
 
 SignalR Hub para comunicação real-time.
@@ -94,8 +99,3 @@ services.AddSignalR();
 
 app.MapHub<NotificationHub>("/hubs/notifications");
 ```
-
----
-
-**Última atualização:** 2026-01-16
-**Status do arquivo**: Pronto

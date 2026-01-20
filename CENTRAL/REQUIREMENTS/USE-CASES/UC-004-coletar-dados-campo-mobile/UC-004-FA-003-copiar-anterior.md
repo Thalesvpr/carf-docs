@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB, REURBCAD]
-epic: units
+status: review
+updated: 2025-12-30
 ---
 
 # UC-004-FA-003: Copiar Unidade Anterior
@@ -24,14 +24,3 @@ Fluxo alternativo do UC-004 Coletar Dados Campo Mobile desviando no passo 6 (cap
 App executa SELECT asterisco FROM units_local WHERE deleted_at IS NULL ORDER BY created_at DESC LIMIT um retornando última unidade cadastrada com todos campos incluindo endereço tipo observações para pré-preencher formulário novo permitindo FIELD_AGENT economizar tempo digitação em áreas homogêneas com características repetidas.
 
 **Retorno:** Formulário pré-preenchido, FIELD_AGENT ajusta detalhes específicos
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

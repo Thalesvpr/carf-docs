@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Segurança
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (17 requisitos)
@@ -28,13 +32,28 @@
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
 
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
+<!-- CARF-INDEX-START -->
+## Documentos
 
----
+### Em Revisão
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/02-security/RNF-016-autenticacao-oauth2.md|RNF-016: Autenticação OAuth2]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/02-security/RNF-017-expiracao-tokens.md|RNF-017: Expiração de Tokens]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/02-security/RNF-018-https-obrigatorio.md|RNF-018: HTTPS Obrigatório]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/02-security/RNF-019-criptografia-dados-sensiveis.md|RNF-019: Criptografia de Dados Sensíveis]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/02-security/RNF-020-validacao-input.md|RNF-020: Validação de Input]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/02-security/RNF-022-cors-restritivo.md|RNF-022: CORS Restritivo]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/02-security/RNF-023-content-security-policy.md|RNF-023: Content Security Policy]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/02-security/RNF-024-auditoria-acoes.md|RNF-024: Auditoria de Ações]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/02-security/RNF-025-isolamento-tenants.md|RNF-025: Isolamento de Tenants]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/02-security/RNF-027-armazenamento-seguro-senhas.md|RNF-027: Armazenamento Seguro de Senhas]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/02-security/RNF-028-protecao-api-keys.md|RNF-028: Proteção de API Keys]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/02-security/RNF-029-scan-malware-uploads.md|RNF-029: Scan de Malware em Uploads]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/02-security/RNF-030-protecao-dados-pessoais-lgpd.md|RNF-030: Proteção de Dados Pessoais (LGPD)]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/02-security/RNF-031-timeout-sessao.md|RNF-031: Timeout de Sessão]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/02-security/RNF-033-secrets-management.md|RNF-033: Secrets Management]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/02-security/RNF-034-sql-injection-prevention.md|RNF-034: SQL Injection Prevention]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/02-security/RNF-035-monitoramento-seguranca.md|RNF-035: Monitoramento de Segurança]]
+
+<!-- CARF-INDEX-END -->

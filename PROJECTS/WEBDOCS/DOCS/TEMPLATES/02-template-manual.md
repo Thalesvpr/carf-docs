@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Template de Manual
 
 Template para páginas da seção /manuais/ que documentam uso das aplicações GEOWEB, REURBCAD e ADMIN.
@@ -13,8 +18,3 @@ Seção de troubleshooting opcional lista problemas comuns com soluções. Forma
 Seção "Ver também" lista funcionalidades relacionadas com links. Ajuda usuário a descobrir recursos complementares.
 
 Exemplo de frontmatter para manual de cadastro de unidade: title como Cadastrar Nova Unidade, description como Passo a passo para registrar unidade habitacional no GEOWEB, section como manuais, subsection como geoweb, audience como user.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

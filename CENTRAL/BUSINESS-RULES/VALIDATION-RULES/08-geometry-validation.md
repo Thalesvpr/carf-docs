@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Geometry Validation
 
 Regra validação geometrias espaciais garantindo polígonos representando unidades habitacionais comunidades blocos são válidos topologicamente compatíveis requisitos regularização fundiária onde validação inclui verificação polígono fechado primeiro ponto igual último ausência auto-interseção arestas não cruzam sentido rotação correto anti-horário exterior horário buracos área calculada dentro limites legais REURB-S até duzentos cinquenta metros quadrados REURB-E até quinhentos metros quadrados perímetro coerente área detecção sobreposição geometrias adjacentes geometrias fornecidas formatos padrão WKT Well-Known Text ou GeoJSON convertidas internamente representação canônica antes validação armazenamento cálculo área utiliza fórmula Shoelace método determinante polígonos simples coordenadas planas projetadas considerando áreas pequenas menor um quilômetro quadrado distorção projeção desprezível caso contrário transformar projeção equivalente usar cálculo esférico validação overlap unidades detecta sobreposição polígonos indicando conflito fundiário erro cadastro onde overlap maior threshold tolerância tipicamente um metro quadrado ou um por cento menor área dispara alerta revisão manual.
@@ -13,9 +18,3 @@ Formatos entrada WKT Well-Known Text formato textual inicia palavra-chave POLYGO
 Exceções casos especiais propriedades não contíguas usar MultiPolygon ao invés Polygon cada parte validada individualmente somar áreas todas partes edificações pátio interno Polygon with holes anel exterior mais anéis interiores validar sentido cada anel área igual área externa menos área buracos correção automática inverter sentido rotação se incorreto remover vértices duplicados simplificar geometria reduzir vértices mantendo forma.
 
 Relacionado domain model GeoPolygon value object implementando validação Unit entity usando geometria validada legitimation-rules reurb-s-requirements limite duzentos cinquenta metros quadrados área reurb-e-requirements limite quinhentos metros quadrados área implementações backend .NET NetTopologySuite frontend React Turf.js Plugin QGIS Shapely PostGIS spatial validation ST_IsValid.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

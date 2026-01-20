@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # JWT Token Expired
 
 Runbook para resolver problemas de tokens JWT expirados ou inválidos retornados pelo Keycloak, indicados por erros 401 Unauthorized com mensagem "token expired" ou "invalid token".
@@ -70,9 +75,3 @@ GEOAPI validação (`appsettings.json`):
 1. **Clock skew**: Diferença de horário entre servidores causa rejeição prematura. Sincronizar NTP.
 2. **Refresh falhou**: Token de refresh também expirou. Usuário precisa re-autenticar.
 3. **Revogação**: Token foi revogado administrativamente. Verificar audit logs do Keycloak.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

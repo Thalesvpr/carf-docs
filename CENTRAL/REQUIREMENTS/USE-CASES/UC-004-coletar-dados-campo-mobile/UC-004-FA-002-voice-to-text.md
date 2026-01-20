@@ -1,6 +1,6 @@
 ---
-modules: [GEOAPI, GEOWEB, REURBCAD]
-epic: portability
+status: review
+updated: 2025-12-30
 ---
 
 # UC-004-FA-002: Voice-to-Text
@@ -14,14 +14,3 @@ Fluxo alternativo do UC-004 Coletar Dados Campo Mobile desviando no passo 7 (pre
 App importa Voice de pacote @react-native-voice/voice, define função async startVoiceRecognition recebendo fieldName como parâmetro, executa await Voice.start passando locale pt-BR ativando reconhecimento de voz em português brasileiro usando engine nativa do dispositivo iOS Speech Recognition ou Android SpeechRecognizer, define callback Voice.onSpeechResults recebendo evento e extraindo text de e.value[0] pegando primeiro resultado transcrito com maior confiança, chama setFieldValue passando fieldName e formatText(text) aplicando formatação básica como capitalização de endereços conversão de números por extenso para dígitos preenchendo campo automaticamente com texto transcrito permitindo FIELD_AGENT revisar e editar se necessário antes de prosseguir.
 
 **Retorno:** Campo preenchido via voz, FIELD_AGENT continua para próximo campo
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

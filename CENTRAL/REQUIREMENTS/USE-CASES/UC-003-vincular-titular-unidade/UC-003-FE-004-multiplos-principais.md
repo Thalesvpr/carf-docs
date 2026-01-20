@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB]
-epic: maintainability
+status: review
+updated: 2025-12-30
 ---
 
 # UC-003-FE-004: Múltiplos Titulares Principais
@@ -22,14 +22,3 @@ Modal exibe ícone warning laranja com título "Titular Principal Já Existe" se
 Backend executa await db.transaction recebendo callback async com parâmetro trx executando três operações sequenciais sendo primeiro await trx com tabela unit_holders aplicando where com unit_id igual unitId e is_primary igual true executando update com is_primary igual false e updated_at igual new Date() desmarcando titular atual, segundo await trx com tabela unit_holders executando insert com objeto contendo unit_id igual unitId holder_id igual newHolderId relationship_type igual formData.relationship_type ownership_percentage igual formData.ownership_percentage e is_primary igual true criando novo vínculo como principal, terceiro await trx com tabela unit_timeline executando insert com array contendo dois objetos sendo primeiro com unit_id igual unitId event igual PRIMARY_UNMARKED e holder_id igual currentPrimaryId registrando desmarcação e segundo com event igual PRIMARY_MARKED e holder_id igual newHolderId registrando nova marcação garantindo atomicidade completa com rollback automático se qualquer operação falhar.
 
 **Retorno:** Titular vinculado com ajuste de principal, ou operação cancelada
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

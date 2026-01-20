@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Login
 
 Schema e comportamento do endpoint de autenticação via Keycloak.
@@ -120,9 +125,3 @@ O access_token contém:
   "iss": "https://keycloak.carf.com.br/realms/carf"
 }
 ```
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

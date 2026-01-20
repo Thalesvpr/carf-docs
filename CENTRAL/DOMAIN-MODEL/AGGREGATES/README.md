@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # AGGREGATES
 
 Aggregates são clusters de entidades e value objects tratados como unidade coesa, onde o aggregate root controla acesso e coordena mudanças de estado, garantindo consistência transacional dentro de fronteiras bem definidas.
@@ -14,10 +19,6 @@ O [LegitimationRequestAggregate](./03-legitimation-request-aggregate.md) tem Leg
 - **[02-community-aggregate.md](./02-community-aggregate.md)** - Comunidade ou assentamento
 - **[03-legitimation-request-aggregate.md](./03-legitimation-request-aggregate.md)** - Processo de legitimação fundiária
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (3 arquivos)
@@ -31,8 +32,13 @@ O [LegitimationRequestAggregate](./03-legitimation-request-aggregate.md) tem Leg
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/DOMAIN-MODEL/AGGREGATES/01-unit-aggregate.md|Unit Aggregate]]
+- ○ [[CENTRAL/DOMAIN-MODEL/AGGREGATES/02-community-aggregate.md|Community Aggregate]]
+- ○ [[CENTRAL/DOMAIN-MODEL/AGGREGATES/03-legitimation-request-aggregate.md|LegitimationRequest Aggregate]]
+
+<!-- CARF-INDEX-END -->

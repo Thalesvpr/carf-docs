@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB, REURBCAD]
-epic: performance
+status: review
+updated: 2025-12-30
 ---
 
 # UC-006-FA-001: Geração Rápida (Poucos Dados)
@@ -10,14 +10,3 @@ Fluxo alternativo do UC-006 Gerar Relatório de Comunidade desviando no passo 8 
 **Ponto de Desvio:** Passo 8 do UC-006 (verificação de tamanho antes de decisão async/sync)
 
 **Retorno:** Arquivo retornado diretamente no response HTTP, download inicia imediatamente
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

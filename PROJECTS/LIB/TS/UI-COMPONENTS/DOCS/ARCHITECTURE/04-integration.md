@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Integration - @carf/ui
 
 ## Integração com GEOWEB/ADMIN
@@ -53,9 +58,3 @@ export default function UnitsPage() {
   )
 }
 ```
-
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição: Contém code blocks - considerar converter para prosa.

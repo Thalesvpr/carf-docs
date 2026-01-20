@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # DOCKER
 
 Containerização Docker do CARF. DOCKERFILES contém Dockerfile por projeto (Dockerfile.geoapi multi-stage build dotnet restore/build/publish, Dockerfile.geoweb node build React, Dockerfile.keycloak customizado). COMPOSE contém docker-compose files por ambiente (docker-compose.dev.yml services geoapi/postgres/keycloak/redis/geoweb volumes mounted code hot-reload, docker-compose.staging.yml imagens pre-built sem volumes, docker-compose.prod.yml com resource limits, health checks, restart policies). Networks isolando services (backend-network para GEOAPI-PostgreSQL, frontend-network para GEOWEB-GEOAPI). Secrets via env files .env.dev/.env.prod gitignored. Build: docker-compose build, run: docker-compose up -d, logs: docker-compose logs -f service-name.
@@ -7,10 +12,6 @@ Containerização Docker do CARF. DOCKERFILES contém Dockerfile por projeto (Do
 - **[DOCKERFILES](./DOCKERFILES/README.md)** - Dockerfile por projeto
 - **[COMPOSE](./COMPOSE/README.md)** - Docker Compose por ambiente
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Indice por Dominio (4 arquivos)
@@ -23,8 +24,10 @@ Containerização Docker do CARF. DOCKERFILES contém Dockerfile por projeto (Do
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Subpastas
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- [[CENTRAL/ARCHITECTURE/DEPLOYMENT/DOCKER/COMPOSE/README|COMPOSE]]
+- [[CENTRAL/ARCHITECTURE/DEPLOYMENT/DOCKER/DOCKERFILES/README|DOCKERFILES]]
+
+<!-- CARF-INDEX-END -->

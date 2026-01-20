@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Gerenciamento de Secrets
 
 Client secrets para clients confidenciais nunca commitados em repositório. Valores gerados pelo Keycloak durante criação do client e armazenados em Kubernetes Secrets ou vault corporativo. Referência via variável de ambiente em configuração da aplicação.
@@ -11,9 +16,3 @@ Credenciais de banco de dados (PostgreSQL do Keycloak) armazenadas separadamente
 Service account credentials para GEOGIS rotacionadas mensalmente via automation. Script em keycloak/scripts/rotate-service-account.sh gera novo secret, atualiza Kubernetes Secret, e registra rotação em audit log. Alertas disparam se rotação não executada em 45 dias.
 
 Backup de secrets críticos em vault geograficamente distribuído com acesso restrito a equipe de infraestrutura. Recovery procedure documentado e testado trimestralmente em simulação de disaster recovery.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # KEYCLOAK
 
 Keycloak provê autenticação centralizada OAuth2/OIDC para o ecossistema CARF, usando realm único com multi-tenancy dinâmico via atributos de usuário mapeados em claims JWT. Implementa Single Sign-On unificado para GEOWEB, REURBCAD, GEOAPI, GEOGIS, WEBDOCS e ADMIN onde usuário autentica uma vez e obtém sessão compartilhada entre todas as aplicações. Esta seção documenta especificações do sistema de autenticação enquanto guias de implementação, setup e troubleshooting estão em PROJECTS/KEYCLOAK/DOCS.
@@ -10,10 +15,6 @@ A [arquitetura](./ARCHITECTURE/README.md) documenta visão geral, fluxos OAuth2/
 
 A pasta [RUNBOOKS](./RUNBOOKS/README.md) contém procedimentos operacionais para criar usuários e tenants, rotacionar secrets, diagnosticar falhas de autenticação, fazer backup/restore e configurar monitoramento.
 
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Indice por Dominio (26 arquivos)
@@ -31,8 +32,15 @@ A pasta [RUNBOOKS](./RUNBOOKS/README.md) contém procedimentos operacionais para
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Subpastas
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- [[CENTRAL/INTEGRATION/KEYCLOAK/ARCHITECTURE/README|ARCHITECTURE]]
+- [[CENTRAL/INTEGRATION/KEYCLOAK/CLIENTS/README|CLIENTS]]
+- [[CENTRAL/INTEGRATION/KEYCLOAK/RBAC/README|RBAC]]
+- [[CENTRAL/INTEGRATION/KEYCLOAK/REALM/README|REALM]]
+- [[CENTRAL/INTEGRATION/KEYCLOAK/RUNBOOKS/README|RUNBOOKS]]
+- [[CENTRAL/INTEGRATION/KEYCLOAK/SECURITY/README|SECURITY]]
+- [[CENTRAL/INTEGRATION/KEYCLOAK/TOKENS/README|TOKENS]]
+
+<!-- CARF-INDEX-END -->

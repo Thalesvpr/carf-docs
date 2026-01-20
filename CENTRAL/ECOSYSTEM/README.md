@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Ecosystem
 
 Catálogo canônico das aplicações do ecossistema CARF, definindo identificadores, metadados de autenticação, URLs e configurações de branding para uso consistente em todo o sistema.
@@ -67,8 +72,3 @@ O arquivo `applications.json` contém o registro estruturado com os seguintes ca
 - [Design System](../DESIGN-SYSTEM/README.md) - Especificações visuais para branding
 - [Keycloak Realm](../INTEGRATION/KEYCLOAK/REALM/README.md) - Configuração do realm
 - [ADR-023](../ARCHITECTURE/ADRs/ADR-023-color-palette-design-system.md) - Paleta de cores
-
----
-
-**Status do arquivo:** Draft
-**Última atualização:** 2026-01-19

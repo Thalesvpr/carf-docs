@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # KUBERNETES
 
 Manifests Kubernetes CARF usando Kustomize BASE contém manifests genéricos Deployment Service Ingress ConfigMap Secret templates sem environment-specific values OVERLAYS contém customizações ambiente DEV uma replica resources requests baixos PROD três replicas HPA autoscaling resources limits liveness readiness probes agressivos kustomization arquivo cada overlay referencia base aplica patches replicas image tags env vars deploy kubectl apply k overlays prod namespaces separados carf-dev carf-staging carf-prod RBAC ServiceAccounts RoleBindings limitando permissions garantindo isolamento segurança configuração declarativa versionada Git facilitando rollback disaster recovery infrastructure as code.
@@ -7,10 +12,6 @@ Manifests Kubernetes CARF usando Kustomize BASE contém manifests genéricos Dep
 - **[BASE](./BASE/README.md)** - Manifests genéricos compartilhados
 - **[OVERLAYS](./OVERLAYS/README.md)** - Customizações por ambiente
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Indice por Dominio (4 arquivos)
@@ -23,8 +24,10 @@ Manifests Kubernetes CARF usando Kustomize BASE contém manifests genéricos Dep
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Subpastas
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- [[CENTRAL/ARCHITECTURE/DEPLOYMENT/KUBERNETES/BASE/README|BASE]]
+- [[CENTRAL/ARCHITECTURE/DEPLOYMENT/KUBERNETES/OVERLAYS/README|OVERLAYS]]
+
+<!-- CARF-INDEX-END -->

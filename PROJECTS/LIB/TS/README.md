@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # TS
 
 Bibliotecas TypeScript compartilhadas entre GEOWEB, REURBCAD e ADMIN.
@@ -6,20 +11,11 @@ Bibliotecas TypeScript compartilhadas entre GEOWEB, REURBCAD e ADMIN.
 - **[GEOAPI-CLIENT/](./GEOAPI-CLIENT/README.md)** - @carf/geoapi-client HTTP client
 - **[UI-COMPONENTS/](./UI-COMPONENTS/README.md)** - @carf/ui componentes React
 
----
+<!-- CARF-INDEX-START -->
+## Subpastas
 
-**Última atualização:** 2026-01-12
+- [[PROJECTS/LIB/TS/GEOAPI-CLIENT/README|GEOAPI-CLIENT]]
+- [[PROJECTS/LIB/TS/TSCORE/README|TSCORE]]
+- [[PROJECTS/LIB/TS/UI-COMPONENTS/README|UI-COMPONENTS]]
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (25 arquivos)
-
-| # | Dominio | Arquivos |
-|:--|:--------|:--------:|
-|  | [Geoapi Client](./GEOAPI-CLIENT/README.md) | 7 |
-|  | [Tscore](./TSCORE/README.md) | 6 |
-|  | [Components](./UI-COMPONENTS/README.md) | 12 |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Incompleto
-Descrição: Falta parágrafo denso introdutório.
+<!-- CARF-INDEX-END -->

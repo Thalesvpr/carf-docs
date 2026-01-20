@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-20
+---
+
 # Guia de Setup - CARF Polyrepo
 
 Guia passo a passo para configurar o ambiente de desenvolvimento do CARF seguindo a arquitetura polyrepo.
@@ -93,9 +98,3 @@ Executar loop para cada projeto navegando para PROJECTS/projeto/SRC-CODE executa
 ## Referências
 
 Consulte ../04-repository-catalog para lista completa de repositórios, ../RELEASES/01-polyrepo-strategy para justificativa da arquitetura, 02-branching-strategy para workflow de branches, 03-commit-conventions para formato de commits, 04-pr-guidelines para processo de PR, e ../RELEASES/02-release-coordination para coordenação de releases.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-20
-**Descrição:** 

@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-10
+---
+
 # LAYERS - GEOGIS
 
 Estrutura de camadas do código do plugin GEOGIS QGIS.
@@ -42,18 +47,11 @@ Estrutura de camadas do código do plugin GEOGIS QGIS.
 - CalculateArea - cálculo preciso de áreas
 - ExportShapefile - export para formatos GIS
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Última atualização:** 2026-01-10
+### Em Revisão
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (1 arquivo)
+- ○ [[PROJECTS/GEOGIS/DOCS/LAYERS/01-auth-manager.md|01-auth-manager]]
 
-| ID | Titulo |
-|:---|:-------|
-| [01-auth-manager](./01-auth-manager.md) | 01-auth-manager |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Incompleto
-Descrição: Falta parágrafo denso introdutório; Muitas listas com bullets (17) antes do rodapé - considerar converter para parágrafo denso.
+<!-- CARF-INDEX-END -->

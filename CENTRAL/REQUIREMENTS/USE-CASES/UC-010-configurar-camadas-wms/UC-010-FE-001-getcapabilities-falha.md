@@ -1,6 +1,6 @@
 ---
-modules: [GEOAPI, GEOWEB]
-epic: security
+status: review
+updated: 2025-12-30
 ---
 
 # UC-010-FE-001: GetCapabilities Falha
@@ -10,14 +10,3 @@ Fluxo de exceção do UC-010 Configurar Camadas WMS ocorrendo no passo 6 quando 
 **Ponto de Desvio:** Passo 6 do UC-010 (request GetCapabilities)
 
 **Retorno:** Erro exibido, ADMIN corrige URL e retenta teste
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

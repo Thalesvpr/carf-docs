@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # ADR-002: Escolha do PostgreSQL 16 + PostGIS 3.4 como Database
 
 Decisão arquitetural escolhendo PostgreSQL 16 com extensão PostGIS 3.4 como banco de dados principal do CARF justificada por ser padrão de facto para dados geoespaciais em sistemas governamentais brasileiros com adoção massiva em IBGE FUNAI ICMBio garantindo interoperabilidade e compartilhamento de dados, suporte nativo a tipos geométricos (Point LineString Polygon MultiPolygon GeometryCollection) e operações espaciais (ST_Intersects ST_Contains ST_Distance ST_Buffer ST_Area) eliminando necessidade de bibliotecas externas ou pós-processamento em application layer acelerando queries espaciais em 10-100x comparado a bancos relacionais convencionais, índices espaciais GiST (Generalized Search Tree) e SP-GiST (Space-Partitioned GiST) permitindo busca eficiente de vizinhança e interseção em datasets com milhões de geometrias mantendo tempo de resposta sub-segundo conforme RNF-003, conformidade com padrões OGC (Open Geospatial Consortium) especificamente Simple Features Specification garantindo exportação para formatos GIS padrão (Shapefile GeoJSON KML WKT) sem conversões lossy, transações ACID garantindo integridade de dados críticos em processos de legitimação fundiária onde inconsistência pode ter consequências legais graves, Row-Level Security (RLS) nativo permitindo implementação de multi-tenancy seguro isolando dados de diferentes prefeituras no mesmo database através de políticas SQL automáticas sem lógica condicional em application code reduzindo surface de ataques e simplificando compliance LGPD, replicação streaming nativa para hot standby garantindo alta disponibilidade com RPO (Recovery Point Objective) próximo de zero e RTO (Recovery Time Objective) de minutos conforme RNF-082 sobre disaster recovery, JSON/JSONB nativo permitindo armazenamento de metadados flexíveis e campos customizados por tenant sem schema migrations complexas habilitando configuração per-tenant de formulários cadastrais, full-text search integrado com suporte a português brasileiro através de dicionários específicos permitindo busca textual em endereços nomes titulares e observações sem necessidade de Elasticsearch adicional reduzindo complexidade operacional, particionamento declarativo de tabelas grandes (units holders processes) por tenant_id ou data otimizando performance de queries e simplificando archival de dados antigos, e ecossistema maduro de ferramentas administrativas (pgAdmin DBeaver) e extensões (pg_stat_statements pg_repack) facilitando troubleshooting e manutenção.
@@ -11,9 +16,3 @@ Consequências positivas incluem custo zero de licensing permitindo deployment e
 Configuração específica escolhida utiliza PostgreSQL 16.1 (última versão estável em 2024-Q3) com PostGIS 3.4.1, shared_buffers configurado em 25% da RAM disponível (~8GB em produção) para cache eficiente de índices espaciais frequentemente acessados, work_mem de 256MB para permitir sorts em memória de queries espaciais complexas evitando disk spills, effective_cache_size de 75% da RAM (~24GB) informando query planner sobre cache disponível do sistema operacional, max_connections de 200 balanceando concorrência com overhead de memória por conexão, e autovacuum agressivo (scale_factor 0.05) para tabelas com alta taxa de updates mantendo índices espaciais otimizados.
 
 Status da decisão é aprovado e implementado desde início do projeto em 2024-Q3, com revisão prevista apenas se PostgreSQL introduzir breaking changes em major version futura ou se surgir alternativa open-source com vantagens substanciais (improvável dado domínio atual de PostGIS).
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

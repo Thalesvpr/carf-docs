@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # ADR-016: Escolha do Astro + Starlight para Site de Documentação
 
 Decisão arquitetural escolhendo Astro 4 com Starlight theme para site de documentação pública WEBDOCS justificada por static site generation (SSG) gerando HTML puro no build time resultando em sites extremamente rápidos com Lighthouse scores 100/100/100/100 sem JavaScript client-side desnecessário melhorando SEO e acessibilidade, content collections com validation Zod garantindo frontmatter correto e type-safe em Markdown files reduzindo erros de metadados inconsistentes, sidebar navigation automática gerada da estrutura de pastas eliminando configuração manual redundante, search integrado via Pagefind indexando todo conteúdo com fuzzy search e preview snippets sem necessidade de Algolia pago, dark mode toggle built-in respeitando preferência do sistema, i18n ready preparando futuro suporte a português/inglês/espanhol, MDX support permitindo componentes React/Astro em Markdown para interatividade (CodeBlock Mermaid diagrams), syntax highlighting via Shiki com suporte a 100+ linguagens incluindo TypeScript C# SQL, e deployment em Vercel com preview por PR facilitando revisão de documentação antes de merge.
@@ -17,9 +22,3 @@ Consequências positivas incluem performance excepcional, SEO otimizado, custo z
 Configuração utiliza Astro 4.1+ com Starlight plugin, content em src/content/docs/ editável via Decap CMS, frontmatter validation com Zod schemas, Pagefind search indexing habilitado, adapter @astrojs/vercel para SSR nas páginas protegidas, e middleware de auth validando token Keycloak em rotas /dev/*.
 
 Status aprovado e implementado desde 2024-Q4, atualizado em 2026-01 para incluir autenticação Keycloak e CMS.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

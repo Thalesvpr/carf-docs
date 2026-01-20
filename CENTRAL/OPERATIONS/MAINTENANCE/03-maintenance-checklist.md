@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Maintenance Checklist
 
 Checklist para janelas de manutenção programadas do sistema CARF.
@@ -87,9 +92,3 @@ kubectl set image deployment/geoapi geoapi=carf/geoapi:previous-tag
 # 3. Reiniciar pods
 kubectl rollout restart deployment/geoapi
 ```
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

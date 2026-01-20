@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # UNIT
 
 Testes unitários do GEOAPI verificando comportamento isolado de componentes individuais sem dependências externas usando mocks e stubs para simular colaboradores. Domain entities testadas verificam invariants aplicados no constructor e métodos behavior (Unit.ChangeStatus deve validar transições permitidas, Holder.AddContact deve rejeitar duplicates), value objects testam validações e equality semantics (CPF rejeita formato inválido, Address.Equals compara por valor não referência) e domain services verificam business rules complexas sem side effects em database. Application layer validators usando FluentValidation testam todas rules declaradas (CreateUnitCommandValidator verifica required fields, format constraints, business rules) com test cases cobrindo valid inputs e cada validation rule isoladamente retornando error messages esperados. Mappers AutoMapper testam conversões bidirecionais Entity ↔ DTO preservando todos campos relevantes e aplicando transformações corretas (geometry WKB para GeoJSON, DateTimeOffset para ISO8601 string) verificados via assertions profundas comparando cada property.
@@ -36,19 +41,3 @@ Testes unitários do GEOAPI verificando comportamento isolado de componentes ind
 ## Convenções
 
 Testes unitários devem executar rapidamente (< 100ms cada) sem IO operations como database access ou HTTP calls usando mocks via Moq para substituir repositories e external services. Arrange-Act-Assert pattern estrutura cada test method claramente separando setup (criar entity, configurar mocks), execution (chamar method under test) e verification (assertions sobre resultado e interactions). Test data factories criam entities válidas com valores default realistas via Bogus permitindo testes focar apenas nos campos relevantes para cenário específico sem boilerplate repetitivo construindo objetos complexos manualmente. Cada test class herda de base class fornecendo utilities comuns como mock creation helpers e assertion extensions reduzindo duplicação cross tests mantendo consistency. Theory tests usando InlineData ou MemberData exercitam múltiplos inputs com mesmo assertion logic ideal para boundary testing de validations (CPF com 10 digits, 11 digits, 12 digits, formato inválido) cobrindo edge cases sistematicamente.
-
----
-
-**Última atualização:** 2026-01-12
-**Status do arquivo**: Incompleto
-Descrição: Falta seção GENERATED com índice automático; Muitas listas com bullets (17) antes do rodapé - considerar converter para parágrafo denso.
-
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (1 arquivo)
-
-| ID | Titulo |
-|:---|:-------|
-| [01-domain-unit-tests](./01-domain-unit-tests.md) | Domain Unit Tests |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->

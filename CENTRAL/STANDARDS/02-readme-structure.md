@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Estrutura de README
 
 Todo diretório em CENTRAL e PROJECTS deve conter um arquivo README.md seguindo estrutura padronizada que facilita navegação e compreensão do conteúdo. Arquivos index.md não são permitidos, sempre usar README.md.
@@ -29,9 +34,3 @@ O arquivo README.md segue esta ordem: título H1 com linha em branco após, par�
 ## Validação
 
 Os scripts em .scripts/carf_validator validam estrutura de README com códigos README001 a README007, verificando presença de título, formato correto e seções obrigatórias.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

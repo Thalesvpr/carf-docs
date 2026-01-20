@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # RLS Policy Violation
 
 Runbook para resolver erros de Row-Level Security onde usuário não consegue acessar dados do seu tenant ou está vendo dados de outro tenant incorretamente.
@@ -85,9 +90,3 @@ curl -H "Authorization: Bearer $TOKEN_TENANT_A" https://api.carf.com.br/api/unit
 curl -H "Authorization: Bearer $TOKEN_TENANT_B" https://api.carf.com.br/api/units | jq length
 # Resultados devem ser diferentes (cada tenant vê apenas seus dados)
 ```
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

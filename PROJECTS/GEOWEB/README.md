@@ -1,20 +1,18 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # GEOWEB
 
 Portal web React 18 para gestão de unidades habitacionais, comunidades e processos de legitimação fundiária. Interface com mapas interativos Mapbox/Leaflet, dashboards e relatórios.
 
 - **[DOCS/](./DOCS/README.md)** - Documentação técnica
 
----
+<!-- CARF-INDEX-START -->
+## Subpastas
 
-**Última atualização:** 2026-01-12
+- [[PROJECTS/GEOWEB/DOCS/README|DOCS]]
+- [[PROJECTS/GEOWEB/SRC-CODE/README|SRC-CODE]]
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (16 arquivos)
-
-| # | Dominio | Arquivos |
-|:--|:--------|:--------:|
-|  | [Docs](./DOCS/README.md) | 16 |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Pronto
+<!-- CARF-INDEX-END -->

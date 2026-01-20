@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # TEST-CASES
 
 Casos de teste organizados por tipo, facilitando encontrar e manter testes específicos.
@@ -10,10 +15,6 @@ Os [testes unitários](./UNIT/README.md) cobrem código isolado: domain-tests pa
 
 Fixtures, factories e test data builders facilitam o setup rápido dos testes.
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Indice por Dominio (5 arquivos)
@@ -27,8 +28,11 @@ Fixtures, factories e test data builders facilitam o setup rápido dos testes.
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Subpastas
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- [[CENTRAL/TESTING/TEST-CASES/API/README|API]]
+- [[CENTRAL/TESTING/TEST-CASES/E2E/README|E2E]]
+- [[CENTRAL/TESTING/TEST-CASES/UNIT/README|UNIT]]
+
+<!-- CARF-INDEX-END -->

@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Autenticação e Segurança
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (16 requisitos)
@@ -26,11 +30,27 @@
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/01-auth-security/RF-001-integração-com-keycloak.md|RF-001: Integração com Keycloak]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/01-auth-security/RF-002-fluxo-authorization-code-pkce.md|RF-002: Fluxo Authorization Code + PKCE]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/01-auth-security/RF-003-client-credentials-flow.md|RF-003: Client Credentials Flow]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/01-auth-security/RF-004-refresh-token-automático.md|RF-004: Refresh Token Automático]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/01-auth-security/RF-005-validação-jwt-em-todas-requisições.md|RF-005: Validação JWT em Todas Requisições]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/01-auth-security/RF-006-5-níveis-de-acesso-roles.md|RF-006: 5 Níveis de Acesso (Roles)]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/01-auth-security/RF-007-super_admin-acesso-total.md|RF-007: SUPER_ADMIN - Acesso Total]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/01-auth-security/RF-008-admin-gestão-de-tenant.md|RF-008: ADMIN - Gestão de Tenant]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/01-auth-security/RF-009-manager-aprovação-de-workflows.md|RF-009: MANAGER - Aprovação de Workflows]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/01-auth-security/RF-010-analyst-cadastro-e-edição.md|RF-010: ANALYST - Cadastro e Edição]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/01-auth-security/RF-011-field_agent-coleta-de-dados.md|RF-011: FIELD_AGENT - Coleta de Dados]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/01-auth-security/RF-012-controle-de-acesso-por-recurso.md|RF-012: Controle de Acesso por Recurso]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/01-auth-security/RF-013-isolamento-de-dados-por-tenant.md|RF-013: Isolamento de Dados por Tenant]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/01-auth-security/RF-014-logout-e-revogação-de-token.md|RF-014: Logout e Revogação de Token]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/01-auth-security/RF-015-sessão-expirada-redirecionamento.md|RF-015: Sessão Expirada - Redirecionamento]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/01-auth-security/RF-016-auditoria-de-acessos.md|RF-016: Auditoria de Acessos]]
+
+<!-- CARF-INDEX-END -->

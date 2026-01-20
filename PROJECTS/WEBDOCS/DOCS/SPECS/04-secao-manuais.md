@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Seção Manuais
 
 Seção /manuais/ documenta uso das três aplicações do ecossistema: GEOWEB (portal web), REURBCAD (app de campo), e ADMIN (console administrativo). Maior volume de conteúdo do portal.
@@ -13,8 +18,3 @@ Conteúdo de ADMIN documenta funcionalidades para gestores: gestão de usuários
 Tom de escrita é prático e direto focado em "como fazer". Instruções passo-a-passo com screenshots. Callouts para dicas, warnings para ações destrutivas, e troubleshooting para problemas comuns.
 
 Frontmatter define section como manuais, subsection como aplicação específica, audience como user. Screenshots organizados em public/images/manuais/{subsection}/.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

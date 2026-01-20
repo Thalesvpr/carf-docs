@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-11
+---
+
 # Team Management - Gestão de Equipes
 
 Feature de gestão equipes técnicas implementada como CRUD completo React SPA permitindo ADMIN e MANAGER criarem editarem visualizarem desativarem teams organizarem colaboradores grupos funcionais através de páginas TeamsListPage grid paginado TanStack Table filtros search por nome líder status sorting, TeamFormPage formulário inputs nome descrição líder dropdown status radio buttons validações inline, TeamDetailsPage tabs Membros Comunidades Atividades mostrando integrantes assignments histórico, componentes principais TeamCard nome líder members count communities count status badge actions view edit deactivate, TeamMembersTab tabela membros com avatar nome role COORDINATOR ANALYST FIELD_AGENT actions add remove change role, AddMembersModal multi-select checkboxes users disponíveis filtros por role department facilitando seleção, AssignCommunitiesModal checkboxes communities disponíveis map preview boundaries facilitando identificação áreas, ChangeLeaderDialog dropdown novo líder notificações automáticas anterior atual.
@@ -7,8 +12,3 @@ Validações implementadas via Zod teamSchema validando name obrigatório string
 API integration via custom hooks useTeams TanStack Query useQuery key teams filters search page, useCreateTeam mutation POST /api/teams body team object onSuccess invalidating teams cache notificações email líder membros, useUpdateTeam PATCH /api/teams/:id partial fields preserving members communities, useDeleteTeam DELETE soft delete setando status INACTIVE preservando histórico não removendo table, useAddTeamMembers POST /api/teams/:id/members body array user_id role pairs validando não duplicates backend inserting junction table, useRemoveTeamMember DELETE /api/teams/:teamId/members/:userId validando não líder, useAssignCommunities POST /api/teams/:id/communities body array community_ids validando tenant ownership, useChangeLeader PATCH /api/teams/:id/leader body new_leader_id validando ACTIVE role sending notifications previous current leader, optimistic updates adicionando members communities cache antes request rollback se fail, error handling 409 Conflict name duplicate oferecendo suffix numbered versioning Team A Team A (2).
 
 Domain model mapeando CENTRAL Team entity TypeScript interface Team com id UUID name string unique description nullable leader_id User relation leader members User array many-to-many via team_members junction com role field communities Community array many-to-many via team_communities status enum timestamps, implementação UC-011 requirements incluindo criar team formulário validações unique name active leader min 1 member, adicionar membros modal checkboxes roles assignment notificações, atribuir comunidades geolocation filtering map preview, editar team preservando members communities, desativar soft delete mantendo histórico audit, listagem filtros status search pagination server-side, detalhes tabs separando concerns members communities activities, notificações email push líder membros adicionados removed changed, auditoria logging team_history table tracking all operations actor timestamp details, security RBAC checking user roles hasRole ADMIN MANAGER antes render create edit actions, relacionamento requirements rastreando RF-024 RF-026 gestão equipes coordenação trabalho accountability.
-
----
-
-**Última atualização:** 2026-01-11
-**Status do arquivo**: Pronto

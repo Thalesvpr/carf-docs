@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-09
+---
+
 # API Reference @carf/tscore
 
 Documentação completa da API pública.
@@ -540,18 +545,11 @@ try {
 
 - [Validation API](./01-validation-api.md) - Detalhes de implementação dos value objects de validação
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Última atualização:** 2026-01-09
+### Em Revisão
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (1 arquivo)
+- ○ [[PROJECTS/LIB/TS/TSCORE/DOCS/API/01-validation-api.md|Validation API - Referência Completa]]
 
-| ID | Titulo |
-|:---|:-------|
-| [01-validation-api](./01-validation-api.md) | Validation API - Referência Completa |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Incompleto
-Descrição: Falta parágrafo denso introdutório; Muitas listas com bullets (46) antes do rodapé - considerar converter para parágrafo denso; Contém code blocks - considerar converter para prosa.
+<!-- CARF-INDEX-END -->

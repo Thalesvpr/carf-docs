@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB, REURBCAD]
-epic: compatibility
+status: review
+updated: 2025-12-30
 ---
 
 # UC-006-FA-002: Agendar Geração Recorrente
@@ -10,14 +10,3 @@ Fluxo alternativo do UC-006 Gerar Relatório de Comunidade desviando no passo 6 
 **Ponto de Desvio:** Passo 6 do UC-006 (checkbox de agendamento antes de gerar)
 
 **Retorno:** Agendamento criado, relatório gerado e enviado automaticamente no período configurado
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

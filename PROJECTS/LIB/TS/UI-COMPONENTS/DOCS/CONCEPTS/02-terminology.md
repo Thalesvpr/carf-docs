@@ -1,8 +1,8 @@
+---
+status: review
+updated: 2026-01-11
+---
+
 # Terminology
 
 Glossário termos técnicos arquitetura @carf/ui incluindo Atomic Design onde Atom representa componente indivisível (Button Input Badge) menor unidade UI, Molecule combinação atoms (FormField composto Label Input ErrorMessage) grupo funcional simples, Organism grupo molecules (LoginForm UnitCard) seção completa interface, componentes React incluindo Compound Component componente subcomponentes relacionados (Dialog.Header Card.Footer) permitindo composição flexível, Controlled Component state gerenciado externamente via props (value onChange), Uncontrolled Component state interno ref access (defaultValue ref), Design System coleção design tokens guidelines patterns components assegurando consistência visual UX através produtos, CSS Variables (custom properties) valores reutilizáveis CSS (--primary --font-sans) permitindo theming dinâmico runtime sem recompilação, Storybook ferramenta desenvolvimento isolado components documenting testing visual regression, Testing Library filosofia testing user-centric querying elementos DOM como usuário real vê (byRole byLabelText) ao invés implementation details (byTestId), e Radix UI biblioteca primitives acessíveis headless unstyled fornecendo behavior keyboard navigation ARIA sem opiniões styling permitindo customização completa Tailwind CSS shadcn/ui layer abstraindo complexity accessibility focus managing roving tabindex modal trap restoring portal rendering z-index stacking contexts collision detection positioning algorithms dropdown menu select combobox popover tooltip dialog sheet alert ensuring robust accessible components foundation @carf/ui built upon.
-
----
-
-**Última atualização:** 2026-01-11
-**Status do arquivo**: Pronto

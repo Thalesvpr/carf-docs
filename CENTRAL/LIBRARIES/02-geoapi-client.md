@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # @carf/geoapi-client
 
 SDK HTTP type-safe para comunicação com o backend GEOAPI, abstraindo complexidades de autenticação, retry e cache para os frontends consumidores.
@@ -17,9 +22,3 @@ Executar comando bun add @carf/geoapi-client @carf/tscore instalando SDK junto c
 ## Documentação Técnica
 
 Documentação de implementação disponível em PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/ contendo API reference, configuração e exemplos.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

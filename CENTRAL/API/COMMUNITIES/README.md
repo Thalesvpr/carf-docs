@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # COMMUNITIES
 
 Schemas JSON para comunidades do CARF.
@@ -20,10 +25,6 @@ O CommunityCreateRequest contém name, description, polygon GeoJSON agregando m�
 - CommunityListResponse
 - AddUnitToCommunityRequest / RemoveUnitFromCommunityRequest
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (2 arquivos)
@@ -36,8 +37,12 @@ O CommunityCreateRequest contém name, description, polygon GeoJSON agregando m�
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/API/COMMUNITIES/01-create-community.md|Create Community]]
+- ○ [[CENTRAL/API/COMMUNITIES/02-list-communities.md|List Communities]]
+
+<!-- CARF-INDEX-END -->

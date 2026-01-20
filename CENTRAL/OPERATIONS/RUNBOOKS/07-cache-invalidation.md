@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Cache Invalidation
 
 Runbook para invalidar cache Redis quando dados estão desatualizados ou inconsistentes.
@@ -99,9 +104,3 @@ Grafana dashboard deve mostrar:
 - Evictions por minuto
 - Memória usada vs limite
 - Keys por prefixo
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

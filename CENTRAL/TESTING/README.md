@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # TESTING
 
 Estratégia de testes do CARF garantindo qualidade e confiabilidade do código.
@@ -8,10 +13,6 @@ Os [casos de teste](./TEST-CASES/README.md) estão organizados por tipo: testes 
 
 Inclui fixtures, factories e test data builders para setup rápido, evitando código duplicado nos testes.
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Indice por Dominio (7 arquivos)
@@ -24,8 +25,10 @@ Inclui fixtures, factories e test data builders para setup rápido, evitando có
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Subpastas
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- [[CENTRAL/TESTING/TEST-CASES/README|TEST-CASES]]
+- [[CENTRAL/TESTING/TEST-STRATEGY/README|TEST-STRATEGY]]
+
+<!-- CARF-INDEX-END -->

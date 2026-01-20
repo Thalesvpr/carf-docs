@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Log Rotation
 
 Configuração de rotação de logs para evitar consumo excessivo de disco.
@@ -105,9 +110,3 @@ find /var/log/containers -name "*.log" -mtime +3 -delete
   annotations:
     summary: "Espaço em disco para logs abaixo de 10% no node {{ $labels.instance }}"
 ```
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

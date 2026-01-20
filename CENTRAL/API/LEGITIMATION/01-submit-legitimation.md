@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Submit Legitimation
 
 Schema e comportamento do endpoint de submissão de processo de legitimação fundiária.
@@ -132,9 +137,3 @@ Content-Type: application/json
 - REURB-S: Não possuir outro imóvel urbano ou rural
 - Ocupação deve ser anterior a 22/12/2016 (marco temporal)
 - Unidade deve estar em área urbana consolidada
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

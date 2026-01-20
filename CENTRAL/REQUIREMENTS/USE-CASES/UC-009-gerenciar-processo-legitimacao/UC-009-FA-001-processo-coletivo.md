@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB, REURBCAD]
-epic: maintainability
+status: review
+updated: 2025-12-30
 ---
 
 # UC-009-FA-001: Processo Coletivo (Múltiplas Unidades)
@@ -10,14 +10,3 @@ Fluxo alternativo do UC-009 Gerenciar Processo de Legitimação desviando no pas
 **Ponto de Desvio:** Passo 4 do UC-009 (seleção de modalidade)
 
 **Retorno:** Múltiplas unidades vinculadas ao mesmo processo, documentação compartilhada
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

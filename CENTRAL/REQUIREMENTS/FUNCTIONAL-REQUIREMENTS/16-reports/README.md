@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Relatórios
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (9 requisitos)
@@ -19,11 +23,20 @@
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/16-reports/RF-203-relatório-de-unidades-por-status.md|RF-203: Relatório de Unidades por Status]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/16-reports/RF-204-relatório-de-titulares.md|RF-204: Relatório de Titulares]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/16-reports/RF-205-relatório-de-progresso-de-cadastramento.md|RF-205: Relatório de Progresso de Cadastramento]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/16-reports/RF-206-relatório-de-atividades-de-usuários.md|RF-206: Relatório de Atividades de Usuários]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/16-reports/RF-207-geração-assíncrona-de-relatórios.md|RF-207: Geração Assíncrona de Relatórios]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/16-reports/RF-208-template-personalizável-de-relatórios.md|RF-208: Template Personalizável de Relatórios]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/16-reports/RF-209-ficha-técnica-de-unidade-pdf.md|RF-209: Ficha Técnica de Unidade (PDF)]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/16-reports/RF-210-mapa-de-situação-pdf.md|RF-210: Mapa de Situação (PDF)]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/16-reports/RF-211-agendamento-de-relatórios.md|RF-211: Agendamento de Relatórios]]
+
+<!-- CARF-INDEX-END -->

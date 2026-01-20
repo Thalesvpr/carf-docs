@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Versionamento Numérico - Semantic Versioning
 
 Sistema CARF adota Semantic Versioning SemVer especificação versionamento MAJOR.MINOR.PATCH comunicando significado mudanças releases garantindo compatibilidade previsibilidade gestão dependências coordenação polyrepo conforme documentado em 04-repository-catalog.md, com cada projeto versionado independentemente e releases sincronizadas documentadas em release notes especificando versões compatíveis cross-project dependencies API contracts database schemas message broker events domain events integration contracts, incluindo biblioteca compartilhada @carf/tscore consumida por projetos TypeScript garantindo funcionamento correto sistema completo evitando breaking changes runtime failures deployment issues production incidents impactando usuários final.
@@ -31,9 +36,3 @@ Projetos consumidores especificam dependency @carf/tscore em package.json usando
 ## Coordenação Polyrepo
 
 Releases dos projetos são coordenadas em reuniões de sprint planning review retrospectives definindo scope features bugfixes priorities dependencies sequencing ordering releases ensuring compatibility integration testing end-to-end scenarios user journeys workflows complete validating functionality correctness quality assurance QA manual exploratory testing automated regression suites preventing regressions defects escaping production customer-facing issues reputation damage support tickets escalations incident response firefighting postmortems root cause analysis prevention measures process improvements continuous learning growth culture blameless accountability transparency honesty. Para lista completa de projetos consulte 04-repository-catalog.md.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # How-To - ADMIN
 
 ## Guias Práticos
@@ -27,9 +32,3 @@ bun run dev  # http://localhost:5173
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
-
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição: Falta parágrafo denso introdutório; Contém code blocks - considerar converter para prosa.

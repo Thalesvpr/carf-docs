@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # PERSISTENCE
 
 Implementações EF Core para persistência de dados do GEOAPI incluindo DbContext configurado com PostgreSQL PostGIS, repositories concretos implementando interfaces do Domain, migrations para versionamento schema, entity configurations fluent API e seeders de dados iniciais. GeoDbContext centraliza DbSets para todas entities, configura RLS multi-tenancy via HasQueryFilter injetando tenant_id automaticamente, mapeia value objects como owned entities ou conversions, e registra interceptors para audit logging e domain events dispatching. Repositories concretos como UnitRepository estendem GenericRepository<T> adicionando queries específicas da feature (busca espacial Within/Intersects, filtros por status, ordenação), acesso otimizado via IQueryable com Include para eager loading evitando N+1, e AsNoTracking para queries read-only. Migrations geradas via EF Core CLI documentam evolução schema ao longo tempo permitindo rollback seguro, EntityTypeConfigurations aplicam constraints, índices espaciais GiST PostGIS para geometries e índices compostos para queries frequentes. Seeders populam dados base (roles, permissions, tenant demo) para desenvolvimento e testes.
@@ -27,18 +32,11 @@ Implementações EF Core para persistência de dados do GEOAPI incluindo DbConte
 - 12-roles-seeder.md - Dados iniciais roles/permissions
 - 13-demo-tenant-seeder.md - Tenant demo para dev
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Última atualização:** 2026-01-12
-**Status do arquivo**: Incompleto
-Descrição: Falta seção GENERATED com índice automático; Muitas listas com bullets (13) antes do rodapé - considerar converter para parágrafo denso.
+### Em Revisão
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (1 arquivo)
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/INFRA/PERSISTENCE/01-dbcontext.md|DbContext]]
 
-| ID | Titulo |
-|:---|:-------|
-| [01-dbcontext](./01-dbcontext.md) | DbContext |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
+<!-- CARF-INDEX-END -->

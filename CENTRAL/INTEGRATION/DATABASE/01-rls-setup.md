@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # RLS Setup
 
 Configuração de Row-Level Security para isolamento multi-tenant.
@@ -126,9 +131,3 @@ SELECT count(*) FROM units; -- Deve retornar apenas units do tenant-a
 SET app.current_tenant_id = 'tenant-b';
 SELECT count(*) FROM units; -- Deve retornar apenas units do tenant-b
 ```
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

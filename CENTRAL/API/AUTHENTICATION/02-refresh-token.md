@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Refresh Token
 
 Schema e comportamento do endpoint de renovação de tokens.
@@ -96,9 +101,3 @@ async function refreshAccessToken(): Promise<string> {
   return data.access_token;
 }
 ```
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

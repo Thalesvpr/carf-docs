@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # WEBDOCS - Documentação Técnica
 
 Documentação técnica do projeto WEBDOCS, portal de documentação Astro 4 + Starlight para o ecossistema CARF. Este diretório contém especificações, arquitetura e guias para desenvolvimento e manutenção do portal.
@@ -20,27 +25,3 @@ Os [templates](./TEMPLATES/README.md) fornecem modelos para novos documentos. A 
 - **[SPECS/](./SPECS/README.md)** - Especificações de seções
 - **[TEMPLATES/](./TEMPLATES/README.md)** - Modelos de documentos
 - **[VALIDATION/](./VALIDATION/README.md)** - Checks de qualidade
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review
-
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (56 arquivos)
-
-| # | Dominio | Arquivos |
-|:--|:--------|:--------:|
-|  | [Adrs](./ADRs/README.md) | 6 |
-|  | [Architecture](./ARCHITECTURE/README.md) | 6 |
-|  | [Concepts](./CONCEPTS/README.md) | 5 |
-|  | [Content Guidelines](./CONTENT-GUIDELINES/README.md) | 4 |
-|  | [Features](./FEATURES/README.md) | 5 |
-|  | [How To](./HOW-TO/README.md) | 8 |
-|  | [Integration](./INTEGRATION/README.md) | 4 |
-|  | [Specs](./SPECS/README.md) | 10 |
-|  | [Templates](./TEMPLATES/README.md) | 4 |
-|  | [Validation](./VALIDATION/README.md) | 4 |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->

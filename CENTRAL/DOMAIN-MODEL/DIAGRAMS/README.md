@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # DIAGRAMS
 
 Diagramas conceituais do modelo de domínio CARF, visualizando graficamente a estrutura de entidades, aggregates e relacionamentos.
@@ -11,10 +16,6 @@ Os diagramas são criados usando PlantUML e Mermaid, versionados no Git e sincro
 - **[multi-tenancy-diagram.mmd](./multi-tenancy-diagram.mmd)** - Fluxo de isolamento via JWT e RLS
 - **[workflows-diagram.mmd](./workflows-diagram.mmd)** - State machines de Unit e Legitimation
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (2 arquivos)
@@ -27,8 +28,12 @@ Os diagramas são criados usando PlantUML e Mermaid, versionados no Git e sincro
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/DOMAIN-MODEL/DIAGRAMS/01-aggregates.md|Aggregates Diagram]]
+- ○ [[CENTRAL/DOMAIN-MODEL/DIAGRAMS/02-er-diagram.md|ER Diagram]]
+
+<!-- CARF-INDEX-END -->

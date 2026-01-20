@@ -1,6 +1,6 @@
 ---
-modules: [GEOGIS]
-epic: scalability
+status: review
+updated: 2025-12-30
 ---
 
 # UC-008-FE-004: Geometrias Inválidas
@@ -10,14 +10,3 @@ Fluxo de exceção do UC-008 Importar Shapefile ocorrendo no passo 10.2 durante 
 **Ponto de Desvio:** Passo 10.2 do UC-008 (validação topológica falha)
 
 **Retorno:** Tentativa de correção com ST_MakeValid, se sucesso importa corrigida, se falha pula registro
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

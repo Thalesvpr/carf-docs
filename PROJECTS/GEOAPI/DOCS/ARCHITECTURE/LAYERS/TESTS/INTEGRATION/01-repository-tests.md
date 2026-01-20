@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-16
+---
+
 # Repository Integration Tests
 
 Testes de integração para repositories com banco de dados real.
@@ -116,8 +121,3 @@ public class UnitRepositoryTests : IClassFixture<DatabaseFixture>
     }
 }
 ```
-
----
-
-**Última atualização:** 2026-01-16
-**Status do arquivo**: Pronto

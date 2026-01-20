@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Units API Tests
 
 Casos de teste para endpoints de unidades habitacionais.
@@ -136,9 +141,3 @@ Cenário: Bloquear edição de unidade aprovada
   Então recebo status 403
   E a resposta contém "error" = "unit_locked"
 ```
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

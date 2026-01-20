@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # BASE
 
 Classes base abstratas fornecendo funcionalidade comum para todas entities do GEOAPI implementando padrões DDD e infraestrutura técnica compartilhada. BaseEntity fornece Id Guid gerado automaticamente garantindo identificadores únicos globalmente, timestamps CreatedAt/UpdatedAt rastreando criação e última modificação auditável, DeletedAt nullable implementando soft delete permitindo recuperação e compliance LGPD e RowVersion byte array para controle de concorrência otimista detectando conflitos simultâneos via EF Core. BaseAggregateRoot estende BaseEntity adicionando coleção privada DomainEvents e método AddDomainEvent() permitindo entities dispararem eventos de domínio (UnitCreatedEvent, HolderLinkedEvent) despachados após SaveChanges para workflows assíncronos, notificações e integração com outros bounded contexts mantendo aggregates desacoplados.
@@ -7,18 +12,12 @@ Classes base abstratas fornecendo funcionalidade comum para todas entities do GE
 - **[00-base-entity.md](./00-base-entity.md)** - Classe base todas entities com Id timestamps soft delete
 - **[01-base-aggregate-root.md](./01-base-aggregate-root.md)** - Aggregate root com suporte domain events
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Última atualização:** 2026-01-12
+### Em Revisão
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (2 arquivos)
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/BASE/00-base-entity.md|BaseEntity]]
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/BASE/01-base-aggregate-root.md|BaseAggregateRoot]]
 
-| ID | Titulo |
-|:---|:-------|
-| [00-base-entity](./00-base-entity.md) | BaseEntity |
-| [01-base-aggregate-root](./01-base-aggregate-root.md) | BaseAggregateRoot |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Pronto
+<!-- CARF-INDEX-END -->

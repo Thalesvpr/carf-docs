@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # PDF Export
 
 Schema e comportamento do endpoint de exportação de relatórios em PDF.
@@ -127,9 +132,3 @@ curl -X POST https://api.carf.com.br/api/reports/pdf \
 curl https://api.carf.com.br/api/reports/status/job-uuid-here \
   -H "Authorization: Bearer ..."
 ```
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Layers - ADMIN
 
 ## Camadas
@@ -37,9 +42,3 @@ ADMIN SPA tem 5 layers: **(1) Presentation Layer** - React components em `src/pa
 │  - PKCE flow (no secret)            │
 └─────────────────────────────────────┘
 ```
-
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição: Contém code blocks - considerar converter para prosa.

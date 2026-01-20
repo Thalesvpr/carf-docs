@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-20
+---
+
 # Matriz de Compatibilidade
 
 Tabela de versões compatíveis entre repositórios do CARF, atualizada a cada release coordenada. Consulte esta matriz antes de deployments para garantir combinações testadas e funcionais.
@@ -37,9 +42,3 @@ Esta seção documenta combinações de versões conhecidas como incompatíveis 
 | Combinação | Problema | Solução |
 |------------|----------|---------|
 | - | - | Nenhuma incompatibilidade documentada ainda |
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-20
-**Descrição:**

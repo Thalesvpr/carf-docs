@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # CONCEPTS
 
 Conceitos fundamentais Keycloak e customização CARF explicando themes system estrutura diretórios herança FreeMarker templates i18n, SPIs Service Provider Interfaces extensões Java Authenticator EventListener ProtocolMapper, realm configuration clients roles attributes mappers flows export JSON, OAuth2 OIDC grant types authorization_code PKCE client_credentials refresh JWT lifecycle endpoints, e multi-tenancy via user attributes tenant_id claims RLS PostgreSQL isolamento prefeituras.
@@ -10,21 +15,15 @@ Conceitos fundamentais Keycloak e customização CARF explicando themes system e
 - **[04-oauth2-oidc-flows.md](./04-oauth2-oidc-flows.md)** - OAuth2 grant types OIDC endpoints JWT lifecycle logout
 - **[05-multi-tenancy-strategy.md](./05-multi-tenancy-strategy.md)** - Multi-tenancy user attributes claims RLS tenant switcher
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Última atualização:** 2026-01-12
+### Em Revisão
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (5 arquivos)
+- ○ [[PROJECTS/KEYCLOAK/DOCS/CONCEPTS/01-keycloak-themes.md|Conceitos: Keycloak Themes]]
+- ○ [[PROJECTS/KEYCLOAK/DOCS/CONCEPTS/02-keycloak-spis.md|02-keycloak-spis]]
+- ○ [[PROJECTS/KEYCLOAK/DOCS/CONCEPTS/03-realm-customization.md|03-realm-customization]]
+- ○ [[PROJECTS/KEYCLOAK/DOCS/CONCEPTS/04-oauth2-oidc-flows.md|04-oauth2-oidc-flows]]
+- ○ [[PROJECTS/KEYCLOAK/DOCS/CONCEPTS/05-multi-tenancy-strategy.md|05-multi-tenancy-strategy]]
 
-| ID | Titulo |
-|:---|:-------|
-| [01-keycloak-themes](./01-keycloak-themes.md) | Conceitos: Keycloak Themes |
-| [02-keycloak-spis](./02-keycloak-spis.md) | 02-keycloak-spis |
-| [03-realm-customization](./03-realm-customization.md) | 03-realm-customization |
-| [04-oauth2-oidc-flows](./04-oauth2-oidc-flows.md) | 04-oauth2-oidc-flows |
-| [05-multi-tenancy-strategy](./05-multi-tenancy-strategy.md) | 05-multi-tenancy-strategy |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Pronto
+<!-- CARF-INDEX-END -->

@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Integrações WMS/WMTS
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (7 user stories)
@@ -18,13 +22,18 @@
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
 
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
+<!-- CARF-INDEX-START -->
+## Documentos
 
----
+### Em Revisão
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/17-wms-wmts/US-013-configurar-camadas-wms-para-comunidade.md|US-013: Configurar Camadas WMS para Comunidade]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/17-wms-wmts/US-064-adicionar-camadas-wms.md|US-064: Adicionar Camadas WMS]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/17-wms-wmts/US-119-gerenciar-servicos-wmswmts.md|US-119: Gerenciar Serviços WMS/WMTS]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/17-wms-wmts/US-120-visualizar-geoservico.md|US-120: Visualizar Geoserviço]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/17-wms-wmts/US-121-listar-layers-de-geoservico.md|US-121: Listar Layers de Geoservico]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/17-wms-wmts/US-122-acessar-geoservico-via-proxy.md|US-122: Acessar Geoservico via Proxy]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/17-wms-wmts/US-123-testar-conexao-com-geoservico.md|US-123: Testar Conexao com Geoservico]]
+
+<!-- CARF-INDEX-END -->

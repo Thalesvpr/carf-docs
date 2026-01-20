@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # APPLICATION
 
 Camada de aplicação do GEOAPI orquestrando use cases e coordenando fluxo entre domain e apresentação, implementando padrão CQRS separando commands para escritas e queries para leituras otimizadas. COMMANDS agrupa operações que alteram estado do sistema (CreateUnitCommand, UpdateHolderCommand) validadas via FluentValidation antes de execução, retornando Result<T> para tratamento explícito de sucesso/erro sem exceptions. QUERIES contém operações apenas-leitura projetando dados do domínio em DTOs otimizados (GetUnitByIdQuery, ListCommunitiesQuery) podendo acessar DbContext diretamente para performance ignorando agregados complexos quando apropriado. DTOS define objetos de transferência de dados imutáveis (records C#) usados para input de commands, output de queries e contratos de API evitando expor entidades de domínio diretamente. VALIDATORS contém FluentValidation validators para cada command/DTO validando regras simples (required, max length, format) e delegando validações de domínio complexas para as entidades. MAPPERS documenta estratégias de mapeamento entre domain entities e DTOs usando AutoMapper ou mapeamento manual explícito.
@@ -10,21 +15,13 @@ Camada de aplicação do GEOAPI orquestrando use cases e coordenando fluxo entre
 - **[VALIDATORS/](./VALIDATORS/README.md)** - FluentValidation validators para commands/DTOs
 - **[MAPPERS/](./MAPPERS/README.md)** - Mapeamento Domain ↔ DTOs
 
----
+<!-- CARF-INDEX-START -->
+## Subpastas
 
-**Última atualização:** 2026-01-12
+- [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/APPLICATION/COMMANDS/README|COMMANDS]]
+- [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/APPLICATION/DTOS/README|DTOS]]
+- [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/APPLICATION/MAPPERS/README|MAPPERS]]
+- [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/APPLICATION/QUERIES/README|QUERIES]]
+- [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/APPLICATION/VALIDATORS/README|VALIDATORS]]
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (5 arquivos)
-
-| # | Dominio | Arquivos |
-|:--|:--------|:--------:|
-|  | [Commands](./COMMANDS/README.md) | 1 |
-|  | [Dtos](./DTOS/README.md) | 1 |
-|  | [Mappers](./MAPPERS/README.md) | 1 |
-|  | [Queries](./QUERIES/README.md) | 1 |
-|  | [Validators](./VALIDATORS/README.md) | 1 |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Pronto
+<!-- CARF-INDEX-END -->

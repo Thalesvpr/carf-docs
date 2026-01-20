@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Gestão de Comunidades
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (4 user stories)
@@ -15,13 +19,14 @@
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
+### Em Revisão
 
----
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/05-communities/US-100-ver-estatisticas-de-comunidade.md|US-100: Ver Estatísticas de Comunidade]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/05-communities/US-129-listar-comunidades.md|US-129: Listar Comunidades]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/05-communities/US-130-visualizar-detalhes-de-comunidade.md|US-130: Visualizar Detalhes de Comunidade]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/05-communities/US-131-listar-unidades-de-comunidade.md|US-131: Listar Unidades de Comunidade]]
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+<!-- CARF-INDEX-END -->

@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB]
-epic: scalability
+status: review
+updated: 2025-12-30
 ---
 
 # UC-006-FE-001: Timeout de Geração
@@ -10,14 +10,3 @@ Fluxo de exceção do UC-006 Gerar Relatório de Comunidade ocorrendo no passo 1
 **Ponto de Desvio:** Passo 11 do UC-006 (durante processamento do worker)
 
 **Retorno:** Job cancelado, usuário notificado com sugestões de ajuste e retry
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

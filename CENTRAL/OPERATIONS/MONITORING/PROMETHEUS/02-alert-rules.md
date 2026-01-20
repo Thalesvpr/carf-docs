@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Alert Rules
 
 Regras de alerta Prometheus para detecção proativa de problemas no CARF.
@@ -180,9 +185,3 @@ receivers:
       - service_key: '<PAGERDUTY_KEY>'
         severity: critical
 ```
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

@@ -1,20 +1,18 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # GEOAPI-CLIENT
 
 @carf/geoapi-client - HTTP client type-safe gerado automaticamente da OpenAPI spec do GEOAPI.
 
 - **[DOCS/](./DOCS/README.md)** - Documentação técnica
----
 
-**Última atualização:** 2026-01-12
+<!-- CARF-INDEX-START -->
+## Subpastas
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (7 arquivos)
+- [[PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/README|DOCS]]
+- [[PROJECTS/LIB/TS/GEOAPI-CLIENT/SRC-CODE/README|SRC-CODE]]
 
-| # | Dominio | Arquivos |
-|:--|:--------|:--------:|
-|  | [Docs](./DOCS/README.md) | 7 |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Incompleto
-Descrição: Falta parágrafo denso introdutório.
+<!-- CARF-INDEX-END -->

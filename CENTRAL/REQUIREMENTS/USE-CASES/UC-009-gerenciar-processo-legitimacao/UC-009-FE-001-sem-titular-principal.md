@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB]
-epic: holders
+status: review
+updated: 2025-12-30
 ---
 
 # UC-009-FE-001: Unidade sem Titular Principal
@@ -10,14 +10,3 @@ Fluxo de exceção do UC-009 Gerenciar Processo de Legitimação ocorrendo no pa
 **Ponto de Desvio:** Passo 3 do UC-009 (validação ao clicar iniciar)
 
 **Retorno:** Processo bloqueado, usuário vincula titular principal via UC-003
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-16
+---
+
 # Exception Handling Middleware
 
 Middleware para tratamento global de exceções.
@@ -94,8 +99,3 @@ public class ExceptionHandlingMiddleware
 // Program.cs
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 ```
-
----
-
-**Última atualização:** 2026-01-16
-**Status do arquivo**: Pronto

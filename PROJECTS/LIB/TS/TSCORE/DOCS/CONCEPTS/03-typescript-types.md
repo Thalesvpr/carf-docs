@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # TypeScript Types - Tipos Compartilhados
 
 ## Visão Geral
@@ -544,9 +549,3 @@ nswag openapi2tsclient \
  /template:Fetch \
  /typeScriptVersion:5.3
 ```
-
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição: Contém code blocks - considerar converter para prosa.

@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # WORKFLOWS
 
 Fluxos de trabalho end-to-end do CARF documentando sequências de atividades coordenadas entre atores humanos e sistema, atravessando múltiplos aggregates para completar processos de negócio completos desde configuração inicial até certificação final.
@@ -8,10 +13,6 @@ O [workflow de sincronização offline](./03-offline-sync-workflow.md) detalha a
 
 O [workflow de topografia](./05-topography-workflow.md) documenta levantamento topográfico com receptor GNSS para georreferenciamento preciso de vértices. E o [workflow de legitimação](./06-legitimation-workflow.md) descreve o processo completo de legitimação fundiária conforme Lei 13.465/2017, desde solicitação até emissão de certificado.
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (6 arquivos)
@@ -28,8 +29,16 @@ O [workflow de topografia](./05-topography-workflow.md) documenta levantamento t
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/WORKFLOWS/01-wms-integration-workflow.md|WMS Integration Workflow]]
+- ○ [[CENTRAL/WORKFLOWS/02-field-data-collection-workflow.md|Field Data Collection Workflow]]
+- ○ [[CENTRAL/WORKFLOWS/03-offline-sync-workflow.md|Offline Sync Workflow (Sincronização Offline Bidirecional)]]
+- ○ [[CENTRAL/WORKFLOWS/04-analyst-validation-workflow.md|Analyst Validation Workflow]]
+- ○ [[CENTRAL/WORKFLOWS/05-topography-workflow.md|Topography Workflow]]
+- ○ [[CENTRAL/WORKFLOWS/06-legitimation-workflow.md|Legitimation Workflow]]
+
+<!-- CARF-INDEX-END -->

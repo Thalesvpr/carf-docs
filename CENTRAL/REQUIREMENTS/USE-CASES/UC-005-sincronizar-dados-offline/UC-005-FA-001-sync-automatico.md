@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB, REURBCAD]
-epic: security
+status: review
+updated: 2025-12-30
 ---
 
 # UC-005-FA-001: Sincronização Automática em Background
@@ -10,14 +10,3 @@ Fluxo alternativo do UC-005 Sincronizar Dados Offline desviando no gatilho de in
 **Ponto de Desvio:** Início do UC-005 (trigger automático ao invés de manual)
 
 **Retorno:** Sincronização completa silenciosa, notificação de resumo exibida
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # List Units
 
 Schema e comportamento do endpoint de listagem de unidades com filtros e paginação.
@@ -127,9 +132,3 @@ curl -X GET "https://api.carf.com.br/api/units?bbox=-46.64,-23.55,-46.63,-23.54"
 - Índices parciais por status para filtros frequentes
 - Limite de 100 itens por página para evitar timeouts
 - Aggregations são calculadas apenas se solicitadas via ?include_aggregations=true
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

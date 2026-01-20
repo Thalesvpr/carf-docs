@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # SECURITY
 
 Value objects relacionados segurança incluindo chaves API tokens e credenciais com geração segura hashing validação expiração para autenticação programática.
@@ -5,18 +10,3 @@ Value objects relacionados segurança incluindo chaves API tokens e credenciais 
 ## Arquivos
 
 - **[12-api-key-value.md](./12-api-key-value.md)** - Valor chave API com prefixo hash SHA256 expiração
-
----
-
-**Última atualização:** 2026-01-12
-
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (1 arquivo)
-
-| ID | Titulo |
-|:---|:-------|
-| [12-api-key-value](./12-api-key-value.md) | ApiKeyValue |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Pronto

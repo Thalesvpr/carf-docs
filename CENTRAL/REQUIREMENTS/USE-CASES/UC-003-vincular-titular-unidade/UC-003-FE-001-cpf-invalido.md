@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB, REURBCAD]
-epic: holders
+status: review
+updated: 2025-12-30
 ---
 
 # UC-003-FE-001: CPF/CNPJ Inválido
@@ -14,14 +14,3 @@ Fluxo de exceção do UC-003 Vincular Titular a Unidade ocorrendo no passo de cr
 Função validateCpf recebe string cpf retornando objeto com valid boolean e error opcional string, primeiro remove não-dígitos usando replace com regex /\D/g armazenando em digits, verifica se comprimento exato onze retornando valid false error CPF deve ter 11 dígitos se diferente, verifica sequência repetida usando regex /^(\d)\1{10}$/ retornando valid false error Sequência repetida inválida se match, calcula primeiro dígito verificador iterando primeiros nove dígitos somando cada dígito multiplicado por dez menos índice armazenando em sum, calculando check1 como onze menos resto divisão sum por onze ajustando para zero se maior igual dez, calcula segundo dígito verificador iterando primeiros dez dígitos multiplicando por onze menos índice calculando check2 similar check1, compara check1 com nono dígito e check2 com décimo dígito retornando valid false error Dígitos verificadores incorretos se diferentes, finalmente retorna valid true se todas validações passaram confirmando CPF válido conforme algoritmo oficial Receita Federal.
 
 **Retorno:** Usuário corrige CPF/CNPJ e volta ao fluxo de criação de titular
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

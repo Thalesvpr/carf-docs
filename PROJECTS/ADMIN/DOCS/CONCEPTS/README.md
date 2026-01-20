@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Conceitos - ADMIN
 
 ## Documentos Disponíveis
@@ -21,8 +26,3 @@ ADMIN aplica **React SPA** para máxima segurança mantendo secrets no backend, 
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
-
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Pronto

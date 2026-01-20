@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Anotações
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (4 user stories)
@@ -15,13 +19,15 @@
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
 
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
+<!-- CARF-INDEX-START -->
+## Documentos
 
----
+### Em Revisão
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/11-annotations/US-151-gerenciar-anotacoes-no-mapa.md|US-151: Gerenciar Anotacoes no Mapa]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/11-annotations/US-152-visualizar-anotacao.md|US-152: Visualizar Anotacao]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/11-annotations/US-153-comentar-em-anotacao.md|US-153: Comentar em Anotacao]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/11-annotations/US-154-resolver-anotacao.md|US-154: Resolver Anotacao]]
+
+<!-- CARF-INDEX-END -->

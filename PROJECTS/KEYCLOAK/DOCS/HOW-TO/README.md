@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # HOW-TO
 
 Guias práticos para desenvolvimento deployment e operação do Keycloak CARF cobrindo desde setup inicial até produção com alta disponibilidade.
@@ -11,23 +16,16 @@ Guias práticos para desenvolvimento deployment e operação do Keycloak CARF co
 - **[05-update-keycloak-version.md](./05-update-keycloak-version.md)** - Atualização versão changelog migrations staged rollout
 - **[06-configure-production.md](./06-configure-production.md)** - Configuração produção PostgreSQL HTTPS clustering backup monitoring
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Última atualização:** 2026-01-12
+### Em Revisão
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (6 arquivos)
+- ○ [[PROJECTS/KEYCLOAK/DOCS/HOW-TO/01-develop-themes.md|Como Desenvolver Temas para Keycloak]]
+- ○ [[PROJECTS/KEYCLOAK/DOCS/HOW-TO/02-deploy-extensions.md|Deploy de Extensões Java (SPIs)]]
+- ○ [[PROJECTS/KEYCLOAK/DOCS/HOW-TO/03-setup-dev-environment.md|Setup Ambiente de Desenvolvimento]]
+- ○ [[PROJECTS/KEYCLOAK/DOCS/HOW-TO/04-build-custom-image.md|Build Custom Docker Image]]
+- ○ [[PROJECTS/KEYCLOAK/DOCS/HOW-TO/05-update-keycloak-version.md|Atualizar Versão do Keycloak]]
+- ○ [[PROJECTS/KEYCLOAK/DOCS/HOW-TO/06-configure-production.md|Configurar Ambiente de Produção]]
 
-| ID | Titulo |
-|:---|:-------|
-| [01-develop-themes](./01-develop-themes.md) | Como Desenvolver Temas para Keycloak |
-| [02-deploy-extensions](./02-deploy-extensions.md) | Deploy de Extensões Java (SPIs) |
-| [03-setup-dev-environment](./03-setup-dev-environment.md) | Setup Ambiente de Desenvolvimento |
-| [04-build-custom-image](./04-build-custom-image.md) | Build Custom Docker Image |
-| [05-update-keycloak-version](./05-update-keycloak-version.md) | Atualizar Versão do Keycloak |
-| [06-configure-production](./06-configure-production.md) | Configurar Ambiente de Produção |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Incompleto
-Descrição: Muitas listas com bullets (6) antes do rodapé - considerar converter para parágrafo denso.
+<!-- CARF-INDEX-END -->

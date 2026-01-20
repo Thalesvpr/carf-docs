@@ -1,6 +1,6 @@
 ---
-modules: [GEOAPI, GEOWEB]
-epic: compatibility
+status: review
+updated: 2025-12-30
 ---
 
 # UC-011-FA-001: Editar Equipe Existente
@@ -10,14 +10,3 @@ Fluxo alternativo do UC-011 Gerenciar Equipes Técnicas desviando no passo 3 ond
 **Ponto de Desvio:** Passo 3 do UC-011 (clicar editar ao invés de novo)
 
 **Retorno:** Equipe atualizada, listagem refreshed
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

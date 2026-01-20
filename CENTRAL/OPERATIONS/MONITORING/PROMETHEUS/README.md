@@ -1,11 +1,12 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # PROMETHEUS
 
 Configuração Prometheus monitoring CARF incluindo scrape configs GEOAPI endpoint metrics PostgreSQL exporter Keycloak metrics node exporter CPU memory disk network regras alertas HighCPU maior oitenta por cento cinco minutos HighMemory maior noventa por cento HighErrorRate 5xx maior um por cento HighLatency p99 maior um segundo DatabaseConnectionsHigh AlertManager routing Slack email PagerDuty recording rules pré-computando aggregations Grafana garantindo observabilidade proativa detecção problemas antes impactar usuários.
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (3 arquivos)
@@ -19,8 +20,13 @@ Configuração Prometheus monitoring CARF incluindo scrape configs GEOAPI endpoi
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/OPERATIONS/MONITORING/PROMETHEUS/01-scrape-configs.md|Scrape Configs]]
+- ○ [[CENTRAL/OPERATIONS/MONITORING/PROMETHEUS/02-alert-rules.md|Alert Rules]]
+- ○ [[CENTRAL/OPERATIONS/MONITORING/PROMETHEUS/03-recording-rules.md|Recording Rules]]
+
+<!-- CARF-INDEX-END -->

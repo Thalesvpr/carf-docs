@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # LIBRARIES
 
 Bibliotecas TypeScript compartilhadas publicadas no GitHub Packages eliminando duplicação de código entre frontends GEOWEB, REURBCAD, ADMIN e WEBDOCS.
@@ -6,10 +11,6 @@ A biblioteca [@carf/tscore](./01-tscore.md) fornece a camada base com Value Obje
 
 Arquitetura em camadas onde @carf/ui depende de @carf/geoapi-client que depende de @carf/tscore, garantindo consistência e reuso entre todas as aplicações frontend do ecossistema CARF.
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (3 arquivos)
@@ -23,8 +24,13 @@ Arquitetura em camadas onde @carf/ui depende de @carf/geoapi-client que depende 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/LIBRARIES/01-tscore.md|@carf/tscore]]
+- ○ [[CENTRAL/LIBRARIES/02-geoapi-client.md|@carf/geoapi-client]]
+- ○ [[CENTRAL/LIBRARIES/03-ui-components.md|@carf/ui]]
+
+<!-- CARF-INDEX-END -->

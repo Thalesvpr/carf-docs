@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # GEOAPI Dashboard
 
 Dashboard de monitoramento da API principal do CARF.
@@ -80,9 +85,3 @@ Dashboard para acompanhamento em tempo real de métricas da GEOAPI incluindo thr
 - **Auto-refresh**: 30s
 - **Time range default**: Last 6 hours
 - **Timezone**: America/Sao_Paulo
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

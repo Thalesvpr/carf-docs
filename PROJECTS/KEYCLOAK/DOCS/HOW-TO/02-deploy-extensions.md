@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # Deploy de Extensões Java (SPIs)
 
 Deploy de extensões Java SPIs Keycloak nível intermediário requer Maven 3.9+ Java 17+ Docker e acesso ao registry. Build da extensão navegando para extensions/cpf-validator executando mvn clean package, verificar JAR gerado em target/cpf-validator-1.0.0.jar com ls -lh mostrando aproximadamente 45K.
@@ -15,8 +20,3 @@ Testing em staging testando authentication flow via curl POST token endpoint com
 Rollback se necessário via kubectl rollout undo deployment/keycloak -n production, ou specific revision via rollout history e rollout undo --to-revision=2. Troubleshooting extension não carrega verificando JAR no container kubectl exec ls -la /opt/keycloak/providers/, verificar META-INF/services via jar -tf. ClassNotFoundException verificar dependencies no JAR deve ser uber JAR, rebuild com maven-shade-plugin P uber-jar. Extension não aparece no Admin Console limpar cache kubectl exec rm -rf standalone/data/cache, delete pod.
 
 Checklist inclui extension buildada mvn clean package, testada localmente via docker cp restart, ativada no Admin Console, Dockerfile atualizado com novo JAR, image buildada e taggeada, deployed em staging, testes integração passaram staging, deployed produção rolling update, smoke tests passaram produção, rollback plan documentado.
-
----
-
-**Última atualização:** 2026-01-12
-**Status do arquivo**: Pronto

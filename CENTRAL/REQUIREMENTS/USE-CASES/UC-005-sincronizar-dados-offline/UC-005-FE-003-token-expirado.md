@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB, REURBCAD]
-epic: security
+status: review
+updated: 2025-12-30
 ---
 
 # UC-005-FE-003: Token Expirado
@@ -10,14 +10,3 @@ Fluxo de exceção do UC-005 Sincronizar Dados Offline ocorrendo no início da s
 **Ponto de Desvio:** Início ou durante qualquer fase do UC-005 (validação de token em cada request)
 
 **Retorno:** Se refresh sucesso continua transparente, se falha força re-login preservando pendências
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

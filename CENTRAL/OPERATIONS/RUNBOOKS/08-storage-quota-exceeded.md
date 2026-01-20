@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Storage Quota Exceeded
 
 Runbook para resolver problemas de cota de armazenamento excedida em S3/MinIO para documentos e arquivos do CARF.
@@ -112,9 +117,3 @@ GROUP BY t.id
 HAVING sum(d.file_size) > t.storage_quota_gb * 1073741824.0 * 0.8
 ORDER BY percent_used DESC;
 ```
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

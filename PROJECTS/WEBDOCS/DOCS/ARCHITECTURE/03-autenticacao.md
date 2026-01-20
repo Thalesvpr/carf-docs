@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Autenticação
 
 WEBDOCS integra com Keycloak para autenticação de usuários que acessam seção protegida /dev/ e CMS administrativo. Client carf-webdocs configurado como public client usa Authorization Code flow com PKCE.
@@ -13,8 +18,3 @@ Refresh silencioso acontece quando access token expira (5 minutos). Middleware d
 Logout em /auth/logout invalida sessão local deletando cookies e redireciona para Keycloak /logout com post_logout_redirect_uri. Logout completo do SSO invalida sessão em todas aplicações CARF.
 
 Decap CMS usa mesmo fluxo OAuth com redirect para /admin/callback. Após autenticação, CMS recebe token para autenticar chamadas à GitHub API permitindo commits de edições.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # VALIDATION-RULES
 
 Regras de validação do CARF garantindo integridade e consistência dos dados antes da persistência. As validações são implementadas em múltiplas camadas: value objects para formato, domain entities para regras de negócio, e banco de dados como última linha de defesa.
@@ -22,10 +27,6 @@ As validações de entidades complexas verificam unicidade de CPF por tenant, re
 - **[unit-validation.md](./11-unit-validation.md)** - Unidade, código e geometria
 - **[business-validation.md](./01-business-validation.md)** - Regras de negócio complexas
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (11 arquivos)
@@ -47,8 +48,21 @@ As validações de entidades complexas verificam unicidade de CPF por tenant, re
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/BUSINESS-RULES/VALIDATION-RULES/01-business-validation.md|BUSINESS]]
+- ○ [[CENTRAL/BUSINESS-RULES/VALIDATION-RULES/02-cnpj-validation.md|CNPJ Validation]]
+- ○ [[CENTRAL/BUSINESS-RULES/VALIDATION-RULES/03-coordinates-validation.md|Coordinates Validation]]
+- ○ [[CENTRAL/BUSINESS-RULES/VALIDATION-RULES/04-cpf-validation.md|CPF Validation]]
+- ○ [[CENTRAL/BUSINESS-RULES/VALIDATION-RULES/05-documents-validation.md|DOCUMENTS]]
+- ○ [[CENTRAL/BUSINESS-RULES/VALIDATION-RULES/06-email-validation.md|Email Validation]]
+- ○ [[CENTRAL/BUSINESS-RULES/VALIDATION-RULES/07-geographic-validation.md|GEOGRAPHIC]]
+- ○ [[CENTRAL/BUSINESS-RULES/VALIDATION-RULES/08-geometry-validation.md|Geometry Validation]]
+- ○ [[CENTRAL/BUSINESS-RULES/VALIDATION-RULES/09-holder-validation.md|Holder Validation Rules]]
+- ○ [[CENTRAL/BUSINESS-RULES/VALIDATION-RULES/10-phone-validation.md|Phone Validation]]
+- ○ [[CENTRAL/BUSINESS-RULES/VALIDATION-RULES/11-unit-validation.md|Unit Validation Rules]]
+
+<!-- CARF-INDEX-END -->

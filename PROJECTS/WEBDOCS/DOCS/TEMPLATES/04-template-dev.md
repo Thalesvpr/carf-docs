@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Template Dev
 
 Template para páginas da seção protegida /dev/ destinadas a desenvolvedores do ecossistema CARF.
@@ -15,8 +20,3 @@ Seção de exemplos de código mostra uso real com comentários explicando decis
 Seção de troubleshooting lista erros comuns com causas e soluções. Incluir mensagens de erro exatas quando possível para facilitar busca.
 
 Referências linkam para documentação externa relevante (libs, APIs, specs). Links para código fonte no repositório quando apropriado.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

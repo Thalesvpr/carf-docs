@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-10
+---
+
 # ARCHITECTURE - REURBCAD
 
 Arquitetura do aplicativo mobile REURBCAD React Native + Expo.
@@ -12,18 +17,11 @@ Arquitetura do aplicativo mobile REURBCAD React Native + Expo.
 - Offline token refresh
 - Biometric authentication
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Última atualização:** 2026-01-10
+### Em Revisão
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (1 arquivo)
+- ○ [[PROJECTS/REURBCAD/DOCS/ARCHITECTURE/01-keycloak-integration.md|01-keycloak-integration]]
 
-| ID | Titulo |
-|:---|:-------|
-| [01-keycloak-integration](./01-keycloak-integration.md) | 01-keycloak-integration |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Incompleto
-Descrição: Falta parágrafo denso introdutório.
+<!-- CARF-INDEX-END -->

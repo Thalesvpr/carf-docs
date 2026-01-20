@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # API
 
 Contratos de API REST do CARF organizados por domínio de negócio. Cada domínio contém schemas JSON de request/response, validações de payload, códigos HTTP esperados, headers obrigatórios, paginação, filtros e exemplos de uso.
@@ -8,10 +13,6 @@ A API de [comunidades](./COMMUNITIES/README.md) agrega unidades geograficamente 
 
 Segue padrões RESTful com versionamento via header, HATEOAS para navegação e rate limiting por tenant.
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Indice por Dominio (14 arquivos)
@@ -28,8 +29,14 @@ Segue padrões RESTful com versionamento via header, HATEOAS para navegação e 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Subpastas
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- [[CENTRAL/API/AUTHENTICATION/README|AUTHENTICATION]]
+- [[CENTRAL/API/COMMUNITIES/README|COMMUNITIES]]
+- [[CENTRAL/API/HOLDERS/README|HOLDERS]]
+- [[CENTRAL/API/LEGITIMATION/README|LEGITIMATION]]
+- [[CENTRAL/API/REPORTS/README|REPORTS]]
+- [[CENTRAL/API/UNITS/README|UNITS]]
+
+<!-- CARF-INDEX-END -->

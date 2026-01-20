@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # CMS Decap
 
 Decap CMS fornece interface visual em /admin/ para editar conteúdo do WEBDOCS sem conhecimento de Git ou Markdown. Edições são commitadas diretamente no repositório mantendo histórico completo e permitindo review via pull requests.
@@ -11,8 +16,3 @@ Widgets disponíveis incluem string para títulos, text para descrições curtas
 Editorial workflow habilitado cria branch e PR automaticamente para cada edição. Coluna kanban mostra drafts, in review, e ready. Aprovação no GitHub merge o PR publicando conteúdo. Workflow é opcional e pode ser desabilitado para edições diretas no branch principal.
 
 Preview em tempo real mostra como conteúdo aparecerá no site durante edição. Configuração de preview em config.yml define template Astro a usar para renderização. Útil para validar formatação antes de salvar.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

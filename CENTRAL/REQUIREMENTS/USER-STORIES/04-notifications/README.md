@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Notificações
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (3 user stories)
@@ -14,13 +18,14 @@
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
 
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
+<!-- CARF-INDEX-START -->
+## Documentos
 
----
+### Em Revisão
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/04-notifications/US-039-notificação-de-aprovaçãorejeição.md|US-039: Notificação de Aprovação/Rejeição]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/04-notifications/US-046-ver-contador-de-pendências.md|US-046: Ver Contador de Pendências]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/04-notifications/US-048-alerta-de-bateria-baixa.md|US-048: Alerta de Bateria Baixa]]
+
+<!-- CARF-INDEX-END -->

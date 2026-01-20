@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Seção Guia
 
 Seção /guia/ orienta usuários sobre como usar a documentação e entender conceitos básicos do sistema CARF. Primeira parada para novos usuários antes de explorar manuais específicos.
@@ -13,8 +18,3 @@ Frontmatter padrão define section como guia, audience como user, e sidebar com 
 Links para outras seções direcionam usuário conforme necessidade: analistas para manuais do GEOWEB, agentes de campo para manuais do REURBCAD, e gestores para manuais do ADMIN.
 
 Manutenção inclui revisar FAQ periodicamente adicionando perguntas recorrentes de suporte, atualizar capturas de tela quando interface muda, e validar links para outras seções.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

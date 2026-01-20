@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB]
-epic: scalability
+status: review
+updated: 2025-12-30
 ---
 
 # UC-009: Gerenciar Processo de Legitimação Fundiária
@@ -26,14 +26,3 @@ Caso de uso permitindo usuários autorizados (ANALYST com permissão legitimatio
 **Rastreabilidade:**
 - RF-172, RF-173, RF-174, RF-175, RF-176, RF-177, RF-179, RF-180
 - US-078, US-080, US-081
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

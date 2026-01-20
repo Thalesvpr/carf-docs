@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # MAINTENANCE
 
 Procedimentos de manutenção do CARF.
@@ -24,10 +29,6 @@ Backup incremental diário do PostgreSQL usando pg_dump às 2h da madrugada. Ret
 - Verificar integridade dos dados
 - Validar alertas de monitoring
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (5 arquivos)
@@ -43,8 +44,15 @@ Backup incremental diário do PostgreSQL usando pg_dump às 2h da madrugada. Ret
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/OPERATIONS/MAINTENANCE/01-backup-procedures.md|Backup Procedures]]
+- ○ [[CENTRAL/OPERATIONS/MAINTENANCE/02-database-vacuum-reindex.md|Database Vacuum e Reindex]]
+- ○ [[CENTRAL/OPERATIONS/MAINTENANCE/03-maintenance-checklist.md|Maintenance Checklist]]
+- ○ [[CENTRAL/OPERATIONS/MAINTENANCE/04-certificate-renewal.md|Certificate Renewal]]
+- ○ [[CENTRAL/OPERATIONS/MAINTENANCE/05-log-rotation.md|Log Rotation]]
+
+<!-- CARF-INDEX-END -->

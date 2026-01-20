@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # TEST-STRATEGY
 
 Estratégia de testes do CARF baseada na pirâmide de testes.
@@ -8,10 +13,6 @@ Os [coverage targets](./01-coverage-targets.md) definem mínimos por camada: 80%
 
 Mutation testing opcional pode ser usado para detectar testes fracos que não validam comportamento real.
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (2 arquivos)
@@ -24,8 +25,12 @@ Mutation testing opcional pode ser usado para detectar testes fracos que não va
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/TESTING/TEST-STRATEGY/01-coverage-targets.md|METAS DE COBERTURA]]
+- ○ [[CENTRAL/TESTING/TEST-STRATEGY/02-test-pyramid.md|PIRÂMIDE DE TESTES]]
+
+<!-- CARF-INDEX-END -->

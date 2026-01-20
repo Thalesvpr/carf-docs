@@ -1,6 +1,6 @@
 ---
-modules: [GEOAPI, GEOWEB, REURBCAD]
-epic: security
+status: review
+updated: 2025-12-30
 ---
 
 # UC-009-FA-002: Assinatura Digital do Termo
@@ -10,14 +10,3 @@ Fluxo alternativo do UC-009 Gerenciar Processo de Legitimação desviando no pas
 **Ponto de Desvio:** Passo 14.5 do UC-009 (após gerar PDF, antes de baixar)
 
 **Retorno:** PDF assinado digitalmente com validade jurídica, processo atualizado
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

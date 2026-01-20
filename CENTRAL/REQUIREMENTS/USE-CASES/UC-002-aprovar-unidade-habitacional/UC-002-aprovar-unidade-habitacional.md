@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB, REURBCAD]
-epic: performance
+status: review
+updated: 2025-12-30
 ---
 
 # UC-002: Aprovar Unidade Habitacional
@@ -22,14 +22,3 @@ Caso de uso permitindo MANAGER gestor com poder de aprovação de unidades revis
 **Rastreabilidade:**
 - RF-056, RF-057, RF-060
 - US-034, US-036
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

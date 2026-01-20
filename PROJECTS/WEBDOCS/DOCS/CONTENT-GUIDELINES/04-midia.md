@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Mídia
 
 Diretrizes para uso de fotos, vídeos e diagramas no conteúdo do WEBDOCS garantindo qualidade, performance e acessibilidade.
@@ -13,8 +18,3 @@ Componente YouTubeEmbed aceita videoId e title como props. Renderiza iframe resp
 Diagramas são criados com Mermaid sempre que possível por serem texto pesquisável e atualizável facilmente. Diagramas complexos podem usar imagens SVG exportadas de ferramentas como Excalidraw ou Figma armazenadas em public/images/diagrams/.
 
 Otimização de imagens acontece automaticamente via @astrojs/image durante build. Imagens são convertidas para formatos modernos (WebP, AVIF) e redimensionadas conforme configuração. Imagens em public/ não são processadas então devem ser otimizadas antes do commit.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

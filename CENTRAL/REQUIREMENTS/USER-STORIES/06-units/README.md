@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Gestão de Unidades
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (27 user stories)
@@ -38,13 +42,38 @@
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
 
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
+<!-- CARF-INDEX-START -->
+## Documentos
 
----
+### Em Revisão
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/06-units/US-014-criar-unidade-habitacional.md|US-014: Criar Unidade Habitacional]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/06-units/US-015-editar-unidade.md|US-015: Editar Unidade]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/06-units/US-016-excluir-unidade.md|US-016: Excluir Unidade]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/06-units/US-017-listar-unidades-com-filtros.md|US-017: Listar Unidades com Filtros]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/06-units/US-018-visualizar-detalhes-da-unidade.md|US-018: Visualizar Detalhes da Unidade]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/06-units/US-019-desenhar-geometria-no-mapa.md|US-019: Desenhar Geometria no Mapa]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/06-units/US-022-calcular-área-automaticamente.md|US-022: Calcular Área Automaticamente]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/06-units/US-024-ver-timeline-de-alterações.md|US-024: Ver Timeline de Alterações]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/06-units/US-025-comentar-em-unidade.md|US-025: Comentar em Unidade]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/06-units/US-034-aprovar-unidade.md|US-034: Aprovar Unidade]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/06-units/US-035-rejeitar-unidade.md|US-035: Rejeitar Unidade]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/06-units/US-036-solicitar-alterações.md|US-036: Solicitar Alterações]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/06-units/US-037-aprovar-em-lote.md|US-037: Aprovar em Lote]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/06-units/US-038-ver-status-de-aprovação.md|US-038: Ver Status de Aprovação]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/06-units/US-049-trabalhar-sem-gps.md|US-049: Trabalhar Sem GPS]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/06-units/US-125-gerenciar-quadras.md|US-125: Gerenciar Quadras]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/06-units/US-126-visualizar-detalhes-de-quadra.md|US-126: Visualizar Detalhes de Quadra]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/06-units/US-127-obter-geometria-de-quadra.md|US-127: Obter Geometria de Quadra]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/06-units/US-128-listar-lotes-de-quadra.md|US-128: Listar Lotes de Quadra]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/06-units/US-132-gerenciar-lotes.md|US-132: Gerenciar Lotes]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/06-units/US-133-visualizar-detalhes-de-lote.md|US-133: Visualizar Detalhes de Lote]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/06-units/US-134-obter-geometria-de-lote.md|US-134: Obter Geometria de Lote]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/06-units/US-135-listar-unidades-de-lote.md|US-135: Listar Unidades de Lote]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/06-units/US-136-obter-geometria-de-unidade.md|US-136: Obter Geometria de Unidade]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/06-units/US-137-ver-historico-de-alteracoes-de-unidade.md|US-137: Ver Historico de Alteracoes de Unidade]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/06-units/US-140-alterar-status-de-unidade.md|US-140: Alterar Status de Unidade]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/06-units/US-141-submeter-unidade-para-revisao.md|US-141: Submeter Unidade para Revisao]]
+
+<!-- CARF-INDEX-END -->

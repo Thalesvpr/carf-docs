@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB, REURBCAD]
-epic: units
+status: review
+updated: 2025-12-30
 ---
 
 # UC-005-FE-002: Erro de Validação no Servidor
@@ -10,14 +10,3 @@ Fluxo de exceção do UC-005 Sincronizar Dados Offline ocorrendo na fase PUSH qu
 **Ponto de Desvio:** Fase PUSH do UC-005 (após servidor processar batch)
 
 **Retorno:** Dados permanecem pendentes, FIELD_AGENT corrige e retenta sincronização
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

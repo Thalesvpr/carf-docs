@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # STANDARDS
 
 Convenções e padrões de documentação do projeto CARF garantindo consistência entre todos os arquivos markdown em CENTRAL e PROJECTS. Estes padrões são validados automaticamente pelos scripts em .scripts/carf_validator que auditam a documentação e reportam violações.
@@ -6,10 +11,6 @@ As [convenções de status](./01-file-status-convention.md) definem os metadados
 
 Os [tipos de documento](./04-document-types.md) especificam seções obrigatórias por tipo como Critérios de Aceitação para RFs e Regras de Negócio para UCs. As [diretrizes de conteúdo](./05-content-guidelines.md) definem limites de tamanho por tipo de documento, densidade de parágrafos e uso adequado de listas. As [convenções de links](./06-link-conventions.md) padronizam formato de paths relativos e isolamento entre CENTRAL e PROJECTS.
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (6 arquivos)
@@ -26,8 +27,16 @@ Os [tipos de documento](./04-document-types.md) especificam seções obrigatóri
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/STANDARDS/01-file-status-convention.md|Convenção de Status de Arquivo]]
+- ○ [[CENTRAL/STANDARDS/02-readme-structure.md|Estrutura de README]]
+- ○ [[CENTRAL/STANDARDS/03-naming-conventions.md|Convenções de Nomenclatura]]
+- ○ [[CENTRAL/STANDARDS/04-document-types.md|Tipos de Documento]]
+- ○ [[CENTRAL/STANDARDS/05-content-guidelines.md|Diretrizes de Conteúdo]]
+- ○ [[CENTRAL/STANDARDS/06-link-conventions.md|Convenções de Links]]
+
+<!-- CARF-INDEX-END -->

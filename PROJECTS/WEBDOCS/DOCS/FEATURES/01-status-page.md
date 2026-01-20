@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Status Page
 
 Página /status/ exibe disponibilidade em tempo real dos serviços CARF permitindo usuários verificarem se sistema está operacional antes de reportar problemas. Implementação combina checks server-side durante SSR com polling opcional client-side.
@@ -11,8 +16,3 @@ Health check executa durante SSR garantindo que página carrega com dados atuais
 Histórico de incidentes mantido em collection do Decap CMS permite equipe de operações documentar manutenções programadas e falhas passadas via interface visual. Frontmatter inclui data, serviços afetados, descrição, e status (investigating, identified, monitoring, resolved).
 
 Polling client-side habilitado via checkbox "atualização automática" executa fetch a cada 30 segundos atualizando indicadores sem reload. Implementado com setInterval e fetch para endpoint API interno que retorna JSON com status atual de todos serviços.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

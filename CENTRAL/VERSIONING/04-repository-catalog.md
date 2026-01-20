@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-20
+---
+
 # Catálogo de Repositórios
 
 Catálogo completo dos repositórios Git do ecossistema CARF. Este documento é a fonte única de verdade para identificar todos os repositórios, seus propósitos e responsáveis. Atualmente o CARF utiliza **7 repositórios ativos** no GitHub, organizados em arquitetura polyrepo onde cada projeto tem deploy, versionamento e ownership independentes.
@@ -57,9 +62,3 @@ O diagrama de dependências mostra como os repositórios se relacionam. carf-geo
 ## Versionamento
 
 Cada repositório segue Semantic Versioning independente. A compatibilidade entre versões é documentada em RELEASES/03-compatibility-matrix.md. Para detalhes sobre a estratégia polyrepo e justificativas, consulte RELEASES/01-polyrepo-strategy.md.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-20
-**Descrição:**

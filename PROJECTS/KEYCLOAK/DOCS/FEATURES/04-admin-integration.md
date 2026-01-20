@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-11
+---
+
 # Admin Integration - Integração Admin
 
 Integração admin implementada proxy frontend ADMIN SPA para Keycloak Admin API permitindo super-admin e admin gerenciarem usuários roles attributes sem acessar Keycloak Admin Console diretamente através de 7 camadas segurança backend GEOAPI controllers wrapping Admin API client confidential secret endpoints protegidos authentication middleware validando JWT bearer token role permissions antes proxy calls garantindo apenas autorizados podem gerenciar usuários via AdminUsersController AdminRolesController AdminAttributesController expondo métodos create read update delete list search batch operations auditoria logging todas operações admin_actions table rastreabilidade compliance LGPD.
@@ -9,8 +14,3 @@ Role management AdminRolesController endpoints POST /api/admin/users/:id/roles A
 Security layers camada 1 authentication middleware validating JWT bearer token via AddJwtBearer ASP.NET Core checking signature issuer audience lifetime, camada 2 authorization [Authorize] attribute checking authenticated request.User.Identity.IsAuthenticated, camada 3 role-based [Authorize(Roles = "super-admin,admin")] filtering apenas roles autorizadas, camada 4 tenant isolation validating user tenant_id claim matches requested resource tenant filtering users list apenas mesmo tenant exceto super-admin all tenants, camada 5 audit logging middleware intercepting request response logging actor action timestamp resource_id details JSON admin_actions table rastreabilidade, camada 6 rate limiting throttling max 100 requests per minute per IP preventing abuse DoS attacks, camada 7 input validation sanitization DTO validations [Required] [EmailAddress] [StringLength] FluentValidation rules preventing injection attacks XSS SQL injection ensuring data integrity.
 
 Frontend integration ADMIN React pages UsersListPage consuming GET /api/admin/users via TanStack Query useUsers hook caching pagination filtering, UserFormPage consuming POST PATCH endpoints useCreateUser useUpdateUser mutations optimistic updates cache invalidation, RolesAssignmentModal consuming role endpoints multi-select checkboxes applying changes batch operations, error handling backend catching KeycloakAdminClient exceptions AdminClientError parsing status code 409 Conflict username duplicate 400 Bad Request validation errors returning ProblemDetails RFC7807 format frontend displaying toast notifications inline form errors, permission checks frontend conditionally rendering create edit delete buttons based useAuth hasRole helper super-admin admin hiding unauthorized actions UX protection security enforcement backend sempre valida independente frontend pois client manipulável, testing integration tests MockKeycloakAdminClient stubbing responses verifying controller methods call kcAdmin correctly pass params handle errors, end-to-end tests Playwright Cypress navegando ADMIN app criando user verificando aparece listagem Keycloak Admin Console checking user created attributes roles correct.
-
----
-
-**Última atualização:** 2026-01-11
-**Status do arquivo**: Pronto

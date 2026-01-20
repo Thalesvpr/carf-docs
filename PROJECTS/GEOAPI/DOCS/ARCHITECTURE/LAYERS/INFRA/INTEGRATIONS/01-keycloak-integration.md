@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-16
+---
+
 # Keycloak Integration
 
 Integração com Keycloak para autenticação OAuth2/OIDC.
@@ -114,8 +119,3 @@ public class TenantContext : ITenantContext
     }
 }
 ```
-
----
-
-**Última atualização:** 2026-01-16
-**Status do arquivo**: Pronto

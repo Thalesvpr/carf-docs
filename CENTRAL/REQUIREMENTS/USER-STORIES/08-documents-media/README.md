@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Documentos e Mídia
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (9 user stories)
@@ -20,13 +24,20 @@
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
 
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
+<!-- CARF-INDEX-START -->
+## Documentos
 
----
+### Em Revisão
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/08-documents-media/US-042-tirar-fotos-com-câmera.md|US-042: Tirar Fotos com Câmera]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/08-documents-media/US-043-selecionar-fotos-da-galeria.md|US-043: Selecionar Fotos da Galeria]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/08-documents-media/US-065-upload-de-documentos.md|US-065: Upload de Documentos]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/08-documents-media/US-066-visualizar-documentos.md|US-066: Visualizar Documentos]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/08-documents-media/US-067-excluir-documento.md|US-067: Excluir Documento]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/08-documents-media/US-068-ocr-em-documentos.md|US-068: OCR em Documentos]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/08-documents-media/US-069-galeria-de-fotos-da-unidade.md|US-069: Galeria de Fotos da Unidade]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/08-documents-media/US-070-geolocalização-de-fotos.md|US-070: Geolocalização de Fotos]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/08-documents-media/US-071-compressão-de-fotos.md|US-071: Compressão de Fotos]]
+
+<!-- CARF-INDEX-END -->

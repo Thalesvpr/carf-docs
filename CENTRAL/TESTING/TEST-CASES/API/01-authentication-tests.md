@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Authentication API Tests
 
 Casos de teste para endpoints de autenticação.
@@ -105,9 +110,3 @@ Cenário: Logout revoga refresh token
   Então recebo status 204
   E o refresh_token não pode mais ser usado
 ```
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

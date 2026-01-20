@@ -1,6 +1,6 @@
 ---
-modules: [GEOAPI, GEOWEB, REURBCAD]
-epic: compatibility
+status: review
+updated: 2025-12-30
 ---
 
 # UC-004-FA-001: Sincronizar Imediatamente
@@ -14,14 +14,3 @@ Fluxo alternativo do UC-004 Coletar Dados Campo Mobile desviando no passo 12 (ap
 App importa NetInfo de pacote @react-native-community/netinfo, executa await NetInfo.fetch() retornando state object com propriedades isConnected e isInternetReachable, verifica condição if state.isConnected AND state.isInternetReachable ambos true indicando conexão ativa com internet alcançável não apenas WiFi sem gateway, chama showSyncButton() exibindo botão flutuante Sincronizar Agora com badge numérico mostrando quantidade de itens pendentes sincronização permitindo FIELD_AGENT disparar processo UC-005 imediatamente ao invés de aguardar sync automático posterior.
 
 **Retorno:** Dados sincronizados, storage local limpo, FIELD_AGENT continua coleta
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

@@ -1,6 +1,6 @@
 ---
-modules: [GEOAPI, GEOWEB]
-epic: performance
+status: review
+updated: 2025-12-30
 ---
 
 # UC-010-FA-002: Proxy de WMS
@@ -10,14 +10,3 @@ Fluxo alternativo do UC-010 Configurar Camadas WMS desviando no passo 12 onde an
 **Ponto de Desvio:** Passo 12 do UC-010 (antes de salvar)
 
 **Retorno:** Camada configurada com proxy, requests roteados via backend evitando CORS
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

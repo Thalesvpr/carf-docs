@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Spacing
 
 Sistema de espaçamento do CARF baseado em unidade de 8px, definindo escala para paddings, margins, gaps e dimensões consistentes em todos os componentes.
@@ -111,8 +116,3 @@ Espaçamentos podem ser reduzidos em mobile:
 2. **Consistência vertical** - Manter ritmo vertical com line-height + margin
 3. **Espaço em branco** - Não ter medo de espaço vazio; melhora legibilidade
 4. **Mobile-first** - Começar com espaçamentos menores e aumentar
-
----
-
-**Status do arquivo:** Draft
-**Última atualização:** 2026-01-19

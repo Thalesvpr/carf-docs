@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # RBAC
 
 Sistema de controle de acesso baseado em roles (Role-Based Access Control) definindo permissões para cada tipo de usuário no ecossistema CARF.
@@ -15,10 +20,6 @@ A [hierarquia de roles](./01-roles-hierarchy.md) define seis níveis: `user` (ba
 | `super-admin` | Operacional | Acesso multi-tenant |
 | `dev` | Transversal | Desenvolvedor, acesso /dev/ |
 
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (3 arquivos)
@@ -32,8 +33,13 @@ A [hierarquia de roles](./01-roles-hierarchy.md) define seis níveis: `user` (ba
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/INTEGRATION/KEYCLOAK/RBAC/01-roles-hierarchy.md|Hierarquia de Roles]]
+- ○ [[CENTRAL/INTEGRATION/KEYCLOAK/RBAC/02-role-dev.md|Role Dev]]
+- ○ [[CENTRAL/INTEGRATION/KEYCLOAK/RBAC/03-permissions.md|Permissões Detalhadas]]
+
+<!-- CARF-INDEX-END -->

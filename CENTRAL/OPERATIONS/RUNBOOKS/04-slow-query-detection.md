@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Slow Query Detection
 
 Runbook para identificar e resolver queries lentas que impactam performance do sistema, especialmente queries espaciais com PostGIS.
@@ -100,9 +105,3 @@ Dashboard deve mostrar:
 - Queries por segundo
 - Buffer hit ratio (deve ser > 95%)
 - Índice scan vs sequential scan ratio
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

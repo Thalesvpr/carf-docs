@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Processos de Legitimação
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (10 requisitos)
@@ -20,11 +24,21 @@
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/13-legitimation/RF-172-criar-processo-de-legitimação.md|RF-172: Criar Processo de Legitimação]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/13-legitimation/RF-173-editar-processo.md|RF-173: Editar Processo]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/13-legitimation/RF-174-listar-processos.md|RF-174: Listar Processos]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/13-legitimation/RF-175-status-de-processo.md|RF-175: Status de Processo]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/13-legitimation/RF-176-anexar-documentos-ao-processo.md|RF-176: Anexar Documentos ao Processo]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/13-legitimation/RF-177-gerar-termo-de-legitimação.md|RF-177: Gerar Termo de Legitimação]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/13-legitimation/RF-178-assinatura-digital-de-termo.md|RF-178: Assinatura Digital de Termo]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/13-legitimation/RF-179-timeline-de-processo.md|RF-179: Timeline de Processo]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/13-legitimation/RF-180-notificação-de-mudança-de-status.md|RF-180: Notificação de Mudança de Status]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/13-legitimation/RF-181-relatório-de-processos.md|RF-181: Relatório de Processos]]
+
+<!-- CARF-INDEX-END -->

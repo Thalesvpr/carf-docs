@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # UC-007-exportar-dados-geograficos
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (6 casos de uso)
@@ -17,13 +21,17 @@
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
 
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
+<!-- CARF-INDEX-START -->
+## Documentos
 
----
+### Em Revisão
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-007-exportar-dados-geograficos/UC-007-exportar-dados-geograficos.md|UC-007: Exportar Dados Geográficos]]
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-007-exportar-dados-geograficos/UC-007-FA-001-exportacao-rapida.md|UC-007-FA-001: Exportação Rápida (Poucos Dados)]]
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-007-exportar-dados-geograficos/UC-007-FA-002-exportar-selecao.md|UC-007-FA-002: Exportar Seleção]]
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-007-exportar-dados-geograficos/UC-007-FE-001-limite-excedido.md|UC-007-FE-001: Limite de Registros Excedido]]
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-007-exportar-dados-geograficos/UC-007-FE-002-geometrias-invalidas.md|UC-007-FE-002: Geometrias Inválidas]]
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-007-exportar-dados-geograficos/UC-007-FE-003-erro-reprojecao.md|UC-007-FE-003: Erro de Reprojeção]]
+
+<!-- CARF-INDEX-END -->

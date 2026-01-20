@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-20
+---
+
 # GIT
 
 Workflow Git para desenvolvimento no CARF com práticas padronizadas de branching, commits e colaboração.
@@ -8,10 +13,16 @@ Os [commit conventions](./03-commit-conventions.md) seguem Conventional Commits 
 
 O [guia de worktree](./06-worktree-guide.md) permite trabalho paralelo em múltiplas branches sem necessidade de stash ou múltiplos clones.
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Última atualização:** 2026-01-20
-**Status do arquivo**: Review
+### Em Revisão
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-<!-- GENERATED:END -->
+- ○ [[CENTRAL/VERSIONING/GIT/01-setup-guide.md|Guia de Setup - CARF Polyrepo]]
+- ○ [[CENTRAL/VERSIONING/GIT/02-branching-strategy.md|Branching Strategy]]
+- ○ [[CENTRAL/VERSIONING/GIT/03-commit-conventions.md|Commit Conventions]]
+- ○ [[CENTRAL/VERSIONING/GIT/04-pr-guidelines.md|PR Guidelines]]
+- ○ [[CENTRAL/VERSIONING/GIT/05-git-hooks.md|Git Hooks]]
+- ○ [[CENTRAL/VERSIONING/GIT/06-worktree-guide.md|Git Worktree - Trabalho Paralelo em Múltiplas Branches]]
+
+<!-- CARF-INDEX-END -->

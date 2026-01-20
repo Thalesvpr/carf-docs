@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Docker Compose Production
 
 Configuração Docker Compose para ambiente de produção.
@@ -132,9 +137,3 @@ docker-compose -f docker-compose.prod.yml exec geoapi curl localhost:8080/health
 | Restart | no | on-failure |
 | Logging | stdout | json-file |
 | Network | exposed | internal |
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

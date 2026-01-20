@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Embed de Vídeo
 
 Guia para incluir vídeos do YouTube em páginas de documentação.
@@ -15,8 +20,3 @@ Considerar timestamps para vídeos longos listando seções com links diretos pa
 Testar embed localmente verificando que vídeo carrega, player é responsivo em diferentes tamanhos de tela, e atributo title está presente no iframe para screen readers.
 
 Performance considerada com lazy loading habilitado por padrão no componente. Vídeo só carrega quando usuário scrolla até elemento reduzindo tempo de carregamento inicial da página.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

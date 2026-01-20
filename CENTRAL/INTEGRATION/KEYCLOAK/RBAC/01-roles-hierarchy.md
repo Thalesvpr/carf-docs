@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Hierarquia de Roles
 
 Sistema CARF implementa seis níveis de roles sendo cinco operacionais hierárquicos onde roles superiores herdam automaticamente permissões das inferiores através de composite roles no Keycloak, mais uma role transversal para desenvolvedores.
@@ -40,9 +45,3 @@ user (base)
 
 dev (transversal - pode ser combinada com qualquer role acima)
 ```
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

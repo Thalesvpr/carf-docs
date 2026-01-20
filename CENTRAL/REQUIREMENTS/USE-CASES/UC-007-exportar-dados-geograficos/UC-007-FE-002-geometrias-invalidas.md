@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB, GEOGIS]
-epic: scalability
+status: review
+updated: 2025-12-30
 ---
 
 # UC-007-FE-002: Geometrias Inválidas
@@ -10,14 +10,3 @@ Fluxo de exceção do UC-007 Exportar Dados Geográficos ocorrendo no passo 11.3
 **Ponto de Desvio:** Passo 11.3 do UC-007 (durante iteração de formatação)
 
 **Retorno:** Registros inválidos ignorados, exportação continua, warning incluído na notificação
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

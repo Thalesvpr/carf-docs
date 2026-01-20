@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Convenções de Nomenclatura
 
 Arquivos de documentação seguem convenções de nomenclatura específicas por tipo, garantindo identificação rápida e organização consistente em todo o repositório.
@@ -33,9 +38,3 @@ Todo diretório deve conter arquivo README.md com R maiúsculo. Este é o único
 ## Validação
 
 Os scripts em .scripts/carf_validator validam títulos com códigos TITLE001 a TITLE003, terminologia com código NOMEN001 e numeração obrigatória com código NUM001.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # ADR-009: Escolha do Padrão CQRS (Command Query Responsibility Segregation)
 
 Decisão arquitetural escolhendo implementação de CQRS (Command Query Responsibility Segregation) no backend GEOAPI justificada por separação clara entre operações de escrita (commands) que modificam estado validando invariantes de negócio e operações de leitura (queries) otimizadas para apresentação permitindo queries performáticas denormalizadas sem comprometer integridade de domain model, performance de leitura superior usando queries SQL otimizadas diretas via Dapper ou views materializadas no PostgreSQL ao invés de forçar todas reads através de aggregates do DDD eliminando overhead de hydration de object graphs complexos e reduzindo latência de P95 de listagens em 60-70% conforme RNF-001, escalabilidade independente permitindo scale-out de read replicas do PostgreSQL para queries pesadas (dashboards relatórios exports) sem afetar write master mantendo performance de writes críticos, simplificação de queries complexas escrevendo SQL otimizado com joins CTEs window functions diretamente ao invés de construir com LINQ que gera SQL subótimo especialmente em queries espaciais com PostGIS, cache granular de queries sem invalidação complexa onde cada query pode ter estratégia de cache específica (dashboard cached 5min, listagem paginada cached 1min, detalhes sem cache) versus tentativa de cache em aggregate level que invalida frequentemente, security simplificada aplicando authorization apenas em command handlers para writes enquanto queries read-only tem regras mais relaxadas (exemplo qualquer analyst pode ler unidades mas apenas field_agent pode criar), auditoria facilitada onde commands são naturally auditable points de mudança de estado enquanto queries não exigem audit trail, e preparação para eventual consistency se escala futura exigir separação física de read e write databases com replicação assíncrona.
@@ -17,9 +22,3 @@ Implementação específica usa MediatR 12.x para command/query dispatch, Dapper
 Monitoramento implementa métricas separadas para commands (latency success rate errors) e queries (latency cache hit rate slow queries) no Application Insights permitindo otimização focada, alertas para queries lentas acima de 500ms indicando necessidade de índices ou otimização de SQL, e dashboard mostrando top queries por frequency e latency identificando candidatos para cache.
 
 Status da decisão é aprovado e implementado desde início do projeto em 2024-Q3, com revisão prevista apenas se overhead de manter dois modelos se tornar insustentável (improvável dado benefícios claros) ou se surgir pattern superior para separação de reads e writes.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

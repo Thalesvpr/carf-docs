@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Datasources Provisioning
 
 Configuração de auto-provisioning de datasources no Grafana.
@@ -138,9 +143,3 @@ curl -s -u admin:$GRAFANA_PASSWORD \
 curl -s -u admin:$GRAFANA_PASSWORD \
   http://grafana:3000/api/datasources/1/health
 ```
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # CACHE
 
 Implementação caching distribuído do GEOAPI usando Redis para cache de queries frequentes, sessões usuário e dados quasi-static compartilhados entre instâncias API reduzindo carga banco dados e melhorando performance reads. RedisCacheService encapsula StackExchange.Redis com serialização JSON via System.Text.Json, namespacing por tenant evitando colisões keys entre múltiplos clientes e expiration policies TTL baseadas em tipo dado (user sessions 30min, query results 5min, reference data 1h). Cache-aside pattern aplicado em queries onde handler verifica cache primeiro retornando imediatamente se hit ou consultando DB e populando cache se miss, cache invalidation coordenada via pub/sub Redis quando domain events indicam dados alterados (UnitUpdatedEvent invalida cache GetUnitById) e distributed locking Redlock garantindo apenas uma instância executa operação cara evitando thundering herd. Health checks monitoram conectividade Redis e fallback graceful para no-cache quando Redis indisponível mantendo aplicação funcional com performance degradada.
@@ -20,18 +25,11 @@ Implementação caching distribuído do GEOAPI usando Redis para cache de querie
 - 07-ttl-policies.md - Expiration por tipo de dado
 - 08-eviction-policies.md - LRU e memory management
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Última atualização:** 2026-01-12
-**Status do arquivo**: Incompleto
-Descrição: Falta seção GENERATED com índice automático; Muitas listas com bullets (8) antes do rodapé - considerar converter para parágrafo denso.
+### Em Revisão
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (1 arquivo)
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/INFRA/CACHE/01-redis-cache.md|Redis Cache]]
 
-| ID | Titulo |
-|:---|:-------|
-| [01-redis-cache](./01-redis-cache.md) | Redis Cache |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
+<!-- CARF-INDEX-END -->

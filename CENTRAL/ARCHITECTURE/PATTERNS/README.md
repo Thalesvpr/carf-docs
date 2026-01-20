@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # PATTERNS
 
 Padrões arquiteturais aplicados no CARF, documentando quando usar cada um e seus trade-offs.
@@ -23,10 +28,6 @@ Os [padrões GIS](./07-gis-spatial-patterns.md) documentam uso de índices espac
 ### GIS/Spatial
 - **[07-gis-spatial-patterns.md](./07-gis-spatial-patterns.md)** - PostGIS, índices espaciais e topologia
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (7 arquivos)
@@ -44,8 +45,17 @@ Os [padrões GIS](./07-gis-spatial-patterns.md) documentam uso de índices espac
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/ARCHITECTURE/PATTERNS/01-clean-architecture.md|Clean Architecture]]
+- ○ [[CENTRAL/ARCHITECTURE/PATTERNS/02-cqrs.md|CQRS]]
+- ○ [[CENTRAL/ARCHITECTURE/PATTERNS/03-repository-uow.md|Repository & Unit of Work]]
+- ○ [[CENTRAL/ARCHITECTURE/PATTERNS/04-domain-events.md|Domain Events]]
+- ○ [[CENTRAL/ARCHITECTURE/PATTERNS/05-frontend-patterns.md|Frontend Patterns]]
+- ○ [[CENTRAL/ARCHITECTURE/PATTERNS/06-mobile-offline-first.md|Mobile Offline-First]]
+- ○ [[CENTRAL/ARCHITECTURE/PATTERNS/07-gis-spatial-patterns.md|GIS Spatial Patterns]]
+
+<!-- CARF-INDEX-END -->

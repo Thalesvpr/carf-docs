@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-16
+---
+
 # Unit Queries
 
 Queries CQRS para operações de leitura de unidades.
@@ -68,8 +73,3 @@ public record GetUnitStatisticsQuery(
 
 // Retorna agregações: total, por status, área total, etc.
 ```
-
----
-
-**Última atualização:** 2026-01-16
-**Status do arquivo**: Pronto

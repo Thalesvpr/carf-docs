@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # ADR-005: Escolha de Multi-tenancy via Row-Level Security (RLS)
 
 Decisão arquitetural escolhendo implementação de multi-tenancy através de Row-Level Security (RLS) nativo do PostgreSQL ao invés de databases separados ou schema-per-tenant justificada por isolamento automático e transparente de dados no database layer eliminando risco crítico de vazamento cross-tenant através de bugs em application code onde esquecimento de filtro WHERE tenant_id = X em query única pode expor dados de todas prefeituras violando LGPD e causando incidente de segurança grave, simplicidade operacional gerenciando single database com backup restore e monitoring unificados versus dezenas ou centenas de databases separados exigindo automação complexa e aumentando overhead operacional em 10x, economia de recursos com single connection pool compartilhado entre tenants otimizando uso de memória e conexões versus overhead de manter pools separados por tenant consumindo 50-100MB por database, queries cross-tenant facilitadas para analytics e reporting agregado necessários para dashboards de sistema e métricas globais que seriam extremamente complexas com databases separados exigindo federation ou ETL batch, migrations simplificadas aplicadas uma única vez no database central versus execução paralela em N databases com risco de falha parcial e inconsistência entre tenants, performance superior com shared buffer cache beneficiando queries similares entre tenants (exemplo busca de unidades por CPF) reusando páginas cacheadas versus cold cache em database separado por tenant, compliance LGPD facilitado com policies RLS auditáveis e versionadas no schema SQL versus lógica de filtragem espalhada em dezenas de services e repositories propensa a bugs e esquecimentos, e desenvolvimento acelerado com transparência de RLS permitindo código application-layer agnóstico de tenancy sem condicionais explícitas em toda query reduzindo complexidade e surface de bugs.
@@ -13,9 +18,3 @@ Consequências positivas incluem segurança robusta com garantias no database la
 Configuração específica escolhida habilita RLS em todas tabelas multi-tenant via ALTER TABLE table_name ENABLE ROW LEVEL SECURITY, implementa policies padrão usando current_setting('app.current_tenant_id') como discriminator, configura middleware em GEOAPI para extrair tenant_id de JWT claim e executar SET SESSION "app.current_tenant_id" = 'uuid' no início de cada request, utiliza connection pooler (PgBouncer) em transaction mode garantindo que session variables não vazam entre requests, e implementa override temporário para jobs background e migrations via SECURITY DEFINER functions permitindo operações cross-tenant autorizadas.
 
 Status da decisão é aprovado e implementado desde início do projeto em 2024-Q3, com revisão prevista apenas se surgir limitação crítica de escala ou performance que RLS não consiga resolver (improvável dado sucesso de RLS em sistemas enterprise com milhares de tenants).
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

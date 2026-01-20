@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Autenticação e Segurança
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (9 user stories)
@@ -20,13 +24,20 @@
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
 
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
+<!-- CARF-INDEX-START -->
+## Documentos
 
----
+### Em Revisão
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/01-auth-security/US-001-login-com-oauth2.md|US-001: Login com OAuth2]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/01-auth-security/US-002-renovar-token-automaticamente.md|US-002: Renovar Token Automaticamente]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/01-auth-security/US-003-logout.md|US-003: Logout]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/01-auth-security/US-004-controle-de-acesso-por-role.md|US-004: Controle de Acesso por Role]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/01-auth-security/US-005-criar-api-key.md|US-005: Criar API Key]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/01-auth-security/US-006-revogar-api-key.md|US-006: Revogar API Key]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/01-auth-security/US-007-redefinir-senha.md|US-007: Redefinir Senha]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/01-auth-security/US-008-visualizar-perfil.md|US-008: Visualizar Perfil]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/01-auth-security/US-124-obter-dados-do-usuario-autenticado.md|US-124: Obter Dados do Usuario Autenticado]]
+
+<!-- CARF-INDEX-END -->

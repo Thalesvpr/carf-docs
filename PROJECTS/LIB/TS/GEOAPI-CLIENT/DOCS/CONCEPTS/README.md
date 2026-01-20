@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-11
+---
+
 # CONCEPTS - Conceitos Cliente HTTP
 
 Conceitos fundamentais sobre SDK cliente HTTP TypeScript.
@@ -6,18 +11,11 @@ Conceitos fundamentais sobre SDK cliente HTTP TypeScript.
 
 - **[01-http-client.md](./01-http-client.md)** - Cliente HTTP base Axios interceptors type safety
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Última atualização:** 2026-01-11
+### Em Revisão
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (1 arquivo)
+- ○ [[PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/CONCEPTS/01-http-client.md|HTTP Client - Cliente HTTP Base]]
 
-| ID | Titulo |
-|:---|:-------|
-| [01-http-client](./01-http-client.md) | HTTP Client - Cliente HTTP Base |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Incompleto
-Descrição: Falta parágrafo denso introdutório.
+<!-- CARF-INDEX-END -->

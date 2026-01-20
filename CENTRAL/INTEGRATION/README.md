@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # INTEGRATION
 
 Documentação de integrações com serviços externos essenciais para o funcionamento do sistema CARF.
@@ -6,10 +11,6 @@ O [Keycloak](./KEYCLOAK/README.md) é o provedor de autenticação centralizada 
 
 O [banco de dados](./DATABASE/README.md) usa PostgreSQL 16 com extensão PostGIS 3.4 para dados geoespaciais e Row-Level Security para isolamento automático de dados entre tenants.
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Indice por Dominio (28 arquivos)
@@ -22,8 +23,10 @@ O [banco de dados](./DATABASE/README.md) usa PostgreSQL 16 com extensão PostGIS
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Subpastas
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- [[CENTRAL/INTEGRATION/DATABASE/README|DATABASE]]
+- [[CENTRAL/INTEGRATION/KEYCLOAK/README|KEYCLOAK]]
+
+<!-- CARF-INDEX-END -->

@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # List Communities
 
 Schema e comportamento do endpoint de listagem de comunidades.
@@ -88,9 +93,3 @@ GET /api/communities/geojson
 ```
 
 Retorna FeatureCollection com todas comunidades do tenant.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

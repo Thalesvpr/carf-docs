@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # ADR-007: Escolha do Bun como Runtime e Bundler
 
 Decisão arquitetural escolhendo Bun como runtime JavaScript e bundler all-in-one para frontend GEOWEB substituindo stack tradicional Node.js + npm + Vite/Webpack justificada por performance dramaticamente superior com cold start ~3x mais rápido que Node.js e hot reload instantâneo sub-100ms versus 1-3 segundos do Vite melhorando drasticamente Developer Experience e ciclo de iteração durante desenvolvimento, bundler integrado eliminando necessidade de configuração complexa de Webpack ou Vite reduzindo surface de configuração em 80% e eliminando incompatibilidades entre ferramentas, package manager nativo substituindo npm/yarn com install 10-20x mais rápido especialmente em CI/CD onde cada build economiza 2-5 minutos reduzindo custo de infraestrutura e acelerando deployments, APIs Web-standard implementando fetch FormData WebSocket Request Response nativamente sem polyfills reduzindo bundle size e eliminando dependências como node-fetch axios form-data, TypeScript transpilation nativo sem necessidade de tsc ou babel acelerando builds em 3-5x e simplificando toolchain, test runner integrado compatível com Jest mas 10x mais rápido eliminando dependência externa e simplificando configuração de testes, e all-in-one toolchain reduzindo drasticamente npm dependencies de ~500+ pacotes em projeto típico Node.js para ~50 essenciais diminuindo attack surface de supply chain e simplificando auditorias de segurança.
@@ -15,9 +20,3 @@ Configuração específica escolhida utiliza Bun 1.0.20+ instalado globalmente v
 Monitoramento de performance implementa tracking de métricas de build time em CI alertando se ultrapassar threshold de 2 minutos indicando problema, comparison periódico de bundle size entre versões detectando regressões, e fallback plan documentado para migração de volta a Node.js + Vite se Bun demonstrar showstopper bugs (improvável mas prudente ter exit strategy).
 
 Status da decisão é aprovado e implementado desde início do projeto em 2024-Q3, com revisão prevista anualmente para avaliar maturidade de Bun e considerar se benefícios ainda justificam riscos de adoção early-adopter ou se ecosystem convergiu para alternativa superior.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

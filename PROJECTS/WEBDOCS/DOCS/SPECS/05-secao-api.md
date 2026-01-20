@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Seção API
 
 Seção /api/ documenta API GEOAPI de forma conceitual complementando Swagger interativo disponível em /dev/swagger/. Foco em entendimento de negócio, não detalhes técnicos de request/response.
@@ -13,8 +18,3 @@ Sem código de exemplo ou detalhes de payload nesta seção. Desenvolvedores que
 Frontmatter define section como api, audience como user. Páginas são públicas diferente de Swagger que requer autenticação.
 
 Manutenção deve acompanhar mudanças na API atualizando descrições de recursos e operações. Validar alinhamento com especificação OpenAPI gerada automaticamente pela GEOAPI.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

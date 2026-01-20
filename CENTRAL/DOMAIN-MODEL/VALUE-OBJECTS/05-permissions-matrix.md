@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Permissions Matrix (Matriz de Permissões Granulares)
 
 Value object conceitual definindo sistema de permissões granulares baseado em recursos e ações permitindo controle de acesso fino além de roles básicos (SUPER_ADMIN ADMIN MANAGER ANALYST FIELD_AGENT) através de permissions específicas atribuídas a users ou teams habilitando cenários complexos como analista que só pode editar Units do seu município mas ler todas Units da região ou field agent que cadastra Units mas não aprova nem deleta. Permissions são compostas de recurso (UNIT HOLDER COMMUNITY PROCESS DOCUMENT TEAM TENANT) action (CREATE READ UPDATE DELETE APPROVE REJECT EXPORT) e scope opcional (OWN_ONLY TEAM_ONLY COMMUNITY_ONLY TENANT_ONLY ALL) formando permission strings como units.create.team_only ou processes.approve.community_only interpretadas em runtime por authorization middleware verificando se user tem permission necessária para operação solicitada. Roles pré-definidos têm permissions bundles padrão onde SUPER_ADMIN tem wildcard *.*.all permitindo tudo, ADMIN tem *.*.tenant_only permitindo gestão completa do seu tenant, MANAGER tem units.approve.community_only processes.approve.community_only teams.read.tenant_only permitindo aprovação mas não CRUD de configurações globais, ANALYST tem units.*.community_only holders.*.community_only documents.*.community_only permitindo CRUD de dados mas não aprovação, e FIELD_AGENT tem units.create.own_only units.read.team_only documents.create.own_only permitindo coleta de dados próprios e visualização de dados da equipe. Permissions customizadas podem ser atribuídas diretamente a Account ou Team sobrescrevendo defaults de role permitindo exceções como ANALYST específico com units.delete.own_only para corrigir cadastros próprios errados ou FIELD_AGENT líder com units.approve.team_only para pré-validar dados da equipe antes de enviar para MANAGER.
@@ -11,9 +16,3 @@ Permission strings seguem convenção {resource}.{action}.{scope} sempre lowerca
 Casos de uso especiais incluem temporary permissions com expires_at permitindo acesso temporário a consultor externo para gerar relatório específico com auto-revoke após deadline, delegated permissions onde MANAGER delega units.approve.community_only para ANALYST específico por período mantendo accountability, conditional permissions baseadas em regras como units.approve só disponível em horário comercial ou processes.reject exigindo justificativa obrigatória validada em domain service, e hierarchical permissions onde permission em Community parent propaga para Blocks e Units children automaticamente simplificando atribuição em hierarquias geográficas complexas.
 
 **Módulos:** GEOAPI, GEOWEB, REURBCAD, GEOGIS
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

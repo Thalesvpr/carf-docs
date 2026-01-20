@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Arquitetura ADMIN - React SPA
 
 Console administrativo React para gerenciamento do ecossistema CARF.
@@ -54,23 +59,3 @@ Ver documentação completa em GEOAPI/DOCS/ARCHITECTURE/02-admin-security.md
 - Segurança Admin: GEOAPI/DOCS/ARCHITECTURE/02-admin-security.md
 - carf-admin README: ADMIN/SRC-CODE/carf-admin/README.md
 - Keycloak Setup: CENTRAL/INTEGRATION/KEYCLOAK/README.md
-
----
-
-**Última atualização:** 2026-01-15
-
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (5 arquivos)
-
-| ID | Titulo |
-|:---|:-------|
-| [01-overview](./01-overview.md) | Overview da Arquitetura - ADMIN |
-| [02-layers](./02-layers.md) | Layers - ADMIN |
-| [03-data-flow](./03-data-flow.md) | Data Flow - ADMIN |
-| [04-integration](./04-integration.md) | Integration - ADMIN |
-| [05-deployment](./05-deployment.md) | Deployment - ADMIN |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Incompleto
-Descrição: Falta parágrafo denso introdutório; Muitas listas com bullets (19) antes do rodapé - considerar converter para parágrafo denso.

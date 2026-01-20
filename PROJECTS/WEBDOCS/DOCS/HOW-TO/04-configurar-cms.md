@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Configurar CMS
 
 Guia para configurar Decap CMS permitindo edição visual de conteúdo via interface web.
@@ -15,8 +20,3 @@ Widgets disponíveis incluem string para texto curto, text para texto longo sem 
 Configurar preview templates opcionalmente para ver como conteúdo aparecerá no site durante edição. Arquivo de preview em public/admin/preview.js define template usando React que renderiza frontmatter e body.
 
 Testar editorial workflow habilitando publish_mode editorial_workflow em config.yml. Edições criam branches e PRs automaticamente. Review e merge acontecem no GitHub. Desabilitar para fluxo mais simples com commits diretos.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

@@ -1,3 +1,8 @@
+---
+status: approved
+updated: 2026-01-20
+---
+
 # Design System
 
 Especificações visuais do ecossistema CARF definindo cores, tipografia, espaçamento e componentes para garantir consistência visual entre todas as aplicações do sistema.
@@ -9,6 +14,12 @@ Especificações visuais do ecossistema CARF definindo cores, tipografia, espaç
 | [01-colors](01-colors.md) | Paleta de cores institucional e semântica |
 | [02-typography](02-typography.md) | Família tipográfica e escala de tamanhos |
 | [03-spacing](03-spacing.md) | Sistema de espaçamento baseado em 8px |
+| [04-borders](04-borders.md) | Border-radius scale para componentes |
+| [05-shadows](05-shadows.md) | Sistema de elevação e sombras |
+| [06-breakpoints](06-breakpoints.md) | Breakpoints responsivos |
+| [07-states](07-states.md) | Estados interativos (focus, disabled, error) |
+| [08-z-index](08-z-index.md) | Escala de z-index para camadas |
+| [09-transitions](09-transitions.md) | Durações e easings de animação |
 
 ## Princípios
 
@@ -39,6 +50,30 @@ Todas as aplicações frontend devem importar as variáveis CSS padrão:
 
   /* Espaçamento */
   --space-unit: 8px;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 6px 12px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.2);
+
+  /* Z-Index */
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-modal: 30;
+  --z-popover: 40;
+  --z-toast: 50;
+
+  /* Transitions */
+  --duration-fast: 150ms;
+  --duration-default: 200ms;
+  --duration-slow: 300ms;
 }
 ```
 
@@ -63,14 +98,53 @@ module.exports = {
 }
 ```
 
+## Implementação React
+
+A biblioteca **[@carf/ui](../../PROJECTS/LIB/TS/UI-COMPONENTS/README.md)** implementa este Design System em componentes React reutilizáveis baseados em shadcn/ui.
+
+### Instalação
+
+```bash
+npm install @carf/ui
+```
+
+### Uso
+
+```tsx
+import { Button, Card, Input, Badge } from '@carf/ui'
+import '@carf/ui/styles'  // CSS variables do Design System
+
+function MyComponent() {
+  return (
+    <Card>
+      <Input placeholder="Digite seu nome" />
+      <Button variant="default">Enviar</Button>
+      <Badge variant="success">Aprovado</Badge>
+    </Card>
+  )
+}
+```
+
+### Componentes Disponíveis
+
+| Categoria | Componentes |
+|:----------|:------------|
+| Form | Button, Input, Label, Checkbox, Switch, Select, Textarea |
+| Layout | Card, Separator, Tabs, Accordion |
+| Feedback | Alert, Toast, Dialog, AlertDialog, Progress |
+| Data Display | Avatar, Badge, Tooltip, Popover, Table |
+| Navigation | DropdownMenu |
+| CARF-Specific | UnitCard, HolderCard, CommunityCard, StatusBadge |
+
 ## Aplicações
 
 O Design System é aplicado em:
 
+- **@carf/ui** - Biblioteca de componentes React
 - **GeoWeb** - Portal web de analistas
 - **Painel Admin** - Console de administração
 - **WebDocs** - Portal de documentação
-- **Keycloak Theme** - Telas de autenticação
+- **Keycloak Theme** - Telas de autenticação (FreeMarker e Keycloakify)
 - **REURBCAD Mobile** - Aplicativo de campo
 
 ## Referências
@@ -78,7 +152,19 @@ O Design System é aplicado em:
 - [ADR-023](../ARCHITECTURE/ADRs/ADR-023-color-palette-design-system.md) - Decisão arquitetural da paleta de cores
 - [Ecosystem](../ECOSYSTEM/README.md) - Catálogo de aplicações
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status do arquivo:** Draft
-**Última atualização:** 2026-01-19
+### Em Revisão
+
+- ○ [[CENTRAL/DESIGN-SYSTEM/01-colors.md|Colors]]
+- ○ [[CENTRAL/DESIGN-SYSTEM/02-typography.md|Typography]]
+- ○ [[CENTRAL/DESIGN-SYSTEM/03-spacing.md|Spacing]]
+- ○ [[CENTRAL/DESIGN-SYSTEM/04-borders.md|Borders]]
+- ○ [[CENTRAL/DESIGN-SYSTEM/05-shadows.md|Shadows]]
+- ○ [[CENTRAL/DESIGN-SYSTEM/06-breakpoints.md|Breakpoints]]
+- ○ [[CENTRAL/DESIGN-SYSTEM/07-states.md|Interactive States]]
+- ○ [[CENTRAL/DESIGN-SYSTEM/08-z-index.md|Z-Index Scale]]
+- ○ [[CENTRAL/DESIGN-SYSTEM/09-transitions.md|Transitions]]
+
+<!-- CARF-INDEX-END -->

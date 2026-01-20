@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # List Holders
 
 Schema e comportamento do endpoint de listagem de titulares.
@@ -102,9 +107,3 @@ curl -X GET "https://api.carf.com.br/api/holders?community_id=550e8400..." \
 - CPF completo requer role `admin` ou `cadastrista`
 - Listagem é auditada (quem consultou, quando)
 - Dados sensíveis (renda, RG) omitidos na listagem, disponíveis apenas no GET individual
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

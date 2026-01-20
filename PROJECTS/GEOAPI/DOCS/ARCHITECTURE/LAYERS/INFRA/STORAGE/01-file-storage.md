@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-16
+---
+
 # File Storage
 
 Implementação de armazenamento de arquivos com S3-compatible storage.
@@ -113,8 +118,3 @@ public class PhotoService
     }
 }
 ```
-
----
-
-**Última atualização:** 2026-01-16
-**Status do arquivo**: Pronto

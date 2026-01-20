@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Create Unit
 
 Schema e comportamento do endpoint de criação de unidades habitacionais.
@@ -147,9 +152,3 @@ curl -X POST https://api.carf.com.br/api/units \
     }
   }'
 ```
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-20
+---
+
 # Workflows de Actions
 
 Pipelines CI/CD implementados com GitHub Actions para automação de build, test, lint e deploy dos repositórios CARF. Cada repositório possui workflows específicos para sua stack mantendo padrões consistentes de qualidade.
@@ -36,9 +41,3 @@ GitHub Actions Dashboard mostra status de execuções recentes. Falhas em workfl
 ## Cache e Performance
 
 Workflows devem usar actions/cache para dependências (node_modules, NuGet packages, pip cache) reduzindo tempo de execução. Setup actions como actions/setup-node e actions/setup-dotnet oferecem cache integrado. Jobs independentes devem executar em paralelo usando matrix strategy quando aplicável.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-20
-**Descrição:**

@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # LEGITIMATION
 
 Schemas JSON para processos de legitimação fundiária do CARF conforme Lei 13.465/2017.
@@ -21,10 +26,6 @@ Validações: documentos obrigatórios conforme modalidade, critérios da Lei 13
 - TransitionStatusRequest
 - DocumentUploadRequest
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (2 arquivos)
@@ -37,8 +38,12 @@ Validações: documentos obrigatórios conforme modalidade, critérios da Lei 13
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/API/LEGITIMATION/01-submit-legitimation.md|Submit Legitimation]]
+- ○ [[CENTRAL/API/LEGITIMATION/02-workflow-actions.md|Workflow Actions]]
+
+<!-- CARF-INDEX-END -->

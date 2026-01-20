@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB]
-epic: compatibility
+status: review
+updated: 2025-12-30
 ---
 
 # UC-010-FE-004: Erro ao Renderizar (Frontend)
@@ -10,14 +10,3 @@ Fluxo de exceção do UC-010 Configurar Camadas WMS ocorrendo no passo 17.2 quan
 **Ponto de Desvio:** Passo 17.2 do UC-010 (MapLibre addLayer falha)
 
 **Retorno:** Camada marcada como erro, ADMIN pode editar configuração ou remover
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

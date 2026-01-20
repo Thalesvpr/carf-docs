@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Rotas Protegidas
 
 Middleware de autorização protege rotas /dev/* verificando autenticação e role dev antes de renderizar conteúdo. Implementado em src/middleware.ts usando API de middleware do Astro.
@@ -13,8 +18,3 @@ Token expirado dispara refresh silencioso. Se refresh falhar (token revogado ou 
 Verificação de role usa claim realm_access.roles do JWT que contém array de roles atribuídas ao usuário. Role dev é transversal, não herdada de roles operacionais, então mesmo admin ou super-admin precisam atribuição explícita.
 
 Performance otimizada com validação de assinatura JWT usando chave pública cacheada do Keycloak JWKS endpoint. Cache atualizado a cada 24 horas ou quando validação falha indicando possível rotação de chaves.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

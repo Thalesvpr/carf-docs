@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Configurar Autenticação
 
 Guia para configurar integração com Keycloak habilitando proteção da seção /dev/ e autenticação do CMS.
@@ -15,8 +20,3 @@ Testar logout acessando /auth/logout. Redirect para Keycloak logout e retorno pa
 Configurar CMS em admin/config.yml ajustando backend para usar OAuth via Keycloak ao invés de GitHub nativo. Redirect URI do admin deve estar na lista de URIs autorizadas do client no Keycloak.
 
 Troubleshooting comum inclui erro de redirect_uri quando URL não está autorizada no Keycloak, erro de CORS quando origem não está em Web Origins do client, e loop de redirect quando cookies não são salvos (verificar HTTPS e SameSite).
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

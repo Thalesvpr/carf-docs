@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-20
+---
+
 # VERSIONING
 
 Estratégia de versionamento do CARF coordenando releases entre os repositórios independentes do ecossistema polyrepo.
@@ -8,10 +13,20 @@ O [catálogo de repositórios](./04-repository-catalog.md) é a fonte única de 
 
 A documentação do [GitHub](./GITHUB/README.md) cobre configuração de organização, proteção de branches, Actions workflows e features de segurança. A seção de [releases](./RELEASES/README.md) documenta estratégia polyrepo, coordenação de releases e matriz de compatibilidade entre versões.
 
----
+<!-- CARF-INDEX-START -->
+## Subpastas
 
-**Última atualização:** 2026-01-20
-**Status do arquivo**: Review
+- [[CENTRAL/VERSIONING/GIT/README|GIT]]
+- [[CENTRAL/VERSIONING/GITHUB/README|GITHUB]]
+- [[CENTRAL/VERSIONING/RELEASES/README|RELEASES]]
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-<!-- GENERATED:END -->
+## Documentos
+
+### Em Revisão
+
+- ○ [[CENTRAL/VERSIONING/01-git-decision.md|Decisão Git - Sistema Controle Versão]]
+- ○ [[CENTRAL/VERSIONING/02-github-decision.md|Decisão GitHub - Plataforma Hospedagem Código]]
+- ○ [[CENTRAL/VERSIONING/03-semantic-versioning.md|Versionamento Numérico - Semantic Versioning]]
+- ○ [[CENTRAL/VERSIONING/04-repository-catalog.md|Catálogo de Repositórios]]
+
+<!-- CARF-INDEX-END -->

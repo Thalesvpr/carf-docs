@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Exportação de Dados
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (6 requisitos)
@@ -16,11 +20,17 @@
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/15-data-export/RF-197-exportar-unidades-em-shapefile.md|RF-197: Exportar Unidades em Shapefile]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/15-data-export/RF-198-exportar-unidades-em-kmlkmz.md|RF-198: Exportar Unidades em KML/KMZ]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/15-data-export/RF-199-exportar-unidades-em-geojson.md|RF-199: Exportar Unidades em GeoJSON]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/15-data-export/RF-200-exportar-unidades-em-csv.md|RF-200: Exportar Unidades em CSV]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/15-data-export/RF-201-exportar-unidades-em-excel.md|RF-201: Exportar Unidades em Excel]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/15-data-export/RF-202-exportar-com-fotosdocumentos.md|RF-202: Exportar com Fotos/Documentos]]
+
+<!-- CARF-INDEX-END -->

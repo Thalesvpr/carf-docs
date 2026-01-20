@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-10
+---
+
 # LAYERS - GEOWEB
 
 Estrutura de camadas do código React do GEOWEB.
@@ -42,19 +47,3 @@ Estrutura de camadas do código React do GEOWEB.
 - Auth store
 - Tenant context store
 - UI preferences
-
----
-
-**Última atualização:** 2026-01-10
-
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (1 arquivo)
-
-| ID | Titulo |
-|:---|:-------|
-| [01-auth-context](./01-auth-context.md) | 01-auth-context |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Incompleto
-Descrição: Falta parágrafo denso introdutório; Muitas listas com bullets (20) antes do rodapé - considerar converter para parágrafo denso.

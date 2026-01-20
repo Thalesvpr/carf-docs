@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Assets e Imagens
 
 Organização de screenshots, diagramas e outros assets visuais garantindo consistência e performance.
@@ -15,8 +20,3 @@ Otimização manual necessária para assets em public/ que não são processados
 Diagramas Mermaid preferidos quando possível pois são texto pesquisável, versionável, e atualizável. Usar imagens SVG exportadas apenas para diagramas complexos que Mermaid não suporta.
 
 Alt text obrigatório em todas imagens descrevendo informação transmitida. Para screenshots, descrever ação ou resultado mostrado: "Tela de cadastro com campos nome e CPF preenchidos" ao invés de "Screenshot da tela".
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

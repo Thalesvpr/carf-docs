@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-20
+---
+
 # Features de Segurança
 
 Recursos de segurança do GitHub habilitados nos repositórios CARF para detecção proativa de vulnerabilidades, gestão de dependências e proteção contra vazamento de secrets.
@@ -39,9 +44,3 @@ Maintainers devem revisar Security tab semanalmente verificando alerts pendentes
 ## Práticas Recomendadas
 
 Nunca commitar secrets em código, usar variáveis de ambiente e secrets do GitHub Actions. Manter dependências atualizadas mergeando PRs do Dependabot regularmente. Revisar findings do CodeQL mesmo quando classificados como false positives para confirmar. Habilitar branch protection para impedir bypass de security checks.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-20
-**Descrição:**

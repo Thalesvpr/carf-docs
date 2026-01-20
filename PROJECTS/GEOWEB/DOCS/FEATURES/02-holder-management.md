@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-11
+---
+
 # Holder Management - Gestão de Titulares
 
 Feature de gestão titulares implementada como CRUD completo React SPA permitindo usuários autorizados cadastrarem visualizarem editarem removerem titulares pessoas físicas vinculadas unidades habitacionais através de páginas HoldersListPage grid paginado TanStack Table com search filter por nome CPF status sorting, HolderFormPage formulário inputs nome completo CPF RG data nascimento telefone email documentos upload React Dropzone validações Zod inline errors, HolderDetailsPage tabs Info Documents Units exibindo informações completas titular documentos anexados unidades vinculadas relacionamento navegável, componentes principais HolderCard avatar nome CPF badge status actions view edit delete, HolderSearchAutocomplete Combobox shadcn/ui com debounce async search typeahead sugestões holders disponíveis facilitando vinculação rápida, VincularHolderModal seleção múltipla checkboxes permitindo vincular vários holders single unit relationship_type dropdown PROPRIETARIO COMODATARIO LOCATARIO OCUPANTE, DocumentUploadZone React Dropzone drag drop file upload preview thumbnails compression via browser-image-compression antes upload storage blob.
@@ -7,8 +12,3 @@ Validações implementadas via Zod holderSchema validando name obrigatório stri
 API integration via custom hooks useHolders TanStack Query useQuery key holders filters search page, useCreateHolder mutation POST /api/holders multipart form data se documents anexados body JSON holder object, useUpdateHolder PATCH /api/holders/:id, useDeleteHolder DELETE soft delete checking vinculações impedindo delete se holder vinculado units ativas, useVincularHolder POST /api/unit-holders body unit_id holder_id relationship_type backend inserting junction table validando both IDs exist same tenant, useDesvincularHolder DELETE /api/unit-holders/:id soft delete preservando histórico auditoria, document upload separado useUploadDocument POST /api/holders/:id/documents multipart file compressed JPEG backend storing Azure Blob AWS S3 retornando document_url persistindo holder_documents table, optimistic updates vinculação adicionando holder local cache antes request rollback se fail, error handling 409 Conflict CPF duplicate oferecendo merge options dialog comparing existing vs new data user escolhe keep override merge fields.
 
 Domain model mapeando CENTRAL Holder entity TypeScript interface Holder com id UUID nome string cpf string unique rg nullable data_nascimento Date telefone email documents HolderDocument array one-to-many units Unit array many-to-many through unit_holders junction relationship_type enum timestamps, implementação UC-003 requirements incluindo cadastrar titular formulário validações CPF nome telefone, vincular titular unidade selecionando holder existente autocomplete ou creating new inline modal, desvincular mantendo holder record apenas removendo junction relationship, visualizar titulares vinculados listando com relationship type badge, editar preservando vinculações, remover soft delete checando units vinculadas impedindo ou oferecendo desvinculação automática, documentação upload captura storage blob download posterior, relacionamento requirements rastreando RF-007 RF-008 gestão titulares vinculação CPF validation documentos compliance LGPD.
-
----
-
-**Última atualização:** 2026-01-11
-**Status do arquivo**: Pronto

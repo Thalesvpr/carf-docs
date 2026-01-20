@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB, GEOGIS]
-epic: security
+status: review
+updated: 2025-12-30
 ---
 
 # UC-007-FA-002: Exportar Seleção
@@ -10,14 +10,3 @@ Fluxo alternativo do UC-007 Exportar Dados Geográficos desviando no passo 3 ond
 **Ponto de Desvio:** Passo 3 do UC-007 (seleção manual ao invés de filtros automáticos)
 
 **Retorno:** Apenas unidades marcadas são exportadas, ignorando restante dos resultados filtrados
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

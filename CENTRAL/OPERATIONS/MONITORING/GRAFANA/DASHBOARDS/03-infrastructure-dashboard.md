@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Infrastructure Dashboard
 
 Dashboard de monitoramento de infraestrutura Kubernetes e recursos de sistema.
@@ -93,9 +98,3 @@ Dashboard para acompanhamento de recursos de infraestrutura incluindo nodes, pod
 | Memory | 80% | 90% |
 | Disk | 75% | 90% |
 | Pod Restarts (1h) | 1 | 3 |
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

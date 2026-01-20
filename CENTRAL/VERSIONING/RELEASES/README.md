@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-20
+---
+
 # RELEASES
 
 Documentação de estratégia e coordenação de releases do ecossistema polyrepo CARF, garantindo compatibilidade entre os sete repositórios independentes e deployments coordenados.
@@ -6,10 +11,13 @@ A [estratégia polyrepo](./01-polyrepo-strategy.md) justifica a arquitetura de r
 
 A [matriz de compatibilidade](./03-compatibility-matrix.md) documenta quais versões dos projetos são compatíveis entre si, servindo como referência para deployments e troubleshooting de integrações.
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Última atualização:** 2026-01-20
-**Status do arquivo**: Review
+### Em Revisão
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-<!-- GENERATED:END -->
+- ○ [[CENTRAL/VERSIONING/RELEASES/01-polyrepo-strategy.md|Estratégia Polyrepo]]
+- ○ [[CENTRAL/VERSIONING/RELEASES/02-release-coordination.md|Coordenação de Releases]]
+- ○ [[CENTRAL/VERSIONING/RELEASES/03-compatibility-matrix.md|Matriz de Compatibilidade]]
+
+<!-- CARF-INDEX-END -->

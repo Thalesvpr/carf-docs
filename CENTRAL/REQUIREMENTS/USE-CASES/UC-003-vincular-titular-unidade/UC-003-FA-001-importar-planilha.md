@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB, REURBCAD]
-epic: compatibility
+status: review
+updated: 2025-12-30
 ---
 
 # UC-003-FA-001: Importar Titulares de Planilha
@@ -26,14 +26,3 @@ Tela preview exibe checkmark verde "João Silva Santos (CPF válido, 50%, Princi
 Algoritmo batch define objeto results com contadores created linked errors zero iniciando transação db.transaction async iterando validRows executando for of em cada row, busca holder existente await findHolderByCpf com row.cpf_cnpj se não encontrado cria novo await trx('holders').insert com campos cpf name phone email tenant_id retornando id incrementando results.created, cria vínculo await trx('unit_holders').insert com unit_id holder_id relationship_type ownership_percentage is_primary convertendo SIM ou TRUE para boolean true incrementando results.linked, valida regras negócio globais somando ownership_percentage com await trx('unit_holders').where('unit_id').sum verificando se sum maior cem lançando Error Soma de percentuais ultrapassa 100% causando rollback transação completa garantindo atomicidade, finalmente retorna results com estatísticas created linked errors permitindo exibir resumo final importação.
 
 **Retorno:** Lista de titulares atualizada com todos importados, timeline registra operação batch
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

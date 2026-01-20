@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # ADR-004: Escolha do React Native para Aplicação Mobile
 
 Decisão arquitetural escolhendo React Native para desenvolvimento do aplicativo mobile REURBCAD justificada por code reuse de 70-80% entre iOS e Android eliminando necessidade de equipes separadas e reduzindo custo de desenvolvimento e manutenção em 40-50% comparado a desenvolvimento nativo puro, ecossistema JavaScript permitindo compartilhamento de lógica de negócio tipos TypeScript e utilitários com frontend web GEOWEB através de workspace monorepo reduzindo duplicação e inconsistências, comunidade massiva com ~500k developers globalmente garantindo disponibilidade de bibliotecas para requisitos comuns (mapas offline validação formulários sincronização) sem necessidade de implementação from scratch, React como paradigma de UI declarativa já dominado por equipe frontend reduzindo curva de aprendizado comparado a SwiftUI ou Jetpack Compose que exigiriam ramp-up de meses, Hot Reload e Fast Refresh acelerando ciclo de desenvolvimento permitindo iteração rápida de UI em segundos versus minutos de rebuild em apps nativos aumentando produtividade em 30-40%, Expo SDK fornecendo APIs unificadas para features nativas críticas (câmera GPS armazenamento local notificações) com fallback automático eliminando necessidade de código específico por plataforma, Over-the-Air (OTA) updates via Expo permitindo deployment de correções críticas e features não-nativas sem passar por review lenta de App Store (~1-3 dias) e Google Play (~1-2 dias) habilitando resposta rápida a bugs em produção, JavaScript bridge otimizado com Hermes engine (iOS) e V8 (Android) garantindo performance adequada para UI complexa com mapas e formulários mantendo 60fps conforme RNF-004, e suporte first-class a offline-first architecture através de bibliotecas maduras (WatermelonDB React Native MMKV) alinhado com requisito crítico RF-073 de coleta offline em áreas sem conectividade.
@@ -13,9 +18,3 @@ Consequências positivas incluem velocidade de desenvolvimento com single codeba
 Configuração específica escolhida utiliza React Native 0.76.0 com New Architecture habilitada, Expo SDK 52 para managed workflow maximizando produtividade, Hermes engine habilitado em iOS e Android para melhor performance, TypeScript strict mode garantindo type safety, React Navigation 6.x para navegação declarativa, WatermelonDB para database offline performático suportando sincronização incremental, React Native MMKV para cache rápido de configurações e tokens, react-native-maps com MapLibre backend para mapas offline, e Expo EAS Build para CI/CD automatizado gerando builds iOS e Android em cloud.
 
 Status da decisão é aprovado e implementado desde início do projeto em 2024-Q3, com revisão prevista se performance de New Architecture não atender requisitos após testes em dispositivos low-end (improvável dado benchmarks promissores) ou se surgir framework fundamentalmente superior (improvável dado domínio de React Native em 2024).
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

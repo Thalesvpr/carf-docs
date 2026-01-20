@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # @carf/tscore
 
 Biblioteca core TypeScript fornecendo a camada base de validações, types e autenticação compartilhada entre todos os frontends do ecossistema CARF.
@@ -17,9 +22,3 @@ Executar comando bun add @carf/tscore no projeto consumidor configurando .npmrc 
 ## Documentação Técnica
 
 Documentação de implementação disponível em PROJECTS/LIB/TS/TSCORE/DOCS/ contendo API reference, guias de uso e exemplos de integração.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Adicionar Status Check
 
 Guia para incluir novo serviço na status page permitindo monitorar disponibilidade.
@@ -15,8 +20,3 @@ Configurar variável de ambiente se URL do serviço diferir entre ambientes. Usa
 Considerar autenticação se endpoint de health requer token. Status page executa fetch server-side então token pode ser incluído em header sem expor ao cliente. Armazenar token em variável de ambiente.
 
 Commit e push da mudança. Pipeline de CI valida build. Preview deployment permite testar em ambiente similar a produção antes de merge.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

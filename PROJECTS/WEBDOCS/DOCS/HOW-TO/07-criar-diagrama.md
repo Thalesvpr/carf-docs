@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Criar Diagrama
 
 Guia para criar diagramas usando sintaxe Mermaid em documentos Markdown.
@@ -15,8 +20,3 @@ Incluir diagrama em documento usando code block com linguagem mermaid. Plugin As
 Testar diagrama localmente verificando renderização no navegador. Erros de sintaxe são reportados no console do servidor de desenvolvimento. Mermaid Live Editor online ajuda a prototipar diagramas antes de incluir no documento.
 
 Tema do diagrama segue configuração global em astro.config.mjs que aplica cores do design system CARF. Dark mode usa variantes escuras automaticamente.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

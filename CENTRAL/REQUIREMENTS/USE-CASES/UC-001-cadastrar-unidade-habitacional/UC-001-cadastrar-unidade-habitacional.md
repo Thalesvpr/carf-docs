@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB, REURBCAD]
-epic: security
+status: review
+updated: 2025-12-30
 ---
 
 # UC-001: Cadastrar Unidade Habitacional
@@ -26,14 +26,3 @@ Caso de uso permitindo usuários autorizados (ANALYST com permissão para criar 
 **Rastreabilidade:**
 - RF-049, RF-050, RF-054, RF-055, RF-056, RF-066, RF-068, RF-069
 - US-014, US-019, US-021
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

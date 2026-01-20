@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # WORKFLOW-RULES
 
 Regras de workflow do CARF governando transições de status através de state machines que definem quais mudanças são permitidas baseadas no status atual, role do usuário e pré-condições.
@@ -9,10 +14,6 @@ O workflow de legitimação fundiária possui onze estados conforme Lei 13.465/2
 Os SLAs definem prazos para cada etapa com alertas automáticos. Notificações são disparadas em mudanças de status relevantes.
 
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (5 arquivos)
@@ -28,8 +29,15 @@ Os SLAs definem prazos para cada etapa com alertas automáticos. Notificações 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/BUSINESS-RULES/WORKFLOW-RULES/01-unit-status-transitions.md|Unit Status Transitions]]
+- ○ [[CENTRAL/BUSINESS-RULES/WORKFLOW-RULES/02-legitimation-status-transitions.md|Legitimation Status Transitions]]
+- ○ [[CENTRAL/BUSINESS-RULES/WORKFLOW-RULES/03-role-permissions.md|Role Permissions Matrix]]
+- ○ [[CENTRAL/BUSINESS-RULES/WORKFLOW-RULES/04-sla-rules.md|SLA Rules]]
+- ○ [[CENTRAL/BUSINESS-RULES/WORKFLOW-RULES/05-notification-triggers.md|Notification Triggers (Gatilhos de Notificação)]]
+
+<!-- CARF-INDEX-END -->
