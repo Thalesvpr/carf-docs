@@ -21,7 +21,7 @@ Antes de começar, certifique-se de ter instalado:
 
 **1. Clone o repositório de documentação:** Executar git clone do repositório carf-docs do GitHub seguido por cd carf-docs para entrar no diretório.
 
-**2. Clone apenas seu projeto:** Backend developers clonam carf-geoapi para PROJECTS/GEOAPI/SRC-CODE, frontend developers clonam carf-geoweb para PROJECTS/GEOWEB/SRC-CODE, mobile developers clonam carf-reurbcad para PROJECTS/REURBCAD/SRC-CODE, GIS developers clonam carf-geogis para PROJECTS/GEOGIS/SRC-CODE, documentation team clona carf-webdocs para PROJECTS/WEBDOCS/SRC-CODE usando git clone com target directory apropriado.
+**2. Clone apenas seu projeto:** Backend developers clonam carf-geoapi para PROJECTS/GEOAPI/SRC-CODE e carf-keycloak para PROJECTS/KEYCLOAK/SRC-CODE, frontend developers clonam carf-geoweb para PROJECTS/GEOWEB/SRC-CODE, mobile developers clonam carf-reurbcad para PROJECTS/REURBCAD/SRC-CODE, GIS developers clonam carf-geogis para PROJECTS/GEOGIS/SRC-CODE, documentation team clona carf-webdocs para PROJECTS/WEBDOCS/SRC-CODE usando git clone com target directory apropriado. Para lista completa de repositórios consulte ../04-repository-catalog.md.
 
 **3. Siga as instruções do projeto:** Acesse o README do projeto que você clonou em PROJECTS/*/SRC-CODE/README.md para instruções específicas de setup build e desenvolvimento.
 
@@ -31,7 +31,7 @@ Antes de começar, certifique-se de ter instalado:
 
 **1. Clone o repositório de documentação:** Executar git clone do repositório carf-docs do GitHub seguido por cd carf-docs para entrar no diretório.
 
-**2. Clone todos os repositórios:** Executar git clone para cada projeto especificando target directory sendo carf-geoapi para PROJECTS/GEOAPI/SRC-CODE, carf-geoweb para PROJECTS/GEOWEB/SRC-CODE, carf-reurbcad para PROJECTS/REURBCAD/SRC-CODE, carf-geogis para PROJECTS/GEOGIS/SRC-CODE, e carf-webdocs para PROJECTS/WEBDOCS/SRC-CODE completando setup de todos cinco repositórios independentes.
+**2. Clone todos os repositórios:** Executar git clone para cada projeto especificando target directory sendo carf-geoapi para PROJECTS/GEOAPI/SRC-CODE, carf-geoweb para PROJECTS/GEOWEB/SRC-CODE, carf-reurbcad para PROJECTS/REURBCAD/SRC-CODE, carf-geogis para PROJECTS/GEOGIS/SRC-CODE, carf-webdocs para PROJECTS/WEBDOCS/SRC-CODE e carf-keycloak para PROJECTS/KEYCLOAK/SRC-CODE completando setup de todos os repositórios. Para lista completa consulte ../04-repository-catalog.md.
 
 **3. Verificar estrutura:** Executar tree comando com flags -L 3 -d PROJECTS/ para visualizar estrutura de diretórios esperada mostrando cada projeto com subdiretórios DOCS versionado em carf-docs e SRC-CODE contendo repositório Git independente ignorado por gitignore garantindo separação correta entre documentação e código-fonte.
 
@@ -92,10 +92,10 @@ Executar loop para cada projeto navegando para PROJECTS/projeto/SRC-CODE executa
 
 ## Referências
 
-Consulte 01-polyrepo-strategy para justificativa da arquitetura, 02-branching-strategy para workflow de branches, 03-commit-conventions para formato de commits, 04-pr-guidelines para processo de PR, e 06-release-coordination para coordenação de releases.
+Consulte ../04-repository-catalog para lista completa de repositórios, ../RELEASES/01-polyrepo-strategy para justificativa da arquitetura, 02-branching-strategy para workflow de branches, 03-commit-conventions para formato de commits, 04-pr-guidelines para processo de PR, e ../RELEASES/02-release-coordination para coordenação de releases.
 
 ---
 
 **Status:** Review
-**Atualizado:** 2026-01-19
+**Atualizado:** 2026-01-20
 **Descrição:** 
