@@ -1,56 +1,77 @@
 ---
-status: review
-updated: 2026-01-15
+status: approved
+updated: 2026-01-20
 ---
 
 # Overview da Arquitetura - @carf/ui
 
-## Visão Geral
+## Nomenclatura
 
-@carf/ui é uma biblioteca de componentes React construída em **Atomic Design**, **[shadcn/ui](https://ui.shadcn.com/)** e **[Tailwind CSS](https://tailwindcss.com/)**, fornecendo componentes reutilizáveis para GEOWEB e ADMIN com design consistente, acessibilidade WCAG 2.1 AA e performance otimizada seguindo padrões documentados em . A biblioteca exporta dois tipos de componentes: (1) **Componentes Genéricos** - customizações de shadcn/ui (Button, Input, Dialog, Table, Select) com tema CARF, e (2) **Componentes de Domínio** - específicos do REURB (UnitCard, HolderCard, MapView, CommunityList, LegitimationStatusBadge) que encapsulam lógica de apresentação de entidades do sistema, consumindo types de `@carf/tscore` e podendo integrar com `@carf/geoapi-client` para data fetching.
+**Nome oficial do pacote npm:** `@carf/ui`
+
+A pasta no repositorio chama-se `UI-COMPONENTS` por convencao de organizacao, mas o pacote publicado e importado e `@carf/ui`.
+
+## Visao Geral
+
+@carf/ui e uma biblioteca de componentes React baseada em **[shadcn/ui](https://ui.shadcn.com/)** e **[Tailwind CSS](https://tailwindcss.com/)**, fornecendo componentes reutilizaveis para GEOWEB, ADMIN e outras aplicacoes web CARF com design consistente, acessibilidade WCAG 2.1 AA e performance otimizada. A biblioteca exporta dois tipos de componentes: (1) **Componentes Genericos** - customizacoes de shadcn/ui (Button, Input, Dialog, Table, Select) com tema CARF, e (2) **Componentes de Dominio** - especificos do REURB (UnitCard, HolderCard, CommunityCard, StatusBadge) que encapsulam logica de apresentacao de entidades.
+
+## Modelo de Dependencias
+
+```
+@carf/ui
+├── @radix-ui/* (peer dependency - primitivos acessiveis)
+├── class-variance-authority (dependency - variants)
+├── clsx + tailwind-merge (dependency - cn utility)
+└── tailwindcss (peer dependency - estilos)
+
+@carf/tscore (OPCIONAL - nao e dependencia direta)
+└── Types compativeis podem ser passados para domain components
+```
+
+**Importante:** @carf/ui **NAO depende** de @carf/geoapi-client. Domain components (UnitCard, HolderCard, etc) sao "dumb components" que recebem dados via props. A aplicacao consumidora e responsavel por buscar dados usando geoapi-client ou outra fonte e passar para os componentes.
 
 ## Diagrama de Arquitetura
 
 ```
 ┌────────────────────────────────────────────────────────────┐
-│                    Aplicações Consumidoras                 │
+│                    Aplicacoes Consumidoras                 │
 │                                                            │
-│        ┌──────────────┐           ┌──────────────┐        │
-│        │   GEOWEB     │           │    ADMIN     │        │
-│        │   (Next.js)  │           │   (Next.js)  │        │
-│        └──────┬───────┘           └──────┬───────┘        │
-│               │                          │                 │
-└───────────────┼──────────────────────────┼─────────────────┘
-                │                          │
-                └──────────┬───────────────┘
-                           │ import { Button, UnitCard } from '@carf/ui'
-                ┌──────────▼──────────┐
-                │     @carf/ui        │
-                │  (Component Lib)    │
-                └──────────┬──────────┘
-                           │
-        ┌──────────────────┼──────────────────┐
-        │                  │                  │
-┌───────▼────────┐ ┌──────▼──────┐ ┌─────────▼────────┐
-│  shadcn/ui     │ │ Domain      │ │   @carf/tscore   │
-│  (Primitives)  │ │ Components  │ │   (Types)        │
-│  - Button      │ │ - UnitCard  │ │   - Unit         │
-│  - Dialog      │ │ - HolderCard│ │   - Holder       │
-│  - Input       │ │ - MapView   │ │   - Community    │
-└────────────────┘ └─────────────┘ └──────────────────┘
-        │                  │
-        └──────────┬───────┘
-                   │
-        ┌──────────▼──────────┐
-        │    Radix UI         │ Accessible primitives
-        │    (Headless UI)    │
-        └──────────┬──────────┘
-                   │
-        ┌──────────▼──────────┐
-        │   Tailwind CSS      │ Styling
-        │   (Utility-first)   │
-        └─────────────────────┘
+│   ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐  │
+│   │ GEOWEB   │  │  ADMIN   │  │ Keycloak │  │ WebDocs  │  │
+│   │(Next.js) │  │(Next.js) │  │ (Theme)  │  │ (Astro)  │  │
+│   └────┬─────┘  └────┬─────┘  └────┬─────┘  └────┬─────┘  │
+└────────┼─────────────┼─────────────┼─────────────┼────────┘
+         │             │             │             │
+         └─────────────┴──────┬──────┴─────────────┘
+                              │
+               import { Button, UnitCard } from '@carf/ui'
+                              │
+                   ┌──────────▼──────────┐
+                   │      @carf/ui       │
+                   │   (Component Lib)   │
+                   └──────────┬──────────┘
+                              │
+         ┌────────────────────┼────────────────────┐
+         │                    │                    │
+┌────────▼─────────┐ ┌────────▼────────┐ ┌────────▼─────────┐
+│   shadcn/ui      │ │ Domain          │ │ Utils/Hooks      │
+│   (Generics)     │ │ Components      │ │                  │
+│   - Button       │ │ - UnitCard      │ │ - cn()           │
+│   - Dialog       │ │ - HolderCard    │ │ - carfColors     │
+│   - Table        │ │ - CommunityCard │ │ - useTheme       │
+│   - Input        │ │ - StatusBadge   │ │ - useMediaQuery  │
+└────────┬─────────┘ └─────────────────┘ └──────────────────┘
+         │
+┌────────▼─────────┐
+│    Radix UI      │  Accessible headless primitives
+└────────┬─────────┘
+         │
+┌────────▼─────────┐
+│  Tailwind CSS    │  Utility-first styling
+└──────────────────┘
 ```
+
+**Nota:** @carf/tscore types sao compatíveis com domain components mas NAO sao dependencia obrigatoria. Domain components definem seus proprios types internamente.
 
 ## Componentes Principais
 
@@ -69,77 +90,62 @@ Componentes genéricos reutilizáveis com tema CARF aplicado:
 - **Accordion** - Conteúdo expansível
 - **Tabs** - Navegação em abas
 
-### 2. Componentes de Domínio CARF
+### 2. Componentes de Dominio CARF
 
-Componentes específicos do sistema REURB:
+Componentes especificos do sistema REURB, implementados como "dumb components" que recebem dados via props:
 
 #### **UnitCard**
 
-Exibe informações de uma Unidade (Unit):
+Exibe informacoes de uma Unidade Habitacional:
 
 ```tsx
 <UnitCard
-  unit={unit}  // type Unit from @carf/tscore
+  unit={{ id: '1', code: 'UN-001', address: 'Rua das Flores', status: 'approved' }}
   onEdit={() => navigate(`/units/${unit.id}/edit`)}
   onDelete={() => confirmDelete(unit.id)}
-  onViewMap={() => showMapModal(unit.geometry)}
+  onViewMap={() => showMapModal(unit)}
 />
 ```
 
-**Renderiza:** Código, endereço, área, status badge, holder count, mapa thumbnail.
+**Renderiza:** Codigo, endereco, area, status badge, holder count.
 
 #### **HolderCard**
 
-Exibe informações de um Posseiro (Holder):
+Exibe informacoes de um Posseiro:
 
 ```tsx
 <HolderCard
-  holder={holder}  // type Holder from @carf/tscore
-  showUnits={true}
+  holder={{ id: '1', name: 'Maria Silva', cpf: '12345678901' }}
   onEdit={() => navigate(`/holders/${holder.id}/edit`)}
 />
 ```
 
-**Renderiza:** Nome, CPF/CNPJ mascarado, contato, unidades associadas.
+**Renderiza:** Nome, CPF/CNPJ mascarado, contato, unidades count.
 
-#### **MapView**
+#### **CommunityCard**
 
-Componente de mapa geográfico com Leaflet:
+Exibe informacoes de uma Comunidade:
 
 ```tsx
-<MapView
-  center={[-23.5505, -46.6333]}
-  zoom={15}
-  units={units}
-  onUnitClick={(unit) => navigate(`/units/${unit.id}`)}
-  editable={true}
+<CommunityCard
+  community={{ id: '1', name: 'Vila das Flores', status: 'active' }}
+  onEdit={() => navigate(`/communities/${community.id}/edit`)}
+  onSelect={() => setCurrentCommunity(community)}
 />
 ```
 
-**Features:** Exibe polígonos de unidades, markers, clustering, draw tools.
+#### **StatusBadge**
 
-#### **CommunityList**
-
-Lista de comunidades com filtros:
+Badge colorido para status de processos REURB:
 
 ```tsx
-<CommunityList
-  communities={communities}
-  onSelect={(community) => setCurrent(community)}
-  filter={{ status: 'ACTIVE' }}
-  sortBy="name"
-/>
+<StatusBadge status="pending" />    // Amarelo - Pendente
+<StatusBadge status="in_progress"/> // Azul - Em Andamento
+<StatusBadge status="approved" />   // Verde - Aprovado
+<StatusBadge status="rejected" />   // Vermelho - Rejeitado
 ```
 
-#### **LegitimationStatusBadge**
-
-Badge colorido para status de legitimação:
-
-```tsx
-<LegitimationStatusBadge status={LegitimationStatus.APPROVED} />
-```
-
-**Cores:** PENDING (yellow), IN_PROGRESS (blue), APPROVED (green), REJECTED (red).
+**Outros status:** active, inactive, draft, archived.
 
 ## Padrões de Composição
 

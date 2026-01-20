@@ -33,3 +33,15 @@ A biblioteca segue arquitetura de **Atomic Design** (atoms → molecules → org
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
+
+<!-- CARF-INDEX-START -->
+## Documentos
+
+### Em Revisão
+
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/ARCHITECTURE/01-overview.md|Overview da Arquitetura - @carf/ui]]
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/ARCHITECTURE/03-data-flow.md|Data Flow - @carf/ui]]
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/ARCHITECTURE/04-integration.md|Integration - @carf/ui]]
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/ARCHITECTURE/05-deployment.md|Deployment - @carf/ui]]
+
+<!-- CARF-INDEX-END -->

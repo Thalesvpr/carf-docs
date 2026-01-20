@@ -5,7 +5,7 @@ updated: 2026-01-20
 
 # API Reference - @carf/ui
 
-Referencia completa de componentes, hooks e utilitarios da biblioteca.
+Complete reference for components, hooks and utilities.
 
 ## Catalogo por Aplicacao
 
@@ -111,3 +111,14 @@ Mapeamento de quais componentes cada aplicacao do ecossistema CARF utiliza. Comp
 ```
 
 A dependencia de `@carf/tscore` e **opcional**: componentes de dominio (UnitCard, HolderCard, etc) definem seus proprios types localmente, mas podem aceitar types de tscore via generics para integracao completa.
+
+<!-- CARF-INDEX-START -->
+## Documentos
+
+### Em Revisão
+
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/01-form-components.md|Form Components]]
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/06-domain-components.md|Domain Components]]
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/09-screen-mapping.md|Mapeamento Tela-Componentes]]
+
+<!-- CARF-INDEX-END -->

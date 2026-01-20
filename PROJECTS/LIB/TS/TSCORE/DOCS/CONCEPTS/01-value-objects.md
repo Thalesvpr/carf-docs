@@ -289,48 +289,283 @@ PhoneNumber.format('11987654321')
 PhoneNumber.clean('(11) 98765-4321')
 ```
 
-## Value Objects Planejados
+## Value Objects Geograficos (Especificacao Completa)
 
-### GeoPoint (Ponto Geográfico)
+### GeoPoint (Ponto Geografico)
+
+Representa um ponto geografico com coordenadas latitude/longitude em sistema WGS84 (EPSG:4326).
+
+#### Documentacao de Dominio
+
+📖 **CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/geo-point.md** - Especificacao do conceito
+
+#### Relacionamentos de Dominio
+
+- **Unit** - Ponto de referencia da unidade (centroide)
+- **SurveyPoint** - Vertices do levantamento topografico
+- **Community** - Ponto central da comunidade
+
+#### Regras de Validacao
+
+1. **Latitude:** -90 a 90 graus
+2. **Longitude:** -180 a 180 graus
+3. **Precisao:** Minimo 6 casas decimais recomendado (~0.1m)
+4. **Sistema:** WGS84 (EPSG:4326) assumido
+
+#### Interface
 
 ```typescript
-// Planejado para v2.0.0
+interface GeoPoint {
+  readonly latitude: number   // -90 a 90
+  readonly longitude: number  // -180 a 180
+
+  // Conversoes
+  toWKT(): string             // "POINT(-46.6333 -23.5505)"
+  toGeoJSON(): GeoJSONPoint   // { type: "Point", coordinates: [lng, lat] }
+  toArray(): [number, number] // [longitude, latitude]
+
+  // Operacoes
+  distanceTo(other: GeoPoint): number  // Distancia em metros (Haversine)
+  equals(other: GeoPoint): boolean
+
+  // Factory methods
+  static fromWKT(wkt: string): GeoPoint
+  static fromGeoJSON(geojson: GeoJSONPoint): GeoPoint
+  static fromArray(coords: [number, number]): GeoPoint
+}
+
+interface GeoJSONPoint {
+  type: 'Point'
+  coordinates: [number, number]  // [longitude, latitude]
+}
+```
+
+#### Usage
+
+```typescript
 import { GeoPoint } from '@carf/tscore/geo'
 
-const point = new GeoPoint(-23.5505, -46.6333)
-point.latitude // -23.5505
-point.longitude // -46.6333
-point.toWKT() // "POINT(-46.6333 -23.5505)"
-point.toGeoJSON() // { type: "Point", coordinates: [...] }
+// Criacao
+const point = new GeoPoint(-23.5505, -46.6333)  // lat, lng
+const fromWKT = GeoPoint.fromWKT('POINT(-46.6333 -23.5505)')
+const fromGeoJSON = GeoPoint.fromGeoJSON({
+  type: 'Point',
+  coordinates: [-46.6333, -23.5505]
+})
+
+// Propriedades
+point.latitude   // -23.5505
+point.longitude  // -46.6333
+
+// Conversoes
+point.toWKT()      // "POINT(-46.6333 -23.5505)"
+point.toGeoJSON()  // { type: "Point", coordinates: [-46.6333, -23.5505] }
+point.toArray()    // [-46.6333, -23.5505]
+
+// Operacoes
+const other = new GeoPoint(-23.5600, -46.6400)
+point.distanceTo(other)  // 1234.56 (metros)
+
+// Validacao
+GeoPoint.isValid(-23.5505, -46.6333)  // true
+GeoPoint.isValid(91, 0)               // false (latitude invalida)
 ```
 
-### GeoPolygon (Polígono Geográfico)
+#### Usage em Entidades
 
 ```typescript
-// Planejado para v2.0.0
+import type { Unit } from '@carf/tscore/types'
+import { GeoPoint } from '@carf/tscore/geo'
+
+// Unit com ponto de referencia
+const unit: Unit = {
+  id: '...',
+  code: 'UN-001',
+  referencePoint: new GeoPoint(-23.5505, -46.6333).toGeoJSON(),
+  // ...
+}
+
+// Mapear para Leaflet
+import L from 'leaflet'
+const marker = L.marker([point.latitude, point.longitude])
+```
+
+### GeoPolygon (Poligono Geografico)
+
+Representa um poligono geografico fechado com coordenadas em WGS84 para delimitacao de unidades habitacionais e comunidades.
+
+#### Documentacao de Dominio
+
+📖 **CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/geo-polygon.md** - Especificacao do conceito
+
+#### Relacionamentos de Dominio
+
+- **Unit** - Perimetro da unidade habitacional
+- **Community** - Perimetro da comunidade
+- **Block** - Delimitacao de quadra
+
+#### Regras de Validacao
+
+1. **Fechamento:** Primeiro e ultimo ponto devem ser iguais
+2. **Minimo de Pontos:** 4 pontos (triangulo fechado)
+3. **Sentido:** Counter-clockwise (CCW) para exterior
+4. **Autointersecao:** Poligono nao pode se cruzar
+5. **Holes:** Suporta buracos (interior em sentido horario)
+
+#### Interface
+
+```typescript
+interface GeoPolygon {
+  readonly coordinates: GeoPoint[]
+  readonly holes?: GeoPoint[][]
+
+  // Propriedades
+  area(): number           // Area em m² (WGS84 projection)
+  perimeter(): number      // Perimetro em metros
+  centroid(): GeoPoint     // Ponto central
+  bounds(): GeoBounds      // Bounding box
+
+  // Conversoes
+  toWKT(): string
+  toGeoJSON(): GeoJSONPolygon
+
+  // Validacao
+  isValid(): boolean
+  contains(point: GeoPoint): boolean
+  intersects(other: GeoPolygon): boolean
+
+  // Factory methods
+  static fromWKT(wkt: string): GeoPolygon
+  static fromGeoJSON(geojson: GeoJSONPolygon): GeoPolygon
+  static fromCoordinates(coords: Array<[number, number]>): GeoPolygon
+}
+
+interface GeoJSONPolygon {
+  type: 'Polygon'
+  coordinates: Array<Array<[number, number]>>  // [exterior, ...holes]
+}
+
+interface GeoBounds {
+  north: number  // max latitude
+  south: number  // min latitude
+  east: number   // max longitude
+  west: number   // min longitude
+}
+```
+
+#### Usage
+
+```typescript
+import { GeoPolygon, GeoPoint } from '@carf/tscore/geo'
+
+// Criacao a partir de WKT (comum em PostGIS)
+const polygon = GeoPolygon.fromWKT(
+  'POLYGON((-46.634 -23.550, -46.633 -23.550, -46.633 -23.551, -46.634 -23.551, -46.634 -23.550))'
+)
+
+// Criacao a partir de coordenadas
+const coords: Array<[number, number]> = [
+  [-46.634, -23.550],
+  [-46.633, -23.550],
+  [-46.633, -23.551],
+  [-46.634, -23.551],
+  [-46.634, -23.550]  // Fechamento
+]
+const fromCoords = GeoPolygon.fromCoordinates(coords)
+
+// Propriedades geometricas
+polygon.area()       // 250.5 (m²)
+polygon.perimeter()  // 64.2 (metros)
+polygon.centroid()   // GeoPoint do centro
+
+// Bounding box
+const bounds = polygon.bounds()
+// { north: -23.550, south: -23.551, east: -46.633, west: -46.634 }
+
+// Operacoes espaciais
+const point = new GeoPoint(-23.5505, -46.6335)
+polygon.contains(point)  // true/false
+
+// Conversoes
+polygon.toWKT()      // "POLYGON((...))
+polygon.toGeoJSON()  // { type: "Polygon", coordinates: [...] }
+
+// Validacao
+GeoPolygon.isValid(coords)       // true/false
+polygon.isValid()                // true se geometria valida
+```
+
+#### Usage em Unidades
+
+```typescript
+import type { Unit } from '@carf/tscore/types'
 import { GeoPolygon } from '@carf/tscore/geo'
 
-const polygon = GeoPolygon.fromWKT('POLYGON((...))')
-polygon.area() // Área em m²
-polygon.perimeter() // Perímetro em m
-polygon.toGeoJSON() // GeoJSON Feature
+// Criar unidade com geometria
+const polygon = GeoPolygon.fromWKT(wktFromGIS)
+
+const unit: Unit = {
+  id: '...',
+  code: 'UN-001',
+  geometry: polygon.toWKT(),         // Armazenar como WKT
+  area: polygon.area(),              // Calcular area automaticamente
+  // ...
+}
+
+// Exibir em Leaflet
+import L from 'leaflet'
+const geoJsonLayer = L.geoJSON(polygon.toGeoJSON())
+geoJsonLayer.addTo(map)
 ```
 
-### Address (Endereço Brasileiro)
+### Address (Endereco Brasileiro)
+
+Representa endereco completo seguindo padroes brasileiros.
+
+#### Interface
 
 ```typescript
-// Planejado para v2.0.0
+interface Address {
+  street: string           // Logradouro (obrigatorio)
+  number?: string          // Numero
+  complement?: string      // Complemento
+  neighborhood?: string    // Bairro
+  city: string             // Municipio (obrigatorio)
+  state: string            // UF 2 letras (obrigatorio)
+  zipCode?: string         // CEP 8 digitos
+
+  // Formatacao
+  format(): string         // "Rua X, 123 - Bairro, Cidade/UF"
+  formatShort(): string    // "Rua X, 123"
+
+  // Validacao
+  static isValidZipCode(cep: string): boolean
+  static isValidState(uf: string): boolean
+}
+```
+
+#### Usage
+
+```typescript
 import { Address } from '@carf/tscore/validations'
 
 const address = new Address({
- street: 'Rua das Flores',
- number: '123',
- complement: 'Apto 45',
- neighborhood: 'Centro',
- city: 'São Paulo',
- state: 'SP',
- zipCode: '01310-100'
+  street: 'Rua das Flores',
+  number: '123',
+  complement: 'Apto 45',
+  neighborhood: 'Centro',
+  city: 'Sao Paulo',
+  state: 'SP',
+  zipCode: '01310100'
 })
+
+address.format()      // "Rua das Flores, 123, Apto 45 - Centro, Sao Paulo/SP"
+address.formatShort() // "Rua das Flores, 123"
+
+// Validacoes
+Address.isValidZipCode('01310-100')  // true
+Address.isValidState('SP')           // true
+Address.isValidState('XX')           // false
 ```
 
 ## Padrões de Implementação

@@ -327,26 +327,146 @@ function validateHolder(data: any) {
 
 ### Integrar com Zod
 
+#### Basic Schema with Validations
+
 ```typescript
 import { z } from 'zod'
-import { CPF, CNPJ, Email } from '@carf/tscore/validations'
+import { CPF, CNPJ, Email, PhoneNumber } from '@carf/tscore/validations'
 
+// Helpers para Zod
+const cpfSchema = z.string().refine(
+  (val) => CPF.isValid(val),
+  { message: 'CPF invalido' }
+)
+
+const cnpjSchema = z.string().refine(
+  (val) => CNPJ.isValid(val),
+  { message: 'CNPJ invalido' }
+)
+
+const emailSchema = z.string().refine(
+  (val) => Email.isValid(val),
+  { message: 'Email invalido' }
+)
+
+const phoneSchema = z.string().refine(
+  (val) => PhoneNumber.isValid(val),
+  { message: 'Telefone invalido' }
+)
+
+// Schema de Holder
 const holderSchema = z.object({
- name: z.string().min(1),
- cpf: z.string().refine(
- (val) => CPF.validate(val),
- { message: 'CPF inválido' }
- ),
- email: z.string().refine(
- (val) => Email.validate(val),
- { message: 'Email inválido' }
- )
+  name: z.string().min(2, 'Nome muito curto').max(200),
+  cpf: cpfSchema.optional(),
+  cnpj: cnpjSchema.optional(),
+  email: emailSchema.optional(),
+  phone: phoneSchema.optional(),
+}).refine(
+  (data) => data.cpf || data.cnpj,
+  { message: 'CPF ou CNPJ obrigatorio', path: ['cpf'] }
+)
+
+type HolderFormData = z.infer<typeof holderSchema>
+```
+
+#### Usage with React Hook Form
+
+```typescript
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+function HolderForm() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<HolderFormData>({
+    resolver: zodResolver(holderSchema)
+  })
+
+  const onSubmit = (data: HolderFormData) => {
+    // Dados ja validados pelo Zod + tscore
+    const holder = {
+      ...data,
+      cpf: data.cpf ? new CPF(data.cpf).value : undefined,  // Normaliza
+      email: data.email ? new Email(data.email).value : undefined
+    }
+    api.holders.create(holder)
+  }
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input {...register('name')} placeholder="Nome" />
+      {errors.name && <span>{errors.name.message}</span>}
+
+      <input {...register('cpf')} placeholder="CPF" />
+      {errors.cpf && <span>{errors.cpf.message}</span>}
+
+      <input {...register('email')} placeholder="Email" />
+      {errors.email && <span>{errors.email.message}</span>}
+
+      <button type="submit">Salvar</button>
+    </form>
+  )
+}
+```
+
+#### Unit Schema with Geometry
+
+```typescript
+import { z } from 'zod'
+import { GeoPolygon } from '@carf/tscore/geo'
+
+const unitSchema = z.object({
+  code: z.string().min(1).max(50),
+  communityId: z.string().uuid(),
+  street: z.string().min(1).max(200),
+  number: z.string().optional(),
+  city: z.string().min(1).max(100),
+  state: z.string().length(2),
+  occupationType: z.enum(['RESIDENTIAL', 'COMMERCIAL', 'MIXED', 'INSTITUTIONAL']),
+  geometry: z.string().optional().refine(
+    (val) => !val || GeoPolygon.isValidWKT(val),
+    { message: 'Geometria WKT invalida' }
+  ),
+  area: z.number().positive().optional(),
+})
+```
+
+#### Data Transformation
+
+```typescript
+const holderInputSchema = z.object({
+  cpf: z.string()
+    .transform((val) => CPF.clean(val))  // Remove mascara
+    .refine((val) => CPF.isValid(val), { message: 'CPF invalido' }),
+  phone: z.string()
+    .transform((val) => PhoneNumber.clean(val))  // Remove mascara
+    .refine((val) => PhoneNumber.isValid(val), { message: 'Telefone invalido' }),
 })
 
-// Usar com React Hook Form
-const { register, handleSubmit } = useForm({
- resolver: zodResolver(holderSchema)
-})
+// Input: { cpf: '123.456.789-09', phone: '(11) 98765-4321' }
+// Output: { cpf: '12345678909', phone: '11987654321' }
+```
+
+#### Conditional Validation (PF/PJ)
+
+```typescript
+const holderSchema = z.discriminatedUnion('type', [
+  z.object({
+    type: z.literal('PF'),
+    cpf: cpfSchema,
+    cnpj: z.undefined(),
+  }),
+  z.object({
+    type: z.literal('PJ'),
+    cpf: z.undefined(),
+    cnpj: cnpjSchema,
+  }),
+])
+
+// Se type='PF', cpf obrigatorio
+// Se type='PJ', cnpj obrigatorio
 ```
 
 ### Type Guards
@@ -452,3 +572,12 @@ bun update @carf/tscore
 # Ver CHANGELOG
 cat node_modules/@carf/tscore/CHANGELOG.md
 ```
+
+<!-- CARF-INDEX-START -->
+## Documentos
+
+### Em Revisão
+
+- ○ [[PROJECTS/LIB/TS/TSCORE/DOCS/HOW-TO/01-using-types.md|Using Types]]
+
+<!-- CARF-INDEX-END -->
