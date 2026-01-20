@@ -1,0 +1,16 @@
+# Build output
+main.js
+*.js.map
+
+# npm
+node_modules/
+
+# IDE
+.idea/
+*.sublime-project
+*.sublime-workspace
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
