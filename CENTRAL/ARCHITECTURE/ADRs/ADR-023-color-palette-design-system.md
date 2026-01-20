@@ -1,6 +1,6 @@
 ---
 status: review
-updated: 2026-01-19
+updated: 2026-01-20
 ---
 
 # ADR-023: Paleta de Cores e Design System CARF

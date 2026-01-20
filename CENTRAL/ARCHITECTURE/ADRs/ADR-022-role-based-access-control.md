@@ -1,6 +1,6 @@
 ---
 status: review
-updated: 2026-01-19
+updated: 2026-01-20
 ---
 
 # ADR-022: Hierarquia de Roles com Composite Roles no Keycloak

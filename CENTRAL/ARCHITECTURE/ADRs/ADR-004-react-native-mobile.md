@@ -1,6 +1,6 @@
 ---
 status: review
-updated: 2026-01-19
+updated: 2026-01-20
 ---
 
 # ADR-004: Escolha do React Native para Aplicação Mobile

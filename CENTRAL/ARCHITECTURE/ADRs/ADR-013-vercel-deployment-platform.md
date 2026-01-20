@@ -1,6 +1,6 @@
 ---
 status: review
-updated: 2026-01-19
+updated: 2026-01-20
 ---
 
 # ADR-013: Escolha do Vercel como Plataforma de Deploy para Frontends

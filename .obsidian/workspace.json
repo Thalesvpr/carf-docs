@@ -25,12 +25,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CENTRAL/ARCHITECTURE/DEPLOYMENT/KUBERNETES/OVERLAYS/PROD/01-kustomization.md",
+                "file": "CENTRAL/ARCHITECTURE/DEPLOYMENT/DOCKER/COMPOSE/02-docker-compose-prod.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "01-kustomization"
+              "title": "02-docker-compose-prod"
             }
           }
         ],
@@ -207,34 +207,35 @@
       "obsidian-docs-toolkit:Open Curation Panel": false
     }
   },
-  "active": "971ab6c0fdc33177",
+  "active": "aad1928f2fff3657",
   "lastOpenFiles": [
-    "CENTRAL/ARCHITECTURE/PATTERNS/01-clean-architecture.md",
-    "CENTRAL/ARCHITECTURE/PATTERNS/02-cqrs.md",
-    "CENTRAL/ARCHITECTURE/PATTERNS/03-repository-uow.md",
-    "CENTRAL/ARCHITECTURE/PATTERNS/04-domain-events.md",
-    "CENTRAL/ARCHITECTURE/PATTERNS/05-frontend-patterns.md",
-    "CENTRAL/ARCHITECTURE/PATTERNS/06-mobile-offline-first.md",
-    "CENTRAL/ARCHITECTURE/PATTERNS/07-gis-spatial-patterns.md",
-    "CENTRAL/BUSINESS-RULES/LEGITIMATION-RULES/01-lei-13465-2017.md",
-    "CENTRAL/BUSINESS-RULES/LEGITIMATION-RULES/02-reurb-s-requirements.md",
-    "CENTRAL/BUSINESS-RULES/LEGITIMATION-RULES/03-reurb-e-requirements.md",
-    "CENTRAL/BUSINESS-RULES/LEGITIMATION-RULES/04-ownership-criteria.md",
-    "CENTRAL/BUSINESS-RULES/LEGITIMATION-RULES/05-documentation-requirements.md",
-    "CENTRAL/BUSINESS-RULES/LEGITIMATION-RULES/06-contestation-rules.md",
-    "CENTRAL/BUSINESS-RULES/VALIDATION-RULES/01-business-validation.md",
-    "CENTRAL/BUSINESS-RULES/VALIDATION-RULES/02-cnpj-validation.md",
-    "CENTRAL/BUSINESS-RULES/VALIDATION-RULES/03-coordinates-validation.md",
-    "CENTRAL/BUSINESS-RULES/VALIDATION-RULES/04-cpf-validation.md",
-    "CENTRAL/BUSINESS-RULES/VALIDATION-RULES/05-documents-validation.md",
-    "CENTRAL/BUSINESS-RULES/VALIDATION-RULES/06-email-validation.md",
-    "CENTRAL/BUSINESS-RULES/VALIDATION-RULES/07-geographic-validation.md",
-    "CENTRAL/BUSINESS-RULES/VALIDATION-RULES/08-geometry-validation.md",
-    "CENTRAL/BUSINESS-RULES/VALIDATION-RULES/09-holder-validation.md",
-    "CENTRAL/BUSINESS-RULES/VALIDATION-RULES/10-phone-validation.md",
-    "CENTRAL/BUSINESS-RULES/VALIDATION-RULES/11-unit-validation.md",
-    "CENTRAL/BUSINESS-RULES/WORKFLOW-RULES/01-unit-status-transitions.md",
-    "CENTRAL/BUSINESS-RULES/WORKFLOW-RULES/02-legitimation-status-transitions.md",
+    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/README.md",
+    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API",
+    "CENTRAL/ARCHITECTURE/DEPLOYMENT/DOCKER/COMPOSE/01-docker-compose-dev.md",
+    "CENTRAL/ARCHITECTURE/DEPLOYMENT/CONFIGS/02-health-checks.md",
+    "CENTRAL/ARCHITECTURE/DEPLOYMENT/CONFIGS/01-env-vars.md",
+    "CENTRAL/ARCHITECTURE/DEPLOYMENT/06-static-site-deployment.md",
+    "CENTRAL/ARCHITECTURE/DEPLOYMENT/05-mobile-deployment.md",
+    "CENTRAL/ARCHITECTURE/DEPLOYMENT/04-cicd-pipeline.md",
+    "CENTRAL/ARCHITECTURE/DEPLOYMENT/03-orchestration.md",
+    "CENTRAL/ARCHITECTURE/DEPLOYMENT/02-containerization.md",
+    "CENTRAL/ARCHITECTURE/DEPLOYMENT/01-environments.md",
+    "CENTRAL/ARCHITECTURE/ADRs/ADR-023-color-palette-design-system.md",
+    "CENTRAL/ARCHITECTURE/ADRs/ADR-022-role-based-access-control.md",
+    "CENTRAL/ARCHITECTURE/ADRs/ADR-021-hangfire-background-jobs.md",
+    "CENTRAL/ARCHITECTURE/ADRs/ADR-020-docker-kubernetes-orchestration.md",
+    "CENTRAL/ARCHITECTURE/ADRs/ADR-019-zustand-client-state.md",
+    "CENTRAL/ARCHITECTURE/ADRs/ADR-018-playwright-e2e-testing.md",
+    "CENTRAL/ARCHITECTURE/ADRs/ADR-017-github-actions-cicd.md",
+    "CENTRAL/ARCHITECTURE/ADRs/ADR-016-astro-starlight-documentation.md",
+    "CENTRAL/ARCHITECTURE/ADRs/ADR-015-tanstack-query-server-state.md",
+    "CENTRAL/ARCHITECTURE/ADRs/ADR-014-shadcn-ui-component-library.md",
+    "CENTRAL/ARCHITECTURE/ADRs/ADR-013-vercel-deployment-platform.md",
+    "CENTRAL/ARCHITECTURE/ADRs/ADR-012-vite-bundler-frontend.md",
+    "CENTRAL/ARCHITECTURE/ADRs/ADR-011-shared-library-tscore.md",
+    "CENTRAL/ARCHITECTURE/ADRs/ADR-010-event-driven-architecture.md",
+    "CENTRAL/ARCHITECTURE/ADRs/ADR-009-cqrs-pattern.md",
+    "CENTRAL/ARCHITECTURE/ADRs/ADR-008-clean-architecture-ddd.md",
     "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/public/img/logo.svg",
     "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/public/img",
     "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/public",
@@ -244,7 +245,6 @@
     "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/src/login/pages/LoginResetPassword.tsx",
     "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/src/login/pages/Register.tsx",
     "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/src/login/pages/Login.tsx",
-    "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/src/login/pages",
-    "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/src/kc.gen.ts"
+    "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/src/login/pages"
   ]
 }

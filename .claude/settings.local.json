@@ -45,7 +45,8 @@
       "Bash(for file in \"/c/DEV/CARF/CENTRAL/VERSIONING/GIT/README.md\" \"/c/DEV/CARF/CENTRAL/TESTING/TEST-CASES/README.md\" \"/c/DEV/CARF/CENTRAL/TESTING/TEST-STRATEGY/README.md\" \"/c/DEV/CARF/CENTRAL/SECURITY/INCIDENTS/README.md\" \"/c/DEV/CARF/CENTRAL/SECURITY/POLICIES/README.md\")",
       "Bash(perl -i -0pe:*)",
       "Bash(gh repo list:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(xargs:*)"
     ],
     "deny": [],
     "ask": []

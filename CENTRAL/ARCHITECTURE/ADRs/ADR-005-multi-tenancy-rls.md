@@ -1,6 +1,6 @@
 ---
 status: review
-updated: 2026-01-19
+updated: 2026-01-20
 ---
 
 # ADR-005: Escolha de Multi-tenancy via Row-Level Security (RLS)

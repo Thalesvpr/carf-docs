@@ -1,6 +1,6 @@
 ---
 status: review
-updated: 2026-01-19
+updated: 2026-01-20
 ---
 
 # ADR-020: Escolha do Docker + Kubernetes para Orquestração Backend

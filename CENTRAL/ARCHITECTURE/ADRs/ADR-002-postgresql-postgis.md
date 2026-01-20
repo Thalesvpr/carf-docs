@@ -1,6 +1,6 @@
 ---
 status: review
-updated: 2026-01-19
+updated: 2026-01-20
 ---
 
 # ADR-002: Escolha do PostgreSQL 16 + PostGIS 3.4 como Database
