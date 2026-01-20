@@ -1,0 +1,123 @@
+{
+  "version": "1.0.0",
+  "applications": [
+    {
+      "id": "geoweb",
+      "name": "GeoWeb",
+      "description": "Portal web para analistas REURB",
+      "type": "web",
+      "visibility": "internal",
+      "status": "active",
+      "auth": {
+        "clientId": "geoweb",
+        "type": "public",
+        "pkce": true
+      },
+      "urls": {
+        "dev": "http://localhost:5173",
+        "prod": "https://geoweb.carf.example.com"
+      },
+      "branding": {
+        "icon": "globe",
+        "color": "#3872c6"
+      }
+    },
+    {
+      "id": "reurbcad",
+      "name": "REURBCAD Mobile",
+      "description": "Aplicativo mobile para agentes de campo",
+      "type": "mobile",
+      "visibility": "internal",
+      "status": "active",
+      "auth": {
+        "clientId": "reurbcad",
+        "type": "public",
+        "pkce": true
+      }
+    },
+    {
+      "id": "geoapi",
+      "name": "GeoAPI",
+      "description": "Backend API REST",
+      "type": "api",
+      "visibility": "internal",
+      "status": "active",
+      "auth": {
+        "clientId": "geoapi",
+        "type": "bearer-only"
+      }
+    },
+    {
+      "id": "geogis",
+      "name": "GeoGIS",
+      "description": "Plugin QGIS para integração geoespacial",
+      "type": "desktop",
+      "visibility": "internal",
+      "status": "active",
+      "auth": {
+        "clientId": "geogis",
+        "type": "confidential"
+      }
+    },
+    {
+      "id": "webdocs",
+      "name": "WebDocs",
+      "description": "Portal de documentação técnica",
+      "type": "web",
+      "visibility": "public",
+      "status": "active",
+      "auth": {
+        "clientId": "webdocs",
+        "type": "public"
+      }
+    },
+    {
+      "id": "admin",
+      "name": "Painel Admin",
+      "description": "Console de administração do sistema",
+      "type": "web",
+      "visibility": "internal",
+      "status": "active",
+      "auth": {
+        "clientId": "admin",
+        "type": "public"
+      }
+    },
+    {
+      "id": "account",
+      "name": "Account Console",
+      "description": "Gerenciamento de conta do usuário (legacy)",
+      "type": "internal",
+      "visibility": "internal",
+      "status": "active",
+      "auth": {
+        "clientId": "account",
+        "type": "internal"
+      }
+    },
+    {
+      "id": "account-console",
+      "name": "Account Console",
+      "description": "Gerenciamento de conta do usuário (novo)",
+      "type": "internal",
+      "visibility": "internal",
+      "status": "active",
+      "auth": {
+        "clientId": "account-console",
+        "type": "internal"
+      }
+    },
+    {
+      "id": "admin-cli",
+      "name": "Admin CLI",
+      "description": "CLI de administração Keycloak",
+      "type": "internal",
+      "visibility": "internal",
+      "status": "active",
+      "auth": {
+        "clientId": "admin-cli",
+        "type": "internal"
+      }
+    }
+  ]
+}
