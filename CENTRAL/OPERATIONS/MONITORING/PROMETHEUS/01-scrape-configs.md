@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Scrape Configs
 
 Configuração de scrape targets do Prometheus para coleta de métricas do CARF.
@@ -117,9 +122,3 @@ curl -s http://prometheus:9090/api/v1/targets | jq '.data.activeTargets[] | {job
 # Verificar scrape errors
 curl -s http://prometheus:9090/api/v1/targets | jq '.data.activeTargets[] | select(.health != "up")'
 ```
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

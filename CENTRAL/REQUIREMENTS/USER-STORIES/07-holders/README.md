@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Gestão de Titulares
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (9 user stories)
@@ -20,13 +24,20 @@
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
 
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
+<!-- CARF-INDEX-START -->
+## Documentos
 
----
+### Em Revisão
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/07-holders/US-026-cadastrar-titular.md|US-026: Cadastrar Titular]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/07-holders/US-027-editar-titular.md|US-027: Editar Titular]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/07-holders/US-028-buscar-titular-por-cpf.md|US-028: Buscar Titular por CPF]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/07-holders/US-029-vincular-titular-a-unidade.md|US-029: Vincular Titular a Unidade]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/07-holders/US-031-listar-titulares-com-filtros.md|US-031: Listar Titulares com Filtros]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/07-holders/US-032-visualizar-histórico-de-titulares.md|US-032: Visualizar Histórico de Titulares]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/07-holders/US-033-excluir-titular.md|US-033: Excluir Titular]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/07-holders/US-138-listar-unidades-de-titular.md|US-138: Listar Unidades de Titular]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/07-holders/US-139-vincular-titular-a-unidade.md|US-139: Vincular Titular a Unidade]]
+
+<!-- CARF-INDEX-END -->

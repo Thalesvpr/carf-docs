@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # USE-CASES
 
 Casos de uso do CARF documentando fluxos de negócio que atravessam múltiplos projetos. Cada caso de uso possui atores definidos, objetivo claro, pré-condições, fluxo principal passo-a-passo, fluxos alternativos para variações, fluxos de exceção para erros, e pós-condições garantidas após execução.
@@ -6,12 +11,7 @@ Exemplos incluem cadastrar unidade habitacional onde GEOWEB cadastra, GEOAPI val
 
 Cada UC identifica os módulos implementadores via frontmatter YAML e inclui rastreabilidade para requisitos funcionais e user stories relacionadas.
 
----
 
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
-
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Indice por Dominio (66 casos de uso)
@@ -33,8 +33,19 @@ Cada UC identifica os módulos implementadores via frontmatter YAML e inclui ras
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Subpastas
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- [[CENTRAL/REQUIREMENTS/USE-CASES/UC-001-cadastrar-unidade-habitacional/README|UC-001-cadastrar-unidade-habitacional]]
+- [[CENTRAL/REQUIREMENTS/USE-CASES/UC-002-aprovar-unidade-habitacional/README|UC-002-aprovar-unidade-habitacional]]
+- [[CENTRAL/REQUIREMENTS/USE-CASES/UC-003-vincular-titular-unidade/README|UC-003-vincular-titular-unidade]]
+- [[CENTRAL/REQUIREMENTS/USE-CASES/UC-004-coletar-dados-campo-mobile/README|UC-004-coletar-dados-campo-mobile]]
+- [[CENTRAL/REQUIREMENTS/USE-CASES/UC-005-sincronizar-dados-offline/README|UC-005-sincronizar-dados-offline]]
+- [[CENTRAL/REQUIREMENTS/USE-CASES/UC-006-gerar-relatorio-comunidade/README|UC-006-gerar-relatorio-comunidade]]
+- [[CENTRAL/REQUIREMENTS/USE-CASES/UC-007-exportar-dados-geograficos/README|UC-007-exportar-dados-geograficos]]
+- [[CENTRAL/REQUIREMENTS/USE-CASES/UC-008-importar-shapefile/README|UC-008-importar-shapefile]]
+- [[CENTRAL/REQUIREMENTS/USE-CASES/UC-009-gerenciar-processo-legitimacao/README|UC-009-gerenciar-processo-legitimacao]]
+- [[CENTRAL/REQUIREMENTS/USE-CASES/UC-010-configurar-camadas-wms/README|UC-010-configurar-camadas-wms]]
+- [[CENTRAL/REQUIREMENTS/USE-CASES/UC-011-gerenciar-equipes-tecnicas/README|UC-011-gerenciar-equipes-tecnicas]]
+
+<!-- CARF-INDEX-END -->

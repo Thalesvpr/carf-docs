@@ -1,13 +1,14 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # RUNBOOKS
 
 Procedimentos operacionais para administração do Keycloak no ecossistema CARF. Cada runbook documenta passos detalhados para operações comuns que administradores executam no dia-a-dia.
 
 O [criar usuário](./01-create-user.md) guia criação de usuários com roles e atribuição de tenant. O [criar tenant](./02-create-tenant.md) documenta provisionamento de novo município no sistema. A [rotação de secrets](./03-rotate-secrets.md) explica procedimento seguro para trocar client secrets. O [troubleshoot auth](./04-troubleshoot-auth.md) orienta diagnóstico de falhas de autenticação. O [backup restore](./05-backup-restore.md) cobre estratégia de backup e disaster recovery. O [monitoring](./06-monitoring.md) documenta health checks e métricas.
 
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (6 arquivos)
@@ -24,8 +25,16 @@ O [criar usuário](./01-create-user.md) guia criação de usuários com roles e 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/INTEGRATION/KEYCLOAK/RUNBOOKS/01-create-user.md|Criar Usuário no Keycloak]]
+- ○ [[CENTRAL/INTEGRATION/KEYCLOAK/RUNBOOKS/02-create-tenant.md|Criar e Gerenciar Tenants]]
+- ○ [[CENTRAL/INTEGRATION/KEYCLOAK/RUNBOOKS/03-rotate-secrets.md|Rotacionar Secrets]]
+- ○ [[CENTRAL/INTEGRATION/KEYCLOAK/RUNBOOKS/04-troubleshoot-auth.md|Troubleshoot Autenticação]]
+- ○ [[CENTRAL/INTEGRATION/KEYCLOAK/RUNBOOKS/05-backup-restore.md|Backup e Restore]]
+- ○ [[CENTRAL/INTEGRATION/KEYCLOAK/RUNBOOKS/06-monitoring.md|Monitoramento Keycloak]]
+
+<!-- CARF-INDEX-END -->

@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Setup Dev Environment - ADMIN
 
 ## Setup
@@ -24,9 +29,3 @@ cd ../../.. && docker-compose up -d
 # 5. Rodar dev
 cd PROJECTS/ADMIN/SRC-CODE && bun run dev
 ```
-
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição: Contém code blocks - considerar converter para prosa.

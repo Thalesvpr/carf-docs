@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Coordinates Validation
 
 Regra validação coordenadas geográficas garantindo pontos dentro bounds válidos Brasil sistemas coordenadas corretos onde validação inclui verificação latitude menos trinta e quatro ponto zero a mais seis ponto zero graus cobrindo extremos território brasileiro Arroio Chuí RS Monte Caburaí RR longitude menos setenta e cinco ponto zero a menos vinte e oito ponto zero graus Nascente Rio Moa AC Ponta do Seixas PB sistema coordenadas WGS84 padrão GPS internacional ou SIRGAS2000 oficial Brasil desde 2015 compatíveis diferença menor um metro transformação entre sistemas quando necessário preservando precisão coordenadas fornecidas graus decimais formato padrão menos vinte e três ponto cinco cinco zero cinco dois zero menos quarenta e seis ponto seis três três três zero oito ou graus minutos segundos convertidos decimal antes armazenamento cálculos espaciais validação bounds Brasil considera margem segurança um grau cada direção acomodando ilhas oceânicas Fernando de Noronha menos três ponto oito menos trinta e dois ponto quatro Atol das Rocas menos três ponto oito menos trinta e três ponto oito Trindade menos vinte ponto cinco menos vinte e nove ponto três zonas econômicas exclusivas plataforma continental até duzentas milhas náuticas costa evitando rejeição coordenadas válidas extremidades território datum referência oficial brasileiro SIRGAS2000 Sistema Referência Geocêntrico Américas compatível WGS84 usado GPS comerciais diferença desprezível maioria casos permitindo uso intercambiável aplicações regularização fundiária urbana onde precisão metros suficiente.
@@ -7,9 +12,3 @@ Validações aplicadas incluem bounds check latitude maior igual menos trinta e 
 Precisão esperada varia contexto mobile GPS handheld mais ou menos cinco a dez metros cinco casas decimais survey GPS pós-processado mais ou menos zero ponto zero um a zero ponto zero cinco metros sete casas decimais ortofoto imagem mais ou menos zero ponto cinco a dois metros seis casas decimais validações adicionais contextuais incluem unidade dentro Community validar coordenada está dentro boundary Community calcular distância centroide detectar outliers alertar unidade está mais um quilômetro centroide múltiplos pontos perímetro validar formam polígono fechado primeiro ponto igual último ponto mínimo três pontos distintos triângulo mensagens erro coordenada inválida latitude fora limites Brasil coordenada inválida longitude fora limites Brasil coordenada inválida formato numérico incorreto sistema coordenadas não suportado use WGS84 ou SIRGAS2000.
 
 Relacionado domain model GeoPoint value object implementando validação Unit entity usando coordenadas validadas IBGE Sistema Referência SIRGAS2000 bounds oficiais território brasileiro implementações backend .NET frontend React mobile React Native PostGIS spatial functions.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Domain Unit Tests
 
 Testes unitários para camada de domínio do CARF.
@@ -208,9 +213,3 @@ public class GeometryValidatorTests
     }
 }
 ```
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

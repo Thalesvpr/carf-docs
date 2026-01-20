@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Seção Status
 
 Seção /status/ exibe disponibilidade em tempo real dos serviços CARF permitindo usuários verificarem se sistema está operacional. Página única com componente dinâmico.
@@ -13,8 +18,3 @@ Histórico de incidentes mantido em collection incidents do Decap CMS permite eq
 Acesso é público pois transparência sobre disponibilidade é importante para usuários. Não requer autenticação. URLs de health endpoints não são expostas ao cliente, apenas resultados agregados.
 
 Cache de health checks em memória por 30 segundos evita sobrecarga nos serviços monitorados quando múltiplos usuários acessam página simultaneamente.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

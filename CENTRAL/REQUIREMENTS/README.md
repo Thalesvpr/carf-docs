@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # REQUIREMENTS
 
 Especificação completa de requisitos do sistema CARF organizada em hierarquia que estabelece rastreabilidade entre o que foi especificado e o que está implementado em cada projeto.
@@ -8,10 +13,6 @@ A hierarquia funciona assim: requisitos funcionais definem O QUE fazer, user sto
 
 Os requisitos são organizados por épicas temáticas como Security, Performance e Usability, cruzando com os módulos implementadores para mostrar cobertura e identificar gaps no backlog.
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Indice por Dominio (512 arquivos)
@@ -26,8 +27,12 @@ Os requisitos são organizados por épicas temáticas como Security, Performance
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Subpastas
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/README|FUNCTIONAL-REQUIREMENTS]]
+- [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/README|NON-FUNCTIONAL-REQUIREMENTS]]
+- [[CENTRAL/REQUIREMENTS/USE-CASES/README|USE-CASES]]
+- [[CENTRAL/REQUIREMENTS/USER-STORIES/README|USER-STORIES]]
+
+<!-- CARF-INDEX-END -->

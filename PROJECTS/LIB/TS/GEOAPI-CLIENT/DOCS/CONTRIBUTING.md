@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # Contributing to @carf/geoapi-client
 
 Contribuir para @carf/geoapi-client requer fork repositório GitHub criar branch descritiva feature/add-communities-api fix/retry-logic-bug implementar mudanças seguindo padrões existentes cada endpoint arquivo separado src/api/ types em src/types/ testes src/__tests__/ adicionando testes coverage maior oitenta por cento usando Vitest mockando Axios com axios-mock-adapter atualizar CHANGELOG.md seguindo Keep a Changelog format rodar linters bun run lint bun run type-check garantindo zero erros fazer commits seguindo Conventional Commits feat fix docs test push branch abrir Pull Request descrição clara problema resolvido solução implementada aguardar code review ajustar conforme feedback antes merge, setup contribuição requer fork no GitHub clonar fork git clone adicionar upstream git remote add upstream instalar dependências bun install criar branch git checkout -b feature/nome ou fix/nome ou docs/nome conforme tipo contribuição, estrutura projeto organizada src/api/ contendo endpoints por recurso units.ts holders.ts communities.ts index.ts exports src/types/ TypeScript types unit.ts holder.ts index.ts src/errors/ classes erro ApiError src/interceptors/ Axios interceptors auth.ts retry.ts error.ts src/client.ts GeoApiClient classe principal src/index.ts main export __tests__/ diretório testes api/units.test.ts api/holders.test.ts client.test.ts estrutura organizada modular facilitando manutenção extensão novos endpoints.
@@ -17,8 +22,3 @@ Checklist antes abrir PR garantindo testes passando bun test coverage maior oite
 ## Referências
 
 Documentação padrões contributing disponível Conventional Commits conventionalcommits.org especificando formato commits semantic versioning versionamento Keep a Changelog keepachangelog.com formato CHANGELOG organized releases, Vitest vitest.dev framework testes rápido Vite-native TypeScript support mocking utilities axios-mock-adapter github.com/ctimmerm/axios-mock-adapter library mockando Axios requests responses testes integration, código TypeScript strict mode garantindo type safety interfaces bem definidas documentadas JSDoc facilitando IDE autocomplete IntelliSense developers, processo contribuição fork clone branch implement test lint commit push PR review merge seguindo workflow padrão open source projects garantindo qualidade colaboração efetiva comunidade desenvolvedores maintainers.
-
----
-
-**Última atualização:** 2026-01-12
-**Status do arquivo**: Pronto

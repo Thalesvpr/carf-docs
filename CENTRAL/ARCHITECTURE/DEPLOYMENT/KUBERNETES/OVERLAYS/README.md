@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # OVERLAYS
 
 Kustomize overlays customizando base por ambiente. Estrutura: cada ambiente (DEV, PROD) tem pasta com kustomization.yaml referenciando ../../base/ e aplicando patches. Patches: replicas (dev: 1, prod: 3), image tags (dev: latest, prod: v1.2.3 SHA), resources (dev: requests 100m/128Mi, prod: requests 500m/512Mi limits 1000m/1Gi), env vars (DATABASE_HOST diferentes), ingress hosts (dev: dev-api.carf, prod: api.carf). HPA em prod (minReplicas 3, maxReplicas 10, targetCPUUtilizationPercentage 70). PodDisruptionBudget prod garantindo availability durante rolling updates.
@@ -7,10 +12,6 @@ Kustomize overlays customizando base por ambiente. Estrutura: cada ambiente (DEV
 - **[DEV](./DEV/README.md)** - Configuração desenvolvimento
 - **[PROD](./PROD/README.md)** - Configuração produção
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Indice por Dominio (2 arquivos)
@@ -23,8 +24,10 @@ Kustomize overlays customizando base por ambiente. Estrutura: cada ambiente (DEV
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Subpastas
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- [[CENTRAL/ARCHITECTURE/DEPLOYMENT/KUBERNETES/OVERLAYS/DEV/README|DEV]]
+- [[CENTRAL/ARCHITECTURE/DEPLOYMENT/KUBERNETES/OVERLAYS/PROD/README|PROD]]
+
+<!-- CARF-INDEX-END -->

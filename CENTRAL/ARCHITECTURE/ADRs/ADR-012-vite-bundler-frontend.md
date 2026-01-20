@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # ADR-012: Escolha do Vite como Bundler para Frontends React
 
 Decisão arquitetural escolhendo Vite 5.x como bundler principal para aplicações frontend React (GEOWEB ADMIN) justificada por performance excepcional em desenvolvimento com hot module replacement (HMR) sub-segundo utilizando native ES modules eliminando overhead de bundling completo em cada mudança resultando em ciclo de feedback instantâneo aumentando produtividade de desenvolvedores em 40-60% comparado a Webpack 5, build otimizado para produção usando Rollup com tree-shaking agressivo code splitting automático e minificação via esbuild reduzindo bundle size em 20-30% versus Create React App default melhorando métricas Web Vitals (LCP FCP TTI) e experiência de usuário final especialmente em conexões 3G/4G prevalentes em áreas rurais onde CARF opera, configuração zero-config out-of-the-box suportando TypeScript JSX CSS Modules PostCSS sem necessidade de ejecting ou configuração complexa de loaders acelerando setup de novos projetos, plugin ecosystem rico com @vitejs/plugin-react oficial garantindo suporte first-class a React Fast Refresh e automação de import de componentes, suporte nativo a env variables com prefixo VITE_ exposto no bundle via import.meta.env facilitando configuração multi-environment (dev staging prod) sem bibliotecas adicionais, preview server integrado permitindo testar build de produção localmente antes de deploy detectando problemas de path absoluto ou variáveis de ambiente missing, compatibilidade total com bibliotecas React modernas (TanStack Query Zustand React Router shadcn/ui) sem necessidade de polyfills ou workarounds, e adoção massiva no ecossistema React com frameworks como Remix Qwik Solid adotando Vite como bundler padrão indicando direção futura.
@@ -11,9 +16,3 @@ Consequências positivas incluem developer experience excepcional com feedback i
 Configuração específica escolhida utiliza Vite 5.1+ com @vitejs/plugin-react para Fast Refresh, build.target: 'es2020' suportando browsers modernos sem polyfills desnecessários, build.rollupOptions.output.manualChunks separando vendor chunks (react react-dom) de application code permitindo long-term caching, server.port configurável via env variable para evitar conflitos em desenvolvimento, preview.port diferente de server.port permitindo testar build enquanto dev server roda, esbuild.jsxInject automático para React 18 JSX transform sem imports manuais, e css.modules.localsConvention: 'camelCase' para consistency com naming conventions TypeScript.
 
 Status da decisão é aprovado e implementado desde início do projeto em 2024-Q3, com revisão prevista anualmente para avaliar se Vite continua sendo best-in-class ou se surgiu bundler fundamentalmente superior (improvável dado momentum atual de Vite no ecosystem).
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

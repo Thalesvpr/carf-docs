@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # HOLDERS
 
 Schemas JSON para titulares do CARF.
@@ -22,10 +27,6 @@ Validações: CPF único por tenant, máximo 1 titular principal por unidade, m�
 - HolderListResponse
 - LinkHolderToUnitRequest / UnlinkHolderFromUnitRequest
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (2 arquivos)
@@ -38,8 +39,12 @@ Validações: CPF único por tenant, máximo 1 titular principal por unidade, m�
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/API/HOLDERS/01-create-holder.md|Create Holder]]
+- ○ [[CENTRAL/API/HOLDERS/02-list-holders.md|List Holders]]
+
+<!-- CARF-INDEX-END -->

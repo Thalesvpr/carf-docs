@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # Test Authentication
 
 Testar authentication no GEOAPI integration tests requer primeiro escolher estratégia entre usar Testcontainers para Keycloak real mais realista mas mais lento ou mock tokens mais rápido mas menos confiável. Para Testcontainers strategy instalar pacote Testcontainers.Keycloak via dotnet add package, criar KeycloakContainer em test fixture com KeycloakBuilder WithImage quay.io/keycloak/keycloak:24.0.0 WithUsername admin WithPassword admin WithRealmImportFile realm-export.json Build, start container no SetUp com await StartAsync, obter auth server URL com GetAuthServerUrl, configurar WebApplicationFactory para usar Keycloak test URL override em appsettings.
@@ -7,8 +12,3 @@ Criar user de teste via Keycloak Admin API usando KcAdminClient com await kcAdmi
 Fazer request sem token e assert 401 Unauthorized fazer request com token expirado gerando token mock com exp no passado e assert 401 com error message "Token is not active" fazer request com role insuficiente criando user com role field-collector tentando acessar endpoint que requer analyst e assert 403 Forbidden stop container no TearDown com await _keycloakContainer.StopAsync() para mock tokens strategy criar helper method GenerateJwtToken que recebe claims dictionary e retorna token string usar SymmetricSecurityKey com secret compartilhada configurada no backend via AddJwtBearer options.TokenValidationParameters.IssuerSigningKey criar JwtSecurityToken com issuer=http://test audience=geoapi claims convertidos para Claim objects expires=DateTime.UtcNow.AddMinutes(5) signingCredentials com HmacSha256 escrever token com new JwtSecurityTokenHandler().WriteToken() configurar backend para aceitar mock issuer adicionando ValidIssuers array em TokenValidationParameters.
 
 Gerar token com claims tenant_id=test-tenant sub=test-user realm_access.roles=analyst usar em test requests da mesma forma. Vantagem é velocidade porque não precisa Docker overhead mas desvantagem é não testar integração real com Keycloak então pode perder bugs relacionados a token format claims mapping ou RLS configuration. Recomendação é usar Testcontainers para smoke tests críticos e mock tokens para unit tests rápidos de authorization logic, sempre testar localmente com Keycloak real via docker-compose up -d antes de push para garantir que integration funciona end-to-end incluindo SSO logout session management refresh token flows multi-tenant RLS policies enforcement.
-
----
-
-**Última atualização:** 2026-01-12
-**Status do arquivo**: Pronto

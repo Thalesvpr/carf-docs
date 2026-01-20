@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-09
+---
+
 # HTTP Client - Cliente HTTP Base
 
 ## Visão Geral
@@ -527,9 +532,3 @@ const api = new GeoApiClient({
 ### Bibliotecas Relacionadas
 
 - 🔧 @carf/tscore - Types e autenticação
-
----
-
-**Última atualização:** 2026-01-09
-**Status do arquivo**: Incompleto
-Descrição: Muitas listas com bullets (12) antes do rodapé - considerar converter para parágrafo denso; Contém code blocks - considerar converter para prosa.

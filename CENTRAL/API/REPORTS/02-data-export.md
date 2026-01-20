@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Data Export
 
 Schema e comportamento dos endpoints de exportação de dados em formatos tabulares e geoespaciais.
@@ -135,9 +140,3 @@ Streaming de CSV direto, sem necessidade de job assíncrono para datasets pequen
 | CSV | 100.000 | 5 min |
 
 Para exports maiores, use filtros ou solicite export programado.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

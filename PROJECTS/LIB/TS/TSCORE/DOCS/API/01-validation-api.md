@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Validation API - Referência Completa
 
 ## Visão Geral
@@ -791,9 +796,3 @@ try {
  }
 }
 ```
-
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição: Muitas listas com bullets (7) antes do rodapé - considerar converter para parágrafo denso; Contém code blocks - considerar converter para prosa.

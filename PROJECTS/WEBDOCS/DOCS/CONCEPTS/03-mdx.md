@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # MDX
 
 MDX é extensão do Markdown que permite usar componentes JSX dentro do conteúdo. Arquivos .mdx são processados combinando sintaxe familiar do Markdown com poder de componentes React ou Astro para criar documentação interativa sem sacrificar simplicidade de autoria.
@@ -9,8 +14,3 @@ Componentes globais configurados em astro.config.mjs ficam disponíveis em todos
 Expressões JavaScript entre chaves permitem lógica dinâmica no conteúdo. Variáveis definidas no frontmatter ou importadas podem ser interpoladas no texto. Útil para valores que mudam frequentemente como versões ou datas.
 
 Limitações incluem necessidade de conhecimento básico de JSX para usar componentes customizados, build time maior que Markdown puro devido a processamento adicional, e compatibilidade reduzida com editores que não suportam syntax highlighting de MDX.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

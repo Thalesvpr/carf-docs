@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # GEOWEB Dockerfile
 
 Multi-stage Dockerfile para build e deploy do frontend React/Next.js.
@@ -87,9 +92,3 @@ docker build -f Dockerfile.geoweb \
 - Variáveis NEXT_PUBLIC_* são injetadas em build time
 - Runtime não requer variáveis de ambiente (baked in)
 - Para configuração dinâmica, usar runtime config
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

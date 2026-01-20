@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # UC-010-configurar-camadas-wms
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (7 casos de uso)
@@ -18,13 +22,18 @@
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
 
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
+<!-- CARF-INDEX-START -->
+## Documentos
 
----
+### Em Revisão
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-010-configurar-camadas-wms/UC-010-configurar-camadas-wms.md|UC-010: Configurar Camadas WMS/WMTS]]
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-010-configurar-camadas-wms/UC-010-FA-001-adicionar-wmts.md|UC-010-FA-001: Adicionar WMTS]]
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-010-configurar-camadas-wms/UC-010-FA-002-proxy-wms.md|UC-010-FA-002: Proxy de WMS]]
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-010-configurar-camadas-wms/UC-010-FE-001-getcapabilities-falha.md|UC-010-FE-001: GetCapabilities Falha]]
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-010-configurar-camadas-wms/UC-010-FE-002-xml-invalido.md|UC-010-FE-002: XML Inválido]]
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-010-configurar-camadas-wms/UC-010-FE-003-layer-nao-encontrado.md|UC-010-FE-003: Layer Não Encontrado]]
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-010-configurar-camadas-wms/UC-010-FE-004-erro-renderizar.md|UC-010-FE-004: Erro ao Renderizar (Frontend)]]
+
+<!-- CARF-INDEX-END -->

@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Manutenibilidade
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (6 requisitos)
@@ -17,13 +21,17 @@
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
 
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
+<!-- CARF-INDEX-START -->
+## Documentos
 
----
+### Em Revisão
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/07-maintainability/RNF-056-cobertura-de-testes.md|RNF-056: Cobertura de Testes]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/07-maintainability/RNF-059-versionamento-semantico.md|RNF-059: Versionamento Semântico]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/07-maintainability/RNF-060-ambiente-de-desenvolvimento-replicavel.md|RNF-060: Ambiente de Desenvolvimento Replicável]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/07-maintainability/RNF-063-tratamento-de-excecoes.md|RNF-063: Tratamento de Exceções]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/07-maintainability/RNF-064-refatoracao-continua.md|RNF-064: Refatoração Contínua]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/07-maintainability/RNF-082-formatos-exportacao.md|RNF-082: Formatos de Exportação]]
+
+<!-- CARF-INDEX-END -->

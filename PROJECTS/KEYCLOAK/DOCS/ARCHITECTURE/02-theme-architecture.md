@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Arquitetura de Temas Keycloak
 
 ## Visão Geral
@@ -468,9 +473,3 @@ function esconderErro() {
 - [Keycloak Theme Documentation](https://www.keycloak.org/docs/latest/server_development/#_themes)
 - [FreeMarker Documentation](https://freemarker.apache.org/docs/)
 - [WCAG 2.1 Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
-
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição: Contém code blocks - considerar converter para prosa.

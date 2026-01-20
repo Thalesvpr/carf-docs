@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-16
+---
+
 # Background Jobs
 
 Jobs Hangfire para processamento assíncrono.
@@ -125,8 +130,3 @@ BackgroundJob.Schedule<NotificationJob>(
     j => j.SendEmailNotification(userId, "Lembrete", "..."),
     TimeSpan.FromHours(24));
 ```
-
----
-
-**Última atualização:** 2026-01-16
-**Status do arquivo**: Pronto

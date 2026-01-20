@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Backup Procedures
 
 Procedimentos de backup do PostgreSQL com PostGIS para garantir recuperação de dados em caso de falhas.
@@ -88,9 +93,3 @@ Alertas configurados:
 - Backup não executado há mais de 26 horas
 - Tamanho do backup diminuiu mais de 10% (possível perda de dados)
 - Falha no upload para S3
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

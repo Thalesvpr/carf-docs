@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Testing - ADMIN
 
 ## Testes E2E
@@ -39,9 +44,3 @@ test('admin can create tenant', async ({ page }) => {
   await expect(page.locator('text=Test Municipality')).toBeVisible()
 })
 ```
-
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição: Contém code blocks - considerar converter para prosa.

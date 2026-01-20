@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Arquitetura do Cliente GEOAPI
 
 ## Visão Geral
@@ -457,9 +462,3 @@ const api = new GeoApiClient({
 - **ADR-011: TSCORE Library**
 - **GEOAPI Backend Docs**
 - [Axios Documentation](https://axios-http.com/)
-
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição: Muitas listas com bullets (9) antes do rodapé - considerar converter para parágrafo denso; Contém code blocks - considerar converter para prosa.

@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Connection Pool Exhausted
 
 Runbook para resolver o erro de pool de conexões esgotado no PostgreSQL, indicado por mensagens como "too many connections" ou "connection pool exhausted" nos logs do GEOAPI.
@@ -79,9 +84,3 @@ GEOAPI (`appsettings.json`):
 ## Prevenção
 
 Monitorar métrica `pg_stat_activity_count` no Prometheus com alerta quando conexões ativas ultrapassarem 80% do limite configurado.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

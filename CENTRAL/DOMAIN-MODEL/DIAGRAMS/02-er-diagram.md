@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # ER Diagram
 
 Diagrama Entity-Relationship do banco de dados CARF.
@@ -159,9 +164,3 @@ CREATE INDEX idx_units_boundary ON units USING GIST(boundary);
 CREATE INDEX idx_units_centroid ON units USING GIST(centroid);
 CREATE INDEX idx_communities_boundary ON communities USING GIST(boundary);
 ```
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

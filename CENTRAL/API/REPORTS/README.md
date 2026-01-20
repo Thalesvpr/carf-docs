@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # REPORTS
 
 Schemas JSON para geração de relatórios do CARF.
@@ -22,10 +27,6 @@ Processamento assíncrono com armazenamento temporário e expiração em 7 dias.
 - ReportDownloadRequest
 - ReportListResponse
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (2 arquivos)
@@ -38,8 +39,12 @@ Processamento assíncrono com armazenamento temporário e expiração em 7 dias.
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/API/REPORTS/01-pdf-export.md|PDF Export]]
+- ○ [[CENTRAL/API/REPORTS/02-data-export.md|Data Export]]
+
+<!-- CARF-INDEX-END -->

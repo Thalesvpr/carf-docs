@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # INFRA
 
 Camada de infraestrutura do GEOAPI implementando todas interfaces definidas no Domain seguindo Dependency Inversion Principle sem que o núcleo de negócio dependa de detalhes técnicos. PERSISTENCE contém implementações EF Core com DbContext, repositories concretos, migrations, configurations de mapeamento OR/M e seeders de dados iniciais para desenvolvimento e testes. INTEGRATIONS agrupa integrações com sistemas externos como Keycloak para autenticação OAuth2/OIDC, APIs de validação de CPF/CNPJ da Receita Federal, serviços de geocoding e validação de endereços, e consumo de APIs de órgãos públicos. STORAGE implementa IFileStorage para upload/download de documentos usando S3-compatible storage (MinIO em dev, AWS S3 em prod) com suporte a URLs pré-assinadas e streaming de arquivos grandes. CACHE fornece implementações de caching distribuído via Redis para queries frequentes, cache de sessões e invalidação coordenada entre instâncias. JOBS contém background jobs Hangfire para processos assíncronos como envio de notificações, geração de relatórios, sincronização com sistemas legados e limpeza de dados temporários.
@@ -10,21 +15,13 @@ Camada de infraestrutura do GEOAPI implementando todas interfaces definidas no D
 - **[CACHE/](./CACHE/README.md)** - Redis distributed cache
 - **[JOBS/](./JOBS/README.md)** - Hangfire background jobs
 
----
+<!-- CARF-INDEX-START -->
+## Subpastas
 
-**Última atualização:** 2026-01-12
+- [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/INFRA/CACHE/README|CACHE]]
+- [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/INFRA/INTEGRATIONS/README|INTEGRATIONS]]
+- [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/INFRA/JOBS/README|JOBS]]
+- [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/INFRA/PERSISTENCE/README|PERSISTENCE]]
+- [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/INFRA/STORAGE/README|STORAGE]]
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (5 arquivos)
-
-| # | Dominio | Arquivos |
-|:--|:--------|:--------:|
-|  | [Cache](./CACHE/README.md) | 1 |
-|  | [Integrations](./INTEGRATIONS/README.md) | 1 |
-|  | [Jobs](./JOBS/README.md) | 1 |
-|  | [Persistence](./PERSISTENCE/README.md) | 1 |
-|  | [Storage](./STORAGE/README.md) | 1 |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Pronto
+<!-- CARF-INDEX-END -->

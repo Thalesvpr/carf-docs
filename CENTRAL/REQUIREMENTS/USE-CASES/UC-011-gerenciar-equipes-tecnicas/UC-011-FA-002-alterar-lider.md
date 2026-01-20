@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB]
-epic: teams
+status: review
+updated: 2025-12-30
 ---
 
 # UC-011-FA-002: Alterar Líder da Equipe
@@ -10,14 +10,3 @@ Fluxo alternativo do UC-011 Gerenciar Equipes Técnicas desviando no passo 10 on
 **Ponto de Desvio:** Passo 10 do UC-011 (tela de detalhes, ação específica)
 
 **Retorno:** Líder alterado, ambos usuários notificados
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

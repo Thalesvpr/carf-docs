@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Gestão de Tenants
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (4 requisitos)
@@ -14,11 +18,15 @@
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/02-tenants/RF-017-criar-tenant.md|RF-017: Criar Tenant]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/02-tenants/RF-018-editar-tenant.md|RF-018: Editar Tenant]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/02-tenants/RF-019-desativar-tenant.md|RF-019: Desativar Tenant]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/02-tenants/RF-020-listar-tenants.md|RF-020: Listar Tenants]]
+
+<!-- CARF-INDEX-END -->

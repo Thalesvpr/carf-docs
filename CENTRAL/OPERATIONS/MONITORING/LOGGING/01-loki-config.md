@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Loki Configuration
 
 Configuração do Grafana Loki para agregação centralizada de logs do CARF.
@@ -166,9 +171,3 @@ curl -G http://loki:3100/loki/api/v1/query \
   --data-urlencode 'query={app="geoapi"} |= "error"' \
   --data-urlencode 'limit=10'
 ```
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

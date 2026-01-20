@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # FEATURES
 
 Customizações Keycloak implementadas para CARF incluindo temas visuais identidade municipal, validação CPF client-side forms login, protocol mappers multi-tenancy tenant_id JWT claims, configuração realm 6 clients OAuth2 diferentes flows, e integração admin proxy GEOAPI para gestão usuários roles. Stack Keycloak 24 FreeMarker templates JavaScript validators protocol mappers User Attribute, garantindo SSO unificado entre GEOWEB REURBCAD GEOAPI GEOGIS WEBDOCS ADMIN com tokens JWT RS256 refresh automático sessões 30min idle 10h max.
@@ -10,21 +15,16 @@ Customizações Keycloak implementadas para CARF incluindo temas visuais identid
 - **[realm-configuration.md](./01-realm-configuration.md)** - Realm CARF 6 clients roles SMTP tokens export import
 - **[admin-integration.md](./04-admin-integration.md)** - Proxy GEOAPI Admin API 7 camadas CRUD users roles
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Última atualização:** 2026-01-12
+### Em Revisão
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (5 arquivos)
+- ○ [[PROJECTS/KEYCLOAK/DOCS/FEATURES/01-realm-configuration.md|Realm Configuration - Configuração Realm]]
+- ○ [[PROJECTS/KEYCLOAK/DOCS/FEATURES/02-multi-tenancy-claims.md|Multi-Tenancy Claims - Claims Multi-Tenancy]]
+- ○ [[PROJECTS/KEYCLOAK/DOCS/FEATURES/03-cpf-validation.md|CPF Validation - Validação CPF]]
+- ○ [[PROJECTS/KEYCLOAK/DOCS/FEATURES/04-admin-integration.md|Admin Integration - Integração Admin]]
+- ○ [[PROJECTS/KEYCLOAK/DOCS/FEATURES/05-theme-customization.md|Theme Customization - Customização de Tema]]
+- ○ [[PROJECTS/KEYCLOAK/DOCS/FEATURES/06-login-theme-carf.md|Login Theme CARF - Tema de Login Customizado]]
 
-| ID | Titulo |
-|:---|:-------|
-| [01-realm-configuration](./01-realm-configuration.md) | Realm Configuration - Configuração Realm |
-| [02-multi-tenancy-claims](./02-multi-tenancy-claims.md) | Multi-Tenancy Claims - Claims Multi-Tenancy |
-| [03-cpf-validation](./03-cpf-validation.md) | CPF Validation - Validação CPF |
-| [04-admin-integration](./04-admin-integration.md) | Admin Integration - Integração Admin |
-| [05-theme-customization](./05-theme-customization.md) | Theme Customization - Customização de Tema |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Pronto
+<!-- CARF-INDEX-END -->

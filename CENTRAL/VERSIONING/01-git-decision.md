@@ -1,6 +1,11 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Decisão Git - Sistema Controle Versão
 
-Sistema controle versão escolhido para CARF é Git ferramenta distribuída open-source amplamente adotada indústria permitindo versionamento código rastreamento mudanças histórico completo commits branches merges colaboração time desenvolvimento coordenação trabalho paralelo features independentes isolation contextos merge estratégias fast-forward squash rebase mantendo histórico limpo legível compreensível. Git habilita workflow polyrepo estratégia cinco repositórios independentes GEOAPI GEOWEB REURBCAD GEOGIS WEBDOCS cada um versionado autonomamente releases coordenadas compatibilidade cruzada documentada release notes especificando versões compatíveis entre projetos garantindo integração funcionamento correto sistema completo evitando breaking changes incompatibilidades runtime deployment failures.
+Sistema controle versão escolhido para CARF é Git ferramenta distribuída open-source amplamente adotada indústria permitindo versionamento código rastreamento mudanças histórico completo commits branches merges colaboração time desenvolvimento coordenação trabalho paralelo features independentes isolation contextos merge estratégias fast-forward squash rebase mantendo histórico limpo legível compreensível. Git habilita workflow polyrepo com múltiplos repositórios independentes conforme documentado em 04-repository-catalog.md, cada um versionado autonomamente com releases coordenadas e compatibilidade cruzada documentada em release notes especificando versões compatíveis entre projetos garantindo integração funcionamento correto sistema completo evitando breaking changes incompatibilidades runtime deployment failures.
 
 ## Justificativa Escolha Git
 
@@ -21,9 +26,3 @@ Git integrado GitHub Actions workflows CI/CD pipelines triggered push eventos br
 ## Treinamento Time
 
 Onboarding desenvolvedores novos inclui Git fundamentals workshop 2 horas conceitos básicos repository clone staging area commit history branches merging conflicts resolution hands-on exercises práticos simulando cenários reais. Advanced topics session 1 hora rebasing interactive rebase squashing commits cherry-picking stashing reflog recovering lost commits bisect debugging identifying regression commits blame authorship file changes hooks automation pre-commit lint staged post-commit notifications. Resources disponíveis Pro Git book online gratuito comprehensive Atlassian Git tutorials visual interactive learning Oh My Git game gamification concepts practice safe environment mistakes encouraged learning experimentation growth mindset.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

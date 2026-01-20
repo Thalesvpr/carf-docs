@@ -1,6 +1,6 @@
 ---
-modules: [GEOAPI, GEOWEB, REURBCAD]
-epic: scalability
+status: review
+updated: 2025-12-30
 ---
 
 # UC-002-FE-001: Concurrent Modification (Unidade Já Foi Aprovada)
@@ -22,14 +22,3 @@ Response HTTP 409 retorna objeto JSON contendo error com mensagem Unit was alrea
 Frontend executa try-catch chamando await approveUnit passando unitId expectedVersion, catch verifica se error.response.status igual quatrocentos e nove AND error.response.data.code igual CONCURRENT_MODIFICATION identificando conflito concorrência, extrai approved_by approved_at de error.response.data.details via destructuring, chama showToast interpolando mensagem "Unidade já foi aprovada por ${approved_by.name} em ${formatDate(approved_at)}" com tipo warning exibindo toast laranja contexto específico, executa await refreshUnitDetails com unitId recarregando dados frescos servidor atualizando UI automaticamente, e chama setCanApprove false desabilitando botão Aprovar prevenindo retry impossível operação.
 
 **Retorno:** MANAGER retorna para lista de pendentes, unidade não aparece mais (já aprovada)
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

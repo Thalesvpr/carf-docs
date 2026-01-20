@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # OPERATIONS
 
 Procedimentos operacionais do CARF para monitoramento, manutenção e troubleshooting.
@@ -8,10 +13,6 @@ A [manutenção](./MAINTENANCE/README.md) inclui backup incremental diário do P
 
 Os [runbooks](./RUNBOOKS/README.md) documentam troubleshooting de problemas frequentes como connection pool exhausted, JWT expired, RLS policy block e slow queries, com guia sistemático para reproduzir, coletar logs, verificar métricas e aplicar fix.
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Indice por Dominio (24 arquivos)
@@ -25,8 +26,11 @@ Os [runbooks](./RUNBOOKS/README.md) documentam troubleshooting de problemas freq
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Subpastas
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- [[CENTRAL/OPERATIONS/MAINTENANCE/README|MAINTENANCE]]
+- [[CENTRAL/OPERATIONS/MONITORING/README|MONITORING]]
+- [[CENTRAL/OPERATIONS/RUNBOOKS/README|RUNBOOKS]]
+
+<!-- CARF-INDEX-END -->

@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB, REURBCAD, GEOGIS]
-epic: scalability
+status: review
+updated: 2025-12-30
 ---
 
 # UC-007: Exportar Dados Geográficos
@@ -26,14 +26,3 @@ Caso de uso permitindo usuários autorizados (ANALYST com permissão exports.cre
 **Rastreabilidade:**
 - RF-197, RF-198, RF-199, RF-200, RF-201, RF-202, RF-207
 - US-072, US-073
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

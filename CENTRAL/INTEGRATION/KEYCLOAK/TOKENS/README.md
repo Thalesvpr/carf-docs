@@ -1,13 +1,14 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Tokens
 
 Estrutura e ciclo de vida dos tokens JWT emitidos pelo Keycloak para autenticação e autorização no ecossistema CARF.
 
 O [access token](./01-access-token.md) contém claims de identidade, roles e tenant para validação em cada requisição. O [refresh token](./02-refresh-token.md) permite renovação silenciosa sem reautenticação. A [validação](./03-validation.md) documenta como GEOAPI verifica assinatura e claims.
 
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (3 arquivos)
@@ -21,8 +22,13 @@ O [access token](./01-access-token.md) contém claims de identidade, roles e ten
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/INTEGRATION/KEYCLOAK/TOKENS/01-access-token.md|Access Token]]
+- ○ [[CENTRAL/INTEGRATION/KEYCLOAK/TOKENS/02-refresh-token.md|Refresh Token]]
+- ○ [[CENTRAL/INTEGRATION/KEYCLOAK/TOKENS/03-validation.md|Validação de Token]]
+
+<!-- CARF-INDEX-END -->

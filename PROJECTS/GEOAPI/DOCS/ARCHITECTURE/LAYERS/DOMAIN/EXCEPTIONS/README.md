@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # EXCEPTIONS
 
 Exceções específicas de domínio representando violações de regras de negócio e condições excepcionais, mapeadas para HTTP status codes apropriados pelo Gateway layer. DomainException (HTTP 400) serve como base para todas exceções de domínio indicando regra de negócio violada genérica. ValidationException (HTTP 400) representa dados inválidos com detalhes de validação por campo. NotFoundException (HTTP 404) indica entidade não encontrada por ID ou critério de busca. AccessDeniedException (HTTP 403) sinaliza falta de permissão para operação requisitada. ConflictException (HTTP 409) representa conflitos como CPF duplicado, código de comunidade já existente ou violação de constraint única. SyncConflictException (HTTP 409) indica conflito específico de sincronização offline quando BaseVersion do dispositivo mobile difere do RowVersion atual no servidor, permitindo resolução manual ou automática dependendo dos campos alterados.
@@ -10,21 +15,15 @@ Exceções específicas de domínio representando violações de regras de negó
 - **[03-access-denied-exception.md](./03-access-denied-exception.md)** - Exceção acesso negado HTTP 403
 - **[04-conflict-exception.md](./04-conflict-exception.md)** - Exceção conflito HTTP 409
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Última atualização:** 2026-01-12
+### Em Revisão
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (5 arquivos)
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/EXCEPTIONS/00-domain-exception.md|DomainException]]
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/EXCEPTIONS/01-validation-exception.md|ValidationException]]
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/EXCEPTIONS/02-not-found-exception.md|NotFoundException]]
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/EXCEPTIONS/03-access-denied-exception.md|AccessDeniedException]]
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/EXCEPTIONS/04-conflict-exception.md|ConflictException]]
 
-| ID | Titulo |
-|:---|:-------|
-| [00-domain-exception](./00-domain-exception.md) | DomainException |
-| [01-validation-exception](./01-validation-exception.md) | ValidationException |
-| [02-not-found-exception](./02-not-found-exception.md) | NotFoundException |
-| [03-access-denied-exception](./03-access-denied-exception.md) | AccessDeniedException |
-| [04-conflict-exception](./04-conflict-exception.md) | ConflictException |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Pronto
+<!-- CARF-INDEX-END -->

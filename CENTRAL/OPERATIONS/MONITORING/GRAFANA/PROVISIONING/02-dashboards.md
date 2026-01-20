@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-16
+---
+
 # Dashboards Provisioning
 
 Configuração de auto-provisioning de dashboards no Grafana.
@@ -149,14 +154,3 @@ curl -s -u admin:$GRAFANA_PASSWORD \
 # Verificar status de provisioning
 kubectl logs -l app=grafana -n monitoring | grep -i provision
 ```
-
----
-
-**Última atualização:** 2026-01-16
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

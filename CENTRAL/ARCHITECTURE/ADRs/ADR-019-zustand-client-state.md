@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # ADR-019: Escolha do Zustand para Client State Management
 
 Decisão arquitetural escolhendo Zustand como solução de client state management para frontends React (GEOWEB ADMIN) justificada por simplicidade extrema com API minimalista baseada em hooks evitando boilerplate verboso de Redux/Context, bundle size mínimo de ~1KB gzipped versus ~12KB Redux RTK, performance superior sem re-renders desnecessários através de subscriptions granulares permitindo components subscriberem apenas slices específicos de state, DevTools integration para debugging time-travel, persistence middleware para sync com localStorage, absence de Provider wrapping mantendo código limpo, TypeScript inference automático sem definições manuais de types, e middleware ecosystem permitindo logging immer devtools persist.
@@ -11,9 +16,3 @@ Consequências positivas incluem developer experience excepcional, bundle size m
 Configuração utiliza Zustand 4.x com store separadas por domínio (uiStore authStore filtersStore), DevTools habilitado em development, persist middleware para sidebar preferences, e custom middleware para logging actions em development.
 
 Status aprovado e implementado desde 2024-Q3.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

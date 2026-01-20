@@ -1,15 +1,15 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # NON-FUNCTIONAL-REQUIREMENTS
 
 Requisitos não-funcionais do CARF especificando atributos de qualidade e restrições técnicas do sistema. Cada requisito possui descrição detalhada, métricas quantificáveis para verificação, e rastreabilidade para casos de uso e requisitos funcionais afetados.
 
 As categorias incluem performance com tempo de resposta e throughput, segurança com autenticação e compliance LGPD, escalabilidade para usuários concorrentes e volume de dados, usabilidade com acessibilidade WCAG, e compatibilidade com browsers e dispositivos.
 
----
 
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
-
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Indice por Dominio (85 requisitos)
@@ -28,8 +28,16 @@ As categorias incluem performance com tempo de resposta e throughput, segurança
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Subpastas
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/01-performance/README|01-performance]]
+- [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/02-security/README|02-security]]
+- [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/03-reliability/README|03-reliability]]
+- [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/04-usability/README|04-usability]]
+- [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/05-scalability/README|05-scalability]]
+- [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/06-compatibility/README|06-compatibility]]
+- [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/07-maintainability/README|07-maintainability]]
+- [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/08-interoperability/README|08-interoperability]]
+
+<!-- CARF-INDEX-END -->

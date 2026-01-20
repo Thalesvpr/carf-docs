@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # Integrações
 
 GEOAPI integra com sistemas externos via Infrastructure Layer mantendo Domain Layer livre de dependências técnicas. Integrações principais incluem Keycloak OAuth2/OIDC autenticação crítica, PostgreSQL PostGIS persistência crítica, consumidores API GEOWEB REURBCAD ADMIN GEOGIS alta prioridade, Email Server notificações média prioridade, SMS Gateway alertas média prioridade, e File Storage S3 documentos alta prioridade.
@@ -9,8 +14,3 @@ PostgreSQL PostGIS integration implementa persistência geoespacial onde EF Core
 API consumers GEOWEB REURBCAD ADMIN GEOGIS conectam via REST JSON com autenticação Bearer JWT, rate limiting por tenant previne abuso, CORS configurado para origins específicos cada frontend, versionamento API via URL /api/v1/ permite evolução sem quebrar clientes, OpenAPI spec gerada automaticamente via Swashbuckle documenta endpoints para geração client TypeScript.
 
 Serviços externos Email via SendGrid ou SMTP para notificações legitimação aprovada documentos pendentes, SMS via gateway HTTP para alertas urgentes, File Storage via S3-compatible MinIO ou AWS S3 para documentos fotos plantas com presigned URLs acesso temporário, todos implementam interface Domain IEmailService ISmsService IFileStorage permitindo mock em testes e troca implementação sem afetar Domain.
-
----
-
-**Última atualização:** 2026-01-12
-**Status do arquivo**: Pronto

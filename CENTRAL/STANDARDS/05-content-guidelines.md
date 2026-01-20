@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Diretrizes de Conteúdo
 
 Documentos devem seguir diretrizes de tamanho e densidade que garantem qualidade e legibilidade do conteúdo.
@@ -21,9 +26,3 @@ O conteúdo deve fluir naturalmente sem quebras excessivas. Evitar parágrafos �
 ## Validação
 
 Os scripts em .scripts/carf_validator validam tamanho com códigos SIZE001 e SIZE002, densidade com códigos DENS001 a DENS004, bullets com código BULLET001, e continuidade com códigos PROSE001 a PROSE003.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

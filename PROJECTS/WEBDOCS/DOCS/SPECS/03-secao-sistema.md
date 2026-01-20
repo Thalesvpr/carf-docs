@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Seção Sistema
 
 Seção /sistema/ explica o que é CARF, contexto legal da Lei 13.465/2017, e fluxo do processo de regularização fundiária. Conteúdo conceitual que fundamenta uso das aplicações.
@@ -13,8 +18,3 @@ Diagramas Mermaid são especialmente úteis nesta seção para ilustrar fluxo de
 Frontmatter padrão define section como sistema, audience como user. Página sobre Lei 13.465 pode ter lastUpdated menos frequente pois conteúdo legal é estável.
 
 Manutenção inclui atualizar quando legislação complementar relevante for publicada, revisar fluxo quando processo de negócio mudar, e validar alinhamento com documentação técnica em CENTRAL.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

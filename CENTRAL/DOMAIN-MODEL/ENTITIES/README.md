@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # ENTITIES
 
 Entidades do domínio CARF representando elementos centrais com identidade única e ciclo de vida rastreável. Cada entidade tem operações de negócio associadas e é organizada em categorias funcionais.
@@ -67,10 +72,6 @@ Entidades do domínio CARF representando elementos centrais com identidade únic
 - **[33-session.md](./33-session.md)** - Sessão de usuário autenticado
 - **[34-api-key.md](./34-api-key.md)** - Chave API para integrações
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (35 arquivos)
@@ -116,8 +117,45 @@ Entidades do domínio CARF representando elementos centrais com identidade únic
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/00-base-entity.md|BaseEntity (Entidade Base)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/01-base-aggregate-root.md|BaseAggregateRoot (Raiz de Agregado Base)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/02-unit.md|Unit (Unidade Habitacional)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/03-holder.md|Holder (Titular)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/04-community.md|Community (Comunidade/Assentamento)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/05-contestation.md|Contestation (Contestação de Processo)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/06-pdf-templates.md|PDF Templates (Memorial Descritivo, Planta Técnica, Certidão)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/07-tenant.md|Tenant (Instituição Cliente)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/08-account.md|Account (Usuário do Sistema)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/09-team.md|Team (Equipe de Trabalho)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/10-team-member.md|TeamMember (Membro de Equipe)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/11-community-authorization.md|CommunityAuthorization (Autorização de Acesso à Comunidade)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/12-block.md|Block (Quadra Urbana)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/13-plot.md|Plot (Lote Individual)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/14-document.md|Document (Anexo Polimórfico)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/15-annotation.md|Annotation (Anotação Polimórfica)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/16-unit-holder.md|UnitHolder (Vínculo Unidade-Titular)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/17-sync-log.md|SyncLog (Registro de Sincronização Offline)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/18-audit-log.md|AuditLog (Log de Auditoria)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/19-surveyor.md|Surveyor (Topógrafo Profissional)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/20-survey-point.md|SurveyPoint (Ponto Topográfico GPS)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/21-rbmc-station.md|RbmcStation (Estação RBMC IBGE)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/22-survey-processing.md|SurveyProcessing (Processamento de Levantamento GPS)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/23-monograph.md|Monograph (Monografia de Marco Topográfico)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/24-descriptive-memorial.md|DescriptiveMemorial (Memorial Descritivo Técnico)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/25-legitimation-request.md|LegitimationRequest (Processo de Legitimação Fundiária)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/26-legitimation-response.md|LegitimationResponse (Parecer Técnico de Legitimação)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/27-legitimation-certificate.md|LegitimationCertificate (Certidão de Legitimação Fundiária)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/28-legitimation-plan.md|LegitimationPlan (Planta Técnica de Legitimação)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/29-wms-server.md|WmsServer (Servidor WMS/WMTS de Mapas)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/30-wms-layer.md|WmsLayer (Camada WMS Individual)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/31-layer.md|Layer (Camada Vetorial Customizada)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/32-layer-feature.md|LayerFeature (Geometria Individual em Camada)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/33-session.md|Session (Sessão de Usuário Autenticado)]]
+- ○ [[CENTRAL/DOMAIN-MODEL/ENTITIES/34-api-key.md|ApiKey (Chave de API para Integrações)]]
+
+<!-- CARF-INDEX-END -->

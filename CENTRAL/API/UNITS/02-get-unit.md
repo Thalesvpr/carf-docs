@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Get Unit
 
 Schema e comportamento do endpoint de consulta de unidade habitacional.
@@ -122,9 +127,3 @@ curl -X GET "https://api.carf.com.br/api/units/550e8400...?include=holders,commu
 - RLS (Row-Level Security) garante que apenas unidades do tenant são retornadas
 - Includes são carregados via LEFT JOIN para evitar N+1 queries
 - Geometria é retornada em GeoJSON para compatibilidade com bibliotecas de mapa
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

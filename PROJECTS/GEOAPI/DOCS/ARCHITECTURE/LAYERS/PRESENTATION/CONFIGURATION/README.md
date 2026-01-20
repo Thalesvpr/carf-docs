@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # CONFIGURATION
 
 Configuração startup do GEOAPI em Program.cs registrando serviços no DI container, configurando middleware pipeline, aplicando settings de appsettings.json/environment variables e preparando aplicação para receber requests HTTP. Service registration inclui AddDbContext configurando connection string PostgreSQL e retry policy, AddMediatR registrando handlers commands/queries, AddFluentValidation descobrindo validators via assembly scanning, AddAuthentication/AddAuthorization configurando JWT bearer scheme e policies RBAC, AddStackExchangeRedis para cache distribuído, AddHangfire para background jobs, AddSignalR para real-time hubs e AddControllers configurando JSON serialization camelCase e referenceHandling. Middleware pipeline ordena middlewares em sequência crítica (ExceptionHandling → Logging → Cors → Authentication → Authorization → RateLimiting → Routing → Endpoints) garantindo exceptions capturadas primeiro e autenticação validada antes de rate limiting. Health checks registram verificações para PostgreSQL connectivity, Redis availability, S3 storage access e Keycloak reachability expostas em /health endpoint para Kubernetes readiness/liveness probes.
@@ -12,18 +17,11 @@ Configuração startup do GEOAPI em Program.cs registrando serviços no DI conta
 - 06-cors-policies.md - Configuração origens permitidas
 - 07-jwt-authentication.md - Bearer token validation setup
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Última atualização:** 2026-01-12
-**Status do arquivo**: Incompleto
-Descrição: Falta seção GENERATED com índice automático; Muitas listas com bullets (7) antes do rodapé - considerar converter para parágrafo denso.
+### Em Revisão
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (1 arquivo)
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/PRESENTATION/CONFIGURATION/01-di-registration.md|DI Registration]]
 
-| ID | Titulo |
-|:---|:-------|
-| [01-di-registration](./01-di-registration.md) | DI Registration |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
+<!-- CARF-INDEX-END -->

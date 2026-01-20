@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # GEOAPI Dockerfile
 
 Multi-stage Dockerfile para build e deploy da API .NET.
@@ -84,9 +89,3 @@ docker build -f Dockerfile.geoapi \
 | ConnectionStrings__DefaultConnection | String PostgreSQL | - |
 | Keycloak__Authority | URL Keycloak | - |
 | Redis__ConnectionString | String Redis | - |
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

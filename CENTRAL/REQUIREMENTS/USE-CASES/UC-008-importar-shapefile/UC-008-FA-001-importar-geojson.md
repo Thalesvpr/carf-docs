@@ -1,6 +1,6 @@
 ---
-modules: [GEOAPI, GEOWEB, REURBCAD, GEOGIS]
-epic: scalability
+status: review
+updated: 2025-12-30
 ---
 
 # UC-008-FA-001: Importar GeoJSON
@@ -10,14 +10,3 @@ Fluxo alternativo do UC-008 Importar Shapefile desviando no passo 5.1 Upload ond
 **Ponto de Desvio:** Passo 5.1 do UC-008 (upload de arquivo diferente)
 
 **Retorno:** Validação GeoJSON, continua para mapeamento e importação normalmente
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

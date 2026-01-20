@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # AUTHENTICATION
 
 Schemas JSON para autenticação do CARF via Keycloak OIDC.
@@ -17,10 +22,6 @@ Códigos HTTP: 200 OK sucesso, 401 Unauthorized credenciais inválidas, 403 Forb
 - LogoutRequest
 - ValidateTokenRequest / ValidateTokenResponse
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (3 arquivos)
@@ -34,8 +35,13 @@ Códigos HTTP: 200 OK sucesso, 401 Unauthorized credenciais inválidas, 403 Forb
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/API/AUTHENTICATION/01-login.md|Login]]
+- ○ [[CENTRAL/API/AUTHENTICATION/02-refresh-token.md|Refresh Token]]
+- ○ [[CENTRAL/API/AUTHENTICATION/03-logout.md|Logout]]
+
+<!-- CARF-INDEX-END -->

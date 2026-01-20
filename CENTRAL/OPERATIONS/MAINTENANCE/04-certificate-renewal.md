@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Certificate Renewal
 
 Procedimentos para renovação de certificados TLS/SSL do CARF.
@@ -96,9 +101,3 @@ Alerta Prometheus quando certificado expira em menos de 14 dias:
   annotations:
     summary: "Certificado {{ $labels.name }} expira em menos de 14 dias"
 ```
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

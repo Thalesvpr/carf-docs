@@ -1,20 +1,10 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # ADMIN
 
 Console administrativo React para gestão de usuários, tenants e configurações do sistema CARF. Integra com Keycloak Admin API para gerenciamento de identidades e permissões.
 
 - **[DOCS/](./DOCS/README.md)** - Documentação técnica
-
----
-
-**Última atualização:** 2026-01-12
-
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (14 arquivos)
-
-| # | Dominio | Arquivos |
-|:--|:--------|:--------:|
-|  | [Docs](./DOCS/README.md) | 14 |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Pronto

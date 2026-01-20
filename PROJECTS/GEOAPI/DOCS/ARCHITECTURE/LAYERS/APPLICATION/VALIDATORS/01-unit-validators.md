@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-16
+---
+
 # Unit Validators
 
 Validadores FluentValidation para commands e DTOs de unidades.
@@ -106,8 +111,3 @@ public class UpdateUnitRequestValidator : AbstractValidator<UpdateUnitRequest>
     }
 }
 ```
-
----
-
-**Última atualização:** 2026-01-16
-**Status do arquivo**: Pronto

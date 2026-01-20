@@ -1,6 +1,6 @@
 ---
-modules: [GEOAPI, GEOWEB, REURBCAD]
-epic: performance
+status: review
+updated: 2025-12-30
 ---
 
 # UC-010: Configurar Camadas WMS/WMTS
@@ -27,14 +27,3 @@ Caso de uso permitindo ADMIN com permissão geoservices.create adicionar servido
 **Rastreabilidade:**
 - RF-212, RF-213, RF-214, RF-215, RF-216, RF-221
 - US-064, US-119
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

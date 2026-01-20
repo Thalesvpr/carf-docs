@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Gestão de Comunidades
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (15 requisitos)
@@ -25,11 +29,26 @@
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/05-communities/RF-034-criar-comunidade.md|RF-034: Criar Comunidade]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/05-communities/RF-035-editar-comunidade.md|RF-035: Editar Comunidade]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/05-communities/RF-036-desativar-comunidade.md|RF-036: Desativar Comunidade]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/05-communities/RF-037-listar-comunidades.md|RF-037: Listar Comunidades]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/05-communities/RF-038-visualizar-comunidade-no-mapa.md|RF-038: Visualizar Comunidade no Mapa]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/05-communities/RF-039-tipos-de-comunidade.md|RF-039: Tipos de Comunidade]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/05-communities/RF-040-importar-shapefile-de-comunidade.md|RF-040: Importar Shapefile de Comunidade]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/05-communities/RF-041-estatísticas-de-comunidade.md|RF-041: Estatísticas de Comunidade]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/05-communities/RF-042-timeline-de-comunidade.md|RF-042: Timeline de Comunidade]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/05-communities/RF-043-exportar-comunidade.md|RF-043: Exportar Comunidade]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/05-communities/RF-044-dashboard-de-comunidade.md|RF-044: Dashboard de Comunidade]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/05-communities/RF-045-anexar-documentos-à-comunidade.md|RF-045: Anexar Documentos à Comunidade]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/05-communities/RF-046-configurar-camadas-wms-para-comunidade.md|RF-046: Configurar Camadas WMS para Comunidade]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/05-communities/RF-047-clonar-comunidade.md|RF-047: Clonar Comunidade]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/05-communities/RF-048-atribuir-comunidade-a-equipe.md|RF-048: Atribuir Comunidade a Equipe]]
+
+<!-- CARF-INDEX-END -->

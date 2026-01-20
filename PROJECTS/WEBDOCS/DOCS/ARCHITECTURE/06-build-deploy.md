@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Build e Deploy
 
 Pipeline de CI/CD usa GitHub Actions para validação e Vercel para hosting com deploy automático em push para main e preview deployments em pull requests.
@@ -13,8 +18,3 @@ Preview deployments são criados automaticamente para cada PR permitindo review 
 Production deploy acontece em merge para main após checks passarem. Vercel executa build de produção e deploya para edge network global. Rollback automático se health check falhar após deploy. DNS configurado para domínio customizado.
 
 Variáveis de ambiente sensíveis (URLs Keycloak, secrets) configuradas no dashboard Vercel, não commitadas no repositório. Preview deployments usam variáveis de ambiente de preview que podem diferir de produção.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

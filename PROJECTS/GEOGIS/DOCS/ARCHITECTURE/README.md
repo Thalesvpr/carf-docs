@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-10
+---
+
 # ARCHITECTURE - GEOGIS
 
 Arquitetura do plugin GEOGIS - QGIS Python 3 plugin seguindo estrutura modular.
@@ -46,18 +51,11 @@ Permite salvar selected features como:
 
 Registrados via `QgsProcessingProvider` permitindo usuário executar via Processing Toolbox com parameters input/output configuráveis.
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Última atualização:** 2026-01-10
+### Em Revisão
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (1 arquivo)
+- ○ [[PROJECTS/GEOGIS/DOCS/ARCHITECTURE/01-keycloak-integration.md|01-keycloak-integration]]
 
-| ID | Titulo |
-|:---|:-------|
-| [01-keycloak-integration](./01-keycloak-integration.md) | 01-keycloak-integration |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Incompleto
-Descrição: Muitas listas com bullets (17) antes do rodapé - considerar converter para parágrafo denso.
+<!-- CARF-INDEX-END -->

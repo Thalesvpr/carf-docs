@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # DOMAIN-MODEL
 
 Modelo de domínio conceitual do sistema CARF, definindo entidades, value objects, agregados e relacionamentos de forma agnóstica a tecnologia, servindo como **fonte única de verdade** para implementações nos projetos.
@@ -8,10 +13,6 @@ Os [aggregates](./AGGREGATES/README.md) agrupam entidades em clusters coesos com
 
 Os [relacionamentos](./RELATIONSHIPS/README.md) mapeiam como as entidades se associam, definindo cardinalidades e constraints. E os [diagramas](./DIAGRAMS/README.md) visualizam a estrutura através de UML, ERD e state machines.
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Indice por Dominio (87 arquivos)
@@ -28,8 +29,14 @@ Os [relacionamentos](./RELATIONSHIPS/README.md) mapeiam como as entidades se ass
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Subpastas
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- [[CENTRAL/DOMAIN-MODEL/AGGREGATES/README|AGGREGATES]]
+- [[CENTRAL/DOMAIN-MODEL/DIAGRAMS/README|DIAGRAMS]]
+- [[CENTRAL/DOMAIN-MODEL/ENTITIES/README|ENTITIES]]
+- [[CENTRAL/DOMAIN-MODEL/EVENTS/README|EVENTS]]
+- [[CENTRAL/DOMAIN-MODEL/RELATIONSHIPS/README|RELATIONSHIPS]]
+- [[CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/README|VALUE-OBJECTS]]
+
+<!-- CARF-INDEX-END -->

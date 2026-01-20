@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-10
+---
+
 # LAYERS - REURBCAD
 
 Estrutura de camadas do código React Native do REURBCAD.
@@ -35,19 +40,3 @@ Estrutura de camadas do código React Native do REURBCAD.
 - Maps (react-native-maps)
 - Camera (expo-camera)
 - Forms com validation
-
----
-
-**Última atualização:** 2026-01-10
-
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (1 arquivo)
-
-| ID | Titulo |
-|:---|:-------|
-| [01-auth-service](./01-auth-service.md) | 01-auth-service |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Incompleto
-Descrição: Falta parágrafo denso introdutório; Muitas listas com bullets (15) antes do rodapé - considerar converter para parágrafo denso.

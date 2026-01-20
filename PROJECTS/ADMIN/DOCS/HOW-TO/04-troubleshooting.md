@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Troubleshooting - ADMIN
 
 ## Problemas Comuns
@@ -22,9 +27,3 @@ localStorage.clear()
 console.log(import.meta.env.VITE_API_URL)
 // Deve apontar para GEOAPI (ex: http://localhost:7001)
 ```
-
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição: Contém code blocks - considerar converter para prosa.

@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-16
+---
+
 # Validation Filter
 
 Filtro para validação automática de ModelState.
@@ -77,8 +82,3 @@ public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
     }
 }
 ```
-
----
-
-**Última atualização:** 2026-01-16
-**Status do arquivo**: Pronto

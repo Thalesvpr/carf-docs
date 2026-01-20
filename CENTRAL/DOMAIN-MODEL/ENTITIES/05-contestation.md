@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Contestation (Contestação de Processo)
 
 Entidade representando contestação formal de processo de legitimação fundiária permitindo terceiros interessados (vizinhos proprietários formais entes públicos) questionarem validade de solicitação de regularização alegando sobreposição com propriedade existente irregularidades documentais vícios no processo ou interesse público conflitante. Campos conceituais incluem identificador único global, referência obrigatória a LegitimationRequest contestado, tipo de contestante (NEIGHBOR FORMAL_OWNER PUBLIC_ENTITY OTHER), dados do contestante incluindo nome CPF/CNPJ endereço telefone email, motivo da contestação enum (OVERLAP_EXISTING_PROPERTY IRREGULAR_DOCUMENTATION PROCEDURAL_DEFECT PUBLIC_INTEREST_CONFLICT ENVIRONMENTAL_RESTRICTION LACK_OF_POSSESSION OTHER), descrição detalhada textual justificando contestação com fundamentação legal, evidências anexadas array de Document IDs referenciando fotos escrituras plantas mapas laudos, área contestada opcional GeoPolygon delimitando porção específica questionada quando contestação é parcial, status enum (SUBMITTED UNDER_ANALYSIS VALID INVALID RESOLVED WITHDRAWN), data de submissão timestamp, prazo para resposta deadline calculado como 30 dias após submissão conforme regulamentação, análise técnica opcional text campo preenchido por analista com parecer sobre procedência, decisão enum (UPHELD REJECTED PARTIALLY_UPHELD) determinada após análise, fundamentação da decisão text explicando razão de uphold ou reject, ações corretivas array de strings listando medidas tomadas para resolver contestação (ajuste de geometria exclusão de área sobreposta solicitação de documentos adicionais cancelamento de processo), data de resolução timestamp quando decisão foi tomada, responsável pela análise AccountId do analista ou gestor, e metadados de auditoria incluindo criado em atualizado em soft delete. Relacionamentos incluem pertence obrigatoriamente a um LegitimationRequest (N:1), pode referenciar Unit específica se contestação for sobre unidade individual (N:1 opcional), possui múltiplos Documents como evidências (1:N polimórfico), gera múltiplas Notifications para partes interessadas (1:N titular contestante analistas), e pode disparar LegitimationResponse adicional do titular defendendo contra contestação.
@@ -11,9 +16,3 @@ Análise espacial de sobreposição usa operação de detecção de sobreposiç�
 Contestações frivolous (manifestamente improcedentes) podem ser sumariamente rejeitadas por analista senior sem análise completa quando contestante não fornece evidências mínimas repete contestação já rejeitada anteriormente ou age de má-fé para retardar processo, penalidades por contestação frivolous incluem advertência formal registro em histórico do contestante e possível bloqueio de futuras contestações por período se recorrência for detectada, e titular pode contra-contestar alegando frivolity e solicitando indenização por danos se atraso causado por contestação improcedente gerou prejuízo mensurável.
 
 **Módulos:** GEOAPI, GEOWEB, REURBCAD, GEOGIS
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

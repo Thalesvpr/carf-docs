@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Camadas e Features
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (3 user stories)
@@ -14,13 +18,14 @@
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
 
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
+<!-- CARF-INDEX-START -->
+## Documentos
 
----
+### Em Revisão
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/09-layers-features/US-155-gerenciar-camadas-vetoriais.md|US-155: Gerenciar Camadas Vetoriais]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/09-layers-features/US-156-visualizar-detalhes-de-camada.md|US-156: Visualizar Detalhes de Camada]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/09-layers-features/US-157-listar-features-de-camada.md|US-157: Listar Features de Camada]]
+
+<!-- CARF-INDEX-END -->

@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB, REURBCAD]
-epic: compatibility
+status: review
+updated: 2025-12-30
 ---
 
 # UC-004-FE-002: Memória Cheia
@@ -22,14 +22,3 @@ Modal exibe ícone vermelho círculo com título "Memória Cheia" seguido por li
 Após sincronização bem-sucedida app define função async deleteLocalData recebendo array syncedUnitIds executando sequencialmente await db.photos.where com unit_id aplicando anyOf com syncedUnitIds chamando delete() removendo todas fotos das unidades sincronizadas, await db.units_local.where com id aplicando anyOf com syncedUnitIds chamando delete() removendo registros de unidades locais já persistidas no servidor, executa await calculateFreedSpace() recalculando espaço disponível armazenando em freed, exibe toast interpolado "X MB liberados" informando quantidade recuperada permitindo FIELD_AGENT continuar coleta com storage limpo.
 
 **Retorno:** Após liberar espaço, FIELD_AGENT pode continuar tirando fotos
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

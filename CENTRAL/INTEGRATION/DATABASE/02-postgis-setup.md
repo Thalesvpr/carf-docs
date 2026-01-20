@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # PostGIS Setup
 
 Configuração da extensão PostGIS para suporte geoespacial.
@@ -128,9 +133,3 @@ UPDATE units
 SET boundary = ST_MakeValid(boundary)
 WHERE NOT ST_IsValid(boundary);
 ```
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

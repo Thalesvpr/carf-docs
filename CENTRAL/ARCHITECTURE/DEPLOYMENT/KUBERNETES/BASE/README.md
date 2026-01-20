@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # BASE
 
 Diretório base contém manifests Kubernetes genéricos do sistema CARF compartilhados entre todos ambientes servindo como foundation para overlays específicos de dev staging e produção através de Kustomize permitindo DRY principle onde configurações comuns ficam centralizadas e overlays apenas sobrescrevem valores específicos de cada ambiente como replicas resource limits hostnames e secrets, backend GEOAPI definido via Deployment especificando container image geoapi com env vars extraídas ConfigMap Secret resources requests limits placeholders livenessProbe readinessProbe, Service type ClusterIP expondo port 80 interno mapeando targetPort 8080 container selector app geoapi, Ingress rules definindo host api.carf.example.com path direcionando backend TLS habilitado cert-manager annotations provisioning automático certificados Let's Encrypt, database PostgreSQL implementado StatefulSet garantindo pods identidade persistente ordenação startup volumeClaimTemplates persistent storage automático criando PVC por pod preservando dados restarts, demais serviços incluem Keycloak SSO OAuth2 Redis cache distribuído GEOWEB nginx servindo static assets frontend SPA RabbitMQ message broker ConfigMap Secret templates, arquivo kustomization.yaml lista todos resources manifests agregando base reutilizável overlays através kustomize build comando gerando manifests finais merged.
@@ -17,10 +22,6 @@ Diretório base contém manifests Kubernetes genéricos do sistema CARF comparti
 - **[secret-template.yaml](./secret-template.yaml)** - Secret template credenciais database Keycloak JWT
 - **[kustomization.yaml](./kustomization.yaml)** - Kustomize base aggregating resources manifests
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (2 arquivos)
@@ -33,8 +34,12 @@ Diretório base contém manifests Kubernetes genéricos do sistema CARF comparti
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/ARCHITECTURE/DEPLOYMENT/KUBERNETES/BASE/01-deployments.md|Base Deployments]]
+- ○ [[CENTRAL/ARCHITECTURE/DEPLOYMENT/KUBERNETES/BASE/02-ingress-configmap.md|Ingress e ConfigMap]]
+
+<!-- CARF-INDEX-END -->

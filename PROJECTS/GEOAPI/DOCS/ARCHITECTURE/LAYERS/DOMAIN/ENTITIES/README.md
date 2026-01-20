@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # ENTITIES
 
 Entidades de domínio do GEOAPI encapsulando lógica e regras de negócio organizadas por features do sistema. Todas herdam de BaseEntity fornecendo Id Guid imutável, timestamps CreatedAt/UpdatedAt, DeletedAt para soft delete e RowVersion para controle de concorrência otimista, ou de BaseAggregateRoot que adiciona suporte a domain events despachados após SaveChanges para notificações e workflows assíncronos. Organizadas em catorze categorias cobrindo desde autenticação e multi-tenancy até workflow de legitimação fundiária, GIS layers, topografia e auditoria, cada entity encapsula invariants e comportamentos garantindo que estado permanece consistente através de métodos públicos que validam pré-condições antes de alterar campos privados evitando anemic domain model.
@@ -18,32 +23,3 @@ Entidades de domínio do GEOAPI encapsulando lógica e regras de negócio organi
 - **[ANNOTATIONS/](./ANNOTATIONS/README.md)** - Anotações comentários colaborativos
 - **[SYNC/](./SYNC/README.md)** - Sincronização mobile detecção conflitos
 - **[AUDIT/](./AUDIT/README.md)** - Auditoria logs operações críticas
-
----
-
-**Última atualização:** 2026-01-12
-
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (33 arquivos)
-
-| # | Dominio | Arquivos |
-|:--|:--------|:--------:|
-|  | [Annotations](./ANNOTATIONS/README.md) | 1 |
-|  | [Audit](./AUDIT/README.md) | 1 |
-|  | [Auth](./AUTH/README.md) | 2 |
-|  | [Base](./BASE/README.md) | 2 |
-|  | [Communities](./COMMUNITIES/README.md) | 3 |
-|  | [Core](./CORE/README.md) | 2 |
-|  | [Documents](./DOCUMENTS/README.md) | 1 |
-|  | [Gis](./GIS/README.md) | 4 |
-|  | [Holders](./HOLDERS/README.md) | 2 |
-|  | [Legitimation](./LEGITIMATION/README.md) | 5 |
-|  | [Surveying](./SURVEYING/README.md) | 5 |
-|  | [Sync](./SYNC/README.md) | 1 |
-|  | [Teams](./TEAMS/README.md) | 3 |
-|  | [Units](./UNITS/README.md) | 1 |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Incompleto
-Descrição: Muitas listas com bullets (14) antes do rodapé - considerar converter para parágrafo denso.

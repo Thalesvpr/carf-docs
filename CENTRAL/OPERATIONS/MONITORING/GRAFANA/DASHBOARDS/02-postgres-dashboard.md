@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # PostgreSQL Dashboard
 
 Dashboard de monitoramento do banco de dados PostgreSQL do CARF.
@@ -93,9 +98,3 @@ Dashboard inclui annotations para alertas:
   }
 }
 ```
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

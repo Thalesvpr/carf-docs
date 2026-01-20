@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB, REURBCAD, GEOGIS]
-epic: scalability
+status: review
+updated: 2025-12-30
 ---
 
 # UC-008-FE-003: Duplicatas Detectadas
@@ -10,14 +10,3 @@ Fluxo de exceção do UC-008 Importar Shapefile ocorrendo no passo 10.6 durante 
 **Ponto de Desvio:** Passo 10.6 do UC-008 (validação antes de INSERT)
 
 **Retorno:** Registro duplicado ignorado, importação continua, duplicata registrada no log
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

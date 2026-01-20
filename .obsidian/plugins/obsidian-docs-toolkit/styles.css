@@ -1,0 +1,222 @@
+/* Docs Toolkit Plugin - Minimal Styles */
+
+/* Dashboard */
+.docs-dashboard {
+  padding: 16px;
+  font-size: 13px;
+}
+
+.docs-loading {
+  color: var(--text-faint);
+}
+
+.docs-stats-line {
+  margin-bottom: 8px;
+}
+
+.docs-stat-main {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.docs-stat-label {
+  color: var(--text-muted);
+}
+
+.docs-pending-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.docs-pending-count {
+  color: var(--text-muted);
+}
+
+.docs-review-btn {
+  padding: 3px 10px;
+  border: 1px solid var(--text-muted);
+  border-radius: 3px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.docs-review-btn:hover {
+  border-color: var(--text-normal);
+  color: var(--text-normal);
+}
+
+.docs-issues-line {
+  margin-top: 8px;
+}
+
+.docs-issues-summary {
+  color: var(--text-faint);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.docs-issues-summary:hover {
+  color: var(--text-muted);
+}
+
+.docs-issues-list {
+  margin-top: 8px;
+  padding-left: 4px;
+}
+
+.docs-issue-row {
+  padding: 2px 0;
+  font-size: 11px;
+  color: var(--text-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.docs-issue-row:hover {
+  color: var(--text-normal);
+}
+
+.docs-more {
+  font-size: 11px;
+  color: var(--text-faint);
+  margin-top: 4px;
+}
+
+/* Review View */
+.docs-rv {
+  padding: 24px;
+  font-size: 14px;
+}
+
+.docs-rv-header {
+  margin-bottom: 16px;
+}
+
+.docs-rv-counter {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.docs-rv-id {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.docs-rv-issues {
+  background: var(--background-secondary);
+  border-radius: 4px;
+  padding: 10px 12px;
+  margin-bottom: 16px;
+  font-size: 12px;
+}
+
+.docs-rv-issues-title {
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.docs-rv-issue {
+  color: var(--text-muted);
+  padding: 2px 0;
+}
+
+.docs-rv-more {
+  color: var(--text-faint);
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+.docs-rv-init {
+  padding: 5px 12px;
+  margin-bottom: 16px;
+  border: 1px dashed var(--text-faint);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-faint);
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.docs-rv-init:hover {
+  border-color: var(--text-muted);
+  color: var(--text-muted);
+}
+
+.docs-rv-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.docs-rv-btn {
+  padding: 6px 12px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 13px;
+  cursor: pointer;
+  min-width: 32px;
+}
+
+.docs-rv-btn:hover:not(:disabled) {
+  color: var(--text-normal);
+  border-color: var(--text-muted);
+}
+
+.docs-rv-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.docs-rv-approve {
+  border-color: #4ade80;
+  color: #4ade80;
+}
+
+.docs-rv-approve:hover:not(:disabled) {
+  border-color: #22c55e;
+  color: #22c55e;
+}
+
+.docs-rv-reject {
+  border-color: #f87171;
+  color: #f87171;
+}
+
+.docs-rv-reject:hover:not(:disabled) {
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.docs-rv-open {
+  margin-left: auto;
+  font-size: 11px;
+}
+
+.docs-rv-empty {
+  text-align: center;
+  padding: 40px;
+  color: var(--text-muted);
+}
+
+.docs-rv-done-icon {
+  font-size: 24px;
+  color: #4ade80;
+}
+
+.docs-rv-done-text {
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+/* Status bar */
+.docs-status-bar {
+  cursor: pointer;
+}

@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # RUNBOOKS
 
 Runbooks de troubleshooting do CARF para resolução rápida de incidentes operacionais.
@@ -26,10 +31,6 @@ Após resolução, documentar:
 - Correção permanente implementada
 - Ações para prevenir recorrência
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (8 arquivos)
@@ -48,8 +49,18 @@ Após resolução, documentar:
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/OPERATIONS/RUNBOOKS/01-connection-pool-exhausted.md|Connection Pool Exhausted]]
+- ○ [[CENTRAL/OPERATIONS/RUNBOOKS/02-jwt-token-expired.md|JWT Token Expired]]
+- ○ [[CENTRAL/OPERATIONS/RUNBOOKS/03-rls-policy-violation.md|RLS Policy Violation]]
+- ○ [[CENTRAL/OPERATIONS/RUNBOOKS/04-slow-query-detection.md|Slow Query Detection]]
+- ○ [[CENTRAL/OPERATIONS/RUNBOOKS/05-service-health-check.md|Service Health Check]]
+- ○ [[CENTRAL/OPERATIONS/RUNBOOKS/06-database-backup-restore.md|Database Backup e Restore]]
+- ○ [[CENTRAL/OPERATIONS/RUNBOOKS/07-cache-invalidation.md|Cache Invalidation]]
+- ○ [[CENTRAL/OPERATIONS/RUNBOOKS/08-storage-quota-exceeded.md|Storage Quota Exceeded]]
+
+<!-- CARF-INDEX-END -->

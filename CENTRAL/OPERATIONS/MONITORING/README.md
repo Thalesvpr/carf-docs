@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # MONITORING
 
 Configuração de observabilidade do CARF.
@@ -10,10 +15,6 @@ O [Logging](./LOGGING/README.md) usa Loki com Promtail para agregação de logs 
 
 SLOs definidos: 99.5% uptime e p99 latency menor que 500ms.
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Indice por Dominio (11 arquivos)
@@ -27,8 +28,11 @@ SLOs definidos: 99.5% uptime e p99 latency menor que 500ms.
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Subpastas
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- [[CENTRAL/OPERATIONS/MONITORING/GRAFANA/README|GRAFANA]]
+- [[CENTRAL/OPERATIONS/MONITORING/LOGGING/README|LOGGING]]
+- [[CENTRAL/OPERATIONS/MONITORING/PROMETHEUS/README|PROMETHEUS]]
+
+<!-- CARF-INDEX-END -->

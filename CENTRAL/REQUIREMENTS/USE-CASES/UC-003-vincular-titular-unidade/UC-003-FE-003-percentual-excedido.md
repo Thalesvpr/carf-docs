@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB, REURBCAD]
-epic: holders
+status: review
+updated: 2025-12-30
 ---
 
 # UC-003-FE-003: Soma de Percentuais > 100%
@@ -18,14 +18,3 @@ Backend executa query await db com tabela unit_holders aplicando where com unit_
 Modal exibe ícone warning laranja com título "Percentuais Ultrapassam 100%" apresentando seção "Titulares atuais: X%" com lista de bullet points mostrando nome de cada titular percentual e tipo de relacionamento entre parênteses interpolando dados reais como João Silva cinquenta por cento Proprietário e Maria Souza trinta e cinco por cento Cônjuge, seguido por linha destacada "Tentando adicionar: Y%" com valor informado no formulário, linha resultado "Total: Z% ❌" com ícone X vermelho indicando erro, linha informativa "Máximo permitido: W%" calculado como cem menos soma atual, finalizando com quatro botões de ação sendo Ajustar para W% preenchendo automaticamente campo com valor seguro, Editar Manualmente mantendo foco no campo percentual, Redistribuir Todos abrindo tela avançada com sliders proporcionais, e Cancelar abortando operação.
 
 **Retorno:** Usuário ajusta percentual e tenta novamente, ou cancela operação
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

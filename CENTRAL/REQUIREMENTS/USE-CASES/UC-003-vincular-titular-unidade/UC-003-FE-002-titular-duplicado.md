@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB]
-epic: holders
+status: review
+updated: 2025-12-30
 ---
 
 # UC-003-FE-002: Titular Já Vinculado
@@ -18,14 +18,3 @@ Query SQL executa SELECT com colunas uh.id h.name uh.relationship_type uh.owners
 Modal exibe ícone warning laranja com título "Titular Já Vinculado" seguido por mensagem interpolada "Nome do Titular (CPF formatado) já está vinculado a esta unidade:" com lista de detalhes mostrando Tipo igual ao relationship_type atual como Proprietário Possuidor ou Cônjuge, Percentual igual ownership_percentage formatado como cinquenta por cento, Principal igual is_primary convertido para Sim ou Não, e Vinculado em igual created_at formatado como data brasileira DD/MM/YYYY, finalizando com dois botões Editar Vínculo Existente abrindo modal pré-preenchido e Cancelar fechando sem alterações.
 
 **Retorno:** Se Editar, abre modal de edição; se Cancelar, volta para lista de titulares
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

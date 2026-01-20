@@ -1,6 +1,11 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Decisão GitHub - Plataforma Hospedagem Código
 
-Plataforma hospedagem código escolhida para CARF é GitHub serviço cloud-based repositórios Git fornecendo interface web colaboração pull requests code review issues project boards actions CI/CD integrações ecosistema extenso marketplace apps bots automações comunidade massiva desenvolvedores open-source enterprise adoção amplamente reconhecido indústria padrão de facto versionamento código colaborativo. GitHub habilita workflow polyrepo organizando cinco projetos GEOAPI GEOWEB REURBCAD GEOGIS WEBDOCS repositórios independentes cada um configurado settings proteções branches main require pull request reviews dois approvers status checks passing CI tests lint coverage gates enforcing quality standards preventing merge código defeituoso breaking builds deployments falhos impactando usuários production environments.
+Plataforma hospedagem código escolhida para CARF é GitHub serviço cloud-based repositórios Git fornecendo interface web colaboração pull requests code review issues project boards actions CI/CD integrações ecosistema extenso marketplace apps bots automações comunidade massiva desenvolvedores open-source enterprise adoção amplamente reconhecido indústria padrão de facto versionamento código colaborativo. GitHub habilita workflow polyrepo organizando múltiplos repositórios independentes conforme documentado em 04-repository-catalog.md, cada um configurado com settings e proteções de branches main requerindo pull request reviews de dois approvers e status checks passing incluindo CI tests lint e coverage gates, enforcing quality standards e preventing merge de código defeituoso ou breaking builds que causariam deployments falhos impactando usuários em production environments.
 
 ## Justificativa Escolha GitHub
 
@@ -25,9 +30,3 @@ Dependabot automaticamente scanning dependencies vulnerabilities CVE Common Vuln
 ## Colaboração Comunidade
 
 Issues tracking bugs features enhancements discussions roadmap planning community feedback transparency accountability public visibility external contributors stakeholders customers reporting issues suggesting improvements participating development open-source mentality collaboration distributed global teams asynchronous communication timezone differences remote work flexibility work-life balance productivity output quality craftsmanship pride ownership. Pull requests code review quality gates knowledge sharing mentoring junior developers learning growing skills expertise feedback constructive respectful empathetic growth-oriented developmental coaching encouraging experimentation innovation creativity problem-solving critical thinking analytical reasoning.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

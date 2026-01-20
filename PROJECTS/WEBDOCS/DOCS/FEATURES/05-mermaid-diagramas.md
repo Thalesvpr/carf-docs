@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Diagramas Mermaid
 
 Mermaid permite criar diagramas a partir de sintaxe textual em arquivos Markdown renderizados como SVG no build time sem JavaScript client-side. Suporta flowcharts, sequence diagrams, class diagrams, ER diagrams, gantt charts, e outros tipos.
@@ -11,8 +16,3 @@ Sequence diagram documenta interações entre componentes ao longo do tempo. Sin
 ER diagram documenta modelo de dados com entidades e relacionamentos. Sintaxe erDiagram com entidades contendo atributos e relacionamentos entre elas usando notação de cardinalidade. Útil para documentar schema do banco de dados.
 
 Temas do Mermaid configurados em astro.config.mjs aplicam cores do design system CARF aos diagramas. Tema escuro ativado automaticamente quando usuário usa dark mode do site mantendo legibilidade em ambos modos.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

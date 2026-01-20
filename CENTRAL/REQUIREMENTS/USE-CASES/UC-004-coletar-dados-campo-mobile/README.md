@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # UC-004-coletar-dados-campo-mobile
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (7 casos de uso)
@@ -18,13 +22,18 @@
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
 
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
+<!-- CARF-INDEX-START -->
+## Documentos
 
----
+### Em Revisão
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-004-coletar-dados-campo-mobile/UC-004-coletar-dados-campo-mobile.md|UC-004: Coletar Dados em Campo (Mobile)]]
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-004-coletar-dados-campo-mobile/UC-004-FA-001-sincronizar-imediato.md|UC-004-FA-001: Sincronizar Imediatamente]]
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-004-coletar-dados-campo-mobile/UC-004-FA-002-voice-to-text.md|UC-004-FA-002: Voice-to-Text]]
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-004-coletar-dados-campo-mobile/UC-004-FA-003-copiar-anterior.md|UC-004-FA-003: Copiar Unidade Anterior]]
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-004-coletar-dados-campo-mobile/UC-004-FE-001-gps-indisponivel.md|UC-004-FE-001: GPS Não Disponível]]
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-004-coletar-dados-campo-mobile/UC-004-FE-002-memoria-cheia.md|UC-004-FE-002: Memória Cheia]]
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-004-coletar-dados-campo-mobile/UC-004-FE-003-bateria-baixa.md|UC-004-FE-003: Bateria Baixa]]
+
+<!-- CARF-INDEX-END -->

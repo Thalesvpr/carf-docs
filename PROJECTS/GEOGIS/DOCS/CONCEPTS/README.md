@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-10
+---
+
 # CONCEPTS - GEOGIS
 
 Conceitos fundamentais do plugin GEOGIS Python para QGIS.
@@ -71,19 +76,12 @@ Custom tools registered via `QgsProcessingProvider` com:
 - try/except catching exceptions gracefully
 - QMessageBox.critical() com stack trace details
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Última atualização:** 2026-01-10
+### Em Revisão
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (2 arquivos)
+- ○ [[PROJECTS/GEOGIS/DOCS/CONCEPTS/01-authentication.md|01-authentication]]
+- ○ [[PROJECTS/GEOGIS/DOCS/CONCEPTS/02-token-storage.md|02-token-storage]]
 
-| ID | Titulo |
-|:---|:-------|
-| [01-authentication](./01-authentication.md) | 01-authentication |
-| [02-token-storage](./02-token-storage.md) | 02-token-storage |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Incompleto
-Descrição: Falta parágrafo denso introdutório; Muitas listas com bullets (30) antes do rodapé - considerar converter para parágrafo denso.
+<!-- CARF-INDEX-END -->

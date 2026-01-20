@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # LogQL Queries
 
 Queries LogQL úteis para análise de logs do CARF no Grafana/Loki.
@@ -175,9 +180,3 @@ groups:
 # Ruim (parseia tudo antes de filtrar)
 {namespace="carf"} | json | app="geoapi" | level="error"
 ```
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Protocol Mappers
 
 Protocol mappers configuram extração de dados do usuário Keycloak para claims JWT permitindo backend e frontend acessarem informações customizadas sem consultas adicionais.
@@ -9,9 +14,3 @@ Mapper allowed_tenants utiliza mesmo tipo extraindo user attribute tenants (mult
 Mapper roles inclui realm roles e client roles no token automaticamente através de configuração padrão do Keycloak. Claim roles contém array com roles do usuário como field-collector, analyst, admin, super-admin, dev permitindo autorização granular no backend via [Authorize(Roles)] e no frontend via user.roles.includes().
 
 Configuração no Admin Console: Client Scopes → carf-tenant → Mappers → Add mapper → User Attribute, preencher Token Claim Name, User Attribute, Claim JSON Type, e marcar checkboxes Add to ID token, Add to access token, Add to userinfo.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

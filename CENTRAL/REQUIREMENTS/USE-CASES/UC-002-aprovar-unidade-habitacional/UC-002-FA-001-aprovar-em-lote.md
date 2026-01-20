@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB, REURBCAD]
-epic: performance
+status: review
+updated: 2025-12-30
 ---
 
 # UC-002-FA-001: Aprovar em Lote
@@ -23,14 +23,3 @@ Algoritmo batch define objeto results com arrays success e failed inicialmente v
 Modal exibe checkmark verde "47 de 50 unidades aprovadas com sucesso" indicando maioria sucesso seguido por seção falhas com X vermelho "Falhas (3):" listando cada erro específico como "UH-123: Unidade já foi aprovada por João Silva" indicando concurrent modification, "UH-456: Dados de validação falharam (geometria inválida)" indicando validação falhou após seleção, e "UH-789: Titular principal não vinculado" indicando constraint violation regra negócio permitindo MANAGER identificar rapidamente motivo cada falha e decidir ação corretiva individual.
 
 **Retorno:** Atualiza lista removendo sucessos, mantém falhas para retry individual
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

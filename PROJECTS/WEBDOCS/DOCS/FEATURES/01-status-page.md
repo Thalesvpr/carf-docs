@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-20
+---
+
 # Status Page
 
 Página /status/ exibe disponibilidade em tempo real dos serviços CARF permitindo usuários verificarem se sistema está operacional antes de reportar problemas. Implementação combina checks server-side durante SSR com polling opcional client-side.

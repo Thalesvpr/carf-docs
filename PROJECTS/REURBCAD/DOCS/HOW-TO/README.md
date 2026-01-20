@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-10
+---
+
 # HOW-TO - REURBCAD
 
 Guias práticos para desenvolvimento do REURBCAD React Native.
@@ -19,21 +24,3 @@ Guias práticos para desenvolvimento do REURBCAD React Native.
 **Build:**
 - Android: `eas build --platform android`
 - iOS: `eas build --platform ios`
-
----
-
-**Última atualização:** 2026-01-10
-
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (3 arquivos)
-
-| ID | Titulo |
-|:---|:-------|
-| [01-setup-keycloak](./01-setup-keycloak.md) | 01-setup-keycloak |
-| [02-handle-callbacks](./02-handle-callbacks.md) | 02-handle-callbacks |
-| [03-test-offline](./03-test-offline.md) | 03-test-offline |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Incompleto
-Descrição: Falta parágrafo denso introdutório.

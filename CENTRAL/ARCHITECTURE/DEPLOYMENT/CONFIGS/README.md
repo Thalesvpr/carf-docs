@@ -1,11 +1,12 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # CONFIGS
 
 Arquivos de configuração deployment do CARF. O [env-vars](./01-env-vars.md) documenta variáveis ambiente por projeto incluindo DATABASE_URL, KEYCLOAK_URL, JWT_SECRET para GEOAPI e VITE_API_URL para frontends. O [health-checks](./02-health-checks.md) especifica endpoints de monitoramento como /health e /ready para cada serviço.
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (2 arquivos)
@@ -18,8 +19,12 @@ Arquivos de configuração deployment do CARF. O [env-vars](./01-env-vars.md) do
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/ARCHITECTURE/DEPLOYMENT/CONFIGS/01-env-vars.md|VARIÁVEIS DE AMBIENTE]]
+- ○ [[CENTRAL/ARCHITECTURE/DEPLOYMENT/CONFIGS/02-health-checks.md|HEALTH CHECKS]]
+
+<!-- CARF-INDEX-END -->

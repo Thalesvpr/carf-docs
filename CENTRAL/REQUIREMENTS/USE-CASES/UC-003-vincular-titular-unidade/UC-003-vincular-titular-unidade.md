@@ -1,6 +1,6 @@
 ---
-modules: [GEOAPI, GEOWEB, REURBCAD]
-epic: security
+status: review
+updated: 2025-12-30
 ---
 
 # UC-003: Vincular Titular a Unidade
@@ -26,14 +26,3 @@ Caso de uso permitindo usuários autorizados (ANALYST ADMIN FIELD_AGENT) associa
 **Rastreabilidade:**
 - RF-061, RF-062, RF-084, RF-089, RF-090, RF-091, RF-092, RF-093
 - US-029, US-044
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

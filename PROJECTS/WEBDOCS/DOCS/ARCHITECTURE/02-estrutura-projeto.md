@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Estrutura do Projeto
 
 Organização de pastas em SRC-CODE/carf-webdocs/ segue convenções do Astro com customizações para Content Collections, autenticação e CMS.
@@ -13,8 +18,3 @@ Arquivo astro.config.mjs configura Astro, Starlight, integrações (MDX, Sitemap
 Arquivo .env.example documenta variáveis de ambiente necessárias incluindo URLs do Keycloak, client ID, e URLs de serviços para status page. Arquivo .env local não commitado contém valores reais.
 
 Pasta scripts/ contém utilitários de desenvolvimento como validação de estrutura, geração de frontmatter, e helpers para Decap CMS.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

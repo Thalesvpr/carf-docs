@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-16
+---
+
 # DEV Overlay
 
 Kustomization overlay para ambiente de desenvolvimento.
@@ -124,14 +129,3 @@ kubectl apply -k overlays/dev
 # Verificar recursos
 kubectl get all -n carf-dev
 ```
-
----
-
-**Última atualização:** 2026-01-16
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

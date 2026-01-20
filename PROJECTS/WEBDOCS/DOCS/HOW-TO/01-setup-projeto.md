@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Setup do Projeto
 
 Guia para configurar ambiente de desenvolvimento local do WEBDOCS permitindo executar site, editar conteúdo, e testar mudanças antes de commit.
@@ -13,8 +18,3 @@ Copiar arquivo .env.example para .env e preencher variáveis de ambiente. Variá
 Executar servidor de desenvolvimento com bun run dev. Site acessível em http://localhost:4321 com hot reload automático em mudanças de código e conteúdo. Console mostra erros de build e validação.
 
 Testar autenticação acessando /dev/ no navegador. Redirect para Keycloak indica integração funcionando. Login com credenciais de desenvolvedor para acessar seção protegida. Se auth não necessária para desenvolvimento, variável SKIP_AUTH=true desabilita verificação localmente.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

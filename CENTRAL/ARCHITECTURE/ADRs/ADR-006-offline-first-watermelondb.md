@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # ADR-006: Escolha de Arquitetura Offline-First com WatermelonDB
 
 Decisão arquitetural escolhendo arquitetura offline-first para aplicativo mobile REURBCAD com WatermelonDB como database local justificada por requisito crítico de coleta de dados em campo em áreas rurais e comunidades periféricas sem cobertura celular confiável onde trabalho de técnicos não pode depender de conectividade intermitente sob risco de perda de produtividade e dados coletados, experiência de usuário superior com responsividade instantânea em todas operações (listagens buscas formulários) eliminando latência de rede e loading spinners frustrantes aumentando satisfação e adoção do app, resiliência a falhas de rede onde problemas de conectividade não bloqueiam trabalho permitindo técnicos continuarem cadastros mesmo durante interrupções temporárias ou degradação de sinal, economia de dados móveis reduzindo consumo de plano celular corporativo através de sincronização inteligente apenas de deltas e compressão de payloads importante para prefeituras com orçamento limitado, e escalabilidade melhorada desacoplando carga de leitura do backend onde milhares de consultas locais não geram tráfego no servidor reduzindo custos de infraestrutura e melhorando performance global do sistema.
@@ -13,9 +18,3 @@ Consequências positivas incluem UX excepcional com app sempre responsivo indepe
 Configuração específica escolhida utiliza WatermelonDB 0.27+ com JSI habilitado para performance máxima, SQLite como backend com WAL mode habilitado para melhor concorrência entre leitura e escrita, sync automático a cada 15 minutos quando conectado em WiFi ou manualmente via pull-to-refresh em celular para economizar dados, batch size de 500 registros por request de sync balanceando payload com número de requests, conflict resolution usando last-write-wins por default com UI de merge manual para conflitos em campos críticos (geometria status titular), e retention policy deletando registros locais mais antigos que 6 meses mantendo database compacto enquanto preserva dados recentes para acesso offline.
 
 Status da decisão é aprovado e implementado desde início do projeto em 2024-Q3, com revisão prevista apenas se WatermelonDB demonstrar limitações críticas de performance ou sync (improvável dado adoção por apps enterprise como TrailGuide e ProductHunt) ou se surgir solução offline-first fundamentalmente superior.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

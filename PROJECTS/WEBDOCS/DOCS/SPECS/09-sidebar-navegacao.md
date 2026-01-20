@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Sidebar e Navegação
 
 Configuração de navegação define estrutura do sidebar, ordem de seções, labels customizados, e ícones para melhor orientação do usuário.
@@ -15,8 +20,3 @@ Badges indicam conteúdo especial: "Novo" para funcionalidades recentes por 30 d
 Autogenerate em grupos gera links automaticamente de estrutura de pastas. Útil para seções com muitas páginas como manuais. Ordem controlada por campo order no frontmatter de cada página.
 
 Responsividade mantém sidebar visível em desktop e transforma em menu hamburger em mobile. Breadcrumbs acima do conteúdo orientam localização atual na hierarquia.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Acessibilidade
 
 WEBDOCS segue WCAG 2.1 nível AA garantindo que documentação é acessível para pessoas com deficiências visuais, auditivas, motoras e cognitivas. Starlight fornece base acessível mas conteúdo deve seguir práticas adicionais.
@@ -13,8 +18,3 @@ Contraste de cores segue ratio mínimo 4.5:1 para texto normal e 3:1 para texto 
 Tabelas têm headers de coluna marcados com th e scope apropriado. Evitar tabelas complexas com células mescladas. Tabelas de dados devem ter caption ou título descritivo. Considerar listas como alternativa para dados simples.
 
 Vídeos embutidos devem ter legendas ou transcrição disponível. YouTube fornece legendas automáticas mas revisar para garantir precisão. Áudio significativo deve ter alternativa textual.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

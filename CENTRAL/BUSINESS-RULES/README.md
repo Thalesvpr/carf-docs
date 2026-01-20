@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # BUSINESS-RULES
 
 Regras de negócio que governam o comportamento do sistema CARF, assegurando compliance legal, integridade de dados e aderência aos processos estabelecidos.
@@ -8,10 +13,6 @@ As [regras de workflow](./WORKFLOW-RULES/README.md) governam transições de sta
 
 As [regras de legitimação](./LEGITIMATION-RULES/README.md) estabelecem requisitos específicos conforme Lei 13.465/2017, diferenciando as modalidades REURB-S (interesse social) e REURB-E (interesse específico) quanto a área, custos e documentação obrigatória.
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Indice por Dominio (22 arquivos)
@@ -25,8 +26,11 @@ As [regras de legitimação](./LEGITIMATION-RULES/README.md) estabelecem requisi
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Subpastas
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- [[CENTRAL/BUSINESS-RULES/LEGITIMATION-RULES/README|LEGITIMATION-RULES]]
+- [[CENTRAL/BUSINESS-RULES/VALIDATION-RULES/README|VALIDATION-RULES]]
+- [[CENTRAL/BUSINESS-RULES/WORKFLOW-RULES/README|WORKFLOW-RULES]]
+
+<!-- CARF-INDEX-END -->

@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Usuários e Equipes
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (12 requisitos)
@@ -22,11 +26,23 @@
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/03-users-teams/RF-021-criar-usuário.md|RF-021: Criar Usuário]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/03-users-teams/RF-022-editar-usuário.md|RF-022: Editar Usuário]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/03-users-teams/RF-023-desativar-usuário.md|RF-023: Desativar Usuário]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/03-users-teams/RF-024-listar-usuários.md|RF-024: Listar Usuários]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/03-users-teams/RF-025-atribuir-role-a-usuário.md|RF-025: Atribuir Role a Usuário]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/03-users-teams/RF-026-criar-equipe-team.md|RF-026: Criar Equipe (Team)]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/03-users-teams/RF-027-editar-equipe.md|RF-027: Editar Equipe]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/03-users-teams/RF-028-listar-equipes.md|RF-028: Listar Equipes]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/03-users-teams/RF-029-vincular-usuário-a-equipe.md|RF-029: Vincular Usuário a Equipe]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/03-users-teams/RF-030-filtrar-comunidades-por-equipe.md|RF-030: Filtrar Comunidades por Equipe]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/03-users-teams/RF-031-perfil-de-usuário.md|RF-031: Perfil de Usuário]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/03-users-teams/RF-032-redefinir-senha.md|RF-032: Redefinir Senha]]
+
+<!-- CARF-INDEX-END -->

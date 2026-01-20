@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Deploy para Vercel
 
 Guia para configurar e executar deploy do WEBDOCS na plataforma Vercel.
@@ -15,8 +20,3 @@ Deploy automático acontece em push para branch main. Vercel detecta push via we
 Preview deployments criados automaticamente para pull requests. URL única por PR permite review de mudanças. Comments automáticos no PR linkam para preview. Útil para validar mudanças de conteúdo e código antes de merge.
 
 Monitorar deploys no dashboard Vercel em Deployments. Logs de build disponíveis para debug de falhas. Analytics mostram métricas de performance e uso. Alertas configuráveis para falhas de deploy ou degradação de performance.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

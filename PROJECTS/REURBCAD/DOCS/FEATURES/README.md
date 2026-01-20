@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-11
+---
+
 # REURBCAD - Features
 
 Aplicativo mobile React Native Expo implementando coleta de dados offline-first para field collectors trabalharem áreas sem internet capturando informações unidades habitacionais ocupações titulares fotografias geolocalizações através de interface touch-optimized com navegação bottom tabs stack navigator formulários multi-step validações client-side persistência local WatermelonDB sincronização background queue-based quando conexão disponível garantindo zero data loss mesmo semanas offline via arquitetura offline-first local-first patterns onde device é source of truth primária sync bidirecional merge conflicts resolution last-write-wins strategy.
@@ -18,21 +23,15 @@ Arquitetura offline-first implementa local database WatermelonDB como source of 
 
 Relacionamento requirements implementando UC-004 coleta campo mobile UC-001 cadastro unidades UC-005 sync offline UC-003 vinculação titulares UC-011 gestão equipes UC-008 importação shapefiles garantindo field collectors produtivos offline dados sincronizados automaticamente online accountability rastreamento via GPS timestamps photos evidências compliance LGPD multi-tenancy RLS backend isolando dados municipais diferentes.
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Última atualização:** 2026-01-11
+### Em Revisão
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (5 arquivos)
+- ○ [[PROJECTS/REURBCAD/DOCS/FEATURES/01-field-collection.md|Field Collection - Coleta em Campo]]
+- ○ [[PROJECTS/REURBCAD/DOCS/FEATURES/02-holder-management.md|Holder Management - Gestão de Titulares]]
+- ○ [[PROJECTS/REURBCAD/DOCS/FEATURES/03-offline-sync.md|Offline Sync - Sincronização]]
+- ○ [[PROJECTS/REURBCAD/DOCS/FEATURES/04-shapefile-import.md|Shapefile Import - Importação]]
+- ○ [[PROJECTS/REURBCAD/DOCS/FEATURES/05-team-management.md|Team Management - Gestão de Equipes]]
 
-| ID | Titulo |
-|:---|:-------|
-| [01-field-collection](./01-field-collection.md) | Field Collection - Coleta em Campo |
-| [02-holder-management](./02-holder-management.md) | Holder Management - Gestão de Titulares |
-| [03-offline-sync](./03-offline-sync.md) | Offline Sync - Sincronização |
-| [04-shapefile-import](./04-shapefile-import.md) | Shapefile Import - Importação |
-| [05-team-management](./05-team-management.md) | Team Management - Gestão de Equipes |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Pronto
+<!-- CARF-INDEX-END -->

@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # ADR-022: Hierarquia de Roles com Composite Roles no Keycloak
 
 Decisão arquitetural definindo sistema de controle de acesso baseado em roles (RBAC) com hierarquia operacional de seis níveis usando composite roles do Keycloak ao invés de permissões granulares individuais ou claims-based authorization justificada por simplicidade conceitual onde cada usuário tem uma ou mais roles claramente definidas (user, field-agent, analyst, admin, super-admin, dev) facilitando comunicação entre equipe técnica e stakeholders de negócio que entendem intuitivamente "Maria é analyst" versus complexidade de "Maria tem permissões X, Y, Z em recursos A, B, C", herança automática através de composite roles onde admin herda tudo de analyst que herda tudo de field-agent que herda de user eliminando duplicação de configuração e risco de inconsistências onde admin esquece de receber nova permissão adicionada a analyst, auditabilidade clara com roles atribuídas visíveis no token JWT e Admin Console do Keycloak permitindo responder "quem tem acesso a quê" instantaneamente versus rastrear permissões individuais espalhadas por múltiplos sistemas, integração nativa com Keycloak que implementa composite roles out-of-box sem código customizado necessário facilitando manutenção e upgrades, e compatibilidade com padrões de mercado onde RBAC é abordagem dominante em sistemas enterprise especialmente governamentais permitindo integração futura com outros sistemas de prefeituras ou órgãos que já usam modelos similares.
@@ -11,9 +16,3 @@ Implementação no Keycloak utiliza realm roles configuradas como composite role
 Alternativas consideradas incluem permissions-based authorization (rejeitado por explosão combinatória de permissões granulares dificultando gestão com centenas de permissões versus seis roles claras além de exigir mapeamento complexo permissão-para-recurso em cada endpoint), claims-based authorization (rejeitado por falta de hierarquia nativa exigindo lógica customizada para simular herança e complicando queries do tipo "quem tem acesso a X" que precisam avaliar múltiplas claims), attribute-based access control ABAC (rejeitado por complexidade excessiva para requirements atuais onde decisões de acesso dependem apenas de role e tenant sem necessidade de políticas condicionais baseadas em contexto temporal geográfico ou atributos dinâmicos), e custom authorization service (rejeitado por overhead de manutenção de componente crítico de segurança separado quando Keycloak já fornece RBAC robusto testado e mantido pela comunidade).
 
 Consequências positivas incluem simplicidade de gestão de acessos via Admin Console do Keycloak sem código, onboarding acelerado de novos funcionários atribuindo role apropriada em segundos, compliance facilitado com modelo de acesso claramente documentado e auditável, performance excelente com verificação de role via lookup simples no token sem roundtrip para authorization service, e flexibilidade para adicionar novas roles no futuro sem refatorar código existente. Consequências negativas incluem granularidade limitada onde casos especiais (ex: analyst que só aprova unidades de área específica) exigem roles adicionais ou lógica condicional, rigidez parcial onde mudanças na hierarquia requerem reconfiguração de composite roles podendo afetar todos usuários da role alterada, e dependência do Keycloak onde migração para outro IdP exigiria reimplementar composite roles ou converter para modelo flat.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # SECURITY
 
 Políticas de segurança e compliance do sistema CARF.
@@ -10,10 +15,6 @@ A criptografia usa AES-256 para dados em repouso, TLS 1.3 para dados em trânsit
 
 As [políticas](./POLICIES/README.md) definem regras de autenticação, autorização, criptografia e LGPD. Os [procedimentos de incidentes](./INCIDENTS/README.md) cobrem classificação, resposta, contenção e post-mortem.
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Indice por Dominio (9 arquivos)
@@ -26,8 +27,10 @@ As [políticas](./POLICIES/README.md) definem regras de autenticação, autoriza
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Subpastas
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- [[CENTRAL/SECURITY/INCIDENTS/README|INCIDENTS]]
+- [[CENTRAL/SECURITY/POLICIES/README|POLICIES]]
+
+<!-- CARF-INDEX-END -->

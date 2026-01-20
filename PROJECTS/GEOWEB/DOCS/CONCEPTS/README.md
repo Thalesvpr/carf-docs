@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-10
+---
+
 # CONCEPTS - GEOWEB
 
 Conceitos fundamentais do portal GEOWEB React.
@@ -17,21 +22,3 @@ Conceitos fundamentais do portal GEOWEB React.
 - **Client State** - Zustand para auth state, tenant context, UI preferences
 
 **Form Handling** - React Hook Form + Zod validation, field-level errors, submit optimistic updates
-
----
-
-**Última atualização:** 2026-01-10
-
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (3 arquivos)
-
-| ID | Titulo |
-|:---|:-------|
-| [01-authentication](./01-authentication.md) | 01-authentication |
-| [02-protected-routes](./02-protected-routes.md) | 02-protected-routes |
-| [03-tenant-switcher](./03-tenant-switcher.md) | 03-tenant-switcher |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Incompleto
-Descrição: Falta parágrafo denso introdutório.

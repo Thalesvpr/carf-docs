@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Banner de Notificações
 
 Banner no topo do site exibe avisos importantes como manutenções programadas, alertas de segurança, ou anúncios de novas funcionalidades. Conteúdo editável via Decap CMS permite equipe não-técnica publicar avisos sem deploy.
@@ -11,8 +16,3 @@ Estilo visual usa cores semânticas do design system com ícone apropriado para 
 Uso típico inclui aviso de manutenção programada criado dias antes com startDate no momento da manutenção, alerta de indisponibilidade durante incidentes com type error, e anúncio de nova versão com type success e link para changelog.
 
 Fallback para arquivo JSON local permite banners de emergência sem depender do CMS. Arquivo src/config/emergency-banner.json é verificado primeiro e sobrepõe banners do CMS se presente. Útil para comunicar indisponibilidade do próprio CMS.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

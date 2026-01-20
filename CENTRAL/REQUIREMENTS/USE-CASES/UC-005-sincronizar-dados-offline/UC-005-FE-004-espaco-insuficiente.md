@@ -1,6 +1,6 @@
 ---
-modules: [GEOAPI, REURBCAD]
-epic: security
+status: review
+updated: 2025-12-30
 ---
 
 # UC-005-FE-004: Espaço Insuficiente (Pull)
@@ -10,14 +10,3 @@ Fluxo de exceção do UC-005 Sincronizar Dados Offline ocorrendo na fase PULL qu
 **Ponto de Desvio:** Fase PULL do UC-005 (após receber total_size mas antes de baixar)
 
 **Retorno:** Após liberar espaço, FIELD_AGENT retenta e pull completa com sucesso
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

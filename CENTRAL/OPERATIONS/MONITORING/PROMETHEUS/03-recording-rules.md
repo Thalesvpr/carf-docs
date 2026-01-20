@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Recording Rules
 
 Recording rules do Prometheus para pré-computar agregações frequentes e otimizar queries de dashboards.
@@ -143,9 +148,3 @@ Benefícios:
 - Queries mais rápidas em dashboards
 - Consistência entre alertas e visualizações
 - Permite histórico de métricas agregadas
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

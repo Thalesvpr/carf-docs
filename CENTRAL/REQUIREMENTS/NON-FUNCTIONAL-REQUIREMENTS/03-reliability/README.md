@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Confiabilidade
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (12 requisitos)
@@ -23,13 +27,23 @@
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
 
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
+<!-- CARF-INDEX-START -->
+## Documentos
 
----
+### Em Revisão
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/03-reliability/RNF-036-uptime.md|RNF-036: Uptime]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/03-reliability/RNF-037-recuperacao-automatica-falhas.md|RNF-037: Recuperação de Falhas]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/03-reliability/RNF-038-backup-automatico-dados.md|RNF-038: Backup de Dados]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/03-reliability/RNF-039-rpo-objetivo-ponto-recuperacao.md|RNF-039: RPO (Recovery Point Objective)]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/03-reliability/RNF-040-rto-objetivo-tempo-recuperacao.md|RNF-040: RTO (Recovery Time Objective)]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/03-reliability/RNF-041-degradacao-graciosa-sistema.md|RNF-041: Graceful Degradation]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/03-reliability/RNF-042-deploy-zero-downtime.md|RNF-042: Zero Downtime Deployment]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/03-reliability/RNF-043-monitoramento-erros-aplicacao.md|RNF-043: Monitoramento de Erros]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/03-reliability/RNF-045-validacao-integridade-dados.md|RNF-045: Validação de Integridade]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/03-reliability/RNF-051-undo-redo-acoes.md|RNF-051: Undo/Redo]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/03-reliability/RNF-055-atalhos-teclado.md|RNF-055: Atalhos de Teclado]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/03-reliability/RNF-065-rollback-de-deploy.md|RNF-065: Rollback de Deploy]]
+
+<!-- CARF-INDEX-END -->

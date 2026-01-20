@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-11
+---
+
 # GEOWEB - Portal Web
 
 Portal web React TypeScript para gestão REURB mapas interativos cadastro unidades legitimação relatórios. Stack: React 18 TypeScript Vite TanStack Query Zustand shadcn/ui react-leaflet React Hook Form Zod OAuth2 PKCE protected routes multi-tenancy.
@@ -10,21 +15,13 @@ Portal web React TypeScript para gestão REURB mapas interativos cadastro unidad
 - **[HOW-TO/](./HOW-TO/README.md)** - Configuração local Keycloak login testes
 - **[LAYERS/](./LAYERS/README.md)** - Components pages hooks services utils types
 
----
+<!-- CARF-INDEX-START -->
+## Subpastas
 
-**Última atualização:** 2026-01-11
+- [[PROJECTS/GEOWEB/DOCS/ARCHITECTURE/README|ARCHITECTURE]]
+- [[PROJECTS/GEOWEB/DOCS/CONCEPTS/README|CONCEPTS]]
+- [[PROJECTS/GEOWEB/DOCS/FEATURES/README|FEATURES]]
+- [[PROJECTS/GEOWEB/DOCS/HOW-TO/README|HOW-TO]]
+- [[PROJECTS/GEOWEB/DOCS/LAYERS/README|LAYERS]]
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (16 arquivos)
-
-| # | Dominio | Arquivos |
-|:--|:--------|:--------:|
-|  | [Architecture](./ARCHITECTURE/README.md) | 2 |
-|  | [Concepts](./CONCEPTS/README.md) | 3 |
-|  | [Features](./FEATURES/README.md) | 7 |
-|  | [How To](./HOW-TO/README.md) | 3 |
-|  | [Layers](./LAYERS/README.md) | 1 |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Pronto
+<!-- CARF-INDEX-END -->

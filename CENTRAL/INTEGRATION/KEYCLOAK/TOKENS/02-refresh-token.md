@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Refresh Token
 
 Refresh token permite obter novo access token sem solicitar credenciais do usuário novamente. Tempo de vida padrão de 30 minutos configurado em Realm Settings > Tokens > SSO Session Idle. Refresh token rotation ativado gera novo refresh token a cada uso invalidando o anterior.
@@ -9,9 +14,3 @@ Fluxo de refresh silencioso: access token expira, GEOAPI retorna 401 Unauthorize
 Refresh token inválido (expirado, já usado, ou revogado) resulta em redirecionamento para tela de login. Usuário deve autenticar novamente com credenciais.
 
 REURBCAD mantém refresh token criptografado em secure storage do dispositivo (Keychain iOS, Keystore Android) para suportar modo offline. Ao retornar online, app tenta refresh; se falhar por expiração, solicita reautenticação.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # STORAGE
 
 Implementação IFileStorage para gerenciamento arquivos (documentos, fotos, PDFs) do GEOAPI usando storage S3-compatible com MinIO em desenvolvimento e AWS S3 em produção suportando upload/download multipart streaming de arquivos grandes, URLs pré-assinadas temporárias para acesso direto sem passar pela API e organização hierárquica por tenant/feature/entity. S3FileStorage encapsula AWS SDK configurado via appsettings.json com buckets segregados por ambiente (dev/staging/prod), prefixos por tenant garantindo isolamento físico dados, e metadata customizado armazenando content-type, tenant_id, entity_id rastreável para audit. Upload chunked permite arquivos > 100MB com progress tracking e retry automático de chunks falhados, virus scanning via ClamAV antes de aceitar arquivo permanentemente e compressão/otimização automática de imagens via ImageSharp reduzindo custos storage. URLs pré-assinadas geradas com expiration 1h permitem frontend fazer upload/download direto do S3 reduzindo carga na API mas com validação prévia de permissões usuário antes de gerar URL.
@@ -20,18 +25,11 @@ Implementação IFileStorage para gerenciamento arquivos (documentos, fotos, PDF
 - 07-bucket-strategy.md - Estrutura buckets e prefixos
 - 08-cleanup-policies.md - Lifecycle e remoção arquivos orfãos
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Última atualização:** 2026-01-12
-**Status do arquivo**: Incompleto
-Descrição: Falta seção GENERATED com índice automático; Muitas listas com bullets (8) antes do rodapé - considerar converter para parágrafo denso.
+### Em Revisão
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (1 arquivo)
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/INFRA/STORAGE/01-file-storage.md|File Storage]]
 
-| ID | Titulo |
-|:---|:-------|
-| [01-file-storage](./01-file-storage.md) | File Storage |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
+<!-- CARF-INDEX-END -->

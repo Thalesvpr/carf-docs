@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # ARCHITECTURE
 
 Arquitetura de customização Keycloak CARF baseada em três pilares: themes FreeMarker para UI login account email sem fork do source, SPIs Java para lógica server-side como validators e event listeners, e realm configuration versionada JSON para declarar clients roles mappers. Stack usa Keycloak 24 Quarkus distribution com PostgreSQL 16, Docker image customizada empacotando themes em /themes/carf/ e extensions em /providers/, CI/CD GitHub Actions buildando imagem testando via Playwright API e deployando rolling update Kubernetes.
@@ -8,19 +13,13 @@ Arquitetura de customização Keycloak CARF baseada em três pilares: themes Fre
 - **[02-theme-architecture.md](./02-theme-architecture.md)** - Arquitetura temas login account email herança hot reload
 - **[03-extension-development.md](./03-extension-development.md)** - Desenvolvimento extensões Java SPIs Maven Arquillian
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Última atualização:** 2026-01-12
+### Em Revisão
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (3 arquivos)
+- ○ [[PROJECTS/KEYCLOAK/DOCS/ARCHITECTURE/01-customization-strategy.md|Estratégia de Customização do Keycloak]]
+- ○ [[PROJECTS/KEYCLOAK/DOCS/ARCHITECTURE/02-theme-architecture.md|Arquitetura de Temas Keycloak]]
+- ○ [[PROJECTS/KEYCLOAK/DOCS/ARCHITECTURE/03-extension-development.md|Extension Development - SPIs Java]]
 
-| ID | Titulo |
-|:---|:-------|
-| [01-customization-strategy](./01-customization-strategy.md) | Estratégia de Customização do Keycloak |
-| [02-theme-architecture](./02-theme-architecture.md) | Arquitetura de Temas Keycloak |
-| [03-extension-development](./03-extension-development.md) | Extension Development - SPIs Java |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Pronto
+<!-- CARF-INDEX-END -->

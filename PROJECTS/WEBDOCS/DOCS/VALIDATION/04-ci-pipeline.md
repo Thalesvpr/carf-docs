@@ -1,3 +1,13 @@
+---
+id: ""
+type: ARCH
+modules: []
+epic: ""
+status: review
+created: 2026-01-20
+updated: 2026-01-20
+---
+
 # Pipeline de CI
 
 GitHub Actions executa validações automáticas em pull requests e deploys garantindo qualidade antes de merge e publicação.

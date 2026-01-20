@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-10
+---
+
 # CONCEPTS - REURBCAD
 
 Conceitos fundamentais do REURBCAD React Native.
@@ -14,20 +19,13 @@ Conceitos fundamentais do REURBCAD React Native.
 
 **Sync Strategy** - Last-write-wins, conflict detection, merge strategies
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Última atualização:** 2026-01-10
+### Em Revisão
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (3 arquivos)
+- ○ [[PROJECTS/REURBCAD/DOCS/CONCEPTS/01-authentication.md|01-authentication]]
+- ○ [[PROJECTS/REURBCAD/DOCS/CONCEPTS/02-offline-authentication.md|02-offline-authentication]]
+- ○ [[PROJECTS/REURBCAD/DOCS/CONCEPTS/03-secure-storage.md|03-secure-storage]]
 
-| ID | Titulo |
-|:---|:-------|
-| [01-authentication](./01-authentication.md) | 01-authentication |
-| [02-offline-authentication](./02-offline-authentication.md) | 02-offline-authentication |
-| [03-secure-storage](./03-secure-storage.md) | 03-secure-storage |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Incompleto
-Descrição: Falta parágrafo denso introdutório.
+<!-- CARF-INDEX-END -->

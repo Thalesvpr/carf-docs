@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-16
+---
+
 # API E2E Tests
 
 Testes end-to-end da API GEOAPI usando TestContainers.
@@ -118,8 +123,3 @@ private async Task<UnitDto> CreateUnitAsync()
     return await response.Content.ReadFromJsonAsync<UnitDto>();
 }
 ```
-
----
-
-**Última atualização:** 2026-01-16
-**Status do arquivo**: Pronto

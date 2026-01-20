@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-09
+---
+
 # Units API - Gerenciamento de Unidades Habitacionais
 
 ## Visão Geral
@@ -677,9 +682,3 @@ import type {
 - 📖 **CENTRAL/API/UNITS/** - Especificação completa da API
 - 📖 - Entidade Unit
 - 📖 **CENTRAL/REQUIREMENTS/UNITS/** - Requisitos funcionais
-
----
-
-**Última atualização:** 2026-01-09
-**Status do arquivo**: Incompleto
-Descrição: Contém code blocks - considerar converter para prosa.

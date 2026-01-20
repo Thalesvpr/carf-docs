@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB, REURBCAD]
-epic: scalability
+status: review
+updated: 2025-12-30
 ---
 
 # UC-006-FE-002: Dados Insuficientes
@@ -10,14 +10,3 @@ Fluxo de exceção do UC-006 Gerar Relatório de Comunidade ocorrendo no passo 1
 **Ponto de Desvio:** Passo 11.1 do UC-006 (busca de dados retorna vazio)
 
 **Retorno:** Job cancelado, usuário notificado com diagnóstico e sugestões de ação
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

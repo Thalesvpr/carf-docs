@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Service Health Check
 
 Runbook para verificar saúde de todos os serviços do ecossistema CARF e identificar componentes com problemas.
@@ -86,9 +91,3 @@ Verificar no Alertmanager:
 ```bash
 curl -s http://alertmanager:9093/api/v2/alerts | jq '.[] | select(.status.state=="active")'
 ```
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

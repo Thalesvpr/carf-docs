@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Seção Changelog
 
 Seção /changelog/ documenta release notes das versões do ecossistema CARF permitindo usuários acompanharem novidades, correções e mudanças.
@@ -13,8 +18,3 @@ Tom de escrita é informativo focado no impacto para usuários. Evitar detalhes 
 Página index da seção lista todas releases com versão, data, e highlights. Filtro opcional por aplicação permite ver apenas releases relevantes.
 
 Integração com banner de notificações pode destacar novas releases por período configurável alertando usuários sobre atualizações importantes.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

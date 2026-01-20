@@ -1,6 +1,6 @@
 ---
-modules: [GEOAPI, GEOWEB, REURBCAD]
-epic: security
+status: review
+updated: 2025-12-30
 ---
 
 # UC-005: Sincronizar Dados Offline
@@ -28,14 +28,3 @@ Caso de uso permitindo app mobile REURBCAD sincronizar dados coletados offline p
 **Rastreabilidade:**
 - RF-187, RF-188, RF-189, RF-190, RF-192, RF-193, RF-194, RF-195
 - US-050, US-051, US-052
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

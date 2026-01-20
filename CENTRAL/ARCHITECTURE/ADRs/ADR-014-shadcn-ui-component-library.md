@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # ADR-014: Escolha do shadcn/ui + Radix UI como Component Library
 
 Decisão arquitetural escolhendo shadcn/ui baseado em Radix UI como biblioteca de componentes para frontends React (GEOWEB ADMIN @carf/ui) justificada por abordagem copy-paste ao invés de NPM dependency permitindo customização completa de componentes sem eject ou fork mantendo controle total sobre código e possibilitando ajustes específicos de UX/UI conforme requisitos de prefeituras sem limitações de biblioteca externa, acessibilidade WAI-ARIA compliant out-of-the-box através de Radix UI primitives garantindo keyboard navigation screen reader support focus management conforme WCAG 2.1 AA exigido para sistemas governamentais brasileiros acessíveis a pessoas com deficiências, headless architecture de Radix separando lógica de apresentação permitindo styling com Tailwind CSS mantendo design system consistente sem CSS-in-JS overhead ou runtime styling costs melhorando performance, composability de primitivos permitindo criar variantes complexas (ex: ComboBox = Popover + Command + Input) reutilizando building blocks testados e mantidos, type safety completo com TypeScript garantindo props corretos em compile-time reduzindo bugs de runtime, zero dependencies conflitantes pois componentes são copiados para codebase eliminando version conflicts de peer dependencies comuns em libraries monolíticas como Material-UI, e comunidade ativa com 40k+ stars GitHub e adoção por Vercel Linear Shadcn indicando qualidade e longevidade.
@@ -11,9 +16,3 @@ Consequências positivas incluem bundle size mínimo com tree-shaking perfeito p
 Configuração específica utiliza shadcn/ui com theme customizado em tailwind.config.ts definindo cores primárias secundárias borders radius conforme design system CARF, components em `components/ui/` copiados via CLI e modificados conforme necessário, cn() utility para merge de classes Tailwind evitando conflicts, clsx + tailwind-merge garantindo precedence correto de classes, e Storybook documentando componentes da @carf/ui library compartilhada entre projetos.
 
 Status da decisão é aprovado e implementado desde início do projeto em 2024-Q3, com revisão prevista se Radix introduzir breaking changes significativos ou se surgir alternativa headless superior.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

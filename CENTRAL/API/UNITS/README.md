@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # UNITS
 
 Schemas JSON para unidades habitacionais do CARF.
@@ -21,10 +26,6 @@ O UnitFilterRequest permite filtros por status, city, neighborhood, área mínim
 - UnitListResponse
 - UnitFilterRequest
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (3 arquivos)
@@ -38,8 +39,13 @@ O UnitFilterRequest permite filtros por status, city, neighborhood, área mínim
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/API/UNITS/01-create-unit.md|Create Unit]]
+- ○ [[CENTRAL/API/UNITS/02-get-unit.md|Get Unit]]
+- ○ [[CENTRAL/API/UNITS/03-list-units.md|List Units]]
+
+<!-- CARF-INDEX-END -->

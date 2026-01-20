@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Interoperabilidade
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (3 requisitos)
@@ -14,13 +18,14 @@
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
 
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
+<!-- CARF-INDEX-START -->
+## Documentos
 
----
+### Em Revisão
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/08-interoperability/RNF-085-api-rest-padrao.md|RNF-085: API REST Padrão]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/08-interoperability/RNF-086-openapi-spec.md|RNF-086: OpenAPI Spec]]
+- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/08-interoperability/RNF-088-oauth2-providers.md|RNF-088: OAuth2 Providers]]
+
+<!-- CARF-INDEX-END -->

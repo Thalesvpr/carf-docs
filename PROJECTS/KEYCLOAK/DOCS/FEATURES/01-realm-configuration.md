@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-11
+---
+
 # Realm Configuration - Configuração Realm
 
 Configuração realm CARF implementada criando realm dedicado isolando configurações clients users roles do master realm através de Admin Console Realms Add realm Name "carf" Display name "CARF - Sistema de Regularização Fundiária" HTML Display name com logo img tag Enable checkbox marcado Save, configurando 6 clients OAuth2 cada tipo aplicação flow específico geoweb React SPA public Authorization Code PKCE reurbcad React Native mobile public PKCE offline_access geoapi .NET backend bearer-only JWT validation geogis Python desktop confidential Client Credentials admin React SPA proxy confidential secret webdocs VitePress static public, Realm Settings configurando Login tab User registration ON Remember me ON Email as username OFF Login with email ON Verify email ON Forgot password ON, Tokens tab Access Token Lifespan 5 minutes SSO Session Idle 30 minutes SSO Session Max 10 hours Offline Session Idle 30 days Refresh Token Max Reuse 0, Email tab SMTP server host port TLS authentication From address display name testando connection.
@@ -9,8 +14,3 @@ Roles configuração realm-wide Roles tab Add Role Name "field-collector" Descri
 Groups configuração opcional Groups tab Create group Name "Prefeitura São Paulo" Attributes tenant_id value UUID Members adicionando users pertencentes município, subgroups hierarchy Equipe Norte Equipe Sul organizando structure, role mappings group-level Role Mappings tab permissions herdados members automatic assignment, group claims protocol mapper opcional adicionando groups claim JWT token array group paths hierarchical, User Federation opcional integrando LDAP Active Directory external user stores User Federation tab Add provider LDAP configurando connection URL Bind DN credentials Vendor Active Directory Edit Mode WRITABLE Import Users ON Sync Registrations ON periodic sync full incremental batching, identity brokering opcional integrando Google Facebook Microsoft social login Identity Providers tab Add provider Google Client ID Secret Redirect URI configurando OAuth2 flow linking accounts existing users automatic.
 
 Export import configuração Realm Settings Action dropdown Export selecionando Export clients ON Export groups and roles ON Export users OFF excluindo dados sensíveis LGPD gerando realm-carf.json commitando Git CENTRAL/INTEGRATION/KEYCLOAK/realm-export.json versionamento IaC Infrastructure as Code, import automático Docker Compose volumes mount /opt/keycloak/data/import/realm-carf.json command --import-realm flag startup import se realm não existe skip se existe evitando overwrite production, partial import Admin Console Partial Import selecionando realm-export.json resources específicos clients roles importando apenas necessário evitando full replacement, automation via Admin REST API kcadm.sh CLI scripts Bash PowerShell chamando endpoints GET POST PUT DELETE programmatically gerenciando configuração CI/CD pipelines GitOps workflow mudanças realm triggering validation diff approval apply rollback.
-
----
-
-**Última atualização:** 2026-01-11
-**Status do arquivo**: Pronto

@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # ADR-011: Biblioteca TypeScript Compartilhada @carf/tscore
 
 Decisão arquitetural criando biblioteca TypeScript compartilhada @carf/tscore como NPM package publicado no GitHub Packages para eliminar duplicação de código entre projetos frontend TypeScript (GEOWEB React, ADMIN Next.js, WEBDOCS VitePress) centralizando autenticação Keycloak OAuth2/OIDC (client initialization, token management, refresh automático, role checking), value objects com validações brasileiras (CPF com algoritmo mod 11 completo conforme CENTRAL/BUSINESS-RULES/VALIDATION-RULES/cpf-validation.md rejeitando sequências conhecidas e validando dígitos verificadores, CNPJ com validação de check digits, Email RFC 5322, Phone formato brasileiro com DDD), types TypeScript do domínio (Unit, Holder, Community, Tenant com 36+ entities sincronizadas com backend .NET via C# → TS type generation), enums de workflow (UnitStatus com 6 estados DRAFT→PENDING→IN_REVIEW→APPROVED/REJECTED/REQUIRES_CHANGES, LegitimationStatus com 11 estados do processo REURB Lei 13.465/2017, Role com hierarquia 5 níveis SUPER_ADMIN→ADMIN→MANAGER→ANALYST→FIELD_AGENT), hooks React para autenticação (useAuth, useKeycloak, ProtectedRoute component), composables Vue 3 para autenticação (useAuth, initAuth), e DTOs para comunicação API (CreateUnitDto, UpdateHolderDto, etc) garantindo contratos type-safe entre frontend e backend eliminando erros runtime causados por dessincronia de tipos especialmente em campos obrigatórios vs opcionais que causavam crashes silenciosos em produção.
@@ -21,9 +26,3 @@ Compatibilidade com projetos mantida através de peer dependencies `react: ^18.0
 Próximos passos incluem adicionar mais value objects conforme necessário (CREA para engenheiros responsáveis técnicos, GeoPoint para validação de coordenadas geográficas com bounds check Brasil, Address para endereços estruturados com validação de CEP), implementar GeoJSON helpers para manipulação de geometrias compartilhadas entre frontend e QGIS plugin evitando conversões manuais error-prone, adicionar API client helpers com interceptors padrão para adicionar Authorization header automaticamente retry logic error handling consistent notifications facilitando setup de novos projetos, considerar geração automática de types TypeScript a partir de C# models usando Typewriter ou similares eliminando conversão manual propensa a erros e garantindo sincronia perfeita entre backend e frontend, e avaliar performance de value objects em hot paths otimizando regex ou lazy validation se benchmarks indicarem bottleneck (improvável dado simplicidade de operações mas prudente monitorar).
 
 Status da decisão é aprovado e implementado desde 2026-01-09, com revisão prevista trimestralmente para avaliar se overhead de manutenção de package separado justifica benefícios ou se crescimento de complexidade sugere migração para monorepo approach com tooling adequado, monitorar adoção em novos projetos TypeScript (futuro carf-admin Next.js deve consumir desde inception), e coletar feedback de desenvolvedores sobre pain points da lib como ergonomia de APIs dificuldade de debug imports confusos para iterar melhorias contínuas maximizando produtividade e satisfaction da equipe.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

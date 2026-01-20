@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # MIDDLEWARES
 
 Middlewares globais do GEOAPI interceptando pipeline HTTP ASP.NET Core em ordem específica aplicando cross-cutting concerns para todos requests. AuthenticationMiddleware valida JWT bearer tokens extraindo claims e populando HttpContext.User antes de qualquer controller executar. ExceptionHandlingMiddleware captura exceções não tratadas convertendo em ProblemDetails JSON padronizado com status code apropriado (500 Internal Server Error, 400 Bad Request para ValidationException) evitando stack traces vazarem para cliente. RequestLoggingMiddleware via Serilog registra método HTTP, path, query string, response status, duração com correlation ID propagado via header X-Correlation-ID rastreando request através sistema distribuído. RateLimitingMiddleware verifica limites por tenant/endpoint baseado em Redis contador incrementado por minuto retornando 429 Too Many Requests quando excedido com header Retry-After. TenantResolutionMiddleware extrai tenant_id de JWT claim ou subdomain injetando em scoped service disponível para repositories aplicarem RLS queries. CorsMiddleware aplica policies permitindo origens autorizadas (frontends GEOWEB/REURBCAD/ADMIN) com credentials e headers específicos.
@@ -10,19 +15,3 @@ Middlewares globais do GEOAPI interceptando pipeline HTTP ASP.NET Core em ordem 
 - 04-rate-limiting-middleware.md - Redis-based throttling
 - 05-tenant-resolution-middleware.md - Multi-tenancy context injection
 - 06-cors-middleware.md - CORS policies configuration
-
----
-
-**Última atualização:** 2026-01-12
-**Status do arquivo**: Incompleto
-Descrição: Falta seção GENERATED com índice automático; Muitas listas com bullets (6) antes do rodapé - considerar converter para parágrafo denso.
-
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (1 arquivo)
-
-| ID | Titulo |
-|:---|:-------|
-| [01-exception-handling](./01-exception-handling.md) | Exception Handling Middleware |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->

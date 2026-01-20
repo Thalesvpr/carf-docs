@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Integration - ADMIN
 
 ## Integrações
@@ -15,9 +20,3 @@ GEOAPI /api/admin/* (role check)
     ↓ client_secret (confidential)
 Keycloak Admin API (gerenciamento)
 ```
-
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição: Contém code blocks - considerar converter para prosa.

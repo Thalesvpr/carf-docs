@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-16
+---
+
 # Ingress e ConfigMap
 
 Manifests base para Ingress e ConfigMap do CARF.
@@ -142,14 +147,3 @@ spec:
       ports:
         - port: 6379
 ```
-
----
-
-**Última atualização:** 2026-01-16
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

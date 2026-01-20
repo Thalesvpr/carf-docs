@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Create Community
 
 Schema e comportamento do endpoint de criação de comunidades/núcleos.
@@ -117,9 +122,3 @@ Content-Type: application/json
 - Comunidade delimita região geográfica que agrupa unidades
 - Unidades dentro do polígono podem ser associadas automaticamente
 - REURB-S isenta de custos; REURB-E tem custos de cartório
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

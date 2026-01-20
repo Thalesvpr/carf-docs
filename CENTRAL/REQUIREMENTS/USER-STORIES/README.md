@@ -1,15 +1,15 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # USER-STORIES
 
 Histórias de usuário do CARF no formato "Como [persona] quero [ação] para [objetivo]", explicando contexto e motivação de cada funcionalidade. Cada user story possui critérios de aceitação em formato Gherkin testável e rastreabilidade para requisitos funcionais e casos de uso relacionados.
 
 As stories estão organizadas por domínio, cobrindo funcionalidades como autenticação com SSO Keycloak, auditoria para compliance LGPD, e isolamento multi-tenant por município.
 
----
 
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
-
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Indice por Dominio (140 user stories)
@@ -37,8 +37,25 @@ As stories estão organizadas por domínio, cobrindo funcionalidades como autent
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Subpastas
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- [[CENTRAL/REQUIREMENTS/USER-STORIES/01-auth-security/README|01-auth-security]]
+- [[CENTRAL/REQUIREMENTS/USER-STORIES/02-tenants/README|02-tenants]]
+- [[CENTRAL/REQUIREMENTS/USER-STORIES/03-users-teams/README|03-users-teams]]
+- [[CENTRAL/REQUIREMENTS/USER-STORIES/04-notifications/README|04-notifications]]
+- [[CENTRAL/REQUIREMENTS/USER-STORIES/05-communities/README|05-communities]]
+- [[CENTRAL/REQUIREMENTS/USER-STORIES/06-units/README|06-units]]
+- [[CENTRAL/REQUIREMENTS/USER-STORIES/07-holders/README|07-holders]]
+- [[CENTRAL/REQUIREMENTS/USER-STORIES/08-documents-media/README|08-documents-media]]
+- [[CENTRAL/REQUIREMENTS/USER-STORIES/09-layers-features/README|09-layers-features]]
+- [[CENTRAL/REQUIREMENTS/USER-STORIES/10-spatial-analysis/README|10-spatial-analysis]]
+- [[CENTRAL/REQUIREMENTS/USER-STORIES/11-annotations/README|11-annotations]]
+- [[CENTRAL/REQUIREMENTS/USER-STORIES/12-surveys/README|12-surveys]]
+- [[CENTRAL/REQUIREMENTS/USER-STORIES/13-legitimation/README|13-legitimation]]
+- [[CENTRAL/REQUIREMENTS/USER-STORIES/14-offline-sync/README|14-offline-sync]]
+- [[CENTRAL/REQUIREMENTS/USER-STORIES/15-data-export/README|15-data-export]]
+- [[CENTRAL/REQUIREMENTS/USER-STORIES/16-reports/README|16-reports]]
+- [[CENTRAL/REQUIREMENTS/USER-STORIES/17-wms-wmts/README|17-wms-wmts]]
+
+<!-- CARF-INDEX-END -->

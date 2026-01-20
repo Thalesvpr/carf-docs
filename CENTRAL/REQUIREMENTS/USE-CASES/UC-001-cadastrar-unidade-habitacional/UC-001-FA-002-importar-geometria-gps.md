@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB, REURBCAD]
-epic: compatibility
+status: review
+updated: 2025-12-30
 ---
 
 # UC-001-FA-002: Importar Geometria de GPS
@@ -24,14 +24,3 @@ Fluxo alternativo do UC-001 Cadastrar Unidade Habitacional desviando no passo 5 
 - Área ≥ 10m²
 
 **Retorno:** Volta ao passo 6 do UC-001 (cálculo de área) com geometria importada validada
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

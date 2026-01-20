@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-20
+---
+
 # Rotas Protegidas
 
 Todas as rotas do WEBDOCS são protegidas e requerem autenticação. O middleware de autorização em src/middleware.ts verifica autenticação e roles do usuário antes de renderizar qualquer conteúdo, controlando acesso às diferentes seções do portal baseado na hierarquia RBAC definida em CENTRAL/INTEGRATION/KEYCLOAK.

@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Usuários e Equipes
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (7 user stories)
@@ -18,13 +22,18 @@
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
 
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
+<!-- CARF-INDEX-START -->
+## Documentos
 
----
+### Em Revisão
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/03-users-teams/US-030-gerenciar-equipes-técnicas.md|US-030: Gerenciar Equipes Técnicas]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/03-users-teams/US-110-visualizar-atividades-de-usuario.md|US-110: Visualizar Atividades de Usuário]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/03-users-teams/US-111-listar-comunidades-de-usuario.md|US-111: Listar Comunidades de Usuário]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/03-users-teams/US-112-gerenciar-roles-de-usuario.md|US-112: Gerenciar Roles de Usuário]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/03-users-teams/US-113-remover-role-especifica-de-usuario.md|US-113: Remover Role Específica de Usuário]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/03-users-teams/US-114-gerenciar-comunidades-de-equipe.md|US-114: Gerenciar Comunidades de Equipe]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/03-users-teams/US-115-remover-comunidade-de-equipe.md|US-115: Remover Comunidade de Equipe]]
+
+<!-- CARF-INDEX-END -->

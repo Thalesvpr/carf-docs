@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # UC-006-gerar-relatorio-comunidade
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (6 casos de uso)
@@ -17,13 +21,17 @@
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
 
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
+<!-- CARF-INDEX-START -->
+## Documentos
 
----
+### Em Revisão
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-006-gerar-relatorio-comunidade/UC-006-FA-001-geracao-rapida.md|UC-006-FA-001: Geração Rápida (Poucos Dados)]]
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-006-gerar-relatorio-comunidade/UC-006-FA-002-agendar-recorrente.md|UC-006-FA-002: Agendar Geração Recorrente]]
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-006-gerar-relatorio-comunidade/UC-006-FE-001-timeout-geracao.md|UC-006-FE-001: Timeout de Geração]]
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-006-gerar-relatorio-comunidade/UC-006-FE-002-dados-insuficientes.md|UC-006-FE-002: Dados Insuficientes]]
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-006-gerar-relatorio-comunidade/UC-006-FE-003-erro-pdf.md|UC-006-FE-003: Erro ao Gerar PDF]]
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-006-gerar-relatorio-comunidade/UC-006-gerar-relatorio-comunidade.md|UC-006: Gerar Relatório de Comunidade]]
+
+<!-- CARF-INDEX-END -->

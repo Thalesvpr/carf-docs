@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Database Vacuum e Reindex
 
 Procedimentos de manutenção do PostgreSQL para otimizar performance e recuperar espaço em disco.
@@ -101,9 +106,3 @@ psql -c "ANALYZE;"
 
 echo "=== Manutenção concluída ==="
 ```
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

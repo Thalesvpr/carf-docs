@@ -1,6 +1,6 @@
 ---
-modules: [GEOAPI, GEOWEB, GEOGIS]
-epic: security
+status: review
+updated: 2025-12-30
 ---
 
 # UC-010-FE-003: Layer Não Encontrado
@@ -10,14 +10,3 @@ Fluxo de exceção do UC-010 Configurar Camadas WMS ocorrendo no passo 8 quando 
 **Ponto de Desvio:** Passo 8 do UC-010 (lista de layers vazia)
 
 **Retorno:** Warning exibido, ADMIN verifica configuração do servidor externo
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

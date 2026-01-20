@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Error Handling - @carf/geoapi-client
 
 ## Sistema de Tratamento de Erros
@@ -383,9 +388,3 @@ function logError(error: ApiError) {
  }
 }
 ```
-
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição: Contém code blocks - considerar converter para prosa.

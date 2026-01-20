@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Fluxo Offline Sync E2E
 
 Testes end-to-end do fluxo de coleta offline e sincronização.
@@ -145,9 +150,3 @@ describe('Offline Sync', () => {
   });
 });
 ```
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Seção Dev
 
 Seção /dev/ contém documentação técnica interna acessível apenas para usuários com role dev. Protegida por autenticação Keycloak com verificação de role em middleware SSR.
@@ -15,8 +20,3 @@ Conteúdo de contribuindo documenta git workflow (branching, commits, PRs), padr
 Conteúdo de debug orienta troubleshooting com acesso a logs de serviços, métricas de performance, e ferramentas de diagnóstico disponíveis em ambiente de desenvolvimento.
 
 Frontmatter define section como dev, audience como dev, e prerender como false para SSR que permite verificação de role antes de renderizar.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

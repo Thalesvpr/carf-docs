@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # ARCHITECTURE
 
 Documentação da arquitetura sistêmica do CARF definindo princípios, padrões e estratégias de deployment aplicados nos projetos.
@@ -10,10 +15,6 @@ As [estratégias de deployment](./DEPLOYMENT/README.md) cobrem containerização
 
 Para implementação técnica específica de cada projeto, consulte a documentação em PROJECTS/*/DOCS/.
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Indice por Dominio (45 arquivos)
@@ -27,8 +28,11 @@ Para implementação técnica específica de cada projeto, consulte a documenta�
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Subpastas
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- [[CENTRAL/ARCHITECTURE/ADRs/README|ADRs]]
+- [[CENTRAL/ARCHITECTURE/DEPLOYMENT/README|DEPLOYMENT]]
+- [[CENTRAL/ARCHITECTURE/PATTERNS/README|PATTERNS]]
+
+<!-- CARF-INDEX-END -->

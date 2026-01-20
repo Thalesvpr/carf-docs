@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # ADR-020: Escolha do Docker + Kubernetes para Orquestração Backend
 
 Decisão arquitetural escolhendo Docker para containerização e Kubernetes para orquestração do backend GEOAPI justificada por isolamento completo de dependencies eliminando conflicts de versões e "works on my machine" problems garantindo ambiente idêntico dev/staging/prod, immutable infrastructure permitindo deploys confiáveis e rollbacks instantâneos via image tags, resource limits (CPU/memory) prevenindo noisy neighbor problems em multi-tenant deployments, horizontal scaling automático via HPA (Horizontal Pod Autoscaler) escalando pods baseado em CPU/memória handling picos de tráfego sem intervenção manual, self-healing com automatic restart de pods unhealthy mantendo availability alta, rolling updates zero-downtime deployando novas versões gradualmente verificando health antes de substituir pods antigos, service discovery automático via Kubernetes DNS eliminando hardcoded IPs, secrets management com encryption at rest para database credentials API keys, e portabilidade entre cloud providers evitando vendor lock-in permitindo migration AWS→Azure→GCP mantendo mesma infra config.
@@ -11,9 +16,3 @@ Consequências positivas incluem deployment confiável, scaling automático, sel
 Configuração utiliza Docker 24+ com multi-stage builds, Kubernetes 1.28+ com HPA escalando 2-10 pods baseado em CPU 70%, persistent volumes para PostgreSQL, ConfigMaps para env variables, Secrets para credentials, e Helm charts versionando manifests.
 
 Status aprovado e implementado desde 2024-Q3.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

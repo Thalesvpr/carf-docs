@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # DTOS
 
 Data Transfer Objects do GEOAPI implementados como records imutáveis C# para transferência de dados entre camadas e contratos de API, organizados por feature (Units, Holders, Communities) com sufixos indicando propósito (CreateUnitDto para input, UnitDto para output, UnitSummaryDto para listagens). DTOs evitam expor entidades de domínio diretamente protegendo encapsulamento, permitem diferentes representações de mesma entidade para diferentes contextos (detalhes vs resumo vs formulário), e facilitam versionamento de API pois mudanças em domain não quebram contratos públicos. Input DTOs contêm apenas dados necessários para operação validados por FluentValidation, output DTOs projetam entidades de domínio em formato otimizado para apresentação incluindo dados relacionados já carregados, e DTOs podem ter propriedades extras como links HATEOAS, metadados de paginação ou campos calculados não presentes em domain. Mapeamento entre entities e DTOs feito via AutoMapper profiles ou métodos explícitos ToDto/FromDto garantindo separação clara de responsabilidades.
@@ -36,18 +41,11 @@ Data Transfer Objects do GEOAPI implementados como records imutáveis C# para tr
 - 19-geo-point-dto.md - Coordenada geográfica
 - 20-paged-result-dto.md - Resultado paginado
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Última atualização:** 2026-01-12
-**Status do arquivo**: Incompleto
-Descrição: Falta seção GENERATED com índice automático; Muitas listas com bullets (20) antes do rodapé - considerar converter para parágrafo denso.
+### Em Revisão
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (1 arquivo)
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/APPLICATION/DTOS/01-unit-dtos.md|Unit DTOs]]
 
-| ID | Titulo |
-|:---|:-------|
-| [01-unit-dtos](./01-unit-dtos.md) | Unit DTOs |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
+<!-- CARF-INDEX-END -->

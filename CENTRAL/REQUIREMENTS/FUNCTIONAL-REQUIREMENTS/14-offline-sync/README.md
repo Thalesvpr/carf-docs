@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Modo Offline e Sincronização
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (15 requisitos)
@@ -25,11 +29,26 @@
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/14-offline-sync/RF-182-modo-offline-mobile.md|RF-182: Modo Offline (Mobile)]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/14-offline-sync/RF-183-download-inicial-de-dados.md|RF-183: Download Inicial de Dados]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/14-offline-sync/RF-184-criar-unidade-offline.md|RF-184: Criar Unidade Offline]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/14-offline-sync/RF-185-editar-unidade-offline.md|RF-185: Editar Unidade Offline]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/14-offline-sync/RF-186-tirar-fotos-offline.md|RF-186: Tirar Fotos Offline]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/14-offline-sync/RF-187-sincronização-manual.md|RF-187: Sincronização Manual]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/14-offline-sync/RF-188-sincronização-automática.md|RF-188: Sincronização Automática]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/14-offline-sync/RF-189-delta-sync-sincronização-incremental.md|RF-189: Delta Sync (Sincronização Incremental)]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/14-offline-sync/RF-190-detecção-de-conflitos.md|RF-190: Detecção de Conflitos]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/14-offline-sync/RF-191-resolução-de-conflitos.md|RF-191: Resolução de Conflitos]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/14-offline-sync/RF-192-endpoint-de-pull.md|RF-192: Endpoint de Pull]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/14-offline-sync/RF-193-endpoint-de-push.md|RF-193: Endpoint de Push]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/14-offline-sync/RF-194-limpeza-de-dados-locais.md|RF-194: Limpeza de Dados Locais]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/14-offline-sync/RF-195-indicador-de-pendências.md|RF-195: Indicador de Pendências]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/14-offline-sync/RF-196-log-de-sincronização.md|RF-196: Log de Sincronização]]
+
+<!-- CARF-INDEX-END -->

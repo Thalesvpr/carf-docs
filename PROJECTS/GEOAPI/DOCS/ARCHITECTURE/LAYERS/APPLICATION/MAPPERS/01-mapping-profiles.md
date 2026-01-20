@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-16
+---
+
 # Mapping Profiles
 
 Configuração de mapeamento entre Domain Entities e DTOs.
@@ -88,8 +93,3 @@ public class GeometryConverter : ITypeConverter<GeometryDto, Geometry>
 // Program.cs
 services.AddAutoMapper(typeof(UnitMappingProfile).Assembly);
 ```
-
----
-
-**Última atualização:** 2026-01-16
-**Status do arquivo**: Pronto

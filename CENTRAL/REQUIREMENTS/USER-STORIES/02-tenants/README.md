@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Gestão de Tenants
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (5 user stories)
@@ -16,13 +20,16 @@
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
 
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
+<!-- CARF-INDEX-START -->
+## Documentos
 
----
+### Em Revisão
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/02-tenants/US-083-gerenciar-usuários-do-tenant.md|US-083: Gerenciar Usuários do Tenant]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/02-tenants/US-084-configurar-tenant.md|US-084: Configurar Tenant]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/02-tenants/US-116-listar-tenants.md|US-116: Listar Tenants]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/02-tenants/US-117-reativar-tenant.md|US-117: Reativar Tenant]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/02-tenants/US-118-suspender-tenant.md|US-118: Suspender Tenant]]
+
+<!-- CARF-INDEX-END -->

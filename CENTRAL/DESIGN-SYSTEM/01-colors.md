@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Colors
 
 Paleta de cores oficial do projeto CARF composta por três cores primárias institucionais, cores de suporte e escala de cinzas, garantindo identidade visual consistente e acessibilidade WCAG 2.1 AA.
@@ -141,8 +146,3 @@ Conformidade WCAG 2.1 AA (contrast ratio minimo 4.5:1 para texto normal, 3:1 par
 
 - [ADR-023](../ARCHITECTURE/ADRs/ADR-023-color-palette-design-system.md) - Decisão arquitetural
 - [WCAG 2.1 Contrast Guidelines](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum)
-
----
-
-**Status do arquivo:** Draft
-**Última atualização:** 2026-01-19

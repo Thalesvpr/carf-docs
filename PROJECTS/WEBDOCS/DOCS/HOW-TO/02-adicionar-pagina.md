@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Adicionar Página
 
 Guia para criar novo documento no WEBDOCS com frontmatter correto e estrutura adequada para a seção destino.
@@ -15,8 +20,3 @@ Adicionar screenshots se necessário salvando em public/images/ na subpasta corr
 Validar localmente executando bun run build que verifica frontmatter contra schema Zod e valida links internos. Erros indicam campos ausentes ou links quebrados para corrigir.
 
 Criar pull request com nova página para review. Preview deployment automático permite validar aparência antes de merge. Solicitar review de membro da equipe de documentação.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

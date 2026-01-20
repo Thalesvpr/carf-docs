@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # CENTRAL
 
 Documentação central do CARF servindo como **fonte única de verdade** para requisitos, decisões arquiteturais e modelo de domínio compartilhados por todos os projetos do sistema.
@@ -10,10 +15,6 @@ O [ecossistema](./ECOSYSTEM/README.md) registra todas as aplicações do CARF co
 
 As [integrações](./INTEGRATION/README.md) documentam conexões com Keycloak e PostgreSQL. Os [contratos da API](./API/README.md) definem endpoints e schemas. As [políticas de segurança](./SECURITY/README.md) cobrem conformidade LGPD. A [estratégia de testes](./TESTING/README.md) define a pirâmide de testes. O [monitoramento](./OPERATIONS/README.md) cobre logging e manutenção. O [versionamento](./VERSIONING/README.md) define o workflow Git. As [bibliotecas compartilhadas](./LIBRARIES/README.md) documentam código reutilizado entre projetos. E os [padrões de documentação](./STANDARDS/README.md) definem convenções de nomenclatura, estrutura de arquivos e metadados de status.
 
----
-
-**Última atualização:** 2026-01-19
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Indice por Dominio (774 arquivos)
@@ -38,9 +39,3 @@ As [integrações](./INTEGRATION/README.md) documentam conexões com Keycloak e 
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

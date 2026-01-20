@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # DEPLOYMENT
 
 Estratégias de deployment do CARF cobrindo os diferentes ambientes e plataformas onde o sistema é executado.
@@ -6,10 +11,6 @@ Os [ambientes](./01-environments.md) incluem desenvolvimento local com Docker Co
 
 O [pipeline CI/CD](./04-cicd-pipeline.md) usa GitHub Actions para build, test e deploy automatizado com blue-green deployment e rollback. O [deployment mobile](./05-mobile-deployment.md) cobre publicação na App Store e Google Play. E os [sites estáticos](./06-static-site-deployment.md) usam GitHub Pages e Netlify.
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Indice por Dominio (10 arquivos)
@@ -36,8 +37,22 @@ O [pipeline CI/CD](./04-cicd-pipeline.md) usa GitHub Actions para build, test e 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Subpastas
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- [[CENTRAL/ARCHITECTURE/DEPLOYMENT/CONFIGS/README|CONFIGS]]
+- [[CENTRAL/ARCHITECTURE/DEPLOYMENT/DOCKER/README|DOCKER]]
+- [[CENTRAL/ARCHITECTURE/DEPLOYMENT/KUBERNETES/README|KUBERNETES]]
+
+## Documentos
+
+### Em Revisão
+
+- ○ [[CENTRAL/ARCHITECTURE/DEPLOYMENT/01-environments.md|Environments]]
+- ○ [[CENTRAL/ARCHITECTURE/DEPLOYMENT/02-containerization.md|Containerization]]
+- ○ [[CENTRAL/ARCHITECTURE/DEPLOYMENT/03-orchestration.md|Orchestration]]
+- ○ [[CENTRAL/ARCHITECTURE/DEPLOYMENT/04-cicd-pipeline.md|CI/CD Pipeline]]
+- ○ [[CENTRAL/ARCHITECTURE/DEPLOYMENT/05-mobile-deployment.md|Mobile Deployment]]
+- ○ [[CENTRAL/ARCHITECTURE/DEPLOYMENT/06-static-site-deployment.md|Static Site Deployment]]
+
+<!-- CARF-INDEX-END -->

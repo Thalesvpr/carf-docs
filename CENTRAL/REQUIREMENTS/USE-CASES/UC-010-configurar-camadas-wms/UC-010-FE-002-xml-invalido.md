@@ -1,6 +1,6 @@
 ---
-modules: [GEOAPI, GEOGIS]
-epic: maintainability
+status: review
+updated: 2025-12-30
 ---
 
 # UC-010-FE-002: XML Inválido
@@ -10,14 +10,3 @@ Fluxo de exceção do UC-010 Configurar Camadas WMS ocorrendo no passo 7 quando 
 **Ponto de Desvio:** Passo 7 do UC-010 (parsing do XML)
 
 **Retorno:** Erro exibido, ADMIN verifica se URL é realmente WMS/WMTS válido
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

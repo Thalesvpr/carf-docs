@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB, REURBCAD]
-epic: units
+status: review
+updated: 2025-12-30
 ---
 
 # UC-001-FE-002: Geometria Sobreposta
@@ -26,14 +26,3 @@ Query PostGIS executando SELECT nos campos id code address da tabela units calcu
 - Se Ajustar: Volta ao passo 5 do UC-001 (desenho de geometria)
 - Se Ignorar: Prossegue para passo 10 do UC-001 (salvamento com flag)
 - Se Cancelar: Operação abortada
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

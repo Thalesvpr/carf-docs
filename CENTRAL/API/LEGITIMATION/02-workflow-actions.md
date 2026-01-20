@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Workflow Actions
 
 Schema e comportamento dos endpoints de ações no workflow de legitimação.
@@ -149,9 +154,3 @@ Authorization: Bearer {access_token}
 | Solicitar docs | | ✓ | ✓ | ✓ |
 | Aprovar | | | ✓ | ✓ |
 | Rejeitar | | | ✓ | ✓ |
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB, GEOGIS]
-epic: scalability
+status: review
+updated: 2025-12-30
 ---
 
 # UC-008-FE-001: Arquivo Inválido
@@ -10,14 +10,3 @@ Fluxo de exceção do UC-008 Importar Shapefile ocorrendo no passo 5.2 durante v
 **Ponto de Desvio:** Passo 5.2 do UC-008 (validação após upload)
 
 **Retorno:** Upload bloqueado, usuário corrige arquivo e tenta novamente
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Anotações
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (4 requisitos)
@@ -14,11 +18,15 @@
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/11-annotations/RF-153-anotações-annotations.md|RF-153: Anotações (Annotations)]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/11-annotations/RF-154-editar-anotação.md|RF-154: Editar Anotação]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/11-annotations/RF-155-excluir-anotação.md|RF-155: Excluir Anotação]]
+- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/11-annotations/RF-156-filtrar-anotações-por-autor.md|RF-156: Filtrar Anotações por Autor]]
+
+<!-- CARF-INDEX-END -->

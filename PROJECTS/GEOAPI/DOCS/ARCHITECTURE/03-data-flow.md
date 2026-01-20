@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # Data Flow
 
 Fluxo de dados no GEOAPI segue Clean Architecture onde requisição HTTP entra pela Gateway Layer, passa por Application Layer orquestrando use cases, Domain Layer aplicando regras negócio, Infrastructure Layer persistindo dados, e resposta retorna caminho inverso. Request HTTP chega Controller que deserializa JSON para DTO, Middleware autentica JWT extrai tenant_id claims, ValidationFilter valida DTO via FluentValidation, Controller despacha Command ou Query via MediatR.
@@ -9,8 +14,3 @@ Multi-tenancy flow garante isolamento dados onde JWT token contém tenant_id cla
 Error handling flow captura exceções em múltiplas camadas onde Domain Exceptions ValidationException NotFoundException ConflictException contêm detalhes negócio, Application Exceptions UnauthorizedException ForbiddenException tratam autenticação autorização, ExceptionHandlerMiddleware captura todas exceções converte para ProblemDetails RFC 7807 com status code apropriado title detail instance, logs estruturados Serilog registram exception stack trace request context para debugging produção.
 
 Caching flow otimiza leituras frequentes onde Query Handler verifica IDistributedCache Redis antes consultar banco, cache miss executa query banco e armazena resultado cache com TTL configurável, cache hit retorna dados direto Redis sem query banco, Domain Events InvalidateCacheEvent disparam invalidação seletiva quando Entity modificada, cache keys seguem padrão tenant:entity:id permitindo invalidação granular ou por tenant.
-
----
-
-**Última atualização:** 2026-01-12
-**Status do arquivo**: Pronto

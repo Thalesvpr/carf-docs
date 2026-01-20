@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # Deployment
 
 GEOAPI deployment usa containerização Docker com orquestração Kubernetes para ambientes staging e produção. Dockerfile multi-stage com build stage SDK compilando publicando e runtime stage ASP.NET runtime copiando artefatos, imagem final aproximadamente 200MB com healthcheck endpoint /health.
@@ -11,8 +16,3 @@ CI/CD pipeline GitHub Actions executa build test push deploy onde push main bran
 Database migrations executam via Job Kubernetes antes deployment aplicação onde init container aguarda PostgreSQL healthy, migration job executa dotnet ef database update aplicando pending migrations, deployment principal só inicia após migration job completar com sucesso, rollback manual via dotnet ef database update PreviousMigration se necessário.
 
 Monitoring Prometheus scrape /metrics endpoint coletando request duration request count error rate, Grafana dashboards visualizam métricas com alertas Slack quando error rate acima 1% ou latency p99 acima 500ms, logs estruturados JSON via Serilog enviados para Elasticsearch consultáveis via Kibana com correlation id rastreando request através de serviços.
-
----
-
-**Última atualização:** 2026-01-12
-**Status do arquivo**: Pronto

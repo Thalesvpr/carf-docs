@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-11
+---
+
 # @carf/geoapi-client - Cliente HTTP TypeScript
 
 Cliente HTTP TypeScript tipado para GEOAPI consumido por GEOWEB REURBCAD ADMIN fornecendo interface robusta endpoints REST tratamento erros autenticação automática retry logic. Stack: TypeScript 5.3 Axios Zod @carf/tscore Bun NPM GitHub Packages.
@@ -16,29 +21,18 @@ bun add @carf/geoapi-client @carf/tscore
 - **[API/](./API/README.md)** - GeoApiClient UnitsApi HoldersApi CommunitiesApi
 - **[CONTRIBUTING.md](./CONTRIBUTING.md)** - Guia contribuição fork branch testes Conventional Commits PR code review
 
----
+<!-- CARF-INDEX-START -->
+## Subpastas
 
-**Última atualização:** 2026-01-11
+- [[PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/API/README|API]]
+- [[PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/ARCHITECTURE/README|ARCHITECTURE]]
+- [[PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/CONCEPTS/README|CONCEPTS]]
+- [[PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/HOW-TO/README|HOW-TO]]
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (6 arquivos)
+## Documentos
 
-| # | Dominio | Arquivos |
-|:--|:--------|:--------:|
-|  | [Api](./API/README.md) | 1 |
-|  | [Architecture](./ARCHITECTURE/README.md) | 3 |
-|  | [Concepts](./CONCEPTS/README.md) | 1 |
-|  | [How To](./HOW-TO/README.md) | 1 |
+### Em Revisão
 
-*Gerado automaticamente em 2026-01-17 11:57*
+- ○ [[PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/CONTRIBUTING.md|Contributing to @carf/geoapi-client]]
 
-## Arquivos (1 arquivo)
-
-| ID | Titulo |
-|:---|:-------|
-| [CONTRIBUTING](./CONTRIBUTING.md) | Contributing to @carf/geoapi-client |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Incompleto
-Descrição: Contém code blocks - considerar converter para prosa.
+<!-- CARF-INDEX-END -->

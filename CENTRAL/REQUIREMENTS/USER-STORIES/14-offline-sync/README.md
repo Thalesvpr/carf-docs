@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Modo Offline e Sincronização
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (11 user stories)
@@ -22,13 +26,22 @@
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
 
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
+<!-- CARF-INDEX-START -->
+## Documentos
 
----
+### Em Revisão
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/14-offline-sync/US-040-cadastrar-unidade-offline.md|US-040: Cadastrar Unidade Offline]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/14-offline-sync/US-041-desenhar-geometria-com-gps.md|US-041: Desenhar Geometria com GPS]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/14-offline-sync/US-044-cadastrar-titular-no-campo.md|US-044: Cadastrar Titular no Campo]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/14-offline-sync/US-045-ver-mapa-offline.md|US-045: Ver Mapa Offline]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/14-offline-sync/US-047-copiar-dados-da-última-unidade.md|US-047: Copiar Dados da Última Unidade]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/14-offline-sync/US-050-sincronizar-manualmente.md|US-050: Sincronizar Manualmente]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/14-offline-sync/US-051-sincronização-automática.md|US-051: Sincronização Automática]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/14-offline-sync/US-052-ver-progresso-de-sincronização.md|US-052: Ver Progresso de Sincronização]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/14-offline-sync/US-053-delta-sync-bidirecional.md|US-053: Delta Sync Bidirecional]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/14-offline-sync/US-054-resolver-conflitos-de-dados.md|US-054: Resolver Conflitos de Dados]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/14-offline-sync/US-055-limpar-dados-sincronizados.md|US-055: Limpar Dados Sincronizados]]
+
+<!-- CARF-INDEX-END -->

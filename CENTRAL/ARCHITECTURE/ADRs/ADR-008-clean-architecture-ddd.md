@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # ADR-008: Escolha de Clean Architecture + Domain-Driven Design
 
 Decisão arquitetural escolhendo Clean Architecture combinada com Domain-Driven Design (DDD) como padrão arquitetural do backend GEOAPI justificada por separação clara de responsabilidades em layers (Domain Application Infrastructure Presentation) facilitando manutenção evolutiva de sistema complexo com ~220 RFs e previsão de crescimento contínuo por anos, independência de frameworks mantendo domain logic puro sem acoplamento a Entity Framework ASP.NET ou bibliotecas específicas permitindo migration futura de tecnologias sem rewrite completo de regras de negócio, testabilidade superior com domain entities e use cases testáveis em isolamento sem dependências externas (database HTTP) acelerando TDD e garantindo coverage acima de 80% conforme RNF-076, modelagem rica de domínio usando conceitos DDD (Entities Value Objects Aggregates Domain Events) capturando precisamente complexidade de legitimação fundiária urbana com invariantes de negócio expressas em código type-safe reduzindo bugs lógicos, linguagem ubíqua compartilhada entre desenvolvedores e especialistas de domínio (advogados urbanistas técnicos fundiários) eliminando mal-entendidos através de terminologia consistente (Unit Holder Community Process Legitimation vs genéricos como Entity User Document), bounded contexts isolando subdomínios complexos (Cadastro Aprovação Relatórios GIS) com interfaces bem definidas permitindo equipes trabalhar independentemente sem conflitos de merge e facilitando futura migração para microservices se necessário, e aggregate roots garantindo consistency boundaries claras protegendo invariantes críticas (exemplo Unit só pode ser aprovada se tiver ao menos um Holder vinculado e geometria válida) através de encapsulation rigoroso evitando corrupção de dados.
@@ -13,9 +18,3 @@ Consequências positivas incluem manutenibilidade excelente com código organiza
 Implementação específica estrutura projeto GEOAPI em pastas Domain (entities VOs aggregates events interfaces) Application (use-cases commands queries DTOs) Infrastructure (repositories EF configurations external adapters) e Presentation (controllers), utiliza MediatR para dispatch de commands/queries desacoplando controllers de use-cases, FluentValidation para validação de input em DTOs mantendo domain puro, AutoMapper para mapping entre layers reduzindo boilerplate, e naming conventions seguindo ubiquitous language com termos do negócio (Unit não Property, Holder não Owner, Legitimation não Regularization).
 
 Status da decisão é aprovado e implementado desde início do projeto em 2024-Q3, com revisão prevista apenas se domínio simplificar drasticamente tornando Clean Architecture overhead desnecessário (improvável) ou se surgir paradigma arquitetural fundamentalmente superior (improvável dado sucesso de Clean Arch em enterprise systems).
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

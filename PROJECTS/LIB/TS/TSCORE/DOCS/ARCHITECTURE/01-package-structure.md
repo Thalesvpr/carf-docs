@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-16
+---
+
 # Package Structure
 
 Arquitetura do pacote @carf/tscore.
@@ -96,8 +101,3 @@ pnpm build
 # Type check
 pnpm typecheck
 ```
-
----
-
-**Última atualização:** 2026-01-16
-**Status do arquivo**: Pronto

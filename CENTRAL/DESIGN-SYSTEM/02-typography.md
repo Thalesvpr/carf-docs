@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Typography
 
 Sistema tipográfico do CARF definindo família de fontes, escala de tamanhos, pesos e line-heights para garantir legibilidade e hierarquia visual consistente.
@@ -115,8 +120,3 @@ Headings reduzidos em mobile:
 - Line-height mínimo: 1.5 para texto corrido
 - Contraste adequado (ver [01-colors](01-colors.md))
 - Não usar texto todo em maiúsculas para parágrafos
-
----
-
-**Status do arquivo:** Draft
-**Última atualização:** 2026-01-19

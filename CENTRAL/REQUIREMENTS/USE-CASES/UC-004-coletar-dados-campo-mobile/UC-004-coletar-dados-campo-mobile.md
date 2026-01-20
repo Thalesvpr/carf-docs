@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB, REURBCAD]
-epic: security
+status: review
+updated: 2025-12-30
 ---
 
 # UC-004: Coletar Dados em Campo (Mobile)
@@ -27,14 +27,3 @@ Caso de uso permitindo FIELD_AGENT agente de campo usar app mobile REURBCAD Reac
 **Rastreabilidade:**
 - RF-049, RF-063, RF-064, RF-122, RF-123, RF-182, RF-184, RF-186
 - US-040, US-042, US-044
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

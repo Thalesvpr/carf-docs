@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # API Reference - @carf/geoapi-client
 
 ## Referência da API
@@ -19,8 +24,3 @@ Documentação adicional de endpoints será adicionada conforme necessário dura
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
-
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Pronto

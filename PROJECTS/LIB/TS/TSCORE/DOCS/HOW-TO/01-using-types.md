@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-16
+---
+
 # Using Types
 
 Como utilizar os tipos do @carf/tscore em seus projetos.
@@ -126,8 +131,3 @@ if (user.roles.includes(USER_ROLES.APROVADOR)) {
   // Mostrar botão de aprovar
 }
 ```
-
----
-
-**Última atualização:** 2026-01-16
-**Status do arquivo**: Pronto

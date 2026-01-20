@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB]
-epic: scalability
+status: review
+updated: 2025-12-30
 ---
 
 # UC-006: Gerar Relatório de Comunidade
@@ -26,14 +26,3 @@ Caso de uso permitindo usuários autorizados (MANAGER com permissão reports.rea
 **Rastreabilidade:**
 - RF-203, RF-204, RF-205, RF-207, RF-209
 - US-074, US-075
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

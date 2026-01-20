@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-16
+---
+
 # DI Registration
 
 Registro de serviços no container de injeção de dependência.
@@ -107,8 +112,3 @@ app.MapHealthChecks("/health");
 
 app.Run();
 ```
-
----
-
-**Última atualização:** 2026-01-16
-**Status do arquivo**: Pronto

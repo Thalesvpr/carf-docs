@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # GEOGIS - Features
 
 Índice de funcionalidades implementadas pelo plugin QGIS.
@@ -16,8 +21,12 @@
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição: Falta parágrafo denso introdutório.
+### Em Revisão
+
+- ○ [[PROJECTS/GEOGIS/DOCS/FEATURES/01-gis-integration.md|GIS Integration - Integração SIG]]
+- ○ [[PROJECTS/GEOGIS/DOCS/FEATURES/02-shapefile-import.md|Shapefile Import - Importação]]
+
+<!-- CARF-INDEX-END -->

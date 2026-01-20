@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Database Backup e Restore
 
 Runbook para operações de backup e restore do PostgreSQL com dados geoespaciais PostGIS.
@@ -86,9 +91,3 @@ kubectl logs job/pg-backup-xxxxx -n carf
 - Semanais: 4 semanas
 - Mensais: 12 meses
 - Armazenamento: S3 Glacier após 30 dias
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

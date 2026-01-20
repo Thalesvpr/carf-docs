@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Tipos de Documento
 
 Cada tipo de documento no repositório CARF possui estrutura específica com seções obrigatórias que garantem completude e consistência da informação.
@@ -37,9 +42,3 @@ Documentos de entidade do modelo de domínio. Devem descrever atributos, relacio
 ## Validação
 
 Os scripts em .scripts/carf_validator validam estrutura de documentos com códigos STRUCT001 e STRUCT002 para seções ausentes, e FRONT001 a FRONT003 para campos de frontmatter ausentes.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

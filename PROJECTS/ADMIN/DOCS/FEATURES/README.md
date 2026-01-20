@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # ADMIN - Features
 
 Índice de funcionalidades implementadas pelo console administrativo.
@@ -15,9 +20,3 @@
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
-
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição: Falta parágrafo denso introdutório.

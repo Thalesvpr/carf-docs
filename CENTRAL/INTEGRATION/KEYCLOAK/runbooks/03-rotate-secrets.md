@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Rotacionar Secrets
 
 ## Client Secrets (sem downtime)
@@ -34,11 +39,3 @@ Client secrets rotacionados a cada noventa dias, Admin password rotacionado a ca
 ## Automação
 
 Automatizar rotação configurando cron job mensal executando zero zero um asterisco asterisco /path/to/carf-keycloak/scripts/rotate-secrets.sh garantindo rotações periódicas automáticas sem intervenção manual reduzindo risco esquecimento humano mantendo disciplina segurança consistente.
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

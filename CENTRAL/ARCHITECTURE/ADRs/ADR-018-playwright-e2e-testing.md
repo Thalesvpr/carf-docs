@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # ADR-018: Escolha do Playwright para Testes End-to-End
 
 Decisão arquitetural escolhendo Playwright como framework de testes E2E para frontends React (GEOWEB ADMIN) justificada por cross-browser testing suportando Chromium Firefox WebKit em paralelo detectando bugs browser-specific, auto-wait inteligente aguardando elementos estarem prontos antes de interação eliminando flaky tests causados por race conditions, network interception permitindo mock de API responses testando error states offline scenarios sem dependência de backend, screenshots e videos automáticos em falhas facilitando debugging de tests falhando apenas em CI, trace viewer interativo permitindo time-travel debugging de tests com DOM snapshots network logs, codegen gerando test code automaticamente gravando interações do usuário acelerando escrita inicial de tests, parallel execution rodando tests em múltiplos workers acelerando suite completa em 60-80%, e TypeScript first-class support com autocomplete de seletores e assertions.
@@ -11,9 +16,3 @@ Consequências positivas incluem confidence alta em releases, fast feedback em P
 Configuração utiliza Playwright 1.40+ com projects para Chromium/Firefox, baseURL configurável, timeout 30s, retries 2 em CI, e screenshots/videos em falhas.
 
 Status aprovado e implementado desde 2024-Q4.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

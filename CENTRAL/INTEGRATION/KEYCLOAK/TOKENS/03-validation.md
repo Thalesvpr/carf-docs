@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Validação de Token
 
 GEOAPI valida access token em cada requisição usando middleware JWT Bearer Authentication do ASP.NET Core. Configuração em Program.cs adiciona autenticação com parâmetros do Keycloak: Authority (URL do realm), Audience (client_id carf-geoapi), RequireHttpsMetadata true em produção.
@@ -9,9 +14,3 @@ Após validação de assinatura, TenantMiddleware customizado extrai claim tenan
 Validação de roles ocorre em dois níveis: atributo [Authorize(Roles = "analyst")] em controllers bloqueia acesso se role ausente, e verificação programática User.IsInRole("admin") permite lógica condicional dentro de actions.
 
 Token inválido (assinatura incorreta, expirado, audience errado) resulta em 401 Unauthorized. Token válido mas sem role necessária resulta em 403 Forbidden. Ambos os casos logados para auditoria com IP do cliente e endpoint acessado.
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

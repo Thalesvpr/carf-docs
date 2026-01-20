@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB, REURBCAD]
-epic: usability
+status: review
+updated: 2025-12-30
 ---
 
 # UC-001-FE-001: Validação Falha
@@ -21,14 +21,3 @@ Fluxo de exceção do UC-001 Cadastrar Unidade Habitacional ocorrendo no passo 9
 Resposta HTTP 400 Bad Request retornando objeto JSON contendo propriedade errors como array de objetos onde cada objeto erro contém field especificando campo afetado como address.street geometry ou code, message com texto descritivo internacionalizado como "Logradouro é obrigatório" "Geometria possui auto-interseção no vértice 5" ou "Código UH-123 já existe na comunidade", e code com identificador máquina-legível como REQUIRED_FIELD INVALID_GEOMETRY ou DUPLICATE_CODE permitindo frontend processar errors estruturadamente exibindo mensagens específicas por campo com internacionalização apropriada e tratamento customizado por tipo de erro.
 
 **Retorno:** Volta ao passo 8 do UC-001 (usuário clica Salvar) após correções
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

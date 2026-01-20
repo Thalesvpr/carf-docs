@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-17
+---
+
 # Integração com GEOAPI Swagger
 
 Seção /dev/swagger/ do WEBDOCS renderiza documentação interativa da API GEOAPI consumindo especificação OpenAPI diretamente do backend. Integração permite testar endpoints usando token JWT real do desenvolvedor logado.
@@ -11,8 +16,3 @@ Customização visual aplica tema CARF ao Swagger UI via CSS sobrescrevendo core
 Autorização verifica role dev antes de renderizar componente. Usuários sem role recebem mensagem explicando necessidade de acesso de desenvolvedor. Isso previne exposição acidental de endpoints internos ou sensíveis para usuários não autorizados.
 
 Cache da especificação armazenada em memória por 5 minutos reduz carga no backend para usuários que navegam entre páginas. Invalidação manual via query param ?refresh=true força novo fetch para desenvolvedores testando mudanças recentes.
-
----
-
-**Última atualização:** 2026-01-17
-**Status do arquivo**: Review

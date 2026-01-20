@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Authentication - Autenticação com Keycloak
 
 ## Visão Geral
@@ -482,9 +487,3 @@ test('redirects to login if not authenticated', () => {
  expect(screen.queryByText('Protected Content')).not.toBeInTheDocument()
 })
 ```
-
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição: Contém code blocks - considerar converter para prosa.

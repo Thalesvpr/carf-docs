@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Aggregates Diagram
 
 Diagrama dos aggregates e seus relacionamentos no modelo de domínio CARF.
@@ -91,9 +96,3 @@ graph TB
 - Tabela `unit_holders` é junction table, não pertence a nenhum aggregate
 - Cada aggregate é boundary de transação
 - Multi-tenancy aplicado em todos aggregates via TenantId
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

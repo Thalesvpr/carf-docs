@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # DOCUMENTS
 
 Value objects representando documentos brasileiros validados incluindo CPF CNPJ emails telefones e registros profissionais CREA garantindo formatação e validação algoritmos oficiais.
@@ -8,21 +13,3 @@ Value objects representando documentos brasileiros validados incluindo CPF CNPJ 
 - **[04-email.md](./04-email.md)** - Endereço email com validação RFC 5322
 - **[06-phone-number.md](./06-phone-number.md)** - Telefone brasileiro com DDD e formatação
 - **[11-crea.md](./11-crea.md)** - Registro profissional CREA engenheiros agrimensores
-
----
-
-**Última atualização:** 2026-01-12
-
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (4 arquivos)
-
-| ID | Titulo |
-|:---|:-------|
-| [01-cpf](./01-cpf.md) | Cpf |
-| [04-email](./04-email.md) | Email |
-| [06-phone-number](./06-phone-number.md) | PhoneNumber |
-| [11-crea](./11-crea.md) | Crea |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Pronto

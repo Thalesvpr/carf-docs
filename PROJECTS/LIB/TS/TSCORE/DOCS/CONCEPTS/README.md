@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-09
+---
+
 # Conceitos @carf/tscore
 
 Documentação dos conceitos fundamentais da biblioteca.
@@ -360,20 +365,13 @@ const updateDto: UpdateUnitDto = {
 - [Autenticação Keycloak](./02-authentication.md) - OAuth2/OIDC integration
 - [TypeScript Types](./03-typescript-types.md) - Entities, Enums, DTOs do domínio CARF
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Última atualização:** 2026-01-09
+### Em Revisão
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (3 arquivos)
+- ○ [[PROJECTS/LIB/TS/TSCORE/DOCS/CONCEPTS/01-value-objects.md|Value Objects - Objetos de Valor]]
+- ○ [[PROJECTS/LIB/TS/TSCORE/DOCS/CONCEPTS/02-authentication.md|Authentication - Autenticação com Keycloak]]
+- ○ [[PROJECTS/LIB/TS/TSCORE/DOCS/CONCEPTS/03-typescript-types.md|TypeScript Types - Tipos Compartilhados]]
 
-| ID | Titulo |
-|:---|:-------|
-| [01-value-objects](./01-value-objects.md) | Value Objects - Objetos de Valor |
-| [02-authentication](./02-authentication.md) | Authentication - Autenticação com Keycloak |
-| [03-typescript-types](./03-typescript-types.md) | TypeScript Types - Tipos Compartilhados |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-**Status do arquivo**: Incompleto
-Descrição: Muitas listas com bullets (24) antes do rodapé - considerar converter para parágrafo denso; Contém code blocks - considerar converter para prosa.
+<!-- CARF-INDEX-END -->

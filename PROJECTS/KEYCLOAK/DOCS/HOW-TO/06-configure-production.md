@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # Configurar Ambiente de Produção
 
 Configuração ambiente produção Keycloak nível avançado requer 4-6 horas cobrindo infraestrutura completa. PostgreSQL externo via AWS RDS criando db-instance-identifier carf-keycloak-prod, db-instance-class db.t3.medium, engine postgres version 16, master-username keycloak, allocated-storage 100, vpc-security-group-ids e db-subnet-group-name apropriados, environment vars KC_DB_URL=jdbc:postgresql://carf-keycloak-prod.xxx.rds.amazonaws.com:5432/keycloak KC_DB_USERNAME=keycloak KC_DB_PASSWORD com strong password.
@@ -17,8 +22,3 @@ Logging structured JSON KC_LOG_FORMAT=json KC_LOG_LEVEL=info, ship para ELK/Clou
 Disaster Recovery backup região secundária aws s3 sync us-east-1 para eu-west-1, standby cluster região secundária kubectl config use-context eu-west-1 kubectl apply keycloak-deployment.yaml, DNS failover Route53 change-resource-record-sets hosted-zone-id change-batch failover.json.
 
 Checklist produção PostgreSQL RDS multi-AZ, HTTPS/TLS Load Balancer, resource limits CPU memory, clustering 3+ replicas, connection pool otimizado, backup diário S3, Prometheus Grafana, alertas críticos ativos, logs centralizados ELK/CloudWatch, secrets via Secrets Manager, network policies aplicadas, DR plan testado.
-
----
-
-**Última atualização:** 2026-01-12
-**Status do arquivo**: Pronto

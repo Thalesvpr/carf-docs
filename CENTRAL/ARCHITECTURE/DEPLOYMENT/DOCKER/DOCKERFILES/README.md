@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # DOCKERFILES
 
 Projeto CARF utiliza Dockerfiles otimizados para build eficiente e seguro de cada componente do sistema seguindo Docker best practices como multi-stage builds layer caching e minimal runtime images reduzindo tamanho final e superfície de ataque.
@@ -10,10 +15,6 @@ Database PostgreSQL customizado via Dockerfile.postgres FROM postgis/postgis:16-
 
 Instruções HEALTHCHECK adicionadas em cada Dockerfile para integração com Docker Compose e Kubernetes sendo GEOAPI curl http://localhost:8080/health validando API responding corretamente, PostgreSQL pg_isready validando database aceitando connections. Todos containers executam como non-root USER após setup inicial seguindo security principle of least privilege prevenindo privilege escalation attacks caso container seja comprometido. Arquivo .dockerignore excluindo node_modules/ bin/ obj/ .git reduzindo build context enviado para Docker daemon acelerando builds e evitando leak de arquivos sensíveis em layers intermediárias.
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (2 arquivos)
@@ -26,8 +27,12 @@ Instruções HEALTHCHECK adicionadas em cada Dockerfile para integração com Do
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+### Em Revisão
+
+- ○ [[CENTRAL/ARCHITECTURE/DEPLOYMENT/DOCKER/DOCKERFILES/01-geoapi-dockerfile.md|GEOAPI Dockerfile]]
+- ○ [[CENTRAL/ARCHITECTURE/DEPLOYMENT/DOCKER/DOCKERFILES/02-geoweb-dockerfile.md|GEOWEB Dockerfile]]
+
+<!-- CARF-INDEX-END -->

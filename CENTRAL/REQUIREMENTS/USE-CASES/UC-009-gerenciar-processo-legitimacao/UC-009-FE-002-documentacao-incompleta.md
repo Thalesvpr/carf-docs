@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB]
-epic: reliability
+status: review
+updated: 2025-12-30
 ---
 
 # UC-009-FE-002: Documentação Incompleta
@@ -10,14 +10,3 @@ Fluxo de exceção do UC-009 Gerenciar Processo de Legitimação ocorrendo no pa
 **Ponto de Desvio:** Passo 12 do UC-009 (tentativa de submeter com docs faltando)
 
 **Retorno:** Submissão bloqueada, usuário completa checklist e retenta
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

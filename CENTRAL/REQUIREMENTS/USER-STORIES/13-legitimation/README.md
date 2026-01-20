@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Processos de Legitimação
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (4 user stories)
@@ -15,13 +19,15 @@
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
 
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
+<!-- CARF-INDEX-START -->
+## Documentos
 
----
+### Em Revisão
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/13-legitimation/US-078-criar-processo-de-legitimação.md|US-078: Criar Processo de Legitimação]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/13-legitimation/US-079-submeter-processo-para-aprovação.md|US-079: Submeter Processo para Aprovação]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/13-legitimation/US-080-aprovarrejeitar-processo.md|US-080: Aprovar ou Rejeitar Processo]]
+- ○ [[CENTRAL/REQUIREMENTS/USER-STORIES/13-legitimation/US-081-gerar-termo-de-legitimação-pdf.md|US-081: Gerar Termo de Legitimação (PDF)]]
+
+<!-- CARF-INDEX-END -->

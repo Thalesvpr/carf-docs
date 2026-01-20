@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # DATABASE
 
 Configuração do banco de dados PostgreSQL com extensão PostGIS para o CARF.
@@ -63,10 +68,6 @@ docker exec carf-postgres pg_dump -U postgres carf > backup.sql
 docker exec -i carf-postgres psql -U postgres -d carf < backup.sql
 ```
 
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (2 arquivos)
@@ -79,8 +80,16 @@ docker exec -i carf-postgres psql -U postgres -d carf < backup.sql
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
+<!-- CARF-INDEX-START -->
+## Subpastas
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- [[CENTRAL/INTEGRATION/DATABASE/init-scripts/README|init-scripts]]
+
+## Documentos
+
+### Em Revisão
+
+- ○ [[CENTRAL/INTEGRATION/DATABASE/01-rls-setup.md|RLS Setup]]
+- ○ [[CENTRAL/INTEGRATION/DATABASE/02-postgis-setup.md|PostGIS Setup]]
+
+<!-- CARF-INDEX-END -->

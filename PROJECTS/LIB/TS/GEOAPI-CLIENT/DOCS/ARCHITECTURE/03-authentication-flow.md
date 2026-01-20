@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Authentication Flow - @carf/geoapi-client
 
 ## Fluxo de Autenticação
@@ -413,9 +418,3 @@ if (process.env.NODE_ENV === 'production' && !config.baseURL.startsWith('https:/
  throw new Error('API URL must use HTTPS in production')
 }
 ```
-
----
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição: Contém code blocks - considerar converter para prosa.

@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-20
+---
+
 # Frontmatter Schema
 
 Schema Zod define campos obrigatórios e opcionais do frontmatter para todos documentos do WEBDOCS. Validação acontece em build time garantindo consistência e rastreabilidade com documentação fonte em CENTRAL e PROJECTS.

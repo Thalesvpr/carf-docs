@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Fluxo de Cadastro E2E
 
 Testes end-to-end do fluxo completo de cadastro de unidade e titulares.
@@ -129,9 +134,3 @@ export const holderFixture = {
   contact: { phone: '11999998888' }
 };
 ```
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

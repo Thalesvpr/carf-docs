@@ -1,6 +1,6 @@
 ---
-modules: [GEOGIS]
-epic: scalability
+status: review
+updated: 2025-12-30
 ---
 
 # UC-007-FE-001: Limite de Registros Excedido
@@ -10,14 +10,3 @@ Fluxo de exceção do UC-007 Exportar Dados Geográficos ocorrendo no passo 8 du
 **Ponto de Desvio:** Passo 8 do UC-007 (validação antes de criar job)
 
 **Retorno:** Exportação bloqueada, usuário refina filtros até respeitar limite
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

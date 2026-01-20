@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-09
+---
+
 # Integração @carf/tscore no GEOWEB
 
 Documentação de como GEOWEB utiliza @carf/tscore para autenticação, validações e types compartilhados.
@@ -446,9 +451,3 @@ import { CPF, CNPJ, Email, Phone, ... } from '@carf/tscore/validations'
 // ✅ Import específico (tree-shaking)
 import { CPF } from '@carf/tscore/validations'
 ```
-
----
-
-**Última atualização:** 2026-01-09
-**Status do arquivo**: Incompleto
-Descrição: Contém code blocks - considerar converter para prosa.

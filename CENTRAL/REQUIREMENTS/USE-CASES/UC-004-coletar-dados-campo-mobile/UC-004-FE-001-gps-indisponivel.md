@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB, REURBCAD]
-epic: usability
+status: review
+updated: 2025-12-30
 ---
 
 # UC-004-FE-001: GPS Não Disponível
@@ -18,14 +18,3 @@ App importa check PERMISSIONS request e openSettings de pacote react-native-perm
 Modal exibe ícone warning amarelo com título "GPS Necessário" seguido por parágrafo "A precisão da localização depende do GPS ativado." com seção destacada "Sem GPS:" listando três limitações sendo Localização aproximada com baixa precisão baseada em último ponto conhecido, Desenho manual obrigatório desabilitando opção Caminhar Perímetro, e Marcado para revisão adicionando flag low_accuracy_warning true, finalizando com três botões Habilitar GPS chamando Linking.openSettings(), Continuar Sem GPS prosseguindo com limitações, e Cancelar abortando criação.
 
 **Retorno:** Se habilitar GPS, retorna ao passo 6; se continuar sem, prossegue com limitações
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

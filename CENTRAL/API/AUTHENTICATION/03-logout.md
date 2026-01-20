@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-19
+---
+
 # Logout
 
 Schema e comportamento do endpoint de logout.
@@ -84,9 +89,3 @@ async function logout(allSessions: boolean = false): Promise<void> {
   redirectToLogin();
 }
 ```
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

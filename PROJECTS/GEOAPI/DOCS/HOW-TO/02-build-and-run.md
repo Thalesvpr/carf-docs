@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-12
+---
+
 # Build and Run
 
 Build do GEOAPI usa dotnet build na raiz do projeto compilando solução completa Domain Application Infrastructure Gateway layers gerando assemblies em bin/Debug/net9.0/, build específico por projeto com dotnet build src/Carf.GEOAPI.Domain ou Application ou Infrastructure ou Gateway, build Release com dotnet build --configuration Release para produção, clean com dotnet clean removendo artefatos e dotnet clean && dotnet build para rebuildar do zero, restore com dotnet restore restaurando dependências NuGet ou dotnet restore --force para forçar redownload de packages.
@@ -19,8 +24,3 @@ Checklist pré-deploy verifica build sem erros dotnet build --configuration Rele
 ## Referências
 
 Documentação .NET CLI comandos build run test publish disponível Microsoft Learn, Entity Framework Core Tools migrations scaffold database update, Docker Build containerização imagens layers, ASP.NET Core Deployment hosting produção IIS Kestrel Nginx encontram-se documentados nos sites oficiais Microsoft Docker.
-
----
-
-**Última atualização:** 2026-01-12
-**Status do arquivo**: Pronto

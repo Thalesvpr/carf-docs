@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # Monitoramento Keycloak
 
 ## Health Check
@@ -78,11 +83,3 @@ Obter token de acesso executando curl POST para endpoint realms barra master bar
 - [ ] Backup diário automatizado
 - [ ] Teste de restore mensal
 - [ ] Revisão de eventos semanalmente
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

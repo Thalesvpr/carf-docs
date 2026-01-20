@@ -1,6 +1,6 @@
 ---
-modules: [GEOWEB, REURBCAD, GEOGIS]
-epic: scalability
+status: review
+updated: 2025-12-30
 ---
 
 # UC-008: Importar Shapefile
@@ -26,14 +26,3 @@ Caso de uso permitindo usuários técnicos autorizados (ADMIN com permissão uni
 **Rastreabilidade:**
 - RF-040, RF-067, RF-139, RF-140
 - US-020
-
----
-
-**Última atualização:** 2025-12-30
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 

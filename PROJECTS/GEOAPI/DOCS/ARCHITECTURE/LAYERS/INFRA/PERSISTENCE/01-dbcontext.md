@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-16
+---
+
 # DbContext
 
 Configuração do Entity Framework Core DbContext do GEOAPI.
@@ -95,8 +100,3 @@ services.AddDbContext<CARFDbContext>(options =>
     });
 });
 ```
-
----
-
-**Última atualização:** 2026-01-16
-**Status do arquivo**: Pronto

@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-16
+---
+
 # Redis Cache
 
 Implementação de cache distribuído com Redis.
@@ -100,8 +105,3 @@ public class UnitUpdatedEventHandler : INotificationHandler<UnitUpdatedEvent>
     }
 }
 ```
-
----
-
-**Última atualização:** 2026-01-16
-**Status do arquivo**: Pronto

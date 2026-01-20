@@ -1,6 +1,10 @@
+---
+status: review
+updated: 2026-01-15
+---
+
 # UC-011-gerenciar-equipes-tecnicas
 
----
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (5 casos de uso)
@@ -16,13 +20,16 @@
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
 
----
 
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Review
+<!-- CARF-INDEX-START -->
+## Documentos
 
----
+### Em Revisão
 
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-011-gerenciar-equipes-tecnicas/UC-011-FA-001-editar-equipe.md|UC-011-FA-001: Editar Equipe Existente]]
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-011-gerenciar-equipes-tecnicas/UC-011-FA-002-alterar-lider.md|UC-011-FA-002: Alterar Líder da Equipe]]
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-011-gerenciar-equipes-tecnicas/UC-011-FE-001-nome-duplicado.md|UC-011-FE-001: Nome de Equipe Duplicado]]
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-011-gerenciar-equipes-tecnicas/UC-011-FE-002-lider-invalido.md|UC-011-FE-002: Líder Inválido ou Inativo]]
+- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-011-gerenciar-equipes-tecnicas/UC-011-gerenciar-equipes-tecnicas.md|UC-011: Gerenciar Equipes Técnicas]]
+
+<!-- CARF-INDEX-END -->

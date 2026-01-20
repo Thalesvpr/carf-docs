@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-16
+---
+
 # PROD Overlay
 
 Kustomization overlay para ambiente de produção.
@@ -189,14 +194,3 @@ kubectl get hpa -n carf-prod
 # Verificar PDB
 kubectl get pdb -n carf-prod
 ```
-
----
-
-**Última atualização:** 2026-01-16
-**Status do arquivo**: Review
-
----
-
-**Status:** Review
-**Atualizado:** 2026-01-19
-**Descrição:** 
