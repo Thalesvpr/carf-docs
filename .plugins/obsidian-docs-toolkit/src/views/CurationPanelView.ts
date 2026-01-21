@@ -42,6 +42,9 @@ export class CurationPanelView extends ItemView {
   // Expanded sections
   private issuesExpanded = false;
 
+  // Folder filter (null = all folders)
+  private folderFilter: string | null = null;
+
   constructor(
     leaf: WorkspaceLeaf,
     store: DocumentStore,
@@ -77,10 +80,42 @@ export class CurationPanelView extends ItemView {
   }
 
   /**
-   * Get the review queue (pending files)
+   * Get the review queue (pending files), filtered by folder if set
    */
   private getQueue(): TFile[] {
-    return this.store.getReviewQueue();
+    let queue = this.store.getReviewQueue();
+
+    if (this.folderFilter) {
+      queue = queue.filter(f => f.path.startsWith(this.folderFilter + "/"));
+    }
+
+    return queue;
+  }
+
+  /**
+   * Get available top-level folders for filtering
+   */
+  private getAvailableFolders(): string[] {
+    const queue = this.store.getReviewQueue();
+    const folders = new Set<string>();
+
+    for (const file of queue) {
+      const parts = file.path.split("/");
+      if (parts.length > 1) {
+        // Add top-level folder
+        folders.add(parts[0]);
+        // Add second-level for PROJECTS (e.g., PROJECTS/LIB)
+        if (parts[0] === "PROJECTS" && parts.length > 2) {
+          folders.add(parts[0] + "/" + parts[1]);
+          // Add third-level for nested libs (e.g., PROJECTS/LIB/TS)
+          if (parts[1] === "LIB" && parts.length > 3) {
+            folders.add(parts[0] + "/" + parts[1] + "/" + parts[2]);
+          }
+        }
+      }
+    }
+
+    return Array.from(folders).sort();
   }
 
   /**
@@ -128,12 +163,18 @@ export class CurationPanelView extends ItemView {
       return;
     }
 
-    // Get stats
-    const docs = state.documents.filter(d => d.file.name !== "README.md");
+    // Get filtered docs based on folder filter
+    let docs = state.documents.filter(d => d.file.name !== "README.md");
+    if (this.folderFilter) {
+      docs = docs.filter(d => d.file.path.startsWith(this.folderFilter + "/"));
+    }
     const approved = docs.filter(d => d.status === Status.APPROVED).length;
     const rejected = docs.filter(d => d.status === Status.REJECTED).length;
     const pending = docs.filter(d => d.status === Status.REVIEW).length;
     const total = docs.length;
+
+    // === FOLDER FILTER SECTION ===
+    this.renderFolderFilter(el);
 
     // === PROGRESS SECTION ===
     this.renderProgress(el, { approved, rejected, pending, total });
@@ -153,6 +194,35 @@ export class CurationPanelView extends ItemView {
 
     // === ACTIONS SECTION ===
     this.renderActions(el, currentFile, queue.length);
+  }
+
+  /**
+   * Render folder filter dropdown
+   */
+  private renderFolderFilter(el: HTMLElement): void {
+    const section = el.createDiv({ cls: "docs-cp-section docs-cp-filter" });
+
+    const row = section.createDiv({ cls: "docs-cp-filter-row" });
+    row.createSpan({ text: "Folder:", cls: "docs-cp-filter-label" });
+
+    const select = row.createEl("select", { cls: "docs-cp-filter-select" });
+
+    // "All" option
+    const allOption = select.createEl("option", { text: "All folders", value: "" });
+    if (!this.folderFilter) allOption.selected = true;
+
+    // Folder options
+    const folders = this.getAvailableFolders();
+    for (const folder of folders) {
+      const option = select.createEl("option", { text: folder, value: folder });
+      if (this.folderFilter === folder) option.selected = true;
+    }
+
+    select.onchange = () => {
+      this.folderFilter = select.value || null;
+      this.currentIndex = 0; // Reset to first file in new filter
+      this.render();
+    };
   }
 
   /**

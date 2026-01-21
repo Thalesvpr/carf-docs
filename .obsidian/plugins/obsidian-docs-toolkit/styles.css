@@ -95,6 +95,49 @@
 }
 
 /* ============================================
+   FOLDER FILTER SECTION
+   ============================================ */
+
+.docs-cp-filter {
+  background: transparent;
+  padding: 0 0 8px 0;
+  border-bottom: 1px solid var(--background-modifier-border);
+  margin-bottom: 8px;
+}
+
+.docs-cp-filter-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.docs-cp-filter-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.docs-cp-filter-select {
+  flex: 1;
+  padding: 4px 8px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 4px;
+  background: var(--background-secondary);
+  color: var(--text-normal);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.docs-cp-filter-select:hover {
+  border-color: var(--text-muted);
+}
+
+.docs-cp-filter-select:focus {
+  outline: none;
+  border-color: var(--interactive-accent);
+}
+
+/* ============================================
    ALL DONE STATE
    ============================================ */
 

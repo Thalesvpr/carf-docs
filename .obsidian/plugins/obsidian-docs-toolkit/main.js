@@ -1830,6 +1830,8 @@ var CurationPanelView = class extends import_obsidian8.ItemView {
     this.currentIndex = 0;
     // Expanded sections
     this.issuesExpanded = false;
+    // Folder filter (null = all folders)
+    this.folderFilter = null;
     this.store = store;
     this.metadataService = metadataService;
   }
@@ -1855,10 +1857,34 @@ var CurationPanelView = class extends import_obsidian8.ItemView {
     this.render();
   }
   /**
-   * Get the review queue (pending files)
+   * Get the review queue (pending files), filtered by folder if set
    */
   getQueue() {
-    return this.store.getReviewQueue();
+    let queue = this.store.getReviewQueue();
+    if (this.folderFilter) {
+      queue = queue.filter((f) => f.path.startsWith(this.folderFilter + "/"));
+    }
+    return queue;
+  }
+  /**
+   * Get available top-level folders for filtering
+   */
+  getAvailableFolders() {
+    const queue = this.store.getReviewQueue();
+    const folders = /* @__PURE__ */ new Set();
+    for (const file of queue) {
+      const parts = file.path.split("/");
+      if (parts.length > 1) {
+        folders.add(parts[0]);
+        if (parts[0] === "PROJECTS" && parts.length > 2) {
+          folders.add(parts[0] + "/" + parts[1]);
+          if (parts[1] === "LIB" && parts.length > 3) {
+            folders.add(parts[0] + "/" + parts[1] + "/" + parts[2]);
+          }
+        }
+      }
+    }
+    return Array.from(folders).sort();
   }
   /**
    * Get current file being reviewed
@@ -1898,11 +1924,15 @@ var CurationPanelView = class extends import_obsidian8.ItemView {
       el.createDiv({ text: "Loading...", cls: "docs-cp-loading" });
       return;
     }
-    const docs = state.documents.filter((d) => d.file.name !== "README.md");
+    let docs = state.documents.filter((d) => d.file.name !== "README.md");
+    if (this.folderFilter) {
+      docs = docs.filter((d) => d.file.path.startsWith(this.folderFilter + "/"));
+    }
     const approved = docs.filter((d) => d.status === "approved" /* APPROVED */).length;
     const rejected = docs.filter((d) => d.status === "rejected" /* REJECTED */).length;
     const pending = docs.filter((d) => d.status === "review" /* REVIEW */).length;
     const total = docs.length;
+    this.renderFolderFilter(el);
     this.renderProgress(el, { approved, rejected, pending, total });
     const queue = this.getQueue();
     const currentFile = this.getCurrentFile();
@@ -1914,6 +1944,29 @@ var CurationPanelView = class extends import_obsidian8.ItemView {
       this.renderCurrentFile(el, currentFile, queue.length);
     }
     this.renderActions(el, currentFile, queue.length);
+  }
+  /**
+   * Render folder filter dropdown
+   */
+  renderFolderFilter(el) {
+    const section = el.createDiv({ cls: "docs-cp-section docs-cp-filter" });
+    const row = section.createDiv({ cls: "docs-cp-filter-row" });
+    row.createSpan({ text: "Folder:", cls: "docs-cp-filter-label" });
+    const select = row.createEl("select", { cls: "docs-cp-filter-select" });
+    const allOption = select.createEl("option", { text: "All folders", value: "" });
+    if (!this.folderFilter)
+      allOption.selected = true;
+    const folders = this.getAvailableFolders();
+    for (const folder of folders) {
+      const option = select.createEl("option", { text: folder, value: folder });
+      if (this.folderFilter === folder)
+        option.selected = true;
+    }
+    select.onchange = () => {
+      this.folderFilter = select.value || null;
+      this.currentIndex = 0;
+      this.render();
+    };
   }
   /**
    * Render progress section
