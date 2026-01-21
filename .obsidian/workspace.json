@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "99881e4592221781",
+        "id": "e9073b12103837a2",
         "type": "tabs",
         "children": [
           {
-            "id": "5265f478eb80b5d4",
+            "id": "64700822131d2339",
             "type": "leaf",
             "pinned": true,
             "state": {
@@ -16,10 +16,25 @@
               "state": {},
               "pinned": true,
               "icon": "lucide-git-fork",
-              "title": "Visualização em gráfico"
+              "title": "Graph view"
+            }
+          },
+          {
+            "id": "33d87f41fb697bab",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CENTRAL/ARCHITECTURE/DEPLOYMENT/KUBERNETES/BASE/02-ingress-configmap.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "02-ingress-configmap"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -39,10 +54,10 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": true
               },
               "icon": "lucide-folder-closed",
-              "title": "Explorador de arquivos"
+              "title": "Files"
             }
           },
           {
@@ -154,17 +169,17 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "PROJECTS/GEOGIS/DOCS/REQUIREMENTS/README.md",
+                "file": "CENTRAL/BUSINESS-RULES/WORKFLOW-RULES/04-sla-rules.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of README"
+              "title": "Outline of 04-sla-rules"
             }
           },
           {
-            "id": "01b632002b1e6541",
+            "id": "971ab6c0fdc33177",
             "type": "leaf",
             "state": {
               "type": "docs-toolkit-curation",
@@ -178,57 +193,58 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 397.5
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Abrir a troca rápida": false,
-      "graph:Abrir visualização em gráfico": false,
-      "canvas:Criar novo canvas": false,
-      "daily-notes:Abrir a nota de hoje": false,
-      "templates:Inserir modelo": false,
-      "command-palette:Abrir paleta de comandos": false,
-      "bases:Criar nova base": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
       "obsidian-docs-toolkit:Open Curation Panel": false
     }
   },
-  "active": "5265f478eb80b5d4",
+  "active": "33d87f41fb697bab",
   "lastOpenFiles": [
-    "PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/ADRs/README.md",
-    "PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/README.md",
-    "PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/API/README.md",
-    "PROJECTS/LIB/TS/GEOAPI-CLIENT/README.md",
-    "PROJECTS/WEBDOCS/DOCS/SPECS/25-package-json.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/ADRs/README.md",
-    "PROJECTS/KEYCLOAK/DOCS/FEATURES/06-login-theme-carf.md",
-    "PROJECTS/LIB/TS/TSCORE/DOCS/API/01-validation-api.md",
-    "PROJECTS/WEBDOCS/DOCS/VALIDATION/04-ci-pipeline-workflow.md",
-    "PROJECTS/WEBDOCS/DOCS/VALIDATION/04-ci-pipeline-overview.md",
-    "PROJECTS/WEBDOCS/DOCS/VALIDATION/04-ci-pipeline-configs.md",
-    "PROJECTS/WEBDOCS/DOCS/VALIDATION/03-validacao-performance.md",
-    "PROJECTS/WEBDOCS/DOCS/VALIDATION/02-validacao-a11y.md",
-    "PROJECTS/WEBDOCS/DOCS/VALIDATION/01-validacao-conteudo.md",
-    "PROJECTS/WEBDOCS/DOCS/TEMPLATES/04-template-dev.md",
-    "PROJECTS/WEBDOCS/DOCS/TEMPLATES/03-template-api.md",
-    "PROJECTS/WEBDOCS/DOCS/TEMPLATES/02-template-manual.md",
-    "PROJECTS/WEBDOCS/DOCS/TEMPLATES/01-template-guia.md",
-    "PROJECTS/WEBDOCS/DOCS/SPECS/24-caching-strategy.md",
-    "PROJECTS/WEBDOCS/DOCS/SPECS/23-content-schema-typescript.md",
-    "PROJECTS/WEBDOCS/DOCS/SPECS/23-content-schema-overview.md",
-    "PROJECTS/WEBDOCS/DOCS/SPECS/23-content-schema-examples.md",
-    "PROJECTS/WEBDOCS/DOCS/SPECS/22-error-pages.md",
-    "PROJECTS/WEBDOCS/DOCS/SPECS/21-pkce-implementation.md",
-    "PROJECTS/WEBDOCS/DOCS/SPECS/20-keycloak-client-config.md",
-    "PROJECTS/WEBDOCS/DOCS/SPECS/19-component-showcase.md",
-    "PROJECTS/GEOWEB/SRC-CODE",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/ADRs",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/SPECS",
-    "PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/ADRs",
-    "PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/SPECS",
-    "PROJECTS/LIB/TS/TSCORE/DOCS/ADRs",
-    "PROJECTS/LIB/TS/TSCORE/DOCS/SPECS",
-    "nul",
+    "CENTRAL/ARCHITECTURE/DEPLOYMENT/KUBERNETES/BASE/01-deployments.md",
+    "CENTRAL/ARCHITECTURE/DEPLOYMENT/DOCKER/DOCKERFILES/02-geoweb-dockerfile.md",
+    "CENTRAL/ARCHITECTURE/DEPLOYMENT/DOCKER/DOCKERFILES/01-geoapi-dockerfile.md",
+    "CENTRAL/ARCHITECTURE/DEPLOYMENT/DOCKER/COMPOSE/02-docker-compose-prod.md",
+    "PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/API/04-legitimation-api.md",
+    "PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/API/03-communities-api.md",
+    "PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/API/02-holders-api.md",
+    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/09-screen-mapping.md",
+    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/06-domain-components.md",
+    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/01-form-components.md",
+    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/README.md",
     "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API",
-    "CENTRAL/VERSIONING/GITHUB"
+    "CENTRAL/ARCHITECTURE/DEPLOYMENT/DOCKER/COMPOSE/01-docker-compose-dev.md",
+    "CENTRAL/ARCHITECTURE/DEPLOYMENT/CONFIGS/02-health-checks.md",
+    "CENTRAL/ARCHITECTURE/DEPLOYMENT/CONFIGS/01-env-vars.md",
+    "CENTRAL/ARCHITECTURE/DEPLOYMENT/06-static-site-deployment.md",
+    "CENTRAL/ARCHITECTURE/DEPLOYMENT/05-mobile-deployment.md",
+    "CENTRAL/ARCHITECTURE/DEPLOYMENT/04-cicd-pipeline.md",
+    "CENTRAL/ARCHITECTURE/DEPLOYMENT/03-orchestration.md",
+    "CENTRAL/ARCHITECTURE/DEPLOYMENT/02-containerization.md",
+    "CENTRAL/ARCHITECTURE/DEPLOYMENT/01-environments.md",
+    "CENTRAL/ARCHITECTURE/ADRs/ADR-023-color-palette-design-system.md",
+    "CENTRAL/ARCHITECTURE/ADRs/ADR-022-role-based-access-control.md",
+    "CENTRAL/ARCHITECTURE/ADRs/ADR-021-hangfire-background-jobs.md",
+    "CENTRAL/ARCHITECTURE/ADRs/ADR-020-docker-kubernetes-orchestration.md",
+    "CENTRAL/ARCHITECTURE/ADRs/ADR-019-zustand-client-state.md",
+    "CENTRAL/ARCHITECTURE/ADRs/ADR-018-playwright-e2e-testing.md",
+    "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/public/img/logo.svg",
+    "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/public/img",
+    "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/public",
+    "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/src/login/KcPageStorybook.tsx",
+    "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/src/login/pages/Info.tsx",
+    "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/src/login/pages/Error.tsx",
+    "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/src/login/pages/LoginResetPassword.tsx",
+    "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/src/login/pages/Register.tsx",
+    "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/src/login/pages/Login.tsx",
+    "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/src/login/pages"
   ]
 }
