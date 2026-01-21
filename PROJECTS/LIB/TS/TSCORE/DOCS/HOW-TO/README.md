@@ -573,11 +573,21 @@ bun update @carf/tscore
 cat node_modules/@carf/tscore/CHANGELOG.md
 ```
 
+## Guias Disponiveis
+
+| Guia | Descricao |
+|:-----|:----------|
+| 01-using-types | Uso de types em cada projeto |
+| 02-local-development | Desenvolvimento local com npm link |
+| 03-publishing | Publicacao no GitHub Packages |
+
 <!-- CARF-INDEX-START -->
 ## Documentos
 
 ### Em Revisão
 
 - ○ [[PROJECTS/LIB/TS/TSCORE/DOCS/HOW-TO/01-using-types.md|Using Types]]
+- ○ [[PROJECTS/LIB/TS/TSCORE/DOCS/HOW-TO/02-local-development.md|Desenvolvimento Local - @carf/tscore]]
+- ○ [[PROJECTS/LIB/TS/TSCORE/DOCS/HOW-TO/03-publishing.md|Publicacao - @carf/tscore]]
 
 <!-- CARF-INDEX-END -->

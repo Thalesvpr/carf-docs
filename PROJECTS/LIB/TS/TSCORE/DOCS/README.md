@@ -1,25 +1,64 @@
 ---
+title: "Documentacao @carf/tscore"
+description: "Indice da documentacao tecnica da biblioteca core TypeScript"
 status: review
-updated: 2026-01-11
+updated: 2026-01-20
+source: "interno"
 ---
 
-# @carf/tscore - Biblioteca TypeScript Core
+# Documentacao @carf/tscore
 
-Biblioteca TypeScript compartilhada eliminando duplicação código entre GEOWEB REURBCAD ADMIN WEBDOCS fornecendo autenticação Keycloak value objects CPF CNPJ validações brasileiras types sincronizados backend hooks React composables Vue. Stack: TypeScript 5.3 Zod OAuth2 OIDC Keycloak React 18 Vue 3 Bun publicação NPM GitHub Packages semantic versioning.
+Documentacao tecnica completa da biblioteca core TypeScript com value objects, validacoes e tipos compartilhados.
 
-## Instalação
+## Secoes
+
+| Secao | Descricao |
+|:------|:----------|
+| [SPECS/](./SPECS/README.md) | Especificacoes tecnicas (package.json, tsconfig) |
+| [ADRs/](./ADRs/README.md) | Decisoes arquiteturais |
+| [ARCHITECTURE/](./ARCHITECTURE/README.md) | Arquitetura e design |
+| [CONCEPTS/](./CONCEPTS/README.md) | Value objects, validacoes, tipos |
+| [API/](./API/README.md) | Referencia completa de API |
+| [HOW-TO/](./HOW-TO/README.md) | Guias praticos |
+
+## Modulos da Biblioteca
+
+| Modulo | Export Path | Descricao |
+|:-------|:------------|:----------|
+| Validations | `@carf/tscore/validations` | CPF, CNPJ, Email, Phone |
+| Types | `@carf/tscore/types` | Unit, Holder, Community, DTOs |
+| Auth React | `@carf/tscore/auth/react` | useAuth, ProtectedRoute |
+| Auth Vue | `@carf/tscore/auth/vue` | useAuth composable |
+
+## Instalacao Rapida
 
 ```bash
-# Configurar .npmrc
+# Configurar registry
 echo "@carf:registry=https://npm.pkg.github.com" >> .npmrc
 
 # Instalar
 bun add @carf/tscore
 ```
 
-## Documentação
+## Status de Especificacao
 
-- **[ARCHITECTURE/](./ARCHITECTURE/README.md)** - Decisões design biblioteca shared code strategies
-- **[CONCEPTS/](./CONCEPTS/README.md)** - Value objects validações autenticação types
-- **[HOW-TO/](./HOW-TO/README.md)** - Uso prático validações auth React Vue
-- **[API/](./API/README.md)** - Referência completa API classes métodos types
+| Secao | Arquivos | Status |
+|:------|:---------|:-------|
+| SPECS | 3 | Completo |
+| ADRs | 1 | Completo |
+| ARCHITECTURE | 1 | Existente |
+| CONCEPTS | 3 | Existente |
+| API | 3 | Completo |
+| HOW-TO | 3 | Completo |
+
+<!-- CARF-INDEX-START -->
+## Subpastas
+
+- [[PROJECTS/LIB/TS/TSCORE/DOCS/ADRs/README|ADRs]]
+- [[PROJECTS/LIB/TS/TSCORE/DOCS/API/README|API]]
+- [[PROJECTS/LIB/TS/TSCORE/DOCS/ARCHITECTURE/README|ARCHITECTURE]]
+- [[PROJECTS/LIB/TS/TSCORE/DOCS/CONCEPTS/README|CONCEPTS]]
+- [[PROJECTS/LIB/TS/TSCORE/DOCS/HOW-TO/README|HOW-TO]]
+- [[PROJECTS/LIB/TS/TSCORE/DOCS/SPECS/README|SPECS]]
+
+<!-- CARF-INDEX-END -->

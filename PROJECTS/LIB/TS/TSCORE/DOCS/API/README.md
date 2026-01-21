@@ -237,12 +237,12 @@ Ver todas 36+ entities em código-fonte `src/types/entities/`
 
 ```typescript
 enum UnitStatus {
- DRAFT = 'DRAFT'
- PENDING = 'PENDING'
- IN_REVIEW = 'IN_REVIEW'
- APPROVED = 'APPROVED'
- REJECTED = 'REJECTED'
- REQUIRES_CHANGES = 'REQUIRES_CHANGES'
+  DRAFT = 'DRAFT'                       // Rascunho
+  PENDING_ANALYSIS = 'PENDING_ANALYSIS' // Aguardando analise
+  IN_REVIEW = 'IN_REVIEW'               // Em revisao tecnica
+  APPROVED = 'APPROVED'                 // Aprovada
+  REJECTED = 'REJECTED'                 // Rejeitada
+  REQUIRES_CHANGES = 'REQUIRES_CHANGES' // Requer correcoes
 }
 ```
 
@@ -543,7 +543,9 @@ try {
 
 ## Ver também
 
-- [Validation API](./01-validation-api.md) - Detalhes de implementação dos value objects de validação
+- **01-validation-api** - Detalhes de implementacao dos value objects de validacao
+- **02-types-api** - Interfaces e tipos TypeScript
+- **03-auth-api** - Autenticacao Keycloak
 
 <!-- CARF-INDEX-START -->
 ## Documentos
@@ -551,5 +553,7 @@ try {
 ### Em Revisão
 
 - ○ [[PROJECTS/LIB/TS/TSCORE/DOCS/API/01-validation-api.md|Validation API - Referência Completa]]
+- ○ [[PROJECTS/LIB/TS/TSCORE/DOCS/API/02-types-api.md|Types API - @carf/tscore]]
+- ○ [[PROJECTS/LIB/TS/TSCORE/DOCS/API/03-auth-api.md|Auth API - @carf/tscore]]
 
 <!-- CARF-INDEX-END -->

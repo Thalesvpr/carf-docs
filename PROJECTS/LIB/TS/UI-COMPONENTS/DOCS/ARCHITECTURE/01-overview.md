@@ -1,6 +1,6 @@
 ---
-status: approved
-updated: 2026-01-20
+status: review
+updated: 2026-01-21
 ---
 
 # Overview da Arquitetura - @carf/ui

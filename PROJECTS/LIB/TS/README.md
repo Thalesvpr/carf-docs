@@ -1,15 +1,34 @@
 ---
+title: "Bibliotecas TypeScript"
+description: "Bibliotecas TypeScript compartilhadas do ecossistema CARF"
 status: review
-updated: 2026-01-12
+updated: 2026-01-20
+source: "interno"
 ---
 
-# TS
+# Bibliotecas TypeScript
 
-Bibliotecas TypeScript compartilhadas entre GEOWEB, REURBCAD e ADMIN.
+Bibliotecas TypeScript compartilhadas entre GEOWEB, REURBCAD, ADMIN e outras aplicacoes.
 
-- **[TSCORE/](./TSCORE/README.md)** - @carf/tscore value objects e validações
-- **[GEOAPI-CLIENT/](./GEOAPI-CLIENT/README.md)** - @carf/geoapi-client HTTP client
-- **[UI-COMPONENTS/](./UI-COMPONENTS/README.md)** - @carf/ui componentes React
+## Bibliotecas Disponiveis
+
+| Biblioteca | Pacote | Descricao | Status |
+|:-----------|:-------|:----------|:-------|
+| [TSCORE](./TSCORE/README.md) | @carf/tscore | Value objects e validacoes | Especificado |
+| [GEOAPI-CLIENT](./GEOAPI-CLIENT/README.md) | @carf/geoapi-client | HTTP client para GEOAPI | Especificado |
+| [UI-COMPONENTS](./UI-COMPONENTS/README.md) | @carf/ui | Componentes React | Especificado |
+
+## Dependencias
+
+```
+@carf/ui
+    └── @carf/tscore (types)
+        └── zod (validations)
+
+@carf/geoapi-client
+    ├── @carf/tscore (types)
+    └── axios (http)
+```
 
 <!-- CARF-INDEX-START -->
 ## Subpastas

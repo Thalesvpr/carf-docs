@@ -7,10 +7,13 @@ updated: 2026-01-15
 
 ## Guias Práticos
 
-- [02-build-and-run.md](./02-build-and-run.md) - Build e publicação da biblioteca
-- [02-customization.md](./02-customization.md) - Customizar tema via CSS variables
-- [03-testing.md](./03-testing.md) - Escrever testes de componentes
-- [04-troubleshooting.md](./04-troubleshooting.md) - Resolver problemas comuns
+Guias disponiveis nesta secao:
+- **01-build-and-run** - Build e publicacao da biblioteca
+- **02-customization** - Customizar tema via CSS variables
+- **03-testing** - Escrever testes de componentes
+- **04-troubleshooting** - Resolver problemas comuns
+
+Ver tabela abaixo para links.
 
 ## Guias Rápidos
 
@@ -43,10 +46,22 @@ npm publish
 
 | ID | Titulo |
 |:---|:-------|
-| [02-build-and-run](./02-build-and-run.md) | Build and Run - @carf/ui |
+| [01-build-and-run](./01-build-and-run.md) | Build and Run - @carf/ui |
 | [02-customization](./02-customization.md) | Customization - @carf/ui |
 | [03-testing](./03-testing.md) | Testing - @carf/ui |
 | [04-troubleshooting](./04-troubleshooting.md) | Troubleshooting - @carf/ui |
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
+
+<!-- CARF-INDEX-START -->
+## Documentos
+
+### Em Revisão
+
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/HOW-TO/01-build-and-run.md|Build and Run - @carf/ui]]
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/HOW-TO/02-customization.md|Customization - @carf/ui]]
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/HOW-TO/03-testing.md|Testing - @carf/ui]]
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/HOW-TO/04-troubleshooting.md|Troubleshooting - @carf/ui]]
+
+<!-- CARF-INDEX-END -->

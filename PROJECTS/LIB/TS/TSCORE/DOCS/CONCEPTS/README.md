@@ -180,19 +180,19 @@ Estados do workflow de aprovação:
 import { UnitStatus } from '@carf/tscore/types'
 
 enum UnitStatus {
- DRAFT = 'DRAFT' // Rascunho
- PENDING = 'PENDING' // Aguardando análise
- IN_REVIEW = 'IN_REVIEW' // Em análise
- APPROVED = 'APPROVED' // Aprovada
- REJECTED = 'REJECTED' // Rejeitada
- REQUIRES_CHANGES = 'REQUIRES_CHANGES' // Requer alterações
+  DRAFT = 'DRAFT'                       // Rascunho
+  PENDING_ANALYSIS = 'PENDING_ANALYSIS' // Aguardando análise
+  IN_REVIEW = 'IN_REVIEW'               // Em revisão técnica
+  APPROVED = 'APPROVED'                 // Aprovada
+  REJECTED = 'REJECTED'                 // Rejeitada
+  REQUIRES_CHANGES = 'REQUIRES_CHANGES' // Requer alterações
 }
 
 // Transições válidas
-DRAFT → PENDING
-PENDING → IN_REVIEW → APPROVED
- ↓
- REJECTED ou REQUIRES_CHANGES
+DRAFT → PENDING_ANALYSIS
+PENDING_ANALYSIS → IN_REVIEW → APPROVED
+                 ↓
+                 REJECTED ou REQUIRES_CHANGES
 ```
 
 ### Role
@@ -361,9 +361,9 @@ const updateDto: UpdateUnitDto = {
 
 ## Ver também
 
-- [Value Objects Detalhados](./01-value-objects.md) - Implementações completas de CPF, CNPJ, Email, Phone
-- [Autenticação Keycloak](./02-authentication.md) - OAuth2/OIDC integration
-- [TypeScript Types](./03-typescript-types.md) - Entities, Enums, DTOs do domínio CARF
+- **01-value-objects** - Implementacoes completas de CPF, CNPJ, Email, Phone
+- **02-authentication** - Autenticacao Keycloak OAuth2/OIDC
+- **03-typescript-types** - Entities, Enums, DTOs do dominio CARF
 
 <!-- CARF-INDEX-START -->
 ## Documentos

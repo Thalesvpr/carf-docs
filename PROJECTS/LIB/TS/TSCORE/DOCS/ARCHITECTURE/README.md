@@ -7,9 +7,10 @@ updated: 2026-01-09
 
 Documentação arquitetural da biblioteca TypeScript compartilhada.
 
-## Decisões Arquiteturais
+## Decisoes Arquiteturais
 
-- ****ADR-011**** - Decisão de criar biblioteca compartilhada vs duplicar código vs monorepo
+Ver ADRs/README.md para decisoes arquiteturais detalhadas:
+- ADR-011: Criar biblioteca compartilhada vs duplicar codigo vs monorepo
 
 ## Estrutura de Módulos
 

@@ -90,14 +90,14 @@ Mapeamento de quais componentes cada aplicacao do ecossistema CARF utiliza. Comp
 
 | Categoria | Arquivo | Componentes |
 |:----------|:--------|:------------|
-| Form | [01-form-components.md](01-form-components.md) | Button, Input, Label, Checkbox, Switch, Select, Textarea |
-| Layout | [02-layout-components.md](02-layout-components.md) | Card, Separator, Tabs, Accordion |
-| Feedback | [03-feedback-components.md](03-feedback-components.md) | Alert, Toast, Dialog, AlertDialog, Progress |
-| Data Display | [04-data-display-components.md](04-data-display-components.md) | Avatar, Badge, Tooltip, Popover, Table |
-| Navigation | [05-navigation-components.md](05-navigation-components.md) | DropdownMenu |
-| CARF Domain | [06-domain-components.md](06-domain-components.md) | StatusBadge, UnitCard, HolderCard, CommunityCard |
-| Hooks | [07-hooks.md](07-hooks.md) | useTheme, useMediaQuery, useDebounce |
-| Utils | [08-utils.md](08-utils.md) | cn, carfColors, format functions |
+| Form | 01-form-components | Button, Input, Label, Checkbox, Switch, Select, Textarea |
+| Layout | 02-layout-components | Card, Separator, Tabs, Accordion, ScrollArea |
+| Feedback | 03-feedback-components | Alert, Toast, Dialog, AlertDialog, Progress, Skeleton |
+| Data Display | 04-data-components | Avatar, Badge, Tooltip, Popover, Table, HoverCard |
+| Navigation | 05-navigation-components | DropdownMenu, Command, Breadcrumb, NavigationMenu, Pagination |
+| CARF Domain | 06-domain-components | StatusBadge, UnitCard, HolderCard, CommunityCard |
+| Hooks | 07-hooks | useTheme, useMediaQuery, useDebounce, useLocalStorage, useCopyToClipboard |
+| Utils | 08-utils | cn, cva, formatters, validators, helpers |
 
 ## Dependencias
 
@@ -118,7 +118,13 @@ A dependencia de `@carf/tscore` e **opcional**: componentes de dominio (UnitCard
 ### Em Revisão
 
 - ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/01-form-components.md|Form Components]]
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/02-layout-components.md|Layout Components - @carf/ui]]
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/03-feedback-components.md|Feedback Components - @carf/ui]]
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/04-data-components.md|Data Components - @carf/ui]]
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/05-navigation-components.md|Navigation Components - @carf/ui]]
 - ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/06-domain-components.md|Domain Components]]
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/07-hooks.md|Hooks - @carf/ui]]
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/08-utils.md|Utils - @carf/ui]]
 - ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/09-screen-mapping.md|Mapeamento Tela-Componentes]]
 
 <!-- CARF-INDEX-END -->

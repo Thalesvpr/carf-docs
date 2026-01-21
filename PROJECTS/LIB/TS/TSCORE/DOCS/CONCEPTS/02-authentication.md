@@ -1,6 +1,6 @@
 ---
 status: review
-updated: 2026-01-15
+updated: 2026-01-21
 ---
 
 # Authentication - Autenticação com Keycloak
@@ -9,15 +9,7 @@ updated: 2026-01-15
 
 O módulo de autenticação do @carf/tscore fornece integração com Keycloak OAuth2/OIDC para Single Sign-On (SSO) em todos os projetos CARF conforme. Implementa autenticação baseada em tokens JWT com suporte a roles, multi-tenancy e refresh automático, sendo consumido por geoapi-client para autenticação automática em requisições HTTP.
 
-## Documentação de Referência
-
-📖 **** - Configuração completa do Keycloak
-
-📖 ****CENTRAL/SECURITY/01-authentication.md**** - Arquitetura de autenticação do sistema
-
-📖 ****CENTRAL/SECURITY/02-authorization.md**** - Modelo de autorização RBAC
-
-## Arquitetura de Autenticação
+## Arquitetura de Autenticacao
 
 O CARF utiliza autenticação federada via Keycloak com o seguinte fluxo:
 
@@ -63,8 +55,6 @@ Aplicações frontend (SPA) usam **PKCE (Proof Key for Code Exchange)** para seg
 5. Keycloak redireciona de volta com `authorization_code`
 6. Cliente troca `code` + `code_verifier` por `access_token`
 
-📖 ****CENTRAL/INTEGRATION/KEYCLOAK/01-oauth2-flows.md**** - Detalhes dos fluxos OAuth2
-
 ### 2. JWT Token Structure
 
 Token JWT contém claims customizados para multi-tenancy:
@@ -86,23 +76,19 @@ Token JWT contém claims customizados para multi-tenancy:
 }
 ```
 
-📖 ****CENTRAL/SECURITY/03-jwt-claims.md**** - Especificação completa dos claims JWT
-
 ## Roles do Sistema
 
-O CARF define 5 níveis de autorização (RBAC):
+O CARF define 5 niveis de autorizacao (RBAC):
 
-| Role | Descrição | Permissões | Docs |
-|------|-----------|------------|------|
-| `super-admin` | Super administrador global | Acesso total, gerencia tenants 
-| `admin` | Administrador do tenant | Gerencia usuários e configurações 
-| `manager` | Gestor de processos | Aprova legitimações, gera relatórios 
-| `analyst` | Analista técnico | Valida unidades, corrige geometrias 
-| `field-collector` | Coletor de campo | Apenas coleta dados mobile 
+| Role | Descricao | Permissoes |
+|:-----|:----------|:-----------|
+| `super-admin` | Super administrador global | Acesso total, gerencia tenants |
+| `admin` | Administrador do tenant | Gerencia usuarios e configuracoes |
+| `manager` | Gestor de processos | Aprova legitimacoes, gera relatorios |
+| `analyst` | Analista tecnico | Valida unidades, corrige geometrias |
+| `field-collector` | Coletor de campo | Apenas coleta dados mobile |
 
-📖 ****CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/23-role.md**** - Value Object Role
-
-## API do Módulo de Autenticação
+## API do Modulo de Autenticacao
 
 ### KeycloakClient
 
@@ -359,8 +345,6 @@ CREATE POLICY tenant_isolation ON units
  USING (tenant_id = current_setting('app.current_tenant_id')::uuid);
 ```
 
-📖 ****CENTRAL/INTEGRATION/DATABASE/02-row-level-security.md**** - Configuração RLS
-
 ### Trocar Tenant
 
 Usuários com acesso a múltiplos tenants podem alternar:
@@ -398,8 +382,6 @@ function TenantSwitcher() {
 
 - **Web (GEOWEB, ADMIN):** `httpOnly` cookie (protege contra XSS)
 - **Mobile (REURBCAD):** Keychain/Keystore nativo (criptografado)
-
-📖 ****CENTRAL/SECURITY/04-token-storage.md**** - Estratégias de armazenamento
 
 ### Token Refresh
 

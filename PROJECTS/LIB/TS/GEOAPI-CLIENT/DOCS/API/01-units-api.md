@@ -1,23 +1,13 @@
 ---
 status: review
-updated: 2026-01-09
+updated: 2026-01-21
 ---
 
 # Units API - Gerenciamento de Unidades Habitacionais
 
 ## Visão Geral
 
-A Units API fornece operações CRUD completas para gerenciamento de unidades habitacionais em processo de regularização fundiária.
-
-## Documentação de Referência
-
-📖 ****CENTRAL/API/UNITS/README.md**** - Especificação completa da API de Units
-
-📖 **** - Entidade Unit do domínio
-
-📖 **** - Unit Aggregate Root
-
-📖 **** - Requisitos funcionais de Units
+A Units API fornece operacoes CRUD completas para gerenciamento de unidades habitacionais em processo de regularizacao fundiaria.
 
 ## Import
 
@@ -150,12 +140,6 @@ const sorted = await api.units.list({
 })
 ```
 
-#### Requisitos Relacionados
-
-📖 ****RF-001**** - Listar unidades com filtros
-📖 ****RF-002**** - Buscar unidades por texto
-📖 ****RF-003**** - Filtrar por comunidade
-
 ---
 
 ### getById()
@@ -202,10 +186,6 @@ const fullUnit = await api.units.getById('unit-uuid-123', {
 console.log(`Titulares: ${fullUnit.holders.length}`)
 console.log(`Documentos: ${fullUnit.documents.length}`)
 ```
-
-#### Requisitos Relacionados
-
-📖 ****RF-010**** - Visualizar detalhes da unidade
 
 ---
 
@@ -318,23 +298,16 @@ try {
 }
 ```
 
-#### Regras de Validação
+#### Regras de Validacao
 
-📖 ****CENTRAL/DOMAIN-MODEL/BUSINESS-RULES/VALIDATION-RULES/unit-validation.md**** - Regras completas
-
-1. **code**: Obrigatório, único por comunidade, 1-50 caracteres
-2. **communityId**: Obrigatório, comunidade deve existir e usuário ter acesso
-3. **street**: Obrigatório, 1-200 caracteres
-4. **city**: Obrigatório, 1-100 caracteres
-5. **state**: Obrigatório, exatamente 2 letras (UF válida)
-6. **occupationType**: Obrigatório, um dos valores do enum
-7. **geometry**: Se fornecido, deve ser polígono WKT/GeoJSON válido
+1. **code**: Obrigatorio, unico por comunidade, 1-50 caracteres
+2. **communityId**: Obrigatorio, comunidade deve existir e usuario ter acesso
+3. **street**: Obrigatorio, 1-200 caracteres
+4. **city**: Obrigatorio, 1-100 caracteres
+5. **state**: Obrigatorio, exatamente 2 letras (UF valida)
+6. **occupationType**: Obrigatorio, um dos valores do enum
+7. **geometry**: Se fornecido, deve ser poligono WKT/GeoJSON valido
 8. **area**: Se fornecido, deve ser > 0
-
-#### Requisitos Relacionados
-
-📖 ****RF-020**** - Criar unidade habitacional
-📖 ****RF-021**** - Validar código único
 
 ---
 
@@ -432,10 +405,6 @@ await api.units.update('unit-123', { ...unitB, street: 'Rua B', version: 1 })
 // Throws ConflictError: "Unidade foi modificada por outro usuário"
 ```
 
-#### Requisitos Relacionados
-
-📖 ****RF-030**** - Atualizar unidade
-
 ---
 
 ### patch()
@@ -499,10 +468,6 @@ console.log('Unidade deletada com sucesso')
 // Unidade não aparece mais em listagens
 ```
 
-#### Requisitos Relacionados
-
-📖 ****RF-040**** - Deletar unidade
-
 ---
 
 ### getHolders()
@@ -539,10 +504,6 @@ holders.forEach(uh => {
  }
 })
 ```
-
-#### Requisitos Relacionados
-
-📖 ****RF-050**** - Listar titulares da unidade
 
 ---
 
@@ -600,10 +561,6 @@ const owner2 = await api.units.addHolder('unit-123', {
 })
 ```
 
-#### Requisitos Relacionados
-
-📖 ****RF-060**** - Vincular titular à unidade
-
 ---
 
 ### removeHolder()
@@ -619,10 +576,6 @@ removeHolder(unitId: string, holderId: string): Promise<void>
 ```typescript
 await api.units.removeHolder('unit-123', 'holder-456')
 ```
-
-#### Requisitos Relacionados
-
-📖 ****RF-070**** - Desvincular titular
 
 ---
 
@@ -650,10 +603,6 @@ link.href = url
 link.download = 'unidades-aprovadas.xlsx'
 link.click()
 ```
-
-#### Requisitos Relacionados
-
-📖 ****RF-080**** - Exportar unidades
 
 ---
 

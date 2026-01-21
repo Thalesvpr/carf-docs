@@ -1,6 +1,6 @@
 ---
 status: review
-updated: 2026-01-09
+updated: 2026-01-21
 ---
 
 # HTTP Client - Cliente HTTP Base
@@ -8,14 +8,6 @@ updated: 2026-01-09
 ## Visão Geral
 
 O @carf/geoapi-client é construído sobre um cliente HTTP robusto que encapsula toda a comunicação com a GEOAPI backend. Fornece autenticação automática, tratamento de erros tipados, retry logic e suporte a interceptors customizados.
-
-## Documentação de Referência
-
-📖 **** - Especificação completa da REST API GEOAPI
-
-📖 **** - Autenticação OAuth2/OIDC
-
-📖 ****GEOAPI Backend Docs**** - Documentação do backend .NET
 
 ## Arquitetura do Cliente HTTP
 
@@ -133,8 +125,6 @@ async function authInterceptor(config: RequestConfig): Promise<RequestConfig> {
 }
 ```
 
-📖 ****CENTRAL/SECURITY/01-authentication.md**** - Arquitetura de autenticação
-
 ### Interceptor de Tenant (Built-in)
 
 Adiciona header `X-Tenant-Id` para multi-tenancy.
@@ -154,8 +144,6 @@ async function tenantInterceptor(config: RequestConfig): Promise<RequestConfig> 
  return config
 }
 ```
-
-📖 ****CENTRAL/ARCHITECTURE/MULTI-TENANCY/01-overview.md**** - Multi-tenancy
 
 ### Custom Request Interceptor
 
@@ -257,8 +245,6 @@ ApiError (base)
  └── ServiceUnavailableError (503 - serviço indisponível)
 ```
 
-📖 ****API Reference: Error Handling**** - Detalhes completos de cada erro
-
 ### Tratando Erros
 
 ```typescript
@@ -316,8 +302,6 @@ interface ValidationError extends ApiError {
  }
 }
 ```
-
-📖 ****CENTRAL/API/02-error-responses.md**** - Formato de respostas de erro
 
 ## Retry Logic
 
@@ -442,7 +426,7 @@ const document = await api.documents.upload(formData, {
 })
 ```
 
-📖 ****HOW-TO: Upload de Arquivos**** - Guia completo
+Ver tambem: HOW-TO/03-file-upload.md
 
 ## Download de Arquivos
 

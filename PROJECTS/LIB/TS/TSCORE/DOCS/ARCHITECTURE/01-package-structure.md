@@ -1,6 +1,6 @@
 ---
 status: review
-updated: 2026-01-16
+updated: 2026-01-21
 ---
 
 # Package Structure
@@ -76,7 +76,14 @@ export interface Unit {
   updatedAt: string;
 }
 
-export type UnitStatus = 'Rascunho' | 'Pendente' | 'Aprovado' | 'Rejeitado';
+export enum UnitStatus {
+  DRAFT = 'DRAFT',
+  PENDING_ANALYSIS = 'PENDING_ANALYSIS',
+  IN_REVIEW = 'IN_REVIEW',
+  APPROVED = 'APPROVED',
+  REJECTED = 'REJECTED',
+  REQUIRES_CHANGES = 'REQUIRES_CHANGES'
+}
 
 export interface Address {
   street: string;

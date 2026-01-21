@@ -1,6 +1,6 @@
 ---
 status: review
-updated: 2026-01-15
+updated: 2026-01-21
 ---
 
 # Validation API - Referência Completa
@@ -17,9 +17,7 @@ import { CPF, CNPJ, Email, PhoneNumber } from '@carf/tscore/validations'
 
 ## Class: CPF
 
-Valida e manipula CPF brasileiro com dígitos verificadores.
-
-📖 **** - Especificação do domínio
+Valida e manipula CPF brasileiro com digitos verificadores.
 
 ### Constructor
 
@@ -196,9 +194,7 @@ CPF.clean('12345678909') // "12345678909"
 
 ## Class: CNPJ
 
-Valida e manipula CNPJ brasileiro com dígitos verificadores.
-
-📖 ****CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/02-cnpj.md**** - Especificação do domínio
+Valida e manipula CNPJ brasileiro com digitos verificadores.
 
 ### Constructor
 
@@ -364,9 +360,7 @@ CNPJ.clean('11444777000161') // "11444777000161"
 
 ## Class: Email
 
-Valida e normaliza endereços de email conforme RFC 5322.
-
-📖 ****CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/04-email.md**** - Especificação do domínio
+Valida e normaliza enderecos de email conforme RFC 5322.
 
 ### Constructor
 
@@ -526,8 +520,6 @@ Email.normalize('USER@EXAMPLE.COM') // "user@example.com"
 ## Class: PhoneNumber
 
 Valida e formata telefones brasileiros com DDD.
-
-📖 ****CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/05-phone-number.md**** - Especificação do domínio
 
 ### Constructor
 

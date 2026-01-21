@@ -1,66 +1,59 @@
 ---
+title: "Value Objects - @carf/tscore"
 status: review
-updated: 2026-01-15
+updated: 2026-01-21
+source: "interno"
 ---
 
 # Value Objects - Objetos de Valor
 
-## Visão Geral
+## Visao Geral
 
-Value Objects são objetos imutáveis representando conceitos do domínio definidos apenas por atributos sem identidade própria. @carf/tscore implementa Value Objects garantindo validação consistente de dados brasileiros em todos projetos CARF consumidos por geoapi-client para tipagem requests/responses HTTP, ui-components para validação em componentes React, e aplicações finais GEOWEB, REURBCAD e ADMIN.
+Value Objects sao objetos imutaveis representando conceitos do dominio definidos apenas por atributos sem identidade propria. @carf/tscore implementa Value Objects garantindo validacao consistente de dados brasileiros em todos projetos CARF.
 
 ## Conceito de Value Object
 
-### Definição
+### Definicao
 
-Um Value Object é um objeto que:
-1. **Não possui identidade** - Dois VOs com mesmos valores são considerados iguais
-2. **É imutável** - Uma vez criado, seus valores não podem ser alterados
-3. **Encapsula validação** - A criação falha se os valores forem inválidos
-4. **Expressa conceito de domínio** - Representa algo do mundo real (CPF, Email, Coordenadas)
+Um Value Object e um objeto que:
+1. **Nao possui identidade** - Dois VOs com mesmos valores sao considerados iguais
+2. **E imutavel** - Uma vez criado, seus valores nao podem ser alterados
+3. **Encapsula validacao** - A criacao falha se os valores forem invalidos
+4. **Expressa conceito de dominio** - Representa algo do mundo real (CPF, Email, Coordenadas)
 
-### Benefícios
+### Beneficios
 
-✅ **Type Safety** - TypeScript garante tipos corretos em compile-time
-✅ **Validação Centralizada** - Regras em um único lugar
-✅ **Reutilização** - Mesmo código em GEOWEB, REURBCAD, ADMIN
-✅ **Imutabilidade** - Previne bugs de mutação acidental
-✅ **Semântica** - `new CPF('12345678909')` é mais expressivo que `string`
+- **Type Safety** - TypeScript garante tipos corretos em compile-time
+- **Validacao Centralizada** - Regras em um unico lugar
+- **Reutilizacao** - Mesmo codigo em GEOWEB, REURBCAD, ADMIN
+- **Imutabilidade** - Previne bugs de mutacao acidental
+- **Semantica** - `new CPF('12345678909')` e mais expressivo que `string`
 
-## Relação com CENTRAL/DOMAIN-MODEL
+## Value Objects Disponiveis
 
-Os Value Objects implementados nesta biblioteca correspondem diretamente aos conceitos documentados em CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/ fornecendo índice completo de 25 Value Objects do domínio.
+| Value Object | Descricao | Status |
+|:-------------|:----------|:-------|
+| `CPF` | Cadastro de Pessoa Fisica (11 digitos) | Especificado |
+| `CNPJ` | Cadastro Nacional Pessoa Juridica (14 digitos) | Especificado |
+| `Email` | Endereco de email | Especificado |
+| `PhoneNumber` | Telefone brasileiro (DDD + numero) | Especificado |
+| `GeoPoint` | Ponto geografico (lat, lng) | Planejado |
+| `GeoPolygon` | Poligono geografico | Planejado |
+| `Address` | Endereco completo | Planejado |
 
-### Mapeamento Implementado
+## Value Objects Especificados
 
-| Value Object @carf/tscore | Documentação CENTRAL | Status |
-|---|---|---|
-| `CPF` | | ✅ Implementado |
-| `CNPJ` | ✅ Implementado |
-| `Email` | ✅ Implementado |
-| `PhoneNumber` | ✅ Implementado |
-| `GeoPoint` | 🚧 Planejado |
-| `GeoPolygon` | 🚧 Planejado |
-| `Address` | 🚧 Planejado |
+### 1. CPF (Cadastro de Pessoa Fisica)
 
-## Value Objects Implementados
+Valida CPF brasileiro com algoritmo de digitos verificadores conforme Receita Federal.
 
-### 1. CPF (Cadastro de Pessoa Física)
+#### Uso nas Entidades
 
-Valida CPF brasileiro com algoritmo de dígitos verificadores conforme Receita Federal.
+- **Holder** - CPF obrigatorio para identificacao do posseiro
+- **Account** - CPF opcional para vinculacao de usuario
+- **Surveyor** - CPF obrigatorio para topografo profissional
 
-#### Documentação de Domínio
-
-📖 **** - Especificação completa do conceito CPF
-
-#### Relacionamentos de Domínio
-
-Este Value Object é usado nas seguintes entidades:
-- **** - CPF obrigatório para identificação única nacional
-- ****Account**** - CPF opcional para vinculação de usuário
-- ****Surveyor**** - CPF obrigatório para topógrafo profissional
-
-#### Regras de Validação
+#### Regras de Validacao
 
 1. **Formato:** 11 dígitos numéricos (aceita máscaras `###.###.###-##`)
 2. **Dígitos Verificadores:** Valida mod-11 (d1 e d2)
@@ -128,21 +121,16 @@ new CPF('123.456.789-00') // ❌ Dígito verificador errado
 new CPF('abc') // ❌ Formato inválido
 ```
 
-### 2. CNPJ (Cadastro Nacional de Pessoa Jurídica)
+### 2. CNPJ (Cadastro Nacional de Pessoa Juridica)
 
-Valida CNPJ brasileiro com algoritmo de dígitos verificadores conforme Receita Federal.
+Valida CNPJ brasileiro com algoritmo de digitos verificadores conforme Receita Federal.
 
-#### Documentação de Domínio
+#### Uso nas Entidades
 
-📖 ****CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/02-cnpj.md**** - Especificação completa do conceito CNPJ
+- **Holder** - CNPJ quando titular e pessoa juridica
+- **Client** - CNPJ obrigatorio para instituicao cliente
 
-#### Relacionamentos de Domínio
-
-Este Value Object é usado nas seguintes entidades:
-- **** - Quando titular é pessoa jurídica
-- **** - CNPJ obrigatório para instituição cliente
-
-#### Regras de Validação
+#### Regras de Validacao
 
 1. **Formato:** 14 dígitos numéricos (aceita máscaras `##.###.###/####-##`)
 2. **Dígitos Verificadores:** Valida mod-11 (d1 e d2)
@@ -170,19 +158,14 @@ CNPJ.clean('11.444.777/0001-61')
 
 ### 3. Email
 
-Valida endereços de email conforme RFC 5322 com sanitização básica.
+Valida enderecos de email conforme RFC 5322 com sanitizacao basica.
 
-#### Documentação de Domínio
+#### Uso nas Entidades
 
-📖 ****CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/04-email.md**** - Especificação completa do conceito Email
+- **Holder** - Email para contato e notificacoes
+- **Account** - Email obrigatorio para autenticacao
 
-#### Relacionamentos de Domínio
-
-Este Value Object é usado nas seguintes entidades:
-- **** - Email para contato e notificações
-- ****Account**** - Email obrigatório para autenticação
-
-#### Regras de Validação
+#### Regras de Validacao
 
 1. **Formato RFC 5322:** `local-part@domain`
 2. **Normalização:** Converte para lowercase
@@ -247,19 +230,14 @@ function useEmailValidation() {
 
 ### 4. PhoneNumber (Telefone Brasileiro)
 
-Valida telefones brasileiros com DDD e formato móvel/fixo.
+Valida telefones brasileiros com DDD e formato movel/fixo.
 
-#### Documentação de Domínio
+#### Uso nas Entidades
 
-📖 ****CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/05-phone-number.md**** - Especificação completa do conceito PhoneNumber
+- **Holder** - Telefone para contato
+- **Account** - Telefone opcional
 
-#### Relacionamentos de Domínio
-
-Este Value Object é usado nas seguintes entidades:
-- **** - Telefone para contato
-- ****Account**** - Telefone opcional
-
-#### Regras de Validação
+#### Regras de Validacao
 
 1. **DDD:** 2 dígitos (11-99)
 2. **Número Móvel:** 9 dígitos iniciando com 9 (ex: 98765-4321)
@@ -287,285 +265,6 @@ phone.isLandline() // false
 PhoneNumber.isValid('(11) 98765-4321')
 PhoneNumber.format('11987654321')
 PhoneNumber.clean('(11) 98765-4321')
-```
-
-## Value Objects Geograficos (Especificacao Completa)
-
-### GeoPoint (Ponto Geografico)
-
-Representa um ponto geografico com coordenadas latitude/longitude em sistema WGS84 (EPSG:4326).
-
-#### Documentacao de Dominio
-
-📖 **CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/geo-point.md** - Especificacao do conceito
-
-#### Relacionamentos de Dominio
-
-- **Unit** - Ponto de referencia da unidade (centroide)
-- **SurveyPoint** - Vertices do levantamento topografico
-- **Community** - Ponto central da comunidade
-
-#### Regras de Validacao
-
-1. **Latitude:** -90 a 90 graus
-2. **Longitude:** -180 a 180 graus
-3. **Precisao:** Minimo 6 casas decimais recomendado (~0.1m)
-4. **Sistema:** WGS84 (EPSG:4326) assumido
-
-#### Interface
-
-```typescript
-interface GeoPoint {
-  readonly latitude: number   // -90 a 90
-  readonly longitude: number  // -180 a 180
-
-  // Conversoes
-  toWKT(): string             // "POINT(-46.6333 -23.5505)"
-  toGeoJSON(): GeoJSONPoint   // { type: "Point", coordinates: [lng, lat] }
-  toArray(): [number, number] // [longitude, latitude]
-
-  // Operacoes
-  distanceTo(other: GeoPoint): number  // Distancia em metros (Haversine)
-  equals(other: GeoPoint): boolean
-
-  // Factory methods
-  static fromWKT(wkt: string): GeoPoint
-  static fromGeoJSON(geojson: GeoJSONPoint): GeoPoint
-  static fromArray(coords: [number, number]): GeoPoint
-}
-
-interface GeoJSONPoint {
-  type: 'Point'
-  coordinates: [number, number]  // [longitude, latitude]
-}
-```
-
-#### Usage
-
-```typescript
-import { GeoPoint } from '@carf/tscore/geo'
-
-// Criacao
-const point = new GeoPoint(-23.5505, -46.6333)  // lat, lng
-const fromWKT = GeoPoint.fromWKT('POINT(-46.6333 -23.5505)')
-const fromGeoJSON = GeoPoint.fromGeoJSON({
-  type: 'Point',
-  coordinates: [-46.6333, -23.5505]
-})
-
-// Propriedades
-point.latitude   // -23.5505
-point.longitude  // -46.6333
-
-// Conversoes
-point.toWKT()      // "POINT(-46.6333 -23.5505)"
-point.toGeoJSON()  // { type: "Point", coordinates: [-46.6333, -23.5505] }
-point.toArray()    // [-46.6333, -23.5505]
-
-// Operacoes
-const other = new GeoPoint(-23.5600, -46.6400)
-point.distanceTo(other)  // 1234.56 (metros)
-
-// Validacao
-GeoPoint.isValid(-23.5505, -46.6333)  // true
-GeoPoint.isValid(91, 0)               // false (latitude invalida)
-```
-
-#### Usage em Entidades
-
-```typescript
-import type { Unit } from '@carf/tscore/types'
-import { GeoPoint } from '@carf/tscore/geo'
-
-// Unit com ponto de referencia
-const unit: Unit = {
-  id: '...',
-  code: 'UN-001',
-  referencePoint: new GeoPoint(-23.5505, -46.6333).toGeoJSON(),
-  // ...
-}
-
-// Mapear para Leaflet
-import L from 'leaflet'
-const marker = L.marker([point.latitude, point.longitude])
-```
-
-### GeoPolygon (Poligono Geografico)
-
-Representa um poligono geografico fechado com coordenadas em WGS84 para delimitacao de unidades habitacionais e comunidades.
-
-#### Documentacao de Dominio
-
-📖 **CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/geo-polygon.md** - Especificacao do conceito
-
-#### Relacionamentos de Dominio
-
-- **Unit** - Perimetro da unidade habitacional
-- **Community** - Perimetro da comunidade
-- **Block** - Delimitacao de quadra
-
-#### Regras de Validacao
-
-1. **Fechamento:** Primeiro e ultimo ponto devem ser iguais
-2. **Minimo de Pontos:** 4 pontos (triangulo fechado)
-3. **Sentido:** Counter-clockwise (CCW) para exterior
-4. **Autointersecao:** Poligono nao pode se cruzar
-5. **Holes:** Suporta buracos (interior em sentido horario)
-
-#### Interface
-
-```typescript
-interface GeoPolygon {
-  readonly coordinates: GeoPoint[]
-  readonly holes?: GeoPoint[][]
-
-  // Propriedades
-  area(): number           // Area em m² (WGS84 projection)
-  perimeter(): number      // Perimetro em metros
-  centroid(): GeoPoint     // Ponto central
-  bounds(): GeoBounds      // Bounding box
-
-  // Conversoes
-  toWKT(): string
-  toGeoJSON(): GeoJSONPolygon
-
-  // Validacao
-  isValid(): boolean
-  contains(point: GeoPoint): boolean
-  intersects(other: GeoPolygon): boolean
-
-  // Factory methods
-  static fromWKT(wkt: string): GeoPolygon
-  static fromGeoJSON(geojson: GeoJSONPolygon): GeoPolygon
-  static fromCoordinates(coords: Array<[number, number]>): GeoPolygon
-}
-
-interface GeoJSONPolygon {
-  type: 'Polygon'
-  coordinates: Array<Array<[number, number]>>  // [exterior, ...holes]
-}
-
-interface GeoBounds {
-  north: number  // max latitude
-  south: number  // min latitude
-  east: number   // max longitude
-  west: number   // min longitude
-}
-```
-
-#### Usage
-
-```typescript
-import { GeoPolygon, GeoPoint } from '@carf/tscore/geo'
-
-// Criacao a partir de WKT (comum em PostGIS)
-const polygon = GeoPolygon.fromWKT(
-  'POLYGON((-46.634 -23.550, -46.633 -23.550, -46.633 -23.551, -46.634 -23.551, -46.634 -23.550))'
-)
-
-// Criacao a partir de coordenadas
-const coords: Array<[number, number]> = [
-  [-46.634, -23.550],
-  [-46.633, -23.550],
-  [-46.633, -23.551],
-  [-46.634, -23.551],
-  [-46.634, -23.550]  // Fechamento
-]
-const fromCoords = GeoPolygon.fromCoordinates(coords)
-
-// Propriedades geometricas
-polygon.area()       // 250.5 (m²)
-polygon.perimeter()  // 64.2 (metros)
-polygon.centroid()   // GeoPoint do centro
-
-// Bounding box
-const bounds = polygon.bounds()
-// { north: -23.550, south: -23.551, east: -46.633, west: -46.634 }
-
-// Operacoes espaciais
-const point = new GeoPoint(-23.5505, -46.6335)
-polygon.contains(point)  // true/false
-
-// Conversoes
-polygon.toWKT()      // "POLYGON((...))
-polygon.toGeoJSON()  // { type: "Polygon", coordinates: [...] }
-
-// Validacao
-GeoPolygon.isValid(coords)       // true/false
-polygon.isValid()                // true se geometria valida
-```
-
-#### Usage em Unidades
-
-```typescript
-import type { Unit } from '@carf/tscore/types'
-import { GeoPolygon } from '@carf/tscore/geo'
-
-// Criar unidade com geometria
-const polygon = GeoPolygon.fromWKT(wktFromGIS)
-
-const unit: Unit = {
-  id: '...',
-  code: 'UN-001',
-  geometry: polygon.toWKT(),         // Armazenar como WKT
-  area: polygon.area(),              // Calcular area automaticamente
-  // ...
-}
-
-// Exibir em Leaflet
-import L from 'leaflet'
-const geoJsonLayer = L.geoJSON(polygon.toGeoJSON())
-geoJsonLayer.addTo(map)
-```
-
-### Address (Endereco Brasileiro)
-
-Representa endereco completo seguindo padroes brasileiros.
-
-#### Interface
-
-```typescript
-interface Address {
-  street: string           // Logradouro (obrigatorio)
-  number?: string          // Numero
-  complement?: string      // Complemento
-  neighborhood?: string    // Bairro
-  city: string             // Municipio (obrigatorio)
-  state: string            // UF 2 letras (obrigatorio)
-  zipCode?: string         // CEP 8 digitos
-
-  // Formatacao
-  format(): string         // "Rua X, 123 - Bairro, Cidade/UF"
-  formatShort(): string    // "Rua X, 123"
-
-  // Validacao
-  static isValidZipCode(cep: string): boolean
-  static isValidState(uf: string): boolean
-}
-```
-
-#### Usage
-
-```typescript
-import { Address } from '@carf/tscore/validations'
-
-const address = new Address({
-  street: 'Rua das Flores',
-  number: '123',
-  complement: 'Apto 45',
-  neighborhood: 'Centro',
-  city: 'Sao Paulo',
-  state: 'SP',
-  zipCode: '01310100'
-})
-
-address.format()      // "Rua das Flores, 123, Apto 45 - Centro, Sao Paulo/SP"
-address.formatShort() // "Rua das Flores, 123"
-
-// Validacoes
-Address.isValidZipCode('01310-100')  // true
-Address.isValidState('SP')           // true
-Address.isValidState('XX')           // false
 ```
 
 ## Padrões de Implementação

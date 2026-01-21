@@ -1,6 +1,6 @@
 ---
 status: review
-updated: 2026-01-15
+updated: 2026-01-21
 ---
 
 # TypeScript Types - Tipos Compartilhados
@@ -9,13 +9,7 @@ updated: 2026-01-15
 
 O @carf/tscore fornece **tipos TypeScript compartilhados** sincronizados com o do backend GEOAPI .NET conforme geração de código automática e usados por todos os frontends (GEOWEB, REURBCAD, ADMIN), sendo consumidos por geoapi-client para componentes React tipados. Garantimos type safety end-to-end com contratos de API bem definidos.
 
-## Documentação de Referência
-
-📖 **** - Índice completo com 33 entidades e 25 value objects
-
-📖 **** - Especificação completa da REST API
-
-## Princípio de Sincronização
+## Principio de Sincronizacao
 
 ### Backend (.NET) → Frontend (TypeScript)
 
@@ -41,8 +35,6 @@ Os tipos TypeScript do @carf/tscore são **gerados automaticamente** a partir do
  └──────────────────────────────────────────────────┘
 ```
 
-📖 ****CENTRAL/ARCHITECTURE/CODE-GENERATION/01-type-generation.md**** - Processo de geração de types
-
 ## Tipos de Entidades
 
 ### Estrutura Base
@@ -60,13 +52,9 @@ export interface BaseEntity {
 }
 ```
 
-📖 ****CENTRAL/DOMAIN-MODEL/ENTITIES/00-base-entity.md**** - Especificação da entidade base
-
 ### Unit (Unidade Habitacional)
 
-Representa unidade habitacional em processo de regularização fundiária.
-
-📖 **** - Especificação completa da entidade Unit
+Representa unidade habitacional em processo de regularizacao fundiaria.
 
 ```typescript
 import type { BaseEntity } from './base'
@@ -144,9 +132,7 @@ const unit: Unit = {
 
 ### Holder (Titular)
 
-Representa pessoa física titular, ocupante ou interessado em unidade.
-
-📖 **** - Especificação completa da entidade Holder
+Representa pessoa fisica titular, ocupante ou interessado em unidade.
 
 ```typescript
 import type { BaseEntity } from './base'
@@ -234,8 +220,6 @@ function createHolder(data: any): Holder {
 
 Representa comunidade ou assentamento que agrupa unidades geograficamente.
 
-📖 **** - Especificação completa da entidade Community
-
 ```typescript
 import type { BaseEntity } from './base'
 import type { CommunityType } from './enums'
@@ -276,13 +260,9 @@ export interface Community extends BaseEntity {
 }
 ```
 
-### LegitimationRequest (Solicitação de Legitimação)
+### LegitimationRequest (Solicitacao de Legitimacao)
 
-Representa processo de legitimação fundiária conforme Lei 13.465/2017.
-
-📖 ****CENTRAL/DOMAIN-MODEL/ENTITIES/20-legitimation-request.md**** - Especificação completa
-
-📖 ****CENTRAL/WORKFLOWS/04-legitimation-workflow.md**** - Workflow de legitimação
+Representa processo de legitimacao fundiaria conforme Lei 13.465/2017.
 
 ```typescript
 import type { BaseEntity } from './base'
@@ -327,11 +307,7 @@ export interface LegitimationRequest extends BaseEntity {
 
 ### UnitStatus
 
-Status no workflow de validação de unidades.
-
-📖 ****CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/11-unit-status.md**** - Especificação do VO UnitStatus
-
-📖 **** - State machine
+Status no workflow de validacao de unidades.
 
 ```typescript
 export enum UnitStatus {
@@ -356,11 +332,7 @@ const TRANSITIONS: Record<UnitStatus, UnitStatus[]> = {
 
 ### LegitimationStatus
 
-Status no workflow de legitimação fundiária (11 estados conforme Lei 13.465/2017).
-
-📖 ****CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/12-legitimation-status.md**** - Especificação do VO
-
-📖 **** - State machine completa
+Status no workflow de legitimacao fundiaria (11 estados conforme Lei 13.465/2017).
 
 ```typescript
 export enum LegitimationStatus {
@@ -380,11 +352,7 @@ export enum LegitimationStatus {
 
 ### Role
 
-Roles de autorização do sistema (RBAC).
-
-📖 ****CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/23-role.md**** - Especificação do VO Role
-
-📖 ****CENTRAL/SECURITY/02-authorization.md**** - Modelo RBAC
+Roles de autorizacao do sistema (RBAC).
 
 ```typescript
 export enum Role {
@@ -398,9 +366,7 @@ export enum Role {
 
 ### CommunityType
 
-Tipos de comunidades conforme classificação REURB.
-
-📖 ****CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/15-community-type.md**** - Especificação do VO
+Tipos de comunidades conforme classificacao REURB.
 
 ```typescript
 export enum CommunityType {
