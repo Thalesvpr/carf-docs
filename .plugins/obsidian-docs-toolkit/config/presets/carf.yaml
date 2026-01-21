@@ -4,9 +4,7 @@
 language: pt-BR
 
 paths:
-  include:
-    - "CENTRAL/**/*.md"
-    - "PROJECTS/**/*.md"
+  # No include patterns - accept ALL .md files that are not excluded
   exclude:
     - ".obsidian/**"
     - ".git/**"

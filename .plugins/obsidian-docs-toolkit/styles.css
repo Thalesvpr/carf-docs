@@ -454,6 +454,181 @@
   font-style: italic;
 }
 
+/* Clickable issue rows */
+.docs-cp-issue-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 4px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.docs-cp-issue-row:hover {
+  background: var(--background-modifier-hover);
+}
+
+.docs-cp-issue-icon {
+  flex-shrink: 0;
+}
+
+.docs-cp-issue-msg {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.docs-cp-issue-line {
+  font-family: var(--font-monospace);
+  font-size: 10px;
+  color: var(--text-accent);
+}
+
+.docs-cp-issue-clickable {
+  cursor: pointer;
+}
+
+.docs-cp-error { color: #f87171; }
+.docs-cp-warning { color: #fbbf24; }
+.docs-cp-info { color: #60a5fa; }
+
+/* ============================================
+   VALIDATIONS SECTION
+   ============================================ */
+
+.docs-cp-validations {
+  background: var(--background-primary);
+  border-radius: 4px;
+  padding: 8px;
+  margin-top: 8px;
+}
+
+.docs-cp-validations-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.docs-cp-validations-header:hover {
+  color: var(--text-normal);
+}
+
+.docs-cp-validations-toggle {
+  font-size: 10px;
+  color: var(--text-muted);
+  width: 12px;
+}
+
+.docs-cp-validations-summary {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.docs-cp-val-passed {
+  color: #4ade80;
+  font-weight: 500;
+}
+
+.docs-cp-val-failed {
+  color: #f87171;
+  font-weight: 500;
+}
+
+.docs-cp-val-skipped {
+  color: var(--text-faint);
+}
+
+.docs-cp-validations-list {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--background-modifier-border);
+}
+
+.docs-cp-val-type-info {
+  font-size: 11px;
+  padding: 4px 8px;
+  background: var(--background-secondary);
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.docs-cp-val-label {
+  color: var(--text-muted);
+}
+
+.docs-cp-val-type {
+  color: var(--text-accent);
+  font-weight: 500;
+}
+
+.docs-cp-val-no-type {
+  color: var(--text-faint);
+  font-style: italic;
+}
+
+.docs-cp-val-section {
+  margin-bottom: 8px;
+}
+
+.docs-cp-val-section:last-child {
+  margin-bottom: 0;
+}
+
+.docs-cp-val-section-title {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+  padding-left: 2px;
+}
+
+.docs-cp-val-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 0;
+  font-size: 11px;
+}
+
+.docs-cp-val-row-passed {
+  color: var(--text-muted);
+}
+
+.docs-cp-val-row-passed .docs-cp-val-icon {
+  color: #4ade80;
+}
+
+.docs-cp-val-row-failed {
+  color: var(--text-normal);
+}
+
+.docs-cp-val-row-failed .docs-cp-val-icon {
+  color: #f87171;
+}
+
+.docs-cp-val-row-skipped {
+  color: var(--text-faint);
+  font-style: italic;
+}
+
+.docs-cp-val-row-skipped .docs-cp-val-icon {
+  color: var(--text-faint);
+}
+
+.docs-cp-val-count {
+  font-size: 10px;
+  color: #f87171;
+}
+
+.docs-cp-val-reason {
+  font-size: 10px;
+  color: var(--text-faint);
+}
+
 /* ============================================
    ACTIONS SECTION
    ============================================ */

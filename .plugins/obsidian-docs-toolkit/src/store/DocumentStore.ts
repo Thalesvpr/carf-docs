@@ -190,23 +190,18 @@ export class DocumentStore extends Events {
 
   /**
    * Check if a file path should be included
+   * Simple logic: if it's not excluded, include it
    */
   private isIncludedFile(path: string): boolean {
-    // Check exclude patterns first
+    // Check exclude patterns - if matched, reject
     for (const pattern of this.config.paths.exclude) {
       if (this.matchGlob(path, pattern)) {
         return false;
       }
     }
 
-    // Check include patterns
-    for (const pattern of this.config.paths.include) {
-      if (this.matchGlob(path, pattern)) {
-        return true;
-      }
-    }
-
-    return false;
+    // Accept all .md files that are not excluded
+    return true;
   }
 
   /**

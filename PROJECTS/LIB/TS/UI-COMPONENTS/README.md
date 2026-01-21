@@ -127,5 +127,6 @@ import '@carf/ui/globals.css'  // CSS variables globais
 ## Subpastas
 
 - [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/README|DOCS]]
+- [[PROJECTS/LIB/TS/UI-COMPONENTS/SRC-CODE/README|SRC-CODE]]
 
 <!-- CARF-INDEX-END -->

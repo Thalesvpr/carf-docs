@@ -3783,8 +3783,15 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
       if (this.issuesExpanded) {
         const issuesList = issuesSection.createDiv({ cls: "docs-cp-issues-list" });
         for (const issue of issues.slice(0, 5)) {
+          const row = issuesList.createDiv({ cls: "docs-cp-issue-row" });
+          row.createSpan({ text: issue.icon, cls: `docs-cp-issue-icon docs-cp-${issue.severity}` });
           const msg = this.i18n.t(issue.messageKey, issue.messageParams);
-          issuesList.createDiv({ text: `\xB7 ${msg}`, cls: "docs-cp-issue" });
+          row.createSpan({ text: msg, cls: "docs-cp-issue-msg" });
+          if (issue.line) {
+            row.createSpan({ text: `:${issue.line}`, cls: "docs-cp-issue-line" });
+          }
+          row.onclick = () => this.navigateToIssue(issue);
+          row.addClass("docs-cp-issue-clickable");
         }
         if (issues.length > 5) {
           issuesList.createDiv({ text: `+${issues.length - 5} more`, cls: "docs-cp-more" });
@@ -3798,16 +3805,16 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
    */
   getValidationResults(doc, issues) {
     const allValidators = [
-      { id: "frontmatter", name: "Frontmatter", requiresType: true },
-      { id: "sections", name: "Se\xE7\xF5es Obrigat\xF3rias", requiresType: true },
-      { id: "naming", name: "Nomenclatura", requiresType: true },
-      { id: "title", name: "T\xEDtulo", requiresType: true },
-      { id: "broken-links", name: "Links Quebrados", requiresType: false },
-      { id: "orphans", name: "Arquivos \xD3rf\xE3os", requiresType: false },
-      { id: "stale", name: "Documentos Obsoletos", requiresType: false },
-      { id: "forbidden-patterns", name: "Padr\xF5es Proibidos", requiresType: false },
-      { id: "word-count", name: "Contagem de Palavras", requiresType: false },
-      { id: "empty-folders", name: "Pastas Vazias", requiresType: false }
+      { id: "frontmatter", name: "Lint: YAML Frontmatter", requiresType: true },
+      { id: "sections", name: "Lint: Required Sections", requiresType: true },
+      { id: "naming", name: "Lint: File Naming", requiresType: true },
+      { id: "title", name: "Lint: Document Title", requiresType: true },
+      { id: "broken-links", name: "Lint: Broken Links", requiresType: false },
+      { id: "orphans", name: "Lint: Orphan Detection", requiresType: false },
+      { id: "stale", name: "Lint: Freshness Check", requiresType: false },
+      { id: "forbidden-patterns", name: "Lint: Forbidden Patterns", requiresType: false },
+      { id: "word-count", name: "Lint: Word Count", requiresType: false },
+      { id: "empty-folders", name: "Lint: Empty Folders", requiresType: false }
     ];
     const passed = [];
     const failed = [];
@@ -3970,6 +3977,24 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
       return;
     const leaf = this.app.workspace.getLeaf(false);
     await leaf.openFile(file);
+  }
+  /**
+   * Navigate to an issue (open file and scroll to line)
+   */
+  async navigateToIssue(issue) {
+    var _a;
+    const leaf = this.app.workspace.getLeaf(false);
+    await leaf.openFile(issue.file);
+    if (issue.line) {
+      const editor = (_a = leaf.view) == null ? void 0 : _a.editor;
+      if (editor) {
+        editor.setCursor({ line: issue.line - 1, ch: issue.column || 0 });
+        editor.scrollIntoView({
+          from: { line: issue.line - 1, ch: 0 },
+          to: { line: issue.line - 1, ch: 0 }
+        }, true);
+      }
+    }
   }
   onKey(e) {
     if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement)

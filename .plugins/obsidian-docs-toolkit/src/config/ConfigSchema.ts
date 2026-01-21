@@ -27,8 +27,8 @@ export interface DocsLinterConfig {
  * Path include/exclude configuration
  */
 export interface PathsConfig {
-  /** Glob patterns to include */
-  include: string[];
+  /** Glob patterns to include (optional - if empty, all .md files are included) */
+  include?: string[];
   /** Glob patterns to exclude */
   exclude: string[];
 }
@@ -185,7 +185,7 @@ export interface TemplateFrontmatter {
 export const DEFAULT_CONFIG: DocsLinterConfig = {
   language: "en",
   paths: {
-    include: ["**/*.md"],
+    // No include patterns - accept all .md files that are not excluded
     exclude: [".obsidian/**", ".git/**", "node_modules/**", ".plugins/**"]
   },
   documentTypes: {},

@@ -52,6 +52,7 @@ export class CurationPanelView extends ItemView {
 
   // Expanded sections
   private issuesExpanded = false;
+  private validationsExpanded = false;
 
   // Folder filter (null = all folders)
   private folderFilter: string | null = null;
@@ -518,11 +519,177 @@ export class CurationPanelView extends ItemView {
       if (this.issuesExpanded) {
         const issuesList = issuesSection.createDiv({ cls: "docs-cp-issues-list" });
         for (const issue of issues.slice(0, 5)) {
+          const row = issuesList.createDiv({ cls: "docs-cp-issue-row" });
+
+          // Icon by severity
+          row.createSpan({ text: issue.icon, cls: `docs-cp-issue-icon docs-cp-${issue.severity}` });
+
+          // Message
           const msg = this.i18n.t(issue.messageKey, issue.messageParams as Record<string, unknown>);
-          issuesList.createDiv({ text: `\u00B7 ${msg}`, cls: "docs-cp-issue" });
+          row.createSpan({ text: msg, cls: "docs-cp-issue-msg" });
+
+          // Line number (if available)
+          if (issue.line) {
+            row.createSpan({ text: `:${issue.line}`, cls: "docs-cp-issue-line" });
+          }
+
+          // Click to navigate
+          row.onclick = () => this.navigateToIssue(issue);
+          row.addClass("docs-cp-issue-clickable");
         }
         if (issues.length > 5) {
           issuesList.createDiv({ text: `+${issues.length - 5} more`, cls: "docs-cp-more" });
+        }
+      }
+    }
+
+    // Render validation results section
+    this.renderValidationResults(section, file, doc, issues);
+  }
+
+  /**
+   * Get validation results for a file
+   */
+  private getValidationResults(doc: Document | undefined, issues: Issue[]): {
+    passed: { id: string; name: string }[];
+    failed: { id: string; name: string; count: number }[];
+    skipped: { id: string; name: string; reason: string }[];
+  } {
+    // All validators that could run (IDE-like naming)
+    const allValidators: { id: string; name: string; requiresType: boolean }[] = [
+      { id: "frontmatter", name: "Lint: YAML Frontmatter", requiresType: true },
+      { id: "sections", name: "Lint: Required Sections", requiresType: true },
+      { id: "naming", name: "Lint: File Naming", requiresType: true },
+      { id: "title", name: "Lint: Document Title", requiresType: true },
+      { id: "broken-links", name: "Lint: Broken Links", requiresType: false },
+      { id: "orphans", name: "Lint: Orphan Detection", requiresType: false },
+      { id: "stale", name: "Lint: Freshness Check", requiresType: false },
+      { id: "forbidden-patterns", name: "Lint: Forbidden Patterns", requiresType: false },
+      { id: "word-count", name: "Lint: Word Count", requiresType: false },
+      { id: "empty-folders", name: "Lint: Empty Folders", requiresType: false }
+    ];
+
+    const passed: { id: string; name: string }[] = [];
+    const failed: { id: string; name: string; count: number }[] = [];
+    const skipped: { id: string; name: string; reason: string }[] = [];
+
+    // Group issues by validator
+    const issuesByValidator = new Map<string, number>();
+    for (const issue of issues) {
+      const count = issuesByValidator.get(issue.validator) || 0;
+      issuesByValidator.set(issue.validator, count + 1);
+    }
+
+    // Check document type
+    const hasDocType = doc?.detectedType !== null && doc?.detectedType !== undefined;
+
+    for (const validator of allValidators) {
+      const validatorConfig = this.config.validators[validator.id];
+
+      // Check if validator is enabled
+      if (validatorConfig?.enabled === false) {
+        skipped.push({ id: validator.id, name: validator.name, reason: "desabilitado" });
+        continue;
+      }
+
+      // Check if validator requires document type
+      if (validator.requiresType && !hasDocType) {
+        skipped.push({ id: validator.id, name: validator.name, reason: "sem tipo definido" });
+        continue;
+      }
+
+      // Check if has issues
+      const issueCount = issuesByValidator.get(validator.id) || 0;
+      if (issueCount > 0) {
+        failed.push({ id: validator.id, name: validator.name, count: issueCount });
+      } else {
+        passed.push({ id: validator.id, name: validator.name });
+      }
+    }
+
+    return { passed, failed, skipped };
+  }
+
+  /**
+   * Render validation results dropdown
+   */
+  private renderValidationResults(section: HTMLElement, file: TFile, doc: Document | undefined, issues: Issue[]): void {
+    const results = this.getValidationResults(doc, issues);
+    const total = results.passed.length + results.failed.length + results.skipped.length;
+    const passedCount = results.passed.length;
+    const failedCount = results.failed.length;
+    const skippedCount = results.skipped.length;
+
+    const validationsSection = section.createDiv({ cls: "docs-cp-validations" });
+
+    const header = validationsSection.createDiv({ cls: "docs-cp-validations-header" });
+    header.createSpan({ text: this.validationsExpanded ? "\u25BC" : "\u25B6", cls: "docs-cp-validations-toggle" });
+
+    const summary = header.createSpan({ cls: "docs-cp-validations-summary" });
+    summary.createSpan({ text: `${passedCount}`, cls: "docs-cp-val-passed" });
+    summary.createSpan({ text: ` passou` });
+    if (failedCount > 0) {
+      summary.createSpan({ text: ` · ` });
+      summary.createSpan({ text: `${failedCount}`, cls: "docs-cp-val-failed" });
+      summary.createSpan({ text: ` falhou` });
+    }
+    if (skippedCount > 0) {
+      summary.createSpan({ text: ` · ` });
+      summary.createSpan({ text: `${skippedCount}`, cls: "docs-cp-val-skipped" });
+      summary.createSpan({ text: ` pulou` });
+    }
+
+    header.onclick = () => {
+      this.validationsExpanded = !this.validationsExpanded;
+      this.render();
+    };
+
+    if (this.validationsExpanded) {
+      const list = validationsSection.createDiv({ cls: "docs-cp-validations-list" });
+
+      // Document type info
+      const typeInfo = list.createDiv({ cls: "docs-cp-val-type-info" });
+      if (doc?.detectedType) {
+        const typeName = this.config.documentTypes[doc.detectedType]?.name || doc.detectedType;
+        typeInfo.createSpan({ text: `Tipo: `, cls: "docs-cp-val-label" });
+        typeInfo.createSpan({ text: typeName, cls: "docs-cp-val-type" });
+      } else {
+        typeInfo.createSpan({ text: `Tipo: `, cls: "docs-cp-val-label" });
+        typeInfo.createSpan({ text: "nenhum (genérico)", cls: "docs-cp-val-type docs-cp-val-no-type" });
+      }
+
+      // Failed validators
+      if (results.failed.length > 0) {
+        const failedSection = list.createDiv({ cls: "docs-cp-val-section" });
+        failedSection.createDiv({ text: "Falhou:", cls: "docs-cp-val-section-title docs-cp-val-failed" });
+        for (const v of results.failed) {
+          const row = failedSection.createDiv({ cls: "docs-cp-val-row docs-cp-val-row-failed" });
+          row.createSpan({ text: "\u2717 ", cls: "docs-cp-val-icon" });
+          row.createSpan({ text: v.name });
+          row.createSpan({ text: ` (${v.count})`, cls: "docs-cp-val-count" });
+        }
+      }
+
+      // Passed validators
+      if (results.passed.length > 0) {
+        const passedSection = list.createDiv({ cls: "docs-cp-val-section" });
+        passedSection.createDiv({ text: "Passou:", cls: "docs-cp-val-section-title docs-cp-val-passed" });
+        for (const v of results.passed) {
+          const row = passedSection.createDiv({ cls: "docs-cp-val-row docs-cp-val-row-passed" });
+          row.createSpan({ text: "\u2713 ", cls: "docs-cp-val-icon" });
+          row.createSpan({ text: v.name });
+        }
+      }
+
+      // Skipped validators
+      if (results.skipped.length > 0) {
+        const skippedSection = list.createDiv({ cls: "docs-cp-val-section" });
+        skippedSection.createDiv({ text: "Pulou:", cls: "docs-cp-val-section-title docs-cp-val-skipped" });
+        for (const v of results.skipped) {
+          const row = skippedSection.createDiv({ cls: "docs-cp-val-row docs-cp-val-row-skipped" });
+          row.createSpan({ text: "\u2014 ", cls: "docs-cp-val-icon" });
+          row.createSpan({ text: v.name });
+          row.createSpan({ text: ` (${v.reason})`, cls: "docs-cp-val-reason" });
         }
       }
     }
@@ -611,6 +778,25 @@ export class CurationPanelView extends ItemView {
 
     const leaf = this.app.workspace.getLeaf(false);
     await leaf.openFile(file);
+  }
+
+  /**
+   * Navigate to an issue (open file and scroll to line)
+   */
+  private async navigateToIssue(issue: Issue): Promise<void> {
+    const leaf = this.app.workspace.getLeaf(false);
+    await leaf.openFile(issue.file);
+
+    if (issue.line) {
+      const editor = (leaf.view as any)?.editor;
+      if (editor) {
+        editor.setCursor({ line: issue.line - 1, ch: issue.column || 0 });
+        editor.scrollIntoView({
+          from: { line: issue.line - 1, ch: 0 },
+          to: { line: issue.line - 1, ch: 0 }
+        }, true);
+      }
+    }
   }
 
   private onKey(e: KeyboardEvent): void {
