@@ -98,9 +98,8 @@
 /* Dots navigation */
 .docs-dots {
   display: flex;
-  justify-content: center;
-  gap: 2px;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .docs-dot {
@@ -108,7 +107,7 @@
   height: 6px;
   border-radius: 50%;
   cursor: pointer;
-  transition: transform 0.1s;
+  transition: all 0.2s ease-out;
 }
 
 .docs-dot:hover {
@@ -116,18 +115,25 @@
 }
 
 .docs-dot-current {
-  width: 8px;
-  height: 8px;
-  box-shadow: 0 0 0 2px var(--background-primary);
+  width: 10px;
+  height: 10px;
+  animation: dot-pulse 0.3s ease-out;
 }
 
-.docs-dot-review { background: var(--color-yellow); opacity: 0.6; }
+@keyframes dot-pulse {
+  0% { transform: scale(0.5); opacity: 0.5; }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.docs-dot-review { background: var(--color-yellow); opacity: 0.5; }
 .docs-dot-approved { background: var(--color-green); }
 .docs-dot-rejected { background: var(--color-red); }
 
 .docs-dot-current.docs-dot-review { opacity: 1; }
-.docs-dot-current.docs-dot-approved { box-shadow: 0 0 0 2px var(--color-green); }
-.docs-dot-current.docs-dot-rejected { box-shadow: 0 0 0 2px var(--color-red); }
+.docs-dot-current.docs-dot-approved { box-shadow: 0 0 4px var(--color-green); }
+.docs-dot-current.docs-dot-rejected { box-shadow: 0 0 4px var(--color-red); }
+.docs-dot-current.docs-dot-review { box-shadow: 0 0 4px var(--color-yellow); }
 
 /* File section */
 .docs-file-section {

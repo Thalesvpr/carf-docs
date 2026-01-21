@@ -59,6 +59,7 @@ npm publish
 
 ### Em Revisão
 
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/HOW-TO/01-build-and-run.md|Build and Run - @carf/ui]]
 - ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/HOW-TO/02-customization.md|Customization - @carf/ui]]
 - ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/HOW-TO/03-testing.md|Testing - @carf/ui]]
 - ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/HOW-TO/04-troubleshooting.md|Troubleshooting - @carf/ui]]

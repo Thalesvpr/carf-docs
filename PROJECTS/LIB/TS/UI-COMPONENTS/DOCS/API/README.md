@@ -123,6 +123,8 @@ A dependencia de `@carf/tscore` e **opcional**: componentes de dominio (UnitCard
 - ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/04-data-components.md|Data Components - @carf/ui]]
 - ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/05-navigation-components.md|Navigation Components - @carf/ui]]
 - ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/06-domain-components.md|Domain Components]]
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/07-hooks.md|Hooks - @carf/ui]]
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/08-utils.md|Utils - @carf/ui]]
 - ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/09-screen-mapping.md|Mapeamento Tela-Componentes]]
 
 <!-- CARF-INDEX-END -->
