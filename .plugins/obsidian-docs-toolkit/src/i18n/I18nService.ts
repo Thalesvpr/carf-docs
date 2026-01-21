@@ -180,7 +180,7 @@ export class I18nService {
     return {
       validators: {
         frontmatter: {
-          name: "Frontmatter",
+          name: "Lint: YAML Frontmatter",
           description: "Validates required frontmatter fields",
           missing: "File has no YAML frontmatter",
           missing_suggestion: "Add frontmatter with required fields",
@@ -199,20 +199,20 @@ export class I18nService {
           array_too_long: "Field '{field}' has {length} items, maximum is {max}"
         },
         sections: {
-          name: "Sections",
+          name: "Lint: Required Sections",
           description: "Validates required document sections",
           missing_required: "Required section '{section}' is missing",
           missing_required_suggestion: "Add section '## {section}' to the document",
           forbidden: "Section '{section}' is not allowed in this document type"
         },
         naming: {
-          name: "Naming",
+          name: "Lint: File Naming",
           description: "Validates file naming conventions",
           pattern_mismatch: "Filename '{filename}' doesn't match expected pattern for {typeName}",
           pattern_mismatch_suggestion: "Rename file to match pattern: {pattern}"
         },
         title: {
-          name: "Title",
+          name: "Lint: Document Title",
           description: "Validates document title",
           missing: "Document has no title (# heading)",
           missing_suggestion: "Add a title with '# Title' at the start",
@@ -220,38 +220,38 @@ export class I18nService {
           pattern_mismatch_suggestion: "Update title to match pattern: {pattern}"
         },
         wordCount: {
-          name: "Word Count",
+          name: "Lint: Word Count",
           description: "Validates word count limits",
           exceeds_max: "Document has {count} words, maximum is {max}",
           below_min: "Document has {count} words, minimum is {min}",
           section_exceeds_max: "Section '{section}' has {count} words, maximum is {max}"
         },
         forbiddenPatterns: {
-          name: "Forbidden Patterns",
+          name: "Lint: Forbidden Patterns",
           description: "Checks for forbidden text patterns",
           found: "Forbidden pattern '{pattern}' found: '{match}'",
           found_suggestion: "Remove or replace the forbidden pattern '{pattern}'"
         },
         links: {
-          name: "Links",
+          name: "Lint: Broken Links",
           description: "Validates internal links",
           broken: "Broken link to '{target}'",
           broken_suggestion: "Fix or remove the link to '{target}'"
         },
         stale: {
-          name: "Stale",
+          name: "Lint: Freshness Check",
           description: "Checks for outdated documents",
           outdated: "Document hasn't been updated in {days} days (threshold: {threshold})",
           outdated_suggestion: "Review and update the document"
         },
         orphans: {
-          name: "Orphans",
+          name: "Lint: Orphan Detection",
           description: "Checks for unlinked documents",
           not_linked: "Document '{filename}' is not linked from any other document",
           not_linked_suggestion: "Add a link to this document from a relevant location"
         },
         emptyFolders: {
-          name: "Empty Folders",
+          name: "Lint: Empty Folders",
           description: "Checks for empty folders",
           empty: "Folder '{folder}' contains no markdown files",
           empty_suggestion: "Add content or remove the empty folder"
@@ -284,7 +284,7 @@ export class I18nService {
     return {
       validators: {
         frontmatter: {
-          name: "Frontmatter",
+          name: "Lint: YAML Frontmatter",
           description: "Valida campos obrigatórios no frontmatter",
           missing: "Arquivo não possui frontmatter YAML",
           missing_suggestion: "Adicione o frontmatter com os campos obrigatórios",
@@ -303,20 +303,20 @@ export class I18nService {
           array_too_long: "Campo '{field}' tem {length} itens, máximo é {max}"
         },
         sections: {
-          name: "Seções",
+          name: "Lint: Required Sections",
           description: "Valida seções obrigatórias do documento",
           missing_required: "Seção obrigatória '{section}' não encontrada",
           missing_required_suggestion: "Adicione a seção '## {section}' ao documento",
           forbidden: "Seção '{section}' não é permitida neste tipo de documento"
         },
         naming: {
-          name: "Nomenclatura",
+          name: "Lint: File Naming",
           description: "Valida convenções de nomenclatura de arquivos",
           pattern_mismatch: "Nome do arquivo '{filename}' não corresponde ao padrão esperado para {typeName}",
           pattern_mismatch_suggestion: "Renomeie o arquivo para corresponder ao padrão: {pattern}"
         },
         title: {
-          name: "Título",
+          name: "Lint: Document Title",
           description: "Valida título do documento",
           missing: "Documento não possui título (# cabeçalho)",
           missing_suggestion: "Adicione um título com '# Título' no início",
@@ -324,38 +324,38 @@ export class I18nService {
           pattern_mismatch_suggestion: "Atualize o título para corresponder ao padrão: {pattern}"
         },
         wordCount: {
-          name: "Contagem de Palavras",
+          name: "Lint: Word Count",
           description: "Valida limites de contagem de palavras",
           exceeds_max: "Documento tem {count} palavras, máximo é {max}",
           below_min: "Documento tem {count} palavras, mínimo é {min}",
           section_exceeds_max: "Seção '{section}' tem {count} palavras, máximo é {max}"
         },
         forbiddenPatterns: {
-          name: "Padrões Proibidos",
+          name: "Lint: Forbidden Patterns",
           description: "Verifica padrões de texto proibidos",
           found: "Padrão proibido '{pattern}' encontrado: '{match}'",
           found_suggestion: "Remova ou substitua o padrão proibido '{pattern}'"
         },
         links: {
-          name: "Links",
+          name: "Lint: Broken Links",
           description: "Valida links internos",
           broken: "Link quebrado para '{target}'",
           broken_suggestion: "Corrija ou remova o link para '{target}'"
         },
         stale: {
-          name: "Desatualizado",
+          name: "Lint: Freshness Check",
           description: "Verifica documentos desatualizados",
           outdated: "Documento não foi atualizado há {days} dias (limite: {threshold})",
           outdated_suggestion: "Revise e atualize o documento"
         },
         orphans: {
-          name: "Órfãos",
+          name: "Lint: Orphan Detection",
           description: "Verifica documentos não linkados",
           not_linked: "Documento '{filename}' não está linkado em nenhum outro documento",
           not_linked_suggestion: "Adicione um link para este documento em uma localização relevante"
         },
         emptyFolders: {
-          name: "Pastas Vazias",
+          name: "Lint: Empty Folders",
           description: "Verifica pastas vazias",
           empty: "Pasta '{folder}' não contém arquivos markdown",
           empty_suggestion: "Adicione conteúdo ou remova a pasta vazia"

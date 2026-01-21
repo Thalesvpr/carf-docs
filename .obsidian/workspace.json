@@ -67,7 +67,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "PROJECTS/LIB/TS/UI-COMPONENTS/README.md",
+                "file": "PROJECTS/LIB/TS/UI-COMPONENTS/SRC-CODE/carf-ui/node_modules/@aw-web-design/x-default-browser/README.md",
                 "mode": "source",
                 "source": false
               },
@@ -251,8 +251,13 @@
   },
   "active": "b7262c57c40809a7",
   "lastOpenFiles": [
-    "PROJECTS/LIB/TS/README.md",
+    "PROJECTS/LIB/TS/UI-COMPONENTS/SRC-CODE/carf-ui/node_modules/@aw-web-design/x-default-browser/CHANGELOG.md",
+    "PROJECTS/LIB/TS/UI-COMPONENTS/SRC-CODE/carf-ui/node_modules/@aw-web-design/x-default-browser/README.md",
+    "PROJECTS/LIB/TS/UI-COMPONENTS/SRC-CODE/carf-ui/node_modules/@babel/code-frame/README.md",
+    "PROJECTS/LIB/TS/UI-COMPONENTS/SRC-CODE/carf-ui/node_modules/@babel/compat-data/README.md",
+    "PROJECTS/LIB/TS/UI-COMPONENTS/SRC-CODE/carf-ui/node_modules/@alloc/quick-lru/readme.md",
     "PROJECTS/LIB/TS/UI-COMPONENTS/README.md",
+    "PROJECTS/LIB/TS/README.md",
     "CENTRAL/SECURITY/INCIDENTS/README.md",
     "CENTRAL/SECURITY/INCIDENTS/03-breach-notification.md",
     "CENTRAL/SECURITY/INCIDENTS/04-audit-logging.md",
@@ -282,11 +287,6 @@
     "CENTRAL/DOMAIN-MODEL/RELATIONSHIPS/README.md",
     "CENTRAL/DOMAIN-MODEL/RELATIONSHIPS/01-entity-relationships.md",
     "CENTRAL/DOMAIN-MODEL/README.md",
-    "CENTRAL/DOMAIN-MODEL/EVENTS/README.md",
-    "CENTRAL/DOMAIN-MODEL/EVENTS/19-correction-requested-event.md",
-    "CENTRAL/DOMAIN-MODEL/EVENTS/18-request-rejected-event.md",
-    "CENTRAL/DOMAIN-MODEL/EVENTS/17-deadline-approaching-event.md",
-    "CENTRAL/DOMAIN-MODEL/EVENTS/16-contestation-received-event.md",
     "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/public/img/logo.svg"
   ]
 }
