@@ -67,12 +67,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@types/node/README.md",
+                "file": "PROJECTS/LIB/TS/TSCORE/DOCS/SPECS/02-tsconfig.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "README"
+              "title": "02-tsconfig"
             }
           }
         ],
@@ -251,9 +251,21 @@
   },
   "active": "b7262c57c40809a7",
   "lastOpenFiles": [
+    "PROJECTS/LIB/TS/TSCORE/DOCS/SPECS/03-exports-map.md",
+    "PROJECTS/LIB/TS/TSCORE/DOCS/SPECS/README.md",
+    "PROJECTS/LIB/TS/TSCORE/README.md",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/CHANGELOG.md",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@babel/helper-string-parser/README.md",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@babel/helper-validator-identifier/README.md",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@babel/parser/CHANGELOG.md",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@babel/parser/README.md",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@babel/types/README.md",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@jridgewell/sourcemap-codec/README.md",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@types/bun/README.md",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@types/geojson/README.md",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@types/node/README.md",
     "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@types/react/README.md",
     "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@types/prop-types/README.md",
-    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@types/node/README.md",
     "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@vue/compiler-core/README.md",
     "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@vue/compiler-dom/README.md",
     "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@vue/compiler-sfc/README.md",
@@ -265,18 +277,6 @@
     "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@vue/shared/README.md",
     "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/bun-types/CLAUDE.md",
     "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/bun-types/docs/README.md",
-    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/bun-types/README.md",
-    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/csstype/README.md",
-    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/entities/readme.md",
-    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/estree-walker/CHANGELOG.md",
-    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/estree-walker/README.md",
-    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/js-tokens/CHANGELOG.md",
-    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/js-tokens/README.md",
-    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/loose-envify/README.md",
-    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/magic-string/README.md",
-    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/nanoid/README.md",
-    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/picocolors/README.md",
-    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/postcss/README.md",
     "CENTRAL/WORKFLOWS/sedyZnXqC",
     "CENTRAL/VERSIONING/GIT/sedYFuT6S",
     "CENTRAL/VERSIONING/GIT/sedsv48Ot",

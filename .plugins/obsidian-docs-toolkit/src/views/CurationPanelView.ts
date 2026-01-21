@@ -190,10 +190,18 @@ export class CurationPanelView extends ItemView {
       const d = this.store.getDocument(f.path);
       const status = d?.status || "review";
       const isCurrent = i === this.currentIndex;
+      const distance = Math.abs(i - this.currentIndex);
 
       const dot = dotsContainer.createDiv({
         cls: `docs-dot docs-dot-${status}${isCurrent ? " docs-dot-current" : ""}`
       });
+
+      // Distance-based styling for wave effect
+      if (distance > 0 && distance <= 5) {
+        dot.addClass(`docs-dot-near-${distance}`);
+      } else if (distance > 5) {
+        dot.addClass("docs-dot-far");
+      }
 
       dot.onclick = () => {
         this.currentIndex = i;
