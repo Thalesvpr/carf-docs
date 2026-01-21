@@ -4,29 +4,10 @@ import { Issue } from "../core/Issue";
 import { I18nService } from "../i18n/I18nService";
 import { DocsLinterConfig } from "../config/ConfigSchema";
 
-/**
- * CurationPanelView - Sidebar curation panel
- *
- * Features:
- * - Progress overview (approved/total, pending)
- * - Current file info
- * - Actions (approve, reject, skip, navigate)
- * - Files open automatically in main area on navigation
- *
- * Keyboard shortcuts:
- * - Left/Right arrows: Navigate between files
- */
-
 export const CURATION_PANEL_VIEW_TYPE = "docs-toolkit-curation";
 
-/**
- * Interface for document store
- */
 export interface DocumentStore extends Events {
-  getState(): {
-    documents: Document[];
-    issues: Issue[];
-  };
+  getState(): { documents: Document[]; issues: Issue[] };
   getDocument(path: string): Document | undefined;
   getIssuesForFile(path: string): Issue[];
   getReviewQueue(): TFile[];
@@ -34,9 +15,6 @@ export interface DocumentStore extends Events {
   isLoading(): boolean;
 }
 
-/**
- * Interface for metadata service
- */
 export interface MetadataService {
   initFrontmatter(file: TFile): Promise<Record<string, unknown> | void>;
 }
@@ -46,22 +24,7 @@ export class CurationPanelView extends ItemView {
   private metadataService: MetadataService;
   private i18n: I18nService;
   private config: DocsLinterConfig;
-
-  // Current position in queue
   private currentIndex = 0;
-
-  // Expanded sections
-  private issuesExpanded = false;
-  private validationsExpanded = false;
-
-  // Folder filter (null = all folders)
-  private folderFilter: string | null = null;
-
-  // Text search filter
-  private searchQuery: string = "";
-
-  // Stats panel expanded
-  private statsExpanded = false;
 
   constructor(
     leaf: WorkspaceLeaf,
@@ -78,168 +41,57 @@ export class CurationPanelView extends ItemView {
   }
 
   getViewType(): string { return CURATION_PANEL_VIEW_TYPE; }
-  getDisplayText(): string { return this.i18n.t("ui.curation.title"); }
+  getDisplayText(): string { return "Curation"; }
   getIcon(): string { return "check-square"; }
 
   async onOpen(): Promise<void> {
     this.containerEl.children[1].addClass("docs-curation-panel");
 
-    // Subscribe to store changes
     this.registerEvent(
-      // @ts-ignore - Events class is compatible
+      // @ts-ignore
       this.store.on("state-changed", () => this.render())
     );
 
-    // Subscribe to active file changes to sync panel
     this.registerEvent(
       this.app.workspace.on("active-leaf-change", () => this.syncWithActiveFile())
     );
 
-    // Keyboard shortcuts (global)
     this.registerDomEvent(document, "keydown", this.onKey.bind(this));
-
-    // Sync with currently open file on panel open
     this.syncWithActiveFile();
-
     this.render();
   }
 
-  /**
-   * Update configuration
-   */
   updateConfig(config: DocsLinterConfig): void {
     this.config = config;
     this.render();
   }
 
-  /**
-   * Check if file should be tracked based on config exclude paths
-   */
   private isTrackedFile(path: string): boolean {
     for (const pattern of this.config.paths.exclude) {
-      const regex = pattern
-        .replace(/\*\*/g, ".*")
-        .replace(/\*/g, "[^/]*");
-
-      if (new RegExp(`^${regex}`).test(path)) {
-        return false;
-      }
+      const regex = pattern.replace(/\*\*/g, ".*").replace(/\*/g, "[^/]*");
+      if (new RegExp(`^${regex}`).test(path)) return false;
     }
     return true;
   }
 
-  /**
-   * Get the review queue (all files), filtered by folder and search query
-   */
   private getQueue(): TFile[] {
-    let queue = this.store.getReviewQueue().filter(f => this.isTrackedFile(f.path));
-
-    if (this.folderFilter) {
-      queue = queue.filter(f => f.path.startsWith(this.folderFilter + "/"));
-    }
-
-    if (this.searchQuery.trim()) {
-      const query = this.searchQuery.toLowerCase().trim();
-      queue = queue.filter(f => {
-        if (f.basename.toLowerCase().includes(query)) return true;
-        if (f.path.toLowerCase().includes(query)) return true;
-        const doc = this.store.getDocument(f.path);
-        if (doc?.id?.toLowerCase().includes(query)) return true;
-        const desc = doc?.getFrontmatterField<string>("description");
-        if (desc?.toLowerCase().includes(query)) return true;
-        return false;
-      });
-    }
-
-    return queue;
+    return this.store.getReviewQueue().filter(f => this.isTrackedFile(f.path));
   }
 
-  /**
-   * Get available top-level folders for filtering
-   */
-  private getAvailableFolders(): string[] {
-    const queue = this.store.getReviewQueue().filter(f => this.isTrackedFile(f.path));
-    const folders = new Set<string>();
-
-    for (const file of queue) {
-      const parts = file.path.split("/");
-      if (parts.length > 1) {
-        folders.add(parts[0]);
-        // Also add second level for common patterns
-        if (parts.length > 2) {
-          folders.add(parts[0] + "/" + parts[1]);
-        }
-      }
-    }
-
-    return Array.from(folders).sort();
-  }
-
-  /**
-   * Get statistics per folder
-   */
-  private getFolderStats(): { folder: string; approved: number; rejected: number; pending: number; total: number }[] {
-    const state = this.store.getState();
-    const docs = state.documents.filter(d => this.isTrackedFile(d.file.path));
-    const folderMap = new Map<string, { approved: number; rejected: number; pending: number; total: number }>();
-
-    const approvedStatus = "approved";
-    const rejectedStatus = "rejected";
-
-    for (const doc of docs) {
-      const parts = doc.file.path.split("/");
-      let folder = parts[0];
-      if (parts.length > 2) {
-        folder = parts[0] + "/" + parts[1];
-      }
-
-      if (!folderMap.has(folder)) {
-        folderMap.set(folder, { approved: 0, rejected: 0, pending: 0, total: 0 });
-      }
-
-      const stats = folderMap.get(folder)!;
-      stats.total++;
-      if (doc.status === approvedStatus) stats.approved++;
-      else if (doc.status === rejectedStatus) stats.rejected++;
-      else stats.pending++;
-    }
-
-    return Array.from(folderMap.entries())
-      .map(([folder, stats]) => ({ folder, ...stats }))
-      .sort((a, b) => a.folder.localeCompare(b.folder));
-  }
-
-  /**
-   * Get current file being reviewed
-   */
   private getCurrentFile(): TFile | null {
     const queue = this.getQueue();
     if (queue.length === 0) return null;
-
     if (this.currentIndex >= queue.length) this.currentIndex = queue.length - 1;
     if (this.currentIndex < 0) this.currentIndex = 0;
-
     return queue[this.currentIndex];
   }
 
-  /**
-   * Sync panel with currently active file in editor
-   */
   private syncWithActiveFile(): void {
     const activeFile = this.app.workspace.getActiveFile();
-    if (!activeFile) return;
-    if (!this.isTrackedFile(activeFile.path)) return;
+    if (!activeFile || !this.isTrackedFile(activeFile.path)) return;
 
-    let queue = this.getQueue();
-    let index = queue.findIndex(f => f.path === activeFile.path);
-
-    // If not found and we have a folder filter, try clearing it
-    if (index === -1 && this.folderFilter) {
-      this.folderFilter = null;
-      this.searchQuery = "";
-      queue = this.getQueue();
-      index = queue.findIndex(f => f.path === activeFile.path);
-    }
+    const queue = this.getQueue();
+    const index = queue.findIndex(f => f.path === activeFile.path);
 
     if (index !== -1 && index !== this.currentIndex) {
       this.currentIndex = index;
@@ -247,499 +99,136 @@ export class CurationPanelView extends ItemView {
     }
   }
 
-  /**
-   * Main render function
-   */
   private render(): void {
     const el = this.containerEl.children[1] as HTMLElement;
     el.empty();
 
-    const state = this.store.getState();
-
-    // Loading state
     if (this.store.isLoading()) {
-      el.createDiv({ text: "Loading...", cls: "docs-cp-loading" });
+      el.createDiv({ text: "Loading...", cls: "pane-empty" });
       return;
     }
 
-    // Get filtered docs based on folder filter
-    let docs = state.documents.filter(d => this.isTrackedFile(d.file.path));
-    if (this.folderFilter) {
-      docs = docs.filter(d => d.file.path.startsWith(this.folderFilter + "/"));
-    }
-
+    const docs = this.store.getState().documents.filter(d => this.isTrackedFile(d.file.path));
     const approved = docs.filter(d => d.status === "approved").length;
-    const rejected = docs.filter(d => d.status === "rejected").length;
-    const pending = docs.filter(d => d.status === "review").length;
     const total = docs.length;
-
-    // === PROGRESS SECTION ===
-    this.renderProgress(el, { approved, rejected, pending, total });
-
-    // === CURRENT FILE SECTION ===
     const queue = this.getQueue();
-    const currentFile = this.getCurrentFile();
+    const file = this.getCurrentFile();
+
+    // Header with progress
+    const header = el.createDiv({ cls: "nav-header" });
+    const headerInfo = header.createDiv({ cls: "nav-buttons-container" });
+    headerInfo.createSpan({
+      text: `${approved}/${total}`,
+      cls: "docs-progress-text"
+    });
+
+    // Progress bar
+    const progressBar = header.createDiv({ cls: "docs-progress-bar" });
+    const pct = total > 0 ? (approved / total) * 100 : 0;
+    progressBar.createDiv({ cls: "docs-progress-fill" }).style.width = `${pct}%`;
 
     if (queue.length === 0) {
-      this.renderAllDone(el);
+      const empty = el.createDiv({ cls: "pane-empty" });
+      empty.createDiv({ text: "All done!", cls: "docs-done-text" });
       return;
     }
 
-    if (currentFile) {
-      this.renderCurrentFile(el, currentFile, queue.length);
-    }
-
-    // === ACTIONS SECTION ===
-    this.renderActions(el, currentFile, queue.length);
-  }
-
-  /**
-   * Render folder filter dropdown
-   */
-  private renderFolderFilter(el: HTMLElement): void {
-    const section = el.createDiv({ cls: "docs-cp-section docs-cp-filter" });
-
-    const row = section.createDiv({ cls: "docs-cp-filter-row" });
-    row.createSpan({ text: "Folder:", cls: "docs-cp-filter-label" });
-
-    const select = row.createEl("select", { cls: "docs-cp-filter-select" });
-
-    // "All" option
-    const allOption = select.createEl("option", { text: "All folders", value: "" });
-    if (!this.folderFilter) allOption.selected = true;
-
-    // Folder options
-    const folders = this.getAvailableFolders();
-    for (const folder of folders) {
-      const option = select.createEl("option", { text: folder, value: folder });
-      if (this.folderFilter === folder) option.selected = true;
-    }
-
-    select.onchange = () => {
-      this.folderFilter = select.value || null;
-      this.currentIndex = 0;
-      this.render();
-    };
-  }
-
-  /**
-   * Render search input
-   */
-  private renderSearch(el: HTMLElement): void {
-    const section = el.createDiv({ cls: "docs-cp-section docs-cp-search" });
-
-    const input = section.createEl("input", {
-      type: "text",
-      placeholder: "Search files...",
-      cls: "docs-cp-search-input"
-    });
-    input.value = this.searchQuery;
-
-    let timeout: NodeJS.Timeout;
-    input.oninput = () => {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        this.searchQuery = input.value;
-        this.currentIndex = 0;
-        this.render();
-        const newInput = el.querySelector(".docs-cp-search-input") as HTMLInputElement;
-        if (newInput) {
-          newInput.focus();
-          newInput.setSelectionRange(newInput.value.length, newInput.value.length);
-        }
-      }, 200);
-    };
-
-    if (this.searchQuery) {
-      const clearBtn = section.createEl("button", { text: "\u00D7", cls: "docs-cp-search-clear" });
-      clearBtn.onclick = () => {
-        this.searchQuery = "";
-        this.currentIndex = 0;
-        this.render();
-      };
-    }
-  }
-
-  /**
-   * Render folder statistics (collapsible)
-   */
-  private renderFolderStats(el: HTMLElement): void {
-    const section = el.createDiv({ cls: "docs-cp-section docs-cp-folder-stats" });
-
-    const header = section.createDiv({ cls: "docs-cp-stats-header" });
-    header.createSpan({ text: this.statsExpanded ? "\u25BC" : "\u25B6", cls: "docs-cp-stats-toggle" });
-    header.createSpan({ text: "Stats by folder", cls: "docs-cp-stats-title" });
-    header.onclick = () => {
-      this.statsExpanded = !this.statsExpanded;
-      this.render();
-    };
-
-    if (!this.statsExpanded) return;
-
-    const list = section.createDiv({ cls: "docs-cp-stats-list" });
-    const folderStats = this.getFolderStats();
-
-    for (const stat of folderStats) {
-      const row = list.createDiv({ cls: "docs-cp-stats-row" });
-
-      const nameEl = row.createSpan({ text: stat.folder, cls: "docs-cp-stats-folder" });
-      nameEl.onclick = (e) => {
-        e.stopPropagation();
-        this.folderFilter = stat.folder;
-        this.currentIndex = 0;
-        this.render();
-      };
-
-      const barContainer = row.createDiv({ cls: "docs-cp-stats-bar-container" });
-      const bar = barContainer.createDiv({ cls: "docs-cp-stats-bar" });
-
-      const approvedPct = stat.total > 0 ? (stat.approved / stat.total) * 100 : 0;
-      const rejectedPct = stat.total > 0 ? (stat.rejected / stat.total) * 100 : 0;
-
-      if (stat.approved > 0) {
-        const approvedBar = bar.createDiv({ cls: "docs-cp-stats-bar-approved" });
-        approvedBar.style.width = `${approvedPct}%`;
-      }
-      if (stat.rejected > 0) {
-        const rejectedBar = bar.createDiv({ cls: "docs-cp-stats-bar-rejected" });
-        rejectedBar.style.width = `${rejectedPct}%`;
-      }
-
-      const numbers = row.createSpan({ cls: "docs-cp-stats-numbers" });
-      numbers.createSpan({ text: `${stat.approved}`, cls: "docs-cp-stats-num-approved" });
-      numbers.createSpan({ text: `/` });
-      numbers.createSpan({ text: `${stat.total}` });
-    }
-  }
-
-  /**
-   * Render progress section
-   */
-  private renderProgress(el: HTMLElement, stats: { approved: number; rejected: number; pending: number; total: number }): void {
-    const section = el.createDiv({ cls: "docs-cp-section docs-cp-progress" });
-
-    const mainLine = section.createDiv({ cls: "docs-cp-main-stat" });
-    mainLine.createSpan({ text: `${stats.approved}`, cls: "docs-cp-stat-num docs-cp-approved" });
-    mainLine.createSpan({ text: `/${stats.total}`, cls: "docs-cp-stat-total" });
-    mainLine.createSpan({ text: " approved", cls: "docs-cp-stat-label" });
-
-    const secondaryLine = section.createDiv({ cls: "docs-cp-secondary-stats" });
-
-    if (stats.pending > 0) {
-      secondaryLine.createSpan({ text: `${stats.pending} ${this.i18n.t("ui.curation.pending")}`, cls: "docs-cp-pending" });
-    }
-    if (stats.rejected > 0) {
-      if (stats.pending > 0) secondaryLine.createSpan({ text: " \u00B7 " });
-      secondaryLine.createSpan({ text: `${stats.rejected} rejected`, cls: "docs-cp-rejected" });
-    }
-
-    const progressBar = section.createDiv({ cls: "docs-cp-progress-bar" });
-    const percentage = stats.total > 0 ? (stats.approved / stats.total) * 100 : 0;
-    const fill = progressBar.createDiv({ cls: "docs-cp-progress-fill" });
-    fill.style.width = `${percentage}%`;
-  }
-
-  /**
-   * Render all done state
-   */
-  private renderAllDone(el: HTMLElement): void {
-    const section = el.createDiv({ cls: "docs-cp-section docs-cp-done" });
-    section.createDiv({ text: "\u2713", cls: "docs-cp-done-icon" });
-    section.createDiv({ text: "All done!", cls: "docs-cp-done-text" });
-    section.createDiv({ text: "No pending files to review", cls: "docs-cp-done-sub" });
-  }
-
-  /**
-   * Render current file section
-   */
-  private renderCurrentFile(el: HTMLElement, file: TFile, queueLength: number): void {
-    const section = el.createDiv({ cls: "docs-cp-section docs-cp-current" });
-
-    const header = section.createDiv({ cls: "docs-cp-current-header" });
-    header.createSpan({ text: `${this.currentIndex + 1}/${queueLength}`, cls: "docs-cp-counter" });
+    if (!file) return;
 
     const doc = this.store.getDocument(file.path);
-    const fileName = section.createDiv({ cls: "docs-cp-filename" });
-    fileName.createSpan({ text: doc?.id || file.basename, cls: "docs-cp-file-id" });
+    const issues = this.store.getIssuesForFile(file.path);
 
+    // File info
+    const fileSection = el.createDiv({ cls: "docs-file-section" });
+
+    // Counter
+    fileSection.createDiv({
+      text: `${this.currentIndex + 1} of ${queue.length}`,
+      cls: "docs-counter"
+    });
+
+    // File name
+    const nameRow = fileSection.createDiv({ cls: "docs-file-name" });
+    nameRow.createSpan({ text: doc?.id || file.basename });
+
+    // Path
     const pathParts = file.path.split("/");
-    if (pathParts.length > 2) {
-      const shortPath = pathParts.slice(0, -1).join("/");
-      section.createDiv({ text: shortPath, cls: "docs-cp-filepath" });
+    if (pathParts.length > 1) {
+      fileSection.createDiv({
+        text: pathParts.slice(0, -1).join("/"),
+        cls: "docs-file-path"
+      });
     }
 
-    const meta = section.createDiv({ cls: "docs-cp-meta" });
-
+    // Status
     if (doc?.hasFrontmatter) {
       const status = doc.status;
-      const statusConfig = this.config.workflow.statuses[status];
-
-      const statusBadge = meta.createSpan({
-        text: statusConfig?.name || status,
-        cls: `docs-cp-status-badge docs-cp-status-${status}`
+      fileSection.createDiv({
+        text: status.toUpperCase(),
+        cls: `docs-status docs-status-${status}`
       });
-
-      const updated = doc.getFrontmatterField<string>("updated");
-      if (updated) {
-        meta.createSpan({ text: ` \u00B7 ${updated}`, cls: "docs-cp-updated" });
-      }
-
-      const description = doc.getFrontmatterField<string>("description");
-      if (description) {
-        section.createDiv({ text: description, cls: "docs-cp-description" });
-      }
     } else {
-      const warning = section.createDiv({ cls: "docs-cp-warning" });
-      warning.createSpan({ text: "\u26A0 No YAML frontmatter" });
-
-      const initBtn = warning.createEl("button", { text: "init", cls: "docs-cp-init-btn" });
+      const warning = fileSection.createDiv({ cls: "docs-warning" });
+      warning.createSpan({ text: "No frontmatter" });
+      const initBtn = warning.createEl("button", { text: "Init", cls: "docs-init-btn" });
       initBtn.onclick = () => this.initYaml(file);
     }
 
-    const issues = this.store.getIssuesForFile(file.path);
+    // Issues
     if (issues.length > 0) {
-      const issuesSection = section.createDiv({ cls: "docs-cp-issues" });
+      const issuesSection = el.createDiv({ cls: "docs-issues-section" });
+      issuesSection.createDiv({
+        text: `${issues.length} issue${issues.length > 1 ? "s" : ""}`,
+        cls: "docs-issues-title"
+      });
 
-      const issuesHeader = issuesSection.createDiv({ cls: "docs-cp-issues-header" });
-      issuesHeader.createSpan({ text: `\u26A0 ${issues.length} issue${issues.length > 1 ? "s" : ""}` });
-      issuesHeader.onclick = () => {
-        this.issuesExpanded = !this.issuesExpanded;
-        this.render();
-      };
+      const list = issuesSection.createDiv({ cls: "docs-issues-list" });
+      for (const issue of issues.slice(0, 8)) {
+        const row = list.createDiv({ cls: "docs-issue-row" });
 
-      if (this.issuesExpanded) {
-        const issuesList = issuesSection.createDiv({ cls: "docs-cp-issues-list" });
-        for (const issue of issues.slice(0, 5)) {
-          const row = issuesList.createDiv({ cls: "docs-cp-issue-row" });
+        const icon = issue.severity === "error" ? "×" : "!";
+        row.createSpan({ text: icon, cls: `docs-issue-icon docs-${issue.severity}` });
 
-          // Icon by severity
-          row.createSpan({ text: issue.icon, cls: `docs-cp-issue-icon docs-cp-${issue.severity}` });
+        const msg = this.i18n.t(issue.messageKey, issue.messageParams as Record<string, unknown>);
+        row.createSpan({ text: msg, cls: "docs-issue-msg" });
 
-          // Message
-          const msg = this.i18n.t(issue.messageKey, issue.messageParams as Record<string, unknown>);
-          row.createSpan({ text: msg, cls: "docs-cp-issue-msg" });
-
-          // Line number (if available)
-          if (issue.line) {
-            row.createSpan({ text: `:${issue.line}`, cls: "docs-cp-issue-line" });
-          }
-
-          // Click to navigate
-          row.onclick = () => this.navigateToIssue(issue);
-          row.addClass("docs-cp-issue-clickable");
+        if (issue.line) {
+          row.createSpan({ text: `:${issue.line}`, cls: "docs-issue-line" });
         }
-        if (issues.length > 5) {
-          issuesList.createDiv({ text: `+${issues.length - 5} more`, cls: "docs-cp-more" });
-        }
+
+        row.onclick = () => this.navigateToIssue(issue);
+      }
+
+      if (issues.length > 8) {
+        list.createDiv({ text: `+${issues.length - 8} more`, cls: "docs-more" });
       }
     }
 
-    // Render validation results section
-    this.renderValidationResults(section, file, doc, issues);
-  }
+    // Actions
+    const actions = el.createDiv({ cls: "docs-actions" });
+    const row = actions.createDiv({ cls: "docs-actions-row" });
 
-  /**
-   * Get validation results for a file
-   */
-  private getValidationResults(doc: Document | undefined, issues: Issue[]): {
-    passed: { id: string; name: string }[];
-    failed: { id: string; name: string; count: number }[];
-    skipped: { id: string; name: string; reason: string }[];
-  } {
-    // All validators that could run (IDE-like naming)
-    const allValidators: { id: string; name: string; requiresType: boolean }[] = [
-      { id: "frontmatter", name: "Lint: YAML Frontmatter", requiresType: true },
-      { id: "sections", name: "Lint: Required Sections", requiresType: true },
-      { id: "naming", name: "Lint: File Naming", requiresType: true },
-      { id: "title", name: "Lint: Document Title", requiresType: true },
-      { id: "broken-links", name: "Lint: Broken Links", requiresType: false },
-      { id: "orphans", name: "Lint: Orphan Detection", requiresType: false },
-      { id: "stale", name: "Lint: Freshness Check", requiresType: false },
-      { id: "forbidden-patterns", name: "Lint: Forbidden Patterns", requiresType: false },
-      { id: "word-count", name: "Lint: Word Count", requiresType: false },
-      { id: "empty-folders", name: "Lint: Empty Folders", requiresType: false }
-    ];
-
-    const passed: { id: string; name: string }[] = [];
-    const failed: { id: string; name: string; count: number }[] = [];
-    const skipped: { id: string; name: string; reason: string }[] = [];
-
-    // Group issues by validator
-    const issuesByValidator = new Map<string, number>();
-    for (const issue of issues) {
-      const count = issuesByValidator.get(issue.validator) || 0;
-      issuesByValidator.set(issue.validator, count + 1);
-    }
-
-    // Check document type
-    const hasDocType = doc?.detectedType !== null && doc?.detectedType !== undefined;
-
-    for (const validator of allValidators) {
-      const validatorConfig = this.config.validators[validator.id];
-
-      // Check if validator is enabled
-      if (validatorConfig?.enabled === false) {
-        skipped.push({ id: validator.id, name: validator.name, reason: "desabilitado" });
-        continue;
-      }
-
-      // Check if validator requires document type
-      if (validator.requiresType && !hasDocType) {
-        skipped.push({ id: validator.id, name: validator.name, reason: "sem tipo definido" });
-        continue;
-      }
-
-      // Check if has issues
-      const issueCount = issuesByValidator.get(validator.id) || 0;
-      if (issueCount > 0) {
-        failed.push({ id: validator.id, name: validator.name, count: issueCount });
-      } else {
-        passed.push({ id: validator.id, name: validator.name });
-      }
-    }
-
-    return { passed, failed, skipped };
-  }
-
-  /**
-   * Render validation results dropdown
-   */
-  private renderValidationResults(section: HTMLElement, file: TFile, doc: Document | undefined, issues: Issue[]): void {
-    const results = this.getValidationResults(doc, issues);
-    const total = results.passed.length + results.failed.length + results.skipped.length;
-    const passedCount = results.passed.length;
-    const failedCount = results.failed.length;
-    const skippedCount = results.skipped.length;
-
-    const validationsSection = section.createDiv({ cls: "docs-cp-validations" });
-
-    const header = validationsSection.createDiv({ cls: "docs-cp-validations-header" });
-    header.createSpan({ text: this.validationsExpanded ? "\u25BC" : "\u25B6", cls: "docs-cp-validations-toggle" });
-
-    const summary = header.createSpan({ cls: "docs-cp-validations-summary" });
-    summary.createSpan({ text: `${passedCount}`, cls: "docs-cp-val-passed" });
-    summary.createSpan({ text: ` passou` });
-    if (failedCount > 0) {
-      summary.createSpan({ text: ` · ` });
-      summary.createSpan({ text: `${failedCount}`, cls: "docs-cp-val-failed" });
-      summary.createSpan({ text: ` falhou` });
-    }
-    if (skippedCount > 0) {
-      summary.createSpan({ text: ` · ` });
-      summary.createSpan({ text: `${skippedCount}`, cls: "docs-cp-val-skipped" });
-      summary.createSpan({ text: ` pulou` });
-    }
-
-    header.onclick = () => {
-      this.validationsExpanded = !this.validationsExpanded;
-      this.render();
-    };
-
-    if (this.validationsExpanded) {
-      const list = validationsSection.createDiv({ cls: "docs-cp-validations-list" });
-
-      // Document type info
-      const typeInfo = list.createDiv({ cls: "docs-cp-val-type-info" });
-      if (doc?.detectedType) {
-        const typeName = this.config.documentTypes[doc.detectedType]?.name || doc.detectedType;
-        typeInfo.createSpan({ text: `Tipo: `, cls: "docs-cp-val-label" });
-        typeInfo.createSpan({ text: typeName, cls: "docs-cp-val-type" });
-      } else {
-        typeInfo.createSpan({ text: `Tipo: `, cls: "docs-cp-val-label" });
-        typeInfo.createSpan({ text: "nenhum (genérico)", cls: "docs-cp-val-type docs-cp-val-no-type" });
-      }
-
-      // Failed validators
-      if (results.failed.length > 0) {
-        const failedSection = list.createDiv({ cls: "docs-cp-val-section" });
-        failedSection.createDiv({ text: "Falhou:", cls: "docs-cp-val-section-title docs-cp-val-failed" });
-        for (const v of results.failed) {
-          const row = failedSection.createDiv({ cls: "docs-cp-val-row docs-cp-val-row-failed" });
-          row.createSpan({ text: "\u2717 ", cls: "docs-cp-val-icon" });
-          row.createSpan({ text: v.name });
-          row.createSpan({ text: ` (${v.count})`, cls: "docs-cp-val-count" });
-        }
-      }
-
-      // Passed validators
-      if (results.passed.length > 0) {
-        const passedSection = list.createDiv({ cls: "docs-cp-val-section" });
-        passedSection.createDiv({ text: "Passou:", cls: "docs-cp-val-section-title docs-cp-val-passed" });
-        for (const v of results.passed) {
-          const row = passedSection.createDiv({ cls: "docs-cp-val-row docs-cp-val-row-passed" });
-          row.createSpan({ text: "\u2713 ", cls: "docs-cp-val-icon" });
-          row.createSpan({ text: v.name });
-        }
-      }
-
-      // Skipped validators
-      if (results.skipped.length > 0) {
-        const skippedSection = list.createDiv({ cls: "docs-cp-val-section" });
-        skippedSection.createDiv({ text: "Pulou:", cls: "docs-cp-val-section-title docs-cp-val-skipped" });
-        for (const v of results.skipped) {
-          const row = skippedSection.createDiv({ cls: "docs-cp-val-row docs-cp-val-row-skipped" });
-          row.createSpan({ text: "\u2014 ", cls: "docs-cp-val-icon" });
-          row.createSpan({ text: v.name });
-          row.createSpan({ text: ` (${v.reason})`, cls: "docs-cp-val-reason" });
-        }
-      }
-    }
-  }
-
-  /**
-   * Render actions section
-   */
-  private renderActions(el: HTMLElement, file: TFile | null, queueLength: number): void {
-    const section = el.createDiv({ cls: "docs-cp-section docs-cp-actions" });
-
-    const doc = file ? this.store.getDocument(file.path) : null;
-    const currentStatus = doc?.status;
-
-    const row = section.createDiv({ cls: "docs-cp-actions-row" });
-
-    // Previous
-    const prevBtn = row.createEl("button", { text: "\u2190", cls: "docs-cp-btn docs-cp-nav" });
+    const prevBtn = row.createEl("button", { text: "←", cls: "docs-btn" });
     prevBtn.disabled = this.currentIndex === 0;
-    prevBtn.title = "Previous (\u2190)";
     prevBtn.onclick = () => this.navigate(-1);
 
-    // Reject
-    const rejectBtn = row.createEl("button", { text: "\u2717", cls: "docs-cp-btn docs-cp-reject-btn" });
-    rejectBtn.disabled = !file || currentStatus === "rejected";
-    rejectBtn.title = this.i18n.t("ui.curation.reject");
-    rejectBtn.onclick = () => file && this.reject(file);
+    const rejectBtn = row.createEl("button", { text: "×", cls: "docs-btn docs-btn-reject" });
+    rejectBtn.disabled = doc?.status === "rejected";
+    rejectBtn.onclick = () => this.reject(file);
 
-    // Review
-    const reviewBtn = row.createEl("button", { text: "\u25CB", cls: "docs-cp-btn docs-cp-review-btn" });
-    reviewBtn.disabled = !file || currentStatus === "review";
-    reviewBtn.title = "Back to Review";
-    reviewBtn.onclick = () => file && this.setReview(file);
+    const approveBtn = row.createEl("button", { text: "✓", cls: "docs-btn docs-btn-approve" });
+    approveBtn.disabled = doc?.status === "approved";
+    approveBtn.onclick = () => this.approve(file);
 
-    // Approve
-    const approveBtn = row.createEl("button", { text: "\u2713", cls: "docs-cp-btn docs-cp-approve-btn" });
-    approveBtn.disabled = !file || currentStatus === "approved";
-    approveBtn.title = this.i18n.t("ui.curation.approve");
-    approveBtn.onclick = () => file && this.approve(file);
-
-    // Next
-    const nextBtn = row.createEl("button", { text: "\u2192", cls: "docs-cp-btn docs-cp-nav" });
-    nextBtn.disabled = this.currentIndex >= queueLength - 1;
-    nextBtn.title = "Next (\u2192)";
+    const nextBtn = row.createEl("button", { text: "→", cls: "docs-btn" });
+    nextBtn.disabled = this.currentIndex >= queue.length - 1;
     nextBtn.onclick = () => this.navigate(1);
-
-    // Keyboard hints
-    const hints = section.createDiv({ cls: "docs-cp-hints" });
-    hints.createSpan({ text: "\u2190 \u2192 navigate" });
   }
-
-  // === ACTIONS ===
 
   private async navigate(delta: number): Promise<void> {
     const queue = this.getQueue();
     const newIndex = this.currentIndex + delta;
-
     if (newIndex < 0 || newIndex >= queue.length) return;
-
     this.currentIndex = newIndex;
     await this.openCurrentFile();
     this.render();
@@ -755,10 +244,6 @@ export class CurationPanelView extends ItemView {
     }).open();
   }
 
-  private async setReview(file: TFile): Promise<void> {
-    await this.store.setStatus(file, "review");
-  }
-
   private async initYaml(file: TFile): Promise<void> {
     await this.metadataService.initFrontmatter(file);
   }
@@ -766,26 +251,18 @@ export class CurationPanelView extends ItemView {
   private async openCurrentFile(): Promise<void> {
     const file = this.getCurrentFile();
     if (!file) return;
-
     const leaf = this.app.workspace.getLeaf(false);
     await leaf.openFile(file);
   }
 
-  /**
-   * Navigate to an issue (open file and scroll to line)
-   */
   private async navigateToIssue(issue: Issue): Promise<void> {
     const leaf = this.app.workspace.getLeaf(false);
     await leaf.openFile(issue.file);
-
     if (issue.line) {
       const editor = (leaf.view as any)?.editor;
       if (editor) {
         editor.setCursor({ line: issue.line - 1, ch: issue.column || 0 });
-        editor.scrollIntoView({
-          from: { line: issue.line - 1, ch: 0 },
-          to: { line: issue.line - 1, ch: 0 }
-        }, true);
+        editor.scrollIntoView({ from: { line: issue.line - 1, ch: 0 }, to: { line: issue.line - 1, ch: 0 } }, true);
       }
     }
   }
@@ -793,30 +270,15 @@ export class CurationPanelView extends ItemView {
   private onKey(e: KeyboardEvent): void {
     if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
     if (e.ctrlKey || e.metaKey || e.altKey) return;
-
-    switch (e.key) {
-      case "ArrowLeft":
-        e.preventDefault();
-        this.navigate(-1);
-        break;
-      case "ArrowRight":
-        e.preventDefault();
-        this.navigate(1);
-        break;
-    }
+    if (e.key === "ArrowLeft") { e.preventDefault(); this.navigate(-1); }
+    if (e.key === "ArrowRight") { e.preventDefault(); this.navigate(1); }
   }
 }
 
-/**
- * Minimal rejection reason modal
- */
 class RejectModal extends Modal {
   private onSubmit: (reason: string) => void;
   private i18n: I18nService;
   private reason = "";
-  private submitted = false;
-
-  private static draft = "";
 
   constructor(app: App, i18n: I18nService, onSubmit: (reason: string) => void) {
     super(app);
@@ -825,75 +287,33 @@ class RejectModal extends Modal {
   }
 
   onOpen(): void {
-    const { contentEl, modalEl } = this;
-
-    modalEl.addClass("docs-reject-modal");
-
-    const label = contentEl.createEl("label", { text: "Rejection reason" });
-    label.style.fontSize = "12px";
-    label.style.color = "var(--text-muted)";
-    label.style.marginBottom = "6px";
-    label.style.display = "block";
+    const { contentEl } = this;
+    contentEl.createEl("h3", { text: "Reject" });
 
     const textArea = new TextAreaComponent(contentEl);
-    textArea.setPlaceholder("What needs to be fixed?");
+    textArea.setPlaceholder("Reason...");
     textArea.inputEl.style.width = "100%";
     textArea.inputEl.style.height = "80px";
-    textArea.inputEl.style.resize = "none";
+    textArea.onChange((v) => this.reason = v);
 
-    if (RejectModal.draft) {
-      textArea.setValue(RejectModal.draft);
-      this.reason = RejectModal.draft;
-    }
+    setTimeout(() => textArea.inputEl.focus(), 10);
 
-    textArea.onChange((value) => {
-      this.reason = value;
-      RejectModal.draft = value;
-    });
-
-    setTimeout(() => {
-      textArea.inputEl.focus();
-      textArea.inputEl.setSelectionRange(
-        textArea.inputEl.value.length,
-        textArea.inputEl.value.length
-      );
-    }, 10);
-
-    const footer = contentEl.createDiv();
-    footer.style.display = "flex";
-    footer.style.justifyContent = "space-between";
-    footer.style.alignItems = "center";
-    footer.style.marginTop = "8px";
-
-    const hint = footer.createSpan({ text: "Ctrl+Enter to confirm" });
-    hint.style.fontSize = "11px";
-    hint.style.color = "var(--text-faint)";
-
-    const submitBtn = footer.createEl("button", { text: this.i18n.t("ui.curation.reject"), cls: "mod-warning" });
-    submitBtn.style.padding = "4px 12px";
-    submitBtn.onclick = () => this.submit();
+    const footer = contentEl.createDiv({ cls: "modal-button-container" });
+    const submitBtn = footer.createEl("button", { text: "Reject", cls: "mod-warning" });
+    submitBtn.onclick = () => {
+      if (this.reason.trim()) {
+        this.onSubmit(this.reason.trim());
+        this.close();
+      }
+    };
 
     textArea.inputEl.addEventListener("keydown", (e) => {
       if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
         e.preventDefault();
-        this.submit();
-      }
-      if (e.key === "Escape") {
-        this.close();
+        submitBtn.click();
       }
     });
   }
 
-  private submit(): void {
-    if (this.reason.trim()) {
-      this.submitted = true;
-      RejectModal.draft = "";
-      this.onSubmit(this.reason.trim());
-      this.close();
-    }
-  }
-
-  onClose(): void {
-    this.contentEl.empty();
-  }
+  onClose(): void { this.contentEl.empty(); }
 }
