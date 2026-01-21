@@ -2643,7 +2643,7 @@ var I18nService = class {
     return {
       validators: {
         frontmatter: {
-          name: "Frontmatter",
+          name: "Lint: YAML Frontmatter",
           description: "Validates required frontmatter fields",
           missing: "File has no YAML frontmatter",
           missing_suggestion: "Add frontmatter with required fields",
@@ -2662,20 +2662,20 @@ var I18nService = class {
           array_too_long: "Field '{field}' has {length} items, maximum is {max}"
         },
         sections: {
-          name: "Sections",
+          name: "Lint: Required Sections",
           description: "Validates required document sections",
           missing_required: "Required section '{section}' is missing",
           missing_required_suggestion: "Add section '## {section}' to the document",
           forbidden: "Section '{section}' is not allowed in this document type"
         },
         naming: {
-          name: "Naming",
+          name: "Lint: File Naming",
           description: "Validates file naming conventions",
           pattern_mismatch: "Filename '{filename}' doesn't match expected pattern for {typeName}",
           pattern_mismatch_suggestion: "Rename file to match pattern: {pattern}"
         },
         title: {
-          name: "Title",
+          name: "Lint: Document Title",
           description: "Validates document title",
           missing: "Document has no title (# heading)",
           missing_suggestion: "Add a title with '# Title' at the start",
@@ -2683,38 +2683,38 @@ var I18nService = class {
           pattern_mismatch_suggestion: "Update title to match pattern: {pattern}"
         },
         wordCount: {
-          name: "Word Count",
+          name: "Lint: Word Count",
           description: "Validates word count limits",
           exceeds_max: "Document has {count} words, maximum is {max}",
           below_min: "Document has {count} words, minimum is {min}",
           section_exceeds_max: "Section '{section}' has {count} words, maximum is {max}"
         },
         forbiddenPatterns: {
-          name: "Forbidden Patterns",
+          name: "Lint: Forbidden Patterns",
           description: "Checks for forbidden text patterns",
           found: "Forbidden pattern '{pattern}' found: '{match}'",
           found_suggestion: "Remove or replace the forbidden pattern '{pattern}'"
         },
         links: {
-          name: "Links",
+          name: "Lint: Broken Links",
           description: "Validates internal links",
           broken: "Broken link to '{target}'",
           broken_suggestion: "Fix or remove the link to '{target}'"
         },
         stale: {
-          name: "Stale",
+          name: "Lint: Freshness Check",
           description: "Checks for outdated documents",
           outdated: "Document hasn't been updated in {days} days (threshold: {threshold})",
           outdated_suggestion: "Review and update the document"
         },
         orphans: {
-          name: "Orphans",
+          name: "Lint: Orphan Detection",
           description: "Checks for unlinked documents",
           not_linked: "Document '{filename}' is not linked from any other document",
           not_linked_suggestion: "Add a link to this document from a relevant location"
         },
         emptyFolders: {
-          name: "Empty Folders",
+          name: "Lint: Empty Folders",
           description: "Checks for empty folders",
           empty: "Folder '{folder}' contains no markdown files",
           empty_suggestion: "Add content or remove the empty folder"
@@ -2746,7 +2746,7 @@ var I18nService = class {
     return {
       validators: {
         frontmatter: {
-          name: "Frontmatter",
+          name: "Lint: YAML Frontmatter",
           description: "Valida campos obrigat\xF3rios no frontmatter",
           missing: "Arquivo n\xE3o possui frontmatter YAML",
           missing_suggestion: "Adicione o frontmatter com os campos obrigat\xF3rios",
@@ -2765,20 +2765,20 @@ var I18nService = class {
           array_too_long: "Campo '{field}' tem {length} itens, m\xE1ximo \xE9 {max}"
         },
         sections: {
-          name: "Se\xE7\xF5es",
+          name: "Lint: Required Sections",
           description: "Valida se\xE7\xF5es obrigat\xF3rias do documento",
           missing_required: "Se\xE7\xE3o obrigat\xF3ria '{section}' n\xE3o encontrada",
           missing_required_suggestion: "Adicione a se\xE7\xE3o '## {section}' ao documento",
           forbidden: "Se\xE7\xE3o '{section}' n\xE3o \xE9 permitida neste tipo de documento"
         },
         naming: {
-          name: "Nomenclatura",
+          name: "Lint: File Naming",
           description: "Valida conven\xE7\xF5es de nomenclatura de arquivos",
           pattern_mismatch: "Nome do arquivo '{filename}' n\xE3o corresponde ao padr\xE3o esperado para {typeName}",
           pattern_mismatch_suggestion: "Renomeie o arquivo para corresponder ao padr\xE3o: {pattern}"
         },
         title: {
-          name: "T\xEDtulo",
+          name: "Lint: Document Title",
           description: "Valida t\xEDtulo do documento",
           missing: "Documento n\xE3o possui t\xEDtulo (# cabe\xE7alho)",
           missing_suggestion: "Adicione um t\xEDtulo com '# T\xEDtulo' no in\xEDcio",
@@ -2786,38 +2786,38 @@ var I18nService = class {
           pattern_mismatch_suggestion: "Atualize o t\xEDtulo para corresponder ao padr\xE3o: {pattern}"
         },
         wordCount: {
-          name: "Contagem de Palavras",
+          name: "Lint: Word Count",
           description: "Valida limites de contagem de palavras",
           exceeds_max: "Documento tem {count} palavras, m\xE1ximo \xE9 {max}",
           below_min: "Documento tem {count} palavras, m\xEDnimo \xE9 {min}",
           section_exceeds_max: "Se\xE7\xE3o '{section}' tem {count} palavras, m\xE1ximo \xE9 {max}"
         },
         forbiddenPatterns: {
-          name: "Padr\xF5es Proibidos",
+          name: "Lint: Forbidden Patterns",
           description: "Verifica padr\xF5es de texto proibidos",
           found: "Padr\xE3o proibido '{pattern}' encontrado: '{match}'",
           found_suggestion: "Remova ou substitua o padr\xE3o proibido '{pattern}'"
         },
         links: {
-          name: "Links",
+          name: "Lint: Broken Links",
           description: "Valida links internos",
           broken: "Link quebrado para '{target}'",
           broken_suggestion: "Corrija ou remova o link para '{target}'"
         },
         stale: {
-          name: "Desatualizado",
+          name: "Lint: Freshness Check",
           description: "Verifica documentos desatualizados",
           outdated: "Documento n\xE3o foi atualizado h\xE1 {days} dias (limite: {threshold})",
           outdated_suggestion: "Revise e atualize o documento"
         },
         orphans: {
-          name: "\xD3rf\xE3os",
+          name: "Lint: Orphan Detection",
           description: "Verifica documentos n\xE3o linkados",
           not_linked: "Documento '{filename}' n\xE3o est\xE1 linkado em nenhum outro documento",
           not_linked_suggestion: "Adicione um link para este documento em uma localiza\xE7\xE3o relevante"
         },
         emptyFolders: {
-          name: "Pastas Vazias",
+          name: "Lint: Empty Folders",
           description: "Verifica pastas vazias",
           empty: "Pasta '{folder}' n\xE3o cont\xE9m arquivos markdown",
           empty_suggestion: "Adicione conte\xFAdo ou remova a pasta vazia"
@@ -3587,10 +3587,7 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
     const rejected = docs.filter((d) => d.status === "rejected").length;
     const pending = docs.filter((d) => d.status === "review").length;
     const total = docs.length;
-    this.renderFolderFilter(el);
-    this.renderSearch(el);
     this.renderProgress(el, { approved, rejected, pending, total });
-    this.renderFolderStats(el);
     const queue = this.getQueue();
     const currentFile = this.getCurrentFile();
     if (queue.length === 0) {
@@ -3783,8 +3780,15 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
       if (this.issuesExpanded) {
         const issuesList = issuesSection.createDiv({ cls: "docs-cp-issues-list" });
         for (const issue of issues.slice(0, 5)) {
+          const row = issuesList.createDiv({ cls: "docs-cp-issue-row" });
+          row.createSpan({ text: issue.icon, cls: `docs-cp-issue-icon docs-cp-${issue.severity}` });
           const msg = this.i18n.t(issue.messageKey, issue.messageParams);
-          issuesList.createDiv({ text: `\xB7 ${msg}`, cls: "docs-cp-issue" });
+          row.createSpan({ text: msg, cls: "docs-cp-issue-msg" });
+          if (issue.line) {
+            row.createSpan({ text: `:${issue.line}`, cls: "docs-cp-issue-line" });
+          }
+          row.onclick = () => this.navigateToIssue(issue);
+          row.addClass("docs-cp-issue-clickable");
         }
         if (issues.length > 5) {
           issuesList.createDiv({ text: `+${issues.length - 5} more`, cls: "docs-cp-more" });
@@ -3798,16 +3802,16 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
    */
   getValidationResults(doc, issues) {
     const allValidators = [
-      { id: "frontmatter", name: "Frontmatter", requiresType: true },
-      { id: "sections", name: "Se\xE7\xF5es Obrigat\xF3rias", requiresType: true },
-      { id: "naming", name: "Nomenclatura", requiresType: true },
-      { id: "title", name: "T\xEDtulo", requiresType: true },
-      { id: "broken-links", name: "Links Quebrados", requiresType: false },
-      { id: "orphans", name: "Arquivos \xD3rf\xE3os", requiresType: false },
-      { id: "stale", name: "Documentos Obsoletos", requiresType: false },
-      { id: "forbidden-patterns", name: "Padr\xF5es Proibidos", requiresType: false },
-      { id: "word-count", name: "Contagem de Palavras", requiresType: false },
-      { id: "empty-folders", name: "Pastas Vazias", requiresType: false }
+      { id: "frontmatter", name: "Lint: YAML Frontmatter", requiresType: true },
+      { id: "sections", name: "Lint: Required Sections", requiresType: true },
+      { id: "naming", name: "Lint: File Naming", requiresType: true },
+      { id: "title", name: "Lint: Document Title", requiresType: true },
+      { id: "broken-links", name: "Lint: Broken Links", requiresType: false },
+      { id: "orphans", name: "Lint: Orphan Detection", requiresType: false },
+      { id: "stale", name: "Lint: Freshness Check", requiresType: false },
+      { id: "forbidden-patterns", name: "Lint: Forbidden Patterns", requiresType: false },
+      { id: "word-count", name: "Lint: Word Count", requiresType: false },
+      { id: "empty-folders", name: "Lint: Empty Folders", requiresType: false }
     ];
     const passed = [];
     const failed = [];
@@ -3970,6 +3974,24 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
       return;
     const leaf = this.app.workspace.getLeaf(false);
     await leaf.openFile(file);
+  }
+  /**
+   * Navigate to an issue (open file and scroll to line)
+   */
+  async navigateToIssue(issue) {
+    var _a;
+    const leaf = this.app.workspace.getLeaf(false);
+    await leaf.openFile(issue.file);
+    if (issue.line) {
+      const editor = (_a = leaf.view) == null ? void 0 : _a.editor;
+      if (editor) {
+        editor.setCursor({ line: issue.line - 1, ch: issue.column || 0 });
+        editor.scrollIntoView({
+          from: { line: issue.line - 1, ch: 0 },
+          to: { line: issue.line - 1, ch: 0 }
+        }, true);
+      }
+    }
   }
   onKey(e) {
     if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement)
