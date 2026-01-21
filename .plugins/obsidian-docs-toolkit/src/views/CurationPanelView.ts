@@ -113,6 +113,31 @@ export class CurationPanelView extends ItemView {
     const total = docs.length;
     const queue = this.getQueue();
     const file = this.getCurrentFile();
+    const doc = file ? this.store.getDocument(file.path) : null;
+
+    // Actions (very top)
+    const actions = el.createDiv({ cls: "docs-actions" });
+    const actionsRow = actions.createDiv({ cls: "docs-actions-row" });
+
+    const prevBtn = actionsRow.createEl("button", { text: "←", cls: "docs-btn" });
+    prevBtn.disabled = this.currentIndex === 0;
+    prevBtn.onclick = () => this.navigate(-1);
+
+    const rejectBtn = actionsRow.createEl("button", { text: "×", cls: "docs-btn docs-btn-reject" });
+    rejectBtn.disabled = !file || doc?.status === "rejected";
+    rejectBtn.onclick = () => file && this.reject(file);
+
+    const reviewBtn = actionsRow.createEl("button", { text: "○", cls: "docs-btn docs-btn-review" });
+    reviewBtn.disabled = !file || doc?.status === "review";
+    reviewBtn.onclick = () => file && this.setReview(file);
+
+    const approveBtn = actionsRow.createEl("button", { text: "✓", cls: "docs-btn docs-btn-approve" });
+    approveBtn.disabled = !file || doc?.status === "approved";
+    approveBtn.onclick = () => file && this.approve(file);
+
+    const nextBtn = actionsRow.createEl("button", { text: "→", cls: "docs-btn" });
+    nextBtn.disabled = this.currentIndex >= queue.length - 1;
+    nextBtn.onclick = () => this.navigate(1);
 
     // Header with progress
     const header = el.createDiv({ cls: "nav-header" });
@@ -147,31 +172,6 @@ export class CurationPanelView extends ItemView {
 
     if (!file) return;
 
-    const doc = this.store.getDocument(file.path);
-
-    // Actions (at top)
-    const actions = el.createDiv({ cls: "docs-actions" });
-    const actionsRow = actions.createDiv({ cls: "docs-actions-row" });
-
-    const prevBtn = actionsRow.createEl("button", { text: "←", cls: "docs-btn" });
-    prevBtn.disabled = this.currentIndex === 0;
-    prevBtn.onclick = () => this.navigate(-1);
-
-    const rejectBtn = actionsRow.createEl("button", { text: "×", cls: "docs-btn docs-btn-reject" });
-    rejectBtn.disabled = doc?.status === "rejected";
-    rejectBtn.onclick = () => this.reject(file);
-
-    const reviewBtn = actionsRow.createEl("button", { text: "○", cls: "docs-btn docs-btn-review" });
-    reviewBtn.disabled = doc?.status === "review";
-    reviewBtn.onclick = () => this.setReview(file);
-
-    const approveBtn = actionsRow.createEl("button", { text: "✓", cls: "docs-btn docs-btn-approve" });
-    approveBtn.disabled = doc?.status === "approved";
-    approveBtn.onclick = () => this.approve(file);
-
-    const nextBtn = actionsRow.createEl("button", { text: "→", cls: "docs-btn" });
-    nextBtn.disabled = this.currentIndex >= queue.length - 1;
-    nextBtn.onclick = () => this.navigate(1);
     const issues = this.store.getIssuesForFile(file.path);
 
     // File info

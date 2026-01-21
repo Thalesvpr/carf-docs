@@ -3479,6 +3479,24 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
     const total = docs.length;
     const queue = this.getQueue();
     const file = this.getCurrentFile();
+    const doc = file ? this.store.getDocument(file.path) : null;
+    const actions = el.createDiv({ cls: "docs-actions" });
+    const actionsRow = actions.createDiv({ cls: "docs-actions-row" });
+    const prevBtn = actionsRow.createEl("button", { text: "\u2190", cls: "docs-btn" });
+    prevBtn.disabled = this.currentIndex === 0;
+    prevBtn.onclick = () => this.navigate(-1);
+    const rejectBtn = actionsRow.createEl("button", { text: "\xD7", cls: "docs-btn docs-btn-reject" });
+    rejectBtn.disabled = !file || (doc == null ? void 0 : doc.status) === "rejected";
+    rejectBtn.onclick = () => file && this.reject(file);
+    const reviewBtn = actionsRow.createEl("button", { text: "\u25CB", cls: "docs-btn docs-btn-review" });
+    reviewBtn.disabled = !file || (doc == null ? void 0 : doc.status) === "review";
+    reviewBtn.onclick = () => file && this.setReview(file);
+    const approveBtn = actionsRow.createEl("button", { text: "\u2713", cls: "docs-btn docs-btn-approve" });
+    approveBtn.disabled = !file || (doc == null ? void 0 : doc.status) === "approved";
+    approveBtn.onclick = () => file && this.approve(file);
+    const nextBtn = actionsRow.createEl("button", { text: "\u2192", cls: "docs-btn" });
+    nextBtn.disabled = this.currentIndex >= queue.length - 1;
+    nextBtn.onclick = () => this.navigate(1);
     const header = el.createDiv({ cls: "nav-header" });
     const headerInfo = header.createDiv({ cls: "nav-buttons-container" });
     headerInfo.createSpan({
@@ -3505,24 +3523,6 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
     }
     if (!file)
       return;
-    const doc = this.store.getDocument(file.path);
-    const actions = el.createDiv({ cls: "docs-actions" });
-    const actionsRow = actions.createDiv({ cls: "docs-actions-row" });
-    const prevBtn = actionsRow.createEl("button", { text: "\u2190", cls: "docs-btn" });
-    prevBtn.disabled = this.currentIndex === 0;
-    prevBtn.onclick = () => this.navigate(-1);
-    const rejectBtn = actionsRow.createEl("button", { text: "\xD7", cls: "docs-btn docs-btn-reject" });
-    rejectBtn.disabled = (doc == null ? void 0 : doc.status) === "rejected";
-    rejectBtn.onclick = () => this.reject(file);
-    const reviewBtn = actionsRow.createEl("button", { text: "\u25CB", cls: "docs-btn docs-btn-review" });
-    reviewBtn.disabled = (doc == null ? void 0 : doc.status) === "review";
-    reviewBtn.onclick = () => this.setReview(file);
-    const approveBtn = actionsRow.createEl("button", { text: "\u2713", cls: "docs-btn docs-btn-approve" });
-    approveBtn.disabled = (doc == null ? void 0 : doc.status) === "approved";
-    approveBtn.onclick = () => this.approve(file);
-    const nextBtn = actionsRow.createEl("button", { text: "\u2192", cls: "docs-btn" });
-    nextBtn.disabled = this.currentIndex >= queue.length - 1;
-    nextBtn.onclick = () => this.navigate(1);
     const issues = this.store.getIssuesForFile(file.path);
     const fileSection = el.createDiv({ cls: "docs-file-section" });
     fileSection.createDiv({
