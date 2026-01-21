@@ -3520,7 +3520,7 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
       };
     }
     const dotsContainer = header.createDiv({ cls: "docs-dots" });
-    const maxDots = 51;
+    const maxDots = 41;
     const halfWindow = Math.floor(maxDots / 2);
     let start = 0;
     let end = queue.length;
@@ -3531,20 +3531,18 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
         start = Math.max(0, end - maxDots);
       }
     }
+    const visibleCount = end - start;
+    const currentPosInWindow = this.currentIndex - start;
+    const indicator = dotsContainer.createDiv({ cls: "docs-indicator" });
+    const dotSize = 6;
+    const gap = 4;
+    const offset = currentPosInWindow * (dotSize + gap);
+    indicator.style.transform = `translateX(${offset}px)`;
     for (let i = start; i < end; i++) {
       const f = queue[i];
       const d = this.store.getDocument(f.path);
       const status = (d == null ? void 0 : d.status) || "review";
-      const isCurrent = i === this.currentIndex;
-      const distance = Math.abs(i - this.currentIndex);
-      const dot = dotsContainer.createDiv({
-        cls: `docs-dot docs-dot-${status}${isCurrent ? " docs-dot-current" : ""}`
-      });
-      if (distance > 0 && distance <= 5) {
-        dot.addClass(`docs-dot-near-${distance}`);
-      } else if (distance > 5) {
-        dot.addClass("docs-dot-far");
-      }
+      const dot = dotsContainer.createDiv({ cls: `docs-dot docs-dot-${status}` });
       dot.onclick = () => {
         this.currentIndex = i;
         this.openCurrentFile();

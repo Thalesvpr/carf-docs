@@ -169,9 +169,9 @@ export class CurationPanelView extends ItemView {
       };
     }
 
-    // Dots navigation (max 51, centered on current)
+    // Dots navigation (max 41, centered on current)
     const dotsContainer = header.createDiv({ cls: "docs-dots" });
-    const maxDots = 51;
+    const maxDots = 41;
     const halfWindow = Math.floor(maxDots / 2);
 
     let start = 0;
@@ -185,23 +185,23 @@ export class CurationPanelView extends ItemView {
       }
     }
 
+    const visibleCount = end - start;
+    const currentPosInWindow = this.currentIndex - start;
+
+    // Sliding indicator
+    const indicator = dotsContainer.createDiv({ cls: "docs-indicator" });
+    const dotSize = 6;
+    const gap = 4;
+    const offset = currentPosInWindow * (dotSize + gap);
+    indicator.style.transform = `translateX(${offset}px)`;
+
+    // Static dots
     for (let i = start; i < end; i++) {
       const f = queue[i];
       const d = this.store.getDocument(f.path);
       const status = d?.status || "review";
-      const isCurrent = i === this.currentIndex;
-      const distance = Math.abs(i - this.currentIndex);
 
-      const dot = dotsContainer.createDiv({
-        cls: `docs-dot docs-dot-${status}${isCurrent ? " docs-dot-current" : ""}`
-      });
-
-      // Distance-based styling for wave effect
-      if (distance > 0 && distance <= 5) {
-        dot.addClass(`docs-dot-near-${distance}`);
-      } else if (distance > 5) {
-        dot.addClass("docs-dot-far");
-      }
+      const dot = dotsContainer.createDiv({ cls: `docs-dot docs-dot-${status}` });
 
       dot.onclick = () => {
         this.currentIndex = i;

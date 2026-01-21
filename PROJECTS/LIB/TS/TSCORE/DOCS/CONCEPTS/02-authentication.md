@@ -1,5 +1,5 @@
 ---
-status: review
+status: approved
 updated: 2026-01-21
 ---
 
