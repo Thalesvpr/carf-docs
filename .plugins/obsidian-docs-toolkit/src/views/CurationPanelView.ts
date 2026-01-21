@@ -228,6 +228,10 @@ export class CurationPanelView extends ItemView {
     rejectBtn.disabled = doc?.status === "rejected";
     rejectBtn.onclick = () => this.reject(file);
 
+    const reviewBtn = row.createEl("button", { text: "○", cls: "docs-btn docs-btn-review" });
+    reviewBtn.disabled = doc?.status === "review";
+    reviewBtn.onclick = () => this.setReview(file);
+
     const approveBtn = row.createEl("button", { text: "✓", cls: "docs-btn docs-btn-approve" });
     approveBtn.disabled = doc?.status === "approved";
     approveBtn.onclick = () => this.approve(file);
@@ -254,6 +258,10 @@ export class CurationPanelView extends ItemView {
     new RejectModal(this.app, this.i18n, async (reason) => {
       await this.store.setStatus(file, "rejected", reason);
     }).open();
+  }
+
+  private async setReview(file: TFile): Promise<void> {
+    await this.store.setStatus(file, "review");
   }
 
   private async initYaml(file: TFile): Promise<void> {

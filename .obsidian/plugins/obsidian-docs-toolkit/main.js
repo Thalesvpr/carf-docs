@@ -3563,6 +3563,9 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
     const rejectBtn = row.createEl("button", { text: "\xD7", cls: "docs-btn docs-btn-reject" });
     rejectBtn.disabled = (doc == null ? void 0 : doc.status) === "rejected";
     rejectBtn.onclick = () => this.reject(file);
+    const reviewBtn = row.createEl("button", { text: "\u25CB", cls: "docs-btn docs-btn-review" });
+    reviewBtn.disabled = (doc == null ? void 0 : doc.status) === "review";
+    reviewBtn.onclick = () => this.setReview(file);
     const approveBtn = row.createEl("button", { text: "\u2713", cls: "docs-btn docs-btn-approve" });
     approveBtn.disabled = (doc == null ? void 0 : doc.status) === "approved";
     approveBtn.onclick = () => this.approve(file);
@@ -3586,6 +3589,9 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
     new RejectModal(this.app, this.i18n, async (reason) => {
       await this.store.setStatus(file, "rejected", reason);
     }).open();
+  }
+  async setReview(file) {
+    await this.store.setStatus(file, "review");
   }
   async initYaml(file) {
     await this.metadataService.initFrontmatter(file);
