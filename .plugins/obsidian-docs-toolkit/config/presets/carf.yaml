@@ -11,6 +11,11 @@ paths:
     - "node_modules/**"
     - ".plugins/**"
     - ".scripts/**"
+    - "SRC-CODE/**"
+    - "src/**"
+    - "dist/**"
+    - "build/**"
+    - "ARCHIVE/**"
 
 documentTypes:
   rf:

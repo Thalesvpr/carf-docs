@@ -368,28 +368,28 @@ export class CurationPanelView extends ItemView {
     lines.push("");
 
     // Status info
-    if (doc) {
-      lines.push(`**Status:** ${doc.status.toUpperCase()}`);
-      if (doc.status === "rejected" && doc.frontmatter?.rejection_reason) {
-        lines.push(`**Motivo da Rejeição:** ${doc.frontmatter.rejection_reason}`);
-      }
-      lines.push("");
+    const status = doc?.status || "sem status";
+    lines.push(`**Status:** ${status.toUpperCase()}`);
+    if (doc?.status === "rejected" && doc.frontmatter?.rejection_reason) {
+      lines.push(`**Motivo da Rejeição:** ${doc.frontmatter.rejection_reason}`);
     }
+    lines.push("");
 
     // Document info
-    if (doc) {
-      lines.push("## Informações do Documento");
-      if (doc.frontmatter?.type) lines.push(`- **Tipo:** ${doc.frontmatter.type}`);
-      if (doc.frontmatter?.id) lines.push(`- **ID:** ${doc.frontmatter.id}`);
-      if (doc.frontmatter?.modules) {
-        const modules = Array.isArray(doc.frontmatter.modules)
-          ? doc.frontmatter.modules.join(", ")
-          : doc.frontmatter.modules;
-        lines.push(`- **Módulos:** ${modules}`);
-      }
-      if (doc.frontmatter?.updated) lines.push(`- **Atualizado:** ${doc.frontmatter.updated}`);
-      lines.push("");
+    lines.push("## Informações do Documento");
+    lines.push(`- **Arquivo:** ${file.basename}`);
+    lines.push(`- **Path:** ${file.path}`);
+    if (doc?.frontmatter?.type) lines.push(`- **Tipo:** ${doc.frontmatter.type}`);
+    if (doc?.frontmatter?.id) lines.push(`- **ID:** ${doc.frontmatter.id}`);
+    if (doc?.frontmatter?.modules) {
+      const modules = Array.isArray(doc.frontmatter.modules)
+        ? doc.frontmatter.modules.join(", ")
+        : doc.frontmatter.modules;
+      lines.push(`- **Módulos:** ${modules}`);
     }
+    if (doc?.frontmatter?.updated) lines.push(`- **Atualizado:** ${doc.frontmatter.updated}`);
+    if (!doc?.hasFrontmatter) lines.push(`- **Aviso:** Documento sem frontmatter YAML`);
+    lines.push("");
 
     // Issues/Errors
     if (issues.length > 0) {
@@ -400,8 +400,11 @@ export class CurationPanelView extends ItemView {
         const line = issue.line ? `:${issue.line}` : "";
         lines.push(`- [${severity}]${line} ${msg}`);
       }
-      lines.push("");
+    } else {
+      lines.push("## Problemas Encontrados");
+      lines.push("Nenhum problema detectado.");
     }
+    lines.push("");
 
     // Instructions
     lines.push("---");
