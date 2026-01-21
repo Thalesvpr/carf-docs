@@ -172,13 +172,13 @@
 .docs-actions-row {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  gap: 4px;
   align-items: center;
 }
 
 .docs-btn {
-  width: 40px;
-  height: 40px;
+  flex: 1;
+  height: 36px;
   padding: 0;
   border: 1px solid var(--background-modifier-border);
   border-radius: var(--radius-s);
