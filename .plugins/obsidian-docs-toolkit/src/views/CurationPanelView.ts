@@ -1,4 +1,4 @@
-import { ItemView, WorkspaceLeaf, TFile, Modal, App, TextAreaComponent, Events } from "obsidian";
+import { ItemView, WorkspaceLeaf, TFile, Modal, App, TextAreaComponent, Events, setIcon } from "obsidian";
 import { Document } from "../core/Document";
 import { Issue } from "../core/Issue";
 import { I18nService } from "../i18n/I18nService";
@@ -120,27 +120,32 @@ export class CurationPanelView extends ItemView {
     const actionsRow = actions.createDiv({ cls: "docs-actions-row" });
 
     // Left arrow
-    const prevBtn = actionsRow.createEl("button", { text: "←", cls: "docs-btn docs-btn-nav" });
+    const prevBtn = actionsRow.createEl("button", { cls: "docs-btn docs-btn-nav" });
+    setIcon(prevBtn, "arrow-left");
     prevBtn.disabled = this.currentIndex === 0;
     prevBtn.onclick = () => this.navigate(-1);
 
     // Center group: reject, review, approve
     const centerGroup = actionsRow.createDiv({ cls: "docs-btn-center" });
 
-    const rejectBtn = centerGroup.createEl("button", { text: "×", cls: "docs-btn docs-btn-reject" });
+    const rejectBtn = centerGroup.createEl("button", { cls: "docs-btn docs-btn-reject" });
+    setIcon(rejectBtn, "x");
     rejectBtn.disabled = !file || doc?.status === "rejected";
     rejectBtn.onclick = () => file && this.reject(file);
 
-    const reviewBtn = centerGroup.createEl("button", { text: "○", cls: "docs-btn docs-btn-review" });
+    const reviewBtn = centerGroup.createEl("button", { cls: "docs-btn docs-btn-review" });
+    setIcon(reviewBtn, "circle");
     reviewBtn.disabled = !file || doc?.status === "review";
     reviewBtn.onclick = () => file && this.setReview(file);
 
-    const approveBtn = centerGroup.createEl("button", { text: "✓", cls: "docs-btn docs-btn-approve" });
+    const approveBtn = centerGroup.createEl("button", { cls: "docs-btn docs-btn-approve" });
+    setIcon(approveBtn, "check");
     approveBtn.disabled = !file || doc?.status === "approved";
     approveBtn.onclick = () => file && this.approve(file);
 
     // Right arrow
-    const nextBtn = actionsRow.createEl("button", { text: "→", cls: "docs-btn docs-btn-nav" });
+    const nextBtn = actionsRow.createEl("button", { cls: "docs-btn docs-btn-nav" });
+    setIcon(nextBtn, "arrow-right");
     nextBtn.disabled = this.currentIndex >= queue.length - 1;
     nextBtn.onclick = () => this.navigate(1);
 

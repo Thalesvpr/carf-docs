@@ -67,7 +67,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/magic-string/README.md",
+                "file": "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/csstype/README.md",
                 "mode": "source",
                 "source": false
               },
@@ -251,6 +251,13 @@
   },
   "active": "b7262c57c40809a7",
   "lastOpenFiles": [
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/entities/readme.md",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/estree-walker/CHANGELOG.md",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/estree-walker/README.md",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/js-tokens/CHANGELOG.md",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/js-tokens/README.md",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/loose-envify/README.md",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/magic-string/README.md",
     "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/nanoid/README.md",
     "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/picocolors/README.md",
     "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/postcss/README.md",
@@ -270,13 +277,6 @@
     "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/05-navigation-components.md",
     "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/06-domain-components.md",
     "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/07-hooks.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/08-utils.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/09-screen-mapping.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/README.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/ARCHITECTURE/01-overview.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/ARCHITECTURE/03-data-flow.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/ARCHITECTURE/04-integration.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/ARCHITECTURE/05-deployment.md",
     "CENTRAL/WORKFLOWS/sedyZnXqC",
     "CENTRAL/VERSIONING/GIT/sedYFuT6S",
     "CENTRAL/VERSIONING/GIT/sedsv48Ot",
