@@ -17,7 +17,6 @@ A [status page](./01-status-page.md) documenta implementação de health checks 
 - ○ [[PROJECTS/WEBDOCS/DOCS/FEATURES/01-status-page.md|Status Page]]
 - ○ [[PROJECTS/WEBDOCS/DOCS/FEATURES/02-swagger-embutido.md|Swagger Embutido]]
 - ○ [[PROJECTS/WEBDOCS/DOCS/FEATURES/03-banner-notificacoes.md|Banner de Notificações]]
-- ○ [[PROJECTS/WEBDOCS/DOCS/FEATURES/04-cms-decap.md|CMS Decap]]
 - ○ [[PROJECTS/WEBDOCS/DOCS/FEATURES/05-mermaid-diagramas.md|Diagramas Mermaid]]
 
 <!-- CARF-INDEX-END -->

@@ -17,6 +17,8 @@ A [validação de conteúdo](./01-validacao-conteudo.md) cobre checks de links e
 - ○ [[PROJECTS/WEBDOCS/DOCS/VALIDATION/01-validacao-conteudo.md|Validação de Conteúdo]]
 - ○ [[PROJECTS/WEBDOCS/DOCS/VALIDATION/02-validacao-a11y.md|Validação de Acessibilidade]]
 - ○ [[PROJECTS/WEBDOCS/DOCS/VALIDATION/03-validacao-performance.md|Validação de Performance]]
-- ○ [[PROJECTS/WEBDOCS/DOCS/VALIDATION/04-ci-pipeline.md|Pipeline de CI]]
+- ○ [[PROJECTS/WEBDOCS/DOCS/VALIDATION/04-ci-pipeline-configs.md|Pipeline de CI - Configurações]]
+- ○ [[PROJECTS/WEBDOCS/DOCS/VALIDATION/04-ci-pipeline-overview.md|Pipeline de CI - Visão Geral]]
+- ○ [[PROJECTS/WEBDOCS/DOCS/VALIDATION/04-ci-pipeline-workflow.md|Pipeline de CI - Workflow GitHub Actions]]
 
 <!-- CARF-INDEX-END -->

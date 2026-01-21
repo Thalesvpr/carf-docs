@@ -1,3 +1,13 @@
+---
+id: ""
+type: ARCH
+modules: []
+epic: ""
+status: review
+created: 2026-01-21
+updated: 2026-01-21
+---
+
 # Padrões de Componentes
 
 Especificação dos padrões para criação de componentes Astro no WEBDOCS, incluindo estrutura, props, estilos e hidratação.

@@ -1,6 +1,6 @@
 ---
 status: review
-updated: 2026-01-17
+updated: 2026-01-21
 ---
 
 # Visão Geral da Arquitetura
@@ -13,4 +13,4 @@ Fluxo de requisição para páginas públicas serve HTML estático do CDN Vercel
 
 Conteúdo é editável via Decap CMS (Git-based) permitindo contribuidores não-técnicos editarem documentação via interface visual no navegador com commits automáticos para GitHub. CMS autentica via Keycloak garantindo que apenas usuários autorizados podem editar.
 
-Tema visual importa tokens de @carf/ui-components garantindo consistência de cores, tipografia e espaçamentos com demais aplicações do ecossistema CARF. Dark mode usa variantes escuras dos mesmos tokens.
+Tema visual importa tokens de @carf/ui garantindo consistência de cores, tipografia e espaçamentos com demais aplicações do ecossistema CARF. Dark mode usa variantes escuras dos mesmos tokens.

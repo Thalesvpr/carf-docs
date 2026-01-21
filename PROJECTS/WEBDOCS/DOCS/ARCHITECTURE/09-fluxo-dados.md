@@ -1,3 +1,13 @@
+---
+id: ""
+type: ARCH
+modules: []
+epic: ""
+status: review
+created: 2026-01-21
+updated: 2026-01-21
+---
+
 # Fluxo de Dados
 
 Especificação dos fluxos de dados na aplicação WEBDOCS, cobrindo build time (SSG), request time (SSR), autenticação e status page.

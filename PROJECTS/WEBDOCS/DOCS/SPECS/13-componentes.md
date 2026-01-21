@@ -1,3 +1,13 @@
+---
+id: ""
+type: ARCH
+modules: []
+epic: ""
+status: review
+created: 2026-01-21
+updated: 2026-01-21
+---
+
 # Componentes Customizados
 
 Especificação dos componentes Astro customizados usados no WEBDOCS além dos fornecidos pelo Starlight. Cada componente define propósito, props esperadas, comportamento e estados visuais.

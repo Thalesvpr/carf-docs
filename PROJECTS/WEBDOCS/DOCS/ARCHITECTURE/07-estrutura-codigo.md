@@ -1,3 +1,13 @@
+---
+id: ""
+type: ARCH
+modules: []
+epic: ""
+status: review
+created: 2026-01-21
+updated: 2026-01-21
+---
+
 # Estrutura de Código
 
 Especificação da estrutura de diretórios e arquivos do código fonte do WEBDOCS, definindo onde cada tipo de arquivo deve ser criado.

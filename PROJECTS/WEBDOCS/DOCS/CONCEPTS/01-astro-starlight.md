@@ -1,6 +1,6 @@
 ---
 status: review
-updated: 2026-01-17
+updated: 2026-01-21
 ---
 
 # Astro Starlight

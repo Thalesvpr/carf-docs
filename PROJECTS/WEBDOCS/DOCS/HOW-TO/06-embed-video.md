@@ -1,6 +1,6 @@
 ---
 status: review
-updated: 2026-01-17
+updated: 2026-01-21
 ---
 
 # Embed de Vídeo
@@ -20,3 +20,76 @@ Considerar timestamps para vídeos longos listando seções com links diretos pa
 Testar embed localmente verificando que vídeo carrega, player é responsivo em diferentes tamanhos de tela, e atributo title está presente no iframe para screen readers.
 
 Performance considerada com lazy loading habilitado por padrão no componente. Vídeo só carrega quando usuário scrolla até elemento reduzindo tempo de carregamento inicial da página.
+
+## Sintaxe do Componente MDX
+
+```mdx
+---
+title: "Página com Vídeo"
+---
+
+import { YouTubeEmbed } from '../../components/content/YouTubeEmbed.astro';
+
+# Tutorial em Vídeo
+
+Assista o vídeo abaixo para entender o processo:
+
+<YouTubeEmbed
+  videoId="dQw4w9WgXcQ"
+  title="Tutorial de cadastro de unidades"
+/>
+
+## Com tempo inicial
+
+<YouTubeEmbed
+  videoId="dQw4w9WgXcQ"
+  title="Seção sobre validação"
+  startTime={120}
+/>
+```
+
+## Alternativa Markdown Puro
+
+Para arquivos .md sem suporte a MDX:
+
+```markdown
+[![Título do Vídeo](https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg)](https://www.youtube.com/watch?v=VIDEO_ID)
+
+*Clique na imagem para assistir no YouTube*
+```
+
+## Exemplo com Transcrição
+
+```mdx
+<YouTubeEmbed
+  videoId="dQw4w9WgXcQ"
+  title="Cadastro de unidades - tutorial completo"
+/>
+
+<details>
+<summary>Transcrição do vídeo</summary>
+
+**00:00** - Introdução ao cadastro de unidades
+**01:30** - Acessando o módulo de cadastro
+**03:00** - Preenchendo campos obrigatórios
+**05:15** - Desenhando a geometria no mapa
+**08:00** - Salvando e enviando para aprovação
+
+</details>
+```
+
+## Timestamps Clicáveis
+
+```markdown
+### Índice do vídeo
+
+- [0:00 - Introdução](https://www.youtube.com/watch?v=VIDEO_ID&t=0)
+- [2:00 - Configuração inicial](https://www.youtube.com/watch?v=VIDEO_ID&t=120)
+- [5:30 - Cadastro de dados](https://www.youtube.com/watch?v=VIDEO_ID&t=330)
+- [10:00 - Validação e envio](https://www.youtube.com/watch?v=VIDEO_ID&t=600)
+```
+
+---
+
+**Última atualização:** 2026-01-21
+**Status do arquivo**: Review

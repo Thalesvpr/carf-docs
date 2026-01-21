@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-21
+---
+
 # Variáveis de Ambiente
 
 Especificação completa das variáveis de ambiente necessárias para executar o WEBDOCS em diferentes ambientes. Variáveis com prefixo PUBLIC_ são expostas ao cliente, demais são server-side only.
@@ -25,14 +30,10 @@ Variáveis obrigatórias devem estar definidas para o sistema funcionar corretam
       "validation": "String não vazia"
     },
     "KEYCLOAK_CLIENT_ID": {
-      "example": "webdocs",
+      "example": "carf-webdocs",
       "description": "ID do client configurado no Keycloak para WEBDOCS",
-      "validation": "String não vazia correspondendo a client existente"
-    },
-    "KEYCLOAK_CLIENT_SECRET": {
-      "example": "***",
-      "description": "Secret do client para fluxo confidential",
-      "validation": "String não vazia, nunca commitada em código"
+      "validation": "String não vazia correspondendo a client existente",
+      "note": "Client é público (usa PKCE), não requer client_secret"
     }
   }
 }
@@ -146,6 +147,133 @@ O arquivo src/lib/config/env.ts deve validar variáveis obrigatórias no startup
 Variáveis sensíveis como KEYCLOAK_CLIENT_SECRET nunca devem ser commitadas em código ou expostas em logs. Usar secrets management do Vercel para produção e staging. Em desenvolvimento, usar arquivo .env.local ignorado pelo git.
 
 Variáveis com prefixo PUBLIC_ são injetadas no bundle client-side e visíveis no código fonte da página. Nunca usar PUBLIC_ para valores sensíveis.
+
+## .env.example
+
+Arquivo template para copiar e preencher. Salvar como `.env.local` para desenvolvimento local.
+
+```bash
+# .env.example - Copie para .env.local e preencha os valores
+# WEBDOCS Environment Variables
+
+# ============================================
+# OBRIGATÓRIAS - Build/Runtime falha sem estas
+# ============================================
+
+# URL pública do site (sem trailing slash)
+PUBLIC_SITE_URL=http://localhost:4321
+
+# Keycloak Authentication
+# Client é público com PKCE - não usa client_secret
+KEYCLOAK_URL=http://localhost:8080
+KEYCLOAK_REALM=carf
+KEYCLOAK_CLIENT_ID=carf-webdocs
+
+# ============================================
+# OPCIONAIS - Têm valores padrão sensatos
+# ============================================
+
+# GeoAPI Integration
+GEOAPI_URL=http://localhost:5000
+GEOAPI_SWAGGER_PATH=/swagger/v1/swagger.json
+
+# Status Page Health Check URLs
+GEOAPI_HEALTH_URL=http://localhost:5000/health
+KEYCLOAK_HEALTH_URL=http://localhost:8080/realms/carf/.well-known/openid-configuration
+MINIO_HEALTH_URL=http://localhost:9000/minio/health/live
+
+# Status Page Polling
+STATUS_POLL_INTERVAL_MS=30000
+
+# Caching
+CACHE_TTL_SECONDS=300
+
+# Logging
+LOG_LEVEL=debug
+
+# ============================================
+# DECAP CMS (GitHub OAuth)
+# ============================================
+
+# GitHub OAuth App credentials para Decap CMS
+# Criar em: https://github.com/settings/developers
+GITHUB_CLIENT_ID=your-github-client-id
+GITHUB_CLIENT_SECRET=your-github-client-secret
+
+# ============================================
+# PRODUÇÃO - Exemplo de valores reais
+# ============================================
+
+# PUBLIC_SITE_URL=https://docs.carf.com.br
+# KEYCLOAK_URL=https://auth.carf.com.br
+# KEYCLOAK_REALM=carf
+# KEYCLOAK_CLIENT_ID=carf-webdocs
+# GEOAPI_URL=https://api.carf.com.br
+# GEOAPI_HEALTH_URL=https://api.carf.com.br/health
+# KEYCLOAK_HEALTH_URL=https://auth.carf.com.br/realms/carf/.well-known/openid-configuration
+# MINIO_HEALTH_URL=https://storage.carf.com.br/minio/health/live
+# LOG_LEVEL=warn
+```
+
+## Validação de Variáveis
+
+Script de validação para garantir que todas variáveis obrigatórias estão definidas:
+
+```typescript
+// src/lib/config/env.ts
+import { z } from 'zod';
+
+const envSchema = z.object({
+  // Obrigatórias
+  PUBLIC_SITE_URL: z.string().url(),
+  KEYCLOAK_URL: z.string().url(),
+  KEYCLOAK_REALM: z.string().min(1),
+  KEYCLOAK_CLIENT_ID: z.string().min(1),
+  // Nota: Client é público com PKCE, não usa client_secret
+
+  // Opcionais com defaults
+  GEOAPI_URL: z.string().url().default('https://api.carf.com.br'),
+  GEOAPI_SWAGGER_PATH: z.string().default('/swagger/v1/swagger.json'),
+  GEOAPI_HEALTH_URL: z.string().url().optional(),
+  KEYCLOAK_HEALTH_URL: z.string().url().optional(),
+  MINIO_HEALTH_URL: z.string().url().optional(),
+  STATUS_POLL_INTERVAL_MS: z.coerce.number().int().min(5000).default(30000),
+  CACHE_TTL_SECONDS: z.coerce.number().int().min(0).default(300),
+  LOG_LEVEL: z.enum(['debug', 'info', 'warn', 'error']).default('info'),
+
+  // Decap CMS
+  GITHUB_CLIENT_ID: z.string().optional(),
+  GITHUB_CLIENT_SECRET: z.string().optional()
+});
+
+export type Env = z.infer<typeof envSchema>;
+
+function validateEnv(): Env {
+  const result = envSchema.safeParse(import.meta.env);
+
+  if (!result.success) {
+    const errors = result.error.errors
+      .map(e => `  - ${e.path.join('.')}: ${e.message}`)
+      .join('\n');
+
+    throw new Error(`Variáveis de ambiente inválidas:\n${errors}`);
+  }
+
+  return result.data;
+}
+
+export const env = validateEnv();
+```
+
+## Uso em Código
+
+```typescript
+// Sempre importe do módulo env, nunca acesse import.meta.env diretamente
+import { env } from '@/lib/config/env';
+
+// Exemplo de uso
+const keycloakUrl = `${env.KEYCLOAK_URL}/realms/${env.KEYCLOAK_REALM}`;
+```
 
 ---
 

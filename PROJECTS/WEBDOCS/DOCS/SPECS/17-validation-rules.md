@@ -1,10 +1,17 @@
+---
+status: review
+updated: 2026-01-21
+---
+
 # Regras de Validação
 
-Especificação das regras de validação automática que garantem qualidade e alinhamento da documentação WEBDOCS com CENTRAL e PROJECTS. Validadores executam em CI e podem ser rodados localmente.
+Regras de validação automática que garantem qualidade e alinhamento da documentação WEBDOCS.
+
+Arquivos relacionados:
+- Scripts de implementação: `17-validation-scripts.md`
+- Integração CI: `17-validation-ci.md`
 
 ## Validação de Fonte (SOURCE)
-
-Regras que verificam o campo source obrigatório e sua consistência.
 
 ```json
 {
@@ -43,8 +50,6 @@ Regras que verificam o campo source obrigatório e sua consistência.
 ```
 
 ## Validação de Cobertura (COVERAGE)
-
-Regras que verificam se documentação fonte tem correspondência em WEBDOCS.
 
 ```json
 {
@@ -85,15 +90,13 @@ Regras que verificam se documentação fonte tem correspondência em WEBDOCS.
 
 ## Validação de Termos (TERMS)
 
-Regras que verificam uso consistente de terminologia definida em CENTRAL.
-
 ```json
 {
   "term_rules": [
     {
       "id": "TERM001",
       "name": "Entity Names",
-      "description": "Nomes de entidades devem usar grafia oficial de CENTRAL/DOMAIN-MODEL/ENTITIES/",
+      "description": "Nomes de entidades devem usar grafia oficial",
       "terms_source": "CENTRAL/DOMAIN-MODEL/ENTITIES/README.md",
       "severity": "WARNING",
       "examples": {
@@ -104,7 +107,7 @@ Regras que verificam uso consistente de terminologia definida em CENTRAL.
     {
       "id": "TERM002",
       "name": "Status Values",
-      "description": "Valores de status devem usar labels de CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/",
+      "description": "Valores de status devem usar labels oficiais",
       "terms_source": "CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/03-unit-status.md",
       "severity": "WARNING",
       "examples": {
@@ -115,12 +118,11 @@ Regras que verificam uso consistente de terminologia definida em CENTRAL.
     {
       "id": "TERM003",
       "name": "Role Names",
-      "description": "Nomes de roles devem usar labels de CENTRAL/INTEGRATION/KEYCLOAK/RBAC/",
-      "terms_source": "CENTRAL/INTEGRATION/KEYCLOAK/RBAC/01-roles-hierarchy.md",
+      "description": "Nomes de roles devem usar labels oficiais",
       "severity": "ERROR",
       "examples": {
         "correct": ["Agente de Campo", "Analista", "Administrador"],
-        "incorrect": ["field-agent", "analyst", "admin", "Field Agent"]
+        "incorrect": ["field-agent", "analyst", "admin"]
       }
     },
     {
@@ -139,8 +141,6 @@ Regras que verificam uso consistente de terminologia definida em CENTRAL.
 ```
 
 ## Validação de Conteúdo (CONTENT)
-
-Regras que verificam qualidade do conteúdo.
 
 ```json
 {
@@ -183,8 +183,6 @@ Regras que verificam qualidade do conteúdo.
 
 ## Execução dos Validadores
 
-Validadores podem ser executados localmente e rodam automaticamente em CI.
-
 ```json
 {
   "commands": {
@@ -208,7 +206,7 @@ Validadores podem ser executados localmente e rodam automaticamente em CI.
 
 ## Ignorando Regras
 
-Em casos excepcionais, regras podem ser ignoradas com comentário especial no frontmatter.
+Em casos excepcionais, regras podem ser ignoradas:
 
 ```json
 {
@@ -222,5 +220,5 @@ Em casos excepcionais, regras podem ser ignoradas com comentário especial no fr
 
 ---
 
-**Última atualização:** 2026-01-20
+**Última atualização:** 2026-01-21
 **Status do arquivo**: Review

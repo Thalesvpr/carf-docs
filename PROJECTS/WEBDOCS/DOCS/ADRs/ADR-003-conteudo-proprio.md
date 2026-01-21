@@ -1,6 +1,6 @@
 ---
-status: approved
-updated: 2026-01-17
+status: review
+updated: 2026-01-21
 ---
 
 # ADR-003: Conteúdo Próprio sem Sync de CENTRAL

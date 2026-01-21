@@ -1,6 +1,6 @@
 ---
-status: approved
-updated: 2026-01-17
+status: review
+updated: 2026-01-21
 ---
 
 # ADR-002: Conteúdo Protegido por Role Dev

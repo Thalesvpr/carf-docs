@@ -1,3 +1,13 @@
+---
+id: ""
+type: ARCH
+modules: []
+epic: ""
+status: review
+created: 2026-01-21
+updated: 2026-01-21
+---
+
 # Alinhamento com CENTRAL e PROJECTS
 
 Especificação do sistema de alinhamento que garante rastreabilidade entre páginas WEBDOCS e documentação fonte em CENTRAL e PROJECTS. O campo source no frontmatter é obrigatório e validado automaticamente.
