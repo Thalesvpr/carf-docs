@@ -78,8 +78,6 @@ export default class DocsToolkitPlugin extends Plugin {
   private migrateFooterCommand: MigrateFooterCommand;
   private syncIndexCommand: SyncIndexCommand;
 
-  // Status bar item
-  private statusBarItem: HTMLElement;
 
   // Reference to curation panel
   private curationPanel: CurationPanelView | null = null;
@@ -161,15 +159,6 @@ export default class DocsToolkitPlugin extends Plugin {
 
     // Register context menu for folders
     this.registerFolderContextMenu();
-
-    // Listen to store changes for status bar
-    this.store.on("state-changed", () => this.updateStatusBar());
-
-    // Add status bar item
-    this.statusBarItem = this.addStatusBarItem();
-    this.statusBarItem.setText("Docs: Loading...");
-    this.statusBarItem.addClass("docs-toolkit-status-bar");
-    this.statusBarItem.onclick = () => this.activateCurationPanel();
 
     // Add settings tab
     this.addSettingTab(new DocsToolkitSettingTab(this.app, this));
@@ -495,21 +484,6 @@ export default class DocsToolkitPlugin extends Plugin {
     if (readme) {
       await this.store.updateDocument(readme);
     }
-  }
-
-  /**
-   * Update status bar with current stats
-   */
-  private updateStatusBar(): void {
-    const state = this.store.getState();
-    const docs = state.documents;
-    const approved = docs.filter(d => d.status === "approved").length;
-    const review = docs.filter(d => d.status === "review").length;
-    const issues = state.summary.errors + state.summary.warnings;
-
-    this.statusBarItem.setText(
-      `Docs: ${approved}/${docs.length} | ${review} pending | ${issues} issues`
-    );
   }
 
   /**

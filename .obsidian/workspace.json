@@ -235,7 +235,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 344.5
+    "width": 523.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -249,7 +249,7 @@
       "obsidian-docs-toolkit:Open Curation Panel": false
     }
   },
-  "active": "b7262c57c40809a7",
+  "active": "971ab6c0fdc33177",
   "lastOpenFiles": [
     "PROJECTS/LIB/TS/UI-COMPONENTS/SRC-CODE/carf-ui/node_modules/@aw-web-design/x-default-browser/CHANGELOG.md",
     "PROJECTS/LIB/TS/UI-COMPONENTS/SRC-CODE/carf-ui/node_modules/@aw-web-design/x-default-browser/README.md",

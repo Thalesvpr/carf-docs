@@ -4166,11 +4166,6 @@ var DocsToolkitPlugin = class extends import_obsidian19.Plugin {
     this.registerCommands();
     this.registerVaultEvents();
     this.registerFolderContextMenu();
-    this.store.on("state-changed", () => this.updateStatusBar());
-    this.statusBarItem = this.addStatusBarItem();
-    this.statusBarItem.setText("Docs: Loading...");
-    this.statusBarItem.addClass("docs-toolkit-status-bar");
-    this.statusBarItem.onclick = () => this.activateCurationPanel();
     this.addSettingTab(new DocsToolkitSettingTab(this.app, this));
     this.addRibbonIcon("docs-icon", "Open Curation Panel", () => {
       this.activateCurationPanel();
@@ -4417,19 +4412,6 @@ var DocsToolkitPlugin = class extends import_obsidian19.Plugin {
     if (readme) {
       await this.store.updateDocument(readme);
     }
-  }
-  /**
-   * Update status bar with current stats
-   */
-  updateStatusBar() {
-    const state = this.store.getState();
-    const docs = state.documents;
-    const approved = docs.filter((d) => d.status === "approved").length;
-    const review = docs.filter((d) => d.status === "review").length;
-    const issues = state.summary.errors + state.summary.warnings;
-    this.statusBarItem.setText(
-      `Docs: ${approved}/${docs.length} | ${review} pending | ${issues} issues`
-    );
   }
   /**
    * Approve current file

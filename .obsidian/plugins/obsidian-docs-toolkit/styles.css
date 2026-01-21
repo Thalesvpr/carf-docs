@@ -211,11 +211,3 @@
   font-weight: var(--font-semibold);
 }
 
-/* Status bar */
-.docs-toolkit-status-bar {
-  cursor: pointer;
-}
-
-.docs-toolkit-status-bar:hover {
-  text-decoration: underline;
-}
