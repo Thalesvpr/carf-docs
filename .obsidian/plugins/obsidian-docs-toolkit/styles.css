@@ -172,8 +172,7 @@
 .docs-actions-row {
   display: flex;
   flex-direction: row;
-  gap: 6px;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
