@@ -14,7 +14,7 @@ import { StaleValidator } from "../validators/StaleValidator";
 import { EmptyFoldersValidator } from "../validators/EmptyFoldersValidator";
 import { NamingValidator } from "../validators/NamingValidator";
 import { ForbiddenLinksValidator } from "../validators/ForbiddenLinksValidator";
-import { ADRValidator } from "../validators/ADRValidator";
+import { TemplateValidator } from "../validators/TemplateValidator";
 
 export interface StoreState {
   documents: Document[];
@@ -52,7 +52,7 @@ export class DocumentStore extends Events {
       new EmptyFoldersValidator(),
       new NamingValidator(),
       new ForbiddenLinksValidator(),
-      new ADRValidator()
+      new TemplateValidator()
     ];
     // Enable all by default
     this.validators.forEach(v => this.enabledValidators.add(v.id));

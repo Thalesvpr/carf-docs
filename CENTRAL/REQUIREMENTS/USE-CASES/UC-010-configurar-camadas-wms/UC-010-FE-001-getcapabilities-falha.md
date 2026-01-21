@@ -1,5 +1,6 @@
 ---
-status: review
+status: rejected
+description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES."
 updated: 2025-12-30
 ---
 

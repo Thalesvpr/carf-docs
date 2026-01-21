@@ -176,13 +176,29 @@ export class MetadataService {
   /**
    * Create minimal frontmatter for a new document
    */
-  createDefaultFrontmatter(file: TFile): Partial<CARFFrontmatter> {
+  createDefaultFrontmatter(file: TFile): Record<string, unknown> {
     const now = this.formatDate(new Date());
+    const type = this.inferTypeFromFilename(file.name);
 
     return {
+      type,
       status: Status.REVIEW,
       updated: now
     };
+  }
+
+  /**
+   * Infer document type from filename
+   */
+  private inferTypeFromFilename(filename: string): string {
+    if (filename.includes("-000-template")) return "template";
+    if (filename.startsWith("ADR-")) return "adr";
+    if (filename.startsWith("RF-")) return "rf";
+    if (filename.startsWith("RNF-")) return "rnf";
+    if (filename.startsWith("UC-") || filename.match(/^\d{2}-UC-/)) return "uc";
+    if (filename.startsWith("US-")) return "us";
+    if (filename === "README.md") return "readme";
+    return "doc";
   }
 
   /**
@@ -203,7 +219,7 @@ export class MetadataService {
   /**
    * Add or update frontmatter in a file
    */
-  async setFrontmatter(file: TFile, frontmatter: Partial<CARFFrontmatter>): Promise<void> {
+  async setFrontmatter(file: TFile, frontmatter: Record<string, unknown> | CARFFrontmatter): Promise<void> {
     const content = await this.app.vault.read(file);
     const bodyContent = this.getBodyContent(content);
 
@@ -264,7 +280,7 @@ export class MetadataService {
   /**
    * Initialize frontmatter for a file that doesn't have it
    */
-  async initFrontmatter(file: TFile): Promise<Partial<CARFFrontmatter>> {
+  async initFrontmatter(file: TFile): Promise<Record<string, unknown>> {
     const frontmatter = this.createDefaultFrontmatter(file);
     await this.setFrontmatter(file, frontmatter);
     return frontmatter;

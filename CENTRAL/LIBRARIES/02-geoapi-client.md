@@ -1,5 +1,6 @@
 ---
-status: review
+status: rejected
+description: "Referencia sem conteudo. Documentacao de libs deve estar em PROJECTS/LIB."
 updated: 2026-01-19
 ---
 

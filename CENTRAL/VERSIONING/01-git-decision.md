@@ -1,5 +1,6 @@
 ---
-status: review
+status: rejected
+description: "Conteudo operacional. Git workflows pertencem a .github ou CONTRIBUTING."
 updated: 2026-01-19
 ---
 

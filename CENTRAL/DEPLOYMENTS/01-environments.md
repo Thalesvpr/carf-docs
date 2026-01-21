@@ -1,5 +1,6 @@
 ---
-status: review
+status: rejected
+description: "Conteudo operacional. Configs de deploy pertencem a PROJECTS ou infra repo separado."
 updated: 2026-01-20
 ---
 

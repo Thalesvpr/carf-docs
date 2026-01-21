@@ -1,5 +1,6 @@
 ---
-status: review
+status: rejected
+description: "Estrutura caotica. Numeracao nao agrupa por categoria. Precisa reorganizar por agregado/contexto."
 updated: 2026-01-19
 ---
 

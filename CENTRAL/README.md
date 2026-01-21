@@ -1,5 +1,6 @@
 ---
-status: review
+status: rejected
+description: "Estrutura CENTRAL precisa reescrita completa. Ver diagnostico: stubs, duplicacao, mistura spec/impl, formato inconsistente."
 updated: 2026-01-19
 ---
 

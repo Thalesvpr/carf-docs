@@ -1,5 +1,6 @@
 ---
-status: review
+status: rejected
+description: "Conteudo operacional. Estrategia de teste pertence a PROJECTS ou STANDARDS."
 updated: 2026-01-19
 ---
 

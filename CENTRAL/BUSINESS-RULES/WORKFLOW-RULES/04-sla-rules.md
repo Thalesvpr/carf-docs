@@ -1,5 +1,6 @@
 ---
-status: review
+status: rejected
+description: "Duplicacao. Regras de negocio devem estar em DOMAIN-MODEL ou REQUIREMENTS, nao pasta separada."
 updated: 2026-01-20
 ---
 

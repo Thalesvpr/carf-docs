@@ -8,4 +8,4 @@ export * from "./StaleValidator";
 export * from "./EmptyFoldersValidator";
 export * from "./NamingValidator";
 export * from "./ForbiddenLinksValidator";
-export * from "./ADRValidator";
+export * from "./TemplateValidator";

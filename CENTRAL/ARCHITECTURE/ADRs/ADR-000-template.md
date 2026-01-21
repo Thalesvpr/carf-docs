@@ -1,4 +1,6 @@
 ---
+type: template
+template_for: adr
 status: template
 updated: 2026-01-21
 validation:

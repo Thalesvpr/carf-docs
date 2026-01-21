@@ -1,3 +1,8 @@
+---
+status: review
+updated: 2026-01-21
+---
+
 # CARF - Sistema de Regularização Fundiária Urbana
 
 Sistema para gestão de processos de regularização fundiária urbana conforme Lei 13.465/2017, permitindo que prefeituras gerenciem todo o ciclo desde o cadastramento de unidades habitacionais em campo até a emissão de títulos de legitimação.

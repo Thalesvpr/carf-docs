@@ -9,3 +9,11 @@ Portal de documentação Astro 4 + Starlight com guias de usuário, tutoriais e 
 
 - **[DOCS/](./DOCS/README.md)** - Documentação técnica do projeto WEBDOCS
 - **[SRC-CODE/](./SRC-CODE/)** - Código fonte e conteúdo do portal
+
+<!-- CARF-INDEX-START -->
+## Subpastas
+
+- [[PROJECTS/WEBDOCS/DOCS/README|DOCS]]
+- [[PROJECTS/WEBDOCS/SRC-CODE/README|SRC-CODE]]
+
+<!-- CARF-INDEX-END -->

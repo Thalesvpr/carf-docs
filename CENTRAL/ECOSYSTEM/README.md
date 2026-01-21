@@ -1,5 +1,6 @@
 ---
-status: review
+status: rejected
+description: "Escopo indefinido. Clarificar proposito ou mover conteudo para INTEGRATION."
 updated: 2026-01-19
 ---
 

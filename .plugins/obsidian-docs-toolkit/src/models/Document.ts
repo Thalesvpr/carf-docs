@@ -89,10 +89,11 @@ export class Document {
   }
 
   /**
-   * Check if file is in a CARF path
+   * Check if file should be tracked (excludes system folders)
    */
   static isInCARFPath(path: string): boolean {
-    return path.startsWith("CENTRAL/") || path.startsWith("PROJECTS/");
+    const ignorePaths = [".obsidian", ".git", "node_modules", ".plugins", ".scripts"];
+    return !ignorePaths.some(p => path.startsWith(p + "/") || path.startsWith(p));
   }
 }
 

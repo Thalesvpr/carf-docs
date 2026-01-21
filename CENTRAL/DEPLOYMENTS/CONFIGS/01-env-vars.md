@@ -1,7 +1,7 @@
 ---
 status: rejected
 updated: 2026-01-21
-description: "ta bizarro esse tem ou que tem q fragmentar ele em uma pasta env, sla ARCHITECTURE/ENV, e falar mais sobre la pq isso aq ta bizarro"
+description: "Conteudo operacional. Configs de deploy pertencem a PROJECTS ou infra repo separado."
 ---
 
 # VARIÁVEIS DE AMBIENTE

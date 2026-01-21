@@ -1,44 +1,97 @@
 ---
-status: review
-updated: 2026-01-19
+status: rejected
+description: "Incompleto. Standards devem ter regras claras e validaveis, nao apenas diretrizes vagas."
+updated: 2026-01-21
 ---
 
 # Tipos de Documento
 
-Cada tipo de documento no repositório CARF possui estrutura específica com seções obrigatórias que garantem completude e consistência da informação.
+Todo documento no repositorio CARF possui um tipo que define sua estrutura e regras de validacao. O tipo pode ser declarado explicitamente no frontmatter ou inferido pelo nome do arquivo.
 
-## Caso de Uso (UC)
+## Frontmatter de Tipo
 
-Casos de uso documentam fluxos completos de interação entre usuário e sistema. Devem conter seção Regras de Negócio listando as regras aplicáveis ao fluxo. Devem conter seção Rastreabilidade com links para requisitos funcionais e user stories relacionados. O frontmatter deve incluir campo modules listando os módulos implementadores como GEOWEB, GEOAPI ou REURBCAD.
+O campo `type` no frontmatter define o tipo do documento. Se omitido, o tipo e inferido pelo nome do arquivo.
 
-## Requisito Funcional (RF)
+```yaml
+---
+type: adr
+status: rejected
+description: "Incompleto. Standards devem ter regras claras e validaveis, nao apenas diretrizes vagas."
+updated: 2026-01-21
+---
+```
 
-Requisitos funcionais especificam capacidades atômicas do sistema. Devem conter seção Critérios de Aceitação em formato verificável, seja como lista de condições testáveis ou como cenários Given-When-Then. O frontmatter deve incluir campo modules listando os módulos onde o requisito é implementado.
+## Tipos Disponiveis
 
-## User Story (US)
+| Tipo | Descricao | Padrao de Nome |
+|------|-----------|----------------|
+| `template` | Arquivo template com regras de validacao | `*-000-template.md` |
+| `adr` | Architecture Decision Record | `ADR-XXX-*.md` |
+| `rf` | Requisito Funcional | `RF-XXX-*.md` |
+| `rnf` | Requisito Nao Funcional | `RNF-XXX-*.md` |
+| `uc` | Caso de Uso | `UC-XXX-*.md` ou `XX-UC-XXX-*.md` |
+| `us` | User Story | `US-XXX-*.md` |
+| `readme` | Arquivo indice de pasta | `README.md` |
+| `doc` | Documento generico | Qualquer outro `.md` |
 
-User stories capturam requisitos na perspectiva do usuário. O corpo do documento deve conter as três frases obrigatórias do formato BDD: Como seguido do papel do usuário, quero seguido da funcionalidade desejada, e para que seguido do benefício esperado. O frontmatter deve incluir campo epic indicando a épica relacionada.
+## Templates
 
-## Requisito Não Funcional (RNF)
+Templates definem regras de validacao para documentos do mesmo tipo na pasta. Um template e identificado por `type: template` no frontmatter e deve declarar `template_for` indicando qual tipo ele valida.
 
-Requisitos não funcionais especificam critérios de qualidade como performance, segurança e usabilidade. Devem conter métricas mensuráveis e condições de teste quando aplicável.
+```yaml
+---
+type: template
+template_for: adr
+status: rejected
+description: "Incompleto. Standards devem ter regras claras e validaveis, nao apenas diretrizes vagas."
+updated: 2026-01-21
+validation:
+  max_words: 300
+  max_words_per_section: 80
+  required_sections:
+    - Contexto
+    - Decisao
+    - Consequencias
+    - Alternativas Rejeitadas
+  forbidden:
+    - "```"
+    - "http"
+    - "|--|"
+  title_pattern: "^ADR-\\d{3}:"
+  filename_pattern: "^ADR-\\d{3}-.+\\.md$"
+---
+```
 
-## Architecture Decision Record (ADR)
+## Regras de Validacao
 
-ADRs documentam decisões arquiteturais significativas. Devem conter campos de metadados específicos: Data da decisão, Status indicando se está Proposto, Aprovado ou Implementado, e Decisor identificando responsável pela decisão.
+Templates podem definir as seguintes regras no campo `validation`:
 
-## Feature
+| Regra | Tipo | Descricao |
+|-------|------|-----------|
+| `max_words` | number | Maximo de palavras no documento |
+| `max_words_per_section` | number | Maximo de palavras por secao |
+| `required_sections` | string[] | Lista de secoes H2 obrigatorias |
+| `forbidden` | string[] | Padroes proibidos no conteudo |
+| `title_pattern` | string | Regex para validar titulo H1 |
+| `filename_pattern` | string | Regex para validar nome do arquivo |
 
-Documentos de feature em PROJECTS descrevem funcionalidades implementadas. Devem conter pelo menos uma das seções: Validações ou Validation descrevendo regras de validação, API Integration ou Integração API descrevendo endpoints utilizados, ou Relacionamentos ou Domain Model descrevendo entidades envolvidas.
+## Inferencia de Tipo
 
-## How-To
+Se o campo `type` nao estiver presente no frontmatter, o tipo e inferido pelo nome do arquivo seguindo estas regras em ordem:
 
-Guias práticos que ensinam como realizar tarefas específicas. Devem conter seção Pré-requisitos listando dependências e configurações necessárias. Devem conter seção Passos com instruções sequenciais para completar a tarefa.
+1. Nome contem `-000-template` → `template`
+2. Nome comeca com `ADR-` → `adr`
+3. Nome comeca com `RF-` → `rf`
+4. Nome comeca com `RNF-` → `rnf`
+5. Nome comeca com `UC-` ou `XX-UC-` → `uc`
+6. Nome comeca com `US-` → `us`
+7. Nome e `README.md` → `readme`
+8. Qualquer outro → `doc`
 
-## Entity
+## Heranca de Templates
 
-Documentos de entidade do modelo de domínio. Devem descrever atributos, relacionamentos e regras de negócio da entidade de forma completa.
+O validador busca templates na pasta do documento e em pastas ancestrais. Isso permite definir um template em uma pasta pai que se aplica a todos os documentos do tipo nas subpastas.
 
-## Validação
+## Validacao Automatica
 
-Os scripts em .scripts/carf_validator validam estrutura de documentos com códigos STRUCT001 e STRUCT002 para seções ausentes, e FRONT001 a FRONT003 para campos de frontmatter ausentes.
+O plugin Obsidian Docs Toolkit valida automaticamente documentos conforme suas regras de template. Erros e avisos aparecem no painel de issues. Documentos sem template correspondente nao sao validados por regras de template, apenas por regras globais como frontmatter e links.

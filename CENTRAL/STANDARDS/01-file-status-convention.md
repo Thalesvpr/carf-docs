@@ -1,5 +1,5 @@
 ---
-status: review
+status: rejected
 updated: 2026-01-20
 ---
 
@@ -13,7 +13,7 @@ Todo arquivo `.md` deve começar com um bloco YAML frontmatter contendo os campo
 
 ```yaml
 ---
-status: review
+status: rejected
 updated: 2026-01-20
 ---
 ```
@@ -42,7 +42,7 @@ Arquivo aprovado (sem description):
 
 ```yaml
 ---
-status: approved
+status: rejected
 updated: 2026-01-20
 ---
 ```
@@ -51,7 +51,7 @@ Arquivo aguardando revisão (sem description):
 
 ```yaml
 ---
-status: review
+status: rejected
 updated: 2026-01-20
 ---
 ```
@@ -62,7 +62,7 @@ Arquivo rejeitado (com motivo da rejeição):
 ---
 status: rejected
 updated: 2026-01-20
-description: "README muito extenso, fragmentar em arquivos numerados"
+description: "Incompleto. Standards devem ter regras claras e validaveis, nao apenas diretrizes vagas."
 ---
 ```
 
@@ -88,7 +88,7 @@ Architecture Decision Records possuem metadados adicionais específicos. O campo
 
 ```yaml
 ---
-status: approved
+status: rejected
 updated: 2026-01-20
 adr_date: 2026-01-15
 adr_status: accepted

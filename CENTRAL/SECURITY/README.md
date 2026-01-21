@@ -1,5 +1,6 @@
 ---
-status: review
+status: rejected
+description: "Duplicacao com ADR-029 e PROJECTS/KEYCLOAK. Consolidar em um lugar."
 updated: 2026-01-15
 ---
 

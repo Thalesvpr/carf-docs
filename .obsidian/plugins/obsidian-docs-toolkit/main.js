@@ -237,10 +237,11 @@ var Document = class {
     return "OTHER" /* OTHER */;
   }
   /**
-   * Check if file is in a CARF path
+   * Check if file should be tracked (excludes system folders)
    */
   static isInCARFPath(path) {
-    return path.startsWith("CENTRAL/") || path.startsWith("PROJECTS/");
+    const ignorePaths = [".obsidian", ".git", "node_modules", ".plugins", ".scripts"];
+    return !ignorePaths.some((p) => path.startsWith(p + "/") || path.startsWith(p));
   }
 };
 
@@ -952,247 +953,200 @@ var ForbiddenLinksValidator = class extends LocalValidator {
   }
 };
 
-// src/validators/ADRValidator.ts
+// src/validators/TemplateValidator.ts
 var import_obsidian4 = require("obsidian");
-var DEFAULT_RULES = {
-  max_words: 300,
-  max_words_per_section: 80,
-  required_sections: ["Contexto", "Decisao", "Consequencias", "Alternativas Rejeitadas"],
-  forbidden: ["```", "http", "|--|", "- ["]
-};
-var ADR_TITLE_PATTERN = /^ADR-\d{3}:/;
-var ADR_FILENAME_PATTERN = /^ADR-\d{3}-.+\.md$/;
-var TEMPLATE_PATH = "CENTRAL/ARCHITECTURE/ADRs/ADR-000-template.md";
-var ADRValidator = class extends LocalValidator {
+var TemplateValidator = class extends LocalValidator {
   constructor() {
     super(...arguments);
-    this.id = "adr-structure";
-    this.name = "ADR Structure";
-    this.description = "Valida estrutura de ADRs conforme template";
-    this.rulesCache = null;
+    this.id = "template-rules";
+    this.name = "Template Rules";
+    this.description = "Valida documentos conforme regras do template";
   }
   async validateFile(document2, app) {
     const issues = [];
-    if (!this.isADRFile(document2)) {
+    const docType = this.getDocType(document2);
+    console.log(`[TemplateValidator] ${document2.file.name} -> type: ${docType}`);
+    if (docType === "template") {
       return issues;
     }
-    if (document2.file.name === "ADR-000-template.md") {
+    const rules = await this.findTemplateRules(document2.file, docType, app);
+    console.log(`[TemplateValidator] ${document2.file.name} -> rules:`, rules);
+    if (!rules) {
       return issues;
     }
-    const rules = await this.loadRules(app);
-    this.validateFilename(document2, issues);
-    this.validateTitle(document2, issues);
-    this.validateRequiredSections(document2, rules, issues);
-    this.validateWordCount(document2, rules, issues);
-    this.validateForbiddenPatterns(document2, rules, issues);
-    return issues;
-  }
-  /**
-   * Load validation rules from template frontmatter
-   */
-  async loadRules(app) {
-    var _a, _b, _c, _d;
-    if (this.rulesCache) {
-      return this.rulesCache;
-    }
-    try {
-      const templateFile = app.vault.getAbstractFileByPath(TEMPLATE_PATH);
-      if (!templateFile) {
-        return DEFAULT_RULES;
-      }
-      const content = await app.vault.read(templateFile);
-      const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
-      if (!match) {
-        return DEFAULT_RULES;
-      }
-      const yaml = (0, import_obsidian4.parseYaml)(match[1]);
-      if (!(yaml == null ? void 0 : yaml.validation)) {
-        return DEFAULT_RULES;
-      }
-      this.rulesCache = {
-        max_words: (_a = yaml.validation.max_words) != null ? _a : DEFAULT_RULES.max_words,
-        max_words_per_section: (_b = yaml.validation.max_words_per_section) != null ? _b : DEFAULT_RULES.max_words_per_section,
-        required_sections: (_c = yaml.validation.required_sections) != null ? _c : DEFAULT_RULES.required_sections,
-        forbidden: (_d = yaml.validation.forbidden) != null ? _d : DEFAULT_RULES.forbidden
-      };
-      return this.rulesCache;
-    } catch (e) {
-      return DEFAULT_RULES;
-    }
-  }
-  /**
-   * Check if file is in ADRs folder
-   */
-  isADRFile(document2) {
-    return document2.file.path.includes("/ADRs/") && document2.file.name.startsWith("ADR-");
-  }
-  /**
-   * Validate filename follows ADR-XXX-name.md pattern
-   */
-  validateFilename(document2, issues) {
-    if (!ADR_FILENAME_PATTERN.test(document2.file.name)) {
-      issues.push(Issue.error(
-        document2.file,
-        this.id,
-        `Nome deve seguir padr\xE3o ADR-XXX-nome.md`,
-        1,
-        `Renomear arquivo`
-      ));
-    }
-  }
-  /**
-   * Validate H1 title follows "ADR-XXX: Titulo" pattern
-   */
-  validateTitle(document2, issues) {
-    const title = document2.title;
-    if (!title) {
-      issues.push(Issue.error(
-        document2.file,
-        this.id,
-        `ADR deve ter t\xEDtulo H1`,
-        1,
-        `Adicionar: # ADR-XXX: Titulo`
-      ));
-      return;
-    }
-    if (!ADR_TITLE_PATTERN.test(title)) {
-      issues.push(Issue.error(
-        document2.file,
-        this.id,
-        `T\xEDtulo deve seguir padr\xE3o "ADR-XXX: Titulo"`,
-        this.findTitleLine(document2)
-      ));
-    }
-  }
-  /**
-   * Validate all required sections are present
-   */
-  validateRequiredSections(document2, rules, issues) {
-    const presentSections = Array.from(document2.sections.keys());
-    for (const required of rules.required_sections) {
-      const found = presentSections.some(
-        (s) => this.normalizeText(s) === this.normalizeText(required)
-      );
-      if (!found) {
-        issues.push(Issue.error(
-          document2.file,
-          this.id,
-          `Se\xE7\xE3o obrigat\xF3ria ausente: "## ${required}"`
-        ));
-      }
-    }
-  }
-  /**
-   * Validate word count limits
-   */
-  validateWordCount(document2, rules, issues) {
-    const body = document2.content.replace(/^---[\s\S]*?---\n*/, "");
-    const totalWords = this.countWords(body);
-    if (totalWords > rules.max_words) {
-      issues.push(Issue.warning(
-        document2.file,
-        this.id,
-        `${totalWords} palavras (m\xE1x: ${rules.max_words})`,
-        void 0,
-        `Reduzir texto para no m\xE1ximo ${rules.max_words} palavras`
-      ));
-    }
-    for (const [section, content] of document2.sections) {
-      if (this.normalizeText(section) === "regras")
-        continue;
-      const sectionWords = this.countWords(content);
-      if (sectionWords > rules.max_words_per_section) {
-        const line = this.findSectionLine(document2, section);
-        issues.push(Issue.warning(
-          document2.file,
-          this.id,
-          `"${section}": ${sectionWords} palavras (m\xE1x: ${rules.max_words_per_section})`,
-          line,
-          `Reduzir se\xE7\xE3o para no m\xE1ximo ${rules.max_words_per_section} palavras`
-        ));
-      }
-    }
-  }
-  /**
-   * Validate forbidden patterns are not present
-   */
-  validateForbiddenPatterns(document2, rules, issues) {
-    const body = document2.content.replace(/^---[\s\S]*?---\n*/, "");
-    const lines = body.split("\n");
-    for (const pattern of rules.forbidden) {
-      for (let i = 0; i < lines.length; i++) {
-        if (lines[i].includes(pattern)) {
-          const patternLabel = this.getForbiddenLabel(pattern);
+    if (rules.filename_pattern) {
+      try {
+        const regex = new RegExp(rules.filename_pattern);
+        if (!regex.test(document2.file.name)) {
           issues.push(Issue.error(
             document2.file,
             this.id,
-            `${patternLabel} n\xE3o permitido em ADR`,
-            i + 1,
-            `Remover e usar apenas texto corrido`
+            `Nome n\xE3o segue padr\xE3o do template`
           ));
-          break;
+        }
+      } catch (e) {
+      }
+    }
+    if (rules.title_pattern) {
+      const title = document2.title;
+      if (!title) {
+        issues.push(Issue.error(document2.file, this.id, `Falta t\xEDtulo H1`));
+      } else {
+        try {
+          const regex = new RegExp(rules.title_pattern);
+          if (!regex.test(title)) {
+            issues.push(Issue.error(
+              document2.file,
+              this.id,
+              `T\xEDtulo n\xE3o segue padr\xE3o do template`
+            ));
+          }
+        } catch (e) {
         }
       }
     }
+    if (rules.required_sections && rules.required_sections.length > 0) {
+      const presentSections = Array.from(document2.sections.keys()).map((s) => this.norm(s));
+      for (const required of rules.required_sections) {
+        if (!presentSections.includes(this.norm(required))) {
+          issues.push(Issue.error(
+            document2.file,
+            this.id,
+            `Se\xE7\xE3o ausente: "## ${required}"`
+          ));
+        }
+      }
+    }
+    if (rules.max_words) {
+      const body = document2.content.replace(/^---[\s\S]*?---\n*/, "");
+      const words = this.countWords(body);
+      if (words > rules.max_words) {
+        issues.push(Issue.warning(
+          document2.file,
+          this.id,
+          `${words} palavras (m\xE1x: ${rules.max_words})`
+        ));
+      }
+    }
+    if (rules.max_words_per_section) {
+      for (const [section, content] of document2.sections) {
+        if (this.norm(section) === "regras")
+          continue;
+        const words = this.countWords(content);
+        if (words > rules.max_words_per_section) {
+          issues.push(Issue.warning(
+            document2.file,
+            this.id,
+            `Se\xE7\xE3o "${section}": ${words} palavras (m\xE1x: ${rules.max_words_per_section})`
+          ));
+        }
+      }
+    }
+    if (rules.forbidden && rules.forbidden.length > 0) {
+      const body = document2.content.replace(/^---[\s\S]*?---\n*/, "");
+      for (const pattern of rules.forbidden) {
+        if (body.includes(pattern)) {
+          const label = this.getForbiddenLabel(pattern);
+          issues.push(Issue.error(
+            document2.file,
+            this.id,
+            `${label} n\xE3o permitido em documento deste tipo`
+          ));
+        }
+      }
+    }
+    return issues;
   }
   /**
-   * Get human-readable label for forbidden pattern
+   * Get document type from frontmatter or filename
    */
-  getForbiddenLabel(pattern) {
-    switch (pattern) {
-      case "```":
-        return "Bloco de c\xF3digo";
-      case "http":
-        return "Link externo";
-      case "|--|":
-        return "Tabela";
-      case "- [":
-        return "Checklist";
-      default:
-        return `Padr\xE3o "${pattern}"`;
+  getDocType(document2) {
+    const content = document2.content;
+    const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+    if (match) {
+      try {
+        const yaml = (0, import_obsidian4.parseYaml)(match[1]);
+        if (yaml == null ? void 0 : yaml.type)
+          return yaml.type.toLowerCase();
+      } catch (e) {
+      }
+    }
+    const name = document2.file.name;
+    if (name.includes("-000-template"))
+      return "template";
+    if (name.startsWith("ADR-"))
+      return "adr";
+    if (name.startsWith("RF-"))
+      return "rf";
+    if (name.startsWith("RNF-"))
+      return "rnf";
+    if (name.startsWith("UC-") || /^\d{2}-UC-/.test(name))
+      return "uc";
+    if (name.startsWith("US-"))
+      return "us";
+    if (name === "README.md")
+      return "readme";
+    return "doc";
+  }
+  /**
+   * Find template rules for document type
+   */
+  async findTemplateRules(file, docType, app) {
+    let folder = file.parent;
+    while (folder) {
+      for (const child of folder.children) {
+        if (!(child instanceof import_obsidian4.TFile))
+          continue;
+        if (!child.name.endsWith(".md"))
+          continue;
+        const rules = await this.checkIfTemplate(child, docType, app);
+        if (rules) {
+          return rules;
+        }
+      }
+      folder = folder.parent;
+    }
+    return null;
+  }
+  /**
+   * Check if file is a template for given type and return its rules
+   */
+  async checkIfTemplate(file, docType, app) {
+    var _a;
+    try {
+      const content = await app.vault.read(file);
+      const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+      if (!match)
+        return null;
+      const yaml = (0, import_obsidian4.parseYaml)(match[1]);
+      if (!yaml)
+        return null;
+      const isTemplate = yaml.type === "template" || yaml.status === "template" || file.name.includes("-000-template");
+      if (!isTemplate)
+        return null;
+      const templateFor = (_a = yaml.template_for) == null ? void 0 : _a.toLowerCase();
+      if (templateFor !== docType)
+        return null;
+      return yaml.validation || null;
+    } catch (e) {
+      return null;
     }
   }
-  /**
-   * Count words in text (excluding markdown syntax)
-   */
   countWords(text) {
-    const noHeaders = text.replace(/^#+\s+.+$/gm, "");
-    const words = noHeaders.trim().split(/\s+/).filter((w) => w.length > 0);
-    return words.length;
+    const clean = text.replace(/^#+\s+.+$/gm, "");
+    return clean.trim().split(/\s+/).filter((w) => w.length > 0).length;
   }
-  /**
-   * Normalize text for comparison (remove accents, lowercase)
-   */
-  normalizeText(text) {
+  norm(text) {
     return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
   }
-  /**
-   * Find the line number of the H1 title
-   */
-  findTitleLine(document2) {
-    const lines = document2.content.split("\n");
-    for (let i = 0; i < lines.length; i++) {
-      if (lines[i].startsWith("# ")) {
-        return i + 1;
-      }
-    }
-    return 1;
-  }
-  /**
-   * Find the line number of a section header
-   */
-  findSectionLine(document2, section) {
-    const lines = document2.content.split("\n");
-    const normalized = this.normalizeText(section);
-    for (let i = 0; i < lines.length; i++) {
-      if (lines[i].startsWith("## ")) {
-        const headerText = lines[i].replace(/^##\s+/, "");
-        if (this.normalizeText(headerText) === normalized) {
-          return i + 1;
-        }
-      }
-    }
-    return 1;
+  getForbiddenLabel(pattern) {
+    const map = {
+      "```": "Bloco de c\xF3digo",
+      "http": "Link",
+      "|--|": "Tabela",
+      "- [": "Checklist"
+    };
+    return map[pattern] || `"${pattern}"`;
   }
 };
 
@@ -1219,7 +1173,7 @@ var DocumentStore = class extends import_obsidian5.Events {
       new EmptyFoldersValidator(),
       new NamingValidator(),
       new ForbiddenLinksValidator(),
-      new ADRValidator()
+      new TemplateValidator()
     ];
     this.validators.forEach((v) => this.enabledValidators.add(v.id));
   }
@@ -1630,10 +1584,32 @@ var MetadataService = class {
    */
   createDefaultFrontmatter(file) {
     const now = this.formatDate(new Date());
+    const type = this.inferTypeFromFilename(file.name);
     return {
+      type,
       status: "review" /* REVIEW */,
       updated: now
     };
+  }
+  /**
+   * Infer document type from filename
+   */
+  inferTypeFromFilename(filename) {
+    if (filename.includes("-000-template"))
+      return "template";
+    if (filename.startsWith("ADR-"))
+      return "adr";
+    if (filename.startsWith("RF-"))
+      return "rf";
+    if (filename.startsWith("RNF-"))
+      return "rnf";
+    if (filename.startsWith("UC-") || filename.match(/^\d{2}-UC-/))
+      return "uc";
+    if (filename.startsWith("US-"))
+      return "us";
+    if (filename === "README.md")
+      return "readme";
+    return "doc";
   }
   /**
    * Extract ID from filename
