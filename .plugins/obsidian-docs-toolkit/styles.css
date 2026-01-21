@@ -131,7 +131,7 @@
 }
 
 .docs-dot-current {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
   margin: 0 4px;
 }
 
@@ -291,6 +291,96 @@
 
 .docs-done-text {
   color: var(--color-green);
+}
+
+/* Claude Prompt Box */
+.docs-prompt-section {
+  margin-top: 12px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-s);
+  overflow: hidden;
+}
+
+.docs-prompt-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  background: var(--background-secondary);
+  cursor: pointer;
+}
+
+.docs-prompt-header:hover {
+  background: var(--background-modifier-hover);
+}
+
+.docs-prompt-toggle {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: var(--text-faint);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  box-shadow: none;
+}
+
+.docs-prompt-toggle:hover {
+  background: transparent;
+  box-shadow: none;
+}
+
+.docs-prompt-toggle svg {
+  width: 12px;
+  height: 12px;
+}
+
+.docs-prompt-title {
+  flex: 1;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.docs-prompt-copy {
+  background: none;
+  border: none;
+  padding: 4px;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-radius: var(--radius-s);
+  display: flex;
+  align-items: center;
+}
+
+.docs-prompt-copy:hover {
+  background: var(--background-modifier-hover);
+  color: var(--text-normal);
+}
+
+.docs-prompt-copy svg {
+  width: 14px;
+  height: 14px;
+}
+
+.docs-prompt-content {
+  padding: 8px;
+  background: var(--background-primary);
+  border-top: 1px solid var(--background-modifier-border);
+}
+
+.docs-prompt-content.hidden {
+  display: none;
+}
+
+.docs-prompt-text {
+  margin: 0;
+  font-size: 10px;
+  font-family: var(--font-monospace);
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--text-muted);
+  max-height: 200px;
+  overflow-y: auto;
 }
 
 /* ==========================================

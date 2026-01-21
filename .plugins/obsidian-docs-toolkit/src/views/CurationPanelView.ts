@@ -278,6 +278,33 @@ export class CurationPanelView extends ItemView {
         list.createDiv({ text: `+${issues.length - 8} more`, cls: "docs-more" });
       }
     }
+
+    // Claude prompt box
+    const promptText = this.generateClaudePrompt(file, doc, issues);
+    const promptSection = el.createDiv({ cls: "docs-prompt-section" });
+
+    const promptHeader = promptSection.createDiv({ cls: "docs-prompt-header" });
+    const toggleBtn = promptHeader.createEl("button", { cls: "docs-prompt-toggle" });
+    setIcon(toggleBtn, "chevron-right");
+    promptHeader.createSpan({ text: "Claude Prompt", cls: "docs-prompt-title" });
+
+    const copyBtn = promptHeader.createEl("button", { cls: "docs-prompt-copy" });
+    setIcon(copyBtn, "copy");
+    copyBtn.onclick = (e) => {
+      e.stopPropagation();
+      navigator.clipboard.writeText(promptText);
+      setIcon(copyBtn, "check");
+      setTimeout(() => setIcon(copyBtn, "copy"), 1500);
+    };
+
+    const promptContent = promptSection.createDiv({ cls: "docs-prompt-content hidden" });
+    promptContent.createEl("pre", { text: promptText, cls: "docs-prompt-text" });
+
+    promptHeader.onclick = () => {
+      const isHidden = promptContent.hasClass("hidden");
+      promptContent.toggleClass("hidden", !isHidden);
+      setIcon(toggleBtn, isHidden ? "chevron-down" : "chevron-right");
+    };
   }
 
   private async navigate(delta: number): Promise<void> {
@@ -331,6 +358,56 @@ export class CurationPanelView extends ItemView {
     if (e.ctrlKey || e.metaKey || e.altKey) return;
     if (e.key === "ArrowLeft") { e.preventDefault(); this.navigate(-1); }
     if (e.key === "ArrowRight") { e.preventDefault(); this.navigate(1); }
+  }
+
+  private generateClaudePrompt(file: TFile, doc: Document | null | undefined, issues: Issue[]): string {
+    const lines: string[] = [];
+
+    // File path
+    lines.push(`@${file.path.replace(/\//g, "\\")}`);
+    lines.push("");
+
+    // Status info
+    if (doc) {
+      lines.push(`**Status:** ${doc.status.toUpperCase()}`);
+      if (doc.status === "rejected" && doc.frontmatter?.rejection_reason) {
+        lines.push(`**Motivo da Rejeição:** ${doc.frontmatter.rejection_reason}`);
+      }
+      lines.push("");
+    }
+
+    // Document info
+    if (doc) {
+      lines.push("## Informações do Documento");
+      if (doc.frontmatter?.type) lines.push(`- **Tipo:** ${doc.frontmatter.type}`);
+      if (doc.frontmatter?.id) lines.push(`- **ID:** ${doc.frontmatter.id}`);
+      if (doc.frontmatter?.modules) {
+        const modules = Array.isArray(doc.frontmatter.modules)
+          ? doc.frontmatter.modules.join(", ")
+          : doc.frontmatter.modules;
+        lines.push(`- **Módulos:** ${modules}`);
+      }
+      if (doc.frontmatter?.updated) lines.push(`- **Atualizado:** ${doc.frontmatter.updated}`);
+      lines.push("");
+    }
+
+    // Issues/Errors
+    if (issues.length > 0) {
+      lines.push("## Problemas Encontrados");
+      for (const issue of issues) {
+        const severity = issue.severity === "error" ? "ERROR" : "WARNING";
+        const msg = this.i18n.t(issue.messageKey, issue.messageParams as Record<string, unknown>);
+        const line = issue.line ? `:${issue.line}` : "";
+        lines.push(`- [${severity}]${line} ${msg}`);
+      }
+      lines.push("");
+    }
+
+    // Instructions
+    lines.push("---");
+    lines.push("Por favor, analise este arquivo e ajude a corrigir os problemas listados acima.");
+
+    return lines.join("\n");
   }
 }
 
