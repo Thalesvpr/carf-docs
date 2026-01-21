@@ -1,0 +1,49 @@
+# Minimal Documentation Preset
+# A lightweight preset for simple documentation projects
+
+language: en
+
+paths:
+  include:
+    - "**/*.md"
+  exclude:
+    - ".obsidian/**"
+    - ".git/**"
+    - "node_modules/**"
+
+documentTypes: {}
+
+validators:
+  frontmatter:
+    enabled: false
+  sections:
+    enabled: false
+  naming:
+    enabled: false
+  title:
+    enabled: true
+    severity: warning
+  broken-links:
+    enabled: true
+    severity: error
+  orphans:
+    enabled: false
+  stale:
+    enabled: false
+  forbidden-patterns:
+    enabled: false
+  word-count:
+    enabled: false
+  empty-folders:
+    enabled: false
+
+workflow:
+  statuses:
+    draft:
+      name: "Draft"
+      icon: "edit"
+      color: "#f0ad4e"
+    published:
+      name: "Published"
+      icon: "check"
+      color: "#5cb85c"

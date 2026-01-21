@@ -1,17 +1,17 @@
-import { ItemView, WorkspaceLeaf, TFile } from "obsidian";
-import { DocumentStore } from "../store/DocumentStore";
-import { Issue } from "../models/Issue";
-import { Severity } from "../models/types";
+import { ItemView, WorkspaceLeaf, TFile, Events } from "obsidian";
+import { Issue } from "../core/Issue";
+import { Severity } from "../core/Severity";
+import { I18nService } from "../i18n/I18nService";
 
 /**
- * IssuesPanelView - Painel de erros e warnings estilo IDE
+ * IssuesPanelView - IDE-style problems panel
  *
- * Inspirado no painel "Problems" do VS Code:
- * - Lista todos os issues (erros, warnings, info)
- * - Agrupa por arquivo
- * - Clique para navegar ao arquivo/linha
- * - Filtros por severidade
- * - Contador no header
+ * Inspired by VS Code's "Problems" panel:
+ * - Lists all issues (errors, warnings, info)
+ * - Groups by file
+ * - Click to navigate to file/line
+ * - Filters by severity
+ * - Counter in header
  */
 
 export const ISSUES_PANEL_VIEW_TYPE = "docs-toolkit-issues";
@@ -19,19 +19,28 @@ export const ISSUES_PANEL_VIEW_TYPE = "docs-toolkit-issues";
 type FilterMode = "all" | "errors" | "warnings";
 type GroupMode = "file" | "flat";
 
+/**
+ * Interface for the store that provides issues
+ */
+export interface IssuesStore extends Events {
+  getState(): { issues: Issue[] };
+}
+
 export class IssuesPanelView extends ItemView {
-  private store: DocumentStore;
+  private store: IssuesStore;
+  private i18n: I18nService;
   private filterMode: FilterMode = "all";
   private groupMode: GroupMode = "file";
   private collapsedFiles: Set<string> = new Set();
 
-  constructor(leaf: WorkspaceLeaf, store: DocumentStore) {
+  constructor(leaf: WorkspaceLeaf, store: IssuesStore, i18n: I18nService) {
     super(leaf);
     this.store = store;
+    this.i18n = i18n;
   }
 
   getViewType(): string { return ISSUES_PANEL_VIEW_TYPE; }
-  getDisplayText(): string { return "Problems"; }
+  getDisplayText(): string { return this.i18n.t("ui.issues.title"); }
   getIcon(): string { return "alert-triangle"; }
 
   async onOpen(): Promise<void> {
@@ -84,6 +93,13 @@ export class IssuesPanelView extends ItemView {
   }
 
   /**
+   * Get translated message for an issue
+   */
+  private getIssueMessage(issue: Issue): string {
+    return this.i18n.t(issue.messageKey, issue.messageParams as Record<string, unknown>);
+  }
+
+  /**
    * Main render function
    */
   private render(): void {
@@ -128,21 +144,21 @@ export class IssuesPanelView extends ItemView {
     const allBtn = filters.createEl("button", {
       cls: `docs-ip-filter-btn ${this.filterMode === "all" ? "active" : ""}`
     });
-    allBtn.innerHTML = `<span class="docs-ip-filter-icon">⊙</span> All`;
+    allBtn.innerHTML = `<span class="docs-ip-filter-icon">\u2299</span> All`;
     allBtn.onclick = () => { this.filterMode = "all"; this.render(); };
 
     // Errors
     const errBtn = filters.createEl("button", {
       cls: `docs-ip-filter-btn docs-ip-filter-error ${this.filterMode === "errors" ? "active" : ""}`
     });
-    errBtn.innerHTML = `<span class="docs-ip-icon-error">✗</span> ${counts.errorCount}`;
+    errBtn.innerHTML = `<span class="docs-ip-icon-error">\u2717</span> ${counts.errorCount}`;
     errBtn.onclick = () => { this.filterMode = "errors"; this.render(); };
 
     // Warnings
     const warnBtn = filters.createEl("button", {
       cls: `docs-ip-filter-btn docs-ip-filter-warning ${this.filterMode === "warnings" ? "active" : ""}`
     });
-    warnBtn.innerHTML = `<span class="docs-ip-icon-warning">⚠</span> ${counts.warningCount}`;
+    warnBtn.innerHTML = `<span class="docs-ip-icon-warning">\u26A0</span> ${counts.warningCount}`;
     warnBtn.onclick = () => { this.filterMode = "warnings"; this.render(); };
 
     // Right side: group toggle
@@ -152,7 +168,7 @@ export class IssuesPanelView extends ItemView {
       cls: "docs-ip-group-btn",
       attr: { title: this.groupMode === "file" ? "Group by file" : "Flat list" }
     });
-    groupBtn.innerHTML = this.groupMode === "file" ? "📁" : "≡";
+    groupBtn.innerHTML = this.groupMode === "file" ? "\uD83D\uDCC1" : "\u2261";
     groupBtn.onclick = () => {
       this.groupMode = this.groupMode === "file" ? "flat" : "file";
       this.render();
@@ -164,7 +180,7 @@ export class IssuesPanelView extends ItemView {
         cls: "docs-ip-collapse-btn",
         attr: { title: "Collapse all" }
       });
-      collapseBtn.innerHTML = "⊟";
+      collapseBtn.innerHTML = "\u229F";
       collapseBtn.onclick = () => {
         const grouped = this.groupByFile(this.getFilteredIssues());
         for (const path of grouped.keys()) {
@@ -177,7 +193,7 @@ export class IssuesPanelView extends ItemView {
         cls: "docs-ip-expand-btn",
         attr: { title: "Expand all" }
       });
-      expandBtn.innerHTML = "⊞";
+      expandBtn.innerHTML = "\u229E";
       expandBtn.onclick = () => {
         this.collapsedFiles.clear();
         this.render();
@@ -190,8 +206,8 @@ export class IssuesPanelView extends ItemView {
    */
   private renderEmpty(el: HTMLElement): void {
     const empty = el.createDiv({ cls: "docs-ip-empty" });
-    empty.createDiv({ text: "✓", cls: "docs-ip-empty-icon" });
-    empty.createDiv({ text: "No problems", cls: "docs-ip-empty-text" });
+    empty.createDiv({ text: "\u2713", cls: "docs-ip-empty-icon" });
+    empty.createDiv({ text: this.i18n.t("ui.issues.noIssues"), cls: "docs-ip-empty-text" });
   }
 
   /**
@@ -210,10 +226,10 @@ export class IssuesPanelView extends ItemView {
 
       // Collapse toggle
       const toggle = fileHeader.createSpan({ cls: "docs-ip-toggle" });
-      toggle.innerHTML = isCollapsed ? "▶" : "▼";
+      toggle.innerHTML = isCollapsed ? "\u25B6" : "\u25BC";
 
       // File icon
-      fileHeader.createSpan({ text: "📄", cls: "docs-ip-file-icon" });
+      fileHeader.createSpan({ text: "\uD83D\uDCC4", cls: "docs-ip-file-icon" });
 
       // File name
       const fileName = fileHeader.createSpan({ cls: "docs-ip-file-name" });
@@ -279,9 +295,9 @@ export class IssuesPanelView extends ItemView {
     const icon = row.createSpan({ cls: "docs-ip-row-icon" });
     icon.innerHTML = issue.icon;
 
-    // Message
+    // Message (translated)
     const message = row.createSpan({ cls: "docs-ip-row-message" });
-    message.textContent = issue.message;
+    message.textContent = this.getIssueMessage(issue);
 
     // Source info
     const source = row.createSpan({ cls: "docs-ip-row-source" });

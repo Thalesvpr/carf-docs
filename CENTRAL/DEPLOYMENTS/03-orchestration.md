@@ -1,6 +1,6 @@
 ---
 status: rejected
-description: "Conteudo operacional. Configs de deploy pertencem a PROJECTS ou infra repo separado."
+description: "Conteudo operacional. Configs de deploy pertencem a PROJECTS ou infra repo separado. Stub de 13 linhas - incompleto."
 updated: 2026-01-20
 ---
 

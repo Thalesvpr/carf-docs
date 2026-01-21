@@ -1,9 +1,9 @@
 {
   "id": "obsidian-docs-toolkit",
   "name": "Docs Toolkit",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "minAppVersion": "1.0.0",
-  "description": "Documentation management with automated validation, metadata management, and a centralized dashboard.",
+  "description": "A fully configurable documentation linter with validation, metadata management, and curation workflow. Configure via .docslint.yaml.",
   "author": "CARF Team",
   "authorUrl": "https://github.com/carf",
   "isDesktopOnly": false

@@ -1,6 +1,6 @@
 ---
 status: rejected
-description: "Estrutura caotica. Numeracao nao agrupa por categoria. Precisa reorganizar por agregado/contexto."
+description: "Estrutura caotica. Numeracao nao agrupa por categoria. Precisa reorganizar por agregado/contexto. Stub de 9 linhas - incompleto."
 updated: 2026-01-19
 ---
 

@@ -1,0 +1,170 @@
+# CARF Documentation Preset
+# This preset provides all CARF-specific document types and validation rules
+
+language: pt-BR
+
+paths:
+  include:
+    - "CENTRAL/**/*.md"
+    - "PROJECTS/**/*.md"
+  exclude:
+    - ".obsidian/**"
+    - ".git/**"
+    - "node_modules/**"
+    - ".plugins/**"
+    - ".scripts/**"
+
+documentTypes:
+  rf:
+    name: "Requisito Funcional"
+    detection:
+      filename: "^RF-\\d{3}-.+\\.md$"
+      path: "**/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/**"
+    frontmatter:
+      required: [id, status, updated]
+      fields:
+        id: { pattern: "^RF-\\d{3}$" }
+        status: { enum: [review, approved, rejected, template] }
+        modules: { type: array, items: { enum: [GEOAPI, GEOWEB, ADMIN, KEYCLOAK, WEBDOCS] } }
+    title:
+      pattern: "^# RF-\\d{3}:\\s+.+"
+    sections:
+      required:
+        - "Critérios de Aceitação"
+        - "Regras de Negócio"
+
+  rnf:
+    name: "Requisito Não Funcional"
+    detection:
+      filename: "^RNF-\\d{3}-.+\\.md$"
+      path: "**/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/**"
+    frontmatter:
+      required: [id, status, updated]
+      fields:
+        id: { pattern: "^RNF-\\d{3}$" }
+        status: { enum: [review, approved, rejected, template] }
+    title:
+      pattern: "^# RNF-\\d{3}:\\s+.+"
+    sections:
+      required:
+        - "Critérios de Aceitação"
+        - "Métricas"
+
+  uc:
+    name: "Caso de Uso"
+    detection:
+      filename: "^(\\d{2}-)?UC-\\d{3}-.+\\.md$"
+      path: "**/USE-CASES/**"
+    frontmatter:
+      required: [id, status, updated]
+      fields:
+        id: { pattern: "^UC-\\d{3}$" }
+        status: { enum: [review, approved, rejected, template] }
+    title:
+      pattern: "^# UC-\\d{3}:\\s+.+"
+    sections:
+      required:
+        - "Atores"
+        - "Pré-condições"
+        - "Fluxo Principal"
+        - "Fluxos Alternativos"
+        - "Pós-condições"
+
+  us:
+    name: "User Story"
+    detection:
+      filename: "^US-\\d{3}-.+\\.md$"
+      path: "**/USER-STORIES/**"
+    frontmatter:
+      required: [id, status, updated]
+      fields:
+        id: { pattern: "^US-\\d{3}$" }
+        status: { enum: [review, approved, rejected, template] }
+    title:
+      pattern: "^# US-\\d{3}:\\s+.+"
+    sections:
+      required:
+        - "Critérios de Aceitação"
+
+  adr:
+    name: "ADR"
+    detection:
+      filename: "^ADR-\\d{3}-.+\\.md$"
+      path: "**/ADRs/**"
+    frontmatter:
+      required: [status, updated]
+      fields:
+        status: { enum: [review, approved, rejected, deprecated, superseded, template] }
+    title:
+      pattern: "^# ADR-\\d{3}:\\s+.+"
+
+  readme:
+    name: "README"
+    detection:
+      filename: "^README\\.md$"
+    frontmatter:
+      required: [status, updated]
+
+validators:
+  frontmatter:
+    enabled: true
+    severity: error
+  sections:
+    enabled: true
+    severity: warning
+  naming:
+    enabled: true
+    severity: error
+  title:
+    enabled: true
+    severity: warning
+  broken-links:
+    enabled: true
+    severity: error
+  orphans:
+    enabled: true
+    severity: warning
+    exclude:
+      - "**/README.md"
+      - "**/template*.md"
+      - "**/ADR-000-template.md"
+  stale:
+    enabled: true
+    severity: info
+    thresholdDays: 180
+  forbidden-patterns:
+    enabled: true
+    severity: warning
+  word-count:
+    enabled: true
+    severity: info
+  empty-folders:
+    enabled: true
+    severity: info
+
+workflow:
+  statuses:
+    review:
+      name: "Em Revisão"
+      icon: "refresh-cw"
+      color: "#f0ad4e"
+    approved:
+      name: "Aprovado"
+      icon: "check"
+      color: "#5cb85c"
+    rejected:
+      name: "Rejeitado"
+      icon: "x"
+      color: "#d9534f"
+    template:
+      name: "Template"
+      icon: "file-text"
+      color: "#5bc0de"
+    deprecated:
+      name: "Deprecado"
+      icon: "archive"
+      color: "#777"
+    superseded:
+      name: "Substituído"
+      icon: "git-branch"
+      color: "#777"

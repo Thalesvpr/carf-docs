@@ -62,7 +62,7 @@ Arquivo rejeitado (com motivo da rejeição):
 ---
 status: rejected
 updated: 2026-01-20
-description: "Incompleto. Standards devem ter regras claras e validaveis, nao apenas diretrizes vagas."
+description: "Incompleto. Standards devem ter regras claras e validaveis, nao apenas diretrizes vagas. Contem blocos de codigo."
 ---
 ```
 

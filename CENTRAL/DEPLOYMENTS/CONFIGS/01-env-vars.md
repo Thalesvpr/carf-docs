@@ -1,7 +1,7 @@
 ---
 status: rejected
 updated: 2026-01-21
-description: "Conteudo operacional. Configs de deploy pertencem a PROJECTS ou infra repo separado."
+description: "Conteudo operacional. Configs de deploy pertencem a PROJECTS ou infra repo separado. Stub de 9 linhas - incompleto."
 ---
 
 # VARIÁVEIS DE AMBIENTE

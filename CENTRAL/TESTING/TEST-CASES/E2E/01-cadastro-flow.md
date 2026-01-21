@@ -1,6 +1,6 @@
 ---
 status: rejected
-description: "Conteudo operacional. Estrategia de teste pertence a PROJECTS ou STANDARDS."
+description: "Conteudo operacional. Estrategia de teste pertence a PROJECTS ou STANDARDS. Contem blocos de codigo."
 updated: 2026-01-19
 ---
 

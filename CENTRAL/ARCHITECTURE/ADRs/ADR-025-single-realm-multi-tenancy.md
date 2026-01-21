@@ -1,7 +1,7 @@
 ---
 status: rejected
 updated: 2026-01-21
-description: "Sobreposicao com ADR-005 (RLS). Formato incorreto com secao Implementacao, codigo, diagramas. Consolidar e remover implementacao."
+description: "Sobreposicao com ADR-005 (RLS). Formato incorreto com secao Implementacao, codigo, diagramas. Consolidar e remover implementacao. Contem blocos de codigo."
 ---
 
 # ADR-025: Single-Realm Multi-Tenancy Strategy

@@ -1,6 +1,6 @@
 ---
 status: rejected
-description: "Conteudo operacional. Git workflows pertencem a .github ou CONTRIBUTING."
+description: "Conteudo operacional. Git workflows pertencem a .github ou CONTRIBUTING. Stub de 9 linhas - incompleto."
 updated: 2026-01-19
 ---
 

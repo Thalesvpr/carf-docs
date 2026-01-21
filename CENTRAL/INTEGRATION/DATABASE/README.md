@@ -1,6 +1,6 @@
 ---
 status: rejected
-description: "Duplicacao com ADRs e PROJECTS. Cada integracao deve ter UM lugar so."
+description: "Duplicacao com ADRs e PROJECTS. Cada integracao deve ter UM lugar so. Contem blocos de codigo."
 updated: 2026-01-15
 ---
 

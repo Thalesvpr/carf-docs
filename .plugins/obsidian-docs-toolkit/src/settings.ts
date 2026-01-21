@@ -136,26 +136,9 @@ export class DocsToolkitSettingTab extends PluginSettingTab {
 
     // Validators section
     containerEl.createEl("h3", { text: "Validators" });
-
-    const validators = this.plugin.store?.getValidators() || [];
-    for (const validator of validators) {
-      new Setting(containerEl)
-        .setName(validator.name)
-        .setDesc(validator.description)
-        .addToggle(toggle => toggle
-          .setValue(this.plugin.settings.enabledValidators.includes(validator.id))
-          .onChange(async (value) => {
-            if (value) {
-              if (!this.plugin.settings.enabledValidators.includes(validator.id)) {
-                this.plugin.settings.enabledValidators.push(validator.id);
-              }
-            } else {
-              this.plugin.settings.enabledValidators = this.plugin.settings.enabledValidators
-                .filter(v => v !== validator.id);
-            }
-            await this.plugin.saveSettings();
-            this.plugin.store?.setValidatorEnabled(validator.id, value);
-          }));
-    }
+    containerEl.createEl("p", {
+      text: "Validators are now configured via .docslint.yaml in your vault root. Use the 'Docs Toolkit: Reload Configuration' command after editing.",
+      cls: "setting-item-description"
+    });
   }
 }

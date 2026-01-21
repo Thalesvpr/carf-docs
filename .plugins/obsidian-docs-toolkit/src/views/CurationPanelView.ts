@@ -1,37 +1,51 @@
-import { ItemView, WorkspaceLeaf, TFile, Modal, App, TextAreaComponent } from "obsidian";
-import { DocumentStore } from "../store/DocumentStore";
-import { MetadataService } from "../services/MetadataService";
-import { Document } from "../models/Document";
-import { Status } from "../models/types";
+import { ItemView, WorkspaceLeaf, TFile, Modal, App, TextAreaComponent, Events } from "obsidian";
+import { Document } from "../core/Document";
+import { Issue } from "../core/Issue";
+import { I18nService } from "../i18n/I18nService";
+import { DocsLinterConfig } from "../config/ConfigSchema";
 
 /**
- * CurationPanelView - Painel lateral de curadoria contínua
+ * CurationPanelView - Sidebar curation panel
  *
- * NOVO FLUXO DE CURADORIA:
- * ========================
+ * Features:
+ * - Progress overview (approved/total, pending)
+ * - Current file info
+ * - Actions (approve, reject, skip, navigate)
+ * - Files open automatically in main area on navigation
  *
- * Este painel substitui a antiga separação entre Dashboard e ReviewView.
- * Agora toda a curadoria acontece de forma contínua e lateral:
- *
- * 1. O painel fica fixo na sidebar direita
- * 2. Mostra progresso geral (aprovados/total, pendentes)
- * 3. Mostra informações do arquivo atual em análise
- * 4. Ações (aprovar, rejeitar, pular, navegar)
- * 5. Ao navegar, o arquivo abre AUTOMATICAMENTE na área principal
- *
- * Não existe mais "modo de review". O review É simplesmente:
- * - Olhar o arquivo na área principal (editor nativo do Obsidian)
- * - Decidir usando os botões do painel lateral
- *
- * ATALHOS DE TECLADO:
- * - ← / → : Navegar entre arquivos
+ * Keyboard shortcuts:
+ * - Left/Right arrows: Navigate between files
  */
 
 export const CURATION_PANEL_VIEW_TYPE = "docs-toolkit-curation";
 
+/**
+ * Interface for document store
+ */
+export interface DocumentStore extends Events {
+  getState(): {
+    documents: Document[];
+    issues: Issue[];
+  };
+  getDocument(path: string): Document | undefined;
+  getIssuesForFile(path: string): Issue[];
+  getReviewQueue(): TFile[];
+  setStatus(file: TFile, status: string, description?: string): Promise<void>;
+  isLoading(): boolean;
+}
+
+/**
+ * Interface for metadata service
+ */
+export interface MetadataService {
+  initFrontmatter(file: TFile): Promise<Record<string, unknown> | void>;
+}
+
 export class CurationPanelView extends ItemView {
   private store: DocumentStore;
   private metadataService: MetadataService;
+  private i18n: I18nService;
+  private config: DocsLinterConfig;
 
   // Current position in queue
   private currentIndex = 0;
@@ -51,15 +65,19 @@ export class CurationPanelView extends ItemView {
   constructor(
     leaf: WorkspaceLeaf,
     store: DocumentStore,
-    metadataService: MetadataService
+    metadataService: MetadataService,
+    i18n: I18nService,
+    config: DocsLinterConfig
   ) {
     super(leaf);
     this.store = store;
     this.metadataService = metadataService;
+    this.i18n = i18n;
+    this.config = config;
   }
 
   getViewType(): string { return CURATION_PANEL_VIEW_TYPE; }
-  getDisplayText(): string { return "Curation"; }
+  getDisplayText(): string { return this.i18n.t("ui.curation.title"); }
   getIcon(): string { return "check-square"; }
 
   async onOpen(): Promise<void> {
@@ -86,10 +104,34 @@ export class CurationPanelView extends ItemView {
   }
 
   /**
-   * Get the review queue (pending files), filtered by folder and search query
+   * Update configuration
+   */
+  updateConfig(config: DocsLinterConfig): void {
+    this.config = config;
+    this.render();
+  }
+
+  /**
+   * Check if file should be tracked based on config exclude paths
+   */
+  private isTrackedFile(path: string): boolean {
+    for (const pattern of this.config.paths.exclude) {
+      const regex = pattern
+        .replace(/\*\*/g, ".*")
+        .replace(/\*/g, "[^/]*");
+
+      if (new RegExp(`^${regex}`).test(path)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  /**
+   * Get the review queue (all files), filtered by folder and search query
    */
   private getQueue(): TFile[] {
-    let queue = this.store.getReviewQueue();
+    let queue = this.store.getReviewQueue().filter(f => this.isTrackedFile(f.path));
 
     if (this.folderFilter) {
       queue = queue.filter(f => f.path.startsWith(this.folderFilter + "/"));
@@ -98,14 +140,12 @@ export class CurationPanelView extends ItemView {
     if (this.searchQuery.trim()) {
       const query = this.searchQuery.toLowerCase().trim();
       queue = queue.filter(f => {
-        // Search in filename
         if (f.basename.toLowerCase().includes(query)) return true;
-        // Search in path
         if (f.path.toLowerCase().includes(query)) return true;
-        // Search in document ID and description
         const doc = this.store.getDocument(f.path);
         if (doc?.id?.toLowerCase().includes(query)) return true;
-        if (doc?.frontmatter?.description?.toLowerCase().includes(query)) return true;
+        const desc = doc?.getFrontmatterField<string>("description");
+        if (desc?.toLowerCase().includes(query)) return true;
         return false;
       });
     }
@@ -117,21 +157,16 @@ export class CurationPanelView extends ItemView {
    * Get available top-level folders for filtering
    */
   private getAvailableFolders(): string[] {
-    const queue = this.store.getReviewQueue();
+    const queue = this.store.getReviewQueue().filter(f => this.isTrackedFile(f.path));
     const folders = new Set<string>();
 
     for (const file of queue) {
       const parts = file.path.split("/");
       if (parts.length > 1) {
-        // Add top-level folder
         folders.add(parts[0]);
-        // Add second-level for PROJECTS (e.g., PROJECTS/LIB)
-        if (parts[0] === "PROJECTS" && parts.length > 2) {
+        // Also add second level for common patterns
+        if (parts.length > 2) {
           folders.add(parts[0] + "/" + parts[1]);
-          // Add third-level for nested libs (e.g., PROJECTS/LIB/TS)
-          if (parts[1] === "LIB" && parts.length > 3) {
-            folders.add(parts[0] + "/" + parts[1] + "/" + parts[2]);
-          }
         }
       }
     }
@@ -144,14 +179,16 @@ export class CurationPanelView extends ItemView {
    */
   private getFolderStats(): { folder: string; approved: number; rejected: number; pending: number; total: number }[] {
     const state = this.store.getState();
-    const docs = state.documents.filter(d => true);
+    const docs = state.documents.filter(d => this.isTrackedFile(d.file.path));
     const folderMap = new Map<string, { approved: number; rejected: number; pending: number; total: number }>();
+
+    const approvedStatus = "approved";
+    const rejectedStatus = "rejected";
 
     for (const doc of docs) {
       const parts = doc.file.path.split("/");
-      // Get top-level folder or PROJECTS/X for projects
       let folder = parts[0];
-      if (folder === "PROJECTS" && parts.length > 2) {
+      if (parts.length > 2) {
         folder = parts[0] + "/" + parts[1];
       }
 
@@ -161,8 +198,8 @@ export class CurationPanelView extends ItemView {
 
       const stats = folderMap.get(folder)!;
       stats.total++;
-      if (doc.status === Status.APPROVED) stats.approved++;
-      else if (doc.status === Status.REJECTED) stats.rejected++;
+      if (doc.status === approvedStatus) stats.approved++;
+      else if (doc.status === rejectedStatus) stats.rejected++;
       else stats.pending++;
     }
 
@@ -178,7 +215,6 @@ export class CurationPanelView extends ItemView {
     const queue = this.getQueue();
     if (queue.length === 0) return null;
 
-    // Clamp index
     if (this.currentIndex >= queue.length) this.currentIndex = queue.length - 1;
     if (this.currentIndex < 0) this.currentIndex = 0;
 
@@ -187,14 +223,12 @@ export class CurationPanelView extends ItemView {
 
   /**
    * Sync panel with currently active file in editor
-   * Clears folder filter if needed to show the file
    */
   private syncWithActiveFile(): void {
     const activeFile = this.app.workspace.getActiveFile();
     if (!activeFile) return;
-    if (!Document.isInCARFPath(activeFile.path)) return;
+    if (!this.isTrackedFile(activeFile.path)) return;
 
-    // First try to find in current filtered queue
     let queue = this.getQueue();
     let index = queue.findIndex(f => f.path === activeFile.path);
 
@@ -228,13 +262,14 @@ export class CurationPanelView extends ItemView {
     }
 
     // Get filtered docs based on folder filter
-    let docs = state.documents.filter(d => true);
+    let docs = state.documents.filter(d => this.isTrackedFile(d.file.path));
     if (this.folderFilter) {
       docs = docs.filter(d => d.file.path.startsWith(this.folderFilter + "/"));
     }
-    const approved = docs.filter(d => d.status === Status.APPROVED).length;
-    const rejected = docs.filter(d => d.status === Status.REJECTED).length;
-    const pending = docs.filter(d => d.status === Status.REVIEW).length;
+
+    const approved = docs.filter(d => d.status === "approved").length;
+    const rejected = docs.filter(d => d.status === "rejected").length;
+    const pending = docs.filter(d => d.status === "review").length;
     const total = docs.length;
 
     // === FOLDER FILTER SECTION ===
@@ -290,7 +325,7 @@ export class CurationPanelView extends ItemView {
 
     select.onchange = () => {
       this.folderFilter = select.value || null;
-      this.currentIndex = 0; // Reset to first file in new filter
+      this.currentIndex = 0;
       this.render();
     };
   }
@@ -308,7 +343,6 @@ export class CurationPanelView extends ItemView {
     });
     input.value = this.searchQuery;
 
-    // Debounced search
     let timeout: NodeJS.Timeout;
     input.oninput = () => {
       clearTimeout(timeout);
@@ -316,7 +350,6 @@ export class CurationPanelView extends ItemView {
         this.searchQuery = input.value;
         this.currentIndex = 0;
         this.render();
-        // Re-focus input after render
         const newInput = el.querySelector(".docs-cp-search-input") as HTMLInputElement;
         if (newInput) {
           newInput.focus();
@@ -325,9 +358,8 @@ export class CurationPanelView extends ItemView {
       }, 200);
     };
 
-    // Clear button
     if (this.searchQuery) {
-      const clearBtn = section.createEl("button", { text: "×", cls: "docs-cp-search-clear" });
+      const clearBtn = section.createEl("button", { text: "\u00D7", cls: "docs-cp-search-clear" });
       clearBtn.onclick = () => {
         this.searchQuery = "";
         this.currentIndex = 0;
@@ -342,9 +374,8 @@ export class CurationPanelView extends ItemView {
   private renderFolderStats(el: HTMLElement): void {
     const section = el.createDiv({ cls: "docs-cp-section docs-cp-folder-stats" });
 
-    // Header (clickable to expand/collapse)
     const header = section.createDiv({ cls: "docs-cp-stats-header" });
-    header.createSpan({ text: this.statsExpanded ? "▼" : "▶", cls: "docs-cp-stats-toggle" });
+    header.createSpan({ text: this.statsExpanded ? "\u25BC" : "\u25B6", cls: "docs-cp-stats-toggle" });
     header.createSpan({ text: "Stats by folder", cls: "docs-cp-stats-title" });
     header.onclick = () => {
       this.statsExpanded = !this.statsExpanded;
@@ -353,14 +384,12 @@ export class CurationPanelView extends ItemView {
 
     if (!this.statsExpanded) return;
 
-    // Stats list
     const list = section.createDiv({ cls: "docs-cp-stats-list" });
     const folderStats = this.getFolderStats();
 
     for (const stat of folderStats) {
       const row = list.createDiv({ cls: "docs-cp-stats-row" });
 
-      // Folder name (clickable to filter)
       const nameEl = row.createSpan({ text: stat.folder, cls: "docs-cp-stats-folder" });
       nameEl.onclick = (e) => {
         e.stopPropagation();
@@ -369,7 +398,6 @@ export class CurationPanelView extends ItemView {
         this.render();
       };
 
-      // Mini progress bar
       const barContainer = row.createDiv({ cls: "docs-cp-stats-bar-container" });
       const bar = barContainer.createDiv({ cls: "docs-cp-stats-bar" });
 
@@ -385,7 +413,6 @@ export class CurationPanelView extends ItemView {
         rejectedBar.style.width = `${rejectedPct}%`;
       }
 
-      // Numbers
       const numbers = row.createSpan({ cls: "docs-cp-stats-numbers" });
       numbers.createSpan({ text: `${stat.approved}`, cls: "docs-cp-stats-num-approved" });
       numbers.createSpan({ text: `/` });
@@ -399,24 +426,21 @@ export class CurationPanelView extends ItemView {
   private renderProgress(el: HTMLElement, stats: { approved: number; rejected: number; pending: number; total: number }): void {
     const section = el.createDiv({ cls: "docs-cp-section docs-cp-progress" });
 
-    // Main stat
     const mainLine = section.createDiv({ cls: "docs-cp-main-stat" });
     mainLine.createSpan({ text: `${stats.approved}`, cls: "docs-cp-stat-num docs-cp-approved" });
     mainLine.createSpan({ text: `/${stats.total}`, cls: "docs-cp-stat-total" });
     mainLine.createSpan({ text: " approved", cls: "docs-cp-stat-label" });
 
-    // Secondary stats
     const secondaryLine = section.createDiv({ cls: "docs-cp-secondary-stats" });
 
     if (stats.pending > 0) {
-      secondaryLine.createSpan({ text: `${stats.pending} pending`, cls: "docs-cp-pending" });
+      secondaryLine.createSpan({ text: `${stats.pending} ${this.i18n.t("ui.curation.pending")}`, cls: "docs-cp-pending" });
     }
     if (stats.rejected > 0) {
-      if (stats.pending > 0) secondaryLine.createSpan({ text: " · " });
+      if (stats.pending > 0) secondaryLine.createSpan({ text: " \u00B7 " });
       secondaryLine.createSpan({ text: `${stats.rejected} rejected`, cls: "docs-cp-rejected" });
     }
 
-    // Progress bar
     const progressBar = section.createDiv({ cls: "docs-cp-progress-bar" });
     const percentage = stats.total > 0 ? (stats.approved / stats.total) * 100 : 0;
     const fill = progressBar.createDiv({ cls: "docs-cp-progress-fill" });
@@ -428,7 +452,7 @@ export class CurationPanelView extends ItemView {
    */
   private renderAllDone(el: HTMLElement): void {
     const section = el.createDiv({ cls: "docs-cp-section docs-cp-done" });
-    section.createDiv({ text: "✓", cls: "docs-cp-done-icon" });
+    section.createDiv({ text: "\u2713", cls: "docs-cp-done-icon" });
     section.createDiv({ text: "All done!", cls: "docs-cp-done-text" });
     section.createDiv({ text: "No pending files to review", cls: "docs-cp-done-sub" });
   }
@@ -439,59 +463,53 @@ export class CurationPanelView extends ItemView {
   private renderCurrentFile(el: HTMLElement, file: TFile, queueLength: number): void {
     const section = el.createDiv({ cls: "docs-cp-section docs-cp-current" });
 
-    // Header with counter
     const header = section.createDiv({ cls: "docs-cp-current-header" });
     header.createSpan({ text: `${this.currentIndex + 1}/${queueLength}`, cls: "docs-cp-counter" });
 
-    // File name
     const doc = this.store.getDocument(file.path);
     const fileName = section.createDiv({ cls: "docs-cp-filename" });
     fileName.createSpan({ text: doc?.id || file.basename, cls: "docs-cp-file-id" });
 
-    // Path (truncated)
     const pathParts = file.path.split("/");
     if (pathParts.length > 2) {
       const shortPath = pathParts.slice(0, -1).join("/");
       section.createDiv({ text: shortPath, cls: "docs-cp-filepath" });
     }
 
-    // Metadata
     const meta = section.createDiv({ cls: "docs-cp-meta" });
 
-    if (doc?.frontmatter) {
-      const fm = doc.frontmatter;
+    if (doc?.hasFrontmatter) {
+      const status = doc.status;
+      const statusConfig = this.config.workflow.statuses[status];
 
-      // Status badge
       const statusBadge = meta.createSpan({
-        text: fm.status || "review",
-        cls: `docs-cp-status-badge docs-cp-status-${fm.status || "review"}`
+        text: statusConfig?.name || status,
+        cls: `docs-cp-status-badge docs-cp-status-${status}`
       });
 
-      // Updated date
-      if (fm.updated) {
-        meta.createSpan({ text: ` · ${fm.updated}`, cls: "docs-cp-updated" });
+      const updated = doc.getFrontmatterField<string>("updated");
+      if (updated) {
+        meta.createSpan({ text: ` \u00B7 ${updated}`, cls: "docs-cp-updated" });
       }
 
-      // Description (if present)
-      if (fm.description) {
-        section.createDiv({ text: fm.description, cls: "docs-cp-description" });
+      const description = doc.getFrontmatterField<string>("description");
+      if (description) {
+        section.createDiv({ text: description, cls: "docs-cp-description" });
       }
     } else {
-      // No frontmatter warning
       const warning = section.createDiv({ cls: "docs-cp-warning" });
-      warning.createSpan({ text: "⚠ No YAML frontmatter" });
+      warning.createSpan({ text: "\u26A0 No YAML frontmatter" });
 
       const initBtn = warning.createEl("button", { text: "init", cls: "docs-cp-init-btn" });
       initBtn.onclick = () => this.initYaml(file);
     }
 
-    // Issues
     const issues = this.store.getIssuesForFile(file.path);
     if (issues.length > 0) {
       const issuesSection = section.createDiv({ cls: "docs-cp-issues" });
 
       const issuesHeader = issuesSection.createDiv({ cls: "docs-cp-issues-header" });
-      issuesHeader.createSpan({ text: `⚠ ${issues.length} issue${issues.length > 1 ? "s" : ""}` });
+      issuesHeader.createSpan({ text: `\u26A0 ${issues.length} issue${issues.length > 1 ? "s" : ""}` });
       issuesHeader.onclick = () => {
         this.issuesExpanded = !this.issuesExpanded;
         this.render();
@@ -500,7 +518,8 @@ export class CurationPanelView extends ItemView {
       if (this.issuesExpanded) {
         const issuesList = issuesSection.createDiv({ cls: "docs-cp-issues-list" });
         for (const issue of issues.slice(0, 5)) {
-          issuesList.createDiv({ text: `· ${issue.message}`, cls: "docs-cp-issue" });
+          const msg = this.i18n.t(issue.messageKey, issue.messageParams as Record<string, unknown>);
+          issuesList.createDiv({ text: `\u00B7 ${msg}`, cls: "docs-cp-issue" });
         }
         if (issues.length > 5) {
           issuesList.createDiv({ text: `+${issues.length - 5} more`, cls: "docs-cp-more" });
@@ -515,53 +534,48 @@ export class CurationPanelView extends ItemView {
   private renderActions(el: HTMLElement, file: TFile | null, queueLength: number): void {
     const section = el.createDiv({ cls: "docs-cp-section docs-cp-actions" });
 
-    // Get current document status
     const doc = file ? this.store.getDocument(file.path) : null;
     const currentStatus = doc?.status;
 
-    // Navigation + Actions row
     const row = section.createDiv({ cls: "docs-cp-actions-row" });
 
     // Previous
-    const prevBtn = row.createEl("button", { text: "←", cls: "docs-cp-btn docs-cp-nav" });
+    const prevBtn = row.createEl("button", { text: "\u2190", cls: "docs-cp-btn docs-cp-nav" });
     prevBtn.disabled = this.currentIndex === 0;
-    prevBtn.title = "Previous (←)";
+    prevBtn.title = "Previous (\u2190)";
     prevBtn.onclick = () => this.navigate(-1);
 
     // Reject
-    const rejectBtn = row.createEl("button", { text: "✗", cls: "docs-cp-btn docs-cp-reject-btn" });
-    rejectBtn.disabled = !file || currentStatus === Status.REJECTED;
-    rejectBtn.title = "Reject";
+    const rejectBtn = row.createEl("button", { text: "\u2717", cls: "docs-cp-btn docs-cp-reject-btn" });
+    rejectBtn.disabled = !file || currentStatus === "rejected";
+    rejectBtn.title = this.i18n.t("ui.curation.reject");
     rejectBtn.onclick = () => file && this.reject(file);
 
-    // Review (back to review)
-    const reviewBtn = row.createEl("button", { text: "○", cls: "docs-cp-btn docs-cp-review-btn" });
-    reviewBtn.disabled = !file || currentStatus === Status.REVIEW;
+    // Review
+    const reviewBtn = row.createEl("button", { text: "\u25CB", cls: "docs-cp-btn docs-cp-review-btn" });
+    reviewBtn.disabled = !file || currentStatus === "review";
     reviewBtn.title = "Back to Review";
     reviewBtn.onclick = () => file && this.setReview(file);
 
     // Approve
-    const approveBtn = row.createEl("button", { text: "✓", cls: "docs-cp-btn docs-cp-approve-btn" });
-    approveBtn.disabled = !file || currentStatus === Status.APPROVED;
-    approveBtn.title = "Approve";
+    const approveBtn = row.createEl("button", { text: "\u2713", cls: "docs-cp-btn docs-cp-approve-btn" });
+    approveBtn.disabled = !file || currentStatus === "approved";
+    approveBtn.title = this.i18n.t("ui.curation.approve");
     approveBtn.onclick = () => file && this.approve(file);
 
     // Next
-    const nextBtn = row.createEl("button", { text: "→", cls: "docs-cp-btn docs-cp-nav" });
+    const nextBtn = row.createEl("button", { text: "\u2192", cls: "docs-cp-btn docs-cp-nav" });
     nextBtn.disabled = this.currentIndex >= queueLength - 1;
-    nextBtn.title = "Next (→)";
+    nextBtn.title = "Next (\u2192)";
     nextBtn.onclick = () => this.navigate(1);
 
     // Keyboard hints
     const hints = section.createDiv({ cls: "docs-cp-hints" });
-    hints.createSpan({ text: "← → navigate" });
+    hints.createSpan({ text: "\u2190 \u2192 navigate" });
   }
 
   // === ACTIONS ===
 
-  /**
-   * Navigate to previous/next file
-   */
   private async navigate(delta: number): Promise<void> {
     const queue = this.getQueue();
     const newIndex = this.currentIndex + delta;
@@ -573,56 +587,34 @@ export class CurationPanelView extends ItemView {
     this.render();
   }
 
-  /**
-   * Approve current file (clears rejection reason)
-   */
   private async approve(file: TFile): Promise<void> {
-    await this.store.setStatus(file, Status.APPROVED);
+    await this.store.setStatus(file, "approved");
   }
 
-  /**
-   * Reject current file (prompts for reason)
-   */
   private reject(file: TFile): void {
-    new RejectModal(this.app, async (reason) => {
-      await this.store.setStatus(file, Status.REJECTED, reason);
+    new RejectModal(this.app, this.i18n, async (reason) => {
+      await this.store.setStatus(file, "rejected", reason);
     }).open();
   }
 
-  /**
-   * Set file back to review status (clears rejection reason)
-   */
   private async setReview(file: TFile): Promise<void> {
-    await this.store.setStatus(file, Status.REVIEW);
+    await this.store.setStatus(file, "review");
   }
 
-  /**
-   * Initialize YAML frontmatter
-   */
   private async initYaml(file: TFile): Promise<void> {
     await this.metadataService.initFrontmatter(file);
   }
 
-  /**
-   * Open current file in main editor area
-   */
   private async openCurrentFile(): Promise<void> {
     const file = this.getCurrentFile();
     if (!file) return;
 
-    // Open in main area (not in this leaf)
     const leaf = this.app.workspace.getLeaf(false);
     await leaf.openFile(file);
   }
 
-  /**
-   * Keyboard handler - only arrow keys for navigation
-   */
   private onKey(e: KeyboardEvent): void {
-    // Ignore if typing in input
     if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
-
-    // Ignore if modifier keys
     if (e.ctrlKey || e.metaKey || e.altKey) return;
 
     switch (e.key) {
@@ -639,43 +631,39 @@ export class CurationPanelView extends ItemView {
 }
 
 /**
- * Modal minimalista para motivo da rejeição
- * Mantém draft do texto entre fechamentos (memória)
+ * Minimal rejection reason modal
  */
 class RejectModal extends Modal {
   private onSubmit: (reason: string) => void;
+  private i18n: I18nService;
   private reason = "";
   private submitted = false;
 
-  // Draft estático - persiste entre instâncias do modal
   private static draft = "";
 
-  constructor(app: App, onSubmit: (reason: string) => void) {
+  constructor(app: App, i18n: I18nService, onSubmit: (reason: string) => void) {
     super(app);
+    this.i18n = i18n;
     this.onSubmit = onSubmit;
   }
 
   onOpen(): void {
     const { contentEl, modalEl } = this;
 
-    // Compact modal
     modalEl.addClass("docs-reject-modal");
 
-    // Label pequeno
-    const label = contentEl.createEl("label", { text: "Motivo da rejeição" });
+    const label = contentEl.createEl("label", { text: "Rejection reason" });
     label.style.fontSize = "12px";
     label.style.color = "var(--text-muted)";
     label.style.marginBottom = "6px";
     label.style.display = "block";
 
-    // Textarea com draft restaurado
     const textArea = new TextAreaComponent(contentEl);
-    textArea.setPlaceholder("O que precisa ser corrigido?");
+    textArea.setPlaceholder("What needs to be fixed?");
     textArea.inputEl.style.width = "100%";
     textArea.inputEl.style.height = "80px";
     textArea.inputEl.style.resize = "none";
 
-    // Restaurar draft se existir
     if (RejectModal.draft) {
       textArea.setValue(RejectModal.draft);
       this.reason = RejectModal.draft;
@@ -683,10 +671,9 @@ class RejectModal extends Modal {
 
     textArea.onChange((value) => {
       this.reason = value;
-      RejectModal.draft = value; // Salva enquanto digita
+      RejectModal.draft = value;
     });
 
-    // Focus no final do texto
     setTimeout(() => {
       textArea.inputEl.focus();
       textArea.inputEl.setSelectionRange(
@@ -695,22 +682,20 @@ class RejectModal extends Modal {
       );
     }, 10);
 
-    // Hint + button inline
     const footer = contentEl.createDiv();
     footer.style.display = "flex";
     footer.style.justifyContent = "space-between";
     footer.style.alignItems = "center";
     footer.style.marginTop = "8px";
 
-    const hint = footer.createSpan({ text: "Ctrl+Enter para confirmar" });
+    const hint = footer.createSpan({ text: "Ctrl+Enter to confirm" });
     hint.style.fontSize = "11px";
     hint.style.color = "var(--text-faint)";
 
-    const submitBtn = footer.createEl("button", { text: "Rejeitar", cls: "mod-warning" });
+    const submitBtn = footer.createEl("button", { text: this.i18n.t("ui.curation.reject"), cls: "mod-warning" });
     submitBtn.style.padding = "4px 12px";
     submitBtn.onclick = () => this.submit();
 
-    // Keyboard
     textArea.inputEl.addEventListener("keydown", (e) => {
       if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
         e.preventDefault();
@@ -725,15 +710,13 @@ class RejectModal extends Modal {
   private submit(): void {
     if (this.reason.trim()) {
       this.submitted = true;
-      RejectModal.draft = ""; // Limpa draft ao submeter
+      RejectModal.draft = "";
       this.onSubmit(this.reason.trim());
       this.close();
     }
   }
 
   onClose(): void {
-    // Se não submeteu, mantém o draft (já está salvo)
-    // Se submeteu, draft já foi limpo em submit()
     this.contentEl.empty();
   }
 }

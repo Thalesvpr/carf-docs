@@ -1,7 +1,7 @@
 {
   "name": "obsidian-docs-toolkit",
-  "version": "1.0.0",
-  "description": "Docs Toolkit for Obsidian",
+  "version": "2.0.0",
+  "description": "A fully configurable documentation linter for Obsidian. Configure via .docslint.yaml.",
   "main": "main.js",
   "scripts": {
     "dev": "node esbuild.config.mjs",

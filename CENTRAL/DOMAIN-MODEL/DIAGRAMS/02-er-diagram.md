@@ -1,6 +1,6 @@
 ---
 status: rejected
-description: "Estrutura caotica. Numeracao nao agrupa por categoria. Precisa reorganizar por agregado/contexto."
+description: "Estrutura caotica. Numeracao nao agrupa por categoria. Precisa reorganizar por agregado/contexto. Contem blocos de codigo."
 updated: 2026-01-19
 ---
 

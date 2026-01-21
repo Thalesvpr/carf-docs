@@ -1,6 +1,6 @@
 ---
 status: rejected
-description: "Stub incompleto. Spec de API deve ter request/response schemas, exemplos, erros. Mover implementacao para PROJECTS/GEOAPI."
+description: "Stub incompleto. Spec de API deve ter request/response schemas, exemplos, erros. Mover implementacao para PROJECTS/GEOAPI. Contem blocos de codigo."
 updated: 2026-01-20
 ---
 

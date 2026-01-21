@@ -1,20 +1,12 @@
 import { App, Events, TFile, TFolder, parseYaml } from "obsidian";
-import { Document } from "../models/Document";
-import { Issue, IssueSummary, calculateIssueSummary } from "../models/Issue";
-import { Status, DocType, VALID_MODULES, CARFFrontmatter, Module } from "../models/types";
-import { Validator } from "../validators/Validator";
-
-// Import all validators
-import { BrokenLinksValidator } from "../validators/BrokenLinksValidator";
-import { FrontmatterValidator } from "../validators/FrontmatterValidator";
-import { OrphansValidator } from "../validators/OrphansValidator";
-import { StructureValidator } from "../validators/StructureValidator";
-import { TitleValidator } from "../validators/TitleValidator";
-import { StaleValidator } from "../validators/StaleValidator";
-import { EmptyFoldersValidator } from "../validators/EmptyFoldersValidator";
-import { NamingValidator } from "../validators/NamingValidator";
-import { ForbiddenLinksValidator } from "../validators/ForbiddenLinksValidator";
-import { TemplateValidator } from "../validators/TemplateValidator";
+import { Document, DocumentLink, Frontmatter } from "../core/Document";
+import { Issue, IssueSummary, calculateIssueSummary } from "../core/Issue";
+import { DocsLinterConfig } from "../config/ConfigSchema";
+import { ValidatorRegistry } from "../validators/ValidatorRegistry";
+import { ValidationService } from "../services/ValidationService";
+import { DocumentParser } from "../services/DocumentParser";
+import { TemplateService } from "../services/TemplateService";
+import { I18nService } from "../i18n/I18nService";
 
 export interface StoreState {
   documents: Document[];
@@ -25,55 +17,49 @@ export interface StoreState {
 
 /**
  * Central event-driven store for document state.
+ * v2.0 - Fully configurable via .docslint.yaml
  * Emits 'state-changed' event on every mutation.
  */
 export class DocumentStore extends Events {
   private app: App;
+  private config: DocsLinterConfig;
+  private registry: ValidatorRegistry;
+  private templateService: TemplateService;
+  private i18n: I18nService;
+  private documentParser: DocumentParser;
+  private validationService: ValidationService;
+
   private documents: Map<string, Document> = new Map();
   private issues: Map<string, Issue[]> = new Map();
-  private validators: Validator[] = [];
-  private enabledValidators: Set<string> = new Set();
   private loading = false;
 
-  constructor(app: App) {
+  constructor(
+    app: App,
+    config: DocsLinterConfig,
+    registry: ValidatorRegistry,
+    templateService: TemplateService,
+    i18n: I18nService
+  ) {
     super();
     this.app = app;
-    this.registerValidators();
+    this.config = config;
+    this.registry = registry;
+    this.templateService = templateService;
+    this.i18n = i18n;
+    this.documentParser = new DocumentParser(app);
+    this.validationService = new ValidationService(
+      app,
+      registry,
+      templateService,
+      i18n
+    );
   }
 
-  private registerValidators(): void {
-    this.validators = [
-      new BrokenLinksValidator(),
-      new FrontmatterValidator(),
-      new OrphansValidator(),
-      new StructureValidator(),
-      new TitleValidator(),
-      new StaleValidator(),
-      new EmptyFoldersValidator(),
-      new NamingValidator(),
-      new ForbiddenLinksValidator(),
-      new TemplateValidator()
-    ];
-    // Enable all by default
-    this.validators.forEach(v => this.enabledValidators.add(v.id));
-  }
-
-  // --- Validator Management ---
-
-  getValidators(): Validator[] {
-    return this.validators;
-  }
-
-  setValidatorEnabled(id: string, enabled: boolean): void {
-    if (enabled) {
-      this.enabledValidators.add(id);
-    } else {
-      this.enabledValidators.delete(id);
-    }
-  }
-
-  private getEnabledValidators(): Validator[] {
-    return this.validators.filter(v => this.enabledValidators.has(v.id));
+  /**
+   * Update configuration (called when .docslint.yaml changes)
+   */
+  updateConfig(config: DocsLinterConfig): void {
+    this.config = config;
   }
 
   // --- State Access ---
@@ -92,8 +78,6 @@ export class DocumentStore extends Events {
   }
 
   getReviewQueue(): TFile[] {
-    // Returns ALL documents (not just review status)
-    // List only reacts to file creation/deletion, not status changes
     return Array.from(this.documents.values())
       .sort((a, b) => a.file.path.localeCompare(b.file.path))
       .map(d => d.file);
@@ -120,40 +104,26 @@ export class DocumentStore extends Events {
     this.loading = true;
     this.trigger("state-changed");
 
-    const files = this.getCARFFiles();
+    const files = this.getIncludedFiles();
     this.documents.clear();
     this.issues.clear();
 
+    // Initialize template service
+    await this.templateService.initialize();
+
     // Parse all documents
     for (const file of files) {
-      const doc = await this.parseDocument(file);
+      const doc = await this.documentParser.parse(file);
       this.documents.set(file.path, doc);
     }
 
-    // Run local validators
+    // Run validation on all documents
     const docs = Array.from(this.documents.values());
-    for (const doc of docs) {
-      const fileIssues: Issue[] = [];
-      for (const validator of this.getEnabledValidators()) {
-        if (!validator.isGlobal && validator.validateFile) {
-          const vi = await validator.validateFile(doc, this.app);
-          fileIssues.push(...vi);
-        }
-      }
-      this.issues.set(doc.file.path, fileIssues);
-    }
+    const result = await this.validationService.validateAll(docs, this.config);
 
-    // Run global validators
-    for (const validator of this.getEnabledValidators()) {
-      if (validator.isGlobal && validator.validateAll) {
-        const globalIssues = await validator.validateAll(docs, this.app);
-        // Distribute global issues to their files
-        for (const issue of globalIssues) {
-          const existing = this.issues.get(issue.file.path) || [];
-          existing.push(issue);
-          this.issues.set(issue.file.path, existing);
-        }
-      }
+    // Store issues
+    for (const [path, docResult] of result.documentResults) {
+      this.issues.set(path, docResult.issues);
     }
 
     this.loading = false;
@@ -165,20 +135,24 @@ export class DocumentStore extends Events {
    */
   async updateDocument(file: TFile): Promise<void> {
     if (!file.name.endsWith(".md")) return;
-    if (!Document.isInCARFPath(file.path)) return;
+    if (!this.isIncludedFile(file.path)) return;
 
-    const doc = await this.parseDocument(file);
+    const doc = await this.documentParser.parse(file);
     this.documents.set(file.path, doc);
 
     // Re-validate this file
-    const fileIssues: Issue[] = [];
-    for (const validator of this.getEnabledValidators()) {
-      if (!validator.isGlobal && validator.validateFile) {
-        const vi = await validator.validateFile(doc, this.app);
-        fileIssues.push(...vi);
-      }
+    const allDocs = Array.from(this.documents.values());
+    const docIssues = await this.validationService.validateDocument(
+      doc,
+      this.config,
+      allDocs
+    );
+    this.issues.set(file.path, docIssues);
+
+    // Update template cache if this is a template
+    if (this.templateService.isTemplate(doc)) {
+      await this.templateService.refreshTemplate(file);
     }
-    this.issues.set(file.path, fileIssues);
 
     this.trigger("state-changed");
   }
@@ -189,169 +163,79 @@ export class DocumentStore extends Events {
   removeDocument(path: string): void {
     this.documents.delete(path);
     this.issues.delete(path);
+    this.templateService.removeTemplate(path);
     this.trigger("state-changed");
   }
 
   /**
    * Set status for a document. Updates frontmatter and emits 'state-changed'.
-   * @param description - Optional rejection reason (cleared when status is not rejected)
    */
-  async setStatus(file: TFile, status: Status, description?: string): Promise<void> {
+  async setStatus(file: TFile, status: string, description?: string): Promise<void> {
     const content = await this.app.vault.read(file);
-    // Clear description if not rejected, otherwise set it
-    const desc = status === Status.REJECTED ? description : undefined;
-    const newContent = this.updateStatusInContent(content, status, desc);
+    const newContent = this.updateStatusInContent(content, status, description);
     await this.app.vault.modify(file, newContent);
-    // Explicitly update the document to trigger state-changed
     await this.updateDocument(file);
   }
 
   // --- Internal Helpers ---
 
-  private getCARFFiles(): TFile[] {
-    const ignorePaths = [".obsidian", ".git", "node_modules", ".plugins", ".scripts"];
-    return this.app.vault.getMarkdownFiles().filter(file => {
-      return !ignorePaths.some(p => file.path.startsWith(p + "/") || file.path.startsWith(p));
-    });
+  /**
+   * Get files that match include patterns and don't match exclude patterns
+   */
+  private getIncludedFiles(): TFile[] {
+    return this.app.vault.getMarkdownFiles().filter(file =>
+      this.isIncludedFile(file.path)
+    );
   }
 
-  private async parseDocument(file: TFile): Promise<Document> {
-    const content = await this.app.vault.read(file);
-    const frontmatter = this.parseFrontmatter(content);
-    const bodyContent = this.getBodyContent(content);
-    const sections = this.parseSections(bodyContent);
-    const links = this.parseLinks(bodyContent);
-    const title = this.parseTitle(bodyContent);
-
-    return new Document(file, frontmatter, content, sections, links, title);
-  }
-
-  private parseFrontmatter(content: string): CARFFrontmatter | null {
-    // Handle both Unix (\n) and Windows (\r\n) line endings
-    const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
-    if (!match) return null;
-
-    try {
-      const yaml = parseYaml(match[1]);
-      if (!yaml) return null;
-
-      // Accept any status (validator will warn if invalid)
-      const rawStatus = yaml.status?.toLowerCase() || "review";
-      const status = Object.values(Status).includes(rawStatus as Status)
-        ? (rawStatus as Status)
-        : Status.REVIEW; // Default to review if unknown
-
-      // Optional: validate type if present
-      let type: DocType | undefined;
-      if (yaml.type) {
-        const upperType = yaml.type.toUpperCase();
-        if (Object.values(DocType).includes(upperType)) {
-          type = upperType;
-        }
-      }
-
-      // Optional: validate modules if present
-      let modules: Module[] | undefined;
-      if (Array.isArray(yaml.modules)) {
-        modules = yaml.modules
-          .map((m: string) => m.toUpperCase())
-          .filter((m: string) => (VALID_MODULES as readonly string[]).includes(m)) as Module[];
-      }
-
-      return {
-        status,
-        updated: yaml.updated || this.formatDate(new Date()),
-        id: yaml.id || undefined,
-        type,
-        modules,
-        epic: yaml.epic || undefined,
-        created: yaml.created || undefined,
-        description: yaml.description || undefined
-      };
-    } catch {
-      return null;
-    }
-  }
-
-  private getBodyContent(content: string): string {
-    return content.replace(/^---\n[\s\S]*?\n---\n*/, "");
-  }
-
-  private parseSections(content: string): Map<string, string> {
-    const sections = new Map<string, string>();
-    const lines = content.split("\n");
-    let currentSection = "";
-    let currentContent: string[] = [];
-
-    for (const line of lines) {
-      const headerMatch = line.match(/^#{2,3}\s+(.+)$/);
-      if (headerMatch) {
-        if (currentSection) {
-          sections.set(currentSection, currentContent.join("\n").trim());
-        }
-        currentSection = headerMatch[1].trim();
-        currentContent = [];
-      } else if (currentSection) {
-        currentContent.push(line);
+  /**
+   * Check if a file path should be included
+   */
+  private isIncludedFile(path: string): boolean {
+    // Check exclude patterns first
+    for (const pattern of this.config.paths.exclude) {
+      if (this.matchGlob(path, pattern)) {
+        return false;
       }
     }
 
-    if (currentSection) {
-      sections.set(currentSection, currentContent.join("\n").trim());
-    }
-
-    return sections;
-  }
-
-  private parseLinks(content: string): import("../models/Document").DocumentLink[] {
-    const links: import("../models/Document").DocumentLink[] = [];
-    const lines = content.split("\n");
-
-    for (let lineNum = 0; lineNum < lines.length; lineNum++) {
-      const line = lines[lineNum];
-
-      // Wiki links
-      const wikiLinkRegex = /\[\[([^\]|]+)(?:\|[^\]]+)?\]\]/g;
-      let match;
-      while ((match = wikiLinkRegex.exec(line)) !== null) {
-        links.push({
-          target: match[1],
-          line: lineNum + 1,
-          column: match.index,
-          type: "wiki",
-          resolved: false
-        });
-      }
-
-      // Markdown links
-      const mdLinkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
-      while ((match = mdLinkRegex.exec(line)) !== null) {
-        const target = match[2];
-        if (!target.startsWith("http://") && !target.startsWith("https://")) {
-          links.push({
-            target,
-            line: lineNum + 1,
-            column: match.index,
-            type: "markdown",
-            resolved: false
-          });
-        }
+    // Check include patterns
+    for (const pattern of this.config.paths.include) {
+      if (this.matchGlob(path, pattern)) {
+        return true;
       }
     }
 
-    return links;
+    return false;
   }
 
-  private parseTitle(content: string): string | null {
-    const match = content.match(/^#\s+(.+)$/m);
-    return match ? match[1].trim() : null;
+  /**
+   * Simple glob matching
+   */
+  private matchGlob(path: string, pattern: string): boolean {
+    const regex = pattern
+      .replace(/\*\*/g, ".*")
+      .replace(/\*/g, "[^/]*")
+      .replace(/\?/g, ".");
+
+    return new RegExp(`^${regex}$`).test(path);
   }
 
+  /**
+   * Format date as YYYY-MM-DD
+   */
   private formatDate(date: Date): string {
     return date.toISOString().split("T")[0];
   }
 
-  private updateStatusInContent(content: string, status: Status, description?: string): string {
+  /**
+   * Update status in frontmatter content
+   */
+  private updateStatusInContent(
+    content: string,
+    status: string,
+    description?: string
+  ): string {
     const today = this.formatDate(new Date());
 
     // Update status in frontmatter
@@ -366,24 +250,21 @@ export class DocumentStore extends Events {
       `$1${today}`
     );
 
-    // Handle description field (motivo de rejeição)
+    // Handle description field
     if (description) {
-      // Add or update description
       if (/^---\r?\n[\s\S]*?description:/m.test(newContent)) {
-        // Update existing
         newContent = newContent.replace(
           /^(---\r?\n[\s\S]*?description:\s*).*/m,
           `$1"${description.replace(/"/g, '\\"')}"`
         );
       } else {
-        // Add before closing ---
         newContent = newContent.replace(
           /^(---\r?\n[\s\S]*?)(---)/m,
           `$1description: "${description.replace(/"/g, '\\"')}"\n$2`
         );
       }
     } else {
-      // Remove description if exists
+      // Remove description if exists and no new description
       newContent = newContent.replace(
         /^(---\r?\n[\s\S]*?)description:.*\r?\n/m,
         `$1`

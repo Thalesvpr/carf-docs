@@ -27,99 +27,1743 @@ __export(main_exports, {
   default: () => DocsToolkitPlugin
 });
 module.exports = __toCommonJS(main_exports);
-var import_obsidian14 = require("obsidian");
+var import_obsidian19 = require("obsidian");
 
-// src/settings.ts
+// src/config/ConfigLoader.ts
 var import_obsidian = require("obsidian");
-var DEFAULT_SETTINGS = {
-  centralPath: "CENTRAL",
-  projectsPath: "PROJECTS",
-  enabledValidators: [
-    "broken-links",
-    "frontmatter",
-    "orphans",
-    "structure",
-    "title",
-    "stale",
-    "empty-folders",
-    "naming"
-  ],
-  autoUpdateTimestamp: true,
-  autoValidateOnSave: true,
-  autoSyncIndex: true,
-  staleThresholdDays: 180
+
+// src/core/Severity.ts
+var SEVERITY_ORDER = {
+  ["error" /* ERROR */]: 0,
+  ["warning" /* WARNING */]: 1,
+  ["info" /* INFO */]: 2
 };
-var DocsToolkitSettingTab = class extends import_obsidian.PluginSettingTab {
-  constructor(app, plugin) {
-    super(app, plugin);
-    this.plugin = plugin;
+
+// src/config/ConfigSchema.ts
+var DEFAULT_CONFIG = {
+  language: "en",
+  paths: {
+    include: ["**/*.md"],
+    exclude: [".obsidian/**", ".git/**", "node_modules/**", ".plugins/**"]
+  },
+  documentTypes: {},
+  validators: {
+    frontmatter: { enabled: true, severity: "error" /* ERROR */ },
+    sections: { enabled: true, severity: "warning" /* WARNING */ },
+    naming: { enabled: true, severity: "error" /* ERROR */ },
+    title: { enabled: true, severity: "warning" /* WARNING */ },
+    "broken-links": { enabled: true, severity: "error" /* ERROR */ },
+    orphans: { enabled: true, severity: "warning" /* WARNING */ },
+    stale: { enabled: true, severity: "info" /* INFO */, thresholdDays: 180 },
+    "forbidden-patterns": { enabled: true, severity: "warning" /* WARNING */ },
+    "word-count": { enabled: true, severity: "info" /* INFO */ },
+    "empty-folders": { enabled: true, severity: "info" /* INFO */ }
+  },
+  workflow: {
+    statuses: {
+      review: { name: "In Review", icon: "refresh-cw", color: "#f0ad4e" },
+      approved: { name: "Approved", icon: "check", color: "#5cb85c" },
+      rejected: { name: "Rejected", icon: "x", color: "#d9534f" }
+    }
   }
-  display() {
+};
+function isTemplateFrontmatter(fm) {
+  if (!fm || typeof fm !== "object")
+    return false;
+  const obj = fm;
+  return obj.type === "template" && typeof obj.template_for === "string";
+}
+
+// src/config/ConfigLoader.ts
+var CONFIG_FILENAME = ".docslint.yaml";
+var PRESETS_PATH = ".plugins/obsidian-docs-toolkit/config/presets";
+var ConfigLoader = class {
+  constructor(app) {
+    this.configCache = null;
+    this.presetCache = /* @__PURE__ */ new Map();
+    this.app = app;
+  }
+  /**
+   * Load the configuration from .docslint.yaml
+   * Returns default config if file doesn't exist
+   */
+  async loadConfig() {
+    const configFile = this.app.vault.getAbstractFileByPath(CONFIG_FILENAME);
+    if (!configFile || !(configFile instanceof import_obsidian.TFile)) {
+      console.log("DocsLinter: No .docslint.yaml found, using defaults");
+      return this.deepClone(DEFAULT_CONFIG);
+    }
+    try {
+      const content = await this.app.vault.read(configFile);
+      const rawConfig = (0, import_obsidian.parseYaml)(content);
+      const config = await this.resolveExtends(rawConfig);
+      this.configCache = this.mergeWithDefaults(config);
+      return this.configCache;
+    } catch (e) {
+      console.error("DocsLinter: Failed to parse .docslint.yaml", e);
+      return this.deepClone(DEFAULT_CONFIG);
+    }
+  }
+  /**
+   * Get cached config or load if not cached
+   */
+  async getConfig() {
+    if (this.configCache) {
+      return this.configCache;
+    }
+    return this.loadConfig();
+  }
+  /**
+   * Clear the config cache (call when config file changes)
+   */
+  clearCache() {
+    this.configCache = null;
+    this.presetCache.clear();
+  }
+  /**
+   * Resolve extends chain and merge configs
+   */
+  async resolveExtends(config) {
+    if (!config.extends) {
+      return config;
+    }
+    const extendsList = Array.isArray(config.extends) ? config.extends : [config.extends];
+    let baseConfig = {};
+    for (const ext of extendsList) {
+      const preset = await this.loadPreset(ext);
+      baseConfig = this.mergeConfigs(baseConfig, preset);
+    }
+    const { extends: _, ...configWithoutExtends } = config;
+    return this.mergeConfigs(baseConfig, configWithoutExtends);
+  }
+  /**
+   * Load a preset by name or path
+   */
+  async loadPreset(name) {
+    if (this.presetCache.has(name)) {
+      return this.presetCache.get(name);
+    }
+    const path = name.startsWith("./") ? name : `${PRESETS_PATH}/${name}.yaml`;
+    const presetFile = this.app.vault.getAbstractFileByPath(path);
+    if (!presetFile || !(presetFile instanceof import_obsidian.TFile)) {
+      console.warn(`DocsLinter: Preset not found: ${name}`);
+      return {};
+    }
+    try {
+      const content = await this.app.vault.read(presetFile);
+      const preset = (0, import_obsidian.parseYaml)(content);
+      const resolved = await this.resolveExtends(preset);
+      this.presetCache.set(name, resolved);
+      return resolved;
+    } catch (e) {
+      console.error(`DocsLinter: Failed to load preset ${name}`, e);
+      return {};
+    }
+  }
+  /**
+   * Merge two configs (source overwrites base)
+   */
+  mergeConfigs(base, source) {
     var _a;
-    const { containerEl } = this;
-    containerEl.empty();
-    containerEl.createEl("h2", { text: "Docs Toolkit Settings" });
-    containerEl.createEl("h3", { text: "Paths" });
-    new import_obsidian.Setting(containerEl).setName("Central path").setDesc("Path to CENTRAL folder").addText((text) => text.setPlaceholder("CENTRAL").setValue(this.plugin.settings.centralPath).onChange(async (value) => {
-      this.plugin.settings.centralPath = value;
-      await this.plugin.saveSettings();
-    }));
-    new import_obsidian.Setting(containerEl).setName("Projects path").setDesc("Path to PROJECTS folder").addText((text) => text.setPlaceholder("PROJECTS").setValue(this.plugin.settings.projectsPath).onChange(async (value) => {
-      this.plugin.settings.projectsPath = value;
-      await this.plugin.saveSettings();
-    }));
-    containerEl.createEl("h3", { text: "Automation" });
-    new import_obsidian.Setting(containerEl).setName("Auto-update timestamp").setDesc("Automatically update 'updated' field when saving").addToggle((toggle) => toggle.setValue(this.plugin.settings.autoUpdateTimestamp).onChange(async (value) => {
-      this.plugin.settings.autoUpdateTimestamp = value;
-      await this.plugin.saveSettings();
-    }));
-    new import_obsidian.Setting(containerEl).setName("Auto-validate on save").setDesc("Run validation when saving a file").addToggle((toggle) => toggle.setValue(this.plugin.settings.autoValidateOnSave).onChange(async (value) => {
-      this.plugin.settings.autoValidateOnSave = value;
-      await this.plugin.saveSettings();
-    }));
-    new import_obsidian.Setting(containerEl).setName("Auto-sync README index").setDesc("Automatically update README index when files change").addToggle((toggle) => toggle.setValue(this.plugin.settings.autoSyncIndex).onChange(async (value) => {
-      this.plugin.settings.autoSyncIndex = value;
-      await this.plugin.saveSettings();
-    }));
-    new import_obsidian.Setting(containerEl).setName("Stale threshold (days)").setDesc("Documents not updated after this many days are marked as stale").addText((text) => text.setPlaceholder("180").setValue(String(this.plugin.settings.staleThresholdDays)).onChange(async (value) => {
-      const days = parseInt(value);
-      if (!isNaN(days) && days > 0) {
-        this.plugin.settings.staleThresholdDays = days;
-        await this.plugin.saveSettings();
+    return {
+      language: (_a = source.language) != null ? _a : base.language,
+      paths: this.mergePaths(base.paths, source.paths),
+      documentTypes: this.mergeDocumentTypes(base.documentTypes, source.documentTypes),
+      validators: this.mergeValidators(base.validators, source.validators),
+      workflow: this.mergeWorkflow(base.workflow, source.workflow)
+    };
+  }
+  /**
+   * Merge paths config
+   */
+  mergePaths(base, source) {
+    if (!base && !source)
+      return void 0;
+    if (!base)
+      return source;
+    if (!source)
+      return base;
+    return {
+      include: [...base.include || [], ...source.include || []],
+      exclude: [...base.exclude || [], ...source.exclude || []]
+    };
+  }
+  /**
+   * Merge document types (deep merge)
+   */
+  mergeDocumentTypes(base, source) {
+    if (!base && !source)
+      return void 0;
+    if (!base)
+      return source;
+    if (!source)
+      return base;
+    const result = { ...base };
+    for (const [key, value] of Object.entries(source)) {
+      if (result[key]) {
+        result[key] = {
+          ...result[key],
+          ...value,
+          detection: { ...result[key].detection, ...value.detection },
+          frontmatter: value.frontmatter ? { ...result[key].frontmatter, ...value.frontmatter } : result[key].frontmatter,
+          sections: value.sections ? { ...result[key].sections, ...value.sections } : result[key].sections,
+          title: value.title ? { ...result[key].title, ...value.title } : result[key].title
+        };
+      } else {
+        result[key] = value;
       }
-    }));
-    containerEl.createEl("h3", { text: "Validators" });
-    const validators = ((_a = this.plugin.store) == null ? void 0 : _a.getValidators()) || [];
-    for (const validator of validators) {
-      new import_obsidian.Setting(containerEl).setName(validator.name).setDesc(validator.description).addToggle((toggle) => toggle.setValue(this.plugin.settings.enabledValidators.includes(validator.id)).onChange(async (value) => {
-        var _a2;
-        if (value) {
-          if (!this.plugin.settings.enabledValidators.includes(validator.id)) {
-            this.plugin.settings.enabledValidators.push(validator.id);
-          }
-        } else {
-          this.plugin.settings.enabledValidators = this.plugin.settings.enabledValidators.filter((v) => v !== validator.id);
+    }
+    return result;
+  }
+  /**
+   * Merge validators config
+   */
+  mergeValidators(base, source) {
+    if (!base && !source)
+      return void 0;
+    if (!base)
+      return source;
+    if (!source)
+      return base;
+    const result = { ...base };
+    for (const [key, value] of Object.entries(source)) {
+      if (result[key]) {
+        result[key] = { ...result[key], ...value };
+      } else {
+        result[key] = value;
+      }
+    }
+    return result;
+  }
+  /**
+   * Merge workflow config
+   */
+  mergeWorkflow(base, source) {
+    if (!base && !source)
+      return void 0;
+    if (!base)
+      return source;
+    if (!source)
+      return base;
+    return {
+      statuses: { ...base.statuses, ...source.statuses }
+    };
+  }
+  /**
+   * Merge config with defaults
+   */
+  mergeWithDefaults(config) {
+    var _a, _b, _c, _d, _e, _f, _g;
+    return {
+      language: (_a = config.language) != null ? _a : DEFAULT_CONFIG.language,
+      paths: {
+        include: (_c = (_b = config.paths) == null ? void 0 : _b.include) != null ? _c : DEFAULT_CONFIG.paths.include,
+        exclude: (_e = (_d = config.paths) == null ? void 0 : _d.exclude) != null ? _e : DEFAULT_CONFIG.paths.exclude
+      },
+      documentTypes: (_f = config.documentTypes) != null ? _f : DEFAULT_CONFIG.documentTypes,
+      validators: {
+        ...DEFAULT_CONFIG.validators,
+        ...config.validators
+      },
+      workflow: {
+        statuses: {
+          ...DEFAULT_CONFIG.workflow.statuses,
+          ...(_g = config.workflow) == null ? void 0 : _g.statuses
         }
-        await this.plugin.saveSettings();
-        (_a2 = this.plugin.store) == null ? void 0 : _a2.setValidatorEnabled(validator.id, value);
-      }));
+      }
+    };
+  }
+  /**
+   * Deep clone an object
+   */
+  deepClone(obj) {
+    return JSON.parse(JSON.stringify(obj));
+  }
+};
+
+// src/config/ConfigWatcher.ts
+var import_obsidian2 = require("obsidian");
+var CONFIG_FILENAME2 = ".docslint.yaml";
+var ConfigWatcher = class extends import_obsidian2.Events {
+  constructor(app, loader) {
+    super();
+    this.currentConfig = null;
+    this.app = app;
+    this.loader = loader;
+  }
+  /**
+   * Start watching for config file changes
+   */
+  async start() {
+    this.currentConfig = await this.loader.loadConfig();
+    this.app.vault.on("modify", async (file) => {
+      if (file instanceof import_obsidian2.TFile && file.path === CONFIG_FILENAME2) {
+        await this.reloadConfig();
+      }
+    });
+    this.app.vault.on("create", async (file) => {
+      if (file instanceof import_obsidian2.TFile && file.path === CONFIG_FILENAME2) {
+        await this.reloadConfig();
+      }
+    });
+    this.app.vault.on("delete", async (file) => {
+      if (file instanceof import_obsidian2.TFile && file.path === CONFIG_FILENAME2) {
+        await this.reloadConfig();
+      }
+    });
+    this.app.vault.on("rename", async (file, oldPath) => {
+      if (file instanceof import_obsidian2.TFile) {
+        if (file.path === CONFIG_FILENAME2 || oldPath === CONFIG_FILENAME2) {
+          await this.reloadConfig();
+        }
+      }
+    });
+  }
+  /**
+   * Reload config and emit event if changed
+   */
+  async reloadConfig() {
+    this.loader.clearCache();
+    const newConfig = await this.loader.loadConfig();
+    const changed = JSON.stringify(this.currentConfig) !== JSON.stringify(newConfig);
+    if (changed) {
+      this.currentConfig = newConfig;
+      this.trigger("config-changed", newConfig);
+    }
+  }
+  /**
+   * Get the current config
+   */
+  getConfig() {
+    return this.currentConfig;
+  }
+};
+
+// src/core/Issue.ts
+var Issue = class {
+  constructor(file, validator, severity, messageKey, messageParams = {}, line = null, column = null, suggestionKey = null, suggestionParams = {}) {
+    this.file = file;
+    this.validator = validator;
+    this.severity = severity;
+    this.messageKey = messageKey;
+    this.messageParams = messageParams;
+    this.line = line;
+    this.column = column;
+    this.suggestionKey = suggestionKey;
+    this.suggestionParams = suggestionParams;
+  }
+  /**
+   * Create an error issue
+   */
+  static error(file, validator, messageKey, messageParams, line, suggestionKey, suggestionParams) {
+    return new Issue(
+      file,
+      validator,
+      "error" /* ERROR */,
+      messageKey,
+      messageParams || {},
+      line != null ? line : null,
+      null,
+      suggestionKey != null ? suggestionKey : null,
+      suggestionParams || {}
+    );
+  }
+  /**
+   * Create a warning issue
+   */
+  static warning(file, validator, messageKey, messageParams, line, suggestionKey, suggestionParams) {
+    return new Issue(
+      file,
+      validator,
+      "warning" /* WARNING */,
+      messageKey,
+      messageParams || {},
+      line != null ? line : null,
+      null,
+      suggestionKey != null ? suggestionKey : null,
+      suggestionParams || {}
+    );
+  }
+  /**
+   * Create an info issue
+   */
+  static info(file, validator, messageKey, messageParams, line, suggestionKey, suggestionParams) {
+    return new Issue(
+      file,
+      validator,
+      "info" /* INFO */,
+      messageKey,
+      messageParams || {},
+      line != null ? line : null,
+      null,
+      suggestionKey != null ? suggestionKey : null,
+      suggestionParams || {}
+    );
+  }
+  /**
+   * Get formatted location string
+   */
+  get location() {
+    if (this.line !== null) {
+      return `${this.file.name}:${this.line}`;
+    }
+    return this.file.name;
+  }
+  /**
+   * Get severity icon
+   */
+  get icon() {
+    switch (this.severity) {
+      case "error" /* ERROR */:
+        return "\u2717";
+      case "warning" /* WARNING */:
+        return "\u26A0";
+      case "info" /* INFO */:
+        return "\u2139";
+    }
+  }
+  /**
+   * Get severity class for styling
+   */
+  get severityClass() {
+    return `docs-${this.severity}`;
+  }
+  /**
+   * Compare issues for sorting (errors first, then warnings, then info)
+   */
+  static compare(a, b) {
+    const severityDiff = SEVERITY_ORDER[a.severity] - SEVERITY_ORDER[b.severity];
+    if (severityDiff !== 0)
+      return severityDiff;
+    const validatorDiff = a.validator.localeCompare(b.validator);
+    if (validatorDiff !== 0)
+      return validatorDiff;
+    const fileDiff = a.file.path.localeCompare(b.file.path);
+    if (fileDiff !== 0)
+      return fileDiff;
+    return (a.line || 0) - (b.line || 0);
+  }
+};
+function calculateIssueSummary(issues) {
+  return {
+    total: issues.length,
+    errors: issues.filter((i) => i.severity === "error" /* ERROR */).length,
+    warnings: issues.filter((i) => i.severity === "warning" /* WARNING */).length,
+    info: issues.filter((i) => i.severity === "info" /* INFO */).length
+  };
+}
+
+// src/validators/base/Validator.ts
+var LocalValidator = class {
+  constructor() {
+    this.isGlobal = false;
+  }
+};
+var GlobalValidator = class {
+  constructor() {
+    this.isGlobal = true;
+  }
+};
+function getConfiguredSeverity(validatorId, config, defaultSeverity) {
+  const validatorConfig = config.validators[validatorId];
+  if (validatorConfig == null ? void 0 : validatorConfig.severity) {
+    return validatorConfig.severity;
+  }
+  return defaultSeverity;
+}
+
+// src/validators/builtin/FrontmatterValidator.ts
+var FrontmatterValidator = class extends LocalValidator {
+  constructor() {
+    super(...arguments);
+    this.id = "frontmatter";
+    this.nameKey = "validators.frontmatter.name";
+    this.descriptionKey = "validators.frontmatter.description";
+    this.defaultSeverity = "error" /* ERROR */;
+  }
+  async validate(doc, ctx) {
+    const issues = [];
+    const typeConfig = ctx.documentTypeConfig;
+    if (!(typeConfig == null ? void 0 : typeConfig.frontmatter)) {
+      return issues;
+    }
+    const severity = getConfiguredSeverity(this.id, ctx.config, this.defaultSeverity);
+    const fmConfig = typeConfig.frontmatter;
+    if (!doc.hasFrontmatter) {
+      issues.push(new Issue(
+        doc.file,
+        this.id,
+        severity,
+        "validators.frontmatter.missing",
+        {},
+        1,
+        null,
+        "validators.frontmatter.missing_suggestion"
+      ));
+      return issues;
+    }
+    if (fmConfig.required) {
+      for (const field of fmConfig.required) {
+        if (!doc.hasFrontmatterField(field)) {
+          issues.push(new Issue(
+            doc.file,
+            this.id,
+            severity,
+            "validators.frontmatter.required_field",
+            { field },
+            1,
+            null,
+            "validators.frontmatter.required_field_suggestion",
+            { field }
+          ));
+        }
+      }
+    }
+    if (fmConfig.fields) {
+      for (const [field, fieldConfig] of Object.entries(fmConfig.fields)) {
+        const value = doc.getFrontmatterField(field);
+        if (value === void 0)
+          continue;
+        const fieldIssues = this.validateField(doc, field, value, fieldConfig, ctx, severity);
+        issues.push(...fieldIssues);
+      }
+    }
+    return issues;
+  }
+  /**
+   * Validate a single field against its configuration
+   */
+  validateField(doc, field, value, config, ctx, severity) {
+    const issues = [];
+    if (config.type) {
+      const actualType = this.getValueType(value);
+      if (actualType !== config.type) {
+        issues.push(new Issue(
+          doc.file,
+          this.id,
+          severity,
+          "validators.frontmatter.wrong_type",
+          { field, expected: config.type, actual: actualType },
+          1
+        ));
+        return issues;
+      }
+    }
+    if (config.pattern && typeof value === "string") {
+      const regex = new RegExp(config.pattern);
+      if (!regex.test(value)) {
+        issues.push(new Issue(
+          doc.file,
+          this.id,
+          severity,
+          "validators.frontmatter.pattern_mismatch",
+          { field, pattern: config.pattern, value },
+          1
+        ));
+      }
+    }
+    if (config.enum && typeof value === "string") {
+      const normalizedValue = value.toLowerCase();
+      const normalizedEnum = config.enum.map((e) => e.toLowerCase());
+      if (!normalizedEnum.includes(normalizedValue)) {
+        issues.push(new Issue(
+          doc.file,
+          this.id,
+          severity,
+          "validators.frontmatter.invalid_enum",
+          { field, value, allowed: config.enum.join(", ") },
+          1
+        ));
+      }
+    }
+    if (config.items && Array.isArray(value)) {
+      for (const item of value) {
+        if (config.items.enum && typeof item === "string") {
+          const normalizedItem = item.toUpperCase();
+          const normalizedEnum = config.items.enum.map((e) => e.toUpperCase());
+          if (!normalizedEnum.includes(normalizedItem)) {
+            issues.push(new Issue(
+              doc.file,
+              this.id,
+              "warning" /* WARNING */,
+              "validators.frontmatter.invalid_array_item",
+              { field, item, allowed: config.items.enum.join(", ") },
+              1
+            ));
+          }
+        }
+        if (config.items.pattern && typeof item === "string") {
+          const regex = new RegExp(config.items.pattern);
+          if (!regex.test(item)) {
+            issues.push(new Issue(
+              doc.file,
+              this.id,
+              "warning" /* WARNING */,
+              "validators.frontmatter.array_item_pattern_mismatch",
+              { field, item, pattern: config.items.pattern },
+              1
+            ));
+          }
+        }
+      }
+    }
+    if (typeof value === "number") {
+      if (config.min !== void 0 && value < config.min) {
+        issues.push(new Issue(
+          doc.file,
+          this.id,
+          severity,
+          "validators.frontmatter.below_min",
+          { field, value, min: config.min },
+          1
+        ));
+      }
+      if (config.max !== void 0 && value > config.max) {
+        issues.push(new Issue(
+          doc.file,
+          this.id,
+          severity,
+          "validators.frontmatter.above_max",
+          { field, value, max: config.max },
+          1
+        ));
+      }
+    }
+    if (typeof value === "string") {
+      if (config.min !== void 0 && value.length < config.min) {
+        issues.push(new Issue(
+          doc.file,
+          this.id,
+          severity,
+          "validators.frontmatter.too_short",
+          { field, length: value.length, min: config.min },
+          1
+        ));
+      }
+      if (config.max !== void 0 && value.length > config.max) {
+        issues.push(new Issue(
+          doc.file,
+          this.id,
+          severity,
+          "validators.frontmatter.too_long",
+          { field, length: value.length, max: config.max },
+          1
+        ));
+      }
+    }
+    if (Array.isArray(value)) {
+      if (config.min !== void 0 && value.length < config.min) {
+        issues.push(new Issue(
+          doc.file,
+          this.id,
+          severity,
+          "validators.frontmatter.array_too_short",
+          { field, length: value.length, min: config.min },
+          1
+        ));
+      }
+      if (config.max !== void 0 && value.length > config.max) {
+        issues.push(new Issue(
+          doc.file,
+          this.id,
+          severity,
+          "validators.frontmatter.array_too_long",
+          { field, length: value.length, max: config.max },
+          1
+        ));
+      }
+    }
+    return issues;
+  }
+  /**
+   * Get the type of a value
+   */
+  getValueType(value) {
+    if (Array.isArray(value))
+      return "array";
+    if (value === null)
+      return "null";
+    return typeof value;
+  }
+};
+
+// src/core/Document.ts
+var Document = class {
+  constructor(file, frontmatter, content, bodyContent, sections, links, title) {
+    /** Detected document type (from config) */
+    this.detectedType = null;
+    this.file = file;
+    this.frontmatter = frontmatter;
+    this.content = content;
+    this.bodyContent = bodyContent;
+    this.sections = sections;
+    this.links = links;
+    this.title = title;
+  }
+  /**
+   * Get the document status from frontmatter
+   */
+  get status() {
+    if (this.frontmatter && typeof this.frontmatter.status === "string") {
+      return this.frontmatter.status.toLowerCase();
+    }
+    return "review";
+  }
+  /**
+   * Get the document ID from frontmatter
+   */
+  get id() {
+    if (this.frontmatter && typeof this.frontmatter.id === "string") {
+      return this.frontmatter.id;
+    }
+    return null;
+  }
+  /**
+   * Check if document has frontmatter
+   */
+  get hasFrontmatter() {
+    return this.frontmatter !== null;
+  }
+  /**
+   * Get frontmatter field value with type checking
+   */
+  getFrontmatterField(field) {
+    if (!this.frontmatter)
+      return void 0;
+    return this.frontmatter[field];
+  }
+  /**
+   * Check if frontmatter field exists
+   */
+  hasFrontmatterField(field) {
+    return this.frontmatter !== null && field in this.frontmatter;
+  }
+  /**
+   * Get section names (normalized for comparison)
+   */
+  getSectionNames() {
+    return Array.from(this.sections.keys());
+  }
+  /**
+   * Check if section exists (with normalization)
+   */
+  hasSection(sectionName) {
+    const normalized = Document.normalizeString(sectionName);
+    return this.getSectionNames().some(
+      (s) => Document.normalizeString(s) === normalized
+    );
+  }
+  /**
+   * Get section content by name (with normalization)
+   */
+  getSection(sectionName) {
+    const normalized = Document.normalizeString(sectionName);
+    for (const [name, content] of this.sections) {
+      if (Document.normalizeString(name) === normalized) {
+        return content;
+      }
+    }
+    return void 0;
+  }
+  /**
+   * Normalize string for comparison (removes accents, lowercases, removes non-alphanumeric)
+   */
+  static normalizeString(str) {
+    return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, "");
+  }
+  /**
+   * Count words in body content (excludes frontmatter and code blocks)
+   */
+  countWords() {
+    const withoutCode = this.bodyContent.replace(/```[\s\S]*?```/g, "").replace(/`[^`]+`/g, "");
+    const withoutLinks = withoutCode.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, "$2$1").replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
+    const words = withoutLinks.trim().split(/\s+/).filter((w) => w.length > 0);
+    return words.length;
+  }
+  /**
+   * Count words in a specific section
+   */
+  countWordsInSection(sectionName) {
+    const content = this.getSection(sectionName);
+    if (!content)
+      return 0;
+    const withoutCode = content.replace(/```[\s\S]*?```/g, "").replace(/`[^`]+`/g, "");
+    const words = withoutCode.trim().split(/\s+/).filter((w) => w.length > 0);
+    return words.length;
+  }
+  /**
+   * Get the last modified date
+   */
+  get lastModified() {
+    return new Date(this.file.stat.mtime);
+  }
+  /**
+   * Get days since last modification
+   */
+  get daysSinceModified() {
+    const now = Date.now();
+    const diff = now - this.file.stat.mtime;
+    return Math.floor(diff / (1e3 * 60 * 60 * 24));
+  }
+  /**
+   * Get the updated date from frontmatter
+   */
+  get updatedDate() {
+    if (this.frontmatter && typeof this.frontmatter.updated === "string") {
+      const date = new Date(this.frontmatter.updated);
+      return isNaN(date.getTime()) ? null : date;
+    }
+    return null;
+  }
+  /**
+   * Get days since last updated (from frontmatter)
+   */
+  get daysSinceUpdated() {
+    const updated = this.updatedDate;
+    if (!updated)
+      return null;
+    const now = Date.now();
+    const diff = now - updated.getTime();
+    return Math.floor(diff / (1e3 * 60 * 60 * 24));
+  }
+};
+
+// src/validators/builtin/SectionsValidator.ts
+var SectionsValidator = class extends LocalValidator {
+  constructor() {
+    super(...arguments);
+    this.id = "sections";
+    this.nameKey = "validators.sections.name";
+    this.descriptionKey = "validators.sections.description";
+    this.defaultSeverity = "warning" /* WARNING */;
+  }
+  async validate(doc, ctx) {
+    var _a, _b, _c, _d, _e;
+    const issues = [];
+    const severity = getConfiguredSeverity(this.id, ctx.config, this.defaultSeverity);
+    const typeRequired = ((_b = (_a = ctx.documentTypeConfig) == null ? void 0 : _a.sections) == null ? void 0 : _b.required) || [];
+    const templateRequired = ((_c = ctx.templateValidation) == null ? void 0 : _c.required_sections) || [];
+    const requiredSections = [.../* @__PURE__ */ new Set([...typeRequired, ...templateRequired])];
+    if (requiredSections.length === 0) {
+      return issues;
+    }
+    const existingSections = doc.getSectionNames().map((s) => Document.normalizeString(s));
+    for (const required of requiredSections) {
+      const normalizedRequired = Document.normalizeString(required);
+      const found = existingSections.some(
+        (s) => s === normalizedRequired || s.includes(normalizedRequired) || normalizedRequired.includes(s)
+      );
+      if (!found) {
+        issues.push(new Issue(
+          doc.file,
+          this.id,
+          severity,
+          "validators.sections.missing_required",
+          { section: required },
+          void 0,
+          null,
+          "validators.sections.missing_required_suggestion",
+          { section: required }
+        ));
+      }
+    }
+    const forbidden = ((_e = (_d = ctx.documentTypeConfig) == null ? void 0 : _d.sections) == null ? void 0 : _e.forbidden) || [];
+    for (const forbiddenSection of forbidden) {
+      if (doc.hasSection(forbiddenSection)) {
+        issues.push(new Issue(
+          doc.file,
+          this.id,
+          severity,
+          "validators.sections.forbidden",
+          { section: forbiddenSection },
+          void 0
+        ));
+      }
+    }
+    return issues;
+  }
+};
+
+// src/validators/builtin/NamingValidator.ts
+var NamingValidator = class extends LocalValidator {
+  constructor() {
+    super(...arguments);
+    this.id = "naming";
+    this.nameKey = "validators.naming.name";
+    this.descriptionKey = "validators.naming.description";
+    this.defaultSeverity = "error" /* ERROR */;
+  }
+  async validate(doc, ctx) {
+    var _a, _b;
+    const issues = [];
+    const severity = getConfiguredSeverity(this.id, ctx.config, this.defaultSeverity);
+    if (!((_b = (_a = ctx.documentTypeConfig) == null ? void 0 : _a.detection) == null ? void 0 : _b.filename)) {
+      return issues;
+    }
+    const pattern = ctx.documentTypeConfig.detection.filename;
+    try {
+      const regex = new RegExp(pattern);
+      if (!regex.test(doc.file.name)) {
+        issues.push(new Issue(
+          doc.file,
+          this.id,
+          severity,
+          "validators.naming.pattern_mismatch",
+          {
+            filename: doc.file.name,
+            pattern,
+            typeName: ctx.documentTypeConfig.name
+          },
+          void 0,
+          null,
+          "validators.naming.pattern_mismatch_suggestion",
+          { pattern }
+        ));
+      }
+    } catch (e) {
+      console.error(`Invalid regex pattern for naming validator: ${pattern}`, e);
+    }
+    return issues;
+  }
+};
+
+// src/validators/builtin/TitleValidator.ts
+var TitleValidator = class extends LocalValidator {
+  constructor() {
+    super(...arguments);
+    this.id = "title";
+    this.nameKey = "validators.title.name";
+    this.descriptionKey = "validators.title.description";
+    this.defaultSeverity = "warning" /* WARNING */;
+  }
+  async validate(doc, ctx) {
+    var _a;
+    const issues = [];
+    const severity = getConfiguredSeverity(this.id, ctx.config, this.defaultSeverity);
+    const titleConfig = (_a = ctx.documentTypeConfig) == null ? void 0 : _a.title;
+    if (!doc.title) {
+      if ((titleConfig == null ? void 0 : titleConfig.required) !== false) {
+        issues.push(new Issue(
+          doc.file,
+          this.id,
+          severity,
+          "validators.title.missing",
+          {},
+          void 0,
+          null,
+          "validators.title.missing_suggestion"
+        ));
+      }
+      return issues;
+    }
+    if (titleConfig == null ? void 0 : titleConfig.pattern) {
+      try {
+        const regex = new RegExp(titleConfig.pattern);
+        const titleLine = this.findTitleLine(doc.content);
+        if (!regex.test(titleLine)) {
+          issues.push(new Issue(
+            doc.file,
+            this.id,
+            severity,
+            "validators.title.pattern_mismatch",
+            {
+              title: doc.title,
+              pattern: titleConfig.pattern
+            },
+            this.findTitleLineNumber(doc.content),
+            null,
+            "validators.title.pattern_mismatch_suggestion",
+            { pattern: titleConfig.pattern }
+          ));
+        }
+      } catch (e) {
+        console.error(`Invalid regex pattern for title validator: ${titleConfig.pattern}`, e);
+      }
+    }
+    return issues;
+  }
+  /**
+   * Find the title line in content
+   */
+  findTitleLine(content) {
+    const match = content.match(/^#\s+(.+)$/m);
+    return match ? match[0] : "";
+  }
+  /**
+   * Find the line number of the title
+   */
+  findTitleLineNumber(content) {
+    const lines = content.split("\n");
+    for (let i = 0; i < lines.length; i++) {
+      if (lines[i].match(/^#\s+/)) {
+        return i + 1;
+      }
+    }
+    return 1;
+  }
+};
+
+// src/validators/builtin/WordCountValidator.ts
+var WordCountValidator = class extends LocalValidator {
+  constructor() {
+    super(...arguments);
+    this.id = "word-count";
+    this.nameKey = "validators.wordCount.name";
+    this.descriptionKey = "validators.wordCount.description";
+    this.defaultSeverity = "info" /* INFO */;
+  }
+  async validate(doc, ctx) {
+    const issues = [];
+    const templateValidation = ctx.templateValidation;
+    if (!templateValidation) {
+      return issues;
+    }
+    const severity = getConfiguredSeverity(this.id, ctx.config, this.defaultSeverity);
+    const totalWords = doc.countWords();
+    if (templateValidation.max_words !== void 0) {
+      if (totalWords > templateValidation.max_words) {
+        issues.push(new Issue(
+          doc.file,
+          this.id,
+          severity,
+          "validators.wordCount.exceeds_max",
+          {
+            count: totalWords,
+            max: templateValidation.max_words
+          }
+        ));
+      }
+    }
+    if (templateValidation.min_words !== void 0) {
+      if (totalWords < templateValidation.min_words) {
+        issues.push(new Issue(
+          doc.file,
+          this.id,
+          severity,
+          "validators.wordCount.below_min",
+          {
+            count: totalWords,
+            min: templateValidation.min_words
+          }
+        ));
+      }
+    }
+    if (templateValidation.max_words_per_section !== void 0) {
+      for (const sectionName of doc.getSectionNames()) {
+        const sectionWords = doc.countWordsInSection(sectionName);
+        if (sectionWords > templateValidation.max_words_per_section) {
+          issues.push(new Issue(
+            doc.file,
+            this.id,
+            severity,
+            "validators.wordCount.section_exceeds_max",
+            {
+              section: sectionName,
+              count: sectionWords,
+              max: templateValidation.max_words_per_section
+            }
+          ));
+        }
+      }
+    }
+    return issues;
+  }
+};
+
+// src/validators/builtin/ForbiddenPatternsValidator.ts
+var ForbiddenPatternsValidator = class extends LocalValidator {
+  constructor() {
+    super(...arguments);
+    this.id = "forbidden-patterns";
+    this.nameKey = "validators.forbiddenPatterns.name";
+    this.descriptionKey = "validators.forbiddenPatterns.description";
+    this.defaultSeverity = "warning" /* WARNING */;
+  }
+  async validate(doc, ctx) {
+    const issues = [];
+    const templateValidation = ctx.templateValidation;
+    if (!(templateValidation == null ? void 0 : templateValidation.forbidden) || templateValidation.forbidden.length === 0) {
+      return issues;
+    }
+    const severity = getConfiguredSeverity(this.id, ctx.config, this.defaultSeverity);
+    const content = doc.bodyContent;
+    const lines = content.split("\n");
+    for (const pattern of templateValidation.forbidden) {
+      try {
+        const regex = new RegExp(pattern, "gi");
+        for (let lineNum = 0; lineNum < lines.length; lineNum++) {
+          const line = lines[lineNum];
+          let match;
+          while ((match = regex.exec(line)) !== null) {
+            issues.push(new Issue(
+              doc.file,
+              this.id,
+              severity,
+              "validators.forbiddenPatterns.found",
+              { pattern, match: match[0] },
+              lineNum + 1,
+              match.index,
+              "validators.forbiddenPatterns.found_suggestion",
+              { pattern }
+            ));
+            if (match[0].length === 0) {
+              regex.lastIndex++;
+            }
+          }
+        }
+      } catch (e) {
+        for (let lineNum = 0; lineNum < lines.length; lineNum++) {
+          const line = lines[lineNum];
+          let index = 0;
+          while ((index = line.indexOf(pattern, index)) !== -1) {
+            issues.push(new Issue(
+              doc.file,
+              this.id,
+              severity,
+              "validators.forbiddenPatterns.found",
+              { pattern, match: pattern },
+              lineNum + 1,
+              index,
+              "validators.forbiddenPatterns.found_suggestion",
+              { pattern }
+            ));
+            index += pattern.length;
+          }
+        }
+      }
+    }
+    return issues;
+  }
+};
+
+// src/validators/builtin/LinksValidator.ts
+var import_obsidian3 = require("obsidian");
+var LinksValidator = class extends LocalValidator {
+  constructor() {
+    super(...arguments);
+    this.id = "broken-links";
+    this.nameKey = "validators.links.name";
+    this.descriptionKey = "validators.links.description";
+    this.defaultSeverity = "error" /* ERROR */;
+  }
+  async validate(doc, ctx) {
+    const issues = [];
+    const severity = getConfiguredSeverity(this.id, ctx.config, this.defaultSeverity);
+    for (const link of doc.links) {
+      if (link.target.startsWith("http://") || link.target.startsWith("https://")) {
+        continue;
+      }
+      if (link.target.startsWith("#")) {
+        continue;
+      }
+      const resolved = this.resolveLink(link.target, doc.file, ctx);
+      if (!resolved) {
+        issues.push(new Issue(
+          doc.file,
+          this.id,
+          severity,
+          "validators.links.broken",
+          { target: link.target },
+          link.line,
+          link.column,
+          "validators.links.broken_suggestion",
+          { target: link.target }
+        ));
+      }
+    }
+    return issues;
+  }
+  /**
+   * Resolve a link target to a file
+   */
+  resolveLink(target, sourceFile, ctx) {
+    const [path] = target.split("#");
+    if (!path)
+      return null;
+    const metadataCache = ctx.app.metadataCache;
+    const linkedFile = metadataCache.getFirstLinkpathDest(path, sourceFile.path);
+    if (linkedFile) {
+      return linkedFile;
+    }
+    const resolvedPath = this.resolveRelativePath(path, sourceFile);
+    const file = ctx.app.vault.getAbstractFileByPath(resolvedPath);
+    if (file instanceof import_obsidian3.TFile) {
+      return file;
+    }
+    if (!path.endsWith(".md")) {
+      const withMd = ctx.app.vault.getAbstractFileByPath(resolvedPath + ".md");
+      if (withMd instanceof import_obsidian3.TFile) {
+        return withMd;
+      }
+    }
+    return null;
+  }
+  /**
+   * Resolve a relative path from a source file
+   */
+  resolveRelativePath(path, sourceFile) {
+    var _a;
+    if (path.startsWith("/")) {
+      return path.slice(1);
+    }
+    const decodedPath = decodeURIComponent(path);
+    const sourceDir = ((_a = sourceFile.parent) == null ? void 0 : _a.path) || "";
+    if (decodedPath.startsWith("./")) {
+      return sourceDir ? `${sourceDir}/${decodedPath.slice(2)}` : decodedPath.slice(2);
+    }
+    if (decodedPath.startsWith("../")) {
+      const parts = sourceDir.split("/");
+      let relativeParts = decodedPath.split("/");
+      let finalParts = [...parts];
+      while (relativeParts[0] === "..") {
+        finalParts.pop();
+        relativeParts.shift();
+      }
+      return [...finalParts, ...relativeParts].join("/");
+    }
+    return sourceDir ? `${sourceDir}/${decodedPath}` : decodedPath;
+  }
+};
+
+// src/validators/builtin/StaleValidator.ts
+var StaleValidator = class extends LocalValidator {
+  constructor() {
+    super(...arguments);
+    this.id = "stale";
+    this.nameKey = "validators.stale.name";
+    this.descriptionKey = "validators.stale.description";
+    this.defaultSeverity = "info" /* INFO */;
+  }
+  async validate(doc, ctx) {
+    var _a, _b;
+    const issues = [];
+    const severity = getConfiguredSeverity(this.id, ctx.config, this.defaultSeverity);
+    const validatorConfig = ctx.config.validators[this.id];
+    const thresholdDays = (_a = validatorConfig == null ? void 0 : validatorConfig.thresholdDays) != null ? _a : 180;
+    const daysSinceUpdate = (_b = doc.daysSinceUpdated) != null ? _b : doc.daysSinceModified;
+    if (daysSinceUpdate > thresholdDays) {
+      issues.push(new Issue(
+        doc.file,
+        this.id,
+        severity,
+        "validators.stale.outdated",
+        {
+          days: daysSinceUpdate,
+          threshold: thresholdDays
+        },
+        void 0,
+        null,
+        "validators.stale.outdated_suggestion"
+      ));
+    }
+    return issues;
+  }
+};
+
+// src/validators/builtin/OrphansValidator.ts
+var import_obsidian4 = require("obsidian");
+var OrphansValidator = class extends GlobalValidator {
+  constructor() {
+    super(...arguments);
+    this.id = "orphans";
+    this.nameKey = "validators.orphans.name";
+    this.descriptionKey = "validators.orphans.description";
+    this.defaultSeverity = "warning" /* WARNING */;
+  }
+  async validateAll(docs, ctx) {
+    const issues = [];
+    const severity = getConfiguredSeverity(this.id, ctx.config, this.defaultSeverity);
+    const validatorConfig = ctx.config.validators[this.id];
+    const excludePatterns = (validatorConfig == null ? void 0 : validatorConfig.exclude) || [];
+    const linkedFiles = /* @__PURE__ */ new Set();
+    for (const doc of docs) {
+      for (const link of doc.links) {
+        const resolved = this.resolveLink(link.target, doc.file, ctx);
+        if (resolved) {
+          linkedFiles.add(resolved.path);
+        }
+      }
+    }
+    for (const doc of docs) {
+      if (this.isExcluded(doc.file.path, excludePatterns)) {
+        continue;
+      }
+      if (doc.file.name === "README.md") {
+        continue;
+      }
+      if (!linkedFiles.has(doc.file.path)) {
+        issues.push(new Issue(
+          doc.file,
+          this.id,
+          severity,
+          "validators.orphans.not_linked",
+          { filename: doc.file.name },
+          void 0,
+          null,
+          "validators.orphans.not_linked_suggestion"
+        ));
+      }
+    }
+    return issues;
+  }
+  /**
+   * Check if a path matches any exclude pattern
+   */
+  isExcluded(path, patterns) {
+    for (const pattern of patterns) {
+      const regex = pattern.replace(/\*\*/g, ".*").replace(/\*/g, "[^/]*");
+      if (new RegExp(regex).test(path)) {
+        return true;
+      }
+    }
+    return false;
+  }
+  /**
+   * Resolve a link target to a file
+   */
+  resolveLink(target, sourceFile, ctx) {
+    var _a;
+    const [path] = target.split("#");
+    if (!path)
+      return null;
+    if (path.startsWith("http://") || path.startsWith("https://")) {
+      return null;
+    }
+    const metadataCache = ctx.app.metadataCache;
+    const linkedFile = metadataCache.getFirstLinkpathDest(path, sourceFile.path);
+    if (linkedFile) {
+      return linkedFile;
+    }
+    let resolvedPath = path;
+    if (path.startsWith("./") || path.startsWith("../")) {
+      const sourceDir = ((_a = sourceFile.parent) == null ? void 0 : _a.path) || "";
+      resolvedPath = this.resolvePath(path, sourceDir);
+    }
+    const file = ctx.app.vault.getAbstractFileByPath(resolvedPath);
+    if (file instanceof import_obsidian4.TFile) {
+      return file;
+    }
+    if (!resolvedPath.endsWith(".md")) {
+      const withMd = ctx.app.vault.getAbstractFileByPath(resolvedPath + ".md");
+      if (withMd instanceof import_obsidian4.TFile) {
+        return withMd;
+      }
+    }
+    return null;
+  }
+  /**
+   * Resolve a relative path
+   */
+  resolvePath(path, sourceDir) {
+    const decodedPath = decodeURIComponent(path);
+    if (decodedPath.startsWith("./")) {
+      return sourceDir ? `${sourceDir}/${decodedPath.slice(2)}` : decodedPath.slice(2);
+    }
+    if (decodedPath.startsWith("../")) {
+      const parts = sourceDir.split("/");
+      let relativeParts = decodedPath.split("/");
+      let finalParts = [...parts];
+      while (relativeParts[0] === "..") {
+        finalParts.pop();
+        relativeParts.shift();
+      }
+      return [...finalParts, ...relativeParts].join("/");
+    }
+    return decodedPath;
+  }
+};
+
+// src/validators/builtin/EmptyFoldersValidator.ts
+var import_obsidian5 = require("obsidian");
+var EmptyFoldersValidator = class extends GlobalValidator {
+  constructor() {
+    super(...arguments);
+    this.id = "empty-folders";
+    this.nameKey = "validators.emptyFolders.name";
+    this.descriptionKey = "validators.emptyFolders.description";
+    this.defaultSeverity = "info" /* INFO */;
+  }
+  async validateAll(docs, ctx) {
+    const issues = [];
+    const severity = getConfiguredSeverity(this.id, ctx.config, this.defaultSeverity);
+    const folders = this.getAllFolders(ctx);
+    const foldersWithDocs = /* @__PURE__ */ new Set();
+    for (const doc of docs) {
+      if (doc.file.parent) {
+        let current = doc.file.parent;
+        while (current) {
+          foldersWithDocs.add(current.path);
+          current = current.parent;
+        }
+      }
+    }
+    for (const folder of folders) {
+      if (this.isExcludedPath(folder.path, ctx.config.paths.exclude)) {
+        continue;
+      }
+      if (foldersWithDocs.has(folder.path)) {
+        continue;
+      }
+      if (!this.hasMarkdownFiles(folder)) {
+        const parentDoc = this.findParentDoc(folder, docs);
+        if (parentDoc) {
+          issues.push(new Issue(
+            parentDoc.file,
+            this.id,
+            severity,
+            "validators.emptyFolders.empty",
+            { folder: folder.path },
+            void 0,
+            null,
+            "validators.emptyFolders.empty_suggestion"
+          ));
+        }
+      }
+    }
+    return issues;
+  }
+  /**
+   * Get all folders in the vault
+   */
+  getAllFolders(ctx) {
+    const folders = [];
+    const traverse = (folder) => {
+      folders.push(folder);
+      for (const child of folder.children) {
+        if (child instanceof import_obsidian5.TFolder) {
+          traverse(child);
+        }
+      }
+    };
+    const root = ctx.app.vault.getRoot();
+    for (const child of root.children) {
+      if (child instanceof import_obsidian5.TFolder) {
+        traverse(child);
+      }
+    }
+    return folders;
+  }
+  /**
+   * Check if a path should be excluded
+   */
+  isExcludedPath(path, excludePatterns) {
+    for (const pattern of excludePatterns) {
+      const regex = pattern.replace(/\*\*/g, ".*").replace(/\*/g, "[^/]*");
+      if (new RegExp(`^${regex}`).test(path)) {
+        return true;
+      }
+    }
+    const systemFolders = [".obsidian", ".git", "node_modules", ".plugins"];
+    for (const sys of systemFolders) {
+      if (path.startsWith(sys)) {
+        return true;
+      }
+    }
+    return false;
+  }
+  /**
+   * Check if a folder has any markdown files (recursively)
+   */
+  hasMarkdownFiles(folder) {
+    for (const child of folder.children) {
+      if (child instanceof import_obsidian5.TFolder) {
+        if (this.hasMarkdownFiles(child)) {
+          return true;
+        }
+      } else if (child.name.endsWith(".md")) {
+        return true;
+      }
+    }
+    return false;
+  }
+  /**
+   * Find a document in the parent folder to attach the issue to
+   */
+  findParentDoc(folder, docs) {
+    var _a, _b;
+    if (!folder.parent)
+      return null;
+    for (const doc of docs) {
+      if (((_a = doc.file.parent) == null ? void 0 : _a.path) === folder.parent.path && doc.file.name === "README.md") {
+        return doc;
+      }
+    }
+    for (const doc of docs) {
+      if (((_b = doc.file.parent) == null ? void 0 : _b.path) === folder.parent.path) {
+        return doc;
+      }
+    }
+    return this.findParentDoc(folder.parent, docs);
+  }
+};
+
+// src/validators/ValidatorRegistry.ts
+var ValidatorRegistry = class {
+  constructor() {
+    this.validators = /* @__PURE__ */ new Map();
+  }
+  /**
+   * Register a validator
+   */
+  register(validator) {
+    if (this.validators.has(validator.id)) {
+      console.warn(`Validator with id '${validator.id}' is already registered`);
+    }
+    this.validators.set(validator.id, validator);
+  }
+  /**
+   * Register multiple validators
+   */
+  registerAll(validators) {
+    for (const validator of validators) {
+      this.register(validator);
+    }
+  }
+  /**
+   * Unregister a validator by ID
+   */
+  unregister(id) {
+    return this.validators.delete(id);
+  }
+  /**
+   * Get a validator by ID
+   */
+  get(id) {
+    return this.validators.get(id);
+  }
+  /**
+   * Get all registered validators
+   */
+  getAll() {
+    return Array.from(this.validators.values());
+  }
+  /**
+   * Get all local validators (non-global)
+   */
+  getLocalValidators() {
+    return this.getAll().filter((v) => !v.isGlobal);
+  }
+  /**
+   * Get all global validators
+   */
+  getGlobalValidators() {
+    return this.getAll().filter((v) => v.isGlobal);
+  }
+  /**
+   * Get enabled validators based on config
+   */
+  getEnabledValidators(config) {
+    return this.getAll().filter((v) => {
+      const validatorConfig = config.validators[v.id];
+      return (validatorConfig == null ? void 0 : validatorConfig.enabled) !== false;
+    });
+  }
+  /**
+   * Get enabled local validators
+   */
+  getEnabledLocalValidators(config) {
+    return this.getEnabledValidators(config).filter((v) => !v.isGlobal);
+  }
+  /**
+   * Get enabled global validators
+   */
+  getEnabledGlobalValidators(config) {
+    return this.getEnabledValidators(config).filter((v) => v.isGlobal);
+  }
+  /**
+   * Check if a validator is registered
+   */
+  has(id) {
+    return this.validators.has(id);
+  }
+  /**
+   * Clear all registered validators
+   */
+  clear() {
+    this.validators.clear();
+  }
+  /**
+   * Get number of registered validators
+   */
+  get size() {
+    return this.validators.size;
+  }
+};
+
+// src/validators/builtin/index.ts
+function createBuiltinValidatorRegistry() {
+  const registry = new ValidatorRegistry();
+  registry.registerAll([
+    new FrontmatterValidator(),
+    new SectionsValidator(),
+    new NamingValidator(),
+    new TitleValidator(),
+    new WordCountValidator(),
+    new ForbiddenPatternsValidator(),
+    new LinksValidator(),
+    new StaleValidator(),
+    new OrphansValidator(),
+    new EmptyFoldersValidator()
+  ]);
+  return registry;
+}
+
+// src/services/TemplateService.ts
+var import_obsidian6 = require("obsidian");
+var TemplateService = class {
+  constructor(app) {
+    this.templateCache = /* @__PURE__ */ new Map();
+    this.initialized = false;
+    this.app = app;
+  }
+  /**
+   * Initialize by discovering all templates in the vault
+   */
+  async initialize() {
+    this.templateCache.clear();
+    await this.discoverTemplates();
+    this.initialized = true;
+  }
+  /**
+   * Get template validation rules for a document
+   */
+  getTemplateValidation(doc) {
+    if (!this.initialized) {
+      console.warn("TemplateService not initialized");
+      return null;
+    }
+    if (doc.detectedType) {
+      const template = this.templateCache.get(doc.detectedType);
+      if (template) {
+        return template.validation;
+      }
+    }
+    const fmType = doc.getFrontmatterField("type");
+    if (fmType && fmType !== "template") {
+      const template = this.templateCache.get(fmType.toLowerCase());
+      if (template) {
+        return template.validation;
+      }
+    }
+    return null;
+  }
+  /**
+   * Get a template by type name
+   */
+  getTemplate(typeName) {
+    return this.templateCache.get(typeName.toLowerCase());
+  }
+  /**
+   * Get all discovered templates
+   */
+  getAllTemplates() {
+    return Array.from(this.templateCache.values());
+  }
+  /**
+   * Check if a document is a template
+   */
+  isTemplate(doc) {
+    if (!doc.hasFrontmatter)
+      return false;
+    const fm = doc.frontmatter;
+    return isTemplateFrontmatter(fm);
+  }
+  /**
+   * Refresh a single template (after file change)
+   */
+  async refreshTemplate(file) {
+    const template = await this.parseTemplateFile(file);
+    if (template) {
+      this.templateCache.set(template.templateFor, template);
+    } else {
+      for (const [key, t] of this.templateCache.entries()) {
+        if (t.file.path === file.path) {
+          this.templateCache.delete(key);
+          break;
+        }
+      }
+    }
+  }
+  /**
+   * Remove a template by file path
+   */
+  removeTemplate(filePath) {
+    for (const [key, template] of this.templateCache.entries()) {
+      if (template.file.path === filePath) {
+        this.templateCache.delete(key);
+        break;
+      }
+    }
+  }
+  /**
+   * Clear the template cache
+   */
+  clearCache() {
+    this.templateCache.clear();
+    this.initialized = false;
+  }
+  /**
+   * Discover all template files in the vault
+   */
+  async discoverTemplates() {
+    const files = this.app.vault.getMarkdownFiles();
+    for (const file of files) {
+      const template = await this.parseTemplateFile(file);
+      if (template) {
+        this.templateCache.set(template.templateFor, template);
+      }
+    }
+  }
+  /**
+   * Parse a file to check if it's a template
+   */
+  async parseTemplateFile(file) {
+    try {
+      const content = await this.app.vault.read(file);
+      const frontmatter = this.parseFrontmatter(content);
+      if (!frontmatter)
+        return null;
+      if (!isTemplateFrontmatter(frontmatter)) {
+        return null;
+      }
+      return {
+        file,
+        templateFor: frontmatter.template_for.toLowerCase(),
+        validation: frontmatter.validation || {}
+      };
+    } catch (e) {
+      console.error(`Failed to parse template file: ${file.path}`, e);
+      return null;
+    }
+  }
+  /**
+   * Parse YAML frontmatter from content
+   */
+  parseFrontmatter(content) {
+    const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+    if (!match)
+      return null;
+    try {
+      return (0, import_obsidian6.parseYaml)(match[1]);
+    } catch (e) {
+      return null;
     }
   }
 };
 
-// src/store/DocumentStore.ts
-var import_obsidian5 = require("obsidian");
+// src/services/MetadataService.ts
+var import_obsidian7 = require("obsidian");
 
 // src/models/types.ts
-var DocType = /* @__PURE__ */ ((DocType5) => {
-  DocType5["RF"] = "RF";
-  DocType5["RNF"] = "RNF";
-  DocType5["UC"] = "UC";
-  DocType5["US"] = "US";
-  DocType5["ARCH"] = "ARCH";
-  DocType5["README"] = "README";
-  DocType5["OTHER"] = "OTHER";
-  return DocType5;
+var DocType = /* @__PURE__ */ ((DocType4) => {
+  DocType4["RF"] = "RF";
+  DocType4["RNF"] = "RNF";
+  DocType4["UC"] = "UC";
+  DocType4["US"] = "US";
+  DocType4["ARCH"] = "ARCH";
+  DocType4["README"] = "README";
+  DocType4["OTHER"] = "OTHER";
+  return DocType4;
 })(DocType || {});
 var Status = /* @__PURE__ */ ((Status2) => {
   Status2["REVIEW"] = "review";
@@ -135,37 +1779,9 @@ var VALID_MODULES = [
   "KEYCLOAK",
   "WEBDOCS"
 ];
-var REQUIRED_SECTIONS = {
-  ["RF" /* RF */]: ["Crit\xE9rios de Aceita\xE7\xE3o", "Regras de Neg\xF3cio"],
-  ["RNF" /* RNF */]: ["Crit\xE9rios de Aceita\xE7\xE3o", "M\xE9tricas"],
-  ["UC" /* UC */]: ["Atores", "Pr\xE9-condi\xE7\xF5es", "Fluxo Principal", "Fluxos Alternativos", "P\xF3s-condi\xE7\xF5es"],
-  ["US" /* US */]: ["Crit\xE9rios de Aceita\xE7\xE3o"],
-  ["ARCH" /* ARCH */]: [],
-  ["README" /* README */]: [],
-  ["OTHER" /* OTHER */]: []
-};
-var TITLE_PATTERNS = {
-  ["RF" /* RF */]: /^# RF-\d{3}: .+$/,
-  ["RNF" /* RNF */]: /^# RNF-\d{3}: .+$/,
-  ["UC" /* UC */]: /^# UC-\d{3}: .+$/,
-  ["US" /* US */]: /^# US-\d{3}: .+$/,
-  ["ARCH" /* ARCH */]: /^# .+$/,
-  ["README" /* README */]: /^# .+$/,
-  ["OTHER" /* OTHER */]: /^# .+$/
-};
-var NAMING_PATTERNS = {
-  ["RF" /* RF */]: /^RF-\d{3}-.+\.md$/,
-  ["RNF" /* RNF */]: /^RNF-\d{3}-.+\.md$/,
-  ["UC" /* UC */]: /^\d{2}-UC-\d{3}-.+\.md$|^UC-\d{3}-.+\.md$/,
-  ["US" /* US */]: /^US-\d{3}-.+\.md$/,
-  ["ARCH" /* ARCH */]: /^\d{2}-.+\.md$/,
-  ["README" /* README */]: /^README\.md$/,
-  ["OTHER" /* OTHER */]: /.+\.md$/
-};
-var STALE_THRESHOLD_DAYS = 180;
 
 // src/models/Document.ts
-var Document = class {
+var Document2 = class {
   constructor(file, frontmatter, content, sections, links, title) {
     this.file = file;
     this.frontmatter = frontmatter;
@@ -182,7 +1798,7 @@ var Document = class {
     if ((_a = this.frontmatter) == null ? void 0 : _a.type) {
       return this.frontmatter.type;
     }
-    return Document.inferTypeFromFilename(this.file.name);
+    return Document2.inferTypeFromFilename(this.file.name);
   }
   /**
    * Get the document ID
@@ -245,1204 +1861,7 @@ var Document = class {
   }
 };
 
-// src/models/Issue.ts
-var Issue = class {
-  constructor(file, validator, severity, message, line = null, column = null, suggestion = null) {
-    this.file = file;
-    this.validator = validator;
-    this.severity = severity;
-    this.message = message;
-    this.line = line;
-    this.column = column;
-    this.suggestion = suggestion;
-  }
-  /**
-   * Create an error issue
-   */
-  static error(file, validator, message, line, suggestion) {
-    return new Issue(file, validator, "error" /* ERROR */, message, line, null, suggestion);
-  }
-  /**
-   * Create a warning issue
-   */
-  static warning(file, validator, message, line, suggestion) {
-    return new Issue(file, validator, "warning" /* WARNING */, message, line, null, suggestion);
-  }
-  /**
-   * Create an info issue
-   */
-  static info(file, validator, message, line, suggestion) {
-    return new Issue(file, validator, "info" /* INFO */, message, line, null, suggestion);
-  }
-  /**
-   * Get formatted location string
-   */
-  get location() {
-    if (this.line !== null) {
-      return `${this.file.name}:${this.line}`;
-    }
-    return this.file.name;
-  }
-  /**
-   * Get severity icon
-   */
-  get icon() {
-    switch (this.severity) {
-      case "error" /* ERROR */:
-        return "\u2717";
-      case "warning" /* WARNING */:
-        return "\u26A0";
-      case "info" /* INFO */:
-        return "\u2139";
-    }
-  }
-  /**
-   * Get severity class for styling
-   */
-  get severityClass() {
-    return `docs-${this.severity}`;
-  }
-  /**
-   * Compare issues for sorting (errors first, then warnings, then info)
-   */
-  static compare(a, b) {
-    const severityOrder = {
-      ["error" /* ERROR */]: 0,
-      ["warning" /* WARNING */]: 1,
-      ["info" /* INFO */]: 2
-    };
-    const severityDiff = severityOrder[a.severity] - severityOrder[b.severity];
-    if (severityDiff !== 0)
-      return severityDiff;
-    const validatorDiff = a.validator.localeCompare(b.validator);
-    if (validatorDiff !== 0)
-      return validatorDiff;
-    const fileDiff = a.file.path.localeCompare(b.file.path);
-    if (fileDiff !== 0)
-      return fileDiff;
-    return (a.line || 0) - (b.line || 0);
-  }
-};
-function calculateIssueSummary(issues) {
-  return {
-    total: issues.length,
-    errors: issues.filter((i) => i.severity === "error" /* ERROR */).length,
-    warnings: issues.filter((i) => i.severity === "warning" /* WARNING */).length,
-    info: issues.filter((i) => i.severity === "info" /* INFO */).length
-  };
-}
-
-// src/validators/BrokenLinksValidator.ts
-var import_obsidian2 = require("obsidian");
-
-// src/validators/Validator.ts
-var LocalValidator = class {
-  constructor() {
-    this.isGlobal = false;
-  }
-};
-var GlobalValidator = class {
-  constructor() {
-    this.isGlobal = true;
-  }
-};
-
-// src/validators/BrokenLinksValidator.ts
-var BrokenLinksValidator = class extends LocalValidator {
-  constructor() {
-    super(...arguments);
-    this.id = "broken-links";
-    this.name = "Broken Links";
-    this.description = "Links que apontam para arquivos inexistentes";
-  }
-  async validateFile(document2, app) {
-    const issues = [];
-    for (const link of document2.links) {
-      const resolved = this.resolveLink(link.target, document2.file, app);
-      if (!resolved) {
-        issues.push(Issue.error(
-          document2.file,
-          this.id,
-          `Link "${link.target}" n\xE3o existe`,
-          link.line,
-          "Verifique se o caminho est\xE1 correto ou crie o arquivo"
-        ));
-      }
-    }
-    return issues;
-  }
-  /**
-   * Resolve a link to a file
-   */
-  resolveLink(target, sourceFile, app) {
-    var _a, _b;
-    if (!target.includes("/") && !target.includes("\\")) {
-      const files = app.vault.getMarkdownFiles();
-      const targetWithExt = target.endsWith(".md") ? target : `${target}.md`;
-      for (const file of files) {
-        if (file.name === targetWithExt || file.basename === target) {
-          return file;
-        }
-      }
-      return null;
-    }
-    let resolvedPath;
-    if (target.startsWith("./") || target.startsWith("../")) {
-      const parentPath = ((_a = sourceFile.parent) == null ? void 0 : _a.path) || "";
-      resolvedPath = this.resolvePath(parentPath, target);
-    } else if (target.startsWith("/")) {
-      resolvedPath = target.substring(1);
-    } else {
-      const parentPath = ((_b = sourceFile.parent) == null ? void 0 : _b.path) || "";
-      resolvedPath = this.resolvePath(parentPath, "./" + target);
-    }
-    if (!resolvedPath.endsWith(".md")) {
-      resolvedPath += ".md";
-    }
-    resolvedPath = (0, import_obsidian2.normalizePath)(resolvedPath);
-    return app.vault.getAbstractFileByPath(resolvedPath);
-  }
-  /**
-   * Resolve a relative path from a base path
-   */
-  resolvePath(basePath, relativePath) {
-    const parts = basePath.split("/").filter((p) => p);
-    const relParts = relativePath.split("/");
-    for (const part of relParts) {
-      if (part === "." || part === "") {
-        continue;
-      } else if (part === "..") {
-        parts.pop();
-      } else {
-        parts.push(part);
-      }
-    }
-    return parts.join("/");
-  }
-};
-
-// src/validators/FrontmatterValidator.ts
-var FrontmatterValidator = class extends LocalValidator {
-  constructor() {
-    super(...arguments);
-    this.id = "frontmatter";
-    this.name = "Frontmatter";
-    this.description = "Campos obrigat\xF3rios no frontmatter";
-  }
-  async validateFile(document2, app) {
-    const issues = [];
-    if (!document2.isCARFDocument) {
-      return issues;
-    }
-    if (!document2.frontmatter) {
-      issues.push(Issue.error(
-        document2.file,
-        this.id,
-        "Arquivo n\xE3o possui frontmatter YAML",
-        1,
-        "Execute 'Docs Toolkit: Init Metadata' para criar o frontmatter"
-      ));
-      return issues;
-    }
-    const fm = document2.frontmatter;
-    if (!fm.id) {
-      issues.push(Issue.error(
-        document2.file,
-        this.id,
-        "Campo 'id' obrigat\xF3rio no frontmatter",
-        1,
-        "Adicione o campo 'id' com o identificador do documento (ex: RF-001)"
-      ));
-    }
-    if (!fm.type) {
-      issues.push(Issue.error(
-        document2.file,
-        this.id,
-        "Campo 'type' obrigat\xF3rio no frontmatter",
-        1,
-        "Adicione o campo 'type' com o tipo do documento (RF, RNF, UC, US)"
-      ));
-    }
-    if (!fm.status) {
-      issues.push(Issue.error(
-        document2.file,
-        this.id,
-        "Campo 'status' obrigat\xF3rio no frontmatter",
-        1,
-        "Adicione o campo 'status' (review, approved, rejected)"
-      ));
-    }
-    if (!fm.modules || fm.modules.length === 0) {
-      issues.push(Issue.warning(
-        document2.file,
-        this.id,
-        "Campo 'modules' est\xE1 vazio",
-        1,
-        `Adicione os m\xF3dulos relacionados: ${VALID_MODULES.join(", ")}`
-      ));
-    } else {
-      for (const module2 of fm.modules) {
-        if (!VALID_MODULES.includes(module2)) {
-          issues.push(Issue.warning(
-            document2.file,
-            this.id,
-            `M\xF3dulo '${module2}' n\xE3o \xE9 v\xE1lido`,
-            1,
-            `M\xF3dulos v\xE1lidos: ${VALID_MODULES.join(", ")}`
-          ));
-        }
-      }
-    }
-    const expectedId = this.extractIdFromFilename(document2.file.name);
-    if (expectedId && fm.id !== expectedId) {
-      issues.push(Issue.warning(
-        document2.file,
-        this.id,
-        `ID no frontmatter '${fm.id}' n\xE3o corresponde ao nome do arquivo '${expectedId}'`,
-        1,
-        `Corrija o ID para '${expectedId}'`
-      ));
-    }
-    const expectedType = Document.inferTypeFromFilename(document2.file.name);
-    if (expectedType !== "OTHER" /* OTHER */ && fm.type !== expectedType) {
-      issues.push(Issue.warning(
-        document2.file,
-        this.id,
-        `Tipo no frontmatter '${fm.type}' n\xE3o corresponde ao nome do arquivo`,
-        1,
-        `Corrija o tipo para '${expectedType}'`
-      ));
-    }
-    return issues;
-  }
-  /**
-   * Extract ID from filename
-   */
-  extractIdFromFilename(filename) {
-    const match = filename.match(/^(RF|RNF|UC|US)-\d{3}/);
-    return match ? match[0] : null;
-  }
-};
-
-// src/validators/OrphansValidator.ts
-var OrphansValidator = class extends GlobalValidator {
-  constructor() {
-    super(...arguments);
-    this.id = "orphans";
-    this.name = "Orphans";
-    this.description = "Arquivos sem nenhum link apontando para eles";
-  }
-  async validateAll(documents, app) {
-    const issues = [];
-    const linkedFiles = /* @__PURE__ */ new Set();
-    for (const doc of documents) {
-      for (const link of doc.links) {
-        const resolved = this.resolveLink(link.target, doc, documents);
-        if (resolved) {
-          linkedFiles.add(resolved.file.path);
-        }
-      }
-    }
-    for (const doc of documents) {
-      if (!doc.isCARFDocument)
-        continue;
-      if (doc.type === "README" /* README */)
-        continue;
-      if (!linkedFiles.has(doc.file.path)) {
-        issues.push(Issue.warning(
-          doc.file,
-          this.id,
-          "Nenhum arquivo aponta para este documento",
-          void 0,
-          "Adicione um link para este documento em outro arquivo relacionado"
-        ));
-      }
-    }
-    return issues;
-  }
-  /**
-   * Resolve a link target to a document
-   */
-  resolveLink(target, sourceDoc, documents) {
-    var _a;
-    const targetName = target.replace(/\.md$/, "");
-    for (const doc of documents) {
-      if (doc.file.path === target || doc.file.path === `${target}.md`) {
-        return doc;
-      }
-      if (doc.file.basename === targetName) {
-        return doc;
-      }
-      const sourcePath = ((_a = sourceDoc.file.parent) == null ? void 0 : _a.path) || "";
-      const resolvedPath = this.resolvePath(sourcePath, target);
-      if (doc.file.path === resolvedPath || doc.file.path === `${resolvedPath}.md`) {
-        return doc;
-      }
-    }
-    return null;
-  }
-  /**
-   * Resolve a relative path from a base path
-   */
-  resolvePath(basePath, relativePath) {
-    if (!relativePath.startsWith("./") && !relativePath.startsWith("../")) {
-      return relativePath;
-    }
-    const parts = basePath.split("/").filter((p) => p);
-    const relParts = relativePath.split("/");
-    for (const part of relParts) {
-      if (part === "." || part === "") {
-        continue;
-      } else if (part === "..") {
-        parts.pop();
-      } else {
-        parts.push(part);
-      }
-    }
-    return parts.join("/");
-  }
-};
-
-// src/validators/StructureValidator.ts
-var StructureValidator = class extends LocalValidator {
-  constructor() {
-    super(...arguments);
-    this.id = "structure";
-    this.name = "Structure";
-    this.description = "Se\xE7\xF5es obrigat\xF3rias por tipo (## Crit\xE9rios, etc)";
-  }
-  async validateFile(document2, app) {
-    const issues = [];
-    if (!document2.isCARFDocument) {
-      return issues;
-    }
-    const requiredSections = REQUIRED_SECTIONS[document2.type];
-    if (!requiredSections || requiredSections.length === 0) {
-      return issues;
-    }
-    const existingSections = Array.from(document2.sections.keys()).map((s) => this.normalizeSection(s));
-    for (const required of requiredSections) {
-      const normalizedRequired = this.normalizeSection(required);
-      const found = existingSections.some((s) => s.includes(normalizedRequired) || normalizedRequired.includes(s));
-      if (!found) {
-        issues.push(Issue.warning(
-          document2.file,
-          this.id,
-          `Se\xE7\xE3o obrigat\xF3ria '${required}' n\xE3o encontrada`,
-          void 0,
-          `Adicione a se\xE7\xE3o '## ${required}' ao documento`
-        ));
-      }
-    }
-    return issues;
-  }
-  /**
-   * Normalize section name for comparison
-   */
-  normalizeSection(section) {
-    return section.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, "");
-  }
-};
-
-// src/validators/TitleValidator.ts
-var TitleValidator = class extends LocalValidator {
-  constructor() {
-    super(...arguments);
-    this.id = "title";
-    this.name = "Title";
-    this.description = "H1 deve seguir padr\xE3o (# RF-001: T\xEDtulo)";
-  }
-  async validateFile(document2, app) {
-    var _a;
-    const issues = [];
-    if (!document2.isCARFDocument) {
-      return issues;
-    }
-    if (!document2.title) {
-      issues.push(Issue.error(
-        document2.file,
-        this.id,
-        "Documento n\xE3o possui t\xEDtulo (H1)",
-        void 0,
-        "Adicione um t\xEDtulo no formato '# ID: T\xEDtulo'"
-      ));
-      return issues;
-    }
-    const pattern = TITLE_PATTERNS[document2.type];
-    if (pattern && !pattern.test(`# ${document2.title}`)) {
-      const expectedFormat = this.getExpectedFormat(document2.type);
-      issues.push(Issue.error(
-        document2.file,
-        this.id,
-        `T\xEDtulo n\xE3o segue o padr\xE3o esperado`,
-        this.findTitleLine(document2.content),
-        `Formato esperado: ${expectedFormat}`
-      ));
-    }
-    if ((_a = document2.frontmatter) == null ? void 0 : _a.id) {
-      const titleId = this.extractIdFromTitle(document2.title);
-      if (titleId && titleId !== document2.frontmatter.id) {
-        issues.push(Issue.warning(
-          document2.file,
-          this.id,
-          `ID no t\xEDtulo '${titleId}' n\xE3o corresponde ao frontmatter '${document2.frontmatter.id}'`,
-          this.findTitleLine(document2.content),
-          `Corrija o ID no t\xEDtulo para '${document2.frontmatter.id}'`
-        ));
-      }
-    }
-    return issues;
-  }
-  /**
-   * Get expected title format for a document type
-   */
-  getExpectedFormat(type) {
-    switch (type) {
-      case "RF" /* RF */:
-        return "# RF-XXX: T\xEDtulo do Requisito";
-      case "RNF" /* RNF */:
-        return "# RNF-XXX: T\xEDtulo do Requisito";
-      case "UC" /* UC */:
-        return "# UC-XXX: T\xEDtulo do Caso de Uso";
-      case "US" /* US */:
-        return "# US-XXX: T\xEDtulo da User Story";
-      default:
-        return "# T\xEDtulo";
-    }
-  }
-  /**
-   * Extract ID from title
-   */
-  extractIdFromTitle(title) {
-    const match = title.match(/^(RF|RNF|UC|US)-\d{3}/);
-    return match ? match[0] : null;
-  }
-  /**
-   * Find the line number of the title
-   */
-  findTitleLine(content) {
-    const lines = content.split("\n");
-    for (let i = 0; i < lines.length; i++) {
-      if (lines[i].startsWith("# ")) {
-        return i + 1;
-      }
-    }
-    return 1;
-  }
-};
-
-// src/validators/StaleValidator.ts
-var StaleValidator = class extends LocalValidator {
-  constructor() {
-    super(...arguments);
-    this.id = "stale";
-    this.name = "Stale";
-    this.description = "Arquivos n\xE3o atualizados h\xE1 >6 meses";
-  }
-  async validateFile(document2, app) {
-    var _a;
-    const issues = [];
-    if (!document2.isCARFDocument) {
-      return issues;
-    }
-    if (!((_a = document2.frontmatter) == null ? void 0 : _a.updated)) {
-      return issues;
-    }
-    const updatedDate = new Date(document2.frontmatter.updated);
-    const now = new Date();
-    const daysSinceUpdate = Math.floor(
-      (now.getTime() - updatedDate.getTime()) / (1e3 * 60 * 60 * 24)
-    );
-    if (daysSinceUpdate > STALE_THRESHOLD_DAYS) {
-      const months = Math.floor(daysSinceUpdate / 30);
-      issues.push(Issue.info(
-        document2.file,
-        this.id,
-        `Documento n\xE3o atualizado h\xE1 ${months} meses`,
-        void 0,
-        "Revise o documento e atualize se necess\xE1rio"
-      ));
-    }
-    return issues;
-  }
-};
-
-// src/validators/EmptyFoldersValidator.ts
-var import_obsidian3 = require("obsidian");
-var EmptyFoldersValidator = class extends GlobalValidator {
-  constructor() {
-    super(...arguments);
-    this.id = "empty-folders";
-    this.name = "Empty Folders";
-    this.description = "Pastas com README mas sem conte\xFAdo";
-  }
-  async validateAll(documents, app) {
-    var _a;
-    const issues = [];
-    const folderDocs = /* @__PURE__ */ new Map();
-    for (const doc of documents) {
-      const folderPath = ((_a = doc.file.parent) == null ? void 0 : _a.path) || "";
-      if (!folderDocs.has(folderPath)) {
-        folderDocs.set(folderPath, []);
-      }
-      folderDocs.get(folderPath).push(doc);
-    }
-    for (const [folderPath, docs] of folderDocs) {
-      if (!folderPath)
-        continue;
-      if (!folderPath.startsWith("CENTRAL/") && !folderPath.startsWith("PROJECTS/")) {
-        continue;
-      }
-      const readme = docs.find((d) => d.file.name === "README.md");
-      if (!readme)
-        continue;
-      const contentFiles = docs.filter((d) => d.file.name !== "README.md");
-      const folder = app.vault.getAbstractFileByPath(folderPath);
-      const hasSubfolders = folder instanceof import_obsidian3.TFolder && folder.children.some((c) => c instanceof import_obsidian3.TFolder);
-      if (contentFiles.length === 0 && !hasSubfolders) {
-        issues.push(Issue.warning(
-          readme.file,
-          this.id,
-          "Pasta possui README mas n\xE3o tem conte\xFAdo",
-          void 0,
-          "Adicione arquivos de conte\xFAdo ou remova a pasta se n\xE3o for necess\xE1ria"
-        ));
-      }
-    }
-    return issues;
-  }
-};
-
-// src/validators/NamingValidator.ts
-var NamingValidator = class extends LocalValidator {
-  constructor() {
-    super(...arguments);
-    this.id = "naming";
-    this.name = "Naming";
-    this.description = "Arquivos sem prefixo num\xE9rico correto";
-  }
-  async validateFile(document2, app) {
-    const issues = [];
-    if (document2.file.name === "README.md") {
-      return issues;
-    }
-    const path = document2.file.path;
-    if (!this.requiresNamingConvention(path)) {
-      return issues;
-    }
-    const expectedType = this.getExpectedTypeFromPath(path);
-    if (!expectedType) {
-      return issues;
-    }
-    const pattern = NAMING_PATTERNS[expectedType];
-    if (pattern && !pattern.test(document2.file.name)) {
-      const expectedFormat = this.getExpectedFormat(expectedType);
-      issues.push(Issue.error(
-        document2.file,
-        this.id,
-        `Nome do arquivo n\xE3o segue o padr\xE3o esperado`,
-        void 0,
-        `Formato esperado: ${expectedFormat}`
-      ));
-    }
-    return issues;
-  }
-  /**
-   * Check if path requires naming convention
-   */
-  requiresNamingConvention(path) {
-    const conventionPaths = [
-      "CENTRAL/REQUIREMENTS/FUNCTIONAL",
-      "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL",
-      "CENTRAL/REQUIREMENTS/USE-CASES",
-      "CENTRAL/REQUIREMENTS/USER-STORIES",
-      "PROJECTS/"
-    ];
-    return conventionPaths.some((p) => path.includes(p));
-  }
-  /**
-   * Get expected document type from path
-   */
-  getExpectedTypeFromPath(path) {
-    if (path.includes("/FUNCTIONAL/"))
-      return "RF" /* RF */;
-    if (path.includes("/NON-FUNCTIONAL/"))
-      return "RNF" /* RNF */;
-    if (path.includes("/USE-CASES/"))
-      return "UC" /* UC */;
-    if (path.includes("/USER-STORIES/"))
-      return "US" /* US */;
-    if (path.includes("/ARCHITECTURE/") || path.includes("/DOCS/"))
-      return "ARCH" /* ARCH */;
-    return null;
-  }
-  /**
-   * Get expected file name format
-   */
-  getExpectedFormat(type) {
-    switch (type) {
-      case "RF" /* RF */:
-        return "RF-XXX-nome-do-requisito.md";
-      case "RNF" /* RNF */:
-        return "RNF-XXX-nome-do-requisito.md";
-      case "UC" /* UC */:
-        return "XX-UC-XXX-nome-do-caso.md ou UC-XXX-nome-do-caso.md";
-      case "US" /* US */:
-        return "US-XXX-nome-da-historia.md";
-      case "ARCH" /* ARCH */:
-        return "XX-nome-do-documento.md";
-      default:
-        return "nome-do-arquivo.md";
-    }
-  }
-};
-
-// src/validators/ForbiddenLinksValidator.ts
-var ForbiddenLinksValidator = class extends LocalValidator {
-  constructor() {
-    super(...arguments);
-    this.id = "forbidden-links";
-    this.name = "Forbidden Links";
-    this.description = "Links internos s\xE3o permitidos apenas em README (se\xE7\xE3o de \xEDndice)";
-  }
-  async validateFile(document2, app) {
-    const issues = [];
-    const isReadme = document2.file.name === "README.md";
-    for (const link of document2.links) {
-      if (link.target.startsWith("http://") || link.target.startsWith("https://")) {
-        continue;
-      }
-      if (!isReadme) {
-        issues.push(Issue.error(
-          document2.file,
-          this.id,
-          `Link interno "${link.target}" n\xE3o permitido`,
-          link.line,
-          "Links internos s\xF3 s\xE3o permitidos em README.md"
-        ));
-      } else {
-        const content = document2.content;
-        const indexStart = content.indexOf("<!-- CARF-INDEX-START -->");
-        const indexEnd = content.indexOf("<!-- CARF-INDEX-END -->");
-        const hasValidSection = indexStart !== -1 && indexEnd !== -1 && indexStart < indexEnd;
-        const linkPosition = this.getLinkPosition(content, link.line);
-        const isOutsideSection = !hasValidSection || linkPosition < indexStart || linkPosition > indexEnd;
-        if (isOutsideSection) {
-          issues.push(Issue.error(
-            document2.file,
-            this.id,
-            `Link "${link.target}" fora da se\xE7\xE3o de \xEDndice`,
-            link.line,
-            "Use 'Regenerate README index' para gerar links automaticamente"
-          ));
-        }
-      }
-    }
-    return issues;
-  }
-  /**
-   * Get the character position for a given line number
-   */
-  getLinkPosition(content, line) {
-    const lines = content.split("\n");
-    let pos = 0;
-    for (let i = 0; i < line - 1 && i < lines.length; i++) {
-      pos += lines[i].length + 1;
-    }
-    return pos;
-  }
-};
-
-// src/validators/TemplateValidator.ts
-var import_obsidian4 = require("obsidian");
-var TemplateValidator = class extends LocalValidator {
-  constructor() {
-    super(...arguments);
-    this.id = "template-rules";
-    this.name = "Template Rules";
-    this.description = "Valida documentos conforme regras do template";
-  }
-  async validateFile(document2, app) {
-    const issues = [];
-    const docType = this.getDocType(document2);
-    console.log(`[TemplateValidator] ${document2.file.name} -> type: ${docType}`);
-    if (docType === "template") {
-      return issues;
-    }
-    const rules = await this.findTemplateRules(document2.file, docType, app);
-    console.log(`[TemplateValidator] ${document2.file.name} -> rules:`, rules);
-    if (!rules) {
-      return issues;
-    }
-    if (rules.filename_pattern) {
-      try {
-        const regex = new RegExp(rules.filename_pattern);
-        if (!regex.test(document2.file.name)) {
-          issues.push(Issue.error(
-            document2.file,
-            this.id,
-            `Nome n\xE3o segue padr\xE3o do template`
-          ));
-        }
-      } catch (e) {
-      }
-    }
-    if (rules.title_pattern) {
-      const title = document2.title;
-      if (!title) {
-        issues.push(Issue.error(document2.file, this.id, `Falta t\xEDtulo H1`));
-      } else {
-        try {
-          const regex = new RegExp(rules.title_pattern);
-          if (!regex.test(title)) {
-            issues.push(Issue.error(
-              document2.file,
-              this.id,
-              `T\xEDtulo n\xE3o segue padr\xE3o do template`
-            ));
-          }
-        } catch (e) {
-        }
-      }
-    }
-    if (rules.required_sections && rules.required_sections.length > 0) {
-      const presentSections = Array.from(document2.sections.keys()).map((s) => this.norm(s));
-      for (const required of rules.required_sections) {
-        if (!presentSections.includes(this.norm(required))) {
-          issues.push(Issue.error(
-            document2.file,
-            this.id,
-            `Se\xE7\xE3o ausente: "## ${required}"`
-          ));
-        }
-      }
-    }
-    if (rules.max_words) {
-      const body = document2.content.replace(/^---[\s\S]*?---\n*/, "");
-      const words = this.countWords(body);
-      if (words > rules.max_words) {
-        issues.push(Issue.warning(
-          document2.file,
-          this.id,
-          `${words} palavras (m\xE1x: ${rules.max_words})`
-        ));
-      }
-    }
-    if (rules.max_words_per_section) {
-      for (const [section, content] of document2.sections) {
-        if (this.norm(section) === "regras")
-          continue;
-        const words = this.countWords(content);
-        if (words > rules.max_words_per_section) {
-          issues.push(Issue.warning(
-            document2.file,
-            this.id,
-            `Se\xE7\xE3o "${section}": ${words} palavras (m\xE1x: ${rules.max_words_per_section})`
-          ));
-        }
-      }
-    }
-    if (rules.forbidden && rules.forbidden.length > 0) {
-      const body = document2.content.replace(/^---[\s\S]*?---\n*/, "");
-      for (const pattern of rules.forbidden) {
-        if (body.includes(pattern)) {
-          const label = this.getForbiddenLabel(pattern);
-          issues.push(Issue.error(
-            document2.file,
-            this.id,
-            `${label} n\xE3o permitido em documento deste tipo`
-          ));
-        }
-      }
-    }
-    return issues;
-  }
-  /**
-   * Get document type from frontmatter or filename
-   */
-  getDocType(document2) {
-    const content = document2.content;
-    const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
-    if (match) {
-      try {
-        const yaml = (0, import_obsidian4.parseYaml)(match[1]);
-        if (yaml == null ? void 0 : yaml.type)
-          return yaml.type.toLowerCase();
-      } catch (e) {
-      }
-    }
-    const name = document2.file.name;
-    if (name.includes("-000-template"))
-      return "template";
-    if (name.startsWith("ADR-"))
-      return "adr";
-    if (name.startsWith("RF-"))
-      return "rf";
-    if (name.startsWith("RNF-"))
-      return "rnf";
-    if (name.startsWith("UC-") || /^\d{2}-UC-/.test(name))
-      return "uc";
-    if (name.startsWith("US-"))
-      return "us";
-    if (name === "README.md")
-      return "readme";
-    return "doc";
-  }
-  /**
-   * Find template rules for document type
-   */
-  async findTemplateRules(file, docType, app) {
-    let folder = file.parent;
-    while (folder) {
-      for (const child of folder.children) {
-        if (!(child instanceof import_obsidian4.TFile))
-          continue;
-        if (!child.name.endsWith(".md"))
-          continue;
-        const rules = await this.checkIfTemplate(child, docType, app);
-        if (rules) {
-          return rules;
-        }
-      }
-      folder = folder.parent;
-    }
-    return null;
-  }
-  /**
-   * Check if file is a template for given type and return its rules
-   */
-  async checkIfTemplate(file, docType, app) {
-    var _a;
-    try {
-      const content = await app.vault.read(file);
-      const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
-      if (!match)
-        return null;
-      const yaml = (0, import_obsidian4.parseYaml)(match[1]);
-      if (!yaml)
-        return null;
-      const isTemplate = yaml.type === "template" || yaml.status === "template" || file.name.includes("-000-template");
-      if (!isTemplate)
-        return null;
-      const templateFor = (_a = yaml.template_for) == null ? void 0 : _a.toLowerCase();
-      if (templateFor !== docType)
-        return null;
-      return yaml.validation || null;
-    } catch (e) {
-      return null;
-    }
-  }
-  countWords(text) {
-    const clean = text.replace(/^#+\s+.+$/gm, "");
-    return clean.trim().split(/\s+/).filter((w) => w.length > 0).length;
-  }
-  norm(text) {
-    return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
-  }
-  getForbiddenLabel(pattern) {
-    const map = {
-      "```": "Bloco de c\xF3digo",
-      "http": "Link",
-      "|--|": "Tabela",
-      "- [": "Checklist"
-    };
-    return map[pattern] || `"${pattern}"`;
-  }
-};
-
-// src/store/DocumentStore.ts
-var DocumentStore = class extends import_obsidian5.Events {
-  constructor(app) {
-    super();
-    this.documents = /* @__PURE__ */ new Map();
-    this.issues = /* @__PURE__ */ new Map();
-    this.validators = [];
-    this.enabledValidators = /* @__PURE__ */ new Set();
-    this.loading = false;
-    this.app = app;
-    this.registerValidators();
-  }
-  registerValidators() {
-    this.validators = [
-      new BrokenLinksValidator(),
-      new FrontmatterValidator(),
-      new OrphansValidator(),
-      new StructureValidator(),
-      new TitleValidator(),
-      new StaleValidator(),
-      new EmptyFoldersValidator(),
-      new NamingValidator(),
-      new ForbiddenLinksValidator(),
-      new TemplateValidator()
-    ];
-    this.validators.forEach((v) => this.enabledValidators.add(v.id));
-  }
-  // --- Validator Management ---
-  getValidators() {
-    return this.validators;
-  }
-  setValidatorEnabled(id, enabled) {
-    if (enabled) {
-      this.enabledValidators.add(id);
-    } else {
-      this.enabledValidators.delete(id);
-    }
-  }
-  getEnabledValidators() {
-    return this.validators.filter((v) => this.enabledValidators.has(v.id));
-  }
-  // --- State Access ---
-  getState() {
-    const docs = Array.from(this.documents.values());
-    const allIssues = Array.from(this.issues.values()).flat();
-    allIssues.sort(Issue.compare);
-    return {
-      documents: docs,
-      issues: allIssues,
-      summary: calculateIssueSummary(allIssues),
-      reviewQueue: this.getReviewQueue()
-    };
-  }
-  getReviewQueue() {
-    return Array.from(this.documents.values()).sort((a, b) => a.file.path.localeCompare(b.file.path)).map((d) => d.file);
-  }
-  getDocument(path) {
-    return this.documents.get(path);
-  }
-  getIssuesForFile(path) {
-    return this.issues.get(path) || [];
-  }
-  isLoading() {
-    return this.loading;
-  }
-  // --- State Mutations ---
-  /**
-   * Load all documents from vault. Emits 'state-changed' when done.
-   */
-  async loadAll() {
-    this.loading = true;
-    this.trigger("state-changed");
-    const files = this.getCARFFiles();
-    this.documents.clear();
-    this.issues.clear();
-    for (const file of files) {
-      const doc = await this.parseDocument(file);
-      this.documents.set(file.path, doc);
-    }
-    const docs = Array.from(this.documents.values());
-    for (const doc of docs) {
-      const fileIssues = [];
-      for (const validator of this.getEnabledValidators()) {
-        if (!validator.isGlobal && validator.validateFile) {
-          const vi = await validator.validateFile(doc, this.app);
-          fileIssues.push(...vi);
-        }
-      }
-      this.issues.set(doc.file.path, fileIssues);
-    }
-    for (const validator of this.getEnabledValidators()) {
-      if (validator.isGlobal && validator.validateAll) {
-        const globalIssues = await validator.validateAll(docs, this.app);
-        for (const issue of globalIssues) {
-          const existing = this.issues.get(issue.file.path) || [];
-          existing.push(issue);
-          this.issues.set(issue.file.path, existing);
-        }
-      }
-    }
-    this.loading = false;
-    this.trigger("state-changed");
-  }
-  /**
-   * Update a single document. Emits 'state-changed'.
-   */
-  async updateDocument(file) {
-    if (!file.name.endsWith(".md"))
-      return;
-    if (!Document.isInCARFPath(file.path))
-      return;
-    const doc = await this.parseDocument(file);
-    this.documents.set(file.path, doc);
-    const fileIssues = [];
-    for (const validator of this.getEnabledValidators()) {
-      if (!validator.isGlobal && validator.validateFile) {
-        const vi = await validator.validateFile(doc, this.app);
-        fileIssues.push(...vi);
-      }
-    }
-    this.issues.set(file.path, fileIssues);
-    this.trigger("state-changed");
-  }
-  /**
-   * Remove a document from store. Emits 'state-changed'.
-   */
-  removeDocument(path) {
-    this.documents.delete(path);
-    this.issues.delete(path);
-    this.trigger("state-changed");
-  }
-  /**
-   * Set status for a document. Updates frontmatter and emits 'state-changed'.
-   * @param description - Optional rejection reason (cleared when status is not rejected)
-   */
-  async setStatus(file, status, description) {
-    const content = await this.app.vault.read(file);
-    const desc = status === "rejected" /* REJECTED */ ? description : void 0;
-    const newContent = this.updateStatusInContent(content, status, desc);
-    await this.app.vault.modify(file, newContent);
-    await this.updateDocument(file);
-  }
-  // --- Internal Helpers ---
-  getCARFFiles() {
-    const ignorePaths = [".obsidian", ".git", "node_modules", ".plugins", ".scripts"];
-    return this.app.vault.getMarkdownFiles().filter((file) => {
-      return !ignorePaths.some((p) => file.path.startsWith(p + "/") || file.path.startsWith(p));
-    });
-  }
-  async parseDocument(file) {
-    const content = await this.app.vault.read(file);
-    const frontmatter = this.parseFrontmatter(content);
-    const bodyContent = this.getBodyContent(content);
-    const sections = this.parseSections(bodyContent);
-    const links = this.parseLinks(bodyContent);
-    const title = this.parseTitle(bodyContent);
-    return new Document(file, frontmatter, content, sections, links, title);
-  }
-  parseFrontmatter(content) {
-    var _a;
-    const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
-    if (!match)
-      return null;
-    try {
-      const yaml = (0, import_obsidian5.parseYaml)(match[1]);
-      if (!yaml)
-        return null;
-      const rawStatus = ((_a = yaml.status) == null ? void 0 : _a.toLowerCase()) || "review";
-      const status = Object.values(Status).includes(rawStatus) ? rawStatus : "review" /* REVIEW */;
-      let type;
-      if (yaml.type) {
-        const upperType = yaml.type.toUpperCase();
-        if (Object.values(DocType).includes(upperType)) {
-          type = upperType;
-        }
-      }
-      let modules;
-      if (Array.isArray(yaml.modules)) {
-        modules = yaml.modules.map((m) => m.toUpperCase()).filter((m) => VALID_MODULES.includes(m));
-      }
-      return {
-        status,
-        updated: yaml.updated || this.formatDate(new Date()),
-        id: yaml.id || void 0,
-        type,
-        modules,
-        epic: yaml.epic || void 0,
-        created: yaml.created || void 0,
-        description: yaml.description || void 0
-      };
-    } catch (e) {
-      return null;
-    }
-  }
-  getBodyContent(content) {
-    return content.replace(/^---\n[\s\S]*?\n---\n*/, "");
-  }
-  parseSections(content) {
-    const sections = /* @__PURE__ */ new Map();
-    const lines = content.split("\n");
-    let currentSection = "";
-    let currentContent = [];
-    for (const line of lines) {
-      const headerMatch = line.match(/^#{2,3}\s+(.+)$/);
-      if (headerMatch) {
-        if (currentSection) {
-          sections.set(currentSection, currentContent.join("\n").trim());
-        }
-        currentSection = headerMatch[1].trim();
-        currentContent = [];
-      } else if (currentSection) {
-        currentContent.push(line);
-      }
-    }
-    if (currentSection) {
-      sections.set(currentSection, currentContent.join("\n").trim());
-    }
-    return sections;
-  }
-  parseLinks(content) {
-    const links = [];
-    const lines = content.split("\n");
-    for (let lineNum = 0; lineNum < lines.length; lineNum++) {
-      const line = lines[lineNum];
-      const wikiLinkRegex = /\[\[([^\]|]+)(?:\|[^\]]+)?\]\]/g;
-      let match;
-      while ((match = wikiLinkRegex.exec(line)) !== null) {
-        links.push({
-          target: match[1],
-          line: lineNum + 1,
-          column: match.index,
-          type: "wiki",
-          resolved: false
-        });
-      }
-      const mdLinkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
-      while ((match = mdLinkRegex.exec(line)) !== null) {
-        const target = match[2];
-        if (!target.startsWith("http://") && !target.startsWith("https://")) {
-          links.push({
-            target,
-            line: lineNum + 1,
-            column: match.index,
-            type: "markdown",
-            resolved: false
-          });
-        }
-      }
-    }
-    return links;
-  }
-  parseTitle(content) {
-    const match = content.match(/^#\s+(.+)$/m);
-    return match ? match[1].trim() : null;
-  }
-  formatDate(date) {
-    return date.toISOString().split("T")[0];
-  }
-  updateStatusInContent(content, status, description) {
-    const today = this.formatDate(new Date());
-    let newContent = content.replace(
-      /^(---\r?\n[\s\S]*?status:\s*)\w+/m,
-      `$1${status}`
-    );
-    newContent = newContent.replace(
-      /^(---\r?\n[\s\S]*?updated:\s*)\S+/m,
-      `$1${today}`
-    );
-    if (description) {
-      if (/^---\r?\n[\s\S]*?description:/m.test(newContent)) {
-        newContent = newContent.replace(
-          /^(---\r?\n[\s\S]*?description:\s*).*/m,
-          `$1"${description.replace(/"/g, '\\"')}"`
-        );
-      } else {
-        newContent = newContent.replace(
-          /^(---\r?\n[\s\S]*?)(---)/m,
-          `$1description: "${description.replace(/"/g, '\\"')}"
-$2`
-        );
-      }
-    } else {
-      newContent = newContent.replace(
-        /^(---\r?\n[\s\S]*?)description:.*\r?\n/m,
-        `$1`
-      );
-    }
-    return newContent;
-  }
-};
-
 // src/services/MetadataService.ts
-var import_obsidian6 = require("obsidian");
 var MetadataService = class {
   constructor(app) {
     this.app = app;
@@ -1457,7 +1876,7 @@ var MetadataService = class {
     const sections = this.parseSections(bodyContent);
     const links = this.parseLinks(bodyContent);
     const title = this.parseTitle(bodyContent);
-    return new Document(file, frontmatter, content, sections, links, title);
+    return new Document2(file, frontmatter, content, sections, links, title);
   }
   /**
    * Parse YAML frontmatter from content
@@ -1467,7 +1886,7 @@ var MetadataService = class {
     if (!match)
       return null;
     try {
-      const yaml = (0, import_obsidian6.parseYaml)(match[1]);
+      const yaml = (0, import_obsidian7.parseYaml)(match[1]);
       if (!yaml)
         return null;
       return this.normalizeFrontmatter(yaml);
@@ -1630,7 +2049,7 @@ var MetadataService = class {
   async setFrontmatter(file, frontmatter) {
     const content = await this.app.vault.read(file);
     const bodyContent = this.getBodyContent(content);
-    const yamlStr = (0, import_obsidian6.stringifyYaml)(frontmatter);
+    const yamlStr = (0, import_obsidian7.stringifyYaml)(frontmatter);
     const newContent = `---
 ${yamlStr}---
 
@@ -1685,7 +2104,7 @@ ${bodyContent}`;
 };
 
 // src/services/IndexService.ts
-var import_obsidian7 = require("obsidian");
+var import_obsidian8 = require("obsidian");
 var IndexService = class {
   constructor(app, metadataService) {
     this.pendingSyncs = /* @__PURE__ */ new Set();
@@ -1713,7 +2132,7 @@ var IndexService = class {
     this.pendingSyncs.clear();
     for (const folderPath of folders) {
       const folder = this.app.vault.getAbstractFileByPath(folderPath);
-      if (folder instanceof import_obsidian7.TFolder) {
+      if (folder instanceof import_obsidian8.TFolder) {
         await this.syncFolderIndex(folder);
       }
     }
@@ -1724,8 +2143,8 @@ var IndexService = class {
   async syncFolderIndex(folder) {
     const readmePath = `${folder.path}/README.md`;
     let readme = this.app.vault.getAbstractFileByPath(readmePath);
-    const files = folder.children.filter((f) => f instanceof import_obsidian7.TFile && f.name.endsWith(".md") && f.name !== "README.md").sort((a, b) => a.name.localeCompare(b.name));
-    const subfolders = folder.children.filter((f) => f instanceof import_obsidian7.TFolder).sort((a, b) => a.name.localeCompare(b.name));
+    const files = folder.children.filter((f) => f instanceof import_obsidian8.TFile && f.name.endsWith(".md") && f.name !== "README.md").sort((a, b) => a.name.localeCompare(b.name));
+    const subfolders = folder.children.filter((f) => f instanceof import_obsidian8.TFolder).sort((a, b) => a.name.localeCompare(b.name));
     const indexContent = await this.generateIndexContent(folder, files, subfolders);
     if (readme) {
       const currentContent = await this.app.vault.read(readme);
@@ -1827,7 +2246,7 @@ ${endMarker}
   shouldSyncIndex(file) {
     if (!file.name.endsWith(".md"))
       return false;
-    if (!Document.isInCARFPath(file.path))
+    if (!Document2.isInCARFPath(file.path))
       return false;
     const folder = file.parent;
     if (!folder)
@@ -1838,7 +2257,7 @@ ${endMarker}
 };
 
 // src/services/MigrationService.ts
-var import_obsidian8 = require("obsidian");
+var import_obsidian9 = require("obsidian");
 var MigrationService = class {
   constructor(app, metadataService) {
     this.app = app;
@@ -1896,7 +2315,7 @@ var MigrationService = class {
         failed++;
       }
     }
-    new import_obsidian8.Notice(
+    new import_obsidian9.Notice(
       `Migra\xE7\xE3o conclu\xEDda:
 \u2713 ${migrated} migrados
 \u25CB ${skipped} j\xE1 tinham frontmatter
@@ -2000,7 +2419,7 @@ var MigrationService = class {
    * Create frontmatter from extracted footer data
    */
   createFrontmatterFromFooter(file, footerData) {
-    const type = Document.inferTypeFromFilename(file.name);
+    const type = Document2.inferTypeFromFilename(file.name);
     const id = this.extractIdFromFilename(file.name) || "";
     const now = this.metadataService.formatDate(new Date());
     return {
@@ -2079,11 +2498,11 @@ ${content}`;
     const files = [];
     const processFolder = (folder) => {
       for (const child of folder.children) {
-        if (child instanceof import_obsidian8.TFile && child.extension === "md") {
-          if (Document.isInCARFPath(child.path)) {
+        if (child instanceof import_obsidian9.TFile && child.extension === "md") {
+          if (Document2.isInCARFPath(child.path)) {
             files.push(child);
           }
-        } else if (child instanceof import_obsidian8.TFolder) {
+        } else if (child instanceof import_obsidian9.TFolder) {
           processFolder(child);
         }
       }
@@ -2094,11 +2513,899 @@ ${content}`;
   }
 };
 
+// src/i18n/I18nService.ts
+var import_obsidian10 = require("obsidian");
+var I18nService = class {
+  constructor(app) {
+    this.currentLocale = "en";
+    this.messages = /* @__PURE__ */ new Map();
+    this.fallbackLocale = "en";
+    this.app = app;
+  }
+  /**
+   * Initialize by loading locale files
+   */
+  async initialize(locale = "en") {
+    this.currentLocale = this.normalizeLocale(locale);
+    this.messages.set("en", this.getEnglishMessages());
+    this.messages.set("pt-BR", this.getPortugueseMessages());
+    this.messages.set("es", this.getSpanishMessages());
+    await this.loadCustomLocales();
+  }
+  /**
+   * Set the current locale
+   */
+  setLocale(locale) {
+    this.currentLocale = this.normalizeLocale(locale);
+  }
+  /**
+   * Get current locale
+   */
+  getLocale() {
+    return this.currentLocale;
+  }
+  /**
+   * Translate a key with optional parameter interpolation
+   */
+  t(key, params) {
+    let message = this.getMessage(key, this.currentLocale);
+    if (message === key && this.currentLocale !== this.fallbackLocale) {
+      message = this.getMessage(key, this.fallbackLocale);
+    }
+    if (params && message !== key) {
+      return this.interpolate(message, params);
+    }
+    return message;
+  }
+  /**
+   * Get a message by key from a specific locale
+   */
+  getMessage(key, locale) {
+    const messages = this.messages.get(locale);
+    if (!messages)
+      return key;
+    const parts = key.split(".");
+    let current = messages;
+    for (const part of parts) {
+      if (current && typeof current === "object" && part in current) {
+        current = current[part];
+      } else {
+        return key;
+      }
+    }
+    return typeof current === "string" ? current : key;
+  }
+  /**
+   * Interpolate parameters into a message
+   */
+  interpolate(message, params) {
+    return message.replace(/\{(\w+)\}/g, (match, key) => {
+      return params[key] !== void 0 ? String(params[key]) : match;
+    });
+  }
+  /**
+   * Normalize locale string to supported locale
+   */
+  normalizeLocale(locale) {
+    const normalized = locale.toLowerCase();
+    if (normalized === "en" || normalized.startsWith("en-")) {
+      return "en";
+    }
+    if (normalized === "pt-br" || normalized === "pt" || normalized.startsWith("pt-")) {
+      return "pt-BR";
+    }
+    if (normalized === "es" || normalized.startsWith("es-")) {
+      return "es";
+    }
+    return "en";
+  }
+  /**
+   * Load custom locale files from vault
+   */
+  async loadCustomLocales() {
+    const localePath = ".plugins/obsidian-docs-toolkit/src/i18n/locales";
+    for (const locale of ["en", "pt-BR", "es"]) {
+      const filePath = `${localePath}/${locale}.yaml`;
+      const file = this.app.vault.getAbstractFileByPath(filePath);
+      if (file instanceof import_obsidian10.TFile) {
+        try {
+          const content = await this.app.vault.read(file);
+          const customMessages = (0, import_obsidian10.parseYaml)(content);
+          const existing = this.messages.get(locale) || {};
+          this.messages.set(locale, this.deepMerge(existing, customMessages));
+        } catch (e) {
+          console.warn(`Failed to load custom locale ${locale}:`, e);
+        }
+      }
+    }
+  }
+  /**
+   * Deep merge two objects
+   */
+  deepMerge(target, source) {
+    const result = { ...target };
+    for (const key of Object.keys(source)) {
+      if (source[key] && typeof source[key] === "object" && !Array.isArray(source[key])) {
+        result[key] = this.deepMerge(
+          result[key] || {},
+          source[key]
+        );
+      } else {
+        result[key] = source[key];
+      }
+    }
+    return result;
+  }
+  /**
+   * Get English messages (built-in)
+   */
+  getEnglishMessages() {
+    return {
+      validators: {
+        frontmatter: {
+          name: "Frontmatter",
+          description: "Validates required frontmatter fields",
+          missing: "File has no YAML frontmatter",
+          missing_suggestion: "Add frontmatter with required fields",
+          required_field: "Required field '{field}' is missing",
+          required_field_suggestion: "Add the '{field}' field to frontmatter",
+          wrong_type: "Field '{field}' should be {expected}, got {actual}",
+          pattern_mismatch: "Field '{field}' value '{value}' doesn't match pattern '{pattern}'",
+          invalid_enum: "Field '{field}' value '{value}' is not allowed. Valid values: {allowed}",
+          invalid_array_item: "Field '{field}' contains invalid item '{item}'. Valid values: {allowed}",
+          array_item_pattern_mismatch: "Field '{field}' item '{item}' doesn't match pattern '{pattern}'",
+          below_min: "Field '{field}' value {value} is below minimum {min}",
+          above_max: "Field '{field}' value {value} is above maximum {max}",
+          too_short: "Field '{field}' length {length} is below minimum {min}",
+          too_long: "Field '{field}' length {length} is above maximum {max}",
+          array_too_short: "Field '{field}' has {length} items, minimum is {min}",
+          array_too_long: "Field '{field}' has {length} items, maximum is {max}"
+        },
+        sections: {
+          name: "Sections",
+          description: "Validates required document sections",
+          missing_required: "Required section '{section}' is missing",
+          missing_required_suggestion: "Add section '## {section}' to the document",
+          forbidden: "Section '{section}' is not allowed in this document type"
+        },
+        naming: {
+          name: "Naming",
+          description: "Validates file naming conventions",
+          pattern_mismatch: "Filename '{filename}' doesn't match expected pattern for {typeName}",
+          pattern_mismatch_suggestion: "Rename file to match pattern: {pattern}"
+        },
+        title: {
+          name: "Title",
+          description: "Validates document title",
+          missing: "Document has no title (# heading)",
+          missing_suggestion: "Add a title with '# Title' at the start",
+          pattern_mismatch: "Title '{title}' doesn't match expected pattern",
+          pattern_mismatch_suggestion: "Update title to match pattern: {pattern}"
+        },
+        wordCount: {
+          name: "Word Count",
+          description: "Validates word count limits",
+          exceeds_max: "Document has {count} words, maximum is {max}",
+          below_min: "Document has {count} words, minimum is {min}",
+          section_exceeds_max: "Section '{section}' has {count} words, maximum is {max}"
+        },
+        forbiddenPatterns: {
+          name: "Forbidden Patterns",
+          description: "Checks for forbidden text patterns",
+          found: "Forbidden pattern '{pattern}' found: '{match}'",
+          found_suggestion: "Remove or replace the forbidden pattern '{pattern}'"
+        },
+        links: {
+          name: "Links",
+          description: "Validates internal links",
+          broken: "Broken link to '{target}'",
+          broken_suggestion: "Fix or remove the link to '{target}'"
+        },
+        stale: {
+          name: "Stale",
+          description: "Checks for outdated documents",
+          outdated: "Document hasn't been updated in {days} days (threshold: {threshold})",
+          outdated_suggestion: "Review and update the document"
+        },
+        orphans: {
+          name: "Orphans",
+          description: "Checks for unlinked documents",
+          not_linked: "Document '{filename}' is not linked from any other document",
+          not_linked_suggestion: "Add a link to this document from a relevant location"
+        },
+        emptyFolders: {
+          name: "Empty Folders",
+          description: "Checks for empty folders",
+          empty: "Folder '{folder}' contains no markdown files",
+          empty_suggestion: "Add content or remove the empty folder"
+        }
+      },
+      ui: {
+        issues: {
+          title: "Issues",
+          noIssues: "No issues found",
+          errors: "Errors",
+          warnings: "Warnings",
+          info: "Info"
+        },
+        curation: {
+          title: "Curation",
+          approve: "Approve",
+          reject: "Reject",
+          skip: "Skip",
+          progress: "Progress",
+          pending: "Pending"
+        }
+      }
+    };
+  }
+  /**
+   * Get Portuguese messages (built-in)
+   */
+  getPortugueseMessages() {
+    return {
+      validators: {
+        frontmatter: {
+          name: "Frontmatter",
+          description: "Valida campos obrigat\xF3rios no frontmatter",
+          missing: "Arquivo n\xE3o possui frontmatter YAML",
+          missing_suggestion: "Adicione o frontmatter com os campos obrigat\xF3rios",
+          required_field: "Campo obrigat\xF3rio '{field}' est\xE1 faltando",
+          required_field_suggestion: "Adicione o campo '{field}' ao frontmatter",
+          wrong_type: "Campo '{field}' deveria ser {expected}, mas \xE9 {actual}",
+          pattern_mismatch: "Valor '{value}' do campo '{field}' n\xE3o corresponde ao padr\xE3o '{pattern}'",
+          invalid_enum: "Valor '{value}' do campo '{field}' n\xE3o \xE9 permitido. Valores v\xE1lidos: {allowed}",
+          invalid_array_item: "Campo '{field}' cont\xE9m item inv\xE1lido '{item}'. Valores v\xE1lidos: {allowed}",
+          array_item_pattern_mismatch: "Item '{item}' do campo '{field}' n\xE3o corresponde ao padr\xE3o '{pattern}'",
+          below_min: "Valor {value} do campo '{field}' est\xE1 abaixo do m\xEDnimo {min}",
+          above_max: "Valor {value} do campo '{field}' est\xE1 acima do m\xE1ximo {max}",
+          too_short: "Tamanho {length} do campo '{field}' est\xE1 abaixo do m\xEDnimo {min}",
+          too_long: "Tamanho {length} do campo '{field}' est\xE1 acima do m\xE1ximo {max}",
+          array_too_short: "Campo '{field}' tem {length} itens, m\xEDnimo \xE9 {min}",
+          array_too_long: "Campo '{field}' tem {length} itens, m\xE1ximo \xE9 {max}"
+        },
+        sections: {
+          name: "Se\xE7\xF5es",
+          description: "Valida se\xE7\xF5es obrigat\xF3rias do documento",
+          missing_required: "Se\xE7\xE3o obrigat\xF3ria '{section}' n\xE3o encontrada",
+          missing_required_suggestion: "Adicione a se\xE7\xE3o '## {section}' ao documento",
+          forbidden: "Se\xE7\xE3o '{section}' n\xE3o \xE9 permitida neste tipo de documento"
+        },
+        naming: {
+          name: "Nomenclatura",
+          description: "Valida conven\xE7\xF5es de nomenclatura de arquivos",
+          pattern_mismatch: "Nome do arquivo '{filename}' n\xE3o corresponde ao padr\xE3o esperado para {typeName}",
+          pattern_mismatch_suggestion: "Renomeie o arquivo para corresponder ao padr\xE3o: {pattern}"
+        },
+        title: {
+          name: "T\xEDtulo",
+          description: "Valida t\xEDtulo do documento",
+          missing: "Documento n\xE3o possui t\xEDtulo (# cabe\xE7alho)",
+          missing_suggestion: "Adicione um t\xEDtulo com '# T\xEDtulo' no in\xEDcio",
+          pattern_mismatch: "T\xEDtulo '{title}' n\xE3o corresponde ao padr\xE3o esperado",
+          pattern_mismatch_suggestion: "Atualize o t\xEDtulo para corresponder ao padr\xE3o: {pattern}"
+        },
+        wordCount: {
+          name: "Contagem de Palavras",
+          description: "Valida limites de contagem de palavras",
+          exceeds_max: "Documento tem {count} palavras, m\xE1ximo \xE9 {max}",
+          below_min: "Documento tem {count} palavras, m\xEDnimo \xE9 {min}",
+          section_exceeds_max: "Se\xE7\xE3o '{section}' tem {count} palavras, m\xE1ximo \xE9 {max}"
+        },
+        forbiddenPatterns: {
+          name: "Padr\xF5es Proibidos",
+          description: "Verifica padr\xF5es de texto proibidos",
+          found: "Padr\xE3o proibido '{pattern}' encontrado: '{match}'",
+          found_suggestion: "Remova ou substitua o padr\xE3o proibido '{pattern}'"
+        },
+        links: {
+          name: "Links",
+          description: "Valida links internos",
+          broken: "Link quebrado para '{target}'",
+          broken_suggestion: "Corrija ou remova o link para '{target}'"
+        },
+        stale: {
+          name: "Desatualizado",
+          description: "Verifica documentos desatualizados",
+          outdated: "Documento n\xE3o foi atualizado h\xE1 {days} dias (limite: {threshold})",
+          outdated_suggestion: "Revise e atualize o documento"
+        },
+        orphans: {
+          name: "\xD3rf\xE3os",
+          description: "Verifica documentos n\xE3o linkados",
+          not_linked: "Documento '{filename}' n\xE3o est\xE1 linkado em nenhum outro documento",
+          not_linked_suggestion: "Adicione um link para este documento em uma localiza\xE7\xE3o relevante"
+        },
+        emptyFolders: {
+          name: "Pastas Vazias",
+          description: "Verifica pastas vazias",
+          empty: "Pasta '{folder}' n\xE3o cont\xE9m arquivos markdown",
+          empty_suggestion: "Adicione conte\xFAdo ou remova a pasta vazia"
+        }
+      },
+      ui: {
+        issues: {
+          title: "Problemas",
+          noIssues: "Nenhum problema encontrado",
+          errors: "Erros",
+          warnings: "Avisos",
+          info: "Informa\xE7\xF5es"
+        },
+        curation: {
+          title: "Curadoria",
+          approve: "Aprovar",
+          reject: "Rejeitar",
+          skip: "Pular",
+          progress: "Progresso",
+          pending: "Pendente"
+        }
+      }
+    };
+  }
+  /**
+   * Get Spanish messages (built-in)
+   */
+  getSpanishMessages() {
+    return {
+      validators: {
+        frontmatter: {
+          name: "Frontmatter",
+          description: "Valida campos requeridos en frontmatter",
+          missing: "Archivo no tiene frontmatter YAML",
+          missing_suggestion: "Agregue frontmatter con campos requeridos",
+          required_field: "Campo requerido '{field}' falta",
+          required_field_suggestion: "Agregue el campo '{field}' al frontmatter",
+          wrong_type: "Campo '{field}' deber\xEDa ser {expected}, es {actual}",
+          pattern_mismatch: "Valor '{value}' del campo '{field}' no coincide con patr\xF3n '{pattern}'",
+          invalid_enum: "Valor '{value}' del campo '{field}' no est\xE1 permitido. Valores v\xE1lidos: {allowed}",
+          invalid_array_item: "Campo '{field}' contiene item inv\xE1lido '{item}'. Valores v\xE1lidos: {allowed}",
+          array_item_pattern_mismatch: "Item '{item}' del campo '{field}' no coincide con patr\xF3n '{pattern}'",
+          below_min: "Valor {value} del campo '{field}' est\xE1 debajo del m\xEDnimo {min}",
+          above_max: "Valor {value} del campo '{field}' est\xE1 arriba del m\xE1ximo {max}",
+          too_short: "Longitud {length} del campo '{field}' est\xE1 debajo del m\xEDnimo {min}",
+          too_long: "Longitud {length} del campo '{field}' est\xE1 arriba del m\xE1ximo {max}",
+          array_too_short: "Campo '{field}' tiene {length} items, m\xEDnimo es {min}",
+          array_too_long: "Campo '{field}' tiene {length} items, m\xE1ximo es {max}"
+        },
+        sections: {
+          name: "Secciones",
+          description: "Valida secciones requeridas del documento",
+          missing_required: "Secci\xF3n requerida '{section}' no encontrada",
+          missing_required_suggestion: "Agregue la secci\xF3n '## {section}' al documento",
+          forbidden: "Secci\xF3n '{section}' no est\xE1 permitida en este tipo de documento"
+        },
+        naming: {
+          name: "Nomenclatura",
+          description: "Valida convenciones de nomenclatura de archivos",
+          pattern_mismatch: "Nombre de archivo '{filename}' no coincide con patr\xF3n esperado para {typeName}",
+          pattern_mismatch_suggestion: "Renombre el archivo para coincidir con patr\xF3n: {pattern}"
+        },
+        title: {
+          name: "T\xEDtulo",
+          description: "Valida t\xEDtulo del documento",
+          missing: "Documento no tiene t\xEDtulo (# encabezado)",
+          missing_suggestion: "Agregue un t\xEDtulo con '# T\xEDtulo' al inicio",
+          pattern_mismatch: "T\xEDtulo '{title}' no coincide con patr\xF3n esperado",
+          pattern_mismatch_suggestion: "Actualice el t\xEDtulo para coincidir con patr\xF3n: {pattern}"
+        },
+        wordCount: {
+          name: "Conteo de Palabras",
+          description: "Valida l\xEDmites de conteo de palabras",
+          exceeds_max: "Documento tiene {count} palabras, m\xE1ximo es {max}",
+          below_min: "Documento tiene {count} palabras, m\xEDnimo es {min}",
+          section_exceeds_max: "Secci\xF3n '{section}' tiene {count} palabras, m\xE1ximo es {max}"
+        },
+        forbiddenPatterns: {
+          name: "Patrones Prohibidos",
+          description: "Verifica patrones de texto prohibidos",
+          found: "Patr\xF3n prohibido '{pattern}' encontrado: '{match}'",
+          found_suggestion: "Elimine o reemplace el patr\xF3n prohibido '{pattern}'"
+        },
+        links: {
+          name: "Enlaces",
+          description: "Valida enlaces internos",
+          broken: "Enlace roto a '{target}'",
+          broken_suggestion: "Corrija o elimine el enlace a '{target}'"
+        },
+        stale: {
+          name: "Desactualizado",
+          description: "Verifica documentos desactualizados",
+          outdated: "Documento no se ha actualizado en {days} d\xEDas (l\xEDmite: {threshold})",
+          outdated_suggestion: "Revise y actualice el documento"
+        },
+        orphans: {
+          name: "Hu\xE9rfanos",
+          description: "Verifica documentos sin enlaces",
+          not_linked: "Documento '{filename}' no est\xE1 enlazado desde ning\xFAn otro documento",
+          not_linked_suggestion: "Agregue un enlace a este documento desde una ubicaci\xF3n relevante"
+        },
+        emptyFolders: {
+          name: "Carpetas Vac\xEDas",
+          description: "Verifica carpetas vac\xEDas",
+          empty: "Carpeta '{folder}' no contiene archivos markdown",
+          empty_suggestion: "Agregue contenido o elimine la carpeta vac\xEDa"
+        }
+      },
+      ui: {
+        issues: {
+          title: "Problemas",
+          noIssues: "No se encontraron problemas",
+          errors: "Errores",
+          warnings: "Advertencias",
+          info: "Informaci\xF3n"
+        },
+        curation: {
+          title: "Curaci\xF3n",
+          approve: "Aprobar",
+          reject: "Rechazar",
+          skip: "Saltar",
+          progress: "Progreso",
+          pending: "Pendiente"
+        }
+      }
+    };
+  }
+};
+
+// src/store/DocumentStore.ts
+var import_obsidian12 = require("obsidian");
+
+// src/validators/base/ValidatorContext.ts
+function createValidatorContext(app, config, doc, t, templateValidation = null, allDocuments) {
+  const documentTypeConfig = findDocumentTypeConfig(doc, config);
+  return {
+    app,
+    config,
+    documentTypeConfig,
+    templateValidation,
+    t,
+    allDocuments
+  };
+}
+function findDocumentTypeConfig(doc, config) {
+  for (const [typeId, typeConfig] of Object.entries(config.documentTypes)) {
+    if (matchesDocumentType(doc, typeConfig)) {
+      doc.detectedType = typeId;
+      return typeConfig;
+    }
+  }
+  return null;
+}
+function matchesDocumentType(doc, typeConfig) {
+  const detection = typeConfig.detection;
+  if (detection.filename) {
+    const regex = new RegExp(detection.filename);
+    if (!regex.test(doc.file.name)) {
+      return false;
+    }
+  }
+  if (detection.path) {
+    const pathPattern = detection.path.replace(/\*\*/g, ".*").replace(/\*/g, "[^/]*");
+    const regex = new RegExp(pathPattern);
+    if (!regex.test(doc.file.path)) {
+      return false;
+    }
+  }
+  if (detection.frontmatterField) {
+    const { field, value } = detection.frontmatterField;
+    const actualValue = doc.getFrontmatterField(field);
+    if ((actualValue == null ? void 0 : actualValue.toLowerCase()) !== value.toLowerCase()) {
+      return false;
+    }
+  }
+  return true;
+}
+
+// src/services/ValidationService.ts
+var ValidationService = class {
+  constructor(app, registry, templateService, i18n) {
+    this.app = app;
+    this.registry = registry;
+    this.templateService = templateService;
+    this.i18n = i18n;
+  }
+  /**
+   * Validate all documents
+   */
+  async validateAll(documents, config) {
+    const documentResults = /* @__PURE__ */ new Map();
+    const allIssues = [];
+    const localValidators = this.registry.getEnabledLocalValidators(config);
+    for (const doc of documents) {
+      const docIssues = [];
+      const templateValidation = this.templateService.getTemplateValidation(doc);
+      const ctx = createValidatorContext(
+        this.app,
+        config,
+        doc,
+        (key, params) => this.i18n.t(key, params),
+        templateValidation,
+        documents
+      );
+      for (const validator of localValidators) {
+        if (validator.validate) {
+          try {
+            const issues = await validator.validate(doc, ctx);
+            docIssues.push(...issues);
+          } catch (e) {
+            console.error(`Validator ${validator.id} failed on ${doc.file.path}:`, e);
+          }
+        }
+      }
+      documentResults.set(doc.file.path, { document: doc, issues: docIssues });
+      allIssues.push(...docIssues);
+    }
+    const globalValidators = this.registry.getEnabledGlobalValidators(config);
+    for (const validator of globalValidators) {
+      if (validator.validateAll) {
+        try {
+          const ctx = {
+            app: this.app,
+            config,
+            documentTypeConfig: null,
+            templateValidation: null,
+            t: (key, params) => this.i18n.t(key, params),
+            allDocuments: documents
+          };
+          const issues = await validator.validateAll(documents, ctx);
+          for (const issue of issues) {
+            const result = documentResults.get(issue.file.path);
+            if (result) {
+              result.issues.push(issue);
+            }
+            allIssues.push(issue);
+          }
+        } catch (e) {
+          console.error(`Global validator ${validator.id} failed:`, e);
+        }
+      }
+    }
+    allIssues.sort(Issue.compare);
+    return {
+      documentResults,
+      allIssues,
+      summary: calculateIssueSummary(allIssues)
+    };
+  }
+  /**
+   * Validate a single document
+   */
+  async validateDocument(doc, config, allDocuments) {
+    const issues = [];
+    const localValidators = this.registry.getEnabledLocalValidators(config);
+    const templateValidation = this.templateService.getTemplateValidation(doc);
+    const ctx = createValidatorContext(
+      this.app,
+      config,
+      doc,
+      (key, params) => this.i18n.t(key, params),
+      templateValidation,
+      allDocuments
+    );
+    for (const validator of localValidators) {
+      if (validator.validate) {
+        try {
+          const validatorIssues = await validator.validate(doc, ctx);
+          issues.push(...validatorIssues);
+        } catch (e) {
+          console.error(`Validator ${validator.id} failed on ${doc.file.path}:`, e);
+        }
+      }
+    }
+    issues.sort(Issue.compare);
+    return issues;
+  }
+};
+
+// src/services/DocumentParser.ts
+var import_obsidian11 = require("obsidian");
+var DocumentParser = class {
+  constructor(app) {
+    this.app = app;
+  }
+  /**
+   * Parse a file into a Document object
+   */
+  async parse(file) {
+    const content = await this.app.vault.read(file);
+    const frontmatter = this.parseFrontmatter(content);
+    const bodyContent = this.getBodyContent(content);
+    const sections = this.parseSections(bodyContent);
+    const links = this.parseLinks(bodyContent);
+    const title = this.parseTitle(bodyContent);
+    return new Document(
+      file,
+      frontmatter,
+      content,
+      bodyContent,
+      sections,
+      links,
+      title
+    );
+  }
+  /**
+   * Parse YAML frontmatter from content
+   */
+  parseFrontmatter(content) {
+    const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+    if (!match)
+      return null;
+    try {
+      const yaml = (0, import_obsidian11.parseYaml)(match[1]);
+      if (!yaml || typeof yaml !== "object")
+        return null;
+      return yaml;
+    } catch (e) {
+      return null;
+    }
+  }
+  /**
+   * Get body content (without frontmatter)
+   */
+  getBodyContent(content) {
+    return content.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n*/, "");
+  }
+  /**
+   * Parse sections from body content (## and ### headers)
+   */
+  parseSections(content) {
+    const sections = /* @__PURE__ */ new Map();
+    const lines = content.split("\n");
+    let currentSection = "";
+    let currentContent = [];
+    for (const line of lines) {
+      const headerMatch = line.match(/^#{2,3}\s+(.+)$/);
+      if (headerMatch) {
+        if (currentSection) {
+          sections.set(currentSection, currentContent.join("\n").trim());
+        }
+        currentSection = headerMatch[1].trim();
+        currentContent = [];
+      } else if (currentSection) {
+        currentContent.push(line);
+      }
+    }
+    if (currentSection) {
+      sections.set(currentSection, currentContent.join("\n").trim());
+    }
+    return sections;
+  }
+  /**
+   * Parse links from body content
+   */
+  parseLinks(content) {
+    const links = [];
+    const lines = content.split("\n");
+    for (let lineNum = 0; lineNum < lines.length; lineNum++) {
+      const line = lines[lineNum];
+      const wikiLinkRegex = /\[\[([^\]|]+)(?:\|[^\]]+)?\]\]/g;
+      let match;
+      while ((match = wikiLinkRegex.exec(line)) !== null) {
+        links.push({
+          target: match[1],
+          line: lineNum + 1,
+          column: match.index,
+          type: "wiki",
+          resolved: false
+        });
+      }
+      const mdLinkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+      while ((match = mdLinkRegex.exec(line)) !== null) {
+        const target = match[2];
+        if (!target.startsWith("http://") && !target.startsWith("https://")) {
+          links.push({
+            target,
+            line: lineNum + 1,
+            column: match.index,
+            type: "markdown",
+            resolved: false
+          });
+        }
+      }
+    }
+    return links;
+  }
+  /**
+   * Parse the main title (# header)
+   */
+  parseTitle(content) {
+    const match = content.match(/^#\s+(.+)$/m);
+    return match ? match[1].trim() : null;
+  }
+};
+
+// src/store/DocumentStore.ts
+var DocumentStore = class extends import_obsidian12.Events {
+  constructor(app, config, registry, templateService, i18n) {
+    super();
+    this.documents = /* @__PURE__ */ new Map();
+    this.issues = /* @__PURE__ */ new Map();
+    this.loading = false;
+    this.app = app;
+    this.config = config;
+    this.registry = registry;
+    this.templateService = templateService;
+    this.i18n = i18n;
+    this.documentParser = new DocumentParser(app);
+    this.validationService = new ValidationService(
+      app,
+      registry,
+      templateService,
+      i18n
+    );
+  }
+  /**
+   * Update configuration (called when .docslint.yaml changes)
+   */
+  updateConfig(config) {
+    this.config = config;
+  }
+  // --- State Access ---
+  getState() {
+    const docs = Array.from(this.documents.values());
+    const allIssues = Array.from(this.issues.values()).flat();
+    allIssues.sort(Issue.compare);
+    return {
+      documents: docs,
+      issues: allIssues,
+      summary: calculateIssueSummary(allIssues),
+      reviewQueue: this.getReviewQueue()
+    };
+  }
+  getReviewQueue() {
+    return Array.from(this.documents.values()).sort((a, b) => a.file.path.localeCompare(b.file.path)).map((d) => d.file);
+  }
+  getDocument(path) {
+    return this.documents.get(path);
+  }
+  getIssuesForFile(path) {
+    return this.issues.get(path) || [];
+  }
+  isLoading() {
+    return this.loading;
+  }
+  // --- State Mutations ---
+  /**
+   * Load all documents from vault. Emits 'state-changed' when done.
+   */
+  async loadAll() {
+    this.loading = true;
+    this.trigger("state-changed");
+    const files = this.getIncludedFiles();
+    this.documents.clear();
+    this.issues.clear();
+    await this.templateService.initialize();
+    for (const file of files) {
+      const doc = await this.documentParser.parse(file);
+      this.documents.set(file.path, doc);
+    }
+    const docs = Array.from(this.documents.values());
+    const result = await this.validationService.validateAll(docs, this.config);
+    for (const [path, docResult] of result.documentResults) {
+      this.issues.set(path, docResult.issues);
+    }
+    this.loading = false;
+    this.trigger("state-changed");
+  }
+  /**
+   * Update a single document. Emits 'state-changed'.
+   */
+  async updateDocument(file) {
+    if (!file.name.endsWith(".md"))
+      return;
+    if (!this.isIncludedFile(file.path))
+      return;
+    const doc = await this.documentParser.parse(file);
+    this.documents.set(file.path, doc);
+    const allDocs = Array.from(this.documents.values());
+    const docIssues = await this.validationService.validateDocument(
+      doc,
+      this.config,
+      allDocs
+    );
+    this.issues.set(file.path, docIssues);
+    if (this.templateService.isTemplate(doc)) {
+      await this.templateService.refreshTemplate(file);
+    }
+    this.trigger("state-changed");
+  }
+  /**
+   * Remove a document from store. Emits 'state-changed'.
+   */
+  removeDocument(path) {
+    this.documents.delete(path);
+    this.issues.delete(path);
+    this.templateService.removeTemplate(path);
+    this.trigger("state-changed");
+  }
+  /**
+   * Set status for a document. Updates frontmatter and emits 'state-changed'.
+   */
+  async setStatus(file, status, description) {
+    const content = await this.app.vault.read(file);
+    const newContent = this.updateStatusInContent(content, status, description);
+    await this.app.vault.modify(file, newContent);
+    await this.updateDocument(file);
+  }
+  // --- Internal Helpers ---
+  /**
+   * Get files that match include patterns and don't match exclude patterns
+   */
+  getIncludedFiles() {
+    return this.app.vault.getMarkdownFiles().filter(
+      (file) => this.isIncludedFile(file.path)
+    );
+  }
+  /**
+   * Check if a file path should be included
+   */
+  isIncludedFile(path) {
+    for (const pattern of this.config.paths.exclude) {
+      if (this.matchGlob(path, pattern)) {
+        return false;
+      }
+    }
+    for (const pattern of this.config.paths.include) {
+      if (this.matchGlob(path, pattern)) {
+        return true;
+      }
+    }
+    return false;
+  }
+  /**
+   * Simple glob matching
+   */
+  matchGlob(path, pattern) {
+    const regex = pattern.replace(/\*\*/g, ".*").replace(/\*/g, "[^/]*").replace(/\?/g, ".");
+    return new RegExp(`^${regex}$`).test(path);
+  }
+  /**
+   * Format date as YYYY-MM-DD
+   */
+  formatDate(date) {
+    return date.toISOString().split("T")[0];
+  }
+  /**
+   * Update status in frontmatter content
+   */
+  updateStatusInContent(content, status, description) {
+    const today = this.formatDate(new Date());
+    let newContent = content.replace(
+      /^(---\r?\n[\s\S]*?status:\s*)\w+/m,
+      `$1${status}`
+    );
+    newContent = newContent.replace(
+      /^(---\r?\n[\s\S]*?updated:\s*)\S+/m,
+      `$1${today}`
+    );
+    if (description) {
+      if (/^---\r?\n[\s\S]*?description:/m.test(newContent)) {
+        newContent = newContent.replace(
+          /^(---\r?\n[\s\S]*?description:\s*).*/m,
+          `$1"${description.replace(/"/g, '\\"')}"`
+        );
+      } else {
+        newContent = newContent.replace(
+          /^(---\r?\n[\s\S]*?)(---)/m,
+          `$1description: "${description.replace(/"/g, '\\"')}"
+$2`
+        );
+      }
+    } else {
+      newContent = newContent.replace(
+        /^(---\r?\n[\s\S]*?)description:.*\r?\n/m,
+        `$1`
+      );
+    }
+    return newContent;
+  }
+};
+
 // src/views/CurationPanelView.ts
-var import_obsidian9 = require("obsidian");
+var import_obsidian13 = require("obsidian");
 var CURATION_PANEL_VIEW_TYPE = "docs-toolkit-curation";
-var CurationPanelView = class extends import_obsidian9.ItemView {
-  constructor(leaf, store, metadataService) {
+var CurationPanelView = class extends import_obsidian13.ItemView {
+  constructor(leaf, store, metadataService, i18n, config) {
     super(leaf);
     // Current position in queue
     this.currentIndex = 0;
@@ -2112,12 +3419,14 @@ var CurationPanelView = class extends import_obsidian9.ItemView {
     this.statsExpanded = false;
     this.store = store;
     this.metadataService = metadataService;
+    this.i18n = i18n;
+    this.config = config;
   }
   getViewType() {
     return CURATION_PANEL_VIEW_TYPE;
   }
   getDisplayText() {
-    return "Curation";
+    return this.i18n.t("ui.curation.title");
   }
   getIcon() {
     return "check-square";
@@ -2136,17 +3445,36 @@ var CurationPanelView = class extends import_obsidian9.ItemView {
     this.render();
   }
   /**
-   * Get the review queue (pending files), filtered by folder and search query
+   * Update configuration
+   */
+  updateConfig(config) {
+    this.config = config;
+    this.render();
+  }
+  /**
+   * Check if file should be tracked based on config exclude paths
+   */
+  isTrackedFile(path) {
+    for (const pattern of this.config.paths.exclude) {
+      const regex = pattern.replace(/\*\*/g, ".*").replace(/\*/g, "[^/]*");
+      if (new RegExp(`^${regex}`).test(path)) {
+        return false;
+      }
+    }
+    return true;
+  }
+  /**
+   * Get the review queue (all files), filtered by folder and search query
    */
   getQueue() {
-    let queue = this.store.getReviewQueue();
+    let queue = this.store.getReviewQueue().filter((f) => this.isTrackedFile(f.path));
     if (this.folderFilter) {
       queue = queue.filter((f) => f.path.startsWith(this.folderFilter + "/"));
     }
     if (this.searchQuery.trim()) {
       const query = this.searchQuery.toLowerCase().trim();
       queue = queue.filter((f) => {
-        var _a, _b, _c;
+        var _a;
         if (f.basename.toLowerCase().includes(query))
           return true;
         if (f.path.toLowerCase().includes(query))
@@ -2154,7 +3482,8 @@ var CurationPanelView = class extends import_obsidian9.ItemView {
         const doc = this.store.getDocument(f.path);
         if ((_a = doc == null ? void 0 : doc.id) == null ? void 0 : _a.toLowerCase().includes(query))
           return true;
-        if ((_c = (_b = doc == null ? void 0 : doc.frontmatter) == null ? void 0 : _b.description) == null ? void 0 : _c.toLowerCase().includes(query))
+        const desc = doc == null ? void 0 : doc.getFrontmatterField("description");
+        if (desc == null ? void 0 : desc.toLowerCase().includes(query))
           return true;
         return false;
       });
@@ -2165,17 +3494,14 @@ var CurationPanelView = class extends import_obsidian9.ItemView {
    * Get available top-level folders for filtering
    */
   getAvailableFolders() {
-    const queue = this.store.getReviewQueue();
+    const queue = this.store.getReviewQueue().filter((f) => this.isTrackedFile(f.path));
     const folders = /* @__PURE__ */ new Set();
     for (const file of queue) {
       const parts = file.path.split("/");
       if (parts.length > 1) {
         folders.add(parts[0]);
-        if (parts[0] === "PROJECTS" && parts.length > 2) {
+        if (parts.length > 2) {
           folders.add(parts[0] + "/" + parts[1]);
-          if (parts[1] === "LIB" && parts.length > 3) {
-            folders.add(parts[0] + "/" + parts[1] + "/" + parts[2]);
-          }
         }
       }
     }
@@ -2186,12 +3512,14 @@ var CurationPanelView = class extends import_obsidian9.ItemView {
    */
   getFolderStats() {
     const state = this.store.getState();
-    const docs = state.documents.filter((d) => true);
+    const docs = state.documents.filter((d) => this.isTrackedFile(d.file.path));
     const folderMap = /* @__PURE__ */ new Map();
+    const approvedStatus = "approved";
+    const rejectedStatus = "rejected";
     for (const doc of docs) {
       const parts = doc.file.path.split("/");
       let folder = parts[0];
-      if (folder === "PROJECTS" && parts.length > 2) {
+      if (parts.length > 2) {
         folder = parts[0] + "/" + parts[1];
       }
       if (!folderMap.has(folder)) {
@@ -2199,9 +3527,9 @@ var CurationPanelView = class extends import_obsidian9.ItemView {
       }
       const stats = folderMap.get(folder);
       stats.total++;
-      if (doc.status === "approved" /* APPROVED */)
+      if (doc.status === approvedStatus)
         stats.approved++;
-      else if (doc.status === "rejected" /* REJECTED */)
+      else if (doc.status === rejectedStatus)
         stats.rejected++;
       else
         stats.pending++;
@@ -2223,13 +3551,12 @@ var CurationPanelView = class extends import_obsidian9.ItemView {
   }
   /**
    * Sync panel with currently active file in editor
-   * Clears folder filter if needed to show the file
    */
   syncWithActiveFile() {
     const activeFile = this.app.workspace.getActiveFile();
     if (!activeFile)
       return;
-    if (!Document.isInCARFPath(activeFile.path))
+    if (!this.isTrackedFile(activeFile.path))
       return;
     let queue = this.getQueue();
     let index = queue.findIndex((f) => f.path === activeFile.path);
@@ -2255,13 +3582,13 @@ var CurationPanelView = class extends import_obsidian9.ItemView {
       el.createDiv({ text: "Loading...", cls: "docs-cp-loading" });
       return;
     }
-    let docs = state.documents.filter((d) => true);
+    let docs = state.documents.filter((d) => this.isTrackedFile(d.file.path));
     if (this.folderFilter) {
       docs = docs.filter((d) => d.file.path.startsWith(this.folderFilter + "/"));
     }
-    const approved = docs.filter((d) => d.status === "approved" /* APPROVED */).length;
-    const rejected = docs.filter((d) => d.status === "rejected" /* REJECTED */).length;
-    const pending = docs.filter((d) => d.status === "review" /* REVIEW */).length;
+    const approved = docs.filter((d) => d.status === "approved").length;
+    const rejected = docs.filter((d) => d.status === "rejected").length;
+    const pending = docs.filter((d) => d.status === "review").length;
     const total = docs.length;
     this.renderFolderFilter(el);
     this.renderSearch(el);
@@ -2389,7 +3716,7 @@ var CurationPanelView = class extends import_obsidian9.ItemView {
     mainLine.createSpan({ text: " approved", cls: "docs-cp-stat-label" });
     const secondaryLine = section.createDiv({ cls: "docs-cp-secondary-stats" });
     if (stats.pending > 0) {
-      secondaryLine.createSpan({ text: `${stats.pending} pending`, cls: "docs-cp-pending" });
+      secondaryLine.createSpan({ text: `${stats.pending} ${this.i18n.t("ui.curation.pending")}`, cls: "docs-cp-pending" });
     }
     if (stats.rejected > 0) {
       if (stats.pending > 0)
@@ -2426,17 +3753,20 @@ var CurationPanelView = class extends import_obsidian9.ItemView {
       section.createDiv({ text: shortPath, cls: "docs-cp-filepath" });
     }
     const meta = section.createDiv({ cls: "docs-cp-meta" });
-    if (doc == null ? void 0 : doc.frontmatter) {
-      const fm = doc.frontmatter;
+    if (doc == null ? void 0 : doc.hasFrontmatter) {
+      const status = doc.status;
+      const statusConfig = this.config.workflow.statuses[status];
       const statusBadge = meta.createSpan({
-        text: fm.status || "review",
-        cls: `docs-cp-status-badge docs-cp-status-${fm.status || "review"}`
+        text: (statusConfig == null ? void 0 : statusConfig.name) || status,
+        cls: `docs-cp-status-badge docs-cp-status-${status}`
       });
-      if (fm.updated) {
-        meta.createSpan({ text: ` \xB7 ${fm.updated}`, cls: "docs-cp-updated" });
+      const updated = doc.getFrontmatterField("updated");
+      if (updated) {
+        meta.createSpan({ text: ` \xB7 ${updated}`, cls: "docs-cp-updated" });
       }
-      if (fm.description) {
-        section.createDiv({ text: fm.description, cls: "docs-cp-description" });
+      const description = doc.getFrontmatterField("description");
+      if (description) {
+        section.createDiv({ text: description, cls: "docs-cp-description" });
       }
     } else {
       const warning = section.createDiv({ cls: "docs-cp-warning" });
@@ -2456,7 +3786,8 @@ var CurationPanelView = class extends import_obsidian9.ItemView {
       if (this.issuesExpanded) {
         const issuesList = issuesSection.createDiv({ cls: "docs-cp-issues-list" });
         for (const issue of issues.slice(0, 5)) {
-          issuesList.createDiv({ text: `\xB7 ${issue.message}`, cls: "docs-cp-issue" });
+          const msg = this.i18n.t(issue.messageKey, issue.messageParams);
+          issuesList.createDiv({ text: `\xB7 ${msg}`, cls: "docs-cp-issue" });
         }
         if (issues.length > 5) {
           issuesList.createDiv({ text: `+${issues.length - 5} more`, cls: "docs-cp-more" });
@@ -2477,16 +3808,16 @@ var CurationPanelView = class extends import_obsidian9.ItemView {
     prevBtn.title = "Previous (\u2190)";
     prevBtn.onclick = () => this.navigate(-1);
     const rejectBtn = row.createEl("button", { text: "\u2717", cls: "docs-cp-btn docs-cp-reject-btn" });
-    rejectBtn.disabled = !file || currentStatus === "rejected" /* REJECTED */;
-    rejectBtn.title = "Reject";
+    rejectBtn.disabled = !file || currentStatus === "rejected";
+    rejectBtn.title = this.i18n.t("ui.curation.reject");
     rejectBtn.onclick = () => file && this.reject(file);
     const reviewBtn = row.createEl("button", { text: "\u25CB", cls: "docs-cp-btn docs-cp-review-btn" });
-    reviewBtn.disabled = !file || currentStatus === "review" /* REVIEW */;
+    reviewBtn.disabled = !file || currentStatus === "review";
     reviewBtn.title = "Back to Review";
     reviewBtn.onclick = () => file && this.setReview(file);
     const approveBtn = row.createEl("button", { text: "\u2713", cls: "docs-cp-btn docs-cp-approve-btn" });
-    approveBtn.disabled = !file || currentStatus === "approved" /* APPROVED */;
-    approveBtn.title = "Approve";
+    approveBtn.disabled = !file || currentStatus === "approved";
+    approveBtn.title = this.i18n.t("ui.curation.approve");
     approveBtn.onclick = () => file && this.approve(file);
     const nextBtn = row.createEl("button", { text: "\u2192", cls: "docs-cp-btn docs-cp-nav" });
     nextBtn.disabled = this.currentIndex >= queueLength - 1;
@@ -2496,9 +3827,6 @@ var CurationPanelView = class extends import_obsidian9.ItemView {
     hints.createSpan({ text: "\u2190 \u2192 navigate" });
   }
   // === ACTIONS ===
-  /**
-   * Navigate to previous/next file
-   */
   async navigate(delta) {
     const queue = this.getQueue();
     const newIndex = this.currentIndex + delta;
@@ -2508,35 +3836,20 @@ var CurationPanelView = class extends import_obsidian9.ItemView {
     await this.openCurrentFile();
     this.render();
   }
-  /**
-   * Approve current file (clears rejection reason)
-   */
   async approve(file) {
-    await this.store.setStatus(file, "approved" /* APPROVED */);
+    await this.store.setStatus(file, "approved");
   }
-  /**
-   * Reject current file (prompts for reason)
-   */
   reject(file) {
-    new RejectModal(this.app, async (reason) => {
-      await this.store.setStatus(file, "rejected" /* REJECTED */, reason);
+    new RejectModal(this.app, this.i18n, async (reason) => {
+      await this.store.setStatus(file, "rejected", reason);
     }).open();
   }
-  /**
-   * Set file back to review status (clears rejection reason)
-   */
   async setReview(file) {
-    await this.store.setStatus(file, "review" /* REVIEW */);
+    await this.store.setStatus(file, "review");
   }
-  /**
-   * Initialize YAML frontmatter
-   */
   async initYaml(file) {
     await this.metadataService.initFrontmatter(file);
   }
-  /**
-   * Open current file in main editor area
-   */
   async openCurrentFile() {
     const file = this.getCurrentFile();
     if (!file)
@@ -2544,9 +3857,6 @@ var CurationPanelView = class extends import_obsidian9.ItemView {
     const leaf = this.app.workspace.getLeaf(false);
     await leaf.openFile(file);
   }
-  /**
-   * Keyboard handler - only arrow keys for navigation
-   */
   onKey(e) {
     if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement)
       return;
@@ -2564,23 +3874,24 @@ var CurationPanelView = class extends import_obsidian9.ItemView {
     }
   }
 };
-var _RejectModal = class extends import_obsidian9.Modal {
-  constructor(app, onSubmit) {
+var _RejectModal = class extends import_obsidian13.Modal {
+  constructor(app, i18n, onSubmit) {
     super(app);
     this.reason = "";
     this.submitted = false;
+    this.i18n = i18n;
     this.onSubmit = onSubmit;
   }
   onOpen() {
     const { contentEl, modalEl } = this;
     modalEl.addClass("docs-reject-modal");
-    const label = contentEl.createEl("label", { text: "Motivo da rejei\xE7\xE3o" });
+    const label = contentEl.createEl("label", { text: "Rejection reason" });
     label.style.fontSize = "12px";
     label.style.color = "var(--text-muted)";
     label.style.marginBottom = "6px";
     label.style.display = "block";
-    const textArea = new import_obsidian9.TextAreaComponent(contentEl);
-    textArea.setPlaceholder("O que precisa ser corrigido?");
+    const textArea = new import_obsidian13.TextAreaComponent(contentEl);
+    textArea.setPlaceholder("What needs to be fixed?");
     textArea.inputEl.style.width = "100%";
     textArea.inputEl.style.height = "80px";
     textArea.inputEl.style.resize = "none";
@@ -2604,10 +3915,10 @@ var _RejectModal = class extends import_obsidian9.Modal {
     footer.style.justifyContent = "space-between";
     footer.style.alignItems = "center";
     footer.style.marginTop = "8px";
-    const hint = footer.createSpan({ text: "Ctrl+Enter para confirmar" });
+    const hint = footer.createSpan({ text: "Ctrl+Enter to confirm" });
     hint.style.fontSize = "11px";
     hint.style.color = "var(--text-faint)";
-    const submitBtn = footer.createEl("button", { text: "Rejeitar", cls: "mod-warning" });
+    const submitBtn = footer.createEl("button", { text: this.i18n.t("ui.curation.reject"), cls: "mod-warning" });
     submitBtn.style.padding = "4px 12px";
     submitBtn.onclick = () => this.submit();
     textArea.inputEl.addEventListener("keydown", (e) => {
@@ -2633,25 +3944,25 @@ var _RejectModal = class extends import_obsidian9.Modal {
   }
 };
 var RejectModal = _RejectModal;
-// Draft estático - persiste entre instâncias do modal
 RejectModal.draft = "";
 
 // src/views/IssuesPanelView.ts
-var import_obsidian10 = require("obsidian");
+var import_obsidian14 = require("obsidian");
 var ISSUES_PANEL_VIEW_TYPE = "docs-toolkit-issues";
-var IssuesPanelView = class extends import_obsidian10.ItemView {
-  constructor(leaf, store) {
+var IssuesPanelView = class extends import_obsidian14.ItemView {
+  constructor(leaf, store, i18n) {
     super(leaf);
     this.filterMode = "all";
     this.groupMode = "file";
     this.collapsedFiles = /* @__PURE__ */ new Set();
     this.store = store;
+    this.i18n = i18n;
   }
   getViewType() {
     return ISSUES_PANEL_VIEW_TYPE;
   }
   getDisplayText() {
-    return "Problems";
+    return this.i18n.t("ui.issues.title");
   }
   getIcon() {
     return "alert-triangle";
@@ -2691,6 +4002,12 @@ var IssuesPanelView = class extends import_obsidian10.ItemView {
       grouped.get(path).push(issue);
     }
     return grouped;
+  }
+  /**
+   * Get translated message for an issue
+   */
+  getIssueMessage(issue) {
+    return this.i18n.t(issue.messageKey, issue.messageParams);
   }
   /**
    * Main render function
@@ -2785,7 +4102,7 @@ var IssuesPanelView = class extends import_obsidian10.ItemView {
   renderEmpty(el) {
     const empty = el.createDiv({ cls: "docs-ip-empty" });
     empty.createDiv({ text: "\u2713", cls: "docs-ip-empty-icon" });
-    empty.createDiv({ text: "No problems", cls: "docs-ip-empty-text" });
+    empty.createDiv({ text: this.i18n.t("ui.issues.noIssues"), cls: "docs-ip-empty-text" });
   }
   /**
    * Render issues grouped by file
@@ -2849,7 +4166,7 @@ var IssuesPanelView = class extends import_obsidian10.ItemView {
     const icon = row.createSpan({ cls: "docs-ip-row-icon" });
     icon.innerHTML = issue.icon;
     const message = row.createSpan({ cls: "docs-ip-row-message" });
-    message.textContent = issue.message;
+    message.textContent = this.getIssueMessage(issue);
     const source = row.createSpan({ cls: "docs-ip-row-source" });
     if (showFile) {
       source.createSpan({ text: issue.file.basename, cls: "docs-ip-row-file" });
@@ -2879,7 +4196,7 @@ var IssuesPanelView = class extends import_obsidian10.ItemView {
 };
 
 // src/commands/InitMetadataCommand.ts
-var import_obsidian11 = require("obsidian");
+var import_obsidian15 = require("obsidian");
 var InitMetadataCommand = class {
   constructor(app, metadataService) {
     this.app = app;
@@ -2891,24 +4208,24 @@ var InitMetadataCommand = class {
   async execute() {
     const activeFile = this.app.workspace.getActiveFile();
     if (!activeFile) {
-      new import_obsidian11.Notice("Nenhum arquivo aberto");
+      new import_obsidian15.Notice("Nenhum arquivo aberto");
       return;
     }
     if (!activeFile.name.endsWith(".md")) {
-      new import_obsidian11.Notice("Apenas arquivos Markdown suportados");
+      new import_obsidian15.Notice("Apenas arquivos Markdown suportados");
       return;
     }
     const hasFrontmatter = await this.metadataService.hasFrontmatter(activeFile);
     if (hasFrontmatter) {
-      new import_obsidian11.Notice("Arquivo j\xE1 possui frontmatter");
+      new import_obsidian15.Notice("Arquivo j\xE1 possui frontmatter");
       return;
     }
-    if (!Document.isInCARFPath(activeFile.path)) {
-      new import_obsidian11.Notice("Arquivo n\xE3o est\xE1 em um caminho de documenta\xE7\xE3o (CENTRAL/ ou PROJECTS/)");
+    if (!Document2.isInCARFPath(activeFile.path)) {
+      new import_obsidian15.Notice("Arquivo n\xE3o est\xE1 em um caminho de documenta\xE7\xE3o (CENTRAL/ ou PROJECTS/)");
       return;
     }
     const frontmatter = await this.metadataService.initFrontmatter(activeFile);
-    new import_obsidian11.Notice(
+    new import_obsidian15.Notice(
       `Frontmatter criado:
 ID: ${frontmatter.id}
 Tipo: ${frontmatter.type}
@@ -2918,7 +4235,7 @@ Status: ${frontmatter.status}`
 };
 
 // src/commands/MigrateFooterCommand.ts
-var import_obsidian12 = require("obsidian");
+var import_obsidian16 = require("obsidian");
 var MigrateFooterCommand = class {
   constructor(app, migrationService) {
     this.app = app;
@@ -2931,35 +4248,35 @@ var MigrateFooterCommand = class {
     var _a, _b;
     const activeFile = this.app.workspace.getActiveFile();
     if (!activeFile) {
-      new import_obsidian12.Notice("Nenhum arquivo aberto");
+      new import_obsidian16.Notice("Nenhum arquivo aberto");
       return;
     }
     if (!activeFile.name.endsWith(".md")) {
-      new import_obsidian12.Notice("Apenas arquivos Markdown suportados");
+      new import_obsidian16.Notice("Apenas arquivos Markdown suportados");
       return;
     }
     const result = await this.migrationService.migrateFile(activeFile);
     if (result.success) {
-      new import_obsidian12.Notice(
+      new import_obsidian16.Notice(
         `Migra\xE7\xE3o conclu\xEDda!
 ID: ${(_a = result.newFrontmatter) == null ? void 0 : _a.id}
 Status: ${(_b = result.newFrontmatter) == null ? void 0 : _b.status}`
       );
     } else {
-      new import_obsidian12.Notice(`Migra\xE7\xE3o falhou: ${result.message}`);
+      new import_obsidian16.Notice(`Migra\xE7\xE3o falhou: ${result.message}`);
     }
   }
   /**
    * Execute the command for all files
    */
   async executeAll() {
-    new import_obsidian12.Notice("Iniciando migra\xE7\xE3o de todos os arquivos...");
+    new import_obsidian16.Notice("Iniciando migra\xE7\xE3o de todos os arquivos...");
     await this.migrationService.migrateAll();
   }
 };
 
 // src/commands/SyncIndexCommand.ts
-var import_obsidian13 = require("obsidian");
+var import_obsidian17 = require("obsidian");
 var SyncIndexCommand = class {
   constructor(app, indexService) {
     this.app = app;
@@ -2971,26 +4288,26 @@ var SyncIndexCommand = class {
   async execute() {
     const activeFile = this.app.workspace.getActiveFile();
     if (!activeFile) {
-      new import_obsidian13.Notice("Nenhum arquivo aberto");
+      new import_obsidian17.Notice("Nenhum arquivo aberto");
       return;
     }
     const folder = activeFile.parent;
     if (!folder) {
-      new import_obsidian13.Notice("N\xE3o foi poss\xEDvel determinar a pasta");
+      new import_obsidian17.Notice("N\xE3o foi poss\xEDvel determinar a pasta");
       return;
     }
-    if (!Document.isInCARFPath(folder.path)) {
-      new import_obsidian13.Notice("Pasta n\xE3o est\xE1 em um caminho de documenta\xE7\xE3o");
+    if (!Document2.isInCARFPath(folder.path)) {
+      new import_obsidian17.Notice("Pasta n\xE3o est\xE1 em um caminho de documenta\xE7\xE3o");
       return;
     }
     await this.indexService.syncFolderIndex(folder);
-    new import_obsidian13.Notice("\u2713 \xCDndice do README atualizado!");
+    new import_obsidian17.Notice("\u2713 \xCDndice do README atualizado!");
   }
   /**
    * Sync all README indexes in the vault
    */
   async executeAll() {
-    new import_obsidian13.Notice("Atualizando todos os \xEDndices...");
+    new import_obsidian17.Notice("Atualizando todos os \xEDndices...");
     const folders = this.getAllCARFFolders();
     let updated = 0;
     for (const folder of folders) {
@@ -3000,7 +4317,7 @@ var SyncIndexCommand = class {
         updated++;
       }
     }
-    new import_obsidian13.Notice(`\u2713 ${updated} \xEDndices atualizados!`);
+    new import_obsidian17.Notice(`\u2713 ${updated} \xEDndices atualizados!`);
   }
   /**
    * Get all folders in CARF paths
@@ -3008,11 +4325,11 @@ var SyncIndexCommand = class {
   getAllCARFFolders() {
     const folders = [];
     const processFolder = (folder) => {
-      if (Document.isInCARFPath(folder.path)) {
+      if (Document2.isInCARFPath(folder.path)) {
         folders.push(folder);
       }
       for (const child of folder.children) {
-        if (child instanceof import_obsidian13.TFolder) {
+        if (child instanceof import_obsidian17.TFolder) {
           processFolder(child);
         }
       }
@@ -3023,23 +4340,102 @@ var SyncIndexCommand = class {
   }
 };
 
+// src/settings.ts
+var import_obsidian18 = require("obsidian");
+var DEFAULT_SETTINGS = {
+  centralPath: "CENTRAL",
+  projectsPath: "PROJECTS",
+  enabledValidators: [
+    "broken-links",
+    "frontmatter",
+    "orphans",
+    "structure",
+    "title",
+    "stale",
+    "empty-folders",
+    "naming"
+  ],
+  autoUpdateTimestamp: true,
+  autoValidateOnSave: true,
+  autoSyncIndex: true,
+  staleThresholdDays: 180
+};
+var DocsToolkitSettingTab = class extends import_obsidian18.PluginSettingTab {
+  constructor(app, plugin) {
+    super(app, plugin);
+    this.plugin = plugin;
+  }
+  display() {
+    const { containerEl } = this;
+    containerEl.empty();
+    containerEl.createEl("h2", { text: "Docs Toolkit Settings" });
+    containerEl.createEl("h3", { text: "Paths" });
+    new import_obsidian18.Setting(containerEl).setName("Central path").setDesc("Path to CENTRAL folder").addText((text) => text.setPlaceholder("CENTRAL").setValue(this.plugin.settings.centralPath).onChange(async (value) => {
+      this.plugin.settings.centralPath = value;
+      await this.plugin.saveSettings();
+    }));
+    new import_obsidian18.Setting(containerEl).setName("Projects path").setDesc("Path to PROJECTS folder").addText((text) => text.setPlaceholder("PROJECTS").setValue(this.plugin.settings.projectsPath).onChange(async (value) => {
+      this.plugin.settings.projectsPath = value;
+      await this.plugin.saveSettings();
+    }));
+    containerEl.createEl("h3", { text: "Automation" });
+    new import_obsidian18.Setting(containerEl).setName("Auto-update timestamp").setDesc("Automatically update 'updated' field when saving").addToggle((toggle) => toggle.setValue(this.plugin.settings.autoUpdateTimestamp).onChange(async (value) => {
+      this.plugin.settings.autoUpdateTimestamp = value;
+      await this.plugin.saveSettings();
+    }));
+    new import_obsidian18.Setting(containerEl).setName("Auto-validate on save").setDesc("Run validation when saving a file").addToggle((toggle) => toggle.setValue(this.plugin.settings.autoValidateOnSave).onChange(async (value) => {
+      this.plugin.settings.autoValidateOnSave = value;
+      await this.plugin.saveSettings();
+    }));
+    new import_obsidian18.Setting(containerEl).setName("Auto-sync README index").setDesc("Automatically update README index when files change").addToggle((toggle) => toggle.setValue(this.plugin.settings.autoSyncIndex).onChange(async (value) => {
+      this.plugin.settings.autoSyncIndex = value;
+      await this.plugin.saveSettings();
+    }));
+    new import_obsidian18.Setting(containerEl).setName("Stale threshold (days)").setDesc("Documents not updated after this many days are marked as stale").addText((text) => text.setPlaceholder("180").setValue(String(this.plugin.settings.staleThresholdDays)).onChange(async (value) => {
+      const days = parseInt(value);
+      if (!isNaN(days) && days > 0) {
+        this.plugin.settings.staleThresholdDays = days;
+        await this.plugin.saveSettings();
+      }
+    }));
+    containerEl.createEl("h3", { text: "Validators" });
+    containerEl.createEl("p", {
+      text: "Validators are now configured via .docslint.yaml in your vault root. Use the 'Docs Toolkit: Reload Configuration' command after editing.",
+      cls: "setting-item-description"
+    });
+  }
+};
+
 // main.ts
 var DOCS_ICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M9 15l2 2 4-4"></path></svg>`;
-var DocsToolkitPlugin = class extends import_obsidian14.Plugin {
+var DocsToolkitPlugin = class extends import_obsidian19.Plugin {
   constructor() {
     super(...arguments);
     // Reference to curation panel
     this.curationPanel = null;
   }
   async onload() {
-    console.log("Loading Docs Toolkit Plugin");
+    console.log("Loading Docs Toolkit Plugin v2.0");
     await this.loadSettings();
-    (0, import_obsidian14.addIcon)("docs-icon", DOCS_ICON);
-    this.store = new DocumentStore(this.app);
-    for (const validator of this.store.getValidators()) {
-      const enabled = this.settings.enabledValidators.includes(validator.id);
-      this.store.setValidatorEnabled(validator.id, enabled);
-    }
+    (0, import_obsidian19.addIcon)("docs-icon", DOCS_ICON);
+    this.configLoader = new ConfigLoader(this.app);
+    this.config = await this.configLoader.loadConfig();
+    this.i18n = new I18nService(this.app);
+    await this.i18n.initialize(this.config.language);
+    this.registry = createBuiltinValidatorRegistry();
+    this.templateService = new TemplateService(this.app);
+    this.store = new DocumentStore(
+      this.app,
+      this.config,
+      this.registry,
+      this.templateService,
+      this.i18n
+    );
+    this.configWatcher = new ConfigWatcher(this.app, this.configLoader);
+    this.configWatcher.on("config-changed", (newConfig) => {
+      this.onConfigChanged(newConfig);
+    });
+    await this.configWatcher.start();
     this.metadataService = new MetadataService(this.app);
     this.indexService = new IndexService(this.app, this.metadataService);
     this.migrationService = new MigrationService(this.app, this.metadataService);
@@ -3049,13 +4445,19 @@ var DocsToolkitPlugin = class extends import_obsidian14.Plugin {
     this.registerView(
       CURATION_PANEL_VIEW_TYPE,
       (leaf) => {
-        this.curationPanel = new CurationPanelView(leaf, this.store, this.metadataService);
+        this.curationPanel = new CurationPanelView(
+          leaf,
+          this.store,
+          this.metadataService,
+          this.i18n,
+          this.config
+        );
         return this.curationPanel;
       }
     );
     this.registerView(
       ISSUES_PANEL_VIEW_TYPE,
-      (leaf) => new IssuesPanelView(leaf, this.store)
+      (leaf) => new IssuesPanelView(leaf, this.store, this.i18n)
     );
     this.registerCommands();
     this.registerVaultEvents();
@@ -3074,7 +4476,33 @@ var DocsToolkitPlugin = class extends import_obsidian14.Plugin {
     });
   }
   async onunload() {
-    console.log("Unloading Docs Toolkit Plugin");
+    console.log("Unloading Docs Toolkit Plugin v2.0");
+  }
+  /**
+   * Handle configuration changes (hot-reload)
+   */
+  onConfigChanged(newConfig) {
+    console.log("Config changed, reloading...");
+    this.config = newConfig;
+    this.i18n.setLocale(newConfig.language);
+    this.store.updateConfig(newConfig);
+    if (this.curationPanel) {
+      this.curationPanel.updateConfig(newConfig);
+    }
+    this.store.loadAll();
+    new import_obsidian19.Notice("Docs Toolkit: Configuration reloaded");
+  }
+  /**
+   * Check if file should be tracked
+   */
+  isTrackedFile(path) {
+    for (const pattern of this.config.paths.exclude) {
+      const regex = pattern.replace(/\*\*/g, ".*").replace(/\*/g, "[^/]*");
+      if (new RegExp(`^${regex}`).test(path)) {
+        return false;
+      }
+    }
+    return true;
   }
   /**
    * Register all plugin commands
@@ -3127,6 +4555,15 @@ var DocsToolkitPlugin = class extends import_obsidian14.Plugin {
       name: "Open Issues Panel",
       callback: () => this.activateIssuesPanel()
     });
+    this.addCommand({
+      id: "reload-config",
+      name: "Reload Configuration",
+      callback: async () => {
+        this.configLoader.clearCache();
+        const newConfig = await this.configLoader.loadConfig();
+        this.onConfigChanged(newConfig);
+      }
+    });
   }
   /**
    * Wire vault events to store
@@ -3134,11 +4571,11 @@ var DocsToolkitPlugin = class extends import_obsidian14.Plugin {
   registerVaultEvents() {
     this.registerEvent(
       this.app.vault.on("modify", async (file) => {
-        if (!(file instanceof import_obsidian14.TFile))
+        if (!(file instanceof import_obsidian19.TFile))
           return;
         if (!file.name.endsWith(".md"))
           return;
-        if (!Document.isInCARFPath(file.path))
+        if (!this.isTrackedFile(file.path))
           return;
         if (this.settings.autoUpdateTimestamp) {
           setTimeout(async () => {
@@ -3162,32 +4599,32 @@ var DocsToolkitPlugin = class extends import_obsidian14.Plugin {
     );
     this.registerEvent(
       this.app.vault.on("create", async (file) => {
-        if (!(file instanceof import_obsidian14.TFile))
+        if (!(file instanceof import_obsidian19.TFile))
           return;
         if (!file.name.endsWith(".md"))
           return;
-        if (!Document.isInCARFPath(file.path))
+        if (!this.isTrackedFile(file.path))
           return;
         await this.store.updateDocument(file);
       })
     );
     this.registerEvent(
       this.app.vault.on("rename", async (file, oldPath) => {
-        if (!(file instanceof import_obsidian14.TFile))
+        if (!(file instanceof import_obsidian19.TFile))
           return;
         if (!file.name.endsWith(".md"))
           return;
         this.store.removeDocument(oldPath);
-        if (Document.isInCARFPath(file.path)) {
+        if (this.isTrackedFile(file.path)) {
           await this.store.updateDocument(file);
         }
         if (this.settings.autoSyncIndex) {
           const oldFolderPath = oldPath.substring(0, oldPath.lastIndexOf("/"));
           const oldFolder = this.app.vault.getAbstractFileByPath(oldFolderPath);
-          if (oldFolder instanceof import_obsidian14.TFolder && Document.isInCARFPath(oldFolderPath)) {
+          if (oldFolder instanceof import_obsidian19.TFolder && this.isTrackedFile(oldFolderPath)) {
             this.indexService.scheduleSync(oldFolder);
           }
-          if (file.parent && Document.isInCARFPath(file.parent.path)) {
+          if (file.parent && this.isTrackedFile(file.parent.path)) {
             this.indexService.scheduleSync(file.parent);
           }
         }
@@ -3195,13 +4632,13 @@ var DocsToolkitPlugin = class extends import_obsidian14.Plugin {
     );
     this.registerEvent(
       this.app.vault.on("delete", async (file) => {
-        if (!(file instanceof import_obsidian14.TFile))
+        if (!(file instanceof import_obsidian19.TFile))
           return;
         this.store.removeDocument(file.path);
         if (this.settings.autoSyncIndex) {
           const folderPath = file.path.substring(0, file.path.lastIndexOf("/"));
           const folder = this.app.vault.getAbstractFileByPath(folderPath);
-          if (folder instanceof import_obsidian14.TFolder && Document.isInCARFPath(folderPath)) {
+          if (folder instanceof import_obsidian19.TFolder && this.isTrackedFile(folderPath)) {
             this.indexService.scheduleSync(folder);
           }
         }
@@ -3214,25 +4651,25 @@ var DocsToolkitPlugin = class extends import_obsidian14.Plugin {
   registerFolderContextMenu() {
     this.registerEvent(
       this.app.workspace.on("file-menu", (menu, file) => {
-        if (!(file instanceof import_obsidian14.TFolder))
+        if (!(file instanceof import_obsidian19.TFolder))
           return;
-        if (!Document.isInCARFPath(file.path))
+        if (!this.isTrackedFile(file.path))
           return;
         menu.addSeparator();
         menu.addItem((item) => {
           item.setTitle("Set all as Review").setIcon("refresh-cw").onClick(async () => {
-            await this.setFolderStatus(file, "review" /* REVIEW */);
+            await this.setFolderStatus(file, "review");
           });
         });
         menu.addItem((item) => {
           item.setTitle("Set all as Approved").setIcon("check").onClick(async () => {
-            await this.setFolderStatus(file, "approved" /* APPROVED */);
+            await this.setFolderStatus(file, "approved");
           });
         });
         menu.addItem((item) => {
           item.setTitle("Regenerate README index").setIcon("list").onClick(async () => {
             await this.regenerateReadmeIndex(file);
-            new import_obsidian14.Notice(`README index regenerated for ${file.name}`);
+            new import_obsidian19.Notice(`README index regenerated for ${file.name}`);
           });
         });
       })
@@ -3250,7 +4687,7 @@ var DocsToolkitPlugin = class extends import_obsidian14.Plugin {
       await this.store.setStatus(file, status);
       count++;
     }
-    new import_obsidian14.Notice(`${count} files set to ${status}`);
+    new import_obsidian19.Notice(`${count} files set to ${status}`);
   }
   /**
    * Get all markdown files in a folder (recursive)
@@ -3258,9 +4695,9 @@ var DocsToolkitPlugin = class extends import_obsidian14.Plugin {
   getFilesInFolder(folder) {
     const files = [];
     for (const child of folder.children) {
-      if (child instanceof import_obsidian14.TFile && child.extension === "md") {
+      if (child instanceof import_obsidian19.TFile && child.extension === "md") {
         files.push(child);
-      } else if (child instanceof import_obsidian14.TFolder) {
+      } else if (child instanceof import_obsidian19.TFolder) {
         files.push(...this.getFilesInFolder(child));
       }
     }
@@ -3283,8 +4720,8 @@ var DocsToolkitPlugin = class extends import_obsidian14.Plugin {
   updateStatusBar() {
     const state = this.store.getState();
     const docs = state.documents;
-    const approved = docs.filter((d) => d.status === "approved" /* APPROVED */).length;
-    const review = docs.filter((d) => d.status === "review" /* REVIEW */).length;
+    const approved = docs.filter((d) => d.status === "approved").length;
+    const review = docs.filter((d) => d.status === "review").length;
     const issues = state.summary.errors + state.summary.warnings;
     this.statusBarItem.setText(
       `Docs: ${approved}/${docs.length} | ${review} pending | ${issues} issues`
@@ -3295,18 +4732,18 @@ var DocsToolkitPlugin = class extends import_obsidian14.Plugin {
    */
   async approveCurrentFile() {
     const file = this.app.workspace.getActiveFile();
-    if (!file || !Document.isInCARFPath(file.path))
+    if (!file || !this.isTrackedFile(file.path))
       return;
-    await this.store.setStatus(file, "approved" /* APPROVED */);
+    await this.store.setStatus(file, "approved");
   }
   /**
    * Reject current file
    */
   async rejectCurrentFile() {
     const file = this.app.workspace.getActiveFile();
-    if (!file || !Document.isInCARFPath(file.path))
+    if (!file || !this.isTrackedFile(file.path))
       return;
-    await this.store.setStatus(file, "rejected" /* REJECTED */);
+    await this.store.setStatus(file, "rejected");
   }
   /**
    * Activate the curation panel in the right sidebar
@@ -3331,7 +4768,7 @@ var DocsToolkitPlugin = class extends import_obsidian14.Plugin {
     }
   }
   /**
-   * Activate the issues panel (like VS Code's Problems panel)
+   * Activate the issues panel
    */
   async activateIssuesPanel() {
     const { workspace } = this.app;

@@ -1,6 +1,6 @@
 ---
 status: rejected
-description: "Incompleto. Standards devem ter regras claras e validaveis, nao apenas diretrizes vagas."
+description: "Incompleto. Standards devem ter regras claras e validaveis, nao apenas diretrizes vagas. Contem blocos de codigo."
 updated: 2026-01-21
 ---
 
@@ -16,7 +16,7 @@ O campo `type` no frontmatter define o tipo do documento. Se omitido, o tipo e i
 ---
 type: adr
 status: rejected
-description: "Incompleto. Standards devem ter regras claras e validaveis, nao apenas diretrizes vagas."
+description: "Incompleto. Standards devem ter regras claras e validaveis, nao apenas diretrizes vagas. Contem blocos de codigo."
 updated: 2026-01-21
 ---
 ```
@@ -43,7 +43,7 @@ Templates definem regras de validacao para documentos do mesmo tipo na pasta. Um
 type: template
 template_for: adr
 status: rejected
-description: "Incompleto. Standards devem ter regras claras e validaveis, nao apenas diretrizes vagas."
+description: "Incompleto. Standards devem ter regras claras e validaveis, nao apenas diretrizes vagas. Contem blocos de codigo."
 updated: 2026-01-21
 validation:
   max_words: 300
