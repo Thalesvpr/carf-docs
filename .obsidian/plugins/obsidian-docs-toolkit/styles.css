@@ -165,13 +165,8 @@
 
 /* Actions */
 .docs-actions {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
   padding: 12px;
-  background: var(--background-primary);
-  border-top: 1px solid var(--background-modifier-border);
+  margin-top: 8px;
 }
 
 .docs-actions-row {

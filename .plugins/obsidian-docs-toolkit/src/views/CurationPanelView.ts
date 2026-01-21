@@ -148,6 +148,30 @@ export class CurationPanelView extends ItemView {
     if (!file) return;
 
     const doc = this.store.getDocument(file.path);
+
+    // Actions (at top)
+    const actions = el.createDiv({ cls: "docs-actions" });
+    const actionsRow = actions.createDiv({ cls: "docs-actions-row" });
+
+    const prevBtn = actionsRow.createEl("button", { text: "←", cls: "docs-btn" });
+    prevBtn.disabled = this.currentIndex === 0;
+    prevBtn.onclick = () => this.navigate(-1);
+
+    const rejectBtn = actionsRow.createEl("button", { text: "×", cls: "docs-btn docs-btn-reject" });
+    rejectBtn.disabled = doc?.status === "rejected";
+    rejectBtn.onclick = () => this.reject(file);
+
+    const reviewBtn = actionsRow.createEl("button", { text: "○", cls: "docs-btn docs-btn-review" });
+    reviewBtn.disabled = doc?.status === "review";
+    reviewBtn.onclick = () => this.setReview(file);
+
+    const approveBtn = actionsRow.createEl("button", { text: "✓", cls: "docs-btn docs-btn-approve" });
+    approveBtn.disabled = doc?.status === "approved";
+    approveBtn.onclick = () => this.approve(file);
+
+    const nextBtn = actionsRow.createEl("button", { text: "→", cls: "docs-btn" });
+    nextBtn.disabled = this.currentIndex >= queue.length - 1;
+    nextBtn.onclick = () => this.navigate(1);
     const issues = this.store.getIssuesForFile(file.path);
 
     // File info
@@ -215,30 +239,6 @@ export class CurationPanelView extends ItemView {
         list.createDiv({ text: `+${issues.length - 8} more`, cls: "docs-more" });
       }
     }
-
-    // Actions
-    const actions = el.createDiv({ cls: "docs-actions" });
-    const row = actions.createDiv({ cls: "docs-actions-row" });
-
-    const prevBtn = row.createEl("button", { text: "←", cls: "docs-btn" });
-    prevBtn.disabled = this.currentIndex === 0;
-    prevBtn.onclick = () => this.navigate(-1);
-
-    const rejectBtn = row.createEl("button", { text: "×", cls: "docs-btn docs-btn-reject" });
-    rejectBtn.disabled = doc?.status === "rejected";
-    rejectBtn.onclick = () => this.reject(file);
-
-    const reviewBtn = row.createEl("button", { text: "○", cls: "docs-btn docs-btn-review" });
-    reviewBtn.disabled = doc?.status === "review";
-    reviewBtn.onclick = () => this.setReview(file);
-
-    const approveBtn = row.createEl("button", { text: "✓", cls: "docs-btn docs-btn-approve" });
-    approveBtn.disabled = doc?.status === "approved";
-    approveBtn.onclick = () => this.approve(file);
-
-    const nextBtn = row.createEl("button", { text: "→", cls: "docs-btn" });
-    nextBtn.disabled = this.currentIndex >= queue.length - 1;
-    nextBtn.onclick = () => this.navigate(1);
   }
 
   private async navigate(delta: number): Promise<void> {

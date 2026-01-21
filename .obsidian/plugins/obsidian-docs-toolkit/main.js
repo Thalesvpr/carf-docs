@@ -3506,6 +3506,23 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
     if (!file)
       return;
     const doc = this.store.getDocument(file.path);
+    const actions = el.createDiv({ cls: "docs-actions" });
+    const actionsRow = actions.createDiv({ cls: "docs-actions-row" });
+    const prevBtn = actionsRow.createEl("button", { text: "\u2190", cls: "docs-btn" });
+    prevBtn.disabled = this.currentIndex === 0;
+    prevBtn.onclick = () => this.navigate(-1);
+    const rejectBtn = actionsRow.createEl("button", { text: "\xD7", cls: "docs-btn docs-btn-reject" });
+    rejectBtn.disabled = (doc == null ? void 0 : doc.status) === "rejected";
+    rejectBtn.onclick = () => this.reject(file);
+    const reviewBtn = actionsRow.createEl("button", { text: "\u25CB", cls: "docs-btn docs-btn-review" });
+    reviewBtn.disabled = (doc == null ? void 0 : doc.status) === "review";
+    reviewBtn.onclick = () => this.setReview(file);
+    const approveBtn = actionsRow.createEl("button", { text: "\u2713", cls: "docs-btn docs-btn-approve" });
+    approveBtn.disabled = (doc == null ? void 0 : doc.status) === "approved";
+    approveBtn.onclick = () => this.approve(file);
+    const nextBtn = actionsRow.createEl("button", { text: "\u2192", cls: "docs-btn" });
+    nextBtn.disabled = this.currentIndex >= queue.length - 1;
+    nextBtn.onclick = () => this.navigate(1);
     const issues = this.store.getIssuesForFile(file.path);
     const fileSection = el.createDiv({ cls: "docs-file-section" });
     fileSection.createDiv({
@@ -3541,37 +3558,20 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
       });
       const list = issuesSection.createDiv({ cls: "docs-issues-list" });
       for (const issue of issues.slice(0, 8)) {
-        const row2 = list.createDiv({ cls: "docs-issue-row" });
+        const row = list.createDiv({ cls: "docs-issue-row" });
         const icon = issue.severity === "error" ? "\xD7" : "!";
-        row2.createSpan({ text: icon, cls: `docs-issue-icon docs-${issue.severity}` });
+        row.createSpan({ text: icon, cls: `docs-issue-icon docs-${issue.severity}` });
         const msg = this.i18n.t(issue.messageKey, issue.messageParams);
-        row2.createSpan({ text: msg, cls: "docs-issue-msg" });
+        row.createSpan({ text: msg, cls: "docs-issue-msg" });
         if (issue.line) {
-          row2.createSpan({ text: `:${issue.line}`, cls: "docs-issue-line" });
+          row.createSpan({ text: `:${issue.line}`, cls: "docs-issue-line" });
         }
-        row2.onclick = () => this.navigateToIssue(issue);
+        row.onclick = () => this.navigateToIssue(issue);
       }
       if (issues.length > 8) {
         list.createDiv({ text: `+${issues.length - 8} more`, cls: "docs-more" });
       }
     }
-    const actions = el.createDiv({ cls: "docs-actions" });
-    const row = actions.createDiv({ cls: "docs-actions-row" });
-    const prevBtn = row.createEl("button", { text: "\u2190", cls: "docs-btn" });
-    prevBtn.disabled = this.currentIndex === 0;
-    prevBtn.onclick = () => this.navigate(-1);
-    const rejectBtn = row.createEl("button", { text: "\xD7", cls: "docs-btn docs-btn-reject" });
-    rejectBtn.disabled = (doc == null ? void 0 : doc.status) === "rejected";
-    rejectBtn.onclick = () => this.reject(file);
-    const reviewBtn = row.createEl("button", { text: "\u25CB", cls: "docs-btn docs-btn-review" });
-    reviewBtn.disabled = (doc == null ? void 0 : doc.status) === "review";
-    reviewBtn.onclick = () => this.setReview(file);
-    const approveBtn = row.createEl("button", { text: "\u2713", cls: "docs-btn docs-btn-approve" });
-    approveBtn.disabled = (doc == null ? void 0 : doc.status) === "approved";
-    approveBtn.onclick = () => this.approve(file);
-    const nextBtn = row.createEl("button", { text: "\u2192", cls: "docs-btn" });
-    nextBtn.disabled = this.currentIndex >= queue.length - 1;
-    nextBtn.onclick = () => this.navigate(1);
   }
   async navigate(delta) {
     const queue = this.getQueue();
