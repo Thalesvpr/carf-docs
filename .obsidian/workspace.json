@@ -249,10 +249,11 @@
       "obsidian-docs-toolkit:Open Curation Panel": false
     }
   },
-  "active": "971ab6c0fdc33177",
+  "active": "b7262c57c40809a7",
   "lastOpenFiles": [
-    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@types/prop-types/README.md",
     "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@types/react/README.md",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@types/prop-types/README.md",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@types/node/README.md",
     "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@vue/compiler-core/README.md",
     "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@vue/compiler-dom/README.md",
     "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@vue/compiler-sfc/README.md",
@@ -276,7 +277,6 @@
     "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/nanoid/README.md",
     "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/picocolors/README.md",
     "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/postcss/README.md",
-    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/react/README.md",
     "CENTRAL/WORKFLOWS/sedyZnXqC",
     "CENTRAL/VERSIONING/GIT/sedYFuT6S",
     "CENTRAL/VERSIONING/GIT/sedsv48Ot",
