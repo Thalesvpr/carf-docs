@@ -67,7 +67,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/csstype/README.md",
+                "file": "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@types/node/README.md",
                 "mode": "source",
                 "source": false
               },
@@ -235,7 +235,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 523.5
+    "width": 816.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -249,8 +249,23 @@
       "obsidian-docs-toolkit:Open Curation Panel": false
     }
   },
-  "active": "b7262c57c40809a7",
+  "active": "971ab6c0fdc33177",
   "lastOpenFiles": [
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@types/prop-types/README.md",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@types/react/README.md",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@vue/compiler-core/README.md",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@vue/compiler-dom/README.md",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@vue/compiler-sfc/README.md",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@vue/compiler-ssr/README.md",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@vue/reactivity/README.md",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@vue/runtime-core/README.md",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@vue/runtime-dom/README.md",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@vue/server-renderer/README.md",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@vue/shared/README.md",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/bun-types/CLAUDE.md",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/bun-types/docs/README.md",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/bun-types/README.md",
+    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/csstype/README.md",
     "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/entities/readme.md",
     "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/estree-walker/CHANGELOG.md",
     "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/estree-walker/README.md",
@@ -262,21 +277,6 @@
     "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/picocolors/README.md",
     "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/postcss/README.md",
     "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/react/README.md",
-    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/source-map-js/README.md",
-    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/typescript/README.md",
-    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/typescript/SECURITY.md",
-    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/undici-types/README.md",
-    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/vue/README.md",
-    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/README.md",
-    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/CHANGELOG.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/ADRs/README.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/01-form-components.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/02-layout-components.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/03-feedback-components.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/04-data-components.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/05-navigation-components.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/06-domain-components.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/API/07-hooks.md",
     "CENTRAL/WORKFLOWS/sedyZnXqC",
     "CENTRAL/VERSIONING/GIT/sedYFuT6S",
     "CENTRAL/VERSIONING/GIT/sedsv48Ot",

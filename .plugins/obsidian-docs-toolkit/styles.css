@@ -22,12 +22,17 @@
 
 .docs-btn-center {
   display: flex;
-  gap: 4px;
+  gap: 6px;
+}
+
+.docs-btn-center .docs-btn {
+  width: 42px;
+  height: 42px;
 }
 
 .docs-btn-center .docs-btn svg {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
 }
 
 .docs-btn {
