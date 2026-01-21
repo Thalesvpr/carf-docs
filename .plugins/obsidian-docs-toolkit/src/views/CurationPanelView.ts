@@ -190,9 +190,10 @@ export class CurationPanelView extends ItemView {
       const d = this.store.getDocument(f.path);
       const status = d?.status || "review";
       const isCurrent = i === this.currentIndex;
+      const isAdjacent = i === this.currentIndex - 1 || i === this.currentIndex + 1;
 
       const dot = dotsContainer.createDiv({
-        cls: `docs-dot docs-dot-${status}${isCurrent ? " docs-dot-current" : ""}`
+        cls: `docs-dot docs-dot-${status}${isCurrent ? " docs-dot-current" : ""}${isAdjacent ? " docs-dot-adjacent" : ""}`
       });
 
       dot.onclick = () => {

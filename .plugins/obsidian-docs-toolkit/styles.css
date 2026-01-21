@@ -119,15 +119,20 @@
   height: 6px;
   border-radius: 50%;
   cursor: pointer;
-  transition: transform 0.2s ease-out;
+  transition: transform 0.2s ease-out, margin 0.2s ease-out;
 }
 
 .docs-dot:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
+}
+
+.docs-dot-adjacent {
+  margin: 0 2px;
 }
 
 .docs-dot-current {
   transform: translateY(-4px);
+  margin: 0 4px;
 }
 
 .docs-dot-review { background: var(--color-yellow); opacity: 0.5; }
