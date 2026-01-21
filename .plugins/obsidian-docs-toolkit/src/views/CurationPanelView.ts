@@ -45,6 +45,12 @@ export class CurationPanelView extends ItemView {
   // Folder filter (null = all folders)
   private folderFilter: string | null = null;
 
+  // Text search filter
+  private searchQuery: string = "";
+
+  // Stats panel expanded
+  private statsExpanded = false;
+
   constructor(
     leaf: WorkspaceLeaf,
     store: DocumentStore,
@@ -80,13 +86,28 @@ export class CurationPanelView extends ItemView {
   }
 
   /**
-   * Get the review queue (pending files), filtered by folder if set
+   * Get the review queue (pending files), filtered by folder and search query
    */
   private getQueue(): TFile[] {
     let queue = this.store.getReviewQueue();
 
     if (this.folderFilter) {
       queue = queue.filter(f => f.path.startsWith(this.folderFilter + "/"));
+    }
+
+    if (this.searchQuery.trim()) {
+      const query = this.searchQuery.toLowerCase().trim();
+      queue = queue.filter(f => {
+        // Search in filename
+        if (f.basename.toLowerCase().includes(query)) return true;
+        // Search in path
+        if (f.path.toLowerCase().includes(query)) return true;
+        // Search in document ID and description
+        const doc = this.store.getDocument(f.path);
+        if (doc?.id?.toLowerCase().includes(query)) return true;
+        if (doc?.frontmatter?.description?.toLowerCase().includes(query)) return true;
+        return false;
+      });
     }
 
     return queue;
@@ -116,6 +137,38 @@ export class CurationPanelView extends ItemView {
     }
 
     return Array.from(folders).sort();
+  }
+
+  /**
+   * Get statistics per folder
+   */
+  private getFolderStats(): { folder: string; approved: number; rejected: number; pending: number; total: number }[] {
+    const state = this.store.getState();
+    const docs = state.documents.filter(d => d.file.name !== "README.md");
+    const folderMap = new Map<string, { approved: number; rejected: number; pending: number; total: number }>();
+
+    for (const doc of docs) {
+      const parts = doc.file.path.split("/");
+      // Get top-level folder or PROJECTS/X for projects
+      let folder = parts[0];
+      if (folder === "PROJECTS" && parts.length > 2) {
+        folder = parts[0] + "/" + parts[1];
+      }
+
+      if (!folderMap.has(folder)) {
+        folderMap.set(folder, { approved: 0, rejected: 0, pending: 0, total: 0 });
+      }
+
+      const stats = folderMap.get(folder)!;
+      stats.total++;
+      if (doc.status === Status.APPROVED) stats.approved++;
+      else if (doc.status === Status.REJECTED) stats.rejected++;
+      else stats.pending++;
+    }
+
+    return Array.from(folderMap.entries())
+      .map(([folder, stats]) => ({ folder, ...stats }))
+      .sort((a, b) => a.folder.localeCompare(b.folder));
   }
 
   /**
@@ -176,8 +229,14 @@ export class CurationPanelView extends ItemView {
     // === FOLDER FILTER SECTION ===
     this.renderFolderFilter(el);
 
+    // === SEARCH SECTION ===
+    this.renderSearch(el);
+
     // === PROGRESS SECTION ===
     this.renderProgress(el, { approved, rejected, pending, total });
+
+    // === FOLDER STATS SECTION ===
+    this.renderFolderStats(el);
 
     // === CURRENT FILE SECTION ===
     const queue = this.getQueue();
@@ -223,6 +282,104 @@ export class CurationPanelView extends ItemView {
       this.currentIndex = 0; // Reset to first file in new filter
       this.render();
     };
+  }
+
+  /**
+   * Render search input
+   */
+  private renderSearch(el: HTMLElement): void {
+    const section = el.createDiv({ cls: "docs-cp-section docs-cp-search" });
+
+    const input = section.createEl("input", {
+      type: "text",
+      placeholder: "Search files...",
+      cls: "docs-cp-search-input"
+    });
+    input.value = this.searchQuery;
+
+    // Debounced search
+    let timeout: NodeJS.Timeout;
+    input.oninput = () => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        this.searchQuery = input.value;
+        this.currentIndex = 0;
+        this.render();
+        // Re-focus input after render
+        const newInput = el.querySelector(".docs-cp-search-input") as HTMLInputElement;
+        if (newInput) {
+          newInput.focus();
+          newInput.setSelectionRange(newInput.value.length, newInput.value.length);
+        }
+      }, 200);
+    };
+
+    // Clear button
+    if (this.searchQuery) {
+      const clearBtn = section.createEl("button", { text: "×", cls: "docs-cp-search-clear" });
+      clearBtn.onclick = () => {
+        this.searchQuery = "";
+        this.currentIndex = 0;
+        this.render();
+      };
+    }
+  }
+
+  /**
+   * Render folder statistics (collapsible)
+   */
+  private renderFolderStats(el: HTMLElement): void {
+    const section = el.createDiv({ cls: "docs-cp-section docs-cp-folder-stats" });
+
+    // Header (clickable to expand/collapse)
+    const header = section.createDiv({ cls: "docs-cp-stats-header" });
+    header.createSpan({ text: this.statsExpanded ? "▼" : "▶", cls: "docs-cp-stats-toggle" });
+    header.createSpan({ text: "Stats by folder", cls: "docs-cp-stats-title" });
+    header.onclick = () => {
+      this.statsExpanded = !this.statsExpanded;
+      this.render();
+    };
+
+    if (!this.statsExpanded) return;
+
+    // Stats list
+    const list = section.createDiv({ cls: "docs-cp-stats-list" });
+    const folderStats = this.getFolderStats();
+
+    for (const stat of folderStats) {
+      const row = list.createDiv({ cls: "docs-cp-stats-row" });
+
+      // Folder name (clickable to filter)
+      const nameEl = row.createSpan({ text: stat.folder, cls: "docs-cp-stats-folder" });
+      nameEl.onclick = (e) => {
+        e.stopPropagation();
+        this.folderFilter = stat.folder;
+        this.currentIndex = 0;
+        this.render();
+      };
+
+      // Mini progress bar
+      const barContainer = row.createDiv({ cls: "docs-cp-stats-bar-container" });
+      const bar = barContainer.createDiv({ cls: "docs-cp-stats-bar" });
+
+      const approvedPct = stat.total > 0 ? (stat.approved / stat.total) * 100 : 0;
+      const rejectedPct = stat.total > 0 ? (stat.rejected / stat.total) * 100 : 0;
+
+      if (stat.approved > 0) {
+        const approvedBar = bar.createDiv({ cls: "docs-cp-stats-bar-approved" });
+        approvedBar.style.width = `${approvedPct}%`;
+      }
+      if (stat.rejected > 0) {
+        const rejectedBar = bar.createDiv({ cls: "docs-cp-stats-bar-rejected" });
+        rejectedBar.style.width = `${rejectedPct}%`;
+      }
+
+      // Numbers
+      const numbers = row.createSpan({ cls: "docs-cp-stats-numbers" });
+      numbers.createSpan({ text: `${stat.approved}`, cls: "docs-cp-stats-num-approved" });
+      numbers.createSpan({ text: `/` });
+      numbers.createSpan({ text: `${stat.total}` });
+    }
   }
 
   /**

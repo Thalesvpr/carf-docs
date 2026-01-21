@@ -1832,6 +1832,10 @@ var CurationPanelView = class extends import_obsidian8.ItemView {
     this.issuesExpanded = false;
     // Folder filter (null = all folders)
     this.folderFilter = null;
+    // Text search filter
+    this.searchQuery = "";
+    // Stats panel expanded
+    this.statsExpanded = false;
     this.store = store;
     this.metadataService = metadataService;
   }
@@ -1857,12 +1861,28 @@ var CurationPanelView = class extends import_obsidian8.ItemView {
     this.render();
   }
   /**
-   * Get the review queue (pending files), filtered by folder if set
+   * Get the review queue (pending files), filtered by folder and search query
    */
   getQueue() {
     let queue = this.store.getReviewQueue();
     if (this.folderFilter) {
       queue = queue.filter((f) => f.path.startsWith(this.folderFilter + "/"));
+    }
+    if (this.searchQuery.trim()) {
+      const query = this.searchQuery.toLowerCase().trim();
+      queue = queue.filter((f) => {
+        var _a, _b, _c;
+        if (f.basename.toLowerCase().includes(query))
+          return true;
+        if (f.path.toLowerCase().includes(query))
+          return true;
+        const doc = this.store.getDocument(f.path);
+        if ((_a = doc == null ? void 0 : doc.id) == null ? void 0 : _a.toLowerCase().includes(query))
+          return true;
+        if ((_c = (_b = doc == null ? void 0 : doc.frontmatter) == null ? void 0 : _b.description) == null ? void 0 : _c.toLowerCase().includes(query))
+          return true;
+        return false;
+      });
     }
     return queue;
   }
@@ -1885,6 +1905,33 @@ var CurationPanelView = class extends import_obsidian8.ItemView {
       }
     }
     return Array.from(folders).sort();
+  }
+  /**
+   * Get statistics per folder
+   */
+  getFolderStats() {
+    const state = this.store.getState();
+    const docs = state.documents.filter((d) => d.file.name !== "README.md");
+    const folderMap = /* @__PURE__ */ new Map();
+    for (const doc of docs) {
+      const parts = doc.file.path.split("/");
+      let folder = parts[0];
+      if (folder === "PROJECTS" && parts.length > 2) {
+        folder = parts[0] + "/" + parts[1];
+      }
+      if (!folderMap.has(folder)) {
+        folderMap.set(folder, { approved: 0, rejected: 0, pending: 0, total: 0 });
+      }
+      const stats = folderMap.get(folder);
+      stats.total++;
+      if (doc.status === "approved" /* APPROVED */)
+        stats.approved++;
+      else if (doc.status === "rejected" /* REJECTED */)
+        stats.rejected++;
+      else
+        stats.pending++;
+    }
+    return Array.from(folderMap.entries()).map(([folder, stats]) => ({ folder, ...stats })).sort((a, b) => a.folder.localeCompare(b.folder));
   }
   /**
    * Get current file being reviewed
@@ -1933,7 +1980,9 @@ var CurationPanelView = class extends import_obsidian8.ItemView {
     const pending = docs.filter((d) => d.status === "review" /* REVIEW */).length;
     const total = docs.length;
     this.renderFolderFilter(el);
+    this.renderSearch(el);
     this.renderProgress(el, { approved, rejected, pending, total });
+    this.renderFolderStats(el);
     const queue = this.getQueue();
     const currentFile = this.getCurrentFile();
     if (queue.length === 0) {
@@ -1967,6 +2016,83 @@ var CurationPanelView = class extends import_obsidian8.ItemView {
       this.currentIndex = 0;
       this.render();
     };
+  }
+  /**
+   * Render search input
+   */
+  renderSearch(el) {
+    const section = el.createDiv({ cls: "docs-cp-section docs-cp-search" });
+    const input = section.createEl("input", {
+      type: "text",
+      placeholder: "Search files...",
+      cls: "docs-cp-search-input"
+    });
+    input.value = this.searchQuery;
+    let timeout;
+    input.oninput = () => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        this.searchQuery = input.value;
+        this.currentIndex = 0;
+        this.render();
+        const newInput = el.querySelector(".docs-cp-search-input");
+        if (newInput) {
+          newInput.focus();
+          newInput.setSelectionRange(newInput.value.length, newInput.value.length);
+        }
+      }, 200);
+    };
+    if (this.searchQuery) {
+      const clearBtn = section.createEl("button", { text: "\xD7", cls: "docs-cp-search-clear" });
+      clearBtn.onclick = () => {
+        this.searchQuery = "";
+        this.currentIndex = 0;
+        this.render();
+      };
+    }
+  }
+  /**
+   * Render folder statistics (collapsible)
+   */
+  renderFolderStats(el) {
+    const section = el.createDiv({ cls: "docs-cp-section docs-cp-folder-stats" });
+    const header = section.createDiv({ cls: "docs-cp-stats-header" });
+    header.createSpan({ text: this.statsExpanded ? "\u25BC" : "\u25B6", cls: "docs-cp-stats-toggle" });
+    header.createSpan({ text: "Stats by folder", cls: "docs-cp-stats-title" });
+    header.onclick = () => {
+      this.statsExpanded = !this.statsExpanded;
+      this.render();
+    };
+    if (!this.statsExpanded)
+      return;
+    const list = section.createDiv({ cls: "docs-cp-stats-list" });
+    const folderStats = this.getFolderStats();
+    for (const stat of folderStats) {
+      const row = list.createDiv({ cls: "docs-cp-stats-row" });
+      const nameEl = row.createSpan({ text: stat.folder, cls: "docs-cp-stats-folder" });
+      nameEl.onclick = (e) => {
+        e.stopPropagation();
+        this.folderFilter = stat.folder;
+        this.currentIndex = 0;
+        this.render();
+      };
+      const barContainer = row.createDiv({ cls: "docs-cp-stats-bar-container" });
+      const bar = barContainer.createDiv({ cls: "docs-cp-stats-bar" });
+      const approvedPct = stat.total > 0 ? stat.approved / stat.total * 100 : 0;
+      const rejectedPct = stat.total > 0 ? stat.rejected / stat.total * 100 : 0;
+      if (stat.approved > 0) {
+        const approvedBar = bar.createDiv({ cls: "docs-cp-stats-bar-approved" });
+        approvedBar.style.width = `${approvedPct}%`;
+      }
+      if (stat.rejected > 0) {
+        const rejectedBar = bar.createDiv({ cls: "docs-cp-stats-bar-rejected" });
+        rejectedBar.style.width = `${rejectedPct}%`;
+      }
+      const numbers = row.createSpan({ cls: "docs-cp-stats-numbers" });
+      numbers.createSpan({ text: `${stat.approved}`, cls: "docs-cp-stats-num-approved" });
+      numbers.createSpan({ text: `/` });
+      numbers.createSpan({ text: `${stat.total}` });
+    }
   }
   /**
    * Render progress section
