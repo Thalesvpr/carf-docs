@@ -119,23 +119,28 @@ export class CurationPanelView extends ItemView {
     const actions = el.createDiv({ cls: "docs-actions" });
     const actionsRow = actions.createDiv({ cls: "docs-actions-row" });
 
-    const prevBtn = actionsRow.createEl("button", { text: "←", cls: "docs-btn" });
+    // Left arrow
+    const prevBtn = actionsRow.createEl("button", { text: "←", cls: "docs-btn docs-btn-nav" });
     prevBtn.disabled = this.currentIndex === 0;
     prevBtn.onclick = () => this.navigate(-1);
 
-    const rejectBtn = actionsRow.createEl("button", { text: "×", cls: "docs-btn docs-btn-reject" });
+    // Center group: reject, review, approve
+    const centerGroup = actionsRow.createDiv({ cls: "docs-btn-center" });
+
+    const rejectBtn = centerGroup.createEl("button", { text: "×", cls: "docs-btn docs-btn-reject" });
     rejectBtn.disabled = !file || doc?.status === "rejected";
     rejectBtn.onclick = () => file && this.reject(file);
 
-    const reviewBtn = actionsRow.createEl("button", { text: "○", cls: "docs-btn docs-btn-review" });
+    const reviewBtn = centerGroup.createEl("button", { text: "○", cls: "docs-btn docs-btn-review" });
     reviewBtn.disabled = !file || doc?.status === "review";
     reviewBtn.onclick = () => file && this.setReview(file);
 
-    const approveBtn = actionsRow.createEl("button", { text: "✓", cls: "docs-btn docs-btn-approve" });
+    const approveBtn = centerGroup.createEl("button", { text: "✓", cls: "docs-btn docs-btn-approve" });
     approveBtn.disabled = !file || doc?.status === "approved";
     approveBtn.onclick = () => file && this.approve(file);
 
-    const nextBtn = actionsRow.createEl("button", { text: "→", cls: "docs-btn" });
+    // Right arrow
+    const nextBtn = actionsRow.createEl("button", { text: "→", cls: "docs-btn docs-btn-nav" });
     nextBtn.disabled = this.currentIndex >= queue.length - 1;
     nextBtn.onclick = () => this.navigate(1);
 
