@@ -3485,6 +3485,16 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
       text: `${approved}/${total}`,
       cls: "docs-progress-text"
     });
+    const allIssues = this.store.getState().issues;
+    if (allIssues.length > 0) {
+      const problemsBtn = headerInfo.createEl("button", {
+        text: `\u26A0 ${allIssues.length}`,
+        cls: "docs-problems-btn"
+      });
+      problemsBtn.onclick = () => {
+        this.app.commands.executeCommandById("docs-toolkit:open-issues-panel");
+      };
+    }
     const progressBar = header.createDiv({ cls: "docs-progress-bar" });
     const pct = total > 0 ? approved / total * 100 : 0;
     progressBar.createDiv({ cls: "docs-progress-fill" }).style.width = `${pct}%`;
@@ -3656,9 +3666,7 @@ var ISSUES_PANEL_VIEW_TYPE = "docs-toolkit-issues";
 var IssuesPanelView = class extends import_obsidian14.ItemView {
   constructor(leaf, store, i18n) {
     super(leaf);
-    this.filterMode = "all";
-    this.groupMode = "file";
-    this.collapsedFiles = /* @__PURE__ */ new Set();
+    this.filter = "all";
     this.store = store;
     this.i18n = i18n;
   }
@@ -3666,236 +3674,106 @@ var IssuesPanelView = class extends import_obsidian14.ItemView {
     return ISSUES_PANEL_VIEW_TYPE;
   }
   getDisplayText() {
-    return this.i18n.t("ui.issues.title");
+    return "Problems";
   }
   getIcon() {
-    return "alert-triangle";
+    return "terminal";
   }
   async onOpen() {
-    this.containerEl.children[1].addClass("docs-issues-panel");
+    this.containerEl.children[1].addClass("docs-problems-panel");
     this.registerEvent(
       // @ts-ignore
       this.store.on("state-changed", () => this.render())
     );
     this.render();
   }
-  /**
-   * Get filtered issues based on current filter mode
-   */
-  getFilteredIssues() {
-    const state = this.store.getState();
-    let issues = [...state.issues];
-    if (this.filterMode === "errors") {
-      issues = issues.filter((i) => i.severity === "error" /* ERROR */);
-    } else if (this.filterMode === "warnings") {
-      issues = issues.filter((i) => i.severity === "warning" /* WARNING */);
-    }
-    issues.sort(Issue.compare);
-    return issues;
-  }
-  /**
-   * Group issues by file
-   */
-  groupByFile(issues) {
-    const grouped = /* @__PURE__ */ new Map();
-    for (const issue of issues) {
-      const path = issue.file.path;
-      if (!grouped.has(path)) {
-        grouped.set(path, []);
-      }
-      grouped.get(path).push(issue);
-    }
-    return grouped;
-  }
-  /**
-   * Get translated message for an issue
-   */
-  getIssueMessage(issue) {
-    return this.i18n.t(issue.messageKey, issue.messageParams);
-  }
-  /**
-   * Main render function
-   */
   render() {
     const el = this.containerEl.children[1];
     el.empty();
     const state = this.store.getState();
-    const allIssues = state.issues;
-    const filteredIssues = this.getFilteredIssues();
-    const errorCount = allIssues.filter((i) => i.severity === "error" /* ERROR */).length;
-    const warningCount = allIssues.filter((i) => i.severity === "warning" /* WARNING */).length;
-    const infoCount = allIssues.filter((i) => i.severity === "info" /* INFO */).length;
-    this.renderToolbar(el, { errorCount, warningCount, infoCount, total: filteredIssues.length });
-    if (filteredIssues.length === 0) {
-      this.renderEmpty(el);
+    let issues = [...state.issues].sort(Issue.compare);
+    if (this.filter === "error") {
+      issues = issues.filter((i) => i.severity === "error" /* ERROR */);
+    } else if (this.filter === "warning") {
+      issues = issues.filter((i) => i.severity === "warning" /* WARNING */);
+    }
+    const errors = state.issues.filter((i) => i.severity === "error" /* ERROR */).length;
+    const warnings = state.issues.filter((i) => i.severity === "warning" /* WARNING */).length;
+    const header = el.createDiv({ cls: "problems-header" });
+    const tabs = header.createDiv({ cls: "problems-tabs" });
+    const allTab = tabs.createEl("button", {
+      text: `All (${state.issues.length})`,
+      cls: this.filter === "all" ? "active" : ""
+    });
+    allTab.onclick = () => {
+      this.filter = "all";
+      this.render();
+    };
+    const errTab = tabs.createEl("button", {
+      text: `Errors (${errors})`,
+      cls: `tab-error ${this.filter === "error" ? "active" : ""}`
+    });
+    errTab.onclick = () => {
+      this.filter = "error";
+      this.render();
+    };
+    const warnTab = tabs.createEl("button", {
+      text: `Warnings (${warnings})`,
+      cls: `tab-warning ${this.filter === "warning" ? "active" : ""}`
+    });
+    warnTab.onclick = () => {
+      this.filter = "warning";
+      this.render();
+    };
+    const terminal = el.createDiv({ cls: "problems-terminal" });
+    if (issues.length === 0) {
+      terminal.createDiv({ text: "No problems detected.", cls: "problems-empty" });
       return;
     }
-    if (this.groupMode === "file") {
-      this.renderGroupedByFile(el, filteredIssues);
-    } else {
-      this.renderFlat(el, filteredIssues);
-    }
-  }
-  /**
-   * Render toolbar with filters and counts
-   */
-  renderToolbar(el, counts) {
-    const toolbar = el.createDiv({ cls: "docs-ip-toolbar" });
-    const filters = toolbar.createDiv({ cls: "docs-ip-filters" });
-    const allBtn = filters.createEl("button", {
-      cls: `docs-ip-filter-btn ${this.filterMode === "all" ? "active" : ""}`
-    });
-    allBtn.innerHTML = `<span class="docs-ip-filter-icon">\u2299</span> All`;
-    allBtn.onclick = () => {
-      this.filterMode = "all";
-      this.render();
-    };
-    const errBtn = filters.createEl("button", {
-      cls: `docs-ip-filter-btn docs-ip-filter-error ${this.filterMode === "errors" ? "active" : ""}`
-    });
-    errBtn.innerHTML = `<span class="docs-ip-icon-error">\u2717</span> ${counts.errorCount}`;
-    errBtn.onclick = () => {
-      this.filterMode = "errors";
-      this.render();
-    };
-    const warnBtn = filters.createEl("button", {
-      cls: `docs-ip-filter-btn docs-ip-filter-warning ${this.filterMode === "warnings" ? "active" : ""}`
-    });
-    warnBtn.innerHTML = `<span class="docs-ip-icon-warning">\u26A0</span> ${counts.warningCount}`;
-    warnBtn.onclick = () => {
-      this.filterMode = "warnings";
-      this.render();
-    };
-    const actions = toolbar.createDiv({ cls: "docs-ip-actions" });
-    const groupBtn = actions.createEl("button", {
-      cls: "docs-ip-group-btn",
-      attr: { title: this.groupMode === "file" ? "Group by file" : "Flat list" }
-    });
-    groupBtn.innerHTML = this.groupMode === "file" ? "\u{1F4C1}" : "\u2261";
-    groupBtn.onclick = () => {
-      this.groupMode = this.groupMode === "file" ? "flat" : "file";
-      this.render();
-    };
-    if (this.groupMode === "file") {
-      const collapseBtn = actions.createEl("button", {
-        cls: "docs-ip-collapse-btn",
-        attr: { title: "Collapse all" }
-      });
-      collapseBtn.innerHTML = "\u229F";
-      collapseBtn.onclick = () => {
-        const grouped = this.groupByFile(this.getFilteredIssues());
-        for (const path of grouped.keys()) {
-          this.collapsedFiles.add(path);
-        }
-        this.render();
-      };
-      const expandBtn = actions.createEl("button", {
-        cls: "docs-ip-expand-btn",
-        attr: { title: "Expand all" }
-      });
-      expandBtn.innerHTML = "\u229E";
-      expandBtn.onclick = () => {
-        this.collapsedFiles.clear();
-        this.render();
-      };
-    }
-  }
-  /**
-   * Render empty state
-   */
-  renderEmpty(el) {
-    const empty = el.createDiv({ cls: "docs-ip-empty" });
-    empty.createDiv({ text: "\u2713", cls: "docs-ip-empty-icon" });
-    empty.createDiv({ text: this.i18n.t("ui.issues.noIssues"), cls: "docs-ip-empty-text" });
-  }
-  /**
-   * Render issues grouped by file
-   */
-  renderGroupedByFile(el, issues) {
-    const list = el.createDiv({ cls: "docs-ip-list" });
-    const grouped = this.groupByFile(issues);
-    for (const [path, fileIssues] of grouped) {
-      const file = fileIssues[0].file;
-      const isCollapsed = this.collapsedFiles.has(path);
-      const fileHeader = list.createDiv({ cls: "docs-ip-file-header" });
-      const toggle = fileHeader.createSpan({ cls: "docs-ip-toggle" });
-      toggle.innerHTML = isCollapsed ? "\u25B6" : "\u25BC";
-      fileHeader.createSpan({ text: "\u{1F4C4}", cls: "docs-ip-file-icon" });
-      const fileName = fileHeader.createSpan({ cls: "docs-ip-file-name" });
-      fileName.textContent = file.basename;
-      const filePath = fileHeader.createSpan({ cls: "docs-ip-file-path" });
-      const pathParts = path.split("/");
-      if (pathParts.length > 2) {
-        filePath.textContent = pathParts.slice(0, -1).join("/");
-      }
-      const errCount = fileIssues.filter((i) => i.severity === "error" /* ERROR */).length;
-      const warnCount = fileIssues.filter((i) => i.severity === "warning" /* WARNING */).length;
-      const badges = fileHeader.createSpan({ cls: "docs-ip-file-badges" });
-      if (errCount > 0) {
-        badges.createSpan({ text: `${errCount}`, cls: "docs-ip-badge docs-ip-badge-error" });
-      }
-      if (warnCount > 0) {
-        badges.createSpan({ text: `${warnCount}`, cls: "docs-ip-badge docs-ip-badge-warning" });
-      }
-      fileHeader.onclick = () => {
-        if (isCollapsed) {
-          this.collapsedFiles.delete(path);
-        } else {
-          this.collapsedFiles.add(path);
-        }
-        this.render();
-      };
-      if (!isCollapsed) {
-        const issuesContainer = list.createDiv({ cls: "docs-ip-file-issues" });
-        for (const issue of fileIssues) {
-          this.renderIssueRow(issuesContainer, issue, false);
-        }
-      }
-    }
-  }
-  /**
-   * Render flat list of issues
-   */
-  renderFlat(el, issues) {
-    const list = el.createDiv({ cls: "docs-ip-list docs-ip-flat" });
+    const byFile = /* @__PURE__ */ new Map();
     for (const issue of issues) {
-      this.renderIssueRow(list, issue, true);
+      const path = issue.file.path;
+      if (!byFile.has(path))
+        byFile.set(path, []);
+      byFile.get(path).push(issue);
     }
-  }
-  /**
-   * Render a single issue row
-   */
-  renderIssueRow(container, issue, showFile) {
-    const row = container.createDiv({ cls: `docs-ip-row docs-ip-${issue.severity}` });
-    const icon = row.createSpan({ cls: "docs-ip-row-icon" });
-    icon.innerHTML = issue.icon;
-    const message = row.createSpan({ cls: "docs-ip-row-message" });
-    message.textContent = this.getIssueMessage(issue);
-    const source = row.createSpan({ cls: "docs-ip-row-source" });
-    if (showFile) {
-      source.createSpan({ text: issue.file.basename, cls: "docs-ip-row-file" });
-    }
-    if (issue.line) {
-      source.createSpan({ text: `:${issue.line}`, cls: "docs-ip-row-line" });
-    }
-    const tag = row.createSpan({ cls: "docs-ip-row-tag" });
-    tag.textContent = issue.validator;
-    row.onclick = () => this.navigateToIssue(issue);
-  }
-  /**
-   * Navigate to the file/line of an issue
-   */
-  async navigateToIssue(issue) {
-    var _a;
-    const leaf = this.app.workspace.getLeaf(false);
-    await leaf.openFile(issue.file);
-    if (issue.line) {
-      const editor = (_a = leaf.view) == null ? void 0 : _a.editor;
-      if (editor) {
-        editor.setCursor({ line: issue.line - 1, ch: 0 });
-        editor.scrollIntoView({ from: { line: issue.line - 1, ch: 0 }, to: { line: issue.line - 1, ch: 0 } }, true);
+    for (const [path, fileIssues] of byFile) {
+      const fileHeader = terminal.createDiv({ cls: "problems-file" });
+      fileHeader.createSpan({ text: "\u2192 ", cls: "problems-arrow" });
+      fileHeader.createSpan({ text: path, cls: "problems-path" });
+      fileHeader.createSpan({ text: ` (${fileIssues.length})`, cls: "problems-count" });
+      fileHeader.onclick = async () => {
+        const file = fileIssues[0].file;
+        const leaf = this.app.workspace.getLeaf(false);
+        await leaf.openFile(file);
+      };
+      for (const issue of fileIssues) {
+        const line = terminal.createDiv({ cls: "problems-line" });
+        const prefix = issue.severity === "error" /* ERROR */ ? "ERROR" : issue.severity === "warning" /* WARNING */ ? "WARN" : "INFO";
+        line.createSpan({ text: `  [${prefix}]`, cls: `problems-${issue.severity}` });
+        if (issue.line) {
+          line.createSpan({ text: `:${issue.line}`, cls: "problems-linenum" });
+        }
+        line.createSpan({ text: ` (${issue.validator})`, cls: "problems-validator" });
+        const msg = this.i18n.t(issue.messageKey, issue.messageParams);
+        line.createSpan({ text: ` ${msg}`, cls: "problems-msg" });
+        line.onclick = async () => {
+          var _a;
+          const leaf = this.app.workspace.getLeaf(false);
+          await leaf.openFile(issue.file);
+          if (issue.line) {
+            const editor = (_a = leaf.view) == null ? void 0 : _a.editor;
+            if (editor) {
+              editor.setCursor({ line: issue.line - 1, ch: 0 });
+              editor.scrollIntoView({ from: { line: issue.line - 1, ch: 0 }, to: { line: issue.line - 1, ch: 0 } }, true);
+            }
+          }
+        };
       }
     }
+    const summary = terminal.createDiv({ cls: "problems-summary" });
+    summary.createSpan({ text: `
+--- ${errors} errors, ${warnings} warnings ---`, cls: "problems-summary-text" });
   }
 };
 

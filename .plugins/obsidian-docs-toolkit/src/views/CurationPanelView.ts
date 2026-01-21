@@ -122,6 +122,18 @@ export class CurationPanelView extends ItemView {
       cls: "docs-progress-text"
     });
 
+    // Problems button
+    const allIssues = this.store.getState().issues;
+    if (allIssues.length > 0) {
+      const problemsBtn = headerInfo.createEl("button", {
+        text: `⚠ ${allIssues.length}`,
+        cls: "docs-problems-btn"
+      });
+      problemsBtn.onclick = () => {
+        (this.app as any).commands.executeCommandById("docs-toolkit:open-issues-panel");
+      };
+    }
+
     // Progress bar
     const progressBar = header.createDiv({ cls: "docs-progress-bar" });
     const pct = total > 0 ? (approved / total) * 100 : 0;

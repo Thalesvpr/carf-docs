@@ -12,6 +12,21 @@
   color: var(--text-muted);
 }
 
+.docs-problems-btn {
+  font-size: 10px;
+  padding: 2px 8px;
+  margin-left: 8px;
+  border: 1px solid var(--color-yellow);
+  border-radius: var(--radius-s);
+  background: rgba(var(--color-yellow-rgb), 0.1);
+  color: var(--color-yellow);
+  cursor: pointer;
+}
+
+.docs-problems-btn:hover {
+  background: rgba(var(--color-yellow-rgb), 0.2);
+}
+
 .docs-progress-bar {
   height: 3px;
   background: var(--background-modifier-border);
@@ -209,5 +224,142 @@
 .docs-done-text {
   color: var(--color-green);
   font-weight: var(--font-semibold);
+}
+
+/* ==========================================
+   PROBLEMS PANEL - Terminal style
+   ========================================== */
+
+.docs-problems-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  font-family: var(--font-monospace);
+  font-size: 12px;
+}
+
+.problems-header {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--background-modifier-border);
+  background: var(--background-secondary);
+}
+
+.problems-tabs {
+  display: flex;
+  gap: 4px;
+}
+
+.problems-tabs button {
+  padding: 4px 10px;
+  border: none;
+  border-radius: var(--radius-s);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.problems-tabs button:hover {
+  background: var(--background-modifier-hover);
+}
+
+.problems-tabs button.active {
+  background: var(--background-modifier-active-hover);
+  color: var(--text-normal);
+}
+
+.problems-tabs .tab-error.active {
+  color: var(--color-red);
+}
+
+.problems-tabs .tab-warning.active {
+  color: var(--color-yellow);
+}
+
+.problems-terminal {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  background: var(--background-primary);
+}
+
+.problems-empty {
+  color: var(--text-faint);
+  font-style: italic;
+}
+
+.problems-file {
+  margin-top: 8px;
+  padding: 4px 0;
+  cursor: pointer;
+}
+
+.problems-file:hover {
+  background: var(--background-modifier-hover);
+}
+
+.problems-file:first-child {
+  margin-top: 0;
+}
+
+.problems-arrow {
+  color: var(--text-accent);
+}
+
+.problems-path {
+  color: var(--text-accent);
+  font-weight: 500;
+}
+
+.problems-count {
+  color: var(--text-faint);
+}
+
+.problems-line {
+  padding: 2px 0;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.problems-line:hover {
+  background: var(--background-modifier-hover);
+}
+
+.problems-error {
+  color: var(--color-red);
+  font-weight: 600;
+}
+
+.problems-warning {
+  color: var(--color-yellow);
+  font-weight: 600;
+}
+
+.problems-info {
+  color: var(--color-blue);
+}
+
+.problems-linenum {
+  color: var(--text-faint);
+}
+
+.problems-validator {
+  color: var(--text-muted);
+}
+
+.problems-msg {
+  color: var(--text-normal);
+}
+
+.problems-summary {
+  margin-top: 16px;
+  padding-top: 8px;
+  border-top: 1px solid var(--background-modifier-border);
+}
+
+.problems-summary-text {
+  color: var(--text-faint);
 }
 
