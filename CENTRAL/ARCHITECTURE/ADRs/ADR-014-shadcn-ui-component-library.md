@@ -1,5 +1,6 @@
 ---
-status: review
+status: rejected
+description: "Formato incorreto com codigo e links. ADR valido mas precisa reestruturar sem implementacao."
 updated: 2026-01-20
 ---
 

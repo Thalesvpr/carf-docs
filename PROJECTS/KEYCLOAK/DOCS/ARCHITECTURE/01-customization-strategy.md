@@ -116,7 +116,7 @@ Customizações de realm:
 - Configuração de sessões e tokens
 - Multi-tenancy via atributos de usuário
 
-**Arquivo:** `realm-export.json` (em CENTRAL/INTEGRATION/KEYCLOAK/)
+**Arquivo:** `realm-export.json` (em [DOCS/CONFIG/](../CONFIG/))
 
 ## Estratégia de Desenvolvimento
 

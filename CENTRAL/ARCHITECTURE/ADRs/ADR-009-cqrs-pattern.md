@@ -1,5 +1,6 @@
 ---
-status: review
+status: rejected
+description: "Granularidade errada. Consolidar com ADR-008 (Clean Architecture) e ADR-010 (Event-Driven) em unico ADR sobre arquitetura de aplicacao."
 updated: 2026-01-20
 ---
 

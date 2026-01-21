@@ -137,7 +137,7 @@ Conteúdo em WEBDOCS não é cópia direta da fonte. A documentação é adaptad
       "example": "Usar 'Em Análise' não 'UNDER_REVIEW'"
     },
     "role_names": {
-      "rule": "Usar nomes de CENTRAL/INTEGRATION/KEYCLOAK/RBAC/",
+      "rule": "Usar nomes de PROJECTS/KEYCLOAK/DOCS/INTEGRATION/RBAC/",
       "example": "Usar 'Agente de Campo' não 'field-agent'"
     },
     "simplification": {

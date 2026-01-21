@@ -24,12 +24,4 @@ Descrição: Aguardando index gerado por script.
 |  | [Projects](./PROJECTS/README.md) | 267 |
 
 *Gerado automaticamente em 2026-01-17 11:57*
-
-## Arquivos (1 arquivo)
-
-| ID | Titulo |
-|:---|:-------|
-| [validation-report](./validation-report.md) | CARF Validation Report |
-
-*Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->

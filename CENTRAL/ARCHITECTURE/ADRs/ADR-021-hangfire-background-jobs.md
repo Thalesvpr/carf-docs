@@ -1,5 +1,6 @@
 ---
-status: review
+status: rejected
+description: "Nao e decisao arquitetural. Biblioteca .NET para jobs e detalhe de implementacao. Documentar em PROJECTS/GEOAPI."
 updated: 2026-01-20
 ---
 

@@ -1,26 +1,28 @@
 ---
-status: review
-updated: 2026-01-12
+status: approved
+updated: 2026-01-21
 ---
 
 # CONCEPTS
 
-Conceitos fundamentais Keycloak e customização CARF explicando themes system estrutura diretórios herança FreeMarker templates i18n, SPIs Service Provider Interfaces extensões Java Authenticator EventListener ProtocolMapper, realm configuration clients roles attributes mappers flows export JSON, OAuth2 OIDC grant types authorization_code PKCE client_credentials refresh JWT lifecycle endpoints, e multi-tenancy via user attributes tenant_id claims RLS PostgreSQL isolamento prefeituras.
+Conceitos fundamentais Keycloak e customizacao CARF.
 
 ## Arquivos
 
-- **[01-keycloak-themes.md](./01-keycloak-themes.md)** - Sistema themes estrutura diretórios FreeMarker i18n deployment
-- **[02-keycloak-spis.md](./02-keycloak-spis.md)** - SPIs extensões Java Authenticator EventListener ProtocolMapper
-- **[03-realm-customization.md](./03-realm-customization.md)** - Configuração realms clients roles attributes mappers flows
-- **[04-oauth2-oidc-flows.md](./04-oauth2-oidc-flows.md)** - OAuth2 grant types OIDC endpoints JWT lifecycle logout
-- **[05-multi-tenancy-strategy.md](./05-multi-tenancy-strategy.md)** - Multi-tenancy user attributes claims RLS tenant switcher
+| Arquivo | Conteudo |
+|:--------|:---------|
+| [01-keycloak-themes.md](./01-keycloak-themes.md) | **Keycloakify** - React/TypeScript para temas (padrao CARF) |
+| [02-keycloak-spis.md](./02-keycloak-spis.md) | SPIs, extensoes Java, Authenticators |
+| [03-realm-customization.md](./03-realm-customization.md) | Configuracao realms, clients, roles, mappers |
+| [04-oauth2-oidc-flows.md](./04-oauth2-oidc-flows.md) | OAuth2 grant types, OIDC endpoints, JWT |
+| [05-multi-tenancy-strategy.md](./05-multi-tenancy-strategy.md) | Multi-tenancy via user attributes, RLS |
 
 <!-- CARF-INDEX-START -->
 ## Documentos
 
 ### Em Revisão
 
-- ○ [[PROJECTS/KEYCLOAK/DOCS/CONCEPTS/01-keycloak-themes.md|Conceitos: Keycloak Themes]]
+- ○ [[PROJECTS/KEYCLOAK/DOCS/CONCEPTS/01-keycloak-themes.md|Keycloak Themes]]
 - ○ [[PROJECTS/KEYCLOAK/DOCS/CONCEPTS/02-keycloak-spis.md|02-keycloak-spis]]
 - ○ [[PROJECTS/KEYCLOAK/DOCS/CONCEPTS/03-realm-customization.md|03-realm-customization]]
 - ○ [[PROJECTS/KEYCLOAK/DOCS/CONCEPTS/04-oauth2-oidc-flows.md|04-oauth2-oidc-flows]]

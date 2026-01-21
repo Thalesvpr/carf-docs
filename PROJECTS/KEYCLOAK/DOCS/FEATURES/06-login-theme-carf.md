@@ -1,26 +1,191 @@
 ---
-status: review
-updated: 2026-01-19
+status: approved
+updated: 2026-01-21
 ---
 
-# Login Theme CARF - Tema de Login Customizado
+# Login Theme CARF
 
-Tema de login Keycloak CARF implementa layout split-screen profissional inspirado em padrões modernos de autenticação como Airbnb e TED, onde painel esquerdo verde institucional exibe branding CARF com título "Sistema de Regularização Fundiária Urbana" enquanto painel direito branco centraliza formulário de login com campos CPF/email e senha, combinando identidade visual municipal com usabilidade otimizada para servidores públicos e cidadãos através de FreeMarker templates template.ftl login.ftl, CSS responsivo login.css com variáveis customizadas, e estrutura de arquivos organizada em themes/carf/login/ contendo resources/css resources/js resources/img messages.
+Tema de login Keycloak CARF implementado com **Keycloakify**, utilizando React, TypeScript e componentes @carf/ui. O layout split-screen profissional combina branding institucional com usabilidade otimizada para servidores publicos e cidadaos.
 
-Estrutura de arquivos tema organizada em diretório themes/carf/login/ com theme.properties definindo parent=base import=common/keycloak styles=css/login.css locales=en,pt_BR, template.ftl implementando macro registrationLayout que define containers .login-container .login-brand .login-main estruturando layout split-screen, login.ftl usando macro registrationLayout para renderizar formulário com campos username password checkbox rememberMe links esqueceuSenha cadastro, login.css aplicando flexbox responsivo com CSS variables para cores tipografia espaçamentos, messages/messages_pt_BR.properties contendo traduções português Brasil labels loginTitle usernameOrEmail password doLogIn, resources/img/ com logo.svg favicon.ico, resources/js/ com carf-validations.js login.js para máscara CPF e validações client-side.
+## Stack Tecnologico
 
-Layout split-screen responsivo implementado via CSS flexbox onde .login-container display flex min-height 100vh divide tela horizontalmente, .login-brand flex 0 0 42% exibe painel esquerdo verde institucional background linear-gradient 160deg --color-primary --color-primary-dark centralizado verticalmente com .brand-content contendo h1.brand-logo "CARF" font-size 4.5rem font-weight 800 letter-spacing 0.15em e p.brand-subtitle "Sistema de Regularização Fundiária Urbana" opacity 0.85, .login-main flex 1 renderiza painel direito branco com .login-card max-width 380px centralizado contendo formulário h2.login-title "Bem-vindo de volta" font-size 1.75rem p.login-subtitle "Acesse sua conta do Sistema CARF" campos input .field e botão .btn-submit.
+| Tecnologia | Uso |
+|:-----------|:----|
+| Keycloakify | Build de temas React para Keycloak |
+| React 18 | Componentes de UI |
+| TypeScript | Tipagem estatica |
+| @carf/ui | Design System CARF |
+| Tailwind CSS | Estilizacao utilitaria |
+| Vite | Bundler e dev server |
 
-Paleta de cores definida em CSS variables :root seguindo identidade visual institucional com --color-primary #2C5F2D verde institucional aplicado painel branding links botões, --color-primary-dark #1a3d1b hover states gradients, --color-yellow #ffcd07 elemento decorativo topo, --color-green #15981C verde vibrante institucional, --color-blue #3872c6 elemento decorativo base, --color-white #ffffff backgrounds card formulário, --color-gray-100 #f7f7f7 body background, --color-gray-300 #d1d5db borders inputs, --color-gray-500 #6b7280 placeholders subtítulos, --color-gray-700 #374151 labels textos secundários, --color-gray-900 #111827 títulos textos principais, --color-error #dc2626 alertas erro validações, grays seguindo escala Tailwind CSS para consistência visual com demais projetos CARF frontend, referência completa paleta em [ADR-023](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-023-color-palette-design-system.md).
+## Layout Split-Screen
 
-Sistema responsivo implementado com três breakpoints media queries ajustando layout para diferentes dispositivos, @media max-width 1024px tablet reduz .login-brand flex 0 0 38% padding 40px .brand-logo font-size 3.5rem .login-main padding 40px, @media max-width 768px mobile aplica .login-container flex-direction column empilhando painéis verticalmente .login-brand padding 40px 24px .brand-logo font-size 2.75rem .login-main flex 1 padding 32px 24px align-items flex-start .login-card max-width 100% .login-title font-size 1.5rem, @media max-width 480px mobile pequeno .login-brand padding 32px 20px .brand-logo font-size 2.25rem .brand-subtitle font-size 0.875rem .login-main padding 28px 20px .field input font-size 16px prevenindo zoom iOS .options flex-direction column gap 16px .btn-submit padding 16px.
+O design segue padroes modernos de autenticacao (Airbnb, TED):
 
-Integração Keycloak através de template FreeMarker customizado themes/carf/login/template.ftl definindo macro registrationLayout substituindo completamente template base Keycloak para controle total do HTML, macro aceita parâmetros bodyClass displayInfo displayMessage displayRequiredFields, sections form info preenchidas via #nested "form" #nested "info" permitindo login.ftl register.ftl error.ftl reutilizarem layout compartilhado, template inclui meta charset utf-8 viewport robots noindex title dinâmico msg("loginTitle") link stylesheet login.css, não usa JavaScript padrão Keycloak nem CSS base optando por implementação standalone limpa sem dependências.
+```
++------------------+-------------------------+
+|                  |                         |
+|  PAINEL VERDE    |    PAINEL BRANCO        |
+|  (Branding)      |    (Formulario)         |
+|                  |                         |
+|  Logo CARF       |    Campos Login         |
+|  Subtitulo       |    CPF/Email            |
+|                  |    Senha                |
+|                  |    [Entrar]             |
+|                  |                         |
++------------------+-------------------------+
+      42%                    58%
+```
 
-Login page login.ftl importa template.ftl via #import usa macro @layout.registrationLayout com displayInfo=realm.password && realm.registrationAllowed verificando permissões realm, section form renderiza h2 "Bem-vindo de volta" p "Acesse sua conta" mensagens alert usando message.type message.summary, form action url.loginAction method post com .field username label "CPF, E-mail ou Usuário" input type text autofocus autocomplete username, .field password label "Senha" input type password autocomplete current-password, .options checkbox rememberMe se realm.rememberMe link "Esqueceu a senha?" href url.loginResetCredentialsUrl, button.btn-submit "Entrar", link registro "Não tem uma conta? Criar conta" href url.registrationUrl se realm.registrationAllowed.
+### Responsividade
 
-Internacionalização i18n em português via messages/messages_pt_BR.properties contendo loginTitle "CARF - Login" para tag title navegador, labels de campos e textos da interface traduzidos, theme.properties configurando locales=en,pt_BR para suporte bilíngue com fallback inglês messages_en.properties, Keycloak detecta automaticamente locale do browser aplicando traduções correspondentes, customização adicional de mensagens erro validação via realm Localization tab Admin Console.
+| Breakpoint | Comportamento |
+|:-----------|:--------------|
+| Desktop (>1024px) | Split horizontal 42%/58% |
+| Tablet (768-1024px) | Split horizontal 38%/62% |
+| Mobile (<768px) | Stack vertical, branding no topo |
 
-Deployment em desenvolvimento via docker-compose.dev.yml mapeando volume ./themes/carf:/opt/keycloak/themes/carf permitindo hot-reload alterações CSS JavaScript sem restart, templates .ftl requerem restart container docker-compose restart keycloak, configuração tema no realm via Admin Console Realm Settings Themes Login Theme selecionando "carf" ou via Keycloak Admin API PUT /admin/realms/carf atualizando loginTheme="carf", produção desabilitar cache temas em standalone.xml ou via KC_SPI_THEME_STATIC_MAX_AGE=-1 KC_SPI_THEME_CACHE_THEMES=false durante desenvolvimento, ativar cache produção KC_SPI_THEME_CACHE_THEMES=true KC_SPI_THEME_STATIC_MAX_AGE=2592000 para performance.
+## Integracao @carf/ui
 
-Referências [05-theme-customization](./05-theme-customization.md) documenta estrutura geral temas CARF, [01-develop-themes](../HOW-TO/01-develop-themes.md) guia desenvolvimento setup ambiente, [03-theme-configuration](../../../../CENTRAL/INTEGRATION/KEYCLOAK/REALM/03-theme-configuration.md) configuração realm loginTheme, código fonte [themes/carf/](../../SRC-CODE/carf-keycloak/themes/carf/) implementação completa login account email, Keycloak Theme SPI keycloak.org/docs/latest/server_development/#_themes documentação oficial.
+Os componentes do Design System sao usados diretamente:
+
+```tsx
+// src/login/pages/Login.tsx
+import { Button, Input, FormField, Alert } from '@carf/ui'
+import { useCpfMask } from '@carf/ui/hooks'
+
+export function Login({ kcContext }: { kcContext: KcContext }) {
+  const { url, realm, login, message } = kcContext
+  const { maskedValue, handleChange } = useCpfMask()
+
+  return (
+    <div className="login-container">
+      <aside className="login-brand">
+        <div className="brand-content">
+          <h1>CARF</h1>
+          <p>Sistema de Regularizacao Fundiaria Urbana</p>
+        </div>
+      </aside>
+
+      <main className="login-main">
+        <form action={url.loginAction} method="post">
+          {message && (
+            <Alert variant={message.type}>{message.summary}</Alert>
+          )}
+
+          <FormField label="CPF ou Email">
+            <Input
+              name="username"
+              value={maskedValue || login.username}
+              onChange={handleChange}
+              autoFocus
+            />
+          </FormField>
+
+          <FormField label="Senha">
+            <Input name="password" type="password" />
+          </FormField>
+
+          <Button type="submit" className="w-full">
+            Entrar
+          </Button>
+        </form>
+      </main>
+    </div>
+  )
+}
+```
+
+## Paleta de Cores
+
+Cores institucionais definidas via Design System ([ADR-023](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-023-color-palette-design-system.md)):
+
+| Token | Cor | Uso |
+|:------|:----|:----|
+| `--color-primary` | #2C5F2D | Painel branding, botoes, links |
+| `--color-primary-dark` | #1a3d1b | Hover states, gradients |
+| `--color-error` | #dc2626 | Alertas de erro |
+| `--color-gray-*` | Escala Tailwind | Textos, borders, backgrounds |
+
+## Internacionalizacao
+
+Suporte bilingue PT-BR e EN via sistema i18n do Keycloakify:
+
+```typescript
+// src/login/i18n.ts
+export const messages = {
+  'pt-BR': {
+    loginTitle: 'CARF - Login',
+    usernameOrEmail: 'CPF ou Email',
+    password: 'Senha',
+    doLogIn: 'Entrar',
+    forgotPassword: 'Esqueceu a senha?',
+    noAccount: 'Nao tem uma conta?',
+    register: 'Criar conta'
+  },
+  en: {
+    loginTitle: 'CARF - Login',
+    usernameOrEmail: 'CPF or Email',
+    password: 'Password',
+    doLogIn: 'Sign In',
+    forgotPassword: 'Forgot password?',
+    noAccount: "Don't have an account?",
+    register: 'Create account'
+  }
+}
+```
+
+## Validacao CPF Client-Side
+
+Hook `useCpfMask` de @carf/ui aplica mascara automaticamente:
+
+- Detecta 11 digitos e formata como XXX.XXX.XXX-XX
+- Valida digitos verificadores
+- Feedback visual de erro inline
+
+## Desenvolvimento
+
+```bash
+# Iniciar ambiente dev com hot reload
+cd PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme
+pnpm dev
+
+# Testar com Keycloak real
+pnpm dev:keycloak
+
+# Build para producao
+pnpm build-keycloak-theme
+```
+
+## Deploy
+
+O build gera um JAR em `dist_keycloak/`:
+
+```bash
+# Copiar para Keycloak
+cp dist_keycloak/keycloak-theme-carf.jar /opt/keycloak/providers/
+
+# Ou via Docker
+docker build -t carf-keycloak .
+```
+
+Ativar no Admin Console: Realm Settings > Themes > Login Theme: "carf"
+
+## Paginas Implementadas
+
+| Pagina | Arquivo | Status |
+|:-------|:--------|:-------|
+| Login | Login.tsx | Completo |
+| Registro | Register.tsx | Completo |
+| Reset Password | ResetPassword.tsx | Completo |
+| Verify Email | VerifyEmail.tsx | Completo |
+| Error | Error.tsx | Completo |
+| Info | Info.tsx | Completo |
+
+## Referencias
+
+- [HOW-TO/01-develop-themes.md](../HOW-TO/01-develop-themes.md) - Guia desenvolvimento Keycloakify
+- [CONCEPTS/01-keycloak-themes.md](../CONCEPTS/01-keycloak-themes.md) - Conceitos Keycloakify
+- [REFERENCE/04-keycloakify-api.md](../REFERENCE/04-keycloakify-api.md) - API Keycloakify
+- [ADR-024](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-024-keycloakify-adoption.md) - Decisao de adocao Keycloakify
+- [Keycloakify Docs](https://keycloakify.dev) - Documentacao oficial

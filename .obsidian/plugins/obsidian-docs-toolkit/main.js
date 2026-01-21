@@ -27,7 +27,7 @@ __export(main_exports, {
   default: () => DocsToolkitPlugin
 });
 module.exports = __toCommonJS(main_exports);
-var import_obsidian13 = require("obsidian");
+var import_obsidian14 = require("obsidian");
 
 // src/settings.ts
 var import_obsidian = require("obsidian");
@@ -108,7 +108,7 @@ var DocsToolkitSettingTab = class extends import_obsidian.PluginSettingTab {
 };
 
 // src/store/DocumentStore.ts
-var import_obsidian4 = require("obsidian");
+var import_obsidian5 = require("obsidian");
 
 // src/models/types.ts
 var DocType = /* @__PURE__ */ ((DocType5) => {
@@ -125,6 +125,7 @@ var Status = /* @__PURE__ */ ((Status2) => {
   Status2["REVIEW"] = "review";
   Status2["APPROVED"] = "approved";
   Status2["REJECTED"] = "rejected";
+  Status2["TEMPLATE"] = "template";
   return Status2;
 })(Status || {});
 var VALID_MODULES = [
@@ -895,8 +896,308 @@ var NamingValidator = class extends LocalValidator {
   }
 };
 
+// src/validators/ForbiddenLinksValidator.ts
+var ForbiddenLinksValidator = class extends LocalValidator {
+  constructor() {
+    super(...arguments);
+    this.id = "forbidden-links";
+    this.name = "Forbidden Links";
+    this.description = "Links internos s\xE3o permitidos apenas em README (se\xE7\xE3o de \xEDndice)";
+  }
+  async validateFile(document2, app) {
+    const issues = [];
+    const isReadme = document2.file.name === "README.md";
+    for (const link of document2.links) {
+      if (link.target.startsWith("http://") || link.target.startsWith("https://")) {
+        continue;
+      }
+      if (!isReadme) {
+        issues.push(Issue.error(
+          document2.file,
+          this.id,
+          `Link interno "${link.target}" n\xE3o permitido`,
+          link.line,
+          "Links internos s\xF3 s\xE3o permitidos em README.md"
+        ));
+      } else {
+        const content = document2.content;
+        const indexStart = content.indexOf("<!-- CARF-INDEX-START -->");
+        const indexEnd = content.indexOf("<!-- CARF-INDEX-END -->");
+        const hasValidSection = indexStart !== -1 && indexEnd !== -1 && indexStart < indexEnd;
+        const linkPosition = this.getLinkPosition(content, link.line);
+        const isOutsideSection = !hasValidSection || linkPosition < indexStart || linkPosition > indexEnd;
+        if (isOutsideSection) {
+          issues.push(Issue.error(
+            document2.file,
+            this.id,
+            `Link "${link.target}" fora da se\xE7\xE3o de \xEDndice`,
+            link.line,
+            "Use 'Regenerate README index' para gerar links automaticamente"
+          ));
+        }
+      }
+    }
+    return issues;
+  }
+  /**
+   * Get the character position for a given line number
+   */
+  getLinkPosition(content, line) {
+    const lines = content.split("\n");
+    let pos = 0;
+    for (let i = 0; i < line - 1 && i < lines.length; i++) {
+      pos += lines[i].length + 1;
+    }
+    return pos;
+  }
+};
+
+// src/validators/ADRValidator.ts
+var import_obsidian4 = require("obsidian");
+var DEFAULT_RULES = {
+  max_words: 300,
+  max_words_per_section: 80,
+  required_sections: ["Contexto", "Decisao", "Consequencias", "Alternativas Rejeitadas"],
+  forbidden: ["```", "http", "|--|", "- ["]
+};
+var ADR_TITLE_PATTERN = /^ADR-\d{3}:/;
+var ADR_FILENAME_PATTERN = /^ADR-\d{3}-.+\.md$/;
+var TEMPLATE_PATH = "CENTRAL/ARCHITECTURE/ADRs/ADR-000-template.md";
+var ADRValidator = class extends LocalValidator {
+  constructor() {
+    super(...arguments);
+    this.id = "adr-structure";
+    this.name = "ADR Structure";
+    this.description = "Valida estrutura de ADRs conforme template";
+    this.rulesCache = null;
+  }
+  async validateFile(document2, app) {
+    const issues = [];
+    if (!this.isADRFile(document2)) {
+      return issues;
+    }
+    if (document2.file.name === "ADR-000-template.md") {
+      return issues;
+    }
+    const rules = await this.loadRules(app);
+    this.validateFilename(document2, issues);
+    this.validateTitle(document2, issues);
+    this.validateRequiredSections(document2, rules, issues);
+    this.validateWordCount(document2, rules, issues);
+    this.validateForbiddenPatterns(document2, rules, issues);
+    return issues;
+  }
+  /**
+   * Load validation rules from template frontmatter
+   */
+  async loadRules(app) {
+    var _a, _b, _c, _d;
+    if (this.rulesCache) {
+      return this.rulesCache;
+    }
+    try {
+      const templateFile = app.vault.getAbstractFileByPath(TEMPLATE_PATH);
+      if (!templateFile) {
+        return DEFAULT_RULES;
+      }
+      const content = await app.vault.read(templateFile);
+      const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+      if (!match) {
+        return DEFAULT_RULES;
+      }
+      const yaml = (0, import_obsidian4.parseYaml)(match[1]);
+      if (!(yaml == null ? void 0 : yaml.validation)) {
+        return DEFAULT_RULES;
+      }
+      this.rulesCache = {
+        max_words: (_a = yaml.validation.max_words) != null ? _a : DEFAULT_RULES.max_words,
+        max_words_per_section: (_b = yaml.validation.max_words_per_section) != null ? _b : DEFAULT_RULES.max_words_per_section,
+        required_sections: (_c = yaml.validation.required_sections) != null ? _c : DEFAULT_RULES.required_sections,
+        forbidden: (_d = yaml.validation.forbidden) != null ? _d : DEFAULT_RULES.forbidden
+      };
+      return this.rulesCache;
+    } catch (e) {
+      return DEFAULT_RULES;
+    }
+  }
+  /**
+   * Check if file is in ADRs folder
+   */
+  isADRFile(document2) {
+    return document2.file.path.includes("/ADRs/") && document2.file.name.startsWith("ADR-");
+  }
+  /**
+   * Validate filename follows ADR-XXX-name.md pattern
+   */
+  validateFilename(document2, issues) {
+    if (!ADR_FILENAME_PATTERN.test(document2.file.name)) {
+      issues.push(Issue.error(
+        document2.file,
+        this.id,
+        `Nome deve seguir padr\xE3o ADR-XXX-nome.md`,
+        1,
+        `Renomear arquivo`
+      ));
+    }
+  }
+  /**
+   * Validate H1 title follows "ADR-XXX: Titulo" pattern
+   */
+  validateTitle(document2, issues) {
+    const title = document2.title;
+    if (!title) {
+      issues.push(Issue.error(
+        document2.file,
+        this.id,
+        `ADR deve ter t\xEDtulo H1`,
+        1,
+        `Adicionar: # ADR-XXX: Titulo`
+      ));
+      return;
+    }
+    if (!ADR_TITLE_PATTERN.test(title)) {
+      issues.push(Issue.error(
+        document2.file,
+        this.id,
+        `T\xEDtulo deve seguir padr\xE3o "ADR-XXX: Titulo"`,
+        this.findTitleLine(document2)
+      ));
+    }
+  }
+  /**
+   * Validate all required sections are present
+   */
+  validateRequiredSections(document2, rules, issues) {
+    const presentSections = Array.from(document2.sections.keys());
+    for (const required of rules.required_sections) {
+      const found = presentSections.some(
+        (s) => this.normalizeText(s) === this.normalizeText(required)
+      );
+      if (!found) {
+        issues.push(Issue.error(
+          document2.file,
+          this.id,
+          `Se\xE7\xE3o obrigat\xF3ria ausente: "## ${required}"`
+        ));
+      }
+    }
+  }
+  /**
+   * Validate word count limits
+   */
+  validateWordCount(document2, rules, issues) {
+    const body = document2.content.replace(/^---[\s\S]*?---\n*/, "");
+    const totalWords = this.countWords(body);
+    if (totalWords > rules.max_words) {
+      issues.push(Issue.warning(
+        document2.file,
+        this.id,
+        `${totalWords} palavras (m\xE1x: ${rules.max_words})`,
+        void 0,
+        `Reduzir texto para no m\xE1ximo ${rules.max_words} palavras`
+      ));
+    }
+    for (const [section, content] of document2.sections) {
+      if (this.normalizeText(section) === "regras")
+        continue;
+      const sectionWords = this.countWords(content);
+      if (sectionWords > rules.max_words_per_section) {
+        const line = this.findSectionLine(document2, section);
+        issues.push(Issue.warning(
+          document2.file,
+          this.id,
+          `"${section}": ${sectionWords} palavras (m\xE1x: ${rules.max_words_per_section})`,
+          line,
+          `Reduzir se\xE7\xE3o para no m\xE1ximo ${rules.max_words_per_section} palavras`
+        ));
+      }
+    }
+  }
+  /**
+   * Validate forbidden patterns are not present
+   */
+  validateForbiddenPatterns(document2, rules, issues) {
+    const body = document2.content.replace(/^---[\s\S]*?---\n*/, "");
+    const lines = body.split("\n");
+    for (const pattern of rules.forbidden) {
+      for (let i = 0; i < lines.length; i++) {
+        if (lines[i].includes(pattern)) {
+          const patternLabel = this.getForbiddenLabel(pattern);
+          issues.push(Issue.error(
+            document2.file,
+            this.id,
+            `${patternLabel} n\xE3o permitido em ADR`,
+            i + 1,
+            `Remover e usar apenas texto corrido`
+          ));
+          break;
+        }
+      }
+    }
+  }
+  /**
+   * Get human-readable label for forbidden pattern
+   */
+  getForbiddenLabel(pattern) {
+    switch (pattern) {
+      case "```":
+        return "Bloco de c\xF3digo";
+      case "http":
+        return "Link externo";
+      case "|--|":
+        return "Tabela";
+      case "- [":
+        return "Checklist";
+      default:
+        return `Padr\xE3o "${pattern}"`;
+    }
+  }
+  /**
+   * Count words in text (excluding markdown syntax)
+   */
+  countWords(text) {
+    const noHeaders = text.replace(/^#+\s+.+$/gm, "");
+    const words = noHeaders.trim().split(/\s+/).filter((w) => w.length > 0);
+    return words.length;
+  }
+  /**
+   * Normalize text for comparison (remove accents, lowercase)
+   */
+  normalizeText(text) {
+    return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+  }
+  /**
+   * Find the line number of the H1 title
+   */
+  findTitleLine(document2) {
+    const lines = document2.content.split("\n");
+    for (let i = 0; i < lines.length; i++) {
+      if (lines[i].startsWith("# ")) {
+        return i + 1;
+      }
+    }
+    return 1;
+  }
+  /**
+   * Find the line number of a section header
+   */
+  findSectionLine(document2, section) {
+    const lines = document2.content.split("\n");
+    const normalized = this.normalizeText(section);
+    for (let i = 0; i < lines.length; i++) {
+      if (lines[i].startsWith("## ")) {
+        const headerText = lines[i].replace(/^##\s+/, "");
+        if (this.normalizeText(headerText) === normalized) {
+          return i + 1;
+        }
+      }
+    }
+    return 1;
+  }
+};
+
 // src/store/DocumentStore.ts
-var DocumentStore = class extends import_obsidian4.Events {
+var DocumentStore = class extends import_obsidian5.Events {
   constructor(app) {
     super();
     this.documents = /* @__PURE__ */ new Map();
@@ -916,7 +1217,9 @@ var DocumentStore = class extends import_obsidian4.Events {
       new TitleValidator(),
       new StaleValidator(),
       new EmptyFoldersValidator(),
-      new NamingValidator()
+      new NamingValidator(),
+      new ForbiddenLinksValidator(),
+      new ADRValidator()
     ];
     this.validators.forEach((v) => this.enabledValidators.add(v.id));
   }
@@ -947,7 +1250,7 @@ var DocumentStore = class extends import_obsidian4.Events {
     };
   }
   getReviewQueue() {
-    return Array.from(this.documents.values()).filter((d) => d.file.name !== "README.md").sort((a, b) => a.file.path.localeCompare(b.file.path)).map((d) => d.file);
+    return Array.from(this.documents.values()).sort((a, b) => a.file.path.localeCompare(b.file.path)).map((d) => d.file);
   }
   getDocument(path) {
     return this.documents.get(path);
@@ -1033,6 +1336,7 @@ var DocumentStore = class extends import_obsidian4.Events {
     const desc = status === "rejected" /* REJECTED */ ? description : void 0;
     const newContent = this.updateStatusInContent(content, status, desc);
     await this.app.vault.modify(file, newContent);
+    await this.updateDocument(file);
   }
   // --- Internal Helpers ---
   getCARFFiles() {
@@ -1051,16 +1355,16 @@ var DocumentStore = class extends import_obsidian4.Events {
     return new Document(file, frontmatter, content, sections, links, title);
   }
   parseFrontmatter(content) {
+    var _a;
     const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
     if (!match)
       return null;
     try {
-      const yaml = (0, import_obsidian4.parseYaml)(match[1]);
-      if (!yaml || !yaml.status)
+      const yaml = (0, import_obsidian5.parseYaml)(match[1]);
+      if (!yaml)
         return null;
-      const status = yaml.status.toLowerCase();
-      if (!Object.values(Status).includes(status))
-        return null;
+      const rawStatus = ((_a = yaml.status) == null ? void 0 : _a.toLowerCase()) || "review";
+      const status = Object.values(Status).includes(rawStatus) ? rawStatus : "review" /* REVIEW */;
       let type;
       if (yaml.type) {
         const upperType = yaml.type.toUpperCase();
@@ -1184,7 +1488,7 @@ $2`
 };
 
 // src/services/MetadataService.ts
-var import_obsidian5 = require("obsidian");
+var import_obsidian6 = require("obsidian");
 var MetadataService = class {
   constructor(app) {
     this.app = app;
@@ -1209,7 +1513,7 @@ var MetadataService = class {
     if (!match)
       return null;
     try {
-      const yaml = (0, import_obsidian5.parseYaml)(match[1]);
+      const yaml = (0, import_obsidian6.parseYaml)(match[1]);
       if (!yaml)
         return null;
       return this.normalizeFrontmatter(yaml);
@@ -1322,19 +1626,12 @@ var MetadataService = class {
     return match ? match[1].trim() : null;
   }
   /**
-   * Create default frontmatter for a new document
+   * Create minimal frontmatter for a new document
    */
   createDefaultFrontmatter(file) {
-    const type = Document.inferTypeFromFilename(file.name);
-    const id = this.extractIdFromFilename(file.name) || "";
     const now = this.formatDate(new Date());
     return {
-      id,
-      type,
-      modules: [],
-      epic: "",
       status: "review" /* REVIEW */,
-      created: now,
       updated: now
     };
   }
@@ -1357,7 +1654,7 @@ var MetadataService = class {
   async setFrontmatter(file, frontmatter) {
     const content = await this.app.vault.read(file);
     const bodyContent = this.getBodyContent(content);
-    const yamlStr = (0, import_obsidian5.stringifyYaml)(frontmatter);
+    const yamlStr = (0, import_obsidian6.stringifyYaml)(frontmatter);
     const newContent = `---
 ${yamlStr}---
 
@@ -1412,7 +1709,7 @@ ${bodyContent}`;
 };
 
 // src/services/IndexService.ts
-var import_obsidian6 = require("obsidian");
+var import_obsidian7 = require("obsidian");
 var IndexService = class {
   constructor(app, metadataService) {
     this.pendingSyncs = /* @__PURE__ */ new Set();
@@ -1440,7 +1737,7 @@ var IndexService = class {
     this.pendingSyncs.clear();
     for (const folderPath of folders) {
       const folder = this.app.vault.getAbstractFileByPath(folderPath);
-      if (folder instanceof import_obsidian6.TFolder) {
+      if (folder instanceof import_obsidian7.TFolder) {
         await this.syncFolderIndex(folder);
       }
     }
@@ -1451,8 +1748,8 @@ var IndexService = class {
   async syncFolderIndex(folder) {
     const readmePath = `${folder.path}/README.md`;
     let readme = this.app.vault.getAbstractFileByPath(readmePath);
-    const files = folder.children.filter((f) => f instanceof import_obsidian6.TFile && f.name.endsWith(".md") && f.name !== "README.md").sort((a, b) => a.name.localeCompare(b.name));
-    const subfolders = folder.children.filter((f) => f instanceof import_obsidian6.TFolder).sort((a, b) => a.name.localeCompare(b.name));
+    const files = folder.children.filter((f) => f instanceof import_obsidian7.TFile && f.name.endsWith(".md") && f.name !== "README.md").sort((a, b) => a.name.localeCompare(b.name));
+    const subfolders = folder.children.filter((f) => f instanceof import_obsidian7.TFolder).sort((a, b) => a.name.localeCompare(b.name));
     const indexContent = await this.generateIndexContent(folder, files, subfolders);
     if (readme) {
       const currentContent = await this.app.vault.read(readme);
@@ -1488,11 +1785,12 @@ var IndexService = class {
         }
         docsByStatus.get(status).push(file);
       }
-      const statusOrder = ["review" /* REVIEW */, "approved" /* APPROVED */, "rejected" /* REJECTED */];
+      const statusOrder = ["review" /* REVIEW */, "approved" /* APPROVED */, "rejected" /* REJECTED */, "template" /* TEMPLATE */];
       const statusLabels = {
         ["review" /* REVIEW */]: "Em Revis\xE3o",
         ["approved" /* APPROVED */]: "Aprovados",
-        ["rejected" /* REJECTED */]: "Rejeitados"
+        ["rejected" /* REJECTED */]: "Rejeitados",
+        ["template" /* TEMPLATE */]: "Templates"
       };
       for (const status of statusOrder) {
         const statusFiles = docsByStatus.get(status);
@@ -1564,7 +1862,7 @@ ${endMarker}
 };
 
 // src/services/MigrationService.ts
-var import_obsidian7 = require("obsidian");
+var import_obsidian8 = require("obsidian");
 var MigrationService = class {
   constructor(app, metadataService) {
     this.app = app;
@@ -1622,7 +1920,7 @@ var MigrationService = class {
         failed++;
       }
     }
-    new import_obsidian7.Notice(
+    new import_obsidian8.Notice(
       `Migra\xE7\xE3o conclu\xEDda:
 \u2713 ${migrated} migrados
 \u25CB ${skipped} j\xE1 tinham frontmatter
@@ -1805,11 +2103,11 @@ ${content}`;
     const files = [];
     const processFolder = (folder) => {
       for (const child of folder.children) {
-        if (child instanceof import_obsidian7.TFile && child.extension === "md") {
+        if (child instanceof import_obsidian8.TFile && child.extension === "md") {
           if (Document.isInCARFPath(child.path)) {
             files.push(child);
           }
-        } else if (child instanceof import_obsidian7.TFolder) {
+        } else if (child instanceof import_obsidian8.TFolder) {
           processFolder(child);
         }
       }
@@ -1821,9 +2119,9 @@ ${content}`;
 };
 
 // src/views/CurationPanelView.ts
-var import_obsidian8 = require("obsidian");
+var import_obsidian9 = require("obsidian");
 var CURATION_PANEL_VIEW_TYPE = "docs-toolkit-curation";
-var CurationPanelView = class extends import_obsidian8.ItemView {
+var CurationPanelView = class extends import_obsidian9.ItemView {
   constructor(leaf, store, metadataService) {
     super(leaf);
     // Current position in queue
@@ -1858,6 +2156,7 @@ var CurationPanelView = class extends import_obsidian8.ItemView {
       this.app.workspace.on("active-leaf-change", () => this.syncWithActiveFile())
     );
     this.registerDomEvent(document, "keydown", this.onKey.bind(this));
+    this.syncWithActiveFile();
     this.render();
   }
   /**
@@ -1911,7 +2210,7 @@ var CurationPanelView = class extends import_obsidian8.ItemView {
    */
   getFolderStats() {
     const state = this.store.getState();
-    const docs = state.documents.filter((d) => d.file.name !== "README.md");
+    const docs = state.documents.filter((d) => true);
     const folderMap = /* @__PURE__ */ new Map();
     for (const doc of docs) {
       const parts = doc.file.path.split("/");
@@ -1948,13 +2247,22 @@ var CurationPanelView = class extends import_obsidian8.ItemView {
   }
   /**
    * Sync panel with currently active file in editor
+   * Clears folder filter if needed to show the file
    */
   syncWithActiveFile() {
     const activeFile = this.app.workspace.getActiveFile();
     if (!activeFile)
       return;
-    const queue = this.getQueue();
-    const index = queue.findIndex((f) => f.path === activeFile.path);
+    if (!Document.isInCARFPath(activeFile.path))
+      return;
+    let queue = this.getQueue();
+    let index = queue.findIndex((f) => f.path === activeFile.path);
+    if (index === -1 && this.folderFilter) {
+      this.folderFilter = null;
+      this.searchQuery = "";
+      queue = this.getQueue();
+      index = queue.findIndex((f) => f.path === activeFile.path);
+    }
     if (index !== -1 && index !== this.currentIndex) {
       this.currentIndex = index;
       this.render();
@@ -1971,7 +2279,7 @@ var CurationPanelView = class extends import_obsidian8.ItemView {
       el.createDiv({ text: "Loading...", cls: "docs-cp-loading" });
       return;
     }
-    let docs = state.documents.filter((d) => d.file.name !== "README.md");
+    let docs = state.documents.filter((d) => true);
     if (this.folderFilter) {
       docs = docs.filter((d) => d.file.path.startsWith(this.folderFilter + "/"));
     }
@@ -2194,22 +2502,22 @@ var CurationPanelView = class extends import_obsidian8.ItemView {
     prevBtn.onclick = () => this.navigate(-1);
     const rejectBtn = row.createEl("button", { text: "\u2717", cls: "docs-cp-btn docs-cp-reject-btn" });
     rejectBtn.disabled = !file || currentStatus === "rejected" /* REJECTED */;
-    rejectBtn.title = "Reject (R)";
+    rejectBtn.title = "Reject";
     rejectBtn.onclick = () => file && this.reject(file);
     const reviewBtn = row.createEl("button", { text: "\u25CB", cls: "docs-cp-btn docs-cp-review-btn" });
     reviewBtn.disabled = !file || currentStatus === "review" /* REVIEW */;
-    reviewBtn.title = "Back to Review (V)";
+    reviewBtn.title = "Back to Review";
     reviewBtn.onclick = () => file && this.setReview(file);
     const approveBtn = row.createEl("button", { text: "\u2713", cls: "docs-cp-btn docs-cp-approve-btn" });
     approveBtn.disabled = !file || currentStatus === "approved" /* APPROVED */;
-    approveBtn.title = "Approve (A)";
+    approveBtn.title = "Approve";
     approveBtn.onclick = () => file && this.approve(file);
     const nextBtn = row.createEl("button", { text: "\u2192", cls: "docs-cp-btn docs-cp-nav" });
     nextBtn.disabled = this.currentIndex >= queueLength - 1;
     nextBtn.title = "Next (\u2192)";
     nextBtn.onclick = () => this.navigate(1);
     const hints = section.createDiv({ cls: "docs-cp-hints" });
-    hints.createSpan({ text: "\u2190 \u2192 nav \xB7 A approve \xB7 V review \xB7 R reject" });
+    hints.createSpan({ text: "\u2190 \u2192 navigate" });
   }
   // === ACTIONS ===
   /**
@@ -2261,14 +2569,13 @@ var CurationPanelView = class extends import_obsidian8.ItemView {
     await leaf.openFile(file);
   }
   /**
-   * Keyboard handler
+   * Keyboard handler - only arrow keys for navigation
    */
   onKey(e) {
     if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement)
       return;
     if (e.ctrlKey || e.metaKey || e.altKey)
       return;
-    const file = this.getCurrentFile();
     switch (e.key) {
       case "ArrowLeft":
         e.preventDefault();
@@ -2278,34 +2585,14 @@ var CurationPanelView = class extends import_obsidian8.ItemView {
         e.preventDefault();
         this.navigate(1);
         break;
-      case "a":
-      case "A":
-        if (file) {
-          e.preventDefault();
-          this.approve(file);
-        }
-        break;
-      case "r":
-      case "R":
-        if (file) {
-          e.preventDefault();
-          this.reject(file);
-        }
-        break;
-      case "v":
-      case "V":
-        if (file) {
-          e.preventDefault();
-          this.setReview(file);
-        }
-        break;
     }
   }
 };
-var RejectModal = class extends import_obsidian8.Modal {
+var _RejectModal = class extends import_obsidian9.Modal {
   constructor(app, onSubmit) {
     super(app);
     this.reason = "";
+    this.submitted = false;
     this.onSubmit = onSubmit;
   }
   onOpen() {
@@ -2316,15 +2603,26 @@ var RejectModal = class extends import_obsidian8.Modal {
     label.style.color = "var(--text-muted)";
     label.style.marginBottom = "6px";
     label.style.display = "block";
-    const textArea = new import_obsidian8.TextAreaComponent(contentEl);
+    const textArea = new import_obsidian9.TextAreaComponent(contentEl);
     textArea.setPlaceholder("O que precisa ser corrigido?");
     textArea.inputEl.style.width = "100%";
     textArea.inputEl.style.height = "80px";
     textArea.inputEl.style.resize = "none";
+    if (_RejectModal.draft) {
+      textArea.setValue(_RejectModal.draft);
+      this.reason = _RejectModal.draft;
+    }
     textArea.onChange((value) => {
       this.reason = value;
+      _RejectModal.draft = value;
     });
-    setTimeout(() => textArea.inputEl.focus(), 10);
+    setTimeout(() => {
+      textArea.inputEl.focus();
+      textArea.inputEl.setSelectionRange(
+        textArea.inputEl.value.length,
+        textArea.inputEl.value.length
+      );
+    }, 10);
     const footer = contentEl.createDiv();
     footer.style.display = "flex";
     footer.style.justifyContent = "space-between";
@@ -2348,6 +2646,8 @@ var RejectModal = class extends import_obsidian8.Modal {
   }
   submit() {
     if (this.reason.trim()) {
+      this.submitted = true;
+      _RejectModal.draft = "";
       this.onSubmit(this.reason.trim());
       this.close();
     }
@@ -2356,11 +2656,14 @@ var RejectModal = class extends import_obsidian8.Modal {
     this.contentEl.empty();
   }
 };
+var RejectModal = _RejectModal;
+// Draft estático - persiste entre instâncias do modal
+RejectModal.draft = "";
 
 // src/views/IssuesPanelView.ts
-var import_obsidian9 = require("obsidian");
+var import_obsidian10 = require("obsidian");
 var ISSUES_PANEL_VIEW_TYPE = "docs-toolkit-issues";
-var IssuesPanelView = class extends import_obsidian9.ItemView {
+var IssuesPanelView = class extends import_obsidian10.ItemView {
   constructor(leaf, store) {
     super(leaf);
     this.filterMode = "all";
@@ -2600,7 +2903,7 @@ var IssuesPanelView = class extends import_obsidian9.ItemView {
 };
 
 // src/commands/InitMetadataCommand.ts
-var import_obsidian10 = require("obsidian");
+var import_obsidian11 = require("obsidian");
 var InitMetadataCommand = class {
   constructor(app, metadataService) {
     this.app = app;
@@ -2612,24 +2915,24 @@ var InitMetadataCommand = class {
   async execute() {
     const activeFile = this.app.workspace.getActiveFile();
     if (!activeFile) {
-      new import_obsidian10.Notice("Nenhum arquivo aberto");
+      new import_obsidian11.Notice("Nenhum arquivo aberto");
       return;
     }
     if (!activeFile.name.endsWith(".md")) {
-      new import_obsidian10.Notice("Apenas arquivos Markdown suportados");
+      new import_obsidian11.Notice("Apenas arquivos Markdown suportados");
       return;
     }
     const hasFrontmatter = await this.metadataService.hasFrontmatter(activeFile);
     if (hasFrontmatter) {
-      new import_obsidian10.Notice("Arquivo j\xE1 possui frontmatter");
+      new import_obsidian11.Notice("Arquivo j\xE1 possui frontmatter");
       return;
     }
     if (!Document.isInCARFPath(activeFile.path)) {
-      new import_obsidian10.Notice("Arquivo n\xE3o est\xE1 em um caminho de documenta\xE7\xE3o (CENTRAL/ ou PROJECTS/)");
+      new import_obsidian11.Notice("Arquivo n\xE3o est\xE1 em um caminho de documenta\xE7\xE3o (CENTRAL/ ou PROJECTS/)");
       return;
     }
     const frontmatter = await this.metadataService.initFrontmatter(activeFile);
-    new import_obsidian10.Notice(
+    new import_obsidian11.Notice(
       `Frontmatter criado:
 ID: ${frontmatter.id}
 Tipo: ${frontmatter.type}
@@ -2639,7 +2942,7 @@ Status: ${frontmatter.status}`
 };
 
 // src/commands/MigrateFooterCommand.ts
-var import_obsidian11 = require("obsidian");
+var import_obsidian12 = require("obsidian");
 var MigrateFooterCommand = class {
   constructor(app, migrationService) {
     this.app = app;
@@ -2652,35 +2955,35 @@ var MigrateFooterCommand = class {
     var _a, _b;
     const activeFile = this.app.workspace.getActiveFile();
     if (!activeFile) {
-      new import_obsidian11.Notice("Nenhum arquivo aberto");
+      new import_obsidian12.Notice("Nenhum arquivo aberto");
       return;
     }
     if (!activeFile.name.endsWith(".md")) {
-      new import_obsidian11.Notice("Apenas arquivos Markdown suportados");
+      new import_obsidian12.Notice("Apenas arquivos Markdown suportados");
       return;
     }
     const result = await this.migrationService.migrateFile(activeFile);
     if (result.success) {
-      new import_obsidian11.Notice(
+      new import_obsidian12.Notice(
         `Migra\xE7\xE3o conclu\xEDda!
 ID: ${(_a = result.newFrontmatter) == null ? void 0 : _a.id}
 Status: ${(_b = result.newFrontmatter) == null ? void 0 : _b.status}`
       );
     } else {
-      new import_obsidian11.Notice(`Migra\xE7\xE3o falhou: ${result.message}`);
+      new import_obsidian12.Notice(`Migra\xE7\xE3o falhou: ${result.message}`);
     }
   }
   /**
    * Execute the command for all files
    */
   async executeAll() {
-    new import_obsidian11.Notice("Iniciando migra\xE7\xE3o de todos os arquivos...");
+    new import_obsidian12.Notice("Iniciando migra\xE7\xE3o de todos os arquivos...");
     await this.migrationService.migrateAll();
   }
 };
 
 // src/commands/SyncIndexCommand.ts
-var import_obsidian12 = require("obsidian");
+var import_obsidian13 = require("obsidian");
 var SyncIndexCommand = class {
   constructor(app, indexService) {
     this.app = app;
@@ -2692,26 +2995,26 @@ var SyncIndexCommand = class {
   async execute() {
     const activeFile = this.app.workspace.getActiveFile();
     if (!activeFile) {
-      new import_obsidian12.Notice("Nenhum arquivo aberto");
+      new import_obsidian13.Notice("Nenhum arquivo aberto");
       return;
     }
     const folder = activeFile.parent;
     if (!folder) {
-      new import_obsidian12.Notice("N\xE3o foi poss\xEDvel determinar a pasta");
+      new import_obsidian13.Notice("N\xE3o foi poss\xEDvel determinar a pasta");
       return;
     }
     if (!Document.isInCARFPath(folder.path)) {
-      new import_obsidian12.Notice("Pasta n\xE3o est\xE1 em um caminho de documenta\xE7\xE3o");
+      new import_obsidian13.Notice("Pasta n\xE3o est\xE1 em um caminho de documenta\xE7\xE3o");
       return;
     }
     await this.indexService.syncFolderIndex(folder);
-    new import_obsidian12.Notice("\u2713 \xCDndice do README atualizado!");
+    new import_obsidian13.Notice("\u2713 \xCDndice do README atualizado!");
   }
   /**
    * Sync all README indexes in the vault
    */
   async executeAll() {
-    new import_obsidian12.Notice("Atualizando todos os \xEDndices...");
+    new import_obsidian13.Notice("Atualizando todos os \xEDndices...");
     const folders = this.getAllCARFFolders();
     let updated = 0;
     for (const folder of folders) {
@@ -2721,7 +3024,7 @@ var SyncIndexCommand = class {
         updated++;
       }
     }
-    new import_obsidian12.Notice(`\u2713 ${updated} \xEDndices atualizados!`);
+    new import_obsidian13.Notice(`\u2713 ${updated} \xEDndices atualizados!`);
   }
   /**
    * Get all folders in CARF paths
@@ -2733,7 +3036,7 @@ var SyncIndexCommand = class {
         folders.push(folder);
       }
       for (const child of folder.children) {
-        if (child instanceof import_obsidian12.TFolder) {
+        if (child instanceof import_obsidian13.TFolder) {
           processFolder(child);
         }
       }
@@ -2746,7 +3049,7 @@ var SyncIndexCommand = class {
 
 // main.ts
 var DOCS_ICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M9 15l2 2 4-4"></path></svg>`;
-var DocsToolkitPlugin = class extends import_obsidian13.Plugin {
+var DocsToolkitPlugin = class extends import_obsidian14.Plugin {
   constructor() {
     super(...arguments);
     // Reference to curation panel
@@ -2755,7 +3058,7 @@ var DocsToolkitPlugin = class extends import_obsidian13.Plugin {
   async onload() {
     console.log("Loading Docs Toolkit Plugin");
     await this.loadSettings();
-    (0, import_obsidian13.addIcon)("docs-icon", DOCS_ICON);
+    (0, import_obsidian14.addIcon)("docs-icon", DOCS_ICON);
     this.store = new DocumentStore(this.app);
     for (const validator of this.store.getValidators()) {
       const enabled = this.settings.enabledValidators.includes(validator.id);
@@ -2855,7 +3158,7 @@ var DocsToolkitPlugin = class extends import_obsidian13.Plugin {
   registerVaultEvents() {
     this.registerEvent(
       this.app.vault.on("modify", async (file) => {
-        if (!(file instanceof import_obsidian13.TFile))
+        if (!(file instanceof import_obsidian14.TFile))
           return;
         if (!file.name.endsWith(".md"))
           return;
@@ -2883,7 +3186,7 @@ var DocsToolkitPlugin = class extends import_obsidian13.Plugin {
     );
     this.registerEvent(
       this.app.vault.on("create", async (file) => {
-        if (!(file instanceof import_obsidian13.TFile))
+        if (!(file instanceof import_obsidian14.TFile))
           return;
         if (!file.name.endsWith(".md"))
           return;
@@ -2894,7 +3197,7 @@ var DocsToolkitPlugin = class extends import_obsidian13.Plugin {
     );
     this.registerEvent(
       this.app.vault.on("rename", async (file, oldPath) => {
-        if (!(file instanceof import_obsidian13.TFile))
+        if (!(file instanceof import_obsidian14.TFile))
           return;
         if (!file.name.endsWith(".md"))
           return;
@@ -2905,7 +3208,7 @@ var DocsToolkitPlugin = class extends import_obsidian13.Plugin {
         if (this.settings.autoSyncIndex) {
           const oldFolderPath = oldPath.substring(0, oldPath.lastIndexOf("/"));
           const oldFolder = this.app.vault.getAbstractFileByPath(oldFolderPath);
-          if (oldFolder instanceof import_obsidian13.TFolder && Document.isInCARFPath(oldFolderPath)) {
+          if (oldFolder instanceof import_obsidian14.TFolder && Document.isInCARFPath(oldFolderPath)) {
             this.indexService.scheduleSync(oldFolder);
           }
           if (file.parent && Document.isInCARFPath(file.parent.path)) {
@@ -2916,13 +3219,13 @@ var DocsToolkitPlugin = class extends import_obsidian13.Plugin {
     );
     this.registerEvent(
       this.app.vault.on("delete", async (file) => {
-        if (!(file instanceof import_obsidian13.TFile))
+        if (!(file instanceof import_obsidian14.TFile))
           return;
         this.store.removeDocument(file.path);
         if (this.settings.autoSyncIndex) {
           const folderPath = file.path.substring(0, file.path.lastIndexOf("/"));
           const folder = this.app.vault.getAbstractFileByPath(folderPath);
-          if (folder instanceof import_obsidian13.TFolder && Document.isInCARFPath(folderPath)) {
+          if (folder instanceof import_obsidian14.TFolder && Document.isInCARFPath(folderPath)) {
             this.indexService.scheduleSync(folder);
           }
         }
@@ -2935,7 +3238,7 @@ var DocsToolkitPlugin = class extends import_obsidian13.Plugin {
   registerFolderContextMenu() {
     this.registerEvent(
       this.app.workspace.on("file-menu", (menu, file) => {
-        if (!(file instanceof import_obsidian13.TFolder))
+        if (!(file instanceof import_obsidian14.TFolder))
           return;
         if (!Document.isInCARFPath(file.path))
           return;
@@ -2948,6 +3251,12 @@ var DocsToolkitPlugin = class extends import_obsidian13.Plugin {
         menu.addItem((item) => {
           item.setTitle("Set all as Approved").setIcon("check").onClick(async () => {
             await this.setFolderStatus(file, "approved" /* APPROVED */);
+          });
+        });
+        menu.addItem((item) => {
+          item.setTitle("Regenerate README index").setIcon("list").onClick(async () => {
+            await this.regenerateReadmeIndex(file);
+            new import_obsidian14.Notice(`README index regenerated for ${file.name}`);
           });
         });
       })
@@ -2965,7 +3274,7 @@ var DocsToolkitPlugin = class extends import_obsidian13.Plugin {
       await this.store.setStatus(file, status);
       count++;
     }
-    new import_obsidian13.Notice(`${count} files set to ${status}`);
+    new import_obsidian14.Notice(`${count} files set to ${status}`);
   }
   /**
    * Get all markdown files in a folder (recursive)
@@ -2973,20 +3282,31 @@ var DocsToolkitPlugin = class extends import_obsidian13.Plugin {
   getFilesInFolder(folder) {
     const files = [];
     for (const child of folder.children) {
-      if (child instanceof import_obsidian13.TFile && child.extension === "md") {
+      if (child instanceof import_obsidian14.TFile && child.extension === "md") {
         files.push(child);
-      } else if (child instanceof import_obsidian13.TFolder) {
+      } else if (child instanceof import_obsidian14.TFolder) {
         files.push(...this.getFilesInFolder(child));
       }
     }
     return files;
   }
   /**
+   * Regenerate the README index for a folder
+   */
+  async regenerateReadmeIndex(folder) {
+    await this.indexService.syncFolderIndex(folder);
+    const readmePath = `${folder.path}/README.md`;
+    const readme = this.app.vault.getAbstractFileByPath(readmePath);
+    if (readme) {
+      await this.store.updateDocument(readme);
+    }
+  }
+  /**
    * Update status bar with current stats
    */
   updateStatusBar() {
     const state = this.store.getState();
-    const docs = state.documents.filter((d) => d.file.name !== "README.md");
+    const docs = state.documents;
     const approved = docs.filter((d) => d.status === "approved" /* APPROVED */).length;
     const review = docs.filter((d) => d.status === "review" /* REVIEW */).length;
     const issues = state.summary.errors + state.summary.warnings;

@@ -1,5 +1,5 @@
 {
-  "collapse-filter": true,
+  "collapse-filter": false,
   "search": "-path:CENTRAL/API  ",
   "showTags": false,
   "showAttachments": false,
@@ -137,6 +137,6 @@
   "repelStrength": 20,
   "linkStrength": 1,
   "linkDistance": 30,
-  "scale": 0.07431470626806468,
-  "close": true
+  "scale": 0.5643272017989824,
+  "close": false
 }

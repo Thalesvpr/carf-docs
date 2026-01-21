@@ -351,6 +351,17 @@ export default class DocsToolkitPlugin extends Plugin {
               await this.setFolderStatus(file, Status.APPROVED);
             });
         });
+
+        // Regenerate README index
+        menu.addItem((item) => {
+          item
+            .setTitle("Regenerate README index")
+            .setIcon("list")
+            .onClick(async () => {
+              await this.regenerateReadmeIndex(file);
+              new Notice(`README index regenerated for ${file.name}`);
+            });
+        });
       })
     );
   }
@@ -389,11 +400,25 @@ export default class DocsToolkitPlugin extends Plugin {
   }
 
   /**
+   * Regenerate the README index for a folder
+   */
+  private async regenerateReadmeIndex(folder: TFolder): Promise<void> {
+    await this.indexService.syncFolderIndex(folder);
+
+    // Update the document in store to trigger re-render and re-validation
+    const readmePath = `${folder.path}/README.md`;
+    const readme = this.app.vault.getAbstractFileByPath(readmePath) as TFile;
+    if (readme) {
+      await this.store.updateDocument(readme);
+    }
+  }
+
+  /**
    * Update status bar with current stats
    */
   private updateStatusBar(): void {
     const state = this.store.getState();
-    const docs = state.documents.filter(d => d.file.name !== "README.md");
+    const docs = state.documents;
     const approved = docs.filter(d => d.status === Status.APPROVED).length;
     const review = docs.filter(d => d.status === Status.REVIEW).length;
     const issues = state.summary.errors + state.summary.warnings;

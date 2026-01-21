@@ -1,5 +1,6 @@
 ---
-status: review
+status: rejected
+description: "Nao e decisao arquitetural. CI/CD e operacional/infraestrutura. Mover para DEPLOYMENTS."
 updated: 2026-01-20
 ---
 

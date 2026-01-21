@@ -72,3 +72,7 @@ O arquivo `applications.json` contém o registro estruturado com os seguintes ca
 - [Design System](../DESIGN-SYSTEM/README.md) - Especificações visuais para branding
 - [Keycloak Realm](../INTEGRATION/KEYCLOAK/REALM/README.md) - Configuração do realm
 - [ADR-023](../ARCHITECTURE/ADRs/ADR-023-color-palette-design-system.md) - Paleta de cores
+
+<!-- CARF-INDEX-START -->
+
+<!-- CARF-INDEX-END -->

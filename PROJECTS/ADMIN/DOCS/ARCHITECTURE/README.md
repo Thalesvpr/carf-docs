@@ -58,7 +58,7 @@ Ver documentação completa em GEOAPI/DOCS/ARCHITECTURE/02-admin-security.md
 
 - Segurança Admin: GEOAPI/DOCS/ARCHITECTURE/02-admin-security.md
 - carf-admin README: ADMIN/SRC-CODE/carf-admin/README.md
-- Keycloak Setup: CENTRAL/INTEGRATION/KEYCLOAK/README.md
+- Keycloak Setup: ../../../KEYCLOAK/DOCS/README.md
 
 <!-- CARF-INDEX-START -->
 ## Documentos

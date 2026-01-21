@@ -25,9 +25,6 @@ import { Status } from "../models/types";
  *
  * ATALHOS DE TECLADO:
  * - ← / → : Navegar entre arquivos
- * - A : Aprovar
- * - R : Rejeitar
- * - S : Pular (skip)
  */
 
 export const CURATION_PANEL_VIEW_TYPE = "docs-toolkit-curation";
@@ -81,6 +78,9 @@ export class CurationPanelView extends ItemView {
 
     // Keyboard shortcuts (global)
     this.registerDomEvent(document, "keydown", this.onKey.bind(this));
+
+    // Sync with currently open file on panel open
+    this.syncWithActiveFile();
 
     this.render();
   }
@@ -144,7 +144,7 @@ export class CurationPanelView extends ItemView {
    */
   private getFolderStats(): { folder: string; approved: number; rejected: number; pending: number; total: number }[] {
     const state = this.store.getState();
-    const docs = state.documents.filter(d => d.file.name !== "README.md");
+    const docs = state.documents.filter(d => true);
     const folderMap = new Map<string, { approved: number; rejected: number; pending: number; total: number }>();
 
     for (const doc of docs) {
@@ -187,13 +187,24 @@ export class CurationPanelView extends ItemView {
 
   /**
    * Sync panel with currently active file in editor
+   * Clears folder filter if needed to show the file
    */
   private syncWithActiveFile(): void {
     const activeFile = this.app.workspace.getActiveFile();
     if (!activeFile) return;
+    if (!Document.isInCARFPath(activeFile.path)) return;
 
-    const queue = this.getQueue();
-    const index = queue.findIndex(f => f.path === activeFile.path);
+    // First try to find in current filtered queue
+    let queue = this.getQueue();
+    let index = queue.findIndex(f => f.path === activeFile.path);
+
+    // If not found and we have a folder filter, try clearing it
+    if (index === -1 && this.folderFilter) {
+      this.folderFilter = null;
+      this.searchQuery = "";
+      queue = this.getQueue();
+      index = queue.findIndex(f => f.path === activeFile.path);
+    }
 
     if (index !== -1 && index !== this.currentIndex) {
       this.currentIndex = index;
@@ -217,7 +228,7 @@ export class CurationPanelView extends ItemView {
     }
 
     // Get filtered docs based on folder filter
-    let docs = state.documents.filter(d => d.file.name !== "README.md");
+    let docs = state.documents.filter(d => true);
     if (this.folderFilter) {
       docs = docs.filter(d => d.file.path.startsWith(this.folderFilter + "/"));
     }
@@ -520,19 +531,19 @@ export class CurationPanelView extends ItemView {
     // Reject
     const rejectBtn = row.createEl("button", { text: "✗", cls: "docs-cp-btn docs-cp-reject-btn" });
     rejectBtn.disabled = !file || currentStatus === Status.REJECTED;
-    rejectBtn.title = "Reject (R)";
+    rejectBtn.title = "Reject";
     rejectBtn.onclick = () => file && this.reject(file);
 
     // Review (back to review)
     const reviewBtn = row.createEl("button", { text: "○", cls: "docs-cp-btn docs-cp-review-btn" });
     reviewBtn.disabled = !file || currentStatus === Status.REVIEW;
-    reviewBtn.title = "Back to Review (V)";
+    reviewBtn.title = "Back to Review";
     reviewBtn.onclick = () => file && this.setReview(file);
 
     // Approve
     const approveBtn = row.createEl("button", { text: "✓", cls: "docs-cp-btn docs-cp-approve-btn" });
     approveBtn.disabled = !file || currentStatus === Status.APPROVED;
-    approveBtn.title = "Approve (A)";
+    approveBtn.title = "Approve";
     approveBtn.onclick = () => file && this.approve(file);
 
     // Next
@@ -543,7 +554,7 @@ export class CurationPanelView extends ItemView {
 
     // Keyboard hints
     const hints = section.createDiv({ cls: "docs-cp-hints" });
-    hints.createSpan({ text: "← → nav · A approve · V review · R reject" });
+    hints.createSpan({ text: "← → navigate" });
   }
 
   // === ACTIONS ===
@@ -605,16 +616,14 @@ export class CurationPanelView extends ItemView {
   }
 
   /**
-   * Keyboard handler
+   * Keyboard handler - only arrow keys for navigation
    */
   private onKey(e: KeyboardEvent): void {
     // Ignore if typing in input
     if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
 
-    // Ignore if modifier keys (except for our shortcuts)
+    // Ignore if modifier keys
     if (e.ctrlKey || e.metaKey || e.altKey) return;
-
-    const file = this.getCurrentFile();
 
     switch (e.key) {
       case "ArrowLeft":
@@ -625,37 +634,21 @@ export class CurationPanelView extends ItemView {
         e.preventDefault();
         this.navigate(1);
         break;
-      case "a":
-      case "A":
-        if (file) {
-          e.preventDefault();
-          this.approve(file);
-        }
-        break;
-      case "r":
-      case "R":
-        if (file) {
-          e.preventDefault();
-          this.reject(file);
-        }
-        break;
-      case "v":
-      case "V":
-        if (file) {
-          e.preventDefault();
-          this.setReview(file);
-        }
-        break;
     }
   }
 }
 
 /**
  * Modal minimalista para motivo da rejeição
+ * Mantém draft do texto entre fechamentos (memória)
  */
 class RejectModal extends Modal {
   private onSubmit: (reason: string) => void;
   private reason = "";
+  private submitted = false;
+
+  // Draft estático - persiste entre instâncias do modal
+  private static draft = "";
 
   constructor(app: App, onSubmit: (reason: string) => void) {
     super(app);
@@ -675,18 +668,32 @@ class RejectModal extends Modal {
     label.style.marginBottom = "6px";
     label.style.display = "block";
 
-    // Textarea
+    // Textarea com draft restaurado
     const textArea = new TextAreaComponent(contentEl);
     textArea.setPlaceholder("O que precisa ser corrigido?");
     textArea.inputEl.style.width = "100%";
     textArea.inputEl.style.height = "80px";
     textArea.inputEl.style.resize = "none";
+
+    // Restaurar draft se existir
+    if (RejectModal.draft) {
+      textArea.setValue(RejectModal.draft);
+      this.reason = RejectModal.draft;
+    }
+
     textArea.onChange((value) => {
       this.reason = value;
+      RejectModal.draft = value; // Salva enquanto digita
     });
 
-    // Focus
-    setTimeout(() => textArea.inputEl.focus(), 10);
+    // Focus no final do texto
+    setTimeout(() => {
+      textArea.inputEl.focus();
+      textArea.inputEl.setSelectionRange(
+        textArea.inputEl.value.length,
+        textArea.inputEl.value.length
+      );
+    }, 10);
 
     // Hint + button inline
     const footer = contentEl.createDiv();
@@ -717,12 +724,16 @@ class RejectModal extends Modal {
 
   private submit(): void {
     if (this.reason.trim()) {
+      this.submitted = true;
+      RejectModal.draft = ""; // Limpa draft ao submeter
       this.onSubmit(this.reason.trim());
       this.close();
     }
   }
 
   onClose(): void {
+    // Se não submeteu, mantém o draft (já está salvo)
+    // Se submeteu, draft já foi limpo em submit()
     this.contentEl.empty();
   }
 }

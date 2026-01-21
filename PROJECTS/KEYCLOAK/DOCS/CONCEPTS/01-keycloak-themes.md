@@ -1,347 +1,112 @@
 ---
-status: review
-updated: 2026-01-15
+status: approved
+updated: 2026-01-21
 ---
 
-# Conceitos: Keycloak Themes
-
-## O que são Temas no Keycloak?
-
-Temas no Keycloak são um mecanismo de customização visual que permite modificar a aparência de todas as interfaces de usuário fornecidas pelo servidor sem alterar o código-fonte do Keycloak.
-
-## Tipos de Temas
-
-### 1. Login Theme
-Interface de autenticação e registro de usuários.
-
-**Páginas incluídas:**
-- Login
-- Registro
-- Esqueci minha senha
-- Verificação de email
-- Erro de autenticação
-- Informações (sucesso/avisos)
-- Login OTP (One-Time Password)
-- WebAuthn
-
-### 2. Account Theme
-Console de autoatendimento do usuário.
-
-**Funcionalidades:**
-- Gerenciamento de perfil
-- Alteração de senha
-- Configuração de 2FA
-- Gerenciamento de sessões ativas
-- Aplicativos autorizados
-- Logs de atividades
-
-### 3. Admin Theme
-Console administrativo do Keycloak (geralmente não customizado).
-
-### 4. Email Theme
-Templates de emails transacionais.
-
-**Tipos de email:**
-- Verificação de email
-- Resetar senha
-- Notificação de login
-- Atualização de senha
-- Eventos customizados
-
-## Estrutura de um Tema
-
-```
-themes/
-└── meu-tema/
-    ├── login/
-    │   ├── theme.properties      # Configurações
-    │   ├── resources/            # Assets (CSS, JS, imagens)
-    │   ├── messages/             # Traduções (i18n)
-    │   └── *.ftl                 # Templates FreeMarker
-    ├── account/
-    ├── email/
-    └── common/                   # Recursos compartilhados
-```
-
-## theme.properties
-
-Arquivo de configuração principal do tema.
-
-```properties
-# Herança de tema pai
-parent=keycloak.v2
-
-# Estilos
-styles=css/main.css css/custom.css
-
-# Scripts
-scripts=js/app.js
-
-# Importar recursos do pai
-import=common/keycloak
-
-# Localização
-locales=pt-BR,en,es
-```
-
-## Templates FreeMarker (.ftl)
-
-Keycloak usa FreeMarker como engine de templates.
-
-### Variáveis Disponíveis
-
-```ftl
-${realm.name}                    <!-- Nome do realm -->
-${url.loginAction}               <!-- URL do action do form -->
-${msg("key")}                    <!-- Mensagem internacionalizada -->
-${properties.kcFormClass}        <!-- Classe CSS do tema pai -->
-${login.username}                <!-- Username do login -->
-${user.email}                    <!-- Email do usuário -->
-${auth.attemptedUsername}        <!-- Tentativa de login -->
-```
-
-### Exemplo de Template
-
-```ftl
-<#import "template.ftl" as layout>
-<@layout.registrationLayout displayMessage=true; section>
-    <#if section = "header">
-        ${msg("loginTitle")}
-    <#elseif section = "form">
-        <form action="${url.loginAction}" method="post">
-            <input type="text" name="username" value="${(login.username!'')}"/>
-            <input type="password" name="password"/>
-            <button type="submit">${msg("doLogIn")}</button>
-        </form>
-    </#if>
-</@layout.registrationLayout>
-```
-
-## Herança de Temas
-
-Temas podem estender outros temas usando `parent=nome-do-tema`.
-
-**Vantagens:**
-- Reutilizar templates e estilos do tema pai
-- Override seletivo apenas do necessário
-- Manter compatibilidade com atualizações do Keycloak
-
-**Exemplo:**
-```properties
-parent=keycloak.v2
-```
-
-Isso herda todo o tema `keycloak.v2` e você só customiza o que precisa.
-
-## Internacionalização (i18n)
-
-### Estrutura de Mensagens
-
-```
-themes/meu-tema/login/messages/
-├── messages_en.properties
-├── messages_pt_BR.properties
-└── messages_es.properties
-```
-
-### messages_pt_BR.properties
-
-```properties
-loginTitle=Login no Sistema
-username=Nome de usuário
-password=Senha
-doLogIn=Entrar
-invalidUserMessage=Usuário ou senha inválidos
-```
-
-### Uso nos Templates
-
-```ftl
-<h1>${msg("loginTitle")}</h1>
-<label>${msg("username")}</label>
-```
-
-## CSS e JavaScript
-
-### CSS
-
-```css
-/* themes/meu-tema/login/resources/css/login.css */
-:root {
-    --primary-color: #2C5F2D;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background: var(--primary-color);
-}
-
-#kc-form-login {
-    max-width: 400px;
-    margin: 0 auto;
-}
-```
-
-### JavaScript
-
-```javascript
-// themes/meu-tema/login/resources/js/login.js
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Tema CARF carregado');
-
-    // Custom validation
-    const form = document.getElementById('kc-form-login');
-    form.addEventListener('submit', function(e) {
-        // Validações customizadas
-    });
-});
-```
-
-## Recursos Estáticos
-
-### Imagens
-
-```
-themes/meu-tema/login/resources/img/
-├── logo.svg
-├── background.jpg
-└── favicon.ico
-```
-
-### Referência nos Templates
-
-```ftl
-<img src="${url.resourcesPath}/img/logo.svg" alt="Logo">
-```
-
-### CSS
-
-```css
-background-image: url('../img/background.jpg');
-```
-
-## Email Templates
-
-### Estrutura
-
-```
-themes/meu-tema/email/
-├── html/
-│   ├── email-verification.ftl
-│   ├── password-reset.ftl
-│   └── event-login_error.ftl
-└── text/
-    ├── email-verification.ftl
-    └── password-reset.ftl
-```
-
-### Variáveis Disponíveis em Emails
-
-```ftl
-${user.username}              <!-- Username do destinatário -->
-${user.email}                 <!-- Email do destinatário -->
-${realmName}                  <!-- Nome do realm -->
-${link}                       <!-- Link de ação -->
-${linkExpiration}             <!-- Tempo de expiração do link -->
-${event.type}                 <!-- Tipo de evento -->
-```
-
-## Deployment de Temas
-
-### Desenvolvimento
-
-```bash
-# Copiar tema para diretório do Keycloak
-cp -r themes/carf /opt/keycloak/themes/
-
-# Hot reload (modo dev)
-docker run -v ./themes:/opt/keycloak/themes quay.io/keycloak/keycloak:24.0.0 start-dev
-```
-
-### Produção
-
-```dockerfile
-FROM quay.io/keycloak/keycloak:24.0.0
-COPY themes/carf /opt/keycloak/themes/carf
-```
-
-### Ativação do Tema
-
-Via Admin Console:
-1. Realm Settings → Themes
-2. Login Theme: `carf`
-3. Account Theme: `carf`
-4. Email Theme: `carf`
-
-Via realm export:
-```json
-{
-  "loginTheme": "carf",
-  "accountTheme": "carf",
-  "emailTheme": "carf"
-}
-```
-
-## Boas Práticas
-
-### 1. Sempre Usar Herança
-```properties
-parent=keycloak.v2
-```
-Aproveita melhorias e correções do tema base.
-
-### 2. Manter i18n Consistente
-Todas as strings devem estar em `messages_*.properties`.
-
-### 3. Acessibilidade
-- ARIA labels
-- Contraste adequado (WCAG 2.1 AA)
-- Navegação por teclado
-- Screen reader friendly
-
-### 4. Responsividade
-```css
-@media (max-width: 768px) {
-    #kc-container {
-        padding: 1rem;
-    }
-}
-```
-
-### 5. Performance
-- Minificar CSS/JS
-- Otimizar imagens (WebP, compressão)
-- Lazy loading quando possível
-
-### 6. Versionamento
-Manter temas no Git junto com o código.
-
-### 7. Testes
-- Testar todos os fluxos (login, registro, reset password)
-- Testar em diferentes browsers
-- Testar mobile e desktop
-- Testar dark mode (se aplicável)
+# Keycloak Themes
+
+O sistema de temas do Keycloak permite customizar a aparência de todas as interfaces de usuario (login, registro, account console, emails). No projeto CARF, utilizamos **Keycloakify** como tecnologia padrao para desenvolvimento de temas, permitindo criar interfaces com React e TypeScript.
+
+## O Que É Keycloakify
+
+Keycloakify é um toolkit open-source que compila aplicações React em temas Keycloak compatíveis. O resultado final é um arquivo JAR que pode ser implantado em qualquer instância Keycloak, exatamente como um tema FreeMarker tradicional. A diferença está apenas no processo de desenvolvimento, não na implantação.
+
+A ferramenta funciona como uma camada de abstração que traduz o contexto do Keycloak (variáveis FreeMarker, URLs, mensagens i18n) para props React acessíveis via TypeScript. Durante o build, a aplicação React é compilada para HTML estático que o Keycloak serve normalmente.
+
+## Motivação para Adoção
+
+A decisão de adotar Keycloakify no projeto CARF foi documentada em ADR-024 e fundamenta-se em três pilares principais.
+
+O primeiro pilar é a **reutilização de componentes**. O projeto já possui a biblioteca @carf/ui com componentes React estilizados segundo o Design System institucional. Com Keycloakify, esses mesmos componentes (Button, Input, Card, Alert) podem ser usados nas telas de login, registro e recuperação de senha, garantindo consistência visual absoluta entre a aplicação principal e as telas de autenticação.
+
+O segundo pilar é a **experiência de desenvolvimento**. Desenvolvedores já familiarizados com React e TypeScript podem criar e manter temas sem precisar aprender FreeMarker, uma tecnologia de template Java com sintaxe própria. Além disso, o hot reload funciona durante o desenvolvimento, permitindo ver mudanças instantaneamente.
+
+O terceiro pilar é a **qualidade de código**. TypeScript fornece tipagem estática para todas as variáveis de contexto do Keycloak, eliminando erros de runtime causados por acessos a propriedades inexistentes. O sistema de tipos documenta automaticamente quais dados estão disponíveis em cada página.
+
+## Comparação com FreeMarker
+
+A tabela abaixo compara as duas abordagens de desenvolvimento de temas.
+
+| Aspecto | FreeMarker | Keycloakify |
+|:--------|:-----------|:------------|
+| Linguagem | Template FreeMarker (.ftl) | React/TypeScript (.tsx) |
+| Estilização | CSS puro ou SCSS | CSS, SCSS, Tailwind, CSS-in-JS |
+| Componentização | Macros FreeMarker | Componentes React |
+| Tipagem | Nenhuma | TypeScript completo |
+| Hot Reload | Requer restart Keycloak | Funciona nativamente |
+| Curva Aprendizado | Alta (sintaxe específica) | Baixa (se já conhece React) |
+| Reutilização | Limitada ao tema | Qualquer componente React |
+| Testes | Difícil | Jest, Testing Library |
+| Bundle Final | Tema nativo | Tema nativo (idêntico) |
+
+Do ponto de vista do Keycloak, não há diferença entre um tema FreeMarker e um tema Keycloakify após o build. Ambos resultam em arquivos HTML, CSS e JavaScript servidos da mesma forma.
+
+## Arquitetura Keycloakify
+
+O Keycloakify opera em três camadas distintas que trabalham juntas para produzir o tema final.
+
+A **camada de contexto** (KcContext) é um objeto TypeScript que espelha todas as variáveis que o Keycloak disponibiliza para templates FreeMarker. Isso inclui informações do realm (nome, configurações de registro, políticas de senha), URLs de ação (login, logout, registro), dados do usuário tentando autenticar, mensagens de erro e sucesso, e configurações de internacionalização. Cada tipo de página (login, registro, erro, etc.) tem seu próprio tipo de contexto com as propriedades relevantes.
+
+A **camada de páginas** contém os componentes React que renderizam cada tela do fluxo de autenticação. Keycloakify suporta todas as páginas padrão do Keycloak, incluindo login, registro, recuperação de senha, atualização de senha, verificação de email, seleção de identity provider, consentimento OAuth, erro e logout. Cada página recebe o KcContext apropriado e pode usar qualquer componente React.
+
+A **camada de build** é responsável por transformar a aplicação React em um tema Keycloak válido. O processo compila o React para HTML estático, gera o arquivo theme.properties automaticamente, empacota tudo em um JAR e produz artefatos compatíveis com o sistema de temas do Keycloak.
+
+## Páginas Suportadas
+
+Keycloakify fornece tipos e contextos para todas as páginas do fluxo de autenticação Keycloak.
+
+| Página | Descrição | Contexto Principal |
+|:-------|:----------|:-------------------|
+| login.ftl | Formulário de login | username, social providers |
+| register.ftl | Formulário de registro | campos de registro, termos |
+| login-reset-password.ftl | Solicitação de reset | username/email |
+| login-update-password.ftl | Atualização de senha | requisitos de senha |
+| login-verify-email.ftl | Verificação de email | instruções, link |
+| login-otp.ftl | Entrada de OTP/2FA | tipo de OTP |
+| login-idp-link-email.ftl | Link de IdP por email | provider info |
+| error.ftl | Página de erro | mensagem de erro |
+| info.ftl | Página informativa | mensagem info |
+| logout-confirm.ftl | Confirmação logout | client info |
+
+Além destas, Keycloakify suporta páginas do Account Console e Email templates, permitindo customização completa de toda a experiência do usuário.
+
+## Integração com @carf/ui
+
+A principal vantagem do Keycloakify para o projeto CARF é a capacidade de importar e usar componentes da biblioteca @carf/ui diretamente nas páginas de autenticação.
+
+Os componentes de formulário (Input, Button, Checkbox, Select) são usados nos campos de login e registro, mantendo a mesma aparência e comportamento da aplicação principal. Os componentes de feedback (Alert, Toast) exibem mensagens de erro e sucesso com o mesmo estilo visual. Os componentes de layout (Card, Container) estruturam as páginas de forma consistente.
+
+Esta integração elimina a duplicação de código CSS e garante que qualquer atualização no Design System se reflita automaticamente nas telas de autenticação.
+
+## Fluxo de Desenvolvimento
+
+O desenvolvimento de temas com Keycloakify segue um fluxo específico que difere do desenvolvimento FreeMarker tradicional.
+
+O **ambiente de desenvolvimento** executa a aplicação React localmente com hot reload. Keycloakify fornece um mock do KcContext que simula os dados que o Keycloak enviaria, permitindo desenvolver e testar sem uma instância Keycloak rodando.
+
+A **validação** pode ser feita conectando o ambiente de desenvolvimento a uma instância Keycloak real em modo dev, onde o tema é carregado dinamicamente. Isso permite testar fluxos completos de autenticação.
+
+O **build de produção** compila a aplicação, otimiza assets e gera o JAR final. Este JAR é copiado para o diretório de providers do Keycloak ou montado como volume em containers.
 
 ## Limitações
 
-1. **Não pode alterar lógica do servidor** - Temas são apenas para UI
-2. **Templates FreeMarker fixos** - Estrutura de variáveis é definida pelo Keycloak
-3. **Cache agressivo** - Pode precisar limpar cache do browser durante desenvolvimento
-4. **Compatibilidade** - Temas podem quebrar em major updates do Keycloak
+Keycloakify tem algumas limitações que devem ser consideradas.
 
-## Troubleshooting
+O **tamanho do bundle** tende a ser maior que temas FreeMarker puros devido ao runtime React incluído. Para a maioria dos casos isso não é problema, mas pode impactar o tempo de carregamento inicial em conexões muito lentas.
 
-### Tema não aparece
-- Verificar nome do diretório
-- Verificar permissões de arquivo
-- Limpar cache do Keycloak: `rm -rf standalone/data/cache`
+A **complexidade de build** é maior, exigindo Node.js e npm no pipeline de CI/CD além das ferramentas Java do Keycloak. O projeto precisa manter dois ambientes de build.
 
-### CSS não carrega
-- Verificar `styles=` em `theme.properties`
-- Verificar caminho dos arquivos CSS
-- Inspecionar console do browser
+**Páginas customizadas** que não existem no Keycloak padrão (criadas via SPIs de autenticação) requerem configuração adicional para que o Keycloakify gere os tipos corretos.
 
-### Mensagens não traduzidas
-- Verificar `messages_*.properties` existe
-- Verificar `locales=` em `theme.properties`
-- Verificar uso de `${msg("key")}` nos templates
+A **curva de aprendizado** inicial existe para entender como o KcContext mapeia para as variáveis FreeMarker e como o sistema de i18n funciona no contexto React.
+
+## Documentacao Relacionada
+
+Para implementacao pratica, consulte o guia [HOW-TO/01-develop-themes.md](../HOW-TO/01-develop-themes.md) que cobre setup do ambiente, desenvolvimento de paginas e processo de build.
+
+Para referencia de APIs e tipos, consulte [REFERENCE/04-keycloakify-api.md](../REFERENCE/04-keycloakify-api.md) que documenta o KcContext, hooks disponiveis e configuracoes do keycloakify.config.ts.
+
+
+## Referências Externas
+
+A documentação oficial do Keycloakify está disponível em keycloakify.dev e inclui guias de início rápido, exemplos de temas e referência de API. O repositório GitHub keycloakify/keycloakify contém o código-fonte e issues para troubleshooting.

@@ -17,7 +17,8 @@ export enum DocType {
 export enum Status {
   REVIEW = "review",
   APPROVED = "approved",
-  REJECTED = "rejected"
+  REJECTED = "rejected",
+  TEMPLATE = "template"
 }
 
 /**

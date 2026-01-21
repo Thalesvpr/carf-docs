@@ -1,5 +1,6 @@
 ---
-status: review
+status: rejected
+description: "Nao e decisao arquitetural. Framework de teste e detalhe de implementacao. Mover para TESTING."
 updated: 2026-01-20
 ---
 

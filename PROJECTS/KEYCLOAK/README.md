@@ -10,3 +10,11 @@ Sistema autenticação OAuth2 OIDC customizado para ecossistema CARF implementan
 ## Documentação
 
 Ver **[DOCS/](./DOCS/README.md)** para documentação técnica completa customizações desenvolvimento deployment.
+
+<!-- CARF-INDEX-START -->
+## Subpastas
+
+- [[PROJECTS/KEYCLOAK/DOCS/README|DOCS]]
+- [[PROJECTS/KEYCLOAK/SRC-CODE/README|SRC-CODE]]
+
+<!-- CARF-INDEX-END -->

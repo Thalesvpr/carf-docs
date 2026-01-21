@@ -13,6 +13,8 @@ import { TitleValidator } from "../validators/TitleValidator";
 import { StaleValidator } from "../validators/StaleValidator";
 import { EmptyFoldersValidator } from "../validators/EmptyFoldersValidator";
 import { NamingValidator } from "../validators/NamingValidator";
+import { ForbiddenLinksValidator } from "../validators/ForbiddenLinksValidator";
+import { ADRValidator } from "../validators/ADRValidator";
 
 export interface StoreState {
   documents: Document[];
@@ -48,7 +50,9 @@ export class DocumentStore extends Events {
       new TitleValidator(),
       new StaleValidator(),
       new EmptyFoldersValidator(),
-      new NamingValidator()
+      new NamingValidator(),
+      new ForbiddenLinksValidator(),
+      new ADRValidator()
     ];
     // Enable all by default
     this.validators.forEach(v => this.enabledValidators.add(v.id));
@@ -91,7 +95,6 @@ export class DocumentStore extends Events {
     // Returns ALL documents (not just review status)
     // List only reacts to file creation/deletion, not status changes
     return Array.from(this.documents.values())
-      .filter(d => d.file.name !== "README.md")
       .sort((a, b) => a.file.path.localeCompare(b.file.path))
       .map(d => d.file);
   }
@@ -199,7 +202,8 @@ export class DocumentStore extends Events {
     const desc = status === Status.REJECTED ? description : undefined;
     const newContent = this.updateStatusInContent(content, status, desc);
     await this.app.vault.modify(file, newContent);
-    // updateDocument will be called by vault 'modify' event
+    // Explicitly update the document to trigger state-changed
+    await this.updateDocument(file);
   }
 
   // --- Internal Helpers ---
@@ -229,11 +233,13 @@ export class DocumentStore extends Events {
 
     try {
       const yaml = parseYaml(match[1]);
-      if (!yaml || !yaml.status) return null;
+      if (!yaml) return null;
 
-      // Validate status
-      const status = yaml.status.toLowerCase();
-      if (!Object.values(Status).includes(status)) return null;
+      // Accept any status (validator will warn if invalid)
+      const rawStatus = yaml.status?.toLowerCase() || "review";
+      const status = Object.values(Status).includes(rawStatus as Status)
+        ? (rawStatus as Status)
+        : Status.REVIEW; // Default to review if unknown
 
       // Optional: validate type if present
       let type: DocType | undefined;

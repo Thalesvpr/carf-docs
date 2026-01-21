@@ -12,7 +12,22 @@ Referência técnica Keycloak cobrindo Admin REST API endpoints autenticação t
 - **[01-admin-api.md](./01-admin-api.md)** - Admin REST API endpoints users roles clients groups
 - **[02-oidc-endpoints.md](./02-oidc-endpoints.md)** - OIDC endpoints authorize token userinfo jwks logout
 - **[03-theme-properties.md](./03-theme-properties.md)** - Configuração theme.properties herança estilos scripts
-- **[04-freemarker-variables.md](./04-freemarker-variables.md)** - Variáveis FreeMarker templates realm url msg user
+- **[04-keycloakify-api.md](./04-keycloakify-api.md)** - API Keycloakify: KcContext, hooks, configuracao
 - **[05-environment-variables.md](./05-environment-variables.md)** - Environment variables Docker database hostname proxy
 - **[06-realm-export-schema.md](./06-realm-export-schema.md)** - Schema JSON realm export clients roles tokens
 - **[07-error-codes.md](./07-error-codes.md)** - Códigos erro OAuth2 HTTP status troubleshooting
+
+<!-- CARF-INDEX-START -->
+## Documentos
+
+### Em Revisão
+
+- ○ [[PROJECTS/KEYCLOAK/DOCS/REFERENCE/01-admin-api.md|Admin REST API]]
+- ○ [[PROJECTS/KEYCLOAK/DOCS/REFERENCE/02-oidc-endpoints.md|OpenID Connect Endpoints]]
+- ○ [[PROJECTS/KEYCLOAK/DOCS/REFERENCE/03-theme-properties.md|Theme Properties]]
+- ○ [[PROJECTS/KEYCLOAK/DOCS/REFERENCE/04-keycloakify-api.md|Keycloakify API Reference]]
+- ○ [[PROJECTS/KEYCLOAK/DOCS/REFERENCE/05-environment-variables.md|Environment Variables]]
+- ○ [[PROJECTS/KEYCLOAK/DOCS/REFERENCE/06-realm-export-schema.md|Realm Export Schema]]
+- ○ [[PROJECTS/KEYCLOAK/DOCS/REFERENCE/07-error-codes.md|Error Codes]]
+
+<!-- CARF-INDEX-END -->

@@ -1,5 +1,6 @@
 ---
-status: review
+status: rejected
+description: "Nao e decisao arquitetural. Biblioteca de state e detalhe de implementacao. Remover ou mover para STANDARDS."
 updated: 2026-01-20
 ---
 

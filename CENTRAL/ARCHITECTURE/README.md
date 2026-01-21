@@ -11,7 +11,7 @@ Os [ADRs](./ADRs/README.md) documentam decisões arquiteturais críticas como es
 
 Os [padrões arquiteturais](./PATTERNS/README.md) definem como aplicar Clean Architecture, CQRS, Repository, Domain Events e padrões específicos para frontend React e aplicações offline-first mobile.
 
-As [estratégias de deployment](./DEPLOYMENT/README.md) cobrem containerização Docker, orquestração Kubernetes, pipelines CI/CD com GitHub Actions, deployment mobile para App Store e Google Play, e sites estáticos.
+As [estratégias de deployment](CENTRAL/DEPLOYMENTS/README.md) cobrem containerização Docker, orquestração Kubernetes, pipelines CI/CD com GitHub Actions, deployment mobile para App Store e Google Play, e sites estáticos.
 
 Para implementação técnica específica de cada projeto, consulte a documentação em PROJECTS/*/DOCS/.
 
@@ -22,7 +22,7 @@ Para implementação técnica específica de cada projeto, consulte a documenta�
 | # | Dominio | Arquivos |
 |:--|:--------|:--------:|
 |  | [Adrs](./ADRs/README.md) | 22 |
-|  | [Deployment](./DEPLOYMENT/README.md) | 16 |
+|  | [Deployment](CENTRAL/DEPLOYMENTS/README.md) | 16 |
 |  | [Patterns](./PATTERNS/README.md) | 7 |
 
 *Gerado automaticamente em 2026-01-17 11:57*
@@ -32,7 +32,6 @@ Para implementação técnica específica de cada projeto, consulte a documenta�
 ## Subpastas
 
 - [[CENTRAL/ARCHITECTURE/ADRs/README|ADRs]]
-- [[CENTRAL/ARCHITECTURE/DEPLOYMENT/README|DEPLOYMENT]]
 - [[CENTRAL/ARCHITECTURE/PATTERNS/README|PATTERNS]]
 
 <!-- CARF-INDEX-END -->

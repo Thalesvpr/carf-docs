@@ -46,6 +46,7 @@ Os ADRs são imutáveis - novas decisões criam novos registros ao invés de edi
 
 ### Em Revisão
 
+- ○ [[CENTRAL/ARCHITECTURE/ADRs/ADR-000-template.md|ADR-XXX: Titulo]]
 - ○ [[CENTRAL/ARCHITECTURE/ADRs/ADR-001-dotnet-9-backend.md|ADR-001: Escolha do .NET 9 para Backend]]
 - ○ [[CENTRAL/ARCHITECTURE/ADRs/ADR-002-postgresql-postgis.md|ADR-002: Escolha do PostgreSQL 16 + PostGIS 3.4 como Database]]
 - ○ [[CENTRAL/ARCHITECTURE/ADRs/ADR-003-keycloak-autenticacao.md|ADR-003: Escolha do Keycloak para Autenticação e Autorização]]
@@ -69,5 +70,11 @@ Os ADRs são imutáveis - novas decisões criam novos registros ao invés de edi
 - ○ [[CENTRAL/ARCHITECTURE/ADRs/ADR-021-hangfire-background-jobs.md|ADR-021: Escolha do Hangfire para Background Jobs]]
 - ○ [[CENTRAL/ARCHITECTURE/ADRs/ADR-022-role-based-access-control.md|ADR-022: Hierarquia de Roles com Composite Roles no Keycloak]]
 - ○ [[CENTRAL/ARCHITECTURE/ADRs/ADR-023-color-palette-design-system.md|ADR-023: Paleta de Cores e Design System CARF]]
+- ○ [[CENTRAL/ARCHITECTURE/ADRs/ADR-024-keycloakify-adoption.md|ADR-024: Adoção de Keycloakify para Temas Keycloak]]
+- ○ [[CENTRAL/ARCHITECTURE/ADRs/ADR-025-single-realm-multi-tenancy.md|ADR-025: Single-Realm Multi-Tenancy Strategy]]
+- ○ [[CENTRAL/ARCHITECTURE/ADRs/ADR-026-roles-hierarchy.md|ADR-026: Hierarquia de Roles CARF]]
+- ○ [[CENTRAL/ARCHITECTURE/ADRs/ADR-027-oauth2-flows-by-client.md|ADR-027: OAuth2 Flows por Tipo de Client]]
+- ○ [[CENTRAL/ARCHITECTURE/ADRs/ADR-028-token-lifetimes.md|ADR-028: Token Lifetimes e Session Configuration]]
+- ○ [[CENTRAL/ARCHITECTURE/ADRs/ADR-029-security-strategy.md|ADR-029: Estrategia de Seguranca Keycloak]]
 
 <!-- CARF-INDEX-END -->

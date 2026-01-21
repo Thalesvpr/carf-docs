@@ -116,11 +116,12 @@ export class IndexService {
       }
 
       // List by status
-      const statusOrder = [Status.REVIEW, Status.APPROVED, Status.REJECTED];
+      const statusOrder = [Status.REVIEW, Status.APPROVED, Status.REJECTED, Status.TEMPLATE];
       const statusLabels: Record<Status, string> = {
         [Status.REVIEW]: "Em Revisão",
         [Status.APPROVED]: "Aprovados",
-        [Status.REJECTED]: "Rejeitados"
+        [Status.REJECTED]: "Rejeitados",
+        [Status.TEMPLATE]: "Templates"
       };
 
       for (const status of statusOrder) {

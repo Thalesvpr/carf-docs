@@ -1,5 +1,6 @@
 ---
-status: review
+status: rejected
+description: "Nao e decisao arquitetural. Biblioteca interna e detalhe de implementacao. Documentar em PROJECTS/LIB/TS/TSCORE."
 updated: 2026-01-20
 ---
 

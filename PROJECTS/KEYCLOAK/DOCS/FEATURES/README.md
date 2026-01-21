@@ -25,6 +25,6 @@ Customizações Keycloak implementadas para CARF incluindo temas visuais identid
 - ○ [[PROJECTS/KEYCLOAK/DOCS/FEATURES/03-cpf-validation.md|CPF Validation - Validação CPF]]
 - ○ [[PROJECTS/KEYCLOAK/DOCS/FEATURES/04-admin-integration.md|Admin Integration - Integração Admin]]
 - ○ [[PROJECTS/KEYCLOAK/DOCS/FEATURES/05-theme-customization.md|Theme Customization - Customização de Tema]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/FEATURES/06-login-theme-carf.md|Login Theme CARF - Tema de Login Customizado]]
+- ○ [[PROJECTS/KEYCLOAK/DOCS/FEATURES/06-login-theme-carf.md|Login Theme CARF]]
 
 <!-- CARF-INDEX-END -->

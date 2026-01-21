@@ -174,20 +174,13 @@ export class MetadataService {
   }
 
   /**
-   * Create default frontmatter for a new document
+   * Create minimal frontmatter for a new document
    */
-  createDefaultFrontmatter(file: TFile): CARFFrontmatter {
-    const type = Document.inferTypeFromFilename(file.name);
-    const id = this.extractIdFromFilename(file.name) || "";
+  createDefaultFrontmatter(file: TFile): Partial<CARFFrontmatter> {
     const now = this.formatDate(new Date());
 
     return {
-      id: id,
-      type: type,
-      modules: [],
-      epic: "",
       status: Status.REVIEW,
-      created: now,
       updated: now
     };
   }
@@ -210,7 +203,7 @@ export class MetadataService {
   /**
    * Add or update frontmatter in a file
    */
-  async setFrontmatter(file: TFile, frontmatter: CARFFrontmatter): Promise<void> {
+  async setFrontmatter(file: TFile, frontmatter: Partial<CARFFrontmatter>): Promise<void> {
     const content = await this.app.vault.read(file);
     const bodyContent = this.getBodyContent(content);
 
@@ -271,7 +264,7 @@ export class MetadataService {
   /**
    * Initialize frontmatter for a file that doesn't have it
    */
-  async initFrontmatter(file: TFile): Promise<CARFFrontmatter> {
+  async initFrontmatter(file: TFile): Promise<Partial<CARFFrontmatter>> {
     const frontmatter = this.createDefaultFrontmatter(file);
     await this.setFrontmatter(file, frontmatter);
     return frontmatter;

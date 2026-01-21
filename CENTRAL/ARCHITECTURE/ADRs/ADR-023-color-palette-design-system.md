@@ -1,6 +1,7 @@
 ---
-status: review
-updated: 2026-01-20
+status: rejected
+updated: 2026-01-21
+description: "Nao e decisao arquitetural. Design system pertence a CENTRAL/DESIGN-SYSTEM, nao ADRs."
 ---
 
 # ADR-023: Paleta de Cores e Design System CARF

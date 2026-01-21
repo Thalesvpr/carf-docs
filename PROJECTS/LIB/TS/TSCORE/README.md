@@ -58,5 +58,6 @@ import { useAuth, ProtectedRoute } from '@carf/tscore/auth/react'
 ## Subpastas
 
 - [[PROJECTS/LIB/TS/TSCORE/DOCS/README|DOCS]]
+- [[PROJECTS/LIB/TS/TSCORE/SRC-CODE/README|SRC-CODE]]
 
 <!-- CARF-INDEX-END -->

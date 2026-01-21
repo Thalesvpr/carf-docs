@@ -1,5 +1,6 @@
 ---
-status: review
+status: rejected
+description: "Sobreposicao com ADR-026 (roles hierarchy). Consolidar em unico ADR sobre modelo de autorizacao."
 updated: 2026-01-20
 ---
 
