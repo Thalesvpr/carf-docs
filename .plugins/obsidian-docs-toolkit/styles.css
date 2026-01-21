@@ -25,6 +25,11 @@
   gap: 4px;
 }
 
+.docs-btn-center .docs-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
 .docs-btn {
   width: 32px;
   height: 32px;
