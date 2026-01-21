@@ -3587,10 +3587,7 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
     const rejected = docs.filter((d) => d.status === "rejected").length;
     const pending = docs.filter((d) => d.status === "review").length;
     const total = docs.length;
-    this.renderFolderFilter(el);
-    this.renderSearch(el);
     this.renderProgress(el, { approved, rejected, pending, total });
-    this.renderFolderStats(el);
     const queue = this.getQueue();
     const currentFile = this.getCurrentFile();
     if (queue.length === 0) {

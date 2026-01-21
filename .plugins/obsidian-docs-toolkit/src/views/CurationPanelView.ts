@@ -273,17 +273,8 @@ export class CurationPanelView extends ItemView {
     const pending = docs.filter(d => d.status === "review").length;
     const total = docs.length;
 
-    // === FOLDER FILTER SECTION ===
-    this.renderFolderFilter(el);
-
-    // === SEARCH SECTION ===
-    this.renderSearch(el);
-
     // === PROGRESS SECTION ===
     this.renderProgress(el, { approved, rejected, pending, total });
-
-    // === FOLDER STATS SECTION ===
-    this.renderFolderStats(el);
 
     // === CURRENT FILE SECTION ===
     const queue = this.getQueue();
