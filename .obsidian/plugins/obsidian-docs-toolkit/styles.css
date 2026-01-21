@@ -95,17 +95,39 @@
   background: rgba(var(--color-yellow-rgb), 0.15);
 }
 
-.docs-progress-bar {
-  height: 2px;
-  background: var(--background-modifier-border);
-  border-radius: 1px;
+/* Dots navigation */
+.docs-dots {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  flex-wrap: wrap;
 }
 
-.docs-progress-fill {
-  height: 100%;
-  background: var(--interactive-accent);
-  border-radius: 1px;
+.docs-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.1s;
 }
+
+.docs-dot:hover {
+  transform: scale(1.5);
+}
+
+.docs-dot-current {
+  width: 8px;
+  height: 8px;
+  box-shadow: 0 0 0 2px var(--background-primary);
+}
+
+.docs-dot-review { background: var(--color-yellow); opacity: 0.6; }
+.docs-dot-approved { background: var(--color-green); }
+.docs-dot-rejected { background: var(--color-red); }
+
+.docs-dot-current.docs-dot-review { opacity: 1; }
+.docs-dot-current.docs-dot-approved { box-shadow: 0 0 0 2px var(--color-green); }
+.docs-dot-current.docs-dot-rejected { box-shadow: 0 0 0 2px var(--color-red); }
 
 /* File section */
 .docs-file-section {

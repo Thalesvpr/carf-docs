@@ -3514,9 +3514,32 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
         this.app.commands.executeCommandById("docs-toolkit:open-issues-panel");
       };
     }
-    const progressBar = header.createDiv({ cls: "docs-progress-bar" });
-    const pct = total > 0 ? approved / total * 100 : 0;
-    progressBar.createDiv({ cls: "docs-progress-fill" }).style.width = `${pct}%`;
+    const dotsContainer = header.createDiv({ cls: "docs-dots" });
+    const maxDots = 51;
+    const halfWindow = Math.floor(maxDots / 2);
+    let start = 0;
+    let end = queue.length;
+    if (queue.length > maxDots) {
+      start = Math.max(0, this.currentIndex - halfWindow);
+      end = Math.min(queue.length, start + maxDots);
+      if (end - start < maxDots) {
+        start = Math.max(0, end - maxDots);
+      }
+    }
+    for (let i = start; i < end; i++) {
+      const f = queue[i];
+      const d = this.store.getDocument(f.path);
+      const status = (d == null ? void 0 : d.status) || "review";
+      const isCurrent = i === this.currentIndex;
+      const dot = dotsContainer.createDiv({
+        cls: `docs-dot docs-dot-${status}${isCurrent ? " docs-dot-current" : ""}`
+      });
+      dot.onclick = () => {
+        this.currentIndex = i;
+        this.openCurrentFile();
+        this.render();
+      };
+    }
     if (queue.length === 0) {
       const empty = el.createDiv({ cls: "pane-empty" });
       empty.createDiv({ text: "All done!", cls: "docs-done-text" });
