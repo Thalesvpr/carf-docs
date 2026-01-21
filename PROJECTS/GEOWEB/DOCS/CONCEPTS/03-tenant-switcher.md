@@ -1,6 +1,6 @@
 ---
 status: review
-updated: 2026-01-15
+updated: 2026-01-20
 ---
 
 TenantSwitcher component dropdown permite usuário trocar entre múltiplas prefeituras quando allowedTenants.length > 1, renderizado no Navbar como `<TenantSwitcher />`, usa useAuth() hook para obter user.tenantId (tenant atual), user.allowedTenants (array de tenants autorizados), switchTenant(tenantId) function, se user.allowedTenants.length <= 1 retorna null não renderizando nada porque usuário só tem acesso a 1 tenant então não precisa switcher, caso contrário renderiza select dropdown com value={user.tenantId} mostrando tenant atual, options mapeadas de user.allowedTenants cada uma com key={tenantId} value={tenantId} label={tenantId ou nome amigável se disponível}.

@@ -1,6 +1,6 @@
 ---
 status: review
-updated: 2026-01-15
+updated: 2026-01-20
 ---
 
 Protected routes no GEOWEB implementadas via PrivateRoute component wrapper que recebe children e optional roles array prop, usa useAuth() hook para obter isAuthenticated boolean e hasRole() function, primeiro checa if (!isAuthenticated) retorna <Navigate to="/login" replace /> redirecionando usuário não autenticado para tela de login, se roles prop definido checa if (!hasRole(roles)) retorna <Navigate to="/forbidden" replace /> bloqueando acesso de usuário com role insuficiente mostrando página 403 Forbidden, se ambas validações passam retorna <>{children}</> renderizando rota protegida normalmente.

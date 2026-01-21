@@ -1,6 +1,6 @@
 ---
 status: review
-updated: 2026-01-15
+updated: 2026-01-20
 ---
 
 GEOWEB integra Keycloak como public client usando keycloak-js library (versão 24.0.0+) que implementa OAuth2 Authorization Code + PKCE flow automaticamente, iniciando com `const keycloak = new Keycloak({ url, realm, clientId })` seguido por `await keycloak.init({ onLoad: 'login-required', checkLoginIframe: true, pkceMethod: 'S256' })` que redireciona usuário para Keycloak login screen se não autenticado, gera code_verifier e code_challenge automaticamente, recebe authorization code via redirect callback, exchang

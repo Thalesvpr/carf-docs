@@ -42,3 +42,12 @@ Testes end-to-end do GEOAPI exercitando API completa via HTTP requests validando
 ## Convenções
 
 E2E tests usam HttpClient fornecido por WebApplicationFactory enviando requests reais para endpoints com headers autenticação (Bearer token gerado por helper method), query params e request bodies JSON verificando response via assertions sobre StatusCode, Headers e Content deserialized para DTOs esperados. Test fixtures compartilhados via IClassFixture provêem WebApplicationFactory configurada e DbContext seeded com dados base (users, roles, tenant) reduzindo setup time entre tests mantendo isolation via transaction rollback ou database reset após cada test. Helpers criam tokens JWT válidos com claims específicas (tenant_id, user_id, roles) permitindo tests simular diferentes usuários e verificar authorization policies sem depender de Keycloak real rodando. Response assertions verificam não apenas status code mas schema completo validando response body contra expected DTO structure usando FluentAssertions Should().BeEquivalentTo() comparando deep equality incluindo nested objects e arrays. Performance assertions usando StopWatch verificam endpoints respondem dentro SLA esperado (< 200ms para queries simples, < 2s para aggregations complexas) identificando regressões performance antes deploy production.
+
+<!-- CARF-INDEX-START -->
+## Documentos
+
+### Em Revisão
+
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/TESTS/E2E/01-api-e2e-tests.md|API E2E Tests]]
+
+<!-- CARF-INDEX-END -->

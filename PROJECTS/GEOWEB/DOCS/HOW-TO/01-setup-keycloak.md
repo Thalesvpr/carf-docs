@@ -1,6 +1,6 @@
 ---
 status: review
-updated: 2026-01-15
+updated: 2026-01-20
 ---
 
 Setup Keycloak no GEOWEB requer primeiro instalar keycloak-js com `npm install keycloak-js`, criar .env.local com VITE_KEYCLOAK_URL=http://localhost:8080, VITE_KEYCLOAK_REALM=carf, VITE_KEYCLOAK_CLIENT_ID=geoweb, VITE_API_URL=http://localhost:5000, criar src/lib/keycloak.ts exportando `const keycloak = new Keycloak({ url: import.meta.env.VITE_KEYCLOAK_URL, realm: import.meta.env.VITE_KEYCLOAK_REALM, clientId: import.meta.env.VITE_KEYCLOAK_CLIENT_ID })` e `export default keycloak`.

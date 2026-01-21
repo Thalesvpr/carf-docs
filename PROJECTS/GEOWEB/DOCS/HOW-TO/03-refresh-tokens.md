@@ -1,6 +1,6 @@
 ---
 status: review
-updated: 2026-01-15
+updated: 2026-01-20
 ---
 
 Token refresh no GEOWEB implementado via setupTokenRefresh() function em AuthContext que configura setInterval com delay de 240000ms (4 minutos) executando `keycloak.updateToken(60).then(refreshed => { if (refreshed) { console.log('Token refreshed'); loadUserProfile(); } }).catch(() => { console.error('Failed to refresh token'); keycloak.login(); })` onde keycloak.updateToken(60) checa se access token expira em menos de 60 segundos comparando exp claim do tokenParsed com timestamp atual, se token ainda válido por mais de 60s retorna Promise.resolve(false) sem fazer nada, se token expira em menos de 60s ou já expirou faz POST ao http://localhost:8080/realms/carf/protocol/openid-connect/token com body form-urlencoded grant_type=refresh_token, client_id=geoweb, refresh_token (keycloak.refreshToken atual).

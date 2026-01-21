@@ -15,3 +15,12 @@ Middlewares globais do GEOAPI interceptando pipeline HTTP ASP.NET Core em ordem 
 - 04-rate-limiting-middleware.md - Redis-based throttling
 - 05-tenant-resolution-middleware.md - Multi-tenancy context injection
 - 06-cors-middleware.md - CORS policies configuration
+
+<!-- CARF-INDEX-START -->
+## Documentos
+
+### Em Revisão
+
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/PRESENTATION/MIDDLEWARES/01-exception-handling.md|Exception Handling Middleware]]
+
+<!-- CARF-INDEX-END -->

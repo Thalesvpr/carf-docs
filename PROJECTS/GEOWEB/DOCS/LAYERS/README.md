@@ -47,3 +47,12 @@ Estrutura de camadas do código React do GEOWEB.
 - Auth store
 - Tenant context store
 - UI preferences
+
+<!-- CARF-INDEX-START -->
+## Documentos
+
+### Em Revisão
+
+- ○ [[PROJECTS/GEOWEB/DOCS/LAYERS/01-auth-context.md|01-auth-context]]
+
+<!-- CARF-INDEX-END -->

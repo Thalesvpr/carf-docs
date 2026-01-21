@@ -1,6 +1,6 @@
 ---
 status: review
-updated: 2026-01-15
+updated: 2026-01-20
 ---
 
 Implementar login/logout no GEOWEB usa keycloak-js que gerencia fluxo OAuth2 automaticamente onde login é iniciado de duas formas sendo primeira via keycloak.init({ onLoad: 'login-required' }) que redireciona automaticamente para Keycloak se usuário não autenticado ideal para SPA onde toda aplicação requer autenticação, segunda via botão manual Login que chama keycloak.login() ideal para landing pages públicas com área restrita.

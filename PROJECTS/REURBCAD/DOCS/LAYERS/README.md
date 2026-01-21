@@ -40,3 +40,12 @@ Estrutura de camadas do código React Native do REURBCAD.
 - Maps (react-native-maps)
 - Camera (expo-camera)
 - Forms com validation
+
+<!-- CARF-INDEX-START -->
+## Documentos
+
+### Em Revisão
+
+- ○ [[PROJECTS/REURBCAD/DOCS/LAYERS/01-auth-service.md|01-auth-service]]
+
+<!-- CARF-INDEX-END -->

@@ -1,6 +1,6 @@
 ---
 status: review
-updated: 2026-01-15
+updated: 2026-01-20
 ---
 
 Authentication no GEOWEB usa keycloak-js library que gerencia OAuth2 Authorization Code + PKCE flow automaticamente onde usuário acessa app, é redirecionado para Keycloak login screen se não autenticado via keycloak.init({ onLoad: 'login-required' }), faz login com credenciais, Keycloak gera authorization code com PKCE code_challenge, redirect de volta para app com code na URL, keycloak-js automaticamente troca code por tokens enviando code_verifier, recebe access_token (JWT válido 5 minutos), id_token (perfil usuário), refresh_token (renovação sem re-login válido conforme sessão SSO 30min idle/10h max), armazena tokens em memória não localStorage prevenindo XSS attacks, popula keycloak.authenticated=true, keycloak.token com access token string, keycloak.tokenParsed com claims decoded (sub, email, tenant_id, roles).

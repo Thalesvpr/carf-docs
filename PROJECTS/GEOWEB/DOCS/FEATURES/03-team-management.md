@@ -1,6 +1,6 @@
 ---
 status: review
-updated: 2026-01-11
+updated: 2026-01-20
 ---
 
 # Team Management - Gestão de Equipes

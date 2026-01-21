@@ -25,3 +25,14 @@ Guias práticos para desenvolvimento e configuração do GEOWEB.
 1. `npm run build`
 2. Testa build com `npm run preview`
 3. Deploy para Vercel via `vercel deploy`
+
+<!-- CARF-INDEX-START -->
+## Documentos
+
+### Em Revisão
+
+- ○ [[PROJECTS/GEOWEB/DOCS/HOW-TO/01-setup-keycloak.md|01-setup-keycloak]]
+- ○ [[PROJECTS/GEOWEB/DOCS/HOW-TO/02-login-logout.md|02-login-logout]]
+- ○ [[PROJECTS/GEOWEB/DOCS/HOW-TO/03-refresh-tokens.md|03-refresh-tokens]]
+
+<!-- CARF-INDEX-END -->

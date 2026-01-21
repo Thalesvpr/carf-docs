@@ -1,6 +1,6 @@
 ---
 status: review
-updated: 2026-01-12
+updated: 2026-01-20
 ---
 
 # GIS Integration - Integração SIG

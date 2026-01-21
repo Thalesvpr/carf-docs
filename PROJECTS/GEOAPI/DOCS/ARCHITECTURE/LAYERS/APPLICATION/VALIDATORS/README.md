@@ -23,3 +23,12 @@ FluentValidation validators do GEOAPI validando commands e DTOs antes de execuç
 - 09-cpf-validator.md (reutilizável)
 - 10-email-validator.md (reutilizável)
 - 11-phone-number-validator.md (reutilizável)
+
+<!-- CARF-INDEX-START -->
+## Documentos
+
+### Em Revisão
+
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/APPLICATION/VALIDATORS/01-unit-validators.md|Unit Validators]]
+
+<!-- CARF-INDEX-END -->

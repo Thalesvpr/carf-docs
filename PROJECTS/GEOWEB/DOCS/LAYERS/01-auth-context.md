@@ -1,6 +1,6 @@
 ---
 status: review
-updated: 2026-01-15
+updated: 2026-01-20
 ---
 
 AuthContext layer implementado em src/shared/lib/auth/ como cross-cutting concern disponível para todas features, consiste em AuthContext.tsx criando React Context com createContext<AuthContextType | undefined>(undefined) onde AuthContextType interface define { isAuthenticated: boolean, isLoading: boolean, user: User | null, login: () => void, logout: () => void, switchTenant: (tenantId: string) => Promise<void>, hasRole: (roles: string[]) => boolean, getToken: () => Promise<string> }, AuthProvider component function recebe { children } props, mantém state [isAuthenticated, setIsAuthenticated], [isLoading, setIsLoading], [user, setUser] usando useState hooks.

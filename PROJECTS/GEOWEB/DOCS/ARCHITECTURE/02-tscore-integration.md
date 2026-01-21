@@ -1,6 +1,6 @@
 ---
 status: review
-updated: 2026-01-09
+updated: 2026-01-20
 ---
 
 # Integração @carf/tscore no GEOWEB

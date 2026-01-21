@@ -46,7 +46,20 @@
       "Bash(perl -i -0pe:*)",
       "Bash(gh repo list:*)",
       "Bash(npm run build:*)",
-      "Bash(xargs:*)"
+      "Bash(xargs:*)",
+      "Bash(git stash drop:*)",
+      "Bash(npm install)",
+      "Bash(npx tsc:*)",
+      "Bash(node esbuild.config.mjs:*)",
+      "Bash(copy:*)",
+      "Bash(copy \"C:\\\\DEV\\\\CARF\\\\.plugins\\\\obsidian-docs-toolkit\\\\styles.css\" \"C:\\\\DEV\\\\CARF\\\\.obsidian\\\\plugins\\\\obsidian-docs-toolkit\\\\styles.css\")",
+      "Bash(del \"C:\\\\DEV\\\\CARF\\\\PROJECTS\\\\WEBDOCS\\\\DOCS\\\\SPECS\\\\09-sidebar-navegacao.md\")",
+      "Bash(wc:*)",
+      "Bash(cd:*)",
+      "Bash(for lib in TSCORE GEOAPI-CLIENT UI-COMPONENTS)",
+      "Bash(for dir in README.md DOCS/README.md DOCS/SPECS DOCS/API DOCS/HOW-TO DOCS/ARCHITECTURE)",
+      "Bash(then echo \"✓ $dir\")",
+      "Bash(else echo \"✗ $dir MISSING\")"
     ],
     "deny": [],
     "ask": []

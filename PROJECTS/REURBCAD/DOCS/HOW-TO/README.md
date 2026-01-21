@@ -24,3 +24,14 @@ Guias práticos para desenvolvimento do REURBCAD React Native.
 **Build:**
 - Android: `eas build --platform android`
 - iOS: `eas build --platform ios`
+
+<!-- CARF-INDEX-START -->
+## Documentos
+
+### Em Revisão
+
+- ○ [[PROJECTS/REURBCAD/DOCS/HOW-TO/01-setup-keycloak.md|01-setup-keycloak]]
+- ○ [[PROJECTS/REURBCAD/DOCS/HOW-TO/02-handle-callbacks.md|02-handle-callbacks]]
+- ○ [[PROJECTS/REURBCAD/DOCS/HOW-TO/03-test-offline.md|03-test-offline]]
+
+<!-- CARF-INDEX-END -->
