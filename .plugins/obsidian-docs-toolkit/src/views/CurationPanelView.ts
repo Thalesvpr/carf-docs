@@ -66,6 +66,17 @@ export class CurationPanelView extends ItemView {
       this.app.workspace.on("active-leaf-change", () => this.syncWithActiveFile())
     );
 
+    // Listen to metadataCache changes for reactive Properties updates
+    this.registerEvent(
+      this.app.metadataCache.on("changed", (file) => {
+        const currentFile = this.getCurrentFile();
+        if (currentFile && file.path === currentFile.path) {
+          // Re-render when current file's metadata changes (Properties edited)
+          this.render();
+        }
+      })
+    );
+
     this.registerDomEvent(document, "keydown", this.onKey.bind(this));
     this.syncWithActiveFile();
     this.render();
@@ -604,6 +615,12 @@ export class CurationPanelView extends ItemView {
     // Get frontmatter from Obsidian's metadataCache (official API for Properties)
     const cache = this.app.metadataCache.getFileCache(file);
     const frontmatter = cache?.frontmatter;
+
+    // Debug: log what metadataCache returns
+    console.log("[Claude Prompt] file:", file.path);
+    console.log("[Claude Prompt] cache:", cache);
+    console.log("[Claude Prompt] frontmatter:", frontmatter);
+    console.log("[Claude Prompt] description:", frontmatter?.description);
 
     // File path
     lines.push(`@${file.path.replace(/\//g, "\\")}`);

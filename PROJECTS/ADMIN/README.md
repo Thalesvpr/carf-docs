@@ -13,6 +13,5 @@ Console administrativo React para gestão de usuários, tenants e configuraçõe
 ## Subpastas
 
 - [[PROJECTS/ADMIN/DOCS/README|DOCS]]
-- [[PROJECTS/ADMIN/SRC-CODE/README|SRC-CODE]]
 
 <!-- CARF-INDEX-END -->

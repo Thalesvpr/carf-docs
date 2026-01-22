@@ -16,81 +16,25 @@
               "state": {},
               "pinned": true,
               "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "title": "Visualização em gráfico"
             }
           },
           {
-            "id": "33d87f41fb697bab",
+            "id": "cc41add753b82c59",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "PROJECTS/KEYCLOAK/README.md",
+                "file": "PROJECTS/ADMIN/DOCS/HOW-TO/README.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
               "title": "README"
-            }
-          },
-          {
-            "id": "07c5a995af968274",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "CENTRAL/VERSIONING/GIT/02-branching-strategy.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "02-branching-strategy"
-            }
-          },
-          {
-            "id": "ce7b6401c0ec7eba",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/00-base-value-object.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "00-base-value-object"
-            }
-          },
-          {
-            "id": "b7262c57c40809a7",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "PROJECTS/WEBDOCS/SRC-CODE/carf-webdocs/webdocs/src/public/funcionalidades/README.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "README"
-            }
-          },
-          {
-            "id": "6d606874423561a7",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "CENTRAL/API/AUTHENTICATION/01-login.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "01-login"
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -113,7 +57,7 @@
                 "autoReveal": true
               },
               "icon": "lucide-folder-closed",
-              "title": "Files"
+              "title": "Explorador de arquivos"
             }
           },
           {
@@ -225,17 +169,17 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "CENTRAL/BUSINESS-RULES/WORKFLOW-RULES/04-sla-rules.md",
+                "file": "PROJECTS/ADMIN/DOCS/HOW-TO/README.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of 04-sla-rules"
+              "title": "Sumário de README"
             }
           },
           {
-            "id": "971ab6c0fdc33177",
+            "id": "6d62ccff0d37d427",
             "type": "leaf",
             "state": {
               "type": "docs-toolkit-curation",
@@ -253,44 +197,44 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Open quick switcher": false,
-      "graph:Open graph view": false,
-      "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
-      "templates:Insert template": false,
-      "command-palette:Open command palette": false,
-      "bases:Create new base": false,
+      "switcher:Abrir a troca rápida": false,
+      "graph:Abrir visualização em gráfico": false,
+      "canvas:Criar novo canvas": false,
+      "daily-notes:Abrir a nota de hoje": false,
+      "templates:Inserir modelo": false,
+      "command-palette:Abrir paleta de comandos": false,
+      "bases:Criar nova base": false,
       "obsidian-docs-toolkit:Open Curation Panel": false
     }
   },
-  "active": "6d606874423561a7",
+  "active": "6d62ccff0d37d427",
   "lastOpenFiles": [
-    "README.md",
+    "PROJECTS/ADMIN/DOCS/README.md",
+    "PROJECTS/ADMIN/README.md",
+    "PROJECTS/GEOAPI/DOCS/ARCHITECTURE/01-overview.md",
+    "PROJECTS/GEOAPI/DOCS/ARCHITECTURE/02-admin-security.md",
+    "PROJECTS/GEOAPI/DOCS/ARCHITECTURE/03-data-flow.md",
+    "PROJECTS/GEOAPI/DOCS/ARCHITECTURE/04-integration.md",
+    "PROJECTS/GEOAPI/DOCS/ARCHITECTURE/05-deployment.md",
+    "PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/APPLICATION/COMMANDS/01-unit-commands.md",
+    "PROJECTS/ADMIN/DOCS/ARCHITECTURE/01-overview.md",
+    "CENTRAL/VERSIONING/GIT/02-branching-strategy.md",
+    "CENTRAL/VERSIONING/GIT/01-setup-guide.md",
+    "PROJECTS/KEYCLOAK/README.md",
+    "CENTRAL/ARCHITECTURE/ADRs/README.md",
+    "CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/00-base-value-object.md",
+    "CENTRAL/API/COMMUNITIES/README.md",
+    "CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-068-calcular-area-da-unidade.md",
+    "CENTRAL/API/HOLDERS/01-create-holder.md",
+    "CENTRAL/API/COMMUNITIES/02-list-communities.md",
+    "CENTRAL/API/COMMUNITIES/01-create-community.md",
+    "CENTRAL/API/AUTHENTICATION/README.md",
+    "CENTRAL/API/AUTHENTICATION/03-logout.md",
+    "CENTRAL/API/AUTHENTICATION/02-refresh-token.md",
     "CENTRAL/API/AUTHENTICATION/01-login.md",
+    "README.md",
     "PROJECTS/WEBDOCS/SRC-CODE/carf-webdocs/webdocs/src/public/funcionalidades/README.md",
     "PROJECTS/GEOGIS/DOCS/ARCHITECTURE/01-keycloak-integration.md",
-    "PROJECTS/GEOAPI/SRC-CODE/carf-geoapi/README.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/NAVIGATION/README.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/NAVIGATION/05-pagination.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/NAVIGATION/04-navigation-menu.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/LAYOUT/05-scroll-area.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/NAVIGATION/03-breadcrumb.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/NAVIGATION/02-command.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/NAVIGATION/01-dropdown-menu.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/DOMAIN/README.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/DOMAIN/03-holder-card.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/DOMAIN/04-community-card.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/DOMAIN/02-unit-card.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/DOMAIN/01-status-badge.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/LAYOUT/README.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/LAYOUT/04-accordion.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/LAYOUT/02-separator.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/LAYOUT/03-tabs.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/LAYOUT/01-card.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/FORM/README.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/FORM/07-textarea.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/FORM/05-switch.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/FORM/06-select.md",
     "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/NAVIGATION",
     "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/DOMAIN",
     "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/LAYOUT",
