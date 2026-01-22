@@ -33,6 +33,10 @@ export class CurationPanelView extends ItemView {
   private plugin: PluginRef;
   private currentIndex = 0;
   private filterQuery = "";
+  private filterInputEl: HTMLInputElement | null = null;
+  private filterSuggest: FilterSuggest | null = null;
+  private filterContainerEl: HTMLElement | null = null;
+  private contentEl: HTMLElement | null = null;
 
   constructor(
     leaf: WorkspaceLeaf,
@@ -55,7 +59,15 @@ export class CurationPanelView extends ItemView {
   getIcon(): string { return "check-square"; }
 
   async onOpen(): Promise<void> {
-    this.containerEl.children[1].addClass("docs-curation-panel");
+    const container = this.containerEl.children[1] as HTMLElement;
+    container.addClass("docs-curation-panel");
+
+    // Create persistent filter container (never destroyed by render)
+    this.filterContainerEl = container.createDiv({ cls: "docs-filter-container" });
+    this.createFilterInput();
+
+    // Create content area that will be re-rendered
+    this.contentEl = container.createDiv({ cls: "docs-content" });
 
     this.registerEvent(
       // @ts-ignore
@@ -80,6 +92,97 @@ export class CurationPanelView extends ItemView {
     this.registerDomEvent(document, "keydown", this.onKey.bind(this));
     this.syncWithActiveFile();
     this.render();
+  }
+
+  private createFilterInput(): void {
+    if (!this.filterContainerEl) return;
+
+    this.filterInputEl = this.filterContainerEl.createEl("input", {
+      cls: "docs-filter-input",
+      attr: {
+        type: "text",
+        placeholder: "path: file: tag: -exclude OR /regex/",
+        spellcheck: "false"
+      }
+    });
+
+    // Attach FilterSuggest for autocomplete
+    this.filterSuggest = new FilterSuggest(
+      this.app,
+      this.filterInputEl,
+      () => this.store.getState().documents.filter(d => this.isTrackedFile(d.file.path)),
+      (value) => {
+        this.filterQuery = value;
+        this.currentIndex = 0;
+        this.render();
+      }
+    );
+
+    // Apply filter dynamically while typing (debounced)
+    let debounceTimer: ReturnType<typeof setTimeout>;
+    this.filterInputEl.oninput = () => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        this.filterQuery = this.filterInputEl?.value || "";
+        this.currentIndex = 0;
+        this.render();
+      }, 300);
+    };
+
+    // Apply filter immediately on Enter
+    this.filterInputEl.onkeydown = (e) => {
+      if (e.key === "Enter" && !e.isComposing) {
+        e.preventDefault();
+        clearTimeout(debounceTimer);
+        this.filterQuery = this.filterInputEl?.value || "";
+        this.currentIndex = 0;
+        this.render();
+      }
+      if (e.key === "Escape") {
+        clearTimeout(debounceTimer);
+        if (this.filterInputEl) {
+          this.filterInputEl.value = this.filterQuery;
+          this.filterInputEl.blur();
+        }
+      }
+    };
+  }
+
+  private clearBtnEl: HTMLButtonElement | null = null;
+  private filterCountEl: HTMLElement | null = null;
+
+  private updateFilterClearButton(): void {
+    if (!this.filterContainerEl) return;
+
+    // Remove existing clear button and count
+    this.clearBtnEl?.remove();
+    this.filterCountEl?.remove();
+    this.clearBtnEl = null;
+    this.filterCountEl = null;
+
+    if (this.filterQuery) {
+      // Add clear button
+      this.clearBtnEl = this.filterContainerEl.createEl("button", {
+        cls: "docs-filter-clear",
+        attr: { title: "Limpar filtro" }
+      });
+      setIcon(this.clearBtnEl, "x");
+      this.clearBtnEl.onclick = (e) => {
+        e.stopPropagation();
+        this.filterQuery = "";
+        if (this.filterInputEl) this.filterInputEl.value = "";
+        this.currentIndex = 0;
+        this.render();
+      };
+
+      // Add count
+      const queue = this.getQueue();
+      const totalUnfiltered = this.store.getReviewQueue().filter(f => this.isTrackedFile(f.path)).length;
+      this.filterCountEl = this.filterContainerEl.createDiv({
+        text: `${queue.length} / ${totalUnfiltered}`,
+        cls: "docs-filter-count"
+      });
+    }
   }
 
   updateConfig(config: DocsLinterConfig): void {
@@ -112,7 +215,9 @@ export class CurationPanelView extends ItemView {
 
   /**
    * Parse and apply filter query using Obsidian's native search API
-   * Supports: path:, file:, tag:, status:, -prefix for exclusion, OR
+   * Supports native Graph View operators: path:, file:, tag:, content:,
+   * line:(), block:(), section:(), task:, task-todo:, task-done:,
+   * match-case:, ignore-case:, -prefix for exclusion, OR, /regex/
    * Uses prepareSimpleSearch for efficient text matching
    */
   private matchesFilter(file: TFile, query: string): boolean {
@@ -140,38 +245,74 @@ export class CurationPanelView extends ItemView {
     return false;
   }
 
-  private parseFilterTokens(query: string): Array<{type: string; value: string; exclude: boolean}> {
-    const tokens: Array<{type: string; value: string; exclude: boolean}> = [];
+  private parseFilterTokens(query: string): Array<{type: string; value: string; exclude: boolean; isRegex?: boolean; caseSensitive?: boolean}> {
+    const tokens: Array<{type: string; value: string; exclude: boolean; isRegex?: boolean; caseSensitive?: boolean}> = [];
 
-    // Match quoted strings and unquoted tokens with optional operators
-    // Supports: path:, file:, tag:, status:, id:, section:, line:
-    const regex = /(-?)(?:(path|file|tag|status|id|section|line):)?(?:"([^"]+)"|(\S+))/gi;
+    // Match tokens with optional operators - supports native Obsidian syntax:
+    // - Parentheses: line:(query), block:(query), section:(query)
+    // - Quoted strings: "multi word query"
+    // - Regex: /pattern/
+    // - Simple values: path:CENTRAL, tag:important
+    // Operators: path, file, tag, content, line, block, section, task, task-todo, task-done, match-case, ignore-case
+    const regex = /(-?)(?:(path|file|tag|content|line|block|section|task|task-todo|task-done|match-case|ignore-case):)?(?:\(([^)]+)\)|"([^"]+)"|\/([^\/]+)\/|(\S+))/gi;
     let match;
+
+    let caseSensitive: boolean | undefined;
 
     while ((match = regex.exec(query)) !== null) {
       const exclude = match[1] === "-";
       const type = (match[2] || "text").toLowerCase();
-      const value = match[3] || match[4]; // quoted or unquoted
+      const parenValue = match[3];   // value in ()
+      const quotedValue = match[4];  // value in ""
+      const regexValue = match[5];   // value in //
+      const simpleValue = match[6];  // unquoted value
 
-      tokens.push({ type, value, exclude });
+      // Handle case sensitivity modifiers
+      if (type === "match-case") {
+        caseSensitive = true;
+        continue; // Don't add as a token, it's a modifier
+      }
+      if (type === "ignore-case") {
+        caseSensitive = false;
+        continue; // Don't add as a token, it's a modifier
+      }
+
+      const value = parenValue ?? quotedValue ?? regexValue ?? simpleValue ?? "";
+      const isRegex = regexValue !== undefined;
+
+      tokens.push({ type, value, exclude, isRegex, caseSensitive });
     }
 
     return tokens;
   }
 
-  private matchToken(file: TFile, doc: Document | undefined, token: {type: string; value: string; exclude: boolean}): boolean {
-    const { type, value, exclude } = token;
+  private matchToken(file: TFile, doc: Document | undefined, token: {type: string; value: string; exclude: boolean; isRegex?: boolean; caseSensitive?: boolean}): boolean {
+    const { type, value, exclude, isRegex, caseSensitive } = token;
     let matches = false;
 
-    // Use Obsidian's native prepareSimpleSearch for efficient matching
-    const search = prepareSimpleSearch(value);
+    // Create search function based on whether it's regex or simple search
+    const createMatcher = (text: string): boolean => {
+      if (isRegex) {
+        try {
+          const flags = caseSensitive === false ? "i" : "";
+          const regex = new RegExp(value, flags);
+          return regex.test(text);
+        } catch {
+          return false; // Invalid regex
+        }
+      } else {
+        // Use Obsidian's native prepareSimpleSearch for efficient matching
+        const search = prepareSimpleSearch(value);
+        return search(text) !== null;
+      }
+    };
 
     switch (type) {
       case "path":
-        matches = search(file.path) !== null;
+        matches = createMatcher(file.path);
         break;
       case "file":
-        matches = search(file.name) !== null;
+        matches = createMatcher(file.name);
         break;
       case "tag":
         if (doc?.frontmatter?.tags) {
@@ -179,21 +320,19 @@ export class CurationPanelView extends ItemView {
             ? doc.frontmatter.tags
             : [doc.frontmatter.tags];
           // Match any tag
-          matches = tags.some(t => search(String(t)) !== null);
+          matches = tags.some(t => createMatcher(String(t)));
         }
         break;
-      case "status":
-        // Status uses exact match (lowercase comparison)
-        matches = (doc?.status || "none").toLowerCase() === value.toLowerCase();
-        break;
-      case "id":
-        matches = doc?.id ? search(doc.id) !== null : false;
+      case "content":
+        // Content search - would need file content, skip for curation panel
+        // (filtering is based on metadata, not full content)
+        matches = false;
         break;
       case "section":
         // Section search - check if any section title matches (sections is Map<string, string>)
         if (doc?.sections) {
           for (const title of doc.sections.keys()) {
-            if (search(title) !== null) {
+            if (createMatcher(title)) {
               matches = true;
               break;
             }
@@ -201,15 +340,20 @@ export class CurationPanelView extends ItemView {
         }
         break;
       case "line":
-        // Line search - would need content, skip for now (use in full search)
+      case "block":
+        // Line/block search - would need full content parsing, skip for curation panel
+        matches = false;
+        break;
+      case "task":
+      case "task-todo":
+      case "task-done":
+        // Task search - would need content parsing for tasks, skip for curation panel
         matches = false;
         break;
       case "text":
       default:
-        // Search in path, name, and id using native search
-        matches = search(file.path) !== null ||
-                  search(file.name) !== null ||
-                  (doc?.id ? search(doc.id) !== null : false);
+        // Search in path and name using native search
+        matches = createMatcher(file.path) || createMatcher(file.name);
         break;
     }
 
@@ -238,8 +382,18 @@ export class CurationPanelView extends ItemView {
   }
 
   private render(): void {
-    const el = this.containerEl.children[1] as HTMLElement;
+    if (!this.contentEl) return;
+
+    const el = this.contentEl;
     el.empty();
+
+    // Update filter input value (without triggering events)
+    if (this.filterInputEl && document.activeElement !== this.filterInputEl) {
+      this.filterInputEl.value = this.filterQuery;
+    }
+
+    // Update clear button in filter container
+    this.updateFilterClearButton();
 
     if (this.store.isLoading()) {
       el.createDiv({ text: "Loading...", cls: "pane-empty" });
@@ -302,61 +456,6 @@ export class CurationPanelView extends ItemView {
     lastBtn.disabled = this.currentIndex >= queue.length - 1;
     lastBtn.onclick = () => this.goTo(queue.length - 1);
 
-    // Filter input with autocomplete (like Graph View)
-    const filterContainer = el.createDiv({ cls: "docs-filter-container" });
-    const filterInput = filterContainer.createEl("input", {
-      cls: "docs-filter-input",
-      attr: {
-        type: "text",
-        placeholder: "path: file: tag: status: -exclude OR",
-        value: this.filterQuery,
-        spellcheck: "false"
-      }
-    });
-
-    // Attach FilterSuggest for autocomplete
-    new FilterSuggest(
-      this.app,
-      filterInput,
-      () => this.store.getState().documents.filter(d => this.isTrackedFile(d.file.path)),
-      (value) => {
-        this.filterQuery = value;
-        this.currentIndex = 0;
-        this.render();
-      }
-    );
-
-    // Clear button (only show if there's a filter)
-    if (this.filterQuery) {
-      const clearBtn = filterContainer.createEl("button", { cls: "docs-filter-clear", attr: { title: "Limpar filtro" } });
-      setIcon(clearBtn, "x");
-      clearBtn.onclick = (e) => {
-        e.stopPropagation();
-        this.filterQuery = "";
-        this.currentIndex = 0;
-        this.render();
-      };
-    }
-
-    // Debounced filter update (for manual typing)
-    let debounceTimer: NodeJS.Timeout;
-    filterInput.oninput = () => {
-      clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(() => {
-        this.filterQuery = filterInput.value;
-        this.currentIndex = 0;
-        this.render();
-      }, 400);
-    };
-
-    // Show filtered count if filter is active
-    if (this.filterQuery) {
-      const totalUnfiltered = this.store.getReviewQueue().filter(f => this.isTrackedFile(f.path)).length;
-      filterContainer.createDiv({
-        text: `${queue.length} / ${totalUnfiltered}`,
-        cls: "docs-filter-count"
-      });
-    }
 
     // Header with progress stats
     const header = el.createDiv({ cls: "nav-header" });

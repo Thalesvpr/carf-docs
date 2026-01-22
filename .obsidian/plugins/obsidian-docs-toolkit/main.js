@@ -4059,46 +4059,40 @@ var import_obsidian13 = require("obsidian");
 var FilterSuggest = class extends import_obsidian13.AbstractInputSuggest {
   constructor(app, inputEl, getDocuments, onFilterChange) {
     super(app, inputEl);
-    // Available operators
+    // Available operators (100% native Obsidian Graph View)
     this.operators = [
       { text: "path:", displayText: "path:", description: "Search in file path", type: "operator" },
       { text: "file:", displayText: "file:", description: "Search in file name", type: "operator" },
       { text: "tag:", displayText: "tag:", description: "Search by tag", type: "operator" },
-      { text: "status:", displayText: "status:", description: "Filter by status", type: "operator" },
-      { text: "id:", displayText: "id:", description: "Search by document ID", type: "operator" },
-      { text: "section:", displayText: "section:", description: "Search in section titles", type: "operator" },
+      { text: "content:", displayText: "content:", description: "Search in file content", type: "operator" },
+      { text: "line:()", displayText: "line:()", description: "Search within a line", type: "operator" },
+      { text: "block:()", displayText: "block:()", description: "Search within a block", type: "operator" },
+      { text: "section:()", displayText: "section:()", description: "Search within a section", type: "operator" },
+      { text: "task:", displayText: "task:", description: "Search all tasks", type: "operator" },
+      { text: "task-todo:", displayText: "task-todo:", description: "Search incomplete tasks", type: "operator" },
+      { text: "task-done:", displayText: "task-done:", description: "Search completed tasks", type: "operator" },
+      { text: "match-case:", displayText: "match-case:", description: "Case sensitive search", type: "operator" },
+      { text: "ignore-case:", displayText: "ignore-case:", description: "Case insensitive search", type: "operator" },
       { text: "-", displayText: "-", description: "Exclude (negate)", type: "operator" },
       { text: "OR", displayText: "OR", description: "Match either condition", type: "operator" }
     ];
-    // Status values
-    this.statuses = ["approved", "rejected", "review", "none"];
     this.getDocuments = getDocuments;
     this.onFilterChange = onFilterChange;
     this.limit = 20;
   }
   getSuggestions(query) {
-    var _a, _b;
+    var _a, _b, _c;
     const suggestions = [];
     const cursorPos = ((_a = this.textInputEl) == null ? void 0 : _a.selectionStart) || query.length;
     const beforeCursor = query.substring(0, cursorPos);
     const tokens = beforeCursor.split(/\s+/);
     const currentToken = tokens[tokens.length - 1] || "";
-    const operatorMatch = currentToken.match(/^(-?)(path|file|tag|status|id|section):(.*)$/i);
+    const operatorMatch = currentToken.match(/^(-?)(path|file|tag|content|line|block|section|task|task-todo|task-done|match-case|ignore-case):(?:\(([^)]*)\)|(.*))?$/i);
     if (operatorMatch) {
-      const [, negation, operator, valueQuery] = operatorMatch;
+      const [, negation, operator, parenValue, simpleValue] = operatorMatch;
+      const valueQuery = (_b = parenValue != null ? parenValue : simpleValue) != null ? _b : "";
       const opLower = operator.toLowerCase();
-      if (opLower === "status") {
-        for (const status of this.statuses) {
-          if (!valueQuery || status.toLowerCase().startsWith(valueQuery.toLowerCase())) {
-            suggestions.push({
-              text: `${negation}${operator}:${status}`,
-              displayText: status,
-              description: `Status: ${status}`,
-              type: "value"
-            });
-          }
-        }
-      } else if (opLower === "tag") {
+      if (opLower === "tag") {
         const tags = this.collectTags();
         const search = valueQuery ? (0, import_obsidian13.prepareFuzzySearch)(valueQuery) : null;
         for (const tag of tags) {
@@ -4124,19 +4118,6 @@ var FilterSuggest = class extends import_obsidian13.AbstractInputSuggest {
             });
           }
         }
-      } else if (opLower === "id") {
-        const ids = this.collectIds();
-        const search = valueQuery ? (0, import_obsidian13.prepareFuzzySearch)(valueQuery) : null;
-        for (const id of ids) {
-          if (!search || search(id)) {
-            suggestions.push({
-              text: `${negation}${operator}:${id}`,
-              displayText: id,
-              description: `Document ID`,
-              type: "value"
-            });
-          }
-        }
       } else if (opLower === "file") {
         const files = this.collectFileNames();
         const search = valueQuery ? (0, import_obsidian13.prepareFuzzySearch)(valueQuery) : null;
@@ -4156,13 +4137,17 @@ var FilterSuggest = class extends import_obsidian13.AbstractInputSuggest {
         for (const section of sections) {
           if (!search || search(section)) {
             suggestions.push({
-              text: `${negation}${operator}:"${section}"`,
+              text: `${negation}section:(${section})`,
               displayText: section,
               description: `Section`,
               type: "value"
             });
           }
         }
+      } else if (opLower === "line" || opLower === "block") {
+      } else if (opLower === "content") {
+      } else if (opLower === "task" || opLower === "task-todo" || opLower === "task-done") {
+      } else if (opLower === "match-case" || opLower === "ignore-case") {
       }
     } else {
       const search = currentToken ? (0, import_obsidian13.prepareFuzzySearch)(currentToken) : null;
@@ -4179,7 +4164,7 @@ var FilterSuggest = class extends import_obsidian13.AbstractInputSuggest {
             suggestions.push({
               text: doc.file.basename,
               displayText: doc.file.basename,
-              description: ((_b = doc.file.parent) == null ? void 0 : _b.path) || "",
+              description: ((_c = doc.file.parent) == null ? void 0 : _c.path) || "",
               type: "value"
             });
           }
@@ -4209,7 +4194,10 @@ var FilterSuggest = class extends import_obsidian13.AbstractInputSuggest {
     const tokenStart = beforeCursor.lastIndexOf(currentToken);
     const newValue = currentValue.substring(0, tokenStart) + suggestion.text + (suggestion.type === "operator" && !suggestion.text.endsWith(":") ? " " : "") + currentValue.substring(cursorPos);
     this.setValue(newValue);
-    this.onFilterChange(newValue);
+    const needsMoreInput = suggestion.text.endsWith(":") || suggestion.text.endsWith("()");
+    if (suggestion.type === "value" || !needsMoreInput) {
+      this.onFilterChange(newValue);
+    }
     this.close();
   }
   // Helper methods to collect suggestions from documents
@@ -4235,15 +4223,6 @@ var FilterSuggest = class extends import_obsidian13.AbstractInputSuggest {
       }
     }
     return Array.from(paths).sort();
-  }
-  collectIds() {
-    const ids = [];
-    for (const doc of this.getDocuments()) {
-      if (doc.id) {
-        ids.push(doc.id);
-      }
-    }
-    return ids.sort();
   }
   collectFileNames() {
     const names = [];
@@ -4272,6 +4251,12 @@ var CurationPanelView = class extends import_obsidian14.ItemView {
     super(leaf);
     this.currentIndex = 0;
     this.filterQuery = "";
+    this.filterInputEl = null;
+    this.filterSuggest = null;
+    this.filterContainerEl = null;
+    this.contentEl = null;
+    this.clearBtnEl = null;
+    this.filterCountEl = null;
     this.store = store;
     this.metadataService = metadataService;
     this.i18n = i18n;
@@ -4288,7 +4273,11 @@ var CurationPanelView = class extends import_obsidian14.ItemView {
     return "check-square";
   }
   async onOpen() {
-    this.containerEl.children[1].addClass("docs-curation-panel");
+    const container = this.containerEl.children[1];
+    container.addClass("docs-curation-panel");
+    this.filterContainerEl = container.createDiv({ cls: "docs-filter-container" });
+    this.createFilterInput();
+    this.contentEl = container.createDiv({ cls: "docs-content" });
     this.registerEvent(
       // @ts-ignore
       this.store.on("state-changed", () => this.render())
@@ -4307,6 +4296,85 @@ var CurationPanelView = class extends import_obsidian14.ItemView {
     this.registerDomEvent(document, "keydown", this.onKey.bind(this));
     this.syncWithActiveFile();
     this.render();
+  }
+  createFilterInput() {
+    if (!this.filterContainerEl)
+      return;
+    this.filterInputEl = this.filterContainerEl.createEl("input", {
+      cls: "docs-filter-input",
+      attr: {
+        type: "text",
+        placeholder: "path: file: tag: -exclude OR /regex/",
+        spellcheck: "false"
+      }
+    });
+    this.filterSuggest = new FilterSuggest(
+      this.app,
+      this.filterInputEl,
+      () => this.store.getState().documents.filter((d) => this.isTrackedFile(d.file.path)),
+      (value) => {
+        this.filterQuery = value;
+        this.currentIndex = 0;
+        this.render();
+      }
+    );
+    let debounceTimer;
+    this.filterInputEl.oninput = () => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        var _a;
+        this.filterQuery = ((_a = this.filterInputEl) == null ? void 0 : _a.value) || "";
+        this.currentIndex = 0;
+        this.render();
+      }, 300);
+    };
+    this.filterInputEl.onkeydown = (e) => {
+      var _a;
+      if (e.key === "Enter" && !e.isComposing) {
+        e.preventDefault();
+        clearTimeout(debounceTimer);
+        this.filterQuery = ((_a = this.filterInputEl) == null ? void 0 : _a.value) || "";
+        this.currentIndex = 0;
+        this.render();
+      }
+      if (e.key === "Escape") {
+        clearTimeout(debounceTimer);
+        if (this.filterInputEl) {
+          this.filterInputEl.value = this.filterQuery;
+          this.filterInputEl.blur();
+        }
+      }
+    };
+  }
+  updateFilterClearButton() {
+    var _a, _b;
+    if (!this.filterContainerEl)
+      return;
+    (_a = this.clearBtnEl) == null ? void 0 : _a.remove();
+    (_b = this.filterCountEl) == null ? void 0 : _b.remove();
+    this.clearBtnEl = null;
+    this.filterCountEl = null;
+    if (this.filterQuery) {
+      this.clearBtnEl = this.filterContainerEl.createEl("button", {
+        cls: "docs-filter-clear",
+        attr: { title: "Limpar filtro" }
+      });
+      (0, import_obsidian14.setIcon)(this.clearBtnEl, "x");
+      this.clearBtnEl.onclick = (e) => {
+        e.stopPropagation();
+        this.filterQuery = "";
+        if (this.filterInputEl)
+          this.filterInputEl.value = "";
+        this.currentIndex = 0;
+        this.render();
+      };
+      const queue = this.getQueue();
+      const totalUnfiltered = this.store.getReviewQueue().filter((f) => this.isTrackedFile(f.path)).length;
+      this.filterCountEl = this.filterContainerEl.createDiv({
+        text: `${queue.length} / ${totalUnfiltered}`,
+        cls: "docs-filter-count"
+      });
+    }
   }
   updateConfig(config) {
     this.config = config;
@@ -4329,7 +4397,9 @@ var CurationPanelView = class extends import_obsidian14.ItemView {
   }
   /**
    * Parse and apply filter query using Obsidian's native search API
-   * Supports: path:, file:, tag:, status:, -prefix for exclusion, OR
+   * Supports native Graph View operators: path:, file:, tag:, content:,
+   * line:(), block:(), section:(), task:, task-todo:, task-done:,
+   * match-case:, ignore-case:, -prefix for exclusion, OR, /regex/
    * Uses prepareSimpleSearch for efficient text matching
    */
   matchesFilter(file, query) {
@@ -4350,45 +4420,70 @@ var CurationPanelView = class extends import_obsidian14.ItemView {
     return false;
   }
   parseFilterTokens(query) {
+    var _a, _b, _c;
     const tokens = [];
-    const regex = /(-?)(?:(path|file|tag|status|id|section|line):)?(?:"([^"]+)"|(\S+))/gi;
+    const regex = /(-?)(?:(path|file|tag|content|line|block|section|task|task-todo|task-done|match-case|ignore-case):)?(?:\(([^)]+)\)|"([^"]+)"|\/([^\/]+)\/|(\S+))/gi;
     let match;
+    let caseSensitive;
     while ((match = regex.exec(query)) !== null) {
       const exclude = match[1] === "-";
       const type = (match[2] || "text").toLowerCase();
-      const value = match[3] || match[4];
-      tokens.push({ type, value, exclude });
+      const parenValue = match[3];
+      const quotedValue = match[4];
+      const regexValue = match[5];
+      const simpleValue = match[6];
+      if (type === "match-case") {
+        caseSensitive = true;
+        continue;
+      }
+      if (type === "ignore-case") {
+        caseSensitive = false;
+        continue;
+      }
+      const value = (_c = (_b = (_a = parenValue != null ? parenValue : quotedValue) != null ? _a : regexValue) != null ? _b : simpleValue) != null ? _c : "";
+      const isRegex = regexValue !== void 0;
+      tokens.push({ type, value, exclude, isRegex, caseSensitive });
     }
     return tokens;
   }
   matchToken(file, doc, token) {
     var _a;
-    const { type, value, exclude } = token;
+    const { type, value, exclude, isRegex, caseSensitive } = token;
     let matches = false;
-    const search = (0, import_obsidian14.prepareSimpleSearch)(value);
+    const createMatcher = (text) => {
+      if (isRegex) {
+        try {
+          const flags = caseSensitive === false ? "i" : "";
+          const regex = new RegExp(value, flags);
+          return regex.test(text);
+        } catch (e) {
+          return false;
+        }
+      } else {
+        const search = (0, import_obsidian14.prepareSimpleSearch)(value);
+        return search(text) !== null;
+      }
+    };
     switch (type) {
       case "path":
-        matches = search(file.path) !== null;
+        matches = createMatcher(file.path);
         break;
       case "file":
-        matches = search(file.name) !== null;
+        matches = createMatcher(file.name);
         break;
       case "tag":
         if ((_a = doc == null ? void 0 : doc.frontmatter) == null ? void 0 : _a.tags) {
           const tags = Array.isArray(doc.frontmatter.tags) ? doc.frontmatter.tags : [doc.frontmatter.tags];
-          matches = tags.some((t) => search(String(t)) !== null);
+          matches = tags.some((t) => createMatcher(String(t)));
         }
         break;
-      case "status":
-        matches = ((doc == null ? void 0 : doc.status) || "none").toLowerCase() === value.toLowerCase();
-        break;
-      case "id":
-        matches = (doc == null ? void 0 : doc.id) ? search(doc.id) !== null : false;
+      case "content":
+        matches = false;
         break;
       case "section":
         if (doc == null ? void 0 : doc.sections) {
           for (const title of doc.sections.keys()) {
-            if (search(title) !== null) {
+            if (createMatcher(title)) {
               matches = true;
               break;
             }
@@ -4396,11 +4491,17 @@ var CurationPanelView = class extends import_obsidian14.ItemView {
         }
         break;
       case "line":
+      case "block":
+        matches = false;
+        break;
+      case "task":
+      case "task-todo":
+      case "task-done":
         matches = false;
         break;
       case "text":
       default:
-        matches = search(file.path) !== null || search(file.name) !== null || ((doc == null ? void 0 : doc.id) ? search(doc.id) !== null : false);
+        matches = createMatcher(file.path) || createMatcher(file.name);
         break;
     }
     return exclude ? !matches : matches;
@@ -4427,8 +4528,14 @@ var CurationPanelView = class extends import_obsidian14.ItemView {
     }
   }
   render() {
-    const el = this.containerEl.children[1];
+    if (!this.contentEl)
+      return;
+    const el = this.contentEl;
     el.empty();
+    if (this.filterInputEl && document.activeElement !== this.filterInputEl) {
+      this.filterInputEl.value = this.filterQuery;
+    }
+    this.updateFilterClearButton();
     if (this.store.isLoading()) {
       el.createDiv({ text: "Loading...", cls: "pane-empty" });
       return;
@@ -4473,52 +4580,6 @@ var CurationPanelView = class extends import_obsidian14.ItemView {
     (0, import_obsidian14.setIcon)(lastBtn, "chevrons-right");
     lastBtn.disabled = this.currentIndex >= queue.length - 1;
     lastBtn.onclick = () => this.goTo(queue.length - 1);
-    const filterContainer = el.createDiv({ cls: "docs-filter-container" });
-    const filterInput = filterContainer.createEl("input", {
-      cls: "docs-filter-input",
-      attr: {
-        type: "text",
-        placeholder: "path: file: tag: status: -exclude OR",
-        value: this.filterQuery,
-        spellcheck: "false"
-      }
-    });
-    new FilterSuggest(
-      this.app,
-      filterInput,
-      () => this.store.getState().documents.filter((d) => this.isTrackedFile(d.file.path)),
-      (value) => {
-        this.filterQuery = value;
-        this.currentIndex = 0;
-        this.render();
-      }
-    );
-    if (this.filterQuery) {
-      const clearBtn = filterContainer.createEl("button", { cls: "docs-filter-clear", attr: { title: "Limpar filtro" } });
-      (0, import_obsidian14.setIcon)(clearBtn, "x");
-      clearBtn.onclick = (e) => {
-        e.stopPropagation();
-        this.filterQuery = "";
-        this.currentIndex = 0;
-        this.render();
-      };
-    }
-    let debounceTimer;
-    filterInput.oninput = () => {
-      clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(() => {
-        this.filterQuery = filterInput.value;
-        this.currentIndex = 0;
-        this.render();
-      }, 400);
-    };
-    if (this.filterQuery) {
-      const totalUnfiltered = this.store.getReviewQueue().filter((f) => this.isTrackedFile(f.path)).length;
-      filterContainer.createDiv({
-        text: `${queue.length} / ${totalUnfiltered}`,
-        cls: "docs-filter-count"
-      });
-    }
     const header = el.createDiv({ cls: "nav-header" });
     const statsRow = header.createDiv({ cls: "docs-stats-row" });
     const pct = (n) => total > 0 ? Math.round(n / total * 100) : 0;

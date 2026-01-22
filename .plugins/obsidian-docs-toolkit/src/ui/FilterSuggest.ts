@@ -19,20 +19,23 @@ export class FilterSuggest extends AbstractInputSuggest<FilterSuggestion> {
   private getDocuments: () => Document[];
   private onFilterChange: (value: string) => void;
 
-  // Available operators
+  // Available operators (100% native Obsidian Graph View)
   private operators: FilterSuggestion[] = [
     { text: "path:", displayText: "path:", description: "Search in file path", type: "operator" },
     { text: "file:", displayText: "file:", description: "Search in file name", type: "operator" },
     { text: "tag:", displayText: "tag:", description: "Search by tag", type: "operator" },
-    { text: "status:", displayText: "status:", description: "Filter by status", type: "operator" },
-    { text: "id:", displayText: "id:", description: "Search by document ID", type: "operator" },
-    { text: "section:", displayText: "section:", description: "Search in section titles", type: "operator" },
+    { text: "content:", displayText: "content:", description: "Search in file content", type: "operator" },
+    { text: "line:()", displayText: "line:()", description: "Search within a line", type: "operator" },
+    { text: "block:()", displayText: "block:()", description: "Search within a block", type: "operator" },
+    { text: "section:()", displayText: "section:()", description: "Search within a section", type: "operator" },
+    { text: "task:", displayText: "task:", description: "Search all tasks", type: "operator" },
+    { text: "task-todo:", displayText: "task-todo:", description: "Search incomplete tasks", type: "operator" },
+    { text: "task-done:", displayText: "task-done:", description: "Search completed tasks", type: "operator" },
+    { text: "match-case:", displayText: "match-case:", description: "Case sensitive search", type: "operator" },
+    { text: "ignore-case:", displayText: "ignore-case:", description: "Case insensitive search", type: "operator" },
     { text: "-", displayText: "-", description: "Exclude (negate)", type: "operator" },
     { text: "OR", displayText: "OR", description: "Match either condition", type: "operator" },
   ];
-
-  // Status values
-  private statuses = ["approved", "rejected", "review", "none"];
 
   constructor(
     app: App,
@@ -55,27 +58,16 @@ export class FilterSuggest extends AbstractInputSuggest<FilterSuggestion> {
     const tokens = beforeCursor.split(/\s+/);
     const currentToken = tokens[tokens.length - 1] || "";
 
-    // Check if we're typing after an operator
-    const operatorMatch = currentToken.match(/^(-?)(path|file|tag|status|id|section):(.*)$/i);
+    // Check if we're typing after an operator (supports native Obsidian operators)
+    const operatorMatch = currentToken.match(/^(-?)(path|file|tag|content|line|block|section|task|task-todo|task-done|match-case|ignore-case):(?:\(([^)]*)\)|(.*))?$/i);
 
     if (operatorMatch) {
       // We have an operator, suggest values
-      const [, negation, operator, valueQuery] = operatorMatch;
+      const [, negation, operator, parenValue, simpleValue] = operatorMatch;
+      const valueQuery = parenValue ?? simpleValue ?? "";
       const opLower = operator.toLowerCase();
 
-      if (opLower === "status") {
-        // Suggest status values
-        for (const status of this.statuses) {
-          if (!valueQuery || status.toLowerCase().startsWith(valueQuery.toLowerCase())) {
-            suggestions.push({
-              text: `${negation}${operator}:${status}`,
-              displayText: status,
-              description: `Status: ${status}`,
-              type: "value"
-            });
-          }
-        }
-      } else if (opLower === "tag") {
+      if (opLower === "tag") {
         // Suggest tags from documents
         const tags = this.collectTags();
         const search = valueQuery ? prepareFuzzySearch(valueQuery) : null;
@@ -103,20 +95,6 @@ export class FilterSuggest extends AbstractInputSuggest<FilterSuggestion> {
             });
           }
         }
-      } else if (opLower === "id") {
-        // Suggest document IDs
-        const ids = this.collectIds();
-        const search = valueQuery ? prepareFuzzySearch(valueQuery) : null;
-        for (const id of ids) {
-          if (!search || search(id)) {
-            suggestions.push({
-              text: `${negation}${operator}:${id}`,
-              displayText: id,
-              description: `Document ID`,
-              type: "value"
-            });
-          }
-        }
       } else if (opLower === "file") {
         // Suggest file names
         const files = this.collectFileNames();
@@ -132,19 +110,28 @@ export class FilterSuggest extends AbstractInputSuggest<FilterSuggestion> {
           }
         }
       } else if (opLower === "section") {
-        // Suggest section titles
+        // Suggest section titles (using parentheses syntax)
         const sections = this.collectSections();
         const search = valueQuery ? prepareFuzzySearch(valueQuery) : null;
         for (const section of sections) {
           if (!search || search(section)) {
             suggestions.push({
-              text: `${negation}${operator}:"${section}"`,
+              text: `${negation}section:(${section})`,
               displayText: section,
               description: `Section`,
               type: "value"
             });
           }
         }
+      } else if (opLower === "line" || opLower === "block") {
+        // line:() and block:() - no value suggestions, just inform user
+        // These operators search within lines/blocks, values are entered manually
+      } else if (opLower === "content") {
+        // content: - no specific suggestions, user types free text
+      } else if (opLower === "task" || opLower === "task-todo" || opLower === "task-done") {
+        // task operators - no value suggestions needed
+      } else if (opLower === "match-case" || opLower === "ignore-case") {
+        // case sensitivity modifiers - no value suggestions
       }
     } else {
       // Suggest operators
@@ -210,7 +197,14 @@ export class FilterSuggest extends AbstractInputSuggest<FilterSuggestion> {
       currentValue.substring(cursorPos);
 
     this.setValue(newValue);
-    this.onFilterChange(newValue);
+
+    // Only trigger filter change for complete values, not for operators waiting for input
+    // This prevents re-render from stealing focus while typing
+    const needsMoreInput = suggestion.text.endsWith(":") || suggestion.text.endsWith("()");
+    if (suggestion.type === "value" || !needsMoreInput) {
+      this.onFilterChange(newValue);
+    }
+
     this.close();
   }
 
@@ -240,16 +234,6 @@ export class FilterSuggest extends AbstractInputSuggest<FilterSuggestion> {
       }
     }
     return Array.from(paths).sort();
-  }
-
-  private collectIds(): string[] {
-    const ids: string[] = [];
-    for (const doc of this.getDocuments()) {
-      if (doc.id) {
-        ids.push(doc.id);
-      }
-    }
-    return ids.sort();
   }
 
   private collectFileNames(): string[] {
