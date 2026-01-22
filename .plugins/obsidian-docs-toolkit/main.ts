@@ -297,6 +297,53 @@ export default class DocsToolkitPlugin extends Plugin {
         this.onConfigChanged(newConfig);
       }
     });
+
+    // Validate Current File (debug command)
+    this.addCommand({
+      id: "validate-current-file",
+      name: "Validate Current File",
+      callback: async () => {
+        const file = this.app.workspace.getActiveFile();
+        if (!file) {
+          new Notice("No active file");
+          return;
+        }
+
+        if (!file.name.endsWith(".md")) {
+          new Notice("Not a markdown file");
+          return;
+        }
+
+        // Force revalidation
+        await this.store.updateDocument(file);
+        const issues = this.store.getIssuesForFile(file.path);
+        const doc = this.store.getDocument(file.path);
+
+        // Show results
+        const docType = doc?.detectedType || "generic";
+        const tracked = this.isTrackedFile(file.path);
+
+        if (!tracked) {
+          new Notice(`File is EXCLUDED from validation (check paths.exclude)`);
+          return;
+        }
+
+        if (issues.length === 0) {
+          new Notice(`✓ ${file.name}\nType: ${docType}\nNo issues found`);
+        } else {
+          const errors = issues.filter(i => i.severity === "error").length;
+          const warnings = issues.filter(i => i.severity === "warning").length;
+          new Notice(`✗ ${file.name}\nType: ${docType}\n${errors} errors, ${warnings} warnings`);
+
+          // Log details to console
+          console.log(`[Docs Toolkit] Validation results for ${file.path}:`);
+          console.log(`  Document type: ${docType}`);
+          issues.forEach(i => {
+            console.log(`  [${i.severity.toUpperCase()}] ${i.messageKey}`, i.messageParams);
+          });
+        }
+      }
+    });
   }
 
   /**

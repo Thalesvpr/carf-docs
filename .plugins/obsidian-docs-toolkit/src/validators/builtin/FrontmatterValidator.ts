@@ -3,6 +3,7 @@ import { Issue } from "../../core/Issue";
 import { Severity } from "../../core/Severity";
 import { LocalValidator, ValidatorContext, getConfiguredSeverity } from "../base/Validator";
 import { FieldConfig } from "../../config/ConfigSchema";
+import { FixAction, createAutoFix, createPickFix, createScaffoldFix } from "../../core/FixAction";
 
 /**
  * Validates frontmatter fields based on document type configuration
@@ -16,17 +17,53 @@ export class FrontmatterValidator extends LocalValidator {
   async validate(doc: Document, ctx: ValidatorContext): Promise<Issue[]> {
     const issues: Issue[] = [];
     const typeConfig = ctx.documentTypeConfig;
+    const severity = getConfiguredSeverity(this.id, ctx.config, this.defaultSeverity);
 
-    // Skip if no document type config
+    // If no document type config, still validate basic frontmatter existence
     if (!typeConfig?.frontmatter) {
+      // Basic validation: frontmatter should exist for all .md files
+      if (!doc.hasFrontmatter) {
+        const basicScaffold = "---\nstatus: review\nupdated: " + new Date().toISOString().split("T")[0] + "\n---";
+        const fixes: FixAction[] = [
+          createScaffoldFix(
+            "insert-basic-scaffold",
+            "Insert frontmatter",
+            basicScaffold,
+            "Insert basic frontmatter with status and updated fields"
+          )
+        ];
+
+        issues.push(new Issue(
+          doc.file,
+          this.id,
+          severity,
+          "validators.frontmatter.missing",
+          {},
+          1,
+          null,
+          "validators.frontmatter.missing_suggestion",
+          {},
+          fixes
+        ));
+      }
       return issues;
     }
 
-    const severity = getConfiguredSeverity(this.id, ctx.config, this.defaultSeverity);
     const fmConfig = typeConfig.frontmatter;
 
     // Check if frontmatter exists
     if (!doc.hasFrontmatter) {
+      // Build scaffold from required fields
+      const scaffold = this.buildScaffold(fmConfig.required || [], fmConfig.fields || {});
+      const fixes: FixAction[] = [
+        createScaffoldFix(
+          "insert-scaffold",
+          "Insert frontmatter",
+          scaffold,
+          "Insert frontmatter scaffold with required fields"
+        )
+      ];
+
       issues.push(new Issue(
         doc.file,
         this.id,
@@ -35,7 +72,9 @@ export class FrontmatterValidator extends LocalValidator {
         {},
         1,
         null,
-        "validators.frontmatter.missing_suggestion"
+        "validators.frontmatter.missing_suggestion",
+        {},
+        fixes
       ));
       return issues;
     }
@@ -44,6 +83,10 @@ export class FrontmatterValidator extends LocalValidator {
     if (fmConfig.required) {
       for (const field of fmConfig.required) {
         if (!doc.hasFrontmatterField(field)) {
+          // Build fix based on field config
+          const fieldConfig = fmConfig.fields?.[field];
+          const fixes = this.buildFieldFixes(field, fieldConfig);
+
           issues.push(new Issue(
             doc.file,
             this.id,
@@ -53,7 +96,8 @@ export class FrontmatterValidator extends LocalValidator {
             1,
             null,
             "validators.frontmatter.required_field_suggestion",
-            { field }
+            { field },
+            fixes
           ));
         }
       }
@@ -124,13 +168,28 @@ export class FrontmatterValidator extends LocalValidator {
       const normalizedValue = value.toLowerCase();
       const normalizedEnum = config.enum.map(e => e.toLowerCase());
       if (!normalizedEnum.includes(normalizedValue)) {
+        // Fix: pick from valid enum values
+        const fixes: FixAction[] = [
+          createPickFix(
+            `set-${field}`,
+            `Set ${field}`,
+            field,
+            config.enum,
+            `Set ${field} to a valid value`
+          )
+        ];
+
         issues.push(new Issue(
           doc.file,
           this.id,
           severity,
           "validators.frontmatter.invalid_enum",
           { field, value, allowed: config.enum.join(", ") },
-          1
+          1,
+          null,
+          null,
+          {},
+          fixes
         ));
       }
     }
@@ -250,5 +309,82 @@ export class FrontmatterValidator extends LocalValidator {
     if (Array.isArray(value)) return "array";
     if (value === null) return "null";
     return typeof value;
+  }
+
+  /**
+   * Build frontmatter scaffold from required fields
+   */
+  private buildScaffold(
+    required: string[],
+    fields: Record<string, FieldConfig>
+  ): string {
+    const lines = ["---"];
+
+    for (const field of required) {
+      const config = fields[field];
+      let defaultValue = "";
+
+      if (config?.enum && config.enum.length > 0) {
+        defaultValue = config.enum[0];
+      } else if (config?.type === "array") {
+        defaultValue = "[]";
+      } else if (config?.type === "number") {
+        defaultValue = "0";
+      } else if (config?.type === "boolean") {
+        defaultValue = "false";
+      } else if (field === "updated" || field === "created") {
+        // Auto-fill date fields
+        defaultValue = new Date().toISOString().split("T")[0];
+      }
+
+      lines.push(`${field}: ${defaultValue}`);
+    }
+
+    lines.push("---");
+    return lines.join("\n");
+  }
+
+  /**
+   * Format a value for YAML
+   */
+  private formatYamlValue(value: unknown): string {
+    if (typeof value === "string") return value;
+    if (typeof value === "number") return String(value);
+    if (typeof value === "boolean") return String(value);
+    if (Array.isArray(value)) {
+      if (value.length === 0) return "[]";
+      return `[${value.map(v => this.formatYamlValue(v)).join(", ")}]`;
+    }
+    return "";
+  }
+
+  /**
+   * Build fix actions for a missing field
+   */
+  private buildFieldFixes(field: string, config?: FieldConfig): FixAction[] {
+    const fixes: FixAction[] = [];
+
+    if (config?.enum && config.enum.length > 0) {
+      // Pick from enum values
+      fixes.push(createPickFix(
+        `add-${field}`,
+        `Add ${field}`,
+        field,
+        config.enum,
+        `Add ${field} field with selected value`
+      ));
+    } else if (field === "updated" || field === "created") {
+      // Auto-fill date fields with today's date
+      const today = new Date().toISOString().split("T")[0];
+      fixes.push(createAutoFix(
+        `add-${field}`,
+        `Set to today`,
+        field,
+        today,
+        `Set ${field} to today's date`
+      ));
+    }
+
+    return fixes;
   }
 }

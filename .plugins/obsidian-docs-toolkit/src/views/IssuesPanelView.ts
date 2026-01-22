@@ -1,27 +1,34 @@
-import { ItemView, WorkspaceLeaf, Events } from "obsidian";
+import { ItemView, WorkspaceLeaf, Events, App, TFile, Notice } from "obsidian";
 import { Issue } from "../core/Issue";
 import { Severity } from "../core/Severity";
 import { I18nService } from "../i18n/I18nService";
+import { FixService } from "../services/FixService";
+import { FixAction, isAutoFix, isPickFix, isPromptFix } from "../core/FixAction";
+import { showPickModal, showPromptModal } from "./modals";
 
 export const ISSUES_PANEL_VIEW_TYPE = "docs-toolkit-issues";
 
 export interface IssuesStore extends Events {
   getState(): { issues: Issue[] };
+  revalidateFile(path: string): Promise<void>;
 }
 
 /**
  * Terminal-style Problems panel
  * Shows all validation issues in a console log format
+ * Includes Fix buttons for actionable issues
  */
 export class IssuesPanelView extends ItemView {
   private store: IssuesStore;
   private i18n: I18nService;
+  private fixService: FixService;
   private filter: "all" | "error" | "warning" = "all";
 
   constructor(leaf: WorkspaceLeaf, store: IssuesStore, i18n: I18nService) {
     super(leaf);
     this.store = store;
     this.i18n = i18n;
+    this.fixService = new FixService(this.app);
   }
 
   getViewType(): string { return ISSUES_PANEL_VIEW_TYPE; }
@@ -127,6 +134,22 @@ export class IssuesPanelView extends ItemView {
         const msg = this.i18n.t(issue.messageKey, issue.messageParams as Record<string, unknown>);
         line.createSpan({ text: ` ${msg}`, cls: "problems-msg" });
 
+        // Fix buttons
+        if (issue.fixes && issue.fixes.length > 0) {
+          const fixContainer = line.createSpan({ cls: "problems-fixes" });
+
+          for (const fix of issue.fixes) {
+            const fixBtn = fixContainer.createEl("button", {
+              text: fix.label,
+              cls: `problems-fix-btn problems-fix-${fix.kind}`
+            });
+            fixBtn.onclick = async (e) => {
+              e.stopPropagation();
+              await this.applyFix(issue.file, fix);
+            };
+          }
+        }
+
         // Click to navigate
         line.onclick = async () => {
           const leaf = this.app.workspace.getLeaf(false);
@@ -145,5 +168,73 @@ export class IssuesPanelView extends ItemView {
     // Summary at bottom
     const summary = terminal.createDiv({ cls: "problems-summary" });
     summary.createSpan({ text: `\n--- ${errors} errors, ${warnings} warnings ---`, cls: "problems-summary-text" });
+  }
+
+  /**
+   * Apply a fix action to a file
+   */
+  private async applyFix(file: TFile, fix: FixAction): Promise<void> {
+    try {
+      if (isAutoFix(fix)) {
+        // Auto fixes apply directly
+        const result = await this.fixService.applyFix({ file, action: fix });
+        if (result.success) {
+          new Notice(`Fixed: ${result.message}`);
+          if (result.shouldRevalidate) {
+            await this.store.revalidateFile(file.path);
+          }
+        } else {
+          new Notice(`Fix failed: ${result.message}`);
+        }
+      } else if (isPickFix(fix)) {
+        // Pick fixes show a selection modal (single select)
+        const selected = await showPickModal(
+          this.app,
+          fix.label,
+          fix.options || [],
+          false // single select
+        );
+        if (selected !== null) {
+          const result = await this.fixService.applyFix({
+            file,
+            action: fix,
+            selectedOption: selected as string
+          });
+          if (result.success) {
+            new Notice(`Fixed: ${result.message}`);
+            if (result.shouldRevalidate) {
+              await this.store.revalidateFile(file.path);
+            }
+          } else {
+            new Notice(`Fix failed: ${result.message}`);
+          }
+        }
+      } else if (isPromptFix(fix)) {
+        // Prompt fixes show an input modal
+        const value = await showPromptModal(
+          this.app,
+          fix.label,
+          fix.promptHint || "Enter value",
+          "" // no default value
+        );
+        if (value !== null) {
+          const result = await this.fixService.applyFix({
+            file,
+            action: fix,
+            promptValue: value
+          });
+          if (result.success) {
+            new Notice(`Fixed: ${result.message}`);
+            if (result.shouldRevalidate) {
+              await this.store.revalidateFile(file.path);
+            }
+          } else {
+            new Notice(`Fix failed: ${result.message}`);
+          }
+        }
+      }
+    } catch (error) {
+      new Notice(`Error applying fix: ${(error as Error).message}`);
+    }
   }
 }

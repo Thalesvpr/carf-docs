@@ -6,6 +6,13 @@ import { LocalValidator, ValidatorContext, getConfiguredSeverity } from "../base
 
 /**
  * Validates that internal links resolve to existing files
+ *
+ * Link types handled:
+ * - External (http://, https://) → skipped
+ * - Anchor-only (#section) → skipped
+ * - Route links (/path/to/page) → skipped (portal routes, not vault files)
+ * - Relative links (./file, ../file) → validated
+ * - Wiki links ([[file]]) → validated via metadataCache
  */
 export class LinksValidator extends LocalValidator {
   readonly id = "broken-links";
@@ -18,13 +25,22 @@ export class LinksValidator extends LocalValidator {
     const severity = getConfiguredSeverity(this.id, ctx.config, this.defaultSeverity);
 
     for (const link of doc.links) {
-      // Skip external links
-      if (link.target.startsWith("http://") || link.target.startsWith("https://")) {
+      // Skip external links (including protocol-relative URLs)
+      if (link.target.startsWith("http://") ||
+          link.target.startsWith("https://") ||
+          link.target.startsWith("//")) {
         continue;
       }
 
       // Skip anchor-only links
       if (link.target.startsWith("#")) {
+        continue;
+      }
+
+      // Skip route links (portal routes starting with "/")
+      // These are web routes like /manuais/geoweb/, /guia/aprovar-unidade/
+      // They are NOT vault file paths, so we cannot validate them
+      if (this.isRouteLink(link.target)) {
         continue;
       }
 
@@ -47,6 +63,34 @@ export class LinksValidator extends LocalValidator {
     }
 
     return issues;
+  }
+
+  /**
+   * Check if a link is a portal route (not a vault file path)
+   *
+   * Route links start with "/" and are web routes for the portal,
+   * not relative file paths within the vault.
+   *
+   * Examples:
+   * - /manuais/geoweb/ → route link (skip)
+   * - /guia/aprovar-unidade/ → route link (skip)
+   * - //cdn.site.com/x → protocol-relative URL (NOT a route, treat as external)
+   * - ./README.md → relative link (validate)
+   * - ../file.md → relative link (validate)
+   */
+  private isRouteLink(target: string): boolean {
+    // Protocol-relative URLs (//...) are external, not portal routes
+    if (target.startsWith("//")) {
+      return false;
+    }
+
+    // Links starting with "/" (but not "//") are portal routes, not vault paths
+    // Vault relative links use "./" or "../" or just the filename
+    if (target.startsWith("/")) {
+      return true;
+    }
+
+    return false;
   }
 
   /**
@@ -86,13 +130,9 @@ export class LinksValidator extends LocalValidator {
 
   /**
    * Resolve a relative path from a source file
+   * Note: Route links (starting with "/") are filtered out before this method is called
    */
   private resolveRelativePath(path: string, sourceFile: TFile): string {
-    if (path.startsWith("/")) {
-      // Absolute path from vault root
-      return path.slice(1);
-    }
-
     // Handle url-encoded paths
     const decodedPath = decodeURIComponent(path);
 
@@ -117,7 +157,7 @@ export class LinksValidator extends LocalValidator {
       return [...finalParts, ...relativeParts].join("/");
     }
 
-    // Assume it's a path relative to source directory
+    // Assume it's a path relative to source directory (wiki-style link)
     return sourceDir ? `${sourceDir}/${decodedPath}` : decodedPath;
   }
 }

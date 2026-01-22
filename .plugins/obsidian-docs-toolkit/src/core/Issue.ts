@@ -1,5 +1,6 @@
 import { TFile } from "obsidian";
 import { Severity, SEVERITY_ORDER } from "./Severity";
+import { FixAction } from "./FixAction";
 
 /**
  * Represents a validation issue found in a document
@@ -14,6 +15,7 @@ export class Issue {
   column: number | null;
   suggestionKey: string | null;
   suggestionParams: Record<string, unknown>;
+  fixes: FixAction[];
 
   constructor(
     file: TFile,
@@ -24,7 +26,8 @@ export class Issue {
     line: number | null = null,
     column: number | null = null,
     suggestionKey: string | null = null,
-    suggestionParams: Record<string, unknown> = {}
+    suggestionParams: Record<string, unknown> = {},
+    fixes: FixAction[] = []
   ) {
     this.file = file;
     this.validator = validator;
@@ -35,6 +38,7 @@ export class Issue {
     this.column = column;
     this.suggestionKey = suggestionKey;
     this.suggestionParams = suggestionParams;
+    this.fixes = fixes;
   }
 
   /**
@@ -47,7 +51,8 @@ export class Issue {
     messageParams?: Record<string, unknown>,
     line?: number,
     suggestionKey?: string,
-    suggestionParams?: Record<string, unknown>
+    suggestionParams?: Record<string, unknown>,
+    fixes?: FixAction[]
   ): Issue {
     return new Issue(
       file,
@@ -58,7 +63,8 @@ export class Issue {
       line ?? null,
       null,
       suggestionKey ?? null,
-      suggestionParams || {}
+      suggestionParams || {},
+      fixes || []
     );
   }
 
@@ -72,7 +78,8 @@ export class Issue {
     messageParams?: Record<string, unknown>,
     line?: number,
     suggestionKey?: string,
-    suggestionParams?: Record<string, unknown>
+    suggestionParams?: Record<string, unknown>,
+    fixes?: FixAction[]
   ): Issue {
     return new Issue(
       file,
@@ -83,7 +90,8 @@ export class Issue {
       line ?? null,
       null,
       suggestionKey ?? null,
-      suggestionParams || {}
+      suggestionParams || {},
+      fixes || []
     );
   }
 
@@ -97,7 +105,8 @@ export class Issue {
     messageParams?: Record<string, unknown>,
     line?: number,
     suggestionKey?: string,
-    suggestionParams?: Record<string, unknown>
+    suggestionParams?: Record<string, unknown>,
+    fixes?: FixAction[]
   ): Issue {
     return new Issue(
       file,
@@ -108,7 +117,8 @@ export class Issue {
       line ?? null,
       null,
       suggestionKey ?? null,
-      suggestionParams || {}
+      suggestionParams || {},
+      fixes || []
     );
   }
 

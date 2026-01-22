@@ -40,12 +40,12 @@ Decisoes arquiteturais que fundamentam a implementacao:
 
 | ADR | Decisao |
 |:----|:--------|
-| [ADR-024](../../CENTRAL/ARCHITECTURE/ADRs/ADR-024-keycloakify-adoption.md) | Keycloakify para temas React |
-| [ADR-025](../../CENTRAL/ARCHITECTURE/ADRs/ADR-025-single-realm-multi-tenancy.md) | Single-realm multi-tenancy |
-| [ADR-026](../../CENTRAL/ARCHITECTURE/ADRs/ADR-026-roles-hierarchy.md) | Hierarquia de 5+1 roles |
-| [ADR-027](../../CENTRAL/ARCHITECTURE/ADRs/ADR-027-oauth2-flows-by-client.md) | OAuth2 flows por tipo de client |
-| [ADR-028](../../CENTRAL/ARCHITECTURE/ADRs/ADR-028-token-lifetimes.md) | Token lifetimes e session config |
-| [ADR-029](../../CENTRAL/ARCHITECTURE/ADRs/ADR-029-security-strategy.md) | Estrategia de seguranca |
+| [ADR-024](../../../CENTRAL/ARCHITECTURE/ADRs/ADR-024-keycloakify-adoption.md) | Keycloakify para temas React |
+| [ADR-025](../../../CENTRAL/ARCHITECTURE/ADRs/ADR-025-single-realm-multi-tenancy.md) | Single-realm multi-tenancy |
+| [ADR-026](../../../CENTRAL/ARCHITECTURE/ADRs/ADR-026-roles-hierarchy.md) | Hierarquia de 5+1 roles |
+| [ADR-027](../../../CENTRAL/ARCHITECTURE/ADRs/ADR-027-oauth2-flows-by-client.md) | OAuth2 flows por tipo de client |
+| [ADR-028](../../../CENTRAL/ARCHITECTURE/ADRs/ADR-028-token-lifetimes.md) | Token lifetimes e session config |
+| [ADR-029](../../../CENTRAL/ARCHITECTURE/ADRs/ADR-029-security-strategy.md) | Estrategia de seguranca |
 
 ## Quick Start
 

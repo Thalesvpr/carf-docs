@@ -168,6 +168,17 @@ export class DocumentStore extends Events {
   }
 
   /**
+   * Revalidate a single file after a fix is applied.
+   * This is called by the IssuesPanelView after applying fixes.
+   */
+  async revalidateFile(path: string): Promise<void> {
+    const file = this.app.vault.getAbstractFileByPath(path);
+    if (file instanceof TFile) {
+      await this.updateDocument(file);
+    }
+  }
+
+  /**
    * Set status for a document. Updates frontmatter and emits 'state-changed'.
    */
   async setStatus(file: TFile, status: string, description?: string): Promise<void> {
