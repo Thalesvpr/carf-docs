@@ -4,6 +4,7 @@ import { Issue } from "../core/Issue";
 import { I18nService } from "../i18n/I18nService";
 import { DocsLinterConfig } from "../config/ConfigSchema";
 import { DocsToolkitSettings } from "../settings";
+import { FilterSuggest } from "../ui/FilterSuggest";
 
 export const CURATION_PANEL_VIEW_TYPE = "docs-toolkit-curation";
 
@@ -290,16 +291,29 @@ export class CurationPanelView extends ItemView {
     lastBtn.disabled = this.currentIndex >= queue.length - 1;
     lastBtn.onclick = () => this.goTo(queue.length - 1);
 
-    // Filter input
+    // Filter input with autocomplete (like Graph View)
     const filterContainer = el.createDiv({ cls: "docs-filter-container" });
     const filterInput = filterContainer.createEl("input", {
       cls: "docs-filter-input",
       attr: {
         type: "text",
         placeholder: "path: file: tag: status: -exclude OR",
-        value: this.filterQuery
+        value: this.filterQuery,
+        spellcheck: "false"
       }
     });
+
+    // Attach FilterSuggest for autocomplete
+    new FilterSuggest(
+      this.app,
+      filterInput,
+      () => this.store.getState().documents.filter(d => this.isTrackedFile(d.file.path)),
+      (value) => {
+        this.filterQuery = value;
+        this.currentIndex = 0;
+        this.render();
+      }
+    );
 
     // Clear button (only show if there's a filter)
     if (this.filterQuery) {
@@ -313,7 +327,7 @@ export class CurationPanelView extends ItemView {
       };
     }
 
-    // Debounced filter update
+    // Debounced filter update (for manual typing)
     let debounceTimer: NodeJS.Timeout;
     filterInput.oninput = () => {
       clearTimeout(debounceTimer);
@@ -321,7 +335,7 @@ export class CurationPanelView extends ItemView {
         this.filterQuery = filterInput.value;
         this.currentIndex = 0;
         this.render();
-      }, 300);
+      }, 400);
     };
 
     // Show filtered count if filter is active
