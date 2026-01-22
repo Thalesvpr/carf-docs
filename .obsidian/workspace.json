@@ -67,7 +67,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "PROJECTS/GEOAPI/SRC-CODE/carf-geoapi/README.md",
+                "file": "PROJECTS/WEBDOCS/SRC-CODE/carf-webdocs/webdocs/src/public/funcionalidades/README.md",
                 "mode": "source",
                 "source": false
               },
@@ -251,6 +251,8 @@
   },
   "active": "b7262c57c40809a7",
   "lastOpenFiles": [
+    "PROJECTS/GEOGIS/DOCS/ARCHITECTURE/01-keycloak-integration.md",
+    "PROJECTS/GEOAPI/SRC-CODE/carf-geoapi/README.md",
     "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/NAVIGATION/README.md",
     "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/NAVIGATION/05-pagination.md",
     "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/NAVIGATION/04-navigation-menu.md",
@@ -275,8 +277,6 @@
     "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/FORM/04-checkbox.md",
     "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/FORM/03-label.md",
     "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/FORM/02-input.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/FORM/01-button.md",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/FEEDBACK/05-progress.md",
     "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/NAVIGATION",
     "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/DOMAIN",
     "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/LAYOUT",

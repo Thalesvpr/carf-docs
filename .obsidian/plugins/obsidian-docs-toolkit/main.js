@@ -4927,6 +4927,16 @@ var DocsToolkitPlugin = class extends import_obsidian21.Plugin {
       }
     });
     this.addCommand({
+      id: "debug-excludes",
+      name: "Debug: Show Exclude Patterns",
+      callback: () => {
+        const excludes = this.config.paths.exclude;
+        console.log("[Docs Toolkit] Current exclude patterns:", excludes);
+        new import_obsidian21.Notice(`Exclude patterns (${excludes.length}):
+${excludes.join("\n")}`);
+      }
+    });
+    this.addCommand({
       id: "validate-current-file",
       name: "Validate Current File",
       callback: async () => {

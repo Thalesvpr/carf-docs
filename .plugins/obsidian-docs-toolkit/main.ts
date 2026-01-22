@@ -299,6 +299,17 @@ export default class DocsToolkitPlugin extends Plugin {
       }
     });
 
+    // Debug: Show current exclude patterns
+    this.addCommand({
+      id: "debug-excludes",
+      name: "Debug: Show Exclude Patterns",
+      callback: () => {
+        const excludes = this.config.paths.exclude;
+        console.log("[Docs Toolkit] Current exclude patterns:", excludes);
+        new Notice(`Exclude patterns (${excludes.length}):\n${excludes.join("\n")}`);
+      }
+    });
+
     // Validate Current File (debug command)
     this.addCommand({
       id: "validate-current-file",
