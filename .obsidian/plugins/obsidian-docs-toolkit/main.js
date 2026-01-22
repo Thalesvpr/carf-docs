@@ -3401,13 +3401,14 @@ $2`
 var import_obsidian13 = require("obsidian");
 var CURATION_PANEL_VIEW_TYPE = "docs-toolkit-curation";
 var CurationPanelView = class extends import_obsidian13.ItemView {
-  constructor(leaf, store, metadataService, i18n, config) {
+  constructor(leaf, store, metadataService, i18n, config, plugin) {
     super(leaf);
     this.currentIndex = 0;
     this.store = store;
     this.metadataService = metadataService;
     this.i18n = i18n;
     this.config = config;
+    this.plugin = plugin;
   }
   getViewType() {
     return CURATION_PANEL_VIEW_TYPE;
@@ -3482,6 +3483,10 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
     const doc = file ? this.store.getDocument(file.path) : null;
     const actions = el.createDiv({ cls: "docs-actions" });
     const actionsRow = actions.createDiv({ cls: "docs-actions-row" });
+    const firstBtn = actionsRow.createEl("button", { cls: "docs-btn docs-btn-nav" });
+    (0, import_obsidian13.setIcon)(firstBtn, "chevrons-left");
+    firstBtn.disabled = this.currentIndex === 0;
+    firstBtn.onclick = () => this.goTo(0);
     const prevBtn = actionsRow.createEl("button", { cls: "docs-btn docs-btn-nav" });
     (0, import_obsidian13.setIcon)(prevBtn, "arrow-left");
     prevBtn.disabled = this.currentIndex === 0;
@@ -3503,6 +3508,10 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
     (0, import_obsidian13.setIcon)(nextBtn, "arrow-right");
     nextBtn.disabled = this.currentIndex >= queue.length - 1;
     nextBtn.onclick = () => this.navigate(1);
+    const lastBtn = actionsRow.createEl("button", { cls: "docs-btn docs-btn-nav" });
+    (0, import_obsidian13.setIcon)(lastBtn, "chevrons-right");
+    lastBtn.disabled = this.currentIndex >= queue.length - 1;
+    lastBtn.onclick = () => this.goTo(queue.length - 1);
     const header = el.createDiv({ cls: "nav-header" });
     const headerInfo = header.createDiv({ cls: "nav-buttons-container" });
     headerInfo.createSpan({
@@ -3520,7 +3529,7 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
       };
     }
     const dotsContainer = header.createDiv({ cls: "docs-dots" });
-    const maxDots = 51;
+    const maxDots = this.plugin.settings.maxDotsCount;
     const halfWindow = Math.floor(maxDots / 2);
     let start = 0;
     let end = queue.length;
@@ -3630,6 +3639,14 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
     if (newIndex < 0 || newIndex >= queue.length)
       return;
     this.currentIndex = newIndex;
+    await this.openCurrentFile();
+    this.render();
+  }
+  async goTo(index) {
+    const queue = this.getQueue();
+    if (index < 0 || index >= queue.length)
+      return;
+    this.currentIndex = index;
     await this.openCurrentFile();
     this.render();
   }
@@ -4041,7 +4058,8 @@ var DEFAULT_SETTINGS = {
   autoUpdateTimestamp: true,
   autoValidateOnSave: true,
   autoSyncIndex: true,
-  staleThresholdDays: 180
+  staleThresholdDays: 180,
+  maxDotsCount: 51
 };
 var DocsToolkitSettingTab = class extends import_obsidian18.PluginSettingTab {
   constructor(app, plugin) {
@@ -4080,6 +4098,11 @@ var DocsToolkitSettingTab = class extends import_obsidian18.PluginSettingTab {
         this.plugin.settings.staleThresholdDays = days;
         await this.plugin.saveSettings();
       }
+    }));
+    containerEl.createEl("h3", { text: "UI" });
+    new import_obsidian18.Setting(containerEl).setName("Navigation dots count").setDesc("Maximum number of dots shown in the curation panel navigation (11-101)").addSlider((slider) => slider.setLimits(11, 101, 10).setValue(this.plugin.settings.maxDotsCount).setDynamicTooltip().onChange(async (value) => {
+      this.plugin.settings.maxDotsCount = value;
+      await this.plugin.saveSettings();
     }));
     containerEl.createEl("h3", { text: "Validators" });
     containerEl.createEl("p", {
@@ -4133,7 +4156,8 @@ var DocsToolkitPlugin = class extends import_obsidian19.Plugin {
           this.store,
           this.metadataService,
           this.i18n,
-          this.config
+          this.config,
+          this
         );
         return this.curationPanel;
       }
