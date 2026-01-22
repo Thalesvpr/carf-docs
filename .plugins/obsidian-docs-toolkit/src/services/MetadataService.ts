@@ -285,4 +285,88 @@ export class MetadataService {
     await this.setFrontmatter(file, frontmatter);
     return frontmatter;
   }
+
+  /**
+   * Update frontmatter: add missing fields, infer type, update timestamp
+   * Preserves existing fields.
+   */
+  async updateFrontmatter(file: TFile): Promise<{ updated: boolean; fields: string[] }> {
+    const content = await this.app.vault.read(file);
+    const match = content.match(/^---\n([\s\S]*?)\n---/);
+    const updatedFields: string[] = [];
+
+    let frontmatter: Record<string, unknown> = {};
+
+    if (match) {
+      try {
+        frontmatter = parseYaml(match[1]) || {};
+      } catch {
+        frontmatter = {};
+      }
+    }
+
+    // Infer and add type if missing
+    if (!frontmatter.type) {
+      frontmatter.type = this.inferTypeFromPath(file);
+      updatedFields.push("type");
+    }
+
+    // Add status if missing
+    if (!frontmatter.status) {
+      frontmatter.status = "review";
+      updatedFields.push("status");
+    }
+
+    // Update timestamp
+    const today = this.formatDate(new Date());
+    if (frontmatter.updated !== today) {
+      frontmatter.updated = today;
+      updatedFields.push("updated");
+    }
+
+    // Only write if something changed
+    if (updatedFields.length > 0) {
+      const bodyContent = this.getBodyContent(content);
+      const yamlStr = stringifyYaml(frontmatter);
+      const newContent = `---\n${yamlStr}---\n\n${bodyContent}`;
+      await this.app.vault.modify(file, newContent);
+      return { updated: true, fields: updatedFields };
+    }
+
+    return { updated: false, fields: [] };
+  }
+
+  /**
+   * Infer document type from file path and name
+   */
+  inferTypeFromPath(file: TFile): string {
+    const filename = file.name;
+    const path = file.path.toLowerCase();
+
+    // Check filename patterns first
+    if (filename.includes("-000-template")) return "template";
+    if (filename.startsWith("ADR-")) return "adr";
+    if (filename.startsWith("RF-")) return "rf";
+    if (filename.startsWith("RNF-")) return "rnf";
+    if (filename.startsWith("UC-") || filename.match(/^\d{2}-UC-/)) return "uc";
+    if (filename.startsWith("US-")) return "us";
+
+    // Check path patterns
+    if (path.includes("/adrs/")) return "adr";
+    if (path.includes("/concepts/")) return "concept";
+    if (path.includes("/how-to/")) return "how-to";
+    if (path.includes("/runbooks/")) return "runbook";
+    if (path.includes("/reference/")) return "reference";
+    if (path.includes("/features/")) return "feature";
+    if (path.includes("/specs/")) return "spec";
+    if (path.includes("/api/")) return "api";
+    if (path.includes("/config/")) return "config";
+    if (path.includes("/integration/")) return "integration";
+    if (path.includes("/architecture/")) return "architecture";
+
+    // README files
+    if (filename === "README.md") return "readme";
+
+    return "doc";
+  }
 }

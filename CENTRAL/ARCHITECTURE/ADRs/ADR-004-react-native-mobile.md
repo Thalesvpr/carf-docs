@@ -1,6 +1,6 @@
 ---
 status: rejected
-description: "Formato incorreto. Texto corrido sem secoes. ADR valido mas precisa reestruturar em Contexto/Decisao/Consequencias/Alternativas."
+description: Formato incorreto. Texto corrido sem secoes. ADR valido mas precisa reestruturar em Contexto/Decisao/Consequencias/Alternativas.
 updated: 2026-01-20
 ---
 

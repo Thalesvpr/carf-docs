@@ -1,7 +1,8 @@
 ---
 status: rejected
-description: "Formato incorreto. Texto corrido sem secoes. ADR valido mas precisa reestruturar em Contexto/Decisao/Consequencias/Alternativas."
+description: Formato incorreto. Texto corrido sem secoes. ADR valido mas precisa reestruturar em Contexto/Decisao/Consequencias/Alternativas.
 updated: 2026-01-20
+type: adr
 ---
 
 # ADR-002: Escolha do PostgreSQL 16 + PostGIS 3.4 como Database

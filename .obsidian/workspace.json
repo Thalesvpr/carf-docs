@@ -25,12 +25,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CENTRAL/ARCHITECTURE/ADRs/ADR-001-dotnet-9-backend.md",
+                "file": "CENTRAL/ARCHITECTURE/ADRs/ADR-004-react-native-mobile.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "ADR-001-dotnet-9-backend"
+              "title": "ADR-004-react-native-mobile"
             }
           }
         ],
@@ -207,10 +207,12 @@
       "obsidian-docs-toolkit:Open Curation Panel": false
     }
   },
-  "active": "8cea953145609c50",
+  "active": "cc41add753b82c59",
   "lastOpenFiles": [
-    "CENTRAL/ARCHITECTURE/ADRs/ADR-000-template.md",
+    "CENTRAL/ARCHITECTURE/ADRs/ADR-003-keycloak-autenticacao.md",
+    "CENTRAL/ARCHITECTURE/ADRs/ADR-002-postgresql-postgis.md",
     "CENTRAL/ARCHITECTURE/ADRs/ADR-001-dotnet-9-backend.md",
+    "CENTRAL/ARCHITECTURE/ADRs/ADR-000-template.md",
     "README.md",
     "CENTRAL/API/AUTHENTICATION/01-login.md",
     "CENTRAL/API/AUTHENTICATION/02-refresh-token.md",
@@ -233,8 +235,6 @@
     "CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-068-calcular-area-da-unidade.md",
     "CENTRAL/API/HOLDERS/01-create-holder.md",
     "CENTRAL/API/COMMUNITIES/02-list-communities.md",
-    "CENTRAL/API/COMMUNITIES/01-create-community.md",
-    "CENTRAL/API/AUTHENTICATION/README.md",
     "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/NAVIGATION",
     "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/DOMAIN",
     "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/LAYOUT",

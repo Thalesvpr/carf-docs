@@ -500,6 +500,16 @@ export default class DocsToolkitPlugin extends Plugin {
             });
         });
 
+        // Update all YAML (add missing fields)
+        menu.addItem((item) => {
+          item
+            .setTitle("Update all YAML")
+            .setIcon("file-code")
+            .onClick(async () => {
+              await this.updateFolderYaml(file);
+            });
+        });
+
         // Regenerate README index
         menu.addItem((item) => {
           item
@@ -528,6 +538,39 @@ export default class DocsToolkitPlugin extends Plugin {
     }
 
     new Notice(`${count} files set to ${status}`);
+  }
+
+  /**
+   * Update YAML for all files in a folder (add missing fields)
+   */
+  private async updateFolderYaml(folder: TFolder): Promise<void> {
+    const files = this.getFilesInFolder(folder);
+    let updated = 0;
+    const fieldCounts: Record<string, number> = {};
+
+    for (const file of files) {
+      try {
+        const result = await this.metadataService.updateFrontmatter(file);
+        if (result.updated) {
+          updated++;
+          for (const field of result.fields) {
+            fieldCounts[field] = (fieldCounts[field] || 0) + 1;
+          }
+        }
+      } catch (e) {
+        console.error(`Failed to update YAML for ${file.path}:`, e);
+      }
+    }
+
+    // Build summary
+    const details = Object.entries(fieldCounts)
+      .map(([field, count]) => `${field}: ${count}`)
+      .join(", ");
+
+    new Notice(`Updated ${updated}/${files.length} files${details ? ` (${details})` : ""}`);
+
+    // Refresh store
+    await this.store.loadAll();
   }
 
   /**
