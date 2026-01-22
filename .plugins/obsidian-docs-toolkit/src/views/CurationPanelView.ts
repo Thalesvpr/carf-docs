@@ -612,12 +612,18 @@ export class CurationPanelView extends ItemView {
   private generateClaudePrompt(file: TFile, doc: Document | null | undefined, issues: Issue[]): string {
     const lines: string[] = [];
 
+    // Get fresh file reference from vault to ensure metadataCache works
+    const currentFile = this.app.vault.getAbstractFileByPath(file.path);
+
     // Get frontmatter from Obsidian's metadataCache (official API for Properties)
-    const cache = this.app.metadataCache.getFileCache(file);
+    const cache = currentFile instanceof TFile
+      ? this.app.metadataCache.getFileCache(currentFile)
+      : null;
     const frontmatter = cache?.frontmatter;
 
     // Debug: log what metadataCache returns
-    console.log("[Claude Prompt] file:", file.path);
+    console.log("[Claude Prompt] path:", file.path);
+    console.log("[Claude Prompt] currentFile:", currentFile);
     console.log("[Claude Prompt] cache:", cache);
     console.log("[Claude Prompt] frontmatter:", frontmatter);
     console.log("[Claude Prompt] description:", frontmatter?.description);
