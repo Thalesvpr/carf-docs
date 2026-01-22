@@ -398,6 +398,18 @@ export default class DocsToolkitPlugin extends Plugin {
       })
     );
 
+    // On metadata change (Properties panel edits)
+    this.registerEvent(
+      this.app.metadataCache.on("changed", (file) => {
+        if (!(file instanceof TFile)) return;
+        if (!file.name.endsWith(".md")) return;
+        if (!this.isTrackedFile(file.path)) return;
+
+        // Update store immediately for metadata changes
+        this.store.updateDocument(file);
+      })
+    );
+
     // On file create
     this.registerEvent(
       this.app.vault.on("create", async (file) => {

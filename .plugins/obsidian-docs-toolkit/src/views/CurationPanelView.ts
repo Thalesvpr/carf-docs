@@ -594,9 +594,16 @@ export class CurationPanelView extends ItemView {
     // Status info
     const status = doc?.status || "sem status";
     lines.push(`**Status:** ${status.toUpperCase()}`);
-    if (doc?.frontmatter?.description) {
-      lines.push(`**Descrição:** ${doc.frontmatter.description}`);
+
+    // Description - always show, with fallback
+    const description = doc?.frontmatter?.description;
+    if (description && typeof description === "string" && description.trim()) {
+      // Preserve the full description including line breaks
+      lines.push(`**Descrição:** ${description}`);
+    } else {
+      lines.push(`**Descrição:** (não informada)`);
     }
+
     if (doc?.status === "rejected" && doc.frontmatter?.rejection_reason) {
       lines.push(`**Motivo da Rejeição:** ${doc.frontmatter.rejection_reason}`);
     }
