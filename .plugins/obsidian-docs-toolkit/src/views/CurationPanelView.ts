@@ -1,4 +1,4 @@
-import { ItemView, WorkspaceLeaf, TFile, Modal, App, TextAreaComponent, Events, setIcon } from "obsidian";
+import { ItemView, WorkspaceLeaf, TFile, Modal, App, TextAreaComponent, Events, setIcon, prepareSimpleSearch, SearchResult } from "obsidian";
 import { Document } from "../core/Document";
 import { Issue } from "../core/Issue";
 import { I18nService } from "../i18n/I18nService";
@@ -99,26 +99,41 @@ export class CurationPanelView extends ItemView {
   }
 
   /**
-   * Parse and apply filter query with Obsidian-like syntax
-   * Supports: path:, file:, tag:, status:, -prefix for exclusion
+   * Parse and apply filter query using Obsidian's native search API
+   * Supports: path:, file:, tag:, status:, -prefix for exclusion, OR
+   * Uses prepareSimpleSearch for efficient text matching
    */
   private matchesFilter(file: TFile, query: string): boolean {
     const doc = this.store.getDocument(file.path);
-    const tokens = this.parseFilterTokens(query);
 
-    for (const token of tokens) {
-      const matches = this.matchToken(file, doc, token);
-      if (!matches) return false;
+    // Split by OR (case insensitive)
+    const orGroups = query.split(/\s+OR\s+/i);
+
+    // Any OR group matching = true (OR logic between groups)
+    for (const group of orGroups) {
+      const tokens = this.parseFilterTokens(group.trim());
+
+      // All tokens in a group must match (AND logic within group)
+      let groupMatches = true;
+      for (const token of tokens) {
+        if (!this.matchToken(file, doc, token)) {
+          groupMatches = false;
+          break;
+        }
+      }
+
+      if (groupMatches) return true;
     }
 
-    return true;
+    return false;
   }
 
   private parseFilterTokens(query: string): Array<{type: string; value: string; exclude: boolean}> {
     const tokens: Array<{type: string; value: string; exclude: boolean}> = [];
 
-    // Match quoted strings and unquoted tokens
-    const regex = /(-?)(?:(path|file|tag|status|id):)?(?:"([^"]+)"|(\S+))/gi;
+    // Match quoted strings and unquoted tokens with optional operators
+    // Supports: path:, file:, tag:, status:, id:, section:, line:
+    const regex = /(-?)(?:(path|file|tag|status|id|section|line):)?(?:"([^"]+)"|(\S+))/gi;
     let match;
 
     while ((match = regex.exec(query)) !== null) {
@@ -134,36 +149,55 @@ export class CurationPanelView extends ItemView {
 
   private matchToken(file: TFile, doc: Document | undefined, token: {type: string; value: string; exclude: boolean}): boolean {
     const { type, value, exclude } = token;
-    const valueLower = value.toLowerCase();
     let matches = false;
+
+    // Use Obsidian's native prepareSimpleSearch for efficient matching
+    const search = prepareSimpleSearch(value);
 
     switch (type) {
       case "path":
-        matches = file.path.toLowerCase().includes(valueLower);
+        matches = search(file.path) !== null;
         break;
       case "file":
-        matches = file.name.toLowerCase().includes(valueLower);
+        matches = search(file.name) !== null;
         break;
       case "tag":
         if (doc?.frontmatter?.tags) {
           const tags = Array.isArray(doc.frontmatter.tags)
             ? doc.frontmatter.tags
             : [doc.frontmatter.tags];
-          matches = tags.some(t => String(t).toLowerCase().includes(valueLower));
+          // Match any tag
+          matches = tags.some(t => search(String(t)) !== null);
         }
         break;
       case "status":
-        matches = (doc?.status || "none").toLowerCase() === valueLower;
+        // Status uses exact match (lowercase comparison)
+        matches = (doc?.status || "none").toLowerCase() === value.toLowerCase();
         break;
       case "id":
-        matches = (doc?.id || "").toLowerCase().includes(valueLower);
+        matches = doc?.id ? search(doc.id) !== null : false;
+        break;
+      case "section":
+        // Section search - check if any section title matches (sections is Map<string, string>)
+        if (doc?.sections) {
+          for (const title of doc.sections.keys()) {
+            if (search(title) !== null) {
+              matches = true;
+              break;
+            }
+          }
+        }
+        break;
+      case "line":
+        // Line search - would need content, skip for now (use in full search)
+        matches = false;
         break;
       case "text":
       default:
-        // Search in path, name, and id
-        matches = file.path.toLowerCase().includes(valueLower) ||
-                  file.name.toLowerCase().includes(valueLower) ||
-                  (doc?.id || "").toLowerCase().includes(valueLower);
+        // Search in path, name, and id using native search
+        matches = search(file.path) !== null ||
+                  search(file.name) !== null ||
+                  (doc?.id ? search(doc.id) !== null : false);
         break;
     }
 
@@ -262,7 +296,7 @@ export class CurationPanelView extends ItemView {
       cls: "docs-filter-input",
       attr: {
         type: "text",
-        placeholder: "Filter: path:, file:, status:, tag:, -exclude",
+        placeholder: "path: file: tag: status: -exclude OR",
         value: this.filterQuery
       }
     });
