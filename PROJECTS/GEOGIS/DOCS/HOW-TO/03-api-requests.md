@@ -1,6 +1,7 @@
 ---
-status: review
-updated: 2026-01-15
+status: rejected
+description: "Wall of text sem estrutura. Texto corrido sem formatacao."
+updated: 2026-01-22
 ---
 
 API requests no GEOGIS implementadas via ApiClient class wrapper ao redor requests.Session() provendo interface limpa para fazer HTTP calls ao GEOAPI implementação em src/api/api_client.py com class ApiClient: def __init__(self, auth_manager) storing auth_manager reference creating self.session = requests.Session() com base_url configuration configuring retry strategy com retry = Retry(total=3, backoff_factor=1, status_forcelist=[429, 500, 502, 503, 504]) e adapter = HTTPAdapter(max_retries=retry) então self.session.mount('http://', adapter) e self.session.mount('https://', adapter) _request(self, method, endpoint, **kwargs) internal method obtendo token com token = self.auth_manager.getAccessToken() que automatically refresh se necessário adicionando header self.session.headers.update Authorization Bearer token construindo full URL url = f'{self.base_url}{endpoint}' fazendo request response = self.session.request(method, url, timeout=30, **kwargs) com timeout preventing hangs.

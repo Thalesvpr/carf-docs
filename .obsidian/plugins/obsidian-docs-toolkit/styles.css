@@ -86,6 +86,51 @@
   align-items: center;
 }
 
+/* Stats row */
+.docs-stats-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 0;
+}
+
+.docs-stat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.docs-stat-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.docs-stat-num {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-normal);
+}
+
+.docs-stat-pct {
+  font-size: 10px;
+  color: var(--text-faint);
+}
+
+.docs-stat-total {
+  margin-left: auto;
+  padding-left: 8px;
+  border-left: 1px solid var(--background-modifier-border);
+}
+
+.docs-stat-total .docs-stat-num {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
 .docs-progress-text {
   font-size: var(--font-ui-smaller);
   color: var(--text-muted);
@@ -138,11 +183,13 @@
 .docs-dot-review { background: var(--color-yellow); opacity: 0.5; }
 .docs-dot-approved { background: var(--color-green); }
 .docs-dot-rejected { background: var(--color-red); }
+.docs-dot-none { background: var(--text-faint); opacity: 0.5; }
 
 .docs-dot-current.docs-dot-review { opacity: 1; }
 .docs-dot-current.docs-dot-approved { box-shadow: 0 0 4px var(--color-green); }
 .docs-dot-current.docs-dot-rejected { box-shadow: 0 0 4px var(--color-red); }
 .docs-dot-current.docs-dot-review { box-shadow: 0 0 4px var(--color-yellow); }
+.docs-dot-current.docs-dot-none { opacity: 1; box-shadow: 0 0 4px var(--text-faint); }
 
 /* File section */
 .docs-file-section {

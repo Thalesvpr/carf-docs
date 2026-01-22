@@ -1,6 +1,7 @@
 ---
-status: review
-updated: 2026-01-15
+status: rejected
+description: "Runbook com lista numerada via Admin Console - reescrever em prosa"
+updated: 2026-01-22
 ---
 
 # Rotacionar Secrets

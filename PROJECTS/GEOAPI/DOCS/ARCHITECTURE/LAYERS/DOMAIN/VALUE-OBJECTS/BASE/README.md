@@ -10,3 +10,12 @@ Classes base para todos value objects do domínio fornecendo comportamento imut�
 ## Arquivos
 
 - **[00-base-value-object.md](./00-base-value-object.md)** - Classe abstrata base para todos value objects
+
+<!-- CARF-INDEX-START -->
+## Documentos
+
+### Em Revisão
+
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/VALUE-OBJECTS/BASE/00-base-value-object.md|BaseValueObject]]
+
+<!-- CARF-INDEX-END -->

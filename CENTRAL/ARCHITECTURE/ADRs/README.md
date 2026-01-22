@@ -1,6 +1,7 @@
 ---
-status: review
-updated: 2026-01-15
+status: rejected
+description: "Usa tabelas e listas extensivas ao inves de prosa corrida. Indice gerado automaticamente, mas introducao deve ser densa."
+updated: 2026-01-22
 ---
 
 # ADRs

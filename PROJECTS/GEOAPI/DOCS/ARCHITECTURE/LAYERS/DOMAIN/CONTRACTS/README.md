@@ -17,3 +17,19 @@ Interfaces definidas na camada Domain e implementadas no Infrastructure seguindo
 - **[05-i-current-user.md](./05-i-current-user.md)** - Interface usuário autenticado atual
 - **[06-i-file-storage.md](./06-i-file-storage.md)** - Interface storage arquivos S3
 - **[07-i-pdf-generator.md](./07-i-pdf-generator.md)** - Interface geração PDFs certidões memoriais
+
+<!-- CARF-INDEX-START -->
+## Documentos
+
+### Em Revisão
+
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/CONTRACTS/00-i-repository.md|IRepository<T>]]
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/CONTRACTS/01-i-unit-of-work.md|IUnitOfWork]]
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/CONTRACTS/02-i-date-time-provider.md|IDateTimeProvider]]
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/CONTRACTS/03-i-tenant-provider.md|ITenantProvider]]
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/CONTRACTS/04-i-domain-event-dispatcher.md|IDomainEventDispatcher]]
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/CONTRACTS/05-i-current-user.md|ICurrentUser]]
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/CONTRACTS/06-i-file-storage.md|IFileStorage]]
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/CONTRACTS/07-i-pdf-generator.md|IPdfGenerator]]
+
+<!-- CARF-INDEX-END -->

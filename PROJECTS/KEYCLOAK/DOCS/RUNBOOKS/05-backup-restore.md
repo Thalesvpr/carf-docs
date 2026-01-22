@@ -1,6 +1,7 @@
 ---
-status: review
-updated: 2026-01-15
+status: rejected
+description: "Runbook com lista de retencao no final - falta converter para prosa densa"
+updated: 2026-01-22
 ---
 
 # Backup e Restore

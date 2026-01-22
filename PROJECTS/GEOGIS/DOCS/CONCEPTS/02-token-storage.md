@@ -1,6 +1,7 @@
 ---
-status: review
-updated: 2026-01-15
+status: rejected
+description: "Wall of text sem estrutura. Paragrafos gigantes sem formatacao."
+updated: 2026-01-22
 ---
 
 Token storage no GEOGIS usa QSettings QGIS built-in settings manager que automaticamente encrypts valores via platform password managers Keychain macOS KWallet ou Secret Service Linux GNOME KDE Windows Credential Manager garantindo tokens não armazenados plain text em config files usage pattern settings = QSettings('CARF', 'GEOGIS') criando settings object com organization 'CARF' e application 'GEOGIS' gerando namespace unique evitando conflicts com outros plugins settings.setValue('access_token', token) salva token encrypted passando para password manager backend automaticamente sem código adicional token = settings.value('access_token', defaultValue=None) lê token decrypted retornando None se não existe settings.remove('access_token') deleta token do password manager permanentemente.

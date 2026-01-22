@@ -17,3 +17,19 @@ Enumerações tipadas representando classificações fixas do domínio incluindo
 - **[17-role.md](./17-role.md)** - Roles sistema (ADMIN MANAGER ANALYST FIELD_AGENT)
 - **[18-entity-type.md](./18-entity-type.md)** - Tipos entidade para auditoria polimórfica
 - **[19-document-type.md](./19-document-type.md)** - Tipos documento anexo (RG CPF COMPROVANTE)
+
+<!-- CARF-INDEX-START -->
+## Documentos
+
+### Em Revisão
+
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/VALUE-OBJECTS/ENUMS/08-community-type.md|CommunityType]]
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/VALUE-OBJECTS/ENUMS/10-team-role.md|TeamRole]]
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/VALUE-OBJECTS/ENUMS/13-point-type.md|PointType]]
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/VALUE-OBJECTS/ENUMS/15-priority.md|Priority]]
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/VALUE-OBJECTS/ENUMS/16-annotation-type.md|AnnotationType]]
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/VALUE-OBJECTS/ENUMS/17-role.md|Role]]
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/VALUE-OBJECTS/ENUMS/18-entity-type.md|EntityType]]
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/VALUE-OBJECTS/ENUMS/19-document-type.md|DocumentType]]
+
+<!-- CARF-INDEX-END -->

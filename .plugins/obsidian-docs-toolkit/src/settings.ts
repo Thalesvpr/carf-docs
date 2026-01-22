@@ -20,6 +20,9 @@ export interface DocsToolkitSettings {
 
   // Stale threshold in days
   staleThresholdDays: number;
+
+  // UI
+  maxDotsCount: number;
 }
 
 /**
@@ -41,7 +44,8 @@ export const DEFAULT_SETTINGS: DocsToolkitSettings = {
   autoUpdateTimestamp: true,
   autoValidateOnSave: true,
   autoSyncIndex: true,
-  staleThresholdDays: 180
+  staleThresholdDays: 180,
+  maxDotsCount: 51
 };
 
 /**
@@ -132,6 +136,21 @@ export class DocsToolkitSettingTab extends PluginSettingTab {
             this.plugin.settings.staleThresholdDays = days;
             await this.plugin.saveSettings();
           }
+        }));
+
+    // UI section
+    containerEl.createEl("h3", { text: "UI" });
+
+    new Setting(containerEl)
+      .setName("Navigation dots count")
+      .setDesc("Maximum number of dots shown in the curation panel navigation (11-101)")
+      .addSlider(slider => slider
+        .setLimits(11, 101, 10)
+        .setValue(this.plugin.settings.maxDotsCount)
+        .setDynamicTooltip()
+        .onChange(async (value) => {
+          this.plugin.settings.maxDotsCount = value;
+          await this.plugin.saveSettings();
         }));
 
     // Validators section

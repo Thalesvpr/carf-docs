@@ -1,6 +1,7 @@
 ---
-status: review
-updated: 2026-01-16
+status: rejected
+description: "Mais codigo que prosa - arquivo e 90% blocos de codigo C# e TypeScript"
+updated: 2026-01-22
 ---
 
 # Notification Hub

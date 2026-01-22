@@ -1,7 +1,7 @@
 ---
 type: template
 template_for: adr
-status: template
+status: review
 updated: 2026-01-21
 validation:
   max_words: 300
@@ -13,7 +13,7 @@ validation:
     - Alternativas Rejeitadas
   forbidden:
     - "```"
-    - "http"
+    - http
     - "|--|"
     - "- ["
 ---

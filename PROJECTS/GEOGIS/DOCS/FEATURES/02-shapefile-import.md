@@ -1,6 +1,7 @@
 ---
-status: review
-updated: 2026-01-11
+status: rejected
+description: "Wall of text sem estrutura. Paragrafos gigantes ilegíveis."
+updated: 2026-01-22
 ---
 
 # Shapefile Import - Importação

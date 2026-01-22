@@ -1,6 +1,7 @@
 ---
-status: review
-updated: 2026-01-15
+status: rejected
+description: "Usa tabelas ao inves de paragrafos densos, falta paragrafo denso introdutorio"
+updated: 2026-01-22
 ---
 
 # GEOGIS - Features

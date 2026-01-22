@@ -1,6 +1,7 @@
 ---
-status: review
-updated: 2026-01-15
+status: rejected
+description: "Usa listas numeradas, bullets e code blocks ao inves de prosa densa - reescrever completamente"
+updated: 2026-01-22
 ---
 
 # Estratégia de Customização do Keycloak

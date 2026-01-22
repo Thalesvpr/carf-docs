@@ -1,6 +1,7 @@
 ---
-status: review
-updated: 2026-01-10
+status: rejected
+description: "Usa listas/bullets extensivamente ao inves de paragrafos densos (23+ bullets/itens numerados)"
+updated: 2026-01-22
 ---
 
 # HOW-TO - GEOGIS

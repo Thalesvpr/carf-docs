@@ -1,6 +1,7 @@
 ---
-status: approved
-updated: 2026-01-21
+status: rejected
+description: "Usa tabelas extensivas, code blocks e diagramas ASCII - reescrever em prosa densa"
+updated: 2026-01-22
 ---
 
 # Login Theme CARF

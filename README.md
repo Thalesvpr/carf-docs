@@ -1,6 +1,6 @@
 ---
-status: review
-updated: 2026-01-21
+status: approved
+updated: 2026-01-22
 ---
 
 # CARF - Sistema de Regularização Fundiária Urbana

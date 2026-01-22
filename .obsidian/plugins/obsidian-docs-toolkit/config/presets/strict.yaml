@@ -1,0 +1,64 @@
+# Strict Documentation Preset
+# Enables all validators with error-level severity
+
+language: en
+
+paths:
+  include:
+    - "**/*.md"
+  exclude:
+    - ".obsidian/**"
+    - ".git/**"
+    - "node_modules/**"
+
+documentTypes: {}
+
+validators:
+  frontmatter:
+    enabled: true
+    severity: error
+  sections:
+    enabled: true
+    severity: error
+  naming:
+    enabled: true
+    severity: error
+  title:
+    enabled: true
+    severity: error
+  broken-links:
+    enabled: true
+    severity: error
+  orphans:
+    enabled: true
+    severity: warning
+    exclude:
+      - "**/README.md"
+  stale:
+    enabled: true
+    severity: warning
+    thresholdDays: 90
+  forbidden-patterns:
+    enabled: true
+    severity: error
+  word-count:
+    enabled: true
+    severity: warning
+  empty-folders:
+    enabled: true
+    severity: warning
+
+workflow:
+  statuses:
+    review:
+      name: "In Review"
+      icon: "refresh-cw"
+      color: "#f0ad4e"
+    approved:
+      name: "Approved"
+      icon: "check"
+      color: "#5cb85c"
+    rejected:
+      name: "Rejected"
+      icon: "x"
+      color: "#d9534f"

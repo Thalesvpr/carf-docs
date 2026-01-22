@@ -3401,13 +3401,14 @@ $2`
 var import_obsidian13 = require("obsidian");
 var CURATION_PANEL_VIEW_TYPE = "docs-toolkit-curation";
 var CurationPanelView = class extends import_obsidian13.ItemView {
-  constructor(leaf, store, metadataService, i18n, config) {
+  constructor(leaf, store, metadataService, i18n, config, plugin) {
     super(leaf);
     this.currentIndex = 0;
     this.store = store;
     this.metadataService = metadataService;
     this.i18n = i18n;
     this.config = config;
+    this.plugin = plugin;
   }
   getViewType() {
     return CURATION_PANEL_VIEW_TYPE;
@@ -3475,40 +3476,69 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
       return;
     }
     const docs = this.store.getState().documents.filter((d) => this.isTrackedFile(d.file.path));
-    const approved = docs.filter((d) => d.status === "approved").length;
     const total = docs.length;
+    const approved = docs.filter((d) => d.status === "approved").length;
+    const review = docs.filter((d) => d.status === "review").length;
+    const rejected = docs.filter((d) => d.status === "rejected").length;
+    const noStatus = docs.filter((d) => !d.status).length;
     const queue = this.getQueue();
     const file = this.getCurrentFile();
     const doc = file ? this.store.getDocument(file.path) : null;
     const actions = el.createDiv({ cls: "docs-actions" });
     const actionsRow = actions.createDiv({ cls: "docs-actions-row" });
-    const prevBtn = actionsRow.createEl("button", { cls: "docs-btn docs-btn-nav" });
+    const firstBtn = actionsRow.createEl("button", { cls: "docs-btn docs-btn-nav", attr: { title: "Ir para o primeiro" } });
+    (0, import_obsidian13.setIcon)(firstBtn, "chevrons-left");
+    firstBtn.disabled = this.currentIndex === 0;
+    firstBtn.onclick = () => this.goTo(0);
+    const prevBtn = actionsRow.createEl("button", { cls: "docs-btn docs-btn-nav", attr: { title: "Anterior" } });
     (0, import_obsidian13.setIcon)(prevBtn, "arrow-left");
     prevBtn.disabled = this.currentIndex === 0;
     prevBtn.onclick = () => this.navigate(-1);
     const centerGroup = actionsRow.createDiv({ cls: "docs-btn-center" });
-    const rejectBtn = centerGroup.createEl("button", { cls: "docs-btn docs-btn-reject" });
+    const rejectBtn = centerGroup.createEl("button", { cls: "docs-btn docs-btn-reject", attr: { title: "Rejeitar" } });
     (0, import_obsidian13.setIcon)(rejectBtn, "x");
     rejectBtn.disabled = !file || (doc == null ? void 0 : doc.status) === "rejected";
     rejectBtn.onclick = () => file && this.reject(file);
-    const reviewBtn = centerGroup.createEl("button", { cls: "docs-btn docs-btn-review" });
+    const reviewBtn = centerGroup.createEl("button", { cls: "docs-btn docs-btn-review", attr: { title: "Marcar para revis\xE3o" } });
     (0, import_obsidian13.setIcon)(reviewBtn, "circle");
     reviewBtn.disabled = !file || (doc == null ? void 0 : doc.status) === "review";
     reviewBtn.onclick = () => file && this.setReview(file);
-    const approveBtn = centerGroup.createEl("button", { cls: "docs-btn docs-btn-approve" });
+    const approveBtn = centerGroup.createEl("button", { cls: "docs-btn docs-btn-approve", attr: { title: "Aprovar" } });
     (0, import_obsidian13.setIcon)(approveBtn, "check");
     approveBtn.disabled = !file || (doc == null ? void 0 : doc.status) === "approved";
     approveBtn.onclick = () => file && this.approve(file);
-    const nextBtn = actionsRow.createEl("button", { cls: "docs-btn docs-btn-nav" });
+    const nextBtn = actionsRow.createEl("button", { cls: "docs-btn docs-btn-nav", attr: { title: "Pr\xF3ximo" } });
     (0, import_obsidian13.setIcon)(nextBtn, "arrow-right");
     nextBtn.disabled = this.currentIndex >= queue.length - 1;
     nextBtn.onclick = () => this.navigate(1);
+    const lastBtn = actionsRow.createEl("button", { cls: "docs-btn docs-btn-nav", attr: { title: "Ir para o \xFAltimo" } });
+    (0, import_obsidian13.setIcon)(lastBtn, "chevrons-right");
+    lastBtn.disabled = this.currentIndex >= queue.length - 1;
+    lastBtn.onclick = () => this.goTo(queue.length - 1);
     const header = el.createDiv({ cls: "nav-header" });
+    const statsRow = header.createDiv({ cls: "docs-stats-row" });
+    const pct = (n) => total > 0 ? Math.round(n / total * 100) : 0;
+    const approvedStat = statsRow.createDiv({ cls: "docs-stat", attr: { title: "Aprovados" } });
+    approvedStat.createDiv({ cls: "docs-stat-dot docs-dot-approved" });
+    approvedStat.createSpan({ text: `${approved}`, cls: "docs-stat-num" });
+    approvedStat.createSpan({ text: `${pct(approved)}%`, cls: "docs-stat-pct" });
+    const reviewStat = statsRow.createDiv({ cls: "docs-stat", attr: { title: "Em revis\xE3o" } });
+    reviewStat.createDiv({ cls: "docs-stat-dot docs-dot-review" });
+    reviewStat.createSpan({ text: `${review}`, cls: "docs-stat-num" });
+    reviewStat.createSpan({ text: `${pct(review)}%`, cls: "docs-stat-pct" });
+    const rejectedStat = statsRow.createDiv({ cls: "docs-stat", attr: { title: "Rejeitados" } });
+    rejectedStat.createDiv({ cls: "docs-stat-dot docs-dot-rejected" });
+    rejectedStat.createSpan({ text: `${rejected}`, cls: "docs-stat-num" });
+    rejectedStat.createSpan({ text: `${pct(rejected)}%`, cls: "docs-stat-pct" });
+    if (noStatus > 0) {
+      const noStatusStat = statsRow.createDiv({ cls: "docs-stat", attr: { title: "Sem status" } });
+      noStatusStat.createDiv({ cls: "docs-stat-dot docs-dot-none" });
+      noStatusStat.createSpan({ text: `${noStatus}`, cls: "docs-stat-num" });
+      noStatusStat.createSpan({ text: `${pct(noStatus)}%`, cls: "docs-stat-pct" });
+    }
+    const totalStat = statsRow.createDiv({ cls: "docs-stat docs-stat-total", attr: { title: "Total de arquivos" } });
+    totalStat.createSpan({ text: `${total}`, cls: "docs-stat-num docs-stat-total-num" });
     const headerInfo = header.createDiv({ cls: "nav-buttons-container" });
-    headerInfo.createSpan({
-      text: `${approved}/${total}`,
-      cls: "docs-progress-text"
-    });
     const allIssues = this.store.getState().issues;
     if (allIssues.length > 0) {
       const problemsBtn = headerInfo.createEl("button", {
@@ -3520,7 +3550,7 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
       };
     }
     const dotsContainer = header.createDiv({ cls: "docs-dots" });
-    const maxDots = 51;
+    const maxDots = this.plugin.settings.maxDotsCount;
     const halfWindow = Math.floor(maxDots / 2);
     let start = 0;
     let end = queue.length;
@@ -3534,7 +3564,7 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
     for (let i = start; i < end; i++) {
       const f = queue[i];
       const d = this.store.getDocument(f.path);
-      const status = (d == null ? void 0 : d.status) || "review";
+      const status = (d == null ? void 0 : d.status) || "none";
       const isCurrent = i === this.currentIndex;
       const isAdjacent = i === this.currentIndex - 1 || i === this.currentIndex + 1;
       const dot = dotsContainer.createDiv({
@@ -3630,6 +3660,14 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
     if (newIndex < 0 || newIndex >= queue.length)
       return;
     this.currentIndex = newIndex;
+    await this.openCurrentFile();
+    this.render();
+  }
+  async goTo(index) {
+    const queue = this.getQueue();
+    if (index < 0 || index >= queue.length)
+      return;
+    this.currentIndex = index;
     await this.openCurrentFile();
     this.render();
   }
@@ -4041,7 +4079,8 @@ var DEFAULT_SETTINGS = {
   autoUpdateTimestamp: true,
   autoValidateOnSave: true,
   autoSyncIndex: true,
-  staleThresholdDays: 180
+  staleThresholdDays: 180,
+  maxDotsCount: 51
 };
 var DocsToolkitSettingTab = class extends import_obsidian18.PluginSettingTab {
   constructor(app, plugin) {
@@ -4080,6 +4119,11 @@ var DocsToolkitSettingTab = class extends import_obsidian18.PluginSettingTab {
         this.plugin.settings.staleThresholdDays = days;
         await this.plugin.saveSettings();
       }
+    }));
+    containerEl.createEl("h3", { text: "UI" });
+    new import_obsidian18.Setting(containerEl).setName("Navigation dots count").setDesc("Maximum number of dots shown in the curation panel navigation (11-101)").addSlider((slider) => slider.setLimits(11, 101, 10).setValue(this.plugin.settings.maxDotsCount).setDynamicTooltip().onChange(async (value) => {
+      this.plugin.settings.maxDotsCount = value;
+      await this.plugin.saveSettings();
     }));
     containerEl.createEl("h3", { text: "Validators" });
     containerEl.createEl("p", {
@@ -4133,7 +4177,8 @@ var DocsToolkitPlugin = class extends import_obsidian19.Plugin {
           this.store,
           this.metadataService,
           this.i18n,
-          this.config
+          this.config,
+          this
         );
         return this.curationPanel;
       }

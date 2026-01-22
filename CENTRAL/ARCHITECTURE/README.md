@@ -1,6 +1,7 @@
 ---
-status: review
-updated: 2026-01-15
+status: rejected
+description: "Usa listas, bullets e tabelas ao inves de prosa corrida. README valido mas precisa reescrever em formato denso."
+updated: 2026-01-22
 ---
 
 # ARCHITECTURE

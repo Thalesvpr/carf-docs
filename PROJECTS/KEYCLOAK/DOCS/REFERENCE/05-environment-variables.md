@@ -1,6 +1,7 @@
 ---
-status: review
-updated: 2026-01-21
+status: rejected
+description: "REFERENCE usa tabelas extensivas e code blocks YAML - formato referencia incompativel com prosa densa"
+updated: 2026-01-22
 ---
 
 # Environment Variables

@@ -1,6 +1,7 @@
 ---
-status: review
-updated: 2026-01-12
+status: rejected
+description: "README usa lista de bullets para descrever arquivos - reescrever em prosa densa"
+updated: 2026-01-22
 ---
 
 # ARCHITECTURE

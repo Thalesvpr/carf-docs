@@ -13,3 +13,15 @@ Entities serviços GIS do GEOAPI gerenciando layers vetoriais e raster para visu
 - **[22-layer-feature.md](./22-layer-feature.md)** - Feature geometria individual dentro layer
 - **[23-wms-server.md](./23-wms-server.md)** - Servidor OGC WMS externo registrado
 - **[24-wms-layer.md](./24-wms-layer.md)** - Layer WMS específica servidor
+
+<!-- CARF-INDEX-START -->
+## Documentos
+
+### Em Revisão
+
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/GIS/21-layer.md|Layer]]
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/GIS/22-layer-feature.md|LayerFeature]]
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/GIS/23-wms-server.md|WmsServer]]
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/GIS/24-wms-layer.md|WmsLayer]]
+
+<!-- CARF-INDEX-END -->

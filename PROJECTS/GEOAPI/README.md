@@ -8,3 +8,10 @@ updated: 2026-01-12
 Backend REST API .NET 9 do sistema CARF. Fornece endpoints para unidades habitacionais, titulares, comunidades e processos de legitimação fundiária. Usa PostgreSQL com PostGIS para dados geoespaciais, Keycloak para autenticação OAuth2/OIDC e Row-Level Security para isolamento multi-tenant.
 
 - **[DOCS/](./DOCS/README.md)** - Documentação técnica
+
+<!-- CARF-INDEX-START -->
+## Subpastas
+
+- [[PROJECTS/GEOAPI/DOCS/README|DOCS]]
+
+<!-- CARF-INDEX-END -->

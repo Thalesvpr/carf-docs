@@ -1,6 +1,7 @@
 ---
-status: review
-updated: 2026-01-16
+status: rejected
+description: "Formato inadequado: blocos de codigo extensos ao inves de prosa densa. Deveria explicar storage S3, upload/download, presigned URLs em paragrafos corridos."
+updated: 2026-01-22
 ---
 
 # File Storage

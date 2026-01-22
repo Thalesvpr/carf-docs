@@ -1,6 +1,7 @@
 ---
-status: review
-updated: 2026-01-21
+status: rejected
+description: "REFERENCE usa code blocks extensivos para configuracao - formato referencia incompativel com prosa densa"
+updated: 2026-01-22
 ---
 
 # Theme Properties
