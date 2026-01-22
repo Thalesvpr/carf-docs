@@ -1,4 +1,5 @@
 ---
+type: leaf
 title: "Badge"
 status: review
 updated: 2026-01-21

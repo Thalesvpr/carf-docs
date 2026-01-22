@@ -1,3 +1,9 @@
+---
+type: readme
+status: draft
+updated: 2026-01-22
+---
+
 # carf_tree_sync
 
 Sistema de sincronizacao de indices para READMEs do repositorio CARF.

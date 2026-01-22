@@ -1,4 +1,5 @@
 ---
+type: leaf
 title: "Overview da Arquitetura"
 status: review
 updated: 2026-01-21

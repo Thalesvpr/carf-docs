@@ -1,4 +1,5 @@
 ---
+type: uc
 status: rejected
 description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 13 linhas - incompleto."
 updated: 2025-12-30

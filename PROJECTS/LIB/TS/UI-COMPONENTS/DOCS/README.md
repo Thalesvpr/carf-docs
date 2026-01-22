@@ -1,4 +1,5 @@
 ---
+type: readme
 title: "Documentacao @carf/ui"
 description: "README usa listas/tabelas ao invés de prosa densa com links inline."
 status: rejected

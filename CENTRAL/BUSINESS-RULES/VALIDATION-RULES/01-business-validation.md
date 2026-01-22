@@ -1,4 +1,5 @@
 ---
+type: leaf
 status: rejected
 description: "Duplicacao. Regras de negocio devem estar em DOMAIN-MODEL ou REQUIREMENTS, nao pasta separada. Stub de 9 linhas - incompleto."
 updated: 2026-01-19

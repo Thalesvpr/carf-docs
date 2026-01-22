@@ -1,6 +1,7 @@
 ---
 status: approved
 updated: 2026-01-22
+type: readme
 ---
 
 # CARF - Sistema de Regularização Fundiária Urbana

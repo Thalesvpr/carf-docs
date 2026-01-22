@@ -1,4 +1,5 @@
 ---
+type: readme
 title: "Especificacoes Tecnicas - @carf/tscore"
 description: "README usa listas/tabelas ao invés de prosa densa com links inline."
 status: rejected

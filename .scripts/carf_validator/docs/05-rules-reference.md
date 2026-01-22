@@ -1,3 +1,9 @@
+---
+type: leaf
+status: draft
+updated: 2026-01-22
+---
+
 # Referencia de Regras
 
 ## Regras de Titulo por Tipo

@@ -1,4 +1,5 @@
 ---
+type: readme
 status: rejected
 description: "Usa listas/bullets ao inves de paragrafos densos, contem listas numeradas nao convertidas para prosa"
 updated: 2026-01-22

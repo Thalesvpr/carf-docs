@@ -1,4 +1,5 @@
 ---
+type: leaf
 title: "Pagination"
 status: review
 updated: 2026-01-21

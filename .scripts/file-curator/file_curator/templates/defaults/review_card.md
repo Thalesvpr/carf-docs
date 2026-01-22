@@ -1,3 +1,9 @@
+---
+type: leaf
+status: draft
+updated: 2026-01-22
+---
+
 ## ${file_title}
 
 **Path:** `${relative_path}`

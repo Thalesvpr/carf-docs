@@ -1,4 +1,5 @@
 ---
+type: leaf
 status: rejected
 description: "Wall of text sem estrutura. Texto corrido sem formatacao."
 updated: 2026-01-22

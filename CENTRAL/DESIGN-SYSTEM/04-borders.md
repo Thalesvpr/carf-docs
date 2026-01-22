@@ -1,4 +1,5 @@
 ---
+type: leaf
 status: rejected
 description: "Mistura spec com implementacao. Codigo CSS/Tailwind vai para PROJECTS/LIB/TS/UI-COMPONENTS. Aqui so spec abstrata. Stub de 11 linhas - incompleto."
 updated: 2026-01-20

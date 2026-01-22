@@ -1,4 +1,5 @@
 ---
+type: adr
 status: rejected
 updated: 2026-01-21
 description: "Sobreposicao com ADR-005 (RLS). Formato incorreto com secao Implementacao, codigo, diagramas. Consolidar e remover implementacao. Contem blocos de codigo."

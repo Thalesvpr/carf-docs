@@ -1,4 +1,5 @@
 ---
+type: readme
 title: "Especificacoes Tecnicas - @carf/geoapi-client"
 description: "Configuracoes de projeto para o cliente HTTP"
 status: review

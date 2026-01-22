@@ -1,4 +1,5 @@
 ---
+type: leaf
 title: "Documents API - Gerenciamento de Documentos"
 status: review
 updated: 2026-01-21

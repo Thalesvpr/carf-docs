@@ -1,3 +1,9 @@
+---
+type: leaf
+status: draft
+updated: 2026-01-22
+---
+
 # Curation Summary: ${session_name}
 
 **Session ID:** ${session_id}

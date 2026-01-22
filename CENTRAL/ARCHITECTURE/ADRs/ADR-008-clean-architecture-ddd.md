@@ -1,4 +1,5 @@
 ---
+type: adr
 status: rejected
 description: "Granularidade errada. Consolidar com ADR-009 (CQRS) e ADR-010 (Event-Driven) em unico ADR sobre arquitetura de aplicacao."
 updated: 2026-01-20

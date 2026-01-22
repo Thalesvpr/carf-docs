@@ -1,4 +1,5 @@
 ---
+type: leaf
 status: rejected
 description: "Duplicacao com ADR-029 e PROJECTS/KEYCLOAK. Consolidar em um lugar. Stub de 9 linhas - incompleto."
 updated: 2026-01-19

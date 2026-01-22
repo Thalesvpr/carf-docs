@@ -1,4 +1,5 @@
 ---
+type: leaf
 status: rejected
 updated: 2026-01-20
 ---

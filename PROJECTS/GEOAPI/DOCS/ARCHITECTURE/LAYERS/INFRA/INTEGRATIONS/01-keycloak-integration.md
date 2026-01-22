@@ -1,4 +1,5 @@
 ---
+type: leaf
 status: rejected
 description: "Formato inadequado: blocos de codigo extensos ao inves de prosa densa. Deveria explicar integracao Keycloak, fluxos OAuth2, claims em paragrafos corridos."
 updated: 2026-01-22

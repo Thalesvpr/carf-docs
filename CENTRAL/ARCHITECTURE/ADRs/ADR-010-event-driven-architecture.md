@@ -1,4 +1,5 @@
 ---
+type: adr
 status: rejected
 description: "Granularidade errada. Consolidar com ADR-008 (Clean Architecture) e ADR-009 (CQRS) em unico ADR sobre arquitetura de aplicacao."
 updated: 2026-01-20

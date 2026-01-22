@@ -1,4 +1,5 @@
 ---
+type: readme
 title: "Components Reference"
 status: review
 updated: 2026-01-21

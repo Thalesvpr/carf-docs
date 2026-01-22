@@ -1,4 +1,5 @@
 ---
+type: readme
 status: review
 updated: 2026-01-17
 ---

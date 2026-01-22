@@ -1,4 +1,5 @@
 ---
+type: leaf
 title: "Package.json - @carf/geoapi-client"
 status: review
 updated: 2026-01-21

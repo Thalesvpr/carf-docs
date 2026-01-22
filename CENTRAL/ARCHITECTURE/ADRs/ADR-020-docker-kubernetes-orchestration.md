@@ -1,4 +1,5 @@
 ---
+type: adr
 status: rejected
 description: "Formato incorreto. ADR valido sobre containerizacao mas precisa reestruturar sem codigo/configs. Configs vao para DEPLOYMENTS."
 updated: 2026-01-20

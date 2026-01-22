@@ -1,4 +1,5 @@
 ---
+type: readme
 status: rejected
 description: "README usa lista com bullets para descrever arquivos - reescrever em prosa"
 updated: 2026-01-22

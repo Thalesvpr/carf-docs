@@ -1,4 +1,5 @@
 ---
+type: readme
 title: "Decisoes Arquiteturais - @carf/geoapi-client"
 description: "Registro de decisoes arquiteturais para o cliente HTTP"
 status: review

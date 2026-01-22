@@ -32,6 +32,8 @@ documentTypes:
         type: "template"
       filename:
         pattern: "-000-template\\.md$"
+      path:
+        contains: "/.template/"
 
   # ===================
   # CARF Document Types

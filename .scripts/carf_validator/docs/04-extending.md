@@ -1,3 +1,9 @@
+---
+type: leaf
+status: draft
+updated: 2026-01-22
+---
+
 # Extensibilidade
 
 ## Criando um Validador Local

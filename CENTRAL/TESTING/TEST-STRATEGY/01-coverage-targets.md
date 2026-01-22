@@ -1,4 +1,5 @@
 ---
+type: leaf
 status: rejected
 description: "Conteudo operacional. Estrategia de teste pertence a PROJECTS ou STANDARDS. Stub de 9 linhas - incompleto."
 updated: 2026-01-19

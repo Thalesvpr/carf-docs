@@ -3,7 +3,7 @@ $excludePatterns = @(
     "node_modules",
     "\.vitepress",
     "dist",
-    "\\docs\\",
+    "CARF\\docs\\",
     "\.vscode",
     "\.idea",
     "logs",

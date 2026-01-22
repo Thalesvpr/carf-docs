@@ -1,4 +1,5 @@
 ---
+type: leaf
 title: "Toast"
 status: review
 updated: 2026-01-21

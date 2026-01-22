@@ -1,4 +1,5 @@
 ---
+type: readme
 status: rejected
 description: "Wall of text sem estrutura. Texto corrido ilegivel."
 updated: 2026-01-22

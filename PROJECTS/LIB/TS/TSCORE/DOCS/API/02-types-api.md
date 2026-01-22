@@ -1,4 +1,5 @@
 ---
+type: leaf
 title: "Types API - @carf/tscore"
 status: review
 updated: 2026-01-21

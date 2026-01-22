@@ -1,3 +1,9 @@
+---
+type: readme
+status: draft
+updated: 2026-01-22
+---
+
 # CARF Validator
 
 Sistema de validacao estrutural e semantica para o repositorio CARF. Consolida 16+ scripts de validacao em uma arquitetura modular e extensivel.

@@ -1,4 +1,5 @@
 ---
+type: leaf
 title: "Textarea"
 status: review
 updated: 2026-01-21

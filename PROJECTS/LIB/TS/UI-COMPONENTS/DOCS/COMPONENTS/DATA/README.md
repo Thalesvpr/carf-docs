@@ -1,4 +1,5 @@
 ---
+type: readme
 title: "Data Components"
 status: review
 updated: 2026-01-21

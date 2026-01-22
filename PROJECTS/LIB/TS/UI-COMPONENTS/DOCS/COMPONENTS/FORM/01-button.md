@@ -1,4 +1,5 @@
 ---
+type: leaf
 title: "Button"
 status: review
 updated: 2026-01-21

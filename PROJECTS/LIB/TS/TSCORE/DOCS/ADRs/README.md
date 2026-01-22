@@ -1,4 +1,5 @@
 ---
+type: readme
 title: "Decisoes Arquiteturais - @carf/tscore"
 description: "Registro de decisoes arquiteturais para a biblioteca core TypeScript"
 status: review

@@ -1,4 +1,5 @@
 ---
+type: leaf
 title: "Configuracao do Cliente - @carf/geoapi-client"
 status: review
 updated: 2026-01-21

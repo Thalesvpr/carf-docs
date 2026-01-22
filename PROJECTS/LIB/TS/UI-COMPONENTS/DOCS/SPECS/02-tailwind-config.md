@@ -1,4 +1,5 @@
 ---
+type: leaf
 title: "Tailwind Config"
 status: review
 updated: 2026-01-21

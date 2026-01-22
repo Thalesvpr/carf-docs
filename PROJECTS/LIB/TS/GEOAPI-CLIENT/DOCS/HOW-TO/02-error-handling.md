@@ -1,4 +1,5 @@
 ---
+type: leaf
 title: "Error Handling - @carf/geoapi-client"
 status: review
 updated: 2026-01-21

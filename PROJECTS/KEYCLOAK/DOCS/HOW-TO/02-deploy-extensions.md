@@ -1,4 +1,5 @@
 ---
+type: leaf
 status: rejected
 description: "Runbook/HOW-TO com checklist de lista ao final - converter para prosa densa"
 updated: 2026-01-22

@@ -1,4 +1,5 @@
 ---
+type: readme
 status: rejected
 description: "README usa tabela resumo com bullets - reescrever tabela em prosa densa"
 updated: 2026-01-22

@@ -1,4 +1,5 @@
 ---
+type: leaf
 file: ${relative_path}
 decision: ${decision}
 decided_at: ${decided_at}

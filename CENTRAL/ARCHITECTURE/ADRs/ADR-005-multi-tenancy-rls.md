@@ -1,4 +1,5 @@
 ---
+type: adr
 status: rejected
 description: "Sobreposicao com ADR-025 (single-realm multi-tenancy). Consolidar em um unico ADR sobre estrategia de multi-tenancy."
 updated: 2026-01-20

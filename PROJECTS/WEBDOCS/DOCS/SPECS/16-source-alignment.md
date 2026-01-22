@@ -1,6 +1,6 @@
 ---
 id: ""
-type: ARCH
+type: leaf
 modules: []
 epic: ""
 status: review

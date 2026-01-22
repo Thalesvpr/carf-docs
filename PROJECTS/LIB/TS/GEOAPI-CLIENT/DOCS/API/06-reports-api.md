@@ -1,4 +1,5 @@
 ---
+type: leaf
 title: "Reports API - Geracao de Relatorios"
 status: review
 updated: 2026-01-21

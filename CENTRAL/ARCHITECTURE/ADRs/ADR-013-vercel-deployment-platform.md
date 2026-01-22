@@ -1,4 +1,5 @@
 ---
+type: adr
 status: rejected
 description: "Nao e decisao arquitetural. Plataforma de deploy e operacional/infraestrutura. Mover para DEPLOYMENTS."
 updated: 2026-01-20

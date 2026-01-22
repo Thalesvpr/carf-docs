@@ -1,4 +1,5 @@
 ---
+type: leaf
 status: rejected
 description: "Runbook com checklist ao final - falta converter lista final para prosa"
 updated: 2026-01-22

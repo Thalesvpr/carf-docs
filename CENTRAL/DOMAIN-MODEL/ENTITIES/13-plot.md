@@ -1,4 +1,5 @@
 ---
+type: leaf
 status: rejected
 description: "Estrutura caotica. Numeracao nao agrupa por categoria. Precisa reorganizar por agregado/contexto. Stub de 13 linhas - incompleto."
 updated: 2026-01-19

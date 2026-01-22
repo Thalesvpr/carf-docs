@@ -1,4 +1,5 @@
 ---
+type: leaf
 title: "Package.json - @carf/tscore"
 status: review
 updated: 2026-01-21

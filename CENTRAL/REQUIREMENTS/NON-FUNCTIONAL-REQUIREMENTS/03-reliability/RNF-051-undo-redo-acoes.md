@@ -1,4 +1,5 @@
 ---
+type: rnf
 status: rejected
 description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
 updated: 2026-01-15

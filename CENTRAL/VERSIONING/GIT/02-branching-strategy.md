@@ -1,4 +1,5 @@
 ---
+type: leaf
 status: rejected
 description: "Conteudo operacional. Git workflows pertencem a .github ou CONTRIBUTING. Stub de 8 linhas - incompleto."
 updated: 2026-01-19

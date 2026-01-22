@@ -1,4 +1,5 @@
 ---
+type: leaf
 status: rejected
 description: "Formato inadequado: blocos de codigo extensos ao inves de prosa densa. Deveria explicar cache service, patterns e invalidacao em paragrafos corridos."
 updated: 2026-01-22

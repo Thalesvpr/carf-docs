@@ -1,4 +1,5 @@
 ---
+type: adr
 status: rejected
 updated: 2026-01-21
 description: "Nao e decisao arquitetural. Design system pertence a CENTRAL/DESIGN-SYSTEM, nao ADRs."

@@ -1,4 +1,5 @@
 ---
+type: adr
 status: rejected
 description: "Nao e decisao arquitetural. Bundler e detalhe de implementacao/tooling. Remover ou mover para STANDARDS."
 updated: 2026-01-20

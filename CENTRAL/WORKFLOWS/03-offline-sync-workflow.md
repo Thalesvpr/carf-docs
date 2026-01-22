@@ -1,4 +1,5 @@
 ---
+type: leaf
 status: rejected
 description: "Duplicacao. Workflows de negocio devem estar em DOMAIN-MODEL ou REQUIREMENTS. Stub de 14 linhas - incompleto."
 updated: 2026-01-19

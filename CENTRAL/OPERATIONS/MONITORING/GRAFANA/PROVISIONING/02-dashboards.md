@@ -1,4 +1,5 @@
 ---
+type: leaf
 status: rejected
 description: "Conteudo operacional. Runbooks e procedimentos pertencem a repo de ops ou PROJECTS. Contem blocos de codigo."
 updated: 2026-01-16

@@ -1,4 +1,5 @@
 ---
+type: leaf
 status: rejected
 description: "Formato inadequado: blocos de codigo extensos ao inves de prosa densa. Deveria explicar jobs Hangfire, configuracao, patterns em paragrafos corridos."
 updated: 2026-01-22
