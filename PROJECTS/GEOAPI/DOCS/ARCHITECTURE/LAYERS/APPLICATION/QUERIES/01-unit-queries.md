@@ -1,6 +1,7 @@
 ---
-status: review
-updated: 2026-01-16
+status: rejected
+description: "Mais codigo que prosa - arquivo e 85% blocos de codigo C#"
+updated: 2026-01-22
 ---
 
 # Unit Queries

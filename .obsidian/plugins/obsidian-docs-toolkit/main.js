@@ -3476,8 +3476,10 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
       return;
     }
     const docs = this.store.getState().documents.filter((d) => this.isTrackedFile(d.file.path));
-    const approved = docs.filter((d) => d.status === "approved").length;
     const total = docs.length;
+    const approved = docs.filter((d) => d.status === "approved").length;
+    const review = docs.filter((d) => d.status === "review" || !d.status).length;
+    const rejected = docs.filter((d) => d.status === "rejected").length;
     const queue = this.getQueue();
     const file = this.getCurrentFile();
     const doc = file ? this.store.getDocument(file.path) : null;
@@ -3513,11 +3515,23 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
     lastBtn.disabled = this.currentIndex >= queue.length - 1;
     lastBtn.onclick = () => this.goTo(queue.length - 1);
     const header = el.createDiv({ cls: "nav-header" });
+    const statsRow = header.createDiv({ cls: "docs-stats-row" });
+    const pct = (n) => total > 0 ? Math.round(n / total * 100) : 0;
+    const approvedStat = statsRow.createDiv({ cls: "docs-stat" });
+    approvedStat.createDiv({ cls: "docs-stat-dot docs-dot-approved" });
+    approvedStat.createSpan({ text: `${approved}`, cls: "docs-stat-num" });
+    approvedStat.createSpan({ text: `(${pct(approved)}%)`, cls: "docs-stat-pct" });
+    const reviewStat = statsRow.createDiv({ cls: "docs-stat" });
+    reviewStat.createDiv({ cls: "docs-stat-dot docs-dot-review" });
+    reviewStat.createSpan({ text: `${review}`, cls: "docs-stat-num" });
+    reviewStat.createSpan({ text: `(${pct(review)}%)`, cls: "docs-stat-pct" });
+    const rejectedStat = statsRow.createDiv({ cls: "docs-stat" });
+    rejectedStat.createDiv({ cls: "docs-stat-dot docs-dot-rejected" });
+    rejectedStat.createSpan({ text: `${rejected}`, cls: "docs-stat-num" });
+    rejectedStat.createSpan({ text: `(${pct(rejected)}%)`, cls: "docs-stat-pct" });
+    const totalStat = statsRow.createDiv({ cls: "docs-stat docs-stat-total" });
+    totalStat.createSpan({ text: `Total: ${total}`, cls: "docs-stat-num" });
     const headerInfo = header.createDiv({ cls: "nav-buttons-container" });
-    headerInfo.createSpan({
-      text: `${approved}/${total}`,
-      cls: "docs-progress-text"
-    });
     const allIssues = this.store.getState().issues;
     if (allIssues.length > 0) {
       const problemsBtn = headerInfo.createEl("button", {

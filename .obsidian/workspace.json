@@ -67,12 +67,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/VALUE-OBJECTS/ENUMS/10-team-role.md",
+                "file": "CENTRAL/API/AUTHENTICATION/01-login.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "10-team-role"
+              "title": "01-login"
             }
           }
         ],
@@ -251,6 +251,8 @@
   },
   "active": "b7262c57c40809a7",
   "lastOpenFiles": [
+    "README.md",
+    "PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/VALUE-OBJECTS/ENUMS/10-team-role.md",
     "PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/VALUE-OBJECTS/ENUMS/08-community-type.md",
     "PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/VALUE-OBJECTS/DOCUMENTS/README.md",
     "PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/VALUE-OBJECTS/DOCUMENTS/11-crea.md",
@@ -275,8 +277,6 @@
     "PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/EVENTS/00-i-domain-event.md",
     "PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/UNITS/README.md",
     "PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/UNITS/02-unit.md",
-    "PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/TEAMS/README.md",
-    "PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/TEAMS/19-community-authorization.md",
     "CENTRAL/WORKFLOWS/sedyZnXqC",
     "CENTRAL/VERSIONING/GIT/sedYFuT6S",
     "CENTRAL/VERSIONING/GIT/sedsv48Ot",
