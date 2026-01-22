@@ -26,6 +26,7 @@ import { TemplateService } from "./src/services/TemplateService";
 import { MetadataService } from "./src/services/MetadataService";
 import { IndexService } from "./src/services/IndexService";
 import { MigrationService } from "./src/services/MigrationService";
+import { TypeRegistry } from "./src/services/TypeRegistry";
 
 // i18n
 import { I18nService } from "./src/i18n/I18nService";
@@ -72,6 +73,7 @@ export default class DocsToolkitPlugin extends Plugin {
   metadataService: MetadataService;
   indexService: IndexService;
   migrationService: MigrationService;
+  typeRegistry: TypeRegistry;
 
   // Commands
   private initMetadataCommand: InitMetadataCommand;
@@ -102,6 +104,10 @@ export default class DocsToolkitPlugin extends Plugin {
     // Initialize validator registry with built-in validators
     this.registry = createBuiltinValidatorRegistry();
 
+    // Initialize TypeRegistry for data-driven type detection
+    this.typeRegistry = new TypeRegistry();
+    this.typeRegistry.loadFromConfig(this.config);
+
     // Initialize template service
     this.templateService = new TemplateService(this.app);
 
@@ -111,7 +117,8 @@ export default class DocsToolkitPlugin extends Plugin {
       this.config,
       this.registry,
       this.templateService,
-      this.i18n
+      this.i18n,
+      this.typeRegistry
     );
 
     // Initialize config watcher for hot-reload
@@ -122,7 +129,7 @@ export default class DocsToolkitPlugin extends Plugin {
     await this.configWatcher.start();
 
     // Initialize services
-    this.metadataService = new MetadataService(this.app);
+    this.metadataService = new MetadataService(this.app, this.typeRegistry);
     this.indexService = new IndexService(this.app, this.metadataService);
     this.migrationService = new MigrationService(this.app, this.metadataService);
 
@@ -188,6 +195,9 @@ export default class DocsToolkitPlugin extends Plugin {
 
     // Update language
     this.i18n.setLocale(newConfig.language);
+
+    // Reload TypeRegistry with new config
+    this.typeRegistry.loadFromConfig(newConfig);
 
     // Update store config
     this.store.updateConfig(newConfig);

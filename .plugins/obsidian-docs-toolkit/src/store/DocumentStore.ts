@@ -7,6 +7,7 @@ import { ValidationService } from "../services/ValidationService";
 import { DocumentParser } from "../services/DocumentParser";
 import { TemplateService } from "../services/TemplateService";
 import { I18nService } from "../i18n/I18nService";
+import { TypeRegistry } from "../services/TypeRegistry";
 
 export interface StoreState {
   documents: Document[];
@@ -26,6 +27,7 @@ export class DocumentStore extends Events {
   private registry: ValidatorRegistry;
   private templateService: TemplateService;
   private i18n: I18nService;
+  private typeRegistry: TypeRegistry;
   private documentParser: DocumentParser;
   private validationService: ValidationService;
 
@@ -38,7 +40,8 @@ export class DocumentStore extends Events {
     config: DocsLinterConfig,
     registry: ValidatorRegistry,
     templateService: TemplateService,
-    i18n: I18nService
+    i18n: I18nService,
+    typeRegistry: TypeRegistry
   ) {
     super();
     this.app = app;
@@ -46,12 +49,14 @@ export class DocumentStore extends Events {
     this.registry = registry;
     this.templateService = templateService;
     this.i18n = i18n;
+    this.typeRegistry = typeRegistry;
     this.documentParser = new DocumentParser(app);
     this.validationService = new ValidationService(
       app,
       registry,
       templateService,
-      i18n
+      i18n,
+      typeRegistry
     );
   }
 

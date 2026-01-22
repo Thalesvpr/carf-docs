@@ -1084,10 +1084,9 @@ var NamingValidator = class extends LocalValidator {
     if (!((_b = (_a = ctx.documentTypeConfig) == null ? void 0 : _a.detection) == null ? void 0 : _b.filename)) {
       return issues;
     }
-    const pattern = ctx.documentTypeConfig.detection.filename;
-    try {
-      const regex = new RegExp(pattern);
-      if (!regex.test(doc.file.name)) {
+    const filenameConfig = ctx.documentTypeConfig.detection.filename;
+    if (filenameConfig.exact) {
+      if (doc.file.name !== filenameConfig.exact) {
         issues.push(new Issue(
           doc.file,
           this.id,
@@ -1095,17 +1094,40 @@ var NamingValidator = class extends LocalValidator {
           "validators.naming.pattern_mismatch",
           {
             filename: doc.file.name,
-            pattern,
+            pattern: filenameConfig.exact,
             typeName: ctx.documentTypeConfig.name
           },
           void 0,
           null,
           "validators.naming.pattern_mismatch_suggestion",
-          { pattern }
+          { pattern: filenameConfig.exact }
         ));
       }
-    } catch (e) {
-      console.error(`Invalid regex pattern for naming validator: ${pattern}`, e);
+      return issues;
+    }
+    if (filenameConfig.pattern) {
+      try {
+        const regex = new RegExp(filenameConfig.pattern);
+        if (!regex.test(doc.file.name)) {
+          issues.push(new Issue(
+            doc.file,
+            this.id,
+            severity,
+            "validators.naming.pattern_mismatch",
+            {
+              filename: doc.file.name,
+              pattern: filenameConfig.pattern,
+              typeName: ctx.documentTypeConfig.name
+            },
+            void 0,
+            null,
+            "validators.naming.pattern_mismatch_suggestion",
+            { pattern: filenameConfig.pattern }
+          ));
+        }
+      } catch (e) {
+        console.error(`Invalid regex pattern for naming validator: ${filenameConfig.pattern}`, e);
+      }
     }
     return issues;
   }
@@ -2177,8 +2199,16 @@ var Document2 = class {
 
 // src/services/MetadataService.ts
 var MetadataService = class {
-  constructor(app) {
+  constructor(app, typeRegistry) {
+    this.typeRegistry = null;
     this.app = app;
+    this.typeRegistry = typeRegistry || null;
+  }
+  /**
+   * Set TypeRegistry (for late initialization)
+   */
+  setTypeRegistry(typeRegistry) {
+    this.typeRegistry = typeRegistry;
   }
   /**
    * Parse a file into a Document object
@@ -2326,6 +2356,8 @@ var MetadataService = class {
   }
   /**
    * Infer document type from filename
+   * Note: This method is less accurate than inferTypeFromPath.
+   * For best results, use inferTypeFromPath which can use TypeRegistry.
    */
   inferTypeFromFilename(filename) {
     if (filename.includes("-000-template"))
@@ -2458,8 +2490,21 @@ ${bodyContent}`;
   }
   /**
    * Infer document type from file path and name
+   * Uses TypeRegistry when available, otherwise falls back to hardcoded logic
    */
   inferTypeFromPath(file) {
+    var _a;
+    if (this.typeRegistry) {
+      const frontmatter = ((_a = this.app.metadataCache.getFileCache(file)) == null ? void 0 : _a.frontmatter) || null;
+      return this.typeRegistry.detectType(file, frontmatter);
+    }
+    return this.inferTypeFromPathLegacy(file);
+  }
+  /**
+   * Legacy type inference (deprecated, kept for backwards compatibility)
+   * @deprecated Use TypeRegistry instead
+   */
+  inferTypeFromPathLegacy(file) {
     const filename = file.name;
     const path = file.path.toLowerCase();
     if (filename.includes("-000-template"))
@@ -2912,6 +2957,153 @@ ${content}`;
   }
 };
 
+// src/services/TypeRegistry.ts
+var TypeRegistry = class {
+  constructor() {
+    this.types = /* @__PURE__ */ new Map();
+    this.sortedTypes = [];
+    this.fallbackType = {
+      id: "doc",
+      name: "Document",
+      detection: {},
+      priority: -999
+    };
+  }
+  /**
+   * Load types from config
+   */
+  loadFromConfig(config) {
+    var _a;
+    this.types.clear();
+    if (!config.documentTypes) {
+      console.log("[TypeRegistry] No documentTypes in config");
+      this.sortedTypes = [this.fallbackType];
+      return;
+    }
+    for (const [id, typeConfig] of Object.entries(config.documentTypes)) {
+      const typeDef = {
+        id,
+        name: typeConfig.name || id,
+        detection: typeConfig.detection || {},
+        validation: typeConfig,
+        template: typeConfig.template,
+        priority: (_a = typeConfig.priority) != null ? _a : 0
+      };
+      this.types.set(id, typeDef);
+    }
+    this.sortedTypes = Array.from(this.types.values()).sort((a, b) => b.priority - a.priority);
+    if (!this.types.has("doc")) {
+      this.sortedTypes.push(this.fallbackType);
+    }
+    console.log(
+      `[TypeRegistry] Loaded ${this.types.size} types:`,
+      this.sortedTypes.map((t) => `${t.id}(${t.priority})`).join(", ")
+    );
+  }
+  /**
+   * Detect the type of a document
+   *
+   * @param file - The file to check
+   * @param frontmatter - Parsed frontmatter (can use metadataCache)
+   * @returns The detected type ID
+   */
+  detectType(file, frontmatter) {
+    for (const typeDef of this.sortedTypes) {
+      if (this.matchesType(file, frontmatter, typeDef)) {
+        return typeDef.id;
+      }
+    }
+    return this.fallbackType.id;
+  }
+  /**
+   * Check if a file matches a type definition
+   */
+  matchesType(file, frontmatter, typeDef) {
+    var _a, _b, _c, _d, _e, _f, _g;
+    const detection = typeDef.detection;
+    if (!detection)
+      return false;
+    if ((_a = detection.frontmatter) == null ? void 0 : _a.type) {
+      const fmType = frontmatter == null ? void 0 : frontmatter.type;
+      if (typeof fmType === "string" && fmType.toLowerCase() === detection.frontmatter.type.toLowerCase()) {
+        return true;
+      }
+    }
+    if (((_b = detection.frontmatter) == null ? void 0 : _b.field) && ((_c = detection.frontmatter) == null ? void 0 : _c.value)) {
+      const fieldValue = frontmatter == null ? void 0 : frontmatter[detection.frontmatter.field];
+      if (fieldValue === detection.frontmatter.value) {
+        return true;
+      }
+    }
+    if ((_d = detection.filename) == null ? void 0 : _d.exact) {
+      if (file.name === detection.filename.exact) {
+        return true;
+      }
+    }
+    if ((_e = detection.filename) == null ? void 0 : _e.pattern) {
+      try {
+        const regex = new RegExp(detection.filename.pattern, "i");
+        if (regex.test(file.name)) {
+          return true;
+        }
+      } catch (e) {
+        console.warn(`[TypeRegistry] Invalid filename pattern for ${typeDef.id}:`, e);
+      }
+    }
+    if ((_f = detection.path) == null ? void 0 : _f.contains) {
+      const normalizedPath = file.path.toLowerCase();
+      const searchPath = detection.path.contains.toLowerCase();
+      if (normalizedPath.includes(searchPath)) {
+        return true;
+      }
+    }
+    if ((_g = detection.path) == null ? void 0 : _g.pattern) {
+      try {
+        const pattern = detection.path.pattern.replace(/\*\*/g, ".*").replace(/\*/g, "[^/]*").replace(/\?/g, ".");
+        const regex = new RegExp(pattern, "i");
+        if (regex.test(file.path)) {
+          return true;
+        }
+      } catch (e) {
+        console.warn(`[TypeRegistry] Invalid path pattern for ${typeDef.id}:`, e);
+      }
+    }
+    return false;
+  }
+  /**
+   * Get the validation config for a type
+   */
+  getValidationConfig(typeId) {
+    var _a;
+    return ((_a = this.types.get(typeId)) == null ? void 0 : _a.validation) || null;
+  }
+  /**
+   * Get full type definition
+   */
+  getType(typeId) {
+    return this.types.get(typeId) || null;
+  }
+  /**
+   * Get all registered types
+   */
+  getAllTypes() {
+    return this.sortedTypes;
+  }
+  /**
+   * Check if a type exists
+   */
+  hasType(typeId) {
+    return this.types.has(typeId);
+  }
+  /**
+   * Get human-readable name for a type
+   */
+  getTypeName(typeId) {
+    var _a;
+    return ((_a = this.types.get(typeId)) == null ? void 0 : _a.name) || typeId;
+  }
+};
+
 // src/i18n/I18nService.ts
 var import_obsidian10 = require("obsidian");
 var I18nService = class {
@@ -3356,8 +3548,15 @@ var I18nService = class {
 var import_obsidian12 = require("obsidian");
 
 // src/validators/base/ValidatorContext.ts
-function createValidatorContext(app, config, doc, t, templateValidation = null, allDocuments) {
-  const documentTypeConfig = findDocumentTypeConfig(doc, config);
+function createValidatorContext(app, config, doc, t, templateValidation = null, allDocuments, typeRegistry) {
+  let documentTypeConfig = null;
+  if (typeRegistry) {
+    const typeId = typeRegistry.detectType(doc.file, doc.frontmatter);
+    doc.detectedType = typeId;
+    documentTypeConfig = typeRegistry.getValidationConfig(typeId);
+  } else {
+    documentTypeConfig = findDocumentTypeConfigLegacy(doc, config);
+  }
   return {
     app,
     config,
@@ -3367,47 +3566,70 @@ function createValidatorContext(app, config, doc, t, templateValidation = null, 
     allDocuments
   };
 }
-function findDocumentTypeConfig(doc, config) {
+function findDocumentTypeConfigLegacy(doc, config) {
   for (const [typeId, typeConfig] of Object.entries(config.documentTypes)) {
-    if (matchesDocumentType(doc, typeConfig)) {
+    if (matchesDocumentTypeLegacy(doc, typeConfig)) {
       doc.detectedType = typeId;
       return typeConfig;
     }
   }
   return null;
 }
-function matchesDocumentType(doc, typeConfig) {
+function matchesDocumentTypeLegacy(doc, typeConfig) {
+  var _a, _b, _c, _d, _e, _f, _g;
   const detection = typeConfig.detection;
-  if (detection.filename) {
-    const regex = new RegExp(detection.filename);
-    if (!regex.test(doc.file.name)) {
-      return false;
+  if ((_a = detection.filename) == null ? void 0 : _a.pattern) {
+    try {
+      const regex = new RegExp(detection.filename.pattern);
+      if (regex.test(doc.file.name)) {
+        return true;
+      }
+    } catch (e) {
     }
   }
-  if (detection.path) {
-    const pathPattern = detection.path.replace(/\*\*/g, ".*").replace(/\*/g, "[^/]*");
-    const regex = new RegExp(pathPattern);
-    if (!regex.test(doc.file.path)) {
-      return false;
+  if ((_b = detection.filename) == null ? void 0 : _b.exact) {
+    if (doc.file.name === detection.filename.exact) {
+      return true;
     }
   }
-  if (detection.frontmatterField) {
-    const { field, value } = detection.frontmatterField;
-    const actualValue = doc.getFrontmatterField(field);
-    if ((actualValue == null ? void 0 : actualValue.toLowerCase()) !== value.toLowerCase()) {
-      return false;
+  if ((_c = detection.path) == null ? void 0 : _c.contains) {
+    if (doc.file.path.toLowerCase().includes(detection.path.contains.toLowerCase())) {
+      return true;
     }
   }
-  return true;
+  if ((_d = detection.path) == null ? void 0 : _d.pattern) {
+    try {
+      const pathPattern = detection.path.pattern.replace(/\*\*/g, ".*").replace(/\*/g, "[^/]*");
+      const regex = new RegExp(pathPattern);
+      if (regex.test(doc.file.path)) {
+        return true;
+      }
+    } catch (e) {
+    }
+  }
+  if ((_e = detection.frontmatter) == null ? void 0 : _e.type) {
+    const fmType = doc.getFrontmatterField("type");
+    if ((fmType == null ? void 0 : fmType.toLowerCase()) === detection.frontmatter.type.toLowerCase()) {
+      return true;
+    }
+  }
+  if (((_f = detection.frontmatter) == null ? void 0 : _f.field) && ((_g = detection.frontmatter) == null ? void 0 : _g.value)) {
+    const actualValue = doc.getFrontmatterField(detection.frontmatter.field);
+    if ((actualValue == null ? void 0 : actualValue.toLowerCase()) === detection.frontmatter.value.toLowerCase()) {
+      return true;
+    }
+  }
+  return false;
 }
 
 // src/services/ValidationService.ts
 var ValidationService = class {
-  constructor(app, registry, templateService, i18n) {
+  constructor(app, registry, templateService, i18n, typeRegistry) {
     this.app = app;
     this.registry = registry;
     this.templateService = templateService;
     this.i18n = i18n;
+    this.typeRegistry = typeRegistry;
   }
   /**
    * Validate all documents
@@ -3425,7 +3647,8 @@ var ValidationService = class {
         doc,
         (key, params) => this.i18n.t(key, params),
         templateValidation,
-        documents
+        documents,
+        this.typeRegistry
       );
       for (const validator of localValidators) {
         if (validator.validate) {
@@ -3485,7 +3708,8 @@ var ValidationService = class {
       doc,
       (key, params) => this.i18n.t(key, params),
       templateValidation,
-      allDocuments
+      allDocuments,
+      this.typeRegistry
     );
     for (const validator of localValidators) {
       if (validator.validate) {
@@ -3621,7 +3845,7 @@ var DocumentParser = class {
 
 // src/store/DocumentStore.ts
 var DocumentStore = class extends import_obsidian12.Events {
-  constructor(app, config, registry, templateService, i18n) {
+  constructor(app, config, registry, templateService, i18n, typeRegistry) {
     super();
     this.documents = /* @__PURE__ */ new Map();
     this.issues = /* @__PURE__ */ new Map();
@@ -3631,12 +3855,14 @@ var DocumentStore = class extends import_obsidian12.Events {
     this.registry = registry;
     this.templateService = templateService;
     this.i18n = i18n;
+    this.typeRegistry = typeRegistry;
     this.documentParser = new DocumentParser(app);
     this.validationService = new ValidationService(
       app,
       registry,
       templateService,
-      i18n
+      i18n,
+      typeRegistry
     );
   }
   /**
@@ -5383,20 +5609,23 @@ var DocsToolkitPlugin = class extends import_obsidian22.Plugin {
     this.i18n = new I18nService(this.app);
     await this.i18n.initialize(this.config.language);
     this.registry = createBuiltinValidatorRegistry();
+    this.typeRegistry = new TypeRegistry();
+    this.typeRegistry.loadFromConfig(this.config);
     this.templateService = new TemplateService(this.app);
     this.store = new DocumentStore(
       this.app,
       this.config,
       this.registry,
       this.templateService,
-      this.i18n
+      this.i18n,
+      this.typeRegistry
     );
     this.configWatcher = new ConfigWatcher(this.app, this.configLoader);
     this.configWatcher.on("config-changed", (newConfig) => {
       this.onConfigChanged(newConfig);
     });
     await this.configWatcher.start();
-    this.metadataService = new MetadataService(this.app);
+    this.metadataService = new MetadataService(this.app, this.typeRegistry);
     this.indexService = new IndexService(this.app, this.metadataService);
     this.migrationService = new MigrationService(this.app, this.metadataService);
     this.initMetadataCommand = new InitMetadataCommand(this.app, this.metadataService);
@@ -5441,6 +5670,7 @@ var DocsToolkitPlugin = class extends import_obsidian22.Plugin {
     console.log("Config changed, reloading...");
     this.config = newConfig;
     this.i18n.setLocale(newConfig.language);
+    this.typeRegistry.loadFromConfig(newConfig);
     this.store.updateConfig(newConfig);
     if (this.curationPanel) {
       this.curationPanel.updateConfig(newConfig);

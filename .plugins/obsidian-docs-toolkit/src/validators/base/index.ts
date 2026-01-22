@@ -6,4 +6,4 @@ export {
   isValidatorEnabled
 } from "./Validator";
 
-export { createValidatorContext, findDocumentTypeConfig } from "./ValidatorContext";
+export { createValidatorContext, findDocumentTypeConfigLegacy } from "./ValidatorContext";

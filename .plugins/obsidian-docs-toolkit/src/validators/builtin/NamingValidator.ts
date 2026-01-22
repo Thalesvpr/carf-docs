@@ -16,17 +16,16 @@ export class NamingValidator extends LocalValidator {
     const issues: Issue[] = [];
     const severity = getConfiguredSeverity(this.id, ctx.config, this.defaultSeverity);
 
-    // Skip if no document type detected or no filename pattern
+    // Skip if no document type detected or no filename detection config
     if (!ctx.documentTypeConfig?.detection?.filename) {
       return issues;
     }
 
-    const pattern = ctx.documentTypeConfig.detection.filename;
+    const filenameConfig = ctx.documentTypeConfig.detection.filename;
 
-    try {
-      const regex = new RegExp(pattern);
-
-      if (!regex.test(doc.file.name)) {
+    // Check exact match first
+    if (filenameConfig.exact) {
+      if (doc.file.name !== filenameConfig.exact) {
         issues.push(new Issue(
           doc.file,
           this.id,
@@ -34,17 +33,43 @@ export class NamingValidator extends LocalValidator {
           "validators.naming.pattern_mismatch",
           {
             filename: doc.file.name,
-            pattern,
+            pattern: filenameConfig.exact,
             typeName: ctx.documentTypeConfig.name
           },
           undefined,
           null,
           "validators.naming.pattern_mismatch_suggestion",
-          { pattern }
+          { pattern: filenameConfig.exact }
         ));
       }
-    } catch (e) {
-      console.error(`Invalid regex pattern for naming validator: ${pattern}`, e);
+      return issues;
+    }
+
+    // Check pattern match
+    if (filenameConfig.pattern) {
+      try {
+        const regex = new RegExp(filenameConfig.pattern);
+
+        if (!regex.test(doc.file.name)) {
+          issues.push(new Issue(
+            doc.file,
+            this.id,
+            severity,
+            "validators.naming.pattern_mismatch",
+            {
+              filename: doc.file.name,
+              pattern: filenameConfig.pattern,
+              typeName: ctx.documentTypeConfig.name
+            },
+            undefined,
+            null,
+            "validators.naming.pattern_mismatch_suggestion",
+            { pattern: filenameConfig.pattern }
+          ));
+        }
+      } catch (e) {
+        console.error(`Invalid regex pattern for naming validator: ${filenameConfig.pattern}`, e);
+      }
     }
 
     return issues;

@@ -52,22 +52,72 @@ export interface DocumentTypeConfig {
   /** Required sections */
   sections?: SectionsConfig;
 
+  /** Word count limits */
+  wordCount?: WordCountConfig;
+
+  /** Forbidden patterns */
+  forbidden?: ForbiddenConfig;
+
   /** Template file that provides validation rules */
   template?: string;
+
+  /** Priority for type detection (higher = checked first, default 0) */
+  priority?: number;
+}
+
+/**
+ * Word count validation configuration
+ */
+export interface WordCountConfig {
+  /** Maximum total words */
+  max?: number;
+  /** Minimum total words */
+  min?: number;
+  /** Maximum words per section */
+  maxPerSection?: number;
+}
+
+/**
+ * Forbidden patterns configuration
+ */
+export interface ForbiddenConfig {
+  /** Patterns to forbid (literal strings or regex) */
+  patterns?: string[];
+  /** Ignore matches inside code blocks */
+  ignoreInCodeBlocks?: boolean;
+  /** Ignore matches inside Markdown tables */
+  ignoreInTables?: boolean;
 }
 
 /**
  * Document type detection configuration
+ *
+ * Multiple criteria can be specified - they are OR'd together.
+ * First type that matches any criterion wins.
  */
 export interface DetectionConfig {
-  /** Regex pattern for filename */
-  filename?: string;
-  /** Glob pattern for path */
-  path?: string;
-  /** Frontmatter field to check (e.g., "type: adr") */
-  frontmatterField?: {
-    field: string;
-    value: string;
+  /** Filename detection */
+  filename?: {
+    /** Exact filename match */
+    exact?: string;
+    /** Regex pattern for filename */
+    pattern?: string;
+  };
+  /** Path detection */
+  path?: {
+    /** Substring that must be in the path */
+    contains?: string;
+    /** Regex/glob pattern for path */
+    pattern?: string;
+  };
+  /** Frontmatter detection */
+  frontmatter?: {
+    /** Match against frontmatter.type field */
+    type?: string;
+    /** Match against any frontmatter field */
+    field?: string;
+    /** Value to match */
+    value?: string;
   };
 }
 

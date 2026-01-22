@@ -1,15 +1,25 @@
 import { App, TFile, parseYaml, stringifyYaml } from "obsidian";
 import { CARFFrontmatter, DocType, Status, Module, VALID_MODULES } from "../models/types";
 import { Document, DocumentLink } from "../models/Document";
+import { TypeRegistry } from "./TypeRegistry";
 
 /**
  * Service for managing YAML frontmatter in CARF documents
  */
 export class MetadataService {
   private app: App;
+  private typeRegistry: TypeRegistry | null = null;
 
-  constructor(app: App) {
+  constructor(app: App, typeRegistry?: TypeRegistry) {
     this.app = app;
+    this.typeRegistry = typeRegistry || null;
+  }
+
+  /**
+   * Set TypeRegistry (for late initialization)
+   */
+  setTypeRegistry(typeRegistry: TypeRegistry): void {
+    this.typeRegistry = typeRegistry;
   }
 
   /**
@@ -189,8 +199,11 @@ export class MetadataService {
 
   /**
    * Infer document type from filename
+   * Note: This method is less accurate than inferTypeFromPath.
+   * For best results, use inferTypeFromPath which can use TypeRegistry.
    */
   private inferTypeFromFilename(filename: string): string {
+    // Legacy logic - cannot use TypeRegistry here as we only have filename
     if (filename.includes("-000-template")) return "template";
     if (filename.startsWith("ADR-")) return "adr";
     if (filename.startsWith("RF-")) return "rf";
@@ -338,8 +351,25 @@ export class MetadataService {
 
   /**
    * Infer document type from file path and name
+   * Uses TypeRegistry when available, otherwise falls back to hardcoded logic
    */
   inferTypeFromPath(file: TFile): string {
+    // Use TypeRegistry if available (data-driven)
+    if (this.typeRegistry) {
+      // Get frontmatter from metadataCache for detection
+      const frontmatter = this.app.metadataCache.getFileCache(file)?.frontmatter || null;
+      return this.typeRegistry.detectType(file, frontmatter);
+    }
+
+    // Fallback to hardcoded logic (legacy)
+    return this.inferTypeFromPathLegacy(file);
+  }
+
+  /**
+   * Legacy type inference (deprecated, kept for backwards compatibility)
+   * @deprecated Use TypeRegistry instead
+   */
+  private inferTypeFromPathLegacy(file: TFile): string {
     const filename = file.name;
     const path = file.path.toLowerCase();
 

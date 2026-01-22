@@ -7,6 +7,7 @@ import { ValidatorContext } from "../validators/base/Validator";
 import { createValidatorContext } from "../validators/base/ValidatorContext";
 import { TemplateService } from "./TemplateService";
 import { I18nService } from "../i18n/I18nService";
+import { TypeRegistry } from "./TypeRegistry";
 
 /**
  * Validation result for a single document
@@ -33,17 +34,20 @@ export class ValidationService {
   private registry: ValidatorRegistry;
   private templateService: TemplateService;
   private i18n: I18nService;
+  private typeRegistry: TypeRegistry;
 
   constructor(
     app: App,
     registry: ValidatorRegistry,
     templateService: TemplateService,
-    i18n: I18nService
+    i18n: I18nService,
+    typeRegistry: TypeRegistry
   ) {
     this.app = app;
     this.registry = registry;
     this.templateService = templateService;
     this.i18n = i18n;
+    this.typeRegistry = typeRegistry;
   }
 
   /**
@@ -72,7 +76,8 @@ export class ValidationService {
         doc,
         (key, params) => this.i18n.t(key, params),
         templateValidation,
-        documents
+        documents,
+        this.typeRegistry
       );
 
       // Run each local validator
@@ -154,7 +159,8 @@ export class ValidationService {
       doc,
       (key, params) => this.i18n.t(key, params),
       templateValidation,
-      allDocuments
+      allDocuments,
+      this.typeRegistry
     );
 
     // Run validators
