@@ -10,10 +10,6 @@ Padrao arquitetural adotado no backend GEOAPI que organiza o codigo em camadas c
 
 A separacao em camadas facilita testabilidade ao permitir mocks de dependencias externas, e evolucao tecnologica ao isolar frameworks em camadas perifericas. Mudancas em banco de dados ou bibliotecas HTTP nao afetam regras de negocio.
 
-## Camadas
+## Estrutura
 
-A camada Domain contem entidades, value objects e interfaces de repositorio. Application implementa casos de uso orquestrando entidades. Infrastructure fornece implementacoes concretas de repositorios e servicos externos. Presentation expoe APIs REST e processa requisicoes HTTP.
-
-## Regra de Dependencia
-
-Dependencias sempre apontam para dentro. Domain nao conhece nenhuma outra camada. Application conhece apenas Domain. Infrastructure e Presentation conhecem Application e Domain. Inversao de dependencia via interfaces permite que camadas internas definam contratos implementados por externas.
+Domain contem entidades e value objects. Application implementa casos de uso. Infrastructure fornece repositorios concretos. Presentation expoe APIs REST. Dependencias sempre apontam para dentro, com inversao via interfaces.
