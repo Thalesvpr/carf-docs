@@ -67,7 +67,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "PROJECTS/LIB/TS/TSCORE/DOCS/API/README.md",
+                "file": "CENTRAL/README.md",
                 "mode": "source",
                 "source": false
               },
@@ -133,7 +133,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 387.5
+    "width": 305.5
   },
   "right": {
     "id": "5c80d725b66a9060",
@@ -235,7 +235,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 816.5
+    "width": 434.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -251,32 +251,32 @@
   },
   "active": "b7262c57c40809a7",
   "lastOpenFiles": [
-    "PROJECTS/LIB/TS/TSCORE/DOCS/ARCHITECTURE/01-package-structure.md",
-    "PROJECTS/LIB/TS/TSCORE/DOCS/ARCHITECTURE/README.md",
-    "PROJECTS/LIB/TS/TSCORE/DOCS/CONCEPTS/01-value-objects.md",
-    "PROJECTS/LIB/TS/TSCORE/DOCS/CONCEPTS/02-authentication.md",
-    "PROJECTS/LIB/TS/TSCORE/DOCS/CONCEPTS/03-typescript-types.md",
-    "PROJECTS/LIB/TS/TSCORE/DOCS/CONCEPTS/README.md",
-    "PROJECTS/LIB/TS/TSCORE/DOCS/HOW-TO/01-using-types.md",
-    "PROJECTS/LIB/TS/TSCORE/DOCS/HOW-TO/02-local-development.md",
-    "PROJECTS/LIB/TS/TSCORE/DOCS/HOW-TO/03-publishing.md",
-    "PROJECTS/LIB/TS/TSCORE/DOCS/HOW-TO/README.md",
-    "PROJECTS/LIB/TS/TSCORE/DOCS/README.md",
-    "PROJECTS/LIB/TS/TSCORE/DOCS/SPECS/01-package-json.md",
-    "PROJECTS/LIB/TS/TSCORE/DOCS/SPECS/02-tsconfig.md",
-    "PROJECTS/LIB/TS/TSCORE/DOCS/SPECS/03-exports-map.md",
-    "PROJECTS/LIB/TS/TSCORE/DOCS/SPECS/README.md",
-    "PROJECTS/LIB/TS/TSCORE/README.md",
-    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/CHANGELOG.md",
-    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@babel/helper-string-parser/README.md",
-    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@babel/helper-validator-identifier/README.md",
-    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@babel/parser/CHANGELOG.md",
-    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@babel/parser/README.md",
-    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@babel/types/README.md",
-    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@jridgewell/sourcemap-codec/README.md",
-    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@types/bun/README.md",
-    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@types/geojson/README.md",
-    "PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore/node_modules/@types/node/README.md",
+    "README.md",
+    "PROJECTS/KEYCLOAK/DOCS/INTEGRATION/SECURITY/02-attack-protection.md",
+    "PROJECTS/KEYCLOAK/DOCS/INTEGRATION/SECURITY/03-secrets-management.md",
+    "PROJECTS/KEYCLOAK/DOCS/INTEGRATION/SECURITY/README.md",
+    "PROJECTS/KEYCLOAK/DOCS/INTEGRATION/TOKENS/01-access-token.md",
+    "PROJECTS/KEYCLOAK/DOCS/INTEGRATION/TOKENS/02-refresh-token.md",
+    "PROJECTS/KEYCLOAK/DOCS/INTEGRATION/TOKENS/03-validation.md",
+    "PROJECTS/KEYCLOAK/DOCS/INTEGRATION/TOKENS/README.md",
+    "PROJECTS/KEYCLOAK/DOCS/README.md",
+    "PROJECTS/KEYCLOAK/DOCS/REFERENCE/01-admin-api.md",
+    "PROJECTS/KEYCLOAK/DOCS/REFERENCE/02-oidc-endpoints.md",
+    "PROJECTS/KEYCLOAK/DOCS/REFERENCE/03-theme-properties.md",
+    "PROJECTS/KEYCLOAK/DOCS/REFERENCE/04-keycloakify-api.md",
+    "PROJECTS/KEYCLOAK/DOCS/REFERENCE/05-environment-variables.md",
+    "PROJECTS/KEYCLOAK/DOCS/REFERENCE/06-realm-export-schema.md",
+    "PROJECTS/KEYCLOAK/DOCS/REFERENCE/07-error-codes.md",
+    "PROJECTS/KEYCLOAK/DOCS/REFERENCE/README.md",
+    "PROJECTS/KEYCLOAK/DOCS/RUNBOOKS/01-create-user.md",
+    "PROJECTS/KEYCLOAK/DOCS/RUNBOOKS/02-create-tenant.md",
+    "PROJECTS/KEYCLOAK/DOCS/RUNBOOKS/03-rotate-secrets.md",
+    "PROJECTS/KEYCLOAK/DOCS/RUNBOOKS/04-troubleshoot-auth.md",
+    "PROJECTS/KEYCLOAK/DOCS/RUNBOOKS/05-backup-restore.md",
+    "PROJECTS/KEYCLOAK/DOCS/RUNBOOKS/06-monitoring.md",
+    "PROJECTS/KEYCLOAK/DOCS/RUNBOOKS/README.md",
+    "PROJECTS/KEYCLOAK/README.md",
+    "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/README.md",
     "CENTRAL/WORKFLOWS/sedyZnXqC",
     "CENTRAL/VERSIONING/GIT/sedYFuT6S",
     "CENTRAL/VERSIONING/GIT/sedsv48Ot",

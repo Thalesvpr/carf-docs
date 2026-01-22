@@ -3520,7 +3520,7 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
       };
     }
     const dotsContainer = header.createDiv({ cls: "docs-dots" });
-    const maxDots = 41;
+    const maxDots = 51;
     const halfWindow = Math.floor(maxDots / 2);
     let start = 0;
     let end = queue.length;
@@ -3531,18 +3531,15 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
         start = Math.max(0, end - maxDots);
       }
     }
-    const visibleCount = end - start;
-    const currentPosInWindow = this.currentIndex - start;
-    const indicator = dotsContainer.createDiv({ cls: "docs-indicator" });
-    const dotSize = 6;
-    const gap = 4;
-    const offset = currentPosInWindow * (dotSize + gap);
-    indicator.style.transform = `translateX(${offset}px)`;
     for (let i = start; i < end; i++) {
       const f = queue[i];
       const d = this.store.getDocument(f.path);
       const status = (d == null ? void 0 : d.status) || "review";
-      const dot = dotsContainer.createDiv({ cls: `docs-dot docs-dot-${status}` });
+      const isCurrent = i === this.currentIndex;
+      const isAdjacent = i === this.currentIndex - 1 || i === this.currentIndex + 1;
+      const dot = dotsContainer.createDiv({
+        cls: `docs-dot docs-dot-${status}${isCurrent ? " docs-dot-current" : ""}${isAdjacent ? " docs-dot-adjacent" : ""}`
+      });
       dot.onclick = () => {
         this.currentIndex = i;
         this.openCurrentFile();
@@ -3605,6 +3602,27 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
         list.createDiv({ text: `+${issues.length - 8} more`, cls: "docs-more" });
       }
     }
+    const promptText = this.generateClaudePrompt(file, doc, issues);
+    const promptSection = el.createDiv({ cls: "docs-prompt-section" });
+    const promptHeader = promptSection.createDiv({ cls: "docs-prompt-header" });
+    const toggleBtn = promptHeader.createEl("button", { cls: "docs-prompt-toggle" });
+    (0, import_obsidian13.setIcon)(toggleBtn, "chevron-right");
+    promptHeader.createSpan({ text: "Claude Prompt", cls: "docs-prompt-title" });
+    const copyBtn = promptHeader.createEl("button", { cls: "docs-prompt-copy" });
+    (0, import_obsidian13.setIcon)(copyBtn, "copy");
+    copyBtn.onclick = (e) => {
+      e.stopPropagation();
+      navigator.clipboard.writeText(promptText);
+      (0, import_obsidian13.setIcon)(copyBtn, "check");
+      setTimeout(() => (0, import_obsidian13.setIcon)(copyBtn, "copy"), 1500);
+    };
+    const promptContent = promptSection.createDiv({ cls: "docs-prompt-content hidden" });
+    promptContent.createEl("pre", { text: promptText, cls: "docs-prompt-text" });
+    promptHeader.onclick = () => {
+      const isHidden = promptContent.hasClass("hidden");
+      promptContent.toggleClass("hidden", !isHidden);
+      (0, import_obsidian13.setIcon)(toggleBtn, isHidden ? "chevron-down" : "chevron-right");
+    };
   }
   async navigate(delta) {
     const queue = this.getQueue();
@@ -3661,6 +3679,50 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
       e.preventDefault();
       this.navigate(1);
     }
+  }
+  generateClaudePrompt(file, doc, issues) {
+    var _a, _b, _c, _d, _e;
+    const lines = [];
+    lines.push(`@${file.path.replace(/\//g, "\\")}`);
+    lines.push("");
+    const status = (doc == null ? void 0 : doc.status) || "sem status";
+    lines.push(`**Status:** ${status.toUpperCase()}`);
+    if ((doc == null ? void 0 : doc.status) === "rejected" && ((_a = doc.frontmatter) == null ? void 0 : _a.rejection_reason)) {
+      lines.push(`**Motivo da Rejei\xE7\xE3o:** ${doc.frontmatter.rejection_reason}`);
+    }
+    lines.push("");
+    lines.push("## Informa\xE7\xF5es do Documento");
+    lines.push(`- **Arquivo:** ${file.basename}`);
+    lines.push(`- **Path:** ${file.path}`);
+    if ((_b = doc == null ? void 0 : doc.frontmatter) == null ? void 0 : _b.type)
+      lines.push(`- **Tipo:** ${doc.frontmatter.type}`);
+    if ((_c = doc == null ? void 0 : doc.frontmatter) == null ? void 0 : _c.id)
+      lines.push(`- **ID:** ${doc.frontmatter.id}`);
+    if ((_d = doc == null ? void 0 : doc.frontmatter) == null ? void 0 : _d.modules) {
+      const modules = Array.isArray(doc.frontmatter.modules) ? doc.frontmatter.modules.join(", ") : doc.frontmatter.modules;
+      lines.push(`- **M\xF3dulos:** ${modules}`);
+    }
+    if ((_e = doc == null ? void 0 : doc.frontmatter) == null ? void 0 : _e.updated)
+      lines.push(`- **Atualizado:** ${doc.frontmatter.updated}`);
+    if (!(doc == null ? void 0 : doc.hasFrontmatter))
+      lines.push(`- **Aviso:** Documento sem frontmatter YAML`);
+    lines.push("");
+    if (issues.length > 0) {
+      lines.push("## Problemas Encontrados");
+      for (const issue of issues) {
+        const severity = issue.severity === "error" ? "ERROR" : "WARNING";
+        const msg = this.i18n.t(issue.messageKey, issue.messageParams);
+        const line = issue.line ? `:${issue.line}` : "";
+        lines.push(`- [${severity}]${line} ${msg}`);
+      }
+    } else {
+      lines.push("## Problemas Encontrados");
+      lines.push("Nenhum problema detectado.");
+    }
+    lines.push("");
+    lines.push("---");
+    lines.push("Por favor, analise este arquivo e ajude a corrigir os problemas listados acima.");
+    return lines.join("\n");
   }
 };
 var RejectModal = class extends import_obsidian13.Modal {
