@@ -76,7 +76,7 @@ function isTemplateFrontmatter(fm) {
 
 // src/config/ConfigLoader.ts
 var CONFIG_FILENAME = ".docslint.yaml";
-var PRESETS_PATH = ".obsidian/plugins/obsidian-docs-toolkit/config/presets";
+var PRESETS_PATH = ".plugins/obsidian-docs-toolkit/config/presets";
 var ConfigLoader = class {
   constructor(app) {
     this.configCache = null;
@@ -88,6 +88,7 @@ var ConfigLoader = class {
    * Returns default config if file doesn't exist
    */
   async loadConfig() {
+    var _a;
     const configFile = this.app.vault.getAbstractFileByPath(CONFIG_FILENAME);
     if (!configFile || !(configFile instanceof import_obsidian.TFile)) {
       console.log("DocsLinter: No .docslint.yaml found, using defaults");
@@ -97,7 +98,9 @@ var ConfigLoader = class {
       const content = await this.app.vault.read(configFile);
       const rawConfig = (0, import_obsidian.parseYaml)(content);
       const config = await this.resolveExtends(rawConfig);
+      console.log("DocsLinter: Config after resolveExtends, exclude patterns:", (_a = config.paths) == null ? void 0 : _a.exclude);
       this.configCache = this.mergeWithDefaults(config);
+      console.log("DocsLinter: Final config exclude patterns:", this.configCache.paths.exclude);
       return this.configCache;
     } catch (e) {
       console.error("DocsLinter: Failed to parse .docslint.yaml", e);
@@ -140,18 +143,22 @@ var ConfigLoader = class {
    * Load a preset by name or path
    */
   async loadPreset(name) {
+    var _a;
     if (this.presetCache.has(name)) {
+      console.log(`DocsLinter: Preset ${name} loaded from cache`);
       return this.presetCache.get(name);
     }
     const path = name.startsWith("./") ? name : `${PRESETS_PATH}/${name}.yaml`;
+    console.log(`DocsLinter: Loading preset ${name} from path: ${path}`);
     const presetFile = this.app.vault.getAbstractFileByPath(path);
     if (!presetFile || !(presetFile instanceof import_obsidian.TFile)) {
-      console.warn(`DocsLinter: Preset not found: ${name}`);
+      console.warn(`DocsLinter: Preset not found: ${name} at path: ${path}`);
       return {};
     }
     try {
       const content = await this.app.vault.read(presetFile);
       const preset = (0, import_obsidian.parseYaml)(content);
+      console.log(`DocsLinter: Preset ${name} loaded, exclude patterns:`, (_a = preset.paths) == null ? void 0 : _a.exclude);
       const resolved = await this.resolveExtends(preset);
       this.presetCache.set(name, resolved);
       return resolved;
