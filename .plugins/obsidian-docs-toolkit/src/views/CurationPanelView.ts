@@ -601,25 +601,29 @@ export class CurationPanelView extends ItemView {
   private generateClaudePrompt(file: TFile, doc: Document | null | undefined, issues: Issue[]): string {
     const lines: string[] = [];
 
+    // Get frontmatter from Obsidian's metadataCache (official API for Properties)
+    const cache = this.app.metadataCache.getFileCache(file);
+    const frontmatter = cache?.frontmatter;
+
     // File path
     lines.push(`@${file.path.replace(/\//g, "\\")}`);
     lines.push("");
 
-    // Status info
-    const status = doc?.status || "sem status";
-    lines.push(`**Status:** ${status.toUpperCase()}`);
+    // Status info (from metadataCache)
+    const status = frontmatter?.status || doc?.status || "sem status";
+    lines.push(`**Status:** ${String(status).toUpperCase()}`);
 
-    // Description - always show, with fallback
-    const description = doc?.frontmatter?.description;
-    if (description && typeof description === "string" && description.trim()) {
+    // Description from metadataCache - always show, with fallback
+    const description = frontmatter?.description;
+    if (description && String(description).trim()) {
       // Preserve the full description including line breaks
-      lines.push(`**Descrição:** ${description}`);
+      lines.push(`**Descrição:** ${String(description)}`);
     } else {
       lines.push(`**Descrição:** (não informada)`);
     }
 
-    if (doc?.status === "rejected" && doc.frontmatter?.rejection_reason) {
-      lines.push(`**Motivo da Rejeição:** ${doc.frontmatter.rejection_reason}`);
+    if (frontmatter?.rejection_reason) {
+      lines.push(`**Motivo da Rejeição:** ${frontmatter.rejection_reason}`);
     }
     lines.push("");
 
