@@ -3551,7 +3551,11 @@ var DocumentStore = class extends import_obsidian12.Events {
    */
   matchGlob(path, pattern) {
     const regex = pattern.replace(/\*\*/g, "<<DOUBLESTAR>>").replace(/\*/g, "[^/]*").replace(/<<DOUBLESTAR>>/g, ".*").replace(/\?/g, ".");
-    return new RegExp(`^${regex}$`).test(path);
+    const result = new RegExp(`^${regex}$`).test(path);
+    if (path.includes("SRC-CODE")) {
+      console.log(`[matchGlob] path=${path}, pattern=${pattern}, regex=^${regex}$, result=${result}`);
+    }
+    return result;
   }
   /**
    * Format date as YYYY-MM-DD

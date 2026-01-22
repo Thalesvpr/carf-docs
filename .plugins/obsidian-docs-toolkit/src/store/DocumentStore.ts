@@ -226,7 +226,14 @@ export class DocumentStore extends Events {
       .replace(/<<DOUBLESTAR>>/g, ".*")
       .replace(/\?/g, ".");
 
-    return new RegExp(`^${regex}$`).test(path);
+    const result = new RegExp(`^${regex}$`).test(path);
+
+    // Debug SRC-CODE matching
+    if (path.includes("SRC-CODE")) {
+      console.log(`[matchGlob] path=${path}, pattern=${pattern}, regex=^${regex}$, result=${result}`);
+    }
+
+    return result;
   }
 
   /**
