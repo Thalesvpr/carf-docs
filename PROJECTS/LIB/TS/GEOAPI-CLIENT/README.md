@@ -2,70 +2,27 @@
 title: "@carf/geoapi-client - HTTP Client"
 description: "Cliente HTTP type-safe para comunicacao com GEOAPI"
 status: review
-updated: 2026-01-20
+updated: 2026-01-21
 source: "CENTRAL/LIBRARIES/02-geoapi-client.md"
 ---
 
 # @carf/geoapi-client
 
-Cliente HTTP type-safe para comunicacao com a API GEOAPI. Fornece metodos tipados para todas as operacoes da API com tratamento de erros, retry automatico e circuit breaker.
+Cliente HTTP type-safe para comunicacao com a API GEOAPI. Fornece metodos tipados para units, holders, communities, legitimation, documents e reports com tratamento de erros, retry automatico e circuit breaker. Depende de @carf/tscore para tipos. Publicada no GitHub Packages com scope @carf.
 
-## Instalacao
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Indice por Dominio (16 arquivos)
 
-```bash
-# Configurar registry
-echo "@carf:registry=https://npm.pkg.github.com" >> .npmrc
+| # | Dominio | Arquivos |
+|:--|:--------|:--------:|
+|  | [Docs](./DOCS/README.md) | 16 |
 
-# Instalar
-bun add @carf/geoapi-client @carf/tscore
-```
-
-## Uso
-
-```typescript
-import { createGeoApiClient } from '@carf/geoapi-client'
-
-const client = createGeoApiClient({
-  baseUrl: 'https://api.carf.gov.br',
-  auth: { type: 'keycloak', realm: 'carf' },
-})
-
-// Listar unidades
-const units = await client.units.list({ status: 'APPROVED' })
-
-// Criar unidade
-const unit = await client.units.create({
-  code: 'UN-001',
-  communityId: '...',
-  street: 'Rua das Flores',
-  city: 'Sao Paulo',
-  state: 'SP',
-})
-```
-
-## APIs Disponiveis
-
-| API | Descricao |
-|:----|:----------|
-| `units` | Unidades habitacionais |
-| `holders` | Posseiros |
-| `communities` | Comunidades |
-| `legitimation` | Processos de legitimacao |
-| `documents` | Upload e download de documentos |
-| `reports` | Geracao de relatorios |
-
-## Documentacao
-
-**[DOCS/](./DOCS/README.md)** - Documentacao tecnica completa, incluindo:
-- SPECS/ - Especificacoes tecnicas (package.json, client config)
-- API/ - Referencia de APIs (units, holders, etc.)
-- ARCHITECTURE/ - Arquitetura do cliente
-- HOW-TO/ - Guias praticos
+*Gerado automaticamente em 2026-01-21 17:12*
+<!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
 ## Subpastas
 
 - [[PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/README|DOCS]]
-- [[PROJECTS/LIB/TS/GEOAPI-CLIENT/SRC-CODE/README|SRC-CODE]]
 
 <!-- CARF-INDEX-END -->

@@ -17,3 +17,17 @@ CQRS separa Commands que modificam estado com validação complexa de Queries qu
 - **[02-terminology.md](./02-terminology.md)** - Glossário termos técnicos e negócio REURB
 - **[03-design-principles.md](./03-design-principles.md)** - Princípios SOLID DRY KISS YAGNI
 - **[04-audit-logging.md](./04-audit-logging.md)** - Sistema auditoria LGPD compliance
+
+<!-- CARF-INDEX-START -->
+## Documentos
+
+### Em Revisão
+
+- ○ [[PROJECTS/GEOAPI/DOCS/CONCEPTS/01-authentication.md|01-authentication]]
+- ○ [[PROJECTS/GEOAPI/DOCS/CONCEPTS/01-key-concepts.md|Key Concepts]]
+- ○ [[PROJECTS/GEOAPI/DOCS/CONCEPTS/02-authorization.md|02-authorization]]
+- ○ [[PROJECTS/GEOAPI/DOCS/CONCEPTS/02-terminology.md|Terminology - GEOAPI]]
+- ○ [[PROJECTS/GEOAPI/DOCS/CONCEPTS/03-design-principles.md|Design Principles]]
+- ○ [[PROJECTS/GEOAPI/DOCS/CONCEPTS/04-audit-logging.md|Audit Logging]]
+
+<!-- CARF-INDEX-END -->

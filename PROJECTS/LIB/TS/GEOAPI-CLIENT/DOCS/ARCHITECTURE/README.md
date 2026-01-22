@@ -1,17 +1,26 @@
 ---
+title: "Arquitetura - @carf/geoapi-client"
+description: "Arquitetura do cliente HTTP TypeScript"
 status: review
-updated: 2026-01-11
+updated: 2026-01-21
+source: "interno"
 ---
 
-# ARCHITECTURE - Arquitetura Cliente HTTP
+# Arquitetura - @carf/geoapi-client
 
-Decisões arquiteturais design cliente HTTP TypeScript para GEOAPI.
+Arquitetura do cliente HTTP TypeScript. Inclui [01-client-architecture](./01-client-architecture.md) com arquitetura geral, [02-error-handling](./02-error-handling.md) com estrategia de tratamento de erros e [03-authentication-flow](./03-authentication-flow.md) com fluxo de autenticacao e tokens.
 
-## Documentos
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (3 arquivos)
 
-- **01-client-architecture** - Arquitetura geral cliente HTTP
-- **02-error-handling** - Estrategia tratamento erros
-- **03-authentication-flow** - Fluxo autenticacao tokens
+| ID | Titulo |
+|:---|:-------|
+| [01-client-architecture](./01-client-architecture.md) | Arquitetura do Cliente GEOAPI |
+| [02-error-handling](./02-error-handling.md) | Error Handling - @carf/geoapi-client |
+| [03-authentication-flow](./03-authentication-flow.md) | Authentication Flow - @carf/geoapi-client |
+
+*Gerado automaticamente em 2026-01-21 17:12*
+<!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
 ## Documentos

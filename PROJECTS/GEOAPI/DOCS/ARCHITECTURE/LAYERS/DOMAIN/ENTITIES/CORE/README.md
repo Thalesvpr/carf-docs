@@ -11,3 +11,13 @@ Entities core multi-tenancy do GEOAPI implementando isolamento dados por tenant 
 
 - **[06-account.md](./06-account.md)** - Usuário sistema vinculado tenant Keycloak
 - **[07-tenant.md](./07-tenant.md)** - Tenant multi-tenancy organização município
+
+<!-- CARF-INDEX-START -->
+## Documentos
+
+### Em Revisão
+
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/CORE/06-account.md|Account]]
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/CORE/07-tenant.md|Tenant]]
+
+<!-- CARF-INDEX-END -->

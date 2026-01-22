@@ -1,3 +1,9 @@
+---
+type: doc
+status: review
+updated: 2026-01-22
+---
+
 # Component Showcase
 
 Especificação da seção de showcase de componentes no WEBDOCS, inspirada no Material Design Components Gallery, que exibe todos os componentes disponíveis na biblioteca @carf/ui com exemplos interativos e documentação de uso.

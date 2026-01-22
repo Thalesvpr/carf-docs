@@ -8,3 +8,10 @@ updated: 2026-01-12
 Aplicativo mobile React Native + Expo para coleta de dados em campo. Funciona offline-first com sincronização automática, captura GPS e fotos georreferenciadas.
 
 - **[DOCS/](./DOCS/README.md)** - Documentação técnica
+
+<!-- CARF-INDEX-START -->
+## Subpastas
+
+- [[PROJECTS/REURBCAD/DOCS/README|DOCS]]
+
+<!-- CARF-INDEX-END -->

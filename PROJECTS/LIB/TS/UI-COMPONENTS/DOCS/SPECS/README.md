@@ -1,69 +1,38 @@
 ---
 title: "Especificacoes Tecnicas - @carf/ui"
-description: "Configuracoes de projeto, dependencias e build para a biblioteca de componentes"
+description: "Configuracoes de projeto para biblioteca de componentes"
 status: review
-updated: 2026-01-20
+updated: 2026-01-21
 source: "interno"
 ---
 
 # Especificacoes Tecnicas - @carf/ui
 
-Documentacao tecnica detalhada das configuracoes de projeto necessarias para build, desenvolvimento e publicacao da biblioteca de componentes.
+Configuracoes de projeto para build e publicacao. Inclui [01-package-json](./01-package-json.md) com dependencias e exports, [02-tailwind-config](./02-tailwind-config.md) com tema CARF, [03-globals-css](./03-globals-css.md) com CSS variables e [04-storybook-config](./04-storybook-config.md) com documentacao interativa. Build usa Vite + TypeScript, styling Tailwind + CSS Variables, base shadcn/ui + Radix UI. Requisitos: Node >= 18.0.0, Bun >= 1.0.0.
 
-## Documentos
+<!-- GENERATED:START - Nao edite abaixo desta linha -->
+## Arquivos (4 arquivos)
 
-| ID | Titulo | Descricao |
-|:---|:-------|:----------|
-| 01-package-json | Package.json | Dependencias, exports e configuracao npm |
-| 02-tailwind-config | Tailwind Config | Configuracao Tailwind com tema CARF |
-| 03-globals-css | Globals CSS | CSS variables e tema base |
-| 04-storybook-config | Storybook | Configuracao do Storybook |
+| ID | Titulo |
+|:---|:-------|
+| [01-package-json](./01-package-json.md) | Package.json |
+| [02-tailwind-config](./02-tailwind-config.md) | Tailwind Config |
+| [03-globals-css](./03-globals-css.md) | Globals CSS |
+| [04-storybook-config](./04-storybook-config.md) | Storybook Config |
 
-## Visao Geral
+*Gerado automaticamente em 2026-01-21 17:38*
+<!-- GENERATED:END -->
 
-O @carf/ui e configurado para:
 
-- **Build**: Vite + TypeScript
-- **Styling**: Tailwind CSS + CSS Variables
-- **Componentes Base**: shadcn/ui + Radix UI
-- **Documentacao**: Storybook
-- **Publicacao**: GitHub Packages (@carf scope)
-
-## Requisitos de Ambiente
-
-```bash
-# Versoes minimas
-node >= 18.0.0
-bun >= 1.0.0
-```
-
-## Comandos Principais
-
-```bash
-# Instalar dependencias
-bun install
-
-# Build da biblioteca
-bun run build
-
-# Storybook (desenvolvimento)
-bun run storybook
-
-# Testes
-bun test
-
-# Type check
-tsc --noEmit
-```
 
 <!-- CARF-INDEX-START -->
 ## Documentos
 
 ### Em Revisão
 
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/SPECS/01-package-json.md|Package.json - @carf/ui]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/SPECS/02-tailwind-config.md|Tailwind Config - @carf/ui]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/SPECS/03-globals-css.md|Globals CSS - @carf/ui]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/SPECS/04-storybook-config.md|Storybook Config - @carf/ui]]
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/SPECS/01-package-json.md|Package.json]]
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/SPECS/02-tailwind-config.md|Tailwind Config]]
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/SPECS/03-globals-css.md|Globals CSS]]
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/SPECS/04-storybook-config.md|Storybook Config]]
 
 <!-- CARF-INDEX-END -->

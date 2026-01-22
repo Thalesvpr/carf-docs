@@ -26,3 +26,16 @@ Guias práticos para desenvolvimento e configuração do GEOAPI backend .NET.
 Ver também em GEOAPI/DOCS:
 - ARCHITECTURE - Decisões arquiteturais específicas do GEOAPI
 - CONCEPTS - Conceitos fundamentais (Clean Architecture, CQRS, DDD)
+
+<!-- CARF-INDEX-START -->
+## Documentos
+
+### Em Revisão
+
+- ○ [[PROJECTS/GEOAPI/DOCS/HOW-TO/01-configure-keycloak.md|Configure Keycloak]]
+- ○ [[PROJECTS/GEOAPI/DOCS/HOW-TO/01-setup-dev-environment.md|Setup Dev Environment - GEOAPI]]
+- ○ [[PROJECTS/GEOAPI/DOCS/HOW-TO/02-build-and-run.md|Build and Run]]
+- ○ [[PROJECTS/GEOAPI/DOCS/HOW-TO/02-validate-tokens.md|Validate Tokens]]
+- ○ [[PROJECTS/GEOAPI/DOCS/HOW-TO/03-test-authentication.md|Test Authentication]]
+
+<!-- CARF-INDEX-END -->

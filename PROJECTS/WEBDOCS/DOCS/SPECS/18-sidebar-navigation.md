@@ -1,3 +1,9 @@
+---
+type: doc
+status: review
+updated: 2026-01-22
+---
+
 # Navegação do Sidebar
 
 Especificação completa da estrutura de navegação do sidebar do WEBDOCS, definindo hierarquia, labels e badges para cada seção.

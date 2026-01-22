@@ -1,3 +1,9 @@
+---
+type: doc
+status: review
+updated: 2026-01-22
+---
+
 # Integração com Bibliotecas
 
 Especificação da integração do WEBDOCS com as bibliotecas TypeScript compartilhadas do ecossistema CARF: @carf/tscore, @carf/geoapi-client e @carf/ui.

@@ -15,6 +15,5 @@ Ver **[DOCS/](./DOCS/README.md)** para documentação técnica completa customiz
 ## Subpastas
 
 - [[PROJECTS/KEYCLOAK/DOCS/README|DOCS]]
-- [[PROJECTS/KEYCLOAK/SRC-CODE/README|SRC-CODE]]
 
 <!-- CARF-INDEX-END -->

@@ -1,49 +1,38 @@
 ---
+title: "Arquitetura - @carf/ui"
+description: "Arquitetura da biblioteca de componentes React"
 status: review
-updated: 2026-01-15
+updated: 2026-01-21
+source: "interno"
 ---
 
 # Arquitetura - @carf/ui
 
-## Documentos Disponíveis
-
-- **01-overview** - Visao geral da arquitetura de componentes React
-- **03-data-flow** - Fluxo de dados (props, state, context)
-- **04-integration** - Integracao com GEOWEB e ADMIN
-- **05-deployment** - Build, publicacao NPM, versionamento
-
-Ver tabela abaixo para links.
-
-## Conceitos Arquiteturais
-
-A biblioteca segue arquitetura de **Atomic Design** (atoms → molecules → organisms) e padrões de composição React via compound components, render props e custom hooks. Todos os componentes são **server-side compatible** (RSC-ready) e seguem princípios de **acessibilidade** via Radix UI primitives.
-
-## Referências
-
-- [React Server Components](https://react.dev/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components)
-- [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/)
+Arquitetura seguindo Atomic Design (atoms, molecules, organisms) com compound components e custom hooks. Inclui [01-overview](./01-overview.md) com visao geral, [03-data-flow](./03-data-flow.md) com fluxo de props/state/context, [04-integration](./04-integration.md) com integracao GEOWEB/ADMIN e [05-deployment](./05-deployment.md) com build e publicacao NPM. Componentes sao server-side compatible (RSC-ready) e acessiveis via Radix UI.
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (4 arquivos)
 
 | ID | Titulo |
 |:---|:-------|
-| [01-overview](./01-overview.md) | Overview da Arquitetura - @carf/ui |
-| [03-data-flow](./03-data-flow.md) | Data Flow - @carf/ui |
-| [04-integration](./04-integration.md) | Integration - @carf/ui |
-| [05-deployment](./05-deployment.md) | Deployment - @carf/ui |
+| [01-overview](./01-overview.md) | Overview da Arquitetura |
+| [03-data-flow](./03-data-flow.md) | Data Flow |
+| [04-integration](./04-integration.md) | Integration |
+| [05-deployment](./05-deployment.md) | Deployment |
 
-*Gerado automaticamente em 2026-01-17 11:57*
+*Gerado automaticamente em 2026-01-21 17:38*
 <!-- GENERATED:END -->
+
+
 
 <!-- CARF-INDEX-START -->
 ## Documentos
 
 ### Em Revisão
 
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/ARCHITECTURE/01-overview.md|Overview da Arquitetura - @carf/ui]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/ARCHITECTURE/03-data-flow.md|Data Flow - @carf/ui]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/ARCHITECTURE/04-integration.md|Integration - @carf/ui]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/ARCHITECTURE/05-deployment.md|Deployment - @carf/ui]]
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/ARCHITECTURE/01-overview.md|Overview da Arquitetura]]
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/ARCHITECTURE/03-data-flow.md|Data Flow]]
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/ARCHITECTURE/04-integration.md|Integration]]
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/ARCHITECTURE/05-deployment.md|Deployment]]
 
 <!-- CARF-INDEX-END -->

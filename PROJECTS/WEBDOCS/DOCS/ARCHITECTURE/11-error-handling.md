@@ -1,3 +1,9 @@
+---
+type: doc
+status: review
+updated: 2026-01-22
+---
+
 # Tratamento de Erros
 
 Especificação do tratamento de erros no WEBDOCS, cobrindo erros de autenticação, API, conteúdo e páginas de erro customizadas.
