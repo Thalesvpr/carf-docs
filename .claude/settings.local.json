@@ -59,7 +59,14 @@
       "Bash(for lib in TSCORE GEOAPI-CLIENT UI-COMPONENTS)",
       "Bash(for dir in README.md DOCS/README.md DOCS/SPECS DOCS/API DOCS/HOW-TO DOCS/ARCHITECTURE)",
       "Bash(then echo \"✓ $dir\")",
-      "Bash(else echo \"✗ $dir MISSING\")"
+      "Bash(else echo \"✗ $dir MISSING\")",
+      "Bash(git pull:*)",
+      "Bash(git stash:*)",
+      "Bash(git rm:*)",
+      "Bash(git restore:*)",
+      "Bash(npm test:*)",
+      "Bash(git rev-parse:*)",
+      "Bash(git ls-tree:*)"
     ],
     "deny": [],
     "ask": []
