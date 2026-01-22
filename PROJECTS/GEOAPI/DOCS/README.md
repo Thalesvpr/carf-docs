@@ -13,3 +13,13 @@ Backend REST API .NET 9 do sistema CARF. Fornece endpoints para unidades habitac
 - **[CONCEPTS/](./CONCEPTS/README.md)** - Conceitos técnicos (auth, CQRS, DDD)
 - **[FEATURES/](./FEATURES/README.md)** - Funcionalidades implementadas via LAYERS
 - **[HOW-TO/](./HOW-TO/README.md)** - Guias práticos de desenvolvimento
+
+<!-- CARF-INDEX-START -->
+## Subpastas
+
+- [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/README|ARCHITECTURE]]
+- [[PROJECTS/GEOAPI/DOCS/CONCEPTS/README|CONCEPTS]]
+- [[PROJECTS/GEOAPI/DOCS/FEATURES/README|FEATURES]]
+- [[PROJECTS/GEOAPI/DOCS/HOW-TO/README|HOW-TO]]
+
+<!-- CARF-INDEX-END -->

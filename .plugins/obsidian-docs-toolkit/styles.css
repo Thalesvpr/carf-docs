@@ -183,11 +183,13 @@
 .docs-dot-review { background: var(--color-yellow); opacity: 0.5; }
 .docs-dot-approved { background: var(--color-green); }
 .docs-dot-rejected { background: var(--color-red); }
+.docs-dot-none { background: var(--text-faint); opacity: 0.5; }
 
 .docs-dot-current.docs-dot-review { opacity: 1; }
 .docs-dot-current.docs-dot-approved { box-shadow: 0 0 4px var(--color-green); }
 .docs-dot-current.docs-dot-rejected { box-shadow: 0 0 4px var(--color-red); }
 .docs-dot-current.docs-dot-review { box-shadow: 0 0 4px var(--color-yellow); }
+.docs-dot-current.docs-dot-none { opacity: 1; box-shadow: 0 0 4px var(--text-faint); }
 
 /* File section */
 .docs-file-section {

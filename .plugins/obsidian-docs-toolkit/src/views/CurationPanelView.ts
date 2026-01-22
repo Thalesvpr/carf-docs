@@ -119,8 +119,9 @@ export class CurationPanelView extends ItemView {
     const docs = this.store.getState().documents.filter(d => this.isTrackedFile(d.file.path));
     const total = docs.length;
     const approved = docs.filter(d => d.status === "approved").length;
-    const review = docs.filter(d => d.status === "review" || !d.status).length;
+    const review = docs.filter(d => d.status === "review").length;
     const rejected = docs.filter(d => d.status === "rejected").length;
+    const noStatus = docs.filter(d => !d.status).length;
     const queue = this.getQueue();
     const file = this.getCurrentFile();
     const doc = file ? this.store.getDocument(file.path) : null;
@@ -130,13 +131,13 @@ export class CurationPanelView extends ItemView {
     const actionsRow = actions.createDiv({ cls: "docs-actions-row" });
 
     // First button (go to start)
-    const firstBtn = actionsRow.createEl("button", { cls: "docs-btn docs-btn-nav" });
+    const firstBtn = actionsRow.createEl("button", { cls: "docs-btn docs-btn-nav", attr: { title: "Ir para o primeiro" } });
     setIcon(firstBtn, "chevrons-left");
     firstBtn.disabled = this.currentIndex === 0;
     firstBtn.onclick = () => this.goTo(0);
 
     // Left arrow
-    const prevBtn = actionsRow.createEl("button", { cls: "docs-btn docs-btn-nav" });
+    const prevBtn = actionsRow.createEl("button", { cls: "docs-btn docs-btn-nav", attr: { title: "Anterior" } });
     setIcon(prevBtn, "arrow-left");
     prevBtn.disabled = this.currentIndex === 0;
     prevBtn.onclick = () => this.navigate(-1);
@@ -144,29 +145,29 @@ export class CurationPanelView extends ItemView {
     // Center group: reject, review, approve
     const centerGroup = actionsRow.createDiv({ cls: "docs-btn-center" });
 
-    const rejectBtn = centerGroup.createEl("button", { cls: "docs-btn docs-btn-reject" });
+    const rejectBtn = centerGroup.createEl("button", { cls: "docs-btn docs-btn-reject", attr: { title: "Rejeitar" } });
     setIcon(rejectBtn, "x");
     rejectBtn.disabled = !file || doc?.status === "rejected";
     rejectBtn.onclick = () => file && this.reject(file);
 
-    const reviewBtn = centerGroup.createEl("button", { cls: "docs-btn docs-btn-review" });
+    const reviewBtn = centerGroup.createEl("button", { cls: "docs-btn docs-btn-review", attr: { title: "Marcar para revisão" } });
     setIcon(reviewBtn, "circle");
     reviewBtn.disabled = !file || doc?.status === "review";
     reviewBtn.onclick = () => file && this.setReview(file);
 
-    const approveBtn = centerGroup.createEl("button", { cls: "docs-btn docs-btn-approve" });
+    const approveBtn = centerGroup.createEl("button", { cls: "docs-btn docs-btn-approve", attr: { title: "Aprovar" } });
     setIcon(approveBtn, "check");
     approveBtn.disabled = !file || doc?.status === "approved";
     approveBtn.onclick = () => file && this.approve(file);
 
     // Right arrow
-    const nextBtn = actionsRow.createEl("button", { cls: "docs-btn docs-btn-nav" });
+    const nextBtn = actionsRow.createEl("button", { cls: "docs-btn docs-btn-nav", attr: { title: "Próximo" } });
     setIcon(nextBtn, "arrow-right");
     nextBtn.disabled = this.currentIndex >= queue.length - 1;
     nextBtn.onclick = () => this.navigate(1);
 
     // Last button (go to end)
-    const lastBtn = actionsRow.createEl("button", { cls: "docs-btn docs-btn-nav" });
+    const lastBtn = actionsRow.createEl("button", { cls: "docs-btn docs-btn-nav", attr: { title: "Ir para o último" } });
     setIcon(lastBtn, "chevrons-right");
     lastBtn.disabled = this.currentIndex >= queue.length - 1;
     lastBtn.onclick = () => this.goTo(queue.length - 1);
@@ -179,26 +180,34 @@ export class CurationPanelView extends ItemView {
     const pct = (n: number) => total > 0 ? Math.round((n / total) * 100) : 0;
 
     // Approved stat
-    const approvedStat = statsRow.createDiv({ cls: "docs-stat" });
+    const approvedStat = statsRow.createDiv({ cls: "docs-stat", attr: { title: "Aprovados" } });
     approvedStat.createDiv({ cls: "docs-stat-dot docs-dot-approved" });
     approvedStat.createSpan({ text: `${approved}`, cls: "docs-stat-num" });
-    approvedStat.createSpan({ text: `(${pct(approved)}%)`, cls: "docs-stat-pct" });
+    approvedStat.createSpan({ text: `${pct(approved)}%`, cls: "docs-stat-pct" });
 
     // Review stat
-    const reviewStat = statsRow.createDiv({ cls: "docs-stat" });
+    const reviewStat = statsRow.createDiv({ cls: "docs-stat", attr: { title: "Em revisão" } });
     reviewStat.createDiv({ cls: "docs-stat-dot docs-dot-review" });
     reviewStat.createSpan({ text: `${review}`, cls: "docs-stat-num" });
-    reviewStat.createSpan({ text: `(${pct(review)}%)`, cls: "docs-stat-pct" });
+    reviewStat.createSpan({ text: `${pct(review)}%`, cls: "docs-stat-pct" });
 
     // Rejected stat
-    const rejectedStat = statsRow.createDiv({ cls: "docs-stat" });
+    const rejectedStat = statsRow.createDiv({ cls: "docs-stat", attr: { title: "Rejeitados" } });
     rejectedStat.createDiv({ cls: "docs-stat-dot docs-dot-rejected" });
     rejectedStat.createSpan({ text: `${rejected}`, cls: "docs-stat-num" });
-    rejectedStat.createSpan({ text: `(${pct(rejected)}%)`, cls: "docs-stat-pct" });
+    rejectedStat.createSpan({ text: `${pct(rejected)}%`, cls: "docs-stat-pct" });
+
+    // No status stat (gray)
+    if (noStatus > 0) {
+      const noStatusStat = statsRow.createDiv({ cls: "docs-stat", attr: { title: "Sem status" } });
+      noStatusStat.createDiv({ cls: "docs-stat-dot docs-dot-none" });
+      noStatusStat.createSpan({ text: `${noStatus}`, cls: "docs-stat-num" });
+      noStatusStat.createSpan({ text: `${pct(noStatus)}%`, cls: "docs-stat-pct" });
+    }
 
     // Total
-    const totalStat = statsRow.createDiv({ cls: "docs-stat docs-stat-total" });
-    totalStat.createSpan({ text: `Total: ${total}`, cls: "docs-stat-num" });
+    const totalStat = statsRow.createDiv({ cls: "docs-stat docs-stat-total", attr: { title: "Total de arquivos" } });
+    totalStat.createSpan({ text: `${total}`, cls: "docs-stat-num docs-stat-total-num" });
 
     // Problems button row
     const headerInfo = header.createDiv({ cls: "nav-buttons-container" });
@@ -234,7 +243,7 @@ export class CurationPanelView extends ItemView {
     for (let i = start; i < end; i++) {
       const f = queue[i];
       const d = this.store.getDocument(f.path);
-      const status = d?.status || "review";
+      const status = d?.status || "none";
       const isCurrent = i === this.currentIndex;
       const isAdjacent = i === this.currentIndex - 1 || i === this.currentIndex + 1;
 
