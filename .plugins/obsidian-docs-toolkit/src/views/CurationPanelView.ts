@@ -613,8 +613,8 @@ export class CurationPanelView extends ItemView {
     const status = frontmatter?.status || doc?.status || "sem status";
     lines.push(`**Status:** ${String(status).toUpperCase()}`);
 
-    // Description from metadataCache - always show, with fallback
-    const description = frontmatter?.description;
+    // Description - fallback: metadataCache first, then doc.frontmatter
+    const description = frontmatter?.description || doc?.frontmatter?.description;
     if (description && String(description).trim()) {
       // Preserve the full description including line breaks
       lines.push(`**Descrição:** ${String(description)}`);
