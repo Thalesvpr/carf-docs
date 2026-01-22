@@ -11,3 +11,13 @@ Entities gerenciamento titulares do GEOAPI representando pessoas físicas reivin
 
 - **[03-holder.md](./03-holder.md)** - Titular pessoa física reivindicando posse
 - **[20-unit-holder.md](./20-unit-holder.md)** - Relacionamento N:N Unit Holder com tipo vínculo
+
+<!-- CARF-INDEX-START -->
+## Documentos
+
+### Em Revisão
+
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/HOLDERS/03-holder.md|Holder]]
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/HOLDERS/20-unit-holder.md|UnitHolder]]
+
+<!-- CARF-INDEX-END -->

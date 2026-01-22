@@ -1,6 +1,7 @@
 ---
-status: review
-updated: 2026-01-15
+status: rejected
+description: "Wall of text sem estrutura. Texto corrido sem formatacao."
+updated: 2026-01-22
 ---
 
 Setup Keycloak no GEOGIS requer primeiro instalar python-keycloak library via OSGeo4W Shell Windows executando python -m pip install python-keycloak requests ou terminal Linux macOS com /usr/bin/python3 -m pip install python-keycloak requests usando QGIS Python interpreter path verificar installation abrindo QGIS Python Console digitando import keycloak print(keycloak.__version__) should print version sem errors criar config.py em plugin directory com constants KEYCLOAK_URL = 'http://localhost:8080' KEYCLOAK_REALM = 'carf' KEYCLOAK_CLIENT_ID = 'geogis' KEYCLOAK_CLIENT_SECRET = '' filled later API_URL = 'http://localhost:5000'.

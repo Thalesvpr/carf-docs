@@ -1,6 +1,7 @@
 ---
-status: review
-updated: 2026-01-15
+status: rejected
+description: "Usa listas/bullets ao inves de paragrafos densos, contem code blocks nao convertidos para prosa"
+updated: 2026-01-22
 ---
 
 # How-To - ADMIN
@@ -32,3 +33,15 @@ bun run dev  # http://localhost:5173
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
+
+<!-- CARF-INDEX-START -->
+## Documentos
+
+### Em Revisão
+
+- ○ [[PROJECTS/ADMIN/DOCS/HOW-TO/01-setup-dev-environment.md|Setup Dev Environment - ADMIN]]
+- ○ [[PROJECTS/ADMIN/DOCS/HOW-TO/02-build-and-run.md|Build and Run - ADMIN]]
+- ○ [[PROJECTS/ADMIN/DOCS/HOW-TO/03-testing.md|Testing - ADMIN]]
+- ○ [[PROJECTS/ADMIN/DOCS/HOW-TO/04-troubleshooting.md|Troubleshooting - ADMIN]]
+
+<!-- CARF-INDEX-END -->

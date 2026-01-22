@@ -3,6 +3,7 @@ import { Document } from "../core/Document";
 import { Issue } from "../core/Issue";
 import { I18nService } from "../i18n/I18nService";
 import { DocsLinterConfig } from "../config/ConfigSchema";
+import { DocsToolkitSettings } from "../settings";
 
 export const CURATION_PANEL_VIEW_TYPE = "docs-toolkit-curation";
 
@@ -19,11 +20,16 @@ export interface MetadataService {
   initFrontmatter(file: TFile): Promise<Record<string, unknown> | void>;
 }
 
+export interface PluginRef {
+  settings: DocsToolkitSettings;
+}
+
 export class CurationPanelView extends ItemView {
   private store: DocumentStore;
   private metadataService: MetadataService;
   private i18n: I18nService;
   private config: DocsLinterConfig;
+  private plugin: PluginRef;
   private currentIndex = 0;
 
   constructor(
@@ -31,13 +37,15 @@ export class CurationPanelView extends ItemView {
     store: DocumentStore,
     metadataService: MetadataService,
     i18n: I18nService,
-    config: DocsLinterConfig
+    config: DocsLinterConfig,
+    plugin: PluginRef
   ) {
     super(leaf);
     this.store = store;
     this.metadataService = metadataService;
     this.i18n = i18n;
     this.config = config;
+    this.plugin = plugin;
   }
 
   getViewType(): string { return CURATION_PANEL_VIEW_TYPE; }
@@ -119,6 +127,12 @@ export class CurationPanelView extends ItemView {
     const actions = el.createDiv({ cls: "docs-actions" });
     const actionsRow = actions.createDiv({ cls: "docs-actions-row" });
 
+    // First button (go to start)
+    const firstBtn = actionsRow.createEl("button", { cls: "docs-btn docs-btn-nav" });
+    setIcon(firstBtn, "chevrons-left");
+    firstBtn.disabled = this.currentIndex === 0;
+    firstBtn.onclick = () => this.goTo(0);
+
     // Left arrow
     const prevBtn = actionsRow.createEl("button", { cls: "docs-btn docs-btn-nav" });
     setIcon(prevBtn, "arrow-left");
@@ -149,6 +163,12 @@ export class CurationPanelView extends ItemView {
     nextBtn.disabled = this.currentIndex >= queue.length - 1;
     nextBtn.onclick = () => this.navigate(1);
 
+    // Last button (go to end)
+    const lastBtn = actionsRow.createEl("button", { cls: "docs-btn docs-btn-nav" });
+    setIcon(lastBtn, "chevrons-right");
+    lastBtn.disabled = this.currentIndex >= queue.length - 1;
+    lastBtn.onclick = () => this.goTo(queue.length - 1);
+
     // Header with progress
     const header = el.createDiv({ cls: "nav-header" });
     const headerInfo = header.createDiv({ cls: "nav-buttons-container" });
@@ -169,9 +189,9 @@ export class CurationPanelView extends ItemView {
       };
     }
 
-    // Dots navigation (max 51, centered on current)
+    // Dots navigation (configurable, centered on current)
     const dotsContainer = header.createDiv({ cls: "docs-dots" });
-    const maxDots = 51;
+    const maxDots = this.plugin.settings.maxDotsCount;
     const halfWindow = Math.floor(maxDots / 2);
 
     let start = 0;
@@ -312,6 +332,14 @@ export class CurationPanelView extends ItemView {
     const newIndex = this.currentIndex + delta;
     if (newIndex < 0 || newIndex >= queue.length) return;
     this.currentIndex = newIndex;
+    await this.openCurrentFile();
+    this.render();
+  }
+
+  private async goTo(index: number): Promise<void> {
+    const queue = this.getQueue();
+    if (index < 0 || index >= queue.length) return;
+    this.currentIndex = index;
     await this.openCurrentFile();
     this.render();
   }

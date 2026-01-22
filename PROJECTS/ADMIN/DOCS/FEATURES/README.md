@@ -20,3 +20,13 @@ updated: 2026-01-15
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
+
+<!-- CARF-INDEX-START -->
+## Documentos
+
+### Em Revisão
+
+- ○ [[PROJECTS/ADMIN/DOCS/FEATURES/01-user-management.md|User Management - Gestão de Usuários]]
+- ○ [[PROJECTS/ADMIN/DOCS/FEATURES/02-team-management.md|Team Management - Gestão de Equipes]]
+
+<!-- CARF-INDEX-END -->

@@ -14,3 +14,16 @@ Entities workflow legitimação fundiária do GEOAPI implementando processo lega
 - **[29-legitimation-certificate.md](./29-legitimation-certificate.md)** - Título legitimação posse expedido
 - **[30-descriptive-memorial.md](./30-descriptive-memorial.md)** - Memorial descritivo limites confrontações
 - **[31-legitimation-plan.md](./31-legitimation-plan.md)** - Plano tramitação lote community
+
+<!-- CARF-INDEX-START -->
+## Documentos
+
+### Em Revisão
+
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/LEGITIMATION/14-legitimation-request.md|LegitimationRequest]]
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/LEGITIMATION/28-legitimation-response.md|LegitimationResponse]]
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/LEGITIMATION/29-legitimation-certificate.md|LegitimationCertificate]]
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/LEGITIMATION/30-descriptive-memorial.md|DescriptiveMemorial]]
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/LEGITIMATION/31-legitimation-plan.md|LegitimationPlan]]
+
+<!-- CARF-INDEX-END -->

@@ -10,3 +10,12 @@ Entity auditoria compliance do GEOAPI registrando operações críticas sensíve
 ## Arquivos
 
 - **[32-audit-log.md](./32-audit-log.md)** - Log auditoria operações críticas compliance
+
+<!-- CARF-INDEX-START -->
+## Documentos
+
+### Em Revisão
+
+- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/AUDIT/32-audit-log.md|AuditLog]]
+
+<!-- CARF-INDEX-END -->

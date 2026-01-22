@@ -26,3 +26,14 @@ ADMIN aplica **React SPA** para máxima segurança mantendo secrets no backend, 
 
 *Gerado automaticamente em 2026-01-17 11:57*
 <!-- GENERATED:END -->
+
+<!-- CARF-INDEX-START -->
+## Documentos
+
+### Em Revisão
+
+- ○ [[PROJECTS/ADMIN/DOCS/CONCEPTS/01-key-concepts.md|Key Concepts - ADMIN]]
+- ○ [[PROJECTS/ADMIN/DOCS/CONCEPTS/02-terminology.md|Terminology - ADMIN]]
+- ○ [[PROJECTS/ADMIN/DOCS/CONCEPTS/03-design-principles.md|Design Principles - ADMIN]]
+
+<!-- CARF-INDEX-END -->

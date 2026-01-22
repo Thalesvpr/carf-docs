@@ -1,6 +1,7 @@
 ---
-status: review
-updated: 2026-01-15
+status: rejected
+description: "Wall of text sem estrutura. Paragrafos gigantes sem formatacao."
+updated: 2026-01-22
 ---
 
 GEOGIS integra Keycloak Python usando python-keycloak library instalada via pip install python-keycloak no QGIS Python environment suporta dois authentication flows sendo Client Credentials Flow para service accounts executando from keycloak import KeycloakOpenID kc = KeycloakOpenID(server_url, realm_name, client_id, client_secret_key=secret) token = kc.token(grant_type='client_credentials') retornando access_token sem user interaction ideal para scripts automatizados batch processing e Authorization Code + PKCE Flow para user context abrindo browser system default com import webbrowser webbrowser.open(auth_url) onde auth_url construída com client_id redirect_uri=http://localhost:8888/callback response_type=code scope=openid profile email code_challenge SHA256 hash do code_verifier generated with secrets.token_urlsafe(64) code_challenge_method=S256.

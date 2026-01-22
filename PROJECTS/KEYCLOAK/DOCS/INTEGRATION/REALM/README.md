@@ -1,6 +1,7 @@
 ---
-status: review
-updated: 2026-01-21
+status: rejected
+description: "README usa tabela gerada - converter para prosa densa"
+updated: 2026-01-22
 ---
 
 # REALM

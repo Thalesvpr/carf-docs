@@ -1,6 +1,7 @@
 ---
-status: review
-updated: 2026-01-15
+status: rejected
+description: "Wall of text sem estrutura. Texto corrido ilegivel."
+updated: 2026-01-22
 ---
 
 Authentication no GEOGIS Python plugin oferece dois modos sendo Service Account mode usando Client Credentials Flow ideal para scripts automatizados batch processing sem user interaction onde token = keycloak_openid.token(grant_type='client_credentials') faz POST ao token endpoint com client_id e client_secret obtendo access_token sem authorization code flow client secret armazenado em QSettings encrypted via QGIS password manager token renovado automaticamente quando expira checking expires_in claim usado para operações scheduled tasks nightly sync bulk export reports sem user presente.

@@ -1,6 +1,7 @@
 ---
-status: review
-updated: 2026-01-21
+status: rejected
+description: "Usa tabelas e diagrama ASCII ao inves de prosa densa - reescrever em paragrafos"
+updated: 2026-01-22
 ---
 
 # INTEGRATION
@@ -46,3 +47,14 @@ Decisoes arquiteturais que fundamentam esta integracao:
 - [CONCEPTS](../CONCEPTS/README.md) - Conceitos teoricos de Keycloak, OAuth2, OIDC
 - [RUNBOOKS](../RUNBOOKS/README.md) - Procedimentos operacionais
 - [CONFIG](../CONFIG/README.md) - Arquivos de configuracao
+
+<!-- CARF-INDEX-START -->
+## Subpastas
+
+- [[PROJECTS/KEYCLOAK/DOCS/INTEGRATION/CLIENTS/README|CLIENTS]]
+- [[PROJECTS/KEYCLOAK/DOCS/INTEGRATION/RBAC/README|RBAC]]
+- [[PROJECTS/KEYCLOAK/DOCS/INTEGRATION/REALM/README|REALM]]
+- [[PROJECTS/KEYCLOAK/DOCS/INTEGRATION/SECURITY/README|SECURITY]]
+- [[PROJECTS/KEYCLOAK/DOCS/INTEGRATION/TOKENS/README|TOKENS]]
+
+<!-- CARF-INDEX-END -->

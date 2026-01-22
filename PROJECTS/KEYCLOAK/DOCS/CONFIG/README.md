@@ -1,6 +1,7 @@
 ---
-status: review
-updated: 2026-01-21
+status: rejected
+description: "Usa tabelas e code blocks ao inves de prosa densa - reescrever em paragrafos"
+updated: 2026-01-22
 ---
 
 # CONFIG
@@ -79,3 +80,7 @@ Ver `.env.example` para lista completa. Principais:
 - [HOW-TO/03-setup-dev-environment](../HOW-TO/03-setup-dev-environment.md) - Setup completo de dev
 - [HOW-TO/06-configure-production](../HOW-TO/06-configure-production.md) - Configuracao de producao
 - [REFERENCE/05-environment-variables](../REFERENCE/05-environment-variables.md) - Todas variaveis
+
+<!-- CARF-INDEX-START -->
+
+<!-- CARF-INDEX-END -->

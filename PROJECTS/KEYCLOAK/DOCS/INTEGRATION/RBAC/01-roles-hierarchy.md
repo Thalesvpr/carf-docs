@@ -1,6 +1,7 @@
 ---
-status: review
-updated: 2026-01-19
+status: rejected
+description: "Usa tabela e diagrama ao inves de prosa densa - reescrever em paragrafos corridos"
+updated: 2026-01-22
 ---
 
 # Hierarquia de Roles

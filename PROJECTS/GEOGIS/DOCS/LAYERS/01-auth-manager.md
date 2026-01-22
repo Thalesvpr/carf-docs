@@ -1,6 +1,7 @@
 ---
-status: review
-updated: 2026-01-15
+status: rejected
+description: "Wall of text sem estrutura. Paragrafos gigantes sem formatacao."
+updated: 2026-01-22
 ---
 
 AuthManager layer implementado como singleton class em src/auth/auth_manager.py garantindo single instance shared globally via _instance = None class variable @classmethod def getInstance(cls) returning cls._instance if cls._instance else cls._instance = cls() __init__(self) initializing KeycloakOpenID instance self.keycloak_openid = KeycloakOpenID(server_url=KEYCLOAK_URL, client_id=CLIENT_ID, realm_name=REALM, client_secret_key=CLIENT_SECRET) initializing token properties self.access_token = None self.refresh_token = None self.expires_at = None self.user_info = None login_service_account() method implementa client credentials flow calling token = self.keycloak_openid.token(grant_type='client_credentials') catching keycloak.exceptions.KeycloakAuthenticationError se credentials invalid se success storing tokens via self._store_tokens(token) internal method que executa settings = QSettings('CARF', 'GEOGIS') settings.setValue('access_token', token['access_token']) settings.setValue('refresh_token', token.get('refresh_token')) encrypted storage seting self.access_token = token['access_token'] self.expires_at = datetime.now() + timedelta(seconds=token['expires_in']) retornando True se success Exception se failure.

@@ -1,6 +1,7 @@
 ---
-status: review
-updated: 2026-01-11
+status: rejected
+description: "Wall of text sem estrutura. Texto corrido ilegivel."
+updated: 2026-01-22
 ---
 
 # GEOGIS - Plugin QGIS

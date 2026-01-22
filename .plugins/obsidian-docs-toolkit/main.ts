@@ -140,7 +140,8 @@ export default class DocsToolkitPlugin extends Plugin {
           this.store,
           this.metadataService,
           this.i18n,
-          this.config
+          this.config,
+          this
         );
         return this.curationPanel;
       }

@@ -1,6 +1,7 @@
 ---
-status: review
-updated: 2026-01-17
+status: rejected
+description: "README usa tabela resumo com bullets - reescrever tabela em prosa densa"
+updated: 2026-01-22
 ---
 
 # RBAC

@@ -1,6 +1,7 @@
 ---
-status: approved
-updated: 2026-01-21
+status: rejected
+description: "README usa tabela para listar arquivos - reescrever em prosa densa"
+updated: 2026-01-22
 ---
 
 # CONCEPTS
