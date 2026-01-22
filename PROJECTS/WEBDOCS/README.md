@@ -14,6 +14,5 @@ Portal de documentação Astro 4 + Starlight com guias de usuário, tutoriais e 
 ## Subpastas
 
 - [[PROJECTS/WEBDOCS/DOCS/README|DOCS]]
-- [[PROJECTS/WEBDOCS/SRC-CODE/README|SRC-CODE]]
 
 <!-- CARF-INDEX-END -->
