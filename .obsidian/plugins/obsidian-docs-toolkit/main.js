@@ -4870,8 +4870,8 @@ var DocsToolkitPlugin = class extends import_obsidian21.Plugin {
    */
   isTrackedFile(path) {
     for (const pattern of this.config.paths.exclude) {
-      const regex = pattern.replace(/\*\*/g, ".*").replace(/\*/g, "[^/]*");
-      if (new RegExp(`^${regex}`).test(path)) {
+      const regex = pattern.replace(/\*\*/g, "<<DOUBLESTAR>>").replace(/\*/g, "[^/]*").replace(/<<DOUBLESTAR>>/g, ".*").replace(/\?/g, ".");
+      if (new RegExp(`^${regex}$`).test(path)) {
         return false;
       }
     }

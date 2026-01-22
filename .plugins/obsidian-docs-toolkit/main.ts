@@ -208,11 +208,14 @@ export default class DocsToolkitPlugin extends Plugin {
    */
   private isTrackedFile(path: string): boolean {
     for (const pattern of this.config.paths.exclude) {
+      // Use placeholder to avoid ** being affected by * replacement
       const regex = pattern
-        .replace(/\*\*/g, ".*")
-        .replace(/\*/g, "[^/]*");
+        .replace(/\*\*/g, "<<DOUBLESTAR>>")
+        .replace(/\*/g, "[^/]*")
+        .replace(/<<DOUBLESTAR>>/g, ".*")
+        .replace(/\?/g, ".");
 
-      if (new RegExp(`^${regex}`).test(path)) {
+      if (new RegExp(`^${regex}$`).test(path)) {
         return false;
       }
     }
