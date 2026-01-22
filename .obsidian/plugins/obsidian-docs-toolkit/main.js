@@ -3352,7 +3352,7 @@ var DocumentStore = class extends import_obsidian12.Events {
    * Simple glob matching
    */
   matchGlob(path, pattern) {
-    const regex = pattern.replace(/\*\*/g, ".*").replace(/\*/g, "[^/]*").replace(/\?/g, ".");
+    const regex = pattern.replace(/\*\*/g, "<<DOUBLESTAR>>").replace(/\*/g, "[^/]*").replace(/<<DOUBLESTAR>>/g, ".*").replace(/\?/g, ".");
     return new RegExp(`^${regex}$`).test(path);
   }
   /**
@@ -3438,7 +3438,7 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
   }
   isTrackedFile(path) {
     for (const pattern of this.config.paths.exclude) {
-      const regex = pattern.replace(/\*\*/g, ".*").replace(/\*/g, "[^/]*");
+      const regex = pattern.replace(/\*\*/g, "<<DOUBLESTAR>>").replace(/\*/g, "[^/]*").replace(/<<DOUBLESTAR>>/g, ".*");
       if (new RegExp(`^${regex}`).test(path))
         return false;
     }

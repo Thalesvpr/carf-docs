@@ -219,9 +219,11 @@ export class DocumentStore extends Events {
    * Simple glob matching
    */
   private matchGlob(path: string, pattern: string): boolean {
+    // Use placeholder to avoid ** being affected by * replacement
     const regex = pattern
-      .replace(/\*\*/g, ".*")
+      .replace(/\*\*/g, "<<DOUBLESTAR>>")
       .replace(/\*/g, "[^/]*")
+      .replace(/<<DOUBLESTAR>>/g, ".*")
       .replace(/\?/g, ".");
 
     return new RegExp(`^${regex}$`).test(path);

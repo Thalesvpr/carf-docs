@@ -1,26 +1,54 @@
 ---
 title: "How-To Guides - @carf/geoapi-client"
-description: "Guias praticos para uso do cliente HTTP"
-status: review
-updated: 2026-01-21
+description: "README usa listas/tabelas ao invés de prosa densa com links inline."
+status: rejected
+updated: 2026-01-22
 source: "interno"
 ---
 
 # How-To Guides - @carf/geoapi-client
 
-Guias praticos para uso do cliente HTTP. Inclui [01-getting-started](./01-getting-started.md) com instalacao e configuracao, [02-error-handling](./02-error-handling.md) com tratamento de erros da API e [03-file-upload](./03-file-upload.md) com upload de arquivos com progresso.
+Guias praticos para uso da biblioteca @carf/geoapi-client.
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (3 arquivos)
+## Guias Disponiveis
 
-| ID | Titulo |
-|:---|:-------|
-| [01-getting-started](./01-getting-started.md) | Getting Started |
-| [02-error-handling](./02-error-handling.md) | Error Handling - Guia Pratico |
-| [03-file-upload](./03-file-upload.md) | File Upload - Guia Pratico |
+| Guia | Descricao |
+|:-----|:----------|
+| 01-getting-started | Instalacao, configuracao e uso basico |
+| 02-error-handling | Tratamento de erros da API |
+| 03-file-upload | Upload de arquivos com progresso |
 
-*Gerado automaticamente em 2026-01-21 17:12*
-<!-- GENERATED:END -->
+## Quick Start
+
+```bash
+# Instalar
+bun add @carf/geoapi-client @carf/tscore
+
+# Configurar .npmrc
+echo "@carf:registry=https://npm.pkg.github.com" >> .npmrc
+```
+
+```typescript
+import { createGeoApiClient } from '@carf/geoapi-client'
+
+const api = createGeoApiClient({
+  baseUrl: process.env.API_URL,
+  auth: { type: 'keycloak', realm: 'carf' },
+})
+
+// Usar
+const units = await api.units.list()
+const holder = await api.holders.getById(id)
+```
+
+## Topicos Abordados
+
+- Instalacao e configuracao inicial
+- Autenticacao com Keycloak
+- Tratamento de erros HTTP
+- Retry automatico e circuit breaker
+- Upload de arquivos com progresso
+- Integracao com React Query
 
 <!-- CARF-INDEX-START -->
 ## Documentos

@@ -1,24 +1,16 @@
 ---
-title: "Conceitos - @carf/geoapi-client"
-description: "Conceitos fundamentais do cliente HTTP"
-status: review
-updated: 2026-01-21
-source: "interno"
+status: rejected
+description: "README usa listas/tabelas ao invés de prosa densa com links inline."
+updated: 2026-01-22
 ---
 
-# Conceitos - @carf/geoapi-client
+# CONCEPTS - Conceitos Cliente HTTP
 
-Conceitos fundamentais do cliente HTTP TypeScript. Ver [01-http-client](./01-http-client.md) para cliente HTTP base Axios com interceptors, type safety, retry automatico e circuit breaker.
+Conceitos fundamentais sobre SDK cliente HTTP TypeScript.
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (1 arquivo)
+## Documentos
 
-| ID | Titulo |
-|:---|:-------|
-| [01-http-client](./01-http-client.md) | HTTP Client - Cliente HTTP Base |
-
-*Gerado automaticamente em 2026-01-21 17:12*
-<!-- GENERATED:END -->
+- **01-http-client** - Cliente HTTP base Axios interceptors type safety
 
 <!-- CARF-INDEX-START -->
 ## Documentos

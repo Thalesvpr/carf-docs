@@ -1,26 +1,55 @@
 ---
 title: "Especificacoes Tecnicas - @carf/tscore"
-description: "Configuracoes de projeto, dependencias e build para a biblioteca core TypeScript"
-status: review
-updated: 2026-01-21
+description: "README usa listas/tabelas ao invés de prosa densa com links inline."
+status: rejected
+updated: 2026-01-22
 source: "interno"
 ---
 
 # Especificacoes Tecnicas - @carf/tscore
 
-Configuracoes de projeto para build, desenvolvimento e publicacao. Inclui [01-package-json](./01-package-json.md) com dependencias, exports e configuracao npm, [02-tsconfig](./02-tsconfig.md) com configuracao do compilador TypeScript, e [03-exports-map](./03-exports-map.md) com subpath exports e tree-shaking. Requisitos: Node >= 18.0.0, Bun >= 1.0.0.
+Documentacao tecnica detalhada das configuracoes de projeto necessarias para build, desenvolvimento e publicacao da biblioteca.
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (3 arquivos)
+## Documentos
 
-| ID | Titulo |
-|:---|:-------|
-| [01-package-json](./01-package-json.md) | Package.json - @carf/tscore |
-| [02-tsconfig](./02-tsconfig.md) | TSConfig - @carf/tscore |
-| [03-exports-map](./03-exports-map.md) | Exports Map - @carf/tscore |
+| ID | Titulo | Descricao |
+|:---|:-------|:----------|
+| 01-package-json | Package.json | Dependencias, exports e configuracao npm |
+| 02-tsconfig | TSConfig | Configuracao do compilador TypeScript |
+| 03-exports-map | Exports Map | Subpath exports e tree-shaking |
 
-*Gerado automaticamente em 2026-01-21 17:12*
-<!-- GENERATED:END -->
+## Visao Geral
+
+A biblioteca @carf/tscore e configurada para:
+
+- **Build**: Bun + TypeScript para compilacao rapida
+- **Output**: ES Modules (ESM) com TypeScript declarations
+- **Publicacao**: GitHub Packages (@carf scope)
+- **Peer Dependencies**: React e Vue opcionais
+
+## Requisitos de Ambiente
+
+```bash
+# Versoes minimas
+node >= 18.0.0
+bun >= 1.0.0
+```
+
+## Comandos Principais
+
+```bash
+# Instalar dependencias
+bun install
+
+# Build
+bun run build
+
+# Testes
+bun test
+
+# Type check
+tsc --noEmit
+```
 
 <!-- CARF-INDEX-START -->
 ## Documentos

@@ -1,6 +1,7 @@
 ---
-status: approved
-updated: 2026-01-21
+status: rejected
+description: "Usa tabela comparativa ao invés de prosa densa."
+updated: 2026-01-22
 ---
 
 # Keycloak Themes

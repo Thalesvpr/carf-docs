@@ -1,37 +1,56 @@
 ---
 title: "Documentacao @carf/geoapi-client"
-description: "Indice da documentacao tecnica do cliente HTTP para GEOAPI"
-status: review
-updated: 2026-01-21
+description: "README usa listas/tabelas ao invés de prosa densa com links inline."
+status: rejected
+updated: 2026-01-22
 source: "interno"
 ---
 
 # Documentacao @carf/geoapi-client
 
-Documentacao tecnica do cliente HTTP type-safe para GEOAPI. Organizada em [SPECS/](./SPECS/README.md) para especificacoes tecnicas, [ADRs/](./ADRs/README.md) para decisoes arquiteturais, [ARCHITECTURE/](./ARCHITECTURE/README.md) para arquitetura do cliente, [CONCEPTS/](./CONCEPTS/README.md) para interceptors e patterns, [API/](./API/README.md) para referencia de endpoints e [HOW-TO/](./HOW-TO/README.md) para guias praticos.
+Documentacao tecnica completa do cliente HTTP type-safe para comunicacao com a API GEOAPI.
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (15 arquivos)
+## Secoes
 
-| # | Dominio | Arquivos |
-|:--|:--------|:--------:|
-|  | [Adrs](./ADRs/README.md) | 0 |
-|  | [Api](./API/README.md) | 6 |
-|  | [Architecture](./ARCHITECTURE/README.md) | 3 |
-|  | [Concepts](./CONCEPTS/README.md) | 1 |
-|  | [How To](./HOW-TO/README.md) | 3 |
-|  | [Specs](./SPECS/README.md) | 2 |
+| Secao | Descricao |
+|:------|:----------|
+| [SPECS/](./SPECS/README.md) | Especificacoes tecnicas (package.json, client config) |
+| [ADRs/](./ADRs/README.md) | Decisoes arquiteturais |
+| [ARCHITECTURE/](./ARCHITECTURE/README.md) | Arquitetura do cliente |
+| [CONCEPTS/](./CONCEPTS/README.md) | HTTP client, interceptors |
+| [API/](./API/README.md) | Referencia de APIs (units, holders, etc.) |
+| [HOW-TO/](./HOW-TO/README.md) | Guias praticos |
+| [CONTRIBUTING.md](./CONTRIBUTING.md) | Guia de contribuicao |
 
-*Gerado automaticamente em 2026-01-21 17:12*
+## APIs Disponiveis
 
-## Arquivos (1 arquivo)
+| API | Descricao |
+|:----|:----------|
+| units | Unidades habitacionais |
+| holders | Posseiros |
+| communities | Comunidades |
+| legitimation | Processos de legitimacao |
+| documents | Upload/download de documentos |
+| reports | Geracao de relatorios |
 
-| ID | Titulo |
-|:---|:-------|
-| [CONTRIBUTING](./CONTRIBUTING.md) | Contributing to @carf/geoapi-client |
+Ver [API/](./API/README.md) para referencia completa.
 
-*Gerado automaticamente em 2026-01-21 17:12*
-<!-- GENERATED:END -->
+## Instalacao Rapida
+
+```bash
+bun add @carf/geoapi-client @carf/tscore
+```
+
+## Status de Especificacao
+
+| Secao | Arquivos | Status |
+|:------|:---------|:-------|
+| SPECS | 2 | Completo |
+| ADRs | 1 | Completo |
+| ARCHITECTURE | 3 | Existente |
+| CONCEPTS | 1 | Existente |
+| API | 6 | Completo |
+| HOW-TO | 3 | Completo |
 
 <!-- CARF-INDEX-START -->
 ## Subpastas

@@ -1,29 +1,55 @@
 ---
 title: "Documentacao @carf/tscore"
-description: "Indice da documentacao tecnica da biblioteca core TypeScript"
-status: review
-updated: 2026-01-21
+description: "README usa listas/tabelas ao invés de prosa densa com links inline."
+status: rejected
+updated: 2026-01-22
 source: "interno"
 ---
 
 # Documentacao @carf/tscore
 
-Documentacao tecnica da biblioteca core TypeScript. Organizada em [SPECS/](./SPECS/README.md) para especificacoes tecnicas, [ADRs/](./ADRs/README.md) para decisoes arquiteturais, [ARCHITECTURE/](./ARCHITECTURE/README.md) para design, [CONCEPTS/](./CONCEPTS/README.md) para value objects e tipos, [API/](./API/README.md) para referencia completa e [HOW-TO/](./HOW-TO/README.md) para guias praticos.
+Documentacao tecnica completa da biblioteca core TypeScript com value objects, validacoes e tipos compartilhados.
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (13 arquivos)
+## Secoes
 
-| # | Dominio | Arquivos |
-|:--|:--------|:--------:|
-|  | [Adrs](./ADRs/README.md) | 0 |
-|  | [Api](./API/README.md) | 3 |
-|  | [Architecture](./ARCHITECTURE/README.md) | 1 |
-|  | [Concepts](./CONCEPTS/README.md) | 3 |
-|  | [How To](./HOW-TO/README.md) | 3 |
-|  | [Specs](./SPECS/README.md) | 3 |
+| Secao | Descricao |
+|:------|:----------|
+| [SPECS/](./SPECS/README.md) | Especificacoes tecnicas (package.json, tsconfig) |
+| [ADRs/](./ADRs/README.md) | Decisoes arquiteturais |
+| [ARCHITECTURE/](./ARCHITECTURE/README.md) | Arquitetura e design |
+| [CONCEPTS/](./CONCEPTS/README.md) | Value objects, validacoes, tipos |
+| [API/](./API/README.md) | Referencia completa de API |
+| [HOW-TO/](./HOW-TO/README.md) | Guias praticos |
 
-*Gerado automaticamente em 2026-01-21 17:12*
-<!-- GENERATED:END -->
+## Modulos da Biblioteca
+
+| Modulo | Export Path | Descricao |
+|:-------|:------------|:----------|
+| Validations | `@carf/tscore/validations` | CPF, CNPJ, Email, Phone |
+| Types | `@carf/tscore/types` | Unit, Holder, Community, DTOs |
+| Auth React | `@carf/tscore/auth/react` | useAuth, ProtectedRoute |
+| Auth Vue | `@carf/tscore/auth/vue` | useAuth composable |
+
+## Instalacao Rapida
+
+```bash
+# Configurar registry
+echo "@carf:registry=https://npm.pkg.github.com" >> .npmrc
+
+# Instalar
+bun add @carf/tscore
+```
+
+## Status de Especificacao
+
+| Secao | Arquivos | Status |
+|:------|:---------|:-------|
+| SPECS | 3 | Completo |
+| ADRs | 1 | Completo |
+| ARCHITECTURE | 1 | Existente |
+| CONCEPTS | 3 | Existente |
+| API | 3 | Completo |
+| HOW-TO | 3 | Completo |
 
 <!-- CARF-INDEX-START -->
 ## Subpastas

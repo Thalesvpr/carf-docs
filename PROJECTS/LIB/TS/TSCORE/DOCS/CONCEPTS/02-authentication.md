@@ -1,6 +1,7 @@
 ---
-status: approved
-updated: 2026-01-21
+status: rejected
+description: "Usa diagrama ASCII e headers/listas ao invés de prosa densa."
+updated: 2026-01-22
 ---
 
 # Authentication - Autenticação com Keycloak

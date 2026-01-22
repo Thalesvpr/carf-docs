@@ -76,7 +76,11 @@ export class CurationPanelView extends ItemView {
 
   private isTrackedFile(path: string): boolean {
     for (const pattern of this.config.paths.exclude) {
-      const regex = pattern.replace(/\*\*/g, ".*").replace(/\*/g, "[^/]*");
+      // Use placeholder to avoid ** being affected by * replacement
+      const regex = pattern
+        .replace(/\*\*/g, "<<DOUBLESTAR>>")
+        .replace(/\*/g, "[^/]*")
+        .replace(/<<DOUBLESTAR>>/g, ".*");
       if (new RegExp(`^${regex}`).test(path)) return false;
     }
     return true;
