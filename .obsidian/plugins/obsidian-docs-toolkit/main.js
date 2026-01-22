@@ -27,7 +27,7 @@ __export(main_exports, {
   default: () => DocsToolkitPlugin
 });
 module.exports = __toCommonJS(main_exports);
-var import_obsidian21 = require("obsidian");
+var import_obsidian22 = require("obsidian");
 
 // src/config/ConfigLoader.ts
 var import_obsidian = require("obsidian");
@@ -1262,6 +1262,8 @@ var ForbiddenPatternsValidator = class extends LocalValidator {
     this.nameKey = "validators.forbiddenPatterns.name";
     this.descriptionKey = "validators.forbiddenPatterns.description";
     this.defaultSeverity = "warning" /* WARNING */;
+    // Max examples to include in aggregated issue
+    this.MAX_EXAMPLES = 5;
   }
   async validate(doc, ctx) {
     const issues = [];
@@ -1272,51 +1274,156 @@ var ForbiddenPatternsValidator = class extends LocalValidator {
     const severity = getConfiguredSeverity(this.id, ctx.config, this.defaultSeverity);
     const content = doc.bodyContent;
     const lines = content.split("\n");
+    const skipLines = this.buildSkipMask(lines);
     for (const pattern of templateValidation.forbidden) {
-      try {
-        const regex = new RegExp(pattern, "gi");
-        for (let lineNum = 0; lineNum < lines.length; lineNum++) {
-          const line = lines[lineNum];
+      const matches = this.findMatches(pattern, lines, skipLines);
+      if (matches.length > 0) {
+        const examples = matches.slice(0, this.MAX_EXAMPLES);
+        const exampleSnippets = examples.map((m) => `L${m.line}:${m.column} "${m.snippet}"`).join("; ");
+        const countInfo = matches.length > this.MAX_EXAMPLES ? ` (+${matches.length - this.MAX_EXAMPLES} more)` : "";
+        issues.push(new Issue(
+          doc.file,
+          this.id,
+          severity,
+          "validators.forbiddenPatterns.aggregated",
+          {
+            pattern: this.getPatternLabel(pattern),
+            count: matches.length,
+            examples: exampleSnippets + countInfo
+          },
+          matches[0].line,
+          matches[0].column,
+          "validators.forbiddenPatterns.aggregated_suggestion",
+          { pattern: this.getPatternLabel(pattern), count: matches.length }
+        ));
+      }
+    }
+    return issues;
+  }
+  /**
+   * Build a mask indicating which lines to skip (code blocks and tables)
+   */
+  buildSkipMask(lines) {
+    const skip = new Array(lines.length).fill(false);
+    let inCodeBlock = false;
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i].trim();
+      if (line.startsWith("```")) {
+        inCodeBlock = !inCodeBlock;
+        skip[i] = true;
+        continue;
+      }
+      if (inCodeBlock) {
+        skip[i] = true;
+        continue;
+      }
+      if (this.isTableLine(line)) {
+        skip[i] = true;
+        continue;
+      }
+    }
+    return skip;
+  }
+  /**
+   * Check if a line is part of a Markdown table
+   */
+  isTableLine(line) {
+    if (/^\|[\s:]*-+[\s:|-]*\|$/.test(line)) {
+      return true;
+    }
+    if (/^\|.*\|$/.test(line) && (line.match(/\|/g) || []).length >= 2) {
+      return true;
+    }
+    return false;
+  }
+  /**
+   * Find all matches of a pattern, respecting skip mask
+   */
+  findMatches(pattern, lines, skipLines) {
+    const matches = [];
+    const isPlaceholder = this.isPlaceholderPattern(pattern);
+    for (let lineNum = 0; lineNum < lines.length; lineNum++) {
+      if (skipLines[lineNum])
+        continue;
+      const line = lines[lineNum];
+      if (isPlaceholder) {
+        if (line.trim() === pattern) {
+          matches.push({
+            line: lineNum + 1,
+            column: line.indexOf(pattern),
+            snippet: this.truncate(line, 40)
+          });
+        }
+      } else {
+        try {
+          const regex = new RegExp(this.escapeRegex(pattern), "gi");
           let match;
           while ((match = regex.exec(line)) !== null) {
-            issues.push(new Issue(
-              doc.file,
-              this.id,
-              severity,
-              "validators.forbiddenPatterns.found",
-              { pattern, match: match[0] },
-              lineNum + 1,
-              match.index,
-              "validators.forbiddenPatterns.found_suggestion",
-              { pattern }
-            ));
+            matches.push({
+              line: lineNum + 1,
+              column: match.index,
+              snippet: this.truncate(line, 40)
+            });
             if (match[0].length === 0) {
               regex.lastIndex++;
             }
           }
-        }
-      } catch (e) {
-        for (let lineNum = 0; lineNum < lines.length; lineNum++) {
-          const line = lines[lineNum];
+        } catch (e) {
           let index = 0;
           while ((index = line.indexOf(pattern, index)) !== -1) {
-            issues.push(new Issue(
-              doc.file,
-              this.id,
-              severity,
-              "validators.forbiddenPatterns.found",
-              { pattern, match: pattern },
-              lineNum + 1,
-              index,
-              "validators.forbiddenPatterns.found_suggestion",
-              { pattern }
-            ));
-            index += pattern.length;
+            matches.push({
+              line: lineNum + 1,
+              column: index,
+              snippet: this.truncate(line, 40)
+            });
+            index += pattern.length || 1;
           }
         }
       }
     }
-    return issues;
+    return matches;
+  }
+  /**
+   * Check if pattern looks like a placeholder (template marker)
+   * Placeholders: |--|, |-|, <TEMPLATE:...>, {{...}}, etc.
+   */
+  isPlaceholderPattern(pattern) {
+    if (/^\|[-|]+\|$/.test(pattern)) {
+      return true;
+    }
+    if (/^<TEMPLATE:.+>$/.test(pattern)) {
+      return true;
+    }
+    if (/^\{\{.+\}\}$/.test(pattern)) {
+      return true;
+    }
+    return false;
+  }
+  /**
+   * Escape special regex characters
+   */
+  escapeRegex(str) {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+  /**
+   * Truncate string with ellipsis
+   */
+  truncate(str, maxLen) {
+    if (str.length <= maxLen)
+      return str;
+    return str.substring(0, maxLen - 3) + "...";
+  }
+  /**
+   * Get human-readable label for pattern
+   */
+  getPatternLabel(pattern) {
+    const labels = {
+      "```": "Code block",
+      "http": "Link/URL",
+      "|--|": "Table",
+      "- [": "Checklist"
+    };
+    return labels[pattern] || `"${pattern}"`;
   }
 };
 
@@ -2900,7 +3007,9 @@ var I18nService = class {
           name: "Lint: Forbidden Patterns",
           description: "Checks for forbidden text patterns",
           found: "Forbidden pattern '{pattern}' found: '{match}'",
-          found_suggestion: "Remove or replace the forbidden pattern '{pattern}'"
+          found_suggestion: "Remove or replace the forbidden pattern '{pattern}'",
+          aggregated: "{pattern}: {count} occurrences ({examples})",
+          aggregated_suggestion: "Remove {count} occurrences of {pattern}"
         },
         links: {
           name: "Lint: Broken Links",
@@ -3003,7 +3112,9 @@ var I18nService = class {
           name: "Lint: Forbidden Patterns",
           description: "Verifica padr\xF5es de texto proibidos",
           found: "Padr\xE3o proibido '{pattern}' encontrado: '{match}'",
-          found_suggestion: "Remova ou substitua o padr\xE3o proibido '{pattern}'"
+          found_suggestion: "Remova ou substitua o padr\xE3o proibido '{pattern}'",
+          aggregated: "{pattern}: {count} ocorr\xEAncias ({examples})",
+          aggregated_suggestion: "Remova {count} ocorr\xEAncias de {pattern}"
         },
         links: {
           name: "Lint: Broken Links",
@@ -3106,7 +3217,9 @@ var I18nService = class {
           name: "Patrones Prohibidos",
           description: "Verifica patrones de texto prohibidos",
           found: "Patr\xF3n prohibido '{pattern}' encontrado: '{match}'",
-          found_suggestion: "Elimine o reemplace el patr\xF3n prohibido '{pattern}'"
+          found_suggestion: "Elimine o reemplace el patr\xF3n prohibido '{pattern}'",
+          aggregated: "{pattern}: {count} ocurrencias ({examples})",
+          aggregated_suggestion: "Elimine {count} ocurrencias de {pattern}"
         },
         links: {
           name: "Enlaces",
@@ -3628,9 +3741,222 @@ $2`
 };
 
 // src/views/CurationPanelView.ts
+var import_obsidian14 = require("obsidian");
+
+// src/ui/FilterSuggest.ts
 var import_obsidian13 = require("obsidian");
+var FilterSuggest = class extends import_obsidian13.AbstractInputSuggest {
+  constructor(app, inputEl, getDocuments, onFilterChange) {
+    super(app, inputEl);
+    // Available operators
+    this.operators = [
+      { text: "path:", displayText: "path:", description: "Search in file path", type: "operator" },
+      { text: "file:", displayText: "file:", description: "Search in file name", type: "operator" },
+      { text: "tag:", displayText: "tag:", description: "Search by tag", type: "operator" },
+      { text: "status:", displayText: "status:", description: "Filter by status", type: "operator" },
+      { text: "id:", displayText: "id:", description: "Search by document ID", type: "operator" },
+      { text: "section:", displayText: "section:", description: "Search in section titles", type: "operator" },
+      { text: "-", displayText: "-", description: "Exclude (negate)", type: "operator" },
+      { text: "OR", displayText: "OR", description: "Match either condition", type: "operator" }
+    ];
+    // Status values
+    this.statuses = ["approved", "rejected", "review", "none"];
+    this.getDocuments = getDocuments;
+    this.onFilterChange = onFilterChange;
+    this.limit = 20;
+  }
+  getSuggestions(query) {
+    var _a, _b;
+    const suggestions = [];
+    const cursorPos = ((_a = this.textInputEl) == null ? void 0 : _a.selectionStart) || query.length;
+    const beforeCursor = query.substring(0, cursorPos);
+    const tokens = beforeCursor.split(/\s+/);
+    const currentToken = tokens[tokens.length - 1] || "";
+    const operatorMatch = currentToken.match(/^(-?)(path|file|tag|status|id|section):(.*)$/i);
+    if (operatorMatch) {
+      const [, negation, operator, valueQuery] = operatorMatch;
+      const opLower = operator.toLowerCase();
+      if (opLower === "status") {
+        for (const status of this.statuses) {
+          if (!valueQuery || status.toLowerCase().startsWith(valueQuery.toLowerCase())) {
+            suggestions.push({
+              text: `${negation}${operator}:${status}`,
+              displayText: status,
+              description: `Status: ${status}`,
+              type: "value"
+            });
+          }
+        }
+      } else if (opLower === "tag") {
+        const tags = this.collectTags();
+        const search = valueQuery ? (0, import_obsidian13.prepareFuzzySearch)(valueQuery) : null;
+        for (const tag of tags) {
+          if (!search || search(tag)) {
+            suggestions.push({
+              text: `${negation}${operator}:${tag}`,
+              displayText: tag,
+              description: `Tag`,
+              type: "value"
+            });
+          }
+        }
+      } else if (opLower === "path") {
+        const paths = this.collectPaths();
+        const search = valueQuery ? (0, import_obsidian13.prepareFuzzySearch)(valueQuery) : null;
+        for (const path of paths) {
+          if (!search || search(path)) {
+            suggestions.push({
+              text: `${negation}${operator}:"${path}"`,
+              displayText: path,
+              description: `Folder`,
+              type: "value"
+            });
+          }
+        }
+      } else if (opLower === "id") {
+        const ids = this.collectIds();
+        const search = valueQuery ? (0, import_obsidian13.prepareFuzzySearch)(valueQuery) : null;
+        for (const id of ids) {
+          if (!search || search(id)) {
+            suggestions.push({
+              text: `${negation}${operator}:${id}`,
+              displayText: id,
+              description: `Document ID`,
+              type: "value"
+            });
+          }
+        }
+      } else if (opLower === "file") {
+        const files = this.collectFileNames();
+        const search = valueQuery ? (0, import_obsidian13.prepareFuzzySearch)(valueQuery) : null;
+        for (const file of files.slice(0, 50)) {
+          if (!search || search(file)) {
+            suggestions.push({
+              text: `${negation}${operator}:${file}`,
+              displayText: file,
+              description: `File`,
+              type: "value"
+            });
+          }
+        }
+      } else if (opLower === "section") {
+        const sections = this.collectSections();
+        const search = valueQuery ? (0, import_obsidian13.prepareFuzzySearch)(valueQuery) : null;
+        for (const section of sections) {
+          if (!search || search(section)) {
+            suggestions.push({
+              text: `${negation}${operator}:"${section}"`,
+              displayText: section,
+              description: `Section`,
+              type: "value"
+            });
+          }
+        }
+      }
+    } else {
+      const search = currentToken ? (0, import_obsidian13.prepareFuzzySearch)(currentToken) : null;
+      for (const op of this.operators) {
+        if (!search || search(op.text)) {
+          suggestions.push(op);
+        }
+      }
+      if (currentToken && currentToken.length >= 2) {
+        const docs = this.getDocuments();
+        const searchFn = (0, import_obsidian13.prepareFuzzySearch)(currentToken);
+        for (const doc of docs.slice(0, 10)) {
+          if (searchFn(doc.file.basename)) {
+            suggestions.push({
+              text: doc.file.basename,
+              displayText: doc.file.basename,
+              description: ((_b = doc.file.parent) == null ? void 0 : _b.path) || "",
+              type: "value"
+            });
+          }
+        }
+      }
+    }
+    return suggestions.slice(0, this.limit);
+  }
+  renderSuggestion(suggestion, el) {
+    el.addClass("mod-complex");
+    const content = el.createDiv({ cls: "suggestion-content" });
+    content.createDiv({ cls: "suggestion-title", text: suggestion.displayText });
+    if (suggestion.description) {
+      content.createDiv({ cls: "suggestion-note", text: suggestion.description });
+    }
+    if (suggestion.type === "operator") {
+      el.createDiv({ cls: "suggestion-aux", text: "operator" });
+    }
+  }
+  selectSuggestion(suggestion, evt) {
+    var _a;
+    const currentValue = this.getValue();
+    const cursorPos = ((_a = this.textInputEl) == null ? void 0 : _a.selectionStart) || currentValue.length;
+    const beforeCursor = currentValue.substring(0, cursorPos);
+    const tokens = beforeCursor.split(/\s+/);
+    const currentToken = tokens[tokens.length - 1] || "";
+    const tokenStart = beforeCursor.lastIndexOf(currentToken);
+    const newValue = currentValue.substring(0, tokenStart) + suggestion.text + (suggestion.type === "operator" && !suggestion.text.endsWith(":") ? " " : "") + currentValue.substring(cursorPos);
+    this.setValue(newValue);
+    this.onFilterChange(newValue);
+    this.close();
+  }
+  // Helper methods to collect suggestions from documents
+  collectTags() {
+    var _a;
+    const tags = /* @__PURE__ */ new Set();
+    for (const doc of this.getDocuments()) {
+      if ((_a = doc.frontmatter) == null ? void 0 : _a.tags) {
+        const docTags = Array.isArray(doc.frontmatter.tags) ? doc.frontmatter.tags : [doc.frontmatter.tags];
+        for (const tag of docTags) {
+          tags.add(String(tag));
+        }
+      }
+    }
+    return Array.from(tags).sort();
+  }
+  collectPaths() {
+    const paths = /* @__PURE__ */ new Set();
+    for (const doc of this.getDocuments()) {
+      const parts = doc.file.path.split("/");
+      for (let i = 1; i < parts.length; i++) {
+        paths.add(parts.slice(0, i).join("/"));
+      }
+    }
+    return Array.from(paths).sort();
+  }
+  collectIds() {
+    const ids = [];
+    for (const doc of this.getDocuments()) {
+      if (doc.id) {
+        ids.push(doc.id);
+      }
+    }
+    return ids.sort();
+  }
+  collectFileNames() {
+    const names = [];
+    for (const doc of this.getDocuments()) {
+      names.push(doc.file.basename);
+    }
+    return names.sort();
+  }
+  collectSections() {
+    const sections = /* @__PURE__ */ new Set();
+    for (const doc of this.getDocuments()) {
+      if (doc.sections) {
+        for (const title of doc.sections.keys()) {
+          sections.add(title);
+        }
+      }
+    }
+    return Array.from(sections).sort();
+  }
+};
+
+// src/views/CurationPanelView.ts
 var CURATION_PANEL_VIEW_TYPE = "docs-toolkit-curation";
-var CurationPanelView = class extends import_obsidian13.ItemView {
+var CurationPanelView = class extends import_obsidian14.ItemView {
   constructor(leaf, store, metadataService, i18n, config, plugin) {
     super(leaf);
     this.currentIndex = 0;
@@ -3659,6 +3985,14 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
     this.registerEvent(
       this.app.workspace.on("active-leaf-change", () => this.syncWithActiveFile())
     );
+    this.registerEvent(
+      this.app.metadataCache.on("changed", (file) => {
+        const currentFile = this.getCurrentFile();
+        if (currentFile && file.path === currentFile.path) {
+          this.render();
+        }
+      })
+    );
     this.registerDomEvent(document, "keydown", this.onKey.bind(this));
     this.syncWithActiveFile();
     this.render();
@@ -3683,22 +4017,30 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
     return files;
   }
   /**
-   * Parse and apply filter query with Obsidian-like syntax
-   * Supports: path:, file:, tag:, status:, -prefix for exclusion
+   * Parse and apply filter query using Obsidian's native search API
+   * Supports: path:, file:, tag:, status:, -prefix for exclusion, OR
+   * Uses prepareSimpleSearch for efficient text matching
    */
   matchesFilter(file, query) {
     const doc = this.store.getDocument(file.path);
-    const tokens = this.parseFilterTokens(query);
-    for (const token of tokens) {
-      const matches = this.matchToken(file, doc, token);
-      if (!matches)
-        return false;
+    const orGroups = query.split(/\s+OR\s+/i);
+    for (const group of orGroups) {
+      const tokens = this.parseFilterTokens(group.trim());
+      let groupMatches = true;
+      for (const token of tokens) {
+        if (!this.matchToken(file, doc, token)) {
+          groupMatches = false;
+          break;
+        }
+      }
+      if (groupMatches)
+        return true;
     }
-    return true;
+    return false;
   }
   parseFilterTokens(query) {
     const tokens = [];
-    const regex = /(-?)(?:(path|file|tag|status|id):)?(?:"([^"]+)"|(\S+))/gi;
+    const regex = /(-?)(?:(path|file|tag|status|id|section|line):)?(?:"([^"]+)"|(\S+))/gi;
     let match;
     while ((match = regex.exec(query)) !== null) {
       const exclude = match[1] === "-";
@@ -3711,30 +4053,43 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
   matchToken(file, doc, token) {
     var _a;
     const { type, value, exclude } = token;
-    const valueLower = value.toLowerCase();
     let matches = false;
+    const search = (0, import_obsidian14.prepareSimpleSearch)(value);
     switch (type) {
       case "path":
-        matches = file.path.toLowerCase().includes(valueLower);
+        matches = search(file.path) !== null;
         break;
       case "file":
-        matches = file.name.toLowerCase().includes(valueLower);
+        matches = search(file.name) !== null;
         break;
       case "tag":
         if ((_a = doc == null ? void 0 : doc.frontmatter) == null ? void 0 : _a.tags) {
           const tags = Array.isArray(doc.frontmatter.tags) ? doc.frontmatter.tags : [doc.frontmatter.tags];
-          matches = tags.some((t) => String(t).toLowerCase().includes(valueLower));
+          matches = tags.some((t) => search(String(t)) !== null);
         }
         break;
       case "status":
-        matches = ((doc == null ? void 0 : doc.status) || "none").toLowerCase() === valueLower;
+        matches = ((doc == null ? void 0 : doc.status) || "none").toLowerCase() === value.toLowerCase();
         break;
       case "id":
-        matches = ((doc == null ? void 0 : doc.id) || "").toLowerCase().includes(valueLower);
+        matches = (doc == null ? void 0 : doc.id) ? search(doc.id) !== null : false;
+        break;
+      case "section":
+        if (doc == null ? void 0 : doc.sections) {
+          for (const title of doc.sections.keys()) {
+            if (search(title) !== null) {
+              matches = true;
+              break;
+            }
+          }
+        }
+        break;
+      case "line":
+        matches = false;
         break;
       case "text":
       default:
-        matches = file.path.toLowerCase().includes(valueLower) || file.name.toLowerCase().includes(valueLower) || ((doc == null ? void 0 : doc.id) || "").toLowerCase().includes(valueLower);
+        matches = search(file.path) !== null || search(file.name) !== null || ((doc == null ? void 0 : doc.id) ? search(doc.id) !== null : false);
         break;
     }
     return exclude ? !matches : matches;
@@ -3779,32 +4134,32 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
     const actions = el.createDiv({ cls: "docs-actions" });
     const actionsRow = actions.createDiv({ cls: "docs-actions-row" });
     const firstBtn = actionsRow.createEl("button", { cls: "docs-btn docs-btn-nav", attr: { title: "Ir para o primeiro" } });
-    (0, import_obsidian13.setIcon)(firstBtn, "chevrons-left");
+    (0, import_obsidian14.setIcon)(firstBtn, "chevrons-left");
     firstBtn.disabled = this.currentIndex === 0;
     firstBtn.onclick = () => this.goTo(0);
     const prevBtn = actionsRow.createEl("button", { cls: "docs-btn docs-btn-nav", attr: { title: "Anterior" } });
-    (0, import_obsidian13.setIcon)(prevBtn, "arrow-left");
+    (0, import_obsidian14.setIcon)(prevBtn, "arrow-left");
     prevBtn.disabled = this.currentIndex === 0;
     prevBtn.onclick = () => this.navigate(-1);
     const centerGroup = actionsRow.createDiv({ cls: "docs-btn-center" });
     const rejectBtn = centerGroup.createEl("button", { cls: "docs-btn docs-btn-reject", attr: { title: "Rejeitar" } });
-    (0, import_obsidian13.setIcon)(rejectBtn, "x");
+    (0, import_obsidian14.setIcon)(rejectBtn, "x");
     rejectBtn.disabled = !file || (doc == null ? void 0 : doc.status) === "rejected";
     rejectBtn.onclick = () => file && this.reject(file);
     const reviewBtn = centerGroup.createEl("button", { cls: "docs-btn docs-btn-review", attr: { title: "Marcar para revis\xE3o" } });
-    (0, import_obsidian13.setIcon)(reviewBtn, "circle");
+    (0, import_obsidian14.setIcon)(reviewBtn, "circle");
     reviewBtn.disabled = !file || (doc == null ? void 0 : doc.status) === "review";
     reviewBtn.onclick = () => file && this.setReview(file);
     const approveBtn = centerGroup.createEl("button", { cls: "docs-btn docs-btn-approve", attr: { title: "Aprovar" } });
-    (0, import_obsidian13.setIcon)(approveBtn, "check");
+    (0, import_obsidian14.setIcon)(approveBtn, "check");
     approveBtn.disabled = !file || (doc == null ? void 0 : doc.status) === "approved";
     approveBtn.onclick = () => file && this.approve(file);
     const nextBtn = actionsRow.createEl("button", { cls: "docs-btn docs-btn-nav", attr: { title: "Pr\xF3ximo" } });
-    (0, import_obsidian13.setIcon)(nextBtn, "arrow-right");
+    (0, import_obsidian14.setIcon)(nextBtn, "arrow-right");
     nextBtn.disabled = this.currentIndex >= queue.length - 1;
     nextBtn.onclick = () => this.navigate(1);
     const lastBtn = actionsRow.createEl("button", { cls: "docs-btn docs-btn-nav", attr: { title: "Ir para o \xFAltimo" } });
-    (0, import_obsidian13.setIcon)(lastBtn, "chevrons-right");
+    (0, import_obsidian14.setIcon)(lastBtn, "chevrons-right");
     lastBtn.disabled = this.currentIndex >= queue.length - 1;
     lastBtn.onclick = () => this.goTo(queue.length - 1);
     const filterContainer = el.createDiv({ cls: "docs-filter-container" });
@@ -3812,13 +4167,24 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
       cls: "docs-filter-input",
       attr: {
         type: "text",
-        placeholder: "Filter: path:, file:, status:, tag:, -exclude",
-        value: this.filterQuery
+        placeholder: "path: file: tag: status: -exclude OR",
+        value: this.filterQuery,
+        spellcheck: "false"
       }
     });
+    new FilterSuggest(
+      this.app,
+      filterInput,
+      () => this.store.getState().documents.filter((d) => this.isTrackedFile(d.file.path)),
+      (value) => {
+        this.filterQuery = value;
+        this.currentIndex = 0;
+        this.render();
+      }
+    );
     if (this.filterQuery) {
       const clearBtn = filterContainer.createEl("button", { cls: "docs-filter-clear", attr: { title: "Limpar filtro" } });
-      (0, import_obsidian13.setIcon)(clearBtn, "x");
+      (0, import_obsidian14.setIcon)(clearBtn, "x");
       clearBtn.onclick = (e) => {
         e.stopPropagation();
         this.filterQuery = "";
@@ -3833,7 +4199,7 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
         this.filterQuery = filterInput.value;
         this.currentIndex = 0;
         this.render();
-      }, 300);
+      }, 400);
     };
     if (this.filterQuery) {
       const totalUnfiltered = this.store.getReviewQueue().filter((f) => this.isTrackedFile(f.path)).length;
@@ -3963,22 +4329,22 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
     const promptSection = el.createDiv({ cls: "docs-prompt-section" });
     const promptHeader = promptSection.createDiv({ cls: "docs-prompt-header" });
     const toggleBtn = promptHeader.createEl("button", { cls: "docs-prompt-toggle" });
-    (0, import_obsidian13.setIcon)(toggleBtn, "chevron-right");
+    (0, import_obsidian14.setIcon)(toggleBtn, "chevron-right");
     promptHeader.createSpan({ text: "Claude Prompt", cls: "docs-prompt-title" });
     const copyBtn = promptHeader.createEl("button", { cls: "docs-prompt-copy" });
-    (0, import_obsidian13.setIcon)(copyBtn, "copy");
+    (0, import_obsidian14.setIcon)(copyBtn, "copy");
     copyBtn.onclick = (e) => {
       e.stopPropagation();
       navigator.clipboard.writeText(promptText);
-      (0, import_obsidian13.setIcon)(copyBtn, "check");
-      setTimeout(() => (0, import_obsidian13.setIcon)(copyBtn, "copy"), 1500);
+      (0, import_obsidian14.setIcon)(copyBtn, "check");
+      setTimeout(() => (0, import_obsidian14.setIcon)(copyBtn, "copy"), 1500);
     };
     const promptContent = promptSection.createDiv({ cls: "docs-prompt-content hidden" });
     promptContent.createEl("pre", { text: promptText, cls: "docs-prompt-text" });
     promptHeader.onclick = () => {
       const isHidden = promptContent.hasClass("hidden");
       promptContent.toggleClass("hidden", !isHidden);
-      (0, import_obsidian13.setIcon)(toggleBtn, isHidden ? "chevron-down" : "chevron-right");
+      (0, import_obsidian14.setIcon)(toggleBtn, isHidden ? "chevron-down" : "chevron-right");
     };
   }
   async navigate(delta) {
@@ -4048,12 +4414,26 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
   generateClaudePrompt(file, doc, issues) {
     var _a, _b, _c, _d, _e;
     const lines = [];
+    const currentFile = this.app.vault.getAbstractFileByPath(file.path);
+    const cache = currentFile instanceof import_obsidian14.TFile ? this.app.metadataCache.getFileCache(currentFile) : null;
+    const frontmatter = cache == null ? void 0 : cache.frontmatter;
+    console.log("[Claude Prompt] path:", file.path);
+    console.log("[Claude Prompt] currentFile:", currentFile);
+    console.log("[Claude Prompt] cache:", cache);
+    console.log("[Claude Prompt] frontmatter:", frontmatter);
+    console.log("[Claude Prompt] description:", frontmatter == null ? void 0 : frontmatter.description);
     lines.push(`@${file.path.replace(/\//g, "\\")}`);
     lines.push("");
-    const status = (doc == null ? void 0 : doc.status) || "sem status";
-    lines.push(`**Status:** ${status.toUpperCase()}`);
-    if ((doc == null ? void 0 : doc.status) === "rejected" && ((_a = doc.frontmatter) == null ? void 0 : _a.rejection_reason)) {
-      lines.push(`**Motivo da Rejei\xE7\xE3o:** ${doc.frontmatter.rejection_reason}`);
+    const status = (frontmatter == null ? void 0 : frontmatter.status) || (doc == null ? void 0 : doc.status) || "sem status";
+    lines.push(`**Status:** ${String(status).toUpperCase()}`);
+    const description = (frontmatter == null ? void 0 : frontmatter.description) || ((_a = doc == null ? void 0 : doc.frontmatter) == null ? void 0 : _a.description);
+    if (description && String(description).trim()) {
+      lines.push(`**Descri\xE7\xE3o:** ${String(description)}`);
+    } else {
+      lines.push(`**Descri\xE7\xE3o:** (n\xE3o informada)`);
+    }
+    if (frontmatter == null ? void 0 : frontmatter.rejection_reason) {
+      lines.push(`**Motivo da Rejei\xE7\xE3o:** ${frontmatter.rejection_reason}`);
     }
     lines.push("");
     lines.push("## Informa\xE7\xF5es do Documento");
@@ -4090,7 +4470,7 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
     return lines.join("\n");
   }
 };
-var RejectModal = class extends import_obsidian13.Modal {
+var RejectModal = class extends import_obsidian14.Modal {
   constructor(app, i18n, onSubmit) {
     super(app);
     this.reason = "";
@@ -4100,7 +4480,7 @@ var RejectModal = class extends import_obsidian13.Modal {
   onOpen() {
     const { contentEl } = this;
     contentEl.createEl("h3", { text: "Reject" });
-    const textArea = new import_obsidian13.TextAreaComponent(contentEl);
+    const textArea = new import_obsidian14.TextAreaComponent(contentEl);
     textArea.setPlaceholder("Reason...");
     textArea.inputEl.style.width = "100%";
     textArea.inputEl.style.height = "80px";
@@ -4127,7 +4507,7 @@ var RejectModal = class extends import_obsidian13.Modal {
 };
 
 // src/views/IssuesPanelView.ts
-var import_obsidian16 = require("obsidian");
+var import_obsidian17 = require("obsidian");
 
 // src/services/FixService.ts
 var FixService = class {
@@ -4300,8 +4680,8 @@ var FixService = class {
 };
 
 // src/views/modals/PickModal.ts
-var import_obsidian14 = require("obsidian");
-var PickModal = class extends import_obsidian14.Modal {
+var import_obsidian15 = require("obsidian");
+var PickModal = class extends import_obsidian15.Modal {
   constructor(app, title, options, onSubmit, multiSelect = false, preselected) {
     super(app);
     this.selected = /* @__PURE__ */ new Set();
@@ -4414,8 +4794,8 @@ function showPickModal(app, title, options, multiSelect = false, preselected) {
 }
 
 // src/views/modals/PromptModal.ts
-var import_obsidian15 = require("obsidian");
-var PromptModal = class extends import_obsidian15.Modal {
+var import_obsidian16 = require("obsidian");
+var PromptModal = class extends import_obsidian16.Modal {
   constructor(app, title, placeholder, onSubmit, initialValue = "") {
     super(app);
     this.inputEl = null;
@@ -4490,7 +4870,7 @@ function showPromptModal(app, title, placeholder, initialValue = "") {
 
 // src/views/IssuesPanelView.ts
 var ISSUES_PANEL_VIEW_TYPE = "docs-toolkit-issues";
-var IssuesPanelView = class extends import_obsidian16.ItemView {
+var IssuesPanelView = class extends import_obsidian17.ItemView {
   constructor(leaf, store, i18n) {
     super(leaf);
     this.filter = "all";
@@ -4624,12 +5004,12 @@ var IssuesPanelView = class extends import_obsidian16.ItemView {
       if (isAutoFix(fix)) {
         const result = await this.fixService.applyFix({ file, action: fix });
         if (result.success) {
-          new import_obsidian16.Notice(`Fixed: ${result.message}`);
+          new import_obsidian17.Notice(`Fixed: ${result.message}`);
           if (result.shouldRevalidate) {
             await this.store.revalidateFile(file.path);
           }
         } else {
-          new import_obsidian16.Notice(`Fix failed: ${result.message}`);
+          new import_obsidian17.Notice(`Fix failed: ${result.message}`);
         }
       } else if (isPickFix(fix)) {
         const selected = await showPickModal(
@@ -4646,12 +5026,12 @@ var IssuesPanelView = class extends import_obsidian16.ItemView {
             selectedOption: selected
           });
           if (result.success) {
-            new import_obsidian16.Notice(`Fixed: ${result.message}`);
+            new import_obsidian17.Notice(`Fixed: ${result.message}`);
             if (result.shouldRevalidate) {
               await this.store.revalidateFile(file.path);
             }
           } else {
-            new import_obsidian16.Notice(`Fix failed: ${result.message}`);
+            new import_obsidian17.Notice(`Fix failed: ${result.message}`);
           }
         }
       } else if (isPromptFix(fix)) {
@@ -4669,23 +5049,23 @@ var IssuesPanelView = class extends import_obsidian16.ItemView {
             promptValue: value
           });
           if (result.success) {
-            new import_obsidian16.Notice(`Fixed: ${result.message}`);
+            new import_obsidian17.Notice(`Fixed: ${result.message}`);
             if (result.shouldRevalidate) {
               await this.store.revalidateFile(file.path);
             }
           } else {
-            new import_obsidian16.Notice(`Fix failed: ${result.message}`);
+            new import_obsidian17.Notice(`Fix failed: ${result.message}`);
           }
         }
       }
     } catch (error) {
-      new import_obsidian16.Notice(`Error applying fix: ${error.message}`);
+      new import_obsidian17.Notice(`Error applying fix: ${error.message}`);
     }
   }
 };
 
 // src/commands/InitMetadataCommand.ts
-var import_obsidian17 = require("obsidian");
+var import_obsidian18 = require("obsidian");
 var InitMetadataCommand = class {
   constructor(app, metadataService) {
     this.app = app;
@@ -4697,24 +5077,24 @@ var InitMetadataCommand = class {
   async execute() {
     const activeFile = this.app.workspace.getActiveFile();
     if (!activeFile) {
-      new import_obsidian17.Notice("Nenhum arquivo aberto");
+      new import_obsidian18.Notice("Nenhum arquivo aberto");
       return;
     }
     if (!activeFile.name.endsWith(".md")) {
-      new import_obsidian17.Notice("Apenas arquivos Markdown suportados");
+      new import_obsidian18.Notice("Apenas arquivos Markdown suportados");
       return;
     }
     const hasFrontmatter = await this.metadataService.hasFrontmatter(activeFile);
     if (hasFrontmatter) {
-      new import_obsidian17.Notice("Arquivo j\xE1 possui frontmatter");
+      new import_obsidian18.Notice("Arquivo j\xE1 possui frontmatter");
       return;
     }
     if (!Document2.isInCARFPath(activeFile.path)) {
-      new import_obsidian17.Notice("Arquivo n\xE3o est\xE1 em um caminho de documenta\xE7\xE3o (CENTRAL/ ou PROJECTS/)");
+      new import_obsidian18.Notice("Arquivo n\xE3o est\xE1 em um caminho de documenta\xE7\xE3o (CENTRAL/ ou PROJECTS/)");
       return;
     }
     const frontmatter = await this.metadataService.initFrontmatter(activeFile);
-    new import_obsidian17.Notice(
+    new import_obsidian18.Notice(
       `Frontmatter criado:
 ID: ${frontmatter.id}
 Tipo: ${frontmatter.type}
@@ -4724,7 +5104,7 @@ Status: ${frontmatter.status}`
 };
 
 // src/commands/MigrateFooterCommand.ts
-var import_obsidian18 = require("obsidian");
+var import_obsidian19 = require("obsidian");
 var MigrateFooterCommand = class {
   constructor(app, migrationService) {
     this.app = app;
@@ -4737,35 +5117,35 @@ var MigrateFooterCommand = class {
     var _a, _b;
     const activeFile = this.app.workspace.getActiveFile();
     if (!activeFile) {
-      new import_obsidian18.Notice("Nenhum arquivo aberto");
+      new import_obsidian19.Notice("Nenhum arquivo aberto");
       return;
     }
     if (!activeFile.name.endsWith(".md")) {
-      new import_obsidian18.Notice("Apenas arquivos Markdown suportados");
+      new import_obsidian19.Notice("Apenas arquivos Markdown suportados");
       return;
     }
     const result = await this.migrationService.migrateFile(activeFile);
     if (result.success) {
-      new import_obsidian18.Notice(
+      new import_obsidian19.Notice(
         `Migra\xE7\xE3o conclu\xEDda!
 ID: ${(_a = result.newFrontmatter) == null ? void 0 : _a.id}
 Status: ${(_b = result.newFrontmatter) == null ? void 0 : _b.status}`
       );
     } else {
-      new import_obsidian18.Notice(`Migra\xE7\xE3o falhou: ${result.message}`);
+      new import_obsidian19.Notice(`Migra\xE7\xE3o falhou: ${result.message}`);
     }
   }
   /**
    * Execute the command for all files
    */
   async executeAll() {
-    new import_obsidian18.Notice("Iniciando migra\xE7\xE3o de todos os arquivos...");
+    new import_obsidian19.Notice("Iniciando migra\xE7\xE3o de todos os arquivos...");
     await this.migrationService.migrateAll();
   }
 };
 
 // src/commands/SyncIndexCommand.ts
-var import_obsidian19 = require("obsidian");
+var import_obsidian20 = require("obsidian");
 var SyncIndexCommand = class {
   constructor(app, indexService) {
     this.app = app;
@@ -4777,26 +5157,26 @@ var SyncIndexCommand = class {
   async execute() {
     const activeFile = this.app.workspace.getActiveFile();
     if (!activeFile) {
-      new import_obsidian19.Notice("Nenhum arquivo aberto");
+      new import_obsidian20.Notice("Nenhum arquivo aberto");
       return;
     }
     const folder = activeFile.parent;
     if (!folder) {
-      new import_obsidian19.Notice("N\xE3o foi poss\xEDvel determinar a pasta");
+      new import_obsidian20.Notice("N\xE3o foi poss\xEDvel determinar a pasta");
       return;
     }
     if (!Document2.isInCARFPath(folder.path)) {
-      new import_obsidian19.Notice("Pasta n\xE3o est\xE1 em um caminho de documenta\xE7\xE3o");
+      new import_obsidian20.Notice("Pasta n\xE3o est\xE1 em um caminho de documenta\xE7\xE3o");
       return;
     }
     await this.indexService.syncFolderIndex(folder);
-    new import_obsidian19.Notice("\u2713 \xCDndice do README atualizado!");
+    new import_obsidian20.Notice("\u2713 \xCDndice do README atualizado!");
   }
   /**
    * Sync all README indexes in the vault
    */
   async executeAll() {
-    new import_obsidian19.Notice("Atualizando todos os \xEDndices...");
+    new import_obsidian20.Notice("Atualizando todos os \xEDndices...");
     const folders = this.getAllCARFFolders();
     let updated = 0;
     for (const folder of folders) {
@@ -4806,7 +5186,7 @@ var SyncIndexCommand = class {
         updated++;
       }
     }
-    new import_obsidian19.Notice(`\u2713 ${updated} \xEDndices atualizados!`);
+    new import_obsidian20.Notice(`\u2713 ${updated} \xEDndices atualizados!`);
   }
   /**
    * Get all folders in CARF paths
@@ -4818,7 +5198,7 @@ var SyncIndexCommand = class {
         folders.push(folder);
       }
       for (const child of folder.children) {
-        if (child instanceof import_obsidian19.TFolder) {
+        if (child instanceof import_obsidian20.TFolder) {
           processFolder(child);
         }
       }
@@ -4830,7 +5210,7 @@ var SyncIndexCommand = class {
 };
 
 // src/settings.ts
-var import_obsidian20 = require("obsidian");
+var import_obsidian21 = require("obsidian");
 var DEFAULT_SETTINGS = {
   centralPath: "CENTRAL",
   projectsPath: "PROJECTS",
@@ -4850,7 +5230,7 @@ var DEFAULT_SETTINGS = {
   staleThresholdDays: 180,
   maxDotsCount: 51
 };
-var DocsToolkitSettingTab = class extends import_obsidian20.PluginSettingTab {
+var DocsToolkitSettingTab = class extends import_obsidian21.PluginSettingTab {
   constructor(app, plugin) {
     super(app, plugin);
     this.plugin = plugin;
@@ -4860,28 +5240,28 @@ var DocsToolkitSettingTab = class extends import_obsidian20.PluginSettingTab {
     containerEl.empty();
     containerEl.createEl("h2", { text: "Docs Toolkit Settings" });
     containerEl.createEl("h3", { text: "Paths" });
-    new import_obsidian20.Setting(containerEl).setName("Central path").setDesc("Path to CENTRAL folder").addText((text) => text.setPlaceholder("CENTRAL").setValue(this.plugin.settings.centralPath).onChange(async (value) => {
+    new import_obsidian21.Setting(containerEl).setName("Central path").setDesc("Path to CENTRAL folder").addText((text) => text.setPlaceholder("CENTRAL").setValue(this.plugin.settings.centralPath).onChange(async (value) => {
       this.plugin.settings.centralPath = value;
       await this.plugin.saveSettings();
     }));
-    new import_obsidian20.Setting(containerEl).setName("Projects path").setDesc("Path to PROJECTS folder").addText((text) => text.setPlaceholder("PROJECTS").setValue(this.plugin.settings.projectsPath).onChange(async (value) => {
+    new import_obsidian21.Setting(containerEl).setName("Projects path").setDesc("Path to PROJECTS folder").addText((text) => text.setPlaceholder("PROJECTS").setValue(this.plugin.settings.projectsPath).onChange(async (value) => {
       this.plugin.settings.projectsPath = value;
       await this.plugin.saveSettings();
     }));
     containerEl.createEl("h3", { text: "Automation" });
-    new import_obsidian20.Setting(containerEl).setName("Auto-update timestamp").setDesc("Automatically update 'updated' field when saving").addToggle((toggle) => toggle.setValue(this.plugin.settings.autoUpdateTimestamp).onChange(async (value) => {
+    new import_obsidian21.Setting(containerEl).setName("Auto-update timestamp").setDesc("Automatically update 'updated' field when saving").addToggle((toggle) => toggle.setValue(this.plugin.settings.autoUpdateTimestamp).onChange(async (value) => {
       this.plugin.settings.autoUpdateTimestamp = value;
       await this.plugin.saveSettings();
     }));
-    new import_obsidian20.Setting(containerEl).setName("Auto-validate on save").setDesc("Run validation when saving a file").addToggle((toggle) => toggle.setValue(this.plugin.settings.autoValidateOnSave).onChange(async (value) => {
+    new import_obsidian21.Setting(containerEl).setName("Auto-validate on save").setDesc("Run validation when saving a file").addToggle((toggle) => toggle.setValue(this.plugin.settings.autoValidateOnSave).onChange(async (value) => {
       this.plugin.settings.autoValidateOnSave = value;
       await this.plugin.saveSettings();
     }));
-    new import_obsidian20.Setting(containerEl).setName("Auto-sync README index").setDesc("Automatically update README index when files change").addToggle((toggle) => toggle.setValue(this.plugin.settings.autoSyncIndex).onChange(async (value) => {
+    new import_obsidian21.Setting(containerEl).setName("Auto-sync README index").setDesc("Automatically update README index when files change").addToggle((toggle) => toggle.setValue(this.plugin.settings.autoSyncIndex).onChange(async (value) => {
       this.plugin.settings.autoSyncIndex = value;
       await this.plugin.saveSettings();
     }));
-    new import_obsidian20.Setting(containerEl).setName("Stale threshold (days)").setDesc("Documents not updated after this many days are marked as stale").addText((text) => text.setPlaceholder("180").setValue(String(this.plugin.settings.staleThresholdDays)).onChange(async (value) => {
+    new import_obsidian21.Setting(containerEl).setName("Stale threshold (days)").setDesc("Documents not updated after this many days are marked as stale").addText((text) => text.setPlaceholder("180").setValue(String(this.plugin.settings.staleThresholdDays)).onChange(async (value) => {
       const days = parseInt(value);
       if (!isNaN(days) && days > 0) {
         this.plugin.settings.staleThresholdDays = days;
@@ -4889,7 +5269,7 @@ var DocsToolkitSettingTab = class extends import_obsidian20.PluginSettingTab {
       }
     }));
     containerEl.createEl("h3", { text: "UI" });
-    new import_obsidian20.Setting(containerEl).setName("Navigation dots count").setDesc("Maximum number of dots shown in the curation panel navigation (11-101)").addSlider((slider) => slider.setLimits(11, 101, 10).setValue(this.plugin.settings.maxDotsCount).setDynamicTooltip().onChange(async (value) => {
+    new import_obsidian21.Setting(containerEl).setName("Navigation dots count").setDesc("Maximum number of dots shown in the curation panel navigation (11-101)").addSlider((slider) => slider.setLimits(11, 101, 10).setValue(this.plugin.settings.maxDotsCount).setDynamicTooltip().onChange(async (value) => {
       this.plugin.settings.maxDotsCount = value;
       await this.plugin.saveSettings();
     }));
@@ -4903,7 +5283,7 @@ var DocsToolkitSettingTab = class extends import_obsidian20.PluginSettingTab {
 
 // main.ts
 var DOCS_ICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M9 15l2 2 4-4"></path></svg>`;
-var DocsToolkitPlugin = class extends import_obsidian21.Plugin {
+var DocsToolkitPlugin = class extends import_obsidian22.Plugin {
   constructor() {
     super(...arguments);
     // Reference to curation panel
@@ -4912,7 +5292,7 @@ var DocsToolkitPlugin = class extends import_obsidian21.Plugin {
   async onload() {
     console.log("Loading Docs Toolkit Plugin v2.0");
     await this.loadSettings();
-    (0, import_obsidian21.addIcon)("docs-icon", DOCS_ICON);
+    (0, import_obsidian22.addIcon)("docs-icon", DOCS_ICON);
     this.configLoader = new ConfigLoader(this.app);
     this.config = await this.configLoader.loadConfig();
     this.i18n = new I18nService(this.app);
@@ -4981,7 +5361,7 @@ var DocsToolkitPlugin = class extends import_obsidian21.Plugin {
       this.curationPanel.updateConfig(newConfig);
     }
     this.store.loadAll();
-    new import_obsidian21.Notice("Docs Toolkit: Configuration reloaded");
+    new import_obsidian22.Notice("Docs Toolkit: Configuration reloaded");
   }
   /**
    * Check if file should be tracked
@@ -5061,7 +5441,7 @@ var DocsToolkitPlugin = class extends import_obsidian21.Plugin {
       callback: () => {
         const excludes = this.config.paths.exclude;
         console.log("[Docs Toolkit] Current exclude patterns:", excludes);
-        new import_obsidian21.Notice(`Exclude patterns (${excludes.length}):
+        new import_obsidian22.Notice(`Exclude patterns (${excludes.length}):
 ${excludes.join("\n")}`);
       }
     });
@@ -5071,11 +5451,11 @@ ${excludes.join("\n")}`);
       callback: async () => {
         const file = this.app.workspace.getActiveFile();
         if (!file) {
-          new import_obsidian21.Notice("No active file");
+          new import_obsidian22.Notice("No active file");
           return;
         }
         if (!file.name.endsWith(".md")) {
-          new import_obsidian21.Notice("Not a markdown file");
+          new import_obsidian22.Notice("Not a markdown file");
           return;
         }
         await this.store.updateDocument(file);
@@ -5084,17 +5464,17 @@ ${excludes.join("\n")}`);
         const docType = (doc == null ? void 0 : doc.detectedType) || "generic";
         const tracked = this.isTrackedFile(file.path);
         if (!tracked) {
-          new import_obsidian21.Notice(`File is EXCLUDED from validation (check paths.exclude)`);
+          new import_obsidian22.Notice(`File is EXCLUDED from validation (check paths.exclude)`);
           return;
         }
         if (issues.length === 0) {
-          new import_obsidian21.Notice(`\u2713 ${file.name}
+          new import_obsidian22.Notice(`\u2713 ${file.name}
 Type: ${docType}
 No issues found`);
         } else {
           const errors = issues.filter((i) => i.severity === "error").length;
           const warnings = issues.filter((i) => i.severity === "warning").length;
-          new import_obsidian21.Notice(`\u2717 ${file.name}
+          new import_obsidian22.Notice(`\u2717 ${file.name}
 Type: ${docType}
 ${errors} errors, ${warnings} warnings`);
           console.log(`[Docs Toolkit] Validation results for ${file.path}:`);
@@ -5112,7 +5492,7 @@ ${errors} errors, ${warnings} warnings`);
   registerVaultEvents() {
     this.registerEvent(
       this.app.vault.on("modify", async (file) => {
-        if (!(file instanceof import_obsidian21.TFile))
+        if (!(file instanceof import_obsidian22.TFile))
           return;
         if (!file.name.endsWith(".md"))
           return;
@@ -5139,8 +5519,19 @@ ${errors} errors, ${warnings} warnings`);
       })
     );
     this.registerEvent(
+      this.app.metadataCache.on("changed", (file) => {
+        if (!(file instanceof import_obsidian22.TFile))
+          return;
+        if (!file.name.endsWith(".md"))
+          return;
+        if (!this.isTrackedFile(file.path))
+          return;
+        this.store.updateDocument(file);
+      })
+    );
+    this.registerEvent(
       this.app.vault.on("create", async (file) => {
-        if (!(file instanceof import_obsidian21.TFile))
+        if (!(file instanceof import_obsidian22.TFile))
           return;
         if (!file.name.endsWith(".md"))
           return;
@@ -5151,7 +5542,7 @@ ${errors} errors, ${warnings} warnings`);
     );
     this.registerEvent(
       this.app.vault.on("rename", async (file, oldPath) => {
-        if (!(file instanceof import_obsidian21.TFile))
+        if (!(file instanceof import_obsidian22.TFile))
           return;
         if (!file.name.endsWith(".md"))
           return;
@@ -5162,7 +5553,7 @@ ${errors} errors, ${warnings} warnings`);
         if (this.settings.autoSyncIndex) {
           const oldFolderPath = oldPath.substring(0, oldPath.lastIndexOf("/"));
           const oldFolder = this.app.vault.getAbstractFileByPath(oldFolderPath);
-          if (oldFolder instanceof import_obsidian21.TFolder && this.isTrackedFile(oldFolderPath)) {
+          if (oldFolder instanceof import_obsidian22.TFolder && this.isTrackedFile(oldFolderPath)) {
             this.indexService.scheduleSync(oldFolder);
           }
           if (file.parent && this.isTrackedFile(file.parent.path)) {
@@ -5173,13 +5564,13 @@ ${errors} errors, ${warnings} warnings`);
     );
     this.registerEvent(
       this.app.vault.on("delete", async (file) => {
-        if (!(file instanceof import_obsidian21.TFile))
+        if (!(file instanceof import_obsidian22.TFile))
           return;
         this.store.removeDocument(file.path);
         if (this.settings.autoSyncIndex) {
           const folderPath = file.path.substring(0, file.path.lastIndexOf("/"));
           const folder = this.app.vault.getAbstractFileByPath(folderPath);
-          if (folder instanceof import_obsidian21.TFolder && this.isTrackedFile(folderPath)) {
+          if (folder instanceof import_obsidian22.TFolder && this.isTrackedFile(folderPath)) {
             this.indexService.scheduleSync(folder);
           }
         }
@@ -5192,7 +5583,7 @@ ${errors} errors, ${warnings} warnings`);
   registerFolderContextMenu() {
     this.registerEvent(
       this.app.workspace.on("file-menu", (menu, file) => {
-        if (!(file instanceof import_obsidian21.TFolder))
+        if (!(file instanceof import_obsidian22.TFolder))
           return;
         if (!this.isTrackedFile(file.path))
           return;
@@ -5210,7 +5601,7 @@ ${errors} errors, ${warnings} warnings`);
         menu.addItem((item) => {
           item.setTitle("Regenerate README index").setIcon("list").onClick(async () => {
             await this.regenerateReadmeIndex(file);
-            new import_obsidian21.Notice(`README index regenerated for ${file.name}`);
+            new import_obsidian22.Notice(`README index regenerated for ${file.name}`);
           });
         });
       })
@@ -5228,7 +5619,7 @@ ${errors} errors, ${warnings} warnings`);
       await this.store.setStatus(file, status);
       count++;
     }
-    new import_obsidian21.Notice(`${count} files set to ${status}`);
+    new import_obsidian22.Notice(`${count} files set to ${status}`);
   }
   /**
    * Get all markdown files in a folder (recursive)
@@ -5236,9 +5627,9 @@ ${errors} errors, ${warnings} warnings`);
   getFilesInFolder(folder) {
     const files = [];
     for (const child of folder.children) {
-      if (child instanceof import_obsidian21.TFile && child.extension === "md") {
+      if (child instanceof import_obsidian22.TFile && child.extension === "md") {
         files.push(child);
-      } else if (child instanceof import_obsidian21.TFolder) {
+      } else if (child instanceof import_obsidian22.TFolder) {
         files.push(...this.getFilesInFolder(child));
       }
     }

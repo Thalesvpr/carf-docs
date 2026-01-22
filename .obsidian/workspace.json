@@ -25,12 +25,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "PROJECTS/ADMIN/DOCS/HOW-TO/README.md",
+                "file": "CENTRAL/ARCHITECTURE/ADRs/ADR-001-dotnet-9-backend.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "README"
+              "title": "ADR-001-dotnet-9-backend"
             }
           }
         ],
@@ -179,7 +179,7 @@
             }
           },
           {
-            "id": "927048e3ebda2710",
+            "id": "8cea953145609c50",
             "type": "leaf",
             "state": {
               "type": "docs-toolkit-curation",
@@ -207,8 +207,14 @@
       "obsidian-docs-toolkit:Open Curation Panel": false
     }
   },
-  "active": "927048e3ebda2710",
+  "active": "8cea953145609c50",
   "lastOpenFiles": [
+    "CENTRAL/ARCHITECTURE/ADRs/ADR-000-template.md",
+    "CENTRAL/ARCHITECTURE/ADRs/ADR-001-dotnet-9-backend.md",
+    "README.md",
+    "CENTRAL/API/AUTHENTICATION/01-login.md",
+    "CENTRAL/API/AUTHENTICATION/02-refresh-token.md",
+    "PROJECTS/ADMIN/DOCS/HOW-TO/README.md",
     "PROJECTS/ADMIN/DOCS/README.md",
     "PROJECTS/ADMIN/README.md",
     "PROJECTS/GEOAPI/DOCS/ARCHITECTURE/01-overview.md",
@@ -229,12 +235,6 @@
     "CENTRAL/API/COMMUNITIES/02-list-communities.md",
     "CENTRAL/API/COMMUNITIES/01-create-community.md",
     "CENTRAL/API/AUTHENTICATION/README.md",
-    "CENTRAL/API/AUTHENTICATION/03-logout.md",
-    "CENTRAL/API/AUTHENTICATION/02-refresh-token.md",
-    "CENTRAL/API/AUTHENTICATION/01-login.md",
-    "README.md",
-    "PROJECTS/WEBDOCS/SRC-CODE/carf-webdocs/webdocs/src/public/funcionalidades/README.md",
-    "PROJECTS/GEOGIS/DOCS/ARCHITECTURE/01-keycloak-integration.md",
     "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/NAVIGATION",
     "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/DOMAIN",
     "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/LAYOUT",

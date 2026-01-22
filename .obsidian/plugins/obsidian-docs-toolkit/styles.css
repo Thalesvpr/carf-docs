@@ -72,43 +72,46 @@
 .docs-btn-review { border-color: var(--color-yellow); color: var(--color-yellow); }
 .docs-btn-review:hover:not(:disabled) { background: rgba(var(--color-yellow-rgb), 0.1); }
 
-/* Filter input */
+/* Filter input - matches Obsidian's Graph View filter style */
 .docs-filter-container {
   display: flex;
   align-items: center;
-  gap: 4px;
-  padding: 6px 0;
-  margin-bottom: 4px;
+  gap: 6px;
+  padding: 8px 0;
+  margin-bottom: 6px;
+  position: relative;
 }
 
 .docs-filter-input {
   flex: 1;
-  padding: 4px 8px;
+  padding: 6px 10px;
   border: 1px solid var(--background-modifier-border);
-  border-radius: var(--radius-s);
+  border-radius: var(--input-radius);
   background: var(--background-primary);
   color: var(--text-normal);
-  font-size: 11px;
-  font-family: var(--font-monospace);
+  font-size: var(--font-ui-small);
+  font-family: var(--font-interface);
+  line-height: 1.4;
 }
 
 .docs-filter-input:focus {
   border-color: var(--interactive-accent);
   outline: none;
+  box-shadow: 0 0 0 2px var(--background-modifier-border-focus);
 }
 
 .docs-filter-input::placeholder {
   color: var(--text-faint);
-  font-size: 10px;
+  font-size: var(--font-ui-smaller);
 }
 
 .docs-filter-clear {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   padding: 0;
   border: none;
-  border-radius: var(--radius-s);
-  background: var(--background-modifier-hover);
+  border-radius: var(--clickable-icon-radius);
+  background: transparent;
   color: var(--text-muted);
   cursor: pointer;
   display: flex;
@@ -117,20 +120,49 @@
 }
 
 .docs-filter-clear:hover {
-  background: var(--background-modifier-active-hover);
+  background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
 
 .docs-filter-clear svg {
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
 }
 
 .docs-filter-count {
-  font-size: 10px;
+  font-size: var(--font-ui-smaller);
   color: var(--text-accent);
   font-family: var(--font-monospace);
   white-space: nowrap;
+  padding: 2px 6px;
+  background: var(--background-secondary);
+  border-radius: var(--radius-s);
+}
+
+/* Filter suggestions popup - native Obsidian style */
+.suggestion-container.docs-filter-suggestions {
+  max-height: 300px;
+}
+
+.suggestion-item.mod-complex .suggestion-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.suggestion-item.mod-complex .suggestion-title {
+  font-weight: var(--font-medium);
+}
+
+.suggestion-item.mod-complex .suggestion-note {
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+}
+
+.suggestion-item .suggestion-aux {
+  font-size: var(--font-ui-smaller);
+  color: var(--text-faint);
+  text-transform: uppercase;
 }
 
 /* Header row - flex space-between */

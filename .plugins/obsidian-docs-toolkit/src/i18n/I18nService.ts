@@ -230,7 +230,9 @@ export class I18nService {
           name: "Lint: Forbidden Patterns",
           description: "Checks for forbidden text patterns",
           found: "Forbidden pattern '{pattern}' found: '{match}'",
-          found_suggestion: "Remove or replace the forbidden pattern '{pattern}'"
+          found_suggestion: "Remove or replace the forbidden pattern '{pattern}'",
+          aggregated: "{pattern}: {count} occurrences ({examples})",
+          aggregated_suggestion: "Remove {count} occurrences of {pattern}"
         },
         links: {
           name: "Lint: Broken Links",
@@ -334,7 +336,9 @@ export class I18nService {
           name: "Lint: Forbidden Patterns",
           description: "Verifica padrões de texto proibidos",
           found: "Padrão proibido '{pattern}' encontrado: '{match}'",
-          found_suggestion: "Remova ou substitua o padrão proibido '{pattern}'"
+          found_suggestion: "Remova ou substitua o padrão proibido '{pattern}'",
+          aggregated: "{pattern}: {count} ocorrências ({examples})",
+          aggregated_suggestion: "Remova {count} ocorrências de {pattern}"
         },
         links: {
           name: "Lint: Broken Links",
@@ -438,7 +442,9 @@ export class I18nService {
           name: "Patrones Prohibidos",
           description: "Verifica patrones de texto prohibidos",
           found: "Patrón prohibido '{pattern}' encontrado: '{match}'",
-          found_suggestion: "Elimine o reemplace el patrón prohibido '{pattern}'"
+          found_suggestion: "Elimine o reemplace el patrón prohibido '{pattern}'",
+          aggregated: "{pattern}: {count} ocurrencias ({examples})",
+          aggregated_suggestion: "Elimine {count} ocurrencias de {pattern}"
         },
         links: {
           name: "Enlaces",
