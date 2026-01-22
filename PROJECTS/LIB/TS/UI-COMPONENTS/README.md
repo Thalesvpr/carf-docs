@@ -1,4 +1,5 @@
 ---
+type: readme
 title: "@carf/ui - Biblioteca de Componentes React"
 description: "Componentes React baseados em shadcn/ui e Tailwind CSS para o ecossistema CARF"
 status: review

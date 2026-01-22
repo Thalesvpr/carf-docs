@@ -1,3 +1,9 @@
+---
+type: readme
+status: draft
+updated: 2026-01-22
+---
+
 # CARF Toolkit
 
 Unified documentation toolkit integrating `carf_validator` and `carf_tree_sync` with a professional GUI.

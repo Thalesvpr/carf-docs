@@ -1,4 +1,5 @@
 ---
+type: readme
 status: rejected
 description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES."
 updated: 2026-01-15

@@ -1,4 +1,5 @@
 ---
+type: readme
 status: rejected
 description: "Stub de 3 linhas. Incompleto."
 updated: 2026-01-22
@@ -14,6 +15,5 @@ Plugin QGIS Python para análises geoespaciais avançadas. Integra com PostGIS v
 ## Subpastas
 
 - [[PROJECTS/GEOGIS/DOCS/README|DOCS]]
-- [[PROJECTS/GEOGIS/SRC-CODE/README|SRC-CODE]]
 
 <!-- CARF-INDEX-END -->

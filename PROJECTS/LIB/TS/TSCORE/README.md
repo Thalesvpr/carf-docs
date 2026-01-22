@@ -1,4 +1,5 @@
 ---
+type: readme
 title: "@carf/tscore - Biblioteca Core"
 description: "Value objects, validacoes e tipos TypeScript compartilhados"
 status: review

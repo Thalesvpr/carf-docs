@@ -1,4 +1,5 @@
 ---
+type: readme
 status: rejected
 description: "Duplicacao. Workflows de negocio devem estar em DOMAIN-MODEL ou REQUIREMENTS."
 updated: 2026-01-15

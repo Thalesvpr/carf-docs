@@ -1,4 +1,5 @@
 ---
+type: readme
 title: "Bibliotecas TypeScript"
 description: "Bibliotecas TypeScript compartilhadas do ecossistema CARF"
 status: review

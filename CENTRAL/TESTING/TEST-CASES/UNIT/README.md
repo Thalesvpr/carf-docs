@@ -1,4 +1,5 @@
 ---
+type: readme
 status: rejected
 description: "Conteudo operacional. Estrategia de teste pertence a PROJECTS ou STANDARDS."
 updated: 2025-01-05

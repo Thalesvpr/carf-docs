@@ -1,4 +1,5 @@
 ---
+type: readme
 status: rejected
 description: "Escopo indefinido. Clarificar proposito ou mover conteudo para INTEGRATION. Contem blocos de codigo."
 updated: 2026-01-19

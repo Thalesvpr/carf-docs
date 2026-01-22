@@ -1,4 +1,5 @@
 ---
+type: readme
 title: "@carf/geoapi-client - HTTP Client"
 description: "Cliente HTTP type-safe para comunicacao com GEOAPI"
 status: review

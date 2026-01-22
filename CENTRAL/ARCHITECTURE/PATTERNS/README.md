@@ -1,4 +1,5 @@
 ---
+type: readme
 status: rejected
 description: "Stub 8 linhas. Patterns devem ter contexto, problema, solucao, consequencias. Consolidar em ADR unico de arquitetura."
 updated: 2026-01-15

@@ -1,4 +1,5 @@
 ---
+type: readme
 status: rejected
 description: "Incompleto. Standards devem ter regras claras e validaveis, nao apenas diretrizes vagas."
 updated: 2026-01-15

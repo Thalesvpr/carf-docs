@@ -1,4 +1,5 @@
 ---
+type: readme
 status: rejected
 description: "Duplicacao com ADRs e PROJECTS. Cada integracao deve ter UM lugar so."
 updated: 2026-01-21

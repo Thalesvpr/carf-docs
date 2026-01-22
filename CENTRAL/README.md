@@ -1,4 +1,5 @@
 ---
+type: readme
 status: rejected
 description: "Estrutura CENTRAL precisa reescrita completa. Ver diagnostico: stubs, duplicacao, mistura spec/impl, formato inconsistente."
 updated: 2026-01-19
@@ -44,7 +45,6 @@ As [integrações](./INTEGRATION/README.md) documentam conexões com Keycloak e 
 <!-- CARF-INDEX-START -->
 ## Subpastas
 
-- [[CENTRAL/API/README|API]]
 - [[CENTRAL/ARCHITECTURE/README|ARCHITECTURE]]
 - [[CENTRAL/BUSINESS-RULES/README|BUSINESS-RULES]]
 - [[CENTRAL/DEPLOYMENTS/README|DEPLOYMENTS]]

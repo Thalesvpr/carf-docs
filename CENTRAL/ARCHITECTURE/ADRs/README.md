@@ -1,4 +1,5 @@
 ---
+type: readme
 status: rejected
 description: "Usa tabelas e listas extensivas ao inves de prosa corrida. Indice gerado automaticamente, mas introducao deve ser densa."
 updated: 2026-01-22
@@ -47,7 +48,6 @@ Os ADRs são imutáveis - novas decisões criam novos registros ao invés de edi
 
 ### Em Revisão
 
-- ○ [[CENTRAL/ARCHITECTURE/ADRs/ADR-000-template.md|ADR-XXX: Titulo]]
 - ○ [[CENTRAL/ARCHITECTURE/ADRs/ADR-001-dotnet-9-backend.md|ADR-001: .NET 9 para Backend]]
 - ○ [[CENTRAL/ARCHITECTURE/ADRs/ADR-002-postgresql-postgis.md|ADR-002: Escolha do PostgreSQL 16 + PostGIS 3.4 como Database]]
 - ○ [[CENTRAL/ARCHITECTURE/ADRs/ADR-003-keycloak-autenticacao.md|ADR-003: Escolha do Keycloak para Autenticação e Autorização]]

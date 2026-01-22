@@ -1,3 +1,9 @@
+---
+type: readme
+status: draft
+updated: 2026-01-22
+---
+
 # File Curator
 
 Professional GUI for curating documentation files - "Tinder for files"
