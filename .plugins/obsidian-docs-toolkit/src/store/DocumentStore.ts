@@ -104,7 +104,11 @@ export class DocumentStore extends Events {
     this.loading = true;
     this.trigger("state-changed");
 
+    // Debug: show current exclude patterns
+    console.log("[DocumentStore.loadAll] Exclude patterns:", this.config.paths.exclude);
+
     const files = this.getIncludedFiles();
+    console.log(`[DocumentStore.loadAll] Total files: ${this.app.vault.getMarkdownFiles().length}, After filter: ${files.length}`);
     this.documents.clear();
     this.issues.clear();
 
@@ -207,8 +211,17 @@ export class DocumentStore extends Events {
     // Check exclude patterns - if matched, reject
     for (const pattern of this.config.paths.exclude) {
       if (this.matchGlob(path, pattern)) {
+        if (path.includes("SRC-CODE")) {
+          console.log(`[isIncludedFile] EXCLUDED: ${path} matched pattern: ${pattern}`);
+        }
         return false;
       }
+    }
+
+    // Debug: SRC-CODE files that passed all filters
+    if (path.includes("SRC-CODE")) {
+      console.log(`[isIncludedFile] NOT EXCLUDED (BUG!): ${path}`);
+      console.log(`[isIncludedFile] Patterns checked:`, this.config.paths.exclude);
     }
 
     // Accept all .md files that are not excluded

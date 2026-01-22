@@ -186,7 +186,19 @@ export const DEFAULT_CONFIG: DocsLinterConfig = {
   language: "en",
   paths: {
     // No include patterns - accept all .md files that are not excluded
-    exclude: [".obsidian/**", ".git/**", "node_modules/**", ".plugins/**"]
+    exclude: [
+      ".obsidian/**",
+      ".git/**",
+      "node_modules/**",
+      ".plugins/**",
+      ".scripts/**",
+      "**/SRC-CODE/**",
+      "**/src/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/ARCHIVE/**",
+      "**/node_modules/**"
+    ]
   },
   documentTypes: {},
   validators: {

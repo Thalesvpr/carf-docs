@@ -44,7 +44,19 @@ var DEFAULT_CONFIG = {
   language: "en",
   paths: {
     // No include patterns - accept all .md files that are not excluded
-    exclude: [".obsidian/**", ".git/**", "node_modules/**", ".plugins/**"]
+    exclude: [
+      ".obsidian/**",
+      ".git/**",
+      "node_modules/**",
+      ".plugins/**",
+      ".scripts/**",
+      "**/SRC-CODE/**",
+      "**/src/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/ARCHIVE/**",
+      "**/node_modules/**"
+    ]
   },
   documentTypes: {},
   validators: {
@@ -3466,7 +3478,9 @@ var DocumentStore = class extends import_obsidian12.Events {
   async loadAll() {
     this.loading = true;
     this.trigger("state-changed");
+    console.log("[DocumentStore.loadAll] Exclude patterns:", this.config.paths.exclude);
     const files = this.getIncludedFiles();
+    console.log(`[DocumentStore.loadAll] Total files: ${this.app.vault.getMarkdownFiles().length}, After filter: ${files.length}`);
     this.documents.clear();
     this.issues.clear();
     await this.templateService.initialize();
@@ -3548,8 +3562,15 @@ var DocumentStore = class extends import_obsidian12.Events {
   isIncludedFile(path) {
     for (const pattern of this.config.paths.exclude) {
       if (this.matchGlob(path, pattern)) {
+        if (path.includes("SRC-CODE")) {
+          console.log(`[isIncludedFile] EXCLUDED: ${path} matched pattern: ${pattern}`);
+        }
         return false;
       }
+    }
+    if (path.includes("SRC-CODE")) {
+      console.log(`[isIncludedFile] NOT EXCLUDED (BUG!): ${path}`);
+      console.log(`[isIncludedFile] Patterns checked:`, this.config.paths.exclude);
     }
     return true;
   }
