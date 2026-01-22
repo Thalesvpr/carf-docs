@@ -72,6 +72,67 @@
 .docs-btn-review { border-color: var(--color-yellow); color: var(--color-yellow); }
 .docs-btn-review:hover:not(:disabled) { background: rgba(var(--color-yellow-rgb), 0.1); }
 
+/* Filter input */
+.docs-filter-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 0;
+  margin-bottom: 4px;
+}
+
+.docs-filter-input {
+  flex: 1;
+  padding: 4px 8px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-s);
+  background: var(--background-primary);
+  color: var(--text-normal);
+  font-size: 11px;
+  font-family: var(--font-monospace);
+}
+
+.docs-filter-input:focus {
+  border-color: var(--interactive-accent);
+  outline: none;
+}
+
+.docs-filter-input::placeholder {
+  color: var(--text-faint);
+  font-size: 10px;
+}
+
+.docs-filter-clear {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-s);
+  background: var(--background-modifier-hover);
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.docs-filter-clear:hover {
+  background: var(--background-modifier-active-hover);
+  color: var(--text-normal);
+}
+
+.docs-filter-clear svg {
+  width: 12px;
+  height: 12px;
+}
+
+.docs-filter-count {
+  font-size: 10px;
+  color: var(--text-accent);
+  font-family: var(--font-monospace);
+  white-space: nowrap;
+}
+
 /* Header row - flex space-between */
 .nav-header {
   display: flex;

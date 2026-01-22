@@ -3634,6 +3634,7 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
   constructor(leaf, store, metadataService, i18n, config, plugin) {
     super(leaf);
     this.currentIndex = 0;
+    this.filterQuery = "";
     this.store = store;
     this.metadataService = metadataService;
     this.i18n = i18n;
@@ -3675,7 +3676,68 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
     return true;
   }
   getQueue() {
-    return this.store.getReviewQueue().filter((f) => this.isTrackedFile(f.path));
+    let files = this.store.getReviewQueue().filter((f) => this.isTrackedFile(f.path));
+    if (this.filterQuery.trim()) {
+      files = files.filter((f) => this.matchesFilter(f, this.filterQuery));
+    }
+    return files;
+  }
+  /**
+   * Parse and apply filter query with Obsidian-like syntax
+   * Supports: path:, file:, tag:, status:, -prefix for exclusion
+   */
+  matchesFilter(file, query) {
+    const doc = this.store.getDocument(file.path);
+    const tokens = this.parseFilterTokens(query);
+    for (const token of tokens) {
+      const matches = this.matchToken(file, doc, token);
+      if (!matches)
+        return false;
+    }
+    return true;
+  }
+  parseFilterTokens(query) {
+    const tokens = [];
+    const regex = /(-?)(?:(path|file|tag|status|id):)?(?:"([^"]+)"|(\S+))/gi;
+    let match;
+    while ((match = regex.exec(query)) !== null) {
+      const exclude = match[1] === "-";
+      const type = (match[2] || "text").toLowerCase();
+      const value = match[3] || match[4];
+      tokens.push({ type, value, exclude });
+    }
+    return tokens;
+  }
+  matchToken(file, doc, token) {
+    var _a;
+    const { type, value, exclude } = token;
+    const valueLower = value.toLowerCase();
+    let matches = false;
+    switch (type) {
+      case "path":
+        matches = file.path.toLowerCase().includes(valueLower);
+        break;
+      case "file":
+        matches = file.name.toLowerCase().includes(valueLower);
+        break;
+      case "tag":
+        if ((_a = doc == null ? void 0 : doc.frontmatter) == null ? void 0 : _a.tags) {
+          const tags = Array.isArray(doc.frontmatter.tags) ? doc.frontmatter.tags : [doc.frontmatter.tags];
+          matches = tags.some((t) => String(t).toLowerCase().includes(valueLower));
+        }
+        break;
+      case "status":
+        matches = ((doc == null ? void 0 : doc.status) || "none").toLowerCase() === valueLower;
+        break;
+      case "id":
+        matches = ((doc == null ? void 0 : doc.id) || "").toLowerCase().includes(valueLower);
+        break;
+      case "text":
+      default:
+        matches = file.path.toLowerCase().includes(valueLower) || file.name.toLowerCase().includes(valueLower) || ((doc == null ? void 0 : doc.id) || "").toLowerCase().includes(valueLower);
+        break;
+    }
+    return exclude ? !matches : matches;
   }
   getCurrentFile() {
     const queue = this.getQueue();
@@ -3745,6 +3807,41 @@ var CurationPanelView = class extends import_obsidian13.ItemView {
     (0, import_obsidian13.setIcon)(lastBtn, "chevrons-right");
     lastBtn.disabled = this.currentIndex >= queue.length - 1;
     lastBtn.onclick = () => this.goTo(queue.length - 1);
+    const filterContainer = el.createDiv({ cls: "docs-filter-container" });
+    const filterInput = filterContainer.createEl("input", {
+      cls: "docs-filter-input",
+      attr: {
+        type: "text",
+        placeholder: "Filter: path:, file:, status:, tag:, -exclude",
+        value: this.filterQuery
+      }
+    });
+    if (this.filterQuery) {
+      const clearBtn = filterContainer.createEl("button", { cls: "docs-filter-clear", attr: { title: "Limpar filtro" } });
+      (0, import_obsidian13.setIcon)(clearBtn, "x");
+      clearBtn.onclick = (e) => {
+        e.stopPropagation();
+        this.filterQuery = "";
+        this.currentIndex = 0;
+        this.render();
+      };
+    }
+    let debounceTimer;
+    filterInput.oninput = () => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        this.filterQuery = filterInput.value;
+        this.currentIndex = 0;
+        this.render();
+      }, 300);
+    };
+    if (this.filterQuery) {
+      const totalUnfiltered = this.store.getReviewQueue().filter((f) => this.isTrackedFile(f.path)).length;
+      filterContainer.createDiv({
+        text: `${queue.length} / ${totalUnfiltered}`,
+        cls: "docs-filter-count"
+      });
+    }
     const header = el.createDiv({ cls: "nav-header" });
     const statsRow = header.createDiv({ cls: "docs-stats-row" });
     const pct = (n) => total > 0 ? Math.round(n / total * 100) : 0;

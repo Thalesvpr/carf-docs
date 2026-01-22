@@ -31,6 +31,7 @@ export class CurationPanelView extends ItemView {
   private config: DocsLinterConfig;
   private plugin: PluginRef;
   private currentIndex = 0;
+  private filterQuery = "";
 
   constructor(
     leaf: WorkspaceLeaf,
@@ -87,7 +88,86 @@ export class CurationPanelView extends ItemView {
   }
 
   private getQueue(): TFile[] {
-    return this.store.getReviewQueue().filter(f => this.isTrackedFile(f.path));
+    let files = this.store.getReviewQueue().filter(f => this.isTrackedFile(f.path));
+
+    // Apply filter if set
+    if (this.filterQuery.trim()) {
+      files = files.filter(f => this.matchesFilter(f, this.filterQuery));
+    }
+
+    return files;
+  }
+
+  /**
+   * Parse and apply filter query with Obsidian-like syntax
+   * Supports: path:, file:, tag:, status:, -prefix for exclusion
+   */
+  private matchesFilter(file: TFile, query: string): boolean {
+    const doc = this.store.getDocument(file.path);
+    const tokens = this.parseFilterTokens(query);
+
+    for (const token of tokens) {
+      const matches = this.matchToken(file, doc, token);
+      if (!matches) return false;
+    }
+
+    return true;
+  }
+
+  private parseFilterTokens(query: string): Array<{type: string; value: string; exclude: boolean}> {
+    const tokens: Array<{type: string; value: string; exclude: boolean}> = [];
+
+    // Match quoted strings and unquoted tokens
+    const regex = /(-?)(?:(path|file|tag|status|id):)?(?:"([^"]+)"|(\S+))/gi;
+    let match;
+
+    while ((match = regex.exec(query)) !== null) {
+      const exclude = match[1] === "-";
+      const type = (match[2] || "text").toLowerCase();
+      const value = match[3] || match[4]; // quoted or unquoted
+
+      tokens.push({ type, value, exclude });
+    }
+
+    return tokens;
+  }
+
+  private matchToken(file: TFile, doc: Document | undefined, token: {type: string; value: string; exclude: boolean}): boolean {
+    const { type, value, exclude } = token;
+    const valueLower = value.toLowerCase();
+    let matches = false;
+
+    switch (type) {
+      case "path":
+        matches = file.path.toLowerCase().includes(valueLower);
+        break;
+      case "file":
+        matches = file.name.toLowerCase().includes(valueLower);
+        break;
+      case "tag":
+        if (doc?.frontmatter?.tags) {
+          const tags = Array.isArray(doc.frontmatter.tags)
+            ? doc.frontmatter.tags
+            : [doc.frontmatter.tags];
+          matches = tags.some(t => String(t).toLowerCase().includes(valueLower));
+        }
+        break;
+      case "status":
+        matches = (doc?.status || "none").toLowerCase() === valueLower;
+        break;
+      case "id":
+        matches = (doc?.id || "").toLowerCase().includes(valueLower);
+        break;
+      case "text":
+      default:
+        // Search in path, name, and id
+        matches = file.path.toLowerCase().includes(valueLower) ||
+                  file.name.toLowerCase().includes(valueLower) ||
+                  (doc?.id || "").toLowerCase().includes(valueLower);
+        break;
+    }
+
+    return exclude ? !matches : matches;
   }
 
   private getCurrentFile(): TFile | null {
@@ -175,6 +255,49 @@ export class CurationPanelView extends ItemView {
     setIcon(lastBtn, "chevrons-right");
     lastBtn.disabled = this.currentIndex >= queue.length - 1;
     lastBtn.onclick = () => this.goTo(queue.length - 1);
+
+    // Filter input
+    const filterContainer = el.createDiv({ cls: "docs-filter-container" });
+    const filterInput = filterContainer.createEl("input", {
+      cls: "docs-filter-input",
+      attr: {
+        type: "text",
+        placeholder: "Filter: path:, file:, status:, tag:, -exclude",
+        value: this.filterQuery
+      }
+    });
+
+    // Clear button (only show if there's a filter)
+    if (this.filterQuery) {
+      const clearBtn = filterContainer.createEl("button", { cls: "docs-filter-clear", attr: { title: "Limpar filtro" } });
+      setIcon(clearBtn, "x");
+      clearBtn.onclick = (e) => {
+        e.stopPropagation();
+        this.filterQuery = "";
+        this.currentIndex = 0;
+        this.render();
+      };
+    }
+
+    // Debounced filter update
+    let debounceTimer: NodeJS.Timeout;
+    filterInput.oninput = () => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        this.filterQuery = filterInput.value;
+        this.currentIndex = 0;
+        this.render();
+      }, 300);
+    };
+
+    // Show filtered count if filter is active
+    if (this.filterQuery) {
+      const totalUnfiltered = this.store.getReviewQueue().filter(f => this.isTrackedFile(f.path)).length;
+      filterContainer.createDiv({
+        text: `${queue.length} / ${totalUnfiltered}`,
+        cls: "docs-filter-count"
+      });
+    }
 
     // Header with progress stats
     const header = el.createDiv({ cls: "nav-header" });
