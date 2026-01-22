@@ -43,6 +43,6 @@ Ver tabela abaixo para links.
 - ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/CONCEPTS/02-accessibility.md|Accessibility]]
 - ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/CONCEPTS/03-terminology.md|Terminology]]
 - ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/CONCEPTS/04-design-principles.md|Design Principles]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/CONCEPTS/05-theming.md|Theming - @carf/ui]]
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/CONCEPTS/05-theming.md|Theming]]
 
 <!-- CARF-INDEX-END -->

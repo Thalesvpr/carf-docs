@@ -61,9 +61,9 @@ tsc --noEmit
 
 ### Em Revisão
 
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/SPECS/01-package-json.md|Package.json - @carf/ui]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/SPECS/02-tailwind-config.md|Tailwind Config - @carf/ui]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/SPECS/03-globals-css.md|Globals CSS - @carf/ui]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/SPECS/04-storybook-config.md|Storybook Config - @carf/ui]]
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/SPECS/01-package-json.md|Package.json]]
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/SPECS/02-tailwind-config.md|Tailwind Config]]
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/SPECS/03-globals-css.md|Globals CSS]]
+- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/SPECS/04-storybook-config.md|Storybook Config]]
 
 <!-- CARF-INDEX-END -->

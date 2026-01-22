@@ -9,7 +9,7 @@ import {
 } from "./ConfigSchema";
 
 const CONFIG_FILENAME = ".docslint.yaml";
-const PRESETS_PATH = ".plugins/obsidian-docs-toolkit/config/presets";
+const PRESETS_PATH = ".obsidian/plugins/obsidian-docs-toolkit/config/presets";
 
 /**
  * Loads and parses .docslint.yaml configuration with preset inheritance
