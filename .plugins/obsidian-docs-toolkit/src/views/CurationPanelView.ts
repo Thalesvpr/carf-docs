@@ -149,16 +149,13 @@ export class CurationPanelView extends ItemView {
   }
 
   private clearBtnEl: HTMLButtonElement | null = null;
-  private filterCountEl: HTMLElement | null = null;
 
   private updateFilterClearButton(): void {
     if (!this.filterContainerEl) return;
 
-    // Remove existing clear button and count
+    // Remove existing clear button
     this.clearBtnEl?.remove();
-    this.filterCountEl?.remove();
     this.clearBtnEl = null;
-    this.filterCountEl = null;
 
     if (this.filterQuery) {
       // Add clear button
@@ -174,14 +171,6 @@ export class CurationPanelView extends ItemView {
         this.currentIndex = 0;
         this.render();
       };
-
-      // Add count
-      const queue = this.getQueue();
-      const totalUnfiltered = this.store.getReviewQueue().filter(f => this.isTrackedFile(f.path)).length;
-      this.filterCountEl = this.filterContainerEl.createDiv({
-        text: `${queue.length} / ${totalUnfiltered}`,
-        cls: "docs-filter-count"
-      });
     }
   }
 
@@ -400,15 +389,21 @@ export class CurationPanelView extends ItemView {
       return;
     }
 
-    const docs = this.store.getState().documents.filter(d => this.isTrackedFile(d.file.path));
-    const total = docs.length;
-    const approved = docs.filter(d => d.status === "approved").length;
-    const review = docs.filter(d => d.status === "review").length;
-    const rejected = docs.filter(d => d.status === "rejected").length;
-    const noStatus = docs.filter(d => !d.status).length;
+    const allDocs = this.store.getState().documents.filter(d => this.isTrackedFile(d.file.path));
     const queue = this.getQueue();
     const file = this.getCurrentFile();
     const doc = file ? this.store.getDocument(file.path) : null;
+
+    // Stats based on filtered queue
+    const filteredDocs = queue.map(f => this.store.getDocument(f.path)).filter(Boolean);
+    const total = filteredDocs.length;
+    const approved = filteredDocs.filter(d => d?.status === "approved").length;
+    const review = filteredDocs.filter(d => d?.status === "review").length;
+    const rejected = filteredDocs.filter(d => d?.status === "rejected").length;
+    const noStatus = filteredDocs.filter(d => !d?.status).length;
+
+    // Total unfiltered for reference
+    const totalAll = allDocs.length;
 
     // Actions (very top)
     const actions = el.createDiv({ cls: "docs-actions" });
@@ -490,9 +485,16 @@ export class CurationPanelView extends ItemView {
       noStatusStat.createSpan({ text: `${pct(noStatus)}%`, cls: "docs-stat-pct" });
     }
 
-    // Total
-    const totalStat = statsRow.createDiv({ cls: "docs-stat docs-stat-total", attr: { title: "Total de arquivos" } });
-    totalStat.createSpan({ text: `${total}`, cls: "docs-stat-num docs-stat-total-num" });
+    // Total with breakdown
+    const isFiltered = this.filterQuery.trim().length > 0;
+    const totalStat = statsRow.createDiv({
+      cls: "docs-stat docs-stat-total",
+      attr: { title: `${isFiltered ? `Filtrado: ${total}/${totalAll}\n` : ""}Aprovados: ${approved} (${pct(approved)}%)\nRevisão: ${review} (${pct(review)}%)\nRejeitados: ${rejected} (${pct(rejected)}%)\nSem status: ${noStatus} (${pct(noStatus)}%)` }
+    });
+    totalStat.createSpan({
+      text: isFiltered ? `${total}/${totalAll}` : `${total}`,
+      cls: "docs-stat-num docs-stat-total-num"
+    });
 
     // Problems button row
     const headerInfo = header.createDiv({ cls: "nav-buttons-container" });
@@ -525,6 +527,14 @@ export class CurationPanelView extends ItemView {
       }
     }
 
+    // Status labels for tooltip
+    const statusLabels: Record<string, string> = {
+      approved: "Aprovado",
+      review: "Revisão",
+      rejected: "Rejeitado",
+      none: "Sem status"
+    };
+
     for (let i = start; i < end; i++) {
       const f = queue[i];
       const d = this.store.getDocument(f.path);
@@ -533,7 +543,8 @@ export class CurationPanelView extends ItemView {
       const isAdjacent = i === this.currentIndex - 1 || i === this.currentIndex + 1;
 
       const dot = dotsContainer.createDiv({
-        cls: `docs-dot docs-dot-${status}${isCurrent ? " docs-dot-current" : ""}${isAdjacent ? " docs-dot-adjacent" : ""}`
+        cls: `docs-dot docs-dot-${status}${isCurrent ? " docs-dot-current" : ""}${isAdjacent ? " docs-dot-adjacent" : ""}`,
+        attr: { title: `${f.basename}\n${statusLabels[status] || status}` }
       });
 
       dot.onclick = () => {

@@ -4256,7 +4256,6 @@ var CurationPanelView = class extends import_obsidian14.ItemView {
     this.filterContainerEl = null;
     this.contentEl = null;
     this.clearBtnEl = null;
-    this.filterCountEl = null;
     this.store = store;
     this.metadataService = metadataService;
     this.i18n = i18n;
@@ -4347,13 +4346,11 @@ var CurationPanelView = class extends import_obsidian14.ItemView {
     };
   }
   updateFilterClearButton() {
-    var _a, _b;
+    var _a;
     if (!this.filterContainerEl)
       return;
     (_a = this.clearBtnEl) == null ? void 0 : _a.remove();
-    (_b = this.filterCountEl) == null ? void 0 : _b.remove();
     this.clearBtnEl = null;
-    this.filterCountEl = null;
     if (this.filterQuery) {
       this.clearBtnEl = this.filterContainerEl.createEl("button", {
         cls: "docs-filter-clear",
@@ -4368,12 +4365,6 @@ var CurationPanelView = class extends import_obsidian14.ItemView {
         this.currentIndex = 0;
         this.render();
       };
-      const queue = this.getQueue();
-      const totalUnfiltered = this.store.getReviewQueue().filter((f) => this.isTrackedFile(f.path)).length;
-      this.filterCountEl = this.filterContainerEl.createDiv({
-        text: `${queue.length} / ${totalUnfiltered}`,
-        cls: "docs-filter-count"
-      });
     }
   }
   updateConfig(config) {
@@ -4540,15 +4531,17 @@ var CurationPanelView = class extends import_obsidian14.ItemView {
       el.createDiv({ text: "Loading...", cls: "pane-empty" });
       return;
     }
-    const docs = this.store.getState().documents.filter((d) => this.isTrackedFile(d.file.path));
-    const total = docs.length;
-    const approved = docs.filter((d) => d.status === "approved").length;
-    const review = docs.filter((d) => d.status === "review").length;
-    const rejected = docs.filter((d) => d.status === "rejected").length;
-    const noStatus = docs.filter((d) => !d.status).length;
+    const allDocs = this.store.getState().documents.filter((d) => this.isTrackedFile(d.file.path));
     const queue = this.getQueue();
     const file = this.getCurrentFile();
     const doc = file ? this.store.getDocument(file.path) : null;
+    const filteredDocs = queue.map((f) => this.store.getDocument(f.path)).filter(Boolean);
+    const total = filteredDocs.length;
+    const approved = filteredDocs.filter((d) => (d == null ? void 0 : d.status) === "approved").length;
+    const review = filteredDocs.filter((d) => (d == null ? void 0 : d.status) === "review").length;
+    const rejected = filteredDocs.filter((d) => (d == null ? void 0 : d.status) === "rejected").length;
+    const noStatus = filteredDocs.filter((d) => !(d == null ? void 0 : d.status)).length;
+    const totalAll = allDocs.length;
     const actions = el.createDiv({ cls: "docs-actions" });
     const actionsRow = actions.createDiv({ cls: "docs-actions-row" });
     const firstBtn = actionsRow.createEl("button", { cls: "docs-btn docs-btn-nav", attr: { title: "Ir para o primeiro" } });
@@ -4601,8 +4594,19 @@ var CurationPanelView = class extends import_obsidian14.ItemView {
       noStatusStat.createSpan({ text: `${noStatus}`, cls: "docs-stat-num" });
       noStatusStat.createSpan({ text: `${pct(noStatus)}%`, cls: "docs-stat-pct" });
     }
-    const totalStat = statsRow.createDiv({ cls: "docs-stat docs-stat-total", attr: { title: "Total de arquivos" } });
-    totalStat.createSpan({ text: `${total}`, cls: "docs-stat-num docs-stat-total-num" });
+    const isFiltered = this.filterQuery.trim().length > 0;
+    const totalStat = statsRow.createDiv({
+      cls: "docs-stat docs-stat-total",
+      attr: { title: `${isFiltered ? `Filtrado: ${total}/${totalAll}
+` : ""}Aprovados: ${approved} (${pct(approved)}%)
+Revis\xE3o: ${review} (${pct(review)}%)
+Rejeitados: ${rejected} (${pct(rejected)}%)
+Sem status: ${noStatus} (${pct(noStatus)}%)` }
+    });
+    totalStat.createSpan({
+      text: isFiltered ? `${total}/${totalAll}` : `${total}`,
+      cls: "docs-stat-num docs-stat-total-num"
+    });
     const headerInfo = header.createDiv({ cls: "nav-buttons-container" });
     const allIssues = this.store.getState().issues;
     if (allIssues.length > 0) {
@@ -4626,6 +4630,12 @@ var CurationPanelView = class extends import_obsidian14.ItemView {
         start = Math.max(0, end - maxDots);
       }
     }
+    const statusLabels = {
+      approved: "Aprovado",
+      review: "Revis\xE3o",
+      rejected: "Rejeitado",
+      none: "Sem status"
+    };
     for (let i = start; i < end; i++) {
       const f = queue[i];
       const d = this.store.getDocument(f.path);
@@ -4633,7 +4643,9 @@ var CurationPanelView = class extends import_obsidian14.ItemView {
       const isCurrent = i === this.currentIndex;
       const isAdjacent = i === this.currentIndex - 1 || i === this.currentIndex + 1;
       const dot = dotsContainer.createDiv({
-        cls: `docs-dot docs-dot-${status}${isCurrent ? " docs-dot-current" : ""}${isAdjacent ? " docs-dot-adjacent" : ""}`
+        cls: `docs-dot docs-dot-${status}${isCurrent ? " docs-dot-current" : ""}${isAdjacent ? " docs-dot-adjacent" : ""}`,
+        attr: { title: `${f.basename}
+${statusLabels[status] || status}` }
       });
       dot.onclick = () => {
         this.currentIndex = i;
