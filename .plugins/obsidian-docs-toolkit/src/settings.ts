@@ -22,9 +22,6 @@ export interface DocsToolkitSettings {
 
   // UI
   maxDotsCount: number;
-
-  // Index generation
-  recursiveIndexDefault: "ask" | "yes" | "no";
 }
 
 /**
@@ -46,8 +43,7 @@ export const DEFAULT_SETTINGS: DocsToolkitSettings = {
   autoUpdateTimestamp: true,
   autoValidateOnSave: true,
   staleThresholdDays: 180,
-  maxDotsCount: 41,
-  recursiveIndexDefault: "ask"
+  maxDotsCount: 41
 };
 
 /**
@@ -142,22 +138,6 @@ export class DocsToolkitSettingTab extends PluginSettingTab {
         .setDynamicTooltip()
         .onChange(async (value) => {
           this.plugin.settings.maxDotsCount = value;
-          await this.plugin.saveSettings();
-        }));
-
-    // Index generation section
-    containerEl.createEl("h3", { text: "Index Generation" });
-
-    new Setting(containerEl)
-      .setName("Recursive index regeneration")
-      .setDesc("When regenerating README index, include subfolders?")
-      .addDropdown(dropdown => dropdown
-        .addOption("ask", "Always ask")
-        .addOption("yes", "Always recursive")
-        .addOption("no", "Only current folder")
-        .setValue(this.plugin.settings.recursiveIndexDefault)
-        .onChange(async (value: "ask" | "yes" | "no") => {
-          this.plugin.settings.recursiveIndexDefault = value;
           await this.plugin.saveSettings();
         }));
 

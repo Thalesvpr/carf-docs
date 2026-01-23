@@ -5596,8 +5596,7 @@ var DEFAULT_SETTINGS = {
   autoUpdateTimestamp: true,
   autoValidateOnSave: true,
   staleThresholdDays: 180,
-  maxDotsCount: 41,
-  recursiveIndexDefault: "ask"
+  maxDotsCount: 41
 };
 var DocsToolkitSettingTab = class extends import_obsidian21.PluginSettingTab {
   constructor(app, plugin) {
@@ -5636,11 +5635,6 @@ var DocsToolkitSettingTab = class extends import_obsidian21.PluginSettingTab {
     containerEl.createEl("h3", { text: "UI" });
     new import_obsidian21.Setting(containerEl).setName("Navigation dots count").setDesc("Maximum number of dots shown in the curation panel navigation (11-101)").addSlider((slider) => slider.setLimits(11, 101, 10).setValue(this.plugin.settings.maxDotsCount).setDynamicTooltip().onChange(async (value) => {
       this.plugin.settings.maxDotsCount = value;
-      await this.plugin.saveSettings();
-    }));
-    containerEl.createEl("h3", { text: "Index Generation" });
-    new import_obsidian21.Setting(containerEl).setName("Recursive index regeneration").setDesc("When regenerating README index, include subfolders?").addDropdown((dropdown) => dropdown.addOption("ask", "Always ask").addOption("yes", "Always recursive").addOption("no", "Only current folder").setValue(this.plugin.settings.recursiveIndexDefault).onChange(async (value) => {
-      this.plugin.settings.recursiveIndexDefault = value;
       await this.plugin.saveSettings();
     }));
     containerEl.createEl("h3", { text: "Validators" });
@@ -5956,28 +5950,22 @@ ${errors} errors, ${warnings} warnings`);
           });
         });
         menu.addItem((item) => {
-          item.setTitle("Regenerate README index").setIcon("list").onClick(async () => {
-            await this.handleRegenerateReadmeIndex(file);
+          item.setTitle("Regenerate index").setIcon("file-text").onClick(async () => {
+            await this.regenerateReadmeIndex(file, false);
+            new import_obsidian22.Notice(`\xCDndice regenerado: ${file.name}`);
           });
         });
+        const hasSubfolders = file.children.some((c) => c instanceof import_obsidian22.TFolder);
+        if (hasSubfolders) {
+          menu.addItem((item) => {
+            item.setTitle("Regenerate index (all)").setIcon("list-tree").onClick(async () => {
+              const count = await this.regenerateReadmeIndex(file, true);
+              new import_obsidian22.Notice(`\xCDndice regenerado em ${count} pastas`);
+            });
+          });
+        }
       })
     );
-  }
-  /**
-   * Handle regenerate README index with optional recursive prompt
-   */
-  async handleRegenerateReadmeIndex(folder) {
-    const hasSubfolders = folder.children.some((c) => c instanceof import_obsidian22.TFolder);
-    const setting = this.settings.recursiveIndexDefault;
-    if (!hasSubfolders || setting === "no") {
-      await this.regenerateReadmeIndex(folder, false);
-      new import_obsidian22.Notice(`README index regenerated for ${folder.name}`);
-    } else if (setting === "yes") {
-      const count = await this.regenerateReadmeIndex(folder, true);
-      new import_obsidian22.Notice(`README index regenerated for ${count} folders`);
-    } else {
-      new RecursiveIndexModal(this.app, folder, this).open();
-    }
   }
   /**
    * Set status for all files in a folder
@@ -6128,60 +6116,5 @@ ${errors} errors, ${warnings} warnings`);
    */
   async saveSettings() {
     await this.saveData(this.settings);
-  }
-};
-var RecursiveIndexModal = class extends import_obsidian22.Modal {
-  constructor(app, folder, plugin) {
-    super(app);
-    this.dontAskAgain = false;
-    this.folder = folder;
-    this.plugin = plugin;
-  }
-  onOpen() {
-    const { contentEl, modalEl } = this;
-    contentEl.empty();
-    modalEl.addClass("docs-index-modal");
-    const header = contentEl.createDiv({ cls: "docs-modal-header" });
-    header.createEl("h3", { text: "Regenerar \xEDndice" });
-    const body = contentEl.createDiv({ cls: "docs-modal-body" });
-    body.createEl("p", {
-      text: `A pasta "${this.folder.name}" cont\xE9m subpastas.`
-    });
-    body.createEl("p", {
-      text: "Deseja incluir as subpastas?",
-      cls: "docs-modal-question"
-    });
-    const checkboxRow = contentEl.createDiv({ cls: "docs-modal-checkbox" });
-    const checkbox = checkboxRow.createEl("input", { type: "checkbox" });
-    checkbox.id = "dont-ask-again";
-    checkbox.addEventListener("change", (e) => {
-      this.dontAskAgain = e.target.checked;
-    });
-    const label = checkboxRow.createEl("label", { text: "Lembrar minha escolha" });
-    label.setAttribute("for", "dont-ask-again");
-    const buttons = contentEl.createDiv({ cls: "docs-modal-buttons" });
-    const currentBtn = buttons.createEl("button", {
-      text: "S\xF3 esta",
-      cls: "docs-modal-btn"
-    });
-    currentBtn.addEventListener("click", () => this.handleChoice(false));
-    const recursiveBtn = buttons.createEl("button", {
-      text: "Incluir subpastas",
-      cls: "docs-modal-btn mod-cta"
-    });
-    recursiveBtn.addEventListener("click", () => this.handleChoice(true));
-  }
-  async handleChoice(recursive) {
-    if (this.dontAskAgain) {
-      this.plugin.settings.recursiveIndexDefault = recursive ? "yes" : "no";
-      await this.plugin.saveSettings();
-    }
-    this.close();
-    const count = await this.plugin.regenerateReadmeIndex(this.folder, recursive);
-    const msg = recursive ? `\xCDndice regenerado em ${count} pastas` : `\xCDndice regenerado: ${this.folder.name}`;
-    new import_obsidian22.Notice(msg);
-  }
-  onClose() {
-    this.contentEl.empty();
   }
 };
