@@ -1,34 +1,23 @@
 ---
-type: leaf
-status: rejected
-description: "Conteudo operacional. Git workflows pertencem a .github ou CONTRIBUTING."
-updated: 2026-01-19
+type: adr
+status: current
+updated: 2026-01-22
 ---
 
-# Decisão GitHub - Plataforma Hospedagem Código
+# ADR-010: GitHub como Plataforma de Hospedagem
 
-Plataforma hospedagem código escolhida para CARF é GitHub serviço cloud-based repositórios Git fornecendo interface web colaboração pull requests code review issues project boards actions CI/CD integrações ecosistema extenso marketplace apps bots automações comunidade massiva desenvolvedores open-source enterprise adoção amplamente reconhecido indústria padrão de facto versionamento código colaborativo. GitHub habilita workflow polyrepo organizando múltiplos repositórios independentes conforme documentado em 04-repository-catalog.md, cada um configurado com settings e proteções de branches main requerindo pull request reviews de dois approvers e status checks passing incluindo CI tests lint e coverage gates, enforcing quality standards e preventing merge de código defeituoso ou breaking builds que causariam deployments falhos impactando usuários em production environments.
+## Contexto
 
-## Justificativa Escolha GitHub
+O CARF requer uma plataforma para hospedar repositorios Git que ofereca colaboracao via pull requests, revisao de codigo, e integracao com pipelines de CI/CD. A equipe e pequena e nao possui recursos para manter infraestrutura propria de hospedagem. O orcamento e limitado, exigindo solucao com tier gratuito ou baixo custo.
 
-GitHub escolhido versus alternativas GitLab Bitbucket Azure Repos devido interface intuitiva user experience superior facilitando onboarding desenvolvedores novos familiaridade prévia redução curva aprendizado friction adoption. GitHub Actions CI/CD nativo incluído plano gratuito 2000 minutos mensais suficiente projetos pequenos médios eliminando necessidade configurar Jenkins Travis CircleCI infraestrutura externa billing adicional simplificando stack tecnológico reduzindo complexidade operacional maintenance overhead. Ecossistema marketplace apps Dependabot automated dependency updates security vulnerability scanning CodeQL SAST static analysis semantic code intelligence CodeSpaces cloud development environments instantaneous setup eliminando configuration local machines standardizing development experience consistency across team members onboarding instant productive immediately. Comunidade colaboração social coding profiles contributions graphs activity feeds following repositories stars watching issues networking developers expertise knowledge sharing open-source visibility showcase portfolio recruiters employers opportunities career growth.
+## Decisao
 
-## Alternativas Consideradas
+Adotamos GitHub como plataforma de hospedagem de codigo. GitHub oferece interface intuitiva que reduz fricao no onboarding de novos desenvolvedores. O GitHub Actions fornece CI/CD integrado com minutos gratuitos suficientes para o volume atual. Features de seguranca como Dependabot e CodeQL estao incluidas sem custo adicional para repositorios privados.
 
-**GitLab:** Self-hosted option maior controle infraestrutura porém overhead operacional maintenance updates backups security patches equipe DevOps dedicada recursos humanos custos operacionais elevados versus managed service GitHub abstraction complexidade. Built-in CI/CD robusto porém interface menos intuitiva learning curve steeper adoption slower. **Bitbucket:** Integração Atlassian suite Jira Confluence Trello Bamboo vantagem ecossistema unificado porém features CI/CD Pipelines limitadas comparado GitHub Actions marketplace menor comunidade reduzida visibility open-source less attractive developers hiring recruitment. **Azure Repos:** Integração Microsoft Azure DevOps vantagem stack Microsoft predominante porém lock-in vendor dependência ecossistema único portabilidade reduzida migração futura custosa. **Self-Hosted Gitea Gogs:** Open-source controle total infraestrutura porém responsabilidade completa maintenance security updates backups disaster recovery alta availability load balancing scalability expertise DevOps requerida investment inicial elevado ROI questionável pequenas equipes.
+## Consequencias
 
-## Configurações Organização
+A equipe utiliza uma unica plataforma para codigo, issues, CI/CD e documentacao tecnica. Dependabot atualiza dependencias vulneraveis automaticamente. A familiaridade dos desenvolvedores com GitHub acelera produtividade desde o primeiro dia. Existe dependencia de servico externo, mas mitigada pela natureza distribuida do Git que mantem historico local.
 
-Organização GitHub CARF configurada permissions granulares teams estruturados BACKEND_TEAM frontend_team MOBILE_TEAM gis_team DEVOPS_TEAM cada equipe acesso repositórios específicos write access projects responsáveis read access cross-functional visibility code review colaboração inter-equipes. Branch protection rules main branch require pull request reviews minimum two approvers dismiss stale reviews when new commits pushed require status checks passing before merging CI tests lint coverage gates require branches up-to-date before merging preventing integration conflicts stale branches outdated code. Code owners file CODEOWNERS raiz repositório especificando owners paths directories modules requiring approval designated maintainers experts domain knowledge ensuring quality reviews informed decisions contextual understanding business logic technical constraints architectural patterns.
+## Alternativas Rejeitadas
 
-## GitHub Actions Workflows
-
-CI/CD pipelines GitHub Actions configurados workflows YAML .github/workflows/ diretório triggered eventos push pull_request tags release criação automação build test lint coverage deploy staging production environments. Secrets environment variables configurados repositório settings encrypted storage API keys tokens credentials database connections third-party services Keycloak Sentry Grafana preventing exposure version control leaking sensitive information public repositories security breach compliance violations LGPD GDPR regulations. Self-hosted runners opcional workloads intensivos GPU machine learning spatial processing PostGIS queries large datasets reducing costs minutes consumption managed runners GitHub infrastructure limitations resources memory disk constraints custom requirements specific hardware architecture ARM x86_64 compatibility testing.
-
-## Segurança Dependências
-
-Dependabot automaticamente scanning dependencies vulnerabilities CVE Common Vulnerabilities Exposures databases alerting pull requests automatically criados updating vulnerable packages latest secure versions minimizing attack surface exposure exploits zero-day vulnerabilities proactive defense security posture hardening. CodeQL scanning SAST static application security testing analyzing código source patterns insecure practices SQL injection XSS cross-site scripting CSRF authentication bypass authorization flaws cryptographic weaknesses insecure deserialization preventing vulnerabilities before merge production deployment shift-left security DevSecOps culture embedding security development lifecycle early stages preventing costly fixes post-release incidents breaches customer data exposure reputation damage legal liabilities fines penalties LGPD compliance violations.
-
-## Colaboração Comunidade
-
-Issues tracking bugs features enhancements discussions roadmap planning community feedback transparency accountability public visibility external contributors stakeholders customers reporting issues suggesting improvements participating development open-source mentality collaboration distributed global teams asynchronous communication timezone differences remote work flexibility work-life balance productivity output quality craftsmanship pride ownership. Pull requests code review quality gates knowledge sharing mentoring junior developers learning growing skills expertise feedback constructive respectful empathetic growth-oriented developmental coaching encouraging experimentation innovation creativity problem-solving critical thinking analytical reasoning.
+GitLab self-hosted foi descartado por exigir equipe DevOps dedicada para manutencao, backups e atualizacoes de seguranca. Bitbucket oferece integracao com Jira mas possui CI/CD mais limitado e comunidade menor. Azure Repos criaria lock-in no ecossistema Microsoft sem beneficios claros dado que o backend utiliza .NET mas frontends sao React e React Native.

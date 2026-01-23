@@ -1,30 +1,23 @@
 ---
-type: leaf
-status: rejected
-description: "Conteudo operacional. Git workflows pertencem a .github ou CONTRIBUTING."
-updated: 2026-01-19
+type: adr
+status: current
+updated: 2026-01-22
 ---
 
-# Decisão Git - Sistema Controle Versão
+# ADR-009: Git como Sistema de Controle de Versao
 
-Sistema controle versão escolhido para CARF é Git ferramenta distribuída open-source amplamente adotada indústria permitindo versionamento código rastreamento mudanças histórico completo commits branches merges colaboração time desenvolvimento coordenação trabalho paralelo features independentes isolation contextos merge estratégias fast-forward squash rebase mantendo histórico limpo legível compreensível. Git habilita workflow polyrepo com múltiplos repositórios independentes conforme documentado em 04-repository-catalog.md, cada um versionado autonomamente com releases coordenadas e compatibilidade cruzada documentada em release notes especificando versões compatíveis entre projetos garantindo integração funcionamento correto sistema completo evitando breaking changes incompatibilidades runtime deployment failures.
+## Contexto
 
-## Justificativa Escolha Git
+O CARF precisa de um sistema de controle de versao para gerenciar codigo entre multiplas equipes trabalhando em sete repositorios independentes. A equipe trabalha parcialmente remoto e precisa versionar codigo mesmo sem conexao com servidor central. O mercado brasileiro de desenvolvedores possui forte familiaridade com Git, facilitando contratacao e onboarding.
 
-Git escolhido versus alternativas Mercurial SVN Subversion Perforce CVS devido performance superior operações locais branching merging extremamente rápidos suporte robusto workflows distribuídos offline-first desenvolvedores trabalham localmente sem conexão servidor central committam localmente synchronizam posteriormente quando conectividade disponível. Ecossistema rico ferramentas GUI clients SourceTree GitKraken GitHub Desktop Sublime Merge integração IDEs VS Code Visual Studio IntelliJ Rider Eclipse facilitando adoção onboarding desenvolvedores novos familiaridade prévia portabilidade skills mercado trabalho competências transferíveis. Documentação extensa comunidade massiva Stack Overflow GitHub Discussions tutoriais cursos bootcamps facilitando troubleshooting resolução problemas aprendizado contínuo best practices convenções padrões estabelecidos industry-wide Gitflow GitHub Flow trunk-based development adaptáveis contextos equipes tamanhos diferentes startups enterprises.
+## Decisao
 
-## Alternativas Consideradas
+Adotamos Git como sistema de controle de versao distribuido. Git permite commits locais sem dependencia de servidor, essencial para cenarios offline comuns em campo. O modelo de branching leve suporta desenvolvimento paralelo de features sem interferencia. A integracao nativa com GitHub simplifica a infraestrutura de CI/CD e colaboracao.
 
-**Mercurial:** Similar Git distribuído porém ecossistema menor comunidade reduzida ferramentas limitadas adoption declining empresas migrando Git preferência mercado. **SVN Subversion:** Centralizado single point of failure servidor offline bloqueia commits performance inferior branching custoso histórico servidor não local impedindo work offline portabilidade limitada. **Perforce:** Enterprise-grade performático arquivos binários grandes gaming assets porém licenciado custo alto overkill projeto CARF predominantemente texto código configuração markdown SQL migrations. **CVS:** Legado obsoleto deficiências críticas atomic commits file-level tracking inadequado projetos modernos.
+## Consequencias
 
-## Configurações Recomendadas
+Desenvolvedores podem trabalhar offline e sincronizar posteriormente. O historico completo fica replicado em cada maquina, eliminando ponto unico de falha. A curva de aprendizado e menor devido a familiaridade da maioria dos desenvolvedores. Conflitos de merge requerem resolucao manual em cenarios de trabalho paralelo intenso.
 
-Configuração global Git incluindo user.name user.email core.autocrlf input evitando problemas line endings cross-platform Windows Linux macOS core.editor configurado preferência pessoal VSCode vim nano pull.rebase true mantendo histórico linear evitando merge commits desnecessários fetch.prune true limpando branches remotas deletadas init.defaultBranch main convenção moderna substituindo master terminology inclusive. Aliases úteis git config --global alias.st status git config --global alias.co checkout git config --global alias.br branch git config --global alias.lg "log --oneline --graph --decorate --all" visualizando histórico gráfico compacto. Git LFS Large File Storage configurado repositórios contendo assets binários ortofotos shapefiles GeoTIFF rasters evitando bloat repositório performance degradation clones lentos storage eficiente pointer files server-side binary storage.
+## Alternativas Rejeitadas
 
-## Integração CI/CD
-
-Git integrado GitHub Actions workflows CI/CD pipelines triggered push eventos branches específicas main develop feature/* release/* tags v*.*.* semantic versioning pattern executando automaticamente build test lint coverage quality gates security scans SAST dependency vulnerabilities Snyk Dependabot deploy staging production environments approval gates manual interventions critical releases. Webhooks notificações Slack Discord Microsoft Teams alertando time eventos importantes pull requests opened reviews requested approved merged deployments succeeded failed incidents detected rollback triggered restoring previous stable version blue-green deployment strategy zero downtime.
-
-## Treinamento Time
-
-Onboarding desenvolvedores novos inclui Git fundamentals workshop 2 horas conceitos básicos repository clone staging area commit history branches merging conflicts resolution hands-on exercises práticos simulando cenários reais. Advanced topics session 1 hora rebasing interactive rebase squashing commits cherry-picking stashing reflog recovering lost commits bisect debugging identifying regression commits blame authorship file changes hooks automation pre-commit lint staged post-commit notifications. Resources disponíveis Pro Git book online gratuito comprehensive Atlassian Git tutorials visual interactive learning Oh My Git game gamification concepts practice safe environment mistakes encouraged learning experimentation growth mindset.
+Subversion foi descartado por ser centralizado, bloqueando commits quando offline e criando dependencia de servidor. Mercurial oferece funcionalidades similares mas possui ecossistema menor e comunidade em declinio no Brasil. Perforce atenderia bem arquivos binarios grandes mas o custo de licenciamento e excessivo para um projeto predominantemente baseado em texto e codigo.
