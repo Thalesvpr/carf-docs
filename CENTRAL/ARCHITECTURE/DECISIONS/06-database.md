@@ -1,6 +1,6 @@
 ---
 type: adr
-status: current
+status: review
 updated: 2026-01-22
 ---
 
