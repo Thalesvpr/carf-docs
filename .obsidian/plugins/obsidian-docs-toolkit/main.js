@@ -2603,48 +2603,33 @@ var IndexService = class {
    */
   async generateIndexContent(folder, files, subfolders) {
     const lines = [];
+    lines.push("> \u26A0\uFE0F **\xCDndice gerado automaticamente.** N\xE3o edite manualmente.");
+    lines.push("> Use os links abaixo para referenciar documentos desta pasta.");
+    lines.push("");
     if (subfolders.length > 0) {
-      lines.push("## Subpastas");
+      lines.push(`## Subpastas (${subfolders.length})`);
       lines.push("");
+      lines.push("| Pasta | Descri\xE7\xE3o |");
+      lines.push("|-------|-----------|");
       for (const subfolder of subfolders) {
         const folderName = subfolder.name;
-        lines.push(`- [[${subfolder.path}/README|${folderName}]]`);
+        lines.push(`| [${folderName}](./${folderName}/README.md) | ... |`);
       }
       lines.push("");
     }
     if (files.length > 0) {
-      lines.push("## Documentos");
+      lines.push(`## Documentos (${files.length})`);
       lines.push("");
-      const docsByStatus = /* @__PURE__ */ new Map();
+      lines.push("| Documento | Status |");
+      lines.push("|-----------|--------|");
       for (const file of files) {
         const doc = await this.metadataService.parseDocument(file);
+        const title = doc.title || file.basename;
         const status = doc.status || "review" /* REVIEW */;
-        if (!docsByStatus.has(status)) {
-          docsByStatus.set(status, []);
-        }
-        docsByStatus.get(status).push(file);
+        const icon = this.getStatusIcon(status);
+        lines.push(`| [${title}](./${file.name}) | ${icon} |`);
       }
-      const statusOrder = ["review" /* REVIEW */, "approved" /* APPROVED */, "rejected" /* REJECTED */, "template" /* TEMPLATE */];
-      const statusLabels = {
-        ["review" /* REVIEW */]: "Em Revis\xE3o",
-        ["approved" /* APPROVED */]: "Aprovados",
-        ["rejected" /* REJECTED */]: "Rejeitados",
-        ["template" /* TEMPLATE */]: "Templates"
-      };
-      for (const status of statusOrder) {
-        const statusFiles = docsByStatus.get(status);
-        if (statusFiles && statusFiles.length > 0) {
-          lines.push(`### ${statusLabels[status]}`);
-          lines.push("");
-          for (const file of statusFiles) {
-            const doc = await this.metadataService.parseDocument(file);
-            const title = doc.title || file.basename;
-            const icon = this.getStatusIcon(status);
-            lines.push(`- ${icon} [[${file.path}|${title}]]`);
-          }
-          lines.push("");
-        }
-      }
+      lines.push("");
     }
     return lines.join("\n");
   }
@@ -5610,9 +5595,9 @@ var DEFAULT_SETTINGS = {
   ],
   autoUpdateTimestamp: true,
   autoValidateOnSave: true,
-  autoSyncIndex: true,
   staleThresholdDays: 180,
-  maxDotsCount: 51
+  maxDotsCount: 41,
+  recursiveIndexDefault: "ask"
 };
 var DocsToolkitSettingTab = class extends import_obsidian21.PluginSettingTab {
   constructor(app, plugin) {
@@ -5641,10 +5626,6 @@ var DocsToolkitSettingTab = class extends import_obsidian21.PluginSettingTab {
       this.plugin.settings.autoValidateOnSave = value;
       await this.plugin.saveSettings();
     }));
-    new import_obsidian21.Setting(containerEl).setName("Auto-sync README index").setDesc("Automatically update README index when files change").addToggle((toggle) => toggle.setValue(this.plugin.settings.autoSyncIndex).onChange(async (value) => {
-      this.plugin.settings.autoSyncIndex = value;
-      await this.plugin.saveSettings();
-    }));
     new import_obsidian21.Setting(containerEl).setName("Stale threshold (days)").setDesc("Documents not updated after this many days are marked as stale").addText((text) => text.setPlaceholder("180").setValue(String(this.plugin.settings.staleThresholdDays)).onChange(async (value) => {
       const days = parseInt(value);
       if (!isNaN(days) && days > 0) {
@@ -5655,6 +5636,11 @@ var DocsToolkitSettingTab = class extends import_obsidian21.PluginSettingTab {
     containerEl.createEl("h3", { text: "UI" });
     new import_obsidian21.Setting(containerEl).setName("Navigation dots count").setDesc("Maximum number of dots shown in the curation panel navigation (11-101)").addSlider((slider) => slider.setLimits(11, 101, 10).setValue(this.plugin.settings.maxDotsCount).setDynamicTooltip().onChange(async (value) => {
       this.plugin.settings.maxDotsCount = value;
+      await this.plugin.saveSettings();
+    }));
+    containerEl.createEl("h3", { text: "Index Generation" });
+    new import_obsidian21.Setting(containerEl).setName("Recursive index regeneration").setDesc("When regenerating README index, include subfolders?").addDropdown((dropdown) => dropdown.addOption("ask", "Always ask").addOption("yes", "Always recursive").addOption("no", "Only current folder").setValue(this.plugin.settings.recursiveIndexDefault).onChange(async (value) => {
+      this.plugin.settings.recursiveIndexDefault = value;
       await this.plugin.saveSettings();
     }));
     containerEl.createEl("h3", { text: "Validators" });
@@ -5899,11 +5885,6 @@ ${errors} errors, ${warnings} warnings`);
           }, 100);
         }
         setTimeout(() => this.store.updateDocument(file), 200);
-        if (this.settings.autoSyncIndex && file.parent) {
-          if (this.indexService.shouldSyncIndex(file)) {
-            this.indexService.scheduleSync(file.parent);
-          }
-        }
       })
     );
     this.registerEvent(
@@ -5938,16 +5919,6 @@ ${errors} errors, ${warnings} warnings`);
         if (this.isTrackedFile(file.path)) {
           await this.store.updateDocument(file);
         }
-        if (this.settings.autoSyncIndex) {
-          const oldFolderPath = oldPath.substring(0, oldPath.lastIndexOf("/"));
-          const oldFolder = this.app.vault.getAbstractFileByPath(oldFolderPath);
-          if (oldFolder instanceof import_obsidian22.TFolder && this.isTrackedFile(oldFolderPath)) {
-            this.indexService.scheduleSync(oldFolder);
-          }
-          if (file.parent && this.isTrackedFile(file.parent.path)) {
-            this.indexService.scheduleSync(file.parent);
-          }
-        }
       })
     );
     this.registerEvent(
@@ -5955,13 +5926,6 @@ ${errors} errors, ${warnings} warnings`);
         if (!(file instanceof import_obsidian22.TFile))
           return;
         this.store.removeDocument(file.path);
-        if (this.settings.autoSyncIndex) {
-          const folderPath = file.path.substring(0, file.path.lastIndexOf("/"));
-          const folder = this.app.vault.getAbstractFileByPath(folderPath);
-          if (folder instanceof import_obsidian22.TFolder && this.isTrackedFile(folderPath)) {
-            this.indexService.scheduleSync(folder);
-          }
-        }
       })
     );
   }
@@ -5993,12 +5957,27 @@ ${errors} errors, ${warnings} warnings`);
         });
         menu.addItem((item) => {
           item.setTitle("Regenerate README index").setIcon("list").onClick(async () => {
-            await this.regenerateReadmeIndex(file);
-            new import_obsidian22.Notice(`README index regenerated for ${file.name}`);
+            await this.handleRegenerateReadmeIndex(file);
           });
         });
       })
     );
+  }
+  /**
+   * Handle regenerate README index with optional recursive prompt
+   */
+  async handleRegenerateReadmeIndex(folder) {
+    const hasSubfolders = folder.children.some((c) => c instanceof import_obsidian22.TFolder);
+    const setting = this.settings.recursiveIndexDefault;
+    if (!hasSubfolders || setting === "no") {
+      await this.regenerateReadmeIndex(folder, false);
+      new import_obsidian22.Notice(`README index regenerated for ${folder.name}`);
+    } else if (setting === "yes") {
+      const count = await this.regenerateReadmeIndex(folder, true);
+      new import_obsidian22.Notice(`README index regenerated for ${count} folders`);
+    } else {
+      new RecursiveIndexModal(this.app, folder, this).open();
+    }
   }
   /**
    * Set status for all files in a folder
@@ -6054,14 +6033,27 @@ ${errors} errors, ${warnings} warnings`);
   }
   /**
    * Regenerate the README index for a folder
+   * @param folder The folder to regenerate index for
+   * @param recursive Whether to include subfolders
+   * @returns Number of folders processed
    */
-  async regenerateReadmeIndex(folder) {
+  async regenerateReadmeIndex(folder, recursive = false) {
+    let count = 0;
     await this.indexService.syncFolderIndex(folder);
     const readmePath = `${folder.path}/README.md`;
     const readme = this.app.vault.getAbstractFileByPath(readmePath);
     if (readme) {
       await this.store.updateDocument(readme);
+      count++;
     }
+    if (recursive) {
+      for (const child of folder.children) {
+        if (child instanceof import_obsidian22.TFolder) {
+          count += await this.regenerateReadmeIndex(child, true);
+        }
+      }
+    }
+    return count;
   }
   /**
    * Approve current file
@@ -6136,5 +6128,52 @@ ${errors} errors, ${warnings} warnings`);
    */
   async saveSettings() {
     await this.saveData(this.settings);
+  }
+};
+var RecursiveIndexModal = class extends import_obsidian22.Modal {
+  constructor(app, folder, plugin) {
+    super(app);
+    this.dontAskAgain = false;
+    this.folder = folder;
+    this.plugin = plugin;
+  }
+  onOpen() {
+    const { contentEl } = this;
+    contentEl.empty();
+    contentEl.createEl("h3", { text: "Regenerar \xEDndice README" });
+    contentEl.createEl("p", {
+      text: `A pasta "${this.folder.name}" cont\xE9m subpastas. Deseja regenerar o \xEDndice recursivamente?`
+    });
+    new import_obsidian22.Setting(contentEl).setName("N\xE3o perguntar novamente").addToggle((toggle) => toggle.setValue(false).onChange((value) => {
+      this.dontAskAgain = value;
+    }));
+    const buttonContainer = contentEl.createDiv({ cls: "modal-button-container" });
+    const currentBtn = buttonContainer.createEl("button", { text: "Apenas esta pasta" });
+    currentBtn.addEventListener("click", async () => {
+      if (this.dontAskAgain) {
+        this.plugin.settings.recursiveIndexDefault = "no";
+        await this.plugin.saveSettings();
+      }
+      this.close();
+      await this.plugin.regenerateReadmeIndex(this.folder, false);
+      new import_obsidian22.Notice(`README index regenerated for ${this.folder.name}`);
+    });
+    const recursiveBtn = buttonContainer.createEl("button", {
+      text: "Incluir subpastas",
+      cls: "mod-cta"
+    });
+    recursiveBtn.addEventListener("click", async () => {
+      if (this.dontAskAgain) {
+        this.plugin.settings.recursiveIndexDefault = "yes";
+        await this.plugin.saveSettings();
+      }
+      this.close();
+      const count = await this.plugin.regenerateReadmeIndex(this.folder, true);
+      new import_obsidian22.Notice(`README index regenerated for ${count} folders`);
+    });
+  }
+  onClose() {
+    const { contentEl } = this;
+    contentEl.empty();
   }
 };

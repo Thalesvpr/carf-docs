@@ -16,13 +16,15 @@ export interface DocsToolkitSettings {
   // Automation
   autoUpdateTimestamp: boolean;
   autoValidateOnSave: boolean;
-  autoSyncIndex: boolean;
 
   // Stale threshold in days
   staleThresholdDays: number;
 
   // UI
   maxDotsCount: number;
+
+  // Index generation
+  recursiveIndexDefault: "ask" | "yes" | "no";
 }
 
 /**
@@ -43,9 +45,9 @@ export const DEFAULT_SETTINGS: DocsToolkitSettings = {
   ],
   autoUpdateTimestamp: true,
   autoValidateOnSave: true,
-  autoSyncIndex: true,
   staleThresholdDays: 180,
-  maxDotsCount: 51
+  maxDotsCount: 41,
+  recursiveIndexDefault: "ask"
 };
 
 /**
@@ -113,16 +115,6 @@ export class DocsToolkitSettingTab extends PluginSettingTab {
           await this.plugin.saveSettings();
         }));
 
-    new Setting(containerEl)
-      .setName("Auto-sync README index")
-      .setDesc("Automatically update README index when files change")
-      .addToggle(toggle => toggle
-        .setValue(this.plugin.settings.autoSyncIndex)
-        .onChange(async (value) => {
-          this.plugin.settings.autoSyncIndex = value;
-          await this.plugin.saveSettings();
-        }));
-
     // Stale threshold
     new Setting(containerEl)
       .setName("Stale threshold (days)")
@@ -150,6 +142,22 @@ export class DocsToolkitSettingTab extends PluginSettingTab {
         .setDynamicTooltip()
         .onChange(async (value) => {
           this.plugin.settings.maxDotsCount = value;
+          await this.plugin.saveSettings();
+        }));
+
+    // Index generation section
+    containerEl.createEl("h3", { text: "Index Generation" });
+
+    new Setting(containerEl)
+      .setName("Recursive index regeneration")
+      .setDesc("When regenerating README index, include subfolders?")
+      .addDropdown(dropdown => dropdown
+        .addOption("ask", "Always ask")
+        .addOption("yes", "Always recursive")
+        .addOption("no", "Only current folder")
+        .setValue(this.plugin.settings.recursiveIndexDefault)
+        .onChange(async (value: "ask" | "yes" | "no") => {
+          this.plugin.settings.recursiveIndexDefault = value;
           await this.plugin.saveSettings();
         }));
 

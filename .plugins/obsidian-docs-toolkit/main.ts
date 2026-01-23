@@ -5,7 +5,9 @@ import {
   TFolder,
   WorkspaceLeaf,
   Menu,
+  Modal,
   Notice,
+  Setting,
   addIcon
 } from "obsidian";
 
@@ -398,13 +400,6 @@ export default class DocsToolkitPlugin extends Plugin {
 
         // Update store (debounced)
         setTimeout(() => this.store.updateDocument(file), 200);
-
-        // Auto-sync index
-        if (this.settings.autoSyncIndex && file.parent) {
-          if (this.indexService.shouldSyncIndex(file)) {
-            this.indexService.scheduleSync(file.parent);
-          }
-        }
       })
     );
 
@@ -444,19 +439,6 @@ export default class DocsToolkitPlugin extends Plugin {
         if (this.isTrackedFile(file.path)) {
           await this.store.updateDocument(file);
         }
-
-        // Update indexes
-        if (this.settings.autoSyncIndex) {
-          const oldFolderPath = oldPath.substring(0, oldPath.lastIndexOf("/"));
-          const oldFolder = this.app.vault.getAbstractFileByPath(oldFolderPath);
-          if (oldFolder instanceof TFolder && this.isTrackedFile(oldFolderPath)) {
-            this.indexService.scheduleSync(oldFolder);
-          }
-
-          if (file.parent && this.isTrackedFile(file.parent.path)) {
-            this.indexService.scheduleSync(file.parent);
-          }
-        }
       })
     );
 
@@ -466,15 +448,6 @@ export default class DocsToolkitPlugin extends Plugin {
         if (!(file instanceof TFile)) return;
 
         this.store.removeDocument(file.path);
-
-        // Update indexes
-        if (this.settings.autoSyncIndex) {
-          const folderPath = file.path.substring(0, file.path.lastIndexOf("/"));
-          const folder = this.app.vault.getAbstractFileByPath(folderPath);
-          if (folder instanceof TFolder && this.isTrackedFile(folderPath)) {
-            this.indexService.scheduleSync(folder);
-          }
-        }
       })
     );
   }
@@ -526,12 +499,33 @@ export default class DocsToolkitPlugin extends Plugin {
             .setTitle("Regenerate README index")
             .setIcon("list")
             .onClick(async () => {
-              await this.regenerateReadmeIndex(file);
-              new Notice(`README index regenerated for ${file.name}`);
+              await this.handleRegenerateReadmeIndex(file);
             });
         });
       })
     );
+  }
+
+  /**
+   * Handle regenerate README index with optional recursive prompt
+   */
+  private async handleRegenerateReadmeIndex(folder: TFolder): Promise<void> {
+    // Check if folder has subfolders
+    const hasSubfolders = folder.children.some(c => c instanceof TFolder);
+    const setting = this.settings.recursiveIndexDefault;
+
+    if (!hasSubfolders || setting === "no") {
+      // No subfolders or setting is "no" - just do current folder
+      await this.regenerateReadmeIndex(folder, false);
+      new Notice(`README index regenerated for ${folder.name}`);
+    } else if (setting === "yes") {
+      // Setting is "yes" - always recursive
+      const count = await this.regenerateReadmeIndex(folder, true);
+      new Notice(`README index regenerated for ${count} folders`);
+    } else {
+      // Setting is "ask" - show modal
+      new RecursiveIndexModal(this.app, folder, this).open();
+    }
   }
 
   /**
@@ -602,15 +596,32 @@ export default class DocsToolkitPlugin extends Plugin {
 
   /**
    * Regenerate the README index for a folder
+   * @param folder The folder to regenerate index for
+   * @param recursive Whether to include subfolders
+   * @returns Number of folders processed
    */
-  private async regenerateReadmeIndex(folder: TFolder): Promise<void> {
-    await this.indexService.syncFolderIndex(folder);
+  async regenerateReadmeIndex(folder: TFolder, recursive: boolean = false): Promise<number> {
+    let count = 0;
 
+    // Process current folder
+    await this.indexService.syncFolderIndex(folder);
     const readmePath = `${folder.path}/README.md`;
     const readme = this.app.vault.getAbstractFileByPath(readmePath) as TFile;
     if (readme) {
       await this.store.updateDocument(readme);
+      count++;
     }
+
+    // Process subfolders if recursive
+    if (recursive) {
+      for (const child of folder.children) {
+        if (child instanceof TFolder) {
+          count += await this.regenerateReadmeIndex(child, true);
+        }
+      }
+    }
+
+    return count;
   }
 
   /**
@@ -695,5 +706,75 @@ export default class DocsToolkitPlugin extends Plugin {
    */
   async saveSettings(): Promise<void> {
     await this.saveData(this.settings);
+  }
+}
+
+/**
+ * Modal for recursive index regeneration confirmation
+ */
+class RecursiveIndexModal extends Modal {
+  private folder: TFolder;
+  private plugin: DocsToolkitPlugin;
+  private dontAskAgain: boolean = false;
+
+  constructor(app: App, folder: TFolder, plugin: DocsToolkitPlugin) {
+    super(app);
+    this.folder = folder;
+    this.plugin = plugin;
+  }
+
+  onOpen(): void {
+    const { contentEl } = this;
+    contentEl.empty();
+
+    contentEl.createEl("h3", { text: "Regenerar índice README" });
+
+    contentEl.createEl("p", {
+      text: `A pasta "${this.folder.name}" contém subpastas. Deseja regenerar o índice recursivamente?`
+    });
+
+    // Don't ask again checkbox
+    new Setting(contentEl)
+      .setName("Não perguntar novamente")
+      .addToggle(toggle => toggle
+        .setValue(false)
+        .onChange(value => {
+          this.dontAskAgain = value;
+        }));
+
+    // Buttons container
+    const buttonContainer = contentEl.createDiv({ cls: "modal-button-container" });
+
+    // Current folder only button
+    const currentBtn = buttonContainer.createEl("button", { text: "Apenas esta pasta" });
+    currentBtn.addEventListener("click", async () => {
+      if (this.dontAskAgain) {
+        this.plugin.settings.recursiveIndexDefault = "no";
+        await this.plugin.saveSettings();
+      }
+      this.close();
+      await this.plugin.regenerateReadmeIndex(this.folder, false);
+      new Notice(`README index regenerated for ${this.folder.name}`);
+    });
+
+    // Recursive button (primary)
+    const recursiveBtn = buttonContainer.createEl("button", {
+      text: "Incluir subpastas",
+      cls: "mod-cta"
+    });
+    recursiveBtn.addEventListener("click", async () => {
+      if (this.dontAskAgain) {
+        this.plugin.settings.recursiveIndexDefault = "yes";
+        await this.plugin.saveSettings();
+      }
+      this.close();
+      const count = await this.plugin.regenerateReadmeIndex(this.folder, true);
+      new Notice(`README index regenerated for ${count} folders`);
+    });
+  }
+
+  onClose(): void {
+    const { contentEl } = this;
+    contentEl.empty();
   }
 }

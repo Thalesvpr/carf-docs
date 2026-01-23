@@ -87,57 +87,39 @@ export class IndexService {
   ): Promise<string> {
     const lines: string[] = [];
 
+    // Add warning blockquote
+    lines.push("> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.");
+    lines.push("> Use os links abaixo para referenciar documentos desta pasta.");
+    lines.push("");
+
     // Add subfolders section if any
     if (subfolders.length > 0) {
-      lines.push("## Subpastas");
+      lines.push(`## Subpastas (${subfolders.length})`);
       lines.push("");
+      lines.push("| Pasta | Descrição |");
+      lines.push("|-------|-----------|");
       for (const subfolder of subfolders) {
         const folderName = subfolder.name;
-        lines.push(`- [[${subfolder.path}/README|${folderName}]]`);
+        lines.push(`| [${folderName}](./${folderName}/README.md) | ... |`);
       }
       lines.push("");
     }
 
     // Add files section if any
     if (files.length > 0) {
-      lines.push("## Documentos");
+      lines.push(`## Documentos (${files.length})`);
       lines.push("");
-
-      // Group by status if there are CARF documents
-      const docsByStatus = new Map<Status, TFile[]>();
+      lines.push("| Documento | Status |");
+      lines.push("|-----------|--------|");
 
       for (const file of files) {
         const doc = await this.metadataService.parseDocument(file);
+        const title = doc.title || file.basename;
         const status = doc.status || Status.REVIEW;
-        if (!docsByStatus.has(status)) {
-          docsByStatus.set(status, []);
-        }
-        docsByStatus.get(status)!.push(file);
+        const icon = this.getStatusIcon(status);
+        lines.push(`| [${title}](./${file.name}) | ${icon} |`);
       }
-
-      // List by status
-      const statusOrder = [Status.REVIEW, Status.APPROVED, Status.REJECTED, Status.TEMPLATE];
-      const statusLabels: Record<Status, string> = {
-        [Status.REVIEW]: "Em Revisão",
-        [Status.APPROVED]: "Aprovados",
-        [Status.REJECTED]: "Rejeitados",
-        [Status.TEMPLATE]: "Templates"
-      };
-
-      for (const status of statusOrder) {
-        const statusFiles = docsByStatus.get(status);
-        if (statusFiles && statusFiles.length > 0) {
-          lines.push(`### ${statusLabels[status]}`);
-          lines.push("");
-          for (const file of statusFiles) {
-            const doc = await this.metadataService.parseDocument(file);
-            const title = doc.title || file.basename;
-            const icon = this.getStatusIcon(status);
-            lines.push(`- ${icon} [[${file.path}|${title}]]`);
-          }
-          lines.push("");
-        }
-      }
+      lines.push("");
     }
 
     return lines.join("\n");
