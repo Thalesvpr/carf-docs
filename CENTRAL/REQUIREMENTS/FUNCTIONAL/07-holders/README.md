@@ -36,27 +36,30 @@ updated: 2026-01-15
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (18)
 
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/07-holders/RF-084-criar-titular.md|RF-084: Criar Titular]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/07-holders/RF-085-editar-titular.md|RF-085: Editar Titular]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/07-holders/RF-086-excluir-titular.md|RF-086: Excluir Titular]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/07-holders/RF-087-listar-titulares.md|RF-087: Listar Titulares]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/07-holders/RF-088-tipos-de-titular.md|RF-088: Tipos de Titular]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/07-holders/RF-089-campos-de-pessoa-fisica.md|RF-089: Campos de Pessoa Física]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/07-holders/RF-090-campos-de-pessoa-juridica.md|RF-090: Campos de Pessoa Jurídica]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/07-holders/RF-091-tipos-de-relacionamento-com-unidade.md|RF-091: Tipos de Relacionamento com Unidade]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/07-holders/RF-092-percentual-de-propriedade.md|RF-092: Percentual de Propriedade]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/07-holders/RF-093-titular-principal.md|RF-093: Titular Principal]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/07-holders/RF-094-historico-de-titulares.md|RF-094: Histórico de Titulares]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/07-holders/RF-095-buscar-titular-por-cpf.md|RF-095: Buscar Titular por CPF]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/07-holders/RF-096-validar-cpfcnpj.md|RF-096: Validar CPF/CNPJ]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/07-holders/RF-097-upload-de-documentos-do-titular.md|RF-097: Upload de Documentos do Titular]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/07-holders/RF-098-foto-do-titular.md|RF-098: Foto do Titular]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/07-holders/RF-099-listar-unidades-de-um-titular.md|RF-099: Listar Unidades de um Titular]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/07-holders/RF-100-exportar-lista-de-titulares.md|RF-100: Exportar Lista de Titulares]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/07-holders/RF-101-mesclar-titulares-duplicados.md|RF-101: Mesclar Titulares Duplicados]]
+| Documento | Status |
+|-----------|--------|
+| [RF-084: Criar Titular](./RF-084-criar-titular.md) | ○ |
+| [RF-085: Editar Titular](./RF-085-editar-titular.md) | ○ |
+| [RF-086: Excluir Titular](./RF-086-excluir-titular.md) | ○ |
+| [RF-087: Listar Titulares](./RF-087-listar-titulares.md) | ○ |
+| [RF-088: Tipos de Titular](./RF-088-tipos-de-titular.md) | ○ |
+| [RF-089: Campos de Pessoa Física](./RF-089-campos-de-pessoa-fisica.md) | ○ |
+| [RF-090: Campos de Pessoa Jurídica](./RF-090-campos-de-pessoa-juridica.md) | ○ |
+| [RF-091: Tipos de Relacionamento com Unidade](./RF-091-tipos-de-relacionamento-com-unidade.md) | ○ |
+| [RF-092: Percentual de Propriedade](./RF-092-percentual-de-propriedade.md) | ○ |
+| [RF-093: Titular Principal](./RF-093-titular-principal.md) | ○ |
+| [RF-094: Histórico de Titulares](./RF-094-historico-de-titulares.md) | ○ |
+| [RF-095: Buscar Titular por CPF](./RF-095-buscar-titular-por-cpf.md) | ○ |
+| [RF-096: Validar CPF/CNPJ](./RF-096-validar-cpfcnpj.md) | ○ |
+| [RF-097: Upload de Documentos do Titular](./RF-097-upload-de-documentos-do-titular.md) | ○ |
+| [RF-098: Foto do Titular](./RF-098-foto-do-titular.md) | ○ |
+| [RF-099: Listar Unidades de um Titular](./RF-099-listar-unidades-de-um-titular.md) | ○ |
+| [RF-100: Exportar Lista de Titulares](./RF-100-exportar-lista-de-titulares.md) | ○ |
+| [RF-101: Mesclar Titulares Duplicados](./RF-101-mesclar-titulares-duplicados.md) | ○ |
 
 <!-- CARF-INDEX-END -->

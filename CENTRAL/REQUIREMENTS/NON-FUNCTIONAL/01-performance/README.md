@@ -27,17 +27,20 @@ updated: 2026-01-15
 
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (8)
 
-- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/01-performance/RNF-001-tempo-resposta-endpoints-leitura.md|RNF-001: Tempo de Resposta - Endpoints de Leitura]]
-- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/01-performance/RNF-002-tempo-resposta-endpoints-escrita.md|RNF-002: Tempo de Resposta - Endpoints de Escrita]]
-- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/01-performance/RNF-003-tempo-resposta-queries-espaciais.md|RNF-003: Tempo de Resposta - Queries Espaciais]]
-- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/01-performance/RNF-004-tempo-carregamento-frontend.md|RNF-004: Tempo de Carregamento - Frontend]]
-- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/01-performance/RNF-005-tempo-carregamento-mapa.md|RNF-005: Tempo de Carregamento - Mapa]]
-- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/01-performance/RNF-010-renderizacao-geometrias.md|RNF-010: Renderização de Geometrias]]
-- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/01-performance/RNF-011-paginacao-listagens.md|RNF-011: Paginação de Listagens]]
-- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/01-performance/RNF-015-tamanho-bundle-frontend.md|RNF-015: Tamanho do Bundle - Frontend]]
+| Documento | Status |
+|-----------|--------|
+| [RNF-001: Tempo de Resposta - Endpoints de Leitura](./RNF-001-tempo-resposta-endpoints-leitura.md) | ○ |
+| [RNF-002: Tempo de Resposta - Endpoints de Escrita](./RNF-002-tempo-resposta-endpoints-escrita.md) | ○ |
+| [RNF-003: Tempo de Resposta - Queries Espaciais](./RNF-003-tempo-resposta-queries-espaciais.md) | ○ |
+| [RNF-004: Tempo de Carregamento - Frontend](./RNF-004-tempo-carregamento-frontend.md) | ○ |
+| [RNF-005: Tempo de Carregamento - Mapa](./RNF-005-tempo-carregamento-mapa.md) | ○ |
+| [RNF-010: Renderização de Geometrias](./RNF-010-renderizacao-geometrias.md) | ○ |
+| [RNF-011: Paginação de Listagens](./RNF-011-paginacao-listagens.md) | ○ |
+| [RNF-015: Tamanho do Bundle - Frontend](./RNF-015-tamanho-bundle-frontend.md) | ○ |
 
 <!-- CARF-INDEX-END -->

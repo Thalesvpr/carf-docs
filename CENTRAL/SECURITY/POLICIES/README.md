@@ -43,14 +43,17 @@ A política de [controle de acesso](./05-access-control-policy.md) define MFA ob
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (5)
 
-- ○ [[CENTRAL/SECURITY/POLICIES/01-authentication-policy.md|Authentication Policy]]
-- ○ [[CENTRAL/SECURITY/POLICIES/02-authorization-policy.md|Authorization Policy]]
-- ○ [[CENTRAL/SECURITY/POLICIES/03-encryption-policy.md|Encryption Policy]]
-- ○ [[CENTRAL/SECURITY/POLICIES/04-lgpd-compliance-policy.md|LGPD Compliance Policy]]
-- ○ [[CENTRAL/SECURITY/POLICIES/05-access-control-policy.md|Access Control Policy]]
+| Documento | Status |
+|-----------|--------|
+| [Authentication Policy](./01-authentication-policy.md) | ○ |
+| [Authorization Policy](./02-authorization-policy.md) | ○ |
+| [Encryption Policy](./03-encryption-policy.md) | ○ |
+| [LGPD Compliance Policy](./04-lgpd-compliance-policy.md) | ○ |
+| [Access Control Policy](./05-access-control-policy.md) | ○ |
 
 <!-- CARF-INDEX-END -->

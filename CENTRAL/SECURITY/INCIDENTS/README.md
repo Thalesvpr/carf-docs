@@ -34,13 +34,16 @@ O [audit logging](./04-audit-logging.md) registra eventos de autenticação, alt
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (4)
 
-- ○ [[CENTRAL/SECURITY/INCIDENTS/01-incident-classification.md|Incident Classification]]
-- ○ [[CENTRAL/SECURITY/INCIDENTS/02-incident-response-plan.md|Incident Response Plan]]
-- ○ [[CENTRAL/SECURITY/INCIDENTS/03-breach-notification.md|Breach Notification]]
-- ○ [[CENTRAL/SECURITY/INCIDENTS/04-audit-logging.md|Audit Logging]]
+| Documento | Status |
+|-----------|--------|
+| [Incident Classification](./01-incident-classification.md) | ○ |
+| [Incident Response Plan](./02-incident-response-plan.md) | ○ |
+| [Breach Notification](./03-breach-notification.md) | ○ |
+| [Audit Logging](./04-audit-logging.md) | ○ |
 
 <!-- CARF-INDEX-END -->

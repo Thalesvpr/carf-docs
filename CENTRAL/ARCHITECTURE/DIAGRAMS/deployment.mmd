@@ -1,0 +1,68 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#4F46E5', 'primaryTextColor': '#fff', 'primaryBorderColor': '#4338CA', 'lineColor': '#6B7280', 'secondaryColor': '#F3F4F6', 'tertiaryColor': '#E5E7EB'}}}%%
+
+flowchart TB
+    subgraph Internet["Internet"]
+        Users["Usuarios"]
+        CDN["CDN<br/>Assets Estaticos"]
+    end
+
+    subgraph LoadBalancer["Load Balancer"]
+        LB["Nginx/Traefik<br/>SSL Termination"]
+    end
+
+    subgraph Kubernetes["Kubernetes Cluster"]
+        subgraph WebPods["Web Pods"]
+            GEOWEB1["GEOWEB"]
+            GEOWEB2["GEOWEB"]
+        end
+
+        subgraph APIPods["API Pods"]
+            GEOAPI1["GEOAPI"]
+            GEOAPI2["GEOAPI"]
+            GEOAPI3["GEOAPI"]
+        end
+
+        subgraph AuthPods["Auth Pods"]
+            KC1["Keycloak"]
+            KC2["Keycloak"]
+        end
+
+        subgraph DocsPods["Docs Pods"]
+            WEBDOCS1["WEBDOCS"]
+        end
+    end
+
+    subgraph Database["Database Cluster"]
+        PGPrimary[("PostgreSQL<br/>Primary")]
+        PGReplica[("PostgreSQL<br/>Replica")]
+    end
+
+    subgraph Storage["Object Storage"]
+        S3["S3/MinIO<br/>Documentos"]
+    end
+
+    subgraph Monitoring["Observabilidade"]
+        Prometheus["Prometheus"]
+        Grafana["Grafana"]
+        Loki["Loki Logs"]
+    end
+
+    Users --> CDN
+    Users --> LB
+    CDN --> LB
+
+    LB --> WebPods
+    LB --> APIPods
+    LB --> AuthPods
+    LB --> DocsPods
+
+    APIPods --> PGPrimary
+    APIPods --> S3
+    AuthPods --> PGPrimary
+
+    PGPrimary --> PGReplica
+
+    APIPods --> Prometheus
+    AuthPods --> Prometheus
+    Prometheus --> Grafana
+    APIPods --> Loki

@@ -22,13 +22,16 @@ updated: 2026-01-15
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (4)
 
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/11-annotations/RF-153-anotações-annotations.md|RF-153: Anotações (Annotations)]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/11-annotations/RF-154-editar-anotação.md|RF-154: Editar Anotação]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/11-annotations/RF-155-excluir-anotação.md|RF-155: Excluir Anotação]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/11-annotations/RF-156-filtrar-anotações-por-autor.md|RF-156: Filtrar Anotações por Autor]]
+| Documento | Status |
+|-----------|--------|
+| [RF-153: Anotações (Annotations)](./RF-153-anotações-annotations.md) | ○ |
+| [RF-154: Editar Anotação](./RF-154-editar-anotação.md) | ○ |
+| [RF-155: Excluir Anotação](./RF-155-excluir-anotação.md) | ○ |
+| [RF-156: Filtrar Anotações por Autor](./RF-156-filtrar-anotações-por-autor.md) | ○ |
 
 <!-- CARF-INDEX-END -->

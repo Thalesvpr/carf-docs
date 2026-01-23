@@ -25,15 +25,18 @@ updated: 2026-01-15
 
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (6)
 
-- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-007-exportar-dados-geograficos/UC-007-exportar-dados-geograficos.md|UC-007: Exportar Dados Geográficos]]
-- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-007-exportar-dados-geograficos/UC-007-FA-001-exportacao-rapida.md|UC-007-FA-001: Exportação Rápida (Poucos Dados)]]
-- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-007-exportar-dados-geograficos/UC-007-FA-002-exportar-selecao.md|UC-007-FA-002: Exportar Seleção]]
-- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-007-exportar-dados-geograficos/UC-007-FE-001-limite-excedido.md|UC-007-FE-001: Limite de Registros Excedido]]
-- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-007-exportar-dados-geograficos/UC-007-FE-002-geometrias-invalidas.md|UC-007-FE-002: Geometrias Inválidas]]
-- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-007-exportar-dados-geograficos/UC-007-FE-003-erro-reprojecao.md|UC-007-FE-003: Erro de Reprojeção]]
+| Documento | Status |
+|-----------|--------|
+| [UC-007: Exportar Dados Geográficos](./UC-007-exportar-dados-geograficos.md) | ○ |
+| [UC-007-FA-001: Exportação Rápida (Poucos Dados)](./UC-007-FA-001-exportacao-rapida.md) | ○ |
+| [UC-007-FA-002: Exportar Seleção](./UC-007-FA-002-exportar-selecao.md) | ○ |
+| [UC-007-FE-001: Limite de Registros Excedido](./UC-007-FE-001-limite-excedido.md) | ○ |
+| [UC-007-FE-002: Geometrias Inválidas](./UC-007-FE-002-geometrias-invalidas.md) | ○ |
+| [UC-007-FE-003: Erro de Reprojeção](./UC-007-FE-003-erro-reprojecao.md) | ○ |
 
 <!-- CARF-INDEX-END -->

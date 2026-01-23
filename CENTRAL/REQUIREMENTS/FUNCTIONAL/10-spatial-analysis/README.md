@@ -29,20 +29,23 @@ updated: 2026-01-15
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (11)
 
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/10-spatial-analysis/RF-142-busca-espacial-de-features.md|RF-142: Busca Espacial de Features]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/10-spatial-analysis/RF-143-análise-espacial-buffer.md|RF-143: Análise Espacial: Buffer]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/10-spatial-analysis/RF-144-análise-espacial-intersect.md|RF-144: Análise Espacial: Intersect]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/10-spatial-analysis/RF-145-medição-de-distância.md|RF-145: Medição de Distância]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/10-spatial-analysis/RF-146-medição-de-área.md|RF-146: Medição de Área]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/10-spatial-analysis/RF-147-snap-to-features.md|RF-147: Snap to Features]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/10-spatial-analysis/RF-148-ordenação-de-camadas.md|RF-148: Ordenação de Camadas]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/10-spatial-analysis/RF-149-visibilidade-de-camadas.md|RF-149: Visibilidade de Camadas]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/10-spatial-analysis/RF-150-zoom-para-camada.md|RF-150: Zoom para Camada]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/10-spatial-analysis/RF-151-popup-de-feature.md|RF-151: Popup de Feature]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/10-spatial-analysis/RF-152-seleção-múltipla-de-features.md|RF-152: Seleção Múltipla de Features]]
+| Documento | Status |
+|-----------|--------|
+| [RF-142: Busca Espacial de Features](./RF-142-busca-espacial-de-features.md) | ○ |
+| [RF-143: Análise Espacial: Buffer](./RF-143-análise-espacial-buffer.md) | ○ |
+| [RF-144: Análise Espacial: Intersect](./RF-144-análise-espacial-intersect.md) | ○ |
+| [RF-145: Medição de Distância](./RF-145-medição-de-distância.md) | ○ |
+| [RF-146: Medição de Área](./RF-146-medição-de-área.md) | ○ |
+| [RF-147: Snap to Features](./RF-147-snap-to-features.md) | ○ |
+| [RF-148: Ordenação de Camadas](./RF-148-ordenação-de-camadas.md) | ○ |
+| [RF-149: Visibilidade de Camadas](./RF-149-visibilidade-de-camadas.md) | ○ |
+| [RF-150: Zoom para Camada](./RF-150-zoom-para-camada.md) | ○ |
+| [RF-151: Popup de Feature](./RF-151-popup-de-feature.md) | ○ |
+| [RF-152: Seleção Múltipla de Features](./RF-152-seleção-múltipla-de-features.md) | ○ |
 
 <!-- CARF-INDEX-END -->

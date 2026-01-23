@@ -25,15 +25,18 @@ updated: 2026-01-15
 
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (6)
 
-- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-006-gerar-relatorio-comunidade/UC-006-FA-001-geracao-rapida.md|UC-006-FA-001: Geração Rápida (Poucos Dados)]]
-- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-006-gerar-relatorio-comunidade/UC-006-FA-002-agendar-recorrente.md|UC-006-FA-002: Agendar Geração Recorrente]]
-- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-006-gerar-relatorio-comunidade/UC-006-FE-001-timeout-geracao.md|UC-006-FE-001: Timeout de Geração]]
-- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-006-gerar-relatorio-comunidade/UC-006-FE-002-dados-insuficientes.md|UC-006-FE-002: Dados Insuficientes]]
-- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-006-gerar-relatorio-comunidade/UC-006-FE-003-erro-pdf.md|UC-006-FE-003: Erro ao Gerar PDF]]
-- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-006-gerar-relatorio-comunidade/UC-006-gerar-relatorio-comunidade.md|UC-006: Gerar Relatório de Comunidade]]
+| Documento | Status |
+|-----------|--------|
+| [UC-006-FA-001: Geração Rápida (Poucos Dados)](./UC-006-FA-001-geracao-rapida.md) | ○ |
+| [UC-006-FA-002: Agendar Geração Recorrente](./UC-006-FA-002-agendar-recorrente.md) | ○ |
+| [UC-006-FE-001: Timeout de Geração](./UC-006-FE-001-timeout-geracao.md) | ○ |
+| [UC-006-FE-002: Dados Insuficientes](./UC-006-FE-002-dados-insuficientes.md) | ○ |
+| [UC-006-FE-003: Erro ao Gerar PDF](./UC-006-FE-003-erro-pdf.md) | ○ |
+| [UC-006: Gerar Relatório de Comunidade](./UC-006-gerar-relatorio-comunidade.md) | ○ |
 
 <!-- CARF-INDEX-END -->

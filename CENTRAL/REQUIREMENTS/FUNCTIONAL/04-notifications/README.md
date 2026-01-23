@@ -19,10 +19,13 @@ updated: 2026-01-15
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (1)
 
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/04-notifications/RF-033-notificações-in-app.md|RF-033: Notificações In-App]]
+| Documento | Status |
+|-----------|--------|
+| [RF-033: Notificações In-App](./RF-033-notificações-in-app.md) | ○ |
 
 <!-- CARF-INDEX-END -->

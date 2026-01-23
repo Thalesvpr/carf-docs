@@ -31,11 +31,14 @@ Os diagramas são criados usando PlantUML e Mermaid, versionados no Git e sincro
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (2)
 
-- ○ [[CENTRAL/DOMAIN/DIAGRAMS/01-aggregates.md|Aggregates Diagram]]
-- ○ [[CENTRAL/DOMAIN/DIAGRAMS/02-er-diagram.md|ER Diagram]]
+| Documento | Status |
+|-----------|--------|
+| [Aggregates Diagram](./01-aggregates.md) | ○ |
+| [ER Diagram](./02-er-diagram.md) | ○ |
 
 <!-- CARF-INDEX-END -->

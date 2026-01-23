@@ -23,10 +23,13 @@ Relacionamentos entre aggregates diferentes usam apenas IDs, nunca referências 
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (1)
 
-- ○ [[CENTRAL/DOMAIN-MODEL/RELATIONSHIPS/01-entity-relationships.md|Entity Relationships]]
+| Documento | Status |
+|-----------|--------|
+| [Entity Relationships](./01-entity-relationships.md) | ○ |
 
 <!-- CARF-INDEX-END -->

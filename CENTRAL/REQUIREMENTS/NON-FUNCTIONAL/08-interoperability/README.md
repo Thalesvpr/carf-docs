@@ -22,12 +22,15 @@ updated: 2026-01-15
 
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (3)
 
-- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/08-interoperability/RNF-085-api-rest-padrao.md|RNF-085: API REST Padrão]]
-- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/08-interoperability/RNF-086-openapi-spec.md|RNF-086: OpenAPI Spec]]
-- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/08-interoperability/RNF-088-oauth2-providers.md|RNF-088: OAuth2 Providers]]
+| Documento | Status |
+|-----------|--------|
+| [RNF-085: API REST Padrão](./RNF-085-api-rest-padrao.md) | ○ |
+| [RNF-086: OpenAPI Spec](./RNF-086-openapi-spec.md) | ○ |
+| [RNF-088: OAuth2 Providers](./RNF-088-oauth2-providers.md) | ○ |
 
 <!-- CARF-INDEX-END -->

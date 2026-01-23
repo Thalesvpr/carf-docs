@@ -15,13 +15,18 @@ O workflow de [sincronizacao offline](./03-offline-sync-workflow.md) detalha a r
 O workflow de [topografia](./05-topography-workflow.md) documenta levantamento topografico com receptor GNSS para georreferenciamento preciso de vertices. E o workflow de [legitimacao](./06-legitimation-workflow.md) descreve o processo completo de legitimacao fundiaria conforme Lei 13.465/2017, desde solicitacao ate emissao de certificado.
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-- [[CENTRAL/REQUIREMENTS/USE-CASES/PROCESS-WORKFLOWS/01-wms-integration-workflow|WMS Integration Workflow]]
-- [[CENTRAL/REQUIREMENTS/USE-CASES/PROCESS-WORKFLOWS/02-field-data-collection-workflow|Field Data Collection Workflow]]
-- [[CENTRAL/REQUIREMENTS/USE-CASES/PROCESS-WORKFLOWS/03-offline-sync-workflow|Offline Sync Workflow]]
-- [[CENTRAL/REQUIREMENTS/USE-CASES/PROCESS-WORKFLOWS/04-analyst-validation-workflow|Analyst Validation Workflow]]
-- [[CENTRAL/REQUIREMENTS/USE-CASES/PROCESS-WORKFLOWS/05-topography-workflow|Topography Workflow]]
-- [[CENTRAL/REQUIREMENTS/USE-CASES/PROCESS-WORKFLOWS/06-legitimation-workflow|Legitimation Workflow]]
+## Documentos (6)
+
+| Documento | Status |
+|-----------|--------|
+| [WMS Integration Workflow](./01-wms-integration-workflow.md) | ○ |
+| [Field Data Collection Workflow](./02-field-data-collection-workflow.md) | ○ |
+| [Offline Sync Workflow (Sincronização Offline Bidirecional)](./03-offline-sync-workflow.md) | ○ |
+| [Analyst Validation Workflow](./04-analyst-validation-workflow.md) | ○ |
+| [Topography Workflow](./05-topography-workflow.md) | ○ |
+| [Legitimation Workflow](./06-legitimation-workflow.md) | ○ |
 
 <!-- CARF-INDEX-END -->

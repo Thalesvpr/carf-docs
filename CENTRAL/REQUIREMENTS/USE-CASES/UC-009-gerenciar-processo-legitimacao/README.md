@@ -25,15 +25,18 @@ updated: 2026-01-15
 
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (6)
 
-- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-009-gerenciar-processo-legitimacao/UC-009-FA-001-processo-coletivo.md|UC-009-FA-001: Processo Coletivo (Múltiplas Unidades)]]
-- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-009-gerenciar-processo-legitimacao/UC-009-FA-002-assinatura-digital.md|UC-009-FA-002: Assinatura Digital do Termo]]
-- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-009-gerenciar-processo-legitimacao/UC-009-FE-001-sem-titular-principal.md|UC-009-FE-001: Unidade sem Titular Principal]]
-- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-009-gerenciar-processo-legitimacao/UC-009-FE-002-documentacao-incompleta.md|UC-009-FE-002: Documentação Incompleta]]
-- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-009-gerenciar-processo-legitimacao/UC-009-FE-003-processo-indeferido.md|UC-009-FE-003: Processo Indeferido]]
-- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-009-gerenciar-processo-legitimacao/UC-009-gerenciar-processo-legitimacao.md|UC-009: Gerenciar Processo de Legitimação Fundiária]]
+| Documento | Status |
+|-----------|--------|
+| [UC-009-FA-001: Processo Coletivo (Múltiplas Unidades)](./UC-009-FA-001-processo-coletivo.md) | ○ |
+| [UC-009-FA-002: Assinatura Digital do Termo](./UC-009-FA-002-assinatura-digital.md) | ○ |
+| [UC-009-FE-001: Unidade sem Titular Principal](./UC-009-FE-001-sem-titular-principal.md) | ○ |
+| [UC-009-FE-002: Documentação Incompleta](./UC-009-FE-002-documentacao-incompleta.md) | ○ |
+| [UC-009-FE-003: Processo Indeferido](./UC-009-FE-003-processo-indeferido.md) | ○ |
+| [UC-009: Gerenciar Processo de Legitimação Fundiária](./UC-009-gerenciar-processo-legitimacao.md) | ○ |
 
 <!-- CARF-INDEX-END -->

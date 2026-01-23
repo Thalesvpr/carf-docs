@@ -25,15 +25,18 @@ updated: 2026-01-15
 
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (6)
 
-- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/07-maintainability/RNF-056-cobertura-de-testes.md|RNF-056: Cobertura de Testes]]
-- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/07-maintainability/RNF-059-versionamento-semantico.md|RNF-059: Versionamento Semântico]]
-- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/07-maintainability/RNF-060-ambiente-de-desenvolvimento-replicavel.md|RNF-060: Ambiente de Desenvolvimento Replicável]]
-- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/07-maintainability/RNF-063-tratamento-de-excecoes.md|RNF-063: Tratamento de Exceções]]
-- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/07-maintainability/RNF-064-refatoracao-continua.md|RNF-064: Refatoração Contínua]]
-- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/07-maintainability/RNF-082-formatos-exportacao.md|RNF-082: Formatos de Exportação]]
+| Documento | Status |
+|-----------|--------|
+| [RNF-056: Cobertura de Testes](./RNF-056-cobertura-de-testes.md) | ○ |
+| [RNF-059: Versionamento Semântico](./RNF-059-versionamento-semantico.md) | ○ |
+| [RNF-060: Ambiente de Desenvolvimento Replicável](./RNF-060-ambiente-de-desenvolvimento-replicavel.md) | ○ |
+| [RNF-063: Tratamento de Exceções](./RNF-063-tratamento-de-excecoes.md) | ○ |
+| [RNF-064: Refatoração Contínua](./RNF-064-refatoracao-continua.md) | ○ |
+| [RNF-082: Formatos de Exportação](./RNF-082-formatos-exportacao.md) | ○ |
 
 <!-- CARF-INDEX-END -->

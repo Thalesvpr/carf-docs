@@ -27,14 +27,17 @@ Maquinas de estado puras definindo:
 - Efeitos colaterais (notificacoes, logs)
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (5)
 
-- ○ [[CENTRAL/DOMAIN-RULES/WORKFLOWS/01-unit-status-transitions.md|Unit Status Transitions]]
-- ○ [[CENTRAL/DOMAIN-RULES/WORKFLOWS/02-legitimation-status-transitions.md|Legitimation Status Transitions]]
-- ○ [[CENTRAL/DOMAIN-RULES/WORKFLOWS/03-role-permissions.md|Role Permissions Matrix]]
-- ○ [[CENTRAL/DOMAIN-RULES/WORKFLOWS/04-sla-rules.md|SLA Rules]]
-- ○ [[CENTRAL/DOMAIN-RULES/WORKFLOWS/05-notification-triggers.md|Notification Triggers (Gatilhos de Notificação)]]
+| Documento | Status |
+|-----------|--------|
+| [Unit Status Transitions](./01-unit-status-transitions.md) | ○ |
+| [Legitimation Status Transitions](./02-legitimation-status-transitions.md) | ○ |
+| [Role Permissions Matrix](./03-role-permissions.md) | ○ |
+| [SLA Rules](./04-sla-rules.md) | ○ |
+| [Notification Triggers (Gatilhos de Notificação)](./05-notification-triggers.md) | ○ |
 
 <!-- CARF-INDEX-END -->

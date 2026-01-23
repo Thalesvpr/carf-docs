@@ -39,7 +39,35 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CENTRAL/DESIGN-SYSTEM/README.md",
+                "file": "CENTRAL/DOMAIN-RULES/README.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "README"
+            }
+          },
+          {
+            "id": "c6d9e0d5c687b66a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "PROJECTS/KEYCLOAK/DOCS/INTEGRATION/README.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "README"
+            }
+          },
+          {
+            "id": "f82fcb4e71fbecb2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CENTRAL/ARCHITECTURE/DIAGRAMS/README.md",
                 "mode": "source",
                 "source": false
               },
@@ -48,7 +76,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -221,44 +249,43 @@
       "obsidian-docs-toolkit:Open Curation Panel": false
     }
   },
-  "active": "70f89e10a8cd4841",
+  "active": "aad1928f2fff3657",
   "lastOpenFiles": [
-    "CENTRAL/DOMAIN/README.md",
-    "CENTRAL/DESIGN-SYSTEM/README.md",
-    "CENTRAL/README.md",
-    "PROJECTS/WEBDOCS/README.md",
-    "STANDARDS/README.md",
-    "CENTRAL/ARCHITECTURE/README.md",
-    "README.md",
-    "PROJECTS/README.md",
-    "STANDARDS/STD-005-content-guidelines.md",
-    "STANDARDS/STD-004-document-types.md",
-    "STANDARDS/STD-003-naming-conventions.md",
-    "STANDARDS/STD-002-readme-structure.md",
-    "STANDARDS/STD-001-file-status-convention.md",
-    "CENTRAL/REQUIREMENTS/USE-CASES/PROCESS-WORKFLOWS/README.md",
-    "CENTRAL/REQUIREMENTS/USE-CASES/PROCESS-WORKFLOWS/06-legitimation-workflow.md",
-    "CENTRAL/REQUIREMENTS/USE-CASES/PROCESS-WORKFLOWS/05-topography-workflow.md",
-    "CENTRAL/REQUIREMENTS/USE-CASES/PROCESS-WORKFLOWS/04-analyst-validation-workflow.md",
-    "CENTRAL/REQUIREMENTS/USE-CASES/PROCESS-WORKFLOWS/03-offline-sync-workflow.md",
-    "CENTRAL/REQUIREMENTS/USE-CASES/PROCESS-WORKFLOWS/02-field-data-collection-workflow.md",
-    "CENTRAL/REQUIREMENTS/USE-CASES/PROCESS-WORKFLOWS/01-wms-integration-workflow.md",
+    "CENTRAL/ARCHITECTURE/INTEGRATION/05-data-layer.md",
+    "CENTRAL/ARCHITECTURE/INTEGRATION/04-shared-libraries.md",
+    "CENTRAL/ARCHITECTURE/INTEGRATION/03-offline-sync.md",
+    "CENTRAL/ARCHITECTURE/INTEGRATION/02-api-communication.md",
+    "CENTRAL/ARCHITECTURE/INTEGRATION/01-authentication.md",
+    "CENTRAL/ARCHITECTURE/DIAGRAMS/README.md",
+    "CENTRAL/ARCHITECTURE/DIAGRAMS/deployment.mmd",
+    "CENTRAL/ARCHITECTURE/DIAGRAMS/data-flow.mmd",
+    "CENTRAL/ARCHITECTURE/DIAGRAMS/ecosystem.mmd",
+    "CENTRAL/ARCHITECTURE/DECISIONS/08-architecture-style.md",
+    "CENTRAL/ARCHITECTURE/DECISIONS/07-mobile-stack.md",
+    "CENTRAL/ARCHITECTURE/DECISIONS/06-database.md",
+    "CENTRAL/ARCHITECTURE/DECISIONS/05-frontend-stack.md",
+    "CENTRAL/ARCHITECTURE/DECISIONS/04-backend-stack.md",
+    "CENTRAL/ARCHITECTURE/DECISIONS/03-authentication.md",
+    "CENTRAL/ARCHITECTURE/DECISIONS/02-offline-first.md",
+    "CENTRAL/ARCHITECTURE/DECISIONS/01-multi-tenancy.md",
+    "CENTRAL/DOMAIN/DIAGRAMS/02-er-diagram.md",
+    "CENTRAL/ARCHITECTURE/SYSTEM/07-keycloak.md",
+    "CENTRAL/ARCHITECTURE/SYSTEM/06-webdocs.md",
+    "CENTRAL/ARCHITECTURE/SYSTEM/05-geogis.md",
+    "CENTRAL/ARCHITECTURE/SYSTEM/04-admin.md",
+    "CENTRAL/ARCHITECTURE/SYSTEM/03-reurbcad.md",
+    "CENTRAL/ARCHITECTURE/SYSTEM/02-geoweb.md",
+    "CENTRAL/ARCHITECTURE/SYSTEM/01-geoapi.md",
+    "CENTRAL/ARCHITECTURE/DIAGRAMS",
+    "CENTRAL/ARCHITECTURE/DECISIONS/README.md",
+    "CENTRAL/ARCHITECTURE/DECISIONS",
+    "CENTRAL/ARCHITECTURE/INTEGRATION/README.md",
+    "CENTRAL/ARCHITECTURE/INTEGRATION",
+    "PROJECTS/KEYCLOAK/DOCS/INTEGRATION/README.md",
+    "CENTRAL/ARCHITECTURE/SYSTEM",
     "CENTRAL/REQUIREMENTS/USE-CASES/PROCESS-WORKFLOWS",
-    "PROJECTS/GEOWEB/DOCS/FEATURES/05-shapefile-import.md",
-    "PROJECTS/GEOWEB/DOCS/FEATURES/07-reporting.md",
-    "PROJECTS/GEOWEB/DOCS/FEATURES/README.md",
-    "PROJECTS/GEOWEB/DOCS/HOW-TO/01-setup-keycloak.md",
-    "PROJECTS/GEOWEB/DOCS/HOW-TO/02-login-logout.md",
-    "PROJECTS/GEOWEB/DOCS/HOW-TO/03-refresh-tokens.md",
     "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/08-interoperability",
     "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/07-maintainability",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/02-security",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/06-compatibility",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/05-scalability",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/04-usability",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/03-reliability",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/01-performance",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL",
     "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/public/img/logo.svg"
   ]
 }

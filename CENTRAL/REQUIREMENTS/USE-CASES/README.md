@@ -35,19 +35,24 @@ Os [PROCESS-WORKFLOWS](./PROCESS-WORKFLOWS/README.md) documentam fluxos de traba
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Subpastas
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-- [[CENTRAL/REQUIREMENTS/USE-CASES/PROCESS-WORKFLOWS/README|PROCESS-WORKFLOWS]]
-- [[CENTRAL/REQUIREMENTS/USE-CASES/UC-001-cadastrar-unidade-habitacional/README|UC-001-cadastrar-unidade-habitacional]]
-- [[CENTRAL/REQUIREMENTS/USE-CASES/UC-002-aprovar-unidade-habitacional/README|UC-002-aprovar-unidade-habitacional]]
-- [[CENTRAL/REQUIREMENTS/USE-CASES/UC-003-vincular-titular-unidade/README|UC-003-vincular-titular-unidade]]
-- [[CENTRAL/REQUIREMENTS/USE-CASES/UC-004-coletar-dados-campo-mobile/README|UC-004-coletar-dados-campo-mobile]]
-- [[CENTRAL/REQUIREMENTS/USE-CASES/UC-005-sincronizar-dados-offline/README|UC-005-sincronizar-dados-offline]]
-- [[CENTRAL/REQUIREMENTS/USE-CASES/UC-006-gerar-relatorio-comunidade/README|UC-006-gerar-relatorio-comunidade]]
-- [[CENTRAL/REQUIREMENTS/USE-CASES/UC-007-exportar-dados-geograficos/README|UC-007-exportar-dados-geograficos]]
-- [[CENTRAL/REQUIREMENTS/USE-CASES/UC-008-importar-shapefile/README|UC-008-importar-shapefile]]
-- [[CENTRAL/REQUIREMENTS/USE-CASES/UC-009-gerenciar-processo-legitimacao/README|UC-009-gerenciar-processo-legitimacao]]
-- [[CENTRAL/REQUIREMENTS/USE-CASES/UC-010-configurar-camadas-wms/README|UC-010-configurar-camadas-wms]]
-- [[CENTRAL/REQUIREMENTS/USE-CASES/UC-011-gerenciar-equipes-tecnicas/README|UC-011-gerenciar-equipes-tecnicas]]
+## Subpastas (12)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [PROCESS-WORKFLOWS](./PROCESS-WORKFLOWS/README.md) | ... |
+| [UC-001-cadastrar-unidade-habitacional](./UC-001-cadastrar-unidade-habitacional/README.md) | ... |
+| [UC-002-aprovar-unidade-habitacional](./UC-002-aprovar-unidade-habitacional/README.md) | ... |
+| [UC-003-vincular-titular-unidade](./UC-003-vincular-titular-unidade/README.md) | ... |
+| [UC-004-coletar-dados-campo-mobile](./UC-004-coletar-dados-campo-mobile/README.md) | ... |
+| [UC-005-sincronizar-dados-offline](./UC-005-sincronizar-dados-offline/README.md) | ... |
+| [UC-006-gerar-relatorio-comunidade](./UC-006-gerar-relatorio-comunidade/README.md) | ... |
+| [UC-007-exportar-dados-geograficos](./UC-007-exportar-dados-geograficos/README.md) | ... |
+| [UC-008-importar-shapefile](./UC-008-importar-shapefile/README.md) | ... |
+| [UC-009-gerenciar-processo-legitimacao](./UC-009-gerenciar-processo-legitimacao/README.md) | ... |
+| [UC-010-configurar-camadas-wms](./UC-010-configurar-camadas-wms/README.md) | ... |
+| [UC-011-gerenciar-equipes-tecnicas](./UC-011-gerenciar-equipes-tecnicas/README.md) | ... |
 
 <!-- CARF-INDEX-END -->

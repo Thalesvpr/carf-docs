@@ -27,10 +27,15 @@ O QUE o sistema faz. Funcionalidades e casos de uso organizados por dominio.
 Requisitos funcionais definem capacidades. Casos de uso documentam jornadas completas referenciando RFs. Requisitos nao-funcionais estabelecem metricas de qualidade transversais.
 
 <!-- CARF-INDEX-START -->
-## Subpastas
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-- [[CENTRAL/REQUIREMENTS/FUNCTIONAL/README|FUNCTIONAL]]
-- [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/README|NON-FUNCTIONAL]]
-- [[CENTRAL/REQUIREMENTS/USE-CASES/README|USE-CASES]]
+## Subpastas (3)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [FUNCTIONAL](./FUNCTIONAL/README.md) | ... |
+| [NON-FUNCTIONAL](./NON-FUNCTIONAL/README.md) | ... |
+| [USE-CASES](./USE-CASES/README.md) | ... |
 
 <!-- CARF-INDEX-END -->

@@ -31,15 +31,20 @@ As categorias incluem performance com tempo de resposta e throughput, segurança
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Subpastas
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-- [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/01-performance/README|01-performance]]
-- [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/02-security/README|02-security]]
-- [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/03-reliability/README|03-reliability]]
-- [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/04-usability/README|04-usability]]
-- [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/05-scalability/README|05-scalability]]
-- [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/06-compatibility/README|06-compatibility]]
-- [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/07-maintainability/README|07-maintainability]]
-- [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/08-interoperability/README|08-interoperability]]
+## Subpastas (8)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [01-performance](./01-performance/README.md) | ... |
+| [02-security](./02-security/README.md) | ... |
+| [03-reliability](./03-reliability/README.md) | ... |
+| [04-usability](./04-usability/README.md) | ... |
+| [05-scalability](./05-scalability/README.md) | ... |
+| [06-compatibility](./06-compatibility/README.md) | ... |
+| [07-maintainability](./07-maintainability/README.md) | ... |
+| [08-interoperability](./08-interoperability/README.md) | ... |
 
 <!-- CARF-INDEX-END -->

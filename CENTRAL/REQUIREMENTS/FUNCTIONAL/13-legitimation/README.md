@@ -28,19 +28,22 @@ updated: 2026-01-15
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (10)
 
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/13-legitimation/RF-172-criar-processo-de-legitimação.md|RF-172: Criar Processo de Legitimação]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/13-legitimation/RF-173-editar-processo.md|RF-173: Editar Processo]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/13-legitimation/RF-174-listar-processos.md|RF-174: Listar Processos]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/13-legitimation/RF-175-status-de-processo.md|RF-175: Status de Processo]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/13-legitimation/RF-176-anexar-documentos-ao-processo.md|RF-176: Anexar Documentos ao Processo]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/13-legitimation/RF-177-gerar-termo-de-legitimação.md|RF-177: Gerar Termo de Legitimação]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/13-legitimation/RF-178-assinatura-digital-de-termo.md|RF-178: Assinatura Digital de Termo]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/13-legitimation/RF-179-timeline-de-processo.md|RF-179: Timeline de Processo]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/13-legitimation/RF-180-notificação-de-mudança-de-status.md|RF-180: Notificação de Mudança de Status]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/13-legitimation/RF-181-relatório-de-processos.md|RF-181: Relatório de Processos]]
+| Documento | Status |
+|-----------|--------|
+| [RF-172: Criar Processo de Legitimação](./RF-172-criar-processo-de-legitimação.md) | ○ |
+| [RF-173: Editar Processo](./RF-173-editar-processo.md) | ○ |
+| [RF-174: Listar Processos](./RF-174-listar-processos.md) | ○ |
+| [RF-175: Status de Processo](./RF-175-status-de-processo.md) | ○ |
+| [RF-176: Anexar Documentos ao Processo](./RF-176-anexar-documentos-ao-processo.md) | ○ |
+| [RF-177: Gerar Termo de Legitimação](./RF-177-gerar-termo-de-legitimação.md) | ○ |
+| [RF-178: Assinatura Digital de Termo](./RF-178-assinatura-digital-de-termo.md) | ○ |
+| [RF-179: Timeline de Processo](./RF-179-timeline-de-processo.md) | ○ |
+| [RF-180: Notificação de Mudança de Status](./RF-180-notificação-de-mudança-de-status.md) | ○ |
+| [RF-181: Relatório de Processos](./RF-181-relatório-de-processos.md) | ○ |
 
 <!-- CARF-INDEX-END -->

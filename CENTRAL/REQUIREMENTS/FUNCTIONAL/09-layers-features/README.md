@@ -33,24 +33,27 @@ updated: 2026-01-15
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (15)
 
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/09-layers-features/RF-127-criar-camada-layer.md|RF-127: Criar Camada (Layer)]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/09-layers-features/RF-128-editar-camada.md|RF-128: Editar Camada]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/09-layers-features/RF-129-excluir-camada.md|RF-129: Excluir Camada]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/09-layers-features/RF-130-listar-camadas.md|RF-130: Listar Camadas]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/09-layers-features/RF-131-tipos-de-geometria.md|RF-131: Tipos de Geometria]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/09-layers-features/RF-132-criar-feature.md|RF-132: Criar Feature]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/09-layers-features/RF-133-editar-feature.md|RF-133: Editar Feature]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/09-layers-features/RF-134-excluir-feature.md|RF-134: Excluir Feature]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/09-layers-features/RF-135-listar-features.md|RF-135: Listar Features]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/09-layers-features/RF-136-atributos-customizados-de-features.md|RF-136: Atributos Customizados de Features]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/09-layers-features/RF-137-estilos-de-camadas.md|RF-137: Estilos de Camadas]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/09-layers-features/RF-138-simbologia-por-atributo.md|RF-138: Simbologia por Atributo]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/09-layers-features/RF-139-importar-shapefile-em-camada.md|RF-139: Importar Shapefile em Camada]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/09-layers-features/RF-140-importar-geojson-em-camada.md|RF-140: Importar GeoJSON em Camada]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/09-layers-features/RF-141-exportar-camada.md|RF-141: Exportar Camada]]
+| Documento | Status |
+|-----------|--------|
+| [RF-127: Criar Camada (Layer)](./RF-127-criar-camada-layer.md) | ○ |
+| [RF-128: Editar Camada](./RF-128-editar-camada.md) | ○ |
+| [RF-129: Excluir Camada](./RF-129-excluir-camada.md) | ○ |
+| [RF-130: Listar Camadas](./RF-130-listar-camadas.md) | ○ |
+| [RF-131: Tipos de Geometria](./RF-131-tipos-de-geometria.md) | ○ |
+| [RF-132: Criar Feature](./RF-132-criar-feature.md) | ○ |
+| [RF-133: Editar Feature](./RF-133-editar-feature.md) | ○ |
+| [RF-134: Excluir Feature](./RF-134-excluir-feature.md) | ○ |
+| [RF-135: Listar Features](./RF-135-listar-features.md) | ○ |
+| [RF-136: Atributos Customizados de Features](./RF-136-atributos-customizados-de-features.md) | ○ |
+| [RF-137: Estilos de Camadas](./RF-137-estilos-de-camadas.md) | ○ |
+| [RF-138: Simbologia por Atributo](./RF-138-simbologia-por-atributo.md) | ○ |
+| [RF-139: Importar Shapefile em Camada](./RF-139-importar-shapefile-em-camada.md) | ○ |
+| [RF-140: Importar GeoJSON em Camada](./RF-140-importar-geojson-em-camada.md) | ○ |
+| [RF-141: Exportar Camada](./RF-141-exportar-camada.md) | ○ |
 
 <!-- CARF-INDEX-END -->

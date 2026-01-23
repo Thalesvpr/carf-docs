@@ -96,34 +96,37 @@ Value objects são conceitos sem identidade própria, definidos exclusivamente p
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (25)
 
-- ○ [[CENTRAL/DOMAIN/VALUE-OBJECTS/01-cpf.md|CPF (Cadastro de Pessoa Física)]]
-- ○ [[CENTRAL/DOMAIN/VALUE-OBJECTS/02-geo-polygon.md|GeoPolygon (Polígono Geográfico)]]
-- ○ [[CENTRAL/DOMAIN/VALUE-OBJECTS/03-unit-status.md|UnitStatus (Status da Unidade)]]
-- ○ [[CENTRAL/DOMAIN/VALUE-OBJECTS/04-custom-data-schema.md|CustomData Schema (Unit.CustomData e Tenant.Settings)]]
-- ○ [[CENTRAL/DOMAIN/VALUE-OBJECTS/05-permissions-matrix.md|Permissions Matrix (Matriz de Permissões Granulares)]]
-- ○ [[CENTRAL/DOMAIN/VALUE-OBJECTS/06-spatial-overlap-matrix.md|Spatial Overlap Detection (Detecção de Sobreposição Espacial)]]
-- ○ [[CENTRAL/DOMAIN/VALUE-OBJECTS/07-geo-point.md|GeoPoint (Ponto Geográfico)]]
-- ○ [[CENTRAL/DOMAIN/VALUE-OBJECTS/08-email.md|Email (Endereço de Email Validado)]]
-- ○ [[CENTRAL/DOMAIN/VALUE-OBJECTS/09-phone-number.md|PhoneNumber (Número de Telefone Brasileiro)]]
-- ○ [[CENTRAL/DOMAIN/VALUE-OBJECTS/10-address.md|Address (Endereço Brasileiro Estruturado)]]
-- ○ [[CENTRAL/DOMAIN/VALUE-OBJECTS/11-community-type.md|CommunityType (Tipo de Comunidade)]]
-- ○ [[CENTRAL/DOMAIN/VALUE-OBJECTS/12-entity-type.md|EntityType (Tipo de Entidade para Polimorfismo)]]
-- ○ [[CENTRAL/DOMAIN/VALUE-OBJECTS/13-document-type.md|DocumentType (Tipo de Documento)]]
-- ○ [[CENTRAL/DOMAIN/VALUE-OBJECTS/14-annotation-type.md|AnnotationType (Tipo de Anotação)]]
-- ○ [[CENTRAL/DOMAIN/VALUE-OBJECTS/15-priority.md|Priority (Prioridade)]]
-- ○ [[CENTRAL/DOMAIN/VALUE-OBJECTS/16-team-role.md|TeamRole (Papel dentro de Equipe)]]
-- ○ [[CENTRAL/DOMAIN/VALUE-OBJECTS/17-sync-status.md|SyncStatus (Status de Sincronização)]]
-- ○ [[CENTRAL/DOMAIN/VALUE-OBJECTS/18-point-type.md|PointType (Tipo de Marco Topográfico)]]
-- ○ [[CENTRAL/DOMAIN/VALUE-OBJECTS/19-point-status.md|PointStatus (Status do Ponto Topográfico)]]
-- ○ [[CENTRAL/DOMAIN/VALUE-OBJECTS/20-crea.md|Crea (Registro Profissional CREA)]]
-- ○ [[CENTRAL/DOMAIN/VALUE-OBJECTS/21-api-key-value.md|ApiKeyValue (Valor de Chave API)]]
-- ○ [[CENTRAL/DOMAIN/VALUE-OBJECTS/22-legitimation-status.md|LegitimationStatus (Status do Processo de Legitimação)]]
-- ○ [[CENTRAL/DOMAIN/VALUE-OBJECTS/23-decision.md|Decision (Decisão de Análise)]]
-- ○ [[CENTRAL/DOMAIN/VALUE-OBJECTS/24-certificate-situation.md|CertificateSituation (Situação do Imóvel para Certidão)]]
-- ○ [[CENTRAL/DOMAIN/VALUE-OBJECTS/25-role.md|Role (Papel de Usuário no Sistema)]]
+| Documento | Status |
+|-----------|--------|
+| [CPF (Cadastro de Pessoa Física)](./01-cpf.md) | ○ |
+| [GeoPolygon (Polígono Geográfico)](./02-geo-polygon.md) | ○ |
+| [UnitStatus (Status da Unidade)](./03-unit-status.md) | ○ |
+| [CustomData Schema (Unit.CustomData e Tenant.Settings)](./04-custom-data-schema.md) | ○ |
+| [Permissions Matrix (Matriz de Permissões Granulares)](./05-permissions-matrix.md) | ○ |
+| [Spatial Overlap Detection (Detecção de Sobreposição Espacial)](./06-spatial-overlap-matrix.md) | ○ |
+| [GeoPoint (Ponto Geográfico)](./07-geo-point.md) | ○ |
+| [Email (Endereço de Email Validado)](./08-email.md) | ○ |
+| [PhoneNumber (Número de Telefone Brasileiro)](./09-phone-number.md) | ○ |
+| [Address (Endereço Brasileiro Estruturado)](./10-address.md) | ○ |
+| [CommunityType (Tipo de Comunidade)](./11-community-type.md) | ○ |
+| [EntityType (Tipo de Entidade para Polimorfismo)](./12-entity-type.md) | ○ |
+| [DocumentType (Tipo de Documento)](./13-document-type.md) | ○ |
+| [AnnotationType (Tipo de Anotação)](./14-annotation-type.md) | ○ |
+| [Priority (Prioridade)](./15-priority.md) | ○ |
+| [TeamRole (Papel dentro de Equipe)](./16-team-role.md) | ○ |
+| [SyncStatus (Status de Sincronização)](./17-sync-status.md) | ○ |
+| [PointType (Tipo de Marco Topográfico)](./18-point-type.md) | ○ |
+| [PointStatus (Status do Ponto Topográfico)](./19-point-status.md) | ○ |
+| [Crea (Registro Profissional CREA)](./20-crea.md) | ○ |
+| [ApiKeyValue (Valor de Chave API)](./21-api-key-value.md) | ○ |
+| [LegitimationStatus (Status do Processo de Legitimação)](./22-legitimation-status.md) | ○ |
+| [Decision (Decisão de Análise)](./23-decision.md) | ○ |
+| [CertificateSituation (Situação do Imóvel para Certidão)](./24-certificate-situation.md) | ○ |
+| [Role (Papel de Usuário no Sistema)](./25-role.md) | ○ |
 
 <!-- CARF-INDEX-END -->

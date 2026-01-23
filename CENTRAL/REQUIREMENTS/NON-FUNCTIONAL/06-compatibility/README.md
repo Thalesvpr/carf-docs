@@ -26,16 +26,19 @@ updated: 2026-01-15
 
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (7)
 
-- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/06-compatibility/RNF-007-exportacao-dados.md|RNF-007: Exportação de Dados]]
-- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/06-compatibility/RNF-008-sincronizacao-offline-pull.md|RNF-008: Sincronização Offline - Pull]]
-- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/06-compatibility/RNF-044-logs-estruturados-centralizados.md|RNF-044: Logs Estruturados]]
-- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/06-compatibility/RNF-058-linting-e-formatacao.md|RNF-058: Linting e Formatação]]
-- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/06-compatibility/RNF-081-formatos-importacao.md|RNF-081: Formatos de Importação]]
-- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/06-compatibility/RNF-083-sistemas-coordenadas.md|RNF-083: Sistemas de Coordenadas]]
-- ○ [[CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/06-compatibility/RNF-084-integracao-wms-wmts.md|RNF-084: Integração WMS/WMTS]]
+| Documento | Status |
+|-----------|--------|
+| [RNF-007: Exportação de Dados](./RNF-007-exportacao-dados.md) | ○ |
+| [RNF-008: Sincronização Offline - Pull](./RNF-008-sincronizacao-offline-pull.md) | ○ |
+| [RNF-044: Logs Estruturados](./RNF-044-logs-estruturados-centralizados.md) | ○ |
+| [RNF-058: Linting e Formatação](./RNF-058-linting-e-formatacao.md) | ○ |
+| [RNF-081: Formatos de Importação](./RNF-081-formatos-importacao.md) | ○ |
+| [RNF-083: Sistemas de Coordenadas](./RNF-083-sistemas-coordenadas.md) | ○ |
+| [RNF-084: Integração WMS/WMTS](./RNF-084-integracao-wms-wmts.md) | ○ |
 
 <!-- CARF-INDEX-END -->

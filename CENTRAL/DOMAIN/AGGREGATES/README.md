@@ -35,12 +35,15 @@ O [LegitimationRequestAggregate](./03-legitimation-request-aggregate.md) tem Leg
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (3)
 
-- ○ [[CENTRAL/DOMAIN/AGGREGATES/01-unit-aggregate.md|Unit Aggregate]]
-- ○ [[CENTRAL/DOMAIN/AGGREGATES/02-community-aggregate.md|Community Aggregate]]
-- ○ [[CENTRAL/DOMAIN/AGGREGATES/03-legitimation-request-aggregate.md|LegitimationRequest Aggregate]]
+| Documento | Status |
+|-----------|--------|
+| [Unit Aggregate](./01-unit-aggregate.md) | ○ |
+| [Community Aggregate](./02-community-aggregate.md) | ○ |
+| [LegitimationRequest Aggregate](./03-legitimation-request-aggregate.md) | ○ |
 
 <!-- CARF-INDEX-END -->

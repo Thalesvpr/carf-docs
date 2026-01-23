@@ -22,13 +22,16 @@ updated: 2026-01-15
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (4)
 
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/02-tenants/RF-017-criar-tenant.md|RF-017: Criar Tenant]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/02-tenants/RF-018-editar-tenant.md|RF-018: Editar Tenant]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/02-tenants/RF-019-desativar-tenant.md|RF-019: Desativar Tenant]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/02-tenants/RF-020-listar-tenants.md|RF-020: Listar Tenants]]
+| Documento | Status |
+|-----------|--------|
+| [RF-017: Criar Tenant](./RF-017-criar-tenant.md) | ○ |
+| [RF-018: Editar Tenant](./RF-018-editar-tenant.md) | ○ |
+| [RF-019: Desativar Tenant](./RF-019-desativar-tenant.md) | ○ |
+| [RF-020: Listar Tenants](./RF-020-listar-tenants.md) | ○ |
 
 <!-- CARF-INDEX-END -->

@@ -30,21 +30,24 @@ updated: 2026-01-15
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (12)
 
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/03-users-teams/RF-021-criar-usuário.md|RF-021: Criar Usuário]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/03-users-teams/RF-022-editar-usuário.md|RF-022: Editar Usuário]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/03-users-teams/RF-023-desativar-usuário.md|RF-023: Desativar Usuário]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/03-users-teams/RF-024-listar-usuários.md|RF-024: Listar Usuários]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/03-users-teams/RF-025-atribuir-role-a-usuário.md|RF-025: Atribuir Role a Usuário]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/03-users-teams/RF-026-criar-equipe-team.md|RF-026: Criar Equipe (Team)]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/03-users-teams/RF-027-editar-equipe.md|RF-027: Editar Equipe]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/03-users-teams/RF-028-listar-equipes.md|RF-028: Listar Equipes]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/03-users-teams/RF-029-vincular-usuário-a-equipe.md|RF-029: Vincular Usuário a Equipe]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/03-users-teams/RF-030-filtrar-comunidades-por-equipe.md|RF-030: Filtrar Comunidades por Equipe]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/03-users-teams/RF-031-perfil-de-usuário.md|RF-031: Perfil de Usuário]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/03-users-teams/RF-032-redefinir-senha.md|RF-032: Redefinir Senha]]
+| Documento | Status |
+|-----------|--------|
+| [RF-021: Criar Usuário](./RF-021-criar-usuário.md) | ○ |
+| [RF-022: Editar Usuário](./RF-022-editar-usuário.md) | ○ |
+| [RF-023: Desativar Usuário](./RF-023-desativar-usuário.md) | ○ |
+| [RF-024: Listar Usuários](./RF-024-listar-usuários.md) | ○ |
+| [RF-025: Atribuir Role a Usuário](./RF-025-atribuir-role-a-usuário.md) | ○ |
+| [RF-026: Criar Equipe (Team)](./RF-026-criar-equipe-team.md) | ○ |
+| [RF-027: Editar Equipe](./RF-027-editar-equipe.md) | ○ |
+| [RF-028: Listar Equipes](./RF-028-listar-equipes.md) | ○ |
+| [RF-029: Vincular Usuário a Equipe](./RF-029-vincular-usuário-a-equipe.md) | ○ |
+| [RF-030: Filtrar Comunidades por Equipe](./RF-030-filtrar-comunidades-por-equipe.md) | ○ |
+| [RF-031: Perfil de Usuário](./RF-031-perfil-de-usuário.md) | ○ |
+| [RF-032: Redefinir Senha](./RF-032-redefinir-senha.md) | ○ |
 
 <!-- CARF-INDEX-END -->

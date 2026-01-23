@@ -30,17 +30,22 @@ As [políticas](./POLICIES/README.md) definem regras de autenticação, autoriza
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Subpastas
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-- [[CENTRAL/SECURITY/INCIDENTS/README|INCIDENTS]]
-- [[CENTRAL/SECURITY/POLICIES/README|POLICIES]]
+## Subpastas (2)
 
-## Documentos
+| Pasta | Descrição |
+|-------|-----------|
+| [INCIDENTS](./INCIDENTS/README.md) | ... |
+| [POLICIES](./POLICIES/README.md) | ... |
 
-### Em Revisão
+## Documentos (3)
 
-- ○ [[CENTRAL/SECURITY/rbac-keycloak.md|RBAC Keycloak]]
-- ○ [[CENTRAL/SECURITY/roles-hierarchy.md|Roles Hierarchy]]
-- ○ [[CENTRAL/SECURITY/security-strategy.md|Security Strategy]]
+| Documento | Status |
+|-----------|--------|
+| [RBAC Keycloak](./rbac-keycloak.md) | ○ |
+| [Roles Hierarchy](./roles-hierarchy.md) | ○ |
+| [Security Strategy](./security-strategy.md) | ○ |
 
 <!-- CARF-INDEX-END -->

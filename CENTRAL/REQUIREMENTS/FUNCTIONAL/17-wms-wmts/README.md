@@ -28,19 +28,22 @@ updated: 2026-01-15
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (10)
 
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/17-wms-wmts/RF-212-adicionar-camada-wms.md|RF-212: Adicionar Camada WMS]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/17-wms-wmts/RF-213-adicionar-camada-wmts.md|RF-213: Adicionar Camada WMTS]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/17-wms-wmts/RF-214-testar-conexão-wmswmts.md|RF-214: Testar Conexão WMS/WMTS]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/17-wms-wmts/RF-215-listar-camadas-wmswmts.md|RF-215: Listar Camadas WMS/WMTS]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/17-wms-wmts/RF-216-editar-camada-wmswmts.md|RF-216: Editar Camada WMS/WMTS]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/17-wms-wmts/RF-217-excluir-camada-wmswmts.md|RF-217: Excluir Camada WMS/WMTS]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/17-wms-wmts/RF-218-ordenação-de-camadas-base.md|RF-218: Ordenação de Camadas Base]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/17-wms-wmts/RF-219-basemaps-padrão.md|RF-219: Basemaps Padrão]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/17-wms-wmts/RF-220-trocar-basemap.md|RF-220: Trocar Basemap]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/17-wms-wmts/RF-221-proxy-de-wmswmts.md|RF-221: Proxy de WMS/WMTS]]
+| Documento | Status |
+|-----------|--------|
+| [RF-212: Adicionar Camada WMS](./RF-212-adicionar-camada-wms.md) | ○ |
+| [RF-213: Adicionar Camada WMTS](./RF-213-adicionar-camada-wmts.md) | ○ |
+| [RF-214: Testar Conexão WMS/WMTS](./RF-214-testar-conexão-wmswmts.md) | ○ |
+| [RF-215: Listar Camadas WMS/WMTS](./RF-215-listar-camadas-wmswmts.md) | ○ |
+| [RF-216: Editar Camada WMS/WMTS](./RF-216-editar-camada-wmswmts.md) | ○ |
+| [RF-217: Excluir Camada WMS/WMTS](./RF-217-excluir-camada-wmswmts.md) | ○ |
+| [RF-218: Ordenação de Camadas Base](./RF-218-ordenação-de-camadas-base.md) | ○ |
+| [RF-219: Basemaps Padrão](./RF-219-basemaps-padrão.md) | ○ |
+| [RF-220: Trocar Basemap](./RF-220-trocar-basemap.md) | ○ |
+| [RF-221: Proxy de WMS/WMTS](./RF-221-proxy-de-wmswmts.md) | ○ |
 
 <!-- CARF-INDEX-END -->

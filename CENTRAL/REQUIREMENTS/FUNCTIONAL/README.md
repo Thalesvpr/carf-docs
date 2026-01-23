@@ -41,24 +41,29 @@ Servem como fonte única de verdade - os projetos referenciam estes requisitos a
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Subpastas
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/01-auth-security/README|01-auth-security]]
-- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/02-tenants/README|02-tenants]]
-- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/03-users-teams/README|03-users-teams]]
-- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/04-notifications/README|04-notifications]]
-- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/05-communities/README|05-communities]]
-- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/README|06-units]]
-- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/07-holders/README|07-holders]]
-- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/08-documents-media/README|08-documents-media]]
-- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/09-layers-features/README|09-layers-features]]
-- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/10-spatial-analysis/README|10-spatial-analysis]]
-- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/11-annotations/README|11-annotations]]
-- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/12-surveys/README|12-surveys]]
-- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/13-legitimation/README|13-legitimation]]
-- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/14-offline-sync/README|14-offline-sync]]
-- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/15-data-export/README|15-data-export]]
-- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/16-reports/README|16-reports]]
-- [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/17-wms-wmts/README|17-wms-wmts]]
+## Subpastas (17)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [01-auth-security](./01-auth-security/README.md) | ... |
+| [02-tenants](./02-tenants/README.md) | ... |
+| [03-users-teams](./03-users-teams/README.md) | ... |
+| [04-notifications](./04-notifications/README.md) | ... |
+| [05-communities](./05-communities/README.md) | ... |
+| [06-units](./06-units/README.md) | ... |
+| [07-holders](./07-holders/README.md) | ... |
+| [08-documents-media](./08-documents-media/README.md) | ... |
+| [09-layers-features](./09-layers-features/README.md) | ... |
+| [10-spatial-analysis](./10-spatial-analysis/README.md) | ... |
+| [11-annotations](./11-annotations/README.md) | ... |
+| [12-surveys](./12-surveys/README.md) | ... |
+| [13-legitimation](./13-legitimation/README.md) | ... |
+| [14-offline-sync](./14-offline-sync/README.md) | ... |
+| [15-data-export](./15-data-export/README.md) | ... |
+| [16-reports](./16-reports/README.md) | ... |
+| [17-wms-wmts](./17-wms-wmts/README.md) | ... |
 
 <!-- CARF-INDEX-END -->

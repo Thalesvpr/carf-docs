@@ -28,15 +28,18 @@ Documentar legislacao aplicavel para:
 - Definir gratuidade e custos
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (6)
 
-- ○ [[CENTRAL/DOMAIN-RULES/LEGAL/01-lei-13465-2017.md|Lei 13.465/2017 (Base Legal Regularização Fundiária)]]
-- ○ [[CENTRAL/DOMAIN-RULES/LEGAL/02-reurb-s-requirements.md|REURB-S Requirements (Requisitos REURB Interesse Social)]]
-- ○ [[CENTRAL/DOMAIN-RULES/LEGAL/03-reurb-e-requirements.md|REURB-E Requirements (Requisitos REURB Interesse Específico)]]
-- ○ [[CENTRAL/DOMAIN-RULES/LEGAL/04-ownership-criteria.md|Ownership Criteria (Critérios de Titularidade)]]
-- ○ [[CENTRAL/DOMAIN-RULES/LEGAL/05-documentation-requirements.md|Documentation Requirements (Requisitos Documentais)]]
-- ○ [[CENTRAL/DOMAIN-RULES/LEGAL/06-contestation-rules.md|Contestation Rules]]
+| Documento | Status |
+|-----------|--------|
+| [Lei 13.465/2017 (Base Legal Regularização Fundiária)](./01-lei-13465-2017.md) | ○ |
+| [REURB-S Requirements (Requisitos REURB Interesse Social)](./02-reurb-s-requirements.md) | ○ |
+| [REURB-E Requirements (Requisitos REURB Interesse Específico)](./03-reurb-e-requirements.md) | ○ |
+| [Ownership Criteria (Critérios de Titularidade)](./04-ownership-criteria.md) | ○ |
+| [Documentation Requirements (Requisitos Documentais)](./05-documentation-requirements.md) | ○ |
+| [Contestation Rules](./06-contestation-rules.md) | ○ |
 
 <!-- CARF-INDEX-END -->

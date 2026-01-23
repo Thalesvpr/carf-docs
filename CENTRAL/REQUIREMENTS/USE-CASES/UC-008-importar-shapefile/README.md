@@ -25,15 +25,18 @@ updated: 2026-01-15
 
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (6)
 
-- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-008-importar-shapefile/UC-008-FA-001-importar-geojson.md|UC-008-FA-001: Importar GeoJSON]]
-- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-008-importar-shapefile/UC-008-FE-001-arquivo-invalido.md|UC-008-FE-001: Arquivo Inválido]]
-- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-008-importar-shapefile/UC-008-FE-002-srid-desconhecido.md|UC-008-FE-002: SRID Desconhecido]]
-- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-008-importar-shapefile/UC-008-FE-003-duplicatas.md|UC-008-FE-003: Duplicatas Detectadas]]
-- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-008-importar-shapefile/UC-008-FE-004-geometrias-invalidas.md|UC-008-FE-004: Geometrias Inválidas]]
-- ○ [[CENTRAL/REQUIREMENTS/USE-CASES/UC-008-importar-shapefile/UC-008-importar-shapefile.md|UC-008: Importar Shapefile]]
+| Documento | Status |
+|-----------|--------|
+| [UC-008-FA-001: Importar GeoJSON](./UC-008-FA-001-importar-geojson.md) | ○ |
+| [UC-008-FE-001: Arquivo Inválido](./UC-008-FE-001-arquivo-invalido.md) | ○ |
+| [UC-008-FE-002: SRID Desconhecido](./UC-008-FE-002-srid-desconhecido.md) | ○ |
+| [UC-008-FE-003: Duplicatas Detectadas](./UC-008-FE-003-duplicatas.md) | ○ |
+| [UC-008-FE-004: Geometrias Inválidas](./UC-008-FE-004-geometrias-invalidas.md) | ○ |
+| [UC-008: Importar Shapefile](./UC-008-importar-shapefile.md) | ○ |
 
 <!-- CARF-INDEX-END -->

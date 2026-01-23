@@ -53,44 +53,47 @@ updated: 2026-01-15
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (35)
 
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-049-criar-unidade.md|RF-049: Criar Unidade]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-050-editar-unidade.md|RF-050: Editar Unidade]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-051-excluir-unidade.md|RF-051: Excluir Unidade]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-052-listar-unidades.md|RF-052: Listar Unidades]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-053-visualizar-unidade-no-mapa.md|RF-053: Visualizar Unidade no Mapa]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-054-campos-obrigatorios-de-unidade.md|RF-054: Campos Obrigatórios de Unidade]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-055-tipos-de-unidade.md|RF-055: Tipos de Unidade]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-056-status-de-unidade.md|RF-056: Status de Unidade]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-057-aprovar-unidade.md|RF-057: Aprovar Unidade]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-058-rejeitar-unidade.md|RF-058: Rejeitar Unidade]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-059-solicitar-alteracoes.md|RF-059: Solicitar Alterações]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-060-timeline-de-unidade.md|RF-060: Timeline de Unidade]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-061-vincular-titular-a-unidade.md|RF-061: Vincular Titular a Unidade]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-062-multiplos-titulares-por-unidade.md|RF-062: Múltiplos Titulares por Unidade]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-063-anexar-fotos-a-unidade.md|RF-063: Anexar Fotos a Unidade]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-064-anexar-documentos-a-unidade.md|RF-064: Anexar Documentos a Unidade]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-065-buscar-unidade-por-localizacao.md|RF-065: Buscar Unidade por Localização]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-066-desenhar-unidade-no-mapa.md|RF-066: Desenhar Unidade no Mapa]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-067-importar-unidades-via-shapefile.md|RF-067: Importar Unidades via Shapefile]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-068-calcular-area-da-unidade.md|RF-068: Calcular Área da Unidade]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-069-validar-sobreposicao-de-unidades.md|RF-069: Validar Sobreposição de Unidades]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-070-criar-quadra.md|RF-070: Criar Quadra]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-071-editar-quadra.md|RF-071: Editar Quadra]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-072-listar-quadras.md|RF-072: Listar Quadras]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-073-visualizar-quadra-no-mapa.md|RF-073: Visualizar Quadra no Mapa]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-074-criar-lote.md|RF-074: Criar Lote]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-075-vincular-unidade-a-lote.md|RF-075: Vincular Unidade a Lote]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-076-numeracao-automatica-de-unidades.md|RF-076: Numeração Automática de Unidades]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-077-campos-personalizados-de-unidade.md|RF-077: Campos Personalizados de Unidade]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-078-clonar-unidade.md|RF-078: Clonar Unidade]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-079-mesclar-unidades.md|RF-079: Mesclar Unidades]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-080-dividir-unidade.md|RF-080: Dividir Unidade]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-081-comentarios-em-unidade.md|RF-081: Comentários em Unidade]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-082-exportar-unidades.md|RF-082: Exportar Unidades]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/06-units/RF-083-imprimir-ficha-de-unidade.md|RF-083: Imprimir Ficha de Unidade]]
+| Documento | Status |
+|-----------|--------|
+| [RF-049: Criar Unidade](./RF-049-criar-unidade.md) | ○ |
+| [RF-050: Editar Unidade](./RF-050-editar-unidade.md) | ○ |
+| [RF-051: Excluir Unidade](./RF-051-excluir-unidade.md) | ○ |
+| [RF-052: Listar Unidades](./RF-052-listar-unidades.md) | ○ |
+| [RF-053: Visualizar Unidade no Mapa](./RF-053-visualizar-unidade-no-mapa.md) | ○ |
+| [RF-054: Campos Obrigatórios de Unidade](./RF-054-campos-obrigatorios-de-unidade.md) | ○ |
+| [RF-055: Tipos de Unidade](./RF-055-tipos-de-unidade.md) | ○ |
+| [RF-056: Status de Unidade](./RF-056-status-de-unidade.md) | ○ |
+| [RF-057: Aprovar Unidade](./RF-057-aprovar-unidade.md) | ○ |
+| [RF-058: Rejeitar Unidade](./RF-058-rejeitar-unidade.md) | ○ |
+| [RF-059: Solicitar Alterações](./RF-059-solicitar-alteracoes.md) | ○ |
+| [RF-060: Timeline de Unidade](./RF-060-timeline-de-unidade.md) | ○ |
+| [RF-061: Vincular Titular a Unidade](./RF-061-vincular-titular-a-unidade.md) | ○ |
+| [RF-062: Múltiplos Titulares por Unidade](./RF-062-multiplos-titulares-por-unidade.md) | ○ |
+| [RF-063: Anexar Fotos a Unidade](./RF-063-anexar-fotos-a-unidade.md) | ○ |
+| [RF-064: Anexar Documentos a Unidade](./RF-064-anexar-documentos-a-unidade.md) | ○ |
+| [RF-065: Buscar Unidade por Localização](./RF-065-buscar-unidade-por-localizacao.md) | ○ |
+| [RF-066: Desenhar Unidade no Mapa](./RF-066-desenhar-unidade-no-mapa.md) | ○ |
+| [RF-067: Importar Unidades via Shapefile](./RF-067-importar-unidades-via-shapefile.md) | ○ |
+| [RF-068: Calcular Área da Unidade](./RF-068-calcular-area-da-unidade.md) | ○ |
+| [RF-069: Validar Sobreposição de Unidades](./RF-069-validar-sobreposicao-de-unidades.md) | ○ |
+| [RF-070: Criar Quadra](./RF-070-criar-quadra.md) | ○ |
+| [RF-071: Editar Quadra](./RF-071-editar-quadra.md) | ○ |
+| [RF-072: Listar Quadras](./RF-072-listar-quadras.md) | ○ |
+| [RF-073: Visualizar Quadra no Mapa](./RF-073-visualizar-quadra-no-mapa.md) | ○ |
+| [RF-074: Criar Lote](./RF-074-criar-lote.md) | ○ |
+| [RF-075: Vincular Unidade a Lote](./RF-075-vincular-unidade-a-lote.md) | ○ |
+| [RF-076: Numeração Automática de Unidades](./RF-076-numeracao-automatica-de-unidades.md) | ○ |
+| [RF-077: Campos Personalizados de Unidade](./RF-077-campos-personalizados-de-unidade.md) | ○ |
+| [RF-078: Clonar Unidade](./RF-078-clonar-unidade.md) | ○ |
+| [RF-079: Mesclar Unidades](./RF-079-mesclar-unidades.md) | ○ |
+| [RF-080: Dividir Unidade](./RF-080-dividir-unidade.md) | ○ |
+| [RF-081: Comentários em Unidade](./RF-081-comentarios-em-unidade.md) | ○ |
+| [RF-082: Exportar Unidades](./RF-082-exportar-unidades.md) | ○ |
+| [RF-083: Imprimir Ficha de Unidade](./RF-083-imprimir-ficha-de-unidade.md) | ○ |
 
 <!-- CARF-INDEX-END -->

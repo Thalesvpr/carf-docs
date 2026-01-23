@@ -27,18 +27,21 @@ updated: 2026-01-15
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (9)
 
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/16-reports/RF-203-relatório-de-unidades-por-status.md|RF-203: Relatório de Unidades por Status]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/16-reports/RF-204-relatório-de-titulares.md|RF-204: Relatório de Titulares]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/16-reports/RF-205-relatório-de-progresso-de-cadastramento.md|RF-205: Relatório de Progresso de Cadastramento]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/16-reports/RF-206-relatório-de-atividades-de-usuários.md|RF-206: Relatório de Atividades de Usuários]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/16-reports/RF-207-geração-assíncrona-de-relatórios.md|RF-207: Geração Assíncrona de Relatórios]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/16-reports/RF-208-template-personalizável-de-relatórios.md|RF-208: Template Personalizável de Relatórios]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/16-reports/RF-209-ficha-técnica-de-unidade-pdf.md|RF-209: Ficha Técnica de Unidade (PDF)]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/16-reports/RF-210-mapa-de-situação-pdf.md|RF-210: Mapa de Situação (PDF)]]
-- ○ [[CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/16-reports/RF-211-agendamento-de-relatórios.md|RF-211: Agendamento de Relatórios]]
+| Documento | Status |
+|-----------|--------|
+| [RF-203: Relatório de Unidades por Status](./RF-203-relatório-de-unidades-por-status.md) | ○ |
+| [RF-204: Relatório de Titulares](./RF-204-relatório-de-titulares.md) | ○ |
+| [RF-205: Relatório de Progresso de Cadastramento](./RF-205-relatório-de-progresso-de-cadastramento.md) | ○ |
+| [RF-206: Relatório de Atividades de Usuários](./RF-206-relatório-de-atividades-de-usuários.md) | ○ |
+| [RF-207: Geração Assíncrona de Relatórios](./RF-207-geração-assíncrona-de-relatórios.md) | ○ |
+| [RF-208: Template Personalizável de Relatórios](./RF-208-template-personalizável-de-relatórios.md) | ○ |
+| [RF-209: Ficha Técnica de Unidade (PDF)](./RF-209-ficha-técnica-de-unidade-pdf.md) | ○ |
+| [RF-210: Mapa de Situação (PDF)](./RF-210-mapa-de-situação-pdf.md) | ○ |
+| [RF-211: Agendamento de Relatórios](./RF-211-agendamento-de-relatórios.md) | ○ |
 
 <!-- CARF-INDEX-END -->
