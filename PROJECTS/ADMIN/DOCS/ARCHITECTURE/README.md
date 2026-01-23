@@ -63,14 +63,17 @@ Ver documentação completa em GEOAPI/DOCS/ARCHITECTURE/02-admin-security.md
 - Keycloak Setup: ../../../KEYCLOAK/DOCS/README.md
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (5)
 
-- ○ [[PROJECTS/ADMIN/DOCS/ARCHITECTURE/01-overview.md|Overview da Arquitetura - ADMIN]]
-- ○ [[PROJECTS/ADMIN/DOCS/ARCHITECTURE/02-layers.md|Layers - ADMIN]]
-- ○ [[PROJECTS/ADMIN/DOCS/ARCHITECTURE/03-data-flow.md|Data Flow - ADMIN]]
-- ○ [[PROJECTS/ADMIN/DOCS/ARCHITECTURE/04-integration.md|Integration - ADMIN]]
-- ○ [[PROJECTS/ADMIN/DOCS/ARCHITECTURE/05-deployment.md|Deployment - ADMIN]]
+| Documento | Status |
+|-----------|--------|
+| [Overview da Arquitetura - ADMIN](./01-overview.md) | ⚠ |
+| [Layers - ADMIN](./02-layers.md) | ⚠ |
+| [Data Flow - ADMIN](./03-data-flow.md) | ⚠ |
+| [Integration - ADMIN](./04-integration.md) | ⚠ |
+| [Deployment - ADMIN](./05-deployment.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

@@ -53,12 +53,15 @@ tsc --noEmit
 ```
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (3)
 
-- ○ [[PROJECTS/LIB/TS/TSCORE/DOCS/SPECS/01-package-json.md|Package.json - @carf/tscore]]
-- ○ [[PROJECTS/LIB/TS/TSCORE/DOCS/SPECS/02-tsconfig.md|TSConfig - @carf/tscore]]
-- ○ [[PROJECTS/LIB/TS/TSCORE/DOCS/SPECS/03-exports-map.md|Exports Map - @carf/tscore]]
+| Documento | Status |
+|-----------|--------|
+| [Package.json - @carf/tscore](./01-package-json.md) | ⚠ |
+| [TSConfig - @carf/tscore](./02-tsconfig.md) | ⚠ |
+| [Exports Map - @carf/tscore](./03-exports-map.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

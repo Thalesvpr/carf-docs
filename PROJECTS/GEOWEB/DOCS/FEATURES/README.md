@@ -28,16 +28,19 @@ Arquitetura SPA client-side routing React Router DOM routes nested layouts prote
 Relacionamento requirements implementando UC-001 cadastro unidades UC-002 aprovação UC-003 vinculação titulares UC-006 relatórios UC-007 exportação UC-008 importação shapefiles UC-009 legitimação UC-010 camadas GIS UC-011 gestão equipes garantindo usuários web ADMIN MANAGER ANALYST produtivos interface intuitiva responsiva acessível workflows eficientes aprovação validação coordenação campo reporting accountability compliance LGPD multi-tenancy RLS.
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (7)
 
-- ○ [[PROJECTS/GEOWEB/DOCS/FEATURES/01-unit-management.md|Unit Management - Gestão de Unidades]]
-- ○ [[PROJECTS/GEOWEB/DOCS/FEATURES/02-holder-management.md|Holder Management - Gestão de Titulares]]
-- ○ [[PROJECTS/GEOWEB/DOCS/FEATURES/03-team-management.md|Team Management - Gestão de Equipes]]
-- ○ [[PROJECTS/GEOWEB/DOCS/FEATURES/04-gis-integration.md|GIS Integration - Integração SIG]]
-- ○ [[PROJECTS/GEOWEB/DOCS/FEATURES/05-shapefile-import.md|Shapefile Import - Importação]]
-- ○ [[PROJECTS/GEOWEB/DOCS/FEATURES/06-legitimation-process.md|Legitimation Process - Processo de Legitimação]]
-- ○ [[PROJECTS/GEOWEB/DOCS/FEATURES/07-reporting.md|Reporting - Relatórios]]
+| Documento | Status |
+|-----------|--------|
+| [Unit Management - Gestão de Unidades](./01-unit-management.md) | ⚠ |
+| [Holder Management - Gestão de Titulares](./02-holder-management.md) | ⚠ |
+| [Team Management - Gestão de Equipes](./03-team-management.md) | ⚠ |
+| [GIS Integration - Integração SIG](./04-gis-integration.md) | ⚠ |
+| [Shapefile Import - Importação](./05-shapefile-import.md) | ⚠ |
+| [Legitimation Process - Processo de Legitimação](./06-legitimation-process.md) | ⚠ |
+| [Reporting - Relatórios](./07-reporting.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

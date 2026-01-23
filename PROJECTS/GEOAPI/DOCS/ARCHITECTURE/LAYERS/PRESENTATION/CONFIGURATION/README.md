@@ -19,10 +19,13 @@ Configuração startup do GEOAPI em Program.cs registrando serviços no DI conta
 - 07-jwt-authentication.md - Bearer token validation setup
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (1)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/PRESENTATION/CONFIGURATION/01-di-registration.md|DI Registration]]
+| Documento | Status |
+|-----------|--------|
+| [DI Registration](./01-di-registration.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

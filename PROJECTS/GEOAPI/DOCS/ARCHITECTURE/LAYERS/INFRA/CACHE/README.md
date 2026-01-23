@@ -27,10 +27,13 @@ Implementação caching distribuído do GEOAPI usando Redis para cache de querie
 - 08-eviction-policies.md - LRU e memory management
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (1)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/INFRA/CACHE/01-redis-cache.md|Redis Cache]]
+| Documento | Status |
+|-----------|--------|
+| [Redis Cache](./01-redis-cache.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

@@ -11,8 +11,13 @@ Console administrativo React para gestão de usuários, tenants e configuraçõe
 - **[DOCS/](./DOCS/README.md)** - Documentação técnica
 
 <!-- CARF-INDEX-START -->
-## Subpastas
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-- [[PROJECTS/ADMIN/DOCS/README|DOCS]]
+## Subpastas (1)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [DOCS](./DOCS/README.md) | ... |
 
 <!-- CARF-INDEX-END -->

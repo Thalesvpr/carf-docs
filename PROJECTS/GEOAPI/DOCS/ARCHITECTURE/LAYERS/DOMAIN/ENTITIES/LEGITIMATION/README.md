@@ -17,14 +17,17 @@ Entities workflow legitimação fundiária do GEOAPI implementando processo lega
 - **[31-legitimation-plan.md](./31-legitimation-plan.md)** - Plano tramitação lote community
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (5)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/LEGITIMATION/14-legitimation-request.md|LegitimationRequest]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/LEGITIMATION/28-legitimation-response.md|LegitimationResponse]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/LEGITIMATION/29-legitimation-certificate.md|LegitimationCertificate]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/LEGITIMATION/30-descriptive-memorial.md|DescriptiveMemorial]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/LEGITIMATION/31-legitimation-plan.md|LegitimationPlan]]
+| Documento | Status |
+|-----------|--------|
+| [LegitimationRequest](./14-legitimation-request.md) | ⚠ |
+| [LegitimationResponse](./28-legitimation-response.md) | ⚠ |
+| [LegitimationCertificate](./29-legitimation-certificate.md) | ⚠ |
+| [DescriptiveMemorial](./30-descriptive-memorial.md) | ⚠ |
+| [LegitimationPlan](./31-legitimation-plan.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

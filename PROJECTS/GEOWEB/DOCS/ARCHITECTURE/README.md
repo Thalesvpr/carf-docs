@@ -19,11 +19,14 @@ Arquitetura do portal web GEOWEB React + Vite.
 Ver também para decisões cross-project:
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (2)
 
-- ○ [[PROJECTS/GEOWEB/DOCS/ARCHITECTURE/01-keycloak-integration.md|01-keycloak-integration]]
-- ○ [[PROJECTS/GEOWEB/DOCS/ARCHITECTURE/02-tscore-integration.md|Integração @carf/tscore no GEOWEB]]
+| Documento | Status |
+|-----------|--------|
+| [01-keycloak-integration](./01-keycloak-integration.md) | ⚠ |
+| [Integração @carf/tscore no GEOWEB](./02-tscore-integration.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

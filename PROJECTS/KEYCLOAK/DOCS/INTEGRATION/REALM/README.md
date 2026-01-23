@@ -25,12 +25,15 @@ A [configuracao](./01-configuration.md) documenta settings gerais do realm inclu
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (3)
 
-- ○ [[PROJECTS/KEYCLOAK/DOCS/INTEGRATION/REALM/01-configuration.md|Configuração do Realm]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/INTEGRATION/REALM/02-protocol-mappers.md|Protocol Mappers]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/INTEGRATION/REALM/03-theme-configuration.md|Configuração de Tema no Realm]]
+| Documento | Status |
+|-----------|--------|
+| [Configuração do Realm](./01-configuration.md) | ⚠ |
+| [Protocol Mappers](./02-protocol-mappers.md) | ⚠ |
+| [Configuração de Tema no Realm](./03-theme-configuration.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

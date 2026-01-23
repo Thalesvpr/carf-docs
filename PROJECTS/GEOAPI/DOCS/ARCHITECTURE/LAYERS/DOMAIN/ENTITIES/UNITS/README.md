@@ -13,10 +13,13 @@ Entity central do GEOAPI representando unidade habitacional ou propriedade, serv
 - **[02-unit.md](./02-unit.md)** - Unidade habitacional aggregate root central sistema
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (1)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/UNITS/02-unit.md|Unit]]
+| Documento | Status |
+|-----------|--------|
+| [Unit](./02-unit.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

@@ -22,8 +22,13 @@ Cliente HTTP type-safe para comunicacao com a API GEOAPI. Fornece metodos tipado
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Subpastas
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-- [[PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/README|DOCS]]
+## Subpastas (1)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [DOCS](./DOCS/README.md) | ... |
 
 <!-- CARF-INDEX-END -->

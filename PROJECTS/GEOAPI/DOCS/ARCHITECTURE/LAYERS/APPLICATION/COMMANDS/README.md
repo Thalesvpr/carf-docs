@@ -42,10 +42,13 @@ Commands CQRS do GEOAPI representando intenções de alterar estado do sistema (
 - 19-delete-document-command.md
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (1)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/APPLICATION/COMMANDS/01-unit-commands.md|Unit Commands]]
+| Documento | Status |
+|-----------|--------|
+| [Unit Commands](./01-unit-commands.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

@@ -15,10 +15,13 @@ Registro de ADRs que fundamentam a biblioteca. A decisao principal (ADR-011) def
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (1)
 
-- ○ [[PROJECTS/LIB/TS/TSCORE/DOCS/ADRs/ADR-001-shared-library-tscore.md|ADR-001: Biblioteca TypeScript Compartilhada @carf/tscore]]
+| Documento | Status |
+|-----------|--------|
+| [ADR-001: Biblioteca TypeScript Compartilhada @carf/tscore](./ADR-001-shared-library-tscore.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

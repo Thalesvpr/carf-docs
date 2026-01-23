@@ -36,12 +36,15 @@ A [hierarquia de roles](./01-roles-hierarchy.md) define seis níveis: `user` (ba
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (3)
 
-- ○ [[PROJECTS/KEYCLOAK/DOCS/INTEGRATION/RBAC/01-roles-hierarchy.md|Hierarquia de Roles]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/INTEGRATION/RBAC/02-role-dev.md|Role Dev]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/INTEGRATION/RBAC/03-permissions.md|Permissões Detalhadas]]
+| Documento | Status |
+|-----------|--------|
+| [Hierarquia de Roles](./01-roles-hierarchy.md) | ⚠ |
+| [Role Dev](./02-role-dev.md) | ⚠ |
+| [Permissões Detalhadas](./03-permissions.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

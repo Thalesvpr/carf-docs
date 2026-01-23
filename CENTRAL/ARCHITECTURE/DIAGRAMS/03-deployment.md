@@ -1,7 +1,7 @@
 ---
 type: leaf
 status: current
-updated: 2026-01-22
+updated: 2026-01-23
 ---
 
 # Topologia de Deployment

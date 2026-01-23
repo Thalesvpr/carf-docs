@@ -41,9 +41,9 @@ O [audit logging](./04-audit-logging.md) registra eventos de autenticação, alt
 
 | Documento | Status |
 |-----------|--------|
-| [Incident Classification](./01-incident-classification.md) | ○ |
-| [Incident Response Plan](./02-incident-response-plan.md) | ○ |
-| [Breach Notification](./03-breach-notification.md) | ○ |
-| [Audit Logging](./04-audit-logging.md) | ○ |
+| [Incident Classification](./01-incident-classification.md) | ⚠ |
+| [Incident Response Plan](./02-incident-response-plan.md) | ⚠ |
+| [Breach Notification](./03-breach-notification.md) | ⚠ |
+| [Audit Logging](./04-audit-logging.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

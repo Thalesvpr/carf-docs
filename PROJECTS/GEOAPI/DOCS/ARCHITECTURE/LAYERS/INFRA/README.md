@@ -17,12 +17,17 @@ Camada de infraestrutura do GEOAPI implementando todas interfaces definidas no D
 - **[JOBS/](./JOBS/README.md)** - Hangfire background jobs
 
 <!-- CARF-INDEX-START -->
-## Subpastas
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-- [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/INFRA/CACHE/README|CACHE]]
-- [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/INFRA/INTEGRATIONS/README|INTEGRATIONS]]
-- [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/INFRA/JOBS/README|JOBS]]
-- [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/INFRA/PERSISTENCE/README|PERSISTENCE]]
-- [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/INFRA/STORAGE/README|STORAGE]]
+## Subpastas (5)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [CACHE](./CACHE/README.md) | ... |
+| [INTEGRATIONS](./INTEGRATIONS/README.md) | ... |
+| [JOBS](./JOBS/README.md) | ... |
+| [PERSISTENCE](./PERSISTENCE/README.md) | ... |
+| [STORAGE](./STORAGE/README.md) | ... |
 
 <!-- CARF-INDEX-END -->

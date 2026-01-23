@@ -228,10 +228,13 @@ Value objects são instanciados frequentemente, otimizações:
 - Dependências auditadas via `bun audit`
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (1)
 
-- ○ [[PROJECTS/LIB/TS/TSCORE/DOCS/ARCHITECTURE/01-package-structure.md|Package Structure]]
+| Documento | Status |
+|-----------|--------|
+| [Package Structure](./01-package-structure.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

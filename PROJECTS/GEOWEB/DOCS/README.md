@@ -18,12 +18,17 @@ Portal web React TypeScript para gestão REURB mapas interativos cadastro unidad
 - **[LAYERS/](./LAYERS/README.md)** - Components pages hooks services utils types
 
 <!-- CARF-INDEX-START -->
-## Subpastas
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-- [[PROJECTS/GEOWEB/DOCS/ARCHITECTURE/README|ARCHITECTURE]]
-- [[PROJECTS/GEOWEB/DOCS/CONCEPTS/README|CONCEPTS]]
-- [[PROJECTS/GEOWEB/DOCS/FEATURES/README|FEATURES]]
-- [[PROJECTS/GEOWEB/DOCS/HOW-TO/README|HOW-TO]]
-- [[PROJECTS/GEOWEB/DOCS/LAYERS/README|LAYERS]]
+## Subpastas (5)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [ARCHITECTURE](./ARCHITECTURE/README.md) | ... |
+| [CONCEPTS](./CONCEPTS/README.md) | ... |
+| [FEATURES](./FEATURES/README.md) | ... |
+| [HOW-TO](./HOW-TO/README.md) | ... |
+| [LAYERS](./LAYERS/README.md) | ... |
 
 <!-- CARF-INDEX-END -->

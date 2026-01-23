@@ -43,22 +43,22 @@ updated: 2026-01-15
 
 | Documento | Status |
 |-----------|--------|
-| [RNF-016: Autenticação OAuth2](./RNF-016-autenticacao-oauth2.md) | ○ |
-| [RNF-017: Expiração de Tokens](./RNF-017-expiracao-tokens.md) | ○ |
-| [RNF-018: HTTPS Obrigatório](./RNF-018-https-obrigatorio.md) | ○ |
-| [RNF-019: Criptografia de Dados Sensíveis](./RNF-019-criptografia-dados-sensiveis.md) | ○ |
-| [RNF-020: Validação de Input](./RNF-020-validacao-input.md) | ○ |
-| [RNF-022: CORS Restritivo](./RNF-022-cors-restritivo.md) | ○ |
-| [RNF-023: Content Security Policy](./RNF-023-content-security-policy.md) | ○ |
-| [RNF-024: Auditoria de Ações](./RNF-024-auditoria-acoes.md) | ○ |
-| [RNF-025: Isolamento de Tenants](./RNF-025-isolamento-tenants.md) | ○ |
-| [RNF-027: Armazenamento Seguro de Senhas](./RNF-027-armazenamento-seguro-senhas.md) | ○ |
-| [RNF-028: Proteção de API Keys](./RNF-028-protecao-api-keys.md) | ○ |
-| [RNF-029: Scan de Malware em Uploads](./RNF-029-scan-malware-uploads.md) | ○ |
-| [RNF-030: Proteção de Dados Pessoais (LGPD)](./RNF-030-protecao-dados-pessoais-lgpd.md) | ○ |
-| [RNF-031: Timeout de Sessão](./RNF-031-timeout-sessao.md) | ○ |
-| [RNF-033: Secrets Management](./RNF-033-secrets-management.md) | ○ |
-| [RNF-034: SQL Injection Prevention](./RNF-034-sql-injection-prevention.md) | ○ |
-| [RNF-035: Monitoramento de Segurança](./RNF-035-monitoramento-seguranca.md) | ○ |
+| [RNF-016: Autenticação OAuth2](./RNF-016-autenticacao-oauth2.md) | ⚠ |
+| [RNF-017: Expiração de Tokens](./RNF-017-expiracao-tokens.md) | ⚠ |
+| [RNF-018: HTTPS Obrigatório](./RNF-018-https-obrigatorio.md) | ⚠ |
+| [RNF-019: Criptografia de Dados Sensíveis](./RNF-019-criptografia-dados-sensiveis.md) | ⚠ |
+| [RNF-020: Validação de Input](./RNF-020-validacao-input.md) | ⚠ |
+| [RNF-022: CORS Restritivo](./RNF-022-cors-restritivo.md) | ⚠ |
+| [RNF-023: Content Security Policy](./RNF-023-content-security-policy.md) | ⚠ |
+| [RNF-024: Auditoria de Ações](./RNF-024-auditoria-acoes.md) | ⚠ |
+| [RNF-025: Isolamento de Tenants](./RNF-025-isolamento-tenants.md) | ⚠ |
+| [RNF-027: Armazenamento Seguro de Senhas](./RNF-027-armazenamento-seguro-senhas.md) | ⚠ |
+| [RNF-028: Proteção de API Keys](./RNF-028-protecao-api-keys.md) | ⚠ |
+| [RNF-029: Scan de Malware em Uploads](./RNF-029-scan-malware-uploads.md) | ⚠ |
+| [RNF-030: Proteção de Dados Pessoais (LGPD)](./RNF-030-protecao-dados-pessoais-lgpd.md) | ⚠ |
+| [RNF-031: Timeout de Sessão](./RNF-031-timeout-sessao.md) | ⚠ |
+| [RNF-033: Secrets Management](./RNF-033-secrets-management.md) | ⚠ |
+| [RNF-034: SQL Injection Prevention](./RNF-034-sql-injection-prevention.md) | ⚠ |
+| [RNF-035: Monitoramento de Segurança](./RNF-035-monitoramento-seguranca.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

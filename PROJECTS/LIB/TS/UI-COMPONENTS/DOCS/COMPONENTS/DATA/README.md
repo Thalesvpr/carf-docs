@@ -29,15 +29,18 @@ Componentes para exibicao de dados. Avatar para imagens de perfil, Badge para ro
 
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (6)
 
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/DATA/01-avatar.md|Avatar]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/DATA/02-badge.md|Badge]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/DATA/03-table.md|Table]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/DATA/04-tooltip.md|Tooltip]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/DATA/05-popover.md|Popover]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/DATA/06-hover-card.md|HoverCard]]
+| Documento | Status |
+|-----------|--------|
+| [Avatar](./01-avatar.md) | ⚠ |
+| [Badge](./02-badge.md) | ⚠ |
+| [Table](./03-table.md) | ⚠ |
+| [Tooltip](./04-tooltip.md) | ⚠ |
+| [Popover](./05-popover.md) | ⚠ |
+| [HoverCard](./06-hover-card.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

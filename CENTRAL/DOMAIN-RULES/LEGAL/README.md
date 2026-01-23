@@ -35,11 +35,11 @@ Documentar legislacao aplicavel para:
 
 | Documento | Status |
 |-----------|--------|
-| [Lei 13.465/2017 (Base Legal Regularização Fundiária)](./01-lei-13465-2017.md) | ○ |
-| [REURB-S Requirements (Requisitos REURB Interesse Social)](./02-reurb-s-requirements.md) | ○ |
-| [REURB-E Requirements (Requisitos REURB Interesse Específico)](./03-reurb-e-requirements.md) | ○ |
-| [Ownership Criteria (Critérios de Titularidade)](./04-ownership-criteria.md) | ○ |
-| [Documentation Requirements (Requisitos Documentais)](./05-documentation-requirements.md) | ○ |
-| [Contestation Rules](./06-contestation-rules.md) | ○ |
+| [Lei 13.465/2017 (Base Legal Regularização Fundiária)](./01-lei-13465-2017.md) | ⚠ |
+| [REURB-S Requirements (Requisitos REURB Interesse Social)](./02-reurb-s-requirements.md) | ⚠ |
+| [REURB-E Requirements (Requisitos REURB Interesse Específico)](./03-reurb-e-requirements.md) | ⚠ |
+| [Ownership Criteria (Critérios de Titularidade)](./04-ownership-criteria.md) | ⚠ |
+| [Documentation Requirements (Requisitos Documentais)](./05-documentation-requirements.md) | ⚠ |
+| [Contestation Rules](./06-contestation-rules.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

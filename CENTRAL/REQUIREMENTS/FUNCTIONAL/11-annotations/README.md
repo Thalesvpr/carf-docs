@@ -29,9 +29,9 @@ updated: 2026-01-15
 
 | Documento | Status |
 |-----------|--------|
-| [RF-153: Anotações (Annotations)](./RF-153-anotações-annotations.md) | ○ |
-| [RF-154: Editar Anotação](./RF-154-editar-anotação.md) | ○ |
-| [RF-155: Excluir Anotação](./RF-155-excluir-anotação.md) | ○ |
-| [RF-156: Filtrar Anotações por Autor](./RF-156-filtrar-anotações-por-autor.md) | ○ |
+| [RF-153: Anotações (Annotations)](./RF-153-anotações-annotations.md) | ⚠ |
+| [RF-154: Editar Anotação](./RF-154-editar-anotação.md) | ⚠ |
+| [RF-155: Excluir Anotação](./RF-155-excluir-anotação.md) | ⚠ |
+| [RF-156: Filtrar Anotações por Autor](./RF-156-filtrar-anotações-por-autor.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

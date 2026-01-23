@@ -15,5 +15,7 @@ Registro de ADRs que fundamentam o cliente HTTP. Decisoes incluem Axios como cli
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
 <!-- CARF-INDEX-END -->

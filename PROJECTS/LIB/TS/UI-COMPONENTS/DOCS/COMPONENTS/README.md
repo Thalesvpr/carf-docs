@@ -27,13 +27,18 @@ Referencia dos componentes @carf/ui organizados por categoria. [FORM](./FORM/REA
 
 
 <!-- CARF-INDEX-START -->
-## Subpastas
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-- [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/DATA/README|DATA]]
-- [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/DOMAIN/README|DOMAIN]]
-- [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/FEEDBACK/README|FEEDBACK]]
-- [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/FORM/README|FORM]]
-- [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/LAYOUT/README|LAYOUT]]
-- [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/NAVIGATION/README|NAVIGATION]]
+## Subpastas (6)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [DATA](./DATA/README.md) | ... |
+| [DOMAIN](./DOMAIN/README.md) | ... |
+| [FEEDBACK](./FEEDBACK/README.md) | ... |
+| [FORM](./FORM/README.md) | ... |
+| [LAYOUT](./LAYOUT/README.md) | ... |
+| [NAVIGATION](./NAVIGATION/README.md) | ... |
 
 <!-- CARF-INDEX-END -->

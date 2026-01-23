@@ -13,10 +13,13 @@ Entity sistema anotações colaborativas do GEOAPI permitindo usuários adiciona
 - **[11-annotation.md](./11-annotation.md)** - Anotação comentário colaborativo entidades
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (1)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/ANNOTATIONS/11-annotation.md|Annotation]]
+| Documento | Status |
+|-----------|--------|
+| [Annotation](./11-annotation.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

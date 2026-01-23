@@ -41,10 +41,13 @@ Testes integração do GEOAPI validando interação entre múltiplas camadas usa
 Integration tests usam Testcontainers para provisionar infraestrutura garantindo environment limpo isolado entre test runs sem poluir database desenvolvimento ou depender de serviços externos rodando. Cada test class implementa IAsyncLifetime inicializando containers em InitializeAsync() executado uma vez antes todos tests e disposing em DisposeAsync() garantindo cleanup resources. Database seeding via DbContext cria dados base necessários para testes (tenant padrão, roles, community teste) permitindo tests focar em cenário específico sem setup complexo duplicado. Assertions verificam não apenas resultado query mas também performance usando StopWatch verificando queries espaciais executam em tempo razoável (< 500ms) e explain plan via logging confirma indexes usados corretamente. Transaction rollback após cada test via TransactionScope garante isolation entre tests revertendo todas changes mantendo database em estado consistente conhecido evitando flaky tests por side effects.
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (1)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/TESTS/INTEGRATION/01-repository-tests.md|Repository Integration Tests]]
+| Documento | Status |
+|-----------|--------|
+| [Repository Integration Tests](./01-repository-tests.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

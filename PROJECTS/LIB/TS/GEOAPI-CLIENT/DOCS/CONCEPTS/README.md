@@ -14,10 +14,13 @@ Conceitos fundamentais sobre SDK cliente HTTP TypeScript.
 - **01-http-client** - Cliente HTTP base Axios interceptors type safety
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (1)
 
-- ○ [[PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/CONCEPTS/01-http-client.md|HTTP Client - Cliente HTTP Base]]
+| Documento | Status |
+|-----------|--------|
+| [HTTP Client - Cliente HTTP Base](./01-http-client.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

@@ -13,10 +13,13 @@ Value objects representando endereços brasileiros completos com logradouro núm
 - **[05-address.md](./05-address.md)** - Endereço completo brasileiro com validação CEP
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (1)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/VALUE-OBJECTS/ADDRESS/05-address.md|Address]]
+| Documento | Status |
+|-----------|--------|
+| [Address](./05-address.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

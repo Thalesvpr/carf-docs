@@ -14,11 +14,14 @@ Classes base abstratas fornecendo funcionalidade comum para todas entities do GE
 - **[01-base-aggregate-root.md](./01-base-aggregate-root.md)** - Aggregate root com suporte domain events
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (2)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/BASE/00-base-entity.md|BaseEntity]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/BASE/01-base-aggregate-root.md|BaseAggregateRoot]]
+| Documento | Status |
+|-----------|--------|
+| [BaseEntity](./00-base-entity.md) | ⚠ |
+| [BaseAggregateRoot](./01-base-aggregate-root.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

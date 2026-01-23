@@ -36,13 +36,16 @@ bun run dev  # http://localhost:5173
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (4)
 
-- ○ [[PROJECTS/ADMIN/DOCS/HOW-TO/01-setup-dev-environment.md|Setup Dev Environment - ADMIN]]
-- ○ [[PROJECTS/ADMIN/DOCS/HOW-TO/02-build-and-run.md|Build and Run - ADMIN]]
-- ○ [[PROJECTS/ADMIN/DOCS/HOW-TO/03-testing.md|Testing - ADMIN]]
-- ○ [[PROJECTS/ADMIN/DOCS/HOW-TO/04-troubleshooting.md|Troubleshooting - ADMIN]]
+| Documento | Status |
+|-----------|--------|
+| [Setup Dev Environment - ADMIN](./01-setup-dev-environment.md) | ⚠ |
+| [Build and Run - ADMIN](./02-build-and-run.md) | ⚠ |
+| [Testing - ADMIN](./03-testing.md) | ⚠ |
+| [Troubleshooting - ADMIN](./04-troubleshooting.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

@@ -16,13 +16,34 @@ Domain events emitidos pelas entidades aggregate roots quando mudanças signific
 - **[03-legitimation-certificate-issued-event.md](./03-legitimation-certificate-issued-event.md)** - Evento certidão legitimação emitida
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (22)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/EVENTS/00-i-domain-event.md|IDomainEvent]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/EVENTS/01-unit-created-event.md|UnitCreatedEvent]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/EVENTS/02-sync-conflict-event.md|SyncConflictEvent]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/EVENTS/03-legitimation-certificate-issued-event.md|LegitimationCertificateIssuedEvent]]
+| Documento | Status |
+|-----------|--------|
+| [IDomainEvent](./00-i-domain-event.md) | ⚠ |
+| [UnitCreatedEvent](./01-unit-created-event.md) | ⚠ |
+| [HolderLinkedEvent](./02-holder-linked-event.md) | ⚠ |
+| [SyncConflictEvent](./02-sync-conflict-event.md) | ⚠ |
+| [HolderUnlinkedEvent](./03-holder-unlinked-event.md) | ⚠ |
+| [LegitimationCertificateIssuedEvent](./03-legitimation-certificate-issued-event.md) | ⚠ |
+| [UnitStatusChangedEvent](./04-unit-status-changed-event.md) | ⚠ |
+| [DocumentUploadedEvent](./05-document-uploaded-event.md) | ⚠ |
+| [CommunityCreatedEvent](./06-community-created-event.md) | ⚠ |
+| [CommunityBoundaryChangedEvent](./07-community-boundary-changed-event.md) | ⚠ |
+| [AccessGrantedEvent](./08-access-granted-event.md) | ⚠ |
+| [AccessRevokedEvent](./09-access-revoked-event.md) | ⚠ |
+| [BlockAddedEvent](./10-block-added-event.md) | ⚠ |
+| [CommunityArchivedEvent](./11-community-archived-event.md) | ⚠ |
+| [RequestSubmittedEvent](./12-request-submitted-event.md) | ⚠ |
+| [ResponseAddedEvent](./13-response-added-event.md) | ⚠ |
+| [RequestApprovedEvent](./14-request-approved-event.md) | ⚠ |
+| [CertificateIssuedEvent](./15-certificate-issued-event.md) | ⚠ |
+| [ContestationReceivedEvent](./16-contestation-received-event.md) | ⚠ |
+| [DeadlineApproachingEvent](./17-deadline-approaching-event.md) | ⚠ |
+| [RequestRejectedEvent](./18-request-rejected-event.md) | ⚠ |
+| [CorrectionRequestedEvent](./19-correction-requested-event.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

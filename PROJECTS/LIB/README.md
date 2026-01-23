@@ -21,8 +21,13 @@ Bibliotecas TypeScript compartilhadas entre todas as aplicacoes do ecossistema C
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Subpastas
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-- [[PROJECTS/LIB/TS/README|TS]]
+## Subpastas (1)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [TS](./TS/README.md) | ... |
 
 <!-- CARF-INDEX-END -->

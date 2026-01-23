@@ -24,11 +24,14 @@ updated: 2026-01-22
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (2)
 
-- ○ [[PROJECTS/GEOGIS/DOCS/FEATURES/01-gis-integration.md|GIS Integration - Integração SIG]]
-- ○ [[PROJECTS/GEOGIS/DOCS/FEATURES/02-shapefile-import.md|Shapefile Import - Importação]]
+| Documento | Status |
+|-----------|--------|
+| [GIS Integration - Integração SIG](./01-gis-integration.md) | ⚠ |
+| [Shapefile Import - Importação](./02-shapefile-import.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

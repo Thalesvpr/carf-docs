@@ -17,14 +17,17 @@ Entities topografia levantamento campo do GEOAPI gerenciando coleta processament
 - **[27-monograph.md](./27-monograph.md)** - Monografia marco geodésico implantado
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (5)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/SURVEYING/12-surveyor.md|Surveyor]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/SURVEYING/13-survey-point.md|SurveyPoint]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/SURVEYING/25-rbmc-station.md|RbmcStation]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/SURVEYING/26-survey-processing.md|SurveyProcessing]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/SURVEYING/27-monograph.md|Monograph]]
+| Documento | Status |
+|-----------|--------|
+| [Surveyor](./12-surveyor.md) | ⚠ |
+| [SurveyPoint](./13-survey-point.md) | ⚠ |
+| [RbmcStation](./25-rbmc-station.md) | ⚠ |
+| [SurveyProcessing](./26-survey-processing.md) | ⚠ |
+| [Monograph](./27-monograph.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

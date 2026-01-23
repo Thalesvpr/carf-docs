@@ -11,10 +11,13 @@ Backend GEOAPI implementa funcionalidades via Clean Architecture organizada em c
 Consulte LAYERS para documentação técnica detalhada de cada funcionalidade implementada mapeando requirements CENTRAL para implementation .NET específica camadas arquiteturais facilitando navegação descoberta features backend REST API endpoints controllers services domain logic business rules validações persistence PostgreSQL Entity Framework Core migrations contextos bounded contexts agregados value objects specifications patterns repository unit of work garantindo integridade transacional consistência dados domínio através de abstrações bem definidas separando infraestrutura de lógica negócio core aplicação mantendo testabilidade via mocks stubs in-memory repositories testes unitários integração end-to-end CI/CD pipelines automatizados.
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (1)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/FEATURES/01-unit-management.md|Unit Management Feature]]
+| Documento | Status |
+|-----------|--------|
+| [Unit Management Feature](./01-unit-management.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

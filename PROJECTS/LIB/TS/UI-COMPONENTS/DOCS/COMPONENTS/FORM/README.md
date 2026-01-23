@@ -28,16 +28,19 @@ Componentes de formulario baseados em Radix UI com estilizacao CARF. Inclui Butt
 
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (7)
 
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/FORM/01-button.md|Button]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/FORM/02-input.md|Input]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/FORM/03-label.md|Label]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/FORM/04-checkbox.md|Checkbox]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/FORM/05-switch.md|Switch]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/FORM/06-select.md|Select]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/FORM/07-textarea.md|Textarea]]
+| Documento | Status |
+|-----------|--------|
+| [Button](./01-button.md) | ⚠ |
+| [Input](./02-input.md) | ⚠ |
+| [Label](./03-label.md) | ⚠ |
+| [Checkbox](./04-checkbox.md) | ⚠ |
+| [Switch](./05-switch.md) | ⚠ |
+| [Select](./06-select.md) | ⚠ |
+| [Textarea](./07-textarea.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

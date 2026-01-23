@@ -83,5 +83,7 @@ Ver `.env.example` para lista completa. Principais:
 - [REFERENCE/05-environment-variables](../REFERENCE/05-environment-variables.md) - Todas variaveis
 
 <!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
 <!-- CARF-INDEX-END -->

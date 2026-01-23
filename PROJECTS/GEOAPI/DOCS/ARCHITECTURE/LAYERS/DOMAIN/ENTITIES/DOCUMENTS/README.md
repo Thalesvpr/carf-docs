@@ -13,10 +13,13 @@ Entity gerenciamento documentos anexos do GEOAPI armazenando metadados arquivos 
 - **[10-document.md](./10-document.md)** - Documento anexo arquivo S3 vinculado entidades
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (1)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/DOCUMENTS/10-document.md|Document]]
+| Documento | Status |
+|-----------|--------|
+| [Document](./10-document.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

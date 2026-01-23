@@ -14,11 +14,14 @@ Entities autenticação do GEOAPI gerenciando sessões usuário e API keys para 
 - **[17-api-key.md](./17-api-key.md)** - API keys autenticação programática sistemas externos
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (2)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/AUTH/16-session.md|Session]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/AUTH/17-api-key.md|ApiKey]]
+| Documento | Status |
+|-----------|--------|
+| [Session](./16-session.md) | ⚠ |
+| [ApiKey](./17-api-key.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

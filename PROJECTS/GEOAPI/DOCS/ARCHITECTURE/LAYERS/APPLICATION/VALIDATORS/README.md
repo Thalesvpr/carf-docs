@@ -26,10 +26,13 @@ FluentValidation validators do GEOAPI validando commands e DTOs antes de execuç
 - 11-phone-number-validator.md (reutilizável)
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (1)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/APPLICATION/VALIDATORS/01-unit-validators.md|Unit Validators]]
+| Documento | Status |
+|-----------|--------|
+| [Unit Validators](./01-unit-validators.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

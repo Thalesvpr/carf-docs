@@ -18,12 +18,17 @@ Plugin QGIS Python para análises espaciais avançadas geoprocessamento batch pr
 - **[LAYERS/](./LAYERS/README.md)** - Gerenciador autenticação cliente API componentes UI
 
 <!-- CARF-INDEX-START -->
-## Subpastas
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-- [[PROJECTS/GEOGIS/DOCS/ARCHITECTURE/README|ARCHITECTURE]]
-- [[PROJECTS/GEOGIS/DOCS/CONCEPTS/README|CONCEPTS]]
-- [[PROJECTS/GEOGIS/DOCS/FEATURES/README|FEATURES]]
-- [[PROJECTS/GEOGIS/DOCS/HOW-TO/README|HOW-TO]]
-- [[PROJECTS/GEOGIS/DOCS/LAYERS/README|LAYERS]]
+## Subpastas (5)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [ARCHITECTURE](./ARCHITECTURE/README.md) | ... |
+| [CONCEPTS](./CONCEPTS/README.md) | ... |
+| [FEATURES](./FEATURES/README.md) | ... |
+| [HOW-TO](./HOW-TO/README.md) | ... |
+| [LAYERS](./LAYERS/README.md) | ... |
 
 <!-- CARF-INDEX-END -->

@@ -16,12 +16,15 @@ Decisões arquiteturais design cliente HTTP TypeScript para GEOAPI.
 - **03-authentication-flow** - Fluxo autenticacao tokens
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (3)
 
-- ○ [[PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/ARCHITECTURE/01-client-architecture.md|Arquitetura do Cliente GEOAPI]]
-- ○ [[PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/ARCHITECTURE/02-error-handling.md|Error Handling - @carf/geoapi-client]]
-- ○ [[PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/ARCHITECTURE/03-authentication-flow.md|Authentication Flow - @carf/geoapi-client]]
+| Documento | Status |
+|-----------|--------|
+| [Arquitetura do Cliente GEOAPI](./01-client-architecture.md) | ⚠ |
+| [Error Handling - @carf/geoapi-client](./02-error-handling.md) | ⚠ |
+| [Authentication Flow - @carf/geoapi-client](./03-authentication-flow.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

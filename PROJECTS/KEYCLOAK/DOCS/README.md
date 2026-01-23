@@ -64,15 +64,21 @@ open http://localhost:8080/admin
 ```
 
 <!-- CARF-INDEX-START -->
-## Subpastas
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-- [[PROJECTS/KEYCLOAK/DOCS/ARCHITECTURE/README|ARCHITECTURE]]
-- [[PROJECTS/KEYCLOAK/DOCS/CONCEPTS/README|CONCEPTS]]
-- [[PROJECTS/KEYCLOAK/DOCS/CONFIG/README|CONFIG]]
-- [[PROJECTS/KEYCLOAK/DOCS/FEATURES/README|FEATURES]]
-- [[PROJECTS/KEYCLOAK/DOCS/HOW-TO/README|HOW-TO]]
-- [[PROJECTS/KEYCLOAK/DOCS/INTEGRATION/README|INTEGRATION]]
-- [[PROJECTS/KEYCLOAK/DOCS/REFERENCE/README|REFERENCE]]
-- [[PROJECTS/KEYCLOAK/DOCS/RUNBOOKS/README|RUNBOOKS]]
+## Subpastas (9)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [ADRs](./ADRs/README.md) | ... |
+| [ARCHITECTURE](./ARCHITECTURE/README.md) | ... |
+| [CONCEPTS](./CONCEPTS/README.md) | ... |
+| [CONFIG](./CONFIG/README.md) | ... |
+| [FEATURES](./FEATURES/README.md) | ... |
+| [HOW-TO](./HOW-TO/README.md) | ... |
+| [INTEGRATION](./INTEGRATION/README.md) | ... |
+| [REFERENCE](./REFERENCE/README.md) | ... |
+| [RUNBOOKS](./RUNBOOKS/README.md) | ... |
 
 <!-- CARF-INDEX-END -->

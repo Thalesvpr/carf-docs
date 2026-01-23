@@ -17,12 +17,17 @@ Camada de domínio com regras de negócio puras sem dependências externas.
 - **[EXCEPTIONS/](./EXCEPTIONS/README.md)** - Exceções de domínio
 
 <!-- CARF-INDEX-START -->
-## Subpastas
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-- [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/CONTRACTS/README|CONTRACTS]]
-- [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/README|ENTITIES]]
-- [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/EVENTS/README|EVENTS]]
-- [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/EXCEPTIONS/README|EXCEPTIONS]]
-- [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/VALUE-OBJECTS/README|VALUE-OBJECTS]]
+## Subpastas (5)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [CONTRACTS](./CONTRACTS/README.md) | ... |
+| [ENTITIES](./ENTITIES/README.md) | ... |
+| [EVENTS](./EVENTS/README.md) | ... |
+| [EXCEPTIONS](./EXCEPTIONS/README.md) | ... |
+| [VALUE-OBJECTS](./VALUE-OBJECTS/README.md) | ... |
 
 <!-- CARF-INDEX-END -->

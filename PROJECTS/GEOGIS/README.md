@@ -12,8 +12,13 @@ Plugin QGIS Python para análises geoespaciais avançadas. Integra com PostGIS v
 - **[DOCS/](./DOCS/README.md)** - Documentação técnica
 
 <!-- CARF-INDEX-START -->
-## Subpastas
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-- [[PROJECTS/GEOGIS/DOCS/README|DOCS]]
+## Subpastas (1)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [DOCS](./DOCS/README.md) | ... |
 
 <!-- CARF-INDEX-END -->

@@ -17,12 +17,17 @@ Camada de aplicação do GEOAPI orquestrando use cases e coordenando fluxo entre
 - **[MAPPERS/](./MAPPERS/README.md)** - Mapeamento Domain ↔ DTOs
 
 <!-- CARF-INDEX-START -->
-## Subpastas
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-- [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/APPLICATION/COMMANDS/README|COMMANDS]]
-- [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/APPLICATION/DTOS/README|DTOS]]
-- [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/APPLICATION/MAPPERS/README|MAPPERS]]
-- [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/APPLICATION/QUERIES/README|QUERIES]]
-- [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/APPLICATION/VALIDATORS/README|VALIDATORS]]
+## Subpastas (5)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [COMMANDS](./COMMANDS/README.md) | ... |
+| [DTOS](./DTOS/README.md) | ... |
+| [MAPPERS](./MAPPERS/README.md) | ... |
+| [QUERIES](./QUERIES/README.md) | ... |
+| [VALIDATORS](./VALIDATORS/README.md) | ... |
 
 <!-- CARF-INDEX-END -->

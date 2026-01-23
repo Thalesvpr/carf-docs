@@ -103,30 +103,30 @@ Value objects são conceitos sem identidade própria, definidos exclusivamente p
 
 | Documento | Status |
 |-----------|--------|
-| [CPF (Cadastro de Pessoa Física)](./01-cpf.md) | ○ |
-| [GeoPolygon (Polígono Geográfico)](./02-geo-polygon.md) | ○ |
-| [UnitStatus (Status da Unidade)](./03-unit-status.md) | ○ |
-| [CustomData Schema (Unit.CustomData e Tenant.Settings)](./04-custom-data-schema.md) | ○ |
-| [Permissions Matrix (Matriz de Permissões Granulares)](./05-permissions-matrix.md) | ○ |
-| [Spatial Overlap Detection (Detecção de Sobreposição Espacial)](./06-spatial-overlap-matrix.md) | ○ |
-| [GeoPoint (Ponto Geográfico)](./07-geo-point.md) | ○ |
-| [Email (Endereço de Email Validado)](./08-email.md) | ○ |
-| [PhoneNumber (Número de Telefone Brasileiro)](./09-phone-number.md) | ○ |
-| [Address (Endereço Brasileiro Estruturado)](./10-address.md) | ○ |
-| [CommunityType (Tipo de Comunidade)](./11-community-type.md) | ○ |
-| [EntityType (Tipo de Entidade para Polimorfismo)](./12-entity-type.md) | ○ |
-| [DocumentType (Tipo de Documento)](./13-document-type.md) | ○ |
-| [AnnotationType (Tipo de Anotação)](./14-annotation-type.md) | ○ |
-| [Priority (Prioridade)](./15-priority.md) | ○ |
-| [TeamRole (Papel dentro de Equipe)](./16-team-role.md) | ○ |
-| [SyncStatus (Status de Sincronização)](./17-sync-status.md) | ○ |
-| [PointType (Tipo de Marco Topográfico)](./18-point-type.md) | ○ |
-| [PointStatus (Status do Ponto Topográfico)](./19-point-status.md) | ○ |
-| [Crea (Registro Profissional CREA)](./20-crea.md) | ○ |
-| [ApiKeyValue (Valor de Chave API)](./21-api-key-value.md) | ○ |
-| [LegitimationStatus (Status do Processo de Legitimação)](./22-legitimation-status.md) | ○ |
-| [Decision (Decisão de Análise)](./23-decision.md) | ○ |
-| [CertificateSituation (Situação do Imóvel para Certidão)](./24-certificate-situation.md) | ○ |
-| [Role (Papel de Usuário no Sistema)](./25-role.md) | ○ |
+| [CPF (Cadastro de Pessoa Física)](./01-cpf.md) | ⚠ |
+| [GeoPolygon (Polígono Geográfico)](./02-geo-polygon.md) | ⚠ |
+| [UnitStatus (Status da Unidade)](./03-unit-status.md) | ⚠ |
+| [CustomData Schema (Unit.CustomData e Tenant.Settings)](./04-custom-data-schema.md) | ⚠ |
+| [Permissions Matrix (Matriz de Permissões Granulares)](./05-permissions-matrix.md) | ⚠ |
+| [Spatial Overlap Detection (Detecção de Sobreposição Espacial)](./06-spatial-overlap-matrix.md) | ⚠ |
+| [GeoPoint (Ponto Geográfico)](./07-geo-point.md) | ⚠ |
+| [Email (Endereço de Email Validado)](./08-email.md) | ⚠ |
+| [PhoneNumber (Número de Telefone Brasileiro)](./09-phone-number.md) | ⚠ |
+| [Address (Endereço Brasileiro Estruturado)](./10-address.md) | ⚠ |
+| [CommunityType (Tipo de Comunidade)](./11-community-type.md) | ⚠ |
+| [EntityType (Tipo de Entidade para Polimorfismo)](./12-entity-type.md) | ⚠ |
+| [DocumentType (Tipo de Documento)](./13-document-type.md) | ⚠ |
+| [AnnotationType (Tipo de Anotação)](./14-annotation-type.md) | ⚠ |
+| [Priority (Prioridade)](./15-priority.md) | ⚠ |
+| [TeamRole (Papel dentro de Equipe)](./16-team-role.md) | ⚠ |
+| [SyncStatus (Status de Sincronização)](./17-sync-status.md) | ⚠ |
+| [PointType (Tipo de Marco Topográfico)](./18-point-type.md) | ⚠ |
+| [PointStatus (Status do Ponto Topográfico)](./19-point-status.md) | ⚠ |
+| [Crea (Registro Profissional CREA)](./20-crea.md) | ⚠ |
+| [ApiKeyValue (Valor de Chave API)](./21-api-key-value.md) | ⚠ |
+| [LegitimationStatus (Status do Processo de Legitimação)](./22-legitimation-status.md) | ⚠ |
+| [Decision (Decisão de Análise)](./23-decision.md) | ⚠ |
+| [CertificateSituation (Situação do Imóvel para Certidão)](./24-certificate-situation.md) | ⚠ |
+| [Role (Papel de Usuário no Sistema)](./25-role.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

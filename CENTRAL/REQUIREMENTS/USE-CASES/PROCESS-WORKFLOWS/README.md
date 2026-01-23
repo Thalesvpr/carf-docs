@@ -22,11 +22,11 @@ O workflow de [topografia](./05-topography-workflow.md) documenta levantamento t
 
 | Documento | Status |
 |-----------|--------|
-| [WMS Integration Workflow](./01-wms-integration-workflow.md) | ○ |
-| [Field Data Collection Workflow](./02-field-data-collection-workflow.md) | ○ |
-| [Offline Sync Workflow (Sincronização Offline Bidirecional)](./03-offline-sync-workflow.md) | ○ |
-| [Analyst Validation Workflow](./04-analyst-validation-workflow.md) | ○ |
-| [Topography Workflow](./05-topography-workflow.md) | ○ |
-| [Legitimation Workflow](./06-legitimation-workflow.md) | ○ |
+| [WMS Integration Workflow](./01-wms-integration-workflow.md) | ⚠ |
+| [Field Data Collection Workflow](./02-field-data-collection-workflow.md) | ⚠ |
+| [Offline Sync Workflow (Sincronização Offline Bidirecional)](./03-offline-sync-workflow.md) | ⚠ |
+| [Analyst Validation Workflow](./04-analyst-validation-workflow.md) | ⚠ |
+| [Topography Workflow](./05-topography-workflow.md) | ⚠ |
+| [Legitimation Workflow](./06-legitimation-workflow.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

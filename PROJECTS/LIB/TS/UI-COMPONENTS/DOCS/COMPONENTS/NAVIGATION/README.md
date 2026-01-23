@@ -26,14 +26,17 @@ Componentes para navegacao e menus. DropdownMenu para menus suspensos, Command p
 
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (5)
 
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/NAVIGATION/01-dropdown-menu.md|DropdownMenu]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/NAVIGATION/02-command.md|Command]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/NAVIGATION/03-breadcrumb.md|Breadcrumb]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/NAVIGATION/04-navigation-menu.md|NavigationMenu]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/NAVIGATION/05-pagination.md|Pagination]]
+| Documento | Status |
+|-----------|--------|
+| [DropdownMenu](./01-dropdown-menu.md) | ⚠ |
+| [Command](./02-command.md) | ⚠ |
+| [Breadcrumb](./03-breadcrumb.md) | ⚠ |
+| [NavigationMenu](./04-navigation-menu.md) | ⚠ |
+| [Pagination](./05-pagination.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

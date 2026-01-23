@@ -17,11 +17,16 @@ Console React SPA para gestão de tenants usuários e configurações sistema CA
 - **[HOW-TO/](./HOW-TO/README.md)** - Configuração local Keycloak testes
 
 <!-- CARF-INDEX-START -->
-## Subpastas
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-- [[PROJECTS/ADMIN/DOCS/ARCHITECTURE/README|ARCHITECTURE]]
-- [[PROJECTS/ADMIN/DOCS/CONCEPTS/README|CONCEPTS]]
-- [[PROJECTS/ADMIN/DOCS/FEATURES/README|FEATURES]]
-- [[PROJECTS/ADMIN/DOCS/HOW-TO/README|HOW-TO]]
+## Subpastas (4)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [ARCHITECTURE](./ARCHITECTURE/README.md) | ... |
+| [CONCEPTS](./CONCEPTS/README.md) | ... |
+| [FEATURES](./FEATURES/README.md) | ... |
+| [HOW-TO](./HOW-TO/README.md) | ... |
 
 <!-- CARF-INDEX-END -->

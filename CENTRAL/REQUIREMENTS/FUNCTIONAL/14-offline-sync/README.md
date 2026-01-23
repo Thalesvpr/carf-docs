@@ -40,20 +40,20 @@ updated: 2026-01-15
 
 | Documento | Status |
 |-----------|--------|
-| [RF-182: Modo Offline (Mobile)](./RF-182-modo-offline-mobile.md) | ○ |
-| [RF-183: Download Inicial de Dados](./RF-183-download-inicial-de-dados.md) | ○ |
-| [RF-184: Criar Unidade Offline](./RF-184-criar-unidade-offline.md) | ○ |
-| [RF-185: Editar Unidade Offline](./RF-185-editar-unidade-offline.md) | ○ |
-| [RF-186: Tirar Fotos Offline](./RF-186-tirar-fotos-offline.md) | ○ |
-| [RF-187: Sincronização Manual](./RF-187-sincronização-manual.md) | ○ |
-| [RF-188: Sincronização Automática](./RF-188-sincronização-automática.md) | ○ |
-| [RF-189: Delta Sync (Sincronização Incremental)](./RF-189-delta-sync-sincronização-incremental.md) | ○ |
-| [RF-190: Detecção de Conflitos](./RF-190-detecção-de-conflitos.md) | ○ |
-| [RF-191: Resolução de Conflitos](./RF-191-resolução-de-conflitos.md) | ○ |
-| [RF-192: Endpoint de Pull](./RF-192-endpoint-de-pull.md) | ○ |
-| [RF-193: Endpoint de Push](./RF-193-endpoint-de-push.md) | ○ |
-| [RF-194: Limpeza de Dados Locais](./RF-194-limpeza-de-dados-locais.md) | ○ |
-| [RF-195: Indicador de Pendências](./RF-195-indicador-de-pendências.md) | ○ |
-| [RF-196: Log de Sincronização](./RF-196-log-de-sincronização.md) | ○ |
+| [RF-182: Modo Offline (Mobile)](./RF-182-modo-offline-mobile.md) | ⚠ |
+| [RF-183: Download Inicial de Dados](./RF-183-download-inicial-de-dados.md) | ⚠ |
+| [RF-184: Criar Unidade Offline](./RF-184-criar-unidade-offline.md) | ⚠ |
+| [RF-185: Editar Unidade Offline](./RF-185-editar-unidade-offline.md) | ⚠ |
+| [RF-186: Tirar Fotos Offline](./RF-186-tirar-fotos-offline.md) | ⚠ |
+| [RF-187: Sincronização Manual](./RF-187-sincronização-manual.md) | ⚠ |
+| [RF-188: Sincronização Automática](./RF-188-sincronização-automática.md) | ⚠ |
+| [RF-189: Delta Sync (Sincronização Incremental)](./RF-189-delta-sync-sincronização-incremental.md) | ⚠ |
+| [RF-190: Detecção de Conflitos](./RF-190-detecção-de-conflitos.md) | ⚠ |
+| [RF-191: Resolução de Conflitos](./RF-191-resolução-de-conflitos.md) | ⚠ |
+| [RF-192: Endpoint de Pull](./RF-192-endpoint-de-pull.md) | ⚠ |
+| [RF-193: Endpoint de Push](./RF-193-endpoint-de-push.md) | ⚠ |
+| [RF-194: Limpeza de Dados Locais](./RF-194-limpeza-de-dados-locais.md) | ⚠ |
+| [RF-195: Indicador de Pendências](./RF-195-indicador-de-pendências.md) | ⚠ |
+| [RF-196: Log de Sincronização](./RF-196-log-de-sincronização.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

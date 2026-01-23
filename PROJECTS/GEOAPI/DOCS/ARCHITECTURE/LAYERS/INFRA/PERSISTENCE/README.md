@@ -34,10 +34,13 @@ Implementações EF Core para persistência de dados do GEOAPI incluindo DbConte
 - 13-demo-tenant-seeder.md - Tenant demo para dev
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (1)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/INFRA/PERSISTENCE/01-dbcontext.md|DbContext]]
+| Documento | Status |
+|-----------|--------|
+| [DbContext](./01-dbcontext.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

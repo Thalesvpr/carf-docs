@@ -60,40 +60,40 @@ updated: 2026-01-15
 
 | Documento | Status |
 |-----------|--------|
-| [RF-049: Criar Unidade](./RF-049-criar-unidade.md) | ○ |
-| [RF-050: Editar Unidade](./RF-050-editar-unidade.md) | ○ |
-| [RF-051: Excluir Unidade](./RF-051-excluir-unidade.md) | ○ |
-| [RF-052: Listar Unidades](./RF-052-listar-unidades.md) | ○ |
-| [RF-053: Visualizar Unidade no Mapa](./RF-053-visualizar-unidade-no-mapa.md) | ○ |
-| [RF-054: Campos Obrigatórios de Unidade](./RF-054-campos-obrigatorios-de-unidade.md) | ○ |
-| [RF-055: Tipos de Unidade](./RF-055-tipos-de-unidade.md) | ○ |
-| [RF-056: Status de Unidade](./RF-056-status-de-unidade.md) | ○ |
-| [RF-057: Aprovar Unidade](./RF-057-aprovar-unidade.md) | ○ |
-| [RF-058: Rejeitar Unidade](./RF-058-rejeitar-unidade.md) | ○ |
-| [RF-059: Solicitar Alterações](./RF-059-solicitar-alteracoes.md) | ○ |
-| [RF-060: Timeline de Unidade](./RF-060-timeline-de-unidade.md) | ○ |
-| [RF-061: Vincular Titular a Unidade](./RF-061-vincular-titular-a-unidade.md) | ○ |
-| [RF-062: Múltiplos Titulares por Unidade](./RF-062-multiplos-titulares-por-unidade.md) | ○ |
-| [RF-063: Anexar Fotos a Unidade](./RF-063-anexar-fotos-a-unidade.md) | ○ |
-| [RF-064: Anexar Documentos a Unidade](./RF-064-anexar-documentos-a-unidade.md) | ○ |
-| [RF-065: Buscar Unidade por Localização](./RF-065-buscar-unidade-por-localizacao.md) | ○ |
-| [RF-066: Desenhar Unidade no Mapa](./RF-066-desenhar-unidade-no-mapa.md) | ○ |
-| [RF-067: Importar Unidades via Shapefile](./RF-067-importar-unidades-via-shapefile.md) | ○ |
-| [RF-068: Calcular Área da Unidade](./RF-068-calcular-area-da-unidade.md) | ○ |
-| [RF-069: Validar Sobreposição de Unidades](./RF-069-validar-sobreposicao-de-unidades.md) | ○ |
-| [RF-070: Criar Quadra](./RF-070-criar-quadra.md) | ○ |
-| [RF-071: Editar Quadra](./RF-071-editar-quadra.md) | ○ |
-| [RF-072: Listar Quadras](./RF-072-listar-quadras.md) | ○ |
-| [RF-073: Visualizar Quadra no Mapa](./RF-073-visualizar-quadra-no-mapa.md) | ○ |
-| [RF-074: Criar Lote](./RF-074-criar-lote.md) | ○ |
-| [RF-075: Vincular Unidade a Lote](./RF-075-vincular-unidade-a-lote.md) | ○ |
-| [RF-076: Numeração Automática de Unidades](./RF-076-numeracao-automatica-de-unidades.md) | ○ |
-| [RF-077: Campos Personalizados de Unidade](./RF-077-campos-personalizados-de-unidade.md) | ○ |
-| [RF-078: Clonar Unidade](./RF-078-clonar-unidade.md) | ○ |
-| [RF-079: Mesclar Unidades](./RF-079-mesclar-unidades.md) | ○ |
-| [RF-080: Dividir Unidade](./RF-080-dividir-unidade.md) | ○ |
-| [RF-081: Comentários em Unidade](./RF-081-comentarios-em-unidade.md) | ○ |
-| [RF-082: Exportar Unidades](./RF-082-exportar-unidades.md) | ○ |
-| [RF-083: Imprimir Ficha de Unidade](./RF-083-imprimir-ficha-de-unidade.md) | ○ |
+| [RF-049: Criar Unidade](./RF-049-criar-unidade.md) | ⚠ |
+| [RF-050: Editar Unidade](./RF-050-editar-unidade.md) | ⚠ |
+| [RF-051: Excluir Unidade](./RF-051-excluir-unidade.md) | ⚠ |
+| [RF-052: Listar Unidades](./RF-052-listar-unidades.md) | ⚠ |
+| [RF-053: Visualizar Unidade no Mapa](./RF-053-visualizar-unidade-no-mapa.md) | ⚠ |
+| [RF-054: Campos Obrigatórios de Unidade](./RF-054-campos-obrigatorios-de-unidade.md) | ⚠ |
+| [RF-055: Tipos de Unidade](./RF-055-tipos-de-unidade.md) | ⚠ |
+| [RF-056: Status de Unidade](./RF-056-status-de-unidade.md) | ⚠ |
+| [RF-057: Aprovar Unidade](./RF-057-aprovar-unidade.md) | ⚠ |
+| [RF-058: Rejeitar Unidade](./RF-058-rejeitar-unidade.md) | ⚠ |
+| [RF-059: Solicitar Alterações](./RF-059-solicitar-alteracoes.md) | ⚠ |
+| [RF-060: Timeline de Unidade](./RF-060-timeline-de-unidade.md) | ⚠ |
+| [RF-061: Vincular Titular a Unidade](./RF-061-vincular-titular-a-unidade.md) | ⚠ |
+| [RF-062: Múltiplos Titulares por Unidade](./RF-062-multiplos-titulares-por-unidade.md) | ⚠ |
+| [RF-063: Anexar Fotos a Unidade](./RF-063-anexar-fotos-a-unidade.md) | ⚠ |
+| [RF-064: Anexar Documentos a Unidade](./RF-064-anexar-documentos-a-unidade.md) | ⚠ |
+| [RF-065: Buscar Unidade por Localização](./RF-065-buscar-unidade-por-localizacao.md) | ⚠ |
+| [RF-066: Desenhar Unidade no Mapa](./RF-066-desenhar-unidade-no-mapa.md) | ⚠ |
+| [RF-067: Importar Unidades via Shapefile](./RF-067-importar-unidades-via-shapefile.md) | ⚠ |
+| [RF-068: Calcular Área da Unidade](./RF-068-calcular-area-da-unidade.md) | ⚠ |
+| [RF-069: Validar Sobreposição de Unidades](./RF-069-validar-sobreposicao-de-unidades.md) | ⚠ |
+| [RF-070: Criar Quadra](./RF-070-criar-quadra.md) | ⚠ |
+| [RF-071: Editar Quadra](./RF-071-editar-quadra.md) | ⚠ |
+| [RF-072: Listar Quadras](./RF-072-listar-quadras.md) | ⚠ |
+| [RF-073: Visualizar Quadra no Mapa](./RF-073-visualizar-quadra-no-mapa.md) | ⚠ |
+| [RF-074: Criar Lote](./RF-074-criar-lote.md) | ⚠ |
+| [RF-075: Vincular Unidade a Lote](./RF-075-vincular-unidade-a-lote.md) | ⚠ |
+| [RF-076: Numeração Automática de Unidades](./RF-076-numeracao-automatica-de-unidades.md) | ⚠ |
+| [RF-077: Campos Personalizados de Unidade](./RF-077-campos-personalizados-de-unidade.md) | ⚠ |
+| [RF-078: Clonar Unidade](./RF-078-clonar-unidade.md) | ⚠ |
+| [RF-079: Mesclar Unidades](./RF-079-mesclar-unidades.md) | ⚠ |
+| [RF-080: Dividir Unidade](./RF-080-dividir-unidade.md) | ⚠ |
+| [RF-081: Comentários em Unidade](./RF-081-comentarios-em-unidade.md) | ⚠ |
+| [RF-082: Exportar Unidades](./RF-082-exportar-unidades.md) | ⚠ |
+| [RF-083: Imprimir Ficha de Unidade](./RF-083-imprimir-ficha-de-unidade.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

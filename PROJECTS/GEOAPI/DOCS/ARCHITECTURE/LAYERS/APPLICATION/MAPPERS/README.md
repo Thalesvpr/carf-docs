@@ -28,10 +28,13 @@ Estratégias de mapeamento entre domain entities e DTOs do GEOAPI usando AutoMap
 - 11-holder-mapper.md - Métodos ToDto/FromDto explícitos
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (1)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/APPLICATION/MAPPERS/01-mapping-profiles.md|Mapping Profiles]]
+| Documento | Status |
+|-----------|--------|
+| [Mapping Profiles](./01-mapping-profiles.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

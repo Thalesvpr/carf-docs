@@ -30,14 +30,17 @@ Ver também em GEOAPI/DOCS:
 - CONCEPTS - Conceitos fundamentais (Clean Architecture, CQRS, DDD)
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (5)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/HOW-TO/01-configure-keycloak.md|Configure Keycloak]]
-- ○ [[PROJECTS/GEOAPI/DOCS/HOW-TO/01-setup-dev-environment.md|Setup Dev Environment - GEOAPI]]
-- ○ [[PROJECTS/GEOAPI/DOCS/HOW-TO/02-build-and-run.md|Build and Run]]
-- ○ [[PROJECTS/GEOAPI/DOCS/HOW-TO/02-validate-tokens.md|Validate Tokens]]
-- ○ [[PROJECTS/GEOAPI/DOCS/HOW-TO/03-test-authentication.md|Test Authentication]]
+| Documento | Status |
+|-----------|--------|
+| [Configure Keycloak](./01-configure-keycloak.md) | ⚠ |
+| [Setup Dev Environment - GEOAPI](./01-setup-dev-environment.md) | ⚠ |
+| [Build and Run](./02-build-and-run.md) | ⚠ |
+| [Validate Tokens](./02-validate-tokens.md) | ⚠ |
+| [Test Authentication](./03-test-authentication.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

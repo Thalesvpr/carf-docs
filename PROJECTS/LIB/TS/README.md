@@ -32,10 +32,15 @@ Bibliotecas TypeScript compartilhadas entre GEOWEB, REURBCAD, ADMIN e outras apl
 ```
 
 <!-- CARF-INDEX-START -->
-## Subpastas
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-- [[PROJECTS/LIB/TS/GEOAPI-CLIENT/README|GEOAPI-CLIENT]]
-- [[PROJECTS/LIB/TS/TSCORE/README|TSCORE]]
-- [[PROJECTS/LIB/TS/UI-COMPONENTS/README|UI-COMPONENTS]]
+## Subpastas (3)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [GEOAPI-CLIENT](./GEOAPI-CLIENT/README.md) | ... |
+| [TSCORE](./TSCORE/README.md) | ... |
+| [UI-COMPONENTS](./UI-COMPONENTS/README.md) | ... |
 
 <!-- CARF-INDEX-END -->

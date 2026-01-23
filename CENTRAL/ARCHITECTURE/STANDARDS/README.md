@@ -15,5 +15,16 @@ O padrao de [documentacao](./01-documentation.md) define estrutura de arquivos m
 Templates de cada tipo de documento estao disponiveis em .template/ na raiz do repositorio.
 
 <!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
+
+## Documentos (4)
+
+| Documento | Status |
+|-----------|--------|
+| [STD-001: Documentacao](./01-documentation.md) | ⚠ |
+| [STD-002: Estilo de Codigo](./02-code-style.md) | ⚠ |
+| [STD-003: Commits](./03-commits.md) | ⚠ |
+| [STD-004: Design de API](./04-api-design.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

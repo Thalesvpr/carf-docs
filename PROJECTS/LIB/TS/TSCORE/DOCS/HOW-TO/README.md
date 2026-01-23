@@ -584,12 +584,15 @@ cat node_modules/@carf/tscore/CHANGELOG.md
 | 03-publishing | Publicacao no GitHub Packages |
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (3)
 
-- ○ [[PROJECTS/LIB/TS/TSCORE/DOCS/HOW-TO/01-using-types.md|Using Types]]
-- ○ [[PROJECTS/LIB/TS/TSCORE/DOCS/HOW-TO/02-local-development.md|Desenvolvimento Local - @carf/tscore]]
-- ○ [[PROJECTS/LIB/TS/TSCORE/DOCS/HOW-TO/03-publishing.md|Publicacao - @carf/tscore]]
+| Documento | Status |
+|-----------|--------|
+| [Using Types](./01-using-types.md) | ⚠ |
+| [Desenvolvimento Local - @carf/tscore](./02-local-development.md) | ⚠ |
+| [Publicacao - @carf/tscore](./03-publishing.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

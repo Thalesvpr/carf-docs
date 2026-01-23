@@ -20,17 +20,20 @@ Interfaces definidas na camada Domain e implementadas no Infrastructure seguindo
 - **[07-i-pdf-generator.md](./07-i-pdf-generator.md)** - Interface geração PDFs certidões memoriais
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (8)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/CONTRACTS/00-i-repository.md|IRepository<T>]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/CONTRACTS/01-i-unit-of-work.md|IUnitOfWork]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/CONTRACTS/02-i-date-time-provider.md|IDateTimeProvider]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/CONTRACTS/03-i-tenant-provider.md|ITenantProvider]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/CONTRACTS/04-i-domain-event-dispatcher.md|IDomainEventDispatcher]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/CONTRACTS/05-i-current-user.md|ICurrentUser]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/CONTRACTS/06-i-file-storage.md|IFileStorage]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/CONTRACTS/07-i-pdf-generator.md|IPdfGenerator]]
+| Documento | Status |
+|-----------|--------|
+| [IRepository<T>](./00-i-repository.md) | ⚠ |
+| [IUnitOfWork](./01-i-unit-of-work.md) | ⚠ |
+| [IDateTimeProvider](./02-i-date-time-provider.md) | ⚠ |
+| [ITenantProvider](./03-i-tenant-provider.md) | ⚠ |
+| [IDomainEventDispatcher](./04-i-domain-event-dispatcher.md) | ⚠ |
+| [ICurrentUser](./05-i-current-user.md) | ⚠ |
+| [IFileStorage](./06-i-file-storage.md) | ⚠ |
+| [IPdfGenerator](./07-i-pdf-generator.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

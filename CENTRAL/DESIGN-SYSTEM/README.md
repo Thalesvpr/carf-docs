@@ -161,15 +161,15 @@ Para implementacao dos componentes React, consulte [PROJECTS/LIB/TS/UI-COMPONENT
 
 | Documento | Status |
 |-----------|--------|
-| [Colors](./01-colors.md) | ○ |
-| [Typography](./02-typography.md) | ○ |
-| [Spacing](./03-spacing.md) | ○ |
-| [Borders](./04-borders.md) | ○ |
-| [Shadows](./05-shadows.md) | ○ |
-| [Breakpoints](./06-breakpoints.md) | ○ |
-| [Interactive States](./07-states.md) | ○ |
-| [Z-Index Scale](./08-z-index.md) | ○ |
-| [Transitions](./09-transitions.md) | ○ |
-| [Color Palette](./color-palette.md) | ○ |
+| [Colors](./01-colors.md) | ⚠ |
+| [Typography](./02-typography.md) | ⚠ |
+| [Spacing](./03-spacing.md) | ⚠ |
+| [Borders](./04-borders.md) | ⚠ |
+| [Shadows](./05-shadows.md) | ⚠ |
+| [Breakpoints](./06-breakpoints.md) | ⚠ |
+| [Interactive States](./07-states.md) | ⚠ |
+| [Z-Index Scale](./08-z-index.md) | ⚠ |
+| [Transitions](./09-transitions.md) | ⚠ |
+| [Color Palette](./color-palette.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

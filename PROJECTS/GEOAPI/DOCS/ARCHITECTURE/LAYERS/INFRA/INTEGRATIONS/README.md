@@ -27,10 +27,13 @@ Integrações do GEOAPI com sistemas externos abstraídas por interfaces no Doma
 - 08-email-templates.md - Templates HTML emails
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (1)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/INFRA/INTEGRATIONS/01-keycloak-integration.md|Keycloak Integration]]
+| Documento | Status |
+|-----------|--------|
+| [Keycloak Integration](./01-keycloak-integration.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

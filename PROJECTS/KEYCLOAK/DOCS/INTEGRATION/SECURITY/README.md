@@ -24,12 +24,15 @@ As [boas práticas](./01-best-practices.md) cobrem configurações recomendadas 
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (3)
 
-- ○ [[PROJECTS/KEYCLOAK/DOCS/INTEGRATION/SECURITY/01-best-practices.md|Boas Práticas]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/INTEGRATION/SECURITY/02-attack-protection.md|Proteção Contra Ataques]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/INTEGRATION/SECURITY/03-secrets-management.md|Gerenciamento de Secrets]]
+| Documento | Status |
+|-----------|--------|
+| [Boas Práticas](./01-best-practices.md) | ⚠ |
+| [Proteção Contra Ataques](./02-attack-protection.md) | ⚠ |
+| [Gerenciamento de Secrets](./03-secrets-management.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

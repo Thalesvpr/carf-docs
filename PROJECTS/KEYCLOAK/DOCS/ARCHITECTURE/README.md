@@ -16,12 +16,15 @@ Arquitetura de customização Keycloak CARF baseada em três pilares: themes Fre
 - **[03-extension-development.md](./03-extension-development.md)** - Desenvolvimento extensões Java SPIs Maven Arquillian
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (3)
 
-- ○ [[PROJECTS/KEYCLOAK/DOCS/ARCHITECTURE/01-customization-strategy.md|Estratégia de Customização do Keycloak]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/ARCHITECTURE/02-theme-architecture.md|Arquitetura de Temas Keycloak]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/ARCHITECTURE/03-extension-development.md|Extension Development - SPIs Java]]
+| Documento | Status |
+|-----------|--------|
+| [Estratégia de Customização do Keycloak](./01-customization-strategy.md) | ⚠ |
+| [Arquitetura de Temas Keycloak](./02-theme-architecture.md) | ⚠ |
+| [Extension Development - SPIs Java](./03-extension-development.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

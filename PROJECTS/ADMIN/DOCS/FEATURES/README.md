@@ -24,11 +24,14 @@ updated: 2026-01-22
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (2)
 
-- ○ [[PROJECTS/ADMIN/DOCS/FEATURES/01-user-management.md|User Management - Gestão de Usuários]]
-- ○ [[PROJECTS/ADMIN/DOCS/FEATURES/02-team-management.md|Team Management - Gestão de Equipes]]
+| Documento | Status |
+|-----------|--------|
+| [User Management - Gestão de Usuários](./01-user-management.md) | ⚠ |
+| [Team Management - Gestão de Equipes](./02-team-management.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

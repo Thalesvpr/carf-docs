@@ -20,15 +20,18 @@ CQRS separa Commands que modificam estado com validação complexa de Queries qu
 - **[04-audit-logging.md](./04-audit-logging.md)** - Sistema auditoria LGPD compliance
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (6)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/CONCEPTS/01-authentication.md|01-authentication]]
-- ○ [[PROJECTS/GEOAPI/DOCS/CONCEPTS/01-key-concepts.md|Key Concepts]]
-- ○ [[PROJECTS/GEOAPI/DOCS/CONCEPTS/02-authorization.md|02-authorization]]
-- ○ [[PROJECTS/GEOAPI/DOCS/CONCEPTS/02-terminology.md|Terminology - GEOAPI]]
-- ○ [[PROJECTS/GEOAPI/DOCS/CONCEPTS/03-design-principles.md|Design Principles]]
-- ○ [[PROJECTS/GEOAPI/DOCS/CONCEPTS/04-audit-logging.md|Audit Logging]]
+| Documento | Status |
+|-----------|--------|
+| [01-authentication](./01-authentication.md) | ⚠ |
+| [Key Concepts](./01-key-concepts.md) | ⚠ |
+| [02-authorization](./02-authorization.md) | ⚠ |
+| [Terminology - GEOAPI](./02-terminology.md) | ⚠ |
+| [Design Principles](./03-design-principles.md) | ⚠ |
+| [Audit Logging](./04-audit-logging.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

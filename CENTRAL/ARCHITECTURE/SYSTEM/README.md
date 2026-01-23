@@ -15,5 +15,19 @@ O [ADMIN](./04-admin.md) e o console administrativo para gestao de tenants, usua
 Para detalhes tecnicos de implementacao de cada sistema incluindo arquitetura de codigo, configuracoes e guias de desenvolvimento, consulte a documentacao especifica em PROJECTS/*/DOCS/.
 
 <!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
+
+## Documentos (7)
+
+| Documento | Status |
+|-----------|--------|
+| [GEOAPI](./01-geoapi.md) | ⚠ |
+| [GEOWEB](./02-geoweb.md) | ⚠ |
+| [REURBCAD](./03-reurbcad.md) | ⚠ |
+| [ADMIN](./04-admin.md) | ⚠ |
+| [GEOGIS](./05-geogis.md) | ⚠ |
+| [WEBDOCS](./06-webdocs.md) | ⚠ |
+| [KEYCLOAK](./07-keycloak.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

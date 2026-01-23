@@ -14,11 +14,14 @@ Entities gerenciamento titulares do GEOAPI representando pessoas físicas reivin
 - **[20-unit-holder.md](./20-unit-holder.md)** - Relacionamento N:N Unit Holder com tipo vínculo
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (2)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/HOLDERS/03-holder.md|Holder]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/HOLDERS/20-unit-holder.md|UnitHolder]]
+| Documento | Status |
+|-----------|--------|
+| [Holder](./03-holder.md) | ⚠ |
+| [UnitHolder](./20-unit-holder.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

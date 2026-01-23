@@ -20,17 +20,20 @@ Enumerações tipadas representando classificações fixas do domínio incluindo
 - **[19-document-type.md](./19-document-type.md)** - Tipos documento anexo (RG CPF COMPROVANTE)
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (8)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/VALUE-OBJECTS/ENUMS/08-community-type.md|CommunityType]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/VALUE-OBJECTS/ENUMS/10-team-role.md|TeamRole]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/VALUE-OBJECTS/ENUMS/13-point-type.md|PointType]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/VALUE-OBJECTS/ENUMS/15-priority.md|Priority]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/VALUE-OBJECTS/ENUMS/16-annotation-type.md|AnnotationType]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/VALUE-OBJECTS/ENUMS/17-role.md|Role]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/VALUE-OBJECTS/ENUMS/18-entity-type.md|EntityType]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/VALUE-OBJECTS/ENUMS/19-document-type.md|DocumentType]]
+| Documento | Status |
+|-----------|--------|
+| [CommunityType](./08-community-type.md) | ⚠ |
+| [TeamRole](./10-team-role.md) | ⚠ |
+| [PointType](./13-point-type.md) | ⚠ |
+| [Priority](./15-priority.md) | ⚠ |
+| [AnnotationType](./16-annotation-type.md) | ⚠ |
+| [Role](./17-role.md) | ⚠ |
+| [EntityType](./18-entity-type.md) | ⚠ |
+| [DocumentType](./19-document-type.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

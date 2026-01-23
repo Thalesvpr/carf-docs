@@ -25,13 +25,16 @@ Componentes especificos do dominio CARF/REURB. StatusBadge para status de proces
 
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (4)
 
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/DOMAIN/01-status-badge.md|StatusBadge]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/DOMAIN/02-unit-card.md|UnitCard]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/DOMAIN/03-holder-card.md|HolderCard]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/DOMAIN/04-community-card.md|CommunityCard]]
+| Documento | Status |
+|-----------|--------|
+| [StatusBadge](./01-status-badge.md) | ⚠ |
+| [UnitCard](./02-unit-card.md) | ⚠ |
+| [HolderCard](./03-holder-card.md) | ⚠ |
+| [CommunityCard](./04-community-card.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

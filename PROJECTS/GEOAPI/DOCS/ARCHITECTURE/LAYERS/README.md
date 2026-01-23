@@ -15,3 +15,19 @@ Camadas da Clean Architecture do GEOAPI seguindo Dependency Inversion Principle 
 - **[INFRA/](./INFRA/README.md)** - Implementações técnicas (EF Core, Keycloak, S3)
 - **[PRESENTATION/](./PRESENTATION/README.md)** - API REST controllers middlewares filters hubs SignalR
 - **[TESTS/](./TESTS/README.md)** - Testes unitários integração E2E por camada
+
+<!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
+
+## Subpastas (5)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [APPLICATION](./APPLICATION/README.md) | ... |
+| [DOMAIN](./DOMAIN/README.md) | ... |
+| [INFRA](./INFRA/README.md) | ... |
+| [PRESENTATION](./PRESENTATION/README.md) | ... |
+| [TESTS](./TESTS/README.md) | ... |
+
+<!-- CARF-INDEX-END -->

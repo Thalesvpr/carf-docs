@@ -37,17 +37,17 @@ updated: 2026-01-15
 
 | Documento | Status |
 |-----------|--------|
-| [RF-021: Criar Usuário](./RF-021-criar-usuário.md) | ○ |
-| [RF-022: Editar Usuário](./RF-022-editar-usuário.md) | ○ |
-| [RF-023: Desativar Usuário](./RF-023-desativar-usuário.md) | ○ |
-| [RF-024: Listar Usuários](./RF-024-listar-usuários.md) | ○ |
-| [RF-025: Atribuir Role a Usuário](./RF-025-atribuir-role-a-usuário.md) | ○ |
-| [RF-026: Criar Equipe (Team)](./RF-026-criar-equipe-team.md) | ○ |
-| [RF-027: Editar Equipe](./RF-027-editar-equipe.md) | ○ |
-| [RF-028: Listar Equipes](./RF-028-listar-equipes.md) | ○ |
-| [RF-029: Vincular Usuário a Equipe](./RF-029-vincular-usuário-a-equipe.md) | ○ |
-| [RF-030: Filtrar Comunidades por Equipe](./RF-030-filtrar-comunidades-por-equipe.md) | ○ |
-| [RF-031: Perfil de Usuário](./RF-031-perfil-de-usuário.md) | ○ |
-| [RF-032: Redefinir Senha](./RF-032-redefinir-senha.md) | ○ |
+| [RF-021: Criar Usuário](./RF-021-criar-usuário.md) | ⚠ |
+| [RF-022: Editar Usuário](./RF-022-editar-usuário.md) | ⚠ |
+| [RF-023: Desativar Usuário](./RF-023-desativar-usuário.md) | ⚠ |
+| [RF-024: Listar Usuários](./RF-024-listar-usuários.md) | ⚠ |
+| [RF-025: Atribuir Role a Usuário](./RF-025-atribuir-role-a-usuário.md) | ⚠ |
+| [RF-026: Criar Equipe (Team)](./RF-026-criar-equipe-team.md) | ⚠ |
+| [RF-027: Editar Equipe](./RF-027-editar-equipe.md) | ⚠ |
+| [RF-028: Listar Equipes](./RF-028-listar-equipes.md) | ⚠ |
+| [RF-029: Vincular Usuário a Equipe](./RF-029-vincular-usuário-a-equipe.md) | ⚠ |
+| [RF-030: Filtrar Comunidades por Equipe](./RF-030-filtrar-comunidades-por-equipe.md) | ⚠ |
+| [RF-031: Perfil de Usuário](./RF-031-perfil-de-usuário.md) | ⚠ |
+| [RF-032: Redefinir Senha](./RF-032-redefinir-senha.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

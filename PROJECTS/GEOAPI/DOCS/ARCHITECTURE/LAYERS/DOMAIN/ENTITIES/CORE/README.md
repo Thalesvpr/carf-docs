@@ -14,11 +14,14 @@ Entities core multi-tenancy do GEOAPI implementando isolamento dados por tenant 
 - **[07-tenant.md](./07-tenant.md)** - Tenant multi-tenancy organização município
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (2)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/CORE/06-account.md|Account]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/CORE/07-tenant.md|Tenant]]
+| Documento | Status |
+|-----------|--------|
+| [Account](./06-account.md) | ⚠ |
+| [Tenant](./07-tenant.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

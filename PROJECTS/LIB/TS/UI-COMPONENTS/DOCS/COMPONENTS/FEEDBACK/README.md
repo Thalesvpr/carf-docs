@@ -27,15 +27,18 @@ Componentes para comunicacao de estados ao usuario. Alert para mensagens importa
 
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (6)
 
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/FEEDBACK/01-alert.md|Alert]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/FEEDBACK/02-toast.md|Toast]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/FEEDBACK/03-dialog.md|Dialog]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/FEEDBACK/04-alert-dialog.md|AlertDialog]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/FEEDBACK/05-progress.md|Progress]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/FEEDBACK/06-skeleton.md|Skeleton]]
+| Documento | Status |
+|-----------|--------|
+| [Alert](./01-alert.md) | ⚠ |
+| [Toast](./02-toast.md) | ⚠ |
+| [Dialog](./03-dialog.md) | ⚠ |
+| [AlertDialog](./04-alert-dialog.md) | ⚠ |
+| [Progress](./05-progress.md) | ⚠ |
+| [Skeleton](./06-skeleton.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

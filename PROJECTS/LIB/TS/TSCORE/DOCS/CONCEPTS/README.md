@@ -368,12 +368,15 @@ const updateDto: UpdateUnitDto = {
 - **03-typescript-types** - Entities, Enums, DTOs do dominio CARF
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (3)
 
-- ○ [[PROJECTS/LIB/TS/TSCORE/DOCS/CONCEPTS/01-value-objects.md|Value Objects - Objetos de Valor]]
-- ○ [[PROJECTS/LIB/TS/TSCORE/DOCS/CONCEPTS/02-authentication.md|Authentication - Autenticação com Keycloak]]
-- ○ [[PROJECTS/LIB/TS/TSCORE/DOCS/CONCEPTS/03-typescript-types.md|TypeScript Types - Tipos Compartilhados]]
+| Documento | Status |
+|-----------|--------|
+| [Value Objects - Objetos de Valor](./01-value-objects.md) | ⚠ |
+| [Authentication - Autenticação com Keycloak](./02-authentication.md) | ⚠ |
+| [TypeScript Types - Tipos Compartilhados](./03-typescript-types.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

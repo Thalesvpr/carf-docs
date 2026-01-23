@@ -13,10 +13,13 @@ Entity gerenciamento sincronização offline mobile do GEOAPI rastreando operaç
 - **[15-sync-log.md](./15-sync-log.md)** - Log sincronização mobile detecção conflitos
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (1)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/SYNC/15-sync-log.md|SyncLog]]
+| Documento | Status |
+|-----------|--------|
+| [SyncLog](./15-sync-log.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

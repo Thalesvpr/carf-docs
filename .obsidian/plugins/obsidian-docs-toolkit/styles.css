@@ -277,12 +277,14 @@
 .docs-dot-approved { background: var(--color-green); }
 .docs-dot-rejected { background: var(--color-red); }
 .docs-dot-none { background: var(--text-faint); opacity: 0.5; }
+.docs-dot-invalid { background: white; opacity: 0.5; }
 
 .docs-dot-current.docs-dot-review { opacity: 1; }
 .docs-dot-current.docs-dot-approved { box-shadow: 0 0 4px var(--color-green); }
 .docs-dot-current.docs-dot-rejected { box-shadow: 0 0 4px var(--color-red); }
 .docs-dot-current.docs-dot-review { box-shadow: 0 0 4px var(--color-yellow); }
 .docs-dot-current.docs-dot-none { opacity: 1; box-shadow: 0 0 4px var(--text-faint); }
+.docs-dot-current.docs-dot-invalid { opacity: 0.7; box-shadow: 0 0 4px white; }
 
 /* File section */
 .docs-file-section {

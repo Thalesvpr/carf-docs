@@ -550,12 +550,15 @@ try {
 - **03-auth-api** - Autenticacao Keycloak
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (3)
 
-- ○ [[PROJECTS/LIB/TS/TSCORE/DOCS/API/01-validation-api.md|Validation API - Referência Completa]]
-- ○ [[PROJECTS/LIB/TS/TSCORE/DOCS/API/02-types-api.md|Types API - @carf/tscore]]
-- ○ [[PROJECTS/LIB/TS/TSCORE/DOCS/API/03-auth-api.md|Auth API - @carf/tscore]]
+| Documento | Status |
+|-----------|--------|
+| [Validation API - Referência Completa](./01-validation-api.md) | ⚠ |
+| [Types API - @carf/tscore](./02-types-api.md) | ⚠ |
+| [Auth API - @carf/tscore](./03-auth-api.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

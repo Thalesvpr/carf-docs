@@ -27,15 +27,18 @@ O [criar usuário](./01-create-user.md) guia criação de usuários com roles e 
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (6)
 
-- ○ [[PROJECTS/KEYCLOAK/DOCS/RUNBOOKS/01-create-user.md|Criar Usuário no Keycloak]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/RUNBOOKS/02-create-tenant.md|Criar e Gerenciar Tenants]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/RUNBOOKS/03-rotate-secrets.md|Rotacionar Secrets]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/RUNBOOKS/04-troubleshoot-auth.md|Troubleshoot Autenticação]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/RUNBOOKS/05-backup-restore.md|Backup e Restore]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/RUNBOOKS/06-monitoring.md|Monitoramento Keycloak]]
+| Documento | Status |
+|-----------|--------|
+| [Criar Usuário no Keycloak](./01-create-user.md) | ⚠ |
+| [Criar e Gerenciar Tenants](./02-create-tenant.md) | ⚠ |
+| [Rotacionar Secrets](./03-rotate-secrets.md) | ⚠ |
+| [Troubleshoot Autenticação](./04-troubleshoot-auth.md) | ⚠ |
+| [Backup e Restore](./05-backup-restore.md) | ⚠ |
+| [Monitoramento Keycloak](./06-monitoring.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

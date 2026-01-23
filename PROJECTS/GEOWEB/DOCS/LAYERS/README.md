@@ -51,10 +51,13 @@ Estrutura de camadas do código React do GEOWEB.
 - UI preferences
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (1)
 
-- ○ [[PROJECTS/GEOWEB/DOCS/LAYERS/01-auth-context.md|01-auth-context]]
+| Documento | Status |
+|-----------|--------|
+| [01-auth-context](./01-auth-context.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

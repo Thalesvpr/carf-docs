@@ -30,6 +30,6 @@ Relacionamentos entre aggregates diferentes usam apenas IDs, nunca referências 
 
 | Documento | Status |
 |-----------|--------|
-| [Entity Relationships](./01-entity-relationships.md) | ○ |
+| [Entity Relationships](./01-entity-relationships.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

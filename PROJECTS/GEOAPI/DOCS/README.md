@@ -17,11 +17,18 @@ Backend REST API .NET 9 do sistema CARF. Fornece endpoints para unidades habitac
 - **[HOW-TO/](./HOW-TO/README.md)** - Guias práticos de desenvolvimento
 
 <!-- CARF-INDEX-START -->
-## Subpastas
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-- [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/README|ARCHITECTURE]]
-- [[PROJECTS/GEOAPI/DOCS/CONCEPTS/README|CONCEPTS]]
-- [[PROJECTS/GEOAPI/DOCS/FEATURES/README|FEATURES]]
-- [[PROJECTS/GEOAPI/DOCS/HOW-TO/README|HOW-TO]]
+## Subpastas (6)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [ADRs](./ADRs/README.md) | ... |
+| [ARCHITECTURE](./ARCHITECTURE/README.md) | ... |
+| [CONCEPTS](./CONCEPTS/README.md) | ... |
+| [FEATURES](./FEATURES/README.md) | ... |
+| [HOW-TO](./HOW-TO/README.md) | ... |
+| [PATTERNS](./PATTERNS/README.md) | ... |
 
 <!-- CARF-INDEX-END -->

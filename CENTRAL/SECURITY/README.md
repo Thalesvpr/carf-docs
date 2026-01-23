@@ -44,8 +44,8 @@ As [políticas](./POLICIES/README.md) definem regras de autenticação, autoriza
 
 | Documento | Status |
 |-----------|--------|
-| [RBAC Keycloak](./rbac-keycloak.md) | ○ |
-| [Roles Hierarchy](./roles-hierarchy.md) | ○ |
-| [Security Strategy](./security-strategy.md) | ○ |
+| [RBAC Keycloak](./rbac-keycloak.md) | ⚠ |
+| [Roles Hierarchy](./roles-hierarchy.md) | ⚠ |
+| [Security Strategy](./security-strategy.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

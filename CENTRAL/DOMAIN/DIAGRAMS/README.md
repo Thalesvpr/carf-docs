@@ -38,7 +38,7 @@ Os diagramas são criados usando PlantUML e Mermaid, versionados no Git e sincro
 
 | Documento | Status |
 |-----------|--------|
-| [Aggregates Diagram](./01-aggregates.md) | ○ |
-| [ER Diagram](./02-er-diagram.md) | ○ |
+| [Aggregates Diagram](./01-aggregates.md) | ⚠ |
+| [ER Diagram](./02-er-diagram.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

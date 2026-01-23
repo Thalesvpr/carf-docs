@@ -456,6 +456,37 @@ export default class DocsToolkitPlugin extends Plugin {
   private registerFolderContextMenu(): void {
     this.registerEvent(
       this.app.workspace.on("file-menu", (menu: Menu, file) => {
+        // Handle README.md files
+        if (file instanceof TFile && file.name === "README.md") {
+          if (!this.isTrackedFile(file.path)) return;
+          const folder = file.parent;
+          if (!folder) return;
+
+          menu.addSeparator();
+
+          // Regenerate index for this README
+          menu.addItem((item) => {
+            item
+              .setTitle("Regenerate index")
+              .setIcon("file-text")
+              .onClick(async () => {
+                console.log("[DocsToolkit] Regenerate index clicked");
+                console.log("[DocsToolkit] file.path:", file.path);
+                console.log("[DocsToolkit] folder:", folder?.path);
+                try {
+                  await this.indexService.syncFolderIndex(folder);
+                  await this.store.updateDocument(file);
+                  new Notice(`Índice regenerado: ${file.name}`);
+                } catch (e) {
+                  console.error("[DocsToolkit] Error:", e);
+                  new Notice(`Erro ao regenerar índice: ${e}`);
+                }
+              });
+          });
+          return;
+        }
+
+        // Handle folders
         if (!(file instanceof TFolder)) return;
         if (!this.isTrackedFile(file.path)) return;
 

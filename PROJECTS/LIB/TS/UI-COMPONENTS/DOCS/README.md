@@ -85,12 +85,17 @@ StatusBadge, UnitCard, HolderCard, CommunityCard
 - [shadcn/ui](https://ui.shadcn.com/) - Componentes base
 
 <!-- CARF-INDEX-START -->
-## Subpastas
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-- [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/ARCHITECTURE/README|ARCHITECTURE]]
-- [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/README|COMPONENTS]]
-- [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/CONCEPTS/README|CONCEPTS]]
-- [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/HOW-TO/README|HOW-TO]]
-- [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/SPECS/README|SPECS]]
+## Subpastas (5)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [ARCHITECTURE](./ARCHITECTURE/README.md) | ... |
+| [COMPONENTS](./COMPONENTS/README.md) | ... |
+| [CONCEPTS](./CONCEPTS/README.md) | ... |
+| [HOW-TO](./HOW-TO/README.md) | ... |
+| [SPECS](./SPECS/README.md) | ... |
 
 <!-- CARF-INDEX-END -->

@@ -27,15 +27,18 @@ O [GEOWEB](./01-geoweb.md) é SPA React usando public client com PKCE. O [REURBC
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (6)
 
-- ○ [[PROJECTS/KEYCLOAK/DOCS/INTEGRATION/CLIENTS/01-geoweb.md|Client GEOWEB]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/INTEGRATION/CLIENTS/02-reurbcad.md|Client REURBCAD]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/INTEGRATION/CLIENTS/03-geoapi.md|Client GEOAPI]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/INTEGRATION/CLIENTS/04-geogis.md|Client GEOGIS]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/INTEGRATION/CLIENTS/05-webdocs.md|Client WEBDOCS]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/INTEGRATION/CLIENTS/06-admin.md|Client ADMIN]]
+| Documento | Status |
+|-----------|--------|
+| [Client GEOWEB](./01-geoweb.md) | ⚠ |
+| [Client REURBCAD](./02-reurbcad.md) | ⚠ |
+| [Client GEOAPI](./03-geoapi.md) | ⚠ |
+| [Client GEOGIS](./04-geogis.md) | ⚠ |
+| [Client WEBDOCS](./05-webdocs.md) | ⚠ |
+| [Client ADMIN](./06-admin.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

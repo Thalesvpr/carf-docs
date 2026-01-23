@@ -51,29 +51,44 @@ export class IndexService {
    * Sync the README index for a folder
    */
   async syncFolderIndex(folder: TFolder): Promise<void> {
-    const readmePath = `${folder.path}/README.md`;
+    // Handle root folder path - Obsidian uses "/" or "" for root
+    const isRoot = !folder.path || folder.path === "/";
+    const readmePath = isRoot ? "README.md" : `${folder.path}/README.md`;
     let readme = this.app.vault.getAbstractFileByPath(readmePath) as TFile | null;
+
+    console.log("[IndexService] syncFolderIndex called");
+    console.log("[IndexService] folder.path:", folder.path, "isRoot:", isRoot);
+    console.log("[IndexService] readmePath:", readmePath);
+    console.log("[IndexService] readme found:", !!readme);
+    console.log("[IndexService] folder.children count:", folder.children?.length);
 
     // Get all markdown files in the folder (except README)
     const files = folder.children
       .filter(f => f instanceof TFile && f.name.endsWith(".md") && f.name !== "README.md")
       .sort((a, b) => a.name.localeCompare(b.name)) as TFile[];
 
-    // Get all subfolders
+    // Get all subfolders (exclude hidden folders starting with .)
     const subfolders = folder.children
-      .filter(f => f instanceof TFolder)
+      .filter(f => f instanceof TFolder && !f.name.startsWith("."))
       .sort((a, b) => a.name.localeCompare(b.name)) as TFolder[];
+
+    console.log("[IndexService] files count:", files.length);
+    console.log("[IndexService] subfolders:", subfolders.map(f => f.name));
 
     // Generate index content
     const indexContent = await this.generateIndexContent(folder, files, subfolders);
+
+    console.log("[IndexService] indexContent length:", indexContent.length);
 
     if (readme) {
       // Update existing README
       const currentContent = await this.app.vault.read(readme);
       const newContent = this.updateIndexSection(currentContent, indexContent);
-      if (newContent !== currentContent) {
-        await this.app.vault.modify(readme, newContent);
-      }
+      console.log("[IndexService] Writing to README, content changed:", currentContent !== newContent);
+      await this.app.vault.modify(readme, newContent);
+      console.log("[IndexService] README updated successfully");
+    } else {
+      console.log("[IndexService] README not found, cannot update");
     }
   }
 
@@ -178,7 +193,8 @@ export class IndexService {
     const folder = file.parent;
     if (!folder) return false;
 
-    const readmePath = `${folder.path}/README.md`;
+    const isRoot = !folder.path || folder.path === "/";
+    const readmePath = isRoot ? "README.md" : `${folder.path}/README.md`;
     return this.app.vault.getAbstractFileByPath(readmePath) !== null;
   }
 }

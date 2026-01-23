@@ -50,10 +50,13 @@ Estrutura de camadas do código do plugin GEOGIS QGIS.
 - ExportShapefile - export para formatos GIS
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (1)
 
-- ○ [[PROJECTS/GEOGIS/DOCS/LAYERS/01-auth-manager.md|01-auth-manager]]
+| Documento | Status |
+|-----------|--------|
+| [01-auth-manager](./01-auth-manager.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

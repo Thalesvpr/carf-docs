@@ -15,6 +15,17 @@ A pasta [DECISIONS](./DECISIONS/README.md) contem Architecture Decision Records 
 Para implementacao tecnica especifica de cada projeto incluindo arquitetura de codigo, configuracoes, guias de desenvolvimento e estrategias de deployment, consulte a documentacao em PROJECTS/*/DOCS/.
 
 <!-- CARF-INDEX-START -->
-> **Indice gerado automaticamente.** Nao edite manualmente.
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
+
+## Subpastas (5)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [DECISIONS](./DECISIONS/README.md) | ... |
+| [DIAGRAMS](./DIAGRAMS/README.md) | ... |
+| [INTEGRATION](./INTEGRATION/README.md) | ... |
+| [STANDARDS](./STANDARDS/README.md) | ... |
+| [SYSTEM](./SYSTEM/README.md) | ... |
 
 <!-- CARF-INDEX-END -->

@@ -29,12 +29,15 @@ Guias práticos para desenvolvimento e configuração do GEOWEB.
 3. Deploy para Vercel via `vercel deploy`
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (3)
 
-- ○ [[PROJECTS/GEOWEB/DOCS/HOW-TO/01-setup-keycloak.md|01-setup-keycloak]]
-- ○ [[PROJECTS/GEOWEB/DOCS/HOW-TO/02-login-logout.md|02-login-logout]]
-- ○ [[PROJECTS/GEOWEB/DOCS/HOW-TO/03-refresh-tokens.md|03-refresh-tokens]]
+| Documento | Status |
+|-----------|--------|
+| [01-setup-keycloak](./01-setup-keycloak.md) | ⚠ |
+| [02-login-logout](./02-login-logout.md) | ⚠ |
+| [03-refresh-tokens](./03-refresh-tokens.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

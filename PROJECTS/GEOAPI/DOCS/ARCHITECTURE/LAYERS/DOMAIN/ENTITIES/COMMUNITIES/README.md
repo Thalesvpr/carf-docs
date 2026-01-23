@@ -15,12 +15,15 @@ Entities organização espacial territorial do GEOAPI estruturando assentamentos
 - **[09-plot.md](./09-plot.md)** - Lote individual menor unidade espacial
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (3)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/COMMUNITIES/04-community.md|Community]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/COMMUNITIES/08-block.md|Block]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/COMMUNITIES/09-plot.md|Plot]]
+| Documento | Status |
+|-----------|--------|
+| [Community](./04-community.md) | ⚠ |
+| [Block](./08-block.md) | ⚠ |
+| [Plot](./09-plot.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

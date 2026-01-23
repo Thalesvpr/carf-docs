@@ -18,10 +18,13 @@ Middlewares globais do GEOAPI interceptando pipeline HTTP ASP.NET Core em ordem 
 - 06-cors-middleware.md - CORS policies configuration
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (1)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/PRESENTATION/MIDDLEWARES/01-exception-handling.md|Exception Handling Middleware]]
+| Documento | Status |
+|-----------|--------|
+| [Exception Handling Middleware](./01-exception-handling.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

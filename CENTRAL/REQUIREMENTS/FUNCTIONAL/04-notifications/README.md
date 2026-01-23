@@ -26,6 +26,6 @@ updated: 2026-01-15
 
 | Documento | Status |
 |-----------|--------|
-| [RF-033: Notificações In-App](./RF-033-notificações-in-app.md) | ○ |
+| [RF-033: Notificações In-App](./RF-033-notificações-in-app.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

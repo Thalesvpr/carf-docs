@@ -13,3 +13,17 @@ Estratégia testes GEOAPI implementando pirâmide três níveis: unitários vali
 - **[UNIT/](./UNIT/README.md)** - Testes unitários domain logic isolada
 - **[INTEGRATION/](./INTEGRATION/README.md)** - Testes integração com database real
 - **[E2E/](./E2E/README.md)** - Testes end-to-end API completa
+
+<!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
+
+## Subpastas (3)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [E2E](./E2E/README.md) | ... |
+| [INTEGRATION](./INTEGRATION/README.md) | ... |
+| [UNIT](./UNIT/README.md) | ... |
+
+<!-- CARF-INDEX-END -->

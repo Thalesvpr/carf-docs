@@ -42,8 +42,8 @@ O [LegitimationRequestAggregate](./03-legitimation-request-aggregate.md) tem Leg
 
 | Documento | Status |
 |-----------|--------|
-| [Unit Aggregate](./01-unit-aggregate.md) | ○ |
-| [Community Aggregate](./02-community-aggregate.md) | ○ |
-| [LegitimationRequest Aggregate](./03-legitimation-request-aggregate.md) | ○ |
+| [Unit Aggregate](./01-unit-aggregate.md) | ⚠ |
+| [Community Aggregate](./02-community-aggregate.md) | ⚠ |
+| [LegitimationRequest Aggregate](./03-legitimation-request-aggregate.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

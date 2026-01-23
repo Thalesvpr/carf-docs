@@ -17,10 +17,13 @@ Action filters do GEOAPI aplicando cross-cutting concerns específicos a control
 - 05-transaction-filter.md - Explicit transaction scope
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (1)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/PRESENTATION/FILTERS/01-validation-filter.md|Validation Filter]]
+| Documento | Status |
+|-----------|--------|
+| [Validation Filter](./01-validation-filter.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

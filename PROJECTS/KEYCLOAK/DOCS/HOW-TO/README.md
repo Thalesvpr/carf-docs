@@ -19,15 +19,18 @@ Guias práticos para desenvolvimento deployment e operação do Keycloak CARF co
 - **[06-configure-production.md](./06-configure-production.md)** - Configuração produção PostgreSQL HTTPS clustering backup monitoring
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (6)
 
-- ○ [[PROJECTS/KEYCLOAK/DOCS/HOW-TO/01-develop-themes.md|Desenvolvimento de Temas com Keycloakify]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/HOW-TO/02-deploy-extensions.md|Deploy de Extensões Java (SPIs)]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/HOW-TO/03-setup-dev-environment.md|Setup Ambiente de Desenvolvimento]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/HOW-TO/04-build-custom-image.md|Build Custom Docker Image]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/HOW-TO/05-update-keycloak-version.md|Atualizar Versão do Keycloak]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/HOW-TO/06-configure-production.md|Configurar Ambiente de Produção]]
+| Documento | Status |
+|-----------|--------|
+| [Desenvolvimento de Temas com Keycloakify](./01-develop-themes.md) | ⚠ |
+| [Deploy de Extensões Java (SPIs)](./02-deploy-extensions.md) | ⚠ |
+| [Setup Ambiente de Desenvolvimento](./03-setup-dev-environment.md) | ⚠ |
+| [Build Custom Docker Image](./04-build-custom-image.md) | ⚠ |
+| [Atualizar Versão do Keycloak](./05-update-keycloak-version.md) | ⚠ |
+| [Configurar Ambiente de Produção](./06-configure-production.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

@@ -26,14 +26,17 @@ Componentes para estruturacao de conteudo. Card para containers, Separator para 
 
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (5)
 
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/LAYOUT/01-card.md|Card]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/LAYOUT/02-separator.md|Separator]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/LAYOUT/03-tabs.md|Tabs]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/LAYOUT/04-accordion.md|Accordion]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/LAYOUT/05-scroll-area.md|ScrollArea]]
+| Documento | Status |
+|-----------|--------|
+| [Card](./01-card.md) | ⚠ |
+| [Separator](./02-separator.md) | ⚠ |
+| [Tabs](./03-tabs.md) | ⚠ |
+| [Accordion](./04-accordion.md) | ⚠ |
+| [ScrollArea](./05-scroll-area.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

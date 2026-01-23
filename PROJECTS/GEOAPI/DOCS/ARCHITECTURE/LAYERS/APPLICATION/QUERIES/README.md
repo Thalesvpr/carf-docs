@@ -42,10 +42,13 @@ Queries CQRS do GEOAPI representando operações apenas-leitura (reads) otimizad
 - 19-get-legitimation-progress-report-query.md
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (1)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/APPLICATION/QUERIES/01-unit-queries.md|Unit Queries]]
+| Documento | Status |
+|-----------|--------|
+| [Unit Queries](./01-unit-queries.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

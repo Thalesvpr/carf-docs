@@ -16,13 +16,16 @@ Entities serviços GIS do GEOAPI gerenciando layers vetoriais e raster para visu
 - **[24-wms-layer.md](./24-wms-layer.md)** - Layer WMS específica servidor
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (4)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/GIS/21-layer.md|Layer]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/GIS/22-layer-feature.md|LayerFeature]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/GIS/23-wms-server.md|WmsServer]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/GIS/24-wms-layer.md|WmsLayer]]
+| Documento | Status |
+|-----------|--------|
+| [Layer](./21-layer.md) | ⚠ |
+| [LayerFeature](./22-layer-feature.md) | ⚠ |
+| [WmsServer](./23-wms-server.md) | ⚠ |
+| [WmsLayer](./24-wms-layer.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

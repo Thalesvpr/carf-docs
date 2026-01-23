@@ -50,10 +50,10 @@ A política de [controle de acesso](./05-access-control-policy.md) define MFA ob
 
 | Documento | Status |
 |-----------|--------|
-| [Authentication Policy](./01-authentication-policy.md) | ○ |
-| [Authorization Policy](./02-authorization-policy.md) | ○ |
-| [Encryption Policy](./03-encryption-policy.md) | ○ |
-| [LGPD Compliance Policy](./04-lgpd-compliance-policy.md) | ○ |
-| [Access Control Policy](./05-access-control-policy.md) | ○ |
+| [Authentication Policy](./01-authentication-policy.md) | ⚠ |
+| [Authorization Policy](./02-authorization-policy.md) | ⚠ |
+| [Encryption Policy](./03-encryption-policy.md) | ⚠ |
+| [LGPD Compliance Policy](./04-lgpd-compliance-policy.md) | ⚠ |
+| [Access Control Policy](./05-access-control-policy.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

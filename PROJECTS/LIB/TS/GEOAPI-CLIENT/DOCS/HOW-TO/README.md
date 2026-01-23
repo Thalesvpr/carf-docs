@@ -52,12 +52,15 @@ const holder = await api.holders.getById(id)
 - Integracao com React Query
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (3)
 
-- ○ [[PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/HOW-TO/01-getting-started.md|Getting Started]]
-- ○ [[PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/HOW-TO/02-error-handling.md|Error Handling - Guia Pratico]]
-- ○ [[PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/HOW-TO/03-file-upload.md|File Upload - Guia Pratico]]
+| Documento | Status |
+|-----------|--------|
+| [Getting Started](./01-getting-started.md) | ⚠ |
+| [Error Handling - Guia Pratico](./02-error-handling.md) | ⚠ |
+| [File Upload - Guia Pratico](./03-file-upload.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

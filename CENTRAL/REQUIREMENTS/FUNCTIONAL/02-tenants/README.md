@@ -29,9 +29,9 @@ updated: 2026-01-15
 
 | Documento | Status |
 |-----------|--------|
-| [RF-017: Criar Tenant](./RF-017-criar-tenant.md) | ○ |
-| [RF-018: Editar Tenant](./RF-018-editar-tenant.md) | ○ |
-| [RF-019: Desativar Tenant](./RF-019-desativar-tenant.md) | ○ |
-| [RF-020: Listar Tenants](./RF-020-listar-tenants.md) | ○ |
+| [RF-017: Criar Tenant](./RF-017-criar-tenant.md) | ⚠ |
+| [RF-018: Editar Tenant](./RF-018-editar-tenant.md) | ⚠ |
+| [RF-019: Desativar Tenant](./RF-019-desativar-tenant.md) | ⚠ |
+| [RF-020: Listar Tenants](./RF-020-listar-tenants.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

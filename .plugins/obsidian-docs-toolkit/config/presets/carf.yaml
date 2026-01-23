@@ -173,6 +173,8 @@ documentTypes:
         contains: "/concepts/"
     frontmatter:
       required: [status, updated]
+      fields:
+        status: { enum: [review, approved, rejected] }
 
   how-to:
     name: "How-To Guide"
@@ -184,6 +186,8 @@ documentTypes:
         contains: "/how-to/"
     frontmatter:
       required: [status, updated]
+      fields:
+        status: { enum: [review, approved, rejected] }
 
   runbook:
     name: "Runbook"
@@ -195,6 +199,8 @@ documentTypes:
         contains: "/runbooks/"
     frontmatter:
       required: [status, updated]
+      fields:
+        status: { enum: [review, approved, rejected] }
 
   reference:
     name: "Reference"
@@ -206,6 +212,8 @@ documentTypes:
         contains: "/reference/"
     frontmatter:
       required: [status, updated]
+      fields:
+        status: { enum: [review, approved, rejected] }
 
   feature:
     name: "Feature Documentation"
@@ -217,6 +225,8 @@ documentTypes:
         contains: "/features/"
     frontmatter:
       required: [status, updated]
+      fields:
+        status: { enum: [review, approved, rejected] }
 
   spec:
     name: "Specification"
@@ -228,6 +238,8 @@ documentTypes:
         contains: "/specs/"
     frontmatter:
       required: [status, updated]
+      fields:
+        status: { enum: [review, approved, rejected] }
 
   api:
     name: "API Documentation"
@@ -239,6 +251,8 @@ documentTypes:
         contains: "/api/"
     frontmatter:
       required: [status, updated]
+      fields:
+        status: { enum: [review, approved, rejected] }
 
   config:
     name: "Configuration"
@@ -250,6 +264,8 @@ documentTypes:
         contains: "/config/"
     frontmatter:
       required: [status, updated]
+      fields:
+        status: { enum: [review, approved, rejected] }
 
   integration:
     name: "Integration Guide"
@@ -261,6 +277,8 @@ documentTypes:
         contains: "/integration/"
     frontmatter:
       required: [status, updated]
+      fields:
+        status: { enum: [review, approved, rejected] }
 
   architecture:
     name: "Architecture Document"
@@ -272,6 +290,8 @@ documentTypes:
         contains: "/architecture/"
     frontmatter:
       required: [status, updated]
+      fields:
+        status: { enum: [review, approved, rejected] }
 
   # ===================
   # README (special handling)
@@ -284,6 +304,8 @@ documentTypes:
         exact: "README.md"
     frontmatter:
       required: [status, updated]
+      fields:
+        status: { enum: [review, approved, rejected] }
 
   # ===================
   # Fallback (lowest priority)
@@ -296,6 +318,8 @@ documentTypes:
         pattern: "\\.md$"
     frontmatter:
       required: [status, updated]
+      fields:
+        status: { enum: [review, approved, rejected] }
 
 validators:
   frontmatter:

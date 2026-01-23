@@ -26,12 +26,15 @@ Conceitos fundamentais do portal GEOWEB React.
 **Form Handling** - React Hook Form + Zod validation, field-level errors, submit optimistic updates
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (3)
 
-- ○ [[PROJECTS/GEOWEB/DOCS/CONCEPTS/01-authentication.md|01-authentication]]
-- ○ [[PROJECTS/GEOWEB/DOCS/CONCEPTS/02-protected-routes.md|02-protected-routes]]
-- ○ [[PROJECTS/GEOWEB/DOCS/CONCEPTS/03-tenant-switcher.md|03-tenant-switcher]]
+| Documento | Status |
+|-----------|--------|
+| [01-authentication](./01-authentication.md) | ⚠ |
+| [02-protected-routes](./02-protected-routes.md) | ⚠ |
+| [03-tenant-switcher](./03-tenant-switcher.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

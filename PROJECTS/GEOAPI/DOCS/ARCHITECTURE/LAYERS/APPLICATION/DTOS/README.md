@@ -43,10 +43,13 @@ Data Transfer Objects do GEOAPI implementados como records imutáveis C# para tr
 - 20-paged-result-dto.md - Resultado paginado
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (1)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/APPLICATION/DTOS/01-unit-dtos.md|Unit DTOs]]
+| Documento | Status |
+|-----------|--------|
+| [Unit DTOs](./01-unit-dtos.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

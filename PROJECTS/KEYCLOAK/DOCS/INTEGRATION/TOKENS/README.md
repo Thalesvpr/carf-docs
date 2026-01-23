@@ -24,12 +24,15 @@ O [access token](./01-access-token.md) contém claims de identidade, roles e ten
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (3)
 
-- ○ [[PROJECTS/KEYCLOAK/DOCS/INTEGRATION/TOKENS/01-access-token.md|Access Token]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/INTEGRATION/TOKENS/02-refresh-token.md|Refresh Token]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/INTEGRATION/TOKENS/03-validation.md|Validação de Token]]
+| Documento | Status |
+|-----------|--------|
+| [Access Token](./01-access-token.md) | ⚠ |
+| [Refresh Token](./02-refresh-token.md) | ⚠ |
+| [Validação de Token](./03-validation.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

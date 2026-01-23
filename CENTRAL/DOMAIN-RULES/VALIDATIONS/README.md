@@ -23,9 +23,9 @@ Regras de validacao de negocio como:
 
 | Documento | Status |
 |-----------|--------|
-| [BUSINESS](./01-business-validation.md) | ○ |
-| [GEOGRAPHIC](./07-geographic-validation.md) | ○ |
-| [Holder Validation Rules](./09-holder-validation.md) | ○ |
-| [Unit Validation Rules](./11-unit-validation.md) | ○ |
+| [BUSINESS](./01-business-validation.md) | ⚠ |
+| [GEOGRAPHIC](./07-geographic-validation.md) | ⚠ |
+| [Holder Validation Rules](./09-holder-validation.md) | ⚠ |
+| [Unit Validation Rules](./11-unit-validation.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

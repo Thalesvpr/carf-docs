@@ -79,11 +79,14 @@ Custom tools registered via `QgsProcessingProvider` com:
 - QMessageBox.critical() com stack trace details
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (2)
 
-- ○ [[PROJECTS/GEOGIS/DOCS/CONCEPTS/01-authentication.md|01-authentication]]
-- ○ [[PROJECTS/GEOGIS/DOCS/CONCEPTS/02-token-storage.md|02-token-storage]]
+| Documento | Status |
+|-----------|--------|
+| [01-authentication](./01-authentication.md) | ⚠ |
+| [02-token-storage](./02-token-storage.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

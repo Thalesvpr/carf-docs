@@ -33,12 +33,12 @@ updated: 2026-01-15
 
 | Documento | Status |
 |-----------|--------|
-| [RNF-007: Exportação de Dados](./RNF-007-exportacao-dados.md) | ○ |
-| [RNF-008: Sincronização Offline - Pull](./RNF-008-sincronizacao-offline-pull.md) | ○ |
-| [RNF-044: Logs Estruturados](./RNF-044-logs-estruturados-centralizados.md) | ○ |
-| [RNF-058: Linting e Formatação](./RNF-058-linting-e-formatacao.md) | ○ |
-| [RNF-081: Formatos de Importação](./RNF-081-formatos-importacao.md) | ○ |
-| [RNF-083: Sistemas de Coordenadas](./RNF-083-sistemas-coordenadas.md) | ○ |
-| [RNF-084: Integração WMS/WMTS](./RNF-084-integracao-wms-wmts.md) | ○ |
+| [RNF-007: Exportação de Dados](./RNF-007-exportacao-dados.md) | ⚠ |
+| [RNF-008: Sincronização Offline - Pull](./RNF-008-sincronizacao-offline-pull.md) | ⚠ |
+| [RNF-044: Logs Estruturados](./RNF-044-logs-estruturados-centralizados.md) | ⚠ |
+| [RNF-058: Linting e Formatação](./RNF-058-linting-e-formatacao.md) | ⚠ |
+| [RNF-081: Formatos de Importação](./RNF-081-formatos-importacao.md) | ⚠ |
+| [RNF-083: Sistemas de Coordenadas](./RNF-083-sistemas-coordenadas.md) | ⚠ |
+| [RNF-084: Integração WMS/WMTS](./RNF-084-integracao-wms-wmts.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

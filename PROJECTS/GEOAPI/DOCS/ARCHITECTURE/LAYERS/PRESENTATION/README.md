@@ -15,3 +15,19 @@ Camada de apresentação do GEOAPI expondo API REST HTTP via controllers ASP.NET
 - **[FILTERS/](./FILTERS/README.md)** - Cross-cutting concerns específicos
 - **[HUBS/](./HUBS/README.md)** - SignalR real-time communication
 - **[CONFIGURATION/](./CONFIGURATION/README.md)** - DI registration e startup
+
+<!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
+
+## Subpastas (5)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [CONFIGURATION](./CONFIGURATION/README.md) | ... |
+| [CONTROLLERS](./CONTROLLERS/README.md) | ... |
+| [FILTERS](./FILTERS/README.md) | ... |
+| [HUBS](./HUBS/README.md) | ... |
+| [MIDDLEWARES](./MIDDLEWARES/README.md) | ... |
+
+<!-- CARF-INDEX-END -->

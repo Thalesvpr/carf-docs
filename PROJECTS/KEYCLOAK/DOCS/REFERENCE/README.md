@@ -20,16 +20,19 @@ Referência técnica Keycloak cobrindo Admin REST API endpoints autenticação t
 - **[07-error-codes.md](./07-error-codes.md)** - Códigos erro OAuth2 HTTP status troubleshooting
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (7)
 
-- ○ [[PROJECTS/KEYCLOAK/DOCS/REFERENCE/01-admin-api.md|Admin REST API]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/REFERENCE/02-oidc-endpoints.md|OpenID Connect Endpoints]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/REFERENCE/03-theme-properties.md|Theme Properties]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/REFERENCE/04-keycloakify-api.md|Keycloakify API Reference]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/REFERENCE/05-environment-variables.md|Environment Variables]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/REFERENCE/06-realm-export-schema.md|Realm Export Schema]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/REFERENCE/07-error-codes.md|Error Codes]]
+| Documento | Status |
+|-----------|--------|
+| [Admin REST API](./01-admin-api.md) | ⚠ |
+| [OpenID Connect Endpoints](./02-oidc-endpoints.md) | ⚠ |
+| [Theme Properties](./03-theme-properties.md) | ⚠ |
+| [Keycloakify API Reference](./04-keycloakify-api.md) | ⚠ |
+| [Environment Variables](./05-environment-variables.md) | ⚠ |
+| [Realm Export Schema](./06-realm-export-schema.md) | ⚠ |
+| [Error Codes](./07-error-codes.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

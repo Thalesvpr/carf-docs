@@ -27,10 +27,13 @@ Controllers REST do GEOAPI organizados por feature seguindo convenção RESTful 
 - 10-error-responses.md - Formatação ProblemDetails
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (1)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/PRESENTATION/CONTROLLERS/01-units-controller.md|Units Controller]]
+| Documento | Status |
+|-----------|--------|
+| [Units Controller](./01-units-controller.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

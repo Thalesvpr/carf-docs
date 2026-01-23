@@ -20,14 +20,17 @@ Conceitos fundamentais Keycloak e customizacao CARF.
 | [05-multi-tenancy-strategy.md](./05-multi-tenancy-strategy.md) | Multi-tenancy via user attributes, RLS |
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (5)
 
-- ○ [[PROJECTS/KEYCLOAK/DOCS/CONCEPTS/01-keycloak-themes.md|Keycloak Themes]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/CONCEPTS/02-keycloak-spis.md|02-keycloak-spis]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/CONCEPTS/03-realm-customization.md|03-realm-customization]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/CONCEPTS/04-oauth2-oidc-flows.md|04-oauth2-oidc-flows]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/CONCEPTS/05-multi-tenancy-strategy.md|05-multi-tenancy-strategy]]
+| Documento | Status |
+|-----------|--------|
+| [Keycloak Themes](./01-keycloak-themes.md) | ⚠ |
+| [02-keycloak-spis](./02-keycloak-spis.md) | ⚠ |
+| [03-realm-customization](./03-realm-customization.md) | ⚠ |
+| [04-oauth2-oidc-flows](./04-oauth2-oidc-flows.md) | ⚠ |
+| [05-multi-tenancy-strategy](./05-multi-tenancy-strategy.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

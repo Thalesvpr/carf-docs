@@ -32,11 +32,11 @@ updated: 2026-01-15
 
 | Documento | Status |
 |-----------|--------|
-| [RNF-056: Cobertura de Testes](./RNF-056-cobertura-de-testes.md) | ○ |
-| [RNF-059: Versionamento Semântico](./RNF-059-versionamento-semantico.md) | ○ |
-| [RNF-060: Ambiente de Desenvolvimento Replicável](./RNF-060-ambiente-de-desenvolvimento-replicavel.md) | ○ |
-| [RNF-063: Tratamento de Exceções](./RNF-063-tratamento-de-excecoes.md) | ○ |
-| [RNF-064: Refatoração Contínua](./RNF-064-refatoracao-continua.md) | ○ |
-| [RNF-082: Formatos de Exportação](./RNF-082-formatos-exportacao.md) | ○ |
+| [RNF-056: Cobertura de Testes](./RNF-056-cobertura-de-testes.md) | ⚠ |
+| [RNF-059: Versionamento Semântico](./RNF-059-versionamento-semantico.md) | ⚠ |
+| [RNF-060: Ambiente de Desenvolvimento Replicável](./RNF-060-ambiente-de-desenvolvimento-replicavel.md) | ⚠ |
+| [RNF-063: Tratamento de Exceções](./RNF-063-tratamento-de-excecoes.md) | ⚠ |
+| [RNF-064: Refatoração Contínua](./RNF-064-refatoracao-continua.md) | ⚠ |
+| [RNF-082: Formatos de Exportação](./RNF-082-formatos-exportacao.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

@@ -58,12 +58,15 @@ Guias práticos para desenvolver e usar o plugin GEOGIS QGIS.
 - "Export failed" → verificar permissions write em output directory e CRS transformation suportada pelo GDAL
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (3)
 
-- ○ [[PROJECTS/GEOGIS/DOCS/HOW-TO/01-setup-keycloak.md|01-setup-keycloak]]
-- ○ [[PROJECTS/GEOGIS/DOCS/HOW-TO/02-login-flow.md|02-login-flow]]
-- ○ [[PROJECTS/GEOGIS/DOCS/HOW-TO/03-api-requests.md|03-api-requests]]
+| Documento | Status |
+|-----------|--------|
+| [01-setup-keycloak](./01-setup-keycloak.md) | ⚠ |
+| [02-login-flow](./02-login-flow.md) | ⚠ |
+| [03-api-requests](./03-api-requests.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

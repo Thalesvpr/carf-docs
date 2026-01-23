@@ -2585,17 +2585,28 @@ var IndexService = class {
    * Sync the README index for a folder
    */
   async syncFolderIndex(folder) {
-    const readmePath = `${folder.path}/README.md`;
+    var _a;
+    const readmePath = folder.path ? `${folder.path}/README.md` : "README.md";
     let readme = this.app.vault.getAbstractFileByPath(readmePath);
+    console.log("[IndexService] syncFolderIndex called");
+    console.log("[IndexService] folder.path:", folder.path);
+    console.log("[IndexService] readmePath:", readmePath);
+    console.log("[IndexService] readme found:", !!readme);
+    console.log("[IndexService] folder.children count:", (_a = folder.children) == null ? void 0 : _a.length);
     const files = folder.children.filter((f) => f instanceof import_obsidian8.TFile && f.name.endsWith(".md") && f.name !== "README.md").sort((a, b) => a.name.localeCompare(b.name));
-    const subfolders = folder.children.filter((f) => f instanceof import_obsidian8.TFolder).sort((a, b) => a.name.localeCompare(b.name));
+    const subfolders = folder.children.filter((f) => f instanceof import_obsidian8.TFolder && !f.name.startsWith(".")).sort((a, b) => a.name.localeCompare(b.name));
+    console.log("[IndexService] files count:", files.length);
+    console.log("[IndexService] subfolders:", subfolders.map((f) => f.name));
     const indexContent = await this.generateIndexContent(folder, files, subfolders);
+    console.log("[IndexService] indexContent length:", indexContent.length);
     if (readme) {
       const currentContent = await this.app.vault.read(readme);
       const newContent = this.updateIndexSection(currentContent, indexContent);
-      if (newContent !== currentContent) {
-        await this.app.vault.modify(readme, newContent);
-      }
+      console.log("[IndexService] Writing to README, content changed:", currentContent !== newContent);
+      await this.app.vault.modify(readme, newContent);
+      console.log("[IndexService] README updated successfully");
+    } else {
+      console.log("[IndexService] README not found, cannot update");
     }
   }
   /**
@@ -4241,7 +4252,7 @@ var CurationPanelView = class extends import_obsidian14.ItemView {
     this.filterInputEl = null;
     this.filterSuggest = null;
     this.filterContainerEl = null;
-    this.contentEl = null;
+    this.mainContentEl = null;
     this.clearBtnEl = null;
     this.store = store;
     this.metadataService = metadataService;
@@ -4263,7 +4274,7 @@ var CurationPanelView = class extends import_obsidian14.ItemView {
     container.addClass("docs-curation-panel");
     this.filterContainerEl = container.createDiv({ cls: "docs-filter-container" });
     this.createFilterInput();
-    this.contentEl = container.createDiv({ cls: "docs-content" });
+    this.mainContentEl = container.createDiv({ cls: "docs-content" });
     this.registerEvent(
       // @ts-ignore
       this.store.on("state-changed", () => this.render())
@@ -4506,9 +4517,9 @@ var CurationPanelView = class extends import_obsidian14.ItemView {
     }
   }
   render() {
-    if (!this.contentEl)
+    if (!this.mainContentEl)
       return;
-    const el = this.contentEl;
+    const el = this.mainContentEl;
     el.empty();
     if (this.filterInputEl && document.activeElement !== this.filterInputEl) {
       this.filterInputEl.value = this.filterQuery;
@@ -4617,22 +4628,26 @@ Sem status: ${noStatus} (${pct(noStatus)}%)` }
         start = Math.max(0, end - maxDots);
       }
     }
+    const validStatuses = ["approved", "review", "rejected", "none"];
     const statusLabels = {
       approved: "Aprovado",
       review: "Revis\xE3o",
       rejected: "Rejeitado",
-      none: "Sem status"
+      none: "Sem status",
+      invalid: "Status inv\xE1lido"
     };
     for (let i = start; i < end; i++) {
       const f = queue[i];
       const d = this.store.getDocument(f.path);
-      const status = (d == null ? void 0 : d.status) || "none";
+      const rawStatus = (d == null ? void 0 : d.status) || "none";
+      const isValidStatus = validStatuses.includes(rawStatus);
+      const status = isValidStatus ? rawStatus : "invalid";
       const isCurrent = i === this.currentIndex;
       const isAdjacent = i === this.currentIndex - 1 || i === this.currentIndex + 1;
       const dot = dotsContainer.createDiv({
         cls: `docs-dot docs-dot-${status}${isCurrent ? " docs-dot-current" : ""}${isAdjacent ? " docs-dot-adjacent" : ""}`,
         attr: { title: `${f.basename}
-${statusLabels[status] || status}` }
+${statusLabels[status] || rawStatus}` }
       });
       dot.onclick = () => {
         this.currentIndex = i;
@@ -5931,6 +5946,30 @@ ${errors} errors, ${warnings} warnings`);
   registerFolderContextMenu() {
     this.registerEvent(
       this.app.workspace.on("file-menu", (menu, file) => {
+        if (file instanceof import_obsidian22.TFile && file.name === "README.md") {
+          if (!this.isTrackedFile(file.path))
+            return;
+          const folder = file.parent;
+          if (!folder)
+            return;
+          menu.addSeparator();
+          menu.addItem((item) => {
+            item.setTitle("Regenerate index").setIcon("file-text").onClick(async () => {
+              console.log("[DocsToolkit] Regenerate index clicked");
+              console.log("[DocsToolkit] file.path:", file.path);
+              console.log("[DocsToolkit] folder:", folder == null ? void 0 : folder.path);
+              try {
+                await this.indexService.syncFolderIndex(folder);
+                await this.store.updateDocument(file);
+                new import_obsidian22.Notice(`\xCDndice regenerado: ${file.name}`);
+              } catch (e) {
+                console.error("[DocsToolkit] Error:", e);
+                new import_obsidian22.Notice(`Erro ao regenerar \xEDndice: ${e}`);
+              }
+            });
+          });
+          return;
+        }
         if (!(file instanceof import_obsidian22.TFolder))
           return;
         if (!this.isTrackedFile(file.path))

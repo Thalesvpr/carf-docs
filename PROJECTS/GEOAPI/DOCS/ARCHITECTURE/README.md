@@ -22,18 +22,23 @@ Arquitetura do GEOAPI backend .NET 9 com Clean Architecture, DDD e CQRS.
 - **[LAYERS/](./LAYERS/README.md)** - Detalhamento Domain Application Infrastructure Gateway
 
 <!-- CARF-INDEX-START -->
-## Subpastas
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-- [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/README|LAYERS]]
+## Subpastas (1)
 
-## Documentos
+| Pasta | Descrição |
+|-------|-----------|
+| [LAYERS](./LAYERS/README.md) | ... |
 
-### Em Revisão
+## Documentos (5)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/01-overview.md|Overview]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/02-admin-security.md|Admin Security]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/03-data-flow.md|Data Flow]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/04-integration.md|Integrações]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/05-deployment.md|Deployment]]
+| Documento | Status |
+|-----------|--------|
+| [Overview](./01-overview.md) | ⚠ |
+| [Admin Security](./02-admin-security.md) | ⚠ |
+| [Data Flow](./03-data-flow.md) | ⚠ |
+| [Integrações](./04-integration.md) | ⚠ |
+| [Deployment](./05-deployment.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

@@ -18,15 +18,18 @@ Customizações Keycloak implementadas para CARF incluindo temas visuais identid
 - **[admin-integration.md](./04-admin-integration.md)** - Proxy GEOAPI Admin API 7 camadas CRUD users roles
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (6)
 
-- ○ [[PROJECTS/KEYCLOAK/DOCS/FEATURES/01-realm-configuration.md|Realm Configuration - Configuração Realm]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/FEATURES/02-multi-tenancy-claims.md|Multi-Tenancy Claims - Claims Multi-Tenancy]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/FEATURES/03-cpf-validation.md|CPF Validation - Validação CPF]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/FEATURES/04-admin-integration.md|Admin Integration - Integração Admin]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/FEATURES/05-theme-customization.md|Theme Customization - Customização de Tema]]
-- ○ [[PROJECTS/KEYCLOAK/DOCS/FEATURES/06-login-theme-carf.md|Login Theme CARF]]
+| Documento | Status |
+|-----------|--------|
+| [Realm Configuration - Configuração Realm](./01-realm-configuration.md) | ⚠ |
+| [Multi-Tenancy Claims - Claims Multi-Tenancy](./02-multi-tenancy-claims.md) | ⚠ |
+| [CPF Validation - Validação CPF](./03-cpf-validation.md) | ⚠ |
+| [Admin Integration - Integração Admin](./04-admin-integration.md) | ⚠ |
+| [Theme Customization - Customização de Tema](./05-theme-customization.md) | ⚠ |
+| [Login Theme CARF](./06-login-theme-carf.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

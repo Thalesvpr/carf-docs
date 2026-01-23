@@ -11,9 +11,14 @@ Portal web React 18 para gestão de unidades habitacionais, comunidades e proces
 - **[DOCS/](./DOCS/README.md)** - Documentação técnica
 
 <!-- CARF-INDEX-START -->
-## Subpastas
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-- [[PROJECTS/GEOWEB/DOCS/README|DOCS]]
-- [[PROJECTS/GEOWEB/SRC-CODE/README|SRC-CODE]]
+## Subpastas (2)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [DOCS](./DOCS/README.md) | ... |
+| [SRC-CODE](./SRC-CODE/README.md) | ... |
 
 <!-- CARF-INDEX-END -->

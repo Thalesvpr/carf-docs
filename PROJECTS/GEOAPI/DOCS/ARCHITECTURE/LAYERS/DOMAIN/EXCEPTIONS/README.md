@@ -17,14 +17,17 @@ Exceções específicas de domínio representando violações de regras de negó
 - **[04-conflict-exception.md](./04-conflict-exception.md)** - Exceção conflito HTTP 409
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (5)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/EXCEPTIONS/00-domain-exception.md|DomainException]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/EXCEPTIONS/01-validation-exception.md|ValidationException]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/EXCEPTIONS/02-not-found-exception.md|NotFoundException]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/EXCEPTIONS/03-access-denied-exception.md|AccessDeniedException]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/EXCEPTIONS/04-conflict-exception.md|ConflictException]]
+| Documento | Status |
+|-----------|--------|
+| [DomainException](./00-domain-exception.md) | ⚠ |
+| [ValidationException](./01-validation-exception.md) | ⚠ |
+| [NotFoundException](./02-not-found-exception.md) | ⚠ |
+| [AccessDeniedException](./03-access-denied-exception.md) | ⚠ |
+| [ConflictException](./04-conflict-exception.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

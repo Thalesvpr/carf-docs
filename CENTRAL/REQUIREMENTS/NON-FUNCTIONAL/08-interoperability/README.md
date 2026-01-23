@@ -29,8 +29,8 @@ updated: 2026-01-15
 
 | Documento | Status |
 |-----------|--------|
-| [RNF-085: API REST Padrão](./RNF-085-api-rest-padrao.md) | ○ |
-| [RNF-086: OpenAPI Spec](./RNF-086-openapi-spec.md) | ○ |
-| [RNF-088: OAuth2 Providers](./RNF-088-oauth2-providers.md) | ○ |
+| [RNF-085: API REST Padrão](./RNF-085-api-rest-padrao.md) | ⚠ |
+| [RNF-086: OpenAPI Spec](./RNF-086-openapi-spec.md) | ⚠ |
+| [RNF-088: OAuth2 Providers](./RNF-088-oauth2-providers.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

@@ -53,13 +53,18 @@ bun add @carf/tscore
 | HOW-TO | 3 | Completo |
 
 <!-- CARF-INDEX-START -->
-## Subpastas
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-- [[PROJECTS/LIB/TS/TSCORE/DOCS/ADRs/README|ADRs]]
-- [[PROJECTS/LIB/TS/TSCORE/DOCS/API/README|API]]
-- [[PROJECTS/LIB/TS/TSCORE/DOCS/ARCHITECTURE/README|ARCHITECTURE]]
-- [[PROJECTS/LIB/TS/TSCORE/DOCS/CONCEPTS/README|CONCEPTS]]
-- [[PROJECTS/LIB/TS/TSCORE/DOCS/HOW-TO/README|HOW-TO]]
-- [[PROJECTS/LIB/TS/TSCORE/DOCS/SPECS/README|SPECS]]
+## Subpastas (6)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [ADRs](./ADRs/README.md) | ... |
+| [API](./API/README.md) | ... |
+| [ARCHITECTURE](./ARCHITECTURE/README.md) | ... |
+| [CONCEPTS](./CONCEPTS/README.md) | ... |
+| [HOW-TO](./HOW-TO/README.md) | ... |
+| [SPECS](./SPECS/README.md) | ... |
 
 <!-- CARF-INDEX-END -->

@@ -23,11 +23,14 @@ Configuracoes de projeto para build e publicacao. Inclui [01-package-json](./01-
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (2)
 
-- ○ [[PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/SPECS/01-package-json.md|Package.json - @carf/geoapi-client]]
-- ○ [[PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/SPECS/02-client-config.md|Configuracao do Cliente - @carf/geoapi-client]]
+| Documento | Status |
+|-----------|--------|
+| [Package.json - @carf/geoapi-client](./01-package-json.md) | ⚠ |
+| [Configuracao do Cliente - @carf/geoapi-client](./02-client-config.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

@@ -34,10 +34,10 @@ Maquinas de estado puras definindo:
 
 | Documento | Status |
 |-----------|--------|
-| [Unit Status Transitions](./01-unit-status-transitions.md) | ○ |
-| [Legitimation Status Transitions](./02-legitimation-status-transitions.md) | ○ |
-| [Role Permissions Matrix](./03-role-permissions.md) | ○ |
-| [SLA Rules](./04-sla-rules.md) | ○ |
-| [Notification Triggers (Gatilhos de Notificação)](./05-notification-triggers.md) | ○ |
+| [Unit Status Transitions](./01-unit-status-transitions.md) | ⚠ |
+| [Legitimation Status Transitions](./02-legitimation-status-transitions.md) | ⚠ |
+| [Role Permissions Matrix](./03-role-permissions.md) | ⚠ |
+| [SLA Rules](./04-sla-rules.md) | ⚠ |
+| [Notification Triggers (Gatilhos de Notificação)](./05-notification-triggers.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

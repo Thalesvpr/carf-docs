@@ -18,10 +18,13 @@ SignalR hubs do GEOAPI fornecendo comunicação real-time bidirecional entre ser
 - 06-topics-subscription.md - Filtering relevante por feature
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (1)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/PRESENTATION/HUBS/01-notification-hub.md|Notification Hub]]
+| Documento | Status |
+|-----------|--------|
+| [Notification Hub](./01-notification-hub.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

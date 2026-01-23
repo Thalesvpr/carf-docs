@@ -44,10 +44,13 @@ Testes unitários do GEOAPI verificando comportamento isolado de componentes ind
 Testes unitários devem executar rapidamente (< 100ms cada) sem IO operations como database access ou HTTP calls usando mocks via Moq para substituir repositories e external services. Arrange-Act-Assert pattern estrutura cada test method claramente separando setup (criar entity, configurar mocks), execution (chamar method under test) e verification (assertions sobre resultado e interactions). Test data factories criam entities válidas com valores default realistas via Bogus permitindo testes focar apenas nos campos relevantes para cenário específico sem boilerplate repetitivo construindo objetos complexos manualmente. Cada test class herda de base class fornecendo utilities comuns como mock creation helpers e assertion extensions reduzindo duplicação cross tests mantendo consistency. Theory tests usando InlineData ou MemberData exercitam múltiplos inputs com mesmo assertion logic ideal para boundary testing de validations (CPF com 10 digits, 11 digits, 12 digits, formato inválido) cobrindo edge cases sistematicamente.
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (1)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/TESTS/UNIT/01-domain-unit-tests.md|Domain Unit Tests]]
+| Documento | Status |
+|-----------|--------|
+| [Domain Unit Tests](./01-domain-unit-tests.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

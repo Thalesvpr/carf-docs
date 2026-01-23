@@ -30,12 +30,15 @@ ADMIN aplica **React SPA** para máxima segurança mantendo secrets no backend, 
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (3)
 
-- ○ [[PROJECTS/ADMIN/DOCS/CONCEPTS/01-key-concepts.md|Key Concepts - ADMIN]]
-- ○ [[PROJECTS/ADMIN/DOCS/CONCEPTS/02-terminology.md|Terminology - ADMIN]]
-- ○ [[PROJECTS/ADMIN/DOCS/CONCEPTS/03-design-principles.md|Design Principles - ADMIN]]
+| Documento | Status |
+|-----------|--------|
+| [Key Concepts - ADMIN](./01-key-concepts.md) | ⚠ |
+| [Terminology - ADMIN](./02-terminology.md) | ⚠ |
+| [Design Principles - ADMIN](./03-design-principles.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

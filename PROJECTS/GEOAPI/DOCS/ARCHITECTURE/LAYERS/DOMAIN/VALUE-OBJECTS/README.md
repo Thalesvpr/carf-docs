@@ -17,3 +17,21 @@ Objetos de valor imutáveis sem identidade própria comparados por valor ao inv�
 - **[STATUS/](./STATUS/README.md)** - Estados de workflow das entidades
 - **[ENUMS/](./ENUMS/README.md)** - Enumerações tipadas do domínio
 - **[SECURITY/](./SECURITY/README.md)** - Chaves API e tokens
+
+<!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
+
+## Subpastas (7)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [ADDRESS](./ADDRESS/README.md) | ... |
+| [BASE](./BASE/README.md) | ... |
+| [DOCUMENTS](./DOCUMENTS/README.md) | ... |
+| [ENUMS](./ENUMS/README.md) | ... |
+| [GEO](./GEO/README.md) | ... |
+| [SECURITY](./SECURITY/README.md) | ... |
+| [STATUS](./STATUS/README.md) | ... |
+
+<!-- CARF-INDEX-END -->

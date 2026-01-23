@@ -15,12 +15,15 @@ Entities gerenciamento equipes técnicas campo do GEOAPI organizando field agent
 - **[19-community-authorization.md](./19-community-authorization.md)** - Autorização team acessar community específica
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (3)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/TEAMS/05-team.md|Team]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/TEAMS/18-team-member.md|TeamMember]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/ENTITIES/TEAMS/19-community-authorization.md|CommunityAuthorization]]
+| Documento | Status |
+|-----------|--------|
+| [Team](./05-team.md) | ⚠ |
+| [TeamMember](./18-team-member.md) | ⚠ |
+| [CommunityAuthorization](./19-community-authorization.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

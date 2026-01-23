@@ -16,3 +16,20 @@ Value objects representando estados e transições workflow das entidades princi
 - **[20-legitimation-status.md](./20-legitimation-status.md)** - Estados processo legitimação fundiária 11 etapas
 - **[21-decision.md](./21-decision.md)** - Decisões parecer técnico (APPROVED REJECTED NEEDS_CORRECTION)
 - **[22-certificate-situation.md](./22-certificate-situation.md)** - Situação certidão (COVERED CONFRONTING BOTH)
+
+<!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
+
+## Documentos (6)
+
+| Documento | Status |
+|-----------|--------|
+| [UnitStatus](./07-unit-status.md) | ⚠ |
+| [SyncStatus](./09-sync-status.md) | ⚠ |
+| [PointStatus](./14-point-status.md) | ⚠ |
+| [LegitimationStatus](./20-legitimation-status.md) | ⚠ |
+| [Decision](./21-decision.md) | ⚠ |
+| [CertificateSituation](./22-certificate-situation.md) | ⚠ |
+
+<!-- CARF-INDEX-END -->

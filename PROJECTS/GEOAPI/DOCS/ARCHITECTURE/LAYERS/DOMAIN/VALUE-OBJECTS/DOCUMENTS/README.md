@@ -16,13 +16,16 @@ Value objects representando documentos brasileiros validados incluindo CPF CNPJ 
 - **[11-crea.md](./11-crea.md)** - Registro profissional CREA engenheiros agrimensores
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (4)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/VALUE-OBJECTS/DOCUMENTS/01-cpf.md|Cpf]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/VALUE-OBJECTS/DOCUMENTS/04-email.md|Email]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/VALUE-OBJECTS/DOCUMENTS/06-phone-number.md|PhoneNumber]]
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/DOMAIN/VALUE-OBJECTS/DOCUMENTS/11-crea.md|Crea]]
+| Documento | Status |
+|-----------|--------|
+| [Cpf](./01-cpf.md) | ⚠ |
+| [Email](./04-email.md) | ⚠ |
+| [PhoneNumber](./06-phone-number.md) | ⚠ |
+| [Crea](./11-crea.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

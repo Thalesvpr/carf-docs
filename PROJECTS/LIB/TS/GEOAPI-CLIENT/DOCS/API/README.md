@@ -70,15 +70,18 @@ try {
 ```
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (6)
 
-- ○ [[PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/API/01-units-api.md|Units API - Gerenciamento de Unidades Habitacionais]]
-- ○ [[PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/API/02-holders-api.md|Holders API - Gerenciamento de Posseiros/Titulares]]
-- ○ [[PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/API/03-communities-api.md|Communities API - Gerenciamento de Comunidades/Nucleos Urbanos]]
-- ○ [[PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/API/04-legitimation-api.md|Legitimation API - Processos de Legitimacao Fundiaria]]
-- ○ [[PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/API/05-documents-api.md|Documents API - Gerenciamento de Documentos]]
-- ○ [[PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/API/06-reports-api.md|Reports API - Geracao de Relatorios]]
+| Documento | Status |
+|-----------|--------|
+| [Units API - Gerenciamento de Unidades Habitacionais](./01-units-api.md) | ⚠ |
+| [Holders API - Gerenciamento de Posseiros/Titulares](./02-holders-api.md) | ⚠ |
+| [Communities API - Gerenciamento de Comunidades/Nucleos Urbanos](./03-communities-api.md) | ⚠ |
+| [Legitimation API - Processos de Legitimacao Fundiaria](./04-legitimation-api.md) | ⚠ |
+| [Documents API - Gerenciamento de Documentos](./05-documents-api.md) | ⚠ |
+| [Reports API - Geracao de Relatorios](./06-reports-api.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

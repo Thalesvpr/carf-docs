@@ -13,5 +13,15 @@ O [ecossistema](./01-ecosystem.md) apresenta visao geral de todos os sistemas e 
 Diagramas Mermaid sao renderizados automaticamente no Obsidian e no portal WEBDOCS. Para exportacao em formatos estaticos como PNG ou SVG, utilize o CLI do Mermaid ou servicos online como mermaid.live.
 
 <!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
+
+## Documentos (3)
+
+| Documento | Status |
+|-----------|--------|
+| [Ecossistema CARF](./01-ecosystem.md) | ⚠ |
+| [Fluxo de Dados](./02-data-flow.md) | ⚠ |
+| [Topologia de Deployment](./03-deployment.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

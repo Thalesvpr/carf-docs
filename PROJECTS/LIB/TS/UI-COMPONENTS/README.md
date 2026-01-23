@@ -22,8 +22,13 @@ Biblioteca de componentes React baseada em shadcn/ui e Tailwind CSS com acessibi
 <!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
-## Subpastas
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-- [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/README|DOCS]]
+## Subpastas (1)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [DOCS](./DOCS/README.md) | ... |
 
 <!-- CARF-INDEX-END -->

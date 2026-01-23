@@ -35,15 +35,15 @@ updated: 2026-01-15
 
 | Documento | Status |
 |-----------|--------|
-| [RF-172: Criar Processo de Legitimação](./RF-172-criar-processo-de-legitimação.md) | ○ |
-| [RF-173: Editar Processo](./RF-173-editar-processo.md) | ○ |
-| [RF-174: Listar Processos](./RF-174-listar-processos.md) | ○ |
-| [RF-175: Status de Processo](./RF-175-status-de-processo.md) | ○ |
-| [RF-176: Anexar Documentos ao Processo](./RF-176-anexar-documentos-ao-processo.md) | ○ |
-| [RF-177: Gerar Termo de Legitimação](./RF-177-gerar-termo-de-legitimação.md) | ○ |
-| [RF-178: Assinatura Digital de Termo](./RF-178-assinatura-digital-de-termo.md) | ○ |
-| [RF-179: Timeline de Processo](./RF-179-timeline-de-processo.md) | ○ |
-| [RF-180: Notificação de Mudança de Status](./RF-180-notificação-de-mudança-de-status.md) | ○ |
-| [RF-181: Relatório de Processos](./RF-181-relatório-de-processos.md) | ○ |
+| [RF-172: Criar Processo de Legitimação](./RF-172-criar-processo-de-legitimação.md) | ⚠ |
+| [RF-173: Editar Processo](./RF-173-editar-processo.md) | ⚠ |
+| [RF-174: Listar Processos](./RF-174-listar-processos.md) | ⚠ |
+| [RF-175: Status de Processo](./RF-175-status-de-processo.md) | ⚠ |
+| [RF-176: Anexar Documentos ao Processo](./RF-176-anexar-documentos-ao-processo.md) | ⚠ |
+| [RF-177: Gerar Termo de Legitimação](./RF-177-gerar-termo-de-legitimação.md) | ⚠ |
+| [RF-178: Assinatura Digital de Termo](./RF-178-assinatura-digital-de-termo.md) | ⚠ |
+| [RF-179: Timeline de Processo](./RF-179-timeline-de-processo.md) | ⚠ |
+| [RF-180: Notificação de Mudança de Status](./RF-180-notificação-de-mudança-de-status.md) | ⚠ |
+| [RF-181: Relatório de Processos](./RF-181-relatório-de-processos.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

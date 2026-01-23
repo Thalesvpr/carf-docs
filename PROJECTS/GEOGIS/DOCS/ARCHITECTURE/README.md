@@ -54,10 +54,13 @@ Permite salvar selected features como:
 Registrados via `QgsProcessingProvider` permitindo usuário executar via Processing Toolbox com parameters input/output configuráveis.
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (1)
 
-- ○ [[PROJECTS/GEOGIS/DOCS/ARCHITECTURE/01-keycloak-integration.md|01-keycloak-integration]]
+| Documento | Status |
+|-----------|--------|
+| [01-keycloak-integration](./01-keycloak-integration.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

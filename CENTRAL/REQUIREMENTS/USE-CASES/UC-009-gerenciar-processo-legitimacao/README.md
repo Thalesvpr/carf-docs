@@ -32,11 +32,11 @@ updated: 2026-01-15
 
 | Documento | Status |
 |-----------|--------|
-| [UC-009-FA-001: Processo Coletivo (Múltiplas Unidades)](./UC-009-FA-001-processo-coletivo.md) | ○ |
-| [UC-009-FA-002: Assinatura Digital do Termo](./UC-009-FA-002-assinatura-digital.md) | ○ |
-| [UC-009-FE-001: Unidade sem Titular Principal](./UC-009-FE-001-sem-titular-principal.md) | ○ |
-| [UC-009-FE-002: Documentação Incompleta](./UC-009-FE-002-documentacao-incompleta.md) | ○ |
-| [UC-009-FE-003: Processo Indeferido](./UC-009-FE-003-processo-indeferido.md) | ○ |
-| [UC-009: Gerenciar Processo de Legitimação Fundiária](./UC-009-gerenciar-processo-legitimacao.md) | ○ |
+| [UC-009-FA-001: Processo Coletivo (Múltiplas Unidades)](./UC-009-FA-001-processo-coletivo.md) | ⚠ |
+| [UC-009-FA-002: Assinatura Digital do Termo](./UC-009-FA-002-assinatura-digital.md) | ⚠ |
+| [UC-009-FE-001: Unidade sem Titular Principal](./UC-009-FE-001-sem-titular-principal.md) | ⚠ |
+| [UC-009-FE-002: Documentação Incompleta](./UC-009-FE-002-documentacao-incompleta.md) | ⚠ |
+| [UC-009-FE-003: Processo Indeferido](./UC-009-FE-003-processo-indeferido.md) | ⚠ |
+| [UC-009: Gerenciar Processo de Legitimação Fundiária](./UC-009-gerenciar-processo-legitimacao.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

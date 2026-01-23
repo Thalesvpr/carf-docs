@@ -34,3 +34,19 @@ Usuario → GEOWEB/REURBCAD/WEBDOCS/ADMIN
 ```
 
 
+
+<!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
+
+## Subpastas (5)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [CLIENTS](./CLIENTS/README.md) | ... |
+| [RBAC](./RBAC/README.md) | ... |
+| [REALM](./REALM/README.md) | ... |
+| [SECURITY](./SECURITY/README.md) | ... |
+| [TOKENS](./TOKENS/README.md) | ... |
+
+<!-- CARF-INDEX-END -->

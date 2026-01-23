@@ -27,10 +27,13 @@ Implementação IFileStorage para gerenciamento arquivos (documentos, fotos, PDF
 - 08-cleanup-policies.md - Lifecycle e remoção arquivos orfãos
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (1)
 
-- ○ [[PROJECTS/GEOAPI/DOCS/ARCHITECTURE/LAYERS/INFRA/STORAGE/01-file-storage.md|File Storage]]
+| Documento | Status |
+|-----------|--------|
+| [File Storage](./01-file-storage.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

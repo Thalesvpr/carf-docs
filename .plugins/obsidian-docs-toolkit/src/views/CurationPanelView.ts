@@ -36,7 +36,7 @@ export class CurationPanelView extends ItemView {
   private filterInputEl: HTMLInputElement | null = null;
   private filterSuggest: FilterSuggest | null = null;
   private filterContainerEl: HTMLElement | null = null;
-  private contentEl: HTMLElement | null = null;
+  private mainContentEl: HTMLElement | null = null;
 
   constructor(
     leaf: WorkspaceLeaf,
@@ -67,7 +67,7 @@ export class CurationPanelView extends ItemView {
     this.createFilterInput();
 
     // Create content area that will be re-rendered
-    this.contentEl = container.createDiv({ cls: "docs-content" });
+    this.mainContentEl = container.createDiv({ cls: "docs-content" });
 
     this.registerEvent(
       // @ts-ignore
@@ -371,9 +371,9 @@ export class CurationPanelView extends ItemView {
   }
 
   private render(): void {
-    if (!this.contentEl) return;
+    if (!this.mainContentEl) return;
 
-    const el = this.contentEl;
+    const el = this.mainContentEl;
     el.empty();
 
     // Update filter input value (without triggering events)
@@ -527,24 +527,30 @@ export class CurationPanelView extends ItemView {
       }
     }
 
+    // Valid statuses
+    const validStatuses = ["approved", "review", "rejected", "none"];
+
     // Status labels for tooltip
     const statusLabels: Record<string, string> = {
       approved: "Aprovado",
       review: "Revisão",
       rejected: "Rejeitado",
-      none: "Sem status"
+      none: "Sem status",
+      invalid: "Status inválido"
     };
 
     for (let i = start; i < end; i++) {
       const f = queue[i];
       const d = this.store.getDocument(f.path);
-      const status = d?.status || "none";
+      const rawStatus = d?.status || "none";
+      const isValidStatus = validStatuses.includes(rawStatus);
+      const status = isValidStatus ? rawStatus : "invalid";
       const isCurrent = i === this.currentIndex;
       const isAdjacent = i === this.currentIndex - 1 || i === this.currentIndex + 1;
 
       const dot = dotsContainer.createDiv({
         cls: `docs-dot docs-dot-${status}${isCurrent ? " docs-dot-current" : ""}${isAdjacent ? " docs-dot-adjacent" : ""}`,
-        attr: { title: `${f.basename}\n${statusLabels[status] || status}` }
+        attr: { title: `${f.basename}\n${statusLabels[status] || rawStatus}` }
       });
 
       dot.onclick = () => {

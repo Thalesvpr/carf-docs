@@ -15,5 +15,20 @@ As decisoes cobrem escolhas fundamentais de tecnologia e arquitetura. O [multi-t
 O [backend stack](./04-backend-stack.md) registra a decisao por .NET 9 e Clean Architecture. O [frontend stack](./05-frontend-stack.md) documenta a escolha de React com TypeScript. O [database](./06-database.md) justifica PostgreSQL com PostGIS para dados geoespaciais. O [mobile stack](./07-mobile-stack.md) explica a escolha de React Native com Expo. O [estilo arquitetural](./08-architecture-style.md) documenta a adocao de Clean Architecture combinada com CQRS.
 
 <!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
+
+## Documentos (8)
+
+| Documento | Status |
+|-----------|--------|
+| [ADR-001: Row-Level Security para Multi-Tenancy](./01-multi-tenancy.md) | ⚠ |
+| [ADR-002: WatermelonDB para Operacao Offline](./02-offline-first.md) | ⚠ |
+| [ADR-003: Keycloak como Identity Provider](./03-authentication.md) | ⚠ |
+| [ADR-004: .NET 9 para Backend](./04-backend-stack.md) | ⚠ |
+| [ADR-005: React com TypeScript para Frontend](./05-frontend-stack.md) | ⚠ |
+| [ADR-006: PostgreSQL com PostGIS](./06-database.md) | ⚠ |
+| [ADR-007: React Native com Expo para Mobile](./07-mobile-stack.md) | ⚠ |
+| [ADR-008: Clean Architecture com CQRS](./08-architecture-style.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

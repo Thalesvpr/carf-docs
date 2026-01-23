@@ -32,11 +32,11 @@ updated: 2026-01-15
 
 | Documento | Status |
 |-----------|--------|
-| [UC-008-FA-001: Importar GeoJSON](./UC-008-FA-001-importar-geojson.md) | ○ |
-| [UC-008-FE-001: Arquivo Inválido](./UC-008-FE-001-arquivo-invalido.md) | ○ |
-| [UC-008-FE-002: SRID Desconhecido](./UC-008-FE-002-srid-desconhecido.md) | ○ |
-| [UC-008-FE-003: Duplicatas Detectadas](./UC-008-FE-003-duplicatas.md) | ○ |
-| [UC-008-FE-004: Geometrias Inválidas](./UC-008-FE-004-geometrias-invalidas.md) | ○ |
-| [UC-008: Importar Shapefile](./UC-008-importar-shapefile.md) | ○ |
+| [UC-008-FA-001: Importar GeoJSON](./UC-008-FA-001-importar-geojson.md) | ⚠ |
+| [UC-008-FE-001: Arquivo Inválido](./UC-008-FE-001-arquivo-invalido.md) | ⚠ |
+| [UC-008-FE-002: SRID Desconhecido](./UC-008-FE-002-srid-desconhecido.md) | ⚠ |
+| [UC-008-FE-003: Duplicatas Detectadas](./UC-008-FE-003-duplicatas.md) | ⚠ |
+| [UC-008-FE-004: Geometrias Inválidas](./UC-008-FE-004-geometrias-invalidas.md) | ⚠ |
+| [UC-008: Importar Shapefile](./UC-008-importar-shapefile.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

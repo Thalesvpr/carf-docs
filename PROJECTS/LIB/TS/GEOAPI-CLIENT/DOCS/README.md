@@ -54,19 +54,24 @@ bun add @carf/geoapi-client @carf/tscore
 | HOW-TO | 3 | Completo |
 
 <!-- CARF-INDEX-START -->
-## Subpastas
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-- [[PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/ADRs/README|ADRs]]
-- [[PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/API/README|API]]
-- [[PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/ARCHITECTURE/README|ARCHITECTURE]]
-- [[PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/CONCEPTS/README|CONCEPTS]]
-- [[PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/HOW-TO/README|HOW-TO]]
-- [[PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/SPECS/README|SPECS]]
+## Subpastas (6)
 
-## Documentos
+| Pasta | Descrição |
+|-------|-----------|
+| [ADRs](./ADRs/README.md) | ... |
+| [API](./API/README.md) | ... |
+| [ARCHITECTURE](./ARCHITECTURE/README.md) | ... |
+| [CONCEPTS](./CONCEPTS/README.md) | ... |
+| [HOW-TO](./HOW-TO/README.md) | ... |
+| [SPECS](./SPECS/README.md) | ... |
 
-### Em Revisão
+## Documentos (1)
 
-- ○ [[PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/CONTRIBUTING.md|Contributing to @carf/geoapi-client]]
+| Documento | Status |
+|-----------|--------|
+| [Contributing to @carf/geoapi-client](./CONTRIBUTING.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->
