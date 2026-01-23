@@ -1,8 +1,7 @@
 ---
-type: leaf
-status: rejected
-description: "Incompleto. Standards devem ter regras claras e validaveis, nao apenas diretrizes vagas."
-updated: 2026-01-19
+type: standard
+status: review
+updated: 2026-01-22
 ---
 
 # STD-005: Diretrizes de Conteúdo

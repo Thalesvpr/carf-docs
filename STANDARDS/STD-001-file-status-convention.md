@@ -1,7 +1,7 @@
 ---
-type: leaf
-status: rejected
-updated: 2026-01-20
+type: standard
+status: review
+updated: 2026-01-22
 ---
 
 # STD-001: Convenção de Status de Arquivo
@@ -14,8 +14,8 @@ Todo arquivo `.md` deve começar com um bloco YAML frontmatter contendo os campo
 
 ```yaml
 ---
-status: rejected
-updated: 2026-01-20
+status: review
+updated: 2026-01-22
 ---
 ```
 
@@ -43,8 +43,8 @@ Arquivo aprovado (sem description):
 
 ```yaml
 ---
-status: rejected
-updated: 2026-01-20
+status: approved
+updated: 2026-01-22
 ---
 ```
 
@@ -52,8 +52,8 @@ Arquivo aguardando revisão (sem description):
 
 ```yaml
 ---
-status: rejected
-updated: 2026-01-20
+status: review
+updated: 2026-01-22
 ---
 ```
 
@@ -62,8 +62,8 @@ Arquivo rejeitado (com motivo da rejeição):
 ```yaml
 ---
 status: rejected
-updated: 2026-01-20
-description: "Incompleto. Standards devem ter regras claras e validaveis, nao apenas diretrizes vagas. Contem blocos de codigo."
+updated: 2026-01-22
+description: "Motivo da rejeição descrevendo o problema encontrado."
 ---
 ```
 
@@ -89,8 +89,8 @@ Architecture Decision Records possuem metadados adicionais específicos. O campo
 
 ```yaml
 ---
-status: rejected
-updated: 2026-01-20
+status: review
+updated: 2026-01-22
 adr_date: 2026-01-15
 adr_status: accepted
 deciders: "Equipe de Arquitetura"

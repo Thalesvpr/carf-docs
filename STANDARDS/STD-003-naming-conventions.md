@@ -1,8 +1,7 @@
 ---
-type: leaf
-status: rejected
-description: "Incompleto. Standards devem ter regras claras e validaveis, nao apenas diretrizes vagas."
-updated: 2026-01-19
+type: standard
+status: review
+updated: 2026-01-22
 ---
 
 # STD-003: Convenções de Nomenclatura
@@ -11,15 +10,15 @@ Arquivos de documentação seguem convenções de nomenclatura específicas por 
 
 ## Prefixos por Tipo
 
-Casos de uso usam prefixo UC seguido de número sequencial com três dígitos e nome descritivo em kebab-case, resultando em formato UC-001-nome-do-caso.md. Requisitos funcionais usam prefixo RF com mesmo padrão numérico, resultando em RF-001-nome-do-requisito.md. User stories usam prefixo US resultando em US-001-nome-da-story.md. Requisitos não funcionais usam prefixo RNF resultando em RNF-001-nome-do-requisito.md. Architecture Decision Records usam prefixo ADR resultando em ADR-001-titulo-da-decisao.md.
+Casos de uso usam prefixo UC seguido de número sequencial com três dígitos e nome descritivo em kebab-case, resultando em formato UC-001-nome-do-caso.md. Requisitos funcionais usam prefixo RF com mesmo padrão numérico, resultando em RF-001-nome-do-requisito.md. User stories usam prefixo US resultando em US-001-nome-da-story.md. Requisitos não funcionais usam prefixo RNF resultando em RNF-001-nome-do-requisito.md. Architecture Decision Records usam prefixo ADR resultando em ADR-001-titulo-da-decisao.md. Standards técnicos usam prefixo STD resultando em STD-001-nome-do-standard.md.
 
 ## Títulos por Tipo
 
-O título H1 de cada documento deve seguir padrão específico por tipo. Requisitos funcionais, casos de uso, user stories, requisitos não funcionais e ADRs devem ter título no formato PREFIXO-NNN: Título Descritivo, como RF-001: Integração com Keycloak ou UC-001: Cadastrar Unidade Habitacional. READMEs devem ter título em maiúsculas ou no formato Nome - Descrição.
+O título H1 de cada documento deve seguir padrão específico por tipo. Requisitos funcionais, casos de uso, user stories, requisitos não funcionais, ADRs e standards devem ter título no formato PREFIXO-NNN: Título Descritivo, como RF-001: Integração com Keycloak, UC-001: Cadastrar Unidade Habitacional ou STD-001: Convenção de Status. READMEs devem ter título em maiúsculas ou no formato Nome - Descrição.
 
 ## Numeração Obrigatória
 
-Todo arquivo markdown exceto README.md deve ter prefixo numérico obrigatório. Arquivos de requisitos usam seus prefixos específicos como RF-001, US-002, UC-003, RNF-004, ADR-005. Demais arquivos usam prefixo numérico de dois dígitos seguido de hífen como 01-nome.md, 02-nome.md. A numeração começa em 01 e segue ordem lógica de leitura ou dependência. Arquivos sem numeração são erros de validação com código NUM001. Arquivos em pastas SRC-CODE e .scripts são isentos desta regra.
+Todo arquivo markdown exceto README.md deve ter prefixo numérico obrigatório. Arquivos de requisitos usam seus prefixos específicos como RF-001, US-002, UC-003, RNF-004, ADR-005, STD-006. Demais arquivos usam prefixo numérico de dois dígitos seguido de hífen como 01-nome.md, 02-nome.md. A numeração começa em 01 e segue ordem lógica de leitura ou dependência. Arquivos sem numeração são erros de validação com código NUM001. Arquivos em pastas SRC-CODE e .scripts são isentos desta regra.
 
 ## Pastas de Domínio
 

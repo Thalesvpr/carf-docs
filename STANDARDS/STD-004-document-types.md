@@ -1,7 +1,7 @@
 ---
-status: rejected
-description: "Incompleto. Standards devem ter regras claras e validaveis, nao apenas diretrizes vagas. Contem blocos de codigo."
-updated: 2026-01-21
+type: standard
+status: review
+updated: 2026-01-22
 ---
 
 # STD-004: Tipos de Documento
@@ -15,9 +15,8 @@ O campo `type` no frontmatter define o tipo do documento. Se omitido, o tipo e i
 ```yaml
 ---
 type: adr
-status: rejected
-description: "Incompleto. Standards devem ter regras claras e validaveis, nao apenas diretrizes vagas. Contem blocos de codigo."
-updated: 2026-01-21
+status: review
+updated: 2026-01-22
 ---
 ```
 
@@ -26,6 +25,7 @@ updated: 2026-01-21
 | Tipo | Descricao | Padrao de Nome |
 |------|-----------|----------------|
 | `template` | Arquivo template com regras de validacao | `*-000-template.md` |
+| `standard` | Padrao tecnico obrigatorio | `STD-XXX-*.md` |
 | `adr` | Architecture Decision Record | `ADR-XXX-*.md` |
 | `rf` | Requisito Funcional | `RF-XXX-*.md` |
 | `rnf` | Requisito Nao Funcional | `RNF-XXX-*.md` |
@@ -42,9 +42,8 @@ Templates definem regras de validacao para documentos do mesmo tipo na pasta. Um
 ---
 type: template
 template_for: adr
-status: rejected
-description: "Incompleto. Standards devem ter regras claras e validaveis, nao apenas diretrizes vagas. Contem blocos de codigo."
-updated: 2026-01-21
+status: review
+updated: 2026-01-22
 validation:
   max_words: 300
   max_words_per_section: 80
@@ -80,13 +79,14 @@ Templates podem definir as seguintes regras no campo `validation`:
 Se o campo `type` nao estiver presente no frontmatter, o tipo e inferido pelo nome do arquivo seguindo estas regras em ordem:
 
 1. Nome contem `-000-template` → `template`
-2. Nome comeca com `ADR-` → `adr`
-3. Nome comeca com `RF-` → `rf`
-4. Nome comeca com `RNF-` → `rnf`
-5. Nome comeca com `UC-` ou `XX-UC-` → `uc`
-6. Nome comeca com `US-` → `us`
-7. Nome e `README.md` → `readme`
-8. Qualquer outro → `doc`
+2. Nome comeca com `STD-` → `standard`
+3. Nome comeca com `ADR-` → `adr`
+4. Nome comeca com `RF-` → `rf`
+5. Nome comeca com `RNF-` → `rnf`
+6. Nome comeca com `UC-` ou `XX-UC-` → `uc`
+7. Nome comeca com `US-` → `us`
+8. Nome e `README.md` → `readme`
+9. Qualquer outro → `doc`
 
 ## Heranca de Templates
 
