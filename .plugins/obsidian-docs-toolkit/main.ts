@@ -84,6 +84,9 @@ export default class DocsToolkitPlugin extends Plugin {
   // Reference to curation panel
   private curationPanel: CurationPanelView | null = null;
 
+  // Guard against infinite loops when auto-updating timestamps
+  private recentlyModifiedByPlugin: Set<string> = new Set();
+
   async onload(): Promise<void> {
     console.log("Loading Docs Toolkit Plugin v2.0");
 
@@ -382,13 +385,22 @@ export default class DocsToolkitPlugin extends Plugin {
         if (!file.name.endsWith(".md")) return;
         if (!this.isTrackedFile(file.path)) return;
 
+        // Guard against infinite loop: skip if we just modified this file
+        if (this.recentlyModifiedByPlugin.has(file.path)) {
+          return;
+        }
+
         // Auto-update timestamp
         if (this.settings.autoUpdateTimestamp) {
           setTimeout(async () => {
             try {
               const hasFrontmatter = await this.metadataService.hasFrontmatter(file);
               if (hasFrontmatter) {
+                // Mark as recently modified by plugin to prevent loop
+                this.recentlyModifiedByPlugin.add(file.path);
                 await this.metadataService.updateTimestamp(file);
+                // Clear after 2 seconds
+                setTimeout(() => this.recentlyModifiedByPlugin.delete(file.path), 2000);
               }
             } catch (e) {
               console.error("Failed to update timestamp:", e);

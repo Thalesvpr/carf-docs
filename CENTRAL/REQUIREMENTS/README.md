@@ -1,30 +1,16 @@
 ---
 type: readme
-status: review
-updated: 2026-01-22
+status: approved
+updated: 2026-01-23
 ---
 
 # REQUIREMENTS
 
-O QUE o sistema faz. Funcionalidades e casos de uso organizados por dominio.
+Especificacao do QUE o sistema faz. Funcionalidades e casos de uso organizados por dominio de negocio.
 
-## Estrutura
+A pasta esta organizada em tres partes: [FUNCTIONAL](./FUNCTIONAL/README.md) contem requisitos funcionais atomicos por dominio, [NON-FUNCTIONAL](./NON-FUNCTIONAL/README.md) define requisitos de qualidade como performance e seguranca, e [USE-CASES](./USE-CASES/README.md) documenta fluxos completos de interacao usuario-sistema.
 
-| Pasta | Proposito |
-|-------|-----------|
-| [FUNCTIONAL](./FUNCTIONAL/README.md) | Requisitos funcionais atomicos por dominio |
-| [NON-FUNCTIONAL](./NON-FUNCTIONAL/README.md) | Requisitos de qualidade (performance, seguranca) |
-| [USE-CASES](./USE-CASES/README.md) | Fluxos completos de interacao usuario-sistema |
-
-## Principio
-
-- **RF**: Funcionalidade atomica - "Sistema permite criar unidade"
-- **UC**: Fluxo completo - "Usuario seleciona comunidade, preenche form, salva"
-- **RNF**: Metrica de qualidade - "Resposta em menos de 2 segundos"
-
-## Hierarquia
-
-Requisitos funcionais definem capacidades. Casos de uso documentam jornadas completas referenciando RFs. Requisitos nao-funcionais estabelecem metricas de qualidade transversais.
+Requisitos funcionais (RF) definem capacidades atomicas como "sistema permite criar unidade". Casos de uso (UC) documentam jornadas completas referenciando RFs. Requisitos nao-funcionais (RNF) estabelecem metricas de qualidade transversais como "resposta em menos de 2 segundos".
 
 <!-- CARF-INDEX-START -->
 > ⚠️ **Índice gerado automaticamente.** Não edite manualmente.

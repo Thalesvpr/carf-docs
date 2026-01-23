@@ -5671,6 +5671,8 @@ var DocsToolkitPlugin = class extends import_obsidian22.Plugin {
     super(...arguments);
     // Reference to curation panel
     this.curationPanel = null;
+    // Guard against infinite loops when auto-updating timestamps
+    this.recentlyModifiedByPlugin = /* @__PURE__ */ new Set();
   }
   async onload() {
     console.log("Loading Docs Toolkit Plugin v2.0");
@@ -5885,12 +5887,17 @@ ${errors} errors, ${warnings} warnings`);
           return;
         if (!this.isTrackedFile(file.path))
           return;
+        if (this.recentlyModifiedByPlugin.has(file.path)) {
+          return;
+        }
         if (this.settings.autoUpdateTimestamp) {
           setTimeout(async () => {
             try {
               const hasFrontmatter = await this.metadataService.hasFrontmatter(file);
               if (hasFrontmatter) {
+                this.recentlyModifiedByPlugin.add(file.path);
                 await this.metadataService.updateTimestamp(file);
+                setTimeout(() => this.recentlyModifiedByPlugin.delete(file.path), 2e3);
               }
             } catch (e) {
               console.error("Failed to update timestamp:", e);
