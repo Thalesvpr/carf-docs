@@ -724,57 +724,65 @@ class RecursiveIndexModal extends Modal {
   }
 
   onOpen(): void {
-    const { contentEl } = this;
+    const { contentEl, modalEl } = this;
     contentEl.empty();
+    modalEl.addClass("docs-index-modal");
 
-    contentEl.createEl("h3", { text: "Regenerar índice README" });
+    // Header
+    const header = contentEl.createDiv({ cls: "docs-modal-header" });
+    header.createEl("h3", { text: "Regenerar índice" });
 
-    contentEl.createEl("p", {
-      text: `A pasta "${this.folder.name}" contém subpastas. Deseja regenerar o índice recursivamente?`
+    // Body
+    const body = contentEl.createDiv({ cls: "docs-modal-body" });
+    body.createEl("p", {
+      text: `A pasta "${this.folder.name}" contém subpastas.`
+    });
+    body.createEl("p", {
+      text: "Deseja incluir as subpastas?",
+      cls: "docs-modal-question"
     });
 
-    // Don't ask again checkbox
-    new Setting(contentEl)
-      .setName("Não perguntar novamente")
-      .addToggle(toggle => toggle
-        .setValue(false)
-        .onChange(value => {
-          this.dontAskAgain = value;
-        }));
-
-    // Buttons container
-    const buttonContainer = contentEl.createDiv({ cls: "modal-button-container" });
-
-    // Current folder only button
-    const currentBtn = buttonContainer.createEl("button", { text: "Apenas esta pasta" });
-    currentBtn.addEventListener("click", async () => {
-      if (this.dontAskAgain) {
-        this.plugin.settings.recursiveIndexDefault = "no";
-        await this.plugin.saveSettings();
-      }
-      this.close();
-      await this.plugin.regenerateReadmeIndex(this.folder, false);
-      new Notice(`README index regenerated for ${this.folder.name}`);
+    // Checkbox row
+    const checkboxRow = contentEl.createDiv({ cls: "docs-modal-checkbox" });
+    const checkbox = checkboxRow.createEl("input", { type: "checkbox" });
+    checkbox.id = "dont-ask-again";
+    checkbox.addEventListener("change", (e) => {
+      this.dontAskAgain = (e.target as HTMLInputElement).checked;
     });
+    const label = checkboxRow.createEl("label", { text: "Lembrar minha escolha" });
+    label.setAttribute("for", "dont-ask-again");
 
-    // Recursive button (primary)
-    const recursiveBtn = buttonContainer.createEl("button", {
+    // Buttons
+    const buttons = contentEl.createDiv({ cls: "docs-modal-buttons" });
+
+    const currentBtn = buttons.createEl("button", {
+      text: "Só esta",
+      cls: "docs-modal-btn"
+    });
+    currentBtn.addEventListener("click", () => this.handleChoice(false));
+
+    const recursiveBtn = buttons.createEl("button", {
       text: "Incluir subpastas",
-      cls: "mod-cta"
+      cls: "docs-modal-btn mod-cta"
     });
-    recursiveBtn.addEventListener("click", async () => {
-      if (this.dontAskAgain) {
-        this.plugin.settings.recursiveIndexDefault = "yes";
-        await this.plugin.saveSettings();
-      }
-      this.close();
-      const count = await this.plugin.regenerateReadmeIndex(this.folder, true);
-      new Notice(`README index regenerated for ${count} folders`);
-    });
+    recursiveBtn.addEventListener("click", () => this.handleChoice(true));
+  }
+
+  private async handleChoice(recursive: boolean): Promise<void> {
+    if (this.dontAskAgain) {
+      this.plugin.settings.recursiveIndexDefault = recursive ? "yes" : "no";
+      await this.plugin.saveSettings();
+    }
+    this.close();
+
+    const count = await this.plugin.regenerateReadmeIndex(this.folder, recursive);
+    const msg = recursive
+      ? `Índice regenerado em ${count} pastas`
+      : `Índice regenerado: ${this.folder.name}`;
+    new Notice(msg);
   }
 
   onClose(): void {
-    const { contentEl } = this;
-    contentEl.empty();
+    this.contentEl.empty();
   }
 }

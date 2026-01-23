@@ -6138,42 +6138,50 @@ var RecursiveIndexModal = class extends import_obsidian22.Modal {
     this.plugin = plugin;
   }
   onOpen() {
-    const { contentEl } = this;
+    const { contentEl, modalEl } = this;
     contentEl.empty();
-    contentEl.createEl("h3", { text: "Regenerar \xEDndice README" });
-    contentEl.createEl("p", {
-      text: `A pasta "${this.folder.name}" cont\xE9m subpastas. Deseja regenerar o \xEDndice recursivamente?`
+    modalEl.addClass("docs-index-modal");
+    const header = contentEl.createDiv({ cls: "docs-modal-header" });
+    header.createEl("h3", { text: "Regenerar \xEDndice" });
+    const body = contentEl.createDiv({ cls: "docs-modal-body" });
+    body.createEl("p", {
+      text: `A pasta "${this.folder.name}" cont\xE9m subpastas.`
     });
-    new import_obsidian22.Setting(contentEl).setName("N\xE3o perguntar novamente").addToggle((toggle) => toggle.setValue(false).onChange((value) => {
-      this.dontAskAgain = value;
-    }));
-    const buttonContainer = contentEl.createDiv({ cls: "modal-button-container" });
-    const currentBtn = buttonContainer.createEl("button", { text: "Apenas esta pasta" });
-    currentBtn.addEventListener("click", async () => {
-      if (this.dontAskAgain) {
-        this.plugin.settings.recursiveIndexDefault = "no";
-        await this.plugin.saveSettings();
-      }
-      this.close();
-      await this.plugin.regenerateReadmeIndex(this.folder, false);
-      new import_obsidian22.Notice(`README index regenerated for ${this.folder.name}`);
+    body.createEl("p", {
+      text: "Deseja incluir as subpastas?",
+      cls: "docs-modal-question"
     });
-    const recursiveBtn = buttonContainer.createEl("button", {
+    const checkboxRow = contentEl.createDiv({ cls: "docs-modal-checkbox" });
+    const checkbox = checkboxRow.createEl("input", { type: "checkbox" });
+    checkbox.id = "dont-ask-again";
+    checkbox.addEventListener("change", (e) => {
+      this.dontAskAgain = e.target.checked;
+    });
+    const label = checkboxRow.createEl("label", { text: "Lembrar minha escolha" });
+    label.setAttribute("for", "dont-ask-again");
+    const buttons = contentEl.createDiv({ cls: "docs-modal-buttons" });
+    const currentBtn = buttons.createEl("button", {
+      text: "S\xF3 esta",
+      cls: "docs-modal-btn"
+    });
+    currentBtn.addEventListener("click", () => this.handleChoice(false));
+    const recursiveBtn = buttons.createEl("button", {
       text: "Incluir subpastas",
-      cls: "mod-cta"
+      cls: "docs-modal-btn mod-cta"
     });
-    recursiveBtn.addEventListener("click", async () => {
-      if (this.dontAskAgain) {
-        this.plugin.settings.recursiveIndexDefault = "yes";
-        await this.plugin.saveSettings();
-      }
-      this.close();
-      const count = await this.plugin.regenerateReadmeIndex(this.folder, true);
-      new import_obsidian22.Notice(`README index regenerated for ${count} folders`);
-    });
+    recursiveBtn.addEventListener("click", () => this.handleChoice(true));
+  }
+  async handleChoice(recursive) {
+    if (this.dontAskAgain) {
+      this.plugin.settings.recursiveIndexDefault = recursive ? "yes" : "no";
+      await this.plugin.saveSettings();
+    }
+    this.close();
+    const count = await this.plugin.regenerateReadmeIndex(this.folder, recursive);
+    const msg = recursive ? `\xCDndice regenerado em ${count} pastas` : `\xCDndice regenerado: ${this.folder.name}`;
+    new import_obsidian22.Notice(msg);
   }
   onClose() {
-    const { contentEl } = this;
-    contentEl.empty();
+    this.contentEl.empty();
   }
 };
