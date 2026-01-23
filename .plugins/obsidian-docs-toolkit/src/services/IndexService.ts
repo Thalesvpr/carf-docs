@@ -115,8 +115,7 @@ export class IndexService {
       for (const file of files) {
         const doc = await this.metadataService.parseDocument(file);
         const title = doc.title || file.basename;
-        const status = doc.status || Status.REVIEW;
-        const icon = this.getStatusIcon(status);
+        const icon = this.getStatusIcon(doc.status);
         lines.push(`| [${title}](./${file.name}) | ${icon} |`);
       }
       lines.push("");
@@ -128,15 +127,17 @@ export class IndexService {
   /**
    * Get status icon
    */
-  private getStatusIcon(status: Status): string {
+  private getStatusIcon(status: Status | undefined): string {
     switch (status) {
       case Status.APPROVED:
         return "✓";
       case Status.REJECTED:
         return "✗";
       case Status.REVIEW:
-      default:
         return "○";
+      default:
+        // No status or invalid status - light gray dot
+        return "◦";
     }
   }
 

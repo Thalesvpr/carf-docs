@@ -2625,8 +2625,7 @@ var IndexService = class {
       for (const file of files) {
         const doc = await this.metadataService.parseDocument(file);
         const title = doc.title || file.basename;
-        const status = doc.status || "review" /* REVIEW */;
-        const icon = this.getStatusIcon(status);
+        const icon = this.getStatusIcon(doc.status);
         lines.push(`| [${title}](./${file.name}) | ${icon} |`);
       }
       lines.push("");
@@ -2643,8 +2642,9 @@ var IndexService = class {
       case "rejected" /* REJECTED */:
         return "\u2717";
       case "review" /* REVIEW */:
-      default:
         return "\u25CB";
+      default:
+        return "\u25E6";
     }
   }
   /**
