@@ -1,33 +1,25 @@
 ---
-status: approved
+status: review
 updated: 2026-01-22
 type: readme
 ---
 
-# CARF - Sistema de Regularização Fundiária Urbana
+# CARF - Sistema de Regularizacao Fundiaria Urbana
 
-Sistema para gestão de processos de regularização fundiária urbana conforme Lei 13.465/2017, permitindo que prefeituras gerenciem todo o ciclo desde o cadastramento de unidades habitacionais em campo até a emissão de títulos de legitimação.
+Sistema para gestao de processos de regularizacao fundiaria urbana conforme Lei 13.465/2017, permitindo que prefeituras gerenciem todo o ciclo desde o cadastramento de unidades habitacionais em campo ate a emissao de titulos de legitimacao.
 
-A arquitetura é composta por [projetos independentes](./PROJECTS/README.md) que incluem o backend .NET com API REST geoespacial, portal web para analistas, app mobile para coleta em campo offline, plugin QGIS para análises espaciais, console admin para gerenciar usuários, e bibliotecas compartilhadas entre os projetos.
+A arquitetura e composta por [projetos independentes](./PROJECTS/README.md) que incluem o backend .NET com API REST geoespacial, portal web para analistas, app mobile para coleta em campo offline, plugin QGIS para analises espaciais, console admin para gerenciar usuarios, e bibliotecas compartilhadas entre os projetos.
 
-A documentação fica organizada em duas partes principais. A [documentação central](./CENTRAL/README.md) contém a especificação do sistema como um todo, servindo como **fonte única de verdade** para requisitos, arquitetura e regras de negócio. Os [projetos de implementação](./PROJECTS/README.md) contêm a documentação técnica **específica** de cada um, explicando como implementam o que está especificado.
+A documentacao fica organizada em duas partes principais. A [documentacao central](./CENTRAL/README.md) contem a especificacao do sistema como um todo, servindo como **fonte unica de verdade** para dominio, regras de negocio, requisitos, arquitetura e padroes. Os [projetos de implementacao](./PROJECTS/README.md) contem a documentacao tecnica **especifica** de cada um, explicando como implementam o que esta especificado.
+
+## Estrutura
+
+| Pasta | Proposito |
+|-------|-----------|
+| [CENTRAL](./CENTRAL/README.md) | Especificacao compartilhada: dominio, regras, requisitos, arquitetura, design system, seguranca |
+| [PROJECTS](./PROJECTS/README.md) | Implementacoes: GEOAPI, GEOWEB, REURBCAD, GEOGIS, KEYCLOAK, bibliotecas |
 
 ---
 
-**Versão:** v1.0.0 MVP
-**Licença:** Proprietário
-
-**Última atualização:** 2026-01-15
-**Status do arquivo**: Incompleto
-Descrição: Aguardando index gerado por script.
-
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (1041 arquivos)
-
-| # | Dominio | Arquivos |
-|:--|:--------|:--------:|
-|  | [Central](./CENTRAL/README.md) | 774 |
-|  | [Projects](./PROJECTS/README.md) | 267 |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
+**Versao:** v1.0.0 MVP
+**Licenca:** Proprietario
