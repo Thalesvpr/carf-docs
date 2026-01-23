@@ -1,51 +1,15 @@
 ---
 type: readme
-status: rejected
-description: "Duplicacao com ADR-029 e PROJECTS/KEYCLOAK. Consolidar em um lugar."
-updated: 2026-01-15
+status: draft
+updated: 2026-01-22
 ---
 
 # SECURITY
 
-Políticas de segurança e compliance do sistema CARF.
+Politicas de seguranca e compliance do sistema CARF.
 
-A autenticação usa Keycloak com SSO OAuth2/OIDC e MFA obrigatório para roles elevados. A autorização implementa RBAC com cinco níveis hierárquicos e permissões granulares por tipo de recurso. O isolamento multi-tenant usa Row-Level Security no PostgreSQL com tenant_id extraído dos claims JWT.
+A [estrategia de seguranca](./STRATEGY/README.md) define defesa em profundidade com sete camadas de protecao: brute force, rate limiting, politica de senha, isolamento admin, criptografia TLS/JWT, audit logging e headers HTTP. A [autenticacao e autorizacao](./AUTH/README.md) usa Keycloak com SSO OAuth2/OIDC, MFA para roles elevados e RBAC com cinco niveis hierarquicos.
 
-O compliance LGPD inclui consentimento explícito, portabilidade de dados, direito ao esquecimento com anonimização, DPO designado e notificação de breach à ANPD em 72 horas conforme Lei 13.709/2018.
+O [compliance](./COMPLIANCE/README.md) atende LGPD com consentimento explicito, portabilidade de dados, direito ao esquecimento, DPO designado e notificacao de breach a ANPD em 72 horas. As [politicas](./POLICIES/README.md) detalham regras de autenticacao, autorizacao, criptografia e controle de acesso. Os [procedimentos de incidentes](./INCIDENTS/README.md) cobrem classificacao, resposta, contencao e post-mortem.
 
-A criptografia usa AES-256 para dados em repouso, TLS 1.3 para dados em trânsito e bcrypt com salt rounds 12 para hashing de senhas. A auditoria registra todos os acessos e alterações com retenção de 5 anos.
-
-As [políticas](./POLICIES/README.md) definem regras de autenticação, autorização, criptografia e LGPD. Os [procedimentos de incidentes](./INCIDENTS/README.md) cobrem classificação, resposta, contenção e post-mortem.
-
-
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (9 arquivos)
-
-| # | Dominio | Arquivos |
-|:--|:--------|:--------:|
-|  | [Incidents](./INCIDENTS/README.md) | 4 |
-|  | [Policies](./POLICIES/README.md) | 5 |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
-
-<!-- CARF-INDEX-START -->
-> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
-> Use os links abaixo para referenciar documentos desta pasta.
-
-## Subpastas (2)
-
-| Pasta | Descrição |
-|-------|-----------|
-| [INCIDENTS](./INCIDENTS/README.md) | ... |
-| [POLICIES](./POLICIES/README.md) | ... |
-
-## Documentos (3)
-
-| Documento | Status |
-|-----------|--------|
-| [RBAC Keycloak](./rbac-keycloak.md) | ○ |
-| [Roles Hierarchy](./roles-hierarchy.md) | ○ |
-| [Security Strategy](./security-strategy.md) | ○ |
-
-<!-- CARF-INDEX-END -->
+A criptografia usa AES-256 para dados em repouso, TLS 1.3 para dados em transito e bcrypt com salt rounds 12 para hashing de senhas. O isolamento multi-tenant usa Row-Level Security no PostgreSQL com tenant_id extraido dos claims JWT.
