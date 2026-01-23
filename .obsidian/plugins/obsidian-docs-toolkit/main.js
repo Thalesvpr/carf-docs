@@ -2602,6 +2602,7 @@ var IndexService = class {
    * Generate index content for files and subfolders
    */
   async generateIndexContent(folder, files, subfolders) {
+    var _a;
     const lines = [];
     lines.push("> \u26A0\uFE0F **\xCDndice gerado automaticamente.** N\xE3o edite manualmente.");
     lines.push("> Use os links abaixo para referenciar documentos desta pasta.");
@@ -2625,7 +2626,8 @@ var IndexService = class {
       for (const file of files) {
         const doc = await this.metadataService.parseDocument(file);
         const title = doc.title || file.basename;
-        const icon = this.getStatusIcon(doc.status);
+        const rawStatus = (_a = doc.frontmatter) == null ? void 0 : _a.status;
+        const icon = this.getStatusIcon(rawStatus);
         lines.push(`| [${title}](./${file.name}) | ${icon} |`);
       }
       lines.push("");

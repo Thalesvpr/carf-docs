@@ -115,7 +115,9 @@ export class IndexService {
       for (const file of files) {
         const doc = await this.metadataService.parseDocument(file);
         const title = doc.title || file.basename;
-        const icon = this.getStatusIcon(doc.status);
+        // Use frontmatter status directly to detect missing/invalid status
+        const rawStatus = doc.frontmatter?.status;
+        const icon = this.getStatusIcon(rawStatus);
         lines.push(`| [${title}](./${file.name}) | ${icon} |`);
       }
       lines.push("");
