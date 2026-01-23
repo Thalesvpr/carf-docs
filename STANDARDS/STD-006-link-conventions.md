@@ -1,33 +1,19 @@
 ---
 type: standard
-status: review
-updated: 2026-01-22
+status: current
+updated: 2026-01-23
 ---
 
-# STD-006: Convenções de Links
+# STD-006: Convencoes de Links
 
-Links internos entre documentos seguem convenções específicas que garantem navegabilidade e evitam referências quebradas.
+## Regra
 
-## Formato de Paths
+Links internos usam paths relativos iniciando com ponto e barra. Links para diretorios apontam para README interno. CENTRAL nao pode linkar para PROJECTS. PROJECTS deve referenciar CENTRAL para requisitos e definicoes centrais. Links quebrados sao erros criticos. Paths absolutos Windows ou Unix nao sao permitidos.
 
-Todos os links internos devem usar paths relativos começando com ponto e barra como ./pasta/arquivo.md. Paths absolutos Windows como C:\DEV\ não são permitidos. Paths absolutos Unix como /home/user/ não são permitidos.
+## Justificativa
 
-## Diretórios em CENTRAL
+Paths relativos garantem portabilidade. Isolamento CENTRAL/PROJECTS mantem fonte unica de verdade em CENTRAL evitando dependencias circulares.
 
-Diretórios dentro de CENTRAL devem usar nomes em UPPERCASE. Links para estes diretórios devem respeitar o case como ./DOMAIN-MODEL/README.md. Links para diretórios devem sempre apontar para o README interno como ./PASTA/README.md ao invés de apenas ./PASTA/.
+## Aplicacao
 
-## Isolamento CENTRAL e PROJECTS
-
-CENTRAL é a fonte de verdade e não deve depender de PROJECTS. Documentos em CENTRAL não podem conter links para documentos em PROJECTS. Documentos em PROJECTS devem referenciar CENTRAL quando apropriado, linkando para requisitos, casos de uso e definições centrais ao invés de duplicar conteúdo.
-
-## Referências Cruzadas
-
-Documentos em PROJECTS que implementam requisitos de CENTRAL devem conter links de rastreabilidade. Features devem referenciar os RFs que implementam. Entidades devem referenciar definições do modelo de domínio central. A ausência de referências a CENTRAL em documentos de PROJECTS gera aviso informativo.
-
-## Links Quebrados
-
-Links que apontam para arquivos inexistentes são erros críticos que devem ser corrigidos. O validador detecta links quebrados verificando se o arquivo alvo existe no filesystem.
-
-## Validação
-
-Os scripts em .scripts/carf_validator validam formato de links com códigos LINK001 a LINK005, links quebrados com código BLINK001, isolamento com códigos ISOL001 e ISOL002, e referências cruzadas com código XREF001.
+Aplica-se a todos os links markdown. Validador detecta links quebrados e violacoes de isolamento. Documentos em PROJECTS devem ter rastreabilidade para requisitos em CENTRAL.

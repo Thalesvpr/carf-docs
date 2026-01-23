@@ -1,97 +1,19 @@
 ---
 type: standard
-status: review
-updated: 2026-01-22
+status: current
+updated: 2026-01-23
 ---
 
 # STD-004: Tipos de Documento
 
-Todo documento no repositorio CARF possui um tipo que define sua estrutura e regras de validacao. O tipo pode ser declarado explicitamente no frontmatter ou inferido pelo nome do arquivo.
+## Regra
 
-## Frontmatter de Tipo
+Todo documento possui tipo declarado no campo type do frontmatter ou inferido pelo nome. Tipos disponiveis: template, standard, adr, rf, rnf, uc, us, readme, leaf, doc. Templates definem regras de validacao para documentos do mesmo tipo via campo validation no frontmatter. O validador busca templates na pasta do documento e ancestrais.
 
-O campo `type` no frontmatter define o tipo do documento. Se omitido, o tipo e inferido pelo nome do arquivo.
+## Justificativa
 
-```yaml
----
-type: adr
-status: review
-updated: 2026-01-22
----
-```
+Tipagem permite aplicar regras de validacao especificas por categoria de documento, garantindo estrutura consistente em cada tipo.
 
-## Tipos Disponiveis
+## Aplicacao
 
-| Tipo | Descricao | Padrao de Nome |
-|------|-----------|----------------|
-| `template` | Arquivo template com regras de validacao | `*-000-template.md` |
-| `standard` | Padrao tecnico obrigatorio | `STD-XXX-*.md` |
-| `adr` | Architecture Decision Record | `ADR-XXX-*.md` |
-| `rf` | Requisito Funcional | `RF-XXX-*.md` |
-| `rnf` | Requisito Nao Funcional | `RNF-XXX-*.md` |
-| `uc` | Caso de Uso | `UC-XXX-*.md` ou `XX-UC-XXX-*.md` |
-| `us` | User Story | `US-XXX-*.md` |
-| `readme` | Arquivo indice de pasta | `README.md` |
-| `doc` | Documento generico | Qualquer outro `.md` |
-
-## Templates
-
-Templates definem regras de validacao para documentos do mesmo tipo na pasta. Um template e identificado por `type: template` no frontmatter e deve declarar `template_for` indicando qual tipo ele valida.
-
-```yaml
----
-type: template
-template_for: adr
-status: review
-updated: 2026-01-22
-validation:
-  max_words: 300
-  max_words_per_section: 80
-  required_sections:
-    - Contexto
-    - Decisao
-    - Consequencias
-    - Alternativas Rejeitadas
-  forbidden:
-    - "```"
-    - "http"
-    - "|--|"
-  title_pattern: "^ADR-\\d{3}:"
-  filename_pattern: "^ADR-\\d{3}-.+\\.md$"
----
-```
-
-## Regras de Validacao
-
-Templates podem definir as seguintes regras no campo `validation`:
-
-| Regra | Tipo | Descricao |
-|-------|------|-----------|
-| `max_words` | number | Maximo de palavras no documento |
-| `max_words_per_section` | number | Maximo de palavras por secao |
-| `required_sections` | string[] | Lista de secoes H2 obrigatorias |
-| `forbidden` | string[] | Padroes proibidos no conteudo |
-| `title_pattern` | string | Regex para validar titulo H1 |
-| `filename_pattern` | string | Regex para validar nome do arquivo |
-
-## Inferencia de Tipo
-
-Se o campo `type` nao estiver presente no frontmatter, o tipo e inferido pelo nome do arquivo seguindo estas regras em ordem:
-
-1. Nome contem `-000-template` → `template`
-2. Nome comeca com `STD-` → `standard`
-3. Nome comeca com `ADR-` → `adr`
-4. Nome comeca com `RF-` → `rf`
-5. Nome comeca com `RNF-` → `rnf`
-6. Nome comeca com `UC-` ou `XX-UC-` → `uc`
-7. Nome comeca com `US-` → `us`
-8. Nome e `README.md` → `readme`
-9. Qualquer outro → `doc`
-
-## Heranca de Templates
-
-O validador busca templates na pasta do documento e em pastas ancestrais. Isso permite definir um template em uma pasta pai que se aplica a todos os documentos do tipo nas subpastas.
-
-## Validacao Automatica
-
-O plugin Obsidian Docs Toolkit valida automaticamente documentos conforme suas regras de template. Erros e avisos aparecem no painel de issues. Documentos sem template correspondente nao sao validados por regras de template, apenas por regras globais como frontmatter e links.
+Aplica-se a todos os arquivos markdown. Tipo e inferido automaticamente se nao declarado: STD- infere standard, ADR- infere adr, RF- infere rf, README.md infere readme. Demais arquivos assumem tipo doc.
