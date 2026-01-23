@@ -56,5 +56,8 @@ O [pipeline CI/CD](04-cicd-pipeline.md) usa GitHub Actions para build, test e de
 - ○ [[CENTRAL/DEPLOYMENTS/04-cicd-pipeline.md|CI/CD Pipeline]]
 - ○ [[CENTRAL/DEPLOYMENTS/05-mobile-deployment.md|Mobile Deployment]]
 - ○ [[CENTRAL/DEPLOYMENTS/06-static-site-deployment.md|Static Site Deployment]]
+- ○ [[CENTRAL/DEPLOYMENTS/docker-kubernetes.md|Docker e Kubernetes]]
+- ○ [[CENTRAL/DEPLOYMENTS/github-actions-cicd.md|GitHub Actions CI/CD]]
+- ○ [[CENTRAL/DEPLOYMENTS/vercel-deployment.md|Vercel Deployment]]
 
 <!-- CARF-INDEX-END -->

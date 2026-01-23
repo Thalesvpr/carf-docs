@@ -1,11 +1,11 @@
 ---
-type: adr
+type: leaf
 status: rejected
 updated: 2026-01-21
 description: "Sobreposicao com ADR-022 (RBAC). Formato incorreto com tabelas de permissoes, diagramas ASCII. Consolidar e simplificar. Contem blocos de codigo."
 ---
 
-# ADR-026: Hierarquia de Roles CARF
+# Roles Hierarchy
 
 ## Contexto
 

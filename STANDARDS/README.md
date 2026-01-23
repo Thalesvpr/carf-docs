@@ -34,19 +34,19 @@ Os [tipos de documento](./04-document-types.md) especificam seções obrigatóri
 
 ### Em Revisão
 
-- ○ [[STANDARDS/01-file-status-convention.md|Convenção de Status de Arquivo]]
-- ○ [[STANDARDS/02-readme-structure.md|Estrutura de README]]
-- ○ [[STANDARDS/03-naming-conventions.md|Convenções de Nomenclatura]]
-- ○ [[STANDARDS/04-document-types.md|Tipos de Documento]]
-- ○ [[STANDARDS/05-content-guidelines.md|Diretrizes de Conteúdo]]
-- ○ [[STANDARDS/06-link-conventions.md|Convenções de Links]]
-- ○ [[STANDARDS/10-postgresql-database.md|STD-010: PostgreSQL como Database]]
-- ○ [[STANDARDS/11-dotnet-backend.md|STD-011: .NET 9 para Backend]]
-- ○ [[STANDARDS/12-keycloak-auth.md|STD-012: Keycloak para Autenticacao]]
-- ○ [[STANDARDS/13-react-native-mobile.md|STD-013: React Native para Mobile]]
-- ○ [[STANDARDS/14-multi-tenancy-rls.md|STD-014: Multi-tenancy via RLS]]
-- ○ [[STANDARDS/15-clean-architecture.md|STD-015: Clean Architecture com CQRS]]
-- ○ [[STANDARDS/16-frontend-stack.md|STD-016: Stack Frontend Web]]
-- ○ [[STANDARDS/17-containerization.md|STD-017: Docker e Kubernetes]]
+- ○ [[STANDARDS/STD-001-file-status-convention.md|STD-001: Convenção de Status de Arquivo]]
+- ○ [[STANDARDS/STD-002-readme-structure.md|STD-002: Estrutura de README]]
+- ○ [[STANDARDS/STD-003-naming-conventions.md|STD-003: Convenções de Nomenclatura]]
+- ○ [[STANDARDS/STD-004-document-types.md|STD-004: Tipos de Documento]]
+- ○ [[STANDARDS/STD-005-content-guidelines.md|STD-005: Diretrizes de Conteúdo]]
+- ○ [[STANDARDS/STD-006-link-conventions.md|STD-006: Convenções de Links]]
+- ○ [[STANDARDS/STD-010-postgresql-database.md|STD-010: PostgreSQL como Database]]
+- ○ [[STANDARDS/STD-011-dotnet-backend.md|STD-011: .NET 9 para Backend]]
+- ○ [[STANDARDS/STD-012-keycloak-auth.md|STD-012: Keycloak para Autenticacao]]
+- ○ [[STANDARDS/STD-013-react-native-mobile.md|STD-013: React Native para Mobile]]
+- ○ [[STANDARDS/STD-014-multi-tenancy-rls.md|STD-014: Multi-tenancy via RLS]]
+- ○ [[STANDARDS/STD-015-clean-architecture.md|STD-015: Clean Architecture com CQRS]]
+- ○ [[STANDARDS/STD-016-frontend-stack.md|STD-016: Stack Frontend Web]]
+- ○ [[STANDARDS/STD-017-containerization.md|STD-017: Docker e Kubernetes]]
 
 <!-- CARF-INDEX-END -->

@@ -1,11 +1,11 @@
 ---
-type: adr
+type: leaf
 status: rejected
 description: "Formato incorreto. ADR valido sobre containerizacao mas precisa reestruturar sem codigo/configs. Configs vao para DEPLOYMENTS."
 updated: 2026-01-20
 ---
 
-# ADR-020: Escolha do Docker + Kubernetes para Orquestração Backend
+# Docker e Kubernetes
 
 Decisão arquitetural escolhendo Docker para containerização e Kubernetes para orquestração do backend GEOAPI justificada por isolamento completo de dependencies eliminando conflicts de versões e "works on my machine" problems garantindo ambiente idêntico dev/staging/prod, immutable infrastructure permitindo deploys confiáveis e rollbacks instantâneos via image tags, resource limits (CPU/memory) prevenindo noisy neighbor problems em multi-tenant deployments, horizontal scaling automático via HPA (Horizontal Pod Autoscaler) escalando pods baseado em CPU/memória handling picos de tráfego sem intervenção manual, self-healing com automatic restart de pods unhealthy mantendo availability alta, rolling updates zero-downtime deployando novas versões gradualmente verificando health antes de substituir pods antigos, service discovery automático via Kubernetes DNS eliminando hardcoded IPs, secrets management com encryption at rest para database credentials API keys, e portabilidade entre cloud providers evitando vendor lock-in permitindo migration AWS→Azure→GCP mantendo mesma infra config.
 

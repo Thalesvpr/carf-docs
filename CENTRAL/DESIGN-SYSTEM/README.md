@@ -168,5 +168,6 @@ O Design System é aplicado em:
 - ○ [[CENTRAL/DESIGN-SYSTEM/07-states.md|Interactive States]]
 - ○ [[CENTRAL/DESIGN-SYSTEM/08-z-index.md|Z-Index Scale]]
 - ○ [[CENTRAL/DESIGN-SYSTEM/09-transitions.md|Transitions]]
+- ○ [[CENTRAL/DESIGN-SYSTEM/color-palette.md|Color Palette]]
 
 <!-- CARF-INDEX-END -->

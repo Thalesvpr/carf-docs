@@ -1,11 +1,11 @@
 ---
-type: adr
+type: leaf
 status: rejected
 description: "Nao e decisao arquitetural. Plataforma de deploy e operacional/infraestrutura. Mover para DEPLOYMENTS."
 updated: 2026-01-20
 ---
 
-# ADR-013: Escolha do Vercel como Plataforma de Deploy para Frontends
+# Vercel Deployment
 
 Decisão arquitetural escolhendo Vercel como plataforma de hosting e deployment para aplicações frontend estáticas (GEOWEB ADMIN WEBDOCS) justificada por integração nativa com GitHub permitindo preview deployments automáticos em cada Pull Request habilitando revisão visual de mudanças antes de merge para main aumentando qualidade e reduzindo bugs em produção, CDN global Edge Network com 100+ POPs (Points of Presence) distribuídos mundialmente garantindo latência < 50ms para 95% dos usuários brasileiros através de edge caching agressivo de assets estáticos melhorando significativamente métricas Web Vitals (LCP TTI) especialmente crítico para usuários em regiões remotas com conectividade limitada, SSL/TLS automático com certificados Let's Encrypt renovados automaticamente eliminando overhead operacional de gestão manual de certificados e garantindo HTTPS obrigatório conforme políticas de segurança SECURITY/POLICIES/ e compliance LGPD exigindo dados em trânsito criptografados, zero-downtime deployments com rollback instantâneo através de immutable deployments onde cada build recebe URL único permitindo reverter para versão anterior em segundos sem rebuild em caso de incident crítico, analytics integrado fornecendo métricas de Core Web Vitals Real User Monitoring page views unique visitors sem necessidade de Google Analytics ou ferramentas third-party reduzindo surface de tracking e melhorando privacidade, custom domains com DNS management simplificado suportando apex domains e wildcard subdomains permitindo estrutura multi-tenant como `município.carf.gov.br` para white-labeling futuro, environment variables secretas criptografadas em rest e transit permitindo armazenar API keys e tokens com segurança auditável, build cache inteligente detectando mudanças em dependencies apenas reinstalando packages modificados acelerando builds em 50-70%, e custo zero para projetos open-source ou não-comerciais através de Hobby tier com limites generosos (100GB bandwidth, unlimited deployments) suficiente para escala inicial com upgrade path suave para Pro tier quando necessário.
 

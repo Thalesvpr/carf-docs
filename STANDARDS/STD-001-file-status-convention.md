@@ -4,7 +4,7 @@ status: rejected
 updated: 2026-01-20
 ---
 
-# Convenção de Status de Arquivo
+# STD-001: Convenção de Status de Arquivo
 
 Todo arquivo markdown em CENTRAL e PROJECTS deve incluir metadados no frontmatter YAML indicando seu estado atual de completude.
 

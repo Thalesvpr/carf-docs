@@ -1,11 +1,11 @@
 ---
-type: adr
+type: leaf
 status: rejected
 updated: 2026-01-21
 description: "Nao e decisao arquitetural. Design system pertence a CENTRAL/DESIGN-SYSTEM, nao ADRs."
 ---
 
-# ADR-023: Paleta de Cores e Design System CARF
+# Color Palette
 
 Decisão arquitetural definindo paleta de cores oficial do projeto CARF composta por três cores primárias institucionais amarelo #FFCD07, verde #15981C e azul #3872C6 representando respectivamente energia/atenção, natureza/aprovação e confiança/tecnologia, complementadas por verde escuro institucional #2C5F2D usado em backgrounds de branding e vermelho accent #E63946 para elementos de destaque como linhas verticais e separadores visuais, garantindo identidade visual consistente entre todos os sistemas GEOWEB ADMIN REURBCAD MOBILE KEYCLOAK e materiais de comunicação.
 

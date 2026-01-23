@@ -5,7 +5,7 @@ description: "Incompleto. Standards devem ter regras claras e validaveis, nao ap
 updated: 2026-01-19
 ---
 
-# Estrutura de README
+# STD-002: Estrutura de README
 
 Todo diretório em CENTRAL e PROJECTS deve conter um arquivo README.md seguindo estrutura padronizada que facilita navegação e compreensão do conteúdo. Arquivos index.md não são permitidos, sempre usar README.md.
 

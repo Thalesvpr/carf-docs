@@ -1,11 +1,11 @@
 ---
-type: adr
+type: leaf
 status: rejected
 updated: 2026-01-21
 description: "Escopo muito amplo. Mistura 7 decisoes diferentes (brute force, rate limit, senha, admin, TLS, audit, headers). Separar ou mover para SECURITY. Contem blocos de codigo."
 ---
 
-# ADR-029: Estrategia de Seguranca Keycloak
+# Security Strategy
 
 ## Contexto
 

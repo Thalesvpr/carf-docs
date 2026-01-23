@@ -5,7 +5,7 @@ description: "Incompleto. Standards devem ter regras claras e validaveis, nao ap
 updated: 2026-01-19
 ---
 
-# Diretrizes de Conteúdo
+# STD-005: Diretrizes de Conteúdo
 
 Documentos devem seguir diretrizes de tamanho e densidade que garantem qualidade e legibilidade do conteúdo.
 

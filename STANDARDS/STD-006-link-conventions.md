@@ -5,7 +5,7 @@ description: "Incompleto. Standards devem ter regras claras e validaveis, nao ap
 updated: 2026-01-19
 ---
 
-# Convenções de Links
+# STD-006: Convenções de Links
 
 Links internos entre documentos seguem convenções específicas que garantem navegabilidade e evitam referências quebradas.
 

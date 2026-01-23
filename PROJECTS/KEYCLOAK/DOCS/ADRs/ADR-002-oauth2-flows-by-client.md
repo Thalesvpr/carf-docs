@@ -5,7 +5,7 @@ updated: 2026-01-21
 description: "Granularidade errada. Config de OAuth2 por client e detalhe de implementacao Keycloak, nao decisao arquitetural. Mover para PROJECTS/KEYCLOAK. Contem blocos de codigo."
 ---
 
-# ADR-027: OAuth2 Flows por Tipo de Client
+# ADR-002: OAuth2 Flows por Tipo de Client
 
 ## Contexto
 

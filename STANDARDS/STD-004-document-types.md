@@ -4,7 +4,7 @@ description: "Incompleto. Standards devem ter regras claras e validaveis, nao ap
 updated: 2026-01-21
 ---
 
-# Tipos de Documento
+# STD-004: Tipos de Documento
 
 Todo documento no repositorio CARF possui um tipo que define sua estrutura e regras de validacao. O tipo pode ser declarado explicitamente no frontmatter ou inferido pelo nome do arquivo.
 

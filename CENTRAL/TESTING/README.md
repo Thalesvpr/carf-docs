@@ -33,4 +33,10 @@ Inclui fixtures, factories e test data builders para setup rápido, evitando có
 - [[CENTRAL/TESTING/TEST-CASES/README|TEST-CASES]]
 - [[CENTRAL/TESTING/TEST-STRATEGY/README|TEST-STRATEGY]]
 
+## Documentos
+
+### Em Revisão
+
+- ○ [[CENTRAL/TESTING/playwright-e2e.md|Playwright E2E Testing]]
+
 <!-- CARF-INDEX-END -->

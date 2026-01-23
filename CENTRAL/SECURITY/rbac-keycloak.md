@@ -1,11 +1,11 @@
 ---
-type: adr
+type: leaf
 status: rejected
 description: "Sobreposicao com ADR-026 (roles hierarchy). Consolidar em unico ADR sobre modelo de autorizacao."
 updated: 2026-01-20
 ---
 
-# ADR-022: Hierarquia de Roles com Composite Roles no Keycloak
+# RBAC Keycloak
 
 Decisão arquitetural definindo sistema de controle de acesso baseado em roles (RBAC) com hierarquia operacional de seis níveis usando composite roles do Keycloak ao invés de permissões granulares individuais ou claims-based authorization justificada por simplicidade conceitual onde cada usuário tem uma ou mais roles claramente definidas (user, field-agent, analyst, admin, super-admin, dev) facilitando comunicação entre equipe técnica e stakeholders de negócio que entendem intuitivamente "Maria é analyst" versus complexidade de "Maria tem permissões X, Y, Z em recursos A, B, C", herança automática através de composite roles onde admin herda tudo de analyst que herda tudo de field-agent que herda de user eliminando duplicação de configuração e risco de inconsistências onde admin esquece de receber nova permissão adicionada a analyst, auditabilidade clara com roles atribuídas visíveis no token JWT e Admin Console do Keycloak permitindo responder "quem tem acesso a quê" instantaneamente versus rastrear permissões individuais espalhadas por múltiplos sistemas, integração nativa com Keycloak que implementa composite roles out-of-box sem código customizado necessário facilitando manutenção e upgrades, e compatibilidade com padrões de mercado onde RBAC é abordagem dominante em sistemas enterprise especialmente governamentais permitindo integração futura com outros sistemas de prefeituras ou órgãos que já usam modelos similares.
 

@@ -35,4 +35,12 @@ As [políticas](./POLICIES/README.md) definem regras de autenticação, autoriza
 - [[CENTRAL/SECURITY/INCIDENTS/README|INCIDENTS]]
 - [[CENTRAL/SECURITY/POLICIES/README|POLICIES]]
 
+## Documentos
+
+### Em Revisão
+
+- ○ [[CENTRAL/SECURITY/rbac-keycloak.md|RBAC Keycloak]]
+- ○ [[CENTRAL/SECURITY/roles-hierarchy.md|Roles Hierarchy]]
+- ○ [[CENTRAL/SECURITY/security-strategy.md|Security Strategy]]
+
 <!-- CARF-INDEX-END -->

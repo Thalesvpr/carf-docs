@@ -1,11 +1,11 @@
 ---
-type: adr
+type: leaf
 status: rejected
 description: "Nao e decisao arquitetural. CI/CD e operacional/infraestrutura. Mover para DEPLOYMENTS."
 updated: 2026-01-20
 ---
 
-# ADR-017: Escolha do GitHub Actions como Plataforma CI/CD
+# GitHub Actions CI/CD
 
 Decisão arquitetural escolhendo GitHub Actions como solução de CI/CD para todos projetos CARF justificada por integração nativa com GitHub eliminando necessidade de autorização/webhook external service, workflow-as-code em YAML versionado no repositório permitindo code review de CI config garantindo auditability, matrix builds executando tests em múltiplas versões Node/Bun/.NET paralelamente detectando incompatibilidades precocemente, artifacts e caching automático acelerando builds em 50-70% reutilizando dependencies entre runs, secrets management integrado protegendo API keys tokens credentials com encryption at rest, environments com protection rules exigindo approval manual para deploy produção impedindo deploys acidentais, status checks obrigatórios bloqueando merge de PRs com testes falhando garantindo qualidade, scheduled workflows para tasks periódicos (sync docs nightly dependency updates security scans), e custo zero para repositórios públicos ou 2000 minutos grátis privados suficiente para projetos small-medium.
 
