@@ -1,39 +1,17 @@
 ---
 type: readme
-status: rejected
-description: "Usa listas, bullets e tabelas ao inves de prosa corrida. README valido mas precisa reescrever em formato denso."
+status: review
 updated: 2026-01-22
 ---
 
 # ARCHITECTURE
 
-Documentação da arquitetura sistêmica do CARF definindo princípios, padrões e estratégias de deployment aplicados nos projetos.
+Documentacao da arquitetura sistemica do CARF definindo principios, padroes e decisoes tecnicas aplicados nos projetos.
 
-Os [ADRs](./ADRs/README.md) documentam decisões arquiteturais críticas como escolha de tecnologias, padrões de autenticação e estratégias de multi-tenancy, registrando contexto, alternativas avaliadas e consequências de cada decisão.
+Decisoes arquiteturais criticas como escolha de tecnologias, padroes de autenticacao e estrategias de multi-tenancy sao documentadas como ADRs (Architecture Decision Records), registrando contexto, alternativas avaliadas e consequencias de cada decisao. Os padroes arquiteturais definem como aplicar Clean Architecture, CQRS, Repository, Domain Events e padroes especificos para frontend React e aplicacoes offline-first mobile.
 
-Os [padrões arquiteturais](./PATTERNS/README.md) definem como aplicar Clean Architecture, CQRS, Repository, Domain Events e padrões específicos para frontend React e aplicações offline-first mobile.
-
-As [estratégias de deployment](CENTRAL/DEPLOYMENTS/README.md) cobrem containerização Docker, orquestração Kubernetes, pipelines CI/CD com GitHub Actions, deployment mobile para App Store e Google Play, e sites estáticos.
-
-Para implementação técnica específica de cada projeto, consulte a documentação em PROJECTS/*/DOCS/.
-
-
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (45 arquivos)
-
-| # | Dominio | Arquivos |
-|:--|:--------|:--------:|
-|  | [Adrs](./ADRs/README.md) | 22 |
-|  | [Deployment](CENTRAL/DEPLOYMENTS/README.md) | 16 |
-|  | [Patterns](./PATTERNS/README.md) | 7 |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
+Para implementacao tecnica especifica de cada projeto incluindo estrategias de deployment (containerizacao Docker, orquestracao Kubernetes, pipelines CI/CD), consulte a documentacao em PROJECTS/*/DOCS/.
 
 <!-- CARF-INDEX-START -->
-## Subpastas
-
-- [[CENTRAL/ARCHITECTURE/ADRs/README|ADRs]]
-- [[CENTRAL/ARCHITECTURE/PATTERNS/README|PATTERNS]]
 
 <!-- CARF-INDEX-END -->

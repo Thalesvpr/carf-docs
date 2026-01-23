@@ -149,25 +149,27 @@ O Design System é aplicado em:
 - **Keycloak Theme** - Telas de autenticação (FreeMarker e Keycloakify)
 - **REURBCAD Mobile** - Aplicativo de campo
 
-## Referências
+## Referencias
 
-- [ADR-023](../ARCHITECTURE/ADRs/ADR-023-color-palette-design-system.md) - Decisão arquitetural da paleta de cores
-- [Ecosystem](../ECOSYSTEM/README.md) - Catálogo de aplicações
+Para implementacao dos componentes React, consulte [PROJECTS/LIB/TS/UI-COMPONENTS](../../PROJECTS/LIB/TS/UI-COMPONENTS/README.md).
 
 <!-- CARF-INDEX-START -->
-## Documentos
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-### Em Revisão
+## Documentos (10)
 
-- ○ [[CENTRAL/DESIGN-SYSTEM/01-colors.md|Colors]]
-- ○ [[CENTRAL/DESIGN-SYSTEM/02-typography.md|Typography]]
-- ○ [[CENTRAL/DESIGN-SYSTEM/03-spacing.md|Spacing]]
-- ○ [[CENTRAL/DESIGN-SYSTEM/04-borders.md|Borders]]
-- ○ [[CENTRAL/DESIGN-SYSTEM/05-shadows.md|Shadows]]
-- ○ [[CENTRAL/DESIGN-SYSTEM/06-breakpoints.md|Breakpoints]]
-- ○ [[CENTRAL/DESIGN-SYSTEM/07-states.md|Interactive States]]
-- ○ [[CENTRAL/DESIGN-SYSTEM/08-z-index.md|Z-Index Scale]]
-- ○ [[CENTRAL/DESIGN-SYSTEM/09-transitions.md|Transitions]]
-- ○ [[CENTRAL/DESIGN-SYSTEM/color-palette.md|Color Palette]]
+| Documento | Status |
+|-----------|--------|
+| [Colors](./01-colors.md) | ○ |
+| [Typography](./02-typography.md) | ○ |
+| [Spacing](./03-spacing.md) | ○ |
+| [Borders](./04-borders.md) | ○ |
+| [Shadows](./05-shadows.md) | ○ |
+| [Breakpoints](./06-breakpoints.md) | ○ |
+| [Interactive States](./07-states.md) | ○ |
+| [Z-Index Scale](./08-z-index.md) | ○ |
+| [Transitions](./09-transitions.md) | ○ |
+| [Color Palette](./color-palette.md) | ○ |
 
 <!-- CARF-INDEX-END -->

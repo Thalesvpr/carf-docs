@@ -1,17 +1,16 @@
 ---
 type: readme
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES."
-updated: 2026-01-15
+status: review
+updated: 2026-01-22
 ---
 
 # USE-CASES
 
-Casos de uso do CARF documentando fluxos de negócio que atravessam múltiplos projetos. Cada caso de uso possui atores definidos, objetivo claro, pré-condições, fluxo principal passo-a-passo, fluxos alternativos para variações, fluxos de exceção para erros, e pós-condições garantidas após execução.
+Casos de uso do CARF documentando fluxos de negocio que atravessam multiplos projetos. Cada caso de uso possui atores definidos, objetivo claro, pre-condicoes, fluxo principal passo-a-passo, fluxos alternativos para variacoes, fluxos de excecao para erros, e pos-condicoes garantidas apos execucao.
 
-Exemplos incluem cadastrar unidade habitacional onde GEOWEB cadastra, GEOAPI valida, REURBCAD sincroniza e GEOGIS visualiza. Ou gerenciar usuários do sistema com autenticação Keycloak cross-project. Ou gerar relatório de comunidade agregando dados de múltiplas fontes.
+Exemplos incluem cadastrar unidade habitacional onde GEOWEB cadastra, GEOAPI valida, REURBCAD sincroniza e GEOGIS visualiza. Ou gerenciar usuarios do sistema com autenticacao Keycloak cross-project. Ou gerar relatorio de comunidade agregando dados de multiplas fontes.
 
-Cada UC identifica os módulos implementadores via frontmatter YAML e inclui rastreabilidade para requisitos funcionais e user stories relacionadas.
+Os [PROCESS-WORKFLOWS](./PROCESS-WORKFLOWS/README.md) documentam fluxos de trabalho end-to-end que coordenam atividades entre atores humanos e sistema, desde configuracao inicial ate certificacao final.
 
 
 
@@ -38,6 +37,7 @@ Cada UC identifica os módulos implementadores via frontmatter YAML e inclui ras
 <!-- CARF-INDEX-START -->
 ## Subpastas
 
+- [[CENTRAL/REQUIREMENTS/USE-CASES/PROCESS-WORKFLOWS/README|PROCESS-WORKFLOWS]]
 - [[CENTRAL/REQUIREMENTS/USE-CASES/UC-001-cadastrar-unidade-habitacional/README|UC-001-cadastrar-unidade-habitacional]]
 - [[CENTRAL/REQUIREMENTS/USE-CASES/UC-002-aprovar-unidade-habitacional/README|UC-002-aprovar-unidade-habitacional]]
 - [[CENTRAL/REQUIREMENTS/USE-CASES/UC-003-vincular-titular-unidade/README|UC-003-vincular-titular-unidade]]
