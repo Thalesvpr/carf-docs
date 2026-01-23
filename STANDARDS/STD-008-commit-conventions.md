@@ -4,7 +4,7 @@ status: review
 updated: 2026-01-22
 ---
 
-# STD-003: Commits
+# STD-008: Convencoes de Commit
 
 ## Regra
 

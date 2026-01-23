@@ -4,7 +4,7 @@ status: review
 updated: 2026-01-22
 ---
 
-# STD-002: Estilo de Codigo
+# STD-007: Estilo de Codigo
 
 ## Regra
 

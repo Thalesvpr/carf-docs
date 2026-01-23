@@ -4,7 +4,7 @@ status: current
 updated: 2026-01-22
 ---
 
-# STD-005: Versionamento Semantico
+# STD-010: Versionamento Semantico
 
 ## Regra
 

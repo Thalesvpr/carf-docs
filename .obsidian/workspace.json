@@ -39,44 +39,16 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CENTRAL/DOMAIN-RULES/README.md",
+                "file": "STANDARDS/STD-003-naming-conventions.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "README"
-            }
-          },
-          {
-            "id": "c6d9e0d5c687b66a",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "PROJECTS/KEYCLOAK/DOCS/INTEGRATION/README.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "README"
-            }
-          },
-          {
-            "id": "f82fcb4e71fbecb2",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "README.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "README"
+              "title": "STD-003-naming-conventions"
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -99,7 +71,7 @@
                 "autoReveal": true
               },
               "icon": "lucide-folder-closed",
-              "title": "Explorador de arquivos"
+              "title": "Files"
             }
           },
           {
@@ -239,54 +211,54 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Abrir a troca rápida": false,
-      "graph:Abrir visualização em gráfico": false,
-      "canvas:Criar novo canvas": false,
-      "daily-notes:Abrir a nota de hoje": false,
-      "templates:Inserir modelo": false,
-      "command-palette:Abrir paleta de comandos": false,
-      "bases:Criar nova base": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
       "obsidian-docs-toolkit:Open Curation Panel": false
     }
   },
-  "active": "aad1928f2fff3657",
+  "active": "70f89e10a8cd4841",
   "lastOpenFiles": [
-    "PROJECTS/LIB/README.md",
-    "STANDARDS/README.md",
-    "CENTRAL/DOMAIN/VALUE-OBJECTS/README.md",
-    "CENTRAL/DOMAIN/README.md",
-    "README.md",
-    "CENTRAL/ARCHITECTURE/README.md",
-    "CENTRAL/ARCHITECTURE/DIAGRAMS/README.md",
-    "CENTRAL/ARCHITECTURE/DECISIONS/README.md",
-    "CENTRAL/README.md",
-    "CENTRAL/ARCHITECTURE/DIAGRAMS/02-data-flow.md",
-    "CENTRAL/ARCHITECTURE/DIAGRAMS/03-deployment.md",
-    "CENTRAL/ARCHITECTURE/DIAGRAMS/01-ecosystem.md",
-    "CENTRAL/ARCHITECTURE/DECISIONS/01-multi-tenancy.md",
-    "STANDARDS/STD-017-containerization.md",
-    "CENTRAL/ARCHITECTURE/INTEGRATION/05-data-layer.md",
-    "CENTRAL/ARCHITECTURE/INTEGRATION/04-shared-libraries.md",
-    "CENTRAL/ARCHITECTURE/INTEGRATION/03-offline-sync.md",
+    "STANDARDS/STD-002-readme-structure.md",
+    "STANDARDS/STD-001-file-status-convention.md",
+    "CENTRAL/DOMAIN-RULES/README.md",
+    "CENTRAL/ARCHITECTURE/STANDARDS/01-documentation.md",
+    "CENTRAL/ARCHITECTURE/STANDARDS/README.md",
+    "CENTRAL/ARCHITECTURE/STANDARDS",
+    "STANDARDS/STD-010-versioning.md",
+    "STANDARDS/STD-009-api-design.md",
+    "STANDARDS/STD-008-commit-conventions.md",
+    "STANDARDS/STD-007-code-style.md",
+    "CENTRAL/ARCHITECTURE/STANDARDS/02-code-style.md",
+    "CENTRAL/ARCHITECTURE/STANDARDS/03-commits.md",
+    "CENTRAL/ARCHITECTURE/STANDARDS/04-api-design.md",
+    "CENTRAL/ARCHITECTURE/STANDARDS/05-versioning.md",
     "CENTRAL/ARCHITECTURE/INTEGRATION/02-api-communication.md",
     "CENTRAL/ARCHITECTURE/INTEGRATION/01-authentication.md",
-    "CENTRAL/ARCHITECTURE/DIAGRAMS/deployment.mmd",
-    "CENTRAL/ARCHITECTURE/DIAGRAMS/data-flow.mmd",
-    "CENTRAL/ARCHITECTURE/DIAGRAMS/ecosystem.mmd",
+    "CENTRAL/ARCHITECTURE/DIAGRAMS/01-ecosystem.md",
+    "CENTRAL/ARCHITECTURE/DECISIONS/README.md",
+    "CENTRAL/ARCHITECTURE/DECISIONS/10-github.md",
+    "CENTRAL/ARCHITECTURE/DECISIONS/09-git.md",
     "CENTRAL/ARCHITECTURE/DECISIONS/08-architecture-style.md",
-    "CENTRAL/ARCHITECTURE/DECISIONS/07-mobile-stack.md",
-    "CENTRAL/ARCHITECTURE/DECISIONS/06-database.md",
-    "CENTRAL/ARCHITECTURE/DECISIONS/05-frontend-stack.md",
-    "CENTRAL/ARCHITECTURE/DECISIONS/04-backend-stack.md",
-    "CENTRAL/ARCHITECTURE/DECISIONS/03-authentication.md",
-    "CENTRAL/ARCHITECTURE/DECISIONS/02-offline-first.md",
-    "CENTRAL/ARCHITECTURE/DIAGRAMS",
-    "CENTRAL/ARCHITECTURE/DECISIONS",
-    "CENTRAL/ARCHITECTURE/INTEGRATION",
-    "CENTRAL/ARCHITECTURE/SYSTEM",
-    "CENTRAL/REQUIREMENTS/USE-CASES/PROCESS-WORKFLOWS",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/08-interoperability",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/07-maintainability",
+    "CENTRAL/ARCHITECTURE/DECISIONS/01-multi-tenancy.md",
+    "CENTRAL/DESIGN-SYSTEM/IDENTIDADE/04-tom-voz.md",
+    "CENTRAL/DESIGN-SYSTEM/IDENTIDADE/03-tipografia.md",
+    "CENTRAL/DESIGN-SYSTEM/IDENTIDADE/02-cores.md",
+    "CENTRAL/DESIGN-SYSTEM/IDENTIDADE/01-marca.md",
+    "CENTRAL/DESIGN-SYSTEM/LINGUAGEM-VISUAL/04-iconografia.md",
+    "CENTRAL/DESIGN-SYSTEM/EXPERIENCIAS",
+    "CENTRAL/DESIGN-SYSTEM/LINGUAGEM-VISUAL",
+    "CENTRAL/DESIGN-SYSTEM/IDENTIDADE",
+    "CENTRAL/DESIGN-SYSTEM/PRINCIPIOS",
+    "CENTRAL/SECURITY/STRATEGY",
+    "CENTRAL/SECURITY/COMPLIANCE",
+    "CENTRAL/SECURITY/AUTH",
+    "CENTRAL/ARCHITECTURE/STANDARDS/RELEASES",
+    "CENTRAL/ARCHITECTURE/INTEGRATION/GITHUB",
     "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/public/img/logo.svg"
   ]
 }

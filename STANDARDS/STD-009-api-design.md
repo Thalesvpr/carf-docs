@@ -4,7 +4,7 @@ status: review
 updated: 2026-01-22
 ---
 
-# STD-004: Design de API
+# STD-009: Design de API
 
 ## Regra
 
