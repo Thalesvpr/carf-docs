@@ -1,28 +1,14 @@
 ---
 type: readme
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES."
-updated: 2026-01-15
+status: approved
+updated: 2026-01-23
 ---
 
-# UC-010-configurar-camadas-wms
+# UC-010: Configurar Camadas WMS/WMTS
 
+Caso de uso para adicionar servidores WMS e WMTS externos como camadas base no mapa do sistema. O fluxo envolve ADMIN configurando URL do servico, testando conexao, selecionando layers disponiveis e ajustando parametros de exibicao.
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (7 casos de uso)
-
-| ID | Titulo |
-|:---|:-------|
-| [UC-010](./UC-010-configurar-camadas-wms.md) | Configurar Camadas WMS/WMTS |
-| [UC-010](./UC-010-FA-001-adicionar-wmts.md) | FA-001: Adicionar WMTS |
-| [UC-010](./UC-010-FA-002-proxy-wms.md) | FA-002: Proxy de WMS |
-| [UC-010](./UC-010-FE-001-getcapabilities-falha.md) | FE-001: GetCapabilities Falha |
-| [UC-010](./UC-010-FE-002-xml-invalido.md) | FE-002: XML Inválido |
-| [UC-010](./UC-010-FE-003-layer-nao-encontrado.md) | FE-003: Layer Não Encontrado |
-| [UC-010](./UC-010-FE-004-erro-renderizar.md) | FE-004: Erro ao Renderizar (Frontend) |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
+O [fluxo principal](./UC-010-configurar-camadas-wms.md) documenta a configuracao de camadas WMS. Os fluxos alternativos cobrem adicao de WMTS com tiles pre-renderizados (FA-001) e uso de proxy para evitar bloqueios CORS (FA-002). Os fluxos de excecao tratam falha no GetCapabilities (FE-001), XML invalido (FE-002), layer nao encontrado (FE-003) e erro ao renderizar no frontend (FE-004).
 
 
 <!-- CARF-INDEX-START -->

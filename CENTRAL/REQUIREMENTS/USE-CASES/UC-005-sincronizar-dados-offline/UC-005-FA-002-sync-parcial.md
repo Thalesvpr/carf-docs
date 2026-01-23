@@ -1,14 +1,45 @@
 ---
-type: uc
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 13 linhas - incompleto."
-updated: 2025-12-30
+id: UC-005-FA-002
+type: UC
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
-# UC-005-FA-002: Sincronização Parcial (Apenas Fotos)
+# UC-005-FA-002: Sincronizacao Parcial (Apenas Fotos)
 
-Fluxo alternativo do UC-005 Sincronizar Dados Offline desviando na tela de sincronização onde ao invés de sincronizar tudo (unidades titulares fotos), FIELD_AGENT clica opção Sincronizar Apenas Fotos economizando tempo quando dados cadastrais ainda sendo editados mas deseja liberar espaço de armazenamento enviando fotos grandes ao servidor, onde app exibe modal de confirmação mostrando estatísticas "45 fotos (23 MB) serão enviadas. Continuar?" com botões Sim e Cancelar, se FIELD_AGENT confirma app executa apenas fase PUSH do UC-005 filtrando query SELECT * FROM photos WHERE needs_sync=true AND synced_at IS NULL excluindo unidades e titulares do batch, comprime cada foto usando react-native-image-resizer redimensionando max 2048px quality 80% JPEG reduzindo tamanho típico ~80%, serializa metadados JSON incluindo photo_id unit_id filename client_timestamp e envia POST /api/sync/photos com Content-Type multipart/form-data respeitando timeout 5 minutos, servidor valida cada foto verificando unit_id exists e extension permitida (JPEG PNG) rejeitando outros formatos, salva binário em blob storage (AWS S3 Azure Blob) retornando server_photo_id e public_url, app recebe response processando results atualizando tabela photos local com server_id e url retornados marcando synced_at=NOW() e needs_sync=false para sucessos, deleta arquivo local da pasta cache após confirmação de upload bem-sucedido liberando storage imediatamente, exibe toast "45 fotos sincronizadas (23 MB liberados)" com ícone verde, e mantém unidades e titulares pendentes com needs_sync=true aguardando sincronização completa posterior permitindo FIELD_AGENT continuar editando sem bloquear workflow enquanto libera espaço crítico de dispositivo.
+Fluxo alternativo do UC-005 para sincronizar apenas fotos liberando espaco de armazenamento.
 
-**Ponto de Desvio:** Tela de sincronização (opção específica ao invés de sincronização completa)
+## Condicao
 
-**Retorno:** Apenas fotos sincronizadas e deletadas localmente, dados cadastrais permanecem pendentes
+Na tela de sincronizacao, FIELD_AGENT deseja enviar apenas fotos mantendo dados cadastrais para edicao posterior.
+
+## Fluxo
+
+1. FIELD_AGENT clica em Sincronizar Apenas Fotos
+2. Sistema exibe confirmacao com estatisticas (quantidade e tamanho)
+3. FIELD_AGENT confirma operacao
+4. Sistema comprime e envia fotos para servidor
+5. Servidor valida e armazena fotos
+6. Sistema deleta fotos locais apos confirmacao
+7. Sistema exibe resumo com espaco liberado
+
+## Dados Sincronizados
+
+- Fotos pendentes de todas unidades
+
+## Dados Nao Sincronizados
+
+- Unidades
+- Titulares
+- Vinculos
+
+## Retorno
+
+Fotos sincronizadas e removidas localmente. Dados cadastrais permanecem pendentes.
+
+## Pos-condicoes
+
+- Espaco de armazenamento liberado
+- Unidades e titulares aguardando sincronizacao completa

@@ -1,14 +1,43 @@
 ---
-type: uc
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 13 linhas - incompleto."
-updated: 2025-12-30
+id: UC-007-FE-002
+type: UC
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
-# UC-007-FE-002: Geometrias Inválidas
+# UC-007-FE-002: Geometrias Invalidas
 
-Fluxo de exceção do UC-007 Exportar Dados Geográficos ocorrendo no passo 11.3 durante formatação de dados quando worker processa cada registro iterando array de unidades e tenta serializar geometria para formato destino mas detecta geometria inválida usando PostGIS ST_IsValid retornando false indicando problemas topológicos como auto-interseções (polígono cruzando a si próprio formando laço), anéis não fechados (último vértice diferente do primeiro), geometrias degeneradas (polígono com área zero colapsado em linha), ou coordenadas NaN/Infinity corrompidas por bug em cadastro ou importação anterior, tipicamente causado por desenho manual incorreto no mapa onde usuário clicou vértices duplicados ou muito próximos gerando polígono mal formado, ou importação de Shapefile externo com topologia corrupta não validada previamente, sistema ao detectar invalidade via ST_IsValid loga warning em sistema de logging incluindo unit_id geometry_wkt e motivo específico retornado por ST_IsValidReason (ex: "Self-intersection at point (123.45 -67.89)") para debug posterior, incrementa contador de registros ignorados skipped_count inicializado em zero no início do job, pula registro atual não incluindo na exportação evitando corromper arquivo final com geometria quebrada que falharia ao abrir em QGIS ou causaria crash em ArcGIS, continua processando próximos registros do array normalmente sem abortar job completo permitindo exportar unidades válidas ao invés de falhar tudo por alguns registros problemáticos, ao finalizar job verifica if (skipped_count > 0) adiciona propriedade warnings ao resultado do job armazenando array de mensagens descritivas, notificação enviada ao usuário inclui ícone amarelo warning e mensagem adicional "Atenção: 12 registros ignorados por geometria inválida. Consulte o log de exportação para detalhes" com link Ver Detalhes abrindo modal listando unit_ids afetados com código e endereço permitindo ANALYST identificar unidades problemáticas, ANALYST pode então acessar cada unidade listada no warning abrir formulário de edição redesenhar geometria corretamente garantindo ST_IsValid=true ao salvar via trigger de validação, e re-exportar dataset completo agora com todas unidades incluídas, garantindo robustez do processo de exportação que não trava por dados ruins herdados de migrações ou cadastros antigos enquanto fornece feedback transparente sobre qualidade de dados permitindo limpeza gradual do dataset.
+Fluxo de excecao do UC-007 quando algumas geometrias sao invalidas.
 
-**Ponto de Desvio:** Passo 11.3 do UC-007 (durante iteração de formatação)
+## Condicao
 
-**Retorno:** Registros inválidos ignorados, exportação continua, warning incluído na notificação
+Durante processamento do UC-007, sistema detecta geometrias com problemas topologicos.
+
+## Fluxo
+
+1. Sistema processa cada registro
+2. Sistema valida geometria antes de serializar
+3. Sistema detecta geometria invalida
+4. Sistema registra warning no log
+5. Sistema pula registro invalido
+6. Sistema continua processando demais registros
+7. Sistema inclui aviso na notificacao final
+
+## Problemas Detectados
+
+- Auto-intersecoes (poligono cruzando a si proprio)
+- Aneis nao fechados
+- Geometrias degeneradas (area zero)
+- Coordenadas corrompidas
+
+## Retorno
+
+Registros invalidos ignorados. Exportacao continua com unidades validas. Warning na notificacao.
+
+## Pos-condicoes
+
+- Arquivo contem apenas geometrias validas
+- Usuario informado sobre registros ignorados
+- Log disponivel para identificar unidades problematicas

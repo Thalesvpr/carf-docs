@@ -1,27 +1,14 @@
 ---
 type: readme
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES."
-updated: 2026-01-15
+status: approved
+updated: 2026-01-23
 ---
 
-# UC-003-vincular-titular-unidade
+# UC-003: Vincular Titular a Unidade
 
+Caso de uso para associar titulares (pessoa fisica ou juridica) a unidades habitacionais. O fluxo envolve ANALYST ou FIELD_AGENT buscando titular existente ou criando novo, definindo tipo de relacionamento e percentual de propriedade.
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (6 casos de uso)
-
-| ID | Titulo |
-|:---|:-------|
-| [UC-003](./UC-003-FA-001-importar-planilha.md) | FA-001: Importar Titulares de Planilha |
-| [UC-003](./UC-003-FE-001-cpf-invalido.md) | FE-001: CPF/CNPJ Inválido |
-| [UC-003](./UC-003-FE-002-titular-duplicado.md) | FE-002: Titular Já Vinculado |
-| [UC-003](./UC-003-FE-003-percentual-excedido.md) | FE-003: Soma de Percentuais > 100% |
-| [UC-003](./UC-003-FE-004-multiplos-principais.md) | FE-004: Múltiplos Titulares Principais |
-| [UC-003](./UC-003-vincular-titular-unidade.md) | Vincular Titular a Unidade |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
+O [fluxo principal](./UC-003-vincular-titular-unidade.md) documenta o vinculo individual. O fluxo alternativo FA-001 cobre importacao via planilha para multiplos titulares. Os fluxos de excecao tratam CPF invalido (FE-001), titular duplicado (FE-002), percentual excedido (FE-003) e multiplos principais (FE-004).
 
 
 <!-- CARF-INDEX-START -->

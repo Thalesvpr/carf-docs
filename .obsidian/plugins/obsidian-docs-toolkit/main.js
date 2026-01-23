@@ -2586,10 +2586,11 @@ var IndexService = class {
    */
   async syncFolderIndex(folder) {
     var _a;
-    const readmePath = folder.path ? `${folder.path}/README.md` : "README.md";
+    const isRoot = !folder.path || folder.path === "/";
+    const readmePath = isRoot ? "README.md" : `${folder.path}/README.md`;
     let readme = this.app.vault.getAbstractFileByPath(readmePath);
     console.log("[IndexService] syncFolderIndex called");
-    console.log("[IndexService] folder.path:", folder.path);
+    console.log("[IndexService] folder.path:", folder.path, "isRoot:", isRoot);
     console.log("[IndexService] readmePath:", readmePath);
     console.log("[IndexService] readme found:", !!readme);
     console.log("[IndexService] folder.children count:", (_a = folder.children) == null ? void 0 : _a.length);
@@ -2693,7 +2694,8 @@ ${endMarker}
     const folder = file.parent;
     if (!folder)
       return false;
-    const readmePath = `${folder.path}/README.md`;
+    const isRoot = !folder.path || folder.path === "/";
+    const readmePath = isRoot ? "README.md" : `${folder.path}/README.md`;
     return this.app.vault.getAbstractFileByPath(readmePath) !== null;
   }
 };

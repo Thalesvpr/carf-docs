@@ -1,14 +1,39 @@
 ---
-type: uc
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 13 linhas - incompleto."
-updated: 2025-12-30
+id: UC-009-FE-002
+type: UC
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
-# UC-009-FE-002: Documentação Incompleta
+# UC-009-FE-002: Documentacao Incompleta
 
-Fluxo de exceção do UC-009 Gerenciar Processo de Legitimação ocorrendo no passo 12 quando usuário tenta submeter processo para aprovação clicando botão Submeter mas sistema detecta que checklist de documentos obrigatórios está incompleta verificando count de process_documents WHERE process_id = $id comparando com expected_documents baseado em tipo de legitimação retornando mismatch indicando documentos faltantes, sistema identifica especificamente quais itens estão pendentes iterando checklist e verificando cada document_type possui uploaded=true marcado, bloqueia submissão exibindo modal amarelo warning com ícone de exclamação título "Documentos Obrigatórios Pendentes" mensagem listando items faltantes com bullets destacados em vermelho como "• Comprovante de Residência (obrigatório), • Memorial Descritivo (obrigatório)" orientando claramente o que precisa ser anexado, exibe botão Completar Checklist fechando modal e mantendo foco na seção de documentos com scroll automático para primeiro item pendente destacado com borda vermelha pulsante chamando atenção visual, usuário clica em item faltante faz upload de arquivo PDF ou imagem sistema valida salva marca como concluído exibindo checkmark verde, repete para todos items pendentes até checklist 100% completa verificando visualmente todos checkmarks verdes, botão Submeter para Aprovação agora habilitado com cor destacada permitindo clicar, ao clicar com checklist completo validação passa atualizando status sem erro prosseguindo fluxo normal enviando notificação ao MANAGER, prevenindo situação de MANAGER receber processo para revisão mas não conseguir analisar por falta de documentação essencial que resultaria em devolução imediata para correções desperdiçando tempo e atrasando workflow, força ANALYST verificar completude antes de submeter garantindo qualidade mínima e eficiência do processo de aprovação mantendo SLA de análise dentro de prazo razoável.
+Fluxo de excecao do UC-009 quando usuario tenta submeter processo com documentos faltantes.
 
-**Ponto de Desvio:** Passo 12 do UC-009 (tentativa de submeter com docs faltando)
+## Condicao
 
-**Retorno:** Submissão bloqueada, usuário completa checklist e retenta
+No passo 13 do UC-009, sistema detecta que checklist de documentos nao esta completa.
+
+## Fluxo
+
+1. Usuario clica em Submeter para Aprovacao
+2. Sistema valida checklist de documentos
+3. Sistema detecta itens obrigatorios pendentes
+4. Sistema bloqueia submissao
+5. Sistema exibe modal listando documentos faltantes
+6. Sistema destaca itens pendentes na checklist
+7. Usuario fecha modal e completa uploads
+8. Usuario tenta submeter novamente apos completar
+
+## Documentos Tipicos
+
+- Declaracao de posse
+- RG e CPF do beneficiario
+- Comprovante de residencia recente
+- Memorial descritivo
+- Planta da unidade
+
+## Retorno
+
+Submissao bloqueada. Usuario completa checklist e tenta novamente.

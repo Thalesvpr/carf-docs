@@ -1,25 +1,14 @@
 ---
 type: readme
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES."
-updated: 2026-01-15
+status: approved
+updated: 2026-01-23
 ---
 
-# UC-002-aprovar-unidade-habitacional
+# UC-002: Aprovar Unidade Habitacional
 
+Caso de uso para aprovacao de unidades habitacionais cadastradas. O fluxo envolve ANALYST ou MANAGER revisando dados e geometria de unidades com status Pending Approval e decidindo aprovar, rejeitar ou solicitar alteracoes.
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (4 casos de uso)
-
-| ID | Titulo |
-|:---|:-------|
-| [UC-002](./UC-002-aprovar-unidade-habitacional.md) | Aprovar Unidade Habitacional |
-| [UC-002](./UC-002-FA-001-aprovar-em-lote.md) | FA-001: Aprovar em Lote |
-| [UC-002](./UC-002-FE-001-concurrent-modification.md) | FE-001: Concurrent Modification (Unidade Já Foi Aprovada) |
-| [UC-002](./UC-002-FE-002-solicitar-alteracoes.md) | FE-002: Solicitar Alterações |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
+O [fluxo principal](./UC-002-aprovar-unidade-habitacional.md) documenta a aprovacao individual. O fluxo alternativo FA-001 cobre aprovacao em lote para multiplas unidades. Os fluxos de excecao tratam modificacao concorrente (FE-001) e solicitacao de alteracoes (FE-002).
 
 
 <!-- CARF-INDEX-START -->

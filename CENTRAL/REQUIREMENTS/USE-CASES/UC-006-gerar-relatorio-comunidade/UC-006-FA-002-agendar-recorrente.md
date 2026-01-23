@@ -1,14 +1,47 @@
 ---
-type: uc
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 13 linhas - incompleto."
-updated: 2025-12-30
+id: UC-006-FA-002
+type: UC
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
-# UC-006-FA-002: Agendar Geração Recorrente
+# UC-006-FA-002: Agendar Geracao Recorrente
 
-Fluxo alternativo do UC-006 Gerar Relatório de Comunidade desviando no passo 6 onde ao invés de gerar relatório uma única vez sob demanda, usuário marca checkbox Agendar Envio Recorrente expandindo formulário revelando campos adicionais de periodicidade oferecendo radio buttons (Semanal toda segunda-feira, Mensal dia 1 de cada mês, Trimestral primeiro dia do trimestre), campo de texto múltiplo para emails destinatários aceitando lista separada por vírgulas validando formato email via regex e limitando máximo 10 destinatários prevenindo spam, usuário preenche periodicidade selecionando opção desejada e informa emails de gestores municipais técnicos responsáveis coordenadores regionais que receberão relatório automaticamente, clica Agendar disparando validação verificando permissão agendamento restrita a MANAGER e ADMIN rejeitando ANALYST com erro 403 Forbidden, se autorizado sistema cria registro em tabela scheduled_reports armazenando user_id community_id report_config JSON com seções e formato, cron_expression calculada baseado em periodicidade selecionada (0 8 * * 1 para semanal segunda 8h, 0 8 1 * * para mensal dia 1 às 8h usando timezone tenant), recipient_emails array, active=true permitindo desabilitar sem deletar, sistema registra cron job usando node-cron ou BullMQ repeatable jobs configurando pattern de execução e associando handler que ao disparar no horário agendado executa fluxo completo do UC-006 gerando relatório com parâmetros salvos enviando email para cada destinatário via serviço SMTP (SendGrid AWS SES) com anexo PDF ou link para download e subject "Relatório Automático - Comunidade Vila Nova - 2025-12-30", exibe toast verde confirmação "Agendamento criado com sucesso. Próximo envio: Segunda-feira 08:00" mostrando data próxima execução calculada, usuário pode gerenciar agendamentos acessando menu Meus Agendamentos listando todos scheduled_reports do tenant com ações Editar Desativar Deletar permitindo ajustar periodicidade ou cancelar, relatórios gerados automaticamente registram audit log rastreando execution_date status success/failed recipient_count permitindo monitoramento e troubleshooting de falhas em envios recorrentes garantindo gestores sempre atualizados sobre progresso de regularização sem precisar requisitar manualmente economizando tempo e garantindo consistência de acompanhamento.
+Fluxo alternativo do UC-006 para envio automatico de relatorios em periodicidade definida.
 
-**Ponto de Desvio:** Passo 6 do UC-006 (checkbox de agendamento antes de gerar)
+## Condicao
 
-**Retorno:** Agendamento criado, relatório gerado e enviado automaticamente no período configurado
+No passo 6 do UC-006, usuario deseja receber relatorio automaticamente em vez de gerar sob demanda.
+
+## Fluxo
+
+1. Usuario marca opcao Agendar Envio Recorrente
+2. Sistema expande formulario com opcoes de periodicidade
+3. Usuario seleciona frequencia (semanal, mensal, trimestral)
+4. Usuario informa emails dos destinatarios
+5. Sistema valida permissao de agendamento
+6. Sistema cria registro de agendamento
+7. Sistema configura job recorrente
+8. Sistema exibe confirmacao com proxima execucao
+
+## Periodicidades Disponiveis
+
+- Semanal (toda segunda-feira)
+- Mensal (dia 1 de cada mes)
+- Trimestral (primeiro dia do trimestre)
+
+## Gerenciamento
+
+- Usuario pode editar, desativar ou deletar agendamentos
+- Menu Meus Agendamentos lista todos configurados
+
+## Retorno
+
+Agendamento criado. Relatorio gerado e enviado automaticamente na periodicidade definida.
+
+## Pos-condicoes
+
+- Job recorrente configurado no sistema
+- Destinatarios receberao email com relatorio anexo

@@ -1,14 +1,37 @@
 ---
-type: uc
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 13 linhas - incompleto."
-updated: 2025-12-30
+id: UC-011-FE-001
+type: UC
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
 # UC-011-FE-001: Nome de Equipe Duplicado
 
-Fluxo de exceção do UC-011 Gerenciar Equipes Técnicas ocorrendo no passo 7 durante validação quando sistema verifica unicidade de nome executando query SELECT COUNT(*) FROM teams WHERE name = $name AND tenant_id = $tenant retornando count > 0 indicando já existe equipe com mesmo nome, tipicamente causado por ADMIN tentando criar "Equipe Zona Norte" mas já existe equipe ativa ou inativa com exato mesmo nome causando violação de constraint UNIQUE, sistema detecta duplicata antes de tentar INSERT evitando exception de banco, exibe modal vermelho erro com ícone de alerta título "Nome Duplicado" mensagem "Já existe uma equipe com o nome 'Equipe Zona Norte'. Escolha um nome diferente ou verifique equipes inativas" orientando usuário, mantém formulário aberto com dados preenchidos preservando informações já digitadas evitando retrabalho, foco retorna automaticamente para campo Nome da Equipe destacado com borda vermelha indicando campo problemático, usuário ajusta nome para variante única como "Equipe Zona Norte - Levantamento 2025" ou "Equipe Norte A" diferenciando de equipe existente, clica Criar Equipe novamente executando validação que agora passa retornando count = 0 prosseguindo normalmente, alternativamente usuário pode clicar link "ver equipes existentes" embutido na mensagem de erro abrindo listagem filtrada para verificar equipes com nomes similares incluindo inativas identificando possível equipe antiga que poderia ser reativada ao invés de criar nova duplicando estrutura organizacional desnecessariamente.
+Fluxo de excecao do UC-011 quando nome da equipe ja existe no sistema.
 
-**Ponto de Desvio:** Passo 7 do UC-011 (validação antes de INSERT)
+## Condicao
 
-**Retorno:** Criação bloqueada, usuário altera nome e retenta
+No passo 9 do UC-011, sistema detecta que ja existe equipe com mesmo nome.
+
+## Fluxo
+
+1. Sistema valida unicidade do nome
+2. Sistema detecta nome duplicado
+3. Sistema bloqueia criacao
+4. Sistema exibe modal de erro
+5. Sistema mantem formulario com dados preenchidos
+6. Sistema destaca campo nome com erro
+7. Usuario altera nome para variante unica
+8. Usuario tenta criar novamente
+
+## Causas Comuns
+
+- Nome identico a equipe ativa existente
+- Nome igual a equipe inativa arquivada
+- Variacao minima nao detectada pelo usuario
+
+## Retorno
+
+Criacao bloqueada. Usuario altera nome e retenta.

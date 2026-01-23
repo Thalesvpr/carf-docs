@@ -1,14 +1,40 @@
 ---
-type: uc
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 13 linhas - incompleto."
-updated: 2025-12-30
+id: UC-006-FE-002
+type: UC
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
 # UC-006-FE-002: Dados Insuficientes
 
-Fluxo de exceção do UC-006 Gerar Relatório de Comunidade ocorrendo no passo 11.1 durante busca de dados quando worker executa query SELECT * FROM units WHERE community_id = $id AND created_at BETWEEN $start AND $end e retorna resultado vazio com rowCount = 0 indicando comunidade sem nenhuma unidade habitacional cadastrada no período selecionado, tipicamente acontecendo em comunidades recém-criadas ainda aguardando levantamento de campo ou quando período filtrado muito restrito (ex: última semana mas cadastros ocorreram mês anterior), sistema detecta ausência de dados verificando units.length === 0 antes de prosseguir para cálculos estatísticos que falhariam com divisão por zero ou agregações vazias, cancela job imediatamente marcando status failed com failedReason "NO_DATA" sem consumir recursos processando seções inúteis, envia notificação ao usuário via push ou email com ícone amarelo warning título "Relatório Não Gerado" mensagem específica "A comunidade 'Vila Nova' não possui unidades cadastradas no período selecionado (01/01/2025 a 31/01/2025). Verifique: (1) Se comunidade já teve levantamento de campo realizado, (2) Se período selecionado está correto, (3) Se unidades foram cadastradas em outra comunidade por engano" oferecendo ações Ajustar Período abrindo formulário com date_range expandido sugestão últimos 6 meses, Ver Todas as Comunidades listando communities do tenant ordenadas por total de unidades descendente permitindo identificar onde dados realmente estão, ou Cadastrar Primeira Unidade redirecionando para UC-001 iniciando processo de cadastro manual ou importação, exibe também estatística auxiliar na notificação mostrando "Comunidade possui 0 unidades no total (não apenas no período)" diferenciando caso de comunidade completamente vazia vs apenas filtro temporal inadequado orientando usuário sobre próxima ação correta, evitando confusão com relatórios vazios ou mensagens genéricas de erro que não explicam causa raiz.
+Fluxo de excecao do UC-006 quando comunidade nao possui dados no periodo.
 
-**Ponto de Desvio:** Passo 11.1 do UC-006 (busca de dados retorna vazio)
+## Condicao
 
-**Retorno:** Job cancelado, usuário notificado com diagnóstico e sugestões de ação
+Durante busca de dados do UC-006, sistema detecta que nao ha unidades cadastradas no periodo selecionado.
+
+## Fluxo
+
+1. Sistema executa busca de dados
+2. Sistema detecta resultado vazio
+3. Sistema cancela geracao do relatorio
+4. Sistema notifica usuario com diagnostico
+5. Sistema oferece sugestoes de acao
+
+## Causas Comuns
+
+- Comunidade recem-criada sem levantamento
+- Periodo selecionado muito restrito
+- Unidades cadastradas em outra comunidade
+
+## Sugestoes ao Usuario
+
+- Ajustar periodo para intervalo maior
+- Verificar se levantamento foi realizado
+- Verificar se comunidade correta foi selecionada
+
+## Retorno
+
+Job cancelado. Usuario notificado com diagnostico e sugestoes de acao.

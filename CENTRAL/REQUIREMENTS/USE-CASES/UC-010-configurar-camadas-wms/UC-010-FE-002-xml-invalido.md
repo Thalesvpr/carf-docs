@@ -1,14 +1,37 @@
 ---
-type: uc
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 13 linhas - incompleto."
-updated: 2025-12-30
+id: UC-010-FE-002
+type: UC
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
-# UC-010-FE-002: XML Inválido
+# UC-010-FE-002: XML Invalido
 
-Fluxo de exceção do UC-010 Configurar Camadas WMS ocorrendo no passo 7 quando sistema recebe response HTTP 200 do GetCapabilities mas não consegue parsear XML retornado tipicamente causado por response não sendo XML válido (servidor retornou HTML de erro página de login ou JSON ao invés de XML esperado), XML malformado com tags não fechadas ou aninhamento incorreto violando sintaxe XML básica, namespace declarations faltando impedindo parser resolver prefixos como wms:Layer, encoding incorreto com caracteres especiais corrompidos (UTF-8 declarado mas bytes em ISO-8859-1 causando � replacement chars), ou response vazia sem conteúdo body apesar de status 200, sistema tenta parsear usando xml2js ou DOMParser capturando exception SyntaxError ou ParseError lançada ao encontrar estrutura inválida, loga erro incluindo primeiros 500 caracteres do response body para debug mostrando o que servidor realmente retornou, exibe modal amarelo warning com título "Resposta Inválida do Servidor WMS" mensagem "O servidor retornou uma resposta que não é um documento XML válido. Verifique se URL é realmente de serviço WMS/WMTS compatível com padrão OGC" orientando sobre possível causa, inclui seção expansível Detalhes Técnicos mostrando preview do response truncado permitindo ADMIN identificar visualmente problema como `<html><head><title>404 Not Found</title>` indicando página erro ao invés de XML WMS ou `{"error": "API key required"}` indicando endpoint JSON incorreto, oferece botões Ver Response Completo abrindo modal com textarea readonly contendo response body inteiro permitindo análise completa ou copiar para consulta com suporte, Copiar URL copiando URL testada para clipboard facilitando teste externo em navegador ou cliente WMS desktop (QGIS), Tentar Novamente fechando modal, ADMIN verifica URL consultando documentação oficial da fonte garantindo endpoint correto usualmente terminando em /wms ou /geoserver/wms com query params corretos, testa URL isoladamente em navegador verificando se retorna XML começando com `<?xml version="1.0"?><WMS_Capabilities>` confirmando validade.
+Fluxo de excecao do UC-010 quando resposta do servidor nao e XML valido.
 
-**Ponto de Desvio:** Passo 7 do UC-010 (parsing do XML)
+## Condicao
 
-**Retorno:** Erro exibido, ADMIN verifica se URL é realmente WMS/WMTS válido
+No passo 8 do UC-010, sistema recebe resposta mas nao consegue parsear como XML.
+
+## Fluxo
+
+1. Sistema recebe resposta do servidor
+2. Sistema tenta parsear como XML
+3. Sistema detecta erro de sintaxe
+4. Sistema loga resposta para debug
+5. Sistema exibe modal com preview da resposta
+6. ADMIN analisa conteudo retornado
+7. ADMIN verifica se URL e realmente de servico WMS
+
+## Causas Comuns
+
+- Servidor retornou HTML de erro
+- Endpoint retorna JSON ao inves de XML
+- XML malformado com tags nao fechadas
+- Encoding incorreto corrompendo caracteres
+
+## Retorno
+
+Erro exibido com preview da resposta. ADMIN verifica URL correta do servico WMS.

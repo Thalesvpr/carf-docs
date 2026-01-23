@@ -1,27 +1,14 @@
 ---
 type: readme
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES."
-updated: 2026-01-15
+status: approved
+updated: 2026-01-23
 ---
 
-# UC-009-gerenciar-processo-legitimacao
+# UC-009: Gerenciar Processo de Legitimacao Fundiaria
 
+Caso de uso para criacao e acompanhamento de processos de legitimacao fundiaria conforme Lei 13.465/2017 (REURB). O fluxo envolve ANALYST criando processo para unidade aprovada, anexando documentacao obrigatoria, e MANAGER revisando e deferindo ou indeferindo.
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (6 casos de uso)
-
-| ID | Titulo |
-|:---|:-------|
-| [UC-009](./UC-009-FA-001-processo-coletivo.md) | FA-001: Processo Coletivo (Múltiplas Unidades) |
-| [UC-009](./UC-009-FA-002-assinatura-digital.md) | FA-002: Assinatura Digital do Termo |
-| [UC-009](./UC-009-FE-001-sem-titular-principal.md) | FE-001: Unidade sem Titular Principal |
-| [UC-009](./UC-009-FE-002-documentacao-incompleta.md) | FE-002: Documentação Incompleta |
-| [UC-009](./UC-009-FE-003-processo-indeferido.md) | FE-003: Processo Indeferido |
-| [UC-009](./UC-009-gerenciar-processo-legitimacao.md) | Gerenciar Processo de Legitimação Fundiária |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
+O [fluxo principal](./UC-009-gerenciar-processo-legitimacao.md) documenta o ciclo completo do processo de legitimacao. Os fluxos alternativos cobrem processo coletivo para multiplas unidades (FA-001) e assinatura digital do termo (FA-002). Os fluxos de excecao tratam unidade sem titular principal (FE-001), documentacao incompleta (FE-002) e processo indeferido (FE-003).
 
 
 <!-- CARF-INDEX-START -->

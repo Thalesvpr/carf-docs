@@ -1,18 +1,38 @@
 ---
-type: uc
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES."
-updated: 2025-12-30
+id: UC-003-FE-001
+type: UC
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
-# UC-003-FE-001: CPF/CNPJ Inválido
+# UC-003-FE-001: CPF/CNPJ Invalido
 
-Fluxo de exceção do UC-003 Vincular Titular a Unidade ocorrendo no passo de criação de novo titular quando usuário informa CPF ou CNPJ com dígitos verificadores incorretos sequência repetida ou formato inválido, onde validação executa em tempo real durante digitação após preencher 11 dígitos para CPF ou 14 para CNPJ disparando função de validação que remove formatação (pontos hífens barras), verifica comprimento exato, detecta sequências repetidas inválidas (00000000000 11111111111 até 99999999999 para CPF, 00000000000000 até 99999999999999 para CNPJ), calcula dígitos verificadores usando algoritmo oficial da Receita Federal comparando com dígitos informados, e retorna boolean válido/inválido com mensagem de erro específica. Sistema ao detectar inválido exibe ícone vermelho de alerta ao lado do campo input com tooltip explicativo "CPF inválido: dígitos verificadores incorretos" ou "CPF inválido: sequência repetida não permitida", adiciona borda vermelha no campo destacando visualmente erro, e desabilita botão Criar Titular ou Vincular impedindo prosseguimento até correção. Usuário lê mensagem de erro compreendendo problema, corrige dígitos digitando CPF/CNPJ válido diferente ou consultando documento original se estava transcrevendo, e ao digitar corretamente sistema re-valida em tempo real removendo ícone vermelho substituindo por verde checkmark, remove borda vermelha retornando para estado normal, e habilita botão permitindo prosseguir com criação do titular e vínculo.
+Fluxo de excecao do UC-003 quando CPF ou CNPJ informado e invalido.
 
-**Ponto de Desvio:** Criação de novo titular ao preencher CPF/CNPJ
+## Condicao
 
-**Algoritmo de Validação CPF:**
+Durante criacao de novo titular, usuario informa CPF/CNPJ com digitos verificadores incorretos ou sequencia invalida.
 
-Função validateCpf recebe string cpf retornando objeto com valid boolean e error opcional string, primeiro remove não-dígitos usando replace com regex /\D/g armazenando em digits, verifica se comprimento exato onze retornando valid false error CPF deve ter 11 dígitos se diferente, verifica sequência repetida usando regex /^(\d)\1{10}$/ retornando valid false error Sequência repetida inválida se match, calcula primeiro dígito verificador iterando primeiros nove dígitos somando cada dígito multiplicado por dez menos índice armazenando em sum, calculando check1 como onze menos resto divisão sum por onze ajustando para zero se maior igual dez, calcula segundo dígito verificador iterando primeiros dez dígitos multiplicando por onze menos índice calculando check2 similar check1, compara check1 com nono dígito e check2 com décimo dígito retornando valid false error Dígitos verificadores incorretos se diferentes, finalmente retorna valid true se todas validações passaram confirmando CPF válido conforme algoritmo oficial Receita Federal.
+## Fluxo
 
-**Retorno:** Usuário corrige CPF/CNPJ e volta ao fluxo de criação de titular
+1. Usuario preenche campo CPF/CNPJ
+2. Sistema valida em tempo real apos completar digitos
+3. Sistema detecta CPF/CNPJ invalido
+4. Sistema exibe icone de erro ao lado do campo
+5. Sistema adiciona borda vermelha no campo
+6. Sistema desabilita botao de vinculacao
+7. Usuario corrige os digitos
+8. Sistema re-valida e remove indicadores de erro
+9. Sistema habilita botao de vinculacao
+
+## Validacoes
+
+- Comprimento exato (11 para CPF, 14 para CNPJ)
+- Sequencias repetidas nao permitidas
+- Digitos verificadores conforme algoritmo oficial
+
+## Retorno
+
+Usuario corrige CPF/CNPJ e retorna ao fluxo de criacao de titular.

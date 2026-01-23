@@ -1,28 +1,39 @@
 ---
-type: uc
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES."
-updated: 2025-12-30
+id: UC-001-FA-002
+type: UC
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
 # UC-001-FA-002: Importar Geometria de GPS
 
-Fluxo alternativo do UC-001 Cadastrar Unidade Habitacional desviando no passo 5 (desenho de geometria) quando usuário possui coordenadas geográficas previamente coletadas via receptor GPS externo, topografia, ou levantamento anterior exportado em formato padrão, onde ao invés de desenhar polígono manualmente usuário clica em botão Importar Coordenadas abrindo modal com textarea grande para colar dados e dropdown seletor de formato suportado (GeoJSON WKT KML Coordenadas Textuais), usuário cola string contendo geometria no formato selecionado como GeoJSON válido estruturado `{"type":"Polygon","coordinates":[[[lng,lat],[lng,lat],...]]}` ou WKT texto `POLYGON((lng lat, lng lat, ...))` ou coordenadas textuais simples uma por linha no formato `latitude longitude` ou `longitude,latitude` com detecção automática de ordem, sistema parsing valida sintaxe do formato detectando erros comuns (vírgulas faltando parênteses não fechados coordenadas fora de range -90/90 lat -180/180 lng ordem invertida lat/lng vs lng/lat), converte internamente para GeoJSON canônico reprojetando se necessário de coordenadas geográficas (EPSG:4326) para projeção do mapa, renderiza polígono importado no mapa com destaque visual (borda azul grossa) centralizando viewport automaticamente para enquadrar geometria completa, exibe prévia de metadados calculados (área número de vértices bbox centro geométrico), e usuário confirma importação clicando Aceitar fechando modal e preenchendo campo geometry do formulário com GeoJSON validado ou cancela descartando importação e retornando para opções de desenho manual. Validações aplicadas incluem polígono deve ser fechado (primeiro ponto igual ao último), mínimo 3 vértices únicos formando área não-degenerada, sem auto-interseções detectadas via algoritmo Bentley-Ottmann, coordenadas dentro de bounds geográficos válidos do Brasil (aproximadamente -34/-5 lat -74/-34 lng), área resultante maior que 10m² conforme regra de negócio RN-003, e se múltiplos polígonos detectados (MultiPolygon) sistema aceita mas exibe warning sugerindo split em unidades separadas.
+Fluxo alternativo do UC-001 para importar geometria de coordenadas coletadas externamente.
 
-**Ponto de Desvio:** Passo 5 do UC-001 (desenho de geometria)
+## Condicao
 
-**Formatos Suportados:**
-- GeoJSON (Polygon ou MultiPolygon)
-- WKT (Well-Known Text)
-- KML (Keyhole Markup Language Google Earth)
-- Coordenadas textuais (lat lng ou lng,lat uma por linha)
+No passo 5 do UC-001, usuario possui coordenadas previamente coletadas via GPS externo ou levantamento.
 
-**Validações:**
-- Sintaxe do formato (parsing sem erros)
-- Polígono fechado (primeiro = último ponto)
-- Mínimo 3 vértices únicos
-- Sem auto-interseções
-- Coordenadas em range válido
-- Área ≥ 10m²
+## Fluxo
 
-**Retorno:** Volta ao passo 6 do UC-001 (cálculo de área) com geometria importada validada
+1. Usuario clica em Importar Coordenadas
+2. Sistema abre modal com textarea e seletor de formato
+3. Usuario seleciona formato (GeoJSON, WKT, KML ou coordenadas textuais)
+4. Usuario cola string com coordenadas
+5. Sistema valida sintaxe e converte para formato interno
+6. Sistema renderiza poligono no mapa com destaque visual
+7. Sistema exibe preview (area, vertices, bbox)
+8. Usuario confirma clicando Aceitar
+
+## Validacoes
+
+- Poligono fechado (primeiro ponto igual ao ultimo)
+- Minimo 3 vertices unicos
+- Sem auto-intersecoes
+- Coordenadas dentro do Brasil
+- Area minima 10m²
+
+## Retorno
+
+Volta ao passo 6 do UC-001 com geometria importada e validada.

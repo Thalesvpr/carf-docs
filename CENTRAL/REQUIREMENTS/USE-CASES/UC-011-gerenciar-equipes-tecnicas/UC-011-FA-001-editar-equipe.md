@@ -1,14 +1,39 @@
 ---
-type: uc
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 13 linhas - incompleto."
-updated: 2025-12-30
+id: UC-011-FA-001
+type: UC
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
 # UC-011-FA-001: Editar Equipe Existente
 
-Fluxo alternativo do UC-011 Gerenciar Equipes Técnicas desviando no passo 3 onde ao invés de clicar + Nova Equipe, usuário clica ícone editar (lápis) em equipe existente na listagem disparando abertura de formulário modal pré-preenchido com dados atuais carregados via GET /api/teams/{id} incluindo name description leader_id status permitindo modificação, usuário altera nome corrigindo typo ou refletindo mudança organizacional, atualiza descrição adicionando detalhes sobre escopo ampliado, troca líder selecionando outro usuário do dropdown devido transferência de responsabilidade promoção ou saída do líder anterior, ou altera status de Ativa para Inativa arquivando equipe não mais operacional, clica Salvar Alterações executando validação nome único excluindo própria equipe da verificação WHERE name = $name AND id != $current_id evitando falso positivo, líder selecionado válido e ativo, se validação passa executa UPDATE teams SET name=$name description=$description leader_id=$leader status=$status updated_by=$user_id updated_at=NOW() WHERE id=$id, registra auditoria em audit_log com action=TEAM_UPDATED details JSON contendo changed_fields comparando valores antigos vs novos, envia notificação ao novo líder se alterado informando designação, exibe toast verde "Equipe atualizada com sucesso" fecha modal e atualiza listagem refletindo mudanças imediatamente.
+Fluxo alternativo do UC-011 para modificar dados de equipe ja cadastrada.
 
-**Ponto de Desvio:** Passo 3 do UC-011 (clicar editar ao invés de novo)
+## Condicao
 
-**Retorno:** Equipe atualizada, listagem refreshed
+No passo 3 do UC-011, usuario clica em editar equipe existente ao inves de criar nova.
+
+## Fluxo
+
+1. Usuario clica icone editar na equipe desejada
+2. Sistema abre formulario pre-preenchido com dados atuais
+3. Usuario altera nome, descricao ou status
+4. Usuario pode trocar lider se necessario
+5. Usuario clica Salvar Alteracoes
+6. Sistema valida dados (nome unico excluindo propria equipe)
+7. Sistema atualiza registro
+8. Sistema notifica novo lider se alterado
+9. Sistema exibe confirmacao e atualiza listagem
+
+## Campos Editaveis
+
+- Nome da equipe
+- Descricao
+- Lider responsavel
+- Status (Ativa/Inativa)
+
+## Retorno
+
+Equipe atualizada. Listagem reflete alteracoes imediatamente.

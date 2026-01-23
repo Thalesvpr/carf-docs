@@ -1,14 +1,41 @@
 ---
-type: uc
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 13 linhas - incompleto."
-updated: 2025-12-30
+id: UC-005-FA-001
+type: UC
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
-# UC-005-FA-001: Sincronização Automática em Background
+# UC-005-FA-001: Sincronizacao Automatica em Background
 
-Fluxo alternativo do UC-005 Sincronizar Dados Offline desviando no gatilho de início onde ao invés de FIELD_AGENT clicar manualmente botão Sincronizar, o app executa sincronização automática em background a cada 15 minutos quando conexão disponível usando react-native-background-fetch configurado com minimumFetchInterval=900 registrando task headless que roda mesmo com app minimizado, onde task verifica pré-condições checando se needs_sync=true existem pendências locais via query SELECT COUNT(*) FROM units_local WHERE needs_sync=true AND synced_at IS NULL retornando count > 0, verifica conectividade atual via NetInfo.fetch() retornando isConnected=true e type não metered (WiFi não dados móveis evitando consumo de franquia), e valida token JWT não expirado decodificando exp claim comparando com Date.now(), se todas condições satisfeitas dispara processo completo de sincronização executando fases PULL PUSH RESOLUÇÃO descritas no fluxo principal do UC-005 silenciosamente sem interromper FIELD_AGENT, exibe apenas notificação local discreta após conclusão mostrando "12 unidades sincronizadas em background" com ícone verde checkmark permitindo tap para abrir detalhes, e se falha ocorre armazena erro em sync_errors table agendando retry com exponential backoff próxima tentativa em 1min depois 5min depois 15min máximo 3 tentativas antes de exigir intervenção manual, garantindo dados sempre atualizados minimizando janela de divergência entre local e servidor sem requerer ação explícita de usuário otimizando workflow de campo onde FIELD_AGENT foca em coleta enquanto sincronização gerencia-se automaticamente.
+Fluxo alternativo do UC-005 para sincronizacao automatica sem intervencao do usuario.
 
-**Ponto de Desvio:** Início do UC-005 (trigger automático ao invés de manual)
+## Condicao
 
-**Retorno:** Sincronização completa silenciosa, notificação de resumo exibida
+App detecta conexao WiFi disponivel e existem dados pendentes de sincronizacao.
+
+## Fluxo
+
+1. App verifica pendencias locais periodicamente
+2. App detecta conexao WiFi disponivel
+3. App valida token de autenticacao
+4. App executa sincronizacao silenciosa em background
+5. Sistema processa fases PULL e PUSH normalmente
+6. Sistema exibe notificacao discreta apos conclusao
+7. Sistema armazena erros para retry automatico se falha
+
+## Pre-requisitos
+
+- Conexao WiFi (nao dados moveis, para economizar franquia)
+- Token valido
+- Dados pendentes existentes
+
+## Retorno
+
+Sincronizacao completa silenciosa. Notificacao de resumo exibida ao final.
+
+## Pos-condicoes
+
+- Dados sincronizados sem intervencao manual
+- Retry agendado com backoff exponencial se falha

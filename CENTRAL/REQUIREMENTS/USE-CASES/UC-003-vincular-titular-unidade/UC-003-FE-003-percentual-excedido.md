@@ -1,22 +1,36 @@
 ---
-type: uc
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES."
-updated: 2025-12-30
+id: UC-003-FE-003
+type: UC
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
-# UC-003-FE-003: Soma de Percentuais > 100%
+# UC-003-FE-003: Soma de Percentuais Excedida
 
-Fluxo de exceção do UC-003 Vincular Titular a Unidade ocorrendo na validação quando soma de ownership_percentage de todos titulares da unidade incluindo novo vínculo ultrapassa 100%, onde validação calcula `SELECT SUM(ownership_percentage) FROM unit_holders WHERE unit_id = $1 AND deleted_at IS NULL` adicionando percentual informado no formulário verificando se total > 100. Sistema ao detectar excedente retorna HTTP 400 Bad Request com body contendo soma atual (ex: 85%), percentual tentando adicionar (ex: 30%), total resultante (115%), e sugestão de percentual máximo permitido (15% = 100% - 85%), frontend exibe modal de warning com título "Percentuais Ultrapassam 100%" apresentando cálculo visual "85% (titulares atuais) + 30% (novo) = 115% > 100%" destacando excedente em vermelho, lista titulares atuais com percentuais mostrando quem já possui quanto facilitando decisão de ajuste, e oferece ações: Ajustar Automaticamente calculando percentual máximo permitido (100% - soma_atual) preenchendo automaticamente campo com valor seguro, Editar Manualmente mantendo modal aberto com campo percentual focado permitindo usuário digitar valor correto entre 0-15%, ou Redistribuir Percentuais abrindo tela avançada mostrando todos titulares com sliders permitindo ajustar proporcionalmente mantendo soma = 100%.
+Fluxo de excecao do UC-003 quando soma de percentuais ultrapassa 100%.
 
-**Ponto de Desvio:** Validação antes de criar vínculo (soma ultrapassa 100%)
+## Condicao
 
-**Cálculo de Excedente:**
+No passo 11 do UC-003, soma dos percentuais de todos titulares incluindo novo vinculo ultrapassa 100%.
 
-Backend executa query await db com tabela unit_holders aplicando where com unit_id igual unitId e deleted_at null agregando sum com ownership_percentage as total finalizando com first() armazenando em currentSum, converte formData.ownership_percentage para float usando parseFloat armazenando em newPercentage, calcula totalAfter somando currentSum.total ou zero se nullable mais newPercentage, verifica condição if totalAfter maior cem calculando maxAllowed como cem menos currentSum.total ou zero, lançando ValidationError com field igual ownership_percentage message interpolada "Soma ultrapassa 100%. Máximo permitido: ${maxAllowed}%" e details contendo current_sum igual soma atual attempting_to_add igual percentual novo total_after igual total resultante e max_allowed igual percentual máximo permitido retornando HTTP 400 Bad Request com detalhes completos.
+## Fluxo
 
-**Modal de Warning:**
+1. Sistema calcula soma dos percentuais existentes
+2. Sistema detecta que soma com novo percentual excede 100%
+3. Sistema exibe modal com calculo visual
+4. Sistema mostra titulares atuais com percentuais
+5. Sistema informa percentual maximo permitido
+6. Usuario escolhe acao
 
-Modal exibe ícone warning laranja com título "Percentuais Ultrapassam 100%" apresentando seção "Titulares atuais: X%" com lista de bullet points mostrando nome de cada titular percentual e tipo de relacionamento entre parênteses interpolando dados reais como João Silva cinquenta por cento Proprietário e Maria Souza trinta e cinco por cento Cônjuge, seguido por linha destacada "Tentando adicionar: Y%" com valor informado no formulário, linha resultado "Total: Z% ❌" com ícone X vermelho indicando erro, linha informativa "Máximo permitido: W%" calculado como cem menos soma atual, finalizando com quatro botões de ação sendo Ajustar para W% preenchendo automaticamente campo com valor seguro, Editar Manualmente mantendo foco no campo percentual, Redistribuir Todos abrindo tela avançada com sliders proporcionais, e Cancelar abortando operação.
+## Acoes Disponiveis
 
-**Retorno:** Usuário ajusta percentual e tenta novamente, ou cancela operação
+- **Ajustar Automaticamente**: Sistema preenche com percentual maximo permitido
+- **Editar Manualmente**: Usuario informa novo valor
+- **Redistribuir Percentuais**: Abre tela para ajustar todos titulares
+- **Cancelar**: Aborta operacao
+
+## Retorno
+
+Usuario ajusta percentual e tenta novamente, ou cancela operacao.

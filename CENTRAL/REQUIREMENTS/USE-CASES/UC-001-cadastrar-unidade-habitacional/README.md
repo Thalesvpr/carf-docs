@@ -1,27 +1,14 @@
 ---
 type: readme
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES."
-updated: 2026-01-15
+status: approved
+updated: 2026-01-23
 ---
 
-# UC-001-cadastrar-unidade-habitacional
+# UC-001: Cadastrar Unidade Habitacional
 
+Caso de uso principal para criacao de unidades habitacionais no sistema. O fluxo envolve FIELD_AGENT ou ANALYST preenchendo dados basicos da unidade, desenhando geometria do imovel, e salvando no sistema para posterior validacao.
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (6 casos de uso)
-
-| ID | Titulo |
-|:---|:-------|
-| [UC-001](./UC-001-cadastrar-unidade-habitacional.md) | Cadastrar Unidade Habitacional |
-| [UC-001](./UC-001-FA-001-desenhar-geometria-offline.md) | FA-001: Desenhar Geometria Offline (Mobile) |
-| [UC-001](./UC-001-FA-002-importar-geometria-gps.md) | FA-002: Importar Geometria de GPS |
-| [UC-001](./UC-001-FA-003-copiar-geometria-existente.md) | FA-003: Copiar Geometria de Unidade Existente |
-| [UC-001](./UC-001-FE-001-validacao-falha.md) | FE-001: Validação Falha |
-| [UC-001](./UC-001-FE-002-geometria-sobreposta.md) | FE-002: Geometria Sobreposta |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
+O [fluxo principal](./UC-001-cadastrar-unidade-habitacional.md) documenta o cadastro padrao via interface web. Os fluxos alternativos cobrem desenho offline no mobile (FA-001), importacao de GPS (FA-002) e copia de geometria existente (FA-003). Os fluxos de excecao tratam falha de validacao (FE-001) e geometria sobreposta (FE-002).
 
 
 <!-- CARF-INDEX-START -->

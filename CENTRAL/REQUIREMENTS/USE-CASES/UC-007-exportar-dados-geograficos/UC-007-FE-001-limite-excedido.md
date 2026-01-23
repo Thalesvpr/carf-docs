@@ -1,14 +1,41 @@
 ---
-type: uc
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 13 linhas - incompleto."
-updated: 2025-12-30
+id: UC-007-FE-001
+type: UC
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
 # UC-007-FE-001: Limite de Registros Excedido
 
-Fluxo de exceção do UC-007 Exportar Dados Geográficos ocorrendo no passo 8 durante validação quando sistema verifica quantidade de registros a exportar executando COUNT query SELECT COUNT(*) FROM units WHERE <filtros> retornando count > 10000 excedendo limite técnico configurado para prevenir timeout de processamento (exportação de 50k unidades pode levar 20+ minutos travando worker), tamanho excessivo de arquivo (Shapefile com 100k registros gera ZIP de 500MB+ dificultando download e corrompendo em conexões instáveis), e sobrecarga de memória no worker Node.js que pode crashar com heap overflow ao tentar carregar dataset gigante em RAM simultaneamente, sistema detecta violação comparando count com threshold MAX_EXPORT_RECORDS=10000 definido em config, aborta criação de job antes de enfileirar evitando consumir recursos processando requisição fadada a falhar, exibe modal vermelho erro com ícone de alerta título "Limite Excedido" mensagem específica mostrando números exatos "Sua seleção contém 23.450 unidades. O limite é 10.000 registros por exportação. Refine os filtros para reduzir a quantidade" orientando usuário sobre ação corretiva necessária, oferece sugestões clicáveis inline como Filtrar por Comunidade abrindo dropdown de comunidade pré-selecionando primeira para reduzir escopo geograficamente, Filtrar por Período abrindo date picker sugerindo últimos 6 meses ao invés de all time reduzindo volume temporal, Filtrar por Status pré-marcando apenas APPROVED excluindo DRAFT e PENDING tipicamente maioria dos registros em processo, ou Exportar em Lotes orientando dividir manualmente em múltiplas exportações sequenciais aplicando filtros complementares mutuamente exclusivos (ex: primeiro comunidade A depois comunidade B), usuário ajusta filtros refinando critérios e clica Exportar novamente sistema re-executa COUNT verificando agora 8.500 registros abaixo do limite prossegue normalmente, alternativamente para casos onde usuário realmente precisa exportar dataset completo gigante sistema pode oferecer opção Solicitar Exportação Especial abrindo ticket para equipe técnica que processa manualmente em servidor dedicado com recursos maiores gerando arquivo em partes ou formato otimizado diferente (ex: GeoPackage ao invés de Shapefile suportando milhões de features) entregando via link alternativo, garantindo sistema permanece responsivo e confiável para maioria de casos de uso típicos enquanto ainda permitindo exceções justificadas com supervisão técnica.
+Fluxo de excecao do UC-007 quando quantidade de registros ultrapassa limite maximo.
 
-**Ponto de Desvio:** Passo 8 do UC-007 (validação antes de criar job)
+## Condicao
 
-**Retorno:** Exportação bloqueada, usuário refina filtros até respeitar limite
+No passo 10 do UC-007, sistema detecta mais de 10.000 registros a exportar.
+
+## Fluxo
+
+1. Sistema conta registros a exportar
+2. Sistema detecta limite excedido
+3. Sistema bloqueia exportacao
+4. Sistema exibe modal com erro e quantidade atual
+5. Sistema oferece sugestoes para reduzir escopo
+6. Usuario ajusta filtros e retenta
+
+## Sugestoes ao Usuario
+
+- Filtrar por comunidade especifica
+- Reduzir periodo de tempo
+- Filtrar por status (apenas aprovados)
+- Dividir exportacao em lotes
+
+## Retorno
+
+Exportacao bloqueada. Usuario refina filtros ate respeitar limite.
+
+## Pos-condicoes
+
+- Nenhum recurso consumido com exportacao invalida
+- Usuario orientado sobre como prosseguir

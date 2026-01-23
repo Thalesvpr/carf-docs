@@ -1,14 +1,37 @@
 ---
-type: uc
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 13 linhas - incompleto."
-updated: 2025-12-30
+id: UC-010-FE-001
+type: UC
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
 # UC-010-FE-001: GetCapabilities Falha
 
-Fluxo de exceção do UC-010 Configurar Camadas WMS ocorrendo no passo 6 quando sistema executa request HTTP GET para URL GetCapabilities mas operação falha retornando erro ao invés de XML válido tipicamente causado por timeout (servidor externo lento ou fora do ar não respondendo dentro de 10 segundos configurados), HTTP 404 Not Found (URL incorreta ou endpoint mudou sem documentação atualizada), HTTP 500 Internal Server Error (servidor externo com problema técnico falha de banco de dados ou configuração), DNS resolution failure (domínio não existe ou não resolve para IP válido), SSL certificate error (certificado expirado auto-assinado ou hostname mismatch em URLs HTTPS), ou network unreachable (firewall bloqueando saída do servidor GEOAPI para domínios externos), sistema captura exceção em bloco try-catch logando erro completo com stack trace URL tentada HTTP status code e response body se disponível facilitando troubleshooting, exibe modal vermelho erro com ícone de alerta título "Falha ao Conectar ao Servidor WMS" e mensagem específica transcrevendo erro técnico como "Timeout após 10s - servidor não respondeu" ou "HTTP 404 - endpoint não encontrado" ou "SSL certificate expired" orientando ADMIN sobre natureza do problema, inclui sugestões de ações corretivas em bullets como "Verifique se URL está correta e completa incluindo protocolo https://", "Teste URL diretamente no navegador verificando se retorna XML", "Confirme que servidor está online e acessível", "Verifique se firewall permite saída do servidor para domínio externo", botão Tentar Novamente fecha modal mantendo formulário preenchido permitindo ADMIN ajustar URL corrigindo typo ou consultando documentação atualizada da fonte, opcionalmente pode incluir botão Testar no Navegador abrindo nova aba com URL GetCapabilities permitindo ADMIN ver resposta diretamente e diagnosticar se problema é com URL ou com conectividade do servidor backend GEOAPI especificamente.
+Fluxo de excecao do UC-010 quando request GetCapabilities falha.
 
-**Ponto de Desvio:** Passo 6 do UC-010 (request GetCapabilities)
+## Condicao
 
-**Retorno:** Erro exibido, ADMIN corrige URL e retenta teste
+No passo 7 do UC-010, sistema nao consegue obter resposta do servidor externo.
+
+## Fluxo
+
+1. Sistema executa request GetCapabilities
+2. Sistema detecta falha na conexao
+3. Sistema captura erro e loga detalhes
+4. Sistema exibe modal com mensagem de erro
+5. Sistema sugere acoes corretivas
+6. ADMIN verifica URL e tenta novamente
+
+## Causas Comuns
+
+- Timeout (servidor lento ou fora do ar)
+- URL incorreta ou endpoint alterado
+- Erro de certificado SSL
+- Firewall bloqueando conexao
+- DNS nao resolve dominio
+
+## Retorno
+
+Erro exibido com detalhes. ADMIN corrige URL ou aguarda servidor e retenta.

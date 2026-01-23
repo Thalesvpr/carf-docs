@@ -1,28 +1,14 @@
 ---
 type: readme
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES."
-updated: 2026-01-15
+status: approved
+updated: 2026-01-23
 ---
 
-# UC-004-coletar-dados-campo-mobile
+# UC-004: Coletar Dados em Campo (Mobile)
 
+Caso de uso para coleta de dados em campo usando app mobile. O fluxo envolve FIELD_AGENT cadastrando unidades habitacionais diretamente no local, capturando geometria via GPS, tirando fotos e registrando titulares mesmo em modo offline.
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (7 casos de uso)
-
-| ID | Titulo |
-|:---|:-------|
-| [UC-004](./UC-004-coletar-dados-campo-mobile.md) | Coletar Dados em Campo (Mobile) |
-| [UC-004](./UC-004-FA-001-sincronizar-imediato.md) | FA-001: Sincronizar Imediatamente |
-| [UC-004](./UC-004-FA-002-voice-to-text.md) | FA-002: Voice-to-Text |
-| [UC-004](./UC-004-FA-003-copiar-anterior.md) | FA-003: Copiar Unidade Anterior |
-| [UC-004](./UC-004-FE-001-gps-indisponivel.md) | FE-001: GPS Não Disponível |
-| [UC-004](./UC-004-FE-002-memoria-cheia.md) | FE-002: Memória Cheia |
-| [UC-004](./UC-004-FE-003-bateria-baixa.md) | FE-003: Bateria Baixa |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
+O [fluxo principal](./UC-004-coletar-dados-campo-mobile.md) documenta a coleta completa de uma unidade. Os fluxos alternativos cobrem sincronizacao imediata (FA-001), ditado por voz (FA-002) e copia de unidade anterior (FA-003). Os fluxos de excecao tratam GPS indisponivel (FE-001), memoria cheia (FE-002) e bateria baixa (FE-003).
 
 
 <!-- CARF-INDEX-START -->

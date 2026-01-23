@@ -1,20 +1,38 @@
 ---
-type: uc
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES."
-updated: 2025-12-30
+id: UC-001-FA-001
+type: UC
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
 # UC-001-FA-001: Desenhar Geometria Offline (Mobile)
 
-Fluxo alternativo do UC-001 Cadastrar Unidade Habitacional desviando no passo 5 (desenho de geometria) quando usuário FIELD_AGENT opera app mobile React Native em campo sem conexão de rede, onde ao invés de desenhar polígono manualmente no mapa o app oferece opção Capturar com GPS ativando módulo de geolocalização do dispositivo que coleta pontos GPS em tempo real conforme agente caminha pelo perímetro da unidade habitacional marcando vértices a cada 3-5 metros automaticamente ou manualmente pressionando botão Adicionar Ponto, sistema exibe trilha em tempo real no mapa offline carregado previamente via tiles cached mostrando precisão atual do GPS em metros (ideal <5m aceitável <10m), usuário pode ajustar manualmente os vértices arrastando marcadores no mapa touchscreen para corrigir imprecisões do GPS ou obstáculos que impediram caminhada exata no perímetro, ao finalizar captura usuário pressiona Concluir Polígono e sistema fecha automaticamente conectando último ponto ao primeiro verificando que polígono é válido (mínimo 3 pontos sem auto-interseções), calcula área aproximada em m², e salva geometria localmente em banco SQLite do WatermelonDB incluindo metadados de precisão GPS média timestamp de captura e flag needs_sync=true indicando pendência de sincronização com servidor. Geometria salva localmente permanece editável até sincronização permitindo ajustes posteriores, aparece no mapa offline com badge laranja Pendente Sincronização, e quando conexão de rede retornar (detectada por listener de conectividade) o SyncService dispara automaticamente sincronização incremental enviando geometria para backend via POST /api/units endpoint que valida servidor-side e retorna confirmação atualizando flag needs_sync=false e alterando badge para verde Sincronizado, com tratamento de conflito se unidade foi modificada no servidor entre captura offline e sincronização exibindo tela de merge manual.
+Fluxo alternativo do UC-001 para captura de geometria via GPS no app mobile quando offline.
 
-**Ponto de Desvio:** Passo 5 do UC-001 (desenho de geometria)
+## Condicao
 
-**Tecnologias:**
-- React Native Geolocation API para captura GPS
-- WatermelonDB (SQLite) para persistência offline
-- MapLibre GL Native para renderização de mapa offline
-- SyncService para sincronização incremental
+No passo 5 do UC-001, usuario FIELD_AGENT esta no app mobile sem conexao de rede.
 
-**Retorno:** Volta ao passo 6 do UC-001 (cálculo de área) com geometria capturada via GPS salva localmente
+## Fluxo
+
+1. Usuario seleciona opcao Capturar com GPS
+2. Sistema ativa geolocalizacao do dispositivo
+3. Usuario caminha pelo perimetro da unidade
+4. Sistema coleta pontos GPS automaticamente a cada 3-5 metros
+5. Sistema exibe trilha em tempo real no mapa offline
+6. Usuario pode ajustar vertices manualmente arrastando no mapa
+7. Usuario pressiona Concluir Poligono
+8. Sistema fecha poligono e valida (minimo 3 pontos, sem auto-intersecoes)
+9. Sistema calcula area e salva geometria localmente com flag pendente
+
+## Retorno
+
+Volta ao passo 6 do UC-001 com geometria salva localmente aguardando sincronizacao.
+
+## Pos-condicoes
+
+- Geometria salva no banco local com needs_sync=true
+- Badge laranja indica pendencia de sincronizacao
+- Sincronizacao automatica quando conexao retornar

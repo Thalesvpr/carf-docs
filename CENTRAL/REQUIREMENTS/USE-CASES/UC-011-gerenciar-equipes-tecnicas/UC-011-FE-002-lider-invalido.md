@@ -1,14 +1,37 @@
 ---
-type: uc
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 13 linhas - incompleto."
-updated: 2025-12-30
+id: UC-011-FE-002
+type: UC
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
-# UC-011-FE-002: Líder Inválido ou Inativo
+# UC-011-FE-002: Lider Invalido ou Inativo
 
-Fluxo de exceção do UC-011 Gerenciar Equipes Técnicas ocorrendo no passo 7 durante validação quando sistema verifica líder selecionado executando query SELECT * FROM users WHERE id = $leader_id AND tenant_id = $tenant detectando usuário inativo (status='INACTIVE'), deletado (deleted_at NOT NULL), ou não existente (query retorna null), tipicamente causado por ADMIN selecionando usuário que foi desativado entre momento de carregar dropdown e submeter formulário (race condition em sistemas com múltiplos administradores simultâneos), ou tentativa de selecionar líder que saiu da organização teve conta removida, sistema detecta invalidade verificando user.status !== 'ACTIVE' ou user === null, exibe modal vermelho erro com título "Líder Inválido" mensagem "O usuário selecionado está inativo ou foi removido. Selecione um usuário ativo como líder da equipe" esclarecendo problema, mantém formulário aberto recarrega dropdown de líderes executando query atualizada WHERE status='ACTIVE' removendo usuários inativos que podem ter sido desativados recentemente garantindo lista sempre sincronizada, campo Líder da Equipe resetado para estado vazio forçando nova seleção, usuário escolhe outro líder ativo da lista atualizada clica Criar Equipe validação agora passa prosseguindo normalmente, alternativamente se líder foi desativado por engano ADMIN pode navegar para menu Usuários reativar usuário específico alterando status para ACTIVE e retornar para criação de equipe agora com líder disponível no dropdown permitindo seleção válida.
+Fluxo de excecao do UC-011 quando lider selecionado nao esta disponivel.
 
-**Ponto de Desvio:** Passo 7 do UC-011 (validação de líder)
+## Condicao
 
-**Retorno:** Criação bloqueada, usuário seleciona líder ativo e retenta
+No passo 9 do UC-011, sistema detecta que usuario selecionado como lider esta inativo ou foi removido.
+
+## Fluxo
+
+1. Sistema valida lider selecionado
+2. Sistema detecta usuario inativo ou inexistente
+3. Sistema bloqueia criacao
+4. Sistema exibe modal de erro
+5. Sistema recarrega dropdown com usuarios ativos
+6. Sistema reseta campo lider
+7. Usuario seleciona outro lider da lista atualizada
+8. Usuario tenta criar novamente
+
+## Causas Comuns
+
+- Usuario desativado entre carregar formulario e submeter
+- Usuario removido do sistema
+- Selecao de usuario de outro tenant (erro de dados)
+
+## Retorno
+
+Criacao bloqueada. Usuario seleciona lider ativo e retenta.

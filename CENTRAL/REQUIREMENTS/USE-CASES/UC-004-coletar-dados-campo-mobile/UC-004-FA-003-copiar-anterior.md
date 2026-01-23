@@ -1,28 +1,45 @@
 ---
-type: uc
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES."
-updated: 2025-12-30
+id: UC-004-FA-003
+type: UC
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
 # UC-004-FA-003: Copiar Unidade Anterior
 
-Fluxo alternativo do UC-004 Coletar Dados Campo Mobile desviando no passo 6 (captura GPS e início de preenchimento) quando FIELD_AGENT está cadastrando múltiplas unidades adjacentes ou similares em mesma rua/comunidade com características repetidas economizando tempo de digitação, onde ao abrir formulário de nova unidade app exibe botão Copiar da Última no topo, FIELD_AGENT clica disparando busca em SQLite local da última unidade cadastrada ordenando por created_at DESC LIMIT 1, app pré-preenche formulário atual com dados copiados incluindo endereço (rua bairro cidade CEP mantendo logradouro mas limpando número), tipo de unidade, observações genéricas, mantendo campos específicos vazios como número do endereço geometria fotos titulares que são únicos por unidade. FIELD_AGENT ajusta apenas dados específicos da unidade atual editando número incrementando para próximo (ex: 51 → 53), redesenha geometria nova adjacente, tira fotos diferentes, cadastra titulares específicos, e salva economizando ~60% do tempo de preenchimento em levantamentos de áreas homogêneas.
+Fluxo alternativo do UC-004 para copiar dados de unidade anterior em areas homogeneas.
 
-**Ponto de Desvio:** Passo 6 do UC-004 (início do formulário, antes de preencher)
+## Condicao
 
-**Dados Copiados:**
-- ✅ Endereço (logradouro, bairro, cidade, estado, CEP)
-- ✅ Tipo de unidade
-- ✅ Observações genéricas
-- ❌ Número (limpo, requer novo)
-- ❌ Geometria (vazio, cada unidade única)
-- ❌ Fotos (vazio)
-- ❌ Titulares (vazio)
-- ❌ GPS location (captura novo)
+No passo 4 do UC-004, FIELD_AGENT esta cadastrando unidades adjacentes com caracteristicas similares.
 
-**Query SQLite:**
+## Fluxo
 
-App executa SELECT asterisco FROM units_local WHERE deleted_at IS NULL ORDER BY created_at DESC LIMIT um retornando última unidade cadastrada com todos campos incluindo endereço tipo observações para pré-preencher formulário novo permitindo FIELD_AGENT economizar tempo digitação em áreas homogêneas com características repetidas.
+1. FIELD_AGENT clica em Copiar da Ultima
+2. Sistema busca ultima unidade cadastrada localmente
+3. Sistema pre-preenche formulario com dados copiados
+4. Sistema mantem vazios campos unicos (numero, geometria, fotos, titulares)
+5. FIELD_AGENT ajusta numero do endereco
+6. FIELD_AGENT desenha nova geometria
+7. FIELD_AGENT tira fotos especificas
+8. FIELD_AGENT cadastra titulares da unidade atual
 
-**Retorno:** Formulário pré-preenchido, FIELD_AGENT ajusta detalhes específicos
+## Dados Copiados
+
+- Endereco (logradouro, bairro, cidade, CEP)
+- Tipo de unidade
+- Observacoes genericas
+
+## Dados Nao Copiados
+
+- Numero do endereco
+- Geometria
+- Fotos
+- Titulares
+- Localizacao GPS
+
+## Retorno
+
+Formulario pre-preenchido. FIELD_AGENT ajusta detalhes especificos da unidade atual.

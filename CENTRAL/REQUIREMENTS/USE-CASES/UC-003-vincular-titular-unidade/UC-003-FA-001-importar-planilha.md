@@ -1,30 +1,48 @@
 ---
-type: uc
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES."
-updated: 2025-12-30
+id: UC-003-FA-001
+type: UC
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
 # UC-003-FA-001: Importar Titulares de Planilha
 
-Fluxo alternativo do UC-003 Vincular Titular a Unidade desviando no passo 3 (adicionar titular individual) quando usuário possui lista extensa de titulares a vincular proveniente de levantamento externo ou sistema legado exportado em planilha Excel ou CSV economizando tempo de digitação manual repetitiva, onde ao invés de clicar Adicionar Titular para processo individual usuário clica em botão dropdown Ações em Lote selecionando opção Importar Planilha abrindo modal de upload com instruções claras sobre formato esperado, link para download de template Excel pré-formatado contendo headers de colunas obrigatórias (cpf_cnpj nome data_nascimento telefone email relationship_type ownership_percentage is_primary) e opcionais (endereço cep observações), e área de drag-and-drop ou botão Selecionar Arquivo aceitando formatos .xlsx .xls .csv com limite de 1000 linhas por upload para evitar timeout de processamento. Usuário baixa template se necessário entendendo estrutura de colunas, preenche planilha localmente usando Excel Google Sheets ou LibreOffice com dados dos titulares respeitando formatos especificados (CPF sem formatação 11 dígitos, telefone com DDD sem parênteses, relationship_type usando códigos exatos PROPRIETARIO POSSUIDOR CONJUGE HERDEIRO LOCATARIO OCUPANTE, ownership_percentage decimal entre 0-100, is_primary boolean SIM/NAO ou TRUE/FALSE ou 1/0), salva arquivo e faz upload arrastando para área de drop ou selecionando via file picker. Sistema recebe arquivo valida extensão e tamanho máximo 5MB, parsing conteúdo usando biblioteca SheetJS ou similar convertendo para array de objetos JavaScript, valida estrutura verificando presença de colunas obrigatórias (cpf_cnpj nome relationship_type ownership_percentage) exibindo erro específico se alguma coluna crítica faltando listando quais estão ausentes, executa validações de dados linha por linha acumulando erros sem interromper processamento completo verificando CPF/CNPJ válido usando algoritmo de dígitos verificadores, nome com mínimo 3 palavras, telefone com 10-11 dígitos, email formato válido se preenchido, relationship_type pertence a enum permitido, ownership_percentage entre 0-100, is_primary boolean válido, e verificação de duplicação de CPF tanto dentro da planilha (detecta linhas duplicadas) quanto contra banco de dados (titular já existe no tenant). Sistema após parsing e validação exibe tela de preview apresentando tabela interativa com linhas da planilha mostrando ícone de status por linha (verde checkmark se válido, vermelho X se erro, laranja warning se duplicado mas pode prosseguir), colunas principais visíveis (nome CPF tipo relacionamento percentual principal), coluna Ação permitindo editar inline campos com erro ou remover linha clicando ícone lixeira, e resumo estatístico no topo mostrando "X de Y linhas válidas, Z erros, W duplicados" com opções filtrar apenas erros ou apenas válidos facilitando correção em massa. Usuário revisa preview corrigindo erros inline editando células diretamente que re-valida em tempo real atualizando ícone de status, remove linhas problemáticas que não consegue corrigir imediatamente decidindo processar depois, ou cancela upload completo para corrigir planilha original e re-submeter se preferir manter rastreabilidade de arquivo fonte. Após revisão e satisfeito com dados válidos usuário clica Confirmar Importação e sistema processa em batch transaction criando registros na tabela holders para CPFs novos (pulando duplicados ou atualizando se configurado modo upsert), criando vínculos na tabela unit_holders associando todos titulares importados à unidade atual com tipos percentuais e flags principais conforme planilha, validando regras de negócio globais como soma de percentuais ≤100% e apenas um principal existente exibindo erro se violar impedindo commit da transação inteira ou modo permissivo permitindo ajuste automático normalizando percentuais proporcionalmente se soma ultrapassar, adiciona entradas na timeline registrando "X titulares importados via planilha por Nome do Usuário em timestamp" com link para baixar cópia da planilha processada para auditoria, e exibe modal de resumo final mostrando "Importação concluída: X titulares criados, Y vínculos estabelecidos, Z erros (detalhes em log)" com opção baixar relatório de erros em CSV para correção offline.
+Fluxo alternativo do UC-003 para importar multiplos titulares via arquivo Excel ou CSV.
 
-**Ponto de Desvio:** Passo 3 do UC-003 (ao invés de adicionar individual, importa em lote)
+## Condicao
 
-**Template de Planilha:**
+No passo 3 do UC-003, usuario possui lista extensa de titulares proveniente de levantamento externo.
 
-Template Excel contém headers colunas obrigatórias cpf_cnpj nome data_nascimento telefone email relationship_type ownership_percentage is_primary observacoes com linhas exemplo mostrando 12345678900 João Silva Santos 1980-05-15 11987654321 joao@email.com PROPRIETARIO 50.00 SIM vazio para titular proprietário principal cinquenta por cento e 98765432100 Maria Souza Lima 1985-10-20 11912345678 maria@email.com CONJUGE 50.00 NAO Cônjuge para titular cônjuge secundário cinquenta por cento demonstrando formato esperado facilitando preenchimento correto usuário.
+## Fluxo
 
-**Validações Executadas:**
+1. Usuario clica em Acoes em Lote e seleciona Importar Planilha
+2. Sistema exibe modal com instrucoes e link para template
+3. Usuario baixa template e preenche com dados dos titulares
+4. Usuario faz upload do arquivo preenchido
+5. Sistema valida estrutura e colunas obrigatorias
+6. Sistema valida dados linha por linha acumulando erros
+7. Sistema exibe preview com status por linha (valido, erro, duplicado)
+8. Usuario revisa e corrige erros inline ou remove linhas problematicas
+9. Usuario confirma importacao
+10. Sistema processa em lote criando titulares e vinculos
+11. Sistema registra operacao na timeline
+12. Sistema exibe resumo com estatisticas
 
-Array validations define regras para cada campo sendo cpf_cnpj obrigatório com dígitos verificadores válidos error CPF/CNPJ inválido, nome obrigatório mínimo três palavras error Nome deve ter nome e sobrenome, relationship_type obrigatório enum PROPRIETARIO POSSUIDOR CONJUGE HERDEIRO error Tipo inválido, ownership_percentage obrigatório range zero a cem error Percentual entre 0-100, is_primary boolean aceitando SIM/NAO TRUE/FALSE ou um/zero error Usar SIM ou NAO, telefone opcional dez ou onze dígitos error Telefone inválido, email opcional formato válido regex error Email inválido aplicadas linha por linha acumulando erros sem interromper processamento permitindo correção batch.
+## Validacoes
 
-**Preview com Correção:**
+- CPF/CNPJ com digitos verificadores validos
+- Nome com minimo de palavras
+- Tipo de relacionamento pertence ao enum permitido
+- Percentual entre 0 e 100
+- Duplicacao dentro da planilha e contra banco de dados
 
-Tela preview exibe checkmark verde "João Silva Santos (CPF válido, 50%, Principal)" indicando linha válida pronta importar, X vermelho "Maria Souza (CPF inválido: 123456789)" com botões Editar e Remover permitindo correção inline ou exclusão, warning laranja "José Oliveira (CPF já cadastrado: vincular existente?)" com botões Vincular e Pular permitindo decidir ação duplicados, resumo estatístico "1 de 3 linhas válidas, 1 erro, 1 duplicado" com filtros Apenas Erros Apenas Válidos Mostrar Todos facilitando navegação corrigir problemas eficientemente.
+## Retorno
 
-**Processamento em Batch:**
+Lista de titulares atualizada com todos importados. Timeline registra operacao em lote.
 
-Algoritmo batch define objeto results com contadores created linked errors zero iniciando transação db.transaction async iterando validRows executando for of em cada row, busca holder existente await findHolderByCpf com row.cpf_cnpj se não encontrado cria novo await trx('holders').insert com campos cpf name phone email tenant_id retornando id incrementando results.created, cria vínculo await trx('unit_holders').insert com unit_id holder_id relationship_type ownership_percentage is_primary convertendo SIM ou TRUE para boolean true incrementando results.linked, valida regras negócio globais somando ownership_percentage com await trx('unit_holders').where('unit_id').sum verificando se sum maior cem lançando Error Soma de percentuais ultrapassa 100% causando rollback transação completa garantindo atomicidade, finalmente retorna results com estatísticas created linked errors permitindo exibir resumo final importação.
+## Pos-condicoes
 
-**Retorno:** Lista de titulares atualizada com todos importados, timeline registra operação batch
+- Titulares criados ou vinculados conforme planilha
+- Relatorio de erros disponivel para download se houver falhas
