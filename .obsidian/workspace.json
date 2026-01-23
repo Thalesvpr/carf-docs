@@ -16,16 +16,30 @@
               "state": {},
               "pinned": true,
               "icon": "lucide-git-fork",
-              "title": "Visualização em gráfico"
+              "title": "Graph view"
             }
           },
           {
-            "id": "cc41add753b82c59",
+            "id": "36647e2c769c1c50",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "STANDARDS/README.md",
+                "file": "CENTRAL/REQUIREMENTS/FUNCTIONAL/01-auth-security/RF-001-integração-com-keycloak.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "RF-001-integração-com-keycloak"
+            }
+          },
+          {
+            "id": "70f89e10a8cd4841",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CENTRAL/DESIGN-SYSTEM/README.md",
                 "mode": "source",
                 "source": false
               },
@@ -34,7 +48,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -207,44 +221,44 @@
       "obsidian-docs-toolkit:Open Curation Panel": false
     }
   },
-  "active": "cc41add753b82c59",
+  "active": "70f89e10a8cd4841",
   "lastOpenFiles": [
-    "CENTRAL/ARCHITECTURE/PATTERNS/06-mobile-offline-first.md",
-    "CENTRAL/TESTING/ADR-018-playwright-e2e-testing.md",
-    "CENTRAL/DESIGN-SYSTEM/ADR-023-color-palette-design-system.md",
-    "PROJECTS/LIB/TS/TSCORE/DOCS/ADRs/ADR-011-shared-library-tscore.md",
-    "PROJECTS/WEBDOCS/DOCS/ADRs/ADR-016-astro-starlight-documentation.md",
-    "PROJECTS/KEYCLOAK/DOCS/ADRs/ADR-028-token-lifetimes.md",
-    "PROJECTS/KEYCLOAK/DOCS/ADRs/ADR-027-oauth2-flows-by-client.md",
-    "PROJECTS/KEYCLOAK/DOCS/ADRs/ADR-024-keycloakify-adoption.md",
-    "PROJECTS/GEOAPI/DOCS/ADRs/ADR-021-hangfire-background-jobs.md",
-    "PROJECTS/REURBCAD/DOCS/ADRs/ADR-006-offline-first-watermelondb.md",
-    "PROJECTS/KEYCLOAK/DOCS/ADRs",
-    "PROJECTS/GEOAPI/DOCS/ADRs",
-    "PROJECTS/REURBCAD/DOCS/ADRs",
-    "CENTRAL/ARCHITECTURE/PATTERNS/README.md",
-    "CENTRAL/SECURITY/ADR-029-security-strategy.md",
-    "CENTRAL/SECURITY/ADR-026-roles-hierarchy.md",
-    "CENTRAL/SECURITY/ADR-022-role-based-access-control.md",
-    "CENTRAL/DEPLOYMENTS/ADR-020-docker-kubernetes-orchestration.md",
-    "CENTRAL/DEPLOYMENTS/ADR-017-github-actions-cicd.md",
-    "CENTRAL/DEPLOYMENTS/ADR-013-vercel-deployment-platform.md",
-    "PROJECTS/KEYCLOAK/ADRs/ADR-028-token-lifetimes.md",
-    "PROJECTS/KEYCLOAK/ADRs/ADR-027-oauth2-flows-by-client.md",
-    "PROJECTS/KEYCLOAK/ADRs/ADR-024-keycloakify-adoption.md",
-    "PROJECTS/GEOAPI/ADRs/ADR-021-hangfire-background-jobs.md",
-    "PROJECTS/WEBDOCS/ADRs/ADR-016-astro-starlight-documentation.md",
-    "PROJECTS/LIB/TS/TSCORE/ADRs/ADR-011-shared-library-tscore.md",
-    "PROJECTS/REURBCAD/ADRs/ADR-006-offline-first-watermelondb.md",
-    "PROJECTS/LIB/TS/TSCORE/ADRs",
-    "PROJECTS/WEBDOCS/ADRs",
-    "PROJECTS/KEYCLOAK/ADRs",
-    "PROJECTS/GEOAPI/ADRs",
-    "PROJECTS/REURBCAD/ADRs",
+    "CENTRAL/DOMAIN/README.md",
+    "CENTRAL/DESIGN-SYSTEM/README.md",
+    "CENTRAL/README.md",
+    "PROJECTS/WEBDOCS/README.md",
     "STANDARDS/README.md",
-    "STANDARDS/16-frontend-stack.md",
-    "STANDARDS",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/NAVIGATION",
+    "CENTRAL/ARCHITECTURE/README.md",
+    "README.md",
+    "PROJECTS/README.md",
+    "STANDARDS/STD-005-content-guidelines.md",
+    "STANDARDS/STD-004-document-types.md",
+    "STANDARDS/STD-003-naming-conventions.md",
+    "STANDARDS/STD-002-readme-structure.md",
+    "STANDARDS/STD-001-file-status-convention.md",
+    "CENTRAL/REQUIREMENTS/USE-CASES/PROCESS-WORKFLOWS/README.md",
+    "CENTRAL/REQUIREMENTS/USE-CASES/PROCESS-WORKFLOWS/06-legitimation-workflow.md",
+    "CENTRAL/REQUIREMENTS/USE-CASES/PROCESS-WORKFLOWS/05-topography-workflow.md",
+    "CENTRAL/REQUIREMENTS/USE-CASES/PROCESS-WORKFLOWS/04-analyst-validation-workflow.md",
+    "CENTRAL/REQUIREMENTS/USE-CASES/PROCESS-WORKFLOWS/03-offline-sync-workflow.md",
+    "CENTRAL/REQUIREMENTS/USE-CASES/PROCESS-WORKFLOWS/02-field-data-collection-workflow.md",
+    "CENTRAL/REQUIREMENTS/USE-CASES/PROCESS-WORKFLOWS/01-wms-integration-workflow.md",
+    "CENTRAL/REQUIREMENTS/USE-CASES/PROCESS-WORKFLOWS",
+    "PROJECTS/GEOWEB/DOCS/FEATURES/05-shapefile-import.md",
+    "PROJECTS/GEOWEB/DOCS/FEATURES/07-reporting.md",
+    "PROJECTS/GEOWEB/DOCS/FEATURES/README.md",
+    "PROJECTS/GEOWEB/DOCS/HOW-TO/01-setup-keycloak.md",
+    "PROJECTS/GEOWEB/DOCS/HOW-TO/02-login-logout.md",
+    "PROJECTS/GEOWEB/DOCS/HOW-TO/03-refresh-tokens.md",
+    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/08-interoperability",
+    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/07-maintainability",
+    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/02-security",
+    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/06-compatibility",
+    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/05-scalability",
+    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/04-usability",
+    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/03-reliability",
+    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/01-performance",
+    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL",
     "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/public/img/logo.svg"
   ]
 }
