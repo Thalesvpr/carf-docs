@@ -1,5 +1,14 @@
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#4F46E5', 'primaryTextColor': '#fff', 'primaryBorderColor': '#4338CA', 'lineColor': '#6B7280', 'secondaryColor': '#F3F4F6', 'tertiaryColor': '#E5E7EB'}}}%%
+---
+type: leaf
+status: current
+updated: 2026-01-22
+---
 
+# Topologia de Deployment
+
+Mostra a arquitetura de implantacao em producao com containers Kubernetes, load balancer, clusters de banco de dados e servicos de observabilidade.
+
+```mermaid
 flowchart TB
     subgraph Internet["Internet"]
         Users["Usuarios"]
@@ -66,3 +75,4 @@ flowchart TB
     AuthPods --> Prometheus
     Prometheus --> Grafana
     APIPods --> Loki
+```

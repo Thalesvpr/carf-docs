@@ -67,12 +67,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CENTRAL/ARCHITECTURE/DIAGRAMS/README.md",
+                "file": "CENTRAL/ARCHITECTURE/DIAGRAMS/02-data-flow.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "README"
+              "title": "02-data-flow"
             }
           }
         ],
@@ -249,14 +249,19 @@
       "obsidian-docs-toolkit:Open Curation Panel": false
     }
   },
-  "active": "aad1928f2fff3657",
+  "active": "f82fcb4e71fbecb2",
   "lastOpenFiles": [
+    "CENTRAL/ARCHITECTURE/DECISIONS/01-multi-tenancy.md",
+    "STANDARDS/STD-017-containerization.md",
+    "CENTRAL/ARCHITECTURE/DIAGRAMS/README.md",
+    "CENTRAL/ARCHITECTURE/DIAGRAMS/03-deployment.md",
+    "CENTRAL/ARCHITECTURE/DIAGRAMS/02-data-flow.md",
+    "CENTRAL/ARCHITECTURE/DIAGRAMS/01-ecosystem.md",
     "CENTRAL/ARCHITECTURE/INTEGRATION/05-data-layer.md",
     "CENTRAL/ARCHITECTURE/INTEGRATION/04-shared-libraries.md",
     "CENTRAL/ARCHITECTURE/INTEGRATION/03-offline-sync.md",
     "CENTRAL/ARCHITECTURE/INTEGRATION/02-api-communication.md",
     "CENTRAL/ARCHITECTURE/INTEGRATION/01-authentication.md",
-    "CENTRAL/ARCHITECTURE/DIAGRAMS/README.md",
     "CENTRAL/ARCHITECTURE/DIAGRAMS/deployment.mmd",
     "CENTRAL/ARCHITECTURE/DIAGRAMS/data-flow.mmd",
     "CENTRAL/ARCHITECTURE/DIAGRAMS/ecosystem.mmd",
@@ -267,7 +272,6 @@
     "CENTRAL/ARCHITECTURE/DECISIONS/04-backend-stack.md",
     "CENTRAL/ARCHITECTURE/DECISIONS/03-authentication.md",
     "CENTRAL/ARCHITECTURE/DECISIONS/02-offline-first.md",
-    "CENTRAL/ARCHITECTURE/DECISIONS/01-multi-tenancy.md",
     "CENTRAL/DOMAIN/DIAGRAMS/02-er-diagram.md",
     "CENTRAL/ARCHITECTURE/SYSTEM/07-keycloak.md",
     "CENTRAL/ARCHITECTURE/SYSTEM/06-webdocs.md",
@@ -277,11 +281,8 @@
     "CENTRAL/ARCHITECTURE/SYSTEM/02-geoweb.md",
     "CENTRAL/ARCHITECTURE/SYSTEM/01-geoapi.md",
     "CENTRAL/ARCHITECTURE/DIAGRAMS",
-    "CENTRAL/ARCHITECTURE/DECISIONS/README.md",
     "CENTRAL/ARCHITECTURE/DECISIONS",
-    "CENTRAL/ARCHITECTURE/INTEGRATION/README.md",
     "CENTRAL/ARCHITECTURE/INTEGRATION",
-    "PROJECTS/KEYCLOAK/DOCS/INTEGRATION/README.md",
     "CENTRAL/ARCHITECTURE/SYSTEM",
     "CENTRAL/REQUIREMENTS/USE-CASES/PROCESS-WORKFLOWS",
     "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/08-interoperability",

@@ -1,5 +1,14 @@
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#4F46E5', 'primaryTextColor': '#fff', 'primaryBorderColor': '#4338CA', 'lineColor': '#6B7280', 'secondaryColor': '#F3F4F6', 'tertiaryColor': '#E5E7EB'}}}%%
+---
+type: leaf
+status: current
+updated: 2026-01-22
+---
 
+# Ecossistema CARF
+
+Visao geral de todos os sistemas do ecossistema CARF e suas conexoes, mostrando como usuarios interagem com aplicacoes frontend que consomem o backend central e servicos de autenticacao.
+
+```mermaid
 flowchart TB
     subgraph Usuarios["Usuarios"]
         Analista["Analista<br/>Portal Web"]
@@ -53,3 +62,4 @@ flowchart TB
     GEOAPI --> POSTGRES
     GEOAPI --> STORAGE
     GEOAPI --> WMS
+```
