@@ -1,10 +1,26 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-013
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
-# RNF-013: Consumo de Memória - Backend
+# RNF-013: Consumo de Memoria - Backend
 
-O container do módulo GEOAPI deve operar com consumo de memória RAM de até 2GB durante operação normal e até 4GB durante períodos de pico de carga, garantindo uso eficiente de recursos computacionais e permitindo densidade adequada de containers em ambientes de produção. Este requisito estabelece limites claros de consumo de memória que devem ser respeitados através de implementação cuidadosa e monitoramento contínuo. A métrica de aceitação estabelece que o uso médio de RAM durante operação normal deve ser menor ou igual a 2 gigabytes, permitindo alguma margem para picos temporários mas garantindo que o consumo base permaneça controlado. Os critérios de aceitação incluem a realização de memory profiling regular utilizando ferramentas apropriadas para a plataforma .NET como dotMemory, PerfView ou ferramentas de profiling integradas, permitindo identificar componentes que consomem memória excessivamente e detectar padrões de alocação ineficientes, a configuração otimizada do garbage collector para o contexto de aplicação servidora garantindo que coletas de lixo sejam realizadas eficientemente sem causar pausas prolongadas que afetem latência de requisições, e a ausência completa de memory leaks onde objetos não mais utilizados permanecem referenciados impedindo sua liberação, sendo que leaks eventualmente esgotam a memória disponível causando instabilidade ou crashes da aplicação. Este requisito é classificado como Should-have porque embora seja importante para eficiência operacional e custos de infraestrutura, o sistema pode operar adequadamente com alocação de memória superior se necessário, sendo que o principal impacto é financeiro através de custos maiores de infraestrutura. A implementação deve considerar uso de object pooling para objetos frequentemente alocados e descartados como buffers e conexões, evitando alocações excessivas que pressionam o garbage collector, implementação de streaming para processamento de grandes volumes de dados ao invés de carregar tudo em memória simultaneamente, uso apropriado de tipos por valor (structs) ao invés de tipos por referência (classes) quando apropriado para reduzir pressure no garbage collector, configuração de limites de memória no runtime e no orquestrador de containers (Kubernetes) para prevenir consumo descontrolado que afete outros serviços no mesmo host, monitoramento contínuo de métricas de memória incluindo heap size, GC frequency, GC pause time e working set, e implementação de health checks que detectam consumo anormal de memória e podem acionar alertas ou restarts automáticos em caso de degradação.
+## Descricao
+
+Container GEOAPI deve operar com ate 2GB RAM em operacao normal e 4GB em pico. Memory profiling regular identifica alocacoes ineficientes. Ausencia de memory leaks obrigatoria.
+
+## Metricas
+
+- Uso normal: <= 2GB RAM
+- Uso em pico: <= 4GB RAM
+- Memory leaks: zero tolerancia
+
+## Criterios de Aceitacao
+
+1. Memory profiling regular com dotMemory/PerfView
+2. Garbage collector otimizado para aplicacao servidora
+3. Limites configurados no Kubernetes para prevenir consumo descontrolado

@@ -1,10 +1,26 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-058
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
-# RNF-058: Linting e Formatação
+# RNF-058: Linting e Formatacao
 
-O código desenvolvido para os módulos GEOAPI, GEOWEB e REURBCAD deve seguir rigorosamente um guia de estilo automatizado, garantindo consistência na formatação, padrões de codificação e melhores práticas em todo o codebase através da utilização de ferramentas de análise estática e formatação automática. A ferramenta ESLint deve ser configurada com regras apropriadas para cada tecnologia utilizada, realizando análise estática do código para identificar problemas de qualidade, padrões inconsistentes, código potencialmente problemático, violações de convenções estabelecidas e possíveis bugs, garantindo que o código atenda aos padrões de qualidade definidos pela equipe antes mesmo de ser executado. O Prettier deve ser utilizado como formatador automático de código, garantindo que aspectos como indentação, quebras de linha, uso de aspas simples ou duplas, vírgulas finais e outros detalhes de formatação sejam padronizados automaticamente, eliminando discussões subjetivas sobre estilo de código e permitindo que a equipe foque em questões mais substantivas durante code reviews. Pre-commit hooks devem ser implementados utilizando ferramentas como Husky, executando automaticamente o linting e formatação antes que o código seja commitado no repositório, prevenindo que código que não atenda aos padrões estabelecidos seja incluído no histórico do projeto e garantindo que todos os desenvolvedores, independentemente de suas configurações locais de IDE, produzam código consistente. O pipeline de integração contínua (CI) deve ser configurado para falhar automaticamente caso sejam detectados erros de linting que não foram corrigidos, impedindo que pull requests com violações de padrões de código sejam mergeados na branch principal e garantindo que o código em produção sempre atenda aos critérios de qualidade estabelecidos. Este requisito é classificado como must-have, sendo absolutamente crítico para manter a qualidade do código, facilitar code reviews focando em lógica ao invés de estilo, reduzir bugs causados por práticas inadequadas, facilitar a colaboração entre múltiplos desenvolvedores com diferentes backgrounds e preferências, e garantir que o codebase permaneça limpo, consistente e manutenível ao longo do tempo, independentemente de mudanças na composição da equipe de desenvolvimento.
+## Descricao
+
+ESLint para analise estatica e Prettier para formatacao automatica. Pre-commit hooks via Husky executam validacao antes de commits. CI falha em erros de linting nao corrigidos.
+
+## Metricas
+
+- Linting: ESLint com regras por tecnologia
+- Formatacao: Prettier automatico
+- Hooks: Husky pre-commit obrigatorio
+
+## Criterios de Aceitacao
+
+1. Pre-commit hooks bloqueiam codigo fora dos padroes
+2. CI falha em PRs com violacoes de linting
+3. Formatacao padronizada elimina discussoes de estilo

@@ -1,10 +1,26 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-020
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
-# RNF-020: Validação de Input
+# RNF-020: Validacao de Input
 
-Todo input recebido de usuários através de qualquer interface do sistema GEOMAP5 deve ser rigorosamente validado e sanitizado antes de qualquer processamento ou armazenamento, garantindo proteção contra ataques de injeção de código e manipulação maliciosa de dados. A validação deve ser implementada no módulo GEOAPI através da biblioteca FluentValidation para .NET, onde cada DTO (Data Transfer Object) recebido pela API deve ter um validador correspondente que verifica tipos de dados, comprimentos de strings, formatos de campos específicos como emails e CPFs, ranges numéricos aceitáveis e padrões de texto permitidos, rejeitando qualquer requisição que não atenda aos critérios estabelecidos antes mesmo de alcançar a camada de lógica de negócio. A proteção contra SQL injection deve ser garantida através do uso exclusivo do Entity Framework Core como ORM, onde todas as queries ao banco de dados utilizam prepared statements e parametrização automática, eliminando a possibilidade de concatenação direta de strings de usuários em comandos SQL. A prevenção de ataques XSS (Cross-Site Scripting) deve ser implementada através de sanitização de inputs que possam ser renderizados em interfaces web, utilizando bibliotecas especializadas para escape de caracteres especiais HTML, JavaScript e CSS, garantindo que conteúdo fornecido por usuários não possa executar scripts maliciosos quando exibido para outros usuários do sistema. A validação deve incluir verificação de tipos MIME para uploads de arquivos, limitação de tamanhos de payload, validação de formatos de geometrias GeoJSON através de bibliotecas especializadas, e rejeição de caracteres de controle e sequências de bytes suspeitas. Mensagens de erro de validação devem ser claras e informativas para usuários legítimos, mas sem revelar detalhes de implementação que possam auxiliar atacantes, mantendo o equilíbrio entre usabilidade e segurança. Este requisito é classificado como Must-have pois constitui a primeira linha de defesa contra a maioria dos ataques web conhecidos, sendo fundamental para a segurança de todos os módulos do sistema.
+## Descricao
+
+Todo input de usuarios deve ser validado e sanitizado antes de processamento. Protege contra ataques de injecao (SQL, XSS) e manipulacao maliciosa de dados.
+
+## Metricas
+
+- Validacao: FluentValidation para cada DTO
+- ORM: Entity Framework Core com prepared statements
+- Sanitizacao: escape de HTML/JS/CSS para outputs
+
+## Criterios de Aceitacao
+
+1. Todos os DTOs possuem validadores FluentValidation
+2. Queries exclusivamente via EF Core (sem SQL concatenado)
+3. Outputs sanitizados contra XSS antes de renderizacao

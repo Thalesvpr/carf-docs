@@ -1,10 +1,26 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-088
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
 # RNF-088: OAuth2 Providers
 
-O sistema deve suportar login via provedores externos de OAuth2 garantindo que usuários possam autenticar usando credenciais existentes de serviços populares reduzindo fricção no processo de onboarding e eliminando necessidade de gerenciar senhas adicionais, onde integração com identity providers confiáveis aumenta segurança através de delegação de autenticação para especialistas. A implementação deve suportar Google como provedor OAuth2 permitindo que usuários façam login com contas Gmail ou Google Workspace, onde configuração no Keycloak estabelece client ID e secret para aplicação GEOMAP5 registrada no Google Cloud Console, e fluxo Authorization Code garante que credenciais de usuário nunca são expostas ao sistema apenas tokens de acesso após autenticação bem-sucedida. O sistema deve suportar Microsoft como provedor permitindo login com contas pessoais Microsoft ou contas corporativas Azure Active Directory, onde integração facilita adoção por organizações que já utilizam ecossistema Microsoft para gestão de identidades, permitindo single sign-on onde usuários autenticados no Windows ou Office podem acessar GEOMAP5 sem login adicional. A solução deve suportar Login.gov que é plataforma de identidade digital do governo brasileiro permitindo autenticação com credenciais governamentais, onde integração posiciona GEOMAP5 como sistema compatível com iniciativas de governo digital e facilita acesso por funcionários públicos que já possuem contas Login.gov para outros serviços governamentais. A implementação através do Keycloak deve configurar identity providers federados onde mapeamento de atributos garante que informações de perfil como nome, email, e foto são sincronizadas do provedor externo para conta local no GEOMAP5, permitindo experiência consistente independentemente de método de autenticação utilizado. Os critérios de aceitação incluem validação de que usuários podem criar conta e fazer login usando qualquer dos provedores suportados, onde primeiro login cria automaticamente conta local vinculada a identity provider externo, e logins subsequentes sincronizam informações de perfil se atualizadas no provedor, garantindo que revogação de acesso no provedor externo impede login no GEOMAP5. A prioridade é classificada como could-have considerando que login via provedores externos aumenta conveniência e pode facilitar adoção corporativa mas não é essencial para operação básica do sistema, onde implementação pode ser priorizada conforme feedback de usuários e demanda específica de clientes corporativos ou governamentais.
+## Descricao
+
+Login via provedores externos OAuth2: Google, Microsoft, Login.gov. Keycloak configura identity providers federados. Mapeamento de atributos sincroniza perfil automaticamente.
+
+## Metricas
+
+- Provedores: Google, Microsoft, Login.gov
+- Fluxo: Authorization Code via Keycloak
+- Atributos: nome, email, foto sincronizados
+
+## Criterios de Aceitacao
+
+1. Primeiro login cria conta local vinculada ao provedor
+2. Logins subsequentes sincronizam informacoes de perfil
+3. Revogacao no provedor externo impede login no sistema

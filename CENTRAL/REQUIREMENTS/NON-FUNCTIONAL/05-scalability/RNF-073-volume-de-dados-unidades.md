@@ -1,10 +1,26 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-073
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
 # RNF-073: Volume de Dados - Unidades
 
-O sistema composto pelo módulo GEOAPI e banco de dados PostgreSQL deve operar com eficiência mesmo quando a base de dados contém até 1 milhão de registros de unidades imobiliárias, mantendo níveis adequados de performance em operações de consulta, inserção, atualização e exclusão que garantam experiência de usuário satisfatória independentemente do volume total de dados armazenados. A capacidade de operar eficientemente com grandes volumes de dados deve ser alcançada através da implementação de índices otimizados em todas as colunas frequentemente utilizadas em cláusulas WHERE, JOIN e ORDER BY das queries mais comuns, incluindo índices B-tree para campos de chave primária, chaves estrangeiras e campos de busca textual, índices GiST para dados geoespaciais que permitem buscas espaciais eficientes utilizando as capacidades do PostGIS, e possivelmente índices compostos para queries que filtram ou ordenam por múltiplas colunas simultaneamente. Quando apropriado e necessário para manter performance com grandes volumes, deve ser considerado o particionamento de tabelas (table partitioning) que divide logicamente tabelas grandes em partições menores baseadas em critérios como tenant_id, data de criação ou região geográfica, permitindo que queries que filtram por esses critérios acessem apenas as partições relevantes ao invés de escanear toda a tabela, melhorando significativamente performance de queries e facilitando operações de manutenção como backups e arquivamento. Todas as queries críticas do sistema devem manter tempo de resposta de até 500ms mesmo quando executadas contra tabelas contendo 1 milhão de registros, garantindo que operações comuns como listagem paginada de unidades, busca por filtros específicos, recuperação de detalhes de unidade individual e queries espaciais de geometrias em áreas específicas permaneçam responsivas. O plano de query execution (EXPLAIN ANALYZE) deve ser regularmente revisado para queries importantes, identificando sequential scans onde índices deveriam ser utilizados, nested loops ineficientes que poderiam ser otimizados, e outras oportunidades de otimização que garantam que o banco de dados utilize os recursos disponíveis de forma eficiente. A performance com grandes volumes deve ser validada através de testes de performance executados contra bases de dados de teste populadas com volumes realistas de dados sintéticos que representam as características dos dados reais, incluindo distribuição geográfica de geometrias, variabilidade de tamanhos de polígonos, distribuição de valores em campos indexados e outras características que possam impactar performance. Capacidade de operar eficientemente com 1 milhão de unidades garante que o sistema possa atender implantações de larga escala como grandes municípios, estados ou programas nacionais de regularização fundiária, fornece margem de crescimento substancial para a maioria dos casos de uso sem necessitar mudanças arquiteturais, e demonstra que considerações de escalabilidade de dados foram incorporadas no design do schema de banco de dados e nas estratégias de indexação. Este requisito é classificado como should-have, sendo importante para garantir viabilidade do sistema em cenários de uso de larga escala, demonstrando que o sistema não é limitado a projetos pequenos ou pilotos mas pode escalar para atender necessidades de organizações grandes com vastos territórios e grandes quantidades de unidades a serem cadastradas e gerenciadas ao longo dos anos.
+## Descricao
+
+Sistema deve operar eficientemente com ate 1 milhao de unidades imobiliarias. Indices otimizados (B-tree, GiST para PostGIS). Table partitioning por tenant_id ou regiao quando necessario.
+
+## Metricas
+
+- Volume: ate 1 milhao de registros
+- Queries criticas: <= 500ms
+- Indices: B-tree para PKs/FKs, GiST para geometrias
+
+## Criterios de Aceitacao
+
+1. EXPLAIN ANALYZE revisado regularmente para queries criticas
+2. Testes de performance com dados sinteticos em volume realista
+3. Particionamento considerado para tabelas que excedam thresholds

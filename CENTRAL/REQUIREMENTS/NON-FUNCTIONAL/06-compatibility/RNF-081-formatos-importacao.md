@@ -1,10 +1,27 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-081
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
-# RNF-081: Formatos de Importação
+# RNF-081: Formatos de Importacao
 
-O sistema deve importar formatos GIS comuns garantindo interoperabilidade com ferramentas de geoprocessamento amplamente utilizadas e permitindo migração de dados existentes de sistemas legados ou fontes externas, onde suporte a múltiplos formatos reduz fricção na adoção do sistema e facilita integração com workflows existentes de prefeituras e equipes técnicas. A implementação deve suportar Shapefile incluindo todos os componentes necessários sendo arquivos .shp contendo geometrias, .shx com índice espacial, .dbf com atributos alfanuméricos, e .prj definindo sistema de coordenadas, onde parsing completo extrai tanto dados geométricos quanto metadados associados permitindo importação de cadastros existentes sem perda de informação. O sistema deve processar GeoJSON garantindo compatibilidade com formato JSON amplamente utilizado em aplicações web modernas e APIs RESTful, onde validação de estrutura GeoJSON detecta erros de formato e extração de features permite importação de geometrias complexas incluindo MultiPolygon e GeometryCollection. A solução deve importar KML e KMZ formatos utilizados pelo Google Earth e ferramentas de mapeamento populares, onde parsing de XML do KML e descompressão de KMZ permitindo importação de dados criados por usuários não-técnicos em ferramentas acessíveis. A implementação deve suportar CSV com coordenadas permitindo importação de planilhas simples onde cada linha representa um ponto com colunas de latitude e longitude, incluindo detecção automática de delimitadores e mapeamento flexível de colunas para campos do sistema. Os critérios de aceitação incluem validação de que cada formato é parseado corretamente com tratamento de erros apropriado, onde geometrias inválidas são reportadas ao usuário e importações parciais são suportadas permitindo revisão e correção de registros problemáticos. A prioridade é classificada como must-have considerando que importação de dados existentes é requisito crítico para adoção do sistema por organizações que já possuem cadastros em diversos formatos.
+## Descricao
+
+Importacao de formatos GIS comuns: Shapefile (.shp/.shx/.dbf/.prj), GeoJSON, KML/KMZ, CSV com coordenadas. Validacao de geometrias e tratamento de erros com importacoes parciais.
+
+## Metricas
+
+- Shapefile: .shp, .shx, .dbf, .prj
+- GeoJSON: validacao de estrutura, MultiPolygon, GeometryCollection
+- KML/KMZ: parsing XML, descompressao
+- CSV: deteccao automatica de delimitadores
+
+## Criterios de Aceitacao
+
+1. Cada formato parseado com tratamento de erros apropriado
+2. Geometrias invalidas reportadas ao usuario
+3. Importacoes parciais permitem correcao de registros problematicos

@@ -1,10 +1,26 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-076
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
-# RNF-076: Conexões de Banco
+# RNF-076: Conexoes de Banco
 
-O pool de conexões ao banco de dados deve ser otimizado garantindo uso eficiente de recursos e prevenir esgotamento de conexões disponíveis durante operações de alta concorrência, onde a implementação deve utilizar connection pooling através de pgBouncer ou solução similar permitindo gerenciamento centralizado e inteligente de conexões entre a aplicação e o PostgreSQL. A configuração deve estabelecer mínimo de 10 conexões mantidas permanentemente disponíveis para atender requisições imediatas sem overhead de abertura de conexão, garantindo baixa latência em cenários de carga leve, enquanto o máximo deve ser limitado a 100 conexões simultâneas prevenindo sobrecarga do servidor de banco de dados e garantindo estabilidade mesmo sob alta concorrência. O sistema deve configurar timeout apropriado para conexões ociosas permitindo liberação automática de recursos não utilizados e reciclagem de conexões para reutilização por novos processos, onde conexões abandonadas ou travadas são detectadas e recuperadas evitando bloqueios permanentes de recursos. A implementação deve incluir monitoramento do pool de conexões com métricas sobre utilização, tempo de espera para aquisição de conexão, e taxa de reciclagem, permitindo ajuste fino dos parâmetros conforme padrões de uso observados em produção. Os critérios de aceitação incluem validação de que sob carga normal o pool opera com folga suficiente evitando filas de espera, enquanto sob carga de pico o sistema degrada graciosamente com timeouts controlados em vez de falhas catastróficas. A prioridade é classificada como must-have considerando que problemas de conexão ao banco são causa comum de instabilidade e que configuração inadequada pode limitar severamente a capacidade de escala do sistema inteiro.
+## Descricao
+
+Pool de conexoes otimizado via pgBouncer ou similar. Minimo 10 conexoes permanentes, maximo 100 simultaneas. Timeout para conexoes ociosas permite reciclagem automatica.
+
+## Metricas
+
+- Pool minimo: 10 conexoes
+- Pool maximo: 100 conexoes
+- Monitoramento: utilizacao, tempo de espera, reciclagem
+
+## Criterios de Aceitacao
+
+1. Carga normal opera sem filas de espera
+2. Carga de pico degrada com timeouts controlados
+3. Conexoes abandonadas detectadas e recuperadas

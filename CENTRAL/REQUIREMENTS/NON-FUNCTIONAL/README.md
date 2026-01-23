@@ -1,34 +1,15 @@
 ---
 type: readme
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES."
-updated: 2026-01-15
+status: approved
+updated: 2026-01-23
 ---
 
-# NON-FUNCTIONAL-REQUIREMENTS
+# Requisitos Nao-Funcionais
 
-Requisitos não-funcionais do CARF especificando atributos de qualidade e restrições técnicas do sistema. Cada requisito possui descrição detalhada, métricas quantificáveis para verificação, e rastreabilidade para casos de uso e requisitos funcionais afetados.
+Requisitos nao-funcionais do CARF especificando atributos de qualidade e restricoes tecnicas do sistema. Cada requisito possui descricao, metricas quantificaveis para verificacao e rastreabilidade para casos de uso afetados.
 
-As categorias incluem performance com tempo de resposta e throughput, segurança com autenticação e compliance LGPD, escalabilidade para usuários concorrentes e volume de dados, usabilidade com acessibilidade WCAG, e compatibilidade com browsers e dispositivos.
+A organizacao segue categorias de qualidade de software: [performance](./01-performance/README.md) define tempos de resposta e throughput, [seguranca](./02-security/README.md) cobre autenticacao e compliance LGPD, [confiabilidade](./03-reliability/README.md) trata disponibilidade e recuperacao, [usabilidade](./04-usability/README.md) inclui acessibilidade WCAG, [escalabilidade](./05-scalability/README.md) define limites de usuarios e dados, [compatibilidade](./06-compatibility/README.md) especifica browsers e dispositivos, [manutenibilidade](./07-maintainability/README.md) aborda codigo e documentacao, e [interoperabilidade](./08-interoperability/README.md) define integracoes externas.
 
-
-
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Indice por Dominio (85 requisitos)
-
-| # | Dominio | Arquivos |
-|:--|:--------|:--------:|
-| 01 | [Performance](./01-performance/README.md) | 8 |
-| 02 | [Seguranca](./02-security/README.md) | 17 |
-| 03 | [Confiabilidade](./03-reliability/README.md) | 12 |
-| 04 | [Usabilidade](./04-usability/README.md) | 13 |
-| 05 | [Escalabilidade](./05-scalability/README.md) | 19 |
-| 06 | [Compatibilidade](./06-compatibility/README.md) | 7 |
-| 07 | [Manutenibilidade](./07-maintainability/README.md) | 6 |
-| 08 | [Interoperabilidade](./08-interoperability/README.md) | 3 |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
 
 <!-- CARF-INDEX-START -->
 > ⚠️ **Índice gerado automaticamente.** Não edite manualmente.

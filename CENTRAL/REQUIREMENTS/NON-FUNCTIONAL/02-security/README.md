@@ -1,38 +1,14 @@
 ---
 type: readme
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES."
-updated: 2026-01-15
+status: approved
+updated: 2026-01-23
 ---
 
-# Segurança
+# Seguranca
 
+Requisitos de seguranca do CARF definindo protecoes obrigatorias para autenticacao, dados e infraestrutura. Cada requisito especifica controles que devem ser implementados e verificados antes do deploy em producao.
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (17 requisitos)
-
-| ID | Titulo |
-|:---|:-------|
-| [RNF-016](./RNF-016-autenticacao-oauth2.md) | Autenticação OAuth2 |
-| [RNF-017](./RNF-017-expiracao-tokens.md) | Expiração de Tokens |
-| [RNF-018](./RNF-018-https-obrigatorio.md) | HTTPS Obrigatório |
-| [RNF-019](./RNF-019-criptografia-dados-sensiveis.md) | Criptografia de Dados Sensíveis |
-| [RNF-020](./RNF-020-validacao-input.md) | Validação de Input |
-| [RNF-022](./RNF-022-cors-restritivo.md) | CORS Restritivo |
-| [RNF-023](./RNF-023-content-security-policy.md) | Content Security Policy |
-| [RNF-024](./RNF-024-auditoria-acoes.md) | Auditoria de Ações |
-| [RNF-025](./RNF-025-isolamento-tenants.md) | Isolamento de Tenants |
-| [RNF-027](./RNF-027-armazenamento-seguro-senhas.md) | Armazenamento Seguro de Senhas |
-| [RNF-028](./RNF-028-protecao-api-keys.md) | Proteção de API Keys |
-| [RNF-029](./RNF-029-scan-malware-uploads.md) | Scan de Malware em Uploads |
-| [RNF-030](./RNF-030-protecao-dados-pessoais-lgpd.md) | Proteção de Dados Pessoais (LGPD) |
-| [RNF-031](./RNF-031-timeout-sessao.md) | Timeout de Sessão |
-| [RNF-033](./RNF-033-secrets-management.md) | Secrets Management |
-| [RNF-034](./RNF-034-sql-injection-prevention.md) | SQL Injection Prevention |
-| [RNF-035](./RNF-035-monitoramento-seguranca.md) | Monitoramento de Segurança |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
+Os requisitos cobrem [autenticacao OAuth2](./RNF-016-autenticacao-oauth2.md) e [expiracao de tokens](./RNF-017-expiracao-tokens.md), [HTTPS obrigatorio](./RNF-018-https-obrigatorio.md), [criptografia de dados sensiveis](./RNF-019-criptografia-dados-sensiveis.md) e [validacao de input](./RNF-020-validacao-input.md), alem de [CORS restritivo](./RNF-022-cors-restritivo.md), [Content Security Policy](./RNF-023-content-security-policy.md), [auditoria de acoes](./RNF-024-auditoria-acoes.md), [isolamento de tenants](./RNF-025-isolamento-tenants.md), [armazenamento seguro de senhas](./RNF-027-armazenamento-seguro-senhas.md), [protecao de API keys](./RNF-028-protecao-api-keys.md), [scan de malware](./RNF-029-scan-malware-uploads.md), [protecao LGPD](./RNF-030-protecao-dados-pessoais-lgpd.md), [timeout de sessao](./RNF-031-timeout-sessao.md), [secrets management](./RNF-033-secrets-management.md), [SQL injection prevention](./RNF-034-sql-injection-prevention.md) e [monitoramento de seguranca](./RNF-035-monitoramento-seguranca.md).
 
 
 <!-- CARF-INDEX-START -->

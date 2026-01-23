@@ -1,10 +1,26 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-061
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
 # RNF-061: Observabilidade
 
-O sistema GEOAPI deve implementar capacidades abrangentes de observabilidade através da exposição de métricas detalhadas, rastreamento distribuído de requisições e dashboards visuais, permitindo que a equipe de operações e desenvolvimento compreenda profundamente o comportamento do sistema em produção, identifique problemas rapidamente e tome decisões informadas sobre otimizações e escalabilidade. As métricas do sistema devem ser exportadas em formato compatível com Prometheus, incluindo métricas técnicas como uso de CPU, memória, threads, garbage collection, pool de conexões de banco de dados, além de métricas de negócio como quantidade de requisições por endpoint, latências percentiladas (p50, p95, p99), taxas de erro por tipo, throughput de operações críticas e volume de dados processados, permitindo análise granular de performance e comportamento. O distributed tracing deve ser implementado utilizando ferramentas como Jaeger ou Zipkin, instrumentando automaticamente todas as requisições HTTP, queries de banco de dados, chamadas a serviços externos e operações assíncronas, atribuindo trace IDs únicos que permitem seguir uma requisição através de toda a stack, identificando exatamente onde tempo está sendo gasto e quais componentes estão contribuindo para latência total, facilitando enormemente o debugging de problemas de performance em sistemas distribuídos. Dashboards visuais devem ser criados utilizando Grafana ou ferramentas similares, apresentando as métricas mais importantes de forma visual e intuitiva através de gráficos de linha mostrando tendências ao longo do tempo, gráficos de taxa de erro, mapas de calor de latências, gauges para capacidade de recursos, e painéis específicos para diferentes audiências (desenvolvedores, operações, gestores), permitindo que qualquer pessoa compreenda rapidamente a saúde do sistema e identifique anomalias. A observabilidade adequada permite identificar degradações de performance antes que afetem usuários, entender padrões de uso que informam decisões de produto, validar que otimizações realmente melhoraram a performance, correlacionar eventos de deploy com mudanças em métricas, e reduzir drasticamente o Mean Time To Resolution (MTTR) quando incidentes ocorrem. Este requisito é classificado como should-have, sendo extremamente valioso para operação madura do sistema, permitindo abordagem proativa ao invés de reativa na gestão de performance e disponibilidade, facilitando capacidade de escalar o sistema baseado em dados reais ao invés de suposições, e demonstrando maturidade operacional ao adotar práticas modernas de SRE (Site Reliability Engineering) que são essenciais para sistemas em produção que precisam atender SLAs rigorosos.
+## Descricao
+
+Metricas exportadas em formato Prometheus, distributed tracing via Jaeger/Zipkin, dashboards em Grafana. Permite identificar degradacoes antes de afetar usuarios e reduzir MTTR.
+
+## Metricas
+
+- Prometheus: CPU, memoria, GC, latencias p50/p95/p99, error rates
+- Tracing: trace IDs unicos por requisicao atraves da stack
+- Dashboards: paineis para devs, ops e gestores
+
+## Criterios de Aceitacao
+
+1. Metricas tecnicas e de negocio exportadas para Prometheus
+2. Distributed tracing instrumenta HTTP, queries e chamadas externas
+3. Dashboards Grafana com graficos de tendencia e alertas

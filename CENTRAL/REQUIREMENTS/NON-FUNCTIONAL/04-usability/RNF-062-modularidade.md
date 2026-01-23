@@ -1,10 +1,26 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-062
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
 # RNF-062: Modularidade
 
-O código dos módulos GEOAPI e GEOWEB deve ser organizado de forma modular e desacoplada, seguindo princípios de arquitetura que promovam separação clara de responsabilidades, baixo acoplamento entre componentes e alta coesão dentro de cada módulo, facilitando manutenção, testes e evolução independente de diferentes partes do sistema. A arquitetura deve ser organizada em camadas bem definidas, com a camada de Controllers sendo responsável exclusivamente por receber requisições HTTP, validar entradas básicas, delegar processamento para camadas inferiores e formatar respostas, sem conter lógica de negócio; a camada de Services contendo toda a lógica de negócio, orquestração de operações, validações de regras de domínio e coordenação entre diferentes repositórios; e a camada de Repository encapsulando todo acesso a dados, queries de banco de dados e mapeamento entre entidades de domínio e estruturas de persistência, garantindo que mudanças em uma camada tenham impacto mínimo nas outras. A injeção de dependências deve ser utilizada extensivamente através de frameworks apropriados para cada stack tecnológico, permitindo que componentes recebam suas dependências através de construtores ou propriedades ao invés de criá-las internamente, facilitando substituição de implementações, criação de mocks para testes, e compreensão clara das dependências de cada componente através da análise de seus construtores. Interfaces devem ser definidas para todas as abstrações importantes, especialmente aquelas que representam pontos de integração com sistemas externos, acesso a dados, ou funcionalidades que possam ter múltiplas implementações, permitindo que o código dependa de abstrações ao invés de implementações concretas, facilitando testes através de mock implementations, permitindo substituição de tecnologias subjacentes sem alterar código de alto nível, e tornando explícitos os contratos entre diferentes partes do sistema. A modularidade adequada permite que diferentes desenvolvedores trabalhem em diferentes partes do sistema com mínimo conflito, facilita reutilização de componentes em diferentes contextos, torna testes mais fáceis ao permitir testar unidades pequenas isoladamente, reduz complexidade cognitiva ao permitir que desenvolvedores foquem em uma parte do sistema por vez, e facilita refatorações futuras ao limitar o escopo de impacto de mudanças. Este requisito é classificado como should-have, sendo fundamental para manutenibilidade de longo prazo do código, permitindo que o sistema evolua sem acumular débito técnico excessivo, facilitando onboarding de novos desenvolvedores que podem compreender o sistema uma camada ou módulo por vez, e demonstrando práticas maduras de engenharia de software que resultam em código mais limpo, testável e sustentável.
+## Descricao
+
+Codigo deve ser organizado em camadas desacopladas (Controller, Service, Repository) com injecao de dependencias. Separacao de responsabilidades permite manutencao e testes independentes.
+
+## Metricas
+
+- Camadas: Controllers sem logica de negocio, Services com regras, Repository com acesso a dados
+- Dependencias: injetadas via construtor, nao criadas internamente
+- Interfaces: definidas para abstracoes e pontos de integracao
+
+## Criterios de Aceitacao
+
+1. Controllers delegam processamento para Services
+2. Services coordenam Repositories sem acesso direto a banco
+3. Componentes testaveis isoladamente com mocks

@@ -1,10 +1,26 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-086
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
 # RNF-086: OpenAPI Spec
 
-A API deve ser documentada via OpenAPI versão 3.x garantindo que especificação formal e machine-readable descreve todos os endpoints, parâmetros, schemas de dados, e respostas possíveis, onde padrão OpenAPI é amplamente suportado por ferramentas de desenvolvimento permitindo geração automática de documentação, clientes, e testes. A implementação deve manter arquivo openapi-geoapi.yaml atualizado refletindo estado atual da API incluindo todos os endpoints disponíveis com descrições detalhadas de propósito, parâmetros aceitos tanto em path quanto query e body, schemas de requisição e resposta usando JSON Schema, códigos de status HTTP retornados com descrição de quando cada um ocorre, e exemplos de payloads facilitando compreensão rápida de uso de cada endpoint. O sistema deve disponibilizar Swagger UI permitindo exploração interativa da API através de interface web onde desenvolvedores podem ler documentação, visualizar schemas, e executar requisições de teste diretamente do navegador, onde autenticação pode ser configurada uma vez e utilizada em todas as requisições subsequentes facilitando experimentação e debugging. A solução deve permitir geração de SDKs a partir da especificação OpenAPI onde ferramentas como OpenAPI Generator podem produzir clientes tipados em múltiplas linguagens incluindo TypeScript, Python, Java, e C#, permitindo que integradores consumam API com autocompletion e type checking em suas IDEs reduzindo erros de integração. A implementação deve incluir validação automática de que código implementado está em conformidade com especificação OpenAPI, onde testes de contrato verificam que respostas reais da API correspondem a schemas definidos detectando divergências entre documentação e implementação antes de deploy em produção. Os critérios de aceitação incluem validação de que arquivo openapi-geoapi.yaml é válido segundo especificação OpenAPI 3.x podendo ser importado em ferramentas padrão, onde todos os endpoints produção estão documentados com schemas completos e precisos, e Swagger UI está acessível em endpoint público permitindo exploração da API sem necessidade de instalação de ferramentas locais. A prioridade é classificada como must-have considerando que documentação formal da API é fundamental para adoção por integradores externos e reduz drasticamente curva de aprendizado e esforço de suporte para desenvolvedores consumindo API.
+## Descricao
+
+Documentacao via OpenAPI 3.x em arquivo openapi-geoapi.yaml. Swagger UI para exploracao interativa. Geracao de SDKs em TypeScript, Python, Java, C#. Testes de contrato validam conformidade.
+
+## Metricas
+
+- Spec: OpenAPI 3.x valido
+- Swagger UI: acessivel em endpoint publico
+- SDKs: geracao via OpenAPI Generator
+
+## Criterios de Aceitacao
+
+1. Todos endpoints documentados com schemas completos
+2. Testes de contrato verificam conformidade antes de deploy
+3. Desenvolvedores podem testar API diretamente no navegador

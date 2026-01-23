@@ -1,10 +1,26 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-002
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
 # RNF-002: Tempo de Resposta - Endpoints de Escrita
 
-Os endpoints de criação e edição de dados que utilizam os métodos HTTP POST e PATCH devem responder em até 1 segundo no percentil 95, estabelecendo um limite aceitável de latência para operações de escrita que naturalmente demandam maior tempo de processamento devido à necessidade de validação de dados, persistência no banco de dados e potenciais atualizações de índices e relacionamentos. Este requisito aplica-se ao módulo GEOAPI, onde os principais endpoints de escrita incluem POST /api/units para criação de novas unidades habitacionais e PATCH /api/units/{id} para atualização parcial de unidades existentes, sendo que ambos devem manter o tempo de resposta no percentil 95 abaixo ou igual a 1000 milissegundos. A métrica de aceitação estabelece que o percentil 95 do tempo de resposta deve ser menor ou igual a 1 segundo, permitindo que 95% de todas as operações de escrita sejam concluídas dentro deste limite temporal, mesmo quando o sistema está processando múltiplas requisições concorrentes. Este requisito é classificado como Must-have porque operações de escrita são fundamentais para o funcionamento do sistema, permitindo aos usuários cadastrar novas informações e atualizar registros existentes, onde tempos de resposta superiores a 1 segundo podem impactar significativamente a experiência do usuário e a eficiência operacional. A implementação deve considerar validações eficientes através de bibliotecas como FluentValidation, transações otimizadas no banco de dados, processamento assíncrono de operações não-críticas que podem ser executadas após o retorno da resposta, e uso adequado de índices para acelerar operações de escrita e verificações de integridade referencial.
+## Descricao
+
+Endpoints de criacao e edicao (POST/PATCH) do GEOAPI devem responder em tempo aceitavel considerando validacoes e persistencia. Aplica-se a endpoints como POST /api/units e PATCH /api/units/{id}.
+
+## Metricas
+
+- Tempo de resposta: <= 1000ms no percentil 95
+- Condicoes: carga normal de operacao
+- Ferramenta de medicao: k6 ou Artillery
+
+## Criterios de Aceitacao
+
+1. 95% das requisicoes POST/PATCH completam em ate 1 segundo
+2. Testes de carga validam metrica sob cenario realista
+3. Monitoramento em producao confirma aderencia ao limite

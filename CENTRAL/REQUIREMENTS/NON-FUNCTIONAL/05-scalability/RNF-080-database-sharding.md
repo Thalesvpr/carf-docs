@@ -1,10 +1,26 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-080
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
 # RNF-080: Database Sharding (Futuro)
 
-A arquitetura deve ser preparada para sharding de banco de dados garantindo que se volumes de dados crescerem além da capacidade de um único servidor PostgreSQL a transição para arquitetura distribuída seja viável sem reescrita completa da aplicação, onde planejamento antecipado de estratégia de particionamento reduz complexidade de migração futura. A implementação deve identificar sharding key apropriada sendo tenant_id o candidato natural garantindo que dados de cada tenant residem em shard específico permitindo isolamento físico completo e scaling independente por cliente, onde queries naturalmente filtram por tenant facilitando roteamento para shard correto sem overhead significativo. O sistema deve ser desenvolvido garantindo que queries não usam cross-shard joins evitando dependências entre dados em diferentes shards que tornariam sharding impraticável, onde cada query deve ser executável dentro do contexto de um único tenant e portanto um único shard. A solução deve incluir documentação de estratégia de sharding detalhando como dados seriam particionados, qual middleware seria utilizado para roteamento de queries, e como migrações de schema seriam coordenadas entre múltiplos shards, permitindo implementação futura quando necessário sem descoberta de incompatibilidades arquiteturais. Os critérios de aceitação incluem validação através de análise de queries existentes garantindo que nenhuma operação crítica requer joins entre dados de diferentes tenants, onde padrões de acesso são documentados e confirmados como compatíveis com modelo de sharding proposto. A prioridade é classificada como could-have considerando que sharding é otimização prematura para volumes de dados esperados inicialmente, mas preparação arquitetural agora evita bloqueios técnicos futuros caso sistema escale além das expectativas, onde custo de preparação é relativamente baixo comparado a complexidade de refatoração completa posteriormente.
+## Descricao
+
+Arquitetura preparada para sharding futuro. Sharding key: tenant_id para isolamento por cliente. Queries evitam cross-shard joins. Documentacao de estrategia para migracao quando necessario.
+
+## Metricas
+
+- Sharding key: tenant_id
+- Cross-shard joins: zero
+- Queries: executaveis dentro de um unico tenant
+
+## Criterios de Aceitacao
+
+1. Analise confirma ausencia de joins entre tenants diferentes
+2. Estrategia de sharding documentada
+3. Padroes de acesso compativeis com modelo proposto

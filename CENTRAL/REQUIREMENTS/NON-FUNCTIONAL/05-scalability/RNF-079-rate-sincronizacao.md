@@ -1,10 +1,26 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-079
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
-# RNF-079: Rate de Sincronização
+# RNF-079: Rate de Sincronizacao
 
-O endpoint de sincronização deve suportar 100 dispositivos simultâneos garantindo que equipes de campo possam sincronizar dados coletados sem esperas excessivas ou timeouts, onde a arquitetura deve ser otimizada para alto throughput de operações de sync incluindo validação de conflitos, merge de dados, e transferência de payloads potencialmente grandes. A implementação deve utilizar queue de sync jobs garantindo que requisições de sincronização são enfileiradas e processadas de forma ordenada evitando sobrecarga do servidor durante eventos de sincronização massiva como retorno de equipes ao escritório, onde cada job de sync é processado independentemente permitindo paralelização e recuperação de falhas individuais. O sistema deve implementar throttling por dispositivo garantindo que um único dispositivo não pode monopolizar recursos através de requisições excessivas, onde rate limiting específico para operações de sync previne abuso e garante distribuição justa de capacidade entre todos os dispositivos ativos. A solução deve implementar compressão de payloads garantindo que dados transferidos durante sincronização utilizam gzip ou similar reduzindo consumo de banda e tempo de transferência especialmente relevante para conexões móveis com largura de banda limitada, onde geometrias, fotos thumbnail, e metadados são comprimidos antes de transmissão. Os critérios de aceitação incluem testes de carga simulando 100 dispositivos sincronizando simultaneamente validando que todos completam operação dentro de tempo aceitável, onde métricas sobre tempo médio de sync, tamanho de payload, e taxa de conflitos são coletadas. A métrica específica estabelece que 100 syncs concorrentes devem ser processados com sucesso mantendo tempos de resposta razoáveis e error rate abaixo de 5 por cento. A prioridade é classificada como should-have considerando que sincronizações simultâneas são cenário comum em projetos com múltiplas equipes de campo mas sistema pode ser usado com escalonamento temporal de syncs se necessário.
+## Descricao
+
+Endpoint de sync suporta 100 dispositivos simultaneos. Queue de sync jobs para processamento ordenado. Throttling por dispositivo previne monopolizacao. Compressao gzip de payloads.
+
+## Metricas
+
+- Dispositivos: 100 syncs concorrentes
+- Error rate: < 5%
+- Compressao: gzip em geometrias, thumbnails, metadados
+
+## Criterios de Aceitacao
+
+1. Testes de carga com 100 dispositivos completam em tempo aceitavel
+2. Throttling garante distribuicao justa de capacidade
+3. Queue processa jobs independentemente com recuperacao de falhas

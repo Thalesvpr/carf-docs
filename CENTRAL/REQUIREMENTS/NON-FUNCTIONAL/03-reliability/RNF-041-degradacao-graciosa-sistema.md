@@ -1,10 +1,26 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-041
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
 # RNF-041: Graceful Degradation
 
-O sistema deve implementar estratégias de degradação graciosa que permitam manter funcionalidades críticas operacionais mesmo em situações de sobrecarga ou falha parcial de componentes, priorizando operações essenciais e desabilitando progressivamente funcionalidades não-críticas para preservar a experiência do usuário nas operações mais importantes. Quando o sistema detectar condições de stress como alta utilização de CPU acima de 80%, uso de memória acima de 90%, latência de banco de dados excedendo thresholds normais ou filas de processamento com backlog excessivo, deve automaticamente reduzir a carga através de medidas como desabilitar temporariamente funcionalidades secundárias incluindo exportações de relatórios, geração de estatísticas agregadas, sincronização de dados não-urgentes e processamento de jobs de background não-críticos, mantendo sempre disponíveis as operações essenciais de consulta de unidades habitacionais, visualização de mapas, autenticação de usuários e cadastro básico de dados. As mensagens claras ao usuário são fundamentais durante períodos de degradação, onde ao invés de simplesmente retornar erros genéricos, o sistema deve apresentar notificações explicativas como "O sistema está temporariamente sob alta demanda. Exportações de relatórios estão desabilitadas no momento. Tente novamente em alguns minutos." ou "Algumas funcionalidades estão temporariamente indisponíveis para garantir melhor performance nas operações principais", permitindo que usuários entendam a situação e ajustem suas expectativas sem frustração desnecessária. O mecanismo de retry automático quando recuperar deve monitorar continuamente as condições do sistema, e uma vez que métricas de CPU, memória e latência retornem a níveis normais por um período de estabilização de pelo menos 5 minutos, deve progressivamente reabilitar as funcionalidades que foram desabilitadas, começando pelas menos intensivas e gradualmente restaurando serviços mais pesados, com logging detalhado de todas as transições entre estados de operação normal e degradada para análise post-mortem. Os critérios de aceitação incluem a implementação de health checks que detectam condições de sobrecarga baseados em múltiplas métricas (CPU, memória, latência de DB, tamanho de filas), a desabilitação automática de funcionalidades não-críticas quando thresholds de stress são atingidos, a apresentação de mensagens informativas aos usuários explicando a situação ao invés de erros genéricos, a reabilitação automática de funcionalidades quando condições normais são restauradas por período sustentado, e a existência de matriz documentada definindo prioridade de funcionalidades e ordem de desabilitação em cenários de degradação. Este requisito é classificado como should-have por melhorar significativamente a resiliência e experiência do usuário durante períodos de stress do sistema, evitando falhas completas através de degradação controlada, embora requeira complexidade adicional de implementação e testes para garantir que a lógica de degradação não introduza bugs ou comportamentos inesperados que poderiam piorar a situação durante incidentes.
+## Descricao
+
+Sistema deve manter funcionalidades criticas operacionais durante sobrecarga ou falha parcial. Desabilita progressivamente features nao-criticas preservando operacoes essenciais.
+
+## Metricas
+
+- Thresholds: CPU > 80%, memoria > 90%, latencia acima do normal
+- Estabilizacao: 5 minutos em niveis normais para reabilitar
+- Prioridade: matriz documentada de features criticas vs secundarias
+
+## Criterios de Aceitacao
+
+1. Desabilitacao automatica de exportacoes/relatorios sob stress
+2. Mensagens claras ao usuario explicando degradacao temporaria
+3. Reabilitacao progressiva quando condicoes normalizarem

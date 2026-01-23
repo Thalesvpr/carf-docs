@@ -1,10 +1,26 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-038
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
 # RNF-038: Backup de Dados
 
-O sistema deve implementar uma estratégia abrangente de backup automático de dados com múltiplas camadas de proteção, incluindo backups incrementais diários, backups completos semanais e retenção de 30 dias para garantir a recuperação de dados em caso de falhas catastróficas, corrupção de dados ou exclusão acidental. Os backups incrementais diários devem ser executados automaticamente durante períodos de baixa atividade do sistema, capturando apenas as mudanças desde o último backup para otimizar o uso de storage e minimizar o impacto na performance, utilizando ferramentas nativas do PostgreSQL como pg_basebackup ou soluções especializadas como WAL-G para continuous archiving. Os backups completos semanais devem ser agendados para executar aos domingos à meia-noite, criando snapshots completos do banco de dados PostgreSQL incluindo todas as tabelas, índices espaciais PostGIS e configurações, bem como backups do object storage contendo fotos e documentos uploaded pelos usuários. A estratégia de retenção deve manter backups diários dos últimos 7 dias, backups semanais dos últimos 30 dias e, opcionalmente, backups mensais por períodos mais longos conforme políticas de compliance e regulatórias. Um aspecto crítico é o armazenamento em região diferente da produção, utilizando cross-region replication em ambientes cloud (AWS S3, Google Cloud Storage ou Azure Blob Storage) para proteger contra falhas regionais de datacenter, garantindo que os backups permaneçam acessíveis mesmo em cenários de disaster recovery. Os testes de restore mensais são obrigatórios e devem ser executados em ambiente isolado, validando a integridade dos backups, medindo o tempo necessário para restauração completa e verificando que dados e geometrias espaciais são recuperados corretamente sem corrupção. Os critérios de aceitação incluem a execução automática de backup incremental diário com sucesso confirmado via monitoramento, a execução de backup full semanal com tamanho e checksums registrados, a realização de teste de restore mensal documentado com tempo de recuperação medido, o armazenamento de todos os backups em região geográfica diferente da produção com latência de replicação menor que 1 hora, e a implementação de alertas automáticos para falhas de backup via sistema de monitoramento. Este requisito é must-have por ser fundamental para a continuidade dos negócios e proteção contra perda de dados críticos de regularização fundiária, onde a perda de informações cadastrais de unidades habitacionais, titulares e comunidades poderia ter impactos legais e sociais significativos, além de ser uma exigência regulatória para sistemas que gerenciam dados públicos sensíveis.
+## Descricao
+
+Sistema deve implementar backup automatico com multiplas camadas de protecao. Inclui banco PostgreSQL e object storage com fotos e documentos.
+
+## Metricas
+
+- Incremental: diario em horario de baixa atividade
+- Full: semanal aos domingos
+- Retencao: 30 dias (7 diarios + 4 semanais)
+
+## Criterios de Aceitacao
+
+1. Backups armazenados em regiao diferente da producao
+2. Teste de restore mensal documentado com tempo medido
+3. Alertas automaticos para falhas de backup

@@ -1,10 +1,26 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-078
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
 # RNF-078: Job Queue
 
-Processos assíncronos devem usar queue escalável garantindo que operações de longa duração ou processamento em background não bloqueiem threads de requisição HTTP e possam ser distribuídas entre múltiplos workers, onde a implementação deve utilizar BullMQ ou solução similar baseada em Redis permitindo persistência de jobs, retry automático, e scheduling de tarefas futuras. A solução deve permitir que workers sejam escalados horizontalmente garantindo que conforme volume de jobs na fila aumenta novos processos workers podem ser iniciados dinamicamente para processar a carga, onde cada worker pode processar jobs independentemente sem coordenação complexa ou estado compartilhado. O sistema deve implementar dead letter queue para falhas garantindo que jobs que falharam após múltiplas tentativas são movidos para fila separada permitindo análise posterior e reprocessamento manual se necessário, evitando perda de trabalho e permitindo debugging de problemas sistemáticos. A implementação deve suportar priorização de jobs permitindo que tarefas críticas sejam processadas antes de operações de baixa prioridade, onde configuração de múltiplas filas com diferentes níveis de prioridade garante que exports urgentes ou sincronizações importantes não sejam bloqueados por processamento batch de baixa prioridade. Os critérios de aceitação incluem validação de que jobs são persistidos mesmo em caso de restart de workers garantindo que nenhum trabalho é perdido, onde retry com exponential backoff é aplicado automaticamente para falhas transientes, e métricas sobre tempo de processamento, taxa de sucesso, e profundidade de fila são monitoradas. A prioridade é classificada como should-have considerando que processamento assíncrono é essencial para operações como exportações, importações em batch, e geração de relatórios sem bloquear interface do usuário.
+## Descricao
+
+BullMQ ou similar baseado em Redis para processos assincronos. Workers escalaveis horizontalmente. Dead letter queue para falhas. Priorizacao de jobs criticos.
+
+## Metricas
+
+- Persistencia: jobs sobrevivem restart de workers
+- Retry: exponential backoff para falhas transientes
+- Priorizacao: multiplas filas por nivel de prioridade
+
+## Criterios de Aceitacao
+
+1. Jobs persistidos, nenhum trabalho perdido
+2. Dead letter queue para jobs que falharam apos multiplas tentativas
+3. Metricas de tempo de processamento, sucesso e profundidade de fila

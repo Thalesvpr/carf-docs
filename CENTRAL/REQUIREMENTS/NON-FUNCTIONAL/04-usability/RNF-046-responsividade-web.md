@@ -1,10 +1,26 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-046
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
 # RNF-046: Responsividade - Web
 
-A aplicação GEOWEB deve implementar design responsivo que se adapta perfeitamente a diferentes tamanhos de tela, focando principalmente em desktop com resoluções a partir de 1280px e tablets a partir de 768px, garantindo que todas as funcionalidades sejam acessíveis e usáveis em múltiplos dispositivos sem necessidade de zoom horizontal ou scroll desnecessário. O layout deve adaptar-se dinamicamente a breakpoints padrão incluindo desktop large com 1920px de largura oferecendo experiência otimizada para monitores widescreen com máximo aproveitamento de espaço horizontal para painéis laterais, mapas e listagens lado-a-lado, desktop medium com 1280px como resolução mínima suportada onde o layout ainda mantém estrutura multi-coluna mas com menos espaço para componentes secundários, e tablet com 768px mínimo onde o layout deve reorganizar-se para estrutura de coluna única ou duas colunas estreitas, com componentes empilhados verticalmente e navegação possivelmente colapsada em menu hamburguer. As interfaces devem ser touch-friendly em tablets, reconhecendo que dispositivos com telas de 768px ou mais podem ser touchscreens, implementando elementos interativos com área clicável mínima de 44x44 pixels conforme guidelines de acessibilidade, espaçamento adequado entre botões e links para prevenir cliques acidentais, gestos touch suportados em componentes de mapa (pinch to zoom, pan com arraste de dedo), e evitando dependência exclusiva de hover effects que não funcionam em touchscreens, oferecendo sempre alternativas como botões explícitos ou menus contextuais. O requisito de sem scroll horizontal é crítico para usabilidade e deve ser garantido através de media queries CSS que ajustam larguras de componentes, uso de unidades relativas (%, vw, em, rem) ao invés de pixels fixos onde apropriado, flex e grid layouts que naturalmente se adaptam ao espaço disponível, e testes em dispositivos reais ou emuladores nos breakpoints definidos para verificar que nenhum conteúdo ultrapassa a largura da viewport forçando scroll horizontal indesejado. Os componentes de mapa requerem atenção especial em design responsivo, ajustando altura do mapa baseada em viewport height disponível, reposicionando controles de zoom e layers para cantos que não obstruam conteúdo importante em telas menores, permitindo fullscreen toggle para maximizar área de visualização em tablets, e garantindo que popups e tooltips se ajustem automaticamente para não ultrapassar bordas da tela. Os critérios de aceitação incluem a verificação de que layout se adapta corretamente e sem quebras visuais em resoluções de 1920px, 1280px e 768px testado em navegadores Chrome, Firefox e Safari, que todos os elementos interativos têm tamanho mínimo de 44x44 pixels e espaçamento adequado para uso touch em tablets, que não há scroll horizontal em nenhum dos breakpoints suportados testado através de viewport responsivo em DevTools, que componentes de mapa funcionam corretamente incluindo gestos touch de pinch-to-zoom e pan em dispositivos tablet, e que formulários e tabelas complexas degradam graciosamente em telas menores reorganizando-se verticalmente ou oferecendo scroll apenas onde absolutamente necessário. Este requisito é must-have por determinar a usabilidade básica da aplicação web em diferentes dispositivos, sendo essencial especialmente considerando que trabalho de campo de regularização fundiária frequentemente utiliza tablets para coleta de dados, onde técnicos precisam acessar GEOWEB em dispositivos móveis para consultar informações, visualizar mapas e eventualmente realizar cadastros quando não for viável usar o aplicativo mobile dedicado REURBCAD.
+## Descricao
+
+GEOWEB deve implementar design responsivo para desktop (1280px+) e tablets (768px+). Todas funcionalidades acessiveis sem scroll horizontal.
+
+## Metricas
+
+- Breakpoints: 1920px (large), 1280px (medium), 768px (tablet)
+- Touch targets: minimo 44x44 pixels
+- Navegadores: Chrome, Firefox, Safari
+
+## Criterios de Aceitacao
+
+1. Layout adapta sem quebras visuais em todos breakpoints
+2. Elementos touch-friendly com espacamento adequado
+3. Mapa suporta gestos pinch-to-zoom e pan em tablets

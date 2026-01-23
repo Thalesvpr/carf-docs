@@ -1,10 +1,27 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-021
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
 # RNF-021: Rate Limiting
 
-O sistema GEOAPI deve implementar mecanismos de limitação de taxa de requisições (rate limiting) para prevenir abuso de recursos, ataques de negação de serviço (DoS) e tentativas automatizadas de invasão, através de políticas diferenciadas por tipo de endpoint e contexto de uso. A política geral deve limitar requisições a 100 requests por minuto por endereço IP para endpoints comuns de leitura e escrita, garantindo que usuários legítimos tenham acesso adequado enquanto impede que scripts automatizados sobrecarreguem o servidor. Endpoints de autenticação, incluindo login, logout e renovação de tokens, devem ter limites mais restritivos de 10 requisições por minuto por IP, prevenindo ataques de força bruta contra credenciais de usuários e protegendo o sistema Keycloak de sobrecarga. Operações de upload de arquivos, devido ao consumo intensivo de recursos de processamento e armazenamento, devem ser limitadas a 20 requisições por minuto por usuário autenticado, permitindo fluxo de trabalho normal enquanto impede uploads massivos não autorizados. Endpoints de exportação de dados, que geram relatórios e arquivos potencialmente volumosos, devem ter o limite mais restritivo de 5 requisições por minuto por usuário, considerando o alto custo computacional dessas operações. A implementação deve utilizar middleware de rate limiting baseado em Redis para armazenamento de contadores distribuídos, permitindo que a limitação funcione corretamente em ambientes com múltiplas instâncias do GEOAPI executando simultaneamente através de load balancer. Quando um cliente excede os limites estabelecidos, o sistema deve retornar código HTTP 429 (Too Many Requests) com headers informativos incluindo X-RateLimit-Limit, X-RateLimit-Remaining e Retry-After, permitindo que clientes bem comportados ajustem automaticamente suas taxas de requisição. A configuração dos limites deve ser externalizável através de variáveis de ambiente ou arquivos de configuração, permitindo ajustes sem necessidade de redeployment do código, e logs detalhados de violações devem ser gerados para análise de padrões de abuso e potenciais ajustes nas políticas. Este requisito é Must-have pois protege a disponibilidade do sistema para todos os usuários e reduz significativamente a superfície de ataque contra a infraestrutura.
+## Descricao
+
+Limitacao de taxa de requisicoes previne abuso, DoS e forca bruta. Politicas diferenciadas por tipo de endpoint. Middleware baseado em Redis para ambiente multi-instancia.
+
+## Metricas
+
+- Endpoints gerais: 100 req/min por IP
+- Autenticacao: 10 req/min por IP
+- Upload: 20 req/min por usuario
+- Exportacao: 5 req/min por usuario
+
+## Criterios de Aceitacao
+
+1. HTTP 429 com headers X-RateLimit-Limit, X-RateLimit-Remaining, Retry-After
+2. Contadores distribuidos em Redis para multiplas instancias
+3. Limites configuraveis via variaveis de ambiente

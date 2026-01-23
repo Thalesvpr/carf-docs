@@ -1,10 +1,26 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-057
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
-# RNF-057: Documentação de Código
+# RNF-057: Documentacao de Codigo
 
-O código desenvolvido em todos os módulos do sistema GEOMAP5 deve conter comentários explicativos adequados, especialmente em seções que implementam lógica complexa, algoritmos não triviais ou regras de negócio que não sejam imediatamente óbvias através da simples leitura do código. As funções e métodos complexos devem ser documentados com comentários que expliquem sua finalidade, parâmetros esperados, valores de retorno e possíveis efeitos colaterais, permitindo que outros desenvolvedores compreendam rapidamente o propósito e o comportamento do código sem necessitar realizar análise profunda da implementação. Todas as APIs públicas, interfaces expostas e componentes reutilizáveis devem utilizar padrões de documentação como TSDoc para TypeScript e JavaScript ou JSDoc para JavaScript puro, garantindo que a documentação possa ser extraída automaticamente e apresentada em formatos navegáveis, facilitando o entendimento por parte de desenvolvedores que consomem essas APIs. Cada módulo do sistema deve conter um arquivo README.md em seu diretório raiz, descrevendo a arquitetura do módulo, suas principais responsabilidades, estrutura de diretórios, convenções adotadas, instruções de configuração local, comandos comuns de desenvolvimento e exemplos de uso, servindo como ponto de entrada para novos desenvolvedores que precisam trabalhar naquele módulo específico. A documentação de código não deve substituir código limpo e autoexplicativo, mas sim complementá-lo nos casos onde a complexidade inerente do domínio ou dos algoritmos utilizados justifique explicações adicionais, garantindo que decisões de design, otimizações não óbvias e limitações conhecidas sejam registradas para referência futura. Este requisito é classificado como should-have, sendo essencial para facilitar a manutenção contínua do sistema, reduzir o tempo de onboarding de novos desenvolvedores, permitir colaboração efetiva entre equipes e garantir que o conhecimento sobre o sistema não fique concentrado em indivíduos específicos, promovendo a sustentabilidade de longo prazo do projeto.
+## Descricao
+
+Codigo deve conter documentacao adequada usando TSDoc/JSDoc para APIs publicas. Cada modulo inclui README.md com arquitetura, responsabilidades e instrucoes de uso.
+
+## Metricas
+
+- Cobertura: 100% das APIs publicas documentadas com TSDoc/JSDoc
+- README: presente em cada modulo do sistema
+- Comentarios: em logica complexa e regras de negocio nao-obvias
+
+## Criterios de Aceitacao
+
+1. Funcoes publicas documentadas com finalidade, parametros e retorno
+2. README por modulo com arquitetura, setup e exemplos de uso
+3. Documentacao extraivel automaticamente para formato navegavel

@@ -1,10 +1,26 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-083
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
 # RNF-083: Sistemas de Coordenadas
 
-O sistema deve suportar SRIDs comuns no Brasil garantindo compatibilidade com dados geoespaciais de diferentes fontes que podem utilizar sistemas de referência distintos, onde capacidade de trabalhar com múltiplas projeções cartográficas é essencial para integração com bases cartográficas oficiais e dados coletados por diferentes equipamentos GPS. A implementação deve suportar EPSG 4326 correspondente ao sistema WGS84 utilizado por GPS e serviços web de mapeamento, sendo sistema de coordenadas geográficas com latitude e longitude em graus que serve como padrão internacional para troca de dados espaciais e visualização em mapas web. O sistema deve suportar família EPSG 31982 a 31985 correspondentes ao SIRGAS 2000 UTM que é sistema de referência oficial do Brasil, onde zonas UTM 22S, 23S, 24S, e 25S cobrem território brasileiro permitindo trabalho com coordenadas planas em metros que facilitam cálculos de área e distância com precisão adequada para cadastro urbano e regularização fundiária. A solução deve implementar reprojeção automática garantindo que geometrias armazenadas em um sistema de coordenadas podem ser convertidas para outro conforme necessário, onde PostGIS ST_Transform permite conversões on-the-fly durante queries e exportações, permitindo que usuários trabalhem em sistema de sua preferência enquanto dados são armazenados internamente em formato padronizado. A implementação deve detectar automaticamente sistema de coordenadas de dados importados através de parsing de arquivos .prj de Shapefiles ou campos CRS de GeoJSON, onde validação confirma que SRID é suportado e conversão para sistema interno é aplicada transparentemente garantindo consistência de dados armazenados. Os critérios de aceitação incluem validação de que geometrias podem ser armazenadas, consultadas, e exportadas em qualquer dos SRIDs suportados mantendo precisão adequada, onde transformações entre sistemas preservam acurácia posicional dentro de tolerâncias aceitáveis para aplicação de cadastro urbano tipicamente sub-metro. A prioridade é classificada como must-have considerando que trabalho com dados geoespaciais brasileiros inevitavelmente envolve múltiplos sistemas de coordenadas e capacidade de integração é requisito fundamental para utilidade do sistema.
+## Descricao
+
+Suporte a SRIDs comuns no Brasil: EPSG 4326 (WGS84) e SIRGAS 2000 UTM (31982-31985). Reprojecao automatica via PostGIS ST_Transform. Deteccao automatica de CRS em importacoes.
+
+## Metricas
+
+- EPSG 4326: WGS84 para GPS e mapas web
+- EPSG 31982-31985: SIRGAS 2000 UTM zonas 22S-25S
+- Precisao: sub-metro em transformacoes
+
+## Criterios de Aceitacao
+
+1. Geometrias armazenadas, consultadas e exportadas em qualquer SRID suportado
+2. Deteccao automatica de CRS em .prj de Shapefiles e GeoJSON
+3. Transformacoes preservam precisao dentro de tolerancias aceitaveis

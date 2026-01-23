@@ -1,10 +1,26 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-077
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
-# RNF-077: Cache Distribuído
+# RNF-077: Cache Distribuido
 
-O cache distribuído deve escalar horizontalmente garantindo performance consistente mesmo com aumento de carga e permitindo adição de novos nós conforme necessário sem downtime ou reconfiguração massiva do sistema, onde a solução deve utilizar Redis Cluster ou Redis Sentinel permitindo alta disponibilidade e distribuição de carga entre múltiplas instâncias. A implementação deve configurar replicação para read scaling garantindo que operações de leitura possam ser distribuídas entre réplicas reduzindo carga no nó primário e aumentando throughput total do sistema, onde réplicas síncronas ou assíncronas mantêm cópias atualizadas dos dados cached permitindo failover automático em caso de falha do nó principal. O sistema deve implementar eviction policy baseada em LRU (Least Recently Used) garantindo que quando o cache atinge limites de memória os dados menos recentemente utilizados são removidos automaticamente, priorizando permanência de informações frequentemente acessadas e otimizando hit rate geral do cache. A configuração deve incluir particionamento consistente de dados através de hash slots permitindo distribuição uniforme de chaves entre nós e minimizando necessidade de remapeamento quando a topologia do cluster muda. Os critérios de aceitação incluem validação de que o cluster Redis opera de forma transparente para a aplicação, onde adição ou remoção de nós não causa interrupção de serviço e rebalanceamento de dados ocorre automaticamente, enquanto métricas de hit rate, latência de acesso, e utilização de memória são monitoradas continuamente. A prioridade é classificada como should-have considerando que cache distribuído é essencial para alta performance em ambientes multi-instância mas implementação inicial pode utilizar Redis standalone com migração posterior para cluster conforme necessidade de escala.
+## Descricao
+
+Redis Cluster ou Sentinel para alta disponibilidade. Replicacao para read scaling. Eviction policy LRU remove dados menos usados. Hash slots para distribuicao uniforme.
+
+## Metricas
+
+- Replicacao: read replicas para distribuir leituras
+- Eviction: LRU quando memoria atinge limite
+- Particionamento: hash slots consistentes
+
+## Criterios de Aceitacao
+
+1. Adicao/remocao de nos sem interrupcao de servico
+2. Failover automatico em caso de falha do primario
+3. Metricas de hit rate, latencia e memoria monitoradas

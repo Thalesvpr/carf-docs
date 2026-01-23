@@ -1,10 +1,26 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-023
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
 # RNF-023: Content Security Policy
 
-O módulo GEOWEB deve implementar Content Security Policy (CSP) através de headers HTTP apropriados para prevenir ataques de Cross-Site Scripting (XSS), clickjacking e outras formas de injeção de código malicioso, estabelecendo uma camada adicional de defesa além da sanitização de inputs. O header Content-Security-Policy deve ser configurado com diretivas restritivas que especificam exatamente quais origens são permitidas para cada tipo de recurso, incluindo scripts JavaScript onde apenas arquivos servidos do mesmo domínio ou CDNs explicitamente autorizados (como unpkg.com para bibliotecas de mapas) podem ser executados. Scripts inline, que são frequentemente vetores de ataques XSS, devem ser bloqueados através da omissão de 'unsafe-inline' na diretiva script-src, forçando que todo código JavaScript seja carregado de arquivos externos verificáveis, ou quando absolutamente necessário, utilizando nonces criptográficos gerados dinamicamente para scripts específicos. Estilos CSS devem seguir política similar, permitindo apenas folhas de estilo do mesmo domínio ou CDNs confiáveis, embora 'unsafe-inline' possa ser permitido para estilos com menor risco de segurança. Recursos de imagens devem permitir o próprio domínio, serviços de armazenamento de objetos (S3, MinIO) e data URIs para imagens inline pequenas, enquanto fontes podem incluir o domínio e serviços como Google Fonts. A diretiva connect-src deve restringir chamadas XMLHttpRequest e fetch apenas para a API GEOAPI e serviços de mapas autorizados, impedindo que scripts maliciosos injetados possam comunicar com servidores de comando e controle. A diretiva frame-ancestors deve ser configurada como 'none' ou lista específica de domínios autorizados para prevenir clickjacking através de iframes. A implementação deve incluir modo de relatório (Content-Security-Policy-Report-Only) durante desenvolvimento e testes, permitindo identificar violações sem quebrar funcionalidades, com endpoint de relatório configurado para coletar violações e facilitar ajustes na política. Este requisito é classificado como Should-have pois, embora seja uma defesa importante em profundidade contra XSS, outras medidas como validação de input já fornecem proteção primária, tornando CSP uma camada adicional recomendada mas não absolutamente crítica para o lançamento inicial.
+## Descricao
+
+GEOWEB deve implementar CSP via headers HTTP para prevenir XSS, clickjacking e injecao de codigo. Camada adicional de defesa alem da sanitizacao de inputs.
+
+## Metricas
+
+- Header: Content-Security-Policy configurado
+- Scripts: apenas do proprio dominio e CDNs autorizados
+- Frames: frame-ancestors restritivo contra clickjacking
+
+## Criterios de Aceitacao
+
+1. Scripts inline bloqueados (sem unsafe-inline) ou via nonces
+2. connect-src restrito a GEOAPI e servicos de mapas
+3. frame-ancestors configurado como 'none' ou lista especifica

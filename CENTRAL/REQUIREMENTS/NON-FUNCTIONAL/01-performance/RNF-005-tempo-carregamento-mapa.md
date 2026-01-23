@@ -1,10 +1,26 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-005
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
 # RNF-005: Tempo de Carregamento - Mapa
 
-A renderização inicial do componente de mapa no módulo GEOWEB deve ser concluída em até 2 segundos, medindo o tempo desde o início do carregamento até o momento em que o mapa se torna completamente interativo para o usuário, incluindo a capacidade de realizar operações como zoom, pan e cliques. A métrica de aceitação estabelece que o tempo até o mapa estar interativo deve ser menor ou igual a 2 segundos, proporcionando uma experiência responsiva onde os usuários podem começar a navegar e interagir com o mapa rapidamente após acessar a interface. Os critérios de aceitação incluem a implementação de carregamento progressivo de tiles, onde as camadas do mapa são carregadas de forma incremental e assíncrona, permitindo que o usuário veja partes do mapa conforme são carregadas ao invés de aguardar o carregamento completo, a presença de um indicador de loading visível que comunica claramente ao usuário que o mapa está sendo carregado e evita a percepção de travamento ou não-responsividade, e a habilitação obrigatória de cache de tiles para armazenar localmente as imagens de mapa já carregadas, reduzindo significativamente o tempo de carregamento em visitas subsequentes e durante navegação por áreas já visualizadas. Este requisito é classificado como Should-have porque embora seja importante para a experiência do usuário em aplicações geoespaciais onde o mapa é o componente central da interface, tempos de carregamento ligeiramente superiores ainda permitem o uso funcional do sistema. A implementação deve considerar o uso de bibliotecas de mapa otimizadas como MapLibre GL JS que suportam renderização acelerada por hardware através de WebGL, configuração adequada de fontes de tiles com servidores rápidos e geograficamente distribuídos, implementação de estratégias de pré-carregamento de tiles para áreas adjacentes à visualização atual, otimização do tamanho e formato dos tiles utilizados, e potencialmente implementar skeleton screens ou placeholders visuais que melhoram a percepção de velocidade durante o carregamento inicial do mapa.
+## Descricao
+
+A renderizacao inicial do componente de mapa no GEOWEB deve ser rapida para permitir interacao imediata. Tempo medido ate o mapa estar completamente interativo (zoom, pan, cliques).
+
+## Metricas
+
+- Tempo ate interativo: <= 2 segundos
+- Condicoes: primeira visita com cache limpo
+- Ferramenta de medicao: Performance API do browser
+
+## Criterios de Aceitacao
+
+1. Mapa interativo em ate 2 segundos apos inicio do carregamento
+2. Carregamento progressivo de tiles implementado
+3. Cache de tiles habilitado para visitas subsequentes

@@ -1,10 +1,26 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-059
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
-# RNF-059: Versionamento Semântico
+# RNF-059: Versionamento Semantico
 
-Todos os releases de software dos módulos GEOAPI, GEOWEB, REURBCAD e GEOGIS devem seguir o padrão de versionamento semântico (Semantic Versioning ou SemVer), utilizando o formato x.y.z onde cada componente do número de versão possui significado específico e comunica claramente o tipo de mudanças introduzidas em cada release. O componente MAJOR (x) deve ser incrementado quando são introduzidas mudanças que quebram a compatibilidade com versões anteriores (breaking changes), como alterações em APIs públicas que removem ou modificam endpoints existentes, mudanças em contratos de dados que invalidam integrações existentes, ou alterações arquiteturais que requerem ações específicas dos consumidores da API para migração, sinalizando claramente que os usuários precisarão realizar ajustes em seus sistemas para atualizar para a nova versão. O componente MINOR (y) deve ser incrementado quando novas funcionalidades são adicionadas de forma compatível com versões anteriores, incluindo novos endpoints de API, novos recursos na interface do usuário, melhorias de performance que não alteram comportamentos externos ou qualquer adição que expanda as capacidades do sistema sem quebrar funcionalidades existentes, permitindo que os usuários atualizem com confiança sabendo que nada deixará de funcionar. O componente PATCH (z) deve ser incrementado para correções de bugs, ajustes de segurança e pequenas melhorias que não adicionam funcionalidades novas nem quebram compatibilidade, representando atualizações de baixo risco que devem ser aplicadas o mais rápido possível para corrigir problemas identificados. Um arquivo CHANGELOG deve ser mantido e atualizado constantemente, documentando todas as mudanças significativas incluídas em cada versão, organizadas por tipo (Added, Changed, Deprecated, Removed, Fixed, Security), fornecendo contexto completo para que usuários e desenvolvedores possam entender exatamente o que mudou entre versões e avaliar o impacto das atualizações em seus cenários específicos de uso. Este requisito é classificado como should-have, sendo fortemente recomendado para estabelecer comunicação clara com os consumidores das APIs e aplicações, permitir que equipes downstream planejem adequadamente suas atualizações, facilitar troubleshooting ao correlacionar problemas com versões específicas, e demonstrar maturidade e profissionalismo no gerenciamento do ciclo de vida do software, além de ser uma prática amplamente adotada na indústria que facilita integração com ferramentas de gerenciamento de dependências e automação de deploys.
+## Descricao
+
+Releases seguem SemVer (x.y.z): MAJOR para breaking changes, MINOR para novas funcionalidades compativeis, PATCH para correcoes. CHANGELOG documentado por versao.
+
+## Metricas
+
+- MAJOR (x): breaking changes
+- MINOR (y): novas funcionalidades compativeis
+- PATCH (z): correcoes de bugs e seguranca
+
+## Criterios de Aceitacao
+
+1. Todas as releases seguem formato x.y.z
+2. CHANGELOG atualizado com Added, Changed, Deprecated, Removed, Fixed, Security
+3. Consumidores de API podem planejar atualizacoes baseado em versao

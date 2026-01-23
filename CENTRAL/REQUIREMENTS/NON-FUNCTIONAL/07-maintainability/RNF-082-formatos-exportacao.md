@@ -1,10 +1,27 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-082
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
-# RNF-082: Formatos de Exportação
+# RNF-082: Formatos de Exportacao
 
-O sistema deve exportar dados em múltiplos formatos garantindo que informações coletadas possam ser utilizadas em ferramentas externas, compartilhadas com stakeholders, e integradas em sistemas legados ou especializados, onde flexibilidade de formatos de saída maximiza utilidade dos dados e atende diferentes perfis de usuários técnicos e não-técnicos. A implementação deve gerar Shapefile permitindo que dados exportados sejam abertos em softwares GIS profissionais como QGIS e ArcGIS, incluindo geração de todos os componentes necessários com geometrias, atributos, índice espacial, e definição de projeção cartográfica, garantindo compatibilidade total com ferramentas de análise espacial avançada. O sistema deve exportar GeoJSON facilitando consumo por aplicações web modernas e APIs, onde formato JSON estruturado permite parsing direto em JavaScript e integração com bibliotecas de mapeamento web, sendo ideal para desenvolvedores que precisam integrar dados do sistema em aplicações customizadas. A solução deve gerar KML e KMZ permitindo visualização em Google Earth e Google Maps, onde arquivos KML incluem não apenas geometrias mas também estilização, descrições, e imagens associadas, sendo formato acessível para usuários finais sem conhecimento técnico de GIS que desejam visualizar dados em ferramentas populares. A implementação deve exportar CSV para uso em planilhas e análises estatísticas, onde dados tabulares incluem atributos alfanuméricos e coordenadas permitindo manipulação em Excel ou ferramentas de BI, sendo formato universal para usuários não-técnicos e processos de auditoria. O sistema deve gerar Excel nativo em formato .xlsx permitindo planilhas formatadas com múltiplas abas, estilos, e fórmulas, onde exportações podem incluir relatórios estruturados com tabelas dinâmicas e gráficos facilitando apresentação de dados para gestores e stakeholders. A solução deve gerar PDF para relatórios formais incluindo mapas renderizados, tabelas de dados, e informações contextuais, onde documentos auto-contidos podem ser impressos ou compartilhados sem necessidade de software especializado, sendo ideal para documentação oficial e processos legais. Os critérios de aceitação incluem validação de que cada formato exportado é válido e pode ser importado em ferramentas padrão de mercado, onde exportações de grandes volumes são processadas em background com notificação ao usuário quando concluídas, e arquivos gerados incluem metadados sobre origem, data de exportação, e filtros aplicados. A prioridade é classificada como must-have considerando que exportação versátil de dados é requisito fundamental para integração com workflows externos e atendimento a diferentes necessidades de usuários e stakeholders.
+## Descricao
+
+Exportacao em multiplos formatos: Shapefile para GIS profissional, GeoJSON para web, KML/KMZ para Google Earth, CSV para planilhas, Excel formatado, PDF para relatorios formais.
+
+## Metricas
+
+- Shapefile: .shp, .shx, .dbf, .prj completos
+- GeoJSON: JSON estruturado para web
+- KML/KMZ: estilizacao e descricoes
+- CSV/Excel/PDF: dados tabulares e relatorios
+
+## Criterios de Aceitacao
+
+1. Cada formato valido e importavel em ferramentas padrao
+2. Grandes volumes processados em background com notificacao
+3. Metadados incluem origem, data e filtros aplicados

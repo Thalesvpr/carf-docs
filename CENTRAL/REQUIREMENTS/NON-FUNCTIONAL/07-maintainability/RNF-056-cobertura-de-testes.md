@@ -1,10 +1,26 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-056
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
 # RNF-056: Cobertura de Testes
 
-O código desenvolvido para os módulos GEOAPI e GEOWEB deve manter uma cobertura de testes de no mínimo 80%, garantindo que a maior parte da lógica de negócio e funcionalidades esteja adequadamente testada através de diferentes níveis de testes automatizados. Esta métrica de cobertura deve ser alcançada através da implementação de testes unitários que cubram pelo menos 80% das linhas de código, incluindo a validação de métodos individuais, funções e componentes isolados, complementados por testes de integração que verifiquem os fluxos críticos do sistema onde diferentes componentes interagem entre si, como a comunicação entre camadas de serviço e repositório, validação de endpoints de API e integração com o banco de dados. Adicionalmente, devem ser implementados testes end-to-end (E2E) que cubram os caminhos principais de uso (happy paths), simulando interações completas do usuário desde a interface até a persistência dos dados, garantindo que os fluxos mais importantes funcionem corretamente do início ao fim. A cobertura de testes deve ser medida automaticamente através de ferramentas apropriadas para cada stack tecnológico, com relatórios de coverage sendo gerados durante o processo de integração contínua, permitindo que a equipe de desenvolvimento monitore continuamente a qualidade do código e identifique áreas que necessitam de testes adicionais. Este requisito é classificado como should-have, sendo altamente recomendado para garantir a manutenibilidade do código, facilitar refatorações futuras com confiança, reduzir a quantidade de bugs em produção e permitir que novos desenvolvedores façam alterações no código com menor risco de introduzir regressões, além de servir como documentação viva do comportamento esperado do sistema.
+## Descricao
+
+Cobertura minima de 80% em testes automatizados. Testes unitarios para metodos isolados, integracao para fluxos entre camadas, E2E para happy paths completos.
+
+## Metricas
+
+- Cobertura: >= 80% de linhas de codigo
+- Unitarios: metodos, funcoes e componentes isolados
+- E2E: caminhos principais de uso
+
+## Criterios de Aceitacao
+
+1. Relatorios de coverage gerados no pipeline CI
+2. Testes de integracao cobrem comunicacao entre camadas
+3. E2E valida fluxos completos desde interface ate persistencia

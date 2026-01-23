@@ -1,10 +1,26 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-049
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
 # RNF-049: Feedback Visual
 
-O sistema deve fornecer feedback visual claro e imediato para todas as operações assíncronas e ações do usuário, garantindo que usuários sempre saibam o estado atual do sistema, se suas ações foram registradas com sucesso, se algo está processando, ou se ocorreu algum erro que requer atenção. Os loading spinners devem ser exibidos para operações que demoram mais que 300ms conforme pesquisas de UX que indicam este threshold de percepção de delay, utilizando spinners inline próximos ao componente sendo carregado para contexto claro (por exemplo dentro de um botão sendo clicado, em uma seção de página sendo atualizada), com animações suaves e não-obstrusivas que indicam processamento ativo sem distrair ou bloquear interface inteira, e skeleton screens como alternativa mais sofisticada que mostram layout aproximado do conteúdo enquanto carrega, reduzindo percepção de tempo de espera. As progress bars para uploads e exports são essenciais para operações de longa duração onde usuários precisam entender quanto tempo falta, implementando indicadores de progresso determinado mostrando percentual de conclusão baseado em bytes transferidos ou registros processados, com estimativa de tempo restante quando possível calculada baseada em velocidade atual, permitindo que usuários decidam se esperam ou continuam outras tarefas, e incluindo opção de cancelar operação se apropriado, retornando sistema a estado anterior ou limpando parcialmente dados uploaded. Os toasts de sucesso e erro devem aparecer temporariamente no canto da tela após ações importantes, utilizando cores semânticas como verde para sucesso, vermelho para erro, amarelo/laranja para warnings e azul para informações neutras, com ícones correspondentes que reforçam visualmente o tipo de mensagem, texto conciso mas descritivo da ação que ocorreu (por exemplo "Unidade habitacional salva com sucesso" ou "Erro ao fazer upload da foto"), duração de exibição proporcional à importância e comprimento da mensagem (tipicamente 3-5 segundos para sucesso, mais tempo ou persistente para erros que requerem ação), e opção de dispensar manualmente através de botão X. O disable de botões durante processamento previne submissões duplicadas e cliques acidentais, desabilitando botões imediatamente ao serem clicados para operações assíncronas, mudando visualmente o estado do botão através de opacity reduzida, cursor alterado para not-allowed, e opcionalmente mostrando spinner inline substituindo ícone ou texto do botão, reabilitando automaticamente quando operação completa ou falha, e garantindo que mesmo se usuário clicar rapidamente múltiplas vezes apenas uma requisição seja enviada ao backend através de debouncing ou flags de estado. As animações de transição suavizam mudanças de estado da interface, utilizando micro-animations como fade in/out ao mostrar/ocultar elementos, slide para painéis laterais e modais, subtle bounce ou scale em botões ao clicar, e transições de cor ao hover, todas com duração típica de 200-300ms que é rápido suficiente para não atrasar interação mas visível suficiente para usuário perceber a mudança, seguindo princípios de motion design que reforçam causalidade (elemento que foi clicado é origem da animação) e consistência (mesmos tipos de ação têm mesmas animações). Os critérios de aceitação incluem a exibição de loading spinners ou skeleton screens em todas as operações que demoram mais de 300ms incluindo carregamento de páginas, consultas a API e processamento local, a implementação de progress bars com percentual e estimativa de tempo para uploads de arquivos e exportações de relatórios, a exibição de toasts de feedback para todas as ações críticas (salvar, deletar, atualizar) com cores e ícones semânticos consistentes, o disable automático de botões de submit durante processamento para prevenir duplo-submit, e a aplicação de transições CSS suaves em mudanças de estado com duração entre 200-300ms. Este requisito é must-have por ser fundamental para usabilidade básica e confiança do usuário no sistema, onde falta de feedback adequado leva a frustração, incerteza se ações foram registradas, e comportamentos problemáticos como clicar múltiplas vezes no mesmo botão tentando forçar resposta, além de ser expectativa padrão em aplicações web modernas onde usuários estão acostumados com interfaces responsivas que comunicam claramente seu estado.
+## Descricao
+
+Sistema deve fornecer feedback visual claro para todas operacoes assincronas. Usuario deve sempre saber estado atual, se acao foi registrada ou se ocorreu erro.
+
+## Metricas
+
+- Loading: spinner apos 300ms de espera
+- Toasts: 3-5 segundos para sucesso, persistente para erros
+- Transicoes: duracao de 200-300ms
+
+## Criterios de Aceitacao
+
+1. Loading spinners ou skeleton screens em operacoes > 300ms
+2. Progress bars com percentual para uploads e exportacoes
+3. Botoes desabilitados durante processamento (anti-duplo-click)

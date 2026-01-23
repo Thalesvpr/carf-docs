@@ -1,10 +1,26 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-036
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
 # RNF-036: Uptime
 
-O sistema GEOMAP5, especificamente os módulos GEOAPI e GEOWEB que constituem a infraestrutura central acessada por todos os usuários, deve manter disponibilidade de 99.5% medida mensalmente conforme acordo de nível de serviço (SLA), permitindo downtime máximo de aproximadamente 3.65 horas por mês ou 43.8 horas por ano para manutenções planejadas e incidentes não planejados combinados. O cálculo de uptime deve considerar apenas indisponibilidade completa do serviço onde requisições falham ou timeout, excluindo degradação de performance onde o sistema responde mais lentamente mas continua funcional, embora degradação severa e prolongada possa ser contabilizada como downtime parcial. Health checks devem ser implementados em todos os componentes críticos da arquitetura, incluindo endpoints HTTP do GEOAPI que verificam conectividade com banco de dados PostgreSQL, disponibilidade de cache Redis, acesso a object storage para arquivos, e status de worker processes para jobs assíncronos, retornando HTTP 200 apenas quando todos os componentes dependentes estão operacionais. Monitoramento 24/7 deve ser realizado através de sistemas de uptime monitoring como UptimeRobot, Pingdom ou Datadog Synthetics executando health checks a cada 1-5 minutos de múltiplas localizações geográficas, detectando indisponibilidade regional ou global e verificando que o sistema está acessível para usuários em diferentes partes do Brasil. Alertas automáticos devem ser configurados para notificar equipe de operações imediatamente quando downtime é detectado ou quando health checks falham consistentemente, utilizando múltiplos canais de notificação como SMS, chamadas telefônicas, PagerDuty ou Opsgenie para garantir que alguém seja alertado mesmo fora de horário comercial. O sistema de alerting deve implementar escalação automática, onde se um alerta não é reconhecido dentro de 5 minutos ele é encaminhado para níveis superiores de gestão até que resposta seja obtida, garantindo que incidentes críticos nunca sejam ignorados. Status page público deve ser mantido informando usuários sobre disponibilidade atual do sistema, incidentes em andamento e manutenções planejadas, melhorando transparência e reduzindo volume de tickets de suporte durante interrupções conhecidas. Métricas de uptime devem ser coletadas e reportadas mensalmente através de dashboards executivos mostrando porcentagem de disponibilidade alcançada, duração e frequência de incidentes, tempo médio para detecção (MTTD) e tempo médio para resolução (MTTR), permitindo identificar tendências e áreas necessitando melhoria. Este requisito é Must-have pois disponibilidade é característica fundamental de qualquer sistema de produção, onde usuários dependem de acesso confiável para realizar suas atividades de trabalho, e indisponibilidade resulta em perda de produtividade, frustração de usuários e potencial impacto em processos críticos de municípios que dependem do sistema.
+## Descricao
+
+GEOAPI e GEOWEB devem manter alta disponibilidade conforme SLA estabelecido. Health checks verificam conectividade com todos componentes criticos da arquitetura.
+
+## Metricas
+
+- Disponibilidade: 99.5% mensal (max 3.65h downtime/mes)
+- Health checks: a cada 1-5 minutos de multiplas localizacoes
+- Monitoramento: 24/7 via UptimeRobot, Pingdom ou Datadog
+
+## Criterios de Aceitacao
+
+1. Health checks implementados verificando banco, cache e storage
+2. Alertas automaticos com escalacao apos 5 minutos sem resposta
+3. Status page publico informando disponibilidade e incidentes

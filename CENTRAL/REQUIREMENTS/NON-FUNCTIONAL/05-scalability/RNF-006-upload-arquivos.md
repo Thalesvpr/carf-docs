@@ -1,10 +1,26 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-006
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
 # RNF-006: Upload de Arquivos
 
-O sistema deve suportar upload de fotos e documentos com tamanho máximo de até 20 megabytes por arquivo individual, permitindo aos usuários anexar evidências fotográficas e documentação relevante às unidades habitacionais e demais entidades do sistema. Este requisito aplica-se aos módulos GEOAPI, GEOWEB e REURBCAD, garantindo que tanto a interface web quanto o aplicativo mobile suportem upload de arquivos com as mesmas capacidades e limitações. As métricas de aceitação estabelecem que o tamanho máximo permitido é de 20MB por arquivo e que a velocidade de upload deve ser de pelo menos 1MB por segundo em condições normais de rede, permitindo que um arquivo de tamanho máximo seja transferido em aproximadamente 20 segundos. Os critérios de aceitação incluem a implementação obrigatória de multipart upload, que permite dividir arquivos grandes em partes menores que são enviadas separadamente e remontadas no servidor, melhorando a confiabilidade e permitindo retomar uploads interrompidos, a presença de uma barra de progresso funcional que exibe em tempo real o percentual de conclusão do upload e proporciona feedback visual ao usuário sobre o andamento da operação, e a implementação de retry automático em caso de falha, onde o sistema detecta falhas de rede ou timeout e automaticamente tenta reenviar o arquivo sem requerer intervenção manual do usuário. Este requisito é classificado como Must-have porque a capacidade de anexar fotos e documentos é fundamental para o processo de regularização fundiária, onde evidências visuais e documentais são essenciais para comprovar posse, situação das edificações e outros aspectos relevantes ao cadastro. A implementação deve considerar validação de tipos de arquivo permitidos (MIME types) para prevenir upload de arquivos maliciosos, compressão automática de imagens quando apropriado para reduzir tamanho sem perda significativa de qualidade, armazenamento em object storage (S3, MinIO) ao invés de filesystem local para garantir escalabilidade e disponibilidade, geração de thumbnails para imagens permitindo visualização rápida sem necessidade de carregar o arquivo completo, e implementação de scan de malware através de ferramentas como ClamAV para garantir segurança do sistema e dos dados.
+## Descricao
+
+Sistema deve suportar upload de fotos e documentos ate 20MB por arquivo. Multipart upload permite dividir arquivos grandes, retomar uploads interrompidos e exibir progresso em tempo real.
+
+## Metricas
+
+- Tamanho maximo: 20MB por arquivo
+- Velocidade minima: 1MB/s em condicoes normais de rede
+- Armazenamento: object storage (S3/MinIO)
+
+## Criterios de Aceitacao
+
+1. Multipart upload obrigatorio para arquivos grandes
+2. Barra de progresso funcional com percentual de conclusao
+3. Retry automatico em caso de falha de rede ou timeout

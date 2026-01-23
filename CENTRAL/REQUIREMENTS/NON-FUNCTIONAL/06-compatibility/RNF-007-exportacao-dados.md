@@ -1,10 +1,26 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-007
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
-# RNF-007: Exportação de Dados
+# RNF-007: Exportacao de Dados
 
-As exportações de dados consideradas pequenas, contendo até 1000 registros, devem ser geradas em até 10 segundos, proporcionando aos usuários a capacidade de obter rapidamente extrações de dados para análise externa, compartilhamento ou backup. Este requisito aplica-se ao módulo GEOAPI, onde a funcionalidade de exportação permite aos usuários extrair dados de unidades habitacionais, possuidores, comunidades e outras entidades em formatos estruturados. A métrica de aceitação estabelece que o tempo de geração deve ser menor ou igual a 10 segundos para conjuntos de dados contendo até 1000 registros, permitindo que os usuários recebam o arquivo exportado praticamente em tempo real após solicitarem a exportação. Os critérios de aceitação especificam que exportações grandes, contendo mais de 1000 registros, devem ser processadas em background através de jobs assíncronos ao invés de bloquearem a requisição HTTP, evitando timeouts e permitindo que o usuário continue utilizando o sistema enquanto a exportação é preparada, além de implementar um sistema de notificação que alerta o usuário quando a exportação grande for concluída, podendo ser através de notificação no sistema, email ou outro mecanismo apropriado, e gerar um link de download com expiração de 24 horas que permite ao usuário baixar o arquivo exportado de forma segura, sendo que após 24 horas o arquivo é automaticamente removido para economizar espaço de armazenamento e por questões de segurança. Este requisito é classificado como Should-have porque embora a funcionalidade de exportação seja importante para análise de dados e integração com sistemas externos, não sendo uma operação crítica para o funcionamento básico do sistema. A implementação deve considerar a geração de arquivos em múltiplos formatos incluindo CSV para análise em planilhas, Excel (XLSX) para usuários que preferem formato Microsoft, GeoJSON e Shapefile para dados geoespaciais, e PDF para relatórios formatados, além de implementar streaming de dados para exportações grandes ao invés de carregar todos os registros em memória de uma vez, uso de workers ou background jobs através de sistemas como BullMQ ou Hangfire para processar exportações assíncronas, compressão dos arquivos exportados (ZIP) quando apropriado para reduzir tamanho de download, e armazenamento temporário dos arquivos gerados em object storage com lifecycle policies que removem automaticamente arquivos após o período de expiração.
+## Descricao
+
+Exportacoes pequenas (ate 1000 registros) geradas em 10 segundos. Exportacoes grandes processadas em background com notificacao e link de download expirando em 24h.
+
+## Metricas
+
+- Pequenas: <= 10s para ate 1000 registros
+- Grandes: background job com notificacao
+- Formatos: CSV, XLSX, GeoJSON, Shapefile, PDF
+
+## Criterios de Aceitacao
+
+1. Exportacoes > 1000 registros processadas assincronamente
+2. Link de download com expiracao de 24 horas
+3. Streaming para exportacoes grandes sem carregar tudo em memoria

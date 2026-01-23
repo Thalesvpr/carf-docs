@@ -1,10 +1,26 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-011
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
-# RNF-011: Paginação de Listagens
+# RNF-011: Paginacao de Listagens
 
-As listagens de dados no sistema devem suportar paginação eficiente para conjuntos de até 100.000 registros, permitindo que usuários naveguem por grandes volumes de dados de forma performática e responsiva independentemente de qual página estão acessando. Este requisito aplica-se ao módulo GEOAPI, onde endpoints de listagem retornam conjuntos paginados de unidades habitacionais, possuidores, comunidades e outras entidades. A métrica de aceitação estabelece que queries utilizando OFFSET/LIMIT devem responder em até 500 milissegundos para qualquer página do conjunto de dados, incluindo páginas finais que tradicionalmente são mais lentas em abordagens de paginação baseadas em OFFSET devido à necessidade do banco de dados processar e descartar todos os registros anteriores. Os critérios de aceitação incluem a implementação de cursor-based pagination (keyset pagination) para grandes volumes de dados, onde ao invés de usar OFFSET numérico utiliza-se o valor de uma coluna única e ordenada (como ID ou timestamp) como referência para buscar a próxima página, eliminando problemas de performance em páginas distantes e garantindo consistência mesmo quando dados são inseridos ou removidos durante a navegação, a presença obrigatória de índices nas colunas utilizadas para ordenação garantindo que o banco de dados possa localizar eficientemente os registros relevantes sem necessidade de varredura completa da tabela, e a imposição de um limite máximo de pageSize igual a 100 registros por página para prevenir requisições excessivamente grandes que podem causar problemas de memória tanto no servidor quanto no cliente. Este requisito é classificado como Must-have porque a capacidade de listar e navegar por dados de forma eficiente é fundamental para operações rotineiras do sistema, onde usuários precisam buscar, filtrar e analisar informações dentro de grandes conjuntos de dados. A implementação deve considerar suporte a diferentes estratégias de paginação dependendo do caso de uso, onde cursor-based pagination é preferível para navegação sequencial e OFFSET/LIMIT pode ser mantido para casos onde navegação aleatória entre páginas é necessária (com limite razoável de páginas acessíveis), implementação de metadados de paginação nas respostas incluindo total de registros, página atual, total de páginas e links para próxima/anterior página seguindo padrões como HAL ou JSON:API, otimização de queries de contagem total através de aproximações ou cache quando exatidão não é crítica, e implementação de filtros e ordenação eficientes que aproveitam índices existentes evitando ordenação em memória de grandes conjuntos de resultados.
+## Descricao
+
+Listagens do GEOAPI devem suportar paginacao eficiente para grandes volumes de dados. Usuarios devem navegar rapidamente independente da pagina acessada.
+
+## Metricas
+
+- Capacidade: ate 100.000 registros paginaveis
+- Tempo de resposta: <= 500ms para qualquer pagina
+- Limite de pageSize: maximo 100 registros por pagina
+
+## Criterios de Aceitacao
+
+1. Cursor-based pagination implementado para grandes volumes
+2. Indices criados nas colunas utilizadas para ordenacao
+3. Qualquer pagina do conjunto responde em ate 500ms

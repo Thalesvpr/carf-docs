@@ -1,10 +1,26 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-085
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
-# RNF-085: API REST Padrão
+# RNF-085: API REST Padrao
 
-A API deve seguir convenções REST garantindo que endpoints são intuitivos, previsíveis, e aderem a padrões amplamente reconhecidos da indústria, onde arquitetura RESTful facilita consumo da API por desenvolvedores terceiros e integração com ferramentas e frameworks que assumem semântica HTTP padrão. A implementação deve utilizar verbos HTTP corretos onde GET é usado exclusivamente para operações de leitura que não modificam estado do servidor, POST para criação de novos recursos retornando código 201 Created com header Location apontando para recurso criado, PUT para substituição completa de recursos, PATCH para atualizações parciais modificando apenas campos especificados, e DELETE para remoção de recursos retornando 204 No Content quando bem-sucedido. O sistema deve retornar status codes semânticos garantindo que respostas HTTP utilizam códigos apropriados incluindo 200 OK para sucesso em operações de leitura ou atualização, 201 Created para recursos criados, 204 No Content para operações bem-sucedidas sem corpo de resposta, 400 Bad Request para erros de validação com detalhes do problema no corpo, 401 Unauthorized para falhas de autenticação, 403 Forbidden para operações não autorizadas, 404 Not Found para recursos inexistentes, 409 Conflict para violações de regras de negócio como duplicação, e 500 Internal Server Error para falhas inesperadas do servidor. A solução pode implementar HATEOAS (Hypertext As The Engine Of Application State) opcionalmente incluindo links para recursos relacionados nas respostas permitindo descoberta dinâmica de operações disponíveis, onde clientes podem navegar API seguindo links em vez de construir URLs manualmente, facilitando evolução de API sem quebrar clientes existentes. A implementação deve incluir versionamento de API através de prefixo /v1 em todas as URLs garantindo que mudanças incompatíveis podem ser introduzidas em versões futuras /v2 sem afetar integrações existentes, onde versão atual é mantida estável e deprecated apenas após período de transição adequado. Os critérios de aceitação incluem validação de que todos os endpoints seguem convenções de nomenclatura REST com substantivos no plural para coleções como /api/v1/units, identificadores em URLs para recursos específicos como /api/v1/units/123, e recursos aninhados quando apropriado como /api/v1/communities/456/units, onde documentação da API descreve claramente verbos suportados, parâmetros aceitos, e códigos de status retornados para cada endpoint. A prioridade é classificada como must-have considerando que API RESTful bem projetada é fundamental para adoção por integradores externos e para manutenibilidade de longo prazo do sistema.
+## Descricao
+
+Endpoints seguem convencoes REST com verbos HTTP corretos: GET leitura, POST criacao (201), PUT substituicao, PATCH parcial, DELETE remocao (204). Versionamento via /v1 em URLs.
+
+## Metricas
+
+- Verbos: GET, POST, PUT, PATCH, DELETE semanticos
+- Status: 200, 201, 204, 400, 401, 403, 404, 409, 500
+- URLs: /api/v1/resources, /api/v1/resources/{id}
+
+## Criterios de Aceitacao
+
+1. Substantivos no plural para colecoes (/units, /communities)
+2. Recursos aninhados quando apropriado (/communities/{id}/units)
+3. Versionamento permite evolucao sem quebrar integradores

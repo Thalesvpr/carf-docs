@@ -1,10 +1,26 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-075
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
 # RNF-075: Pico de Carga
 
-O sistema deve aguentar três vezes a carga normal por curtos períodos garantindo resiliência durante eventos de uso intenso como sincronizações em massa ou acessos simultâneos durante expedientes de trabalho de campo, onde a arquitetura deve ser capaz de absorver spikes temporários sem degradação severa de performance ou indisponibilidade. A implementação deve configurar burst capacity permitindo alocação temporária de recursos adicionais durante picos de demanda, incluindo scaling rápido de containers ou instâncias conforme necessário para atender ao aumento súbito de requisições. O sistema deve implementar queue para processos não-críticos garantindo que operações de baixa prioridade sejam enfileiradas e processadas posteriormente quando a carga retornar ao normal, evitando sobrecarga de recursos críticos e priorizando operações essenciais como autenticação e consultas urgentes. A solução deve implementar graceful degradation permitindo que o sistema continue operacional mesmo sob carga extrema através da desabilitação temporária de funcionalidades não-essenciais, mantendo serviços core disponíveis enquanto features secundárias podem apresentar latência aumentada ou serem temporariamente suspensas. Os critérios de aceitação incluem testes de carga que simulem 3x o volume normal de requisições validando que o sistema mantém funcionalidade básica, onde tempos de resposta podem aumentar mas erro rates devem permanecer controláveis e nenhum dado deve ser perdido. A prioridade é classificada como should-have reconhecendo que picos de carga são previsíveis em cenários de campo mas podem ser mitigados com planejamento operacional e sincronizações escalonadas.
+## Descricao
+
+Sistema deve aguentar 3x a carga normal por curtos periodos. Burst capacity aloca recursos temporarios. Queue para processos nao-criticos. Graceful degradation mantem servicos core.
+
+## Metricas
+
+- Pico: 3x carga normal
+- Burst: scaling rapido de containers
+- Queue: processos de baixa prioridade enfileirados
+
+## Criterios de Aceitacao
+
+1. Testes validam 3x carga com funcionalidade basica mantida
+2. Error rates controlaveis, nenhum dado perdido
+3. Funcionalidades nao-essenciais degradam graciosamente

@@ -1,10 +1,26 @@
 ---
-type: rnf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2026-01-15
+id: RNF-090
+type: RNF
+modules: []
+status: approved
+created: 2026-01-23
+updated: 2026-01-23
 ---
 
 # RNF-090: Charset
 
-UTF-8 deve ser utilizado para todo texto em todos os componentes do sistema garantindo suporte completo a caracteres especiais incluindo acentuação do português brasileiro, símbolos matemáticos, emojis, e caracteres de idiomas diversos, onde padronização em Unicode elimina problemas de encoding que causam corrupção de dados e garante interoperabilidade internacional. A implementação deve configurar database charset como UTF-8 garantindo que PostgreSQL armazena todos os dados textuais em encoding Unicode, onde collation apropriada para português brasileiro é configurada permitindo ordenação alfabética correta respeitando regras de acentuação e cedilha, e queries de busca case-insensitive funcionam corretamente com caracteres especiais através de funções LOWER e UPPER que compreendem regras do idioma. O sistema deve configurar API Content-Type como charset=utf-8 garantindo que respostas HTTP incluem header Content-Type: application/json; charset=utf-8 indicando explicitamente encoding do payload, onde clientes HTTP podem decodificar corretamente caracteres especiais mesmo que implementação default assuma encoding diferente, e requisições com body JSON validam que payload recebido é UTF-8 válido rejeitando bytes mal-formados que poderiam causar corrupção. A solução deve garantir que arquivos exportados utilizam UTF-8 incluindo CSVs, XMLs de KML, e documentos de relatório, onde BOM (Byte Order Mark) pode ser incluído opcionalmente no início de arquivos CSV para garantir que Excel e outras ferramentas detectem automaticamente encoding UTF-8, evitando problema comum onde planilhas exibem caracteres corrompidos ao abrir CSVs exportados. A implementação deve validar encoding de arquivos importados detectando automaticamente charset de CSVs e Shapefiles DBF que historicamente utilizam encodings legados como Latin-1 ou Windows-1252, onde conversão automática para UTF-8 é aplicada durante import garantindo que dados armazenados sempre utilizam encoding padrão independentemente de formato de origem. Os critérios de aceitação incluem validação de que textos com acentuação, cedilha, e caracteres especiais são armazenados, recuperados, e exibidos corretamente em todas as interfaces, onde exportações e importações preservam caracteres especiais sem corrupção, e APIs podem processar payloads JSON contendo texto em múltiplos idiomas incluindo caracteres não-latinos. A prioridade é classificada como must-have considerando que suporte inadequado a encoding é fonte frequente de bugs críticos em sistemas brasileiros onde acentuação é parte fundamental do idioma, e que corrupção de dados textuais pode comprometer validade legal de documentos cadastrais e causar problemas graves em processos de regularização fundiária.
+## Descricao
+
+UTF-8 obrigatorio em todos os componentes: banco de dados, APIs e exportacoes. Garante suporte a acentuacao portuguesa, caracteres especiais e interoperabilidade.
+
+## Metricas
+
+- Database: PostgreSQL com encoding UTF-8 e collation pt_BR
+- APIs: Content-Type application/json; charset=utf-8
+- Exportacoes: UTF-8 com BOM opcional para compatibilidade Excel
+
+## Criterios de Aceitacao
+
+1. Textos com acentuacao armazenados e exibidos corretamente
+2. Importacoes detectam e convertem encodings legados automaticamente
+3. APIs rejeitam payloads com bytes UTF-8 mal-formados

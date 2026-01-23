@@ -1,29 +1,14 @@
 ---
 type: readme
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES."
-updated: 2026-01-15
+status: approved
+updated: 2026-01-23
 ---
 
 # Performance
 
+Requisitos de performance do CARF definindo tempos de resposta maximos e metricas de carregamento para garantir experiencia fluida aos usuarios. Cada requisito especifica limites quantificaveis que devem ser verificados em testes de carga.
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (8 requisitos)
-
-| ID | Titulo |
-|:---|:-------|
-| [RNF-001](./RNF-001-tempo-resposta-endpoints-leitura.md) | Tempo de Resposta - Endpoints de Leitura |
-| [RNF-002](./RNF-002-tempo-resposta-endpoints-escrita.md) | Tempo de Resposta - Endpoints de Escrita |
-| [RNF-003](./RNF-003-tempo-resposta-queries-espaciais.md) | Tempo de Resposta - Queries Espaciais |
-| [RNF-004](./RNF-004-tempo-carregamento-frontend.md) | Tempo de Carregamento - Frontend |
-| [RNF-005](./RNF-005-tempo-carregamento-mapa.md) | Tempo de Carregamento - Mapa |
-| [RNF-010](./RNF-010-renderizacao-geometrias.md) | Renderização de Geometrias |
-| [RNF-011](./RNF-011-paginacao-listagens.md) | Paginação de Listagens |
-| [RNF-015](./RNF-015-tamanho-bundle-frontend.md) | Tamanho do Bundle - Frontend |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
+Os requisitos cobrem [tempo de resposta para endpoints de leitura](./RNF-001-tempo-resposta-endpoints-leitura.md) e [escrita](./RNF-002-tempo-resposta-endpoints-escrita.md), [queries espaciais](./RNF-003-tempo-resposta-queries-espaciais.md), [carregamento do frontend](./RNF-004-tempo-carregamento-frontend.md) e [mapa](./RNF-005-tempo-carregamento-mapa.md), alem de [renderizacao de geometrias](./RNF-010-renderizacao-geometrias.md), [paginacao](./RNF-011-paginacao-listagens.md) e [tamanho do bundle](./RNF-015-tamanho-bundle-frontend.md).
 
 
 <!-- CARF-INDEX-START -->
