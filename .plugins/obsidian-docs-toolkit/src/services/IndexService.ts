@@ -138,8 +138,8 @@ export class IndexService {
       case Status.REVIEW:
         return "○";
       default:
-        // No status or invalid status - light gray dot
-        return "◦";
+        // No status or invalid status
+        return "⚠";
     }
   }
 

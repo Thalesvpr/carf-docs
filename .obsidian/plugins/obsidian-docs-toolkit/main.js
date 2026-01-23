@@ -2646,7 +2646,7 @@ var IndexService = class {
       case "review" /* REVIEW */:
         return "\u25CB";
       default:
-        return "\u25E6";
+        return "\u26A0";
     }
   }
   /**
