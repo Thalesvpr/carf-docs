@@ -34,11 +34,19 @@ Os [tipos de documento](./04-document-types.md) especificam seções obrigatóri
 
 ### Em Revisão
 
-- ○ [[CENTRAL/STANDARDS/01-file-status-convention.md|Convenção de Status de Arquivo]]
-- ○ [[CENTRAL/STANDARDS/02-readme-structure.md|Estrutura de README]]
-- ○ [[CENTRAL/STANDARDS/03-naming-conventions.md|Convenções de Nomenclatura]]
-- ○ [[CENTRAL/STANDARDS/04-document-types.md|Tipos de Documento]]
-- ○ [[CENTRAL/STANDARDS/05-content-guidelines.md|Diretrizes de Conteúdo]]
-- ○ [[CENTRAL/STANDARDS/06-link-conventions.md|Convenções de Links]]
+- ○ [[STANDARDS/01-file-status-convention.md|Convenção de Status de Arquivo]]
+- ○ [[STANDARDS/02-readme-structure.md|Estrutura de README]]
+- ○ [[STANDARDS/03-naming-conventions.md|Convenções de Nomenclatura]]
+- ○ [[STANDARDS/04-document-types.md|Tipos de Documento]]
+- ○ [[STANDARDS/05-content-guidelines.md|Diretrizes de Conteúdo]]
+- ○ [[STANDARDS/06-link-conventions.md|Convenções de Links]]
+- ○ [[STANDARDS/10-postgresql-database.md|STD-010: PostgreSQL como Database]]
+- ○ [[STANDARDS/11-dotnet-backend.md|STD-011: .NET 9 para Backend]]
+- ○ [[STANDARDS/12-keycloak-auth.md|STD-012: Keycloak para Autenticacao]]
+- ○ [[STANDARDS/13-react-native-mobile.md|STD-013: React Native para Mobile]]
+- ○ [[STANDARDS/14-multi-tenancy-rls.md|STD-014: Multi-tenancy via RLS]]
+- ○ [[STANDARDS/15-clean-architecture.md|STD-015: Clean Architecture com CQRS]]
+- ○ [[STANDARDS/16-frontend-stack.md|STD-016: Stack Frontend Web]]
+- ○ [[STANDARDS/17-containerization.md|STD-017: Docker e Kubernetes]]
 
 <!-- CARF-INDEX-END -->

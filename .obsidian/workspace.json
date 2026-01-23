@@ -20,17 +20,17 @@
             }
           },
           {
-            "id": "a6d058e504b10fb3",
+            "id": "cc41add753b82c59",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "PROJECTS/WEBDOCS/DOCS/CONCEPTS/03-mdx.md",
+                "file": "STANDARDS/README.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "03-mdx"
+              "title": "README"
             }
           }
         ],
@@ -57,7 +57,7 @@
                 "autoReveal": true
               },
               "icon": "lucide-folder-closed",
-              "title": "Explorador de arquivos"
+              "title": "Files"
             }
           },
           {
@@ -197,54 +197,54 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Abrir a troca rápida": false,
-      "graph:Abrir visualização em gráfico": false,
-      "canvas:Criar novo canvas": false,
-      "daily-notes:Abrir a nota de hoje": false,
-      "templates:Inserir modelo": false,
-      "command-palette:Abrir paleta de comandos": false,
-      "bases:Criar nova base": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
       "obsidian-docs-toolkit:Open Curation Panel": false
     }
   },
-  "active": "a6d058e504b10fb3",
+  "active": "cc41add753b82c59",
   "lastOpenFiles": [
-    "PROJECTS/GEOWEB/DOCS/LAYERS/01-auth-context.md",
-    "PROJECTS/GEOWEB/DOCS/LAYERS/README.md",
-    "PROJECTS/GEOWEB/DOCS/HOW-TO/03-refresh-tokens.md",
-    "PROJECTS/GEOWEB/DOCS/HOW-TO/02-login-logout.md",
-    "PROJECTS/GEOWEB/DOCS/HOW-TO/01-setup-keycloak.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/README.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS/05-scalability/RNF-077-cache-distribuido.md",
-    "PROJECTS/WEBDOCS/DOCS/CONCEPTS/04-decap-cms.md",
-    "PROJECTS/WEBDOCS/DOCS/CONCEPTS/01-astro-starlight.md",
-    "PROJECTS/WEBDOCS/DOCS/ARCHITECTURE/10-integracao-libs.md",
-    "PROJECTS/WEBDOCS/DOCS/ADRs/ADR-004-git-based-cms.md",
-    "PROJECTS/WEBDOCS/DOCS/ADRs/ADR-005-status-page.md",
-    "PROJECTS/WEBDOCS/DOCS/ADRs/ADR-002-role-based-content.md",
-    "PROJECTS/WEBDOCS/DOCS/ARCHITECTURE/06-build-deploy.md",
-    "PROJECTS/WEBDOCS/DOCS/ARCHITECTURE/07-estrutura-codigo.md",
-    "PROJECTS/WEBDOCS/DOCS/ARCHITECTURE/08-padroes-componentes.md",
-    "PROJECTS/WEBDOCS/DOCS/ARCHITECTURE/05-renderizacao.md",
-    "PROJECTS/WEBDOCS/DOCS/ARCHITECTURE/01-overview.md",
-    "PROJECTS/WEBDOCS/DOCS/ARCHITECTURE/03-autenticacao.md",
-    "README.md",
-    "CENTRAL/ARCHITECTURE/ADRs/ADR-001-dotnet-9-backend.md",
-    "CENTRAL/ARCHITECTURE/ADRs/ADR-002-postgresql-postgis.md",
-    "CENTRAL/ARCHITECTURE/ADRs/ADR-005-multi-tenancy-rls.md",
-    "CENTRAL/ARCHITECTURE/ADRs/ADR-004-react-native-mobile.md",
-    "CENTRAL/ARCHITECTURE/PATTERNS/01-clean-architecture.md",
-    "CENTRAL/ARCHITECTURE/README.md",
+    "CENTRAL/ARCHITECTURE/PATTERNS/06-mobile-offline-first.md",
+    "CENTRAL/TESTING/ADR-018-playwright-e2e-testing.md",
+    "CENTRAL/DESIGN-SYSTEM/ADR-023-color-palette-design-system.md",
+    "PROJECTS/LIB/TS/TSCORE/DOCS/ADRs/ADR-011-shared-library-tscore.md",
+    "PROJECTS/WEBDOCS/DOCS/ADRs/ADR-016-astro-starlight-documentation.md",
+    "PROJECTS/KEYCLOAK/DOCS/ADRs/ADR-028-token-lifetimes.md",
+    "PROJECTS/KEYCLOAK/DOCS/ADRs/ADR-027-oauth2-flows-by-client.md",
+    "PROJECTS/KEYCLOAK/DOCS/ADRs/ADR-024-keycloakify-adoption.md",
+    "PROJECTS/GEOAPI/DOCS/ADRs/ADR-021-hangfire-background-jobs.md",
+    "PROJECTS/REURBCAD/DOCS/ADRs/ADR-006-offline-first-watermelondb.md",
+    "PROJECTS/KEYCLOAK/DOCS/ADRs",
+    "PROJECTS/GEOAPI/DOCS/ADRs",
+    "PROJECTS/REURBCAD/DOCS/ADRs",
+    "CENTRAL/ARCHITECTURE/PATTERNS/README.md",
+    "CENTRAL/SECURITY/ADR-029-security-strategy.md",
+    "CENTRAL/SECURITY/ADR-026-roles-hierarchy.md",
+    "CENTRAL/SECURITY/ADR-022-role-based-access-control.md",
+    "CENTRAL/DEPLOYMENTS/ADR-020-docker-kubernetes-orchestration.md",
+    "CENTRAL/DEPLOYMENTS/ADR-017-github-actions-cicd.md",
+    "CENTRAL/DEPLOYMENTS/ADR-013-vercel-deployment-platform.md",
+    "PROJECTS/KEYCLOAK/ADRs/ADR-028-token-lifetimes.md",
+    "PROJECTS/KEYCLOAK/ADRs/ADR-027-oauth2-flows-by-client.md",
+    "PROJECTS/KEYCLOAK/ADRs/ADR-024-keycloakify-adoption.md",
+    "PROJECTS/GEOAPI/ADRs/ADR-021-hangfire-background-jobs.md",
+    "PROJECTS/WEBDOCS/ADRs/ADR-016-astro-starlight-documentation.md",
+    "PROJECTS/LIB/TS/TSCORE/ADRs/ADR-011-shared-library-tscore.md",
+    "PROJECTS/REURBCAD/ADRs/ADR-006-offline-first-watermelondb.md",
+    "PROJECTS/LIB/TS/TSCORE/ADRs",
+    "PROJECTS/WEBDOCS/ADRs",
+    "PROJECTS/KEYCLOAK/ADRs",
+    "PROJECTS/GEOAPI/ADRs",
+    "PROJECTS/REURBCAD/ADRs",
+    "STANDARDS/README.md",
+    "STANDARDS/16-frontend-stack.md",
+    "STANDARDS",
     "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/NAVIGATION",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/DOMAIN",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/LAYOUT",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/FORM",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/FEEDBACK",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS/DATA",
-    "PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/COMPONENTS",
-    "CENTRAL/WORKFLOWS/sedyZnXqC",
-    "CENTRAL/VERSIONING/GIT/sedYFuT6S",
-    "CENTRAL/VERSIONING/GIT/sedsv48Ot",
     "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/public/img/logo.svg"
   ]
 }
