@@ -12,7 +12,7 @@ Este nao e um catalogo de componentes ou especificacoes tecnicas - essas pertenc
 
 Os [principios](./PRINCIPIOS/README.md) estabelecem a visao, valores e compromissos fundamentais que antecedem qualquer decisao visual. A [identidade](./IDENTIDADE/README.md) define quem o CARF e visualmente - sua personalidade, cores com significado, tipografia legivel e tom de voz acolhedor. A [linguagem visual](./LINGUAGEM-VISUAL/README.md) traduz esses fundamentos em decisoes concretas sobre espacamento, profundidade, movimento e iconografia. As [experiencias](./EXPERIENCIAS/README.md) documentam momentos-chave da jornada do usuario onde o design tem impacto critico.
 
-Para implementacao tecnica dos componentes React baseados neste Design System, consulte a biblioteca @carf/ui em PROJECTS/.
+Para implementacao tecnica dos componentes consulte as bibliotecas em PROJECTS/. A biblioteca @carf/ui implementa componentes React para web baseados em shadcn/ui e Tailwind CSS. A biblioteca @carf/ui-native implementa componentes React Native para mobile baseados em react-native-reusables e NativeWind, mantendo consistencia visual atraves de classes Tailwind compartilhadas.
 
 <!-- CARF-INDEX-START -->
 

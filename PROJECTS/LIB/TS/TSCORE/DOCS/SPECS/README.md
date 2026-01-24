@@ -1,67 +1,18 @@
 ---
 type: readme
-title: "Especificacoes Tecnicas - @carf/tscore"
-description: "README usa listas/tabelas ao invés de prosa densa com links inline."
-status: rejected
-updated: 2026-01-22
-source: "interno"
+status: review
+updated: 2026-01-24
 ---
 
-# Especificacoes Tecnicas - @carf/tscore
+# Especificacoes Tecnicas
 
-Documentacao tecnica detalhada das configuracoes de projeto necessarias para build, desenvolvimento e publicacao da biblioteca.
+Configuracoes de projeto necessarias para desenvolvimento, build e publicacao da biblioteca @carf/tscore no GitHub Packages.
 
-## Documentos
+A especificacao do [package.json](./01-package-json.md) define dependencias, exports map e metadados de publicacao. O documento detalha peer dependencies opcionais para React e Vue, configuracao do registry @carf e scripts de build usando Bun. A especificacao do [tsconfig](./02-tsconfig.md) estabelece configuracoes do compilador TypeScript para geracao de ES modules e declarations. O documento cobre target ES2020, module resolution bundler e paths aliases.
 
-| ID | Titulo | Descricao |
-|:---|:-------|:----------|
-| 01-package-json | Package.json | Dependencias, exports e configuracao npm |
-| 02-tsconfig | TSConfig | Configuracao do compilador TypeScript |
-| 03-exports-map | Exports Map | Subpath exports e tree-shaking |
+O [exports map](./03-exports-map.md) documenta subpath exports que permitem importacoes modulares como @carf/tscore/validations e @carf/tscore/auth/react. Esta configuracao habilita tree-shaking e permite que projetos consumidores carreguem apenas os modulos necessarios.
 
-## Visao Geral
-
-A biblioteca @carf/tscore e configurada para:
-
-- **Build**: Bun + TypeScript para compilacao rapida
-- **Output**: ES Modules (ESM) com TypeScript declarations
-- **Publicacao**: GitHub Packages (@carf scope)
-- **Peer Dependencies**: React e Vue opcionais
-
-## Requisitos de Ambiente
-
-```bash
-# Versoes minimas
-node >= 18.0.0
-bun >= 1.0.0
-```
-
-## Comandos Principais
-
-```bash
-# Instalar dependencias
-bun install
-
-# Build
-bun run build
-
-# Testes
-bun test
-
-# Type check
-tsc --noEmit
-```
+A biblioteca requer Node 18 ou superior e Bun 1.0 para desenvolvimento local. Build gera ES modules em dist/ com declarations .d.ts para suporte a IDE. Publicacao ocorre automaticamente via GitHub Actions quando tags vX.X.X sao criadas.
 
 <!-- CARF-INDEX-START -->
-> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
-> Use os links abaixo para referenciar documentos desta pasta.
-
-## Documentos (3)
-
-| Documento | Status |
-|-----------|--------|
-| [Package.json - @carf/tscore](./01-package-json.md) | ⚠ |
-| [TSConfig - @carf/tscore](./02-tsconfig.md) | ⚠ |
-| [Exports Map - @carf/tscore](./03-exports-map.md) | ⚠ |
-
 <!-- CARF-INDEX-END -->

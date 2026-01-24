@@ -1,46 +1,22 @@
 ---
 type: readme
-title: "Bibliotecas TypeScript"
-description: "Bibliotecas TypeScript compartilhadas do ecossistema CARF"
 status: review
-updated: 2026-01-20
-source: "interno"
+updated: 2026-01-24
 ---
 
 # Bibliotecas TypeScript
 
-Bibliotecas TypeScript compartilhadas entre GEOWEB, REURBCAD, ADMIN e outras aplicacoes.
+Bibliotecas TypeScript compartilhadas entre aplicacoes do ecossistema CARF publicadas no GitHub Packages.
 
-## Bibliotecas Disponiveis
+A biblioteca [TSCORE](./TSCORE/README.md) publica como @carf/tscore fornece value objects com validacoes brasileiras para CPF, CNPJ, Email e Phone. Inclui tipos de dominio sincronizados com backend .NET e cliente de autenticacao Keycloak com hooks para React e Vue. Suporta ambiente mobile via adapters de storage e navegacao.
 
-| Biblioteca | Pacote | Descricao | Status |
-|:-----------|:-------|:----------|:-------|
-| [TSCORE](./TSCORE/README.md) | @carf/tscore | Value objects e validacoes | Especificado |
-| [GEOAPI-CLIENT](./GEOAPI-CLIENT/README.md) | @carf/geoapi-client | HTTP client para GEOAPI | Especificado |
-| [UI-COMPONENTS](./UI-COMPONENTS/README.md) | @carf/ui | Componentes React | Especificado |
+A biblioteca [GEOAPI-CLIENT](./GEOAPI-CLIENT/README.md) publica como @carf/geoapi-client oferece HTTP client tipado para comunicacao com backend GEOAPI. Integra autenticacao automatica e tipos de request e response.
 
-## Dependencias
+A biblioteca [UI-COMPONENTS](./UI-COMPONENTS/README.md) publica como @carf/ui disponibiliza componentes React baseados em shadcn/ui e Tailwind CSS para aplicacoes web GEOWEB, ADMIN e WEBDOCS. Inclui componentes de dominio CARF como StatusBadge e UnitCard.
 
-```
-@carf/ui
-    └── @carf/tscore (types)
-        └── zod (validations)
+A biblioteca [UI-NATIVE](./UI-NATIVE/README.md) publica como @carf/ui-native fornece componentes React Native baseados em react-native-reusables e NativeWind para o aplicativo REURBCAD mobile. Mantem consistencia visual com @carf/ui atraves de classes Tailwind compartilhadas.
 
-@carf/geoapi-client
-    ├── @carf/tscore (types)
-    └── axios (http)
-```
+Todas bibliotecas dependem de @carf/tscore para tipos. As bibliotecas de UI dependem de tipos para componentes de dominio. A biblioteca @carf/geoapi-client e consumida por GEOWEB e REURBCAD para comunicacao com backend. A biblioteca @carf/ui e exclusiva para web enquanto @carf/ui-native e exclusiva para mobile.
 
 <!-- CARF-INDEX-START -->
-> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
-> Use os links abaixo para referenciar documentos desta pasta.
-
-## Subpastas (3)
-
-| Pasta | Descrição |
-|-------|-----------|
-| [GEOAPI-CLIENT](./GEOAPI-CLIENT/README.md) | ... |
-| [TSCORE](./TSCORE/README.md) | ... |
-| [UI-COMPONENTS](./UI-COMPONENTS/README.md) | ... |
-
 <!-- CARF-INDEX-END -->

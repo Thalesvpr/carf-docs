@@ -1,111 +1,27 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-21
+updated: 2026-01-24
 ---
 
-# Package Structure
+# Estrutura de Pacote
 
-Arquitetura do pacote @carf/tscore.
+Organizacao interna do pacote @carf/tscore descrevendo diretorios, modulos e exports publicos.
 
-## Visão Geral
+## Diretorio Source
 
-O @carf/tscore é a biblioteca compartilhada de tipos e utilitários TypeScript para projetos CARF, garantindo consistência entre frontend (GEOWEB), mobile (REURBCAD) e cliente API.
+O diretorio src/ organiza codigo em quatro modulos principais. O diretorio types/ contem subdiretorios domain/ com entidades Unit, Holder e Community, api/ com tipos de request e response, e common/ com utilitarios como paginacao e Result. O diretorio validations/ contem classes CPF, CNPJ, Email e Phone implementando value objects com ValidationError.
 
-## Estrutura
+O diretorio auth/ contem KeycloakClient com logica OAuth2 PKCE, subdiretorios react/ e vue/ com integracao especifica de framework, e adapters/ com interfaces StorageAdapter e NavigationAdapter para abstracao de plataforma. O diretorio constants/ define enums Status e Roles compartilhados.
 
-```
-src/
-├── types/           # Tipos e interfaces compartilhados
-│   ├── domain/      # Entidades de domínio
-│   │   ├── unit.ts
-│   │   ├── holder.ts
-│   │   └── community.ts
-│   ├── api/         # Tipos de request/response
-│   │   ├── requests.ts
-│   │   └── responses.ts
-│   └── common/      # Tipos utilitários
-│       ├── pagination.ts
-│       └── result.ts
-├── utils/           # Funções utilitárias
-│   ├── validation/
-│   │   ├── cpf.ts
-│   │   └── geometry.ts
-│   ├── formatting/
-│   │   ├── address.ts
-│   │   └── currency.ts
-│   └── date/
-│       └── formatters.ts
-├── constants/       # Constantes compartilhadas
-│   ├── status.ts
-│   └── roles.ts
-└── index.ts         # Exports públicos
-```
+## Exports Publicos
 
-## Exports
+O arquivo index.ts re-exporta seletivamente APIs publicas de cada modulo. O package.json define exports map mapeando subpaths para arquivos de distribuicao. O path principal exporta tudo. O path /validations exporta apenas value objects. O path /types exporta interfaces e enums. O path /auth exporta KeycloakClient. Os paths /auth/react e /auth/vue exportam integracao de framework.
 
-```typescript
-// index.ts
-// Types
-export * from './types/domain';
-export * from './types/api';
-export * from './types/common';
+## Build Output
 
-// Utils
-export * from './utils/validation';
-export * from './utils/formatting';
-export * from './utils/date';
+O diretorio dist/ contem JavaScript transpilado como ES modules e arquivos .d.ts com declarations TypeScript. Sourcemaps vinculam codigo transpilado a fontes originais para debugging. A estrutura de diretorios espelha src/ mantendo subpath exports funcionais.
 
-// Constants
-export * from './constants';
-```
+## Desenvolvimento
 
-## Exemplo de Tipo
-
-```typescript
-// types/domain/unit.ts
-export interface Unit {
-  id: string;
-  code: string;
-  status: UnitStatus;
-  address: Address;
-  geometry: GeoJsonPolygon;
-  areaM2: number;
-  centroid: Centroid;
-  tenantId: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export enum UnitStatus {
-  DRAFT = 'DRAFT',
-  PENDING_ANALYSIS = 'PENDING_ANALYSIS',
-  IN_REVIEW = 'IN_REVIEW',
-  APPROVED = 'APPROVED',
-  REJECTED = 'REJECTED',
-  REQUIRES_CHANGES = 'REQUIRES_CHANGES'
-}
-
-export interface Address {
-  street: string;
-  number: string;
-  complement?: string;
-  neighborhood: string;
-  city: string;
-  state: string;
-  zipCode: string;
-}
-```
-
-## Build
-
-```bash
-# Desenvolvimento
-pnpm dev
-
-# Build produção
-pnpm build
-
-# Type check
-pnpm typecheck
-```
+Scripts npm definem build com Bun para JavaScript e tsc para declarations. Script dev executa TypeScript com watch mode. Script test executa suite Bun. Script typecheck valida tipos sem emitir arquivos. Desenvolvimentos locais usam npm link para consumo em projetos dependentes.

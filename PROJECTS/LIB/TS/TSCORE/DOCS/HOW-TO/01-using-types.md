@@ -1,134 +1,37 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-21
+updated: 2026-01-24
 ---
 
-# Using Types
+# Usando Tipos
 
-Como utilizar os tipos do @carf/tscore em seus projetos.
+Guia para consumir @carf/tscore em projetos do ecossistema CARF cobrindo instalacao, configuracao e exemplos de uso.
 
-## Instalação
+## Configuracao do Registry
 
-```bash
-npm install @carf/tscore
-# ou
-pnpm add @carf/tscore
-```
+Projetos devem configurar arquivo .npmrc na raiz com linha @carf:registry=https://npm.pkg.github.com para direcionar pacotes @carf para GitHub Packages. Autenticacao usa GITHUB_TOKEN do ambiente definido em .env ou CI secrets.
+
+## Instalacao
+
+Executar bun add @carf/tscore instala biblioteca e dependencias. React ou Vue sao peer dependencies opcionais instaladas apenas se projeto ja usa esses frameworks. Zod e unica dependencia runtime sempre instalada.
+
+## Importando Validacoes
+
+Importar CPF, CNPJ, Email ou Phone de @carf/tscore/validations. Usar construtor para criar instancia validada que lanca erro se invalida. Usar metodo estatico isValid para validar sem lancar excecao. Integrar com react-hook-form via funcao validate customizada que retorna mensagem de erro ou true.
 
 ## Importando Tipos
 
-```typescript
-import type {
-  Unit,
-  Holder,
-  Community,
-  UnitStatus,
-  Address,
-  PagedResult,
-  Result
-} from '@carf/tscore';
-```
+Importar interfaces usando type keyword como Unit, Holder e Community de @carf/tscore/types. Importar enums como UnitStatus e Role diretamente para uso em comparacoes. Usar tipos em definicoes de estado React, props de componentes e retornos de queries TanStack Query. Tipos garantem autocomplete e previnem erros de digitacao.
 
-## Usando em Componentes React
+## Integracao com GEOWEB
 
-```typescript
-import type { Unit, UnitStatus } from '@carf/tscore';
+GEOWEB importa tipos para TanStack Query tipando retornos de API. Validacoes integram com formularios react-hook-form. AuthProvider envolve App com KeycloakClient configurado. useAuth fornece estado de autenticacao em componentes.
 
-interface UnitCardProps {
-  unit: Unit;
-  onStatusChange?: (status: UnitStatus) => void;
-}
+## Integracao com REURBCAD
 
-function UnitCard({ unit, onStatusChange }: UnitCardProps) {
-  return (
-    <div>
-      <h3>{unit.code}</h3>
-      <p>{unit.address.street}, {unit.address.number}</p>
-      <span className={`status-${unit.status.toLowerCase()}`}>
-        {unit.status}
-      </span>
-    </div>
-  );
-}
-```
+REURBCAD usa tipos para modelos WatermelonDB mantendo consistencia com API. Validacoes executam offline antes de sincronizar. Adapter de storage usa expo-secure-store para tokens em vez de localStorage. NavigationAdapter usa deep linking para callbacks OAuth2.
 
-## Usando Utilitários de Validação
+## Integracao com ADMIN e WEBDOCS
 
-```typescript
-import { validateCPF, formatCPF, maskCPF } from '@carf/tscore';
-
-// Validar
-const isValid = validateCPF('12345678909'); // true
-const isInvalid = validateCPF('12345678900'); // false
-
-// Formatar
-const formatted = formatCPF('12345678909'); // '123.456.789-09'
-
-// Mascarar
-const masked = maskCPF('12345678909'); // '***.***.***-09'
-```
-
-## Usando Formatadores
-
-```typescript
-import { formatAddress, formatCurrency, formatDate } from '@carf/tscore';
-
-// Endereço
-const address = formatAddress({
-  street: 'Rua das Flores',
-  number: '123',
-  neighborhood: 'Centro',
-  city: 'São Paulo',
-  state: 'SP',
-  zipCode: '01310-100'
-});
-// "Rua das Flores, 123 - Centro, São Paulo/SP"
-
-// Moeda
-const price = formatCurrency(1500.50); // "R$ 1.500,50"
-
-// Data
-const date = formatDate('2026-01-16T10:30:00Z'); // "16/01/2026 10:30"
-```
-
-## Tipos de API
-
-```typescript
-import type {
-  CreateUnitRequest,
-  UpdateUnitRequest,
-  UnitResponse,
-  PagedResult,
-  ApiError
-} from '@carf/tscore';
-
-async function createUnit(data: CreateUnitRequest): Promise<UnitResponse> {
-  const response = await fetch('/api/units', {
-    method: 'POST',
-    body: JSON.stringify(data)
-  });
-
-  if (!response.ok) {
-    const error: ApiError = await response.json();
-    throw new Error(error.message);
-  }
-
-  return response.json();
-}
-```
-
-## Constantes
-
-```typescript
-import { UNIT_STATUS, USER_ROLES, REURB_MODALITIES } from '@carf/tscore';
-
-// Usar em selects
-const statusOptions = Object.values(UNIT_STATUS);
-// ['Rascunho', 'Pendente', 'Aprovado', 'Rejeitado']
-
-// Verificar roles
-if (user.roles.includes(USER_ROLES.APROVADOR)) {
-  // Mostrar botão de aprovar
-}
-```
+ADMIN usa Next.js com AuthProvider em client component separado. WEBDOCS usa VitePress com initAuth em configuracao de theme. Ambos consomem mesma biblioteca com integracao especifica de framework.

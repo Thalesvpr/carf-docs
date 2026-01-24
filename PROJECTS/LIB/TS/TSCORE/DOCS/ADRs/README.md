@@ -1,27 +1,18 @@
 ---
 type: readme
-title: "Decisoes Arquiteturais - @carf/tscore"
-description: "Registro de decisoes arquiteturais para a biblioteca core TypeScript"
 status: review
-updated: 2026-01-21
-source: "CENTRAL/ARCHITECTURE/ADRs/ADR-011-shared-library-tscore.md"
+updated: 2026-01-24
 ---
 
-# Decisoes Arquiteturais - @carf/tscore
+# Decisoes Arquiteturais
 
-Registro de ADRs que fundamentam a biblioteca. A decisao principal (ADR-011) define a criacao de @carf/tscore como biblioteca compartilhada publicada no GitHub Packages, rejeitando alternativas como monorepo Turborepo/Nx, Git Submodules ou duplicacao de codigo. Decisoes de implementacao incluem value objects imutaveis com validacao no construtor, peer dependencies opcionais para React/Vue, subpath exports para tree-shaking e Zod como unica dependencia de runtime.
+Registro de ADRs que fundamentam decisoes tecnicas da biblioteca @carf/tscore.
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-<!-- GENERATED:END -->
+A [ADR-001](./ADR-001-shared-library-tscore.md) define a criacao de @carf/tscore como biblioteca compartilhada publicada no GitHub Packages. Rejeitou alternativas como monorepo Turborepo/Nx por complexidade de setup, Git Submodules por dificuldade de versionamento e duplicacao de codigo por risco de inconsistencia. A decisao estabelece value objects imutaveis com validacao no construtor, peer dependencies opcionais para React/Vue e subpath exports para tree-shaking.
+
+A [ADR-002](./ADR-002-auth-storage-abstraction.md) estabelece abstracao de storage e navegacao para suporte cross-platform. KeycloakClient original dependia de localStorage e window.location, APIs exclusivas de browser. A decisao introduz interfaces StorageAdapter e NavigationAdapter injetadas no construtor, permitindo adapters especificos para web usando localStorage e para mobile usando expo-secure-store. Esta abordagem compartilha logica OAuth2 PKCE entre plataformas enquanto permite implementacoes de storage seguro nativas.
+
+Novas decisoes arquiteturais que impactam a biblioteca devem ser registradas como ADRs seguindo template padrao com secoes Contexto, Decisao, Consequencias e Alternativas Rejeitadas.
 
 <!-- CARF-INDEX-START -->
-> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
-> Use os links abaixo para referenciar documentos desta pasta.
-
-## Documentos (1)
-
-| Documento | Status |
-|-----------|--------|
-| [ADR-001: Biblioteca TypeScript Compartilhada @carf/tscore](./ADR-001-shared-library-tscore.md) | ⚠ |
-
 <!-- CARF-INDEX-END -->

@@ -12,7 +12,7 @@ Aplicativo mobile deve funcionar em Android e iOS para coleta de dados em campo.
 
 ## Decisao
 
-Adotamos React Native com Expo como framework mobile. Expo simplifica build, deploy e acesso a APIs nativas. Compartilhamento de codigo com bibliotecas @carf/tscore e @carf/ui. expo-location para GPS, expo-camera para fotos, expo-file-system para armazenamento.
+Adotamos React Native com Expo como framework mobile. Expo simplifica build, deploy e acesso a APIs nativas. Bibliotecas compartilhadas sao @carf/tscore para tipos e validacoes, @carf/geoapi-client para HTTP client e @carf/ui-native para componentes React Native. A biblioteca @carf/ui nao e compartilhada pois usa Radix UI e APIs exclusivas de browser. expo-location para GPS, expo-camera para fotos, expo-file-system para armazenamento.
 
 ## Consequencias
 

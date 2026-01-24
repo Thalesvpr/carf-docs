@@ -1,70 +1,18 @@
 ---
 type: readme
-title: "Documentacao @carf/tscore"
-description: "README usa listas/tabelas ao invés de prosa densa com links inline."
-status: rejected
-updated: 2026-01-22
-source: "interno"
+status: review
+updated: 2026-01-24
 ---
 
 # Documentacao @carf/tscore
 
-Documentacao tecnica completa da biblioteca core TypeScript com value objects, validacoes e tipos compartilhados.
+Documentacao tecnica completa da biblioteca core TypeScript compartilhada entre todos os projetos do ecossistema CARF. Esta biblioteca fornece value objects com validacoes brasileiras, tipos de dominio, cliente de autenticacao Keycloak e hooks para React e Vue.
 
-## Secoes
+A documentacao esta organizada em seis secoes principais. As [especificacoes tecnicas](./SPECS/README.md) detalham configuracoes de package.json, tsconfig e exports map necessarias para build e publicacao. As [decisoes arquiteturais](./ADRs/README.md) registram o historico de escolhas tecnicas fundamentais da biblioteca. A [arquitetura](./ARCHITECTURE/README.md) descreve a estrutura de modulos, subpath exports e integracao com projetos consumidores.
 
-| Secao | Descricao |
-|:------|:----------|
-| [SPECS/](./SPECS/README.md) | Especificacoes tecnicas (package.json, tsconfig) |
-| [ADRs/](./ADRs/README.md) | Decisoes arquiteturais |
-| [ARCHITECTURE/](./ARCHITECTURE/README.md) | Arquitetura e design |
-| [CONCEPTS/](./CONCEPTS/README.md) | Value objects, validacoes, tipos |
-| [API/](./API/README.md) | Referencia completa de API |
-| [HOW-TO/](./HOW-TO/README.md) | Guias praticos |
+Os [conceitos](./CONCEPTS/README.md) explicam value objects imutaveis, sistema de autenticacao OAuth2 PKCE e tipos TypeScript compartilhados. A [referencia de API](./API/README.md) documenta todas as classes, interfaces e funcoes publicas. Os [guias praticos](./HOW-TO/README.md) orientam desenvolvedores na instalacao, uso e publicacao da biblioteca.
 
-## Modulos da Biblioteca
-
-| Modulo | Export Path | Descricao |
-|:-------|:------------|:----------|
-| Validations | `@carf/tscore/validations` | CPF, CNPJ, Email, Phone |
-| Types | `@carf/tscore/types` | Unit, Holder, Community, DTOs |
-| Auth React | `@carf/tscore/auth/react` | useAuth, ProtectedRoute |
-| Auth Vue | `@carf/tscore/auth/vue` | useAuth composable |
-
-## Instalacao Rapida
-
-```bash
-# Configurar registry
-echo "@carf:registry=https://npm.pkg.github.com" >> .npmrc
-
-# Instalar
-bun add @carf/tscore
-```
-
-## Status de Especificacao
-
-| Secao | Arquivos | Status |
-|:------|:---------|:-------|
-| SPECS | 3 | Completo |
-| ADRs | 1 | Completo |
-| ARCHITECTURE | 1 | Existente |
-| CONCEPTS | 3 | Existente |
-| API | 3 | Completo |
-| HOW-TO | 3 | Completo |
+A biblioteca exporta quatro modulos principais via subpath exports. O modulo validations fornece CPF, CNPJ, Email e Phone como value objects. O modulo types disponibiliza interfaces Unit, Holder, Community e enums como UnitStatus e Role. O modulo auth oferece KeycloakClient com suporte a PKCE. Os modulos auth/react e auth/vue fornecem hooks especificos para cada framework.
 
 <!-- CARF-INDEX-START -->
-> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
-> Use os links abaixo para referenciar documentos desta pasta.
-
-## Subpastas (6)
-
-| Pasta | Descrição |
-|-------|-----------|
-| [ADRs](./ADRs/README.md) | ... |
-| [API](./API/README.md) | ... |
-| [ARCHITECTURE](./ARCHITECTURE/README.md) | ... |
-| [CONCEPTS](./CONCEPTS/README.md) | ... |
-| [HOW-TO](./HOW-TO/README.md) | ... |
-| [SPECS](./SPECS/README.md) | ... |
-
 <!-- CARF-INDEX-END -->

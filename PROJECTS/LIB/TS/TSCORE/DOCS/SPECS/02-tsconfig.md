@@ -1,150 +1,33 @@
 ---
 type: leaf
-title: "TSConfig - @carf/tscore"
 status: review
-updated: 2026-01-21
-source: "interno"
+updated: 2026-01-24
 ---
 
-# TSConfig - @carf/tscore
+# TSConfig
 
-Configuracao do compilador TypeScript para build e type checking.
+Especificacao do tsconfig.json da biblioteca @carf/tscore definindo configuracoes do compilador TypeScript.
 
-## tsconfig.json
+## Target e Module
 
-```json
-{
-  "compilerOptions": {
-    "target": "ES2022",
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+Campo target define ES2022 para suporte a features modernas como optional chaining, nullish coalescing e top-level await. Campo module define ESNext para ES modules nativos. Campo moduleResolution define bundler para resolucao compativel com bundlers modernos como Vite, esbuild e Bun.
 
-    "strict": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "strictBindCallApply": true,
-    "strictPropertyInitialization": true,
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
+## Paths e Directories
 
-    "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true,
-    "outDir": "./dist",
-    "rootDir": "./src",
+Campo baseUrl define ponto raiz para resolucao de modulos. Campo paths pode definir aliases como @/* mapeando para src/*. Campo outDir define dist/ como destino de compilacao. Campo rootDir define src/ como fonte.
 
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "verbatimModuleSyntax": true,
+## Declaracoes
 
-    "skipLibCheck": true,
-    "resolveJsonModule": true,
+Campo declaration true gera arquivos .d.ts com tipos para consumidores. Campo declarationMap true gera sourcemaps para declarations permitindo navegacao para fontes. Campo sourceMap true gera sourcemaps para JavaScript facilitando debug.
 
-    "types": ["bun-types", "node"]
-  },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.spec.ts"]
-}
-```
+## Strict Mode
 
-## Opcoes Principais
+Campo strict true habilita todas verificacoes estritas. Campo strictNullChecks previne acesso a valores potencialmente null ou undefined. Campo noImplicitAny requer tipos explicitos em parametros. Campo noUnusedLocals e noUnusedParameters alertam sobre codigo morto. Campo noUncheckedIndexedAccess adiciona undefined a acessos por indice.
 
-### Target e Module
+## Interoperabilidade
 
-| Opcao | Valor | Justificativa |
-|:------|:------|:--------------|
-| `target` | ES2022 | Suporte a features modernas (top-level await, private fields) |
-| `module` | ESNext | Output em ES Modules para tree-shaking |
-| `moduleResolution` | bundler | Resolucao moderna compativel com Bun/Vite |
+Campo esModuleInterop true permite imports default de modulos CommonJS. Campo allowSyntheticDefaultImports true permite sintaxe import X from para modulos sem default export. Campo resolveJsonModule true permite importar arquivos JSON. Campo isolatedModules true garante compatibilidade com transpilacao por arquivo.
 
-### Strict Mode
+## Inclusao e Exclusao
 
-Todas as opcoes de strict mode habilitadas para maxima seguranca de tipos:
-
-```json
-{
-  "strict": true,
-  "strictNullChecks": true,
-  "strictFunctionTypes": true,
-  "strictBindCallApply": true,
-  "strictPropertyInitialization": true,
-  "noImplicitAny": true,
-  "noImplicitReturns": true,
-  "noImplicitThis": true,
-  "noUnusedLocals": true,
-  "noUnusedParameters": true,
-  "noFallthroughCasesInSwitch": true,
-  "noUncheckedIndexedAccess": true,
-  "exactOptionalPropertyTypes": true
-}
-```
-
-### Declarations
-
-| Opcao | Valor | Proposito |
-|:------|:------|:----------|
-| `declaration` | true | Gera arquivos .d.ts |
-| `declarationMap` | true | Source maps para declaracoes |
-| `sourceMap` | true | Source maps para debug |
-
-### Paths (opcional para aliases)
-
-Se necessario configurar aliases de importacao:
-
-```json
-{
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"],
-      "@validations/*": ["src/validations/*"],
-      "@types/*": ["src/types/*"],
-      "@auth/*": ["src/auth/*"]
-    }
-  }
-}
-```
-
-## tsconfig.build.json
-
-Configuracao especifica para build de producao:
-
-```json
-{
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "declaration": true,
-    "declarationDir": "./dist",
-    "emitDeclarationOnly": true
-  },
-  "include": ["src/**/*"],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "**/*.test.ts",
-    "**/*.spec.ts",
-    "**/__tests__/**"
-  ]
-}
-```
-
-## Validacao
-
-Verificar configuracao:
-
-```bash
-# Type check sem gerar arquivos
-tsc --noEmit
-
-# Mostrar configuracao resolvida
-tsc --showConfig
-```
+Campo include define src/**/* como arquivos fonte. Campo exclude remove node_modules, dist e arquivos de teste da compilacao. Configuracao otimizada para biblioteca publicada com types e sourcemaps completos.
