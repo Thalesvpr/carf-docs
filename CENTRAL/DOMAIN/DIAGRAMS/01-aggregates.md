@@ -1,13 +1,14 @@
 ---
 type: leaf
-status: rejected
-description: "Estrutura caotica. Numeracao nao agrupa por categoria. Precisa reorganizar por agregado/contexto. Contem blocos de codigo."
-updated: 2026-01-19
+status: approved
+updated: 2026-01-24
 ---
+
+> **REVIEW**: Tipo diagram nao tem template definido. Arquivo usa multiplas H2s e bloco de codigo Mermaid.
 
 # Aggregates Diagram
 
-Diagrama dos aggregates e seus relacionamentos no modelo de domínio CARF.
+Diagrama dos aggregates e seus relacionamentos no modelo de dominio CARF, seguindo padroes de Domain-Driven Design.
 
 ## Diagrama Mermaid
 
@@ -63,38 +64,6 @@ graph TB
 
 ## Regras de Aggregate
 
-### Unit Aggregate
-- **Aggregate Root**: Unit
-- **Boundary**: Unit, Address, Geometry, Photos
-- **Invariantes**:
-  - Geometria deve ser polígono válido
-  - Área > 0
-  - Status só avança via eventos de workflow
+Cada aggregate possui invariantes que devem ser mantidas. Unit exige geometria valida e area maior que zero. Holder requer CPF unico por tenant e idade minima de 18 anos. Community precisa de nome unico por tenant e geometria que nao sobreponha outras comunidades. Legitimation segue state machine de workflow e exige documentos obrigatorios antes da aprovacao.
 
-### Holder Aggregate
-- **Aggregate Root**: Holder
-- **Boundary**: Holder, CPF, Contact, Income
-- **Invariantes**:
-  - CPF único por tenant
-  - Idade >= 18 anos
-
-### Community Aggregate
-- **Aggregate Root**: Community
-- **Boundary**: Community, Geometry, Contacts
-- **Invariantes**:
-  - Nome único por tenant
-  - Geometria não sobrepõe outras comunidades
-
-### Legitimation Aggregate
-- **Aggregate Root**: Legitimation (Process)
-- **Boundary**: Process, Documents, History
-- **Invariantes**:
-  - Workflow state machine válido
-  - Documentos obrigatórios presentes antes de aprovação
-
-## Notas
-
-- Referências entre aggregates são por ID apenas
-- Tabela `unit_holders` é junction table, não pertence a nenhum aggregate
-- Cada aggregate é boundary de transação
-- Multi-tenancy aplicado em todos aggregates via TenantId
+Referencias entre aggregates sao por ID apenas. Tabela unit_holders e junction table que nao pertence a nenhum aggregate. Cada aggregate e boundary de transacao. Multi-tenancy aplicado em todos via TenantId com RLS.

@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOAPI
 ---
 
 # RF-142: Busca Espacial de Features
 
-Este requisito especifica que o sistema deve fornecer endpoint de API para busca de features baseada em critérios espaciais permitindo localização de elementos geográficos através de relações geométricas ao invés de apenas atributos alfanuméricos, onde queries espaciais utilizam capacidades PostGIS para performance otimizada. O endpoint deve aceitar parâmetros espaciais diversos incluindo bounding box bbox como retângulo envolvente definido por coordenadas mínimas e máximas encontrando features que intersectam esta área, raio circular definido por ponto central e distância em metros retornando features dentro do buffer especificado, ou polígono arbitrário fornecido como GeoJSON ou WKT identificando features que intersectam ou estão contidas na geometria de busca. O sistema deve utilizar índice espacial GIST do PostGIS garantindo que queries espaciais sejam executadas eficientemente mesmo em tabelas com milhões de features, onde índice permite descartar rapidamente features que definitivamente não satisfazem critério espacial antes de computar relacionamentos geométricos complexos. A resposta do endpoint deve retornar features encontradas como GeoJSON FeatureCollection incluindo geometrias completas e atributos de cada feature que satisfez critério de busca, onde resultado pode ser paginado se volume for grande. O sistema deve suportar combinação de filtros espaciais com filtros de atributos permitindo queries como encontre todas edificações tipo residencial dentro de raio de 500m do ponto X. A funcionalidade é implementada no módulo GEOAPI através de endpoints de busca otimizados.
+## Descricao
+
+Sistema deve fornecer endpoint de API para busca de features baseada em criterios espaciais permitindo localizacao de elementos geograficos atraves de relacoes geometricas. Queries espaciais utilizam capacidades PostGIS para performance otimizada. Parametros espaciais aceitos incluem bounding box (retangulo envolvente por coordenadas minimas e maximas), raio circular (ponto central e distancia em metros), ou poligono arbitrario (GeoJSON ou WKT). Sistema utiliza indice espacial GIST do PostGIS garantindo queries eficientes mesmo em tabelas com milhoes de features. Resposta retorna features como GeoJSON FeatureCollection incluindo geometrias e atributos, com suporte a paginacao. Sistema suporta combinacao de filtros espaciais com filtros de atributos.
+
+## Criterios de Aceitacao
+
+1. Busca por bbox, raio e poligono
+2. Indice espacial GIST para performance
+3. Resposta em GeoJSON FeatureCollection
+4. Suporte a paginacao
+5. Combinacao de filtros espaciais e atributos
+
+## Rastreabilidade
+
+- Modulos: GEOAPI
+- Requisitos dependentes: RF-131, RF-135

@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
-# RF-169: Integração com Estação Total
+# RF-169: Integracao com Estacao Total
 
-O sistema oferece capacidade de importar dados provenientes de estações totais através de parsers especializados que interpretam formatos proprietários dos principais fabricantes de equipamentos topográficos incluindo Leica, Topcon, Trimble e South, reconhecendo estruturas específicas de codificação de medições angulares e lineares. O processo de importação extrai automaticamente coordenadas tridimensionais calculadas pelo software embarcado da estação total, além de atributos complementares como códigos de ponto, descrições de features e timestamps de coleta, transformando dados brutos de campo em informações estruturadas compatíveis com o modelo de dados geoespacial do sistema. Após extração e validação, o sistema cria features geográficas correspondentes aos pontos levantados, classificando-os automaticamente conforme códigos padronizados utilizados durante a coleta de campo e estabelecendo relacionamentos topológicos apropriados entre vértices de poligonais e elementos cadastrais. Esta funcionalidade elimina necessidade de conversões manuais ou uso de software intermediário para processamento de dados topográficos, agilizando fluxo de trabalho desde coleta em campo até disponibilização de informações georreferenciadas no sistema de gestão cadastral, reduzindo possibilidades de erro humano durante transcrição de coordenadas e garantindo rastreabilidade desde a medição original até o registro final no banco de dados.
+## Descricao
+
+Sistema deve importar dados de estacoes totais atraves de parsers especializados que interpretam formatos proprietarios dos principais fabricantes (Leica, Topcon, Trimble, South), reconhecendo estruturas especificas de codificacao de medicoes angulares e lineares. Processo de importacao extrai automaticamente coordenadas tridimensionais calculadas pelo software embarcado, alem de atributos complementares (codigos de ponto, descricoes de features, timestamps de coleta), transformando dados brutos em informacoes estruturadas compativeis com o modelo de dados geoespacial. Apos extracao e validacao, sistema cria features geograficas classificando-as automaticamente conforme codigos padronizados e estabelecendo relacionamentos topologicos entre vertices de poligonais e elementos cadastrais. Elimina necessidade de conversoes manuais ou software intermediario.
+
+## Criterios de Aceitacao
+
+1. Parsers para Leica, Topcon, Trimble, South
+2. Extracao de coordenadas e metadados
+3. Classificacao automatica por codigos
+4. Criacao de features georreferenciadas
+5. Rastreabilidade desde medicao original
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-160, RF-157

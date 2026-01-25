@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-137: Estilos de Camadas
 
-Este requisito estabelece que cada camada GIS deve suportar configuração detalhada de estilos visuais controlando como features são renderizadas no mapa permitindo diferenciação visual entre layers e adequação a contextos específicos de visualização, onde estilos incluem propriedades de cor espessura opacidade e simbologia. O sistema deve permitir configuração de fill color definindo cor de preenchimento para polígonos através de seletor de cores ou código hexadecimal RGB, stroke color especificando cor das bordas de polígonos e cor de linhas em features LineString, e stroke width configurando espessura de bordas e linhas em pixels garantindo que elementos sejam visíveis sem sobrecarregar visualização. A interface deve incluir controle de opacidade configurável para fill e stroke permitindo criar overlays semitransparentes que revelam camadas subjacentes, útil para análises que requerem visualização simultânea de múltiplas informações espaciais sobrepostas. Para camadas de pontos Point layers, o sistema deve permitir seleção de ícones de biblioteca predefinida ou upload de ícones customizados, onde ícones são renderizados como marcadores no mapa em tamanho configurável. Os estilos configurados devem ser armazenados como JSON no modelo da camada e aplicados consistentemente em toda renderização. A funcionalidade deve estar disponível nos módulos GEOWEB através de interface de configuração visual e GEOAPI armazenando estilos no modelo de camadas.
+## Descricao
+
+Sistema deve suportar configuracao detalhada de estilos visuais de camadas GIS controlando como features sao renderizadas no mapa, permitindo diferenciacao visual entre layers. Configuracoes incluem fill color (cor de preenchimento para poligonos via seletor ou codigo hexadecimal), stroke color (cor de bordas de poligonos e linhas), e stroke width (espessura em pixels). Controle de opacidade configuravel para fill e stroke permite criar overlays semitransparentes que revelam camadas subjacentes, util para analises com multiplas informacoes sobrepostas. Para camadas de pontos, sistema permite selecao de icones de biblioteca predefinida ou upload de icones customizados, renderizados como marcadores em tamanho configuravel. Estilos armazenados como JSON no modelo da camada e aplicados consistentemente em toda renderizacao.
+
+## Criterios de Aceitacao
+
+1. Configuracao de fill color e stroke color
+2. Configuracao de stroke width
+3. Controle de opacidade
+4. Selecao de icones para camadas de pontos
+5. Armazenamento de estilos como JSON
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-127, RF-128

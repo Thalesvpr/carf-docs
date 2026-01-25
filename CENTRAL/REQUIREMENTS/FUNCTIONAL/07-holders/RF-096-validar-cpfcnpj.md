@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOAPI
 ---
 
 # RF-096: Validar CPF/CNPJ
 
-O sistema deve implementar validação algorítmica de CPF e CNPJ através de verificação de dígitos verificadores conforme regras matemáticas oficiais estabelecidas pela Receita Federal do Brasil, onde cálculo de módulo 11 é aplicado aos dígitos base gerando e comparando dígitos verificadores esperados com os informados. A validação ocorre no backend (server-side) garantindo segurança e impossibilidade de bypass, além de replicação no frontend (client-side) oferecendo feedback imediato ao usuário durante preenchimento sem necessidade de submeter formulário para descobrir que documento é inválido. Quando CPF ou CNPJ inválido é detectado, sistema apresenta mensagem de erro clara e específica indicando que número informado não é válido matematicamente, diferenciando este erro de outros tipos de validação (campo obrigatório formato incorreto duplicidade) para orientar usuário adequadamente na correção. A validação rejeita automaticamente CPFs e CNPJs conhecidamente inválidos como sequências repetidas (111.111.111-11) ou números reservados, além de aplicar regra de cálculo de dígitos verificadores que detecta transposições, omissões ou adulterações nos números. Implementado no módulo GEOAPI com prioridade Must-have, este requisito é fundamental para integridade do cadastro garantindo que apenas documentos válidos sejam aceitos, prevenindo erros de digitação e tentativas de cadastro com documentos fictícios ou incorretos.
+## Descricao
+
+Sistema deve implementar validacao algoritmica de CPF e CNPJ atraves de verificacao de digitos verificadores conforme regras matematicas da Receita Federal. Calculo de modulo 11 aplicado aos digitos base gera e compara digitos verificadores. Validacao ocorre no backend garantindo seguranca e replicada no frontend para feedback imediato. Mensagem de erro clara quando documento invalido. Rejeicao automatica de sequencias invalidas como numeros repetidos (111.111.111-11).
+
+## Criterios de Aceitacao
+
+1. Algoritmo de modulo 11 para CPF e CNPJ
+2. Validacao server-side e client-side
+3. Mensagem de erro especifica
+4. Rejeicao de sequencias invalidas
+5. Diferenciacao de tipos de erro
+
+## Rastreabilidade
+
+- Modulos: GEOAPI
+- Requisitos dependentes: RF-089, RF-090, RF-084

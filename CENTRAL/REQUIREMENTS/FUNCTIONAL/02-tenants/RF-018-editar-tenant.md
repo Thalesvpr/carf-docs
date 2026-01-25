@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-018: Editar Tenant
 
-Usuários com role SUPER_ADMIN e ADMIN do próprio tenant podem editar configurações do tenant onde atualização inclui modificação de nome oficial logo institucional cores de tema personalização de interface e parâmetros operacionais específicos como limites de usuários quotas de storage configurações de email e integrações externas, validação de dados obrigatórios garante integridade de informações onde campos críticos como nome e domínio não podem ser deixados vazios e modificações em identificador único (slug) são bloqueadas ou requerem confirmação adicional devido a impacto potencial em URLs e referências existentes, log de alterações registra histórico completo de modificações incluindo timestamp usuário responsável campos alterados valores anteriores e novos valores permitindo auditoria completa de mudanças em configurações críticas de tenant e possibilitando rollback se necessário, implementação em módulos GEOWEB e GEOAPI com interface de edição intuitiva exibindo formulário pré-preenchido com valores atuais validações em tempo real e confirmação visual após salvamento bem-sucedido.
+## Descricao
+
+Usuarios com role SUPER_ADMIN e ADMIN do proprio tenant podem editar configuracoes do tenant. Atualizacao inclui modificacao de nome oficial, logo institucional, cores de tema, personalizacao de interface e parametros operacionais especificos como limites de usuarios e quotas de storage. Campos criticos como nome e dominio nao podem ser deixados vazios. Modificacoes em identificador unico (slug) sao bloqueadas devido a impacto em URLs e referencias existentes. Log de alteracoes registra historico completo de modificacoes.
+
+## Criterios de Aceitacao
+
+1. SUPER_ADMIN e ADMIN podem editar configuracoes do tenant
+2. Campos criticos validados como obrigatorios
+3. Slug imutavel apos criacao do tenant
+4. Log de auditoria registra todas modificacoes
+5. Formulario pre-preenchido com valores atuais
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-017, RF-007, RF-008

@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-134: Excluir Feature
 
-Este requisito especifica que usuários autorizados devem poder excluir features geográficas do sistema através de processo controlado que previne remoções acidentais e mantém rastreabilidade, onde exclusão é implementada via soft delete preservando dados para auditoria. O sistema deve implementar soft delete marcando feature como excluída através de campo deleted_at ou status ao invés de remover registro fisicamente do banco de dados, permitindo auditoria futura recuperação se necessário e conformidade com requisitos de governança de dados. Antes de executar exclusão, o sistema deve exigir confirmação explícita do usuário através de diálogo ou modal que previne deleções acidentais, onde confirmação pode incluir descrição da feature sendo removida e potencial impacto da operação. Após confirmação e execução da exclusão lógica, a feature deve ser imediatamente removida da renderização no mapa e de listagens padrão, garantindo que usuários não vejam mais elemento excluído em visualizações normais mas dados permaneçam acessíveis através de queries administrativas ou de auditoria. O sistema deve registrar operação no log incluindo identificação do usuário executor timestamp identificador da feature e contexto da exclusão. A funcionalidade deve estar disponível nos módulos GEOWEB através de opções de exclusão em popups ou painéis de feature e GEOAPI via endpoint DELETE com validações de permissão.
+## Descricao
+
+Sistema deve permitir exclusao de features geograficas atraves de processo controlado que previne remocoes acidentais e mantem rastreabilidade, implementado via soft delete. Soft delete marca feature como excluida atraves de campo deleted_at ao inves de remover registro fisicamente, permitindo auditoria futura e recuperacao se necessario. Antes de executar exclusao, sistema exige confirmacao explicita via dialogo que previne delecoes acidentais, incluindo descricao da feature sendo removida. Apos confirmacao, feature e removida imediatamente da renderizacao no mapa e de listagens padrao, mas dados permanecem acessiveis via queries administrativas ou de auditoria. Operacao registrada no log incluindo usuario executor, timestamp, identificador da feature e contexto.
+
+## Criterios de Aceitacao
+
+1. Soft delete com campo deleted_at
+2. Confirmacao explicita antes de excluir
+3. Remocao imediata da renderizacao
+4. Dados preservados para auditoria
+5. Registro em log de auditoria
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-132, RF-127

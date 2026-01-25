@@ -1,30 +1,14 @@
 ---
 type: readme
-status: review
-updated: 2026-01-22
+status: approved
+updated: 2026-01-25
 ---
 
-# WORKFLOWS (Maquinas de Estado)
+# WORKFLOWS
 
-Regras de transicao de status para entidades com ciclo de vida controlado. Define quais transicoes sao permitidas e condicoes necessarias.
+Maquinas de estado definindo regras de transicao de status para entidades com ciclo de vida controlado. Estabelece quais transicoes sao permitidas, condicoes necessarias, permissoes requeridas e efeitos colaterais como notificacoes e logs de auditoria.
 
-## Documentos
-
-| Arquivo | Conteudo |
-|---------|----------|
-| [01-unit-status-transitions.md](./01-unit-status-transitions.md) | Estados de unidade habitacional |
-| [02-legitimation-status-transitions.md](./02-legitimation-status-transitions.md) | 11 estados do processo de legitimacao |
-| [03-role-permissions.md](./03-role-permissions.md) | Permissoes por papel de usuario |
-| [04-sla-rules.md](./04-sla-rules.md) | Prazos e alertas de SLA |
-| [05-notification-triggers.md](./05-notification-triggers.md) | Gatilhos de notificacao |
-
-## Proposito
-
-Maquinas de estado puras definindo:
-- Quais transicoes sao validas
-- Quem pode executar cada transicao
-- Condicoes pre-requisito
-- Efeitos colaterais (notificacoes, logs)
+As [transicoes de unidade](./01-unit-status-transitions.md) cobrem o ciclo desde rascunho ate aprovacao final. O [processo de legitimacao](./02-legitimation-status-transitions.md) define os 11 estados conforme Lei 13.465/2017 desde protocolo ate emissao de certidao. A [matriz de permissoes](./03-role-permissions.md) estabelece cinco niveis hierarquicos de acesso. As [regras de SLA](./04-sla-rules.md) definem prazos legais e operacionais. Os [gatilhos de notificacao](./05-notification-triggers.md) disparam alertas automaticos por email, SMS e in-app.
 
 <!-- CARF-INDEX-START -->
 > ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
@@ -36,8 +20,8 @@ Maquinas de estado puras definindo:
 |-----------|--------|
 | [Unit Status Transitions](./01-unit-status-transitions.md) | ⚠ |
 | [Legitimation Status Transitions](./02-legitimation-status-transitions.md) | ⚠ |
-| [Role Permissions Matrix](./03-role-permissions.md) | ⚠ |
+| [Role Permissions](./03-role-permissions.md) | ⚠ |
 | [SLA Rules](./04-sla-rules.md) | ⚠ |
-| [Notification Triggers (Gatilhos de Notificação)](./05-notification-triggers.md) | ⚠ |
+| [Notification Triggers](./05-notification-triggers.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

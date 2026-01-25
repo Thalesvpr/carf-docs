@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-101: Mesclar Titulares Duplicados
 
-O sistema deve permitir que administradores (perfil ADMIN) mesclem registros duplicados de titulares consolidando informações em único registro correto, onde interface oferece seleção de múltiplos titulares suspeitos de serem duplicatas através de checkboxes em listagem ou ferramenta dedicada de detecção de duplicatas baseada em similaridade de nome e CPF. Após seleção dos titulares a mesclar, wizard apresenta comparação lado-a-lado dos dados permitindo que administrador escolha para cada campo qual valor deve ser mantido no registro consolidado (selecionando melhor informação de entre os duplicados) ou editar manualmente campo específico compondo valor ótimo. Todas as vinculações com unidades (unit_holders) dos titulares duplicados são automaticamente transferidas para titular consolidado garantindo que nenhuma relação seja perdida durante mesclagem, onde vinculações redundantes (mesmo titular duplicado vinculado múltiplas vezes à mesma unidade) são deduplicadas mantendo apenas um vínculo. Os registros duplicados originais são inativados (soft delete) ao invés de excluídos permanentemente preservando rastreabilidade da operação de mesclagem e possibilitando eventual reversão se mesclagem foi realizada incorretamente, onde log de auditoria registra detalhadamente quais titulares foram mesclados em qual resultado. Implementado nos módulos GEOWEB e GEOAPI com prioridade Could-have, este recurso é essencial para limpeza e qualidade de cadastros que naturalmente acumulam duplicatas ao longo do tempo.
+## Descricao
+
+Sistema deve permitir que usuarios ADMIN mesclem titulares duplicados consolidando em unico registro. Interface oferece selecao de multiplos titulares suspeitos via checkboxes ou ferramenta de deteccao de duplicatas por similaridade. Wizard apresenta comparacao lado-a-lado para escolha de valores por campo. Vinculacoes com unidades transferidas automaticamente para titular consolidado com deduplicacao de vinculos redundantes. Duplicados originais inativados via soft delete preservando rastreabilidade.
+
+## Criterios de Aceitacao
+
+1. Selecao de multiplos titulares para mesclar
+2. Wizard de comparacao lado-a-lado
+3. Transferencia automatica de vinculos
+4. Soft delete dos duplicados originais
+5. Restrito a perfil ADMIN
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-084, RF-079

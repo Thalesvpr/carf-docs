@@ -1,6 +1,6 @@
 ---
 type: readme
-status: rejected
+status: review
 description: "README usa listas/tabelas ao invés de prosa densa com links inline."
 updated: 2026-01-22
 ---

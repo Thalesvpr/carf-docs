@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOAPI
 ---
 
 # RF-016: Auditoria de Acessos
 
-Sistema deve registrar logs detalhados de login logout e tentativas falhadas de autenticação onde cada evento captura timestamp preciso com timezone identificador único de usuário (user_id ou email) endereço IP de origem user-agent do navegador ou aplicativo e resultado da tentativa (sucesso falha), logs de tentativas de acesso negado incluem informação adicional sobre motivo da negação (senha incorreta usuário bloqueado token inválido permissão insuficiente) recurso que tentou acessar e contexto relevante para análise de segurança e troubleshooting, retenção de logs por período mínimo de 12 meses conforme requisitos de compliance e regulamentação de proteção de dados onde logs armazenados de forma segura com integridade garantida preferencialmente em storage append-only ou sistema de logging centralizado com proteção contra adulteração, implementação em módulo GEOAPI integrando com solução de logging estruturado (Elasticsearch Splunk CloudWatch Logs) permitindo queries complexas agregações e criação de alertas automatizados para detecção de comportamentos suspeitos como múltiplas tentativas falhadas de login acessos em horários atípicos ou padrões anômalos de utilização.
+## Descricao
+
+Sistema deve registrar logs detalhados de login, logout e tentativas falhadas de autenticacao. Cada evento captura timestamp, identificador de usuario, IP de origem, user-agent e resultado. Logs de acesso negado incluem motivo da negacao e recurso tentado. Retencao minima de 12 meses conforme requisitos de compliance.
+
+## Criterios de Aceitacao
+
+1. Login, logout e falhas registrados em log de auditoria
+2. Captura de timestamp, user_id, IP, user-agent
+3. Motivo de negacao registrado para acessos bloqueados
+4. Retencao de logs por minimo 12 meses
+5. Integracao com sistema de logging centralizado
+
+## Rastreabilidade
+
+- Modulos: GEOAPI
+- Requisitos dependentes: RF-005, RF-012

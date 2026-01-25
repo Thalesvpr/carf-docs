@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
-# RF-023: Desativar Usuário
+# RF-023: Desativar Usuario
 
-Usuários com role ADMIN podem desativar usuário utilizando soft delete onde usuário marcado como inativo através de flag is_active=false sem exclusão física de registro preservando integridade referencial com dados criados/modificados por usuário, login imediatamente bloqueado para usuário desativado onde tentativas subsequentes de autenticação retornam mensagem "Usuário inativo. Contate o administrador." impedindo acesso a sistema e APIs mesmo que credenciais estejam corretas, dados históricos preservados integralmente incluindo unidades cadastradas documentos anexados aprovações realizadas e logs de auditoria mantendo rastreabilidade de ações passadas e permitindo reativação futura sem perda de contexto ou histórico operacional, implementação em módulos GEOWEB e GEOAPI com sincronização para Keycloak desabilitando conta no Identity Provider adicionalmente a marcação local garantindo bloqueio efetivo em todas camadas de autenticação e autorização.
+## Descricao
+
+Usuarios com role ADMIN podem desativar usuario utilizando soft delete onde usuario e marcado como inativo atraves de flag is_active=false sem exclusao fisica de registro. Login imediatamente bloqueado para usuario desativado, retornando mensagem especifica de usuario inativo. Dados historicos preservados integralmente incluindo unidades cadastradas, documentos anexados e logs de auditoria, permitindo reativacao futura sem perda de contexto. Sincronizacao com Keycloak desabilita conta no Identity Provider.
+
+## Criterios de Aceitacao
+
+1. Soft delete com flag is_active=false
+2. Login bloqueado imediatamente apos desativacao
+3. Mensagem especifica informando usuario inativo
+4. Dados historicos preservados para auditoria
+5. Sincronizacao com Keycloak para bloqueio efetivo
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-021, RF-008

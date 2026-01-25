@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
-# RF-156: Filtrar Anotações por Autor
+# RF-156: Filtrar Anotacoes por Autor
 
-Este requisito especifica que o sistema deve permitir filtrar visualização de anotações no mapa e listagens baseado em autoria permitindo que usuários vejam apenas suas próprias anotações ou todas as anotações de todos os usuários conforme preferência ou necessidade de análise, onde filtro controla escopo de anotações exibidas sem afetar dados subjacentes. A interface deve fornecer toggle switch ou selector com opções Minhas anotações e Todas permitindo alternar rapidamente entre modos de visualização, onde Minhas anotações filtra para exibir apenas anotações criadas pelo usuário atualmente logado identificado por user_id e Todas exibe anotações de todos os usuários do tenant ou comunidade conforme escopo de dados. O sistema deve implementar filtro por user_id no backend através de query parameter ou filtro de sessão comparando campo author_id ou created_by_user_id de cada anotação com identificador do usuário logado, onde query retorna apenas registros correspondentes ao critério de autoria selecionado garantindo que dados filtrados não vazem para cliente. A exibição condicional deve aplicar filtro tanto na renderização de marcadores no mapa quanto em listagens de anotações em painéis ou tabelas, mantendo consistência entre diferentes visualizações e garantindo que usuário veja conjunto coerente de dados independente de interface. O estado do filtro deve ser persistido na sessão do usuário mantendo preferência entre navegações. A funcionalidade deve estar disponível nos módulos GEOWEB e GEOAPI.
+## Descricao
+
+Sistema deve permitir filtrar visualizacao de anotacoes no mapa e listagens baseado em autoria, permitindo ver apenas proprias anotacoes ou todas de todos usuarios conforme preferencia. Interface fornece toggle ou selector com opcoes "Minhas anotacoes" e "Todas" para alternar rapidamente entre modos, onde "Minhas" filtra para exibir apenas anotacoes criadas pelo usuario logado (identificado por user_id). Filtro implementado no backend via query parameter comparando campo author_id de cada anotacao com identificador do usuario logado. Exibicao condicional aplica filtro tanto na renderizacao de marcadores no mapa quanto em listagens em paineis, mantendo consistencia entre interfaces. Estado do filtro persistido na sessao mantendo preferencia entre navegacoes.
+
+## Criterios de Aceitacao
+
+1. Toggle "Minhas anotacoes" / "Todas"
+2. Filtro por user_id no backend
+3. Consistencia entre mapa e listagens
+4. Persistencia de preferencia na sessao
+5. Filtragem dentro do escopo do tenant
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-153, RF-017

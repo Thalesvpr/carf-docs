@@ -16,24 +16,39 @@
               "state": {},
               "pinned": true,
               "icon": "lucide-git-fork",
-              "title": "Visualização em gráfico"
+              "title": "Graph view"
             }
           },
           {
-            "id": "ac8d9d58b847741e",
+            "id": "36647e2c769c1c50",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/02-security/RNF-022-cors-restritivo.md",
+                "file": "CENTRAL/REQUIREMENTS/FUNCTIONAL/01-auth-security/RF-001-integração-com-keycloak.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "RNF-022-cors-restritivo"
+              "title": "RF-001-integração-com-keycloak"
+            }
+          },
+          {
+            "id": "70f89e10a8cd4841",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CENTRAL/DOMAIN-RULES/LEGAL/01-lei-13465-2017.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "01-lei-13465-2017"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -56,7 +71,7 @@
                 "autoReveal": true
               },
               "icon": "lucide-folder-closed",
-              "title": "Explorador de arquivos"
+              "title": "Files"
             }
           },
           {
@@ -90,7 +105,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 366.5
+    "width": 470.5
   },
   "right": {
     "id": "5c80d725b66a9060",
@@ -192,58 +207,58 @@
       }
     ],
     "direction": "horizontal",
-    "width": 443.5
+    "width": 434.5
   },
   "left-ribbon": {
     "hiddenItems": {
-      "obsidian-docs-toolkit:Open Curation Panel": false,
-      "switcher:Abrir a troca rápida": false,
-      "graph:Abrir visualização em gráfico": false,
-      "canvas:Criar novo canvas": false,
-      "daily-notes:Abrir a nota de hoje": false,
-      "templates:Inserir modelo": false,
-      "command-palette:Abrir paleta de comandos": false,
-      "bases:Criar nova base": false
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "obsidian-docs-toolkit:Open Curation Panel": false
     }
   },
-  "active": "64700822131d2339",
+  "active": "aad1928f2fff3657",
   "lastOpenFiles": [
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/02-security/RNF-022-cors-restritivo.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/02-security/README.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/02-security/RNF-018-https-obrigatorio.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/02-security/RNF-020-validacao-input.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/01-performance/RNF-011-paginacao-listagens.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/01-performance/RNF-010-renderizacao-geometrias.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/01-performance/RNF-003-tempo-resposta-queries-espaciais.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/01-performance/RNF-001-tempo-resposta-endpoints-leitura.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/08-interoperability/RNF-085-api-rest-padrao.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/07-maintainability/RNF-064-refatoracao-continua.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/07-maintainability/RNF-056-cobertura-de-testes.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/06-compatibility/RNF-044-logs-estruturados-centralizados.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/06-compatibility/RNF-081-formatos-importacao.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/06-compatibility/RNF-084-integracao-wms-wmts.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/06-compatibility/RNF-083-sistemas-coordenadas.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/06-compatibility/RNF-058-linting-e-formatacao.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/06-compatibility/RNF-008-sincronizacao-offline-pull.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/06-compatibility/RNF-007-exportacao-dados.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/07-maintainability/RNF-082-formatos-exportacao.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/07-maintainability/RNF-063-tratamento-de-excecoes.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/07-maintainability/RNF-059-versionamento-semantico.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/08-interoperability/RNF-086-openapi-spec.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/08-interoperability/RNF-088-oauth2-providers.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/08-interoperability/README.md",
-    "CENTRAL/REQUIREMENTS/FUNCTIONAL/README.md",
-    "CENTRAL/ARCHITECTURE/SYSTEM/03-reurbcad.md",
-    "CENTRAL/ARCHITECTURE/DIAGRAMS/deployment.mmd",
-    "CENTRAL/ARCHITECTURE/DIAGRAMS/data-flow.mmd",
-    "CENTRAL/ARCHITECTURE/DIAGRAMS/ecosystem.mmd",
-    "CENTRAL/ARCHITECTURE/DIAGRAMS",
-    "CENTRAL/ARCHITECTURE/DECISIONS",
-    "CENTRAL/ARCHITECTURE/INTEGRATION",
-    "CENTRAL/ARCHITECTURE/SYSTEM",
-    "CENTRAL/REQUIREMENTS/USE-CASES/PROCESS-WORKFLOWS",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/08-interoperability",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/07-maintainability",
+    "CENTRAL/WORKFLOW-MESTRE/02-georreferenciamento/passo-10-dados-liberados.md",
+    "CENTRAL/WORKFLOW-MESTRE/02-georreferenciamento/README.md",
+    "CENTRAL/WORKFLOW-MESTRE/02-georreferenciamento/passo-09-publicacao.md",
+    "CENTRAL/WORKFLOW-MESTRE/02-georreferenciamento/passo-06-autenticacao-plugin.md",
+    "CENTRAL/WORKFLOW-MESTRE/02-georreferenciamento/passo-08-georreferenciamento.md",
+    "CENTRAL/WORKFLOW-MESTRE/02-georreferenciamento/passo-07-acesso-ortofotos.md",
+    "CENTRAL/WORKFLOW-MESTRE/02-georreferenciamento/passo-05-designacao.md",
+    "CENTRAL/WORKFLOW-MESTRE/05-conceitos-glossario/termos-tecnicos.md",
+    "CENTRAL/WORKFLOW-MESTRE/05-conceitos-glossario/sistemas.md",
+    "CENTRAL/WORKFLOW-MESTRE/05-conceitos-glossario/README.md",
+    "CENTRAL/WORKFLOW-MESTRE/05-conceitos-glossario/conceitos-principais.md",
+    "CENTRAL/WORKFLOW-MESTRE/05-conceitos-glossario/atores.md",
+    "CENTRAL/WORKFLOW-MESTRE/04-regras-inegociaveis/regras-tenant.md",
+    "CENTRAL/WORKFLOW-MESTRE/04-regras-inegociaveis/regras-publicacao.md",
+    "CENTRAL/WORKFLOW-MESTRE/04-regras-inegociaveis/regras-ortofotos.md",
+    "CENTRAL/WORKFLOW-MESTRE/04-regras-inegociaveis/regras-ordem.md",
+    "CENTRAL/WORKFLOW-MESTRE/04-regras-inegociaveis/regras-campo.md",
+    "CENTRAL/WORKFLOW-MESTRE/04-regras-inegociaveis/regras-autenticacao.md",
+    "CENTRAL/WORKFLOW-MESTRE/01-entrega-ortofotos/passo-02-upload.md",
+    "CENTRAL/WORKFLOW-MESTRE/01-entrega-ortofotos/passo-04-armazenamento.md",
+    "CENTRAL/WORKFLOW-MESTRE/04-regras-inegociaveis/README.md",
+    "CENTRAL/WORKFLOW-MESTRE/01-entrega-ortofotos/README.md",
+    "CENTRAL/WORKFLOW-MESTRE/01-entrega-ortofotos/passo-03-processamento.md",
+    "CENTRAL/WORKFLOW-MESTRE/01-entrega-ortofotos/passo-01-autenticacao.md",
+    "CENTRAL/WORKFLOW-MESTRE/03-operacao-campo/README.md",
+    "CENTRAL/WORKFLOW-MESTRE/03-operacao-campo/passo-18-finalizacao.md",
+    "CENTRAL/WORKFLOW-MESTRE/02-georreferenciamento",
+    "CENTRAL/WORKFLOW-MESTRE/05-conceitos-glossario",
+    "CENTRAL/WORKFLOW-MESTRE/04-regras-inegociaveis",
+    "CENTRAL/WORKFLOW-MESTRE/01-entrega-ortofotos",
+    "CENTRAL/WORKFLOW-MESTRE/03-operacao-campo",
+    "CENTRAL/WORKFLOW-MESTRE",
+    "PROJECTS/LIB/TS/UI-NATIVE/DOCS/COMPONENTS/DATA",
+    "PROJECTS/LIB/TS/UI-NATIVE/DOCS/COMPONENTS/FORM",
+    "PROJECTS/LIB/TS/UI-NATIVE/DOCS/COMPONENTS/DOMAIN",
+    "PROJECTS/LIB/TS/UI-NATIVE/DOCS/COMPONENTS/FEEDBACK",
     "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/public/img/logo.svg"
   ]
 }

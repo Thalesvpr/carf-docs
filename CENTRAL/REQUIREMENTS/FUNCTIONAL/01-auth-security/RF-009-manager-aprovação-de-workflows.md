@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOAPI
+  - GEOWEB
 ---
 
-# RF-009: MANAGER - Aprovação de Workflows
+# RF-009: MANAGER - Aprovacao de Workflows
 
-Usuários com role MANAGER possuem responsabilidade primária de aprovar ou rejeitar unidades e documentos submetidos para revisão onde podem aprovar unidades transitando status de PENDING para APPROVED após validação de conformidade com requisitos cadastrais e documentais, capacidade de solicitar alterações em unidades retornando status para CHANGES_REQUESTED com comentários específicos indicando ajustes necessários para ANALYST responsável realizar correções antes de resubmeter para nova aprovação, permissão para visualizar relatórios gerenciais incluindo métricas de produtividade da equipe quantidade de unidades por status taxa de aprovação vs rejeição tempo médio de processamento e outros KPIs relevantes para gestão operacional, implementação em módulos GEOWEB e GEOAPI com interface específica de workflow exibindo fila de unidades pendentes de aprovação ferramentas de revisão comparativa histórico de alterações e funcionalidades de aprovação/rejeição em lote para aumentar eficiência operacional.
+## Descricao
+
+Usuarios com role MANAGER possuem responsabilidade de aprovar ou rejeitar unidades e processos de legitimacao submetidos para revisao. Podem aprovar unidades transitando status de PENDING_ANALYSIS para APPROVED, rejeitar com justificativa ou solicitar alteracoes retornando para REQUIRES_CHANGES. Acesso a relatorios gerenciais e metricas de produtividade da equipe.
+
+## Criterios de Aceitacao
+
+1. MANAGER aprova ou rejeita unidades em analise
+2. Rejeicao exige justificativa obrigatoria
+3. Pode solicitar alteracoes com comentarios especificos
+4. Visualiza metricas de produtividade da equipe
+5. Aprovacao em lote disponivel para eficiencia
+
+## Rastreabilidade
+
+- Modulos: GEOAPI, GEOWEB
+- Requisitos dependentes: RF-006

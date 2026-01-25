@@ -1,6 +1,6 @@
 ---
 type: rnf
-status: approved
+status: review
 updated: 2026-01-22
 category: performance
 ---

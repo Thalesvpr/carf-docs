@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-217: Excluir Camada WMS/WMTS
 
-O sistema permite remoção de serviços WMS/WMTS configurados através de operação de soft delete que marca registro como excluído sem remover fisicamente dados do banco, preservando histórico de configurações e permitindo restauração futura se necessário, além de manter integridade referencial com logs de auditoria e registros de uso que referenciam camada removida. Antes de executar exclusão, o sistema apresenta diálogo de confirmação obrigatória que alerta administrador sobre ação e lista potenciais impactos como número de usuários que atualmente visualizam a camada, dependências em dashboards ou relatórios customizados, e impossibilidade de desfazer operação sem intervenção de suporte técnico, prevenindo remoções acidentais de serviços críticos que causariam interrupção de trabalho para múltiplos usuários. Ao confirmar exclusão, a camada é imediatamente removida do seletor de camadas disponível aos usuários finais em todas as instâncias ativas do aplicativo através de atualização em tempo real via WebSocket ou polling periódico, garantindo que tentativas de visualizar camada inexistente não ocorram e proporcionando consistência imediata entre configuração administrativa e experiência do usuário. Administradores podem consultar lista de camadas excluídas através de filtro específico na interface de listagem, permitindo revisão de histórico de remoções, identificação de exclusões incorretas e eventualmente restauração de configurações através de operação de undelete acessível apenas a perfis super_admin com privilégios elevados de administração de sistema.
+## Descricao
+
+Sistema deve permitir remocao de servicos WMS/WMTS configurados atraves de soft delete que marca registro como excluido sem remover fisicamente dados, preservando historico e permitindo restauracao futura. Dialogo de confirmacao obrigatoria alerta sobre impactos listando usuarios que visualizam a camada e dependencias. Ao confirmar, camada removida imediatamente do seletor de todos os usuarios ativos via WebSocket ou polling. Administradores podem consultar camadas excluidas atraves de filtro especifico na listagem, permitindo revisao de historico e restauracao via operacao de undelete acessivel apenas a super_admin.
+
+## Criterios de Aceitacao
+
+1. Soft delete preservando historico
+2. Dialogo de confirmacao com impactos
+3. Remocao imediata do seletor via WebSocket
+4. Filtro para visualizar excluidos
+5. Restauracao por super_admin
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-215

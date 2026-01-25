@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-174: Listar Processos
 
-O sistema oferece interface de listagem abrangente de processos de legitimação fundiária com capacidades avançadas de filtragem que permitem segmentar processos por status atual (Em Análise, Documentação Pendente, Aprovado, Concluído, Indeferido), comunidade de origem, período de criação ou última atualização, facilitando localização rápida de processos específicos em bases com milhares de registros. A implementação utiliza paginação eficiente que carrega registros em lotes configuráveis, otimizando desempenho e experiência do usuário ao navegar por grandes volumes de processos sem sobrecarregar interface ou banda de rede. Funcionalidade de busca textual permite localizar processos através de número de protocolo, nome do titular, endereço da unidade ou outros atributos textuais, utilizando indexação full-text que retorna resultados instantaneamente mesmo em bases extensas. A listagem apresenta colunas configuráveis que exibem informações essenciais de cada processo como número, titular, unidade vinculada, status, data de criação e responsável, permitindo ordenação ascendente ou descendente por qualquer coluna para facilitar análises comparativas e identificação de padrões na tramitação processual.
+## Descricao
+
+Sistema deve fornecer interface de listagem de processos de legitimacao fundiaria com filtros avancados permitindo segmentacao por status (Em Analise, Documentacao Pendente, Aprovado, Concluido, Indeferido), comunidade de origem e periodo de criacao ou atualizacao. Implementacao utiliza paginacao eficiente carregando registros em lotes configuraveis para otimizar desempenho em bases com milhares de processos. Busca textual permite localizar processos por numero de protocolo, nome do titular ou endereco da unidade utilizando indexacao full-text. Listagem apresenta colunas configuraveis com numero, titular, unidade vinculada, status e data de criacao, permitindo ordenacao por qualquer coluna. Dados filtrados automaticamente por tenant_id do usuario autenticado.
+
+## Criterios de Aceitacao
+
+1. Filtros por status, comunidade e periodo
+2. Paginacao com lotes configuraveis
+3. Busca textual por protocolo, titular ou endereco
+4. Ordenacao por qualquer coluna
+5. Segregacao automatica por tenant
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-172

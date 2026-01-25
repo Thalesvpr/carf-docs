@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
-# RF-214: Testar Conexão WMS/WMTS
+# RF-214: Testar Conexao WMS/WMTS
 
-O sistema implementa funcionalidade de validação que testa disponibilidade e conformidade de serviços WMS/WMTS antes de persistir configuração definitiva no catálogo de camadas, prevenindo adição de URLs inválidas, inacessíveis ou incompatíveis que resultariam em frustração dos usuários finais ao tentarem visualizar camadas não funcionais. O teste executa requisição GetCapabilities apropriada ao tipo de serviço (WMS ou WMTS) e verifica sucesso da resposta HTTP com status 200, validação de XML retornado contra schema OGC para confirmar conformidade com padrão, e presença dos elementos essenciais que permitem renderização como lista de layers disponíveis e sistemas de coordenadas suportados. Quando validação identifica problemas, o sistema apresenta feedback de erro descritivo que especifica natureza da falha incluindo mensagens como "URL não acessível: timeout após 30 segundos", "Resposta inválida: XML malformado", "Serviço não suporta projeção EPSG:4326 requerida" ou "Certificado SSL inválido ou expirado", orientando administrador sobre ação corretiva necessária. Validação bem-sucedida resulta em feedback positivo e habilitação do botão de confirmação que persiste configuração, proporcionando confiança de que camada adicionada efetivamente funcionará quando usuários tentarem visualizá-la, reduzindo chamados de suporte e frustração decorrente de funcionalidades aparentemente quebradas devido a configurações inadequadas de serviços externos.
+## Descricao
+
+Sistema deve implementar validacao que testa disponibilidade e conformidade de servicos WMS/WMTS antes de persistir configuracao, prevenindo adicao de URLs invalidas ou inacessiveis. Teste executa requisicao GetCapabilities e verifica sucesso HTTP 200, valida XML retornado contra schema OGC, e confirma presenca de elementos essenciais como lista de layers e sistemas de coordenadas. Quando validacao identifica problemas, sistema apresenta feedback de erro descritivo especificando falha como "URL nao acessivel: timeout", "XML malformado" ou "Certificado SSL invalido". Validacao bem-sucedida habilita botao de confirmacao proporcionando confianca de que camada funcionara corretamente.
+
+## Criterios de Aceitacao
+
+1. Requisicao GetCapabilities automatica
+2. Validacao contra schema OGC
+3. Feedback de erro descritivo
+4. Verificacao de certificado SSL
+5. Botao de confirmacao habilitado apos sucesso
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-212, RF-213

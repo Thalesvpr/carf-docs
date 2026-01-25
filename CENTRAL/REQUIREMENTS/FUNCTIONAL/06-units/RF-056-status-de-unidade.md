@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOAPI
 ---
 
 # RF-056: Status de Unidade
 
-O sistema deve implementar um fluxo de aprovação de unidades baseado em estados (DRAFT PENDING_APPROVAL APPROVED REJECTED CHANGES_REQUESTED), onde cada status representa uma etapa no processo de validação e cadastramento de unidades habitacionais. As transições entre status seguem regras específicas garantindo que apenas caminhos válidos sejam permitidos, incluindo restrição de que somente usuários com perfil MANAGER possam executar ações de aprovar ou rejeitar unidades pendentes. O sistema deve registrar automaticamente todas as mudanças de status em log de auditoria, capturando timestamp, usuário responsável, status anterior e novo, além de comentários ou justificativas fornecidos durante a transição. Este workflow é implementado no módulo GEOAPI através de máquina de estados e validadores de transição, garantindo rastreabilidade completa do ciclo de vida das unidades desde o rascunho inicial até a aprovação final, permitindo que gestores acompanhem o progresso do cadastramento e identifiquem gargalos no processo de validação.
+## Descricao
+
+Sistema deve implementar fluxo de aprovacao de unidades baseado em estados: DRAFT, PENDING_APPROVAL, APPROVED, REJECTED, CHANGES_REQUESTED. Cada status representa uma etapa no processo de validacao e cadastramento. Transicoes entre status seguem regras especificas garantindo que apenas caminhos validos sejam permitidos. Somente usuarios com perfil MANAGER podem executar acoes de aprovar ou rejeitar. Log de auditoria registra automaticamente todas as mudancas de status.
+
+## Criterios de Aceitacao
+
+1. Enum com status de workflow predefinidos
+2. Transicoes de status validadas por regras
+3. MANAGER pode aprovar e rejeitar
+4. Log de auditoria registra mudancas de status
+5. Comentarios opcionais em transicoes
+
+## Rastreabilidade
+
+- Modulos: GEOAPI
+- Requisitos dependentes: RF-049, RF-057, RF-058

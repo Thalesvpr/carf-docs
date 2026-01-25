@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-176: Anexar Documentos ao Processo
 
-O sistema possibilita upload de documentos comprobatórios obrigatórios vinculados ao processo de legitimação, incluindo certidões negativas de débitos fiscais, declarações de posse, comprovantes de residência, documentos pessoais dos titulares e outros elementos probatórios exigidos pela legislação de regularização fundiária. A funcionalidade implementa tipologia predefinida de documentos que classifica cada arquivo conforme natureza jurídica ou técnica, facilitando organização e localização posterior além de subsidiar geração de checklist de completude documental. O sistema mantém checklist automatizado que compara documentos anexados com lista de documentos obrigatórios para a modalidade específica de regularização aplicável ao processo, sinalizando visualmente quais documentos já foram apresentados e quais ainda estão pendentes, além de calcular percentual de completude documental que auxilia na priorização de análises e identificação de processos prontos para avanço no workflow. Validações automatizadas verificam integridade dos arquivos, formatos aceitos, limites de tamanho e conformidade com políticas de segurança da informação, garantindo que documentação anexada seja íntegra, acessível e adequadamente preservada ao longo de todo o ciclo de vida do processo administrativo.
+## Descricao
+
+Sistema deve permitir upload de documentos comprobatorios vinculados ao processo de legitimacao, incluindo certidoes negativas de debitos, declaracoes de posse, comprovantes de residencia e documentos pessoais dos titulares. Tipologia predefinida classifica cada arquivo conforme natureza juridica ou tecnica, facilitando organizacao e geracao de checklist de completude documental. Sistema compara documentos anexados com lista de documentos obrigatorios para modalidade de regularizacao aplicavel, sinalizando pendencias e calculando percentual de completude. Arquivos armazenados em bucket S3/MinIO com prefixo por tenant_id, validando integridade, formatos aceitos e limites de tamanho conforme politicas de seguranca.
+
+## Criterios de Aceitacao
+
+1. Upload de multiplos tipos de documentos
+2. Tipologia predefinida por modalidade REURB
+3. Checklist automatico de completude
+4. Armazenamento em S3/MinIO por tenant
+5. Validacao de formato e tamanho
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-172, RF-102

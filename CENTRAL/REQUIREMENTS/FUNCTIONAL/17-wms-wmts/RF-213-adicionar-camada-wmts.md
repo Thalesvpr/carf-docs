@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-213: Adicionar Camada WMTS
 
-O sistema possibilita adição de camadas WMTS (Web Map Tile Service) que fornecem tiles pré-renderizados otimizados para desempenho superior comparado a WMS tradicional, sendo especialmente adequadas para basemaps de alta resolução como imagens de satélite ou mapas topográficos detalhados que exigem renderização rápida em múltiplos níveis de zoom. A configuração requer URL do servidor WMTS e permite seleção de TileMatrixSet apropriado que define esquema de pirâmide de tiles incluindo sistemas de coordenadas, níveis de zoom disponíveis e dimensões de tiles, garantindo compatibilidade entre serviço remoto e cliente de mapeamento utilizado pelo sistema. A interface permite configurar identificador do layer específico a ser consumido quando servidor oferece múltiplos layers através do mesmo endpoint, formato de imagem preferencial (PNG para transparência, JPEG para tamanho reduzido), e parâmetros adicionais como dimensões temporais para serviços que oferecem séries históricas de imagens. As camadas WMTS configuradas proporcionam experiência de navegação mais fluida que WMS devido a caching natural do formato tiled, onde tiles individuais são carregados independentemente e podem ser reutilizados quando usuário retorna a áreas previamente visualizadas, reduzindo drasticamente tempo de carregamento e consumo de banda em comparação com requisições WMS dinâmicas que regeneram imagens completamente a cada pan ou zoom.
+## Descricao
+
+Sistema deve possibilitar adicao de camadas WMTS (Web Map Tile Service) que fornecem tiles pre-renderizados otimizados para desempenho superior a WMS tradicional, especialmente adequadas para basemaps de alta resolucao como imagens de satelite. Configuracao requer URL do servidor WMTS e permite selecao de TileMatrixSet apropriado definindo esquema de piramide de tiles com sistemas de coordenadas e niveis de zoom. Interface permite configurar identificador do layer, formato de imagem preferencial (PNG para transparencia, JPEG para tamanho reduzido), e parametros adicionais como dimensoes temporais. Camadas WMTS proporcionam navegacao mais fluida devido a caching natural do formato tiled.
+
+## Criterios de Aceitacao
+
+1. Configuracao via URL com GetCapabilities
+2. Selecao de TileMatrixSet
+3. Formato de imagem configuravel (PNG/JPEG)
+4. Suporte a dimensoes temporais opcionais
+5. Cache automatico de tiles
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-127, RF-214

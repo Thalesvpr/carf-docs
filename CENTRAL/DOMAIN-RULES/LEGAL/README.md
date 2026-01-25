@@ -1,31 +1,16 @@
 ---
 type: readme
-status: review
-updated: 2026-01-22
+status: approved
+updated: 2026-01-24
 ---
 
 # LEGAL
 
-Base legal para regularizacao fundiaria. Legislacao federal, estadual e municipal que fundamenta processos REURB.
+Base legal para regularizacao fundiaria urbana. Documenta a Lei 13.465/2017 e suas implicacoes para processos REURB no sistema CARF.
 
-## Documentos
+A [Lei 13.465/2017](./01-lei-13465-2017.md) estabelece o marco legal completo de regularizacao fundiaria. As modalidades [REURB-S](./02-reurb-s-requirements.md) (interesse social, gratuito) e [REURB-E](./03-reurb-e-requirements.md) (interesse especifico, custos proporcionais) definem requisitos de elegibilidade. Os [criterios de titularidade](./04-ownership-criteria.md) governam quem pode ser beneficiario. Os [requisitos documentais](./05-documentation-requirements.md) listam documentos obrigatorios por modalidade. As [regras de contestacao](./06-contestation-rules.md) definem o processo de impugnacao por terceiros.
 
-| Arquivo | Conteudo |
-|---------|----------|
-| [01-lei-13465-2017.md](./01-lei-13465-2017.md) | Lei Federal de REURB - marco legal completo |
-| [02-reurb-s-requirements.md](./02-reurb-s-requirements.md) | Requisitos REURB-S interesse social |
-| [03-reurb-e-requirements.md](./03-reurb-e-requirements.md) | Requisitos REURB-E interesse especifico |
-| [04-ownership-criteria.md](./04-ownership-criteria.md) | Criterios de titularidade e percentuais |
-| [05-documentation-requirements.md](./05-documentation-requirements.md) | Documentos obrigatorios por modalidade |
-| [06-contestation-rules.md](./06-contestation-rules.md) | Regras de contestacao e recursos |
-
-## Proposito
-
-Documentar legislacao aplicavel para:
-- Fundamentar decisoes em pareceres
-- Validar requisitos por modalidade
-- Calcular prazos legais
-- Definir gratuidade e custos
+Os prazos legais (120 dias para decisao, 30 dias para contestacao) sao implementados nos workflows do sistema conforme WORKFLOW-MESTRE.
 
 <!-- CARF-INDEX-START -->
 > ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
@@ -35,11 +20,11 @@ Documentar legislacao aplicavel para:
 
 | Documento | Status |
 |-----------|--------|
-| [Lei 13.465/2017 (Base Legal Regularização Fundiária)](./01-lei-13465-2017.md) | ⚠ |
-| [REURB-S Requirements (Requisitos REURB Interesse Social)](./02-reurb-s-requirements.md) | ⚠ |
-| [REURB-E Requirements (Requisitos REURB Interesse Específico)](./03-reurb-e-requirements.md) | ⚠ |
-| [Ownership Criteria (Critérios de Titularidade)](./04-ownership-criteria.md) | ⚠ |
-| [Documentation Requirements (Requisitos Documentais)](./05-documentation-requirements.md) | ⚠ |
+| [Lei 13.465/2017](./01-lei-13465-2017.md) | ⚠ |
+| [REURB-S Requirements](./02-reurb-s-requirements.md) | ⚠ |
+| [REURB-E Requirements](./03-reurb-e-requirements.md) | ⚠ |
+| [Ownership Criteria](./04-ownership-criteria.md) | ⚠ |
+| [Documentation Requirements](./05-documentation-requirements.md) | ⚠ |
 | [Contestation Rules](./06-contestation-rules.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

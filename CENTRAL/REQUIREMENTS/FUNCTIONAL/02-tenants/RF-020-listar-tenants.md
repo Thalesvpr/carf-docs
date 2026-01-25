@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-020: Listar Tenants
 
-Usuários com role SUPER_ADMIN podem listar todos tenants cadastrados no sistema onde paginação de resultados implementada retornando subconjunto configurável (ex: 20 50 100 registros por página) com metadados de total de registros página atual e total de páginas permitindo navegação eficiente em grandes volumes de tenants, filtros disponíveis incluem status ativo/inativo permitindo visualizar apenas tenants operacionais ou incluir desativados filtro por nome com busca parcial case-insensitive facilitando localização rápida de tenant específico, ordenação personalizável por múltiplos critérios incluindo data de criação (padrão: mais recentes primeiro) nome alfabético última atualização ou outros campos relevantes onde direção de ordenação (ascendente descendente) configurável via interface ou parâmetros de query, implementação em módulos GEOWEB e GEOAPI com interface de listagem incluindo tabela responsiva com colunas essenciais (nome domínio status data criação quantidade usuários) controles de paginação filtros interativos e ações rápidas como editar visualizar detalhes ou desativar tenant.
+## Descricao
+
+Usuarios com role SUPER_ADMIN podem listar todos tenants cadastrados no sistema. Paginacao de resultados implementada retornando subconjunto configuravel com metadados de total de registros, pagina atual e total de paginas. Filtros disponiveis incluem status ativo/inativo e busca por nome com correspondencia parcial case-insensitive. Ordenacao personalizavel por data de criacao, nome alfabetico ou ultima atualizacao com direcao configuravel ascendente ou descendente.
+
+## Criterios de Aceitacao
+
+1. Listagem paginada com metadados de navegacao
+2. Filtro por status ativo/inativo
+3. Busca por nome com correspondencia parcial
+4. Ordenacao configuravel por multiplos campos
+5. Tabela com colunas nome, dominio, status e data criacao
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-017, RF-007

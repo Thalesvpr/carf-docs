@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-034: Criar Comunidade
 
-Usuários com role ADMIN podem criar novas comunidades no tenant onde formulário inclui campos obrigatórios nome descritivo tipo de comunidade (selecionado de enum predefinido) município e estado através de dropdowns hierárquicos população estimada área aproximada e informações complementares relevantes, geometria (polígono) opcional podendo ser definida posteriormente onde se fornecida usuário desenha boundary da comunidade diretamente no mapa interativo utilizando ferramentas de desenho (polígono livre circle rectangle) com snap e validações topológicas básicas garantindo polígono fechado e válido, upload de shapefile ou KML inicial como alternativa ao desenho manual onde arquivo importado é parseado convertido para GeoJSON validado geometricamente e armazenado como geometria oficial da comunidade facilitando migração de dados existentes ou integração com levantamentos externos, implementação em módulos GEOWEB e GEOAPI com wizard multi-step guiando através de etapas de dados básicos definição de geometria configurações avançadas e confirmação final com preview.
+## Descricao
+
+Usuarios com role ADMIN podem criar novas comunidades no tenant. Formulario inclui campos obrigatorios nome descritivo, tipo de comunidade (selecionado de enum predefinido), municipio e estado atraves de dropdowns hierarquicos, populacao estimada e area aproximada. Geometria (poligono) opcional podendo ser definida posteriormente ou desenhada diretamente no mapa interativo. Upload de shapefile ou KML como alternativa ao desenho manual, parseado e convertido para GeoJSON.
+
+## Criterios de Aceitacao
+
+1. Formulario com campos obrigatorios nome, tipo, municipio e estado
+2. Desenho de poligono no mapa com ferramentas interativas
+3. Upload de shapefile ou KML com validacao geometrica
+4. Conversao automatica para GeoJSON e armazenamento PostGIS
+5. Validacao topologica garantindo poligono fechado e valido
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-039, RF-040

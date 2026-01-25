@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-173: Editar Processo
 
-O sistema possibilita atualização de dados cadastrais do processo de legitimação fundiária, permitindo edição de campos como complementação de informações do requerente, atualização de fundamentação legal, correção de dados protocolares e inclusão de observações técnicas ou jurídicas relevantes ao andamento processual. Todas as operações de edição são submetidas a validação rigorosa de permissões baseada em roles e status do processo, garantindo que apenas usuários autorizados possam modificar informações sensíveis e que processos em determinados estados como Concluído ou Arquivado não sejam alterados indevidamente, preservando integridade de documentação oficial. O sistema registra automaticamente log detalhado de todas as alterações realizadas, capturando timestamp, identificação do usuário responsável, campos modificados com valores anteriores e novos, além de justificativa textual quando aplicável, estabelecendo trilha de auditoria completa que atende requisitos de transparência e accountability em processos administrativos públicos. Esta rastreabilidade de alterações é fundamental para conformidade com princípios de gestão pública e pode ser utilizada em auditorias internas, fiscalizações externas ou como evidência em eventuais questionamentos judiciais sobre tramitação de processos de regularização.
+## Descricao
+
+Sistema deve permitir atualizacao de dados cadastrais do processo de legitimacao fundiaria. Edicao inclui complementacao de informacoes do requerente, atualizacao de fundamentacao legal, correcao de dados protocolares e inclusao de observacoes tecnicas ou juridicas. Operacoes de edicao submetidas a validacao de permissoes baseada em roles e status do processo, garantindo que apenas usuarios autorizados modifiquem informacoes sensiveis e processos em estados Concluido ou Arquivado nao sejam alterados. Sistema registra log detalhado de alteracoes capturando timestamp, usuario responsavel, campos modificados com valores anteriores e novos, estabelecendo trilha de auditoria completa para conformidade com principios de gestao publica e accountability.
+
+## Criterios de Aceitacao
+
+1. Edicao de campos cadastrais permitidos
+2. Validacao de permissoes por role
+3. Bloqueio de edicao em status finais
+4. Log de auditoria com valores anteriores e novos
+5. Justificativa obrigatoria para alteracoes sensiveis
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-172

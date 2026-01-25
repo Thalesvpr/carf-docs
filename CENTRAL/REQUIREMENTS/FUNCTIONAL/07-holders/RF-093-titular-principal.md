@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOAPI
 ---
 
 # RF-093: Titular Principal
 
-O sistema deve permitir marcação de um dos titulares vinculados a cada unidade como principal através de flag booleano is_primary na tabela associativa unit_holders, onde titular principal representa responsável prioritário para comunicações, notificações e apresentação em listagens que requeiram simplificação mostrando apenas um titular por unidade. A validação garante que apenas um titular pode ser marcado como principal por unidade (constraint de unicidade ou validação de aplicação), apresentando erro quando usuário tenta marcar segundo titular como principal sem desmarcar o atual, ou automaticamente removendo flag do anterior quando novo principal é selecionado conforme estratégia de UX adotada. A exibição de unidades em listagens, mapas e relatórios destaca titular principal através de posicionamento prioritário (primeiro da lista), formatação visual diferenciada (negrito ou ícone de estrela), ou apresentação exclusiva quando contexto requer simplificação e não comporta exibição de todos os titulares. Implementado no módulo GEOAPI com prioridade Should-have, este recurso facilita identificação rápida do responsável primário especialmente em unidades com múltiplos titulares onde listar todos pode sobrecarregar interfaces e dificultar localização de interlocutor principal para questões administrativas, notificações de aprovação ou comunicações sobre processos de regularização que requeiram contato com representante da unidade.
+## Descricao
+
+Sistema deve permitir marcacao de um titular como principal por unidade atraves de flag is_primary na tabela unit_holders. Titular principal representa responsavel prioritario para comunicacoes, notificacoes e apresentacao em listagens simplificadas. Validacao garante apenas um titular principal por unidade. Exibicao de unidades destaca titular principal atraves de posicionamento prioritario, formatacao diferenciada ou icone. Facilita identificacao rapida do interlocutor para questoes administrativas.
+
+## Criterios de Aceitacao
+
+1. Flag is_primary na tabela unit_holders
+2. Apenas um titular principal por unidade
+3. Destaque visual do titular principal
+4. Posicionamento prioritario em listagens
+5. Mudanca automatica ao marcar novo principal
+
+## Rastreabilidade
+
+- Modulos: GEOAPI
+- Requisitos dependentes: RF-061, RF-062

@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
 ---
 
 # RF-161: Visualizar Pontos no Mapa
 
-O sistema renderiza pontos topográficos importados diretamente no mapa interativo através de marcadores visuais que exibem o código identificador de cada ponto, permitindo aos usuários técnicos localizar e identificar rapidamente os vértices do levantamento cadastral. Ao interagir com os marcadores através de clique ou toque, o sistema exibe um popup contendo informações detalhadas incluindo coordenadas planas X Y, altitude Z e metadados associados ao ponto, facilitando a verificação e validação dos dados topográficos sem necessidade de consultar o arquivo original. Os pontos são organizados em uma camada dedicada e independente das demais features geográficas, possibilitando controle granular de visibilidade e permitindo que o usuário ative ou desative a exibição dos pontos topográficos conforme necessário durante análises espaciais ou edição de unidades territoriais. Esta separação em camadas específicas também otimiza o desempenho do mapa ao trabalhar com grandes volumes de pontos de levantamento, garantindo fluidez na navegação mesmo em projetos cadastrais extensos com milhares de coordenadas registradas.
+## Descricao
+
+Sistema deve renderizar pontos topograficos importados no mapa interativo atraves de marcadores visuais que exibem codigo identificador de cada ponto, permitindo localizar e identificar vertices do levantamento cadastral. Ao clicar em marcadores, popup exibe informacoes detalhadas incluindo coordenadas planas (X, Y), altitude (Z) e metadados associados, facilitando verificacao e validacao sem consultar arquivo original. Pontos organizados em camada dedicada independente das demais features, possibilitando controle granular de visibilidade (ativar/desativar). Separacao em camadas otimiza desempenho ao trabalhar com grandes volumes de pontos, garantindo fluidez na navegacao em projetos cadastrais extensos com milhares de coordenadas.
+
+## Criterios de Aceitacao
+
+1. Marcadores com codigo identificador
+2. Popup com coordenadas X, Y, Z
+3. Camada dedicada para pontos
+4. Toggle de visibilidade
+5. Performance com grandes volumes
+
+## Rastreabilidade
+
+- Modulos: GEOWEB
+- Requisitos dependentes: RF-160, RF-151

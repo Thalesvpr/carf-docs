@@ -1,10 +1,11 @@
 ---
 type: leaf
-status: rejected
-description: "Duplicacao. Regras de negocio devem estar em DOMAIN-MODEL ou REQUIREMENTS, nao pasta separada. Stub de 9 linhas - incompleto."
-updated: 2026-01-19
+status: approved
+updated: 2026-01-25
 ---
 
-# GEOGRAPHIC
+# Geographic Validation
 
-Validações geográficas do CARF. coordinates-validation.md valida latitude -90 a +90, longitude -180 a +180, coordenadas dentro bounds Brasil verificando se ponto está contido no polígono de fronteira do Brasil. polygon-validation.md valida topologia geométrica (sem auto-interseção, buracos válidos, anel externo sentido horário), cálculo de área > 20m² (área mínima), cálculo de área < 250m² para REURB-S ou < 500m² para REURB-E. overlap-detection.md valida detecção de sobreposição espacial entre polígonos retornando conflitos, permitindo tolerância para pequenos gaps < 0.5m². topology-validation.md verifica gaps entre unidades adjacentes na mesma comunidade, slivers (polígonos muito finos), dangles (arestas não conectadas). Implementadas via funções espaciais do banco de dados chamadas de serviços de domínio ou restrições de banco.
+Validacoes geograficas do CARF implementadas via funcoes espaciais do banco de dados. Coordenadas devem estar dentro de limites validos com latitude entre -90 e +90, longitude entre -180 e +180, e ponto contido no poligono de fronteira do Brasil.
+
+Poligonos devem ter topologia valida sem auto-intersecao, buracos corretamente definidos, e anel externo em sentido horario. Area minima de 20 metros quadrados e maxima de 250 metros quadrados para REURB-S ou 500 metros quadrados para REURB-E. Deteccao de sobreposicao retorna conflitos entre poligonos com tolerancia de 0.5 metros quadrados para pequenos gaps. Validacao topologica verifica gaps entre unidades adjacentes, slivers e dangles.

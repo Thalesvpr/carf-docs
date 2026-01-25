@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-067: Importar Unidades via Shapefile
 
-O sistema deve permitir que usuários com perfil ADMIN importem múltiplas unidades simultaneamente através de upload de arquivo shapefile (.zip contendo .shp .shx .dbf .prj), onde a interface GEOWEB oferece wizard guiando o processo de importação em etapas sequenciais. Após upload, o sistema exibe wizard de mapeamento de campos permitindo que administrador associe colunas do shapefile (nome técnico da camada) aos campos do modelo de unidade do sistema (código endereço tipo comunidade), incluindo sugestões automáticas baseadas em nomes similares e prévia dos dados para validação visual. Antes de executar a importação definitiva, o sistema apresenta preview mostrando quantas unidades serão criadas, estatísticas de preenchimento de campos e alertas sobre possíveis problemas (geometrias inválidas, códigos duplicados, tipos não reconhecidos), permitindo ajustes no mapeamento ou correção do shapefile antes do commit. A importação em lote processa todas as unidades válidas transacionalmente, onde sucesso completo resulta em criação de todas as unidades e falhas acionam rollback completo, garantindo consistência e evitando importações parciais que comprometam integridade da base de dados.
+## Descricao
+
+Sistema deve permitir que usuarios ADMIN importem multiplas unidades atraves de upload de arquivo shapefile (.zip contendo .shp, .shx, .dbf, .prj). Interface GEOWEB oferece wizard guiando processo de importacao em etapas. Wizard de mapeamento permite associar colunas do shapefile aos campos do modelo de unidade com sugestoes automaticas baseadas em nomes similares. Preview mostra estatisticas e alertas sobre problemas antes do commit. Importacao transacional garante consistencia com rollback em caso de falha.
+
+## Criterios de Aceitacao
+
+1. Upload de shapefile compactado (.zip)
+2. Wizard de mapeamento de campos
+3. Preview com estatisticas e validacoes
+4. Importacao transacional com rollback
+5. Restrito a perfil ADMIN
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-049, RF-066

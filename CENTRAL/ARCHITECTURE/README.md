@@ -1,7 +1,7 @@
 ---
 type: readme
-status: review
-updated: 2026-01-22
+status: approved
+updated: 2026-01-24
 ---
 
 # ARCHITECTURE
@@ -18,14 +18,13 @@ Para implementacao tecnica especifica de cada projeto incluindo arquitetura de c
 > ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
 > Use os links abaixo para referenciar documentos desta pasta.
 
-## Subpastas (5)
+## Subpastas (4)
 
 | Pasta | Descrição |
 |-------|-----------|
 | [DECISIONS](./DECISIONS/README.md) | ... |
 | [DIAGRAMS](./DIAGRAMS/README.md) | ... |
 | [INTEGRATION](./INTEGRATION/README.md) | ... |
-| [STANDARDS](./STANDARDS/README.md) | ... |
 | [SYSTEM](./SYSTEM/README.md) | ... |
 
 <!-- CARF-INDEX-END -->

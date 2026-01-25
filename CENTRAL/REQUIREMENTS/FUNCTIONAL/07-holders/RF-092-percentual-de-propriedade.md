@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOAPI
 ---
 
 # RF-092: Percentual de Propriedade
 
-O sistema deve permitir especificação de percentual de propriedade para cada vínculo entre titular e unidade através de campo ownership_percentage com valores numéricos entre 0 e 100 representando fração de propriedade ou posse que cada titular detém sobre a unidade. Quando aplicável ao tipo de relacionamento (especialmente PROPRIETARIO e POSSUIDOR), sistema valida que soma dos percentuais de todos os titulares da mesma unidade totalize exatamente 100%, alertando usuário sobre inconsistências e bloqueando salvamento quando percentuais não somam corretamente ou excedem totalidade. Para tipos de relacionamento onde percentual não se aplica (LOCATARIO USUFRUTUARIO), campo pode ser deixado vazio ou zerado sendo interpretado como não aplicável ao invés de indicar ausência de direito. A interface exibe percentuais formatados com símbolo % e até duas casas decimais permitindo representação precisa de situações como 33,33% para três coproprietários com partes iguais, além de apresentar em visualizações de unidade a distribuição de propriedade através de gráfico visual (pizza ou barras) facilitando compreensão rápida de estrutura de propriedade compartilhada. Implementado no módulo GEOAPI com prioridade Should-have, este recurso é especialmente importante em contextos de copropriedade e sucessão onde múltiplos herdeiros ou compradores compartilham direitos sobre mesmo imóvel.
+## Descricao
+
+Sistema deve permitir especificacao de percentual de propriedade para vinculo titular-unidade atraves de campo ownership_percentage com valores 0-100. Validacao garante que soma de percentuais de todos titulares da unidade totalize 100% quando aplicavel a proprietarios e possuidores. Para tipos onde percentual nao se aplica (LOCATARIO, USUFRUTUARIO) campo pode ser vazio. Interface exibe percentuais formatados com simbolo % e ate duas casas decimais, alem de grafico visual de distribuicao.
+
+## Criterios de Aceitacao
+
+1. Campo ownership_percentage (0-100)
+2. Validacao de soma = 100% quando aplicavel
+3. Campo opcional para tipos sem percentual
+4. Formatacao com simbolo % e decimais
+5. Grafico de distribuicao de propriedade
+
+## Rastreabilidade
+
+- Modulos: GEOAPI
+- Requisitos dependentes: RF-091, RF-062

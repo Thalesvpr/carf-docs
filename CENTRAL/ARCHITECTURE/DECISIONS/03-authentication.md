@@ -1,7 +1,7 @@
 ---
 type: adr
-status: review
-updated: 2026-01-22
+status: approved
+updated: 2026-01-24
 ---
 
 # ADR-003: Keycloak como Identity Provider
@@ -12,7 +12,7 @@ Sistema CARF requer autenticacao unificada para web, mobile e desktop com suport
 
 ## Decisao
 
-Adotamos Keycloak como identity provider centralizado implementando OAuth2 e OpenID Connect. Single realm CARF com todos os usuarios e clients. Multi-tenancy via atributo customizado tenant_id incluido como claim no token. Temas customizados com Keycloakify para consistencia visual com demais aplicacoes.
+Adotamos Keycloak como identity provider centralizado implementando OAuth2 e OpenID Connect. Single realm CARF com todos os usuarios e clients. Multi-tenancy via atributo customizado tenant_id incluido como claim no token. Temas customizados com Keycloakify para consistencia visual com demais aplicacoes. O Plugin QGIS (GEOGIS) exige autenticacao em duas etapas: login via Keycloak OAuth2 seguido de AUTHENTICATION KEY (chave adicional que vincula sessao do plugin ao backend e habilita acesso as ortofotos do tenant).
 
 ## Consequencias
 

@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOAPI
 ---
 
-# RF-062: Múltiplos Titulares por Unidade
+# RF-062: Multiplos Titulares por Unidade
 
-O sistema deve permitir que uma unidade habitacional tenha múltiplos titulares vinculados simultaneamente com diferentes tipos de relacionamento e percentuais de propriedade, onde a implementação utiliza tabela associativa unit_holders contendo campos relationship, ownership_percentage e is_primary. Cada vínculo representa uma relação específica entre pessoa (física ou jurídica) e unidade, permitindo modelagem de situações reais como copropriedade, condomínio, posse compartilhada ou múltiplos responsáveis com papéis distintos na mesma unidade. O sistema deve validar que a soma dos percentuais de propriedade não ultrapasse 100% quando aplicável, alertando o usuário sobre inconsistências e bloqueando salvamento se configuração de percentuais for inválida. Apenas um titular pode ser marcado como principal (is_primary=true) por unidade, garantindo identificação clara do responsável primário para comunicações, notificações e exibição prioritária em listagens e relatórios, onde o titular principal aparece destacado visualmente facilitando reconhecimento rápido da responsabilidade principal sobre cada unidade cadastrada.
+## Descricao
+
+Sistema deve permitir que uma unidade habitacional tenha multiplos titulares vinculados simultaneamente com diferentes tipos de relacionamento e percentuais de propriedade. Implementacao utiliza tabela associativa unit_holders com campos relationship, ownership_percentage e is_primary. Sistema valida que soma dos percentuais nao ultrapasse 100% quando aplicavel. Apenas um titular pode ser marcado como principal por unidade garantindo identificacao clara do responsavel primario para comunicacoes e notificacoes.
+
+## Criterios de Aceitacao
+
+1. Suporte a multiplos titulares por unidade
+2. Percentual de propriedade por titular
+3. Validacao de soma de percentuais <= 100%
+4. Apenas um titular principal por unidade
+5. Tipos de relacionamento distintos por vinculo
+
+## Rastreabilidade
+
+- Modulos: GEOAPI
+- Requisitos dependentes: RF-061

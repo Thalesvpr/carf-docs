@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-198: Exportar Unidades em KML/KMZ
 
-O sistema possibilita exportação de unidades territoriais em formato KML (Keyhole Markup Language) ou sua versão compactada KMZ, padrão adotado pelo Google Earth que permite visualização tridimensional de dados geoespaciais em interface amigável acessível a usuários não técnicos. A geração de KML estrutura dados conforme especificação OGC incluindo elementos Placemark para cada unidade com geometrias codificadas em coordenadas WGS84 longitude/latitude, atributos alfanuméricos apresentados em popups HTML formatados, e metadados de estilo que definem cores, espessuras de linha e transparências para visualização adequada. O sistema aplica estilos diferenciados automaticamente conforme atributos das unidades como status (aprovado em verde, pendente em amarelo, rejeitado em vermelho) ou tipo de ocupação, facilitando interpretação visual imediata de características das features sem necessidade de consultar tabela de atributos. A opção de compactação em KMZ utiliza compressão ZIP para reduzir tamanho do arquivo resultante, particularmente benéfico quando exportação inclui grande quantidade de unidades ou quando arquivos serão distribuídos via email ou internet, garantindo transferências mais rápidas e consumo reduzido de armazenamento sem perda de informação ou qualidade dos dados espaciais.
+## Descricao
+
+Sistema deve possibilitar exportacao de unidades territoriais em formato KML (Keyhole Markup Language) ou versao compactada KMZ, padrao adotado pelo Google Earth para visualizacao tridimensional de dados geoespaciais em interface acessivel a usuarios nao tecnicos. Geracao estrutura dados conforme especificacao OGC incluindo elementos Placemark para cada unidade com geometrias em coordenadas WGS84, atributos alfanumericos em popups HTML formatados, e metadados de estilo. Sistema aplica estilos diferenciados conforme status (aprovado em verde, pendente em amarelo, rejeitado em vermelho) ou tipo de ocupacao facilitando interpretacao visual. Compactacao KMZ reduz tamanho para distribuicao via email ou internet. Dados filtrados por tenant_id do usuario.
+
+## Criterios de Aceitacao
+
+1. Formato KML conforme especificacao OGC
+2. Opcao de compactacao KMZ
+3. Coordenadas WGS84
+4. Estilos diferenciados por status
+5. Segregacao por tenant_id
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-044, RF-127

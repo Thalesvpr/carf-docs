@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-052: Listar Unidades
 
-Usuários podem listar unidades com paginação e filtros avançados onde paginação implementada retornando subconjunto configurável (20 50 100 registros por página) com metadados de total de registros página atual e navegação eficiente, filtros disponíveis incluem status de workflow (DRAFT PENDING APPROVED REJECTED CHANGES_REQUESTED) comunidade vinculada tipo de unidade (Residencial Comercial Mista) período de criação ou última atualização permitindo segmentação precisa de resultados, busca textual por endereço completo ou parcial código identificador único CPF/nome de titular com matching case-insensitive e highlighting de termos encontrados facilitando localização rápida em grandes volumes de dados, ordenação personalizável por múltiplos critérios incluindo data de criação (padrão: mais recentes primeiro) código endereço área status ou data de última modificação com direção ascendente/descendente configurável e persistência de preferências de ordenação entre sessões, implementação em módulos GEOWEB e GEOAPI com interface responsiva (tabela ou cards) controles de filtro interativos busca com debounce para performance ações rápidas (editar visualizar no mapa aprovar) e exportação de resultados filtrados para Excel CSV.
+## Descricao
+
+Usuarios podem listar unidades com paginacao e filtros avancados. Paginacao implementada retornando subconjunto configuravel de registros com metadados de navegacao. Filtros disponiveis incluem status de workflow (DRAFT, PENDING, APPROVED, REJECTED), comunidade vinculada, tipo de unidade e periodo de criacao. Busca textual por endereco, codigo ou nome de titular com matching case-insensitive. Ordenacao personalizavel por data, codigo, endereco ou area.
+
+## Criterios de Aceitacao
+
+1. Listagem paginada com metadados de navegacao
+2. Filtros por status, comunidade, tipo e periodo
+3. Busca por endereco, codigo ou titular
+4. Ordenacao configuravel por multiplos campos
+5. Exportacao de resultados filtrados
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-049, RF-056

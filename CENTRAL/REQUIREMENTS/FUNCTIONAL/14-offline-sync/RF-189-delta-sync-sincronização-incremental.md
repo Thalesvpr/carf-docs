@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - REURBCAD
+  - GEOAPI
 ---
 
-# RF-189: Delta Sync (Sincronização Incremental)
+# RF-189: Delta Sync Incremental
 
-O sistema implementa sincronização incremental eficiente que transmite apenas dados alterados desde última sincronização bem-sucedida, em contraste com sincronização completa que transferiria todos os dados a cada operação, reduzindo drasticamente tempo de sincronização e consumo de banda especialmente relevante em contextos de conectividade limitada. A implementação mantém timestamps de última sincronização persistidos localmente no dispositivo e utiliza endpoint especializado /api/sync/pull que aceita parâmetro lastPulledAt permitindo ao servidor retornar apenas registros criados ou modificados após aquele timestamp, minimizando payload da resposta. Na direção oposta (push), o aplicativo envia ao servidor apenas dados criados ou editados localmente desde última sincronização, identificados através de flags de pendência e timestamps de modificação mantidos no banco SQLite local, evitando retransmissão de dados já sincronizados previamente. Este padrão de sincronização incremental (delta sync) é fundamental para viabilizar uso do sistema em áreas com conectividade precária onde sincronizações completas seriam impraticáveis devido a tempo excessivo ou custos proibitivos de dados móveis, permitindo que projetos de regularização fundiária sejam executados eficientemente mesmo em contextos tecnologicamente desafiadores típicos de comunidades informais periféricas ou rurais.
+## Descricao
+
+Sistema deve implementar sincronizacao incremental eficiente que transmite apenas dados alterados desde ultima sincronizacao bem-sucedida, reduzindo drasticamente tempo de sincronizacao e consumo de banda em contextos de conectividade limitada. Implementacao mantem timestamps de ultima sincronizacao persistidos localmente e utiliza endpoint GET /api/sync/pull com parametro lastPulledAt permitindo ao servidor retornar apenas registros criados ou modificados apos aquele timestamp. Na direcao push, aplicativo envia apenas dados criados ou editados localmente identificados atraves de flags de pendencia e timestamps de modificacao no SQLite, evitando retransmissao de dados ja sincronizados. Padrao delta sync fundamental para viabilizar uso em areas com conectividade precaria onde sincronizacoes completas seriam impraticaveis.
+
+## Criterios de Aceitacao
+
+1. Transmissao apenas de dados alterados
+2. Timestamps de ultima sincronizacao persistidos
+3. Endpoint pull com parametro lastPulledAt
+4. Push apenas de registros pendentes
+5. Reducao significativa de consumo de banda
+
+## Rastreabilidade
+
+- Modulos: REURBCAD, GEOAPI
+- Requisitos dependentes: RF-187, RF-192, RF-193

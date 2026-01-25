@@ -1,10 +1,29 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOAPI
+  - GEOWEB
+  - REURBCAD
+  - GEOGIS
 ---
 
-# RF-006: 5 Níveis de Acesso (Roles)
+# RF-006: 5 Niveis de Acesso (Roles)
 
-Sistema deve suportar cinco níveis hierárquicos de acesso baseados em roles sendo SUPER_ADMIN com privilégios globais irrestritos ADMIN com gestão completa de tenant específico MANAGER com capacidade de aprovação de workflows ANALYST com permissões de cadastro e edição de dados FIELD_AGENT focado em coleta de dados em campo, roles devem ser definidos e gerenciados no Keycloak como realm roles ou client roles permitindo atribuição granular por usuário onde cada role possui conjunto específico de permissões mapeadas para operações de sistema, mapeamento de roles para permissões implementado no backend GEOAPI utilizando anotações ou decorators que verificam presence de role específica em claim roles do JWT antes de permitir execução de operação, controle de acesso baseado em role (RBAC - Role-Based Access Control) aplicado em toda plataforma incluindo módulos GEOAPI GEOWEB REURBCAD garantindo que usuário só visualize e execute funcionalidades permitidas para seu nível de acesso prevenindo escalação de privilégios e acesso não autorizado.
+## Descricao
+
+O sistema deve suportar cinco niveis hierarquicos de acesso baseados em roles: SUPER_ADMIN com privilegios globais irrestritos, ADMIN com gestao de tenant especifico, MANAGER com aprovacao de workflows, ANALYST com cadastro e edicao de dados, FIELD_AGENT com coleta de dados em campo. Roles definidos no Keycloak e mapeados para permissoes no backend via claims JWT.
+
+## Criterios de Aceitacao
+
+1. Cinco roles distintos configurados no Keycloak
+2. Cada role possui conjunto especifico de permissoes
+3. Hierarquia respeitada (SUPER_ADMIN herda todas permissoes)
+4. Role presente no claim roles do JWT
+5. Interface exibe apenas funcionalidades permitidas para role do usuario
+
+## Rastreabilidade
+
+- Modulos: GEOAPI, GEOWEB, REURBCAD, GEOGIS
+- Requisitos dependentes: RF-001, RF-005

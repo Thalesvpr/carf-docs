@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-083: Imprimir Ficha de Unidade
 
-O sistema deve gerar documento PDF formatado contendo ficha técnica completa de unidade habitacional, onde layout profissional apresenta dados cadastrais organizados em seções lógicas (identificação localização características titulares anexos) facilitando leitura e compreensão por parte de moradores e stakeholders não técnicos. A ficha inclui informações essenciais como código, endereço, tipo de unidade, área, comunidade, quadra e lote, além de lista completa de titulares vinculados mostrando nome, documento, tipo de relacionamento e percentual de propriedade quando aplicável. Galeria de fotos anexadas é renderizada no PDF apresentando miniaturas organizadas por tipo (fachada interior documentos) com legendas descritivas, enquanto mapa de localização mostra posição geográfica da unidade em contexto de comunidade ou município facilitando identificação espacial. QR code gerado dinamicamente e incluído no rodapé da ficha contém URL direta para visualização web da unidade, permitindo que portador do documento impresso acesse versão digital atualizada através de leitura do código com smartphone, criando ponte entre materialidade do documento físico e dinamismo da base de dados online sempre atualizada.
+## Descricao
+
+Sistema deve gerar documento PDF com ficha tecnica completa de unidade habitacional. Layout profissional apresenta dados cadastrais organizados em secoes: identificacao, localizacao, caracteristicas, titulares, anexos. Ficha inclui codigo, endereco, tipo, area, comunidade, quadra, lote e lista de titulares com documento e tipo de relacionamento. Galeria de fotos renderizada com miniaturas por tipo. Mapa de localizacao mostra posicao geografica. QR code no rodape contem URL para visualizacao web, conforme WORKFLOW-MESTRE para leitura de QR Code em campo.
+
+## Criterios de Aceitacao
+
+1. Geracao de PDF formatado
+2. Secoes organizadas de dados cadastrais
+3. Galeria de fotos em miniaturas
+4. Mapa de localizacao da unidade
+5. QR code com URL da unidade
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-049, RF-063

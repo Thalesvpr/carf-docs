@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - REURBCAD
 ---
 
-# RF-196: Log de Sincronização
+# RF-196: Log de Sincronizacao
 
-O sistema mantém histórico detalhado de sincronizações executadas através de log persistente que registra cada tentativa de sincronização incluindo data/hora precisa de início e término da operação, duração total do processo e resultado final (sucesso, falha parcial ou falha completa). Para cada sincronização, o log armazena estatísticas quantitativas incluindo quantidade de registros enviados ao servidor (push) discriminados por tipo de entidade, quantidade de registros recebidos do servidor (pull) também segmentados, total de bytes transferidos em cada direção e velocidade média da conexão durante transferência. Quando sincronização encontra problemas, o log captura informações detalhadas sobre erros ocorridos incluindo códigos de status HTTP retornados pelo servidor, mensagens de erro técnicas, identificadores dos registros que falharam ao sincronizar e natureza específica de cada falha como timeout de rede, erro de validação ou conflito detectado. O histórico de sincronização pode ser consultado através de interface dedicada que apresenta lista cronológica de todas as sincronizações com detalhamento expandível, permitindo que usuários e equipes de suporte técnico diagnostiquem problemas recorrentes, identifiquem padrões de falha e comprovem que dados foram efetivamente sincronizados em momentos específicos, fornecendo rastreabilidade essencial para troubleshooting e auditoria.
+## Descricao
+
+Sistema deve manter historico detalhado de sincronizacoes executadas atraves de log persistente registrando cada tentativa com data/hora de inicio e termino, duracao total e resultado final (sucesso, falha parcial ou falha completa). Para cada sincronizacao, log armazena estatisticas quantitativas incluindo registros enviados (push) discriminados por tipo de entidade, registros recebidos (pull) segmentados, total de bytes transferidos e velocidade media da conexao. Quando sincronizacao encontra problemas, log captura codigos de status HTTP, mensagens de erro tecnicas, identificadores dos registros que falharam e natureza especifica de cada falha como timeout, erro de validacao ou conflito. Historico consultavel atraves de interface dedicada com lista cronologica e detalhamento expandivel para diagnostico e auditoria.
+
+## Criterios de Aceitacao
+
+1. Registro de data/hora, duracao e resultado
+2. Estatisticas de push e pull por entidade
+3. Bytes transferidos e velocidade media
+4. Detalhamento de erros e falhas
+5. Interface de consulta cronologica
+
+## Rastreabilidade
+
+- Modulos: REURBCAD
+- Requisitos dependentes: RF-187, RF-188

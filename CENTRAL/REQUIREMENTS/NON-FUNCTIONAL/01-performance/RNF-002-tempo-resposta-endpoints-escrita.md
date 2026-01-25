@@ -1,10 +1,7 @@
 ---
-id: RNF-002
-type: RNF
-modules: []
+type: rnf
 status: approved
-created: 2026-01-23
-updated: 2026-01-23
+updated: 2026-01-25
 ---
 
 # RNF-002: Tempo de Resposta - Endpoints de Escrita

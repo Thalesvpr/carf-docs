@@ -1,6 +1,6 @@
 ---
 type: readme
-status: rejected
+status: review
 description: "README usa listas/tabelas ao invés de prosa densa com links inline."
 updated: 2026-01-22
 ---
@@ -25,7 +25,7 @@ Stack tecnológica React 18.3 TypeScript 5.3 strict mode Vite 5.0 build bundler 
 
 Arquitetura SPA client-side routing React Router DOM routes nested layouts protected via PrivateRoute component checking authentication roles via useAuth hook redirecting login forbidden conforme permissions, state management híbrido TanStack Query para server state cached staleTime refetchOnWindowFocus automatic background refetching Zustand para UI state ephemeral modals filters selections não persistidos, forms React Hook Form useForm register handleSubmit errors validation Zod schemas type-safe runtime validation custom validators async uniqueness checks debounced, API integration custom hooks useUnits useCreateUnit useUpdateUnit useDeleteUnit encapsulating TanStack Query useQuery useMutation with keys dependencies enabled conditions retry logic onSuccess onError callbacks cache invalidation queryClient.invalidateQueries targeted specific keys, authentication AuthContext provider wrapping App tree useAuth hook exposing user isAuthenticated login logout switchTenant hasRole getToken methods consuming keycloak-js library OAuth2 flows token refresh interceptors, routing file-based structure src/pages directory UnitsListPage UnitDetailsPage UnitFormPage protected requiring authentication role permissions layouts DashboardLayout AuthLayout wrapping pages headers sidebars footers, components atomic design atoms Button Input Select molecules FormField Card organisms UnitCard UnitTable templates PageTemplate compositions reusable composable typed props.
 
-Relacionamento requirements implementando UC-001 cadastro unidades UC-002 aprovação UC-003 vinculação titulares UC-006 relatórios UC-007 exportação UC-008 importação shapefiles UC-009 legitimação UC-010 camadas GIS UC-011 gestão equipes garantindo usuários web ADMIN MANAGER ANALYST produtivos interface intuitiva responsiva acessível workflows eficientes aprovação validação coordenação campo reporting accountability compliance LGPD multi-tenancy RLS.
+Relacionamento requirements implementando UC-003 vinculação titulares UC-006 relatórios UC-007 exportação UC-008 importação shapefiles UC-009 legitimação UC-010 camadas GIS UC-011 gestão equipes garantindo usuários web ADMIN MANAGER ANALYST produtivos interface intuitiva responsiva acessível workflows eficientes aprovação validação coordenação campo reporting accountability compliance LGPD multi-tenancy RLS. Gestão de unidades e aprovação seguem [WORKFLOW-MESTRE](../../../../CENTRAL/WORKFLOW-MESTRE/README.md).
 
 <!-- CARF-INDEX-START -->
 > ⚠️ **Índice gerado automaticamente.** Não edite manualmente.

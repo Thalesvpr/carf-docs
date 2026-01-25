@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-201: Exportar Unidades em Excel
 
-O sistema oferece exportação de unidades em formato Excel (.xlsx) nativo do Microsoft Office que produz planilha sofisticada contendo múltiplas abas organizadas logicamente, incluindo aba principal com dados de unidades, aba adicional com informações de titulares vinculados, e opcionalmente outras abas com documentos anexados, fotos e estatísticas agregadas, proporcionando visão abrangente e estruturada do cadastro. A geração aplica formatação profissional de células incluindo cabeçalhos com fundo colorido e texto em negrito, colunas com larguras ajustadas automaticamente ao conteúdo, formatação numérica apropriada para valores monetários e percentuais, e formatação de data no padrão brasileiro, resultando em planilha imediatamente utilizável sem necessidade de ajustes manuais. O sistema ativa automaticamente filtros automáticos na linha de cabeçalho de cada aba, permitindo que usuários do Excel filtrem e ordenem dados interativamente para análises exploratórias, localizem registros específicos rapidamente e criem visualizações customizadas sem conhecimento técnico de fórmulas ou macros. Esta exportação em Excel nativo é particularmente valiosa para usuários gestores e tomadores de decisão familiarizados com ambiente Office que necessitam analisar dados cadastrais, gerar gráficos e tabelas dinâmicas, ou integrar informações em relatórios gerenciais mais amplos utilizando ferramentas cotidianas de produtividade.
+## Descricao
+
+Sistema deve oferecer exportacao de unidades em formato Excel (.xlsx) nativo do Microsoft Office produzindo planilha com multiplas abas organizadas logicamente: aba principal com dados de unidades, aba adicional com titulares vinculados, e opcionalmente abas com documentos anexados, fotos e estatisticas agregadas. Geracao aplica formatacao profissional incluindo cabecalhos com fundo colorido, colunas com larguras ajustadas automaticamente, formatacao numerica apropriada para valores monetarios e percentuais, e formatacao de data no padrao brasileiro. Filtros automaticos ativados na linha de cabecalho permitem analises exploratories interativas. Exportacao valiosa para gestores familiarizados com ambiente Office que necessitam criar graficos e tabelas dinamicas.
+
+## Criterios de Aceitacao
+
+1. Formato .xlsx nativo
+2. Multiplas abas organizadas
+3. Formatacao profissional de celulas
+4. Filtros automaticos na linha de cabecalho
+5. Segregacao por tenant_id
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-044, RF-074

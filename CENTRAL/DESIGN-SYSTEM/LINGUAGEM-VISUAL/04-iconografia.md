@@ -1,7 +1,7 @@
 ---
 type: leaf
-status: current
-updated: 2026-01-22
+status: approved
+updated: 2026-01-24
 ---
 
 # Iconografia
@@ -10,7 +10,7 @@ Icones no CARF aceleram reconhecimento, nao substituem texto. Um icone de lixeir
 
 Usamos icones de linha simples, sem preenchimento elaborado ou detalhes excessivos. Em tamanhos pequenos de tela, detalhes se perdem. Icones simples permanecem reconheciveis mesmo em resolucoes baixas ou sob luz forte.
 
-Icones de status seguem a logica de cores do sistema. Check verde para sucesso. Exclamacao amarela para atencao. X vermelho para erro. Interrogacao para ajuda. Essas associacoes sao universais e nao devem ser alteradas.
+Icones de status seguem o significado funcional das cores definido em IDENTIDADE. Check para sucesso, exclamacao para atencao, X para erro, interrogacao para ajuda. Essas associacoes sao universais e nao devem ser alteradas.
 
 ## Significados Fixos
 

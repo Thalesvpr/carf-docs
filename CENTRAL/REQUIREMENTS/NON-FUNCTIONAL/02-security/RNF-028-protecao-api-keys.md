@@ -1,10 +1,7 @@
 ---
-id: RNF-028
-type: RNF
-modules: []
+type: rnf
 status: approved
-created: 2026-01-23
-updated: 2026-01-23
+updated: 2026-01-25
 ---
 
 # RNF-028: Protecao de API Keys

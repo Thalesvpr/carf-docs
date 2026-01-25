@@ -1,6 +1,6 @@
 ---
 type: readme
-status: rejected
+status: review
 description: "README usa lista de bullets para descrever arquivos - reescrever em prosa densa"
 updated: 2026-01-22
 ---

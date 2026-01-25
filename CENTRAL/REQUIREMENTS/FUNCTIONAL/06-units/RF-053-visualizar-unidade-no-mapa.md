@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - REURBCAD
 ---
 
 # RF-053: Visualizar Unidade no Mapa
 
-Sistema deve exibir unidade no mapa web interativo com geometria colorida por status de workflow onde renderização de polígono utiliza biblioteca cartográfica (Leaflet OpenLayers Mapbox) com performance otimizada para grandes quantidades de features através de clustering ou tiling, cores por status implementam esquema visual intuitivo onde DRAFT exibido em cinza ou amarelo indicando trabalho em progresso PENDING em laranja aguardando revisão APPROVED em verde confirmando conclusão REJECTED em vermelho indicando reprovação CHANGES_REQUESTED em azul solicitando ajustes facilitando identificação visual rápida de estado de unidades, popup ou painel lateral exibindo dados resumidos ao clicar em polígono incluindo código endereço tipo área titulares status atual e ações rápidas (editar completo visualizar detalhes aprovar/rejeitar se MANAGER) com loading eficiente de informações sob demanda, implementação em módulos GEOWEB e REURBCAD com mapa base configurável layers vetoriais otimizados controles de zoom/pan ferramentas de seleção múltipla filtros visuais por status e sincronização com listagem tabular permitindo navegação integrada mapa-lista.
+## Descricao
+
+Sistema deve exibir unidade no mapa web interativo com geometria colorida por status de workflow. Renderizacao de poligono com cores por status: DRAFT em cinza, PENDING em laranja, APPROVED em verde, REJECTED em vermelho, CHANGES_REQUESTED em azul. Popup ou painel lateral exibindo dados resumidos ao clicar em poligono incluindo codigo, endereco, tipo, area, titulares, status e acoes rapidas. Performance otimizada para grandes quantidades de features.
+
+## Criterios de Aceitacao
+
+1. Poligono renderizado com cor por status
+2. Esquema de cores intuitivo por workflow state
+3. Popup com dados resumidos ao clicar
+4. Acoes rapidas de editar e aprovar no popup
+5. Clustering ou tiling para performance
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, REURBCAD
+- Requisitos dependentes: RF-049, RF-056

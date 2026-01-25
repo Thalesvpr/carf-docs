@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-032: Redefinir Senha
 
-Usuário que esqueceu senha pode solicitar redefinição via email onde fluxo inicia na tela de login com link "Esqueci minha senha" levando a formulário de recuperação solicitando email cadastrado, link de recuperação enviado automaticamente para email fornecido contendo URL única com token criptografado onde token possui expiração de 1 hora após geração invalidando automaticamente após esse período ou após uso bem-sucedido prevenindo reutilização maliciosa, validação de senha forte aplicada durante definição de nova senha exigindo mínimo 8 caracteres incluindo ao menos 1 letra maiúscula 1 minúscula 1 número e 1 caractere especial com feedback visual em tempo real indicando conformidade com cada critério conforme usuário digita, implementação em módulos GEOWEB para interface de usuário e GEOAPI para processamento backend incluindo geração de token seguro armazenamento temporário com TTL envio de email via serviço SMTP configurado validação de token em endpoint dedicado e sincronização de nova senha com Keycloak.
+## Descricao
+
+Usuario que esqueceu senha pode solicitar redefinicao via email. Fluxo inicia na tela de login com link "Esqueci minha senha" levando a formulario de recuperacao solicitando email cadastrado. Link de recuperacao enviado automaticamente contendo URL unica com token criptografado. Token possui expiracao de 1 hora apos geracao, invalidando automaticamente apos uso bem-sucedido. Validacao de senha forte aplicada durante definicao de nova senha com feedback visual em tempo real.
+
+## Criterios de Aceitacao
+
+1. Link de recuperacao na tela de login
+2. Email com token criptografado enviado automaticamente
+3. Token expira em 1 hora ou apos uso
+4. Validacao de senha forte com feedback visual
+5. Sincronizacao de nova senha com Keycloak
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-001, RF-021

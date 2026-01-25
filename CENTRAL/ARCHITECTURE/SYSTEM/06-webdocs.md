@@ -1,7 +1,7 @@
 ---
 type: leaf
-status: review
-updated: 2026-01-22
+status: approved
+updated: 2026-01-24
 ---
 
 # WEBDOCS
@@ -12,4 +12,4 @@ Stack com Astro para geracao estatica, Starlight para tema de documentacao, MDX 
 
 ## Capacidades
 
-Navegacao estruturada por perfil de usuario com guias para analistas, agentes de campo e administradores. Documentacao de API com Swagger embutido. Diagramas Mermaid renderizados automaticamente. Busca full-text instantanea. Status page com disponibilidade dos servicos. Versionamento de conteudo. Detalhes tecnicos em [PROJECTS/WEBDOCS/DOCS/](../../../PROJECTS/WEBDOCS/DOCS/README.md).
+Navegacao estruturada por perfil de usuario com guias para analistas, agentes de campo e administradores. Documentacao de API com Swagger embutido. Diagramas Mermaid renderizados automaticamente. Busca full-text instantanea. Status page com disponibilidade dos servicos. Versionamento de conteudo. Detalhes tecnicos no repositorio carf-webdocs.

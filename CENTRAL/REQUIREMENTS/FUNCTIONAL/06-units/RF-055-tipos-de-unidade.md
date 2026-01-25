@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOAPI
 ---
 
 # RF-055: Tipos de Unidade
 
-O sistema deve suportar a categorização de unidades habitacionais através de tipos predefinidos (RESIDENCIAL COMERCIAL MISTO INSTITUCIONAL EQUIPAMENTO_PUBLICO), onde cada tipo representa o uso predominante da edificação e influencia regras de validação e apresentação de dados. A implementação utiliza uma enumeração (enum) no backend garantindo valores consistentes e evitando erros de digitação, incluindo validação automática ao criar ou editar unidades para aceitar somente tipos válidos do conjunto predefinido. O sistema oferece filtros por tipo nas listagens e consultas de unidades, permitindo que usuários visualizem e exportem dados agrupados por categoria de uso, facilitando análises demográficas e planejamento urbano. Este requisito é essencial para GEOAPI onde os tipos de unidade são utilizados em relatórios estatísticos, mapas temáticos e regras de negócio específicas para cada categoria, garantindo que a classificação seja uniforme em toda a plataforma e compartilhada entre diferentes módulos do sistema.
+## Descricao
+
+Sistema deve suportar categorizacao de unidades habitacionais atraves de tipos predefinidos: RESIDENCIAL, COMERCIAL, MISTO, INSTITUCIONAL, EQUIPAMENTO_PUBLICO. Cada tipo representa o uso predominante da edificacao e influencia regras de validacao e apresentacao de dados. Implementacao utiliza enumeracao (enum) no backend garantindo valores consistentes. Filtros por tipo disponiveis em listagens e consultas para analises demograficas e planejamento urbano.
+
+## Criterios de Aceitacao
+
+1. Enum com tipos predefinidos no backend
+2. Validacao de tipo obrigatoria antes de persistir
+3. Erro HTTP 400 para tipos invalidos
+4. Filtros por tipo disponiveis em listagens
+5. Constantes exportadas para frontend
+
+## Rastreabilidade
+
+- Modulos: GEOAPI
+- Requisitos dependentes: RF-049

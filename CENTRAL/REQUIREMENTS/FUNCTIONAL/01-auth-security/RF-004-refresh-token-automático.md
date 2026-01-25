@@ -1,10 +1,28 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - REURBCAD
+  - GEOGIS
 ---
 
-# RF-004: Refresh Token Automático
+# RF-004: Refresh Token Automatico
 
-Sistema deve renovar automaticamente tokens de acesso expirados utilizando refresh_token sem requerer re-autenticação do usuário onde detecção de token expirado ocorre através de verificação do claim exp no JWT ou captura de resposta HTTP 401 Unauthorized de API, processo de renovação transparente para usuário implementado via interceptor HTTP ou middleware que captura falha de autenticação tenta renovar token usando refresh_token armazenado e reexecuta requisição original com novo access_token obtido, logout forçado deve ocorrer se refresh_token for inválido expirado ou revogado indicando necessidade de re-autenticação completa onde sistema limpa tokens armazenados localmente e redireciona usuário para tela de login com mensagem informativa sobre expiração de sessão, implementação aplicável a todos módulos GEOAPI GEOWEB REURBCAD GEOGIS garantindo experiência de usuário consistente e minimizando interrupções durante uso prolongado da plataforma.
+## Descricao
+
+O sistema deve renovar automaticamente tokens de acesso antes da expiracao utilizando refresh token. Renovacao deve ocorrer de forma transparente sem interrupcao da experiencia do usuario. Deteccao de expiracao iminente dispara solicitacao proativa de novo access_token. Em caso de falha na renovacao ou refresh_token invalido, usuario e redirecionado para tela de login.
+
+## Criterios de Aceitacao
+
+1. Renovacao automatica ocorre antes da expiracao do access_token
+2. Usuario nao percebe renovacao durante uso normal
+3. Falha na renovacao redireciona para login
+4. Refresh token invalido dispara logout completo
+5. Multiplas abas sincronizam renovacao de token
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, REURBCAD, GEOGIS
+- Requisitos dependentes: RF-001, RF-002, RF-003

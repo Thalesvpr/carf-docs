@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
-# RF-163: Gerar Modelo Digital de Elevação (MDE)
+# RF-163: Gerar Modelo Digital de Elevacao (MDE)
 
-O sistema possibilita a geração de Modelo Digital de Elevação através da interpolação de grid regular a partir de pontos topográficos coletados, criando uma representação matricial contínua do terreno onde cada pixel armazena um valor de altitude interpolado. O processamento utiliza técnicas geoestatísticas apropriadas para distribuir espacialmente os valores conhecidos de elevação, resultando em uma superfície digital que representa fielmente a topografia da área levantada. O MDE gerado é exportado no formato GeoTIFF padrão OGC, incluindo metadados de georreferenciamento e sistema de coordenadas, garantindo interoperabilidade com softwares GIS externos e permitindo análises avançadas de terreno como cálculo de declividade, orientação de vertentes e sombreamento. Adicionalmente, o sistema permite visualizar o MDE como camada raster sobreposta ao mapa base, aplicando esquemas de cores hipsométricos que facilitam a interpretação visual do relevo, auxiliando técnicos e gestores na compreensão tridimensional do território durante processos de planejamento urbano e análise de adequabilidade de áreas para regularização fundiária.
+## Descricao
+
+Sistema deve gerar Modelo Digital de Elevacao atraves de interpolacao de grid regular a partir de pontos topograficos, criando representacao matricial continua do terreno onde cada pixel armazena valor de altitude interpolado. Processamento utiliza tecnicas geoestalisticas para distribuir espacialmente valores de elevacao. MDE exportado em formato GeoTIFF padrao OGC incluindo metadados de georreferenciamento e sistema de coordenadas, garantindo interoperabilidade com softwares GIS externos para analises avancadas (declividade, orientacao de vertentes, sombreamento). Visualizacao do MDE como camada raster sobreposta ao mapa base com esquemas de cores hipsometricos para interpretacao visual do relevo.
+
+## Criterios de Aceitacao
+
+1. Interpolacao de grid regular
+2. Exportacao em GeoTIFF
+3. Metadados de georreferenciamento
+4. Visualizacao como camada raster
+5. Esquema de cores hipsometrico
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-160, RF-162

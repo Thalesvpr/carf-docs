@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-128: Editar Camada
 
-Este requisito especifica que administradores devem poder editar configurações de camadas existentes para ajustar apresentação organização e comportamento sem necessidade de recriar camada e migrar dados, onde interface de edição permite modificar propriedades mantendo features associadas intactas. O sistema deve permitir atualização de nome da camada para renomeação descritiva, modificação de estilo visual incluindo cores espessuras e ícones permitindo refinamento da apresentação conforme necessidades evoluem, e alteração de visibilidade padrão para controlar comportamento inicial ao carregar mapa. A interface deve incluir funcionalidade de reordenação de layers permitindo ajustar Z-index relativo entre camadas, onde mudança na ordem afeta como camadas são empilhadas no mapa com camadas superiores renderizadas sobre inferiores, crítico para garantir que informações mais importantes permaneçam visíveis. Todas as alterações realizadas em configuração de camada devem gerar entradas no log de auditoria registrando usuário responsável timestamp e descrição das mudanças efetuadas, garantindo rastreabilidade completa de evolução da configuração. O sistema deve validar que alterações não quebrem integridade de features existentes, por exemplo impedindo mudança de tipo de geometria se já existem features na camada. A funcionalidade deve estar disponível nos módulos GEOWEB através de interface administrativa e GEOAPI via endpoint PATCH.
+## Descricao
+
+Sistema deve permitir edicao de configuracoes de camadas existentes para ajustar apresentacao e comportamento sem recriar camada e migrar dados. Interface de edicao permite modificar propriedades mantendo features associadas intactas. Atualizacoes possiveis incluem nome da camada, estilo visual (cores, espessuras, icones), e visibilidade padrao. Funcionalidade de reordenacao permite ajustar Z-index relativo entre camadas, afetando empilhamento no mapa. Alteracoes geram entradas no log de auditoria registrando usuario, timestamp e descricao das mudancas. Sistema valida que alteracoes nao quebrem integridade de features existentes, impedindo mudanca de tipo de geometria se ja existem features na camada.
+
+## Criterios de Aceitacao
+
+1. Edicao de nome, estilo e visibilidade
+2. Reordenacao de Z-index entre camadas
+3. Log de auditoria para alteracoes
+4. Validacao de integridade de features
+5. Features existentes preservadas
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-127, RF-137

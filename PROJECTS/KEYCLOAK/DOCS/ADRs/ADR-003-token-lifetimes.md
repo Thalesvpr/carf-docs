@@ -1,6 +1,6 @@
 ---
 type: adr
-status: rejected
+status: review
 updated: 2026-01-21
 description: "Nao e decisao arquitetural. Configuracao de tokens e detalhe operacional. Mover para PROJECTS/KEYCLOAK/CONFIG. Contem blocos de codigo."
 ---

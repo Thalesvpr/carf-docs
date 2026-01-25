@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOGIS
+  - GEOAPI
 ---
 
-# RF-003: Client Credentials Flow
+# RF-003: Autenticacao Plugin QGIS
 
-Plugin QGIS (GEOGIS) deve utilizar fluxo OAuth2 Client Credentials para autenticação permitindo que aplicação desktop obtenha tokens de acesso sem interação direta do usuário onde autenticação ocorre via client_id e client_secret configuráveis armazenados de forma segura em arquivo de configuração local ou keychain do sistema operacional, obtenção de token ocorre automaticamente ao iniciar plugin enviando requisição POST para endpoint /token do Keycloak com grant_type=client_credentials incluindo credenciais cliente em header Authorization Basic ou corpo da requisição, renovação automática de token implementada detectando expiração iminente (ex: 5 minutos antes de exp claim) e solicitando novo access_token proativamente garantindo continuidade de operações sem interrupção para usuário, credenciais client_id e client_secret devem ser configuráveis via interface administrativa ou arquivo de configuração permitindo diferentes ambientes (desenvolvimento staging produção) sem necessidade de recompilar plugin.
+## Descricao
+
+O plugin QGIS (GEOGIS) deve implementar autenticacao em duas etapas conforme WORKFLOW-MESTRE. Primeira etapa: login via Keycloak OAuth2 com interface de autenticacao integrada ao plugin. Segunda etapa: usuario informa AUTHENTICATION KEY (chave adicional) que vincula sessao do plugin ao backend e habilita acesso as ortofotos do tenant designado. A chave e validada pelo backend GEOAPI antes de liberar acesso aos recursos geoespaciais.
+
+## Criterios de Aceitacao
+
+1. Plugin exibe tela de login Keycloak integrada
+2. Apos login OAuth2, solicita AUTHENTICATION KEY
+3. Backend valida combinacao token + chave antes de liberar acesso
+4. Credenciais armazenadas de forma segura no keychain do SO
+5. Renovacao automatica de token antes da expiracao
+
+## Rastreabilidade
+
+- Modulos: GEOGIS, GEOAPI
+- Requisitos dependentes: RF-001, RF-013

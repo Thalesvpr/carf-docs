@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
-# RF-170: Integração com GNSS
+# RF-170: Integracao com GNSS
 
-O sistema possibilita importação de dados coletados por receptores GNSS (Global Navigation Satellite System) e GPS através de parsers especializados que interpretam formatos padrão da indústria incluindo RINEX (Receiver Independent Exchange Format) para dados brutos de observação satelital e NMEA 0183 para sentenças de posicionamento em tempo real. A funcionalidade implementa opcionalmente processamento de correção diferencial que utiliza dados de estações de referência para refinar coordenadas obtidas, melhorando precisão posicional de nível métrico para submétrico ou centimétrico conforme método de processamento aplicado, seja pós-processado ou RTK (Real-Time Kinematic). Após importação e processamento, o sistema cria automaticamente pontos georreferenciados no banco de dados espacial, associando metadados de qualidade como PDOP (Position Dilution of Precision), número de satélites utilizados e tipo de solução obtida, permitindo rastreabilidade da precisão esperada para cada vértice cadastrado. Esta capacidade de integração com tecnologia GNSS é fundamental em projetos de regularização fundiária que demandam georreferenciamento preciso de limites territoriais conforme normas técnicas brasileiras, facilitando conformidade com requisitos do INCRA para certificação de imóveis rurais e urbanos.
+## Descricao
+
+Sistema deve importar dados coletados por receptores GNSS/GPS atraves de parsers para formatos padrao da industria: RINEX para dados brutos de observacao satelital e NMEA 0183 para sentencas de posicionamento em tempo real. Opcionalmente implementa processamento de correcao diferencial usando dados de estacoes de referencia para refinar coordenadas, melhorando precisao de nivel metrico para submétrico ou centimetrico conforme metodo (pos-processado ou RTK). Apos importacao e processamento, sistema cria pontos georreferenciados associando metadados de qualidade (PDOP, numero de satelites, tipo de solucao) permitindo rastreabilidade da precisao esperada para cada vertice. Fundamental para conformidade com requisitos INCRA para certificacao de imoveis rurais e urbanos.
+
+## Criterios de Aceitacao
+
+1. Parsers para RINEX e NMEA 0183
+2. Correcao diferencial opcional
+3. Metadados de qualidade (PDOP, satelites)
+4. Criacao de pontos georreferenciados
+5. Rastreabilidade de precisao
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-160, RF-157

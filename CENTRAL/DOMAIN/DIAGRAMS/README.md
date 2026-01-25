@@ -1,44 +1,25 @@
 ---
 type: readme
-status: rejected
-description: "Estrutura caotica. Numeracao nao agrupa por categoria. Precisa reorganizar por agregado/contexto."
-updated: 2026-01-15
+status: approved
+updated: 2026-01-24
 ---
 
 # DIAGRAMS
 
-Diagramas conceituais do modelo de domínio CARF, visualizando graficamente a estrutura de entidades, aggregates e relacionamentos.
+Diagramas conceituais do modelo de dominio CARF, visualizando graficamente a estrutura de entidades, aggregates, relacionamentos e fluxos de estado do sistema.
 
-Os diagramas são criados usando PlantUML e Mermaid, versionados no Git e sincronizados com a implementação real, garantindo documentação sempre atualizada.
-
-## Diagramas
-
-- **[aggregates-diagram.mmd](./aggregates-diagram.mmd)** - Boundaries dos aggregates e seus roots
-- **[er-diagram.mmd](./er-diagram.mmd)** - Entity-relationship com cardinalidades e constraints
-- **[multi-tenancy-diagram.mmd](./multi-tenancy-diagram.mmd)** - Fluxo de isolamento via JWT e RLS
-- **[workflows-diagram.mmd](./workflows-diagram.mmd)** - State machines de Unit e Legitimation
-
-
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (2 arquivos)
-
-| ID | Titulo |
-|:---|:-------|
-| [01-aggregates](./01-aggregates.md) | Aggregates Diagram |
-| [02-er-diagram](./02-er-diagram.md) | ER Diagram |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
+Os diagramas usam sintaxe Mermaid embutida em blocos de codigo markdown, renderizaveis diretamente no Obsidian e GitHub. Todos seguem terminologia e fluxos definidos no WORKFLOW-MESTRE.
 
 <!-- CARF-INDEX-START -->
-> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
-> Use os links abaixo para referenciar documentos desta pasta.
+> **Indice gerado automaticamente.** Nao edite manualmente.
 
-## Documentos (2)
+## Documentos (4)
 
 | Documento | Status |
 |-----------|--------|
-| [Aggregates Diagram](./01-aggregates.md) | ⚠ |
-| [ER Diagram](./02-er-diagram.md) | ⚠ |
+| [Aggregates Diagram](./01-aggregates.md) | Review |
+| [ER Diagram](./02-er-diagram.md) | Review |
+| [Multi-Tenancy Diagram](./03-multi-tenancy.md) | Aprovado |
+| [Workflows Diagram](./04-workflows.md) | Aprovado |
 
 <!-- CARF-INDEX-END -->

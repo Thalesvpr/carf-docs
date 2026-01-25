@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
-# RF-209: Ficha Técnica de Unidade (PDF)
+# RF-209: Ficha Tecnica de Unidade PDF
 
-O sistema gera automaticamente Ficha Técnica completa de unidade territorial em formato PDF com layout profissional formatado que consolida todas as informações relevantes do cadastro incluindo dados descritivos como código, endereço, área e tipo de ocupação, informações dos titulares com documentos e percentuais de propriedade, histórico de aprovações e alterações, além de representações visuais complementares. A ficha incorpora automaticamente fotos associadas à unidade organizadas em grid ou galeria com legendas identificando data de captura e autor, proporcionando documentação visual das características construtivas e situação física do imóvel que complementa descrição textual e facilita reconhecimento em campo. Mapa de situação estático é incluído mostrando localização precisa da unidade com geometria destacada sobre basemap contextual, escala gráfica e coordenadas geográficas que permitem localização inequívoca do imóvel, além de indicação de unidades vizinhas e referências territoriais relevantes. O documento incorpora código QR único que quando escaneado direciona para URL pública ou restrita (conforme configuração) que exibe página web interativa com informações atualizadas da unidade, permitindo verificação de autenticidade do documento e acesso a versão digital sempre atualizada do cadastro, integrando mundos físico e digital através de tecnologia de fácil acesso em smartphones modernos e facilitando consultas em campo ou distribuição de documentação a beneficiários.
+## Descricao
+
+Sistema deve gerar automaticamente Ficha Tecnica completa de unidade territorial em formato PDF com layout profissional consolidando todas as informacoes relevantes: dados descritivos (codigo, endereco, area, tipo de ocupacao), informacoes de titulares (documentos, percentuais de propriedade), historico de aprovacoes e alteracoes. Ficha incorpora fotos associadas organizadas em grid com legendas de data e autor. Mapa de situacao estatico mostra localizacao precisa com geometria destacada sobre basemap, escala grafica e coordenadas geograficas. Codigo QR unico direciona para URL publica ou restrita com informacoes atualizadas, integrando documentacao fisica e digital. Conforme WORKFLOW-MESTRE, permite leitura de QR Code para protocolos.
+
+## Criterios de Aceitacao
+
+1. Consolidacao de dados cadastrais completos
+2. Galeria de fotos com legendas
+3. Mapa de situacao com escala e coordenadas
+4. Codigo QR para URL de verificacao
+5. Layout profissional institucional
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-044, RF-102

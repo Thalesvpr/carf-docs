@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-199: Exportar Unidades em GeoJSON
 
-O sistema disponibiliza exportação de unidades em formato GeoJSON, padrão moderno baseado em JSON amplamente utilizado em aplicações web e APIs que oferece estrutura simples e legível tanto para humanos quanto máquinas, facilitando integração com sistemas externos e desenvolvimento de aplicações customizadas. A geração produz GeoJSON válido conforme especificação RFC 7946 incluindo FeatureCollection contendo array de Features onde cada unidade é representada com geometry codificando forma espacial em coordenadas GeoJSON e properties contendo todos os atributos alfanuméricos da unidade como identificação, tipo, área, status e dados cadastrais. O sistema garante inclusão de propriedades essenciais que identificam univocamente cada unidade e fornecem contexto necessário para interpretação dos dados, incluindo metadados como sistema de coordenadas utilizado, data de exportação e filtros aplicados, quando relevantes, documentados em propriedades customizadas do FeatureCollection. O arquivo .geojson resultante é disponibilizado para download direto através do navegador, podendo ser imediatamente carregado em bibliotecas JavaScript como Leaflet ou OpenLayers, importado em ferramentas de análise como Python Geopandas, ou consumido por APIs REST que aceitam dados geográficos em formato JSON, demonstrando versatilidade do formato para múltiplos casos de uso técnico.
+## Descricao
+
+Sistema deve disponibilizar exportacao de unidades em formato GeoJSON, padrao moderno baseado em JSON amplamente utilizado em aplicacoes web e APIs que oferece estrutura simples e legivel para humanos e maquinas. Geracao produz GeoJSON valido conforme especificacao RFC 7946 incluindo FeatureCollection com array de Features onde cada unidade e representada com geometry codificando forma espacial e properties contendo atributos alfanumericos como identificacao, tipo, area e status. Metadados incluem sistema de coordenadas, data de exportacao e filtros aplicados. Arquivo .geojson disponibilizado para download, compativel com bibliotecas JavaScript como Leaflet e OpenLayers, ferramentas Python como Geopandas, e APIs REST. Dados filtrados por tenant_id.
+
+## Criterios de Aceitacao
+
+1. Formato RFC 7946 valido
+2. FeatureCollection com geometry e properties
+3. Metadados de exportacao
+4. Download direto de .geojson
+5. Segregacao por tenant_id
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-044, RF-127

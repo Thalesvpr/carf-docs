@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-138: Simbologia por Atributo
 
-Este requisito especifica que o sistema deve suportar aplicação de estilos visuais diferentes a features da mesma camada baseado em valores de seus atributos permitindo visualização temática e categorização visual de dados geoespaciais, onde regras de estilo condicionais determinam aparência de cada feature conforme suas propriedades. O sistema deve permitir definição de regras de estilo usando sintaxe condicional tipo if attribute equals X then color equals Y, onde administrador configura mapeamento entre valores de atributo específico e estilos correspondentes, permitindo criar mapas coropléticos ou categorizados automaticamente. A funcionalidade deve suportar categorização tanto para valores discretos quanto contínuos, onde valores discretos como tipos ou categorias mapeiam para cores distintas através de correspondência exata, e valores numéricos contínuos são divididos em ranges com estilos graduados criando representação de intensidade ou densidade. O sistema deve gerar legendas automáticas baseadas nas regras de estilo configuradas mostrando mapeamento visual entre categorias ou ranges de valores e suas cores ou símbolos correspondentes, onde legenda é exibida no painel do mapa permitindo que usuários interpretem corretamente a visualização temática. A configuração de simbologia por atributo deve ser armazenada como parte da definição da camada e aplicada dinamicamente durante renderização. A funcionalidade deve estar disponível nos módulos GEOWEB para visualização e GEOAPI para configuração.
+## Descricao
+
+Sistema deve suportar aplicacao de estilos visuais diferentes a features da mesma camada baseado em valores de atributos, permitindo visualizacao tematica e categorizacao visual de dados geoespaciais. Regras de estilo condicionais determinam aparencia de cada feature conforme suas propriedades via sintaxe tipo "if attribute equals X then color equals Y". Categorizacao suportada tanto para valores discretos (tipos ou categorias mapeiam para cores distintas via correspondencia exata) quanto continuos (valores numericos divididos em ranges com estilos graduados criando representacao de intensidade). Sistema gera legendas automaticas baseadas nas regras de estilo mostrando mapeamento visual entre categorias ou ranges e suas cores ou simbolos correspondentes, exibida no painel do mapa. Configuracao de simbologia armazenada como parte da definicao da camada e aplicada dinamicamente durante renderizacao.
+
+## Criterios de Aceitacao
+
+1. Regras de estilo condicionais
+2. Categorizacao para valores discretos
+3. Graduacao para valores continuos
+4. Geracao automatica de legendas
+5. Aplicacao dinamica durante renderizacao
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-127, RF-136, RF-137

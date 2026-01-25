@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOAPI
 ---
 
-# RF-068: Calcular Área da Unidade
+# RF-068: Calcular Area da Unidade
 
-O sistema deve calcular automaticamente a área de cada unidade habitacional a partir de sua geometria espacial, onde o cálculo é realizado no backend utilizando funções nativas do PostGIS (ST_Area) garantindo precisão e performance otimizada através de operações diretamente no banco de dados. A área é calculada em metros quadrados utilizando projeção adequada que preserve medidas de superfície evitando distorções causadas por cálculos em coordenadas geográficas não projetadas, onde configuração de SRID apropriado garante resultados precisos independente da região geográfica. O campo de área é atualizado automaticamente sempre que a geometria da unidade for criada ou modificada, através de triggers de banco de dados ou hooks de modelo que garantem sincronização perfeita entre geometria e área calculada sem necessidade de intervenção manual. O frontend exibe a área formatada com separador de milhares e duas casas decimais (exemplo: 1.234,56 m²) melhorando legibilidade e compreensão dos valores, onde apresentação consistente facilita comparações e análises quantitativas por parte de usuários e gestores durante cadastramento e consultas de unidades.
+## Descricao
+
+Sistema deve calcular automaticamente a area de cada unidade habitacional a partir de sua geometria espacial. Calculo realizado no backend utilizando funcoes nativas do PostGIS (ST_Area) com projecao adequada que preserve medidas de superficie. Area calculada em metros quadrados com configuracao de SRID apropriado para regiao geografica. Campo de area atualizado automaticamente via triggers quando geometria for criada ou modificada. Frontend exibe area formatada com separador de milhares e duas casas decimais.
+
+## Criterios de Aceitacao
+
+1. Calculo automatico via PostGIS ST_Area
+2. Projecao adequada para precisao de medidas
+3. Atualizacao automatica ao modificar geometria
+4. Formatacao com separador de milhares
+5. Exibicao em metros quadrados (m²)
+
+## Rastreabilidade
+
+- Modulos: GEOAPI
+- Requisitos dependentes: RF-049, RF-066

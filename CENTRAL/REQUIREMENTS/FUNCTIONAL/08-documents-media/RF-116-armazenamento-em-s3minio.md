@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOAPI
 ---
 
 # RF-116: Armazenamento em S3/MinIO
 
-Este requisito especifica que arquivos documentos e fotos devem ser armazenados em object storage compatível com S3 ao invés de filesystem local, onde o sistema pode utilizar Amazon S3 MinIO ou qualquer serviço compatível com API S3, garantindo escalabilidade durabilidade e separação entre aplicação e storage. O sistema deve implementar integração completa com S3-compatible storage através de SDK apropriado configurado com credenciais e endpoint do serviço, permitindo operações de upload download e deleção de objetos via API S3 padrão. Para downloads seguros, o sistema deve gerar URLs presigned temporárias com expiração configurável, onde cada URL permite acesso ao arquivo por tempo limitado sem expor credenciais ou permitir acesso permanente, garantindo segurança mesmo se URL vazar. Os arquivos devem ser organizados hierarquicamente por tenant e entidade usando prefixos de chave apropriados, onde estrutura típica seria tenant-id/entity-type/entity-id/filename, facilitando gestão backup e aplicação de políticas por tenant. O sistema deve configurar metadados adequados em cada objeto incluindo Content-Type cache-control e custom metadata para rastreabilidade. A funcionalidade deve ser implementada no módulo GEOAPI através de camada de abstração de storage que permite trocar provider sem alterar lógica de negócio.
+## Descricao
+
+Sistema deve armazenar arquivos em object storage compativel S3 (Amazon S3, MinIO ou equivalente) ao inves de filesystem local, garantindo escalabilidade e durabilidade. Integracao via SDK com credenciais e endpoint configuraveis. Downloads seguros via URLs presigned temporarias com expiracao configuravel. Arquivos organizados hierarquicamente por tenant e entidade usando prefixos (tenant-id/entity-type/entity-id/filename). Camada de abstracao permite trocar provider sem alterar logica. Conforme WORKFLOW-MESTRE, bucket segregado por tenant.
+
+## Criterios de Aceitacao
+
+1. Integracao com S3-compatible storage
+2. URLs presigned temporarias para download
+3. Organizacao por tenant e entidade
+4. Configuracao de credenciais e endpoint
+5. Camada de abstracao de storage
+
+## Rastreabilidade
+
+- Modulos: GEOAPI
+- Requisitos dependentes: RF-102, RF-108, RF-017

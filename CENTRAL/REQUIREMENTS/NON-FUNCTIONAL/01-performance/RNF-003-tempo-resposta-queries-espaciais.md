@@ -1,10 +1,7 @@
 ---
-id: RNF-003
-type: RNF
-modules: []
+type: rnf
 status: approved
-created: 2026-01-23
-updated: 2026-01-23
+updated: 2026-01-25
 ---
 
 # RNF-003: Tempo de Resposta - Queries Espaciais

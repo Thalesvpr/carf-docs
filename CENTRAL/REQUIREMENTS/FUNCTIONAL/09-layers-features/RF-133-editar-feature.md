@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-133: Editar Feature
 
-Este requisito estabelece que usuários autorizados devem poder editar tanto geometria quanto atributos de features existentes permitindo correção e atualização de dados espaciais e descritivos, onde interface oferece modos separados para edição geométrica e alfanumérica. Para edição de geometria, o sistema deve fornecer modo de edição de vértices permitindo que usuário selecione feature e manipule seus pontos de controle, onde vértices são apresentados como handles arrastáveis e usuário pode mover vértices existentes adicionar novos através de clique no meio de segmentos ou remover através de interação apropriada. Para edição de atributos, o sistema deve apresentar formulário populado com valores atuais das propriedades da feature permitindo modificação de campos individuais conforme schema da camada, onde validações de tipo e obrigatoriedade são aplicadas antes de aceitar mudanças. Todas as alterações realizadas devem gerar entradas no log de auditoria registrando usuário responsável timestamp campos modificados e valores anteriores versus novos, garantindo rastreabilidade completa de evolução dos dados e permitindo investigação de mudanças ou reversões se necessário. O sistema deve implementar validação de geometria após edição garantindo que feature modificada continua válida conforme regras GIS antes de persistir. A funcionalidade deve estar disponível nos módulos GEOWEB através de ferramentas de edição interativas e GEOAPI via endpoint PATCH.
+## Descricao
+
+Sistema deve permitir edicao de geometria e atributos de features existentes para correcao e atualizacao de dados espaciais e descritivos, com modos separados para edicao geometrica e alfanumerica. Para edicao de geometria, modo de edicao de vertices permite selecionar feature e manipular pontos de controle apresentados como handles arrastaveis, podendo mover vertices existentes, adicionar novos no meio de segmentos ou remover via interacao apropriada. Para edicao de atributos, formulario populado com valores atuais permite modificacao de campos individuais conforme schema da camada com validacoes de tipo e obrigatoriedade. Alteracoes geram entradas no log de auditoria registrando usuario, timestamp, campos modificados e valores anteriores versus novos. Sistema valida geometria apos edicao antes de persistir.
+
+## Criterios de Aceitacao
+
+1. Modo de edicao de vertices
+2. Formulario de atributos populado
+3. Validacao de tipos e obrigatoriedade
+4. Log de auditoria com diff de valores
+5. Validacao de geometria apos edicao
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-132, RF-136

@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
-# RF-202: Exportar com Fotos/Documentos
+# RF-202: Exportar com Fotos e Documentos
 
-O sistema disponibiliza opção avançada de exportação que inclui não apenas dados tabulares ou geoespaciais das unidades, mas também todos os arquivos de fotos e documentos vinculados, produzindo pacote completo em formato ZIP com estrutura de pastas organizada hierarquicamente. A estrutura de diretórios reflete organização lógica dos dados, criando pasta para cada unidade identificada por código cadastral, dentro da qual são colocadas subpastas separadas para fotos e documentos, com arquivos nomeados descritivamente incluindo timestamps e tipos, facilitando navegação manual e processamento automatizado. Arquivo CSV de metadados é incluído no ZIP descrevendo mapeamento entre unidades e arquivos correspondentes, listando caminhos relativos, tipos de arquivo, datas de upload, autores responsáveis e outros atributos que permitem processamento programático do pacote exportado ou reconstrução de vinculações em sistemas externos. Quando volume de dados a exportar é muito grande (milhares de unidades com múltiplas fotos cada), o sistema implementa geração assíncrona em background que processa exportação sem bloquear interface do usuário, enviando notificação por email ou in-app quando arquivo estiver pronto para download, evitando timeouts de navegador e proporcionando experiência adequada mesmo para exportações massivas que podem levar vários minutos para concluir.
+## Descricao
+
+Sistema deve disponibilizar exportacao avancada que inclui dados tabulares ou geoespaciais das unidades e todos os arquivos de fotos e documentos vinculados, produzindo pacote completo em formato ZIP com estrutura de pastas organizada hierarquicamente. Estrutura de diretorios cria pasta para cada unidade identificada por codigo cadastral, com subpastas separadas para fotos e documentos, arquivos nomeados com timestamps e tipos. Arquivo CSV de metadados incluido no ZIP descreve mapeamento entre unidades e arquivos com caminhos relativos, tipos, datas de upload e autores. Para volumes grandes, geracao assincrona em background processa exportacao sem bloquear interface, enviando notificacao quando arquivo estiver pronto. Dados filtrados por tenant_id.
+
+## Criterios de Aceitacao
+
+1. ZIP com estrutura hierarquica de pastas
+2. Fotos e documentos organizados por unidade
+3. CSV de metadados com mapeamento
+4. Geracao assincrona para volumes grandes
+5. Segregacao por tenant_id
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-102, RF-044

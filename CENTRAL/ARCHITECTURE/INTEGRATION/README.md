@@ -1,7 +1,7 @@
 ---
 type: readme
-status: current
-updated: 2026-01-22
+status: approved
+updated: 2026-01-24
 ---
 
 # INTEGRATION

@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
-# RF-207: Geração Assíncrona de Relatórios
+# RF-207: Geracao Assincrona de Relatorios
 
-O sistema implementa processamento assíncrono para geração de relatórios complexos ou volumosos através de fila de jobs gerenciada por sistema como BullMQ ou similar, onde requisições de relatórios que demandam processamento intensivo são enfileiradas e executadas em background por workers dedicados sem bloquear interface do usuário ou consumir recursos do servidor web. Quando usuário solicita relatório que exigiria tempo de processamento superior a limite configurável (tipicamente 30 segundos), o sistema imediatamente retorna resposta indicando que relatório está sendo gerado e fornece identificador único do job que permite acompanhamento posterior, permitindo que usuário continue trabalhando normalmente em outras tarefas enquanto processamento ocorre em segundo plano. Ao concluir geração do relatório, o sistema envia notificação automática ao usuário através de múltiplos canais incluindo notificação in-app exibida quando usuário estiver autenticado e email com link direto para download, garantindo que usuário seja prontamente informado sobre disponibilidade do documento solicitado mesmo se tiver saído do sistema durante processamento. O arquivo gerado é armazenado temporariamente em storage seguro com link de download válido por período configurável (tipicamente 7 dias), após o qual arquivo é automaticamente removido para liberar espaço de armazenamento, equilibrando conveniência de acesso com gestão eficiente de recursos computacionais.
+## Descricao
+
+Sistema deve implementar processamento assincrono para geracao de relatorios complexos ou volumosos atraves de fila de jobs gerenciada por sistema como BullMQ, onde requisicoes que demandam processamento intensivo sao enfileiradas e executadas em background por workers dedicados sem bloquear interface. Quando relatorio exige tempo superior a limite configuravel (tipicamente 30 segundos), sistema retorna resposta indicando geracao em andamento com identificador unico para acompanhamento. Ao concluir, notificacao automatica ao usuario via in-app e email com link direto para download. Arquivo armazenado temporariamente com link valido por periodo configuravel (tipicamente 7 dias), apos removido automaticamente para liberar armazenamento.
+
+## Criterios de Aceitacao
+
+1. Fila de jobs com BullMQ ou similar
+2. Limite de tempo configuravel para async
+3. Identificador unico para acompanhamento
+4. Notificacao in-app e email ao concluir
+5. Link temporario com expiracao
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-203, RF-204, RF-205

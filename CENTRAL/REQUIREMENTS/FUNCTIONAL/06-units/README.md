@@ -1,56 +1,14 @@
 ---
 type: readme
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES."
-updated: 2026-01-15
+status: approved
+updated: 2026-01-25
 ---
 
-# Gestão de Unidades
+# Gestao de Unidades
 
+Requisitos funcionais para gerenciamento de unidades cadastrais no ecossistema CARF. Define operacoes de criacao, edicao, aprovacao e visualizacao de unidades habitacionais que representam edificacoes georreferenciadas vinculadas a comunidades, conforme WORKFLOW-MESTRE onde o Agente de Campo cadastra unidades via app REURBCAD.
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (35 requisitos)
-
-| ID | Titulo |
-|:---|:-------|
-| [RF-049](./RF-049-criar-unidade.md) | Criar Unidade |
-| [RF-050](./RF-050-editar-unidade.md) | Editar Unidade |
-| [RF-051](./RF-051-excluir-unidade.md) | Excluir Unidade |
-| [RF-052](./RF-052-listar-unidades.md) | Listar Unidades |
-| [RF-053](./RF-053-visualizar-unidade-no-mapa.md) | Visualizar Unidade no Mapa |
-| [RF-054](./RF-054-campos-obrigatorios-de-unidade.md) | Campos Obrigatórios de Unidade |
-| [RF-055](./RF-055-tipos-de-unidade.md) | Tipos de Unidade |
-| [RF-056](./RF-056-status-de-unidade.md) | Status de Unidade |
-| [RF-057](./RF-057-aprovar-unidade.md) | Aprovar Unidade |
-| [RF-058](./RF-058-rejeitar-unidade.md) | Rejeitar Unidade |
-| [RF-059](./RF-059-solicitar-alteracoes.md) | Solicitar Alterações |
-| [RF-060](./RF-060-timeline-de-unidade.md) | Timeline de Unidade |
-| [RF-061](./RF-061-vincular-titular-a-unidade.md) | Vincular Titular a Unidade |
-| [RF-062](./RF-062-multiplos-titulares-por-unidade.md) | Múltiplos Titulares por Unidade |
-| [RF-063](./RF-063-anexar-fotos-a-unidade.md) | Anexar Fotos a Unidade |
-| [RF-064](./RF-064-anexar-documentos-a-unidade.md) | Anexar Documentos a Unidade |
-| [RF-065](./RF-065-buscar-unidade-por-localizacao.md) | Buscar Unidade por Localização |
-| [RF-066](./RF-066-desenhar-unidade-no-mapa.md) | Desenhar Unidade no Mapa |
-| [RF-067](./RF-067-importar-unidades-via-shapefile.md) | Importar Unidades via Shapefile |
-| [RF-068](./RF-068-calcular-area-da-unidade.md) | Calcular Área da Unidade |
-| [RF-069](./RF-069-validar-sobreposicao-de-unidades.md) | Validar Sobreposição de Unidades |
-| [RF-070](./RF-070-criar-quadra.md) | Criar Quadra |
-| [RF-071](./RF-071-editar-quadra.md) | Editar Quadra |
-| [RF-072](./RF-072-listar-quadras.md) | Listar Quadras |
-| [RF-073](./RF-073-visualizar-quadra-no-mapa.md) | Visualizar Quadra no Mapa |
-| [RF-074](./RF-074-criar-lote.md) | Criar Lote |
-| [RF-075](./RF-075-vincular-unidade-a-lote.md) | Vincular Unidade a Lote |
-| [RF-076](./RF-076-numeracao-automatica-de-unidades.md) | Numeração Automática de Unidades |
-| [RF-077](./RF-077-campos-personalizados-de-unidade.md) | Campos Personalizados de Unidade |
-| [RF-078](./RF-078-clonar-unidade.md) | Clonar Unidade |
-| [RF-079](./RF-079-mesclar-unidades.md) | Mesclar Unidades |
-| [RF-080](./RF-080-dividir-unidade.md) | Dividir Unidade |
-| [RF-081](./RF-081-comentarios-em-unidade.md) | Comentários em Unidade |
-| [RF-082](./RF-082-exportar-unidades.md) | Exportar Unidades |
-| [RF-083](./RF-083-imprimir-ficha-de-unidade.md) | Imprimir Ficha de Unidade |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
+Os requisitos [RF-049](./RF-049-criar-unidade.md) a [RF-055](./RF-055-tipos-de-unidade.md) cobrem ciclo de vida basico incluindo CRUD, visualizacao no mapa, campos obrigatorios e tipos de unidade. Os requisitos [RF-056](./RF-056-status-de-unidade.md) a [RF-060](./RF-060-timeline-de-unidade.md) definem workflow de aprovacao com status, transicoes e timeline. Os requisitos [RF-061](./RF-061-vincular-titular-a-unidade.md) a [RF-069](./RF-069-validar-sobreposicao-de-unidades.md) tratam de titulares, anexos, geometria e validacoes espaciais. Os requisitos [RF-070](./RF-070-criar-quadra.md) a [RF-083](./RF-083-imprimir-ficha-de-unidade.md) cobrem quadras, lotes, campos personalizados e operacoes avancadas.
 
 <!-- CARF-INDEX-START -->
 > ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
@@ -65,34 +23,34 @@ updated: 2026-01-15
 | [RF-051: Excluir Unidade](./RF-051-excluir-unidade.md) | ⚠ |
 | [RF-052: Listar Unidades](./RF-052-listar-unidades.md) | ⚠ |
 | [RF-053: Visualizar Unidade no Mapa](./RF-053-visualizar-unidade-no-mapa.md) | ⚠ |
-| [RF-054: Campos Obrigatórios de Unidade](./RF-054-campos-obrigatorios-de-unidade.md) | ⚠ |
+| [RF-054: Campos Obrigatorios de Unidade](./RF-054-campos-obrigatorios-de-unidade.md) | ⚠ |
 | [RF-055: Tipos de Unidade](./RF-055-tipos-de-unidade.md) | ⚠ |
 | [RF-056: Status de Unidade](./RF-056-status-de-unidade.md) | ⚠ |
 | [RF-057: Aprovar Unidade](./RF-057-aprovar-unidade.md) | ⚠ |
 | [RF-058: Rejeitar Unidade](./RF-058-rejeitar-unidade.md) | ⚠ |
-| [RF-059: Solicitar Alterações](./RF-059-solicitar-alteracoes.md) | ⚠ |
+| [RF-059: Solicitar Alteracoes](./RF-059-solicitar-alteracoes.md) | ⚠ |
 | [RF-060: Timeline de Unidade](./RF-060-timeline-de-unidade.md) | ⚠ |
 | [RF-061: Vincular Titular a Unidade](./RF-061-vincular-titular-a-unidade.md) | ⚠ |
-| [RF-062: Múltiplos Titulares por Unidade](./RF-062-multiplos-titulares-por-unidade.md) | ⚠ |
+| [RF-062: Multiplos Titulares por Unidade](./RF-062-multiplos-titulares-por-unidade.md) | ⚠ |
 | [RF-063: Anexar Fotos a Unidade](./RF-063-anexar-fotos-a-unidade.md) | ⚠ |
 | [RF-064: Anexar Documentos a Unidade](./RF-064-anexar-documentos-a-unidade.md) | ⚠ |
-| [RF-065: Buscar Unidade por Localização](./RF-065-buscar-unidade-por-localizacao.md) | ⚠ |
+| [RF-065: Buscar Unidade por Localizacao](./RF-065-buscar-unidade-por-localizacao.md) | ⚠ |
 | [RF-066: Desenhar Unidade no Mapa](./RF-066-desenhar-unidade-no-mapa.md) | ⚠ |
 | [RF-067: Importar Unidades via Shapefile](./RF-067-importar-unidades-via-shapefile.md) | ⚠ |
-| [RF-068: Calcular Área da Unidade](./RF-068-calcular-area-da-unidade.md) | ⚠ |
-| [RF-069: Validar Sobreposição de Unidades](./RF-069-validar-sobreposicao-de-unidades.md) | ⚠ |
+| [RF-068: Calcular Area da Unidade](./RF-068-calcular-area-da-unidade.md) | ⚠ |
+| [RF-069: Validar Sobreposicao de Unidades](./RF-069-validar-sobreposicao-de-unidades.md) | ⚠ |
 | [RF-070: Criar Quadra](./RF-070-criar-quadra.md) | ⚠ |
 | [RF-071: Editar Quadra](./RF-071-editar-quadra.md) | ⚠ |
 | [RF-072: Listar Quadras](./RF-072-listar-quadras.md) | ⚠ |
 | [RF-073: Visualizar Quadra no Mapa](./RF-073-visualizar-quadra-no-mapa.md) | ⚠ |
 | [RF-074: Criar Lote](./RF-074-criar-lote.md) | ⚠ |
 | [RF-075: Vincular Unidade a Lote](./RF-075-vincular-unidade-a-lote.md) | ⚠ |
-| [RF-076: Numeração Automática de Unidades](./RF-076-numeracao-automatica-de-unidades.md) | ⚠ |
+| [RF-076: Numeracao Automatica de Unidades](./RF-076-numeracao-automatica-de-unidades.md) | ⚠ |
 | [RF-077: Campos Personalizados de Unidade](./RF-077-campos-personalizados-de-unidade.md) | ⚠ |
 | [RF-078: Clonar Unidade](./RF-078-clonar-unidade.md) | ⚠ |
 | [RF-079: Mesclar Unidades](./RF-079-mesclar-unidades.md) | ⚠ |
 | [RF-080: Dividir Unidade](./RF-080-dividir-unidade.md) | ⚠ |
-| [RF-081: Comentários em Unidade](./RF-081-comentarios-em-unidade.md) | ⚠ |
+| [RF-081: Comentarios em Unidade](./RF-081-comentarios-em-unidade.md) | ⚠ |
 | [RF-082: Exportar Unidades](./RF-082-exportar-unidades.md) | ⚠ |
 | [RF-083: Imprimir Ficha de Unidade](./RF-083-imprimir-ficha-de-unidade.md) | ⚠ |
 

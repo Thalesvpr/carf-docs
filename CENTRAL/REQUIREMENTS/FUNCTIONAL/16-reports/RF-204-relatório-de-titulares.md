@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
-# RF-204: Relatório de Titulares
+# RF-204: Relatorio de Titulares
 
-O sistema produz relatório especializado sobre titulares cadastrados que apresenta estatísticas demográficas e socioeconômicas agregadas, incluindo total de titulares segmentados por tipo (pessoa física versus pessoa jurídica), quantidades de CPF e CNPJ únicos registrados e identificação de casos de titulares vinculados a múltiplas unidades que podem indicar concentração fundiária. As análises incluem distribuição por gênero calculada a partir de titulares pessoa física identificando proporções masculino/feminino/outros que são relevantes para avaliação de equidade de gênero em programas de regularização fundiária, além de distribuição por faixas etárias agrupadas (jovens, adultos, idosos) derivada de datas de nascimento cadastradas que permite compreender perfil geracional dos beneficiários. O relatório incorpora estatísticas sobre tipos de relacionamento com unidades distinguindo proprietários, posseiros, cessionários, comodatários e outros vínculos jurídicos, além de calcular percentuais médios de propriedade em casos de co-propriedade múltipla, fornecendo visão abrangente da estrutura de titularidade do território. A exportação disponível em Excel e PDF permite tanto análises exploratórias adicionais quanto documentação formal de perfil socioeconômico das comunidades atendidas, subsidiando relatórios de impacto social e prestação de contas a financiadores sobre público-alvo efetivamente alcançado pelo programa de regularização.
+## Descricao
+
+Sistema deve produzir relatorio especializado sobre titulares cadastrados apresentando estatisticas demograficas e socioeconomicas agregadas, incluindo total segmentado por tipo (pessoa fisica vs juridica), quantidades de CPF e CNPJ unicos e identificacao de titulares vinculados a multiplas unidades indicando concentracao fundiaria. Analises incluem distribuicao por genero (masculino/feminino/outros) relevante para avaliacao de equidade em programas de regularizacao, e distribuicao por faixas etarias (jovens, adultos, idosos). Estatisticas sobre tipos de relacionamento distinguem proprietarios, posseiros, cessionarios e comodatarios, alem de percentuais medios de propriedade em co-propriedade. Exportacao em Excel e PDF subsidia relatorios de impacto social. Dados filtrados por tenant_id.
+
+## Criterios de Aceitacao
+
+1. Segmentacao por tipo (PF/PJ)
+2. Distribuicao por genero e faixa etaria
+3. Estatisticas de tipos de relacionamento
+4. Identificacao de multiplas unidades por titular
+5. Segregacao por tenant_id
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-074, RF-044

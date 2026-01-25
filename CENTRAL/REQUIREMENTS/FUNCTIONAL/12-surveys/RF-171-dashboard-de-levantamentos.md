@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
 ---
 
 # RF-171: Dashboard de Levantamentos
 
-O sistema disponibiliza painel de controle dedicado à visualização de estatísticas consolidadas sobre levantamentos topográficos realizados, apresentando indicadores quantitativos como total de levantamentos executados segmentados por período temporal configurável, permitindo análise de produtividade ao longo de meses, trimestres ou anos. O dashboard calcula e exibe área total levantada agregando extensões territoriais de todas as comunidades e unidades que tiveram seus limites georreferenciados, fornecendo visão quantitativa do progresso do projeto cadastral em termos de cobertura espacial. Gráficos interativos de evolução temporal ilustram tendências de produção cadastral, permitindo identificar períodos de maior ou menor atividade de campo, comparar desempenho entre diferentes equipes técnicas e projetar prazos para conclusão de metas estabelecidas em planos de trabalho. Esta ferramenta analítica fornece subsídios para gestão de projetos de regularização fundiária, auxiliando coordenadores na alocação de recursos, identificação de gargalos operacionais e prestação de contas a financiadores e órgãos fiscalizadores sobre avanço físico e financeiro das atividades cadastrais executadas.
+## Descricao
+
+Sistema deve disponibilizar painel de controle para visualizacao de estatisticas consolidadas sobre levantamentos topograficos realizados. Indicadores quantitativos incluem total de levantamentos executados segmentados por periodo temporal configuravel (meses, trimestres, anos) para analise de produtividade. Calculo e exibicao de area total levantada agregando extensoes territoriais de comunidades e unidades georreferenciadas fornece visao quantitativa do progresso do projeto cadastral em termos de cobertura espacial. Graficos interativos de evolucao temporal ilustram tendencias de producao cadastral permitindo identificar periodos de maior ou menor atividade, comparar desempenho entre equipes e projetar prazos para conclusao de metas. Fornece subsidios para gestao de projetos de regularizacao fundiaria.
+
+## Criterios de Aceitacao
+
+1. Total de levantamentos por periodo
+2. Area total levantada
+3. Graficos de evolucao temporal
+4. Segmentacao por equipe ou comunidade
+5. Indicadores de produtividade
+
+## Rastreabilidade
+
+- Modulos: GEOWEB
+- Requisitos dependentes: RF-157, RF-159

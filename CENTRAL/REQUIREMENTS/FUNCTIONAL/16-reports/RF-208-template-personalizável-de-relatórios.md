@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
-# RF-208: Template Personalizável de Relatórios
+# RF-208: Template Personalizavel de Relatorios
 
-O sistema oferece a usuários com perfil ADMIN capacidade de customizar templates de relatórios PDF através de editor visual que permite modificação de estrutura HTML e estilos CSS, possibilitando adaptação de layout, formatação e conteúdo de documentos gerados conforme identidade visual institucional, requisitos formais específicos ou preferências estéticas de cada organização. O editor implementa sistema de variáveis dinâmicas que podem ser inseridas no template através de sintaxe especial como {{unidade.codigo}}, {{titular.nome}} ou {{comunidade.area_total}}, sendo automaticamente substituídas por valores reais provenientes do banco de dados durante geração efetiva do relatório, permitindo criação de templates genéricos reutilizáveis que se adaptam a diferentes contextos de dados. A funcionalidade disponibiliza preview em tempo real que renderiza template sendo editado com dados de exemplo representativos, permitindo que administrador visualize aparência final do relatório antes de salvar template e disponibilizá-lo para uso em produção, reduzindo ciclos de tentativa e erro e garantindo qualidade do produto final. Templates customizados podem incluir elementos avançados como tabelas dinâmicas que iteram sobre coleções de dados, gráficos gerados a partir de bibliotecas JavaScript, códigos QR contendo URLs de acesso a registros específicos, e imagens de mapas estáticos mostrando localização de unidades, proporcionando flexibilidade máxima para criação de documentação técnica sofisticada adaptada a necessidades específicas de cada projeto de regularização fundiária.
+## Descricao
+
+Sistema deve oferecer a usuarios com perfil ADMIN capacidade de customizar templates de relatorios PDF atraves de editor visual para modificacao de estrutura HTML e estilos CSS, possibilitando adaptacao de layout conforme identidade visual institucional. Editor implementa sistema de variaveis dinamicas inseridas via sintaxe especial como {{unidade.codigo}}, {{titular.nome}}, substituidas automaticamente por valores reais durante geracao. Preview em tempo real renderiza template com dados de exemplo permitindo visualizacao antes de salvar. Templates podem incluir tabelas dinamicas iterando sobre colecoes, graficos JavaScript, codigos QR com URLs de acesso e imagens de mapas estaticos, proporcionando flexibilidade para documentacao tecnica sofisticada.
+
+## Criterios de Aceitacao
+
+1. Editor visual HTML/CSS para ADMIN
+2. Variaveis dinamicas com sintaxe {{}}
+3. Preview em tempo real
+4. Tabelas dinamicas e graficos
+5. Codigos QR e mapas estaticos
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-209, RF-210

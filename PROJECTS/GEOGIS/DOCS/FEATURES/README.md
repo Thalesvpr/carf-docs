@@ -1,6 +1,6 @@
 ---
 type: readme
-status: rejected
+status: review
 description: "Usa tabelas ao inves de paragrafos densos, falta paragrafo denso introdutorio"
 updated: 2026-01-22
 ---

@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOAPI
 ---
 
 # RF-039: Tipos de Comunidade
 
-Sistema deve suportar tipos predefinidos de comunidade sendo Assentamento Informal para ocupações irregulares sem infraestrutura completa Reassentamento para áreas destinadas a realocação de famílias Área Urbanizada para regiões consolidadas com infraestrutura Área Rural para comunidades em zona rural ou periurbana, enum com tipos definidos implementado em backend como tipo de dado restrito (PostgreSQL ENUM ou tabela de referência) garantindo integridade referencial e consistência de valores onde apenas valores permitidos aceitos em operações de criação e edição, validação de tipo no backend obrigatória antes de persistir dados rejeitando requisições com tipos inválidos ou não reconhecidos retornando HTTP 400 Bad Request com mensagem descritiva de erro, filtros por tipo disponíveis em listagens e relatórios permitindo análise segmentada por categoria de comunidade e geração de estatísticas específicas por tipo, implementação em módulo GEOAPI com constantes ou enums exportados para frontend garantindo sincronização de valores permitidos entre camadas.
+## Descricao
+
+Sistema deve suportar tipos predefinidos de comunidade: Assentamento Informal para ocupacoes irregulares sem infraestrutura completa, Reassentamento para areas destinadas a realocacao de familias, Area Urbanizada para regioes consolidadas com infraestrutura, Area Rural para comunidades em zona rural ou periurbana. Enum implementado em backend como tipo de dado restrito garantindo integridade referencial e consistencia de valores.
+
+## Criterios de Aceitacao
+
+1. Enum com tipos predefinidos no backend
+2. Validacao de tipo obrigatoria antes de persistir
+3. Erro HTTP 400 para tipos invalidos
+4. Filtros por tipo disponiveis em listagens
+5. Constantes exportadas para frontend
+
+## Rastreabilidade
+
+- Modulos: GEOAPI
+- Requisitos dependentes: RF-034

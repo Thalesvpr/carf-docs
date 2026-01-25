@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
-# RF-033: Notificações In-App
+# RF-033: Notificacoes In-App
 
-Usuários recebem notificações de ações relevantes incluindo aprovações de unidades submetidas comentários em documentos vinculados solicitações de alteração por MANAGER atribuição a nova equipe ou comunidade e outras interações importantes para workflow, badge de notificações não lidas exibido em ícone de sino ou similar na barra de navegação mostrando quantidade numérica de notificações pendentes com destaque visual (cor vermelha pulsante) chamando atenção para itens não visualizados, painel de notificações acessível via clique em badge expandindo dropdown ou modal exibindo lista cronológica reversa de notificações com timestamp tipo de notificação resumo de conteúdo e link direto para recurso relacionado permitindo navegação contextual rápida, funcionalidade de marcação como lida/não lida implementada permitindo usuário gerenciar estado de notificações individualmente ou em lote (marcar todas como lidas) com persistência de estado entre sessões, implementação em módulos GEOWEB e GEOAPI com sistema de eventos backend publicando notificações em fila (Redis RabbitMQ) e frontend consumindo via polling ou WebSocket para atualizações em tempo real.
+## Descricao
+
+Usuarios recebem notificacoes de acoes relevantes incluindo aprovacoes de unidades, comentarios em documentos, solicitacoes de alteracao por MANAGER, atribuicao a nova equipe ou comunidade e outras interacoes importantes. Badge de notificacoes nao lidas exibido em icone na barra de navegacao mostrando quantidade numerica com destaque visual. Painel de notificacoes exibe lista cronologica reversa com timestamp, tipo, resumo e link direto para recurso relacionado.
+
+## Criterios de Aceitacao
+
+1. Badge com contador de notificacoes nao lidas
+2. Painel cronologico com timestamp e resumo
+3. Link direto para recurso relacionado
+4. Marcacao de lido/nao-lido individual e em lote
+5. Atualizacao em tempo real via polling ou WebSocket
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-001

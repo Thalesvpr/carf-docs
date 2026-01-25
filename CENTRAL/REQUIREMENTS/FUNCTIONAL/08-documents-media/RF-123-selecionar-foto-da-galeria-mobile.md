@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - REURBCAD
 ---
 
-# RF-123: Selecionar Foto da Galeria (Mobile)
+# RF-123: Selecionar Foto da Galeria Mobile
 
-Este requisito estabelece que aplicativo mobile REURBCAD deve permitir que usuários selecionem fotos existentes da galeria do dispositivo ao invés de capturar novas através da câmera, onde funcionalidade acessa biblioteca de fotos através de APIs nativas de cada plataforma iOS ou Android. O sistema deve solicitar permissões de acesso à galeria de fotos conforme políticas de privacidade, onde usuário autoriza acesso e app pode subsequentemente navegar pela biblioteca disponível no dispositivo. A interface de seleção deve utilizar picker nativo familiar ao usuário permitindo navegação por álbuns e pastas do dispositivo, onde usuário pode visualizar thumbnails e selecionar uma ou múltiplas fotos conforme necessidade. O sistema deve suportar seleção múltipla permitindo que usuários escolham várias fotos simultaneamente através de interface multi-select com checkboxes ou gestos apropriados, facilitando upload em lote de documentação fotográfica coletada previamente. Após seleção, o sistema deve processar upload em lote de todas as fotos selecionadas, onde processo pode ocorrer imediatamente se há conectividade ou ser enfileirado para sincronização posterior se offline, mostrando progresso individual de cada upload e indicando sucessos ou falhas. A funcionalidade é implementada exclusivamente no módulo REURBCAD mobile.
+## Descricao
+
+Aplicativo mobile REURBCAD deve permitir selecao de fotos existentes da galeria do dispositivo ao inves de capturar novas com camera. Funcionalidade acessa biblioteca de fotos atraves de APIs nativas iOS e Android. Sistema solicita permissoes de acesso a galeria conforme politicas de privacidade. Interface de selecao utiliza picker nativo permitindo navegacao por albuns e pastas do dispositivo com visualizacao de thumbnails. Suporte a selecao multipla permite escolher varias fotos simultaneamente via checkboxes ou gestos apropriados, facilitando upload em lote de documentacao fotografica. Apos selecao, sistema processa upload em lote imediatamente se ha conectividade ou enfileira para sincronizacao posterior se offline, mostrando progresso individual e indicando sucessos ou falhas.
+
+## Criterios de Aceitacao
+
+1. Acesso a galeria via picker nativo
+2. Solicitacao de permissoes conforme plataforma
+3. Navegacao por albuns com thumbnails
+4. Selecao multipla de fotos
+5. Upload em lote com indicacao de progresso
+
+## Rastreabilidade
+
+- Modulos: REURBCAD
+- Requisitos dependentes: RF-108, RF-122

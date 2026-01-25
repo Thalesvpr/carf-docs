@@ -1,7 +1,7 @@
 ---
 type: adr
-status: review
-updated: 2026-01-22
+status: approved
+updated: 2026-01-24
 ---
 
 # ADR-001: Row-Level Security para Multi-Tenancy
@@ -12,7 +12,7 @@ Sistema CARF atende multiplos municipios com dados completamente isolados. Cada 
 
 ## Decisao
 
-Adotamos Row-Level Security do PostgreSQL com schema unico compartilhado. Todas as tabelas possuem coluna tenant_id e policies RLS filtram automaticamente por tenant do usuario autenticado. GEOAPI configura contexto de tenant via SET LOCAL no inicio de cada requisicao.
+Adotamos Row-Level Security do PostgreSQL com schema unico compartilhado. Todas as tabelas possuem coluna tenant_id e policies RLS filtram automaticamente por tenant do usuario autenticado. GEOAPI configura contexto de tenant via SET LOCAL no inicio de cada requisicao. Bucket de objetos (S3/MinIO) segue mesma logica de segregacao, organizando ortofotos e arquivos em prefixos por tenant_id.
 
 ## Consequencias
 

@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
-# RF-045: Anexar Documentos à Comunidade
+# RF-045: Anexar Documentos a Comunidade
 
-Usuários com role ADMIN podem anexar documentos administrativos à comunidade onde upload suporta formatos PDF DOC DOCX XLS XLSX validando tipo MIME e tamanho máximo configurável (ex: 10MB por arquivo) com feedback de progresso durante upload, tipos de documentos classificados através de enum ou tabela de referência incluindo categorias como Decreto municipal/estadual Portaria de regularização Ata de reunião comunitária Laudo técnico Planta cadastral e outros tipos relevantes para contexto de regularização fundiária, funcionalidade de download de documentos anexados disponível para usuários autorizados onde clique em documento baixa arquivo original preservando nome e extensão com streaming eficiente para arquivos grandes e log de acesso registrando quem baixou quando, implementação em módulos GEOWEB e GEOAPI com componente de upload drag-and-drop listagem de documentos anexados com metadata (nome tipo tamanho data upload usuário) armazenamento em object storage (S3 Azure Blob) e URLs assinadas temporariamente para download seguro.
+## Descricao
+
+Usuarios com role ADMIN podem anexar documentos administrativos a comunidade. Upload suporta formatos PDF, DOC, DOCX, XLS, XLSX validando tipo MIME e tamanho maximo configuravel. Tipos de documentos classificados atraves de enum incluindo Decreto municipal, Portaria de regularizacao, Ata de reuniao comunitaria, Laudo tecnico e Planta cadastral. Download disponivel para usuarios autorizados com streaming eficiente e log de acesso.
+
+## Criterios de Aceitacao
+
+1. Upload de PDF, DOC, XLS com validacao
+2. Classificacao por tipo de documento
+3. Armazenamento em object storage (S3)
+4. Download com URLs assinadas temporariamente
+5. Log de acesso registrando downloads
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-034, RF-008

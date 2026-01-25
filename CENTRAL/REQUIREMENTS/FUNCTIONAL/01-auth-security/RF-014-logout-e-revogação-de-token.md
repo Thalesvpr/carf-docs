@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - REURBCAD
 ---
 
-# RF-014: Logout e Revogação de Token
+# RF-014: Logout e Revogacao de Token
 
-Usuário deve poder fazer logout voluntário do sistema revogando tokens ativos onde botão de logout fica visível em interface de usuário tipicamente em menu de perfil ou barra de navegação principal permitindo acesso fácil e intuitivo, processo de logout remove tokens (access_token refresh_token) do storage local do cliente (sessionStorage localStorage cookies) prevenindo reutilização após logout e garantindo que sessão seja efetivamente encerrada, redirecionamento automático para tela de login ocorre imediatamente após logout onde usuário vê mensagem de confirmação "Logout realizado com sucesso" e é apresentado novamente com formulário de autenticação caso deseje acessar sistema novamente, implementação em módulos GEOWEB e REURBCAD inclui chamada opcional para endpoint de revogação do Keycloak /protocol/openid-connect/logout para invalidar tokens no servidor prevenindo que tokens ainda válidos sejam utilizados por atacantes que eventualmente obtiveram cópia antes do logout.
+## Descricao
+
+Usuario deve poder fazer logout voluntario do sistema revogando tokens ativos. Processo de logout remove tokens do storage local do cliente e opcionalmente chama endpoint de revogacao do Keycloak para invalidar tokens no servidor. Apos logout, usuario e redirecionado para tela de login com mensagem de confirmacao.
+
+## Criterios de Aceitacao
+
+1. Botao de logout visivel em interface de usuario
+2. Tokens removidos do storage local apos logout
+3. Redirecionamento para tela de login apos logout
+4. Revogacao no servidor Keycloak opcional mas recomendada
+5. Mensagem de confirmacao exibida ao usuario
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, REURBCAD
+- Requisitos dependentes: RF-001, RF-002

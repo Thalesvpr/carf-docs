@@ -1,13 +1,14 @@
 ---
 type: leaf
-status: rejected
-description: "Estrutura caotica. Numeracao nao agrupa por categoria. Precisa reorganizar por agregado/contexto. Contem blocos de codigo."
-updated: 2026-01-19
+status: approved
+updated: 2026-01-24
 ---
+
+> **REVIEW**: Tipo diagram nao tem template definido. Arquivo usa multiplas H2s e bloco de codigo Mermaid.
 
 # ER Diagram
 
-Diagrama Entity-Relationship do banco de dados CARF.
+Diagrama Entity-Relationship do banco de dados CARF com PostgreSQL e PostGIS para dados geoespaciais.
 
 ## Diagrama Mermaid
 
@@ -136,33 +137,10 @@ erDiagram
     }
 ```
 
-## Constraints Principais
+## Constraints
 
-### Primary Keys
-- Todas as tabelas usam UUID como PK
-- Gerados via `gen_random_uuid()`
+Todas as tabelas usam UUID como PK gerados via gen_random_uuid(). Foreign keys com ON DELETE RESTRICT preservam integridade. Unique constraints garantem unicidade de tenants.slug, communities.code, units.code, holders.cpf_hash e legitimations.protocol (todos por tenant).
 
-### Foreign Keys
-- `tenant_id` em todas tabelas principais (RLS)
-- `ON DELETE RESTRICT` para preservar integridade
-- Índices em todas FKs
+Check constraints validam units.status IN ('Rascunho', 'Pendente', 'EmAnalise', 'Aprovado', 'Rejeitado', 'RequerAlteracoes'), unit_holders.ownership_percentage BETWEEN 0 AND 100, e legitimations.modality IN ('REURB-S', 'REURB-E').
 
-### Unique Constraints
-- `tenants.slug`
-- `communities.code` (per tenant - compound)
-- `units.code` (per tenant)
-- `holders.cpf_hash` (per tenant)
-- `legitimations.protocol` (per tenant)
-
-### Check Constraints
-- `units.status IN ('Rascunho', 'Pendente', 'Aprovado', 'Rejeitado')`
-- `unit_holders.ownership_percentage BETWEEN 0 AND 100`
-- `legitimations.modality IN ('REURB-S', 'REURB-E')`
-
-## Índices Geoespaciais
-
-```sql
-CREATE INDEX idx_units_boundary ON units USING GIST(boundary);
-CREATE INDEX idx_units_centroid ON units USING GIST(centroid);
-CREATE INDEX idx_communities_boundary ON communities USING GIST(boundary);
-```
+Indices geoespaciais GIST em units.boundary, units.centroid e communities.boundary para queries espaciais performaticas.

@@ -1,20 +1,21 @@
 ---
 type: leaf
-status: current
-updated: 2026-01-22
+status: review
+updated: 2026-01-24
 ---
 
 # Ecossistema CARF
 
-Visao geral de todos os sistemas do ecossistema CARF e suas conexoes, mostrando como usuarios interagem com aplicacoes frontend que consomem o backend central e servicos de autenticacao.
+Visao geral de todos os sistemas do ecossistema CARF e suas conexoes, mostrando como usuarios interagem com aplicacoes frontend que consomem o backend central e servicos de autenticacao. O Plugin QGIS (GEOGIS) exige autenticacao em duas etapas via Keycloak OAuth2 seguido de AUTHENTICATION KEY.
 
 ```mermaid
 flowchart TB
     subgraph Usuarios["Usuarios"]
+        AnalistaDrone["Analista Drone<br/>Entrega Ortofotos"]
         Analista["Analista<br/>Portal Web"]
+        AnalistaGIS["Analista GIS<br/>Plugin QGIS"]
         Agente["Agente Campo<br/>App Mobile"]
         Admin["Administrador<br/>Console Admin"]
-        GIS["Especialista GIS<br/>Plugin QGIS"]
     end
 
     subgraph Frontend["Aplicacoes Frontend"]
@@ -31,21 +32,23 @@ flowchart TB
 
     subgraph Identity["Identity"]
         KEYCLOAK["KEYCLOAK<br/>OAuth2/OIDC"]
+        AUTHKEY["AUTHENTICATION KEY<br/>Chave Plugin"]
     end
 
     subgraph Data["Persistencia"]
         POSTGRES[("PostgreSQL<br/>+ PostGIS")]
-        STORAGE[("Object Storage<br/>Documentos/Midias")]
+        BUCKET[("Bucket S3/MinIO<br/>por TENANT")]
     end
 
     subgraph External["Servicos Externos"]
         WMS["WMS/WMTS<br/>Camadas Base"]
     end
 
+    AnalistaDrone --> GEOAPI
     Analista --> GEOWEB
+    AnalistaGIS --> GEOGIS
     Agente --> REURBCAD
     Admin --> ADMINUI
-    GIS --> GEOGIS
 
     GEOWEB --> GEOAPI
     REURBCAD --> GEOAPI
@@ -57,9 +60,10 @@ flowchart TB
     REURBCAD --> KEYCLOAK
     ADMINUI --> KEYCLOAK
     GEOGIS --> KEYCLOAK
+    GEOGIS --> AUTHKEY
 
     GEOAPI --> KEYCLOAK
     GEOAPI --> POSTGRES
-    GEOAPI --> STORAGE
+    GEOAPI --> BUCKET
     GEOAPI --> WMS
 ```

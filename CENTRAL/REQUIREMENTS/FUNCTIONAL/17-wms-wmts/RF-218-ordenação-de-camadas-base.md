@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
-# RF-218: Ordenação de Camadas Base
+# RF-218: Ordenacao de Camadas Base
 
-O sistema oferece interface administrativa de ordenação de camadas base que define ordem de renderização (z-index) controlando quais camadas aparecem acima ou abaixo de outras quando múltiplas camadas estão ativas simultaneamente no mapa, aspecto crítico para garantir legibilidade e hierarquia visual apropriada onde features importantes não sejam ocultadas por camadas de contexto menos relevantes. A interface implementa funcionalidade drag-and-drop intuitiva que permite administradores reordenarem camadas simplesmente arrastando itens para cima ou para baixo em lista vertical, proporcionando experiência de usuário natural e visual que não requer conhecimento técnico de conceitos como z-index ou depth order. Ao alterar ordem visualmente através de drag-and-drop, o sistema atualiza automaticamente campo display_order em registros de banco de dados atribuindo valores numéricos sequenciais que codificam ordem estabelecida, garantindo persistência da configuração e aplicação consistente em todas as sessões de usuário independentemente de dispositivo ou navegador utilizado. As mudanças de ordenação são refletidas imediatamente no mapa de todos os usuários ativos através de mecanismo de sincronização em tempo real, onde camadas são automaticamente reorganizadas conforme nova ordem sem necessidade de recarregar página ou perder contexto de visualização atual, demonstrando ao administrador efeito imediato de suas configurações e permitindo ajustes iterativos até alcançar hierarquia visual ideal para contexto específico do projeto cadastral.
+## Descricao
+
+Sistema deve oferecer interface administrativa de ordenacao de camadas base definindo z-index que controla quais camadas aparecem acima ou abaixo de outras quando multiplas estao ativas simultaneamente, garantindo hierarquia visual apropriada. Interface implementa drag-and-drop intuitivo permitindo reordenar camadas arrastando itens para cima ou para baixo em lista vertical. Ao alterar ordem, sistema atualiza automaticamente campo display_order no banco de dados garantindo persistencia. Mudancas refletidas imediatamente no mapa de todos os usuarios ativos via sincronizacao em tempo real sem necessidade de recarregar pagina.
+
+## Criterios de Aceitacao
+
+1. Interface drag-and-drop
+2. Controle de z-index
+3. Persistencia em display_order
+4. Sincronizacao em tempo real
+5. Hierarquia visual configuravel
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-212, RF-213

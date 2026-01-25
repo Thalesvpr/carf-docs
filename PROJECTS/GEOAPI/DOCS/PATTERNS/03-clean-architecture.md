@@ -1,6 +1,6 @@
 ---
 type: leaf
-status: rejected
+status: review
 description: Stub 8 linhas. Patterns devem ter contexto, problema, solucao, consequencias. Consolidar em ADR unico de arquitetura. Stub de 13 linhas - incompleto.
 updated: 2026-01-20
 ---

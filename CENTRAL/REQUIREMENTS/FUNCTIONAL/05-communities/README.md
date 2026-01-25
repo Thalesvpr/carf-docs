@@ -1,36 +1,14 @@
 ---
 type: readme
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES."
-updated: 2026-01-15
+status: approved
+updated: 2026-01-25
 ---
 
-# Gestão de Comunidades
+# Gestao de Comunidades
 
+Requisitos funcionais para gerenciamento de comunidades no ecossistema CARF. Define operacoes de criacao, edicao, desativacao e visualizacao de comunidades que representam areas geograficas delimitadas por poligonos, conforme definido no WORKFLOW-MESTRE onde o Analista georreferencia comunidades via plugin QGIS.
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (15 requisitos)
-
-| ID | Titulo |
-|:---|:-------|
-| [RF-034](./RF-034-criar-comunidade.md) | Criar Comunidade |
-| [RF-035](./RF-035-editar-comunidade.md) | Editar Comunidade |
-| [RF-036](./RF-036-desativar-comunidade.md) | Desativar Comunidade |
-| [RF-037](./RF-037-listar-comunidades.md) | Listar Comunidades |
-| [RF-038](./RF-038-visualizar-comunidade-no-mapa.md) | Visualizar Comunidade no Mapa |
-| [RF-039](./RF-039-tipos-de-comunidade.md) | Tipos de Comunidade |
-| [RF-040](./RF-040-importar-shapefile-de-comunidade.md) | Importar Shapefile de Comunidade |
-| [RF-041](./RF-041-estatísticas-de-comunidade.md) | Estatísticas de Comunidade |
-| [RF-042](./RF-042-timeline-de-comunidade.md) | Timeline de Comunidade |
-| [RF-043](./RF-043-exportar-comunidade.md) | Exportar Comunidade |
-| [RF-044](./RF-044-dashboard-de-comunidade.md) | Dashboard de Comunidade |
-| [RF-045](./RF-045-anexar-documentos-à-comunidade.md) | Anexar Documentos à Comunidade |
-| [RF-046](./RF-046-configurar-camadas-wms-para-comunidade.md) | Configurar Camadas WMS para Comunidade |
-| [RF-047](./RF-047-clonar-comunidade.md) | Clonar Comunidade |
-| [RF-048](./RF-048-atribuir-comunidade-a-equipe.md) | Atribuir Comunidade a Equipe |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
+Os requisitos [RF-034](./RF-034-criar-comunidade.md) a [RF-037](./RF-037-listar-comunidades.md) cobrem ciclo de vida basico de comunidades incluindo CRUD com geometria e filtros por equipe. Os requisitos [RF-038](./RF-038-visualizar-comunidade-no-mapa.md) a [RF-042](./RF-042-timeline-de-comunidade.md) tratam de visualizacao no mapa, tipos, importacao shapefile, estatisticas e timeline de alteracoes. Os requisitos [RF-043](./RF-043-exportar-comunidade.md) a [RF-048](./RF-048-atribuir-comunidade-a-equipe.md) definem exportacao, dashboard, documentos anexos, camadas WMS, clonagem e atribuicao a equipes.
 
 <!-- CARF-INDEX-START -->
 > ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
@@ -47,11 +25,11 @@ updated: 2026-01-15
 | [RF-038: Visualizar Comunidade no Mapa](./RF-038-visualizar-comunidade-no-mapa.md) | ⚠ |
 | [RF-039: Tipos de Comunidade](./RF-039-tipos-de-comunidade.md) | ⚠ |
 | [RF-040: Importar Shapefile de Comunidade](./RF-040-importar-shapefile-de-comunidade.md) | ⚠ |
-| [RF-041: Estatísticas de Comunidade](./RF-041-estatísticas-de-comunidade.md) | ⚠ |
+| [RF-041: Estatisticas de Comunidade](./RF-041-estatísticas-de-comunidade.md) | ⚠ |
 | [RF-042: Timeline de Comunidade](./RF-042-timeline-de-comunidade.md) | ⚠ |
 | [RF-043: Exportar Comunidade](./RF-043-exportar-comunidade.md) | ⚠ |
 | [RF-044: Dashboard de Comunidade](./RF-044-dashboard-de-comunidade.md) | ⚠ |
-| [RF-045: Anexar Documentos à Comunidade](./RF-045-anexar-documentos-à-comunidade.md) | ⚠ |
+| [RF-045: Anexar Documentos a Comunidade](./RF-045-anexar-documentos-à-comunidade.md) | ⚠ |
 | [RF-046: Configurar Camadas WMS para Comunidade](./RF-046-configurar-camadas-wms-para-comunidade.md) | ⚠ |
 | [RF-047: Clonar Comunidade](./RF-047-clonar-comunidade.md) | ⚠ |
 | [RF-048: Atribuir Comunidade a Equipe](./RF-048-atribuir-comunidade-a-equipe.md) | ⚠ |

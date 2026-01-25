@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-085: Editar Titular
 
-O sistema deve permitir que usuários editem dados cadastrais de titulares existentes, onde interface oferece formulário preenchido com valores atuais possibilitando atualização de qualquer campo incluindo nome, documentos, contatos e endereço. Todas as alterações realizadas são automaticamente registradas em log de auditoria capturando timestamp, usuário responsável pela modificação, campos alterados e valores anteriores e novos, garantindo rastreabilidade completa do histórico de mudanças e possibilitando eventual reversão ou análise forense de modificações inadequadas. As mesmas validações aplicadas durante criação são reaplicadas na edição incluindo verificação algorítmica de CPF/CNPJ quando documentos são modificados, validação de formato de email e telefone, e verificação de duplicidade se número de documento for alterado prevenindo que edição crie conflito com titular previamente existente. Implementado nos módulos GEOWEB e GEOAPI com prioridade Must-have, este recurso é essencial para manutenção evolutiva do cadastro permitindo correção de erros de digitação, atualização de informações de contato quando titulares mudam telefone ou email, e complementação gradual de dados quando informações adicionais tornam-se disponíveis após cadastramento inicial realizado com dados parciais coletados em campo.
+## Descricao
+
+Sistema deve permitir edicao de dados cadastrais de titulares existentes. Interface oferece formulario preenchido com valores atuais possibilitando atualizacao de qualquer campo. Todas alteracoes registradas em log de auditoria com timestamp, usuario, campos modificados e valores anteriores e novos. Mesmas validacoes de criacao sao reaplicadas incluindo verificacao de CPF/CNPJ e duplicidade se documento for alterado. Edicao essencial para correcao de erros, atualizacao de contatos e complementacao de dados.
+
+## Criterios de Aceitacao
+
+1. Formulario preenchido com valores atuais
+2. Validacoes reaplicadas na edicao
+3. Log de auditoria com valores anteriores
+4. Verificacao de duplicidade se documento alterado
+5. Suporte a edicao de todos os campos
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-084, RF-096

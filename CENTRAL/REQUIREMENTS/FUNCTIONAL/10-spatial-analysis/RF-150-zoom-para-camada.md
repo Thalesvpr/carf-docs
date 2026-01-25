@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-150: Zoom para Camada
 
-Este requisito especifica que usuários devem poder acionar zoom automático para extent completo de uma camada específica permitindo navegação rápida para visualização de todas as features contidas no layer independente de localização atual do mapa, onde funcionalidade calcula bounding box total da camada e ajusta viewport para enquadrar conteúdo. O sistema deve calcular bbox da camada através de query espacial que determina extensão mínima e máxima em longitude e latitude que engloba todas as features não excluídas da layer, utilizando funções PostGIS como ST_Extent ou agregação de ST_Envelope de todas as geometrias para obter retângulo envolvente completo. Após calcular bbox, o sistema deve executar zoom com padding adequado adicionando margem ao redor do extent calculado tipicamente 10% a 20% da dimensão garantindo que features nas bordas não fiquem coladas às extremidades do viewport e visualização tenha espaço respiratório, melhorando estética e usabilidade. A transição de zoom deve incluir animação suave interpolando entre viewport atual e destino durante período curto tipicamente 500ms a 1000ms, onde movimento animado ajuda usuário manter orientação espacial compreendendo deslocamento ao invés de salto abrupto desorientador. A funcionalidade deve ser acionada através de botão ou opção de menu no item da camada no painel de layers. A implementação é exclusiva do módulo GEOWEB através de controles de navegação do mapa.
+## Descricao
+
+Sistema deve permitir acionar zoom automatico para extent completo de uma camada especifica, navegando rapidamente para visualizacao de todas as features contidas independente de localizacao atual do mapa. Sistema calcula bbox da camada atraves de query espacial determinando extensao minima e maxima que engloba todas as features nao excluidas, utilizando funcoes PostGIS como ST_Extent ou agregacao de ST_Envelope. Apos calcular bbox, sistema executa zoom com padding adequado (tipicamente 10% a 20% da dimensao) garantindo que features nas bordas nao fiquem coladas as extremidades do viewport. Transicao de zoom inclui animacao suave (500ms a 1000ms) interpolando entre viewport atual e destino para manter orientacao espacial. Funcionalidade acionada via botao ou opcao de menu no item da camada no painel.
+
+## Criterios de Aceitacao
+
+1. Calculo de bbox via ST_Extent
+2. Padding ao redor do extent
+3. Animacao suave de transicao
+4. Botao ou menu no painel de camadas
+5. Funciona com qualquer quantidade de features
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-127, RF-130

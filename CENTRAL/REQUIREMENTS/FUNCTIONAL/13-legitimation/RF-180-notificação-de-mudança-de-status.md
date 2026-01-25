@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
-# RF-180: Notificação de Mudança de Status
+# RF-180: Notificacao de Mudanca de Status
 
-O sistema implementa mecanismo automatizado de notificação que informa o titular da unidade territorial sempre que o processo de legitimação associado sofrer transição de status, garantindo transparência e mantendo beneficiários informados sobre andamento de seus processos de regularização fundiária. As notificações são enviadas através de múltiplos canais incluindo email automático para endereço cadastrado no sistema e notificação in-app exibida na interface quando usuário estiver autenticado, maximizando probabilidade de recebimento e conhecimento da mudança processual. O sistema utiliza templates personalizáveis que estruturam conteúdo das notificações conforme tipo de transição de status, incluindo informações contextuais relevantes como novo status do processo, data da mudança, próximos passos esperados e orientações sobre documentação ou providências necessárias, tornando comunicação mais útil e orientada a ação. Administradores podem configurar parâmetros de notificação incluindo quais transições de status disparam alertas automáticos, personalizar textos dos templates para adequar linguagem ao público-alvo e definir regras de agrupamento que evitam envio excessivo de mensagens quando múltiplas mudanças ocorrem em curto período, equilibrando necessidade de informação com prevenção de sobrecarga comunicacional.
+## Descricao
+
+Sistema deve implementar mecanismo automatizado de notificacao informando titular da unidade territorial sempre que processo de legitimacao sofrer transicao de status. Notificacoes enviadas atraves de multiplos canais incluindo email automatico para endereco cadastrado e notificacao in-app exibida na interface quando usuario autenticado. Templates personalizaveis estruturam conteudo das notificacoes conforme tipo de transicao, incluindo novo status, data da mudanca, proximos passos esperados e orientacoes sobre documentacao ou providencias necessarias. Administradores configuram quais transicoes disparam alertas, personalizam textos dos templates e definem regras de agrupamento evitando envio excessivo de mensagens.
+
+## Criterios de Aceitacao
+
+1. Notificacao por email automatico
+2. Notificacao in-app para usuarios autenticados
+3. Templates personalizaveis por tipo de transicao
+4. Configuracao de transicoes que disparam alertas
+5. Regras de agrupamento anti-spam
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-175

@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - REURBCAD
 ---
 
-# RF-015: Sessão Expirada - Redirecionamento
+# RF-015: Sessao Expirada - Redirecionamento
 
-Sistema deve detectar quando sessão expirou e tentativa de renovação via refresh_token falhou indicando necessidade de re-autenticação completa onde detecção ocorre através de captura de resposta HTTP 401 Unauthorized combinada com falha subsequente ao tentar renovar usando refresh_token, mensagem clara ao usuário deve ser exibida explicando que sessão expirou por inatividade prolongada ou timeout de segurança e solicitando novo login utilizando linguagem amigável como "Sua sessão expirou por segurança. Por favor, faça login novamente." evitando jargões técnicos assustadores, funcionalidade de retorno à tela original após re-login implementada salvando URL ou rota atual antes de redirecionar para login onde após autenticação bem-sucedida sistema restaura contexto anterior permitindo usuário continuar trabalho de onde parou sem perda de contexto, implementação em módulos GEOWEB e REURBCAD utilizando guards de rota ou interceptors HTTP que gerenciam fluxo de redirecionamento preservando deep links e query parameters quando apropriado.
+## Descricao
+
+Sistema deve detectar quando sessao expirou e renovacao via refresh_token falhou. Mensagem clara deve informar usuario que sessao expirou por inatividade, solicitando novo login. Funcionalidade de retorno a tela original apos re-login preserva contexto do usuario, permitindo continuar trabalho de onde parou.
+
+## Criterios de Aceitacao
+
+1. Deteccao automatica de sessao expirada
+2. Mensagem amigavel explicando expiracao
+3. Redirecionamento para login preservando URL original
+4. Retorno a tela original apos re-autenticacao
+5. Deep links e query parameters preservados
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, REURBCAD
+- Requisitos dependentes: RF-004, RF-014

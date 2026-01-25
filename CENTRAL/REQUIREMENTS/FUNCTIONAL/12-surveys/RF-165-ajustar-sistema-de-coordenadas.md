@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-165: Ajustar Sistema de Coordenadas
 
-O sistema permite configurar o SRID (Spatial Reference Identifier) do levantamento topográfico, possibilitando que o usuário selecione o sistema de referência espacial adequado através de códigos EPSG padronizados que definem projeção cartográfica, datum geodésico e zona UTM aplicáveis ao projeto. Ao alterar o SRID, o sistema executa automaticamente reprojeção de todas as coordenadas dos pontos topográficos utilizando transformações geodésicas precisas, garantindo consistência espacial entre dados coletados em diferentes sistemas de referência e assegurando integração adequada com bases cartográficas oficiais e outros dados geoespaciais. O mecanismo de validação implementado verifica a coerência das coordenadas após a transformação, identificando possíveis inconsistências resultantes de erros de parametrização ou uso de sistemas de referência incompatíveis, alertando o usuário sobre potenciais problemas antes da persistência definitiva dos dados. Esta funcionalidade é crítica em projetos cadastrais brasileiros onde frequentemente coexistem dados em diferentes sistemas de referência como SIRGAS2000 UTM, Córrego Alegre e sistemas locais arbitrários, sendo necessário harmonizar toda a base cartográfica em um sistema único para permitir análises espaciais confiáveis e geração de produtos cartográficos oficiais.
+## Descricao
+
+Sistema deve permitir configurar SRID (Spatial Reference Identifier) do levantamento topografico, selecionando sistema de referencia espacial atraves de codigos EPSG padronizados (projecao cartografica, datum geodesico, zona UTM). Ao alterar SRID, sistema executa automaticamente reprojecao de todas coordenadas dos pontos utilizando transformacoes geodesicas precisas, garantindo consistencia espacial entre dados coletados em diferentes sistemas e integracao com bases cartograficas oficiais. Validacao verifica coerencia das coordenadas apos transformacao, identificando inconsistencias resultantes de erros de parametrizacao ou sistemas incompativeis, alertando usuario antes de persistir. Critico em projetos cadastrais brasileiros onde coexistem dados em SIRGAS2000 UTM, Corrego Alegre e sistemas locais arbitrarios.
+
+## Criterios de Aceitacao
+
+1. Selecao de SRID via codigo EPSG
+2. Reprojecao automatica de coordenadas
+3. Transformacoes geodesicas precisas
+4. Validacao de coerencia apos transformacao
+5. Alerta de inconsistencias
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-160, RF-157

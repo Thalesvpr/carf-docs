@@ -1,10 +1,28 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - REURBCAD
+  - GEOAPI
 ---
 
 # RF-064: Anexar Documentos a Unidade
 
-O sistema deve permitir que usuários façam upload de documentos comprobatórios relacionados a unidades habitacionais, incluindo formatos PDF JPG PNG para acomodar diferentes tipos de documentação como contratos digitalizados, comprovantes escaneados, certidões e declarações. Cada documento pode ser classificado por tipo configurável no sistema (RG CPF COMPROVANTE_RESIDENCIA CONTRATO ESCRITURA DECLARACAO_POSSE OUTRO), permitindo organização sistemática e localização eficiente de documentação específica quando necessário. O sistema valida tamanho máximo de 10MB por arquivo prevenindo uploads excessivos que comprometam armazenamento e performance, apresentando mensagem clara quando limite é excedido e sugerindo compressão ou divisão de arquivos grandes. A validação de tipo MIME garante que apenas formatos permitidos sejam aceitos bloqueando uploads de tipos de arquivo não suportados ou potencialmente perigosos, onde cada documento anexado armazena metadados como nome original, tamanho, data de upload, usuário responsável e hash para verificação de integridade, garantindo rastreabilidade e autenticidade da documentação ao longo do tempo.
+## Descricao
+
+Sistema deve permitir upload de documentos comprobatorios relacionados a unidades habitacionais. Formatos aceitos incluem PDF, JPG, PNG para contratos, comprovantes, certidoes e declaracoes. Cada documento pode ser classificado por tipo configuravel (RG, CPF, COMPROVANTE_RESIDENCIA, CONTRATO, ESCRITURA, DECLARACAO_POSSE, OUTRO). Validacao de tamanho maximo 10MB por arquivo e tipo MIME. Metadados armazenam nome original, tamanho, data de upload, usuario responsavel e hash para verificacao de integridade.
+
+## Criterios de Aceitacao
+
+1. Upload de documentos PDF, JPG, PNG
+2. Classificacao por tipo de documento
+3. Validacao de tamanho maximo 10MB
+4. Validacao de tipo MIME
+5. Armazenamento de metadados e hash de integridade
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, REURBCAD, GEOAPI
+- Requisitos dependentes: RF-049

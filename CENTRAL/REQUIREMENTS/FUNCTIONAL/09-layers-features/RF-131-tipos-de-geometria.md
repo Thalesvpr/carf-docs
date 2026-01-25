@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOAPI
 ---
 
 # RF-131: Tipos de Geometria
 
-Este requisito estabelece que o sistema deve suportar conjunto abrangente de tipos de geometria GIS padrão conforme especificação OGC Simple Features permitindo representação de diversas formas geoespaciais, onde tipos suportados incluem Point para localização pontual única, LineString para sequência conectada de pontos formando linha ou trajeto, Polygon para área fechada com potencial de buracos internos, MultiPoint para conjunto de pontos não conectados, MultiLineString para coleção de linhas separadas, e MultiPolygon para múltiplas áreas possivelmente disjuntas. O sistema deve implementar enum de tipos no backend garantindo valores consistentes e validados em toda aplicação, onde tipo é definido no nível da camada e todas features criadas naquela camada devem respeitar tipo configurado. O sistema deve validar geometrias submetidas conforme tipo esperado rejeitando dados que não correspondem ao tipo da camada, onde validação verifica estrutura correta do GeoJSON ou WKT incluindo número adequado de coordenadas fechamento de anéis em polígonos e ausência de auto-interseções inválidas. A renderização no mapa deve adaptar apresentação visual ao tipo de geometria, onde pontos são renderizados como marcadores ou ícones, linhas como traços com espessura e cor configuradas, e polígonos como áreas preenchidas com borda opcional. O sistema deve utilizar tipos geométricos nativos do PostGIS garantindo queries espaciais eficientes. A funcionalidade é implementada no módulo GEOAPI através de validações e tipos de dados adequados.
+## Descricao
+
+Sistema deve suportar conjunto abrangente de tipos de geometria GIS conforme especificacao OGC Simple Features: Point para localizacao pontual, LineString para sequencia conectada de pontos, Polygon para area fechada com potencial de buracos, MultiPoint para conjunto de pontos nao conectados, MultiLineString para colecao de linhas, e MultiPolygon para multiplas areas disjuntas. Enum de tipos no backend garante valores consistentes em toda aplicacao. Tipo definido no nivel da camada e todas features devem respeitar tipo configurado. Validacao de geometrias verifica estrutura correta do GeoJSON ou WKT incluindo numero de coordenadas, fechamento de aneis em poligonos e ausencia de auto-intersecoes. Renderizacao adapta apresentacao visual ao tipo. Sistema utiliza tipos geometricos nativos do PostGIS garantindo queries espaciais eficientes.
+
+## Criterios de Aceitacao
+
+1. Suporte a Point, LineString, Polygon e Multi*
+2. Enum de tipos no backend
+3. Validacao conforme tipo da camada
+4. Verificacao de estrutura geometrica
+5. Uso de tipos nativos PostGIS
+
+## Rastreabilidade
+
+- Modulos: GEOAPI
+- Requisitos dependentes: RF-127, RF-132

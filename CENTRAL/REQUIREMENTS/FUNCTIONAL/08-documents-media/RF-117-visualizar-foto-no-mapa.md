@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
 ---
 
 # RF-117: Visualizar Foto no Mapa
 
-Este requisito estabelece que fotos com coordenadas geográficas geotag devem ser exibidas como marcadores clicáveis no mapa interativo, onde cada foto que possui geometria Point é renderizada como pin ou ícone diferenciado permitindo visualização espacial da localização onde foto foi capturada. Os marcadores devem ser clicáveis, onde ao clicar o sistema exibe popup contendo miniatura da foto junto com informações básicas como data de captura tipo e descrição se disponível, permitindo identificação rápida do conteúdo sem abrir visualização completa. O popup deve incluir link direto para galeria completa ou visualização ampliada da foto, facilitando navegação do contexto espacial para análise detalhada da imagem com um único clique adicional. O sistema deve agrupar marcadores em clusters quando múltiplas fotos estão próximas em níveis de zoom distantes, expandindo automaticamente ao aproximar zoom para evitar sobreposição visual e melhorar usabilidade em áreas com alta densidade fotográfica. A funcionalidade deve ser implementada no módulo GEOWEB através de camada específica de fotos no mapa que pode ser ativada ou desativada conforme necessidade do usuário.
+## Descricao
+
+Sistema deve exibir fotos com coordenadas geograficas como marcadores clicaveis no mapa interativo GEOWEB. Cada foto com geometria Point renderizada como pin diferenciado. Marcadores clicaveis exibem popup com miniatura, data de captura, tipo e descricao permitindo identificacao rapida. Popup inclui link para galeria completa ou visualizacao ampliada. Agrupamento em clusters quando multiplas fotos proximas em zoom distante, expandindo ao aproximar. Camada de fotos no mapa pode ser ativada ou desativada.
+
+## Criterios de Aceitacao
+
+1. Marcadores clicaveis para fotos geotagged
+2. Popup com miniatura e metadados
+3. Link para visualizacao ampliada
+4. Clustering de marcadores proximos
+5. Camada togglavel no mapa
+
+## Rastreabilidade
+
+- Modulos: GEOWEB
+- Requisitos dependentes: RF-110, RF-053

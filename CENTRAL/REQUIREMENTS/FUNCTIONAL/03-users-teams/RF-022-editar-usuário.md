@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
-# RF-022: Editar Usuário
+# RF-022: Editar Usuario
 
-Usuários com role ADMIN podem editar dados de usuários pertencentes ao mesmo tenant onde atualização inclui modificação de nome completo email role atribuída status ativo/inativo vinculação a equipes e outras informações de perfil preservando histórico de alterações para auditoria, validação de permissões garante que ADMIN só edite usuários do próprio tenant impedindo modificação cross-tenant e que alterações de role respeitem hierarquia onde ADMIN não pode criar ou promover usuários para role SUPER_ADMIN, log detalhado de alterações registra timestamp usuário responsável pela modificação campos alterados valores anteriores e novos valores permitindo rastreabilidade completa de mudanças em dados sensíveis de usuários e facilitando troubleshooting de problemas de acesso ou permissões, implementação em módulos GEOWEB e GEOAPI com formulário de edição pré-preenchido validações em tempo real sincronização com Keycloak para alterações que afetam autenticação (email role) e confirmação visual de salvamento bem-sucedido.
+## Descricao
+
+Usuarios com role ADMIN podem editar dados de usuarios pertencentes ao mesmo tenant. Atualizacao inclui modificacao de nome completo, email, role atribuida, status ativo/inativo e vinculacao a equipes. Validacao de permissoes garante que ADMIN so edite usuarios do proprio tenant e que alteracoes de role respeitem hierarquia. Log detalhado de alteracoes registra timestamp, usuario responsavel, campos alterados, valores anteriores e novos valores para auditoria completa.
+
+## Criterios de Aceitacao
+
+1. ADMIN edita apenas usuarios do proprio tenant
+2. Alteracoes de role respeitam hierarquia
+3. Log de auditoria registra todas modificacoes
+4. Sincronizacao com Keycloak para email e role
+5. Formulario pre-preenchido com valores atuais
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-021, RF-008

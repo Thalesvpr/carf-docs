@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
-# RF-026: Criar Equipe (Team)
+# RF-026: Criar Equipe
 
-Usuários com role ADMIN podem criar equipes para organizar usuários em grupos lógicos onde formulário inclui nome descritivo da equipe descrição detalhada de responsabilidades e objetivos vinculação inicial de usuários membros através de seleção múltipla e atribuição de comunidades específicas sob responsabilidade da equipe, vinculação de usuários permite associação múltipla onde mesmo usuário pode pertencer a várias equipes facilitando colaboração cross-funcional e cobertura de responsabilidades compartilhadas, comunidades atribuídas definem escopo de trabalho da equipe onde membros visualizam prioritariamente comunidades vinculadas à sua equipe implementando segregação lógica de dados e responsabilidades operacionais, implementação em módulos GEOWEB e GEOAPI com interface de criação wizard-style guiando ADMIN através de etapas sequenciais definição de dados básicos seleção de membros atribuição de comunidades e confirmação final com preview de configuração criada.
+## Descricao
+
+Usuarios com role ADMIN podem criar equipes para organizar usuarios em grupos logicos. Formulario inclui nome descritivo da equipe, descricao de responsabilidades, vinculacao inicial de usuarios membros atraves de selecao multipla e atribuicao de comunidades especificas sob responsabilidade da equipe. Mesmo usuario pode pertencer a varias equipes facilitando colaboracao cross-funcional. Comunidades atribuidas definem escopo de trabalho da equipe onde membros visualizam prioritariamente essas comunidades.
+
+## Criterios de Aceitacao
+
+1. Formulario com nome, descricao e membros
+2. Selecao multipla de usuarios para vinculacao
+3. Atribuicao de comunidades a equipe
+4. Usuario pode pertencer a multiplas equipes
+5. Escopo de visualizacao definido por equipe
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-021, RF-008

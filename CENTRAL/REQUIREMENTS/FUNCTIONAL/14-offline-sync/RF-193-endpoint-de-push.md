@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOAPI
 ---
 
 # RF-193: Endpoint de Push
 
-A GEOAPI disponibiliza endpoint POST /api/sync/push que recebe dados criados ou editados offline pelos aplicativos móveis, aceitando payload contendo array de changes onde cada elemento representa operação de criação, atualização ou deleção a ser aplicada no banco de dados central. O endpoint implementa validação rigorosa de dados recebidos verificando conformidade com schema esperado, presença de campos obrigatórios, validade de tipos de dados e constraints de negócio como unicidade de identificadores e integridade referencial, rejeitando operações inválidas com mensagens de erro descritivas que permitem correção pelo cliente. Durante processamento, o sistema executa detecção de conflitos comparando timestamps de última atualização dos registros recebidos com versões existentes no servidor, identificando casos onde registro foi modificado por outro usuário entre momento da edição offline e momento da sincronização. O endpoint retorna resposta estruturada contendo mapeamento de IDs onde UUIDs gerados localmente pelos dispositivos móveis são associados aos IDs definitivos atribuídos pelo servidor após persistência, permitindo que cliente atualize suas referências locais e estabeleça correspondência entre registros locais temporários e registros permanentes no sistema central, essencial para manter consistência referencial quando registros relacionados foram criados offline.
+## Descricao
+
+GEOAPI deve disponibilizar endpoint POST /api/sync/push que recebe dados criados ou editados offline pelos aplicativos moveis, aceitando payload com array de changes onde cada elemento representa operacao de criacao, atualizacao ou delecao a ser aplicada no banco central. Endpoint implementa validacao rigorosa verificando conformidade com schema, campos obrigatorios, tipos de dados e constraints de negocio como unicidade e integridade referencial, rejeitando operacoes invalidas com mensagens de erro descritivas. Durante processamento, sistema executa deteccao de conflitos comparando timestamps de ultima atualizacao. Resposta retorna mapeamento de IDs onde UUIDs gerados localmente sao associados aos IDs definitivos do servidor, permitindo que cliente atualize referencias locais e estabeleca correspondencia entre registros temporarios e permanentes.
+
+## Criterios de Aceitacao
+
+1. Endpoint POST /api/sync/push
+2. Validacao rigorosa de schema e constraints
+3. Deteccao de conflitos por timestamp
+4. Mapeamento de UUIDs locais para IDs do servidor
+5. Mensagens de erro descritivas
+
+## Rastreabilidade
+
+- Modulos: GEOAPI
+- Requisitos dependentes: RF-017, RF-190

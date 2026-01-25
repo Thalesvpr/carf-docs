@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-141: Exportar Camada
 
-Este requisito estabelece que usuários devem poder exportar features de uma camada em múltiplos formatos geoespaciais padrão permitindo interoperabilidade com outros sistemas GIS e backup de dados, onde formatos suportados incluem Shapefile GeoJSON e KML atendendo diferentes casos de uso. A funcionalidade de exportação deve gerar arquivo Shapefile completo com todos componentes .shp .shx .dbf .prj empacotados em ZIP contendo geometrias e atributos das features, GeoJSON como FeatureCollection estruturado conforme especificação RFC 7946 adequado para uso em aplicações web e APIs, e KML para visualização em Google Earth e aplicações que consomem este formato. A exportação deve incluir atributos completos das features onde properties customizadas são mapeadas para campos no DBF do shapefile ou objeto properties no GeoJSON, garantindo que dados descritivos não sejam perdidos durante exportação. O sistema deve garantir que geometrias exportadas são válidas conforme especificação de cada formato, onde validação prévia ou correção automática de geometrias ligeiramente inválidas garante que arquivos gerados sejam aceitos por outros sistemas GIS sem erros. A exportação deve preservar sistema de coordenadas apropriado incluindo arquivo .prj em shapefiles e crs object em GeoJSON. A funcionalidade deve estar disponível nos módulos GEOWEB através de botões de exportação e GEOAPI via endpoints que geram e retornam arquivos.
+## Descricao
+
+Sistema deve permitir exportacao de features de uma camada em multiplos formatos geoespaciais padrao para interoperabilidade com outros sistemas GIS e backup de dados. Formatos suportados incluem Shapefile completo (.shp, .shx, .dbf, .prj empacotados em ZIP), GeoJSON como FeatureCollection conforme RFC 7946 adequado para aplicacoes web, e KML para visualizacao em Google Earth. Exportacao inclui atributos completos das features onde properties customizadas sao mapeadas para campos no DBF ou objeto properties no GeoJSON. Sistema garante geometrias exportadas validas conforme especificacao de cada formato, com validacao previa ou correcao automatica de geometrias ligeiramente invalidas. Exportacao preserva sistema de coordenadas apropriado incluindo arquivo .prj em shapefiles e crs object em GeoJSON.
+
+## Criterios de Aceitacao
+
+1. Exportacao em Shapefile, GeoJSON e KML
+2. Inclusao de atributos completos
+3. Validacao de geometrias exportadas
+4. Preservacao de sistema de coordenadas
+5. Empacotamento em ZIP para shapefiles
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-127, RF-130, RF-136

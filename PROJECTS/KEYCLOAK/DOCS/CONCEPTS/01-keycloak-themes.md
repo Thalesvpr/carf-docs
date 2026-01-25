@@ -1,6 +1,6 @@
 ---
 type: leaf
-status: rejected
+status: review
 description: "Usa tabela comparativa ao invés de prosa densa."
 updated: 2026-01-22
 ---

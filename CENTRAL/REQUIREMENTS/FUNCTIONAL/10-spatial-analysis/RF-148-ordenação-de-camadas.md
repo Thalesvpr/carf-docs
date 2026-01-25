@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
-# RF-148: Ordenação de Camadas
+# RF-148: Ordenacao de Camadas
 
-Este requisito especifica que usuários devem poder reordenar camadas no painel de controle de layers modificando ordem de empilhamento que afeta Z-index de renderização no mapa, onde camadas no topo da lista são renderizadas sobre camadas inferiores permitindo controle sobre visibilidade e sobreposição de informações espaciais. A interface deve implementar funcionalidade drag and drop no painel de camadas permitindo que usuário clique e arraste layer para nova posição na lista, onde durante arrasto sistema fornece feedback visual mostrando posição de inserção atual através de linha indicadora ou highlight da posição alvo. O modelo de dados deve incluir campo display_order numérico inteiro em cada camada armazenando ordem de exibição explícita, onde valores menores indicam camadas base que devem ser renderizadas primeiro e valores maiores representam overlays renderizados por cima, garantindo ordem determinística e persistente. Quando usuário reordena camada através de drag and drop, o sistema deve recalcular automaticamente valores de display_order das camadas afetadas pela mudança incrementando ou decrementando conforme necessário para manter sequência contígua sem gaps ou duplicatas. A atualização de renderização no mapa deve ocorrer imediatamente após reordenação mostrando nova disposição de camadas sem necessidade de refresh manual, onde engine de renderização respeita ordem configurada. A funcionalidade deve estar disponível nos módulos GEOWEB através de painel interativo de camadas e GEOAPI persistindo ordem no backend.
+## Descricao
+
+Sistema deve permitir reordenar camadas no painel de controle modificando ordem de empilhamento (Z-index) de renderizacao no mapa, onde camadas no topo da lista sao renderizadas sobre camadas inferiores. Interface implementa drag and drop no painel de camadas com feedback visual mostrando posicao de insercao via linha indicadora. Modelo de dados inclui campo display_order numerico em cada camada armazenando ordem de exibicao, onde valores menores indicam camadas base renderizadas primeiro e valores maiores representam overlays renderizados por cima. Ao reordenar via drag and drop, sistema recalcula automaticamente valores de display_order mantendo sequencia contigua. Atualizacao de renderizacao no mapa ocorre imediatamente apos reordenacao sem necessidade de refresh manual.
+
+## Criterios de Aceitacao
+
+1. Drag and drop para reordenar
+2. Feedback visual durante arrasto
+3. Campo display_order persistido
+4. Recalculo automatico de ordem
+5. Atualizacao imediata no mapa
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-127, RF-130

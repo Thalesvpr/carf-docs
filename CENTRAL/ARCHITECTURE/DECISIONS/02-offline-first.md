@@ -1,14 +1,14 @@
 ---
 type: adr
-status: review
-updated: 2026-01-22
+status: approved
+updated: 2026-01-24
 ---
 
 # ADR-002: WatermelonDB para Operacao Offline
 
 ## Contexto
 
-Agentes de campo coletam dados em comunidades frequentemente sem conectividade movel. Aplicativo deve funcionar completamente offline por dias e sincronizar quando conexao estiver disponivel. Escolha de banco local impacta performance, capacidade de armazenamento e complexidade de sincronizacao.
+Agentes de campo coletam dados em comunidades frequentemente sem conectividade movel. Aplicativo deve funcionar completamente offline por dias e sincronizar quando conexao estiver disponivel. O acesso aos dados de campo so e liberado apos o Analista publicar seu trabalho no backend. O agente realiza download unico e temporario do pacote contendo ortofoto e poligonos do tenant designado. Escolha de banco local impacta performance, capacidade de armazenamento e complexidade de sincronizacao.
 
 ## Decisao
 

@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - REURBCAD
 ---
 
 # RF-184: Criar Unidade Offline
 
-O sistema permite criação completa de unidades territoriais no aplicativo mobile sem necessidade de conexão com internet, através de formulário totalmente funcional offline que captura todos os atributos obrigatórios incluindo identificação, tipo de ocupação, geometria espacial desenhada no mapa, e vinculação com titulares. Durante criação offline, o sistema gera automaticamente UUID (Universally Unique Identifier) localmente no dispositivo para identificar univocamente a unidade, garantindo que mesmo múltiplos dispositivos operando simultaneamente offline não gerem conflitos de identificação ao sincronizar posteriormente com servidor central. A unidade criada é marcada automaticamente com flag de "pendente sincronização" que indica visualmente ao usuário através de ícone distintivo que aquele registro foi criado localmente e ainda não foi persistido no banco de dados central, auxiliando no controle de quais dados já foram efetivamente sincronizados. Todas as validações de negócio aplicáveis são executadas localmente durante criação offline, incluindo verificação de campos obrigatórios, validação de formatos e consistência de dados, garantindo que apenas informações válidas sejam aceitas mesmo sem conectividade com servidor que normalmente executaria essas validações.
+## Descricao
+
+Sistema deve permitir criacao completa de unidades territoriais no aplicativo mobile sem conexao com internet. Formulario totalmente funcional offline captura todos os atributos obrigatorios incluindo identificacao, tipo de ocupacao, geometria espacial desenhada no mapa e vinculacao com titulares. Sistema gera automaticamente UUID localmente no dispositivo para identificar univocamente a unidade, garantindo que multiplos dispositivos operando simultaneamente offline nao gerem conflitos de identificacao ao sincronizar. Unidade criada recebe flag de "pendente sincronizacao" com icone distintivo indicando que registro foi criado localmente e ainda nao foi persistido no banco central. Validacoes de negocio executadas localmente incluindo campos obrigatorios, formatos e consistencia de dados.
+
+## Criterios de Aceitacao
+
+1. Formulario completo funcional offline
+2. Geracao de UUID local automatico
+3. Flag visual de pendente sincronizacao
+4. Validacoes de negocio locais
+5. Vinculacao com titulares offline
+
+## Rastreabilidade
+
+- Modulos: REURBCAD
+- Requisitos dependentes: RF-044, RF-182

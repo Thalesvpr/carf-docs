@@ -1,7 +1,7 @@
 ---
 type: leaf
-status: review
-updated: 2026-01-22
+status: approved
+updated: 2026-01-24
 ---
 
 # GEOWEB
@@ -12,4 +12,4 @@ Stack frontend moderna com React 18, TypeScript, Vite, TanStack Query para data 
 
 ## Capacidades
 
-Mapas interativos com camadas WMS/WMTS configuraveis por tenant. Formularios de cadastro com validacao client-side usando React Hook Form e Zod. Dashboard com metricas de progresso por comunidade. Fluxo de aprovacao com historico de alteracoes. Exportacao de dados geograficos. Detalhes tecnicos em [PROJECTS/GEOWEB/DOCS/](../../../PROJECTS/GEOWEB/DOCS/README.md).
+Mapas interativos com camadas WMS/WMTS configuraveis por tenant. Formularios de cadastro com validacao client-side usando React Hook Form e Zod. Dashboard com metricas de progresso por comunidade. Fluxo de aprovacao com historico de alteracoes. Exportacao de dados geograficos. Detalhes tecnicos no repositorio carf-geoweb.

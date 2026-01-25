@@ -1,7 +1,7 @@
 ---
 type: leaf
-status: review
-updated: 2026-01-22
+status: approved
+updated: 2026-01-24
 ---
 
 # ADMIN
@@ -12,4 +12,4 @@ Stack compartilhada com GEOWEB usando React 18, TypeScript, Vite, TanStack Query
 
 ## Capacidades
 
-Criacao e configuracao de tenants com parametros especificos como limites de area e camadas WMS disponiveis. Gestao de usuarios com atribuicao de roles e vinculacao a equipes. Criacao de equipes tecnicas com lideres e membros. Visualizacao de metricas de uso por tenant. Auditoria de acoes administrativas. Detalhes tecnicos em [PROJECTS/ADMIN/DOCS/](../../../PROJECTS/ADMIN/DOCS/README.md).
+Criacao e configuracao de tenants com parametros especificos como limites de area e camadas WMS disponiveis. Gestao de usuarios com atribuicao de roles e vinculacao a equipes. Criacao de equipes tecnicas com lideres e membros. Visualizacao de metricas de uso por tenant. Auditoria de acoes administrativas. Detalhes tecnicos no repositorio carf-admin.

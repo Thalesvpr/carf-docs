@@ -1,10 +1,28 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - REURBCAD
+  - GEOAPI
 ---
 
 # RF-102: Upload de Documentos
 
-O sistema deve permitir que usuários façam upload de documentos em formatos diversos (PDF DOCX XLSX JPG PNG) através de interface drag-and-drop ou seleção tradicional de arquivos, onde cada documento pode ser vinculado a diferentes entidades do sistema como unidades, titulares ou comunidades conforme contexto de uso. A validação de upload verifica formato através de tipo MIME autêntico (não apenas extensão de arquivo que pode ser falsificada) garantindo que apenas tipos permitidos sejam aceitos e bloqueando uploads de formatos potencialmente perigosos (executáveis scripts macros) que possam representar riscos de segurança. O tamanho máximo de 10MB por arquivo é validado tanto no frontend quanto backend, onde frontend apresenta feedback imediato quando arquivo excede limite sugerindo compressão ou divisão, enquanto backend garante enforcement da regra mesmo se validação client-side for bypassed. Sistema armazena metadados completos de cada documento incluindo nome original do arquivo, tamanho em bytes, tipo MIME, hash SHA-256 para verificação de integridade, timestamp de upload, usuário responsável e entidade à qual documento está vinculado. Implementado nos módulos GEOWEB, REURBCAD e GEOAPI com prioridade Must-have, este recurso é fundamental para gestão documental integrada ao cadastro territorial permitindo anexação de comprovantes, certidões e outros documentos essenciais aos processos de regularização fundiária.
+## Descricao
+
+Sistema deve permitir upload de documentos em formatos diversos (PDF, DOCX, XLSX, JPG, PNG) via interface drag-and-drop ou selecao de arquivos. Validacao verifica tipo MIME real (nao apenas extensao) bloqueando formatos perigosos. Tamanho maximo 10MB validado em frontend e backend. Sistema armazena metadados completos: nome original, tamanho, tipo MIME, hash SHA-256, timestamp, usuario e entidade vinculada. Conforme WORKFLOW-MESTRE, armazenamento em bucket S3/MinIO segregado por tenant.
+
+## Criterios de Aceitacao
+
+1. Upload via drag-and-drop ou selecao de arquivos
+2. Validacao de tipo MIME real
+3. Limite de 10MB por arquivo
+4. Hash SHA-256 para integridade
+5. Metadados completos armazenados
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, REURBCAD, GEOAPI
+- Requisitos dependentes: RF-103, RF-104, RF-116

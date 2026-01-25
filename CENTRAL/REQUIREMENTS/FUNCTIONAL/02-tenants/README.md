@@ -1,25 +1,14 @@
 ---
 type: readme
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES."
-updated: 2026-01-15
+status: approved
+updated: 2026-01-25
 ---
 
-# Gestão de Tenants
+# Gestao de Tenants
 
+Requisitos funcionais para gerenciamento de tenants no ecossistema CARF. Define operacoes CRUD exclusivas para SUPER_ADMIN permitindo criar, editar, desativar e listar tenants que representam regioes ou areas de atuacao com segregacao completa de dados.
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (4 requisitos)
-
-| ID | Titulo |
-|:---|:-------|
-| [RF-017](./RF-017-criar-tenant.md) | Criar Tenant |
-| [RF-018](./RF-018-editar-tenant.md) | Editar Tenant |
-| [RF-019](./RF-019-desativar-tenant.md) | Desativar Tenant |
-| [RF-020](./RF-020-listar-tenants.md) | Listar Tenants |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
+Os requisitos [RF-017](./RF-017-criar-tenant.md) e [RF-018](./RF-018-editar-tenant.md) cobrem criacao e edicao de tenants incluindo configuracao de identificador unico, personalizacao visual e parametros operacionais. O requisito [RF-019](./RF-019-desativar-tenant.md) define desativacao via soft delete preservando dados para auditoria e possivel reativacao. O requisito [RF-020](./RF-020-listar-tenants.md) especifica listagem paginada com filtros e ordenacao para administracao eficiente.
 
 <!-- CARF-INDEX-START -->
 > ⚠️ **Índice gerado automaticamente.** Não edite manualmente.

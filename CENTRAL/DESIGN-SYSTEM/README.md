@@ -1,7 +1,7 @@
 ---
 type: readme
-status: current
-updated: 2026-01-22
+status: approved
+updated: 2026-01-24
 ---
 
 # DESIGN-SYSTEM
@@ -15,5 +15,16 @@ Os [principios](./PRINCIPIOS/README.md) estabelecem a visao, valores e compromis
 Para implementacao tecnica dos componentes consulte as bibliotecas em PROJECTS/. A biblioteca @carf/ui implementa componentes React para web baseados em shadcn/ui e Tailwind CSS. A biblioteca @carf/ui-native implementa componentes React Native para mobile baseados em react-native-reusables e NativeWind, mantendo consistencia visual atraves de classes Tailwind compartilhadas.
 
 <!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
+
+## Subpastas (4)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [EXPERIENCIAS](./EXPERIENCIAS/README.md) | ... |
+| [IDENTIDADE](./IDENTIDADE/README.md) | ... |
+| [LINGUAGEM-VISUAL](./LINGUAGEM-VISUAL/README.md) | ... |
+| [PRINCIPIOS](./PRINCIPIOS/README.md) | ... |
 
 <!-- CARF-INDEX-END -->

@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-212: Adicionar Camada WMS
 
-O sistema permite que usuários com perfil ADMIN adicionem dinamicamente camadas WMS (Web Map Service) externas ao mapa interativo, possibilitando integração de bases cartográficas oficiais disponibilizadas por órgãos governamentais ou instituições especializadas sem necessidade de download ou armazenamento local de dados. A interface de configuração solicita URL do servidor WMS e executa automaticamente requisição GetCapabilities que recupera metadados do serviço incluindo lista de layers disponíveis, sistemas de coordenadas suportados, extensão espacial coberta e formatos de imagem oferecidos, apresentando essas informações em interface de seleção que permite ao administrador escolher quais layers específicos devem ser adicionados ao catálogo do sistema. Para cada camada adicionada, o sistema permite configurar parâmetros de exibição incluindo opacidade que controla transparência para permitir sobreposição legível com outras camadas, ordem ou z-index que define se camada aparece acima ou abaixo de outras features no mapa, nome amigável exibido aos usuários finais, e opcionalmente restrições de visibilidade por role que limitam acesso a camadas sensíveis. As camadas WMS configuradas ficam disponíveis no seletor de camadas do mapa para todos os usuários autorizados, que podem ativar ou desativar visualização conforme necessidade durante análises espaciais, enriquecendo contexto cartográfico com informações complementares como limites administrativos, hidrografia, imagens de satélite, zoneamento urbano ou qualquer outro dado geoespacial disponibilizado através de serviços OGC padrão.
+## Descricao
+
+Sistema deve permitir que usuarios com perfil ADMIN adicionem camadas WMS (Web Map Service) externas ao mapa interativo, possibilitando integracao de bases cartograficas oficiais de orgaos governamentais sem necessidade de download local. Interface de configuracao solicita URL do servidor WMS e executa requisicao GetCapabilities recuperando metadados como lista de layers, sistemas de coordenadas e extensao espacial. Para cada camada adicionada, administrador configura opacidade, z-index, nome amigavel e restricoes de visibilidade por role. Camadas configuradas ficam disponiveis no seletor para usuarios autorizados ativarem durante analises espaciais, enriquecendo contexto com informacoes como limites administrativos, hidrografia ou zoneamento urbano.
+
+## Criterios de Aceitacao
+
+1. Configuracao via URL com GetCapabilities automatico
+2. Selecao de layers especificos do servidor
+3. Configuracao de opacidade e z-index
+4. Restricao de acesso por role
+5. Disponibilidade no seletor de camadas
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-127, RF-214

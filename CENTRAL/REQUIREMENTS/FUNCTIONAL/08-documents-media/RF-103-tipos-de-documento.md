@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOAPI
 ---
 
 # RF-103: Tipos de Documento
 
-O sistema deve suportar categorização de documentos através de tipos predefinidos (RG CPF COMPROVANTE_RESIDENCIA CONTRATO PROCURACAO ESCRITURA CERTIDAO DECLARACAO OUTRO) facilitando organização e localização de documentação específica quando necessário para análise, auditoria ou geração de dossiês. A implementação utiliza enumeração armazenada no campo document_type garantindo valores consistentes e possibilitando queries eficientes para listar todos os documentos de tipo específico através de filtros baseados em categoria. A interface de upload apresenta seletor de tipo obrigatório exigindo que usuário categorize cada documento durante anexação, onde descrições claras de cada tipo orientam seleção adequada e opção OUTRO acomoda situações não contempladas pelos tipos predefinidos com campo adicional para especificação textual. Filtros por tipo de documento nas interfaces de listagem permitem visualização segmentada como "mostrar apenas comprovantes de residência" ou "listar todas as procurações" focalizando análise em subconjunto específico de documentação relevante ao contexto operacional. Implementado no módulo GEOAPI com prioridade Must-have, este recurso estrutura gestão documental através de taxonomia clara que reflete necessidades reais de processos de regularização fundiária onde diferentes categorias de documentos possuem papéis e requisitos específicos de validação, armazenamento e apresentação.
+## Descricao
+
+Sistema deve suportar categorizacao de documentos atraves de tipos predefinidos (RG, CPF, COMPROVANTE_RESIDENCIA, CONTRATO, PROCURACAO, ESCRITURA, CERTIDAO, DECLARACAO, OUTRO). Implementacao via enumeracao no campo document_type garantindo valores consistentes. Interface de upload apresenta seletor de tipo obrigatorio com descricoes claras. Filtros por tipo nas interfaces de listagem permitem visualizacao segmentada. Opcao OUTRO acomoda situacoes nao contempladas com campo adicional para especificacao.
+
+## Criterios de Aceitacao
+
+1. Enum com tipos de documento predefinidos
+2. Seletor de tipo obrigatorio no upload
+3. Filtros por tipo nas listagens
+4. Opcao OUTRO com texto livre
+5. Descricoes claras de cada tipo
+
+## Rastreabilidade
+
+- Modulos: GEOAPI
+- Requisitos dependentes: RF-102, RF-097

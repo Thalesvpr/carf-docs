@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
-# RF-154: Editar Anotação
+# RF-154: Editar Anotacao
 
-Este requisito especifica que usuários devem poder editar tanto conteúdo textual quanto posição geográfica de anotações existentes permitindo correção e atualização de notas sem necessidade de recriar, onde interface oferece edição inline para texto e movimentação de marcador para ajuste de localização. O sistema deve permitir edição inline do texto da anotação diretamente no popup ou painel de detalhes onde usuário clica no campo de texto para ativá-lo digita modificações e confirma através de blur automático ao clicar fora ou botão de salvar, garantindo processo rápido sem abertura de modais ou formulários pesados. Para ajuste de posição, o sistema deve permitir movimentação do marcador de anotação através de modo de edição onde usuário ativa edição e pode arrastar ícone da anotação para nova localização no mapa, onde nova coordenada é atualizada ao soltar marcador e mudança é persistida imediatamente ou após confirmação conforme design de interação. Todas as alterações realizadas em anotação devem gerar entradas no log de alterações vinculado à anotação registrando usuário responsável timestamp campos modificados e valores anteriores versus novos, garantindo auditoria de evolução da anotação particularmente importante quando múltiplos usuários colaboram em documentação de campo. O sistema deve validar que texto editado não seja vazio e coordenadas permaneçam dentro de bounds válidos. A funcionalidade deve estar disponível nos módulos GEOWEB e GEOAPI.
+## Descricao
+
+Sistema deve permitir edicao de conteudo textual e posicao geografica de anotacoes existentes sem necessidade de recriar. Edicao inline do texto diretamente no popup ou painel de detalhes onde usuario clica no campo, digita modificacoes e confirma via blur automatico ou botao de salvar, garantindo processo rapido sem modais pesados. Para ajuste de posicao, modo de edicao permite arrastar icone da anotacao para nova localizacao no mapa, com coordenada atualizada ao soltar marcador. Alteracoes geram entradas no log de auditoria registrando usuario responsavel, timestamp, campos modificados e valores anteriores versus novos, garantindo rastreabilidade quando multiplos usuarios colaboram. Sistema valida que texto nao seja vazio e coordenadas permaneçam dentro de bounds validos.
+
+## Criterios de Aceitacao
+
+1. Edicao inline de texto
+2. Movimentacao de marcador no mapa
+3. Log de auditoria com diff de valores
+4. Validacao de texto nao vazio
+5. Validacao de coordenadas validas
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-153, RF-133

@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-051: Excluir Unidade
 
-Usuários com role ADMIN podem excluir unidade utilizando soft delete onde registro marcado como deletado através de flag deleted_at timestamp indicando momento da exclusão sem remoção física de dados do banco garantindo preservação para auditoria e compliance, preservação de dados para auditoria mantém registro completo incluindo geometria atributos alfanuméricos titulares vinculados documentos anexados e histórico de alterações permitindo consultas históricas e recuperação se exclusão foi acidental ou prematura, remoção de visualização padrão implementada através de filtros automáticos WHERE deleted_at IS NULL em todas queries regulares excluindo unidades deletadas de listagens mapas relatórios e estatísticas mas mantendo acessibilidade em contextos administrativos específicos ou quando filtro "mostrar deletados" explicitamente ativado, implementação em módulos GEOWEB e GEOAPI com confirmação de exclusão solicitando justificativa ou motivo validação de permissão ADMIN registro em log de auditoria e opção de restauração (undelete) reverter flag deleted_at para NULL se necessário.
+## Descricao
+
+Usuarios com role ADMIN podem excluir unidade utilizando soft delete onde registro e marcado como deletado atraves de flag deleted_at timestamp sem remocao fisica de dados. Preservacao de dados para auditoria mantem registro completo incluindo geometria, atributos, titulares vinculados e documentos anexados. Unidades deletadas removidas de visualizacao padrao atraves de filtros automaticos WHERE deleted_at IS NULL, mas acessiveis em contextos administrativos.
+
+## Criterios de Aceitacao
+
+1. Soft delete com flag deleted_at timestamp
+2. Preservacao completa de dados para auditoria
+3. Remocao de listagens e mapas padrao
+4. Visivel para ADMIN com filtro de deletados
+5. Opcao de restauracao (undelete) disponivel
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-049, RF-008

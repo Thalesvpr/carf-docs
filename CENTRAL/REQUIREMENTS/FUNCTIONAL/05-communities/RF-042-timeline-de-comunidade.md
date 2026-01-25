@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-042: Timeline de Comunidade
 
-Interface deve exibir histórico cronológico de alterações da comunidade onde linha do tempo visual apresenta eventos em ordem cronológica reversa (mais recentes primeiro) com representação gráfica intuitiva usando ícones marcadores e conexões visuais, eventos registrados incluem criação inicial da comunidade edições de dados alfanuméricos modificações de geometria (boundary) aprovações de unidades vinculadas desativação/reativação anexação de documentos e outras operações relevantes capturando evolução completa, cada evento exibe usuário responsável pela ação com avatar ou iniciais timestamp preciso com data e hora descrição textual da modificação e opcionalmente link para visualizar detalhes completos ou comparação de valores antes/depois, implementação em módulo GEOWEB consumindo dados de tabela de auditoria ou event sourcing store do GEOAPI com componente de timeline responsivo suportando filtros por tipo de evento período temporal usuário responsável e expansão de detalhes inline.
+## Descricao
+
+Interface deve exibir historico cronologico de alteracoes da comunidade. Linha do tempo visual apresenta eventos em ordem cronologica reversa com representacao grafica usando icones e marcadores. Eventos registrados incluem criacao inicial, edicoes de dados alfanumericos, modificacoes de geometria, aprovacoes de unidades, desativacao/reativacao e anexacao de documentos. Cada evento exibe usuario responsavel, timestamp preciso e descricao da modificacao.
+
+## Criterios de Aceitacao
+
+1. Linha do tempo em ordem cronologica reversa
+2. Eventos de criacao, edicao, geometria e aprovacoes
+3. Exibicao de usuario responsavel e timestamp
+4. Filtros por tipo de evento e periodo
+5. Expansao de detalhes inline
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-034, RF-035

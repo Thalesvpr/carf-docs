@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-086: Excluir Titular
 
-O sistema deve permitir que administradores (perfil ADMIN) excluam titulares da base de dados utilizando estratégia de soft delete que marca registro como inativo sem remoção física do banco, preservando integridade referencial e histórico de auditoria. Antes de permitir exclusão, sistema verifica existência de vínculos ativos com unidades habitacionais alertando administrador quando titular possui relacionamentos ativos que precisam ser removidos ou transferidos antes que exclusão possa prosseguir, prevenindo órfãos referenciais e inconsistências de dados. A interface apresenta modal de confirmação obrigatória exigindo que administrador confirme explicitamente intenção de excluir titular, incluindo aviso sobre consequências da ação e contagem de vínculos que serão afetados, garantindo que exclusões não ocorram acidentalmente por cliques involuntários. Implementado nos módulos GEOWEB e GEOAPI com prioridade Must-have, este recurso permite limpeza de cadastros duplicados ou errôneos mantendo rastreabilidade através de soft delete que possibilita eventual restauração de registros excluídos inadvertidamente, além de preservar histórico completo para auditorias futuras que possam requerer investigação de titulares previamente cadastrados e posteriormente removidos.
+## Descricao
+
+Sistema deve permitir que usuarios ADMIN excluam titulares utilizando soft delete que marca registro como inativo sem remocao fisica. Antes de permitir exclusao, sistema verifica vinculos ativos com unidades alertando quando titular possui relacionamentos que precisam ser removidos ou transferidos. Interface apresenta modal de confirmacao obrigatoria com aviso sobre consequencias e contagem de vinculos afetados. Soft delete preserva historico para auditorias e possibilita restauracao.
+
+## Criterios de Aceitacao
+
+1. Soft delete mantendo registro inativo
+2. Verificacao de vinculos ativos antes de excluir
+3. Modal de confirmacao obrigatoria
+4. Restrito a perfil ADMIN
+5. Possibilidade de restauracao
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-084, RF-061

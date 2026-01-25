@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
-# RF-059: Solicitar Alterações
+# RF-059: Solicitar Alteracoes
 
-O sistema deve permitir que gestores com perfil MANAGER solicitem alterações em unidades pendentes quando identificarem problemas que não justifiquem rejeição completa mas requeiram ajustes antes da aprovação final. A solicitação de alterações inclui campo de texto detalhando as modificações necessárias, onde o gestor especifica quais campos precisam ser corrigidos, complementados ou validados, garantindo clareza sobre as expectativas. Ao confirmar a solicitação, o sistema altera o status da unidade para CHANGES_REQUESTED e envia notificação ao analista responsável incluindo a descrição das alterações solicitadas e link direto para edição do registro. O analista com perfil ANALYST pode então editar a unidade conforme orientações recebidas e reenviar para aprovação alterando o status novamente para PENDING_APPROVAL, reiniciando o ciclo de validação. Este mecanismo intermediário entre aprovação e rejeição otimiza o fluxo de trabalho colaborativo, permitindo iterações rápidas sem descontinuidade do processo e mantendo registro histórico de todas as solicitações e correções realizadas.
+## Descricao
+
+Sistema deve permitir que usuarios com perfil MANAGER solicitem alteracoes em unidades pendentes quando identificarem problemas que nao justifiquem rejeicao completa. Solicitacao inclui campo obrigatorio de texto detalhando modificacoes necessarias com orientacao clara sobre quais campos precisam correcao. Status alterado para CHANGES_REQUESTED com notificacao automatica ao analista responsavel incluindo descricao e link para edicao. Mecanismo intermediario entre aprovacao e rejeicao otimiza fluxo colaborativo conforme WORKFLOW-MESTRE.
+
+## Criterios de Aceitacao
+
+1. Botao de solicitar alteracoes visivel para MANAGER
+2. Campo de texto obrigatorio com descricao das alteracoes
+3. Status alterado para CHANGES_REQUESTED
+4. Notificacao automatica ao analista com link de edicao
+5. Historico registra todas solicitacoes e correcoes
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-056, RF-057, RF-058

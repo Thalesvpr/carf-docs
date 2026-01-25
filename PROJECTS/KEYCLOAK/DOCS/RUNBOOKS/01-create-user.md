@@ -1,6 +1,6 @@
 ---
 type: leaf
-status: rejected
+status: review
 description: "Runbook com lista numerada e bullets via Admin Console - reescrever em prosa"
 updated: 2026-01-22
 ---

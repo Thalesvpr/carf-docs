@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - REURBCAD
 ---
 
 # RF-185: Editar Unidade Offline
 
-O sistema possibilita edição de unidades territoriais existentes no modo offline, permitindo que técnicos em campo atualizem informações cadastrais, corrijam dados imprecisos, complementem atributos incompletos ou ajustem geometrias espaciais conforme verificações in loco, tudo sem necessidade de conectividade. As edições realizadas são persistidas imediatamente no banco de dados local SQLite e a unidade modificada recebe marcação automática de alteração através de flag e timestamp que registram momento da edição, permitindo rastreamento posterior de quais registros foram modificados offline e precisam ser sincronizados com servidor. O sistema implementa mecanismo de detecção de conflitos que compara timestamp de última atualização da versão local com timestamp da versão no servidor durante sincronização subsequente, identificando situações onde o mesmo registro foi editado simultaneamente em diferentes dispositivos ou na interface web, permitindo tratamento apropriado dessas colisões. Enquanto não sincronizada, a versão editada offline permanece disponível localmente com indicação visual de pendência de sincronização, garantindo que usuário tenha consciência de quais alterações já foram efetivadas no sistema central e quais ainda aguardam transmissão quando conectividade for restabelecida.
+## Descricao
+
+Sistema deve permitir edicao de unidades territoriais existentes no modo offline, possibilitando que tecnicos em campo atualizem informacoes cadastrais, corrijam dados imprecisos, complementem atributos incompletos ou ajustem geometrias espaciais conforme verificacoes in loco. Edicoes persistidas imediatamente no banco SQLite local e unidade modificada recebe marcacao automatica de alteracao com flag e timestamp registrando momento da edicao. Sistema implementa mecanismo de deteccao de conflitos comparando timestamp de ultima atualizacao local com servidor durante sincronizacao subsequente, identificando edicoes simultaneas em diferentes dispositivos. Versao editada offline permanece disponivel localmente com indicacao visual de pendencia de sincronizacao.
+
+## Criterios de Aceitacao
+
+1. Edicao de todos os campos offline
+2. Persistencia imediata em SQLite
+3. Flag e timestamp de modificacao
+4. Indicador visual de pendencia
+5. Deteccao de conflitos por timestamp
+
+## Rastreabilidade
+
+- Modulos: REURBCAD
+- Requisitos dependentes: RF-044, RF-184
