@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-043: Exportar Comunidade
 
-Usuários autorizados podem exportar dados da comunidade em múltiplos formatos geoespaciais onde exportação em Shapefile gera arquivo ZIP contendo componentes completos (.shp .shx .dbf .prj .cpg) com geometria de boundary atributos alfanuméricos e projeção adequada (EPSG:4326 ou projeção local configurável), exportação em KML/KMZ para visualização em Google Earth incluindo geometria estilizada com cores apropriadas placemark com informações de comunidade e estruturação hierárquica de folders se exportando múltiplas comunidades simultaneamente, exportação em GeoJSON como formato moderno compatível com aplicações web GIS e análises programáticas onde JSON estruturado contém FeatureCollection com Feature por comunidade incluindo properties completas e geometry em coordenadas WGS84, implementação em módulos GEOWEB e GEOAPI com botões de exportação em interface de detalhes ou listagem processamento assíncrono para grandes volumes geração de arquivo temporário em storage com URL de download com expiração e notificação ao usuário quando exportação completada.
+## Descricao
+
+Usuarios autorizados podem exportar dados da comunidade em multiplos formatos geoespaciais. Exportacao em Shapefile gera arquivo ZIP contendo componentes completos (.shp, .shx, .dbf, .prj) com geometria e atributos. Exportacao em KML/KMZ para visualizacao em Google Earth incluindo geometria estilizada. Exportacao em GeoJSON como formato moderno compativel com aplicacoes web GIS. Processamento assincrono para grandes volumes com notificacao ao usuario quando completado.
+
+## Criterios de Aceitacao
+
+1. Exportacao em Shapefile (ZIP completo)
+2. Exportacao em KML/KMZ com estilizacao
+3. Exportacao em GeoJSON com FeatureCollection
+4. Processamento assincrono para grandes volumes
+5. URL de download com expiracao temporaria
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-034

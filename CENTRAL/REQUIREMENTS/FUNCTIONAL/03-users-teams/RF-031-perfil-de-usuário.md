@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
 ---
 
-# RF-031: Perfil de Usuário
+# RF-031: Perfil de Usuario
 
-Usuário autenticado pode visualizar e editar seu próprio perfil onde exibição inclui informações básicas como nome completo email role atribuída tenant vinculado data de criação da conta último acesso e estatísticas de uso (quantidade de unidades cadastradas documentos anexados), edição de foto de perfil implementada com upload de imagem validando formato (JPEG PNG) e tamanho máximo (ex: 2MB) aplicando redimensionamento automático para dimensões padronizadas (ex: 200x200 pixels) e armazenamento em storage de objetos (S3 Azure Blob) com URL acessível via CDN, alteração de senha própria disponível através de formulário seguro validando senha atual antes de permitir definição de nova senha exigindo conformidade com política de complexidade (mínimo 8 caracteres 1 maiúscula 1 minúscula 1 número 1 caractere especial) e sincronizando mudança com Keycloak, implementação em módulo GEOWEB com página dedicada de perfil controles de edição inline preview de foto antes de upload validações em tempo real e feedback de salvamento bem-sucedido.
+## Descricao
+
+Usuario autenticado pode visualizar e editar seu proprio perfil. Exibicao inclui informacoes basicas como nome completo, email, role atribuida, tenant vinculado e data de criacao da conta. Edicao de foto de perfil implementada com upload de imagem validando formato (JPEG, PNG) e tamanho maximo, aplicando redimensionamento automatico para dimensoes padronizadas. Alteracao de senha propria disponivel atraves de formulario seguro validando senha atual antes de permitir definicao de nova senha com sincronizacao em Keycloak.
+
+## Criterios de Aceitacao
+
+1. Visualizacao de dados basicos do perfil
+2. Upload de foto com validacao de formato e tamanho
+3. Redimensionamento automatico da foto
+4. Alteracao de senha validando senha atual
+5. Sincronizacao de senha com Keycloak
+
+## Rastreabilidade
+
+- Modulos: GEOWEB
+- Requisitos dependentes: RF-001, RF-021

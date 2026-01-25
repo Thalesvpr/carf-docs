@@ -1,7 +1,7 @@
 ---
 type: adr
-status: review
-updated: 2026-01-22
+status: approved
+updated: 2026-01-24
 ---
 
 # ADR-005: React com TypeScript para Frontend

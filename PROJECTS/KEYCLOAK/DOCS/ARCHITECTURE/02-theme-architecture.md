@@ -1,6 +1,6 @@
 ---
 type: leaf
-status: rejected
+status: review
 description: "Usa listas extensivas, code blocks e estrutura de bullets ao inves de prosa densa - reescrever completamente"
 updated: 2026-01-22
 ---

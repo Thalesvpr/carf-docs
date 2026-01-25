@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOAPI
 ---
 
 # RF-077: Campos Personalizados de Unidade
 
-O sistema deve permitir que administradores (perfil ADMIN) criem campos customizados por tenant estendendo modelo padrão de unidade habitacional para acomodar necessidades específicas de cada projeto ou município, onde definição de campos inclui especificação de tipo de dado (texto número data select booleano) e configurações de validação. Cada campo customizado pode ter validações específicas como obrigatoriedade, valores mínimos e máximos numéricos, formatos de texto através de expressões regulares, listas de opções predefinidas para campos select, garantindo integridade de dados capturados em campos estendidos com mesmo rigor de campos padrão do sistema. A interface de formulário de unidade exibe dinamicamente campos customizados configurados para o tenant ativo, renderizando controles apropriados (input number select datepicker checkbox) baseados no tipo de cada campo e aplicando validações client-side e server-side conforme regras definidas. Implementado no módulo GEOAPI com prioridade Could-have, este recurso oferece extensibilidade sem modificação de código permitindo adaptação do sistema a contextos diversos de regularização fundiária onde diferentes projetos podem requerer captura de informações específicas não previstas no modelo padrão, mantendo núcleo comum compartilhado e customizações isoladas por tenant.
+## Descricao
+
+Sistema deve permitir que usuarios ADMIN criem campos customizados por tenant estendendo modelo de unidade habitacional. Definicao de campos inclui tipo de dado (texto, numero, data, select, booleano) e configuracoes de validacao. Cada campo pode ter validacoes especificas como obrigatoriedade, valores minimos e maximos, formatos via regex e listas de opcoes para select. Interface de formulario exibe dinamicamente campos customizados renderizando controles apropriados e aplicando validacoes client-side e server-side.
+
+## Criterios de Aceitacao
+
+1. Criacao de campos por ADMIN
+2. Tipos: texto, numero, data, select, booleano
+3. Validacoes configuráveis por campo
+4. Renderizacao dinamica no formulario
+5. Isolamento de campos por tenant
+
+## Rastreabilidade
+
+- Modulos: GEOAPI
+- Requisitos dependentes: RF-049

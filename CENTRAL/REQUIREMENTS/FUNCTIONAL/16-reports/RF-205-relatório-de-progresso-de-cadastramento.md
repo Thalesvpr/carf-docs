@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
-# RF-205: Relatório de Progresso de Cadastramento
+# RF-205: Relatorio de Progresso de Cadastramento
 
-O sistema gera relatório analítico de acompanhamento da evolução temporal do processo de cadastramento territorial, apresentando visualização através de gráfico de linha que ilustra progresso acumulado de unidades cadastradas ao longo do tempo com eixo horizontal representando períodos configuráveis (dias, semanas ou meses) e eixo vertical quantificando total de unidades registradas até cada marco temporal. A funcionalidade implementa comparação visual entre metas estabelecidas no plano de trabalho e realizado efetivamente pelas equipes de campo, plotando linha de meta projetada sobreposta à linha de progresso real que permite identificação imediata de eventuais desvios de cronograma, atrasos acumulados ou superação de expectativas que requerem atenção gerencial ou realocação de recursos. O sistema oferece filtros dinâmicos que permitem segmentar análise por comunidade específica para avaliar progresso individualizado em cada território atendido, por equipe técnica responsável para comparar produtividade entre diferentes grupos de trabalho, ou por combinação de múltiplos critérios que proporcionam visões customizadas do avanço cadastral. Este relatório é fundamental para gestão de projetos de regularização fundiária que operam sob prazos contratuais e metas físicas definidas, permitindo identificação precoce de problemas operacionais, tomada de decisões corretivas tempestivas e comunicação transparente de progresso a stakeholders incluindo financiadores, gestores públicos e comunidades beneficiárias.
+## Descricao
+
+Sistema deve gerar relatorio analitico de acompanhamento da evolucao temporal do processo de cadastramento territorial, apresentando grafico de linha ilustrando progresso acumulado de unidades cadastradas ao longo do tempo com periodos configuraveis (dias, semanas, meses). Comparacao visual entre metas estabelecidas no plano de trabalho e realizado efetivamente pelas equipes permite identificacao de desvios de cronograma, atrasos ou superacao de expectativas. Filtros dinamicos segmentam analise por comunidade, equipe tecnica ou combinacao de criterios. Fundamental para gestao de projetos de regularizacao sob prazos contratuais, permitindo identificacao precoce de problemas e comunicacao transparente de progresso. Dados filtrados por tenant_id.
+
+## Criterios de Aceitacao
+
+1. Grafico de linha com evolucao temporal
+2. Comparacao meta vs realizado
+3. Filtros por comunidade e equipe
+4. Periodos configuraveis (dia/semana/mes)
+5. Segregacao por tenant_id
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-044, RF-017

@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
-# RF-124: Exportar Documentos/Fotos
+# RF-124: Exportar Documentos e Fotos
 
-Este requisito especifica que usuários devem poder exportar todos os documentos e fotos associados a uma entidade específica em arquivo ZIP consolidado para backup compartilhamento ou arquivamento externo, onde sistema coleta todos os arquivos vinculados e os empacota em formato comprimido único. O arquivo ZIP gerado deve conter estrutura de pastas organizada hierarquicamente separando documentos e fotos em diretórios distintos, onde estrutura típica seria raiz/documentos/ e raiz/fotos/ com possível subdivisão adicional por tipo ou data, facilitando navegação no conteúdo extraído. O sistema deve incluir arquivo CSV de metadados dentro do ZIP contendo informações sobre cada arquivo incluindo nome original tipo tamanho data de upload usuário responsável e descrição se disponível, permitindo que receptor do ZIP compreenda contexto de cada arquivo sem acesso ao sistema. A geração do ZIP deve ocorrer de forma assíncrona para exportações grandes, onde sistema inicia processo em background fornece feedback de progresso ao usuário e notifica quando arquivo está pronto para download, evitando timeouts de requisição HTTP. O ZIP gerado deve ser disponibilizado via URL temporária com expiração configurada ou enviado diretamente como download. A funcionalidade deve estar disponível nos módulos GEOWEB através de botão de exportação e GEOAPI via endpoint que processa geração e retorna arquivo.
+## Descricao
+
+Sistema deve permitir exportacao de todos os documentos e fotos associados a uma entidade em arquivo ZIP consolidado para backup, compartilhamento ou arquivamento externo. Arquivo ZIP gerado contem estrutura de pastas organizada hierarquicamente separando documentos e fotos em diretorios distintos (raiz/documentos/, raiz/fotos/) com possivel subdivisao por tipo ou data. Sistema inclui arquivo CSV de metadados dentro do ZIP com informacoes sobre cada arquivo: nome original, tipo, tamanho, data de upload, usuario responsavel e descricao. Geracao do ZIP ocorre de forma assincrona para exportacoes grandes, com processo em background, feedback de progresso e notificacao quando arquivo pronto para download. ZIP disponibilizado via URL temporaria com expiracao configurada.
+
+## Criterios de Aceitacao
+
+1. Exportacao em arquivo ZIP consolidado
+2. Estrutura hierarquica de pastas
+3. CSV de metadados incluido no ZIP
+4. Geracao assincrona para arquivos grandes
+5. URL temporaria para download
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-105, RF-111, RF-116

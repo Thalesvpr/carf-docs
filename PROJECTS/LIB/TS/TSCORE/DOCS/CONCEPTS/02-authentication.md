@@ -1,6 +1,6 @@
 ---
 type: leaf
-status: rejected
+status: review
 description: "Usa diagrama ASCII e headers/listas ao invés de prosa densa."
 updated: 2026-01-22
 ---

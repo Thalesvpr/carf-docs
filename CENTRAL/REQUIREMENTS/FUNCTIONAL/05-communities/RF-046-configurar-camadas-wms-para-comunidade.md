@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-046: Configurar Camadas WMS para Comunidade
 
-Usuários com role ADMIN podem configurar camadas WMS/WMTS de base específicas para visualização de comunidade onde URL de serviço WMS configurável através de formulário validando conectividade e compatibilidade com padrões OGC antes de salvar, seleção de layers disponíveis no serviço WMS apresentada através de interface de checklist ou seleção múltipla onde sistema consulta GetCapabilities do serviço extrai lista de layers disponíveis e permite ADMIN escolher quais exibir como base ou overlay para comunidade, ordem de renderização configurável através de drag-and-drop ou controles de ordenação numérica onde layers superiores renderizados por cima de inferiores permitindo composição visual adequada e controle de visibilidade, implementação em módulos GEOWEB e GEOAPI com formulário de configuração preview de camadas selecionadas antes de salvar persistência de configuração por comunidade (ou global para tenant) e integração com cliente de mapa carregando dinamicamente WMS layers configurados.
+## Descricao
+
+Usuarios com role ADMIN podem configurar camadas WMS/WMTS de base especificas para visualizacao de comunidade. URL de servico WMS configuravel atraves de formulario validando conectividade e compatibilidade com padroes OGC. Selecao de layers disponiveis no servico apresentada atraves de interface onde sistema consulta GetCapabilities. Ordem de renderizacao configuravel atraves de drag-and-drop permitindo composicao visual adequada.
+
+## Criterios de Aceitacao
+
+1. Configuracao de URL de servico WMS/WMTS
+2. Validacao de conectividade e compatibilidade OGC
+3. Selecao de layers via GetCapabilities
+4. Ordem de renderizacao configuravel
+5. Persistencia de configuracao por comunidade
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-038

@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-107: Excluir Documento
 
-Este requisito estabelece que usuários autorizados devem poder excluir documentos do sistema de forma controlada e auditável, onde a exclusão é implementada através de soft delete para preservar o histórico e rastreabilidade dos dados, garantindo que o documento não seja removido fisicamente do banco de dados mas marcado como excluído através de um campo deleted_at ou status, permitindo auditoria futura e possível recuperação. O sistema deve exigir confirmação obrigatória antes de executar a exclusão, prevenindo remoções acidentais através de modal ou diálogo que solicite confirmação explícita do usuário, incluindo opcionalmente a razão da exclusão para registro. Toda operação de exclusão deve gerar registro detalhado no log de auditoria, incluindo informações sobre qual usuário executou a ação, timestamp preciso, identificador do documento excluído e contexto da operação, garantindo rastreabilidade completa e conformidade com requisitos de auditoria e governança de dados. A funcionalidade deve estar disponível nos módulos GEOWEB através da interface de gerenciamento de documentos e GEOAPI via endpoint DELETE apropriado com validações de permissão.
+## Descricao
+
+Sistema deve permitir que usuarios autorizados excluam documentos via soft delete marcando registro como inativo sem remocao fisica imediata. Confirmacao obrigatoria previne remocoes acidentais atraves de modal solicitando confirmacao explicita com opcao de informar razao. Toda exclusao gera registro no log de auditoria com usuario, timestamp, identificador e contexto. Documento nao aparece mais nas listagens mas permanece para auditoria. Endpoint DELETE com validacao de permissoes.
+
+## Criterios de Aceitacao
+
+1. Soft delete preservando registro
+2. Modal de confirmacao obrigatoria
+3. Log de auditoria completo
+4. Opcao de informar razao da exclusao
+5. Remocao da listagem apos exclusao
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-102, RF-105

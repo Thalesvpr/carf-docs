@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-036: Desativar Comunidade
 
-Usuários com role ADMIN podem desativar comunidade utilizando soft delete onde comunidade marcada como inativa através de flag is_active=false sem exclusão física de dados, unidades vinculadas à comunidade desativada são preservadas integralmente mantendo referência para comunidade através de foreign key permitindo consultas históricas e relatórios completos de dados mesmo após desativação, comunidade inativa não aparece em listagens padrão de interface de usuário sendo filtrada automaticamente através de cláusula WHERE is_active = true em queries regulares mas permanece visível em contextos administrativos específicos ou quando filtro "mostrar inativos" explicitamente ativado, implementação em módulos GEOWEB e GEOAPI com confirmação de desativação solicitando razão/motivo registrando em log de auditoria validando se usuário possui permissão adequada e exibindo aviso sobre impacto em visualizações e relatórios após confirmação.
+## Descricao
+
+Usuarios com role ADMIN podem desativar comunidade utilizando soft delete onde comunidade e marcada como inativa atraves de flag is_active=false sem exclusao fisica de dados. Unidades vinculadas a comunidade desativada sao preservadas integralmente mantendo referencia para comunidade. Comunidade inativa nao aparece em listagens padrao sendo filtrada automaticamente, mas permanece visivel em contextos administrativos ou quando filtro de inativos ativado.
+
+## Criterios de Aceitacao
+
+1. Soft delete com flag is_active=false
+2. Unidades vinculadas preservadas com referencia
+3. Comunidade inativa filtrada de listagens padrao
+4. Visivel para ADMIN com filtro de inativos
+5. Log de auditoria registra motivo da desativacao
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-034, RF-008

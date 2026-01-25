@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
-# RF-155: Excluir Anotação
+# RF-155: Excluir Anotacao
 
-Este requisito estabelece que usuários devem poder excluir anotações que não são mais relevantes ou foram criadas erroneamente através de processo controlado que previne remoções acidentais, onde exclusão é implementada via soft delete preservando dados para auditoria. O sistema deve implementar soft delete marcando anotação como excluída através de campo deleted_at ou status deleted ao invés de remover registro do banco de dados, permitindo rastreabilidade completa e possível recuperação se exclusão foi inadvertida, conforme práticas de governança de dados. Antes de executar exclusão, o sistema deve exigir confirmação explícita do usuário através de diálogo modal ou toast que apresenta resumo da anotação sendo removida incluindo texto e autor, onde usuário deve confirmar intenção através de botão de confirmação evitando deleções acidentais por cliques únicos não intencionais. Após confirmação e execução da exclusão lógica, a anotação deve ser imediatamente removida do mapa e de listagens padrão garantindo que não apareça mais em visualizações normais mas permaneça acessível através de interfaces administrativas ou queries de auditoria que incluem registros soft-deleted. O sistema deve registrar exclusão no log de auditoria incluindo identificação do usuário executor timestamp identificador da anotação e conteúdo removido. A funcionalidade deve estar disponível nos módulos GEOWEB através de opções de exclusão em popups ou listagens e GEOAPI via endpoint DELETE.
+## Descricao
+
+Sistema deve permitir exclusao de anotacoes atraves de processo controlado que previne remocoes acidentais, implementado via soft delete preservando dados para auditoria. Soft delete marca anotacao como excluida atraves de campo deleted_at ao inves de remover registro do banco, permitindo rastreabilidade e possivel recuperacao. Antes de executar exclusao, sistema exige confirmacao explicita via dialogo que apresenta resumo da anotacao sendo removida (texto e autor), evitando delecoes acidentais. Apos confirmacao, anotacao e removida imediatamente do mapa e listagens padrao, mas permanece acessivel via interfaces administrativas ou queries de auditoria. Exclusao registrada no log incluindo usuario executor, timestamp, identificador da anotacao e conteudo removido.
+
+## Criterios de Aceitacao
+
+1. Soft delete com campo deleted_at
+2. Confirmacao explicita antes de excluir
+3. Remocao imediata do mapa e listagens
+4. Dados preservados para auditoria
+5. Registro em log de auditoria
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-153, RF-134

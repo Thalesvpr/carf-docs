@@ -1,6 +1,6 @@
 ---
 type: leaf
-status: rejected
+status: review
 description: "Mais codigo que prosa - arquivo e 90% blocos de codigo C# e TypeScript"
 updated: 2026-01-22
 ---

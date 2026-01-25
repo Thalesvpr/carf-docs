@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-078: Clonar Unidade
 
-O sistema deve permitir que usuários clonem unidades habitacionais existentes criando cópia com todos os campos alfanuméricos e relacionamentos (exceto código identificador que deve ser único), onde geometria clonada é automaticamente deslocada 5 metros em direção nordeste evitando sobreposição exata com unidade original. A funcionalidade gera novo código único automaticamente seguindo padrão configurado para o tenant ou incrementando sequencialmente código da unidade original, garantindo que clone possua identificador válido e único sem intervenção manual do usuário. O clone herda tipo de unidade, comunidade, quadra, lote (se aplicável), campos customizados e valores de todos os atributos exceto campos de auditoria (created_at updated_at created_by) que refletem criação do clone como novo registro independente. Implementado nos módulos GEOWEB e GEOAPI com prioridade Could-have, este recurso otimiza cadastramento de edificações similares ou geminadas onde múltiplas unidades compartilham características comuns, permitindo duplicação rápida e ajuste incremental ao invés de preenchimento completo de formulário repetidas vezes, aumentando produtividade especialmente em contextos de conjuntos habitacionais padronizados ou vilas com características uniformes.
+## Descricao
+
+Sistema deve permitir clonagem de unidades habitacionais criando copia com todos os campos alfanumericos e relacionamentos exceto codigo identificador. Geometria clonada deslocada automaticamente 5 metros em direcao nordeste evitando sobreposicao exata. Funcionalidade gera novo codigo unico automaticamente seguindo padrao do tenant. Clone herda tipo, comunidade, quadra, lote e campos customizados, mas campos de auditoria refletem criacao como novo registro. Otimiza cadastramento de edificacoes similares ou geminadas.
+
+## Criterios de Aceitacao
+
+1. Copia de todos campos exceto codigo
+2. Deslocamento automatico da geometria
+3. Geracao de codigo unico
+4. Heranca de relacionamentos
+5. Novos campos de auditoria
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-049, RF-076

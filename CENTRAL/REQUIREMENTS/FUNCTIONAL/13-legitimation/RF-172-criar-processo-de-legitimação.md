@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
-# RF-172: Criar Processo de Legitimação
+# RF-172: Criar Processo de Legitimacao
 
-O sistema permite iniciar processo formal de legitimação fundiária vinculado a uma unidade territorial específica, através de formulário estruturado que captura dados essenciais do processo administrativo incluindo número de protocolo, modalidade de regularização aplicável conforme Lei 13465/2017 (REURB-S ou REURB-E), identificação do requerente e fundamentação legal. No momento da criação, o sistema estabelece vinculação automática entre o processo e a unidade territorial correspondente no banco de dados geoespacial, garantindo rastreabilidade bidirecional que permite tanto consultar processos a partir de features geográficas quanto visualizar espacialmente unidades objeto de processos específicos. O status inicial do processo é automaticamente definido como Em Análise, dando início ao workflow de tramitação que será acompanhado através de transições de estado controladas pelo sistema, permitindo rastreamento completo do ciclo de vida do processo desde abertura até conclusão com emissão de título ou indeferimento. Esta funcionalidade estrutura e formaliza procedimentos de regularização fundiária, substituindo controles em planilhas ou documentos dispersos por sistema integrado que consolida informações cadastrais, geoespaciais e processuais em ambiente único e consistente.
+## Descricao
+
+Sistema deve permitir criacao de processo formal de legitimacao fundiaria vinculado a unidade territorial especifica. Formulario estruturado captura dados essenciais do processo administrativo incluindo numero de protocolo, modalidade de regularizacao conforme Lei 13465/2017 (REURB-S ou REURB-E), identificacao do requerente e fundamentacao legal. Sistema estabelece vinculacao automatica entre processo e unidade territorial no banco geoespacial PostGIS, garantindo rastreabilidade bidirecional que permite consultar processos a partir de features geograficas e visualizar espacialmente unidades objeto de processos. Status inicial definido como Em Analise, iniciando workflow de tramitacao com transicoes controladas. Dados segregados por tenant_id conforme politica multi-tenant do CARF.
+
+## Criterios de Aceitacao
+
+1. Formulario com protocolo, modalidade REURB e requerente
+2. Vinculacao a unidade territorial existente
+3. Status inicial Em Analise automatico
+4. Armazenamento com tenant_id
+5. Validacao de dados obrigatorios
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-017, RF-044

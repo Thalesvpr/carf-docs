@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-019: Desativar Tenant
 
-Usuários com role SUPER_ADMIN podem desativar tenant utilizando soft delete onde tenant é marcado como inativo através de flag booleano is_active=false em tabela de tenants sem exclusão física de dados, usuários vinculados ao tenant desativado não conseguem mais realizar login onde tentativa de autenticação retorna mensagem específica "Tenant inativo. Contate o administrador do sistema." bloqueando acesso completo a recursos e funcionalidades, dados do tenant preservados integralmente para fins de auditoria compliance e possível reativação futura onde informações históricas permanecem disponíveis para consultas administrativas por SUPER_ADMIN mas são completamente invisíveis e inacessíveis para usuários regulares, implementação em módulos GEOWEB e GEOAPI incluindo filtro global que exclui automaticamente tenants inativos de listagens e queries regulares adicionando cláusula WHERE is_active = true exceto em contextos administrativos específicos onde visualização de tenants desativados é necessária para gestão e troubleshooting.
+## Descricao
+
+Usuarios com role SUPER_ADMIN podem desativar tenant utilizando soft delete onde tenant e marcado como inativo atraves de flag is_active=false sem exclusao fisica de dados. Usuarios vinculados ao tenant desativado nao conseguem mais realizar login, recebendo mensagem especifica de tenant inativo. Dados do tenant preservados integralmente para fins de auditoria, compliance e possivel reativacao futura. Filtro global exclui automaticamente tenants inativos de listagens e queries regulares.
+
+## Criterios de Aceitacao
+
+1. Soft delete com flag is_active=false
+2. Usuarios do tenant bloqueados de login apos desativacao
+3. Mensagem especifica informando tenant inativo
+4. Dados preservados para auditoria e reativacao
+5. Tenants inativos excluidos de listagens padrao
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-017, RF-007

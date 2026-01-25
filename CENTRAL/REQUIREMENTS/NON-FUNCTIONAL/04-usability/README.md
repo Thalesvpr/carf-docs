@@ -1,7 +1,7 @@
 ---
 type: readme
 status: approved
-updated: 2026-01-23
+updated: 2026-01-25
 ---
 
 # Usabilidade

@@ -1,10 +1,28 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - REURBCAD
+  - GEOAPI
 ---
 
 # RF-049: Criar Unidade
 
-Usuários autorizados (ANALYST FIELD_AGENT MANAGER) podem criar novas unidades cadastrais onde formulário inclui todos campos obrigatórios definidos em RF-054 como código identificador único endereço completo tipo de unidade área construída e terreno nome de titulares CPF/CNPJ documentos comprobatórios e observações, desenho de geometria no mapa implementado através de ferramentas interativas de digitalização permitindo desenhar polígono representando limites da unidade com snap para vértices de unidades adjacentes validações topológicas (sem auto-intersecção polígono fechado) e cálculo automático de área após conclusão do desenho, validação de dados abrangente incluindo verificação de unicidade de código verificação de CPF/CNPJ através de algoritmo de dígitos verificadores validação de coordenadas dentro do boundary da comunidade e conformidade com regras de negócio específicas antes de permitir salvamento, implementação em módulos GEOWEB REURBCAD e GEOAPI com wizard multi-step ou formulário único validações síncronas e assíncronas preview de geometria antes de salvar e criação com status inicial DRAFT permitindo edições antes de submeter para aprovação.
+## Descricao
+
+Usuarios autorizados (ANALYST, FIELD_AGENT, MANAGER) podem criar novas unidades cadastrais. Formulario inclui todos campos obrigatorios definidos em RF-054 como codigo identificador unico, endereco completo, tipo de unidade, area construida e terreno. Desenho de geometria no mapa atraves de ferramentas interativas de digitalizacao com snap para vertices de unidades adjacentes e validacoes topologicas. Unidade criada com status inicial DRAFT permitindo edicoes antes de submeter para aprovacao.
+
+## Criterios de Aceitacao
+
+1. Formulario com campos obrigatorios conforme RF-054
+2. Desenho de poligono no mapa com ferramentas interativas
+3. Validacao de unicidade de codigo identificador
+4. Status inicial DRAFT para novas unidades
+5. Calculo automatico de area apos desenho
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, REURBCAD, GEOAPI
+- Requisitos dependentes: RF-054, RF-066

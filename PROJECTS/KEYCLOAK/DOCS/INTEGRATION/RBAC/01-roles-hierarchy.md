@@ -1,6 +1,6 @@
 ---
 type: leaf
-status: rejected
+status: review
 description: "Usa tabela e diagrama ao inves de prosa densa - reescrever em paragrafos corridos"
 updated: 2026-01-22
 ---

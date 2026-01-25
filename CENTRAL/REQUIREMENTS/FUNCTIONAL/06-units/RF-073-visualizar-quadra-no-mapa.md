@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
 ---
 
 # RF-073: Visualizar Quadra no Mapa
 
-O sistema deve renderizar quadras no mapa interativo da interface GEOWEB mostrando contorno geométrico delimitador quando geometria está definida, onde estilo visual diferencia quadras de unidades através de espessura de linha, cor e transparência adequadas que mantém legibilidade em diferentes níveis de zoom. Dentro do contorno da quadra, unidades vinculadas são exibidas com coloração baseada em seu status (DRAFT PENDING_APPROVAL APPROVED REJECTED CHANGES_REQUESTED) criando visualização temática que permite avaliação rápida do estado de cadastramento e aprovação das unidades agrupadas. Ao clicar na quadra ou passar mouse sobre ela, popup apresenta estatísticas agregadas incluindo nome da quadra, código, total de unidades vinculadas e distribuição de unidades por status, oferecendo visão quantitativa imediata da situação cadastral do agrupamento. Esta visualização espacial e estatística integrada facilita trabalho de gestores e analistas permitindo identificação visual de quadras problemáticas (muitas unidades pendentes ou rejeitadas), acompanhamento de progresso de cadastramento e validação territorial, além de suportar apresentações e relatórios baseados em representação geográfica clara e informativa do território mapeado.
+## Descricao
+
+Sistema deve renderizar quadras no mapa interativo GEOWEB mostrando contorno geometrico quando definido. Estilo visual diferencia quadras de unidades atraves de espessura de linha, cor e transparencia. Dentro do contorno, unidades vinculadas exibidas com coloracao baseada em status (DRAFT, PENDING_APPROVAL, APPROVED, REJECTED, CHANGES_REQUESTED). Popup ao clicar ou hover apresenta estatisticas agregadas: nome, codigo, total de unidades e distribuicao por status. Visualizacao facilita identificacao de quadras problematicas.
+
+## Criterios de Aceitacao
+
+1. Renderizacao de contorno da quadra
+2. Estilo visual diferenciado de unidades
+3. Coloracao de unidades por status
+4. Popup com estatisticas agregadas
+5. Distribuicao de unidades por status
+
+## Rastreabilidade
+
+- Modulos: GEOWEB
+- Requisitos dependentes: RF-070, RF-053

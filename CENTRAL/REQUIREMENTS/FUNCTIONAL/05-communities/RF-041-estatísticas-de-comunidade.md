@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
-# RF-041: Estatísticas de Comunidade
+# RF-041: Estatisticas de Comunidade
 
-Sistema deve calcular automaticamente estatísticas agregadas de comunidade incluindo contagem de unidades por status (DRAFT PENDING APPROVED REJECTED CHANGES_REQUESTED) exibindo distribuição percentual e quantidades absolutas permitindo análise de progresso de cadastramento e aprovação, total de titulares únicos vinculados a unidades da comunidade calculado através de query agregada distinct eliminando duplicações onde mesmo titular pode possuir múltiplas unidades contabilizando indivíduos únicos para estimativas demográficas, área total em metros quadrados calculada através de soma de áreas individuais de unidades ou cálculo direto de área de polígono de comunidade utilizando funções geoespaciais do PostgreSQL (ST_Area) com conversão apropriada de unidades e formatação para exibição legível (m² hectares km²), implementação em módulo GEOAPI com endpoints dedicados retornando estatísticas pré-calculadas ou calculadas sob demanda com caching para otimizar performance e módulo GEOWEB exibindo métricas em cards dashboards ou painéis de resumo de comunidade.
+## Descricao
+
+Sistema deve calcular automaticamente estatisticas agregadas de comunidade incluindo contagem de unidades por status (DRAFT, PENDING, APPROVED, REJECTED) exibindo distribuicao percentual e quantidades absolutas. Total de titulares unicos vinculados a unidades calculado atraves de query agregada distinct. Area total em metros quadrados calculada utilizando funcoes geoespaciais do PostgreSQL (ST_Area) com conversao para hectares ou km2 conforme magnitude.
+
+## Criterios de Aceitacao
+
+1. Contagem de unidades por status com percentuais
+2. Total de titulares unicos via query distinct
+3. Area total calculada com ST_Area
+4. Caching de estatisticas para performance
+5. Exibicao em cards ou dashboard
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-034, RF-044

@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOAPI
 ---
 
-# RF-119: Scan de Vírus
+# RF-119: Scan de Virus
 
-Este requisito estabelece que todos os arquivos uploaded devem ser escaneados para detecção de vírus e malware antes de serem aceitos e armazenados no sistema, onde processo de scan ocorre durante pipeline de upload através de integração com engine antivirus como ClamAV ou serviço equivalente. O sistema deve configurar integração com ClamAV ou similar através de daemon local ou serviço remoto, enviando cada arquivo recebido para análise completa antes de confirmar upload bem-sucedido, garantindo que nenhum arquivo malicioso seja persistido no storage ou distribuído para outros usuários. Arquivos identificados como infectados ou suspeitos devem ser rejeitados imediatamente, onde upload falha com mensagem de erro clara informando usuário sobre detecção de ameaça sem revelar detalhes técnicos que poderiam auxiliar atacantes, e arquivo é descartado sem ser salvo. Toda detecção de malware deve gerar entrada detalhada no log de segurança e auditoria incluindo hash do arquivo, tipo de ameaça detectada, usuário que tentou upload, timestamp e contexto completo, permitindo investigação posterior e identificação de padrões de ataque. O sistema deve implementar fallback adequado se serviço de scan estiver indisponível, podendo optar por rejeitar todos uploads ou colocar em quarentena para scan posterior conforme política de segurança definida. A funcionalidade deve ser implementada no módulo GEOAPI como middleware no pipeline de upload.
+## Descricao
+
+Sistema deve escanear todos os arquivos uploaded para deteccao de virus e malware antes de aceitar, via integracao com engine antivirus como ClamAV ou servico equivalente. Cada arquivo enviado para analise antes de confirmar upload. Arquivos infectados ou suspeitos rejeitados com mensagem de erro sem revelar detalhes tecnicos. Toda deteccao gera entrada no log de seguranca com hash, tipo de ameaca, usuario e contexto. Fallback adequado se servico de scan indisponivel: rejeitar uploads ou quarentena.
+
+## Criterios de Aceitacao
+
+1. Integracao com ClamAV ou equivalente
+2. Scan antes de confirmar upload
+3. Rejeicao de arquivos infectados
+4. Log de seguranca detalhado
+5. Fallback para indisponibilidade do scan
+
+## Rastreabilidade
+
+- Modulos: GEOAPI
+- Requisitos dependentes: RF-102, RF-108

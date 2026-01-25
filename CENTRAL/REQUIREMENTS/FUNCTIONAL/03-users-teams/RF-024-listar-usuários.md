@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
-# RF-024: Listar Usuários
+# RF-024: Listar Usuarios
 
-Usuários com role ADMIN podem listar usuários do próprio tenant onde paginação implementada retornando subconjunto configurável de registros com metadados de navegação total páginas e posição atual, filtros disponíveis incluem role específica permitindo visualizar apenas usuários ANALYST MANAGER ou FIELD_AGENT status ativo/inativo para identificar contas desabilitadas equipe vinculada para gestão de recursos humanos por time, busca textual por nome ou email com matching parcial case-insensitive facilitando localização rápida de usuário específico em bases grandes retornando resultados em tempo real conforme digitação, implementação em módulos GEOWEB e GEOAPI com interface de listagem responsiva exibindo tabela com colunas essenciais (nome email role status data último acesso) controles de paginação filtros interativos busca instantânea e ações rápidas como editar visualizar perfil detalhado desativar ou resetar senha.
+## Descricao
+
+Usuarios com role ADMIN podem listar usuarios do proprio tenant. Paginacao implementada retornando subconjunto configuravel de registros com metadados de navegacao. Filtros disponiveis incluem role especifica, status ativo/inativo e equipe vinculada. Busca textual por nome ou email com matching parcial case-insensitive facilita localizacao rapida. Interface exibe tabela com colunas essenciais incluindo nome, email, role, status e data do ultimo acesso.
+
+## Criterios de Aceitacao
+
+1. Listagem paginada com metadados de navegacao
+2. Filtro por role, status e equipe
+3. Busca por nome ou email com correspondencia parcial
+4. Exibicao de colunas essenciais na tabela
+5. Acoes rapidas de editar, visualizar e desativar
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-021, RF-008

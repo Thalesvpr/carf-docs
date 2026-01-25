@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-047: Clonar Comunidade
 
-Usuários com role ADMIN podem clonar comunidade existente criando cópia completa útil para gerenciar fases sequenciais de projeto ou variações de planejamento onde cópia inclui geometria de boundary idêntica configurações de camadas WMS documentos anexados (opcionalmente) e metadados relevantes, unidades vinculadas explicitamente não copiadas garantindo que clone inicia vazio de cadastros permitindo recadastramento específico para nova fase ou contexto preservando separação lógica entre fases de projeto, novo nome gerado automaticamente através de padrão configurável (ex: "Nome Original - Cópia" ou "Nome Original - Fase 2") com possibilidade de edição imediata antes de confirmação final prevenindo confusão entre original e clone, implementação em módulos GEOWEB e GEOAPI com ação de clonagem acessível via menu de contexto ou botão dedicado modal de confirmação permitindo customização de nome e seleção de elementos a copiar processamento assíncrono se operação demorada e redirecionamento automático para edição de comunidade clonada após conclusão.
+## Descricao
+
+Usuarios com role ADMIN podem clonar comunidade existente criando copia completa util para gerenciar fases sequenciais de projeto. Copia inclui geometria de boundary identica, configuracoes de camadas WMS, documentos anexados (opcionalmente) e metadados relevantes. Unidades vinculadas explicitamente nao copiadas garantindo que clone inicia vazio de cadastros. Novo nome gerado automaticamente com possibilidade de edicao imediata.
+
+## Criterios de Aceitacao
+
+1. Clonagem de geometria e metadados
+2. Opcao de copiar documentos anexados
+3. Unidades nao copiadas (clone vazio)
+4. Nome automatico com edicao permitida
+5. Redirecionamento para edicao apos clonagem
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-034, RF-008

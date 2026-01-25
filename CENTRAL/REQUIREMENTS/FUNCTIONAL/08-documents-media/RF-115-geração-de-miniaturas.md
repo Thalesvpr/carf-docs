@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOAPI
 ---
 
-# RF-115: Geração de Miniaturas
+# RF-115: Geracao de Miniaturas
 
-Este requisito estabelece que o sistema deve gerar automaticamente miniaturas thumbnails de fotos no momento do upload para otimizar performance em interfaces de listagem e galeria, onde miniaturas são versões reduzidas pré-renderizadas que carregam rapidamente evitando necessidade de redimensionar imagens originais no cliente. As miniaturas devem ter dimensões de 200x200 pixels em formato quadrado, onde o sistema aplica crop inteligente centralizando área de interesse ou redimensiona mantendo proporções com preenchimento de espaço vazio se necessário, garantindo consistência visual em grids de galeria. A geração deve ocorrer automaticamente ao fazer upload durante pipeline de processamento backend, onde thumbnail é criado junto com compressão e extração de EXIF como parte de fluxo único otimizado. As miniaturas devem ser armazenadas separadamente da imagem original no storage object S3/MinIO, tipicamente em prefixo ou bucket diferente, permitindo políticas de cache e CDN específicas para thumbnails que são acessados com muito mais frequência. O sistema deve retornar URLs separadas para imagem original e thumbnail nos endpoints da API, permitindo que frontend carregue versão apropriada conforme contexto de uso. A funcionalidade deve ser implementada no módulo GEOAPI como parte do processamento de upload.
+## Descricao
+
+Sistema deve gerar automaticamente miniaturas de fotos no momento do upload para otimizar performance em galerias. Dimensoes de 200x200 pixels em formato quadrado com crop inteligente centralizando area de interesse ou preenchimento para consistencia visual em grids. Geracao automatica no pipeline de upload junto com compressao e extracao EXIF. Armazenamento separado em S3/MinIO com prefixo ou bucket diferente permitindo politicas de cache especificas. API retorna URLs separadas para original e thumbnail.
+
+## Criterios de Aceitacao
+
+1. Dimensoes 200x200 pixels quadrado
+2. Crop inteligente ou preenchimento
+3. Geracao automatica no upload
+4. Armazenamento separado de originais
+5. URLs distintas para original e thumbnail
+
+## Rastreabilidade
+
+- Modulos: GEOAPI
+- Requisitos dependentes: RF-108, RF-111, RF-116

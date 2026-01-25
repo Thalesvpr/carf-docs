@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOAPI
 ---
 
 # RF-192: Endpoint de Pull
 
-A GEOAPI fornece endpoint especializado GET /api/sync/pull que implementa sincronização incremental eficiente para dispositivos móveis, aceitando parâmetro de query lastPulledAt contendo timestamp ISO 8601 que indica momento da última sincronização bem-sucedida do cliente. O endpoint processa requisição consultando banco de dados para identificar todos os registros (unidades, titulares, fotos, etc.) que foram criados, modificados ou deletados após timestamp fornecido, retornando apenas esse subconjunto de alterações em vez de transmitir base completa de dados. A resposta é estruturada em formato JSON otimizado que agrupa alterações por tipo de operação incluindo arrays created contendo registros novos, updated contendo registros modificados com todos os campos atualizados, e deleted contendo apenas identificadores de registros removidos, permitindo que cliente aplique localmente essas mudanças de forma eficiente sobre sua base local. O payload retornado utiliza formato JSON compacto que omite campos nulos, utiliza nomes de atributos abreviados quando possível e pode aplicar compressão gzip no nível HTTP, minimizando tamanho da transferência especialmente crítico em conexões móveis lentas ou limitadas, garantindo que mesmo sincronizações de grandes volumes de alterações possam ser completadas em tempo razoável.
+## Descricao
+
+GEOAPI deve fornecer endpoint especializado GET /api/sync/pull que implementa sincronizacao incremental eficiente para dispositivos moveis, aceitando parametro lastPulledAt contendo timestamp ISO 8601 da ultima sincronizacao bem-sucedida. Endpoint consulta banco de dados identificando registros (unidades, titulares, fotos) criados, modificados ou deletados apos timestamp fornecido, retornando apenas subconjunto de alteracoes. Resposta estruturada em JSON agrupa alteracoes por tipo de operacao incluindo arrays created para registros novos, updated para modificados com todos campos atualizados, e deleted contendo apenas identificadores de registros removidos. Payload utiliza formato compacto omitindo campos nulos e aplicando compressao gzip no HTTP minimizando transferencia em conexoes moveis lentas. Dados filtrados por tenant_id do usuario autenticado.
+
+## Criterios de Aceitacao
+
+1. Endpoint GET /api/sync/pull
+2. Parametro lastPulledAt em ISO 8601
+3. Resposta com arrays created, updated, deleted
+4. Compressao gzip
+5. Filtragem por tenant_id
+
+## Rastreabilidade
+
+- Modulos: GEOAPI
+- Requisitos dependentes: RF-017

@@ -75,7 +75,10 @@
       "Bash(powershell -ExecutionPolicy Bypass -File .scripts/add-uc-type.ps1)",
       "Bash(powershell -ExecutionPolicy Bypass -File .scripts/add-leaf-type.ps1)",
       "Bash(while read f)",
-      "Bash(git -C \"C:/DEV/CARF\" log --oneline -5)"
+      "Bash(git -C \"C:/DEV/CARF\" log --oneline -5)",
+      "Bash(git diff:*)",
+      "Bash(git status:*)",
+      "Bash(python3:*)"
     ],
     "deny": [],
     "ask": []

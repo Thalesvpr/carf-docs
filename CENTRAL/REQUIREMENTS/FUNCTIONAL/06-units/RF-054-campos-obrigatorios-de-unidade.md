@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOAPI
 ---
 
-# RF-054: Campos Obrigatórios de Unidade
+# RF-054: Campos Obrigatorios de Unidade
 
-O sistema deve validar obrigatoriamente os campos essenciais ao cadastrar ou editar uma unidade habitacional, incluindo código único de identificação, endereço completo, comunidade à qual pertence, geometria espacial (coordenadas geográficas) e tipo de uso da unidade, onde cada campo possui validação específica no backend garantindo integridade dos dados. A validação ocorre tanto no momento do preenchimento quanto antes do salvamento, apresentando mensagens de erro claras e específicas para cada campo inválido ou ausente, permitindo que o usuário corrija os problemas identificados antes de prosseguir. Caso algum campo obrigatório não seja preenchido ou contenha dados inválidos, o sistema deve bloquear o salvamento do registro e destacar visualmente os campos problemáticos, garantindo que nenhuma unidade seja cadastrada com informações incompletas ou inconsistentes. Este requisito é implementado no módulo GEOAPI através de validadores de modelo e middleware de validação de requisições, onde as regras de negócio são centralizadas e aplicadas uniformemente em todas as operações de criação e atualização de unidades.
+## Descricao
+
+Sistema deve validar obrigatoriamente os campos essenciais ao cadastrar ou editar unidade habitacional: codigo unico de identificacao, endereco completo, comunidade a qual pertence, geometria espacial (coordenadas geograficas) e tipo de uso da unidade. Validacao ocorre tanto no momento do preenchimento quanto antes do salvamento, apresentando mensagens de erro claras para cada campo invalido ou ausente. Campos problematicos destacados visualmente.
+
+## Criterios de Aceitacao
+
+1. Validacao de codigo, endereco, comunidade e geometria
+2. Validacao no preenchimento e antes de salvar
+3. Mensagens de erro claras e especificas
+4. Destaque visual de campos invalidos
+5. Bloqueio de salvamento ate correcao
+
+## Rastreabilidade
+
+- Modulos: GEOAPI
+- Requisitos dependentes: RF-049

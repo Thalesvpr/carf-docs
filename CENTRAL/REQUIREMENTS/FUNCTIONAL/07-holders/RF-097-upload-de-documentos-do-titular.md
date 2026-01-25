@@ -1,10 +1,28 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - REURBCAD
+  - GEOAPI
 ---
 
 # RF-097: Upload de Documentos do Titular
 
-O sistema deve permitir anexação de documentos pessoais a registros de titulares incluindo upload múltiplo simultâneo de arquivos como RG digitalizado, CPF, comprovante de residência, certidão de nascimento ou casamento, declarações e outros documentos comprobatórios relevantes para processo de regularização fundiária. Cada documento anexado pode ser categorizado por tipo através de seletor predefinido (RG CPF COMPROVANTE_RESIDENCIA CERTIDAO_NASCIMENTO CERTIDAO_CASAMENTO DECLARACAO OUTRO) facilitando organização e localização posterior de documentação específica quando necessário para análise ou geração de dossiês. A interface oferece visualização integrada de documentos anexados permitindo preview de PDFs e imagens diretamente no navegador sem necessidade de download, além de funcionalidade de download individual ou em lote quando usuário precisa exportar documentação completa de titular para arquivo ou compartilhamento externo. Os documentos são vinculados especificamente ao titular (não a unidades) garantindo que mesma documentação pessoal não precise ser reupload cada vez que titular é vinculado a nova unidade, centralizando gestão documental da pessoa e permitindo reutilização eficiente em múltiplos contextos. Implementado nos módulos GEOWEB, REURBCAD e GEOAPI com prioridade Should-have, este recurso centraliza documentação pessoal facilitando processos que requeiram comprovação de identidade e residência dos beneficiários de regularização.
+## Descricao
+
+Sistema deve permitir anexacao de documentos pessoais a titulares incluindo RG, CPF, comprovante de residencia, certidoes e declaracoes. Cada documento categorizado por tipo (RG, CPF, COMPROVANTE_RESIDENCIA, CERTIDAO_NASCIMENTO, CERTIDAO_CASAMENTO, DECLARACAO, OUTRO). Interface oferece preview de PDFs e imagens sem download, alem de download individual ou em lote. Documentos vinculados ao titular centralizando gestao documental e permitindo reutilizacao em multiplos vinculos com unidades.
+
+## Criterios de Aceitacao
+
+1. Upload multiplo de documentos
+2. Categorizacao por tipo predefinido
+3. Preview integrado de PDFs e imagens
+4. Download individual e em lote
+5. Vinculo ao titular (nao a unidade)
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, REURBCAD, GEOAPI
+- Requisitos dependentes: RF-084, RF-064

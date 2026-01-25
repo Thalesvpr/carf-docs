@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOAPI
+  - REURBCAD
 ---
 
 # RF-110: Geotagging de Fotos
 
-Este requisito especifica que o sistema deve automaticamente extrair e armazenar coordenadas geográficas de fotos que contenham metadados EXIF com informações de GPS, onde o processo ocorre durante o upload através de leitura dos metadados EXIF embutidos no arquivo de imagem. O sistema deve implementar extração automática de latitude e longitude dos campos GPS correspondentes no EXIF, validando que os valores estejam em formato e range válidos antes de processar, garantindo que coordenadas corrompidas ou inválidas sejam tratadas apropriadamente. As coordenadas extraídas devem ser armazenadas como geometria do tipo Point utilizando tipos geoespaciais do PostGIS, permitindo queries espaciais eficientes e integração com funcionalidades de mapeamento do sistema. Se a foto não contiver dados de GPS nos metadados EXIF, o campo de geometria permanece nulo mas o upload não é rejeitado, permitindo atribuição manual posterior de localização se necessário. Esta funcionalidade é particularmente valiosa para fotos capturadas por aplicativos mobile onde GPS está habilitado, vinculando automaticamente imagens a localizações de campo. A extração e armazenamento devem ocorrer nos módulos GEOAPI durante processamento de upload e REURBCAD para fotos capturadas em dispositivos móveis.
+## Descricao
+
+Sistema deve automaticamente extrair e armazenar coordenadas geograficas de fotos que contenham metadados EXIF com GPS. Extracao de latitude e longitude durante upload com validacao de formato e range. Coordenadas armazenadas como geometria Point no PostGIS permitindo queries espaciais. Fotos sem dados GPS no EXIF permanecem com campo nulo sem rejeitar upload, permitindo atribuicao manual posterior. Particularmente valioso para fotos capturadas via REURBCAD mobile com GPS habilitado conforme WORKFLOW-MESTRE.
+
+## Criterios de Aceitacao
+
+1. Extracao automatica de GPS do EXIF
+2. Armazenamento como Point no PostGIS
+3. Validacao de formato e range
+4. Campo nulo se sem GPS (nao rejeita)
+5. Suporte a atribuicao manual
+
+## Rastreabilidade
+
+- Modulos: GEOAPI, REURBCAD
+- Requisitos dependentes: RF-108, RF-117

@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-035: Editar Comunidade
 
-Usuários com role ADMIN podem editar dados de comunidades existentes onde atualização inclui modificação de nome tipo área população estimada e outros atributos alfanuméricos com validações garantindo integridade de dados obrigatórios, edição de geometria no mapa implementada através de ferramentas interativas permitindo adicionar/remover vértices mover polígono redimensionar ou redesenhar completamente boundary da comunidade com validações topológicas em tempo real alertando sobre polígonos inválidos (auto-intersecção buracos não permitidos), log automático de alterações registrando timestamp usuário responsável campos modificados valores anteriores e novos valores incluindo snapshot de geometria anterior se boundary foi alterado permitindo auditoria completa e rollback se necessário, implementação em módulos GEOWEB e GEOAPI com formulário de edição pré-carregado ferramentas de mapa integradas com bibliotecas como Leaflet ou OpenLayers validações síncronas e assíncronas confirmação de salvamento e opção de visualizar histórico de alterações.
+## Descricao
+
+Usuarios com role ADMIN podem editar dados de comunidades existentes. Atualizacao inclui modificacao de nome, tipo, area, populacao estimada e outros atributos alfanumericos com validacoes garantindo integridade de dados obrigatorios. Edicao de geometria no mapa implementada atraves de ferramentas interativas permitindo adicionar/remover vertices, mover ou redesenhar boundary. Log automatico de alteracoes registra timestamp, usuario responsavel, campos modificados e snapshot de geometria anterior.
+
+## Criterios de Aceitacao
+
+1. Edicao de atributos alfanumericos com validacao
+2. Edicao de geometria com ferramentas interativas
+3. Validacao topologica em tempo real
+4. Log de auditoria com snapshot de geometria anterior
+5. Formulario pre-preenchido com valores atuais
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-034, RF-008

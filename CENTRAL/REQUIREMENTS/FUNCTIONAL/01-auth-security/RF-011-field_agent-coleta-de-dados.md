@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - REURBCAD
+  - GEOAPI
 ---
 
 # RF-011: FIELD_AGENT - Coleta de Dados
 
-Usuários com role FIELD_AGENT utilizando aplicativo mobile REURBCAD podem cadastrar unidades diretamente em campo incluindo capacidade de criar unidades offline quando conexão de internet indisponível onde dados ficam armazenados localmente em banco de dados SQLite ou similar aguardando sincronização posterior, funcionalidade de tirar fotos utilizando câmera do dispositivo móvel e anexar automaticamente à unidade cadastrada incluindo geolocalização automática baseada em GPS do aparelho e timestamp de captura garantindo rastreabilidade e autenticidade de evidências visuais coletadas, sincronização de dados coletados implementada através de processo automático ou manual que detecta retorno de conectividade e envia dados cadastrados offline para servidor GEOAPI validando integridade de informações resolvendo conflitos potenciais e atualizando status local após confirmação de recebimento pelo servidor, implementação exclusiva em módulo REURBCAD otimizado para uso em tablets e smartphones com interface touch-friendly formulários simplificados e workflow adaptado para condições de campo.
+## Descricao
+
+Usuarios com role FIELD_AGENT utilizam aplicativo mobile REURBCAD para cadastrar unidades em campo. Podem trabalhar offline com dados armazenados localmente, tirar fotos com geolocalizacao automatica e sincronizar quando conexao disponivel. Conforme WORKFLOW-MESTRE, FIELD_AGENT so acessa dados apos Analista publicar trabalho do tenant no backend.
+
+## Criterios de Aceitacao
+
+1. Cadastro de unidades funciona offline
+2. Fotos capturadas incluem GPS e timestamp
+3. Sincronizacao automatica ao retornar conexao
+4. Acesso liberado somente apos publicacao pelo Analista
+5. Download unico e temporario do pacote do tenant
+
+## Rastreabilidade
+
+- Modulos: REURBCAD, GEOAPI
+- Requisitos dependentes: RF-006, RF-013

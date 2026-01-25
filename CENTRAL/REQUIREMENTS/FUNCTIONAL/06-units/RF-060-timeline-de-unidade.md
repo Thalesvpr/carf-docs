@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-060: Timeline de Unidade
 
-O sistema deve exibir histórico completo e cronológico de todas as alterações ocorridas em uma unidade habitacional, onde a timeline apresenta eventos como criação inicial, edições de campos, mudanças de status (aprovação, rejeição, solicitação de alterações), vinculação ou remoção de titulares, e upload de documentos ou fotos. Cada evento registrado inclui informações detalhadas como timestamp preciso da ocorrência, usuário responsável pela ação, tipo de operação realizada e, quando aplicável, valores anteriores e novos dos campos modificados. A interface GEOWEB renderiza a timeline em ordem cronológica reversa (mais recente primeiro) com ícones diferenciados por tipo de evento, permitindo navegação visual intuitiva pelo histórico da unidade. Este recurso é essencial para auditoria, resolução de conflitos e compreensão da evolução do cadastro ao longo do tempo, garantindo transparência total sobre quem fez o quê e quando em cada registro, facilitando rastreamento de responsabilidades e identificação de padrões de alteração que possam indicar problemas ou necessidade de treinamento de usuários.
+## Descricao
+
+Sistema deve exibir historico completo e cronologico de todas as alteracoes ocorridas em uma unidade habitacional. Timeline apresenta eventos como criacao inicial, edicoes de campos, mudancas de status, vinculacao de titulares e upload de documentos ou fotos. Cada evento registra timestamp preciso, usuario responsavel, tipo de operacao e valores anteriores e novos quando aplicavel. Interface GEOWEB renderiza timeline em ordem cronologica reversa com icones diferenciados por tipo de evento.
+
+## Criterios de Aceitacao
+
+1. Listagem cronologica de todos os eventos da unidade
+2. Registro de timestamp e usuario por evento
+3. Diferenciacao visual por tipo de evento
+4. Valores anterior e novo para campos modificados
+5. Ordenacao cronologica reversa com paginacao
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-049, RF-056

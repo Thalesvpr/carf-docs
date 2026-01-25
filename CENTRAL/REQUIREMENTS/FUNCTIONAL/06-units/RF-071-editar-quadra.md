@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-071: Editar Quadra
 
-O sistema deve permitir que usuários editem dados cadastrais de quadras existentes, onde interface oferece atualização de campos alfanuméricos (código nome comunidade) através de formulário padrão e edição de geometria espacial através de ferramentas interativas de mapa. A edição de geometria permite ajuste de vértices do polígono delimitador da quadra garantindo que contorno reflita com precisão a área ocupada pelo agrupamento de unidades, incluindo operações de adicionar, mover ou remover vértices de forma fluida e intuitiva. Todas as alterações realizadas são automaticamente registradas em log de auditoria capturando timestamp, usuário responsável, campos modificados e valores anteriores e novos, garantindo rastreabilidade completa do histórico de mudanças ao longo do ciclo de vida da quadra. A edição respeita regras de validação incluindo unicidade de códigos, consistência de vínculos com comunidade e unidades, e integridade geométrica quando geometria está definida, onde sistema apresenta mensagens claras sobre violações de regras bloqueando salvamento até que dados sejam corrigidos conforme requisitos de negócio.
+## Descricao
+
+Sistema deve permitir edicao de dados cadastrais de quadras existentes. Interface oferece atualizacao de campos alfanumericos (codigo, nome, comunidade) via formulario padrao e edicao de geometria espacial via ferramentas interativas de mapa. Edicao de geometria permite ajuste de vertices do poligono delimitador incluindo adicionar, mover ou remover vertices. Todas alteracoes registradas em log de auditoria com timestamp, usuario, campos modificados e valores anteriores e novos. Validacoes incluem unicidade de codigo e integridade geometrica.
+
+## Criterios de Aceitacao
+
+1. Edicao de campos alfanumericos
+2. Edicao de geometria via mapa interativo
+3. Ajuste de vertices do poligono
+4. Log de auditoria com valores anteriores
+5. Validacao de unicidade de codigo
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-070

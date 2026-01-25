@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-215: Listar Camadas WMS/WMTS
 
-O sistema fornece interface administrativa de listagem que exibe todos os serviços WMS/WMTS configurados no sistema através de tabela estruturada contendo colunas essenciais como URL do servidor, nome amigável exibido aos usuários, tipo de serviço (WMS ou WMTS), layers consumidos, status de disponibilidade (ativo ou inativo) e data de última validação. A listagem implementa edição inline que permite administradores modificarem rapidamente atributos simples como nome de exibição ou opacidade padrão diretamente na tabela através de clique em campos editáveis, sem necessidade de navegar para formulário separado de edição, agilizando operações de manutenção rotineira e ajustes menores de configuração. Funcionalidade de ativação/desativação através de toggle switch permite administradores controlarem rapidamente visibilidade de camadas para usuários finais sem necessidade de excluir configuração permanentemente, sendo útil para desabilitar temporariamente serviços externos indisponíveis por manutenção ou substituir camadas obsoletas por versões atualizadas sem perder histórico de configuração. A interface oferece recursos adicionais de filtragem por tipo de serviço ou status, busca textual por nome ou URL, e ordenação por qualquer coluna, facilitando gestão de catálogos extensos com dezenas de camadas configuradas provenientes de múltiplas fontes externas incluindo órgãos governamentais, instituições de pesquisa e provedores comerciais de dados geoespaciais.
+## Descricao
+
+Sistema deve fornecer interface administrativa de listagem exibindo todos os servicos WMS/WMTS configurados em tabela com colunas URL do servidor, nome amigavel, tipo de servico (WMS ou WMTS), layers consumidos, status (ativo/inativo) e data de ultima validacao. Edicao inline permite modificar atributos simples como nome ou opacidade diretamente na tabela. Toggle switch de ativacao/desativacao controla visibilidade para usuarios finais sem excluir configuracao. Interface oferece filtragem por tipo de servico ou status, busca textual por nome ou URL, e ordenacao por qualquer coluna, facilitando gestao de catalogos extensos de multiplas fontes externas.
+
+## Criterios de Aceitacao
+
+1. Tabela com URL, nome, tipo e status
+2. Edicao inline de atributos simples
+3. Toggle de ativacao/desativacao
+4. Filtros e busca textual
+5. Ordenacao por qualquer coluna
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-212, RF-213

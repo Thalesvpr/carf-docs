@@ -1,10 +1,7 @@
 ---
-id: RNF-053
-type: RNF
-modules: []
+type: rnf
 status: approved
-created: 2026-01-23
-updated: 2026-01-23
+updated: 2026-01-25
 ---
 
 # RNF-053: Onboarding

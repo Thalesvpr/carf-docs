@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-044: Dashboard de Comunidade
 
-Interface deve apresentar visualização consolidada de métricas e gráficos específicos da comunidade onde gráficos de status de unidades exibem distribuição por workflow state (DRAFT PENDING APPROVED) utilizando gráficos de pizza barras ou rosca com cores distintas por status e valores percentuais/absolutos, mapa de calor de densidade mostra concentração espacial de unidades dentro do boundary da comunidade utilizando heatmap layer com gradiente de cores indicando áreas de maior densidade ocupacional facilitando identificação de clusters e padrões de distribuição, indicadores numéricos exibem KPIs essenciais em cards destacados incluindo total de unidades total de titulares área total taxa de aprovação tempo médio de processamento e outros métricas relevantes atualizadas em tempo real ou near-real-time, implementação em módulo GEOWEB utilizando bibliotecas de visualização (Chart.js D3.js Recharts) integração com mapa para heatmap layer queries otimizadas em GEOAPI para agregações complexas e caching de métricas calculadas para garantir performance.
+## Descricao
+
+Interface deve apresentar visualizacao consolidada de metricas e graficos especificos da comunidade. Graficos de status de unidades exibem distribuicao por workflow state utilizando graficos de pizza ou barras com cores distintas por status. Mapa de calor de densidade mostra concentracao espacial de unidades dentro do boundary. Indicadores numericos exibem KPIs essenciais em cards destacados incluindo total de unidades, titulares, area e taxa de aprovacao.
+
+## Criterios de Aceitacao
+
+1. Graficos de distribuicao por status de unidades
+2. Mapa de calor de densidade espacial
+3. Cards com KPIs essenciais
+4. Atualizacao near-real-time
+5. Queries otimizadas com caching
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-041, RF-038

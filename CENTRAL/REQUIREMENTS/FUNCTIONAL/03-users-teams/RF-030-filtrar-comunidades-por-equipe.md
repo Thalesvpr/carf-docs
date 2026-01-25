@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-030: Filtrar Comunidades por Equipe
 
-Usuários regulares (não ADMIN) visualizam apenas comunidades atribuídas à sua equipe onde filtro automático por equipe aplicado transparentemente em todas queries de listagem de comunidades adicionando cláusula WHERE community_id IN (SELECT community_id FROM team_communities WHERE team_id IN :user_teams), usuários com role ADMIN visualizam todas comunidades do tenant independente de vinculação a equipes permitindo gestão global e reatribuição de comunidades entre equipes conforme necessidades operacionais, visualização restrita para outros roles (MANAGER ANALYST FIELD_AGENT) implementa Row Level Security baseado em equipe garantindo segregação de dados e responsabilidades onde usuário só acessa informações relevantes para seu escopo de trabalho reduzindo complexidade de interface e prevenindo acesso não autorizado, implementação em módulos GEOWEB e GEOAPI com filtros aplicados automaticamente em camada de serviço ou ORM sem necessidade de lógica condicional em cada controller mantendo consistência e simplificando manutenção de código.
+## Descricao
+
+Usuarios regulares (MANAGER, ANALYST, FIELD_AGENT) visualizam apenas comunidades atribuidas a sua equipe. Filtro automatico por equipe aplicado transparentemente em todas queries de listagem de comunidades. Usuarios com role ADMIN visualizam todas comunidades do tenant independente de vinculacao a equipes permitindo gestao global e reatribuicao entre equipes. Visualizacao restrita implementa Row Level Security baseado em equipe garantindo segregacao de dados e responsabilidades.
+
+## Criterios de Aceitacao
+
+1. Usuarios regulares veem apenas comunidades da equipe
+2. Filtro aplicado automaticamente em todas queries
+3. ADMIN visualiza todas comunidades do tenant
+4. RLS baseado em equipe para segregacao
+5. Filtro aplicado em camada de servico ou ORM
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-026, RF-013

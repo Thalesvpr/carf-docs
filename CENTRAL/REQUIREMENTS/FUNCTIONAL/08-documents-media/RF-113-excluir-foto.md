@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-113: Excluir Foto
 
-Este requisito estabelece que usuários autorizados devem poder excluir fotos do sistema através de processo controlado e auditável, onde a exclusão é implementada via soft delete marcando registro como excluído sem remoção física imediata do banco de dados, garantindo possibilidade de auditoria e recuperação. O sistema deve exigir confirmação explícita antes de executar exclusão, apresentando diálogo ou modal que previne remoções acidentais e permite que usuário revise decisão antes de confirmar. Após confirmação, além de marcar registro no banco como deleted, o sistema deve programar ou executar remoção do arquivo físico correspondente no storage S3/MinIO, liberando espaço de armazenamento mas mantendo registro de metadados para auditoria. A exclusão deve gerar entrada no log de auditoria incluindo identificação do usuário executor, timestamp, identificador da foto e contexto da operação. A interface deve remover imediatamente a foto da visualização após exclusão bem-sucedida, atualizando galeria sem necessidade de refresh manual. A funcionalidade deve estar disponível nos módulos GEOWEB através de botões de exclusão em galerias e GEOAPI via endpoint DELETE com validações de permissão adequadas.
+## Descricao
+
+Sistema deve permitir exclusao de fotos via soft delete marcando registro como excluido sem remocao fisica imediata. Confirmacao explicita obrigatoria previne remocoes acidentais. Apos confirmacao, sistema programa remocao do arquivo fisico no storage S3/MinIO liberando espaco mas mantendo registro de metadados para auditoria. Log de auditoria registra usuario, timestamp, identificador e contexto. Interface remove foto imediatamente da galeria apos exclusao bem-sucedida.
+
+## Criterios de Aceitacao
+
+1. Soft delete preservando metadados
+2. Confirmacao explicita obrigatoria
+3. Remocao programada do arquivo fisico
+4. Log de auditoria completo
+5. Atualizacao imediata da galeria
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-108, RF-116

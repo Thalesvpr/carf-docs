@@ -1,10 +1,28 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - REURBCAD
+  - GEOAPI
 ---
 
 # RF-084: Criar Titular
 
-O sistema deve permitir que usuários cadastrem novos titulares representando pessoas físicas ou jurídicas responsáveis por unidades habitacionais, onde formulário captura campos essenciais como nome completo ou razão social, CPF ou CNPJ conforme tipo de pessoa, e informações de contato incluindo telefone e email. A validação de CPF e CNPJ utiliza algoritmo de verificação de dígitos garantindo que apenas documentos válidos matematicamente sejam aceitos, apresentando mensagem de erro clara quando número informado não passa em verificação algorítmica de consistência. Sistema implementa verificação de duplicidade consultando base existente de titulares antes de permitir criação, alertando usuário quando CPF ou CNPJ informado já existe no cadastro e oferecendo opção de vincular titular existente ao invés de criar duplicata desnecessária. Implementado nos módulos GEOWEB, REURBCAD e GEOAPI com prioridade Must-have, este recurso é fundamental para gestão de responsabilidades sobre unidades onde titulares podem ser proprietários formais, possuidores de fato, usufrutuários ou outras categorias de relacionamento jurídico e social com imóveis cadastrados, garantindo identificação clara de pessoas vinculadas a cada unidade e possibilitando comunicação, notificação e reconhecimento de direitos ao longo do processo de regularização fundiária.
+## Descricao
+
+Sistema deve permitir cadastro de novos titulares representando pessoas fisicas ou juridicas responsaveis por unidades habitacionais. Formulario captura nome completo ou razao social, CPF ou CNPJ conforme tipo de pessoa, e informacoes de contato. Validacao de CPF e CNPJ utiliza algoritmo de verificacao de digitos. Sistema verifica duplicidade por CPF/CNPJ antes de permitir criacao, alertando quando documento ja existe e oferecendo vincular titular existente. Conforme WORKFLOW-MESTRE, Agente de Campo cadastra titulares durante coleta em campo via REURBCAD.
+
+## Criterios de Aceitacao
+
+1. Formulario com campos obrigatorios por tipo de pessoa
+2. Validacao algoritmica de CPF e CNPJ
+3. Verificacao de duplicidade antes de criar
+4. Opcao de vincular titular existente se duplicado
+5. Suporte a pessoa fisica e juridica
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, REURBCAD, GEOAPI
+- Requisitos dependentes: RF-088, RF-089, RF-090, RF-096

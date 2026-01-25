@@ -1,6 +1,6 @@
 ---
 type: readme
-status: rejected
+status: review
 description: "Usa listas/bullets extensivamente ao inves de paragrafos densos (15+ bullets)"
 updated: 2026-01-22
 ---

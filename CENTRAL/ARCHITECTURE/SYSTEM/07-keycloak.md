@@ -1,7 +1,7 @@
 ---
 type: leaf
-status: review
-updated: 2026-01-22
+status: approved
+updated: 2026-01-24
 ---
 
 # KEYCLOAK
@@ -12,4 +12,4 @@ Configurado com single realm CARF contendo todos os usuarios e clients. Multi-te
 
 ## Capacidades
 
-Fluxos OAuth2 diferenciados por tipo de client: Authorization Code com PKCE para web e mobile, Client Credentials para backend-to-backend. Validacao de CPF customizada no registro. Politicas de senha e MFA configuradas por tenant. Session management com token lifetimes otimizados por contexto de uso. Detalhes tecnicos em [PROJECTS/KEYCLOAK/DOCS/](../../../PROJECTS/KEYCLOAK/DOCS/README.md).
+Fluxos OAuth2 diferenciados por tipo de client: Authorization Code com PKCE para web e mobile, Client Credentials para backend-to-backend. Validacao de CPF customizada no registro. Politicas de senha e MFA configuradas por tenant. Session management com token lifetimes otimizados por contexto de uso. Detalhes tecnicos no repositorio carf-keycloak.

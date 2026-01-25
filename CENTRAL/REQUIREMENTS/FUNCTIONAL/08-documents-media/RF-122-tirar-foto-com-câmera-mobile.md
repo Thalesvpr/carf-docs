@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - REURBCAD
 ---
 
-# RF-122: Tirar Foto com Câmera (Mobile)
+# RF-122: Tirar Foto com Camera Mobile
 
-Este requisito especifica que aplicativo mobile REURBCAD deve permitir que usuários capturem fotos diretamente através da câmera nativa do dispositivo durante trabalho de campo, onde funcionalidade acessa hardware de câmera do smartphone ou tablet através de APIs nativas do sistema operacional iOS ou Android. O sistema deve solicitar permissões apropriadas para acessar câmera conforme políticas de privacidade de cada plataforma, onde usuário concede acesso uma vez e app mantém permissão para usos futuros, implementando fluxo de autorização conforme guidelines oficiais. A interface de captura deve utilizar componente nativo de câmera fornecendo controles familiares ao usuário incluindo foco automático flash ajuste de exposição e preview em tempo real da imagem que será capturada. Após captura, o sistema deve oferecer opção de upload imediato se conectividade está disponível enviando foto diretamente para backend via API, ou armazenamento offline em storage local do dispositivo se conexão não está presente, onde fotos armazenadas localmente são sincronizadas automaticamente quando conectividade for restabelecida. O app deve preservar metadados EXIF incluindo coordenadas GPS se localização está habilitada, garantindo geotagging automático das fotos de campo. A funcionalidade é implementada exclusivamente no módulo REURBCAD mobile.
+## Descricao
+
+Aplicativo mobile REURBCAD deve permitir captura de fotos diretamente atraves da camera nativa do dispositivo durante trabalho de campo. Funcionalidade acessa hardware de camera via APIs nativas iOS e Android. Sistema solicita permissoes de camera conforme politicas de privacidade de cada plataforma, mantendo autorizacao para usos futuros. Interface de captura utiliza componente nativo com controles familiares: foco automatico, flash, ajuste de exposicao e preview em tempo real. Apos captura, sistema oferece upload imediato se conectividade disponivel ou armazenamento offline local para sincronizacao posterior quando conexao restabelecida. App preserva metadados EXIF incluindo coordenadas GPS para geotagging automatico conforme WORKFLOW-MESTRE onde Agente de Campo captura fotos geolocalizadas em campo.
+
+## Criterios de Aceitacao
+
+1. Captura via camera nativa do dispositivo
+2. Solicitacao de permissoes conforme plataforma
+3. Preview em tempo real com controles nativos
+4. Upload imediato ou armazenamento offline
+5. Preservacao de metadados EXIF e GPS
+
+## Rastreabilidade
+
+- Modulos: REURBCAD
+- Requisitos dependentes: RF-108, RF-110

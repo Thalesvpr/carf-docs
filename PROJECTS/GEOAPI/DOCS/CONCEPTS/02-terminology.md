@@ -1,6 +1,6 @@
 ---
 type: leaf
-status: rejected
+status: review
 description: "Usa listas e bullets ao inves de prosa densa - estrutura de glossario com sublistas"
 updated: 2026-01-22
 ---

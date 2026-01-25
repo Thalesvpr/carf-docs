@@ -1,7 +1,7 @@
 ---
 type: adr
-status: review
-updated: 2026-01-22
+status: approved
+updated: 2026-01-24
 ---
 
 # ADR-007: React Native com Expo para Mobile
@@ -12,7 +12,7 @@ Aplicativo mobile deve funcionar em Android e iOS para coleta de dados em campo.
 
 ## Decisao
 
-Adotamos React Native com Expo como framework mobile. Expo simplifica build, deploy e acesso a APIs nativas. Compartilhamento de codigo com bibliotecas @carf/tscore e @carf/ui. expo-location para GPS, expo-camera para fotos, expo-file-system para armazenamento.
+Adotamos React Native com Expo como framework mobile. Expo simplifica build, deploy e acesso a APIs nativas. Compartilhamento de codigo com bibliotecas @carf/tscore e @carf/ui. expo-location para GPS, expo-camera para fotos e leitura de QR Code, expo-file-system para armazenamento local de ortofotos e pacote temporario do tenant. Recursos adicionais incluem captura de assinatura digital e download unico de ortofoto com poligonos para operacao offline.
 
 ## Consequencias
 

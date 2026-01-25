@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-200: Exportar Unidades em CSV
 
-O sistema possibilita exportação de dados tabulares de unidades em formato CSV (Comma-Separated Values) que omite geometrias espaciais mas preserva todos os atributos alfanuméricos, sendo formato ideal para análises estatísticas, importação em planilhas eletrônicas como Excel ou Google Sheets, e integração com sistemas não geoespaciais que requerem apenas dados descritivos. A exportação inclui todas as colunas relevantes de unidades como identificador, código cadastral, tipo de ocupação, área calculada, status de aprovação, datas de cadastramento e atualização, além de informações relacionadas como nomes de titulares concatenados e endereço da unidade, fornecendo dataset abrangente para análises alfanuméricas. O arquivo gerado utiliza encoding UTF-8 com BOM (Byte Order Mark) que garante correta visualização de caracteres acentuados e especiais em ferramentas que suportam Unicode, evitando problemas comuns de encoding que resultam em caracteres corrompidos ao abrir CSVs brasileiros em software internacional. O sistema permite configuração do separador utilizado, oferecendo opções como vírgula (padrão internacional), ponto-e-vírgula (padrão brasileiro que evita conflitos com vírgulas decimais), tabulação ou outros caracteres, adaptando exportação a requisitos específicos de software de destino e preferências regionais de formatação numérica.
+## Descricao
+
+Sistema deve possibilitar exportacao de dados tabulares de unidades em formato CSV (Comma-Separated Values) que omite geometrias espaciais mas preserva todos os atributos alfanumericos, ideal para analises estatisticas e importacao em planilhas eletronicas como Excel ou Google Sheets. Exportacao inclui colunas relevantes como identificador, codigo cadastral, tipo de ocupacao, area, status, datas de cadastramento e atualizacao, nomes de titulares e endereco. Arquivo utiliza encoding UTF-8 com BOM garantindo correta visualizacao de caracteres acentuados. Sistema permite configuracao do separador (virgula, ponto-e-virgula ou tabulacao) adaptando a requisitos regionais de formatacao. Dados filtrados por tenant_id do usuario autenticado.
+
+## Criterios de Aceitacao
+
+1. Exportacao de todos os atributos alfanumericos
+2. Encoding UTF-8 com BOM
+3. Separador configuravel
+4. Colunas de titulares vinculados
+5. Segregacao por tenant_id
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-044, RF-074

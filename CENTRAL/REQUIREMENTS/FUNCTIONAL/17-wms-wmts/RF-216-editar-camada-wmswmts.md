@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-216: Editar Camada WMS/WMTS
 
-O sistema possibilita edição de configurações de serviços WMS/WMTS previamente cadastrados através de formulário dedicado que permite atualização de URL do servidor quando endpoint sofre mudanças, modificação de layers consumidos para adicionar ou remover camadas específicas oferecidas pelo serviço, ajuste de estilos aplicados quando servidor suporta múltiplos estilos de renderização, e alteração de parâmetros de exibição como opacidade, ordem de renderização e nome de apresentação. Todas as modificações submetidas passam por validação automática que testa conectividade com nova URL fornecida, verifica disponibilidade dos layers especificados através de requisição GetCapabilities atualizada, e confirma compatibilidade de sistemas de coordenadas, garantindo que alterações não resultem em camadas inoperantes que frustrariam usuários finais. O sistema mantém log detalhado de alterações incluindo timestamp de cada modificação, identificação do administrador responsável, campos alterados com valores antes e depois da mudança, e justificativa textual opcional que documenta motivação da alteração, proporcionando trilha de auditoria completa útil para troubleshooting quando camadas param de funcionar, atendimento a auditorias de conformidade e compreensão de evolução histórica das configurações do sistema ao longo do ciclo de vida do projeto.
+## Descricao
+
+Sistema deve possibilitar edicao de configuracoes de servicos WMS/WMTS previamente cadastrados atraves de formulario dedicado permitindo atualizacao de URL quando endpoint sofre mudancas, modificacao de layers consumidos, ajuste de estilos de renderizacao, e alteracao de parametros como opacidade, ordem e nome. Modificacoes passam por validacao automatica testando conectividade e verificando disponibilidade dos layers via GetCapabilities. Sistema mantem log detalhado de alteracoes com timestamp, administrador responsavel, campos alterados com valores anteriores e novos, proporcionando trilha de auditoria para troubleshooting e conformidade.
+
+## Criterios de Aceitacao
+
+1. Formulario de edicao completo
+2. Validacao automatica de mudancas
+3. GetCapabilities para verificar layers
+4. Log de alteracoes com valores antes/depois
+5. Identificacao de administrador responsavel
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-212, RF-214

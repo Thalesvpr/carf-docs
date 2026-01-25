@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
-# RF-162: Gerar Curvas de Nível
+# RF-162: Gerar Curvas de Nivel
 
-O sistema oferece capacidade de gerar curvas de nível a partir de pontos topográficos previamente importados, aplicando algoritmos de interpolação espacial como TIN (Triangulated Irregular Network) ou IDW (Inverse Distance Weighting) para estimar valores de elevação em toda a área de interesse e derivar isolinhas altimétricas. O usuário pode configurar o parâmetro de equidistância vertical entre as curvas conforme as necessidades técnicas do projeto, permitindo representações mais detalhadas com equidistâncias menores para projetos de precisão ou representações mais generalizadas para análises de contexto regional. As curvas resultantes são criadas como features do tipo LineString no banco geoespacial, preservando a conectividade topológica e permitindo análises de relevo e visualização tridimensional do terreno. Esta funcionalidade é particularmente útil em projetos de regularização fundiária em áreas de topografia acidentada, onde a representação altimétrica auxilia na identificação de áreas de risco geotécnico, planejamento de drenagem e validação de limites de unidades territoriais em conformidade com características do relevo natural.
+## Descricao
+
+Sistema deve gerar curvas de nivel a partir de pontos topograficos importados aplicando algoritmos de interpolacao espacial (TIN ou IDW) para estimar valores de elevacao e derivar isolinhas altimetricas. Usuario configura parametro de equidistancia vertical entre curvas conforme necessidades tecnicas (equidistancias menores para precisao, maiores para contexto regional). Curvas criadas como features LineString no banco geoespacial PostGIS preservando conectividade topologica para analises de relevo e visualizacao tridimensional. Util em projetos de regularizacao fundiaria em areas de topografia acidentada para identificar areas de risco geotecnico, planejar drenagem e validar limites de unidades conforme relevo.
+
+## Criterios de Aceitacao
+
+1. Interpolacao TIN ou IDW
+2. Equidistancia configuravel
+3. Curvas como LineString em PostGIS
+4. Preservacao de conectividade topologica
+5. Visualizacao no mapa
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-160, RF-131

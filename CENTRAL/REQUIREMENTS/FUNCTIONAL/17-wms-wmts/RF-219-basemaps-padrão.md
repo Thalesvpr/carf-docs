@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
 ---
 
-# RF-219: Basemaps Padrão
+# RF-219: Basemaps Padrao
 
-O sistema oferece conjunto predefinido de basemaps essenciais que garante funcionalidade imediata sem necessidade de configuração adicional de serviços externos, incluindo OpenStreetMap como mapa vetorial colaborativo que fornece nomenclatura detalhada de ruas, pontos de interesse e limites administrativos constantemente atualizados pela comunidade global, sendo opção padrão carregada automaticamente ao iniciar sistema. Quando projeto dispõe de licenciamento apropriado, sistema pode incluir Google Satellite proporcionando imagens de satélite de alta resolução que permitem identificação visual precisa de edificações, limites físicos de terrenos, características de vegetação e uso real do solo, sendo recurso valiosíssimo para validação de limites cadastrados e identificação de ocupações irregulares ou expansões não documentadas. Opção de Mapa em Branco é disponibilizada para contextos onde usuário deseja visualizar exclusivamente dados cadastrais do próprio sistema sem qualquer basemap contextual distraindo, sendo útil para análises focadas em geometrias puras, geração de mapas técnicos sem informação de fundo, ou situações de conectividade extremamente limitada onde carregamento de tiles externos seria inviável. Todos os basemaps padrão são configurados com parâmetros otimizados de cache, atribuição de direitos autorais conforme requisitos de cada provedor, limites de zoom apropriados que balanceiam detalhamento com desempenho, e sistemas de coordenadas corretamente especificados garantindo alinhamento perfeito entre basemap e dados vetoriais cadastrais sobrepostos, proporcionando experiência cartográfica profissional e confiável desde primeiro uso do sistema.
+## Descricao
+
+Sistema deve oferecer conjunto predefinido de basemaps essenciais garantindo funcionalidade imediata sem configuracao adicional. OpenStreetMap como mapa vetorial colaborativo com nomenclatura de ruas e POIs e opcao padrao carregada automaticamente. Google Satellite (quando licenciado) proporcionando imagens de alta resolucao para identificacao visual de edificacoes e limites fisicos. Opcao de Mapa em Branco para visualizar exclusivamente dados cadastrais sem basemap contextual. Todos os basemaps configurados com cache otimizado, atribuicao de direitos autorais, limites de zoom apropriados e sistemas de coordenadas garantindo alinhamento perfeito com dados vetoriais cadastrais.
+
+## Criterios de Aceitacao
+
+1. OpenStreetMap como padrao
+2. Google Satellite (se licenciado)
+3. Opcao de Mapa em Branco
+4. Cache de tiles otimizado
+5. Atribuicao de direitos autorais
+
+## Rastreabilidade
+
+- Modulos: GEOWEB
+- Requisitos dependentes: RF-220

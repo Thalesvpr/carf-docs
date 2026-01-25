@@ -1,6 +1,6 @@
 ---
 type: leaf
-status: rejected
+status: review
 description: "REFERENCE usa tabelas extensivas e code blocks - formato referencia incompativel com prosa densa"
 updated: 2026-01-22
 ---

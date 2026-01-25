@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-168: Validar Fechamento de Poligonal
 
-O sistema implementa algoritmos para cálculo de erro de fechamento de poligonais topográficas, verificando a precisão do levantamento através da análise da discrepância entre as coordenadas inicial e final quando se percorre todos os vértices da figura fechada, conforme princípios fundamentais de topografia. O cálculo abrange tanto o erro linear, determinado pela distância euclidiana entre o ponto de partida teórico e o ponto de chegada efetivo após aplicação de todas as medições, quanto o erro angular, obtido pela diferença entre a soma dos ângulos internos medidos e o valor teórico esperado para o polígono, permitindo identificação de inconsistências sistemáticas ou aleatórias no levantamento. O sistema gera relatório detalhado de precisão contendo valores absolutos e relativos de erro, comparação com tolerâncias estabelecidas por normas técnicas brasileiras como NBR 13133 e classificação da qualidade do levantamento em categorias de precisão, fornecendo subsídios técnicos para decisão sobre aceitação ou necessidade de retrabalho em campo. Esta validação é essencial para garantir confiabilidade dos limites territoriais cadastrados, evitando disputas futuras decorrentes de imprecisões no levantamento e assegurando conformidade com requisitos técnicos exigidos por cartórios de registro de imóveis para georreferenciamento de propriedades rurais e urbanas.
+## Descricao
+
+Sistema deve implementar algoritmos para calculo de erro de fechamento de poligonais topograficas, verificando precisao do levantamento atraves de analise da discrepancia entre coordenadas inicial e final quando percorridos todos os vertices da figura fechada. Calculo abrange erro linear (distancia euclidiana entre ponto de partida teorico e ponto de chegada efetivo) e erro angular (diferenca entre soma dos angulos internos medidos e valor teorico esperado para o poligono). Sistema gera relatorio detalhado de precisao com valores absolutos e relativos de erro, comparacao com tolerancias da NBR 13133 e classificacao de qualidade do levantamento. Essencial para garantir confiabilidade dos limites territoriais cadastrados e conformidade com requisitos tecnicos de cartorios para georreferenciamento.
+
+## Criterios de Aceitacao
+
+1. Calculo de erro linear
+2. Calculo de erro angular
+3. Relatorio de precisao detalhado
+4. Comparacao com tolerancias NBR 13133
+5. Classificacao de qualidade
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-160, RF-157

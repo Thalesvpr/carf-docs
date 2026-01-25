@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - REURBCAD
+  - GEOAPI
 ---
 
 # RF-183: Download Inicial de Dados
 
-O sistema possibilita download inicial de dados de comunidade específica para dispositivo móvel antes de deslocamento a campo, permitindo que usuário selecione comunidade de interesse através de interface intuitiva e baixe todos os dados associados incluindo unidades territoriais já cadastradas, titulares vinculados, fotos existentes, documentos anexados e configurações específicas da comunidade. O processo de download é implementado de forma otimizada que agrupa múltiplas requisições em lotes e comprime dados transmitidos, minimizando tempo de transferência e consumo de dados móveis, aspectos críticos considerando limitações de infraestrutura em muitas localidades. Durante execução, o sistema exibe barra de progresso detalhada que informa usuário sobre andamento do download incluindo percentual concluído, quantidade de registros já transferidos e estimativa de tempo restante, proporcionando feedback tranquilizador durante operação que pode levar vários minutos dependendo de volume de dados e qualidade da conexão. Ao concluir download, dados são persistidos no banco local SQLite e imediatamente disponibilizados para acesso offline, permitindo que usuário inicie trabalho de campo imediatamente após chegada à comunidade sem necessidade de conectividade adicional para consultar informações existentes ou criar novos registros.
+## Descricao
+
+Sistema deve permitir download unico e temporario do pacote de dados do tenant para dispositivo mobile antes de deslocamento a campo. Usuario seleciona tenant de interesse e baixa todos os dados associados incluindo ortofoto (online e/ou versao offline otimizada), poligonos georreferenciados, unidades territoriais cadastradas, titulares vinculados e configuracoes especificas. Conforme WORKFLOW-MESTRE, download so e habilitado apos Analista publicar trabalho do tenant no backend. Processo otimizado agrupa requisicoes em lotes e comprime dados transmitidos minimizando consumo de dados moveis. Barra de progresso exibe percentual concluido, registros transferidos e tempo estimado. Dados persistidos em SQLite ficam imediatamente disponiveis para acesso offline, permitindo inicio do trabalho de campo sem conectividade adicional.
+
+## Criterios de Aceitacao
+
+1. Download de pacote completo do tenant
+2. Inclusao de ortofoto, poligonos e unidades
+3. Condicionado a publicacao pelo Analista
+4. Barra de progresso detalhada
+5. Dados disponiveis imediatamente apos download
+
+## Rastreabilidade
+
+- Modulos: REURBCAD, GEOAPI
+- Requisitos dependentes: RF-017, RF-182

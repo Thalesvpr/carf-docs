@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
-# RF-081: Comentários em Unidade
+# RF-081: Comentarios em Unidade
 
-O sistema deve permitir que usuários adicionem comentários e observações em unidades habitacionais criando thread colaborativo de comunicação assíncrona sobre cadastros específicos, onde cada comentário captura texto livre, timestamp de criação e identificação do usuário autor. A funcionalidade implementa thread cronológica ordenada mostrando comentários mais recentes primeiro ou em ordem de postagem conforme preferência do usuário, incluindo interface de resposta que permite criar comentários encadeados formando conversações estruturadas sobre aspectos específicos da unidade. Quando novo comentário é adicionado, sistema dispara notificações automáticas para usuários envolvidos com a unidade incluindo criador original, gestores responsáveis por aprovação e usuários que previamente comentaram no thread, garantindo que partes interessadas sejam informadas sobre discussões relevantes. Implementado nos módulos GEOWEB e GEOAPI com prioridade Should-have, este recurso facilita colaboração entre analistas e gestores permitindo esclarecimento de dúvidas, solicitação de informações complementares, registro de observações de campo e documentação de decisões tomadas durante processo de validação, criando histórico rico de comunicação contextualizada que complementa log técnico de auditoria com narrativa humana sobre evolução do cadastro.
+## Descricao
+
+Sistema deve permitir que usuarios adicionem comentarios e observacoes em unidades criando thread colaborativo de comunicacao assincrona. Cada comentario captura texto livre, timestamp e usuario autor. Thread cronologica ordenada com interface de resposta para comentarios encadeados. Sistema dispara notificacoes automaticas para usuarios envolvidos incluindo criador, gestores e quem previamente comentou. Facilita colaboracao entre analistas e gestores para esclarecimentos, solicitacoes e registro de observacoes de campo.
+
+## Criterios de Aceitacao
+
+1. Adicao de comentarios em unidade
+2. Thread cronologica de comentarios
+3. Respostas encadeadas
+4. Notificacao automatica de envolvidos
+5. Timestamp e autor por comentario
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-049, RF-033

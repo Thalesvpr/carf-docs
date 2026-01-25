@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-197: Exportar Unidades em Shapefile
 
-O sistema oferece funcionalidade de exportação de unidades territoriais no formato Shapefile, padrão de facto da indústria GIS que garante máxima interoperabilidade com softwares de geoprocessamento desktop como ArcGIS, QGIS e AutoCAD Map, permitindo análises avançadas e integração com workflows externos. A geração de Shapefile cria todos os arquivos componentes obrigatórios incluindo .shp contendo geometrias das features, .shx com índice espacial, .dbf com tabela de atributos e .prj definindo sistema de coordenadas, além de arquivos opcionais como .cpg especificando encoding UTF-8 para correta visualização de caracteres acentuados. Antes da exportação, sistema permite aplicação de filtros que segmentam unidades a exportar conforme critérios como comunidade, status, tipo de ocupação, período de cadastramento ou área espacial de interesse, evitando geração de arquivos excessivamente grandes e focando exportação em subconjunto relevante para análise específica. O arquivo final é empacotado automaticamente em formato ZIP contendo todos os componentes do Shapefile, disponibilizado para download através do navegador ou enviado por email, facilitando distribuição e garantindo que todos os arquivos necessários sejam transferidos conjuntamente sem risco de perda de componentes que tornaria Shapefile inutilizável.
+## Descricao
+
+Sistema deve oferecer exportacao de unidades territoriais no formato Shapefile, padrao da industria GIS que garante interoperabilidade com softwares de geoprocessamento desktop como ArcGIS, QGIS e AutoCAD Map. Geracao cria todos os arquivos componentes obrigatorios incluindo .shp com geometrias, .shx com indice espacial, .dbf com tabela de atributos e .prj definindo sistema de coordenadas, alem de .cpg especificando encoding UTF-8. Filtros permitem segmentar unidades por comunidade, status, tipo de ocupacao, periodo ou area espacial de interesse, focando exportacao em subconjunto relevante. Dados filtrados automaticamente por tenant_id do usuario autenticado. Arquivo final empacotado em ZIP disponibilizado para download ou enviado por email.
+
+## Criterios de Aceitacao
+
+1. Geracao de .shp, .shx, .dbf, .prj e .cpg
+2. Encoding UTF-8 para caracteres acentuados
+3. Filtros por comunidade, status e periodo
+4. Segregacao por tenant_id
+5. Download em ZIP compactado
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-044, RF-127

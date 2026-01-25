@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOAPI
+  - REURBCAD
 ---
 
-# RF-065: Buscar Unidade por Localização
+# RF-065: Buscar Unidade por Localizacao
 
-O sistema deve oferecer endpoint de busca espacial de unidades através de coordenadas geográficas e raio de distância, onde a API GEOAPI recebe parâmetros lat (latitude), lon (longitude) e radius (raio em metros) retornando todas as unidades dentro da área circular especificada. A implementação utiliza índices espaciais do PostGIS garantindo performance otimizada mesmo com grandes volumes de dados, onde operadores geométricos nativos do PostgreSQL calculam distâncias e interseções espaciais de forma eficiente. Os resultados são automaticamente ordenados por distância crescente do ponto de consulta, apresentando as unidades mais próximas primeiro e facilitando identificação de imóveis nas imediações de uma localização específica. Este recurso é essencial para aplicativos móveis de campo onde agentes podem localizar rapidamente unidades próximas à sua posição atual, para análises de vizinhança e impacto territorial, e para relatórios baseados em proximidade a equipamentos públicos, áreas de risco ou pontos de interesse, permitindo consultas espaciais complexas através de interface simples e intuitiva baseada em coordenadas e raio de busca.
+## Descricao
+
+Sistema deve oferecer endpoint de busca espacial de unidades atraves de coordenadas geograficas e raio de distancia. API GEOAPI recebe parametros lat, lon e radius (metros) retornando unidades dentro da area circular especificada. Implementacao utiliza indices espaciais do PostGIS com operadores geometricos nativos garantindo performance otimizada. Resultados ordenados por distancia crescente do ponto de consulta. Recurso essencial para aplicativo REURBCAD onde agentes localizam unidades proximas a sua posicao atual conforme WORKFLOW-MESTRE.
+
+## Criterios de Aceitacao
+
+1. Endpoint com parametros lat, lon, radius
+2. Busca espacial via PostGIS com indices
+3. Ordenacao por distancia crescente
+4. Performance otimizada para grandes volumes
+5. Resposta com distancia de cada unidade
+
+## Rastreabilidade
+
+- Modulos: GEOAPI, REURBCAD
+- Requisitos dependentes: RF-052, RF-066

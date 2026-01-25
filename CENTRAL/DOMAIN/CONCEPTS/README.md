@@ -1,60 +1,22 @@
 ---
 type: readme
-status: review
-updated: 2026-01-22
+status: approved
+updated: 2026-01-24
 ---
 
 # CONCEPTS
 
-Entidades conceituais do dominio REURB. Cada arquivo descreve UM conceito de negocio.
+Entidades conceituais do dominio REURB que formam o vocabulario ubiquo do sistema CARF. Cada arquivo descreve um conceito de negocio com definicao, contexto e relacoes.
 
-## Core
+Os conceitos centrais sao [Unit](./02-unit.md) (unidade habitacional), [Holder](./03-holder.md) (titular/ocupante) e [Community](./04-community.md) (assentamento). A hierarquia espacial inclui [Block](./12-block.md) (quadra) e [Plot](./13-plot.md) (lote). O fluxo de legitimacao envolve [LegitimationRequest](./25-legitimation-request.md), [LegitimationResponse](./26-legitimation-response.md) e [LegitimationCertificate](./27-legitimation-certificate.md).
 
-| Conceito | Descricao |
-|----------|-----------|
-| [Unit](./02-unit.md) | Unidade habitacional em regularizacao |
-| [Holder](./03-holder.md) | Pessoa titular/ocupante de unidade |
-| [Community](./04-community.md) | Assentamento que agrupa unidades |
-
-## Hierarquia Espacial
-
-| Conceito | Descricao |
-|----------|-----------|
-| [Block](./12-block.md) | Quadra urbana dentro de comunidade |
-| [Plot](./13-plot.md) | Lote dentro de quadra |
-
-## Legitimacao
-
-| Conceito | Descricao |
-|----------|-----------|
-| [LegitimationRequest](./25-legitimation-request.md) | Pedido de legitimacao fundiaria |
-| [LegitimationResponse](./26-legitimation-response.md) | Resposta ao pedido |
-| [LegitimationCertificate](./27-legitimation-certificate.md) | Titulo emitido |
-| [LegitimationPlan](./28-legitimation-plan.md) | Plano de regularizacao |
-| [Contestation](./05-contestation.md) | Contestacao de terceiros |
-
-## Multitenancy
-
-| Conceito | Descricao |
-|----------|-----------|
-| [Tenant](./07-tenant.md) | Organizacao cliente |
-| [Account](./08-account.md) | Usuario do sistema |
-| [Team](./09-team.md) | Equipe tecnica |
-| [TeamMember](./10-team-member.md) | Membro de equipe |
-
-## Suporte
-
-| Conceito | Descricao |
-|----------|-----------|
-| [Document](./14-document.md) | Arquivo anexado |
-| [Annotation](./15-annotation.md) | Nota/observacao |
-| [UnitHolder](./16-unit-holder.md) | Vinculo unidade-titular |
+Multi-tenancy e definido por [Tenant](./07-tenant.md) e [BucketTenant](./36-bucket-tenant.md). Georreferenciamento usa [Ortofoto](./35-ortofoto.md) e [AuthenticationKey](./37-authentication-key.md) para o Plugin QGIS.
 
 <!-- CARF-INDEX-START -->
 > ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
 > Use os links abaixo para referenciar documentos desta pasta.
 
-## Documentos (33)
+## Documentos (36)
 
 | Documento | Status |
 |-----------|--------|
@@ -91,5 +53,8 @@ Entidades conceituais do dominio REURB. Cada arquivo descreve UM conceito de neg
 | [Elemento de Camada](./32-layer-feature.md) | ⚠ |
 | [Sessao](./33-session.md) | ⚠ |
 | [Chave de API](./34-api-key.md) | ⚠ |
+| [Ortofoto](./35-ortofoto.md) | ⚠ |
+| [Bucket por Tenant](./36-bucket-tenant.md) | ⚠ |
+| [Authentication Key](./37-authentication-key.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

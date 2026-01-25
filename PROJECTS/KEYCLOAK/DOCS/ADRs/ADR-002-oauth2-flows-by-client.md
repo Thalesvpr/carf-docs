@@ -1,6 +1,6 @@
 ---
 type: adr
-status: rejected
+status: review
 updated: 2026-01-21
 description: "Granularidade errada. Config de OAuth2 por client e detalhe de implementacao Keycloak, nao decisao arquitetural. Mover para PROJECTS/KEYCLOAK. Contem blocos de codigo."
 ---

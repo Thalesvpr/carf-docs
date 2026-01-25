@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-139: Importar Shapefile em Camada
 
-Este requisito estabelece que usuários autorizados devem poder importar shapefiles ESRI em camadas existentes criando features automaticamente a partir dos dados geoespaciais contidos no arquivo, onde processo converte geometrias e atributos do shapefile para modelo de dados do sistema. O sistema deve aceitar upload de arquivo ZIP contendo componentes obrigatórios do shapefile incluindo .shp .shx .dbf e opcionalmente .prj para definição de sistema de coordenadas, onde validação garante que todos arquivos necessários estão presentes antes de processar importação. A interface deve fornecer funcionalidade de mapeamento de atributos permitindo que usuário especifique correspondência entre campos do DBF do shapefile e schema de atributos customizados da camada de destino, onde mapeamento pode incluir renomeação conversão de tipos e omissão de campos não relevantes. O processo de importação deve ocorrer em lote criando múltiplas features de uma só vez através de transação única, onde sistema lê geometrias e atributos do shapefile valida cada feature conforme tipo de geometria da camada e insere registros correspondentes no banco de dados, fornecendo feedback de progresso durante processamento e relatório final indicando quantas features foram importadas com sucesso e eventuais erros. O sistema deve reprojetar geometrias se necessário convertendo do sistema de coordenadas do shapefile para SRID configurado no sistema. A funcionalidade deve estar disponível nos módulos GEOWEB e GEOAPI.
+## Descricao
+
+Sistema deve permitir importacao de shapefiles ESRI em camadas existentes criando features automaticamente a partir dos dados geoespaciais contidos. Upload aceita arquivo ZIP contendo componentes obrigatorios (.shp, .shx, .dbf) e opcionalmente .prj para sistema de coordenadas, com validacao de presenca de todos arquivos necessarios. Funcionalidade de mapeamento de atributos permite especificar correspondencia entre campos do DBF e schema de atributos customizados da camada destino, incluindo renomeacao, conversao de tipos e omissao de campos. Importacao em lote via transacao unica le geometrias e atributos, valida cada feature conforme tipo da camada e insere registros com feedback de progresso e relatorio final de sucessos e erros. Sistema reprojeta geometrias se necessario convertendo do sistema de coordenadas do shapefile para SRID configurado.
+
+## Criterios de Aceitacao
+
+1. Upload de ZIP com componentes shapefile
+2. Mapeamento de atributos DBF para schema
+3. Importacao em lote com transacao unica
+4. Feedback de progresso e relatorio final
+5. Reprojecao automatica de coordenadas
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-127, RF-132, RF-136

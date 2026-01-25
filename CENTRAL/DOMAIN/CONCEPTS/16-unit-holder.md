@@ -1,7 +1,7 @@
 ---
 type: leaf
-status: review
-updated: 2026-01-22
+status: approved
+updated: 2026-01-24
 ---
 
 # Vinculo Unidade-Titular

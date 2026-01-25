@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-027: Editar Equipe
 
-Usuários com role ADMIN podem editar dados de equipes existentes onde atualização inclui modificação de nome e descrição para refletir mudanças organizacionais ou escopo de responsabilidades, adição ou remoção de membros implementada através de interface de seleção múltipla permitindo vincular novos usuários ou desvincular membros que mudaram de atribuição onde desvinculação não afeta histórico de trabalho realizado pelo usuário quando era membro, log detalhado de alterações registra todas modificações em equipe incluindo mudanças de membros atribuições de comunidades e alterações de metadados preservando histórico organizacional completo para auditoria e análise de evolução de estrutura de equipes, implementação em módulos GEOWEB e GEOAPI com formulário de edição pré-carregado com dados atuais componentes de gerenciamento de membros com busca e seleção intuitiva validações de integridade garantindo que equipe mantenha ao menos um membro ativo e confirmação de salvamento.
+## Descricao
+
+Usuarios com role ADMIN podem editar dados de equipes existentes. Atualizacao inclui modificacao de nome e descricao para refletir mudancas organizacionais ou escopo de responsabilidades. Adicao ou remocao de membros implementada atraves de interface de selecao multipla onde desvinculacao nao afeta historico de trabalho realizado pelo usuario. Log detalhado de alteracoes registra todas modificacoes em equipe incluindo mudancas de membros e atribuicoes de comunidades.
+
+## Criterios de Aceitacao
+
+1. Edicao de nome e descricao da equipe
+2. Adicao e remocao de membros via selecao multipla
+3. Historico de trabalho preservado apos desvinculacao
+4. Log de auditoria registra todas modificacoes
+5. Equipe deve manter ao menos um membro ativo
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-026, RF-008

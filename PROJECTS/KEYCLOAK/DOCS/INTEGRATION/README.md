@@ -1,6 +1,6 @@
 ---
 type: readme
-status: rejected
+status: review
 description: "Usa tabelas e diagrama ASCII ao inves de prosa densa - reescrever em paragrafos"
 updated: 2026-01-22
 ---

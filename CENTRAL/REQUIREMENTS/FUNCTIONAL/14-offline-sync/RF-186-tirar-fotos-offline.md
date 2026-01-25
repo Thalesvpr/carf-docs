@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - REURBCAD
 ---
 
 # RF-186: Tirar Fotos Offline
 
-O aplicativo mobile permite captura de fotos através da câmera do dispositivo sem necessidade de conectividade, funcionalidade essencial para documentação fotográfica de unidades territoriais durante levantamentos de campo em áreas sem cobertura de rede. A câmera funciona completamente offline utilizando recursos nativos do dispositivo, capturando imagens em resolução configurável que equilibra qualidade visual com tamanho de arquivo para otimizar uso de armazenamento local e posterior transmissão durante sincronização. As imagens capturadas são armazenadas localmente no sistema de arquivos do dispositivo com nomenclatura estruturada que inclui UUID da unidade associada e timestamp de captura, enquanto metadados como coordenadas GPS do local da foto, orientação da câmera e identificação do usuário são registrados no banco SQLite local, estabelecendo vínculo entre arquivo de imagem e registro cadastral correspondente. Durante próxima sincronização quando conectividade for restabelecida, o sistema realiza upload automático das fotos para servidor central através de processo otimizado que pode comprimir imagens, realizar uploads em background e retomar transferências interrompidas, garantindo que documentação fotográfica coletada em campo seja persistida de forma confiável no repositório central independentemente de instabilidades de conexão.
+## Descricao
+
+Aplicativo mobile deve permitir captura de fotos atraves da camera do dispositivo sem conectividade, funcionalidade essencial para documentacao fotografica de unidades territoriais durante levantamentos em areas sem cobertura de rede. Camera funciona completamente offline utilizando recursos nativos, capturando imagens em resolucao configuravel que equilibra qualidade visual com tamanho de arquivo para otimizar armazenamento local e posterior transmissao. Imagens armazenadas localmente no sistema de arquivos com nomenclatura estruturada incluindo UUID da unidade associada e timestamp de captura. Metadados como coordenadas GPS, orientacao da camera e identificacao do usuario registrados no SQLite local estabelecendo vinculo com registro cadastral. Upload automatico durante sincronizacao quando conectividade restabelecida.
+
+## Criterios de Aceitacao
+
+1. Captura de fotos completamente offline
+2. Resolucao configuravel
+3. Metadados GPS e timestamp
+4. Vinculacao automatica a unidade
+5. Upload automatico na sincronizacao
+
+## Rastreabilidade
+
+- Modulos: REURBCAD
+- Requisitos dependentes: RF-102, RF-184

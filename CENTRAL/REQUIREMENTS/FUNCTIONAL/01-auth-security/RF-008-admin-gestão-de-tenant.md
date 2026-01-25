@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOAPI
+  - GEOWEB
 ---
 
-# RF-008: ADMIN - Gestão de Tenant
+# RF-008: ADMIN - Gestao de Tenant
 
-Usuários com role ADMIN podem gerenciar todos recursos dentro do seu tenant específico onde podem criar novos usuários no tenant atribuindo roles apropriadas (MANAGER ANALYST FIELD_AGENT) e configurando permissões iniciais, capacidade de gerenciar comunidades incluindo criação edição desativação configuração de geometrias atribuição de equipes e definição de parâmetros específicos de cada comunidade dentro do tenant, restrição de acesso a outros tenants implementada através de filtro automático Row Level Security (RLS) aplicado em todas queries de banco de dados garantindo que ADMIN visualize e manipule apenas dados onde tenant_id corresponde ao tenant do próprio usuário conforme claim tenant_id presente no JWT, implementação em módulos GEOWEB e GEOAPI com interface administrativa que exibe funcionalidades completas de gestão de tenant incluindo dashboards gerenciais listagens de usuários e comunidades configurações de tenant e relatórios operacionais.
+## Descricao
+
+Usuarios com role ADMIN podem gerenciar todos recursos dentro do seu tenant especifico. Podem criar usuarios atribuindo roles (MANAGER, ANALYST, FIELD_AGENT), gerenciar comunidades e configurar parametros do tenant. Acesso restrito ao proprio tenant via Row Level Security baseado em claim tenant_id do JWT.
+
+## Criterios de Aceitacao
+
+1. ADMIN cria e gerencia usuarios do proprio tenant
+2. Pode atribuir roles exceto SUPER_ADMIN e ADMIN
+3. Gerencia comunidades, times e configuracoes do tenant
+4. Nao visualiza dados de outros tenants
+5. Dashboards gerenciais do tenant disponiveis
+
+## Rastreabilidade
+
+- Modulos: GEOAPI, GEOWEB
+- Requisitos dependentes: RF-006, RF-013

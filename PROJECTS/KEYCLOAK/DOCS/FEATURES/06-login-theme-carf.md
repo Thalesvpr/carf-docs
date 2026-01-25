@@ -1,6 +1,6 @@
 ---
 type: leaf
-status: rejected
+status: review
 description: "Usa tabelas extensivas, code blocks e diagramas ASCII - reescrever em prosa densa"
 updated: 2026-01-22
 ---

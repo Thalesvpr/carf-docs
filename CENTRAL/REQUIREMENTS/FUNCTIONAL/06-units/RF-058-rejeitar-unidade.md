@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-058: Rejeitar Unidade
 
-O sistema deve permitir que usuários com perfil MANAGER rejeitem unidades inadequadas ou com problemas de cadastro, onde a rejeição exige obrigatoriamente o preenchimento de campo de justificativa explicando os motivos da não aprovação. A justificativa deve ser clara e detalhada, orientando o analista responsável sobre quais aspectos precisam ser corrigidos ou complementados para que a unidade possa ser reaprovada em nova submissão. Ao confirmar a rejeição, o sistema altera o status da unidade para REJECTED, registra a ação no histórico incluindo timestamp, gestor responsável e justificativa completa, e envia notificação automática ao usuário criador da unidade. A notificação inclui a justificativa da rejeição e link para edição da unidade, permitindo que o analista corrija os problemas identificados e reenvie para nova análise, garantindo um ciclo de feedback produtivo entre analistas e gestores no processo de validação de cadastros.
+## Descricao
+
+Sistema deve permitir que usuarios com perfil MANAGER rejeitem unidades inadequadas ou com problemas de cadastro. Rejeicao exige obrigatoriamente preenchimento de campo de justificativa explicando os motivos da nao aprovacao. Justificativa deve orientar o analista sobre quais aspectos precisam ser corrigidos. Status alterado para REJECTED com notificacao automatica ao usuario criador incluindo a justificativa e link para edicao.
+
+## Criterios de Aceitacao
+
+1. Botao de rejeicao visivel para MANAGER
+2. Justificativa obrigatoria na rejeicao
+3. Status alterado para REJECTED
+4. Notificacao automatica com justificativa
+5. Link para edicao na notificacao
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-056, RF-033

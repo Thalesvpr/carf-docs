@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-080: Dividir Unidade
 
-O sistema deve permitir que administradores (perfil ADMIN) dividam uma unidade habitacional em múltiplas unidades através de desenho de linha divisória diretamente no mapa, onde ferramenta de split possibilita criação de polígonos resultantes a partir de partição geométrica da unidade original. A interface oferece ferramenta de desenho de linha onde usuário clica sequencialmente vértices definindo trajetória de corte que intersecta polígono da unidade original, aplicando operação de split geométrico (ST_Split) que resulta em dois ou mais polígonos correspondentes às novas unidades. Para cada polígono resultante, sistema cria automaticamente novo registro de unidade herdando atributos básicos da unidade original (tipo comunidade quadra) mas requerendo especificação de códigos únicos identificadores para cada nova unidade criada. Titulares da unidade original podem ser distribuídos entre novas unidades através de interface que permite seleção de quais titulares devem ser vinculados a cada unidade resultante, ou duplicação de todos os titulares em todas as novas unidades quando divisão física não implica divisão de responsabilidade, garantindo flexibilidade para diferentes cenários de subdivisão territorial ou regularização de ocupações que evoluíram de unidade única para múltiplas moradias.
+## Descricao
+
+Sistema deve permitir que usuarios ADMIN dividam uma unidade em multiplas unidades atraves de desenho de linha divisoria no mapa. Ferramenta de split possibilita criacao de poligonos resultantes via particao geometrica ST_Split. Usuario clica vertices definindo trajetoria de corte que intersecta poligono original. Para cada poligono resultante, sistema cria registro herdando atributos basicos mas requerendo codigos unicos. Titulares podem ser distribuidos entre novas unidades ou duplicados em todas.
+
+## Criterios de Aceitacao
+
+1. Desenho de linha divisoria no mapa
+2. Split geometrico via ST_Split
+3. Criacao de registros por poligono resultante
+4. Especificacao de codigos unicos
+5. Restrito a perfil ADMIN
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-049, RF-066

@@ -1,7 +1,7 @@
 ---
 type: readme
-status: current
-updated: 2026-01-23
+status: approved
+updated: 2026-01-25
 ---
 
 # SECURITY
@@ -15,5 +15,14 @@ O [compliance LGPD](./02-lgpd-compliance.md) documenta os controles implementado
 Decisoes arquiteturais relacionadas a seguranca estao documentadas em ARCHITECTURE/DECISIONS, incluindo autenticacao via Keycloak, multi-tenancy via Row-Level Security, e modelo RBAC com hierarquia de roles.
 
 <!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
+
+## Documentos (2)
+
+| Documento | Status |
+|-----------|--------|
+| [Estrategia de Seguranca](./01-security-strategy.md) | ⚠ |
+| [LGPD Overview](./02-lgpd-compliance.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

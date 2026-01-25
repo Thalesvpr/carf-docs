@@ -1,6 +1,6 @@
 ---
 type: leaf
-status: rejected
+status: review
 description: "Usa listas bullets tabelas e blocos Gherkin ao inves de prosa densa"
 updated: 2026-01-22
 ---

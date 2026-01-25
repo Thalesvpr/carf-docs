@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-160: Importar Pontos de Levantamento
 
-O sistema permite a importação de coordenadas de pontos topográficos através de arquivos nos formatos CSV ou TXT, onde o usuário realiza o upload do arquivo contendo os dados geodésicos coletados em campo, incluindo coordenadas X Y Z e códigos de identificação dos pontos. A funcionalidade implementa um mecanismo de mapeamento de colunas que permite ao usuário correlacionar os campos do arquivo importado com os atributos esperados pelo sistema, garantindo flexibilidade no tratamento de diferentes estruturas de dados topográficos provenientes de equipamentos diversos. Após o processamento do arquivo, o sistema cria automaticamente features do tipo Point no banco de dados geoespacial, permitindo a visualização e análise posterior dos pontos levantados no contexto do projeto cadastral, incluindo sua integração com unidades territoriais e comunidades existentes. Esta funcionalidade é essencial para projetos de regularização fundiária que demandam levantamentos topográficos de precisão, facilitando a transição dos dados coletados em campo para o ambiente digital de gestão territorial.
+## Descricao
+
+Sistema deve permitir importacao de coordenadas de pontos topograficos atraves de arquivos CSV ou TXT contendo dados geodesicos coletados em campo (coordenadas X, Y, Z e codigos de identificacao). Mapeamento de colunas permite correlacionar campos do arquivo importado com atributos esperados pelo sistema, garantindo flexibilidade para diferentes estruturas de dados de equipamentos diversos. Apos processamento, sistema cria automaticamente features do tipo Point no banco geoespacial PostGIS permitindo visualizacao e analise posterior. Integracao com unidades territoriais e comunidades existentes conforme segregacao por tenant. Essencial para projetos de regularizacao fundiaria que demandam levantamentos de precisao.
+
+## Criterios de Aceitacao
+
+1. Upload de arquivos CSV e TXT
+2. Mapeamento de colunas configuravel
+3. Criacao de features Point em PostGIS
+4. Validacao de coordenadas
+5. Integracao com unidades e comunidades
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-157, RF-132

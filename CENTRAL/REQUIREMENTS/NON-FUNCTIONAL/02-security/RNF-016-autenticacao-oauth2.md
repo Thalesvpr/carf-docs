@@ -1,17 +1,14 @@
 ---
-id: RNF-016
-type: RNF
-modules: []
+type: rnf
 status: approved
-created: 2026-01-23
-updated: 2026-01-23
+updated: 2026-01-25
 ---
 
 # RNF-016: Autenticacao OAuth2
 
 ## Descricao
 
-Toda autenticacao no sistema GEOMAP5 deve utilizar OAuth2 via Keycloak. Mecanismo padronizado e centralizado para controle de acesso aos modulos GEOAPI, GEOWEB, REURBCAD e GEOGIS.
+Toda autenticacao no sistema CARF deve utilizar OAuth2 via Keycloak. Mecanismo padronizado e centralizado para controle de acesso aos modulos GEOAPI, GEOWEB, REURBCAD e GEOGIS.
 
 ## Metricas
 

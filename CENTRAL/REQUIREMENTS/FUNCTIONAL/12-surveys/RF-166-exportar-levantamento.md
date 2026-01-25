@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-166: Exportar Levantamento
 
-O sistema disponibiliza funcionalidade de exportação de dados de levantamento topográfico em múltiplos formatos técnicos amplamente utilizados em engenharia e agrimensura, incluindo CSV para dados tabulares de coordenadas, DXF para intercâmbio com softwares CAD como AutoCAD e Shapefile para integração com sistemas GIS desktop. Durante o processo de exportação, o sistema inclui automaticamente metadados essenciais como sistema de coordenadas utilizado, datum de referência, data de coleta, responsável técnico pelo levantamento e identificadores do projeto, garantindo rastreabilidade e conformidade com normas técnicas de documentação geodésica. Antes da geração dos arquivos, o sistema executa rotinas de validação que verificam consistência geométrica dos dados, completude de atributos obrigatórios e integridade referencial entre pontos e features derivadas, prevenindo exportação de dados incompletos ou inconsistentes que poderiam comprometer análises posteriores ou processos de intercâmbio com órgãos reguladores. Os arquivos exportados mantêm estrutura compatível com especificações técnicas de cada formato, facilitando importação em outros sistemas sem necessidade de conversões adicionais ou ajustes manuais.
+## Descricao
+
+Sistema deve permitir exportacao de dados de levantamento topografico em multiplos formatos tecnicos: CSV para dados tabulares de coordenadas, DXF para intercambio com softwares CAD (AutoCAD), e Shapefile para integracao com sistemas GIS desktop. Durante exportacao, sistema inclui automaticamente metadados essenciais (sistema de coordenadas, datum, data de coleta, responsavel tecnico, identificadores do projeto) garantindo rastreabilidade e conformidade com normas tecnicas. Validacao antes da geracao verifica consistencia geometrica, completude de atributos obrigatorios e integridade referencial, prevenindo exportacao de dados incompletos ou inconsistentes. Arquivos exportados mantêm estrutura compativel com especificacoes de cada formato facilitando importacao em outros sistemas.
+
+## Criterios de Aceitacao
+
+1. Exportacao em CSV, DXF e Shapefile
+2. Inclusao automatica de metadados
+3. Validacao de consistencia pre-exportacao
+4. Estrutura compativel com especificacoes
+5. Rastreabilidade de dados exportados
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-157, RF-141

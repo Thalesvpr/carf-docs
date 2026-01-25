@@ -1,10 +1,28 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
+  - REURBCAD
 ---
 
 # RF-157: Criar Levantamento
 
-Este requisito estabelece que usuários autorizados devem poder criar registros de levantamento topográfico no sistema documentando trabalhos de campo e medições realizadas incluindo metadados descritivos e arquivos brutos de dados coletados, onde levantamentos são entidades que organizam informação sobre atividades de mapeamento e coleta de dados geoespaciais. O sistema deve fornecer formulário de criação com campos para data de realização do levantamento permitindo registro cronológico preciso, responsável técnico identificando profissional que conduziu trabalho para rastreabilidade e responsabilização, e equipamento utilizado documentando instrumentos de medição como estação total GPS RTK ou drone para contexto sobre precisão e metodologia empregada. O formulário deve permitir vinculação do levantamento a comunidade ou unidade territorial específica estabelecendo escopo geográfico e contexto administrativo do trabalho realizado, onde associação facilita organização e recuperação de levantamentos por localidade. O sistema deve suportar upload de arquivo bruto contendo dados coletados em campo em formatos diversos como .raw .txt .csv ou outros formatos proprietários de equipamentos topográficos, onde arquivo é armazenado em object storage vinculado ao registro de levantamento permitindo acesso posterior para processamento análise ou auditoria. Os metadados e arquivo devem ser validados durante criação e registro completo persistido no banco. A funcionalidade deve estar disponível nos módulos GEOWEB para entrada de dados, REURBCAD para criação mobile em campo, e GEOAPI para persistência.
+## Descricao
+
+Sistema deve permitir criacao de registros de levantamento topografico documentando trabalhos de campo e medicoes realizadas. Formulario de criacao com campos para data de realizacao, responsavel tecnico (para rastreabilidade), e equipamento utilizado (estacao total, GPS RTK, drone) documentando metodologia e precisao. Vinculacao a comunidade ou unidade territorial estabelece escopo geografico e contexto administrativo. Suporte a upload de arquivo bruto (.raw, .txt, .csv ou formatos proprietarios) armazenado em object storage vinculado ao registro. Metadados e arquivo validados durante criacao e persistidos no banco conforme segregacao por tenant do WORKFLOW-MESTRE.
+
+## Criterios de Aceitacao
+
+1. Formulario com data, responsavel e equipamento
+2. Vinculacao a comunidade ou unidade
+3. Upload de arquivo bruto de dados
+4. Armazenamento em object storage
+5. Validacao de metadados
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI, REURBCAD
+- Requisitos dependentes: RF-017, RF-102

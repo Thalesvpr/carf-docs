@@ -1,7 +1,7 @@
 ---
 type: readme
-status: current
-updated: 2026-01-22
+status: approved
+updated: 2026-01-24
 ---
 
 # DESIGN-SYSTEM
@@ -15,5 +15,16 @@ Os [principios](./PRINCIPIOS/README.md) estabelecem a visao, valores e compromis
 Para implementacao tecnica dos componentes React baseados neste Design System, consulte a biblioteca @carf/ui em PROJECTS/.
 
 <!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
+
+## Subpastas (4)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [EXPERIENCIAS](./EXPERIENCIAS/README.md) | ... |
+| [IDENTIDADE](./IDENTIDADE/README.md) | ... |
+| [LINGUAGEM-VISUAL](./LINGUAGEM-VISUAL/README.md) | ... |
+| [PRINCIPIOS](./PRINCIPIOS/README.md) | ... |
 
 <!-- CARF-INDEX-END -->

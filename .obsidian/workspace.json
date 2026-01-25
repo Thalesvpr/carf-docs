@@ -20,20 +20,77 @@
             }
           },
           {
-            "id": "ac8d9d58b847741e",
+            "id": "80193527cf431d00",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/02-security/RNF-022-cors-restritivo.md",
+                "file": "CENTRAL/WORKFLOW-MESTRE/README.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "RNF-022-cors-restritivo"
+              "title": "README"
+            }
+          },
+          {
+            "id": "053a3389105f2f93",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CENTRAL/WORKFLOW-MESTRE/01-entrega-ortofotos/passo-02-upload.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "passo-02-upload"
+            }
+          },
+          {
+            "id": "84f6f6731bbdd8a9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CENTRAL/WORKFLOW-MESTRE/02-georreferenciamento/passo-05-designacao.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "passo-05-designacao"
+            }
+          },
+          {
+            "id": "bc6e44128888d455",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/03-reliability/RNF-036-uptime.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "RNF-036-uptime"
+            }
+          },
+          {
+            "id": "1f8d243045959425",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "PROJECTS/ADMIN/DOCS/ARCHITECTURE/01-overview.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "01-overview"
             }
           }
-        ]
+        ],
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -90,7 +147,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 366.5
+    "width": 340.5
   },
   "right": {
     "id": "5c80d725b66a9060",
@@ -192,7 +249,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 443.5
+    "width": 404.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -206,44 +263,44 @@
       "bases:Criar nova base": false
     }
   },
-  "active": "64700822131d2339",
+  "active": "1f8d243045959425",
   "lastOpenFiles": [
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/02-security/RNF-022-cors-restritivo.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/02-security/README.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/02-security/RNF-018-https-obrigatorio.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/02-security/RNF-020-validacao-input.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/01-performance/RNF-011-paginacao-listagens.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/01-performance/RNF-010-renderizacao-geometrias.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/01-performance/RNF-003-tempo-resposta-queries-espaciais.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/01-performance/RNF-001-tempo-resposta-endpoints-leitura.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/08-interoperability/RNF-085-api-rest-padrao.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/07-maintainability/RNF-064-refatoracao-continua.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/07-maintainability/RNF-056-cobertura-de-testes.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/06-compatibility/RNF-044-logs-estruturados-centralizados.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/06-compatibility/RNF-081-formatos-importacao.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/06-compatibility/RNF-084-integracao-wms-wmts.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/06-compatibility/RNF-083-sistemas-coordenadas.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/06-compatibility/RNF-058-linting-e-formatacao.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/06-compatibility/RNF-008-sincronizacao-offline-pull.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/06-compatibility/RNF-007-exportacao-dados.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/07-maintainability/RNF-082-formatos-exportacao.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/07-maintainability/RNF-063-tratamento-de-excecoes.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/07-maintainability/RNF-059-versionamento-semantico.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/08-interoperability/RNF-086-openapi-spec.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/08-interoperability/RNF-088-oauth2-providers.md",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/08-interoperability/README.md",
-    "CENTRAL/REQUIREMENTS/FUNCTIONAL/README.md",
-    "CENTRAL/ARCHITECTURE/SYSTEM/03-reurbcad.md",
-    "CENTRAL/ARCHITECTURE/DIAGRAMS/deployment.mmd",
-    "CENTRAL/ARCHITECTURE/DIAGRAMS/data-flow.mmd",
-    "CENTRAL/ARCHITECTURE/DIAGRAMS/ecosystem.mmd",
-    "CENTRAL/ARCHITECTURE/DIAGRAMS",
-    "CENTRAL/ARCHITECTURE/DECISIONS",
-    "CENTRAL/ARCHITECTURE/INTEGRATION",
-    "CENTRAL/ARCHITECTURE/SYSTEM",
-    "CENTRAL/REQUIREMENTS/USE-CASES/PROCESS-WORKFLOWS",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/08-interoperability",
-    "CENTRAL/REQUIREMENTS/NON-FUNCTIONAL/07-maintainability",
+    "CENTRAL/WORKFLOW-MESTRE/README.md",
+    "CENTRAL/WORKFLOW-MESTRE/05-conceitos-glossario/termos-tecnicos.md",
+    "CENTRAL/WORKFLOW-MESTRE/05-conceitos-glossario/sistemas.md",
+    "CENTRAL/WORKFLOW-MESTRE/05-conceitos-glossario/README.md",
+    "CENTRAL/WORKFLOW-MESTRE/05-conceitos-glossario/conceitos-principais.md",
+    "CENTRAL/WORKFLOW-MESTRE/05-conceitos-glossario/atores.md",
+    "CENTRAL/WORKFLOW-MESTRE/04-regras-inegociaveis/regras-tenant.md",
+    "CENTRAL/WORKFLOW-MESTRE/04-regras-inegociaveis/regras-publicacao.md",
+    "CENTRAL/WORKFLOW-MESTRE/04-regras-inegociaveis/regras-ortofotos.md",
+    "CENTRAL/WORKFLOW-MESTRE/04-regras-inegociaveis/regras-ordem.md",
+    "CENTRAL/WORKFLOW-MESTRE/04-regras-inegociaveis/regras-campo.md",
+    "CENTRAL/WORKFLOW-MESTRE/04-regras-inegociaveis/regras-autenticacao.md",
+    "CENTRAL/WORKFLOW-MESTRE/04-regras-inegociaveis/README.md",
+    "CENTRAL/WORKFLOW-MESTRE/03-operacao-campo/README.md",
+    "CENTRAL/WORKFLOW-MESTRE/03-operacao-campo/passo-18-finalizacao.md",
+    "CENTRAL/WORKFLOW-MESTRE/03-operacao-campo/passo-17-formulario.md",
+    "CENTRAL/WORKFLOW-MESTRE/03-operacao-campo/passo-16-pre-formulario.md",
+    "CENTRAL/WORKFLOW-MESTRE/03-operacao-campo/passo-15-fluxo-operacional.md",
+    "CENTRAL/WORKFLOW-MESTRE/03-operacao-campo/passo-14-mapa.md",
+    "CENTRAL/WORKFLOW-MESTRE/03-operacao-campo/passo-13-selecao.md",
+    "CENTRAL/WORKFLOW-MESTRE/03-operacao-campo/passo-12-download.md",
+    "CENTRAL/WORKFLOW-MESTRE/03-operacao-campo/passo-11-designacao.md",
+    "CENTRAL/WORKFLOW-MESTRE/02-georreferenciamento/README.md",
+    "CENTRAL/WORKFLOW-MESTRE/02-georreferenciamento/passo-10-dados-liberados.md",
+    "CENTRAL/WORKFLOW-MESTRE/02-georreferenciamento/passo-09-publicacao.md",
+    "CENTRAL/WORKFLOW-MESTRE/02-georreferenciamento/passo-08-georreferenciamento.md",
+    "CENTRAL/WORKFLOW-MESTRE/05-conceitos-glossario",
+    "CENTRAL/WORKFLOW-MESTRE/04-regras-inegociaveis",
+    "CENTRAL/WORKFLOW-MESTRE/03-operacao-campo",
+    "CENTRAL/WORKFLOW-MESTRE/02-georreferenciamento",
+    "CENTRAL/WORKFLOW-MESTRE/01-entrega-ortofotos",
+    "CENTRAL/REQUIREMENTS/FUNCTIONAL/07-holders/RF-085-editar-titular.md.tmp.87272.1769348092599",
+    "CENTRAL/DOMAIN/DIAGRAMS/workflows-diagram.mmd",
+    "CENTRAL/DOMAIN/DIAGRAMS/multi-tenancy-diagram.mmd",
+    "CENTRAL/DOMAIN/DIAGRAMS/er-diagram.mmd",
+    "CENTRAL/DOMAIN/DIAGRAMS/aggregates-diagram.mmd",
     "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/public/img/logo.svg"
   ]
 }

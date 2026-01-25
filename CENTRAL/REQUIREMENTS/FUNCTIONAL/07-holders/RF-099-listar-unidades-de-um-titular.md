@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-099: Listar Unidades de um Titular
 
-O sistema deve apresentar lista completa de todas as unidades habitacionais vinculadas a um titular específico, onde visualização mostra código da unidade, endereço, comunidade, tipo de relacionamento do titular com a unidade (proprietário possuidor locatário etc) e status atual da unidade (draft pending approved rejected). A listagem permite identificação rápida de titulares com múltiplas propriedades ou posses facilitando análises de concentração fundiária, detecção de possíveis irregularidades como mesmo titular em unidades distantes geograficamente sugerindo cadastros duplicados, ou simplesmente navegação entre propriedades de mesma pessoa durante processos de regularização. A interface oferece filtros por tipo de relacionamento e status permitindo segmentação como "mostrar apenas unidades onde titular é proprietário e status é aprovado" focalizando análise em subconjunto específico de vínculos relevantes ao contexto. Cada item da lista é clicável navegando diretamente para visualização detalhada da unidade correspondente, criando navegação fluida entre cadastro de titular e unidades associadas através de links bidirecionais que facilitam exploração relacional da base de dados. Implementado nos módulos GEOWEB e GEOAPI com prioridade Should-have, este recurso é essencial para compreensão completa do portfolio de cada titular e detecção de padrões que possam indicar necessidade de intervenções específicas ou validações adicionais.
+## Descricao
+
+Sistema deve apresentar lista completa de unidades vinculadas a um titular especifico mostrando codigo, endereco, comunidade, tipo de relacionamento e status da unidade. Listagem facilita identificacao de titulares com multiplas propriedades e deteccao de irregularidades como mesmo titular em unidades distantes. Interface oferece filtros por tipo de relacionamento e status. Cada item clicavel navega para visualizacao detalhada da unidade. Links bidirecionais entre titular e unidades associadas.
+
+## Criterios de Aceitacao
+
+1. Lista de unidades por titular
+2. Exibicao de tipo de relacionamento e status
+3. Filtros por relacionamento e status
+4. Navegacao para detalhes da unidade
+5. Links bidirecionais titular-unidades
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-061, RF-052

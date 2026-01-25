@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOAPI
 ---
 
-# RF-005: Validação JWT em Todas Requisições
+# RF-005: Validacao JWT em Todas Requisicoes
 
-GEOAPI deve validar JWT (JSON Web Token) em todas requisições protegidas garantindo autenticidade e integridade do token onde verificação de assinatura JWT ocorre utilizando chave pública RSA obtida de endpoint /realms/{realm}/protocol/openid-connect/certs do Keycloak validando que token não foi adulterado, validação de claims obrigatórios inclui verificação de exp (expiration time) garantindo token não expirou iss (issuer) confirmando que token foi emitido pelo Keycloak autorizado aud (audience) validando que token destinado à API correta e outros claims relevantes como sub (subject identificador único do usuário) tenant_id roles conforme necessidade do negócio, rejeição de tokens inválidos deve retornar HTTP 401 Unauthorized com corpo de resposta JSON contendo mensagem descritiva do erro (ex: "Token expirado" "Assinatura inválida" "Emissor não confiável") permitindo cliente identificar causa da falha e tomar ação apropriada como renovação de token ou solicitação de re-autenticação.
+## Descricao
+
+O backend GEOAPI deve validar token JWT em todas as requisicoes autenticadas. Validacao inclui verificacao de assinatura usando chave publica do Keycloak, verificacao de claims obrigatorios (sub, exp, iat, iss, aud), confirmacao de token nao expirado e extracao de tenant_id e roles para controle de acesso. Requisicoes com token invalido retornam HTTP 401 Unauthorized.
+
+## Criterios de Aceitacao
+
+1. Toda requisicao autenticada passa por validacao JWT
+2. Assinatura verificada contra chave publica do Keycloak
+3. Token expirado retorna 401 Unauthorized
+4. Claims tenant_id e roles extraidos para contexto
+5. Mensagem de erro descritiva no corpo da resposta
+
+## Rastreabilidade
+
+- Modulos: GEOAPI
+- Requisitos dependentes: RF-001

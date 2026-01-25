@@ -64,7 +64,7 @@ draft: false
 ---
 title: "Cadastrar Unidade Habitacional"
 description: "Guia passo a passo para cadastrar uma nova unidade habitacional no sistema CARF usando GeoWeb ou REURBCAD."
-source: "CENTRAL/REQUIREMENTS/USE-CASES/UC-001-cadastrar-unidade-habitacional/UC-001-cadastrar-unidade-habitacional.md"
+source: "PROJECTS/REURBCAD/USE-CASES/UC-P3-004-operar-em-campo/UC-P3-004-operar-em-campo.md"
 sidebar:
   order: 3
   badge: "Atualizado"

@@ -1,46 +1,14 @@
 ---
 type: readme
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES."
-updated: 2026-01-15
+status: approved
+updated: 2026-01-25
 ---
 
-# Documentos e Mídia
+# Documentos e Midia
 
+Requisitos funcionais para gerenciamento de documentos e midia no ecossistema CARF. Define operacoes de upload, armazenamento, categorizacao e visualizacao de arquivos e fotos vinculados a unidades, titulares e comunidades, conforme WORKFLOW-MESTRE onde Agente de Campo captura fotos e documentos via app REURBCAD e sistema armazena em bucket S3/MinIO segregado por tenant.
 
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (25 requisitos)
-
-| ID                                                           | Titulo                                 |
-| :----------------------------------------------------------- | :------------------------------------- |
-| [RF-102](./RF-102-upload-de-documentos.md)                   | Upload de Documentos                   |
-| [RF-103](./RF-103-tipos-de-documento.md)                     | Tipos de Documento                     |
-| [RF-104](./RF-104-vincular-documento-a-entidade.md)          | Vincular Documento a Entidade          |
-| [RF-105](./RF-105-listar-documentos.md)                      | Listar Documentos                      |
-| [RF-106](./RF-106-download-de-documento.md)                  | Download de Documento                  |
-| [RF-107](./RF-107-excluir-documento.md)                      | Excluir Documento                      |
-| [RF-108](./RF-108-upload-de-fotos.md)                        | Upload de Fotos                        |
-| [RF-109](./RF-109-tipos-de-foto.md)                          | Tipos de Foto                          |
-| [RF-110](./RF-110-geotagging-de-fotos.md)                    | Geotagging de Fotos                    |
-| [RF-111](./RF-111-galeria-de-fotos.md)                       | Galeria de Fotos                       |
-| [RF-112](./RF-112-ordenar-fotos.md)                          | Ordenar Fotos                          |
-| [RF-113](./RF-113-excluir-foto.md)                           | Excluir Foto                           |
-| [RF-114](./RF-114-compressão-de-fotos.md)                    | Compressão de Fotos                    |
-| [RF-115](./RF-115-geração-de-miniaturas.md)                  | Geração de Miniaturas                  |
-| [RF-116](./RF-116-armazenamento-em-s3minio.md)               | Armazenamento em S3/MinIO              |
-| [RF-117](./RF-117-visualizar-foto-no-mapa.md)                | Visualizar Foto no Mapa                |
-| [RF-118](./RF-118-metadados-de-arquivos.md)                  | Metadados de Arquivos                  |
-| [RF-119](./RF-119-scan-de-vírus.md)                          | Scan de Vírus                          |
-| [RF-120](./RF-120-versionamento-de-documentos.md)            | Versionamento de Documentos            |
-| [RF-121](./RF-121-anexar-descrição-a-foto.md)                | Anexar Descrição a Foto                |
-| [RF-122](./RF-122-tirar-foto-com-câmera-mobile.md)           | Tirar Foto com Câmera (Mobile)         |
-| [RF-123](./RF-123-selecionar-foto-da-galeria-mobile.md)      | Selecionar Foto da Galeria (Mobile)    |
-| [RF-124](./RF-124-exportar-documentosfotos.md)               | Exportar Documentos/Fotos              |
-| [RF-125](./RF-125-limite-de-armazenamento-por-tenant.md)     | Limite de Armazenamento por Tenant     |
-| [RF-126](./RF-126-notificação-de-limite-de-armazenamento.md) | Notificação de Limite de Armazenamento |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
+Os requisitos [RF-102](./RF-102-upload-de-documentos.md) a [RF-107](./RF-107-excluir-documento.md) cobrem ciclo de vida de documentos incluindo upload, tipos, vinculacao, listagem e exclusao. Os requisitos [RF-108](./RF-108-upload-de-fotos.md) a [RF-117](./RF-117-visualizar-foto-no-mapa.md) tratam de fotos incluindo upload, tipos, geotagging, galeria e visualizacao no mapa. Os requisitos [RF-118](./RF-118-metadados-de-arquivos.md) a [RF-126](./RF-126-notificação-de-limite-de-armazenamento.md) cobrem metadados, seguranca, versionamento, mobile e limites de armazenamento por tenant.
 
 <!-- CARF-INDEX-START -->
 > ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
@@ -62,18 +30,18 @@ updated: 2026-01-15
 | [RF-111: Galeria de Fotos](./RF-111-galeria-de-fotos.md) | ⚠ |
 | [RF-112: Ordenar Fotos](./RF-112-ordenar-fotos.md) | ⚠ |
 | [RF-113: Excluir Foto](./RF-113-excluir-foto.md) | ⚠ |
-| [RF-114: Compressão de Fotos](./RF-114-compressão-de-fotos.md) | ⚠ |
-| [RF-115: Geração de Miniaturas](./RF-115-geração-de-miniaturas.md) | ⚠ |
+| [RF-114: Compressao de Fotos](./RF-114-compressão-de-fotos.md) | ⚠ |
+| [RF-115: Geracao de Miniaturas](./RF-115-geração-de-miniaturas.md) | ⚠ |
 | [RF-116: Armazenamento em S3/MinIO](./RF-116-armazenamento-em-s3minio.md) | ⚠ |
 | [RF-117: Visualizar Foto no Mapa](./RF-117-visualizar-foto-no-mapa.md) | ⚠ |
 | [RF-118: Metadados de Arquivos](./RF-118-metadados-de-arquivos.md) | ⚠ |
-| [RF-119: Scan de Vírus](./RF-119-scan-de-vírus.md) | ⚠ |
+| [RF-119: Scan de Virus](./RF-119-scan-de-vírus.md) | ⚠ |
 | [RF-120: Versionamento de Documentos](./RF-120-versionamento-de-documentos.md) | ⚠ |
-| [RF-121: Anexar Descrição a Foto](./RF-121-anexar-descrição-a-foto.md) | ⚠ |
-| [RF-122: Tirar Foto com Câmera (Mobile)](./RF-122-tirar-foto-com-câmera-mobile.md) | ⚠ |
-| [RF-123: Selecionar Foto da Galeria (Mobile)](./RF-123-selecionar-foto-da-galeria-mobile.md) | ⚠ |
+| [RF-121: Anexar Descricao a Foto](./RF-121-anexar-descrição-a-foto.md) | ⚠ |
+| [RF-122: Tirar Foto com Camera Mobile](./RF-122-tirar-foto-com-câmera-mobile.md) | ⚠ |
+| [RF-123: Selecionar Foto da Galeria Mobile](./RF-123-selecionar-foto-da-galeria-mobile.md) | ⚠ |
 | [RF-124: Exportar Documentos/Fotos](./RF-124-exportar-documentosfotos.md) | ⚠ |
 | [RF-125: Limite de Armazenamento por Tenant](./RF-125-limite-de-armazenamento-por-tenant.md) | ⚠ |
-| [RF-126: Notificação de Limite de Armazenamento](./RF-126-notificação-de-limite-de-armazenamento.md) | ⚠ |
+| [RF-126: Notificacao de Limite de Armazenamento](./RF-126-notificação-de-limite-de-armazenamento.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

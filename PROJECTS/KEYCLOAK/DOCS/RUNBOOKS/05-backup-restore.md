@@ -1,6 +1,6 @@
 ---
 type: leaf
-status: rejected
+status: review
 description: "Runbook com lista de retencao no final - falta converter para prosa densa"
 updated: 2026-01-22
 ---

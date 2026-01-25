@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOAPI
 ---
 
-# RF-114: Compressão de Fotos
+# RF-114: Compressao de Fotos
 
-Este requisito especifica que o sistema deve automaticamente comprimir fotos durante processo de upload para otimizar armazenamento e performance, onde a compressão ocorre no backend antes de salvar arquivo final no storage. O sistema deve redimensionar imagens que excedam 2048 pixels em qualquer dimensão, mantendo proporções originais e garantindo que fotos de alta resolução sejam reduzidas a tamanho gerenciável sem perda significativa de qualidade visual para uso em aplicações web e mobile. A compressão deve aplicar qualidade de 80% no algoritmo JPEG, balanceando redução de tamanho de arquivo com preservação de qualidade suficiente para análise e documentação, onde valor de 80% tipicamente produz arquivos significativamente menores mantendo qualidade aceitável. Crítico é que o processo preserve metadados EXIF originais incluindo informações de GPS, data/hora de captura e configurações de câmera, garantindo que dados importantes para geotagging e rastreabilidade não sejam perdidos durante compressão. O sistema deve processar compressão de forma assíncrona se possível evitando timeout em uploads, fornecendo feedback de progresso para usuário. A funcionalidade deve ser implementada no módulo GEOAPI durante pipeline de processamento de upload de fotos.
+## Descricao
+
+Sistema deve automaticamente comprimir fotos durante upload para otimizar armazenamento e performance. Redimensionamento de imagens que excedam 2048 pixels em qualquer dimensao mantendo proporcoes. Compressao aplica qualidade 80% no algoritmo JPEG balanceando reducao de tamanho com qualidade visual adequada. Critico: preservar metadados EXIF originais incluindo GPS, data/hora e configuracoes de camera. Processamento assincrono se necessario evitando timeout com feedback de progresso.
+
+## Criterios de Aceitacao
+
+1. Redimensionamento para max 2048 pixels
+2. Qualidade 80% JPEG
+3. Preservacao de metadados EXIF
+4. Processamento assincrono se necessario
+5. Manutencao de proporcoes originais
+
+## Rastreabilidade
+
+- Modulos: GEOAPI
+- Requisitos dependentes: RF-108, RF-110

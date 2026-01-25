@@ -62,7 +62,7 @@ Cada seção do WEBDOCS tem fontes permitidas em CENTRAL e PROJECTS. O validador
       "allowed_sources": [
         "PROJECTS/GEOWEB/DOCS/FEATURES/",
         "PROJECTS/GEOWEB/DOCS/HOW-TO/",
-        "CENTRAL/REQUIREMENTS/USE-CASES/"
+        "PROJECTS/GEOWEB/USE-CASES/"
       ],
       "description": "Manuais GeoWeb derivados de features e casos de uso",
       "content_adaptation": "Foco em passos práticos com screenshots"
@@ -71,7 +71,7 @@ Cada seção do WEBDOCS tem fontes permitidas em CENTRAL e PROJECTS. O validador
       "allowed_sources": [
         "PROJECTS/REURBCAD/DOCS/FEATURES/",
         "PROJECTS/REURBCAD/DOCS/HOW-TO/",
-        "CENTRAL/REQUIREMENTS/USE-CASES/"
+        "PROJECTS/REURBCAD/USE-CASES/"
       ],
       "description": "Manuais REURBCAD derivados de features e casos de uso",
       "content_adaptation": "Foco em uso offline e sincronização"

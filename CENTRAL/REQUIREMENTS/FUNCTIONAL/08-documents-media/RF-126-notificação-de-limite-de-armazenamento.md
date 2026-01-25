@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOAPI
 ---
 
-# RF-126: Notificação de Limite de Armazenamento
+# RF-126: Notificacao de Limite de Armazenamento
 
-Este requisito especifica que administradores de tenant devem ser notificados proativamente quando uso de storage atinge 80% da quota configurada permitindo ação preventiva antes de limite ser atingido e uploads bloqueados, onde sistema monitora continuamente ou periodicamente percentual de uso relativo à quota. O sistema deve implementar monitoramento de uso através de job agendado ou trigger que verifica periodicamente consumo atual de cada tenant comparando com quota configurada, calculando percentual utilizado e identificando tenants que ultrapassaram threshold de alerta configurado tipicamente 80%. Quando threshold é atingido, sistema deve enviar email de alerta para administradores do tenant incluindo informações sobre uso atual quota total percentual consumido e orientações sobre como liberar espaço ou solicitar aumento de quota, garantindo que responsáveis tenham conhecimento da situação antes que se torne crítica. Além de email, o sistema deve exibir painel com métricas de storage no módulo administrativo mostrando visualmente progresso de uso através de gráfico ou barra de progresso com indicadores de alerta em amarelo quando próximo do limite e vermelho quando quota excedida. O sistema deve registrar envio de notificações para evitar spam repetitivo, enviando alertas máximo uma vez por período configurado. A funcionalidade deve ser implementada no módulo GEOAPI através de background jobs e integração com serviço de email.
+## Descricao
+
+Sistema deve notificar administradores de tenant proativamente quando uso de storage atinge 80% da quota configurada, permitindo acao preventiva antes de uploads bloqueados. Monitoramento implementado via job agendado que verifica periodicamente consumo de cada tenant comparando com quota, calculando percentual utilizado e identificando tenants que ultrapassaram threshold de alerta. Quando threshold atingido, sistema envia email de alerta para administradores do tenant com informacoes sobre uso atual, quota total, percentual consumido e orientacoes sobre como liberar espaco ou solicitar aumento. Painel administrativo exibe metricas de storage visualmente atraves de grafico ou barra de progresso com indicadores amarelo proximo do limite e vermelho quando excedido. Sistema registra envio de notificacoes para evitar spam, enviando maximo uma vez por periodo configurado.
+
+## Criterios de Aceitacao
+
+1. Alerta automatico ao atingir 80% da quota
+2. Email para administradores do tenant
+3. Painel visual de uso de storage
+4. Indicadores visuais de alerta
+5. Controle de frequencia de notificacoes
+
+## Rastreabilidade
+
+- Modulos: GEOAPI
+- Requisitos dependentes: RF-125, RF-017

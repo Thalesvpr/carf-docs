@@ -1,12 +1,12 @@
 ---
 type: leaf
-status: review
-updated: 2026-01-22
+status: approved
+updated: 2026-01-24
 ---
 
 # Data Layer
 
-Camada de persistencia centralizada usando PostgreSQL 15 com extensao PostGIS 3.3 para dados geoespaciais. Todos os sistemas acessam dados exclusivamente atraves da GEOAPI que implementa isolamento multi-tenant via Row-Level Security.
+Camada de persistencia centralizada usando PostgreSQL 15 com extensao PostGIS 3.3 para dados geoespaciais e bucket S3/MinIO para armazenamento de ortofotos e arquivos. Todos os sistemas acessam dados exclusivamente atraves da GEOAPI que implementa isolamento multi-tenant via Row-Level Security no banco e prefixos por tenant_id no bucket.
 
 Schema unico contem todas as tabelas com coluna tenant_id em cada uma. RLS policies filtram automaticamente registros por tenant do usuario autenticado. Indices espaciais GiST otimizam queries geograficas. Indices B-tree em colunas de busca frequente. Particoes por tenant para tabelas de alto volume.
 

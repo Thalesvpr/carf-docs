@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOAPI
+  - GEOWEB
 ---
 
 # RF-007: SUPER_ADMIN - Acesso Total
 
-Usuários com role SUPER_ADMIN devem ter acesso irrestrito a todas funcionalidades e recursos do sistema transcendendo limitações de tenant onde podem criar editar excluir qualquer recurso (tenants usuários comunidades unidades documentos configurações) em qualquer tenant sem restrições de isolamento de dados, capacidade de acessar múltiplos tenants implementada através de claim especial no JWT ou flag is_super_admin permitindo que queries de banco de dados ignorem filtros automáticos de tenant_id quando usuário possui esta role, permissão para gerenciar configurações globais de sistema incluindo parâmetros de infraestrutura integrações externas políticas de segurança backups e outras configurações administrativas críticas que não são expostas para roles inferiores, implementação em módulos GEOWEB e GEOAPI com interface administrativa específica acessível apenas para SUPER_ADMIN exibindo painéis de controle gerencial listagens cross-tenant e ferramentas de troubleshooting avançadas.
+## Descricao
+
+Usuarios com role SUPER_ADMIN devem ter acesso irrestrito a todas funcionalidades e recursos do sistema transcendendo limitacoes de tenant. Podem criar, editar e excluir qualquer recurso em qualquer tenant. Claim especial no JWT permite que queries ignorem filtros automaticos de tenant_id. Acesso a configuracoes globais de sistema, integracoes externas e politicas de seguranca.
+
+## Criterios de Aceitacao
+
+1. SUPER_ADMIN acessa recursos de qualquer tenant
+2. Queries de banco ignoram filtro RLS para esta role
+3. Interface administrativa global acessivel
+4. Pode gerenciar configuracoes de infraestrutura
+5. Auditoria registra todas acoes cross-tenant
+
+## Rastreabilidade
+
+- Modulos: GEOAPI, GEOWEB
+- Requisitos dependentes: RF-006, RF-013

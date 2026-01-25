@@ -1,6 +1,6 @@
 ---
 type: readme
-status: rejected
+status: review
 description: "README usa listas/tabelas ao invés de prosa densa com links inline."
 updated: 2026-01-22
 ---
@@ -23,7 +23,7 @@ Stack tecnológica React Native 0.74 Expo SDK 51 TypeScript strict mode Zustand 
 
 Arquitetura offline-first implementa local database WatermelonDB como source of truth primária com collections models schema migrations sync adapter conectando backend GEOAPI pull changes desde last sync timestamp push pending local changes conflict resolution estratégia, state management híbrido Zustand para UI state ephemeral (selected tab modal open filter values) TanStack Query para server state cached com staleTime infinito offline invalidation manual após sync success, navigation Expo Router app directory structure file-based routes com layouts tabs groups dynamic segments type-safe params, forms React Hook Form useForm hook com resolver Zod schema validations mode onChange reValidateMode onChange errors inline feedback submit handling optimistic UI updates, media handling Expo Image Picker selecionando photos gallery ou Camera capturing new compressing via expo-image-manipulator reduzindo size antes upload saving locally file system Expo FileSystem caching URIs persistindo references WatermelonDB, geolocation Expo Location requestForegroundPermissionsAsync obtaining coords getCurrentPositionAsync accuracy high timeout 10s caching last known location fallback watchPositionAsync streaming updates durante coleta mostrando marker React Native Maps.
 
-Relacionamento requirements implementando UC-004 coleta campo mobile UC-001 cadastro unidades UC-005 sync offline UC-003 vinculação titulares UC-011 gestão equipes UC-008 importação shapefiles garantindo field collectors produtivos offline dados sincronizados automaticamente online accountability rastreamento via GPS timestamps photos evidências compliance LGPD multi-tenancy RLS backend isolando dados municipais diferentes.
+Relacionamento requirements implementando UC-P3-004 operação em campo UC-005 sync offline UC-003 vinculação titulares UC-011 gestão equipes UC-008 importação shapefiles garantindo field collectors produtivos offline dados sincronizados automaticamente online accountability rastreamento via GPS timestamps photos evidências compliance LGPD multi-tenancy RLS backend isolando dados municipais diferentes. Operações de campo seguem [WORKFLOW-MESTRE PARTE 3](../../../../CENTRAL/WORKFLOW-MESTRE/03-operacao-campo.md).
 
 <!-- CARF-INDEX-START -->
 ## Documentos

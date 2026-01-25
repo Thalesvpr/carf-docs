@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
 ---
 
 # RF-038: Visualizar Comunidade no Mapa
 
-Usuário pode visualizar comunidade no mapa web interativo onde polígono da comunidade renderizado utilizando biblioteca cartográfica (Leaflet OpenLayers Mapbox) com estilo visual distintivo (cor preenchimento transparência borda destacada) diferenciando de outras features geográficas, zoom automático para extent (bounding box) da comunidade ao abrir visualização centralizando mapa e ajustando nível de zoom para exibir completamente boundary da comunidade com margem adequada garantindo contexto geográfico circundante visível, popup ou painel lateral exibindo informações essenciais ao clicar em polígono incluindo nome tipo população área quantidade de unidades vinculadas e ações rápidas (editar exportar visualizar detalhes completos), implementação em módulo GEOWEB utilizando mapa base configurável (OpenStreetMap satélite híbrido) camadas vetoriais para comunidades controles de zoom/pan ferramentas de medição e integração com outros layers geográficos relevantes (vias hidrografia limites administrativos).
+## Descricao
+
+Usuario pode visualizar comunidade no mapa web interativo onde poligono da comunidade e renderizado com estilo visual distintivo diferenciando de outras features geograficas. Zoom automatico para extent da comunidade ao abrir visualizacao centralizando mapa e ajustando nivel de zoom. Popup ou painel lateral exibe informacoes essenciais ao clicar em poligono incluindo nome, tipo, populacao, area e quantidade de unidades vinculadas.
+
+## Criterios de Aceitacao
+
+1. Poligono renderizado com estilo visual distintivo
+2. Zoom automatico para extent da comunidade
+3. Popup com informacoes essenciais ao clicar
+4. Mapa base configuravel (OSM, satelite, hibrido)
+5. Integracao com outros layers geograficos
+
+## Rastreabilidade
+
+- Modulos: GEOWEB
+- Requisitos dependentes: RF-034, RF-046

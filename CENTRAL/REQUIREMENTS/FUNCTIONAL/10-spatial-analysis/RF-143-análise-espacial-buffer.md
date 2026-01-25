@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
-# RF-143: Análise Espacial: Buffer
+# RF-143: Analise Espacial Buffer
 
-Este requisito estabelece que o sistema deve fornecer funcionalidade de criação de buffer zona de influência ao redor de features permitindo análise de proximidade e identificação de áreas afetadas por elemento geográfico, onde buffer é polígono que engloba todos os pontos a distância especificada ou menor da geometria original. A ferramenta deve aceitar parâmetro de distância em metros especificando raio do buffer a ser criado, onde usuário informa valor numérico e sistema aplica operação de buffer utilizando funções espaciais do PostGIS como ST_Buffer que gera geometria expandida considerando sistema de coordenadas e projeção apropriados para cálculos métricos precisos. O sistema deve gerar polígono buffer como nova geometria que pode ser visualizada temporariamente no mapa para análise visual ou salva como nova feature permanente em camada de destino conforme escolha do usuário, onde opção de salvar cria registro completo com geometria buffer e atributos que podem referenciar feature original. A ferramenta deve suportar aplicação de buffer a features individuais selecionadas ou em lote sobre múltiplas features simultaneamente, onde buffers podem ser unidos em geometria única através de dissolve ou mantidos como polígonos separados conforme necessidade analítica. O resultado deve ser renderizado no mapa com estilo diferenciado permitindo distinguir zona de buffer de features originais. A funcionalidade deve estar disponível nos módulos GEOWEB através de ferramenta de análise e GEOAPI via endpoint de processamento espacial.
+## Descricao
+
+Sistema deve fornecer funcionalidade de criacao de buffer (zona de influencia) ao redor de features permitindo analise de proximidade e identificacao de areas afetadas. Buffer e poligono que engloba todos os pontos a distancia especificada ou menor da geometria original. Ferramenta aceita parametro de distancia em metros, aplicando operacao via funcoes PostGIS como ST_Buffer com sistema de coordenadas apropriado para calculos metricos precisos. Sistema gera poligono buffer como nova geometria que pode ser visualizada temporariamente no mapa ou salva como nova feature permanente em camada de destino. Suporte a aplicacao de buffer em features individuais ou em lote com opcao de dissolve para unir buffers em geometria unica. Resultado renderizado com estilo diferenciado.
+
+## Criterios de Aceitacao
+
+1. Parametro de distancia em metros
+2. Uso de ST_Buffer do PostGIS
+3. Visualizacao temporaria ou salvar permanente
+4. Buffer individual ou em lote
+5. Opcao de dissolve para unir buffers
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-131, RF-132

@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-179: Timeline de Processo
 
-O sistema apresenta visualização cronológica completa do histórico de tramitação do processo de legitimação através de interface de timeline que exibe eventos em ordem temporal reversa, permitindo compreensão rápida e intuitiva da evolução processual desde abertura até estado atual. A timeline consolida diferentes tipos de eventos incluindo mudanças de status com justificativas associadas, anexação de documentos comprobatórios com identificação de tipo e autor do upload, edições de dados cadastrais com registro de campos modificados, geração de termos e outros documentos oficiais, além de interações como comentários de analistas ou solicitações de complementação documental. Cada evento é apresentado com timestamp preciso, identificação visual do tipo de evento através de ícones diferenciados, nome do usuário responsável pela ação, e descrição textual autoexplicativa que contextualiza a operação realizada, facilitando compreensão mesmo por usuários que não acompanharam diretamente a tramitação. Esta funcionalidade é fundamental para transparência processual, permitindo que gestores, auditores e até mesmo os próprios beneficiários compreendam exatamente quais etapas foram cumpridas, quais pendências existem e qual o histórico de decisões tomadas ao longo do processo de regularização, promovendo accountability e reduzindo questionamentos sobre tramitação processual.
+## Descricao
+
+Sistema deve apresentar visualizacao cronologica completa do historico de tramitacao do processo de legitimacao atraves de interface de timeline exibindo eventos em ordem temporal reversa. Timeline consolida diferentes tipos de eventos incluindo mudancas de status com justificativas, anexacao de documentos comprobatorios com identificacao de tipo e autor, edicoes de dados cadastrais com registro de campos modificados, geracao de termos oficiais e interacoes como comentarios de analistas ou solicitacoes de complementacao documental. Cada evento apresentado com timestamp preciso, icone diferenciado por tipo, usuario responsavel e descricao textual autoexplicativa. Fundamental para transparencia processual e accountability em processos administrativos publicos.
+
+## Criterios de Aceitacao
+
+1. Exibicao cronologica reversa de eventos
+2. Consolidacao de todos os tipos de evento
+3. Icones diferenciados por tipo
+4. Identificacao de usuario e timestamp
+5. Descricao autoexplicativa de cada evento
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-172, RF-173, RF-175, RF-176

@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-017: Criar Tenant
 
-Usuários com role SUPER_ADMIN devem poder criar novos tenants no sistema onde formulário de criação inclui campos obrigatórios como nome do tenant (ex: "Prefeitura de São Paulo") domínio único identificador (slug ex: "pmsp") configurações iniciais de personalização (logo cores tema) e parâmetros técnicos de infraestrutura, validação de unicidade de domínio implementada garantindo que slug de tenant seja único em toda plataforma prevenindo conflitos de identificação onde tentativa de criar tenant com domínio duplicado retorna erro descritivo solicitando escolha de identificador alternativo, criação de schema ou namespace isolado no banco de dados PostgreSQL utilizando schemas separados ou particionamento lógico garantindo isolamento físico de dados entre tenants e facilitando operações de backup restore e migração específicas por tenant, implementação em módulos GEOWEB para interface administrativa e GEOAPI para processamento backend incluindo criação automática de estruturas de banco de dados configuração de recursos padrão (roles básicas categorias iniciais) e provisionamento de ambiente completo pronto para uso imediato.
+## Descricao
+
+Usuarios com role SUPER_ADMIN devem poder criar novos tenants no sistema. Formulario de criacao inclui campos obrigatorios como nome do tenant, dominio unico identificador (slug), configuracoes iniciais de personalizacao (logo, cores, tema) e parametros tecnicos de infraestrutura. Sistema valida unicidade do dominio garantindo que slug seja unico em toda plataforma, retornando erro descritivo caso duplicado. Criacao provisiona automaticamente estruturas de banco de dados e recursos padrao.
+
+## Criterios de Aceitacao
+
+1. Formulario com campos obrigatorios nome e slug
+2. Validacao de unicidade de dominio antes de salvar
+3. Slug unico em toda plataforma com erro descritivo se duplicado
+4. Provisionamento automatico de estruturas de banco de dados
+5. Criacao de roles e configuracoes padrao do novo tenant
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-007

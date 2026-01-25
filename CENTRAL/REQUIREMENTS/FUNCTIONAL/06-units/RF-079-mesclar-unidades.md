@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-079: Mesclar Unidades
 
-O sistema deve permitir que administradores (perfil ADMIN) mesclem múltiplas unidades habitacionais em uma única unidade resultante, onde operação é útil para corrigir cadastros duplicados ou representar unificação física de edificações previamente separadas. A interface permite seleção de múltiplas unidades diretamente no mapa através de clique sequencial ou desenho de polígono envolvente, onde unidades selecionadas são destacadas visualmente e lista lateral apresenta resumo das unidades que serão mescladas. A geometria da unidade resultante é calculada através de união (ST_Union) das geometrias das unidades originais criando polígono único que engloba área total anteriormente ocupada pelas unidades separadas, garantindo preservação completa da extensão espacial. Titulares de todas as unidades originais são automaticamente vinculados à unidade mesclada preservando relacionamentos e evitando perda de informação sobre responsáveis, enquanto unidades originais são inativadas (soft delete) ao invés de excluídas permanentemente, mantendo rastreabilidade histórica da operação de mesclagem e permitindo eventual reversão se necessário através de restauração de registros inativados e exclusão da unidade mesclada.
+## Descricao
+
+Sistema deve permitir que usuarios ADMIN mesclem multiplas unidades em uma unica unidade resultante, util para corrigir cadastros duplicados ou representar unificacao fisica. Interface permite selecao de unidades no mapa com destaque visual. Geometria resultante calculada via ST_Union das geometrias originais. Titulares de todas as unidades originais vinculados automaticamente a unidade mesclada. Unidades originais inativadas via soft delete mantendo rastreabilidade historica e permitindo eventual reversao.
+
+## Criterios de Aceitacao
+
+1. Selecao de multiplas unidades no mapa
+2. Uniao geometrica via ST_Union
+3. Preservacao de titulares vinculados
+4. Soft delete das unidades originais
+5. Restrito a perfil ADMIN
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-049, RF-066

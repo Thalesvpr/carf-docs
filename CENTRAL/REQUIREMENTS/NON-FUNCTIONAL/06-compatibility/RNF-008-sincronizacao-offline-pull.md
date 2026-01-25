@@ -1,10 +1,7 @@
 ---
-id: RNF-008
-type: RNF
-modules: []
+type: rnf
 status: approved
-created: 2026-01-23
-updated: 2026-01-23
+updated: 2026-01-25
 ---
 
 # RNF-008: Sincronizacao Offline - Pull

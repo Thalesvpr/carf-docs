@@ -1,6 +1,6 @@
 ---
 type: leaf
-status: rejected
+status: review
 description: "Wall of text sem estrutura. Paragrafos gigantes ilegíveis."
 updated: 2026-01-22
 ---

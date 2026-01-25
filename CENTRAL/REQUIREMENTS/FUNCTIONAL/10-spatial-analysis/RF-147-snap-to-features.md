@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
 ---
 
 # RF-147: Snap to Features
 
-Este requisito estabelece que durante edição ou criação de features o sistema deve oferecer funcionalidade de snap permitindo que vértices desenhados colem automaticamente em features existentes quando cursor se aproxima facilitando criação de topologia precisa e conectividade entre elementos geográficos, onde snap garante alinhamento perfeito sem necessidade de precisão manual pixel-perfect. O sistema deve implementar tolerância de snap configurável especificando distância em pixels dentro da qual snap é ativado, onde valor típico entre 10 e 20 pixels permite snap confortável sem ser excessivamente agressivo capturando features não intencionadas, e configuração pode ser ajustada conforme densidade de features e preferências do usuário. A interface deve fornecer indicação visual clara de snap ativado mostrando feedback imediato quando cursor entra em zona de tolerância de feature existente, onde indicação pode incluir mudança de cor do cursor highlight do vértice alvo ou linha guia conectando cursor ao ponto de snap, garantindo que usuário compreende que próximo clique resultará em snap. O sistema deve permitir ativação e desativação da funcionalidade através de toggle checkbox ou tecla modificadora como Ctrl permitindo que usuário controle quando snap está ativo, útil quando desenho intencional próximo mas não conectado a features existentes é necessário. O snap deve funcionar com vértices edges e possivelmente centroides de features existentes. A funcionalidade é implementada exclusivamente no módulo GEOWEB através de lógica de desenho interativo.
+## Descricao
+
+Sistema deve oferecer funcionalidade de snap durante edicao ou criacao de features, permitindo que vertices desenhados colem automaticamente em features existentes quando cursor se aproxima, facilitando criacao de topologia precisa e conectividade entre elementos geograficos. Tolerancia de snap configuravel especifica distancia em pixels (tipicamente 10 a 20 pixels) dentro da qual snap e ativado, permitindo ajuste conforme densidade de features e preferencias do usuario. Interface fornece indicacao visual clara de snap ativado com feedback imediato (mudanca de cor do cursor, highlight do vertice alvo ou linha guia). Sistema permite ativacao e desativacao via toggle ou tecla modificadora (Ctrl) para controle quando desenho proximo mas nao conectado e necessario. Snap funciona com vertices, edges e centroides de features existentes.
+
+## Criterios de Aceitacao
+
+1. Tolerancia de snap configuravel em pixels
+2. Indicacao visual de snap ativado
+3. Toggle para ativar/desativar
+4. Snap em vertices, edges e centroides
+5. Tecla modificadora para bypass
+
+## Rastreabilidade
+
+- Modulos: GEOWEB
+- Requisitos dependentes: RF-132, RF-133

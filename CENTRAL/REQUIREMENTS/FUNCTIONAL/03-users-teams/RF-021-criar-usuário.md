@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
-# RF-021: Criar Usuário
+# RF-021: Criar Usuario
 
-Usuários com roles ADMIN e SUPER_ADMIN podem criar novos usuários no tenant onde formulário de criação inclui campos obrigatórios nome completo email único role inicial (MANAGER ANALYST FIELD_AGENT) e opcionalmente telefone departamento equipe vinculada e foto de perfil, validação de email único implementada verificando inexistência de email em base de usuários do tenant retornando erro descritivo "Email já cadastrado" caso duplicidade detectada impedindo criação de múltiplas contas com mesmo endereço eletrônico, envio automático de email de boas-vindas após criação bem-sucedida contendo link para ativação de conta definição de senha inicial instruções de primeiro acesso e informações de contato de suporte técnico, implementação em módulos GEOWEB para interface de cadastro e GEOAPI para processamento backend incluindo criação de registro em Keycloak sincronização de dados entre sistema local e Identity Provider atribuição automática de tenant_id baseado em contexto do administrador criador e geração de credenciais temporárias seguras.
+## Descricao
+
+Usuarios com roles ADMIN e SUPER_ADMIN podem criar novos usuarios no tenant. Formulario de criacao inclui campos obrigatorios nome completo, email unico e role inicial (MANAGER, ANALYST, FIELD_AGENT). Validacao de email unico implementada verificando inexistencia em base do tenant, retornando erro descritivo caso duplicado. Sistema envia automaticamente email de boas-vindas com link para ativacao e definicao de senha inicial. Usuario criado recebe tenant_id do contexto do administrador.
+
+## Criterios de Aceitacao
+
+1. Formulario com campos obrigatorios nome, email e role
+2. Validacao de email unico no tenant
+3. Email de boas-vindas enviado apos criacao
+4. Sincronizacao automatica com Keycloak
+5. Atribuicao automatica de tenant_id
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-001, RF-006

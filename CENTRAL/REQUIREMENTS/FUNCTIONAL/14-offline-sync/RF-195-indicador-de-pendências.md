@@ -1,10 +1,26 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - REURBCAD
 ---
 
-# RF-195: Indicador de Pendências
+# RF-195: Indicador de Pendencias
 
-O sistema exibe indicador visual proeminente de pendências de sincronização através de badge numérico apresentado sobre ícone de sincronização na interface principal do aplicativo, mostrando quantidade total de registros locais que foram criados ou modificados mas ainda não foram transmitidos ao servidor central. Ao tocar no indicador, usuário acessa listagem detalhada de registros pendentes organizada por tipo de entidade (unidades, titulares, fotos, etc.) e tipo de operação (criação, edição, deleção), incluindo identificação de cada registro como nome da unidade ou titular afetado, facilitando compreensão de exatamente quais dados aguardam sincronização. O contador de pendências é atualizado em tempo real sempre que usuário cria novo registro, edita registro existente ou completa sincronização bem-sucedida, garantindo que indicador reflita sempre estado atual preciso de dados não sincronizados sem necessidade de recarregar aplicativo. Este indicador visual serve função crítica de awareness situacional, lembrando constantemente usuário sobre existência de trabalho local não persistido no servidor e motivando execução de sincronização assim que conectividade estiver disponível, reduzindo risco de perda de dados por esquecimento de sincronizar antes de desinstalar aplicativo, trocar de dispositivo ou executar reset de fábrica.
+## Descricao
+
+Sistema deve exibir indicador visual proeminente de pendencias de sincronizacao atraves de badge numerico sobre icone de sincronizacao na interface principal, mostrando quantidade total de registros locais criados ou modificados que ainda nao foram transmitidos ao servidor central. Ao tocar no indicador, usuario acessa listagem detalhada de registros pendentes organizada por tipo de entidade (unidades, titulares, fotos) e tipo de operacao (criacao, edicao, delecao), incluindo identificacao de cada registro. Contador atualizado em tempo real sempre que usuario cria, edita ou completa sincronizacao, refletindo estado atual preciso de dados nao sincronizados. Indicador serve funcao critica de awareness situacional lembrando usuario sobre trabalho local nao persistido e motivando sincronizacao quando conectividade disponivel.
+
+## Criterios de Aceitacao
+
+1. Badge numerico sobre icone de sync
+2. Listagem detalhada por tipo de entidade
+3. Segmentacao por tipo de operacao
+4. Atualizacao em tempo real
+5. Identificacao de cada registro pendente
+
+## Rastreabilidade
+
+- Modulos: REURBCAD
+- Requisitos dependentes: RF-184, RF-185, RF-186

@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-140: Importar GeoJSON em Camada
 
-Este requisito especifica que usuários autorizados devem poder importar arquivos GeoJSON em camadas existentes permitindo ingestão de dados geoespaciais a partir de fonte externa ou sistema terceiro, onde processo converte FeatureCollection do GeoJSON em features nativas do sistema. O sistema deve aceitar upload de arquivo com extensão .geojson validando que conteúdo é JSON bem-formado e estrutura corresponde à especificação GeoJSON com FeatureCollection contendo array de Features cada uma com geometria e properties. A validação de estrutura deve verificar presença de campos obrigatórios como type geometry e properties em cada feature, garantir que geometries são válidas conforme especificação GeoJSON, e confirmar que tipos de geometria das features são compatíveis com tipo configurado na camada de destino. Após validação bem-sucedida, o sistema deve processar criação de features iterando sobre array de features do GeoJSON extraindo geometria convertendo para formato PostGIS e mapeando properties para atributos customizados da feature conforme schema da camada, onde processo pode requerer transformação de nomes de campos ou tipos de dados. A importação ocorre em transação única permitindo rollback completo se qualquer feature falhar validação. O sistema deve fornecer feedback de progresso e relatório final. A funcionalidade deve estar disponível nos módulos GEOWEB e GEOAPI via endpoint de importação.
+## Descricao
+
+Sistema deve permitir importacao de arquivos GeoJSON em camadas existentes para ingestao de dados geoespaciais de fonte externa ou sistema terceiro. Upload aceita arquivo .geojson validando que conteudo e JSON bem-formado e estrutura corresponde a especificacao GeoJSON com FeatureCollection contendo array de Features. Validacao de estrutura verifica presenca de campos obrigatorios (type, geometry, properties) em cada feature, validade das geometrias conforme especificacao, e compatibilidade de tipos de geometria com tipo configurado na camada destino. Processamento itera sobre array extraindo geometria, convertendo para formato PostGIS e mapeando properties para atributos customizados conforme schema da camada. Importacao ocorre em transacao unica permitindo rollback completo se qualquer feature falhar. Sistema fornece feedback de progresso e relatorio final.
+
+## Criterios de Aceitacao
+
+1. Upload de arquivo .geojson
+2. Validacao de estrutura GeoJSON
+3. Verificacao de compatibilidade de geometria
+4. Mapeamento de properties para atributos
+5. Transacao unica com rollback
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-127, RF-132, RF-136

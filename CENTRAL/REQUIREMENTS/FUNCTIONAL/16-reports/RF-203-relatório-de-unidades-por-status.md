@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
-# RF-203: Relatório de Unidades por Status
+# RF-203: Relatorio de Unidades por Status
 
-O sistema gera relatório consolidado que agrega unidades territoriais por status de aprovação, apresentando visão quantitativa da distribuição cadastral através de contagens e percentuais de unidades classificadas como Rascunho (DRAFT), Pendente de Análise (PENDING), Aprovada (APPROVED), Rejeitada (REJECTED) e outros estados definidos no workflow de validação. A funcionalidade implementa filtros configuráveis que permitem segmentar relatório por período de cadastramento ou atualização das unidades, comunidade específica, equipe responsável pelo levantamento ou outros critérios relevantes, possibilitando análises focadas em subconjuntos específicos do universo cadastral e comparações entre diferentes contextos. O relatório apresenta tanto gráficos visuais como gráficos de pizza ou barras que ilustram proporções entre diferentes status facilitando interpretação rápida de distribuições, quanto tabelas detalhadas com contagens absolutas e percentuais que fornecem dados precisos para análises quantitativas e prestação de contas. A exportação é disponibilizada em formatos PDF adequado para apresentações e documentação formal com layout profissional incluindo cabeçalhos institucionais e rodapés com data de geração, e Excel que permite análises adicionais e customizações pelos usuários através de fórmulas e gráficos dinâmicos, atendendo diferentes necessidades de consumo da informação gerencial.
+## Descricao
+
+Sistema deve gerar relatorio consolidado que agrega unidades territoriais por status de aprovacao, apresentando visao quantitativa da distribuicao cadastral atraves de contagens e percentuais de unidades classificadas como Rascunho (DRAFT), Pendente de Analise (PENDING), Aprovada (APPROVED), Rejeitada (REJECTED) e outros estados do workflow. Filtros configuraveis permitem segmentar por periodo de cadastramento, comunidade especifica ou equipe responsavel. Relatorio apresenta graficos visuais (pizza, barras) ilustrando proporcoes entre status, alem de tabelas detalhadas com contagens absolutas e percentuais. Exportacao disponivel em PDF com layout profissional incluindo cabecalhos institucionais, e Excel para analises adicionais. Dados filtrados por tenant_id do usuario autenticado.
+
+## Criterios de Aceitacao
+
+1. Agregacao por status do workflow
+2. Filtros por periodo, comunidade e equipe
+3. Graficos de pizza e barras
+4. Exportacao em PDF e Excel
+5. Segregacao por tenant_id
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-044, RF-049

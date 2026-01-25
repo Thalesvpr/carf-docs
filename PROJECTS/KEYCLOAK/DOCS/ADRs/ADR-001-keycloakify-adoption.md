@@ -1,6 +1,6 @@
 ---
 type: adr
-status: rejected
+status: review
 updated: 2026-01-21
 description: "Formato incorreto. Tem secao Implementacao com codigo TSX, estrutura de projeto, comandos bash. ADR valido mas remover implementacao. Contem blocos de codigo."
 ---

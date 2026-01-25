@@ -1,10 +1,27 @@
 ---
 type: rf
-status: rejected
-description: "Formato inconsistente. RFs e RNFs misturados, duplicacao com BUSINESS-RULES. Stub de 9 linhas - incompleto."
-updated: 2025-12-30
+status: approved
+updated: 2026-01-25
+modules:
+  - GEOWEB
+  - GEOAPI
 ---
 
 # RF-028: Listar Equipes
 
-Usuários com role ADMIN podem listar equipes do tenant onde paginação implementada para navegação eficiente em grandes quantidades de equipes retornando subconjunto de registros com controles de próxima/anterior e seleção de quantidade por página, filtros disponíveis incluem busca por nome de equipe quantidade de membros (ex: equipes com mais de 5 membros) comunidades atribuídas status ativo/inativo permitindo análise segmentada de estrutura organizacional, exibição de membros diretamente na listagem mostrando avatares ou nomes de integrantes principais com indicação de quantidade total e link para visualização completa facilitando identificação rápida de composição de equipes, implementação em módulos GEOWEB e GEOAPI com interface de listagem responsiva cards ou tabela exibindo informações essenciais (nome quantidade membros comunidades vinculadas) ações rápidas como editar visualizar detalhes completos ou desativar equipe e navegação para detalhes expandidos com histórico e métricas de produtividade.
+## Descricao
+
+Usuarios com role ADMIN podem listar equipes do tenant. Paginacao implementada para navegacao eficiente em grandes quantidades de equipes retornando subconjunto de registros com controles de navegacao. Filtros disponiveis incluem busca por nome de equipe, quantidade de membros, comunidades atribuidas e status ativo/inativo. Exibicao de membros diretamente na listagem mostra avatares ou nomes de integrantes principais com indicacao de quantidade total.
+
+## Criterios de Aceitacao
+
+1. Listagem paginada com controles de navegacao
+2. Filtro por nome, quantidade de membros e status
+3. Exibicao de membros resumida na listagem
+4. Acoes rapidas de editar e visualizar detalhes
+5. Ordenacao configuravel por nome ou data criacao
+
+## Rastreabilidade
+
+- Modulos: GEOWEB, GEOAPI
+- Requisitos dependentes: RF-026, RF-008

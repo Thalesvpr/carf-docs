@@ -1,6 +1,6 @@
 ---
 type: adr
-status: rejected
+status: review
 description: "Nao e decisao arquitetural. Ferramenta de documentacao e operacional. Mover para PROJECTS/WEBDOCS."
 updated: 2026-01-20
 ---
