@@ -1,14 +1,19 @@
 ---
 type: workflow
 status: approved
-updated: 2026-01-25
+updated: 2026-02-07
 part: 3
 step: 15
 ---
 
 # Passo 15: Fluxo Operacional em Campo
 
-Com o mapa carregado, o Agente de Campo executa operacoes no territorio.
+Com o mapa carregado, Coordenador e Cadastrador executam operacoes no territorio.
+
+## Atores
+
+- **Coordenador de Campo**: executa operacoes + ve metricas
+- **Cadastrador de Campo**: executa operacoes
 
 ## Sub-passos
 
@@ -16,7 +21,7 @@ Com o mapa carregado, o Agente de Campo executa operacoes no territorio.
 
 - App obtem posicao via GPS do dispositivo
 - Posicao exibida no mapa em tempo real
-- Agente se orienta para chegar ao local correto
+- Usuario se orienta para chegar ao local correto
 
 ```
 ┌──────────────────────┐
@@ -35,8 +40,8 @@ Com o mapa carregado, o Agente de Campo executa operacoes no territorio.
 
 ### 15.3 Selecao de Quadra e Lote
 
-- Agente seleciona quadra de interesse
-- Agente seleciona lote especifico para operacao
+- Usuario seleciona quadra de interesse
+- Usuario seleciona lote especifico para operacao
 
 ```
 Comunidade > Quadra A > Lote 001
@@ -55,7 +60,7 @@ Cada lote exibe status por cores e icones:
 
 ### 15.5 Decisao de Acao no Lote
 
-Agente decide acao adequada para o lote selecionado:
+Usuario decide acao adequada para o lote selecionado:
 
 | Acao | Descricao | Quando usar |
 |------|-----------|-------------|
@@ -64,9 +69,17 @@ Agente decide acao adequada para o lote selecionado:
 | **Movimentacao** | Ajustar posicao | Geometria incorreta |
 | **Exclusao** | Remover cadastro (com justificativa) | Cadastro indevido |
 
+## Permissoes Identicas
+
+Tanto Coordenador quanto Cadastrador podem:
+- Navegar pelo mapa
+- Selecionar lotes
+- Criar/editar/mover/excluir cadastros
+- Visualizar status dos lotes
+
 ## Resultado
 
-- Agente localizado via GPS
+- Usuario localizado via GPS
 - Lote selecionado para operacao
 - Acao definida (criar/editar/mover/excluir)
 

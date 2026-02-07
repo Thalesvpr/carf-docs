@@ -29,7 +29,8 @@ const sectionEnum = z.enum([
 
 const audienceEnum = z.enum([
   'user',
-  'field-agent',
+  'field-cadastrator',
+  'field-coordinator',
   'analyst',
   'admin',
   'super-admin',

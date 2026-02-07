@@ -283,8 +283,13 @@ Roles do realm e de clients.
         "composite": false
       },
       {
-        "name": "field-agent",
-        "description": "Agente de campo",
+        "name": "field-coordinator",
+        "description": "Coordenador de campo - supervisiona equipe, menu mobile completo",
+        "composite": false
+      },
+      {
+        "name": "field-cadastrator",
+        "description": "Cadastrador de campo - apenas mapa e formularios, sem menu",
         "composite": false
       },
       {

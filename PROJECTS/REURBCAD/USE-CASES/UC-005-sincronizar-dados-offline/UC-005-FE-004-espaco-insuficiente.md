@@ -31,7 +31,7 @@ Na fase PULL do UC-005, app detecta espaco insuficiente para armazenar dados bai
 
 ## Retorno
 
-Apos liberar espaco, FIELD_AGENT retenta e PULL completa normalmente.
+Apos liberar espaco, usuario de campo (FIELD_COORDINATOR ou FIELD_CADASTRATOR) retenta e PULL completa normalmente.
 
 ## Pos-condicoes
 

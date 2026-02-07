@@ -6,7 +6,7 @@ updated: 2026-01-19
 
 # Role Dev
 
-Role dev destina-se a desenvolvedores que precisam acessar ferramentas técnicas do ecossistema CARF. Diferente das roles operacionais que seguem hierarquia super-admin > admin > analyst > field-collector, a role dev é transversal e pode ser combinada com qualquer outra role sem relação de herança.
+Role dev destina-se a desenvolvedores que precisam acessar ferramentas técnicas do ecossistema CARF. Diferente das roles operacionais que seguem hierarquia super-admin > admin > manager > analyst > field-coordinator > field-cadastrator, a role dev é transversal e pode ser combinada com qualquer outra role sem relação de herança.
 
 Usuários com role dev têm acesso à seção /dev/ do WebDocs que inclui Swagger interativo com try-it-out para testar endpoints da GEOAPI usando token real do desenvolvedor, documentação técnica interna sobre arquitetura e padrões de código, métricas e logs de debug dos serviços em ambiente de desenvolvimento, e guias de contribuição com git workflow e code review. Esta seção não é visível para usuários sem role dev mesmo que possuam roles superiores como admin ou super-admin.
 

@@ -1,13 +1,37 @@
 ---
 type: leaf
-status: review
-updated: 2026-01-12
+status: approved
+updated: 2026-02-07
 ---
 
 # SyncLog
 
-Entidade representando registro operação sincronização offline app mobile REURBCAD com servidor GEOAPI rastreando cada CREATE/UPDATE/DELETE enviado dispositivo com detecção automática conflitos via versionamento otimista. Herda de BaseEntity fornecendo auditoria temporal. Campos principais incluem TenantId Guid FK isolando logs cliente, AccountId Guid FK Account usuário sincronizou, DeviceId string identificador dispositivo, Direction string UPLOAD/DOWNLOAD sentido sync, EntityType tipo entidade (UNIT HOLDER COMMUNITY) e Operation string CREATE/UPDATE/DELETE.
+Entidade representando registro de cada operacao de sincronizacao entre o app mobile REURBCAD e o servidor GEOAPI. Rastreia CREATE, UPDATE e DELETE enviados pelo dispositivo, com deteccao automatica de conflitos via versionamento otimista. Herda de BaseEntity fornecendo auditoria temporal.
 
-Campos versionamento incluem BaseVersion byte array RowVersion dispositivo tinha enviar crucial detecção conflito, SyncStatus (PENDING SUCCESS CONFLICT FAILED), Payload JSON dados operação completa, ErrorMessage string nullable se FAILED, ConflictData JSON nullable dados conflitantes versão servidor vs dispositivo e SyncedAt DateTime timestamp.
+## Papel no Dominio
 
-Métodos incluem DetectConflict() comparando BaseVersion RowVersion atual retornando true se diferentes outro cliente modificou, ResolveConflict(mergeStrategy) aplicando AUTO campos distintos ou MANUAL escolha usuário, Retry() reenviando FAILED após correção e MarkAsSuccess()/MarkAsFailed(reason). Dispara SyncConflictEvent detectando conflito notificando técnico campo app, SyncCompletedEvent sucesso e integra WatermelonDB mobile mantendo fila operações pendentes até conectividade retornar.
+O SyncLog e a trilha de rastreabilidade da sincronizacao offline. Cada operacao enviada pelo app e registrada com payload completo, timestamps do client e servidor, e resultado da operacao. Quando conflito e detectado (versao do registro no servidor diferente da versao que o client usou como base), os dados conflitantes sao armazenados para resolucao manual ou automatica.
+
+## Propriedades
+
+| Propriedade | Tipo | Nullable | Descricao |
+|-------------|------|----------|-----------|
+| Id | Guid | nao | Chave primaria UUID. |
+| TenantId | Guid | nao | Municipio. FK para Tenant. |
+| UserId | Guid | nao | UUID do usuario que sincronizou. |
+| EntityType | string | nao | Tipo da entidade: UNIT, HOLDER, DOCUMENT, COMMUNITY. |
+| EntityId | Guid | nao | ID da entidade sincronizada. |
+| Operation | string | nao | Tipo de operacao: CREATE, UPDATE, DELETE. |
+| Payload | JsonDocument | nao | Dados completos da operacao em formato JSON. |
+| SyncedAt | DateTime | nao | Quando a sync foi processada no servidor. |
+| ClientTimestamp | DateTime | nao | Timestamp do client no momento da operacao local. |
+| ServerTimestamp | DateTime | nao | Timestamp do servidor ao processar. |
+| ConflictResolved | bool | nao | Se houve conflito e foi resolvido. Default false. |
+
+## Relacionamentos
+
+Vinculado a um Tenant e a um usuario. Referencia uma entidade via EntityType e EntityId.
+
+## Invariantes de Negocio
+
+Append-only para fins de rastreabilidade. Registros nao sao atualizados apos criacao exceto o campo ConflictResolved que pode mudar de false para true apos resolucao.

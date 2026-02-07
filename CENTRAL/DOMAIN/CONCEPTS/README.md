@@ -8,7 +8,7 @@ updated: 2026-01-24
 
 Entidades conceituais do dominio REURB que formam o vocabulario ubiquo do sistema CARF. Cada arquivo descreve um conceito de negocio com definicao, contexto e relacoes.
 
-Os conceitos centrais sao [Unit](./02-unit.md) (unidade habitacional), [Holder](./03-holder.md) (titular/ocupante) e [Community](./04-community.md) (assentamento). A hierarquia espacial inclui [Block](./12-block.md) (quadra) e [Plot](./13-plot.md) (lote). O fluxo de legitimacao envolve [LegitimationRequest](./25-legitimation-request.md), [LegitimationResponse](./26-legitimation-response.md) e [LegitimationCertificate](./27-legitimation-certificate.md).
+Os conceitos centrais sao [Unit](./02-unit.md) (unidade habitacional), [Holder](./03-holder.md) (titular/ocupante) e [Community](./04-community.md) (assentamento). A hierarquia espacial completa e: Community > [Block](./12-block.md) (quadra) > [Plot](./13-plot.md) (lote) > [Building](./38-building.md) (edificacao) > Unit. O fluxo de legitimacao envolve [LegitimationRequest](./25-legitimation-request.md), [LegitimationResponse](./26-legitimation-response.md) e [LegitimationCertificate](./27-legitimation-certificate.md).
 
 Multi-tenancy e definido por [Tenant](./07-tenant.md) e [BucketTenant](./36-bucket-tenant.md). Georreferenciamento usa [Ortofoto](./35-ortofoto.md) e [AuthenticationKey](./37-authentication-key.md) para o Plugin QGIS.
 
@@ -16,11 +16,11 @@ Multi-tenancy e definido por [Tenant](./07-tenant.md) e [BucketTenant](./36-buck
 > ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
 > Use os links abaixo para referenciar documentos desta pasta.
 
-## Documentos (36)
+## Documentos (37)
 
 | Documento | Status |
 |-----------|--------|
-| [Unidade Habitacional](./02-unit.md) | ⚠ |
+| [Unidade Habitacional](./02-unit.md) | ✓ |
 | [Titular](./03-holder.md) | ⚠ |
 | [Comunidade](./04-community.md) | ⚠ |
 | [Contestacao](./05-contestation.md) | ⚠ |
@@ -56,5 +56,6 @@ Multi-tenancy e definido por [Tenant](./07-tenant.md) e [BucketTenant](./36-buck
 | [Ortofoto](./35-ortofoto.md) | ⚠ |
 | [Bucket por Tenant](./36-bucket-tenant.md) | ⚠ |
 | [Authentication Key](./37-authentication-key.md) | ⚠ |
+| [Edificacao](./38-building.md) | ✓ |
 
 <!-- CARF-INDEX-END -->

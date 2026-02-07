@@ -1,7 +1,7 @@
 ---
 type: workflow
 status: approved
-updated: 2026-01-25
+updated: 2026-02-07
 part: 2
 ---
 
@@ -42,7 +42,7 @@ Fluxo onde o Analista usa o Plugin QGIS para acessar ortofotos, georreferenciar 
 - Poligonos (comunidades, quadras, lotes) armazenados no backend
 - Poligonos associados ao TENANT correto
 - Dados marcados como "liberados" para uso em campo
-- Agentes de Campo podem baixar pacote temporario (PARTE 3)
+- Equipe de campo pode baixar pacote temporario (PARTE 3)
 
 ## Regras de Negocio
 
@@ -73,7 +73,7 @@ A AUTHENTICATION KEY e uma chave adicional (estilo "Claude API Key") que:
 
 ## Proxima Parte
 
-Apos a publicacao, os dados ficam disponiveis para o Agente de Campo na PARTE 3: Operacao em Campo.
+Apos a publicacao, os dados ficam disponiveis para a equipe de campo na PARTE 3: Operacao em Campo.
 
 <!-- CARF-INDEX-START -->
 > ⚠️ **Índice gerado automaticamente.** Não edite manualmente.

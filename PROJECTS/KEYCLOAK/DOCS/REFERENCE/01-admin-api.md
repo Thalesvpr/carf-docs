@@ -243,8 +243,14 @@ curl -X GET "https://keycloak.carf.gov.br/admin/realms/carf/roles" \
   },
   {
     "id": "role-003",
-    "name": "field-agent",
-    "description": "Agente de campo",
+    "name": "field-coordinator",
+    "description": "Coordenador de campo - supervisiona equipe, menu mobile completo",
+    "composite": false
+  },
+  {
+    "id": "role-004",
+    "name": "field-cadastrator",
+    "description": "Cadastrador de campo - apenas mapa e formularios, sem menu",
     "composite": false
   }
 ]
@@ -283,7 +289,7 @@ curl -X POST "https://keycloak.carf.gov.br/admin/realms/carf/users/f47ac10b-58cc
   -H "Content-Type: application/json" \
   -d '[
     {"id": "role-002", "name": "analyst"},
-    {"id": "role-003", "name": "field-agent"}
+    {"id": "role-003", "name": "field-coordinator"}
   ]'
 ```
 
@@ -295,7 +301,7 @@ Remove roles do usuário.
 curl -X DELETE "https://keycloak.carf.gov.br/admin/realms/carf/users/f47ac10b-58cc-4372-a567-0e02b2c3d479/role-mappings/realm" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
-  -d '[{"id": "role-003", "name": "field-agent"}]'
+  -d '[{"id": "role-003", "name": "field-coordinator"}]'
 ```
 
 ## Endpoints de Clients

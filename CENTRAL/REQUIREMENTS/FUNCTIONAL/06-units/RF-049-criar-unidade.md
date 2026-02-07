@@ -12,7 +12,7 @@ modules:
 
 ## Descricao
 
-Usuarios autorizados (ANALYST, FIELD_AGENT, MANAGER) podem criar novas unidades cadastrais. Formulario inclui todos campos obrigatorios definidos em RF-054 como codigo identificador unico, endereco completo, tipo de unidade, area construida e terreno. Desenho de geometria no mapa atraves de ferramentas interativas de digitalizacao com snap para vertices de unidades adjacentes e validacoes topologicas. Unidade criada com status inicial DRAFT permitindo edicoes antes de submeter para aprovacao.
+Usuarios autorizados (ANALYST, FIELD_COORDINATOR, FIELD_CADASTRATOR, MANAGER) podem criar novas unidades cadastrais. Formulario inclui todos campos obrigatorios definidos em RF-054 como codigo identificador unico, endereco completo, tipo de unidade, area construida e terreno. Desenho de geometria no mapa atraves de ferramentas interativas de digitalizacao com snap para vertices de unidades adjacentes e validacoes topologicas. Unidade criada com status inicial DRAFT permitindo edicoes antes de submeter para aprovacao.
 
 ## Criterios de Aceitacao
 

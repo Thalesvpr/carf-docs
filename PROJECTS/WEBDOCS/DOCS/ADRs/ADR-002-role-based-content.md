@@ -10,6 +10,6 @@ Decisão implementando seção /dev/ protegida por autenticação Keycloak acess
 
 Implementação usa hybrid rendering do Astro com adapter Vercel para SSR nas rotas /dev/*. Middleware intercepta requisições verificando JWT token do Keycloak e presença da role dev no claim realm_access.roles. Usuários sem role dev recebem redirect para página de erro 403 explicando necessidade de acesso.
 
-Role dev é transversal não participando da hierarquia operacional (field-collector < analyst < admin < super-admin). Desenvolvedor precisa receber role dev explicitamente mesmo sendo admin ou super-admin garantindo princípio de privilégio mínimo.
+Role dev é transversal não participando da hierarquia operacional (field-cadastrator < field-coordinator < analyst < manager < admin < super-admin). Desenvolvedor precisa receber role dev explicitamente mesmo sendo admin ou super-admin garantindo princípio de privilégio mínimo.
 
 Alternativas rejeitadas: tudo público (expõe info sensível), auth por IP (inflexível para devs remotos), senha compartilhada (sem auditabilidade).

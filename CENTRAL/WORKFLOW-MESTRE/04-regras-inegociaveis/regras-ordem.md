@@ -1,7 +1,7 @@
 ---
 type: workflow
 status: approved
-updated: 2026-01-25
+updated: 2026-02-07
 category: regras
 ---
 
@@ -34,7 +34,7 @@ Sem ortofoto no bucket, nao ha o que georreferenciar.
 Sequencia obrigatoria:
 1. Analista do Plugin georreferencia poligonos
 2. Analista publica trabalho
-3. Somente entao Agente de Campo pode baixar
+3. Somente entao equipe de campo pode baixar
 
 Sem poligonos publicados, nao ha o que visitar em campo.
 

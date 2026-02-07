@@ -23,7 +23,7 @@ Especificação completa da estrutura de navegação do sidebar do WEBDOCS, defi
         { "label": "FAQ", "slug": "guia/faq" }
       ],
       "collapsed": false,
-      "roles": ["user", "field-agent", "analyst", "admin", "super-admin", "dev"]
+      "roles": ["user", "field-cadastrator", "field-coordinator", "analyst", "admin", "super-admin", "dev"]
     },
     {
       "label": "O Sistema CARF",
@@ -75,7 +75,7 @@ Especificação completa da estrutura de navegação do sidebar do WEBDOCS, defi
           ]
         }
       ],
-      "roles": ["field-agent", "analyst", "admin", "super-admin", "dev"]
+      "roles": ["field-cadastrator", "field-coordinator", "analyst", "admin", "super-admin", "dev"]
     },
     {
       "label": "API",

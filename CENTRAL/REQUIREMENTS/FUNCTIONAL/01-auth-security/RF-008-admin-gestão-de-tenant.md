@@ -11,7 +11,7 @@ modules:
 
 ## Descricao
 
-Usuarios com role ADMIN podem gerenciar todos recursos dentro do seu tenant especifico. Podem criar usuarios atribuindo roles (MANAGER, ANALYST, FIELD_AGENT), gerenciar comunidades e configurar parametros do tenant. Acesso restrito ao proprio tenant via Row Level Security baseado em claim tenant_id do JWT.
+Usuarios com role ADMIN podem gerenciar todos recursos dentro do seu tenant especifico. Podem criar usuarios atribuindo roles (MANAGER, ANALYST, FIELD_COORDINATOR, FIELD_CADASTRATOR), gerenciar comunidades e configurar parametros do tenant. Acesso restrito ao proprio tenant via Row Level Security baseado em claim tenant_id do JWT.
 
 ## Criterios de Aceitacao
 

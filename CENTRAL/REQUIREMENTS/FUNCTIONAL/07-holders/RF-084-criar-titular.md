@@ -12,7 +12,7 @@ modules:
 
 ## Descricao
 
-Sistema deve permitir cadastro de novos titulares representando pessoas fisicas ou juridicas responsaveis por unidades habitacionais. Formulario captura nome completo ou razao social, CPF ou CNPJ conforme tipo de pessoa, e informacoes de contato. Validacao de CPF e CNPJ utiliza algoritmo de verificacao de digitos. Sistema verifica duplicidade por CPF/CNPJ antes de permitir criacao, alertando quando documento ja existe e oferecendo vincular titular existente. Conforme WORKFLOW-MESTRE, Agente de Campo cadastra titulares durante coleta em campo via REURBCAD.
+Sistema deve permitir cadastro de novos titulares representando pessoas fisicas ou juridicas responsaveis por unidades habitacionais. Formulario captura nome completo ou razao social, CPF ou CNPJ conforme tipo de pessoa, e informacoes de contato. Validacao de CPF e CNPJ utiliza algoritmo de verificacao de digitos. Sistema verifica duplicidade por CPF/CNPJ antes de permitir criacao, alertando quando documento ja existe e oferecendo vincular titular existente. Conforme WORKFLOW-MESTRE, equipe de campo (Coordenador e Cadastrador) cadastra titulares durante coleta em campo via REURBCAD.
 
 ## Criterios de Aceitacao
 

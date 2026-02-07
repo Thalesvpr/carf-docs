@@ -23,7 +23,7 @@ description: "Guia completo para cadastro de unidades habitacionais no sistema C
 source: "CENTRAL/WORKFLOWS/02-field-data-collection-workflow.md"
 lastUpdated: 2026-01-20
 section: "guia"
-audience: "field-agent"
+audience: "field-coordinator"
 draft: false
 sidebar:
   order: 2
@@ -39,7 +39,7 @@ sidebar:
 title: "Manual do Agente de Campo"
 description: "Manual operacional completo para agentes de campo realizarem coleta de dados em comunidades REURB."
 section: "manuais"
-audience: "field-agent"
+audience: "field-coordinator"
 tableOfContents:
   minHeadingLevel: 2
   maxHeadingLevel: 3
@@ -124,7 +124,7 @@ const guiaDocs = await getCollection('docs', ({ data }) => {
 
 // Filtrar por audience
 const fieldAgentDocs = await getCollection('docs', ({ data }) => {
-  return data.audience === 'field-agent' || data.audience === 'all';
+  return data.audience === 'field-coordinator' || data.audience === 'field-cadastrator' || data.audience === 'all';
 });
 
 // Ordenar por sidebar.order

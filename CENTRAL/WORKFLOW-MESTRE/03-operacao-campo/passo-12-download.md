@@ -1,22 +1,27 @@
 ---
 type: workflow
 status: approved
-updated: 2026-01-25
+updated: 2026-02-07
 part: 3
 step: 12
 ---
 
 # Passo 12: Download do Pacote Temporario
 
-Agente de Campo baixa o pacote de dados para operacao em campo.
+Coordenador de Campo ou Cadastrador de Campo baixa o pacote de dados para operacao em campo.
+
+## Atores
+
+- **Coordenador de Campo**: baixa pacote e seleciona regiao
+- **Cadastrador de Campo**: baixa pacote da regiao atribuida
 
 ## Fluxo
 
-1. Agente de Campo abre o app REURBCAD
+1. Usuario de campo abre o app REURBCAD
 2. App autentica via Keycloak
 3. App consulta backend: `GET /api/pacotes/campo?tenant_id={tenant}`
 4. Backend verifica:
-   - Agente pertence ao TENANT
+   - Usuario pertence ao TENANT
    - Analista JA PUBLICOU trabalho do TENANT
 5. **SOMENTE SE PUBLICADO:** Backend disponibiliza pacote contendo:
    - Ortofoto (versao para uso offline)
@@ -51,7 +56,7 @@ Authorization: Bearer {jwt_token}
 
 ## Regra Critica
 
-**PUB-02:** Agente de Campo SO consegue baixar dados QUANDO Analista JA PUBLICOU.
+**PUB-02:** Usuario de campo SO consegue baixar dados QUANDO Analista JA PUBLICOU.
 
 Se o Analista ainda nao publicou, o backend retorna erro 404.
 
@@ -63,6 +68,13 @@ Se o Analista ainda nao publicou, o backend retorna erro 404.
 | Download unico | Apenas um download por link |
 | Armazenamento local | Salvo em WatermelonDB |
 | Operacao offline | Permite trabalho sem conexao |
+
+## Comportamento por Role
+
+| Role | Apos Download |
+|------|---------------|
+| Coordenador | Ve Bottom Navigation, seleciona comunidade |
+| Cadastrador | Vai direto pro mapa da regiao atribuida |
 
 ## Resultado
 

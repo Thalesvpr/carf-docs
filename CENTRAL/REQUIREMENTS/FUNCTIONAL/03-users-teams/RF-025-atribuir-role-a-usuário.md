@@ -11,7 +11,7 @@ modules:
 
 ## Descricao
 
-Usuarios com role ADMIN podem atribuir ou alterar role de usuarios do tenant. Selecao de role ocorre via dropdown exibindo opcoes permitidas (MANAGER, ANALYST, FIELD_AGENT), excluindo SUPER_ADMIN que so pode ser atribuida por outro SUPER_ADMIN. Validacao de permissoes impede escalacao de privilegios alem do proprio nivel do ADMIN. Atualizacao imediata de permissoes onde role e sincronizada com Keycloak e proxima requisicao ja reflete novas permissoes.
+Usuarios com role ADMIN podem atribuir ou alterar role de usuarios do tenant. Selecao de role ocorre via dropdown exibindo opcoes permitidas (MANAGER, ANALYST, FIELD_COORDINATOR, FIELD_CADASTRATOR), excluindo SUPER_ADMIN que so pode ser atribuida por outro SUPER_ADMIN. Validacao de permissoes impede escalacao de privilegios alem do proprio nivel do ADMIN. Atualizacao imediata de permissoes onde role e sincronizada com Keycloak e proxima requisicao ja reflete novas permissoes.
 
 ## Criterios de Aceitacao
 

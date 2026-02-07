@@ -1,13 +1,34 @@
 ---
 type: leaf
-status: review
-updated: 2026-01-12
+status: approved
+updated: 2026-02-07
 ---
 
 # Plot
 
-Entidade representando lote terreno individual subdivisão Block estabelecendo parcela cadastral que pode ou não estar vinculada Unit permitindo flexibilidade áreas parcelamento definido mas ocupação irregular. Herda de BaseEntity fornecendo auditoria soft delete. Campos principais incluem BlockId Guid FK estabelecendo hierarquia, Code string único dentro quadra (LT-01 LOTE-15), GeoPolygon nullable delimitando perímetro, Area decimal nullable m² e FrontLength Depth decimais nullable testada profundidade metros.
+Entidade representando lote individual dentro de um Block, a parcela cadastral minima. Pode ou nao estar vinculado a uma Unit, permitindo representar lotes vagos sem ocupacao. Herda de BaseEntity fornecendo auditoria e soft delete.
 
-Campo Confrontations string nullable JSON texto descrevendo confrontantes cada divisa (Frente Rua A, Fundos Lote 02, Laterais). Relacionamentos incluem Block pai e Unit nullable vinculada quando ocupação edificada existe. Métodos incluem CalculateDimensions() calculando Area FrontLength Depth PostGIS análise espacial, LinkUnit(unitId) vinculando validando geometry Unit contida Plot, UnlinkUnit() removendo vínculo e GetConfrontationsFromGeometry() gerando confrontações automaticamente ST_Touches Plots vizinhos.
+## Papel no Dominio
 
-Permite Plot sem Unit representando lote vago não cadastrado e Unit sem PlotId áreas informais sem parcelamento definido suportando realidade mista assentamentos onde parte tem organização cadastral formal parte ocupação irregular sem subdivisão lotes.
+O lote e a divisao formal do territorio onde uma unidade habitacional pode estar construida. Nem toda unidade tem lote (assentamentos informais) e nem todo lote tem unidade (lotes vagos). Essa flexibilidade permite representar a realidade mista dos assentamentos brasileiros.
+
+## Propriedades
+
+| Propriedade | Tipo | Nullable | Descricao |
+|-------------|------|----------|-----------|
+| Id | Guid | nao | Chave primaria UUID. |
+| BlockId | Guid | nao | FK para Block. Hierarquia Block maior que Plot. |
+| Code | string | nao | Codigo unico dentro do bloco. |
+| Boundary | Polygon | sim | Perimetro do lote em WGS84 SRID 4326. |
+| Area | decimal | sim | Area em metros quadrados. |
+| CreatedAt | DateTime | nao | Data de criacao. |
+| UpdatedAt | DateTime | nao | Ultima atualizacao. |
+| DeletedAt | DateTime | sim | Soft delete. |
+
+## Relacionamentos
+
+Pertence a um Block (obrigatorio). Pode ter uma Unit vinculada via PlotId. Pode ter um Building vinculado.
+
+## Invariantes de Negocio
+
+Code unico dentro do mesmo bloco. Boundary deve estar contido dentro do boundary do bloco pai quando ambos preenchidos.

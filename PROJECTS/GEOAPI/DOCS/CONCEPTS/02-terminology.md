@@ -63,7 +63,7 @@ updated: 2026-01-22
 
 - **Realm** - Namespace isolado no Keycloak. GEOAPI usa realm `carf`.
 - **Client** - Aplicação registrada no Keycloak (geoweb-client, admin-client).
-- **Role** - Permissão atribuída a usuários (ADMIN, ANALYST, FIELD_AGENT).
+- **Role** - Permissão atribuída a usuários (ADMIN, ANALYST, FIELD_COORDINATOR, FIELD_CADASTRATOR).
 - **JWT (JSON Web Token)** - Token de autenticação contendo claims (roles, tenant_id, user_id).
 
 ### PostgreSQL + PostGIS

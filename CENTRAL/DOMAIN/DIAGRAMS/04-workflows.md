@@ -12,17 +12,17 @@ Diagramas de state machine para os workflows principais do sistema: status de Un
 
 ```mermaid
 stateDiagram-v2
-    [*] --> Rascunho: Agente de Campo cria unidade offline
+    [*] --> Rascunho: Equipe de campo cria unidade offline
 
     state "Workflow de Status da Unidade" as UnitWorkflow {
-        Rascunho --> Pendente: Agente sincroniza e submete
+        Rascunho --> Pendente: Usuario de campo sincroniza e submete
         Pendente --> EmAnalise: Analista inicia revisao
         EmAnalise --> Aprovado: Analista aprova
         EmAnalise --> Rejeitado: Analista rejeita com comentarios
         EmAnalise --> RequerAlteracoes: Analista solicita correcoes
 
-        RequerAlteracoes --> EmAnalise: Agente corrige e reenvia
-        Rejeitado --> Rascunho: Agente pode editar e reenviar
+        RequerAlteracoes --> EmAnalise: Usuario de campo corrige e reenvia
+        Rejeitado --> Rascunho: Usuario de campo pode editar e reenviar
         Aprovado --> [*]: Unidade ativa
 
         note right of Aprovado
@@ -92,4 +92,4 @@ stateDiagram-v2
     }
 ```
 
-Os workflows seguem o WORKFLOW-MESTRE do CARF. O Agente de Campo cria unidades offline que sincronizam com o backend. O Analista (via Plugin QGIS ou GEOWEB) revisa e aprova. O processo de Legitimacao segue rito legal da Lei 13.465/2017 com etapas obrigatorias.
+Os workflows seguem o WORKFLOW-MESTRE do CARF. A equipe de campo (Coordenador e Cadastrador) cria unidades offline que sincronizam com o backend. O Analista (via Plugin QGIS ou GEOWEB) revisa e aprova. O processo de Legitimacao segue rito legal da Lei 13.465/2017 com etapas obrigatorias.

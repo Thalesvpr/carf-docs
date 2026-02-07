@@ -13,13 +13,13 @@ Fluxo alternativo do UC-005 para sincronizar apenas fotos liberando espaco de ar
 
 ## Condicao
 
-Na tela de sincronizacao, FIELD_AGENT deseja enviar apenas fotos mantendo dados cadastrais para edicao posterior.
+Na tela de sincronizacao, usuario de campo (FIELD_COORDINATOR ou FIELD_CADASTRATOR) deseja enviar apenas fotos mantendo dados cadastrais para edicao posterior.
 
 ## Fluxo
 
-1. FIELD_AGENT clica em Sincronizar Apenas Fotos
+1. Usuario de campo (FIELD_COORDINATOR ou FIELD_CADASTRATOR) clica em Sincronizar Apenas Fotos
 2. Sistema exibe confirmacao com estatisticas (quantidade e tamanho)
-3. FIELD_AGENT confirma operacao
+3. Usuario de campo confirma operacao
 4. Sistema comprime e envia fotos para servidor
 5. Servidor valida e armazena fotos
 6. Sistema deleta fotos locais apos confirmacao

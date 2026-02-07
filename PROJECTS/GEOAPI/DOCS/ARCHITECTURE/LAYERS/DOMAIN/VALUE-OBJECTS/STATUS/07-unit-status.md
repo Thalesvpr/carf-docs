@@ -10,4 +10,4 @@ Value object enum representando estados do workflow de cadastro e aprovação de
 
 Transições válidas seguem fluxo DRAFT → PENDING_ANALYSIS → IN_REVIEW → {APPROVED | REJECTED | REQUIRES_CHANGES}, sendo que REJECTED e REQUIRES_CHANGES retornam para DRAFT após correções. Métodos incluem CanEdit() verificando se status permite edição, CanSubmit() verificando se pode avançar para análise, CanApprove() verificando se está em estado aprovável, e ValidateTransition(UnitStatus newStatus) lançando exception se transição inválida.
 
-Usado em Unit para controlar workflow com domain event UnitStatusChangedEvent disparado em cada transição, integrando com sistema de permissões via Role (FIELD_AGENT pode editar DRAFT, ANALYST pode analisar PENDING_ANALYSIS) e auditoria rastreando quem e quando cada mudança de status ocorreu.
+Usado em Unit para controlar workflow com domain event UnitStatusChangedEvent disparado em cada transição, integrando com sistema de permissões via Role (FIELD_COORDINATOR e FIELD_CADASTRATOR podem editar DRAFT, ANALYST pode analisar PENDING_ANALYSIS) e auditoria rastreando quem e quando cada mudança de status ocorreu.

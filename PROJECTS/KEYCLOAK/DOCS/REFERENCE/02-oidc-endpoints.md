@@ -193,7 +193,7 @@ curl -X GET "https://keycloak.carf.gov.br/realms/carf/protocol/openid-connect/us
   "tenants": ["tenant-001", "tenant-002"],
   "current_tenant": "tenant-001",
   "realm_access": {
-    "roles": ["analyst", "field-agent"]
+    "roles": ["analyst", "field-coordinator"]
   }
 }
 ```
@@ -362,7 +362,7 @@ curl -X POST "https://keycloak.carf.gov.br/realms/carf/protocol/openid-connect/r
     "session_state": "session-uuid",
     "acr": "1",
     "realm_access": {
-      "roles": ["analyst", "field-agent"]
+      "roles": ["analyst", "field-coordinator"]
     },
     "resource_access": {
       "geoweb": {

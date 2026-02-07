@@ -1,13 +1,32 @@
 ---
 type: leaf
-status: review
-updated: 2026-01-12
+status: approved
+updated: 2026-02-07
 ---
 
 # TeamMember
 
-Entidade representando relacionamento N:N entre Account e Team vinculando usuário equipe com papel específico data entrada permitindo organização equipes campo topografia análise. Herda de BaseEntity fornecendo auditoria temporal. Campos principais incluem TeamId Guid FK para Team, AccountId Guid FK para Account, TeamRole LEADER ou MEMBER definindo responsabilidade, JoinedAt DateTime quando entrou, AddedBy Guid FK Account que adicionou e IsActive bool indicando membro ativo permitindo remoção lógica preservando histórico.
+Entidade representando a participacao de um Account em uma Team com papel especifico. Define se o membro atua como coordenador (responsavel pela equipe e com acesso ao dashboard) ou cadastrador (operador de campo com acesso ao formulario de cadastro). Herda de BaseEntity fornecendo auditoria temporal.
 
-Métodos incluem PromoteToLeader() alterando Role LEADER validando equipe terá ao menos um líder, DemoteToMember() alterando MEMBER garantindo mantém LEADER ativo disparando exception se último, Deactivate() marcando IsActive false sem deletar preservando histórico participação e IsLeader() verificando Role LEADER para validações permissões.
+## Papel no Dominio
 
-Integra com Team através coleção Members permitindo Team.AddMember(accountId role) criando TeamMember e Team.RemoveMember(accountId) desativando, participa CommunityAuthorization onde autorizações Team propagam permissões todos Members ativos e suporta queries equipes usuário listando Teams das quais Account membro ativo com respectivos roles.
+O TeamMember materializa o vinculo pessoa-equipe e define o papel do membro dentro do app mobile. COORDINATOR tem acesso ao dashboard de metricas, lista de membros da equipe e pode selecionar regioes de trabalho. CADASTRATOR tem acesso apenas ao mapa e formularios de cadastro, com regiao pre-atribuida pelo coordenador.
+
+## Propriedades
+
+| Propriedade | Tipo | Nullable | Descricao |
+|-------------|------|----------|-----------|
+| Id | Guid | nao | Chave primaria UUID. |
+| TeamId | Guid | nao | FK para Team. |
+| AccountId | Guid | nao | UUID do usuario no Keycloak. |
+| Role | string | nao | COORDINATOR ou CADASTRATOR. Define permissoes no app mobile. |
+| JoinedAt | DateTime | nao | Data de entrada na equipe. |
+| LeftAt | DateTime | sim | Data de saida. Null indica membro ativo. |
+
+## Relacionamentos
+
+Pertence a uma Team (obrigatorio). Referencia um Account (obrigatorio). O par (TeamId, AccountId) e unico impedindo membro duplicado.
+
+## Invariantes de Negocio
+
+Cada equipe deve manter ao menos um membro com role COORDINATOR ativo (LeftAt null). Remover ou mudar role do ultimo coordenador gera erro.

@@ -6,7 +6,7 @@ updated: 2026-01-25
 
 # Gestao de Titulares
 
-Requisitos funcionais para gerenciamento de titulares no ecossistema CARF. Define operacoes de cadastro, edicao, vinculacao e consulta de pessoas fisicas e juridicas responsaveis por unidades habitacionais, conforme WORKFLOW-MESTRE onde o Agente de Campo cadastra titulares junto com unidades via app REURBCAD.
+Requisitos funcionais para gerenciamento de titulares no ecossistema CARF. Define operacoes de cadastro, edicao, vinculacao e consulta de pessoas fisicas e juridicas responsaveis por unidades habitacionais, conforme WORKFLOW-MESTRE onde a equipe de campo (Coordenador e Cadastrador) cadastra titulares junto com unidades via app REURBCAD.
 
 Os requisitos [RF-084](./RF-084-criar-titular.md) a [RF-087](./RF-087-listar-titulares.md) cobrem ciclo de vida basico CRUD de titulares. Os requisitos [RF-088](./RF-088-tipos-de-titular.md) a [RF-090](./RF-090-campos-de-pessoa-juridica.md) definem tipos e campos especificos para pessoa fisica e juridica. Os requisitos [RF-091](./RF-091-tipos-de-relacionamento-com-unidade.md) a [RF-094](./RF-094-historico-de-titulares.md) tratam de relacionamentos entre titulares e unidades incluindo tipos, percentuais e historico. Os requisitos [RF-095](./RF-095-buscar-titular-por-cpf.md) a [RF-101](./RF-101-mesclar-titulares-duplicados.md) cobrem busca, validacao, documentos e operacoes avancadas.
 

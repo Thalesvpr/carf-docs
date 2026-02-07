@@ -1,13 +1,35 @@
 ---
 type: leaf
-status: review
-updated: 2026-01-12
+status: approved
+updated: 2026-02-07
 ---
 
 # Block
 
-Entidade representando quadra urbana subdivisão espacial Community organizando território áreas menores contendo múltiplos Plot facilitando referenciamento cartográfico cadastro sistemático áreas urbanizadas. Herda de BaseEntity fornecendo auditoria soft delete. Campos principais incluem CommunityId Guid FK estabelecendo hierarquia Community > Block > Plot > Unit, Code string identificador único dentro comunidade (QD-01 QUADRA-A), Name string nullable descritivo opcional, GeoPolygon nullable delimitando perímetro visualização cartográfica e Area decimal nullable m² calculada ou informada.
+Entidade representando quadra urbana, subdivisao espacial de uma Community. Organiza o territorio em areas menores contendo multiplos lotes (Plots). Herda de BaseEntity fornecendo auditoria e soft delete.
 
-Relacionamentos incluem Community pai, coleção Plots filhos subdividindo quadra lotes individuais e Unit opcionalmente vinculadas diretamente quando BlockId desnormalizado preenchido queries eficientes. Métodos incluem AddPlot(code geometry) criando lote validando código único geometria dentro perímetro, CalculateArea() recalculando PostGIS ST_Area e ValidateGeometry() verificando Plots filhos contidos perímetro quadra.
+## Papel no Dominio
 
-Hierarquia espacial opcional permitindo Communities sem Blocks áreas rurais assentamentos informais não organizados quadras, mas quando presente facilita organização cadastral geração plantas por quadra relatórios agrupados subdivisão territorial seguindo lógica parcelamento urbano tradicional.
+Blocos sao opcionais. Comunidades urbanas formais tipicamente possuem blocos organizados em quadras com codigos como QD-01 ou QUADRA-A. Comunidades rurais ou assentamentos informais podem nao ter blocos, com unidades vinculadas diretamente a comunidade. Quando presente, o bloco facilita organizacao cadastral, geracao de plantas por quadra e relatorios agrupados.
+
+## Propriedades
+
+| Propriedade | Tipo | Nullable | Descricao |
+|-------------|------|----------|-----------|
+| Id | Guid | nao | Chave primaria UUID. |
+| CommunityId | Guid | nao | FK para Community. Hierarquia Community maior que Block maior que Plot. |
+| Code | string | nao | Codigo unico dentro da comunidade. |
+| Name | string | sim | Nome descritivo opcional. |
+| Boundary | Polygon | sim | Perimetro da quadra em WGS84 SRID 4326. |
+| Area | decimal | sim | Area em metros quadrados. |
+| CreatedAt | DateTime | nao | Data de criacao. |
+| UpdatedAt | DateTime | nao | Ultima atualizacao. |
+| DeletedAt | DateTime | sim | Soft delete. |
+
+## Relacionamentos
+
+Pertence a uma Community (obrigatorio). Contem colecao de Plots filhos. Units podem referenciar BlockId diretamente como desnormalizacao para queries eficientes.
+
+## Invariantes de Negocio
+
+Code unico dentro da mesma comunidade. Boundary dos Plots filhos deve estar contido dentro do boundary do bloco quando ambos estao preenchidos.

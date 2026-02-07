@@ -20,15 +20,20 @@ O sistema CARF define seis roles com permissões de visualização específicas 
       "sections": ["guia"],
       "inherits": null
     },
-    "field-agent": {
-      "description": "Agente de campo com acesso aos manuais REURBCAD",
+    "field-cadastrator": {
+      "description": "Cadastrador de campo com acesso restrito a mapa e formularios",
       "sections": ["guia", "manuais"],
       "inherits": "user"
+    },
+    "field-coordinator": {
+      "description": "Coordenador de campo com menu mobile completo e supervisao",
+      "sections": ["guia", "manuais"],
+      "inherits": "field-cadastrator"
     },
     "analyst": {
       "description": "Analista REURB com acesso ao sistema e relatórios",
       "sections": ["guia", "sistema", "manuais"],
-      "inherits": "field-agent"
+      "inherits": "field-coordinator"
     },
     "admin": {
       "description": "Administrador de tenant com acesso a status e changelog",
@@ -186,7 +191,8 @@ const routeToSection: Record<string, string> = {
 // Permissões por role (já considera herança)
 const rolePermissions: Record<string, string[]> = {
   'user': ['guia'],
-  'field-agent': ['guia', 'manuais'],
+  'field-cadastrator': ['guia', 'manuais'],
+  'field-coordinator': ['guia', 'manuais'],
   'analyst': ['guia', 'manuais', 'sistema'],
   'admin': ['guia', 'manuais', 'sistema', 'status', 'changelog'],
   'super-admin': ['guia', 'manuais', 'sistema', 'api', 'status', 'changelog'],

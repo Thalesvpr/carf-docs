@@ -138,7 +138,7 @@ Conteúdo em WEBDOCS não é cópia direta da fonte. A documentação é adaptad
     },
     "role_names": {
       "rule": "Usar nomes de PROJECTS/KEYCLOAK/DOCS/INTEGRATION/RBAC/",
-      "example": "Usar 'Agente de Campo' não 'field-agent'"
+      "example": "Usar 'Coordenador de Campo' não 'field-coordinator' e 'Cadastrador de Campo' não 'field-cadastrator'"
     },
     "simplification": {
       "rule": "Simplificar linguagem técnica para usuários",

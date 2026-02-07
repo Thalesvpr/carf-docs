@@ -6,7 +6,7 @@ updated: 2026-01-25
 
 # Gestao de Unidades
 
-Requisitos funcionais para gerenciamento de unidades cadastrais no ecossistema CARF. Define operacoes de criacao, edicao, aprovacao e visualizacao de unidades habitacionais que representam edificacoes georreferenciadas vinculadas a comunidades, conforme WORKFLOW-MESTRE onde o Agente de Campo cadastra unidades via app REURBCAD.
+Requisitos funcionais para gerenciamento de unidades cadastrais no ecossistema CARF. Define operacoes de criacao, edicao, aprovacao e visualizacao de unidades habitacionais que representam edificacoes georreferenciadas vinculadas a comunidades, conforme WORKFLOW-MESTRE onde a equipe de campo (Coordenador e Cadastrador) cadastra unidades via app REURBCAD.
 
 Os requisitos [RF-049](./RF-049-criar-unidade.md) a [RF-055](./RF-055-tipos-de-unidade.md) cobrem ciclo de vida basico incluindo CRUD, visualizacao no mapa, campos obrigatorios e tipos de unidade. Os requisitos [RF-056](./RF-056-status-de-unidade.md) a [RF-060](./RF-060-timeline-de-unidade.md) definem workflow de aprovacao com status, transicoes e timeline. Os requisitos [RF-061](./RF-061-vincular-titular-a-unidade.md) a [RF-069](./RF-069-validar-sobreposicao-de-unidades.md) tratam de titulares, anexos, geometria e validacoes espaciais. Os requisitos [RF-070](./RF-070-criar-quadra.md) a [RF-083](./RF-083-imprimir-ficha-de-unidade.md) cobrem quadras, lotes, campos personalizados e operacoes avancadas.
 

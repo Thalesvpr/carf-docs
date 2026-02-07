@@ -11,7 +11,7 @@ modules:
 
 ## Descricao
 
-Usuarios regulares (MANAGER, ANALYST, FIELD_AGENT) visualizam apenas comunidades atribuidas a sua equipe. Filtro automatico por equipe aplicado transparentemente em todas queries de listagem de comunidades. Usuarios com role ADMIN visualizam todas comunidades do tenant independente de vinculacao a equipes permitindo gestao global e reatribuicao entre equipes. Visualizacao restrita implementa Row Level Security baseado em equipe garantindo segregacao de dados e responsabilidades.
+Usuarios regulares (MANAGER, ANALYST, FIELD_COORDINATOR, FIELD_CADASTRATOR) visualizam apenas comunidades atribuidas a sua equipe. Filtro automatico por equipe aplicado transparentemente em todas queries de listagem de comunidades. Usuarios com role ADMIN visualizam todas comunidades do tenant independente de vinculacao a equipes permitindo gestao global e reatribuicao entre equipes. Visualizacao restrita implementa Row Level Security baseado em equipe garantindo segregacao de dados e responsabilidades.
 
 ## Criterios de Aceitacao
 

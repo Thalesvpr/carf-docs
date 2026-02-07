@@ -20,7 +20,7 @@ O metodo getToken verifica expiracao do access_token. Se expirado ou proximo de 
 
 ## Extracao de Roles
 
-Claims do access_token contem roles no path realm_access.roles ou resource_access[clientId].roles. O cliente extrai roles e mapeia para enum Role do tscore. Verificacao hierarquica usa tabela de niveis onde SUPER_ADMIN tem nivel maximo e FIELD_AGENT nivel minimo. Funcao hasRolePermission compara niveis para autorizacao.
+Claims do access_token contem roles no path realm_access.roles ou resource_access[clientId].roles. O cliente extrai roles e mapeia para enum Role do tscore. Verificacao hierarquica usa tabela de niveis onde SUPER_ADMIN tem nivel maximo e FIELD_CADASTRATOR nivel minimo. FIELD_COORDINATOR supervisiona equipe de campo com acesso completo ao menu mobile, enquanto FIELD_CADASTRATOR tem acesso restrito apenas ao mapa e formularios. Funcao hasRolePermission compara niveis para autorizacao.
 
 ## Integracao com Frameworks
 

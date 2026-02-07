@@ -12,6 +12,6 @@ Analista assume unidade em IN_REVIEW com lock otimista de 2 horas. Pode aprovar 
 
 ## Estados e Permissoes
 
-Estados incluem DRAFT (rascunho), PENDING_ANALYSIS (aguardando analista), IN_REVIEW (em analise), APPROVED (aprovado), REJECTED (rejeitado) e REQUIRES_CHANGES (correcoes necessarias). FIELD_AGENT pode submeter, ANALYST pode revisar, MANAGER pode aprovar ou rejeitar. Reversao de APPROVED requer ADMIN com justificativa registrada em auditoria.
+Estados incluem DRAFT (rascunho), PENDING_ANALYSIS (aguardando analista), IN_REVIEW (em analise), APPROVED (aprovado), REJECTED (rejeitado) e REQUIRES_CHANGES (correcoes necessarias). FIELD_COORDINATOR e FIELD_CADASTRATOR podem submeter, ANALYST pode revisar, MANAGER pode aprovar ou rejeitar. Reversao de APPROVED requer ADMIN com justificativa registrada em auditoria.
 
 Validacoes automaticas verificam completude de campos, integridade referencial, area dentro de limites REURB (250m2 para REURB-S, 500m2 para REURB-E) e ausencia de sobreposicoes criticas com unidades vizinhas.

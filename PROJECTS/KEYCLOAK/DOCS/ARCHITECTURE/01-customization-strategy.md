@@ -112,7 +112,7 @@ extensions/
 
 Customizações de realm:
 
-- Roles e permissões CARF (ADMIN, ANALYST, FIELD_AGENT, MUNICIPALITY_MANAGER, PUBLIC)
+- Roles e permissões CARF (ADMIN, ANALYST, FIELD_COORDINATOR, FIELD_CADASTRATOR, MUNICIPALITY_MANAGER, PUBLIC)
 - Scopes OAuth2 customizados (carf-tenant, reurb-permissions)
 - Políticas de senha conforme LGPD
 - Configuração de sessões e tokens

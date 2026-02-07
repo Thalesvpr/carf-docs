@@ -122,8 +122,8 @@ Arquivos relacionados:
       "description": "Nomes de roles devem usar labels oficiais",
       "severity": "ERROR",
       "examples": {
-        "correct": ["Agente de Campo", "Analista", "Administrador"],
-        "incorrect": ["field-agent", "analyst", "admin"]
+        "correct": ["Coordenador de Campo", "Cadastrador de Campo", "Analista", "Administrador"],
+        "incorrect": ["field-coordinator", "field-cadastrator", "analyst", "admin"]
       }
     },
     {

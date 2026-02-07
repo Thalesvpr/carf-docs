@@ -1,14 +1,19 @@
 ---
 type: workflow
 status: approved
-updated: 2026-01-25
+updated: 2026-02-07
 part: 3
 step: 17
 ---
 
 # Passo 17: Formulario Completo de Cadastro
 
-Agente preenche formulario completo multi-etapas com todos os dados do cadastro.
+Coordenador ou Cadastrador preenche formulario completo multi-etapas com todos os dados do cadastro.
+
+## Atores
+
+- **Coordenador de Campo**: preenche formulario completo
+- **Cadastrador de Campo**: preenche formulario completo
 
 ## Fluxo
 
@@ -22,7 +27,7 @@ Agente preenche formulario completo multi-etapas com todos os dados do cadastro.
    - Nome completo
    - CPF (validado)
    - Documentos pessoais
-3. Agente preenche todos campos obrigatorios
+3. Usuario preenche todos campos obrigatorios
 4. App valida dados em tempo real
 
 ## Etapas do Formulario
@@ -63,6 +68,7 @@ Agente preenche formulario completo multi-etapas com todos os dados do cadastro.
 | Precisao GPS | Numero | Auto |
 
 ### Etapa 5: Titular
+https://www.figma.com/design/sYHkp5ulA2iEoUqaE8TiQL/REURBCAD?node-id=121-444&t=u6bqhUttEqh3dDPU-4
 
 | Campo | Tipo | Obrigatorio |
 |-------|------|-------------|

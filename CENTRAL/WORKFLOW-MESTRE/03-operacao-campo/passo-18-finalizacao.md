@@ -1,7 +1,7 @@
 ---
 type: workflow
 status: approved
-updated: 2026-01-25
+updated: 2026-02-07
 part: 3
 step: 18
 ---
@@ -9,6 +9,11 @@ step: 18
 # Passo 18: Finalizacao e Sincronizacao
 
 Apos salvar o cadastro, o fluxo finaliza com assinatura, anexos e sincronizacao.
+
+## Atores
+
+- **Coordenador de Campo**: finaliza cadastro + ve metricas de equipe
+- **Cadastrador de Campo**: finaliza cadastro
 
 ## Sub-passos
 
@@ -43,7 +48,7 @@ Apos salvar o cadastro, o fluxo finaliza com assinatura, anexos e sincronizacao.
 
 ### 18.3 Anexacao de Documentos
 
-- Agente anexa documentos conforme disponibilidade
+- Usuario anexa documentos conforme disponibilidade
 - Fotos de documentos, comprovantes, etc.
 
 | Documento | Obrigatorio |
@@ -82,7 +87,15 @@ Assinatura ──> FileSystem (local)
 
 ### 18.7 Controle de Produtividade
 
-App registra metricas de produtividade da equipe:
+App registra metricas de produtividade:
+
+| Metrica | Coordenador | Cadastrador |
+|---------|-------------|-------------|
+| Proprios cadastros | SIM | SIM |
+| Metricas da equipe | SIM | NAO |
+| Dashboard produtividade | SIM | NAO |
+
+Metricas coletadas:
 - Quantidade de cadastros realizados
 - Tempo medio por cadastro
 - Lotes visitados por dia

@@ -1,27 +1,39 @@
 ---
 type: workflow
 status: approved
-updated: 2026-01-25
+updated: 2026-02-07
 part: 3
 ---
 
 # PARTE 3: Operacao em Campo
 
-Fluxo onde o Agente de Campo consome o pacote publicado e executa operacoes no territorio.
+Fluxo onde a equipe de campo (Coordenador e Cadastrador) consome o pacote publicado e executa operacoes no territorio.
 
 ## Atores
 
 | Ator | Papel |
 |------|-------|
-| Agente de Campo | Atua no territorio, executa cadastros e atualizacoes |
+| Coordenador de Campo | Lidera equipe, seleciona regiao, ve metricas |
+| Cadastrador de Campo | Executa cadastros na regiao atribuida |
 | Backend (GEOAPI) | Fornece pacote temporario e recebe sincronizacao |
-| Keycloak | Autentica o Agente de Campo |
+| Keycloak | Autentica os usuarios de campo |
 | App REURBCAD | Aplicativo mobile para operacao em campo |
+
+## Diferenca entre Coordenador e Cadastrador
+
+| Aspecto | Coordenador | Cadastrador |
+|---------|-------------|-------------|
+| Bottom Navigation | SIM | NAO |
+| Seleciona regiao | SIM | NAO |
+| Ve metricas equipe | SIM | NAO |
+| Preenche formularios | SIM | SIM |
+
+Ver detalhes em: `CENTRAL/DESIGN-SYSTEM/PATTERNS/bottom-navigation.md`
 
 ## Pre-condicoes
 
-- Agente de Campo possui credenciais validas no Keycloak
-- Agente de Campo esta designado a um TENANT
+- Usuario de campo possui credenciais validas no Keycloak
+- Usuario de campo esta designado a um TENANT
 - Analista JA PUBLICOU o trabalho do TENANT (PARTE 2 concluida)
 - App REURBCAD instalado no dispositivo mobile
 
@@ -50,7 +62,7 @@ Fluxo onde o Agente de Campo consome o pacote publicado e executa operacoes no t
 
 | Regra | Descricao |
 |-------|-----------|
-| RN-11 | Agente de Campo so acessa dados APOS publicacao do Analista |
+| RN-11 | Equipe de campo so acessa dados APOS publicacao do Analista |
 | RN-12 | Download do pacote e UNICO e TEMPORARIO |
 | RN-13 | App funciona completamente OFFLINE |
 | RN-14 | Sincronizacao ocorre quando ha conectividade |

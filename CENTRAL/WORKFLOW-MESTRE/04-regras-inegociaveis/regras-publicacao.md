@@ -1,7 +1,7 @@
 ---
 type: workflow
 status: approved
-updated: 2026-01-25
+updated: 2026-02-07
 category: regras
 ---
 
@@ -14,8 +14,8 @@ Regras que controlam a publicacao de dados e acesso pelo campo.
 | Regra | Descricao |
 |-------|-----------|
 | PUB-01 | Analista do Plugin SO acessa ortofotos do TENANT designado |
-| PUB-02 | Agente de Campo SO consegue baixar dados QUANDO Analista JA PUBLICOU |
-| PUB-03 | Download do agente e UNICO e TEMPORARIO |
+| PUB-02 | Equipe de campo SO consegue baixar dados QUANDO Analista JA PUBLICOU |
+| PUB-03 | Download da equipe de campo e UNICO e TEMPORARIO |
 | PUB-04 | Dados NAO ficam disponiveis para campo ANTES da publicacao |
 
 ## Detalhamento
@@ -30,7 +30,7 @@ O Analista do Plugin so visualiza e trabalha com:
 ### PUB-02: Dependencia de Publicacao
 
 Esta e uma regra critica:
-- O Agente de Campo depende do Analista
+- A equipe de campo (Coordenador e Cadastrador) depende do Analista
 - Sem publicacao, nao ha download
 - Backend valida se existe publicacao antes de liberar pacote
 

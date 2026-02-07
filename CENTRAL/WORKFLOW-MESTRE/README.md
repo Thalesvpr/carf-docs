@@ -1,7 +1,7 @@
 ---
 type: readme
 status: approved
-updated: 2026-01-25
+updated: 2026-02-07
 ---
 
 # WORKFLOW-MESTRE
@@ -10,7 +10,7 @@ Fonte unica de verdade do sistema CARF. Este workflow define o fluxo completo en
 
 ## Objetivo
 
-Garantir que ortofotos (drone) sejam recebidas, processadas (reducao/tamanhos), armazenadas em bucket, distribuidas por regiao (TENANT) e usadas por analistas (via plugin autenticado) para georreferenciar e produzir poligonos (comunidades, lotes etc.). Somente apos o analista "publicar" seu trabalho no backend, o agente de campo (designado ao mesmo tenant) pode baixar temporariamente (download unico) a ortofoto + poligonos e executar o fluxo completo de campo (online/offline), com GPS, acoes no mapa e cadastros, assinaturas e sincronizacao.
+Garantir que ortofotos (drone) sejam recebidas, processadas (reducao/tamanhos), armazenadas em bucket, distribuidas por regiao (TENANT) e usadas por analistas (via plugin autenticado) para georreferenciar e produzir poligonos (comunidades, lotes etc.). Somente apos o analista "publicar" seu trabalho no backend, a equipe de campo (Coordenador e Cadastrador, designados ao mesmo tenant) pode baixar temporariamente (download unico) a ortofoto + poligonos e executar o fluxo completo de campo (online/offline), com GPS, acoes no mapa e cadastros, assinaturas e sincronizacao.
 
 ## Atores
 
@@ -20,7 +20,8 @@ Garantir que ortofotos (drone) sejam recebidas, processadas (reducao/tamanhos), 
 | Backend | Receber ortofotos, reduzir tamanho, armazenar em bucket, controlar permissoes | GEOAPI |
 | Keycloak | Autenticacao e autorizacao (login, emissao/validacao de tokens) | Keycloak |
 | Analista (QGIS Plugin) | Acessar ortofotos do tenant, georreferenciar lotes/comunidades, enviar poligonos | GEOGIS |
-| Agente de Campo | Atuar no territorio, executar cadastros e atualizacoes no mapa, sincronizar | REURBCAD |
+| Coordenador de Campo | Liderar equipe, selecionar regiao, acompanhar metricas | REURBCAD |
+| Cadastrador de Campo | Executar cadastros e atualizacoes no mapa, sincronizar | REURBCAD |
 | Bucket de Objetos | Armazenamento das ortofotos (originais e versoes reduzidas) | S3/MinIO |
 
 ## Partes do Workflow
@@ -42,11 +43,11 @@ Garantir que ortofotos (drone) sejam recebidas, processadas (reducao/tamanhos), 
 
 ```
 PARTE 1                          PARTE 2                          PARTE 3
-Drone → Backend → Bucket         Analista → Plugin → Backend      Agente → Download → Campo
+Drone → Backend → Bucket         Analista → Plugin → Backend      Equipe → Download → Campo
 
 ┌─────────────────┐              ┌─────────────────┐              ┌─────────────────┐
-│ Analista Drone  │              │ Analista QGIS   │              │ Agente Campo    │
-│                 │              │                 │              │                 │
+│ Analista Drone  │              │ Analista QGIS   │              │ Equipe Campo    │
+│                 │              │                 │              │ (Coord + Cad)   │
 │ 1. Autentica    │              │ 5. Designado    │              │ 11. Designado   │
 │    Keycloak     │              │    ao TENANT    │              │     ao TENANT   │
 │                 │              │                 │              │                 │
@@ -55,27 +56,36 @@ Drone → Backend → Bucket         Analista → Plugin → Backend      Agente
 │                 │              │    AUTH KEY     │              │                 │
 └────────┬────────┘              │                 │              │ 13. Seleciona   │
          │                       │ 7. Acessa       │              │     comunidade  │
-         ▼                       │    ortofotos    │              │                 │
-┌─────────────────┐              │                 │              │ 14. Mapa        │
-│ Backend         │              │ 8. Georrefe-    │              │     carrega     │
-│                 │              │    rencia       │              │                 │
-│ 3. Processa     │              │                 │              │ 15. Fluxo       │
-│    reduz        │              │ 9. Publica      │──────────────│     operacional │
-│    tamanho      │              │    backend      │  SOMENTE     │     GPS, acoes  │
-│                 │              │                 │  APOS        │     formulario  │
-│ 4. Salva em     │              │ 10. Dados       │  PUBLICACAO  │     assinatura  │
-│    bucket por   │              │     liberados   │              │     QR, sync    │
-│    TENANT       │              │                 │              │                 │
+         ▼                       │    ortofotos    │              │     (Coord)     │
+┌─────────────────┐              │                 │              │                 │
+│ Backend         │              │ 8. Georrefe-    │              │ 14. Mapa        │
+│                 │              │    rencia       │              │     carrega     │
+│ 3. Processa     │              │                 │              │                 │
+│    reduz        │              │ 9. Publica      │──────────────│ 15. Fluxo       │
+│    tamanho      │              │    backend      │  SOMENTE     │     operacional │
+│                 │              │                 │  APOS        │     GPS, acoes  │
+│ 4. Salva em     │              │ 10. Dados       │  PUBLICACAO  │     formulario  │
+│    bucket por   │              │     liberados   │              │     assinatura  │
+│    TENANT       │              │                 │              │     QR, sync    │
 └─────────────────┘              └─────────────────┘              └─────────────────┘
 ```
 
 ## Conceito Central: TENANT
 
-TENANT = uma regiao/area de atuacao. Tudo (ortofotos, poligonos, tarefas, agentes) e segregado por tenant. Um usuario so enxerga e opera dados do(s) tenant(s) ao qual foi designado.
+TENANT = uma regiao/area de atuacao. Tudo (ortofotos, poligonos, tarefas, usuarios) e segregado por tenant. Um usuario so enxerga e opera dados do(s) tenant(s) ao qual foi designado.
 
 ## Regra Critica
 
-O agente de campo so tem acesso aos dados DEPOIS que o analista publicou o trabalho do tenant no backend. O download e unico e temporario.
+A equipe de campo so tem acesso aos dados DEPOIS que o analista publicou o trabalho do tenant no backend. O download e unico e temporario.
+
+## Roles de Campo
+
+| Role | Keycloak Name | Diferencial |
+|------|---------------|-------------|
+| Coordenador | field-coordinator | Bottom Navigation, seleciona regiao, ve metricas |
+| Cadastrador | field-cadastrator | Interface simplificada, vai direto pro mapa |
+
+Ver detalhes em: `CENTRAL/DESIGN-SYSTEM/PATTERNS/bottom-navigation.md`
 
 <!-- CARF-INDEX-START -->
 > ⚠️ **Índice gerado automaticamente.** Não edite manualmente.

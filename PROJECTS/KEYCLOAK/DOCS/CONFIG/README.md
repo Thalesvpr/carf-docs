@@ -37,7 +37,7 @@ open http://localhost:8080/admin
 O arquivo `realm-export.json` contem a configuracao completa do realm CARF incluindo:
 
 - Clients (geoweb, reurbcad, geoapi, geogis, webdocs, admin)
-- Roles (user, field-agent, analyst, admin, super-admin, dev)
+- Roles (user, field-cadastrator, field-coordinator, analyst, admin, super-admin, dev)
 - Protocol Mappers (tenant_id, allowed_tenants)
 - Authentication Flows
 - Password Policy

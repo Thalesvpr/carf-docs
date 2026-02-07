@@ -1,7 +1,7 @@
 ---
 type: workflow
 status: approved
-updated: 2026-01-25
+updated: 2026-02-07
 part: 3
 step: 14
 ---
@@ -9,6 +9,11 @@ step: 14
 # Passo 14: Carregamento do Mapa
 
 App carrega mapa georreferenciado da area selecionada.
+
+## Atores
+
+- **Coordenador de Campo**: visualiza mapa da comunidade selecionada
+- **Cadastrador de Campo**: visualiza mapa da regiao atribuida
 
 ## Fluxo
 
@@ -52,7 +57,15 @@ App carrega mapa georreferenciado da area selecionada.
 | Comunidades | Poligonos de comunidades |
 | Quadras | Poligonos de quadras |
 | Lotes | Poligonos de lotes (com status) |
-| GPS | Posicao atual do agente |
+| GPS | Posicao atual do usuario |
+
+## Diferenca por Role
+
+| Elemento | Coordenador | Cadastrador |
+|----------|-------------|-------------|
+| Menu inferior | Visivel | Oculto |
+| Mapa | Sim | Sim |
+| Controles de mapa | Todos | Todos |
 
 ## Resultado
 

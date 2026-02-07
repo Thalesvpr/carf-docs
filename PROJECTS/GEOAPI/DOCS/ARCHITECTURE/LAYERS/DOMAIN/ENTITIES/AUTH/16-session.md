@@ -1,13 +1,39 @@
 ---
 type: leaf
-status: review
-updated: 2026-01-12
+status: approved
+updated: 2026-02-07
 ---
 
 # Session
 
-Entidade representando sessão usuário autenticado sistema armazenando informações autenticação e contexto acesso para rastreamento segurança controle sessões ativas. Herda de BaseEntity fornecendo auditoria temporal soft delete. Campos principais incluem AccountId Guid FK para Account usuário autenticado, TokenHash string SHA256 JWT nunca armazenando texto claro, DeviceInfo informações dispositivo navegador ou app mobile, IpAddress endereço IP conexão, ExpiresAt DateTime quando sessão expira baseado configuração Keycloak e LastActivityAt DateTime última atividade atualizada cada request.
+Entidade representando sessao de usuario autenticado, armazenando informacoes de autenticacao e contexto de acesso para rastreamento de seguranca e controle de sessoes ativas. Herda de BaseEntity fornecendo auditoria temporal e soft delete.
 
-Campos controle revogação incluem IsRevoked bool indicando sessão manualmente revogada antes expiração, RevokedAt DateTime nullable quando revogada e RevokedBy Guid nullable quem revogou permitindo auditoria. Métodos incluem Revoke(revokedBy) marcando sessão revogada, IsActive() verificando não expirou nem revogada, UpdateActivity() atualizando LastActivityAt estendendo vida sliding expiration e IsExpired() comparando Now ExpiresAt.
+## Papel no Dominio
 
-Integra middleware autenticação validando TokenHash cada request identificando sessões revogadas expiradas forçando novo login, suporta logout todos dispositivos revogando todas Sessions do Account e permite auditoria acessos rastreando IP DeviceInfo padrões temporais detecção anomalias registrando AuditLog.
+A Session rastreia cada login ativo no sistema, permitindo auditar acessos, detectar padroes anomalos (multiplos logins simultaneos de IPs diferentes) e forcar logout de todos os dispositivos quando necessario. O token JWT nunca e armazenado em texto claro; apenas seu hash SHA-256 e persistido para validacao.
+
+## Propriedades
+
+| Propriedade | Tipo | Nullable | Descricao |
+|-------------|------|----------|-----------|
+| Id | Guid | nao | Chave primaria UUID. |
+| AccountId | Guid | nao | FK para Account do usuario autenticado. |
+| TokenHash | string | nao | Hash SHA-256 do JWT. Nunca armazena o token em texto claro. |
+| DeviceInfo | string | nao | Informacoes do dispositivo ou navegador. |
+| IpAddress | string | nao | Endereco IP da conexao. IPv4 ou IPv6. |
+| ExpiresAt | DateTime | nao | Quando a sessao expira conforme configuracao do Keycloak. |
+| LastActivityAt | DateTime | nao | Ultima atividade, atualizada a cada request para sliding expiration. |
+| IsRevoked | bool | nao | Indica sessao revogada manualmente antes da expiracao. Default false. |
+| RevokedAt | DateTime | sim | Quando foi revogada. |
+| RevokedBy | Guid | sim | Account que revogou. Permite auditoria. |
+| CreatedAt | DateTime | nao | Momento do login. |
+
+## Relacionamentos
+
+Pertence a um Account (obrigatorio).
+
+## Invariantes de Negocio
+
+TokenHash e unico. Sessao revogada ou expirada nao pode ser reativada. O middleware de autenticacao valida o TokenHash a cada request, identificando sessoes revogadas e forcando novo login.
+
+Logout de todos os dispositivos revoga todas as Sessions ativas do Account de uma vez.

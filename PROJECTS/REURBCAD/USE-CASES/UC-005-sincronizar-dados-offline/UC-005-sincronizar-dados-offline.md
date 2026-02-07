@@ -13,7 +13,7 @@ updated: 2026-01-24
 
 ## Atores
 
-- Primario: FIELD_AGENT
+- Primario: FIELD_COORDINATOR ou FIELD_CADASTRATOR
 - Secundario: Servidor GEOAPI
 
 ## Pre-condicoes
@@ -24,7 +24,7 @@ updated: 2026-01-24
 
 ## Fluxo Principal
 
-1. App detecta conexao disponivel ou FIELD_AGENT clica Sincronizar
+1. App detecta conexao disponivel ou usuario de campo (FIELD_COORDINATOR ou FIELD_CADASTRATOR) clica Sincronizar
 2. Sistema exibe tela de sincronizacao com progresso
 3. Sistema executa fase PULL (baixar atualizacoes do servidor)
 4. Sistema aplica alteracoes remotas no banco local

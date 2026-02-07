@@ -6,7 +6,7 @@ updated: 2026-01-25
 
 # Documentos e Midia
 
-Requisitos funcionais para gerenciamento de documentos e midia no ecossistema CARF. Define operacoes de upload, armazenamento, categorizacao e visualizacao de arquivos e fotos vinculados a unidades, titulares e comunidades, conforme WORKFLOW-MESTRE onde Agente de Campo captura fotos e documentos via app REURBCAD e sistema armazena em bucket S3/MinIO segregado por tenant.
+Requisitos funcionais para gerenciamento de documentos e midia no ecossistema CARF. Define operacoes de upload, armazenamento, categorizacao e visualizacao de arquivos e fotos vinculados a unidades, titulares e comunidades, conforme WORKFLOW-MESTRE onde a equipe de campo (Coordenador e Cadastrador) captura fotos e documentos via app REURBCAD e sistema armazena em bucket S3/MinIO segregado por tenant.
 
 Os requisitos [RF-102](./RF-102-upload-de-documentos.md) a [RF-107](./RF-107-excluir-documento.md) cobrem ciclo de vida de documentos incluindo upload, tipos, vinculacao, listagem e exclusao. Os requisitos [RF-108](./RF-108-upload-de-fotos.md) a [RF-117](./RF-117-visualizar-foto-no-mapa.md) tratam de fotos incluindo upload, tipos, geotagging, galeria e visualizacao no mapa. Os requisitos [RF-118](./RF-118-metadados-de-arquivos.md) a [RF-126](./RF-126-notificação-de-limite-de-armazenamento.md) cobrem metadados, seguranca, versionamento, mobile e limites de armazenamento por tenant.
 

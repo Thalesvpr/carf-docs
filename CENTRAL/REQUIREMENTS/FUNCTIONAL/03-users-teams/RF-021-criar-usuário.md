@@ -11,7 +11,7 @@ modules:
 
 ## Descricao
 
-Usuarios com roles ADMIN e SUPER_ADMIN podem criar novos usuarios no tenant. Formulario de criacao inclui campos obrigatorios nome completo, email unico e role inicial (MANAGER, ANALYST, FIELD_AGENT). Validacao de email unico implementada verificando inexistencia em base do tenant, retornando erro descritivo caso duplicado. Sistema envia automaticamente email de boas-vindas com link para ativacao e definicao de senha inicial. Usuario criado recebe tenant_id do contexto do administrador.
+Usuarios com roles ADMIN e SUPER_ADMIN podem criar novos usuarios no tenant. Formulario de criacao inclui campos obrigatorios nome completo, email unico e role inicial (MANAGER, ANALYST, FIELD_COORDINATOR, FIELD_CADASTRATOR). Validacao de email unico implementada verificando inexistencia em base do tenant, retornando erro descritivo caso duplicado. Sistema envia automaticamente email de boas-vindas com link para ativacao e definicao de senha inicial. Usuario criado recebe tenant_id do contexto do administrador.
 
 ## Criterios de Aceitacao
 

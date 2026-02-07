@@ -30,7 +30,7 @@ Ortofotos sao armazenadas em bucket (S3/MinIO) segregado por tenant. Estrutura d
 1. Analista de Drone entrega ortofoto via portal de upload
 2. Backend processa e armazena em bucket do tenant
 3. Analista (Plugin QGIS) acessa ortofoto para georreferenciar poligonos
-4. Agente de Campo baixa versao offline no pacote temporario
+4. Equipe de campo baixa versao offline no pacote temporario
 
 ## Referencia
 

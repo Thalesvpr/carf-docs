@@ -1,20 +1,25 @@
 ---
 type: workflow
 status: approved
-updated: 2026-01-25
+updated: 2026-02-07
 part: 3
 step: 16
 ---
 
 # Passo 16: Pre-Formulario
 
-Agente define parametros iniciais antes do cadastro completo.
+Coordenador ou Cadastrador define parametros iniciais antes do cadastro completo.
+
+## Atores
+
+- **Coordenador de Campo**: preenche pre-formulario
+- **Cadastrador de Campo**: preenche pre-formulario
 
 ## Fluxo
 
-1. Agente escolhe a acao (criar/editar/mover/excluir)
+1. Usuario escolhe a acao (criar/editar/mover/excluir)
 2. App exibe pre-formulario
-3. Agente define unidade e status inicial
+3. Usuario define unidade e status inicial
 4. Validacoes basicas executadas
 
 ## Interface

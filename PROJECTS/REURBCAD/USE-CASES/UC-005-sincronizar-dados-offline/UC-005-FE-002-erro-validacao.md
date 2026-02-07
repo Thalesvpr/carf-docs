@@ -22,8 +22,8 @@ Na fase PUSH do UC-005, servidor detecta violacao de regras de negocio nos dados
 3. Servidor retorna erro com detalhes
 4. App exibe modal com lista de erros
 5. App destaca campos problematicos
-6. FIELD_AGENT edita e corrige dados
-7. FIELD_AGENT retenta sincronizacao
+6. Usuario de campo (FIELD_COORDINATOR ou FIELD_CADASTRATOR) edita e corrige dados
+7. Usuario de campo retenta sincronizacao
 
 ## Validacoes que Podem Falhar
 
@@ -34,7 +34,7 @@ Na fase PUSH do UC-005, servidor detecta violacao de regras de negocio nos dados
 
 ## Retorno
 
-Dados permanecem pendentes. FIELD_AGENT corrige e retenta sincronizacao.
+Dados permanecem pendentes. Usuario de campo (FIELD_COORDINATOR ou FIELD_CADASTRATOR) corrige e retenta sincronizacao.
 
 ## Pos-condicoes
 

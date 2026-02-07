@@ -155,7 +155,8 @@ const allowedRoles = locals.allowedRoles || ['admin', 'super-admin', 'dev'];
 
 const roleLabels: Record<string, string> = {
   'user': 'Usuário',
-  'field-agent': 'Agente de Campo',
+  'field-cadastrator': 'Cadastrador de Campo',
+  'field-coordinator': 'Coordenador de Campo',
   'analyst': 'Analista',
   'admin': 'Administrador',
   'super-admin': 'Super Administrador',

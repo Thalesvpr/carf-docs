@@ -16,6 +16,7 @@ Aplicativo mobile React Native Expo para coleta offline dados cadastrais campo G
 - **[FEATURES/](./FEATURES/README.md)** - Coleta campo offline sync gestão holders teams
 - **[HOW-TO/](./HOW-TO/README.md)** - Configuração desenvolvimento simuladores debugging
 - **[LAYERS/](./LAYERS/README.md)** - Screens components hooks services database models
+- **[UI/](./UI/README.md)** - Specs de telas, componentes, design system
 
 <!-- CARF-INDEX-START -->
 ## Subpastas
@@ -25,5 +26,6 @@ Aplicativo mobile React Native Expo para coleta offline dados cadastrais campo G
 - [[PROJECTS/REURBCAD/DOCS/FEATURES/README|FEATURES]]
 - [[PROJECTS/REURBCAD/DOCS/HOW-TO/README|HOW-TO]]
 - [[PROJECTS/REURBCAD/DOCS/LAYERS/README|LAYERS]]
+- [[PROJECTS/REURBCAD/DOCS/UI/README|UI]]
 
 <!-- CARF-INDEX-END -->

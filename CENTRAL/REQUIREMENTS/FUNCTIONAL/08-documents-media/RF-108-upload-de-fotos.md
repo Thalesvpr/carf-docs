@@ -12,7 +12,7 @@ modules:
 
 ## Descricao
 
-Sistema deve permitir upload de fotos em formatos JPG, PNG e HEIC garantindo compatibilidade com diferentes dispositivos e cameras. Tamanho maximo 20MB por arquivo validado em frontend e backend. Apos upload, sistema gera automaticamente miniatura para otimizar exibicao em galerias. Validacao inclui integridade do arquivo e verificacao de tipo MIME real. Feedback visual de progresso para uploads maiores. Conforme WORKFLOW-MESTRE, Agente de Campo captura fotos via REURBCAD em campo.
+Sistema deve permitir upload de fotos em formatos JPG, PNG e HEIC garantindo compatibilidade com diferentes dispositivos e cameras. Tamanho maximo 20MB por arquivo validado em frontend e backend. Apos upload, sistema gera automaticamente miniatura para otimizar exibicao em galerias. Validacao inclui integridade do arquivo e verificacao de tipo MIME real. Feedback visual de progresso para uploads maiores. Conforme WORKFLOW-MESTRE, equipe de campo (Coordenador e Cadastrador) captura fotos via REURBCAD em campo.
 
 ## Criterios de Aceitacao
 

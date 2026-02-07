@@ -1,7 +1,7 @@
 ---
 type: glossary
 status: approved
-updated: 2026-01-25
+updated: 2026-02-07
 category: conceitos
 ---
 
@@ -36,7 +36,7 @@ Armazenamento de objetos (S3/MinIO) para arquivos pesados como ortofotos, docume
 
 ## TENANT
 
-Regiao/area de atuacao que define a unidade de segregacao do sistema. Tudo (ortofotos, poligonos, tarefas, agentes) e segregado por TENANT.
+Regiao/area de atuacao que define a unidade de segregacao do sistema. Tudo (ortofotos, poligonos, tarefas, usuarios) e segregado por TENANT.
 
 **Exemplos de TENANT:**
 - Municipio (Prefeitura X)
@@ -72,7 +72,7 @@ Chave adicional de autenticacao exigida pelo Plugin QGIS, alem do login Keycloak
 
 ## Pacote Temporario
 
-Download unico e temporario disponibilizado ao Agente de Campo contendo:
+Download unico e temporario disponibilizado a equipe de campo (Coordenador e Cadastrador) contendo:
 - Ortofoto (versao para uso offline)
 - Poligonos georreferenciados (comunidades/quadras/lotes)
 - Metadados necessarios para operacao

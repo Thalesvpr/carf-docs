@@ -18,7 +18,7 @@ UnitStatus define estados do workflow de aprovacao: DRAFT para rascunho inicial,
 
 ## Enum de Roles
 
-Role define hierarquia de permissoes com cinco niveis: SUPER_ADMIN com acesso total, ADMIN para administradores de tenant, MANAGER para gestores, ANALYST para analistas tecnicos e FIELD_AGENT para agentes de campo. A funcao hasRolePermission compara niveis hierarquicos permitindo verificacao de autorizacao.
+Role define hierarquia de permissoes com seis niveis: SUPER_ADMIN com acesso total, ADMIN para administradores de tenant, MANAGER para gestores, ANALYST para analistas tecnicos, FIELD_COORDINATOR para coordenadores de campo com menu mobile completo e supervisao de equipe, e FIELD_CADASTRATOR para cadastradores de campo com acesso restrito a mapa e formularios. A funcao hasRolePermission compara niveis hierarquicos permitindo verificacao de autorizacao.
 
 ## Enums Auxiliares
 

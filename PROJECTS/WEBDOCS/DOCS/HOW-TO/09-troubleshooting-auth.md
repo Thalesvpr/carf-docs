@@ -124,7 +124,7 @@ Arquivos relacionados:
 # Payload esperado:
 {
   "realm_access": {
-    "roles": ["user", "field-agent"]
+    "roles": ["user", "field-coordinator"]
   },
   "tenant_id": "uuid-do-tenant"
 }

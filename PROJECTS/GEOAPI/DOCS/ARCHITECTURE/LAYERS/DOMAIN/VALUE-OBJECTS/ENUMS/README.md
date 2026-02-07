@@ -15,7 +15,7 @@ Enumerações tipadas representando classificações fixas do domínio incluindo
 - **[13-point-type.md](./13-point-type.md)** - Tipos ponto topográfico (VERTEX BOUNDARY CONTROL)
 - **[15-priority.md](./15-priority.md)** - Prioridades atendimento (LOW NORMAL HIGH URGENT)
 - **[16-annotation-type.md](./16-annotation-type.md)** - Tipos anotação (NOTE WARNING OBSERVATION)
-- **[17-role.md](./17-role.md)** - Roles sistema (ADMIN MANAGER ANALYST FIELD_AGENT)
+- **[17-role.md](./17-role.md)** - Roles sistema (ADMIN MANAGER ANALYST FIELD_COORDINATOR FIELD_CADASTRATOR)
 - **[18-entity-type.md](./18-entity-type.md)** - Tipos entidade para auditoria polimórfica
 - **[19-document-type.md](./19-document-type.md)** - Tipos documento anexo (RG CPF COMPROVANTE)
 
