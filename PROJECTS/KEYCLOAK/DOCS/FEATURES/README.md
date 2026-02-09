@@ -1,21 +1,14 @@
 ---
 type: readme
 status: review
-description: "README usa lista de bullets para descrever arquivos - reescrever em prosa densa"
-updated: 2026-01-22
+updated: 2026-02-07
 ---
 
 # FEATURES
 
-Customizações Keycloak implementadas para CARF incluindo temas visuais identidade municipal, validação CPF client-side forms login, protocol mappers multi-tenancy tenant_id JWT claims, configuração realm 6 clients OAuth2 diferentes flows, e integração admin proxy GEOAPI para gestão usuários roles. Stack Keycloak 24 FreeMarker templates JavaScript validators protocol mappers User Attribute, garantindo SSO unificado entre GEOWEB REURBCAD GEOAPI GEOGIS WEBDOCS ADMIN com tokens JWT RS256 refresh automático sessões 30min idle 10h max.
+Customizacoes Keycloak implementadas para o CARF garantindo SSO unificado entre GEOWEB, REURBCAD, GEOAPI, GEOGIS, WEBDOCS e ADMIN com tokens JWT RS256 contendo claims de tenant e roles. Stack Keycloak 24 com temas FreeMarker (migracao Keycloakify planejada via ADR-001), protocol mappers do scope carf-tenant e configuracao de 6 clients OAuth2.
 
-## Arquivos
-
-- **[theme-customization.md](./05-theme-customization.md)** - Tema CARF login account email FreeMarker CSS branding i18n
-- **[cpf-validation.md](./03-cpf-validation.md)** - Validação CPF JavaScript client-side Mod11 User Profile
-- **[multi-tenancy-claims.md](./02-multi-tenancy-claims.md)** - Claims JWT tenant_id protocol mappers RLS PostgreSQL
-- **[realm-configuration.md](./01-realm-configuration.md)** - Realm CARF 6 clients roles SMTP tokens export import
-- **[admin-integration.md](./04-admin-integration.md)** - Proxy GEOAPI Admin API 7 camadas CRUD users roles
+A [realm-configuration](./01-realm-configuration.md) documenta o realm CARF com 6 clients, registration OFF, verifyEmail OFF e password policy length(8). O [multi-tenancy-claims](./02-multi-tenancy-claims.md) explica protocol mappers tenant_id, allowed_tenants e community_ids. A [cpf-validation](./03-cpf-validation.md) cobre validacao CPF client-side via JavaScript Mod11. A [admin-integration](./04-admin-integration.md) documenta proxy da Admin API via GEOAPI. O [theme-customization](./05-theme-customization.md) e [login-theme-carf](./06-login-theme-carf.md) cobrem o tema visual CARF com branding, i18n pt-BR/en e FreeMarker CSS.
 
 <!-- CARF-INDEX-START -->
 > ⚠️ **Índice gerado automaticamente.** Não edite manualmente.

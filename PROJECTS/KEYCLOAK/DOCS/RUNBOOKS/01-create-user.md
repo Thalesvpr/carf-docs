@@ -1,28 +1,30 @@
 ---
 type: leaf
 status: review
-description: "Runbook com lista numerada e bullets via Admin Console - reescrever em prosa"
-updated: 2026-01-22
+description: "Procedimento para criação de usuários no Keycloak via Admin Console e via API"
+updated: 2026-02-08
 ---
 
 # Criar Usuário no Keycloak
 
 ## Via Admin Console
-1. Acesse http://localhost:8080 → Admin Console
-2. Realm: `carf`
-3. Users → Create new user
-4. Username: `cpf-do-usuario` ou `email@example.com`
-5. Email: preencher
-6. Attributes → Add:
-   - `tenants`: `["tenant1", "tenant2"]`
-   - `current_tenant`: `tenant1`
-7. Credentials → Set password (desmarcar "Temporary")
-8. Role mapping → Assign role: `user`, `admin`, etc.
+
+O caminho mais direto para criar um usuário é pela interface gráfica do Keycloak. Acesse o Admin Console em `http://localhost:8080` e selecione o realm `carf`. Na seção Users, clique em "Create new user". O campo username deve receber o CPF do usuário (formato `cpf-do-usuario`) ou um email como `email@example.com`. Preencha também o campo Email.
+
+Na aba Attributes, adicione dois atributos essenciais para multi-tenancy. O atributo `tenants` recebe um array JSON com os tenants acessíveis pelo usuário, por exemplo `["tenant1", "tenant2"]`. O atributo `current_tenant` recebe o tenant ativo inicial, por exemplo `tenant1`.
+
+Na aba Credentials, defina a senha do usuário e desmarque a opção "Temporary" para que o sistema não exija troca no primeiro login. Por fim, na aba Role mapping, atribua a role apropriada ao perfil do usuário, como `field-cadastrator`, `analyst` ou `admin`.
 
 ## Via Admin API
 
-Obter admin token executando curl POST para http://localhost:8080/realms/master/protocol/openid-connect/token com parâmetros client_id admin-cli username admin password admin grant_type password extraindo access_token via jq armazenando em variável TOKEN. Criar usuário executando curl POST para http://localhost:8080/admin/realms/carf/users com Authorization header Bearer TOKEN Content-Type application/json enviando payload JSON contendo username joao.silva email joao@example.com enabled true emailVerified false attributes tenants array tenant1 current_tenant array tenant1 credentials array contendo objeto type password value senha123 temporary false. Atribuir role obtendo USER_ID via curl para endpoint users com query parameter username joao.silva extraindo id do primeiro resultado via jq, obtendo ROLE_ID via curl para endpoint roles/user extraindo id via jq, e executando curl POST para endpoint users/USER_ID/role-mappings/realm enviando array JSON contendo objeto id ROLE_ID name user associando role ao usuário criado.
+O fluxo pela API segue três etapas: obtenção do token administrativo, criação do usuário e atribuição de role.
 
-## Verificação
+Para obter o token, execute um `curl POST` para `http://localhost:8080/realms/master/protocol/openid-connect/token` com os parâmetros `client_id=admin-cli`, `username=admin`, `password=admin` e `grant_type=password`. Extraia o `access_token` do response via `jq` e armazene na variável `TOKEN`.
 
-Verificar login do usuário executando curl POST para http://localhost:8080/realms/carf/protocol/openid-connect/token com parâmetros client_id geoweb grant_type password username joao.silva password senha123 extraindo access_token via jq decodificando payload JWT usando cut minus d ponto minus f2 pipe base64 minus d pipe jq exibindo claims token incluindo tenants current_tenant roles confirmando autenticação bem-sucedida configurações corretas multi-tenancy funcionando.
+Para criar o usuário, execute um `curl POST` para `http://localhost:8080/admin/realms/carf/users` com o header `Authorization: Bearer $TOKEN` e `Content-Type: application/json`. O payload JSON deve conter `username` (ex: `joao.silva`), `email` (ex: `joao@example.com`), `enabled: true`, `emailVerified: false`, o bloco `attributes` com `tenants: ["tenant1"]` e `current_tenant: ["tenant1"]`, e o bloco `credentials` como array contendo um objeto com `type: password`, `value: senha123` e `temporary: false`.
+
+Para atribuir a role, primeiro obtenha o `USER_ID` via `curl GET` para o endpoint `/users` com query parameter `username=joao.silva`, extraindo o `id` do primeiro resultado via `jq`. Em seguida, obtenha o `ROLE_ID` via `curl GET` para o endpoint `/roles/field-cadastrator`, extraindo o `id` via `jq`. Finalmente, execute um `curl POST` para o endpoint `/users/$USER_ID/role-mappings/realm` enviando um array JSON contendo o objeto `{ "id": "$ROLE_ID", "name": "field-cadastrator" }`, associando a role ao usuário recém-criado.
+
+## Verificacao
+
+Para confirmar que o usuário foi criado corretamente, execute um `curl POST` para `http://localhost:8080/realms/carf/protocol/openid-connect/token` com os parâmetros `client_id=geoweb`, `grant_type=password`, `username=joao.silva` e `password=senha123`. Extraia o `access_token` via `jq` e decodifique o payload JWT usando `cut -d. -f2 | base64 -d | jq`. O resultado deve exibir as claims `tenants`, `current_tenant` e `roles`, confirmando que a autenticacao foi bem-sucedida e que as configuracoes de multi-tenancy estao funcionando.

@@ -1,30 +1,35 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-15
+updated: 2026-02-08
 ---
 
 # Criar e Gerenciar Tenants
 
 ## Conceito
-Tenants no CARF são identificadores em user attributes que aparecem no JWT como `tenant_id`.
 
-## Adicionar Tenant a Usuário
+Tenants no CARF são identificadores armazenados como user attributes no Keycloak. Eles aparecem no JWT como a claim `tenant_id`, permitindo que o backend aplique Row Level Security (RLS) para isolamento de dados.
 
-Obter admin token executando curl POST para realms/master/protocol/openid-connect/token com client_id admin-cli username admin password admin grant_type password extraindo access_token via jq armazenando em TOKEN, obter user ID executando curl GET para admin/realms/carf/users com query parameter username joao.silva usando Authorization header Bearer TOKEN extraindo id do primeiro resultado via jq armazenando em USER_ID, e atualizar attributes executando curl PUT para admin/realms/carf/users/USER_ID enviando payload JSON contendo attributes object com tenants array tenant1 tenant2 tenant3 e current_tenant array tenant1 configurando multi-tenancy para usuário permitindo acesso múltiplos tenants com tenant1 como ativo inicial.
+## Adicionar Tenant a Usuario
+
+O processo requer três chamadas sequenciais à Admin API. Primeiro, obtenha o admin token executando um `curl POST` para `realms/master/protocol/openid-connect/token` com `client_id=admin-cli`, `username=admin`, `password=admin` e `grant_type=password`, extraindo o `access_token` via `jq` e armazenando na variável `TOKEN`.
+
+Em seguida, obtenha o ID do usuário executando um `curl GET` para `admin/realms/carf/users` com query parameter `username=joao.silva`, usando o header `Authorization: Bearer $TOKEN` e extraindo o `id` do primeiro resultado via `jq`, armazenando em `USER_ID`.
+
+Por fim, atualize os attributes do usuário executando um `curl PUT` para `admin/realms/carf/users/$USER_ID` com payload JSON contendo o bloco `attributes` com `tenants: ["tenant1", "tenant2", "tenant3"]` e `current_tenant: ["tenant1"]`. Isso configura o acesso multi-tenant, permitindo que o usuário acesse os três tenants listados com `tenant1` como tenant ativo inicial.
 
 ## Trocar Tenant Ativo
 
-Atualizar apenas current_tenant executando curl PUT para admin/realms/carf/users/USER_ID com Authorization header Bearer TOKEN enviando payload JSON mantendo tenants array tenant1 tenant2 tenant3 inalterado mas modificando current_tenant array para tenant2 efetivando troca de tenant ativo sem alterar permissões acesso tenants disponíveis para usuário garantindo isolamento dados via RLS ao fazer login novamente.
+Para trocar o tenant ativo sem alterar a lista de tenants acessíveis, execute um `curl PUT` para `admin/realms/carf/users/$USER_ID` com o header `Authorization: Bearer $TOKEN`. O payload JSON deve manter o array `tenants` inalterado (`["tenant1", "tenant2", "tenant3"]`) e modificar apenas o `current_tenant` para o novo valor, por exemplo `["tenant2"]`. A troca é efetivada ao fazer login novamente, quando o JWT passará a conter o novo `tenant_id` e o RLS filtrará os dados de acordo.
 
 ## Verificar Tenant no JWT
 
-Fazer login e decodificar token executando curl POST para realms/carf/protocol/openid-connect/token com client_id geoweb grant_type password username joao.silva password senha123 extraindo access_token via jq armazenando em ACCESS_TOKEN seguido por echo ACCESS_TOKEN pipe cut menos d ponto menos f2 pipe base64 menos d pipe jq ponto tenant_id exibindo output tenant2 confirmando claim tenant_id presente no JWT payload refletindo current_tenant configurado no Keycloak user attributes usado backend RLS isolamento dados queries filtradas automaticamente.
+Para confirmar que o tenant está correto no token, faça login executando um `curl POST` para `realms/carf/protocol/openid-connect/token` com `client_id=geoweb`, `grant_type=password`, `username=joao.silva` e `password=senha123`. Extraia o `access_token` via `jq` e armazene em `ACCESS_TOKEN`. Em seguida, decodifique o payload com `echo $ACCESS_TOKEN | cut -d. -f2 | base64 -d | jq .tenant_id`. O output deve ser `"tenant2"`, confirmando que a claim `tenant_id` está presente no JWT e reflete o `current_tenant` configurado nos user attributes do Keycloak. Essa claim é usada pelo backend para aplicar RLS, filtrando queries automaticamente por tenant.
 
 ## Client-Side Tenant Switcher
 
-Implementação React para trocar tenant via Admin API definindo função async switchTenant recebendo parâmetro newTenantId executando await adminClient.users.update passando objeto id igual user.sub attributes contendo tenants preservado de user.tenants e current_tenant array newTenantId atualizando Keycloak user attributes seguido por await keycloak.updateToken com parâmetro cinco forçando refresh token imediato obtendo novo JWT com tenant_id atualizado refletindo mudança permitindo interface usuário dropdown selector múltiplos tenants switching sem relogin completo mantendo sessão ativa UX fluida.
+A implementação React para troca de tenant via Admin API consiste em uma função assíncrona `switchTenant` que recebe o parâmetro `newTenantId`. A função executa `await adminClient.users.update(...)` passando o objeto com `id: user.sub` e `attributes` contendo `tenants` preservado de `user.tenants` e `current_tenant: [newTenantId]`, atualizando os user attributes no Keycloak. Em seguida, executa `await keycloak.updateToken(5)` para forçar o refresh imediato do token, obtendo um novo JWT com o `tenant_id` atualizado. Isso permite que a interface ofereça um dropdown selector de tenants com switching sem necessidade de relogin completo, mantendo a sessão ativa e a experiência de uso fluida.
 
-## Isolamento de Dados (Backend)
+## Isolamento de Dados no Backend
 
-Backend .NET implementa RLS com tenant_id do JWT extraindo claim executando var tenantId igual User.FindFirst com parâmetro tenant_id acessando propriedade Value seguido por var data igual await context.Properties aplicando filtro Where com lambda p TenantId igual igual tenantId executando ToListAsync retornando apenas registros matching tenant atual garantindo isolamento completo dados nível application layer complementando PostgreSQL RLS database layer defesa em profundidade múltiplas camadas segurança multi-tenancy robusta confiável auditável compliance LGPD separação tenant obrigatória crítica.
+O backend .NET implementa o isolamento via RLS usando o `tenant_id` extraído do JWT. O código obtém o tenant com `var tenantId = User.FindFirst("tenant_id").Value` e aplica o filtro nas queries com `var data = await context.Properties.Where(p => p.TenantId == tenantId).ToListAsync()`, retornando apenas registros do tenant atual. Essa camada de filtragem na application layer complementa o PostgreSQL RLS na database layer, implementando defesa em profundidade com múltiplas camadas de segurança para uma multi-tenancy robusta, auditável e em compliance com a LGPD.

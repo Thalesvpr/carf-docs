@@ -1,27 +1,14 @@
 ---
 type: readme
 status: review
-updated: 2026-01-17
+updated: 2026-02-07
 ---
 
-# Tokens
+# TOKENS
 
-Estrutura e ciclo de vida dos tokens JWT emitidos pelo Keycloak para autenticação e autorização no ecossistema CARF.
+Estrutura e ciclo de vida dos tokens JWT emitidos pelo Keycloak para autenticacao e autorizacao no ecossistema CARF. Tokens assinados com RS256, access token de 5 minutos, refresh via SSO session (idle 30min, max 10h).
 
-O [access token](./01-access-token.md) contém claims de identidade, roles e tenant para validação em cada requisição. O [refresh token](./02-refresh-token.md) permite renovação silenciosa sem reautenticação. A [validação](./03-validation.md) documenta como GEOAPI verifica assinatura e claims.
-
-
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (3 arquivos)
-
-| ID | Titulo |
-|:---|:-------|
-| [01-access-token](./01-access-token.md) | Access Token |
-| [02-refresh-token](./02-refresh-token.md) | Refresh Token |
-| [03-validation](./03-validation.md) | Validação de Token |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
+O [access token](./01-access-token.md) contem claims de identidade, roles do realm e claims customizadas do scope carf-tenant (tenant_id, allowed_tenants, community_ids) para validacao em cada requisicao. O [refresh token](./02-refresh-token.md) permite renovacao silenciosa sem reautenticacao, com rotation atualmente desligada no JSON (revokeRefreshToken: false) mas recomendada pelo ADR-003 para producao. A [validacao](./03-validation.md) documenta como GEOAPI (.NET JWT Bearer) verifica assinatura, lifetime e claims, e como TenantMiddleware configura RLS no PostgreSQL.
 
 <!-- CARF-INDEX-START -->
 > ⚠️ **Índice gerado automaticamente.** Não edite manualmente.

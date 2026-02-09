@@ -1,13 +1,14 @@
 ---
 type: leaf
 status: review
-description: "REFERENCE usa tabelas extensivas para APIs - formato referencia incompativel com prosa densa"
-updated: 2026-01-22
+updated: 2026-02-08
 ---
 
-# Keycloakify API Reference
+# Keycloakify API Reference (Migracao Planejada)
 
-Referência das APIs, tipos e configurações disponíveis no Keycloakify para desenvolvimento de temas Keycloak com React.
+> **Nota:** O tema atual do CARF usa FreeMarker (ver [02-theme-architecture.md](../ARCHITECTURE/02-theme-architecture.md)). Este documento serve como referencia para a migracao futura para Keycloakify conforme decidido no [ADR-001](../ADRs/ADR-001-keycloakify-adoption.md). Nao e necessario para operar o tema FreeMarker atual.
+
+Referencia das APIs, tipos e configuracoes disponiveis no Keycloakify para desenvolvimento de temas Keycloak com React.
 
 ## KcContext
 
@@ -270,7 +271,7 @@ Para referência, esta tabela mapeia variáveis FreeMarker comuns para suas equi
 | ${properties.custom} | kcContext.properties.custom |
 | ${locale.currentLanguageTag} | kcContext.locale.currentLanguageTag |
 
-Consulte REFERENCE/04-freemarker-variables.md para lista completa de variáveis FreeMarker e seus usos.
+Para lista completa de variaveis FreeMarker, consulte a documentacao oficial do Keycloak em keycloak.org/docs/latest/server_development/#_themes.
 
 ## Referências
 

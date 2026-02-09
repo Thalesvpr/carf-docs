@@ -1,30 +1,14 @@
 ---
 type: readme
 status: review
-updated: 2026-01-17
+updated: 2026-02-07
 ---
 
 # CLIENTS
 
-Configuração dos seis clients Keycloak para as aplicações do ecossistema CARF, cada um com settings específicos para seu tipo de autenticação.
+Configuracao dos seis clients OAuth2/OIDC no realm CARF, cada um com tipo e flow especifico para seu modelo de ameacas. Todos usam PKCE S256 e o scope customizado carf-tenant que injeta claims tenant_id, allowed_tenants e community_ids no JWT.
 
-O [GEOWEB](./01-geoweb.md) é SPA React usando public client com PKCE. O [REURBCAD](./02-reurbcad.md) é app mobile React Native também public com PKCE e deep links. O [GEOAPI](./03-geoapi.md) é backend .NET configurado como bearer-only para validação de tokens. O [GEOGIS](./04-geogis.md) é plugin QGIS como confidential client com service account para client credentials flow. O [WEBDOCS](./05-webdocs.md) é portal de documentação Astro com auth para seção dev. O [ADMIN](./06-admin.md) é console Next.js com acesso à Admin API do Keycloak.
-
-
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (6 arquivos)
-
-| ID | Titulo |
-|:---|:-------|
-| [01-geoweb](./01-geoweb.md) | Client GEOWEB |
-| [02-reurbcad](./02-reurbcad.md) | Client REURBCAD |
-| [03-geoapi](./03-geoapi.md) | Client GEOAPI |
-| [04-geogis](./04-geogis.md) | Client GEOGIS |
-| [05-webdocs](./05-webdocs.md) | Client WEBDOCS |
-| [06-admin](./06-admin.md) | Client ADMIN |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
+Quatro clients sao public: [GEOWEB](./01-geoweb.md) SPA React para analistas, [REURBCAD](./02-reurbcad.md) app mobile React Native com deep links carf:// e suporte offline via offline_access, [WEBDOCS](./05-webdocs.md) portal VitePress com auth para secao /dev/, e [ADMIN](./06-admin.md) console Next.js para gestao de tenants e usuarios. O [GEOAPI](./03-geoapi.md) e bearer-only (.NET) que apenas valida tokens JWT sem participar de fluxos de login. O [GEOGIS](./04-geogis.md) e o unico confidential, suportando tanto Authorization Code com PKCE (usuario humano) quanto Client Credentials (M2M).
 
 <!-- CARF-INDEX-START -->
 > ⚠️ **Índice gerado automaticamente.** Não edite manualmente.

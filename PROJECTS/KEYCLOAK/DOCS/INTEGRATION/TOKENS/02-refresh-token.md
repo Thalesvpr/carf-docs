@@ -6,7 +6,7 @@ updated: 2026-01-19
 
 # Refresh Token
 
-Refresh token permite obter novo access token sem solicitar credenciais do usuário novamente. Tempo de vida padrão de 30 minutos configurado em Realm Settings > Tokens > SSO Session Idle. Refresh token rotation ativado gera novo refresh token a cada uso invalidando o anterior.
+Refresh token permite obter novo access token sem solicitar credenciais do usuário novamente. Tempo de vida idle de 30 minutos (ssoSessionIdleTimeout: 1800) e máximo absoluto de 10 horas (ssoSessionMaxLifespan: 36000). Com Remember Me ativo: idle 1 dia, max 7 dias. Refresh token rotation está atualmente DESLIGADA no realm-export.json (revokeRefreshToken: false, refreshTokenMaxReuse: 0) — ADR-003 recomenda ativar antes de ir para produção.
 
 Frontend armazena refresh token em cookie HttpOnly com flags Secure e SameSite=Strict. Cookie inacessível via JavaScript protege contra XSS. Axios interceptor detecta resposta 401 do backend, executa refresh silencioso via POST /token com grant_type=refresh_token, e repete requisição original com novo access token.
 

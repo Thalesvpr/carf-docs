@@ -1,193 +1,54 @@
 ---
 type: leaf
 status: review
-description: "Usa tabelas extensivas, code blocks e diagramas ASCII - reescrever em prosa densa"
-updated: 2026-01-22
+updated: 2026-02-08
 ---
 
 # Login Theme CARF
 
-Tema de login Keycloak CARF implementado com **Keycloakify**, utilizando React, TypeScript e componentes @carf/ui. O layout split-screen profissional combina branding institucional com usabilidade otimizada para servidores publicos e cidadaos.
-
-## Stack Tecnologico
-
-| Tecnologia | Uso |
-|:-----------|:----|
-| Keycloakify | Build de temas React para Keycloak |
-| React 18 | Componentes de UI |
-| TypeScript | Tipagem estatica |
-| @carf/ui | Design System CARF |
-| Tailwind CSS | Estilizacao utilitaria |
-| Vite | Bundler e dev server |
+Tema de login FreeMarker com layout split-screen, validacao CPF client-side e internacionalizacao pt-BR/en. Deployado em /opt/keycloak/themes/carf/login/ via imagem Docker customizada. Herda de keycloak base via theme.properties.
 
 ## Layout Split-Screen
 
-O design segue padroes modernos de autenticacao (Airbnb, TED):
+Dois paineis: esquerdo (42%, fundo verde #2C5F2D, logo CARF, tagline "Sistema de Regularizacao Fundiaria Urbana") e direito (58%, formulario login fundo branco). Tablets ajustam para 38/62. Mobile abaixo de 768px empilha verticalmente com painel verde colapsando em header compacto.
 
-```
-+------------------+-------------------------+
-|                  |                         |
-|  PAINEL VERDE    |    PAINEL BRANCO        |
-|  (Branding)      |    (Formulario)         |
-|                  |                         |
-|  Logo CARF       |    Campos Login         |
-|  Subtitulo       |    CPF/Email            |
-|                  |    Senha                |
-|                  |    [Entrar]             |
-|                  |                         |
-+------------------+-------------------------+
-      42%                    58%
-```
+## Paginas
 
-### Responsividade
+| Pagina | Template | Descricao |
+|:-------|:---------|:----------|
+| Login | login.ftl | CPF/email + senha, checkbox lembrar-me, link "esqueceu senha?" |
+| Register | register.ftl | Campos nome, sobrenome, CPF, telefone, email, senha |
+| Reset Password | login-reset-password.ftl | Campo email para envio de link de recuperacao |
+| Error | error.ftl | Mensagem de erro amigavel em portugues |
+| Info | info.ftl | Mensagem informativa (ex: email enviado) |
+| Base Layout | template.ftl | Estrutura split-screen compartilhada por todas as paginas |
 
-| Breakpoint | Comportamento |
-|:-----------|:--------------|
-| Desktop (>1024px) | Split horizontal 42%/58% |
-| Tablet (768-1024px) | Split horizontal 38%/62% |
-| Mobile (<768px) | Stack vertical, branding no topo |
+## Validacao CPF
 
-## Integracao @carf/ui
-
-Os componentes do Design System sao usados diretamente:
-
-```tsx
-// src/login/pages/Login.tsx
-import { Button, Input, FormField, Alert } from '@carf/ui'
-import { useCpfMask } from '@carf/ui/hooks'
-
-export function Login({ kcContext }: { kcContext: KcContext }) {
-  const { url, realm, login, message } = kcContext
-  const { maskedValue, handleChange } = useCpfMask()
-
-  return (
-    <div className="login-container">
-      <aside className="login-brand">
-        <div className="brand-content">
-          <h1>CARF</h1>
-          <p>Sistema de Regularizacao Fundiaria Urbana</p>
-        </div>
-      </aside>
-
-      <main className="login-main">
-        <form action={url.loginAction} method="post">
-          {message && (
-            <Alert variant={message.type}>{message.summary}</Alert>
-          )}
-
-          <FormField label="CPF ou Email">
-            <Input
-              name="username"
-              value={maskedValue || login.username}
-              onChange={handleChange}
-              autoFocus
-            />
-          </FormField>
-
-          <FormField label="Senha">
-            <Input name="password" type="password" />
-          </FormField>
-
-          <Button type="submit" className="w-full">
-            Entrar
-          </Button>
-        </form>
-      </main>
-    </div>
-  )
-}
-```
+Campo CPF recebe mascara automatica XXX.XXX.XXX-XX durante digitacao via login.js. No evento blur, validacao Mod11 dos dois digitos verificadores com feedback visual inline (borda vermelha e mensagem de erro se invalido). Implementado em window.CarfValidations carregado via carf-validations.js (bundle minificado).
 
 ## Paleta de Cores
 
-Cores institucionais definidas via Design System ([ADR-023](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-023-color-palette-design-system.md)):
-
-| Token | Cor | Uso |
-|:------|:----|:----|
-| `--color-primary` | #2C5F2D | Painel branding, botoes, links |
-| `--color-primary-dark` | #1a3d1b | Hover states, gradients |
-| `--color-error` | #dc2626 | Alertas de erro |
-| `--color-gray-*` | Escala Tailwind | Textos, borders, backgrounds |
+| Variable CSS | Valor | Uso |
+|:-------------|:------|:----|
+| --carf-primary | #2C5F2D | Painel esquerdo, botoes, links |
+| --carf-primary-dark | #1a3d1b | Hover em botoes |
+| --carf-secondary | #97BC62 | Gradiente header email |
+| --carf-error | #dc2626 | Alertas de erro, validacao CPF |
 
 ## Internacionalizacao
 
-Suporte bilingue PT-BR e EN via sistema i18n do Keycloakify:
+| Chave | Portugues | Ingles |
+|:------|:----------|:-------|
+| loginAccountTitle | Entrar no Sistema CARF | Sign in to CARF |
+| usernameOrEmail | CPF ou E-mail | CPF or Email |
+| password | Senha | Password |
+| doLogIn | Entrar | Sign In |
+| forgotPassword | Esqueceu a senha? | Forgot password? |
+| noAccount | Nao tem conta? | No account? |
+| register | Criar conta | Create account |
+| invalidCpf | CPF invalido | Invalid CPF |
 
-```typescript
-// src/login/i18n.ts
-export const messages = {
-  'pt-BR': {
-    loginTitle: 'CARF - Login',
-    usernameOrEmail: 'CPF ou Email',
-    password: 'Senha',
-    doLogIn: 'Entrar',
-    forgotPassword: 'Esqueceu a senha?',
-    noAccount: 'Nao tem uma conta?',
-    register: 'Criar conta'
-  },
-  en: {
-    loginTitle: 'CARF - Login',
-    usernameOrEmail: 'CPF or Email',
-    password: 'Password',
-    doLogIn: 'Sign In',
-    forgotPassword: 'Forgot password?',
-    noAccount: "Don't have an account?",
-    register: 'Create account'
-  }
-}
-```
+## Migracao Planejada
 
-## Validacao CPF Client-Side
-
-Hook `useCpfMask` de @carf/ui aplica mascara automaticamente:
-
-- Detecta 11 digitos e formata como XXX.XXX.XXX-XX
-- Valida digitos verificadores
-- Feedback visual de erro inline
-
-## Desenvolvimento
-
-```bash
-# Iniciar ambiente dev com hot reload
-cd PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme
-pnpm dev
-
-# Testar com Keycloak real
-pnpm dev:keycloak
-
-# Build para producao
-pnpm build-keycloak-theme
-```
-
-## Deploy
-
-O build gera um JAR em `dist_keycloak/`:
-
-```bash
-# Copiar para Keycloak
-cp dist_keycloak/keycloak-theme-carf.jar /opt/keycloak/providers/
-
-# Ou via Docker
-docker build -t carf-keycloak .
-```
-
-Ativar no Admin Console: Realm Settings > Themes > Login Theme: "carf"
-
-## Paginas Implementadas
-
-| Pagina | Arquivo | Status |
-|:-------|:--------|:-------|
-| Login | Login.tsx | Completo |
-| Registro | Register.tsx | Completo |
-| Reset Password | ResetPassword.tsx | Completo |
-| Verify Email | VerifyEmail.tsx | Completo |
-| Error | Error.tsx | Completo |
-| Info | Info.tsx | Completo |
-
-## Referencias
-
-- [HOW-TO/01-develop-themes.md](../HOW-TO/01-develop-themes.md) - Guia desenvolvimento Keycloakify
-- [CONCEPTS/01-keycloak-themes.md](../CONCEPTS/01-keycloak-themes.md) - Conceitos Keycloakify
-- [REFERENCE/04-keycloakify-api.md](../REFERENCE/04-keycloakify-api.md) - API Keycloakify
-- [ADR-024](../../../../CENTRAL/ARCHITECTURE/ADRs/ADR-024-keycloakify-adoption.md) - Decisao de adocao Keycloakify
-- [Keycloakify Docs](https://keycloakify.dev) - Documentacao oficial
+O ADR-001 decidiu migrar este tema de FreeMarker para Keycloakify (React 18, TypeScript, @carf/ui, Tailwind) para reutilizar componentes da biblioteca @carf/ui e eliminar duplicacao de estilos. A migracao ainda nao foi implementada. O tema FreeMarker descrito aqui e a implementacao atual em producao. Ver [ADR-001](../ADRs/ADR-001-keycloakify-adoption.md).

@@ -1,7 +1,7 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-11
+updated: 2026-02-07
 ---
 
 # Admin Integration - Integração Admin

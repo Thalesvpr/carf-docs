@@ -1,13 +1,43 @@
 ---
 type: leaf
-status: review
-updated: 2026-01-15
+status: approved
+updated: 2026-02-07
 ---
 
-Multi-tenancy no ecossistema CARF implementado via user attributes no Keycloak onde cada usuário possui `tenants` (multi-valued array ["prefeitura-a", "prefeitura-b", "prefeitura-c"] representando municípios aos quais tem acesso) e `current_tenant` (single string "prefeitura-a" indicando tenant ativo no momento), mapeados para JWT access token via Protocol Mapper tipo "User Attribute" configurado em Client Scopes → profile → Mappers → Add mapper → User Attribute com User Attribute = current_tenant, Token Claim Name = tenant_id, Claim JSON Type = String, Add to access token = ON resultando em claim `"tenant_id":"prefeitura-a"` presente em todo access token emitido, permitindo tenant switcher no frontend implementado como dropdown React component exibindo tenants disponíveis do array allowed_tenants extraído do token decoded.
+# Estrategia de Multi-Tenancy
 
-Ao trocar tenant usuário chama endpoint backend POST `/api/auth/switch-tenant` com body `{"tenantId":"prefeitura-b"}`, backend autentica request via JWT bearer validation extraindo user sub claim, chama Keycloak Admin API GET `/admin/realms/carf/users/{userId}` com admin access token para obter user completo, valida que novo tenantId está presente em user attributes tenants array retornando 403 Forbidden se não autorizado, atualiza user via PUT `/admin/realms/carf/users/{userId}` modificando apenas attributes.current_tenant para novo valor preservando demais atributos, retorna 200 OK ao frontend, frontend chama keycloak.updateToken(-1) forçando refresh imediato via refresh_token grant obtendo novo access token contendo tenant_id com novo valor.
+Multi-tenancy no ecossistema CARF e implementado via user attributes no Keycloak mapeados para claims JWT, combinado com Row-Level Security (RLS) no PostgreSQL para isolamento de dados. Cada tenant representa um municipio que utiliza o sistema de regularizacao fundiaria.
 
-Todas requisições subsequentes para backend automaticamente filtram dados pelo novo tenant_id devido a Row-Level Security PostgreSQL implementado via middleware ASP.NET Core executando antes de cada request extraindo tenant_id claim do JWT via User.FindFirst("tenant_id")?.Value, abrindo database connection e executando SQL `SET LOCAL app.tenant_id = '{tenant_id}'` antes de qualquer query, RLS policies criadas em cada tabela via `CREATE POLICY tenant_isolation ON units USING (tenant_id = current_setting('app.tenant_id')::uuid) WITH CHECK (tenant_id = current_setting('app.tenant_id')::uuid)` garantindo que SELECT retorna apenas rows do tenant ativo, INSERT/UPDATE/DELETE só podem afetar rows do tenant ativo, e tentativas de acessar dados de outros tenants resultam em rows vazias ou permission denied sem necessidade de WHERE tenant_id = ? em cada query manual pois PostgreSQL aplica filtro automaticamente e transparentemente, alternative implementation seria schema-per-tenant criando schema separado por município mas complexifica migrations e backups, ou database-per-tenant isolando completamente dados físicamente mas limitando escalabilidade horizontal e complicando cross-tenant reporting e analytics, RLS approach escolhido por balancear isolamento forte (tenant A nunca vê dados de tenant B mesmo com SQL injection ou bug em application code) com simplicidade operacional (single database, unified migrations, backups atômicos, cross-tenant queries possíveis via SET SESSION para super-admin dashboard agregando métricas de todos municípios).
+## User Attributes
 
-Tenant_id propagado para todos microservices via JWT sem necessidade de shared state ou session store pois cada service independentemente valida JWT e extrai tenant_id, tenant onboarding executado via ADMIN app chamando Keycloak Admin API POST `/admin/realms/carf/users` criando novo user ou PATCH existente adicionando novo tenant no array tenants e definindo como current_tenant, tenant offboarding remove tenant do array via PATCH mas não deleta dados físicos pois DELETE CASCADE manual necessário para compliance com LGPD exigindo procedimento formal de deleção com auditoria e possível retenção temporária para período de appeal, e tenant-aware logging captura tenant_id em structured logs (Serilog, ELK) permitindo filtrar e correlacionar events por município facilitando debugging de issues reportados por prefeituras específicas sem poluir logs de outros tenants, garantindo multi-tenancy seguro, escalável e operacionalmente simples alinhado com requisitos de SaaS municipal onde cada prefeitura é tenant independente mas compartilha infraestrutura comum reduzindo custos e simplificando manutenção.
+Cada usuario possui dois atributos principais de tenancy. O atributo tenants e um array multi-valued contendo identificadores dos municipios acessiveis, por exemplo ["prefeitura-a", "prefeitura-b"]. O atributo current_tenant e single-valued indicando o tenant ativo no momento, por exemplo "prefeitura-a". Adicionalmente, community_ids lista UUIDs de comunidades acessiveis dentro do tenant corrente.
+
+Esses atributos sao configurados no Admin Console via Users, Attributes ou em lote via Admin API POST /admin/realms/carf/users. Validacao garante que current_tenant esteja sempre presente no array tenants, impedindo referencias orfas.
+
+## Protocol Mappers
+
+Tres protocol mappers no scope carf-tenant transformam atributos em claims JWT. O mapper tenant_id extrai current_tenant para claim tenant_id tipo String. O mapper allowed_tenants extrai tenants para claim allowed_tenants tipo JSON multivalued. O mapper community_ids extrai community_ids para claim community_ids tipo JSON multivalued. Todos emitem claims em access token, ID token e userinfo endpoint.
+
+O resultado e que todo access token emitido contem claims como tenant_id com valor do tenant ativo e allowed_tenants com array dos tenants permitidos, acessiveis por qualquer aplicacao que decodifique o JWT.
+
+## Isolamento de Dados via RLS
+
+O backend GEOAPI implementa isolamento via Row-Level Security do PostgreSQL. O middleware TenantMiddleware executa apos autenticacao, extrai claim tenant_id do JWT via User.FindFirst("tenant_id") e configura variavel de sessao PostgreSQL via SET LOCAL app.tenant_id antes de qualquer query. RLS policies em cada tabela garantem que SELECT retorna apenas rows do tenant ativo, INSERT/UPDATE/DELETE afetam apenas rows do tenant ativo, e tentativas de acessar dados de outros tenants resultam em rows vazias sem necessidade de WHERE tenant_id explicito em cada query.
+
+A abordagem RLS foi escolhida por balancear isolamento forte (tenant A nunca ve dados de tenant B mesmo com SQL injection ou bug) com simplicidade operacional (single database, unified migrations, backups atomicos). Alternativas como schema-per-tenant ou database-per-tenant foram rejeitadas por complicar migrations, backups e cross-tenant reporting.
+
+## Troca de Tenant
+
+Quando um usuario com acesso a multiplos municipios deseja trocar de tenant, o frontend exibe dropdown com valores de allowed_tenants. Ao selecionar novo tenant, o frontend chama POST /api/auth/switch-tenant com o novo tenantId. O backend valida que o tenant solicitado esta presente em allowed_tenants do JWT, atualiza o user attribute current_tenant via Keycloak Admin API e retorna sucesso. O frontend forca refresh do token via keycloak.updateToken(-1) obtendo novo access token com tenant_id atualizado. Todas requisicoes subsequentes usam o novo tenant automaticamente via RLS.
+
+## Propagacao entre Servicos
+
+O tenant_id e propagado para todos os servicos via JWT sem necessidade de shared state ou session store. Cada servico independentemente valida o JWT e extrai tenant_id, garantindo isolamento consistente em toda a arquitetura.
+
+## Onboarding e Offboarding
+
+Tenant onboarding e executado via ADMIN chamando Keycloak Admin API para criar usuarios ou adicionar novo tenant ao array tenants de usuarios existentes. Tenant offboarding remove o tenant do array via PATCH mas nao deleta dados fisicos, pois DELETE CASCADE requer procedimento formal com auditoria para compliance LGPD e possivel retencao temporaria.
+
+## Auditoria
+
+Toda troca de tenant e registrada em tabela audit_log com user_id, old_tenant, new_tenant, timestamp e IP address para compliance e rastreabilidade. Tenant-aware logging captura tenant_id em structured logs (Serilog) permitindo filtrar eventos por municipio.

@@ -1,26 +1,58 @@
 ---
 type: leaf
 status: review
-description: "Runbook/HOW-TO com checklist de lista ao final - converter lista para prosa densa"
-updated: 2026-01-22
+description: "Runbook para configuracao do ambiente de producao Keycloak CARF"
+updated: 2026-02-08
 ---
 
-# Configurar Ambiente de Produção
+# Configurar Ambiente de Producao
 
-Configuração ambiente produção Keycloak nível avançado requer 4-6 horas cobrindo infraestrutura completa. PostgreSQL externo via AWS RDS criando db-instance-identifier carf-keycloak-prod, db-instance-class db.t3.medium, engine postgres version 16, master-username keycloak, allocated-storage 100, vpc-security-group-ids e db-subnet-group-name apropriados, environment vars KC_DB_URL=jdbc:postgresql://carf-keycloak-prod.xxx.rds.amazonaws.com:5432/keycloak KC_DB_USERNAME=keycloak KC_DB_PASSWORD com strong password.
+A configuracao do ambiente de producao do Keycloak CARF e um procedimento de nivel avancado que requer entre 4 e 6 horas, cobrindo a infraestrutura completa desde o banco de dados ate o monitoramento.
 
-HTTPS/TLS via Load Balancer recomendado usando Kubernetes Ingress com cert-manager.io/cluster-issuer letsencrypt-prod, spec tls hosts keycloak.carf.gov.br secretName keycloak-tls, rules http paths backend service keycloak port 8080. Alternativa via Keycloak direto configurando KC_HTTPS_CERTIFICATE_FILE=/opt/keycloak/conf/cert.pem KC_HTTPS_CERTIFICATE_KEY_FILE=/opt/keycloak/conf/key.pem KC_HTTPS_PORT=8443 KC_HTTP_ENABLED=false.
+## PostgreSQL Externo via AWS RDS
 
-Resource limits Kubernetes Deployment replicas 3, containers resources requests memory 1Gi cpu 500m limits memory 2Gi cpu 1000m, JVM Heap JAVA_OPTS -Xms1024m -Xmx2048m -XX:MaxMetaspaceSize=512m. Clustering High Availability habilitando Infinispan KC_CACHE=ispn KC_CACHE_STACK=kubernetes, kubectl scale deployment/keycloak --replicas=3.
+O banco de dados de producao e provisionado como instancia AWS RDS com `db-instance-identifier` carf-keycloak-prod, classe `db.t3.medium`, engine PostgreSQL versao 16, usuario master `keycloak` e 100 GB de armazenamento alocado. Os security groups e subnet groups devem ser configurados conforme a topologia da VPC. As variaveis de ambiente do Keycloak apontam para essa instancia com `KC_DB_URL=jdbc:postgresql://carf-keycloak-prod.xxx.rds.amazonaws.com:5432/keycloak`, `KC_DB_USERNAME=keycloak` e `KC_DB_PASSWORD` com uma senha forte.
 
-Performance tuning Database Connection Pool KC_DB_POOL_INITIAL_SIZE=10 KC_DB_POOL_MIN_SIZE=10 KC_DB_POOL_MAX_SIZE=50 KC_TRANSACTION_XA_ENABLED=false, cache config KC_CACHE_CONFIG_FILE=/opt/keycloak/conf/cache-ispn.xml.
+## HTTPS e TLS
 
-Backup strategy automated daily via cron job 0 2 * * * /opt/keycloak/scripts/backup.sh, upload S3 aws s3 cp /opt/keycloak/backups/ s3://carf-backups/keycloak/ --recursive, retention policy daily 7 dias weekly 4 semanas monthly 12 meses.
+A abordagem recomendada e terminar TLS no Load Balancer usando Kubernetes Ingress com `cert-manager.io/cluster-issuer: letsencrypt-prod`. O Ingress define TLS para o host `keycloak.carf.gov.br` com secret `keycloak-tls`, e as regras de roteamento HTTP direcionam para o servico keycloak na porta 8080. Como alternativa, o TLS pode ser configurado diretamente no Keycloak com `KC_HTTPS_CERTIFICATE_FILE=/opt/keycloak/conf/cert.pem`, `KC_HTTPS_CERTIFICATE_KEY_FILE=/opt/keycloak/conf/key.pem`, `KC_HTTPS_PORT=8443` e `KC_HTTP_ENABLED=false`.
 
-Monitoring Prometheus via ServiceMonitor selector matchLabels app keycloak endpoints port http path /metrics, Grafana Dashboard importando https://grafana.com/grafana/dashboards/10441, Alerts groups keycloak rules KeycloakDown expr up job=keycloak == 0 for 2m e HighLoginErrors expr rate keycloak_login_errors_total 5m maior 10 for 5m.
+## Resource Limits e JVM
 
-Logging structured JSON KC_LOG_FORMAT=json KC_LOG_LEVEL=info, ship para ELK/CloudWatch via fluentd elasticsearch. Security Secrets Management via AWS Secrets Manager create-secret keycloak-db-password keycloak-admin-password, Kubernetes External Secrets kubectl apply -f external-secrets.yaml, Network Policies NetworkPolicy keycloak-netpol podSelector app keycloak ingress from podSelector app nginx-ingress ports TCP 8080.
+O Deployment Kubernetes deve configurar 3 replicas com resource requests de 1Gi de memoria e 500m de CPU, e limits de 2Gi de memoria e 1000m de CPU. A JVM e configurada via `JAVA_OPTS` com `-Xms1024m -Xmx2048m -XX:MaxMetaspaceSize=512m` para garantir uso previsivel de memoria.
 
-Disaster Recovery backup região secundária aws s3 sync us-east-1 para eu-west-1, standby cluster região secundária kubectl config use-context eu-west-1 kubectl apply keycloak-deployment.yaml, DNS failover Route53 change-resource-record-sets hosted-zone-id change-batch failover.json.
+## Clustering e Alta Disponibilidade
 
-Checklist produção PostgreSQL RDS multi-AZ, HTTPS/TLS Load Balancer, resource limits CPU memory, clustering 3+ replicas, connection pool otimizado, backup diário S3, Prometheus Grafana, alertas críticos ativos, logs centralizados ELK/CloudWatch, secrets via Secrets Manager, network policies aplicadas, DR plan testado.
+O clustering e habilitado via Infinispan com as variaveis `KC_CACHE=ispn` e `KC_CACHE_STACK=kubernetes`. Apos a configuracao, escalar o deployment para 3 replicas com `kubectl scale deployment/keycloak --replicas=3`. O Infinispan gerencia a replicacao de sessoes e cache entre as instancias automaticamente.
+
+## Tuning de Performance
+
+O connection pool do banco e configurado com `KC_DB_POOL_INITIAL_SIZE=10`, `KC_DB_POOL_MIN_SIZE=10`, `KC_DB_POOL_MAX_SIZE=50` e `KC_TRANSACTION_XA_ENABLED=false`. A configuracao de cache customizada e carregada via `KC_CACHE_CONFIG_FILE=/opt/keycloak/conf/cache-ispn.xml`.
+
+## Estrategia de Backup
+
+O backup automatizado e executado diariamente via cron job (`0 2 * * *`) chamando `/opt/keycloak/scripts/backup.sh`. Os backups sao enviados para S3 com `aws s3 cp /opt/keycloak/backups/ s3://carf-backups/keycloak/ --recursive`. A politica de retencao mantem backups diarios por 7 dias, semanais por 4 semanas e mensais por 12 meses.
+
+## Monitoramento
+
+O Prometheus coleta metricas via ServiceMonitor com selector `matchLabels: app: keycloak`, endpoint na porta HTTP e path `/metrics`. O dashboard Grafana e importado de `https://grafana.com/grafana/dashboards/10441`. Os alertas criticos incluem `KeycloakDown` (expressao `up{job="keycloak"} == 0` por 2 minutos) e `HighLoginErrors` (expressao `rate(keycloak_login_errors_total[5m]) > 10` por 5 minutos).
+
+## Logging Estruturado
+
+Os logs sao configurados em formato JSON com `KC_LOG_FORMAT=json` e nivel `KC_LOG_LEVEL=info`. O shipping dos logs para ELK ou CloudWatch e feito via Fluentd configurado com output para Elasticsearch.
+
+## Gestao de Secrets
+
+Os secrets sao armazenados no AWS Secrets Manager com entradas para `keycloak-db-password` e `keycloak-admin-password`. A integracao com o Kubernetes e feita via External Secrets aplicando `kubectl apply -f external-secrets.yaml`, que sincroniza automaticamente os valores do Secrets Manager com Kubernetes Secrets.
+
+## Network Policies
+
+A NetworkPolicy `keycloak-netpol` restringe o trafego de entrada ao pod Keycloak (`podSelector: app: keycloak`), permitindo apenas conexoes vindas do ingress controller (`from podSelector: app: nginx-ingress`) na porta TCP 8080.
+
+## Disaster Recovery
+
+O plano de disaster recovery inclui backup cruzado entre regioes com `aws s3 sync` de us-east-1 para eu-west-1. Um cluster standby na regiao secundaria e mantido pronto com `kubectl apply keycloak-deployment.yaml` no contexto eu-west-1. O failover de DNS e executado via Route53 com `change-resource-record-sets` aplicando a configuracao do arquivo `failover.json`.
+
+## Verificacao da Configuracao
+
+O ambiente de producao deve ter PostgreSQL RDS configurado em multi-AZ, HTTPS/TLS terminado no Load Balancer, resource limits de CPU e memoria definidos, clustering com 3 ou mais replicas ativo, connection pool otimizado, backup diario com upload para S3, Prometheus e Grafana configurados, alertas criticos ativos, logs centralizados em ELK ou CloudWatch, secrets gerenciados via Secrets Manager, network policies aplicadas e o plano de DR testado e documentado.

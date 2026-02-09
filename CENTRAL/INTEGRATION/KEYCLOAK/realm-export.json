@@ -3,9 +3,12 @@
   "realm": "carf",
   "displayName": "CARF - Sistema de Regularização Fundiária",
   "displayNameHtml": "<div class=\"kc-logo-text\"><span>CARF</span></div>",
+  "loginTheme": "carf",
+  "accountTheme": "carf",
+  "emailTheme": "carf",
   "notBefore": 0,
   "defaultSignatureAlgorithm": "RS256",
-  "revokeRefreshToken": false,
+  "revokeRefreshToken": true,
   "refreshTokenMaxReuse": 0,
   "accessTokenLifespan": 300,
   "accessTokenLifespanForImplicitFlow": 900,
@@ -112,6 +115,15 @@
         "clientRole": false,
         "containerId": "carf",
         "attributes": {}
+      },
+      {
+        "id": "dev-role-id",
+        "name": "dev",
+        "description": "Desenvolvedor - acesso transversal a área /dev/ do WEBDOCS (Swagger, docs técnica, métricas debug). Não participa da hierarquia principal, combinável com qualquer role.",
+        "composite": false,
+        "clientRole": false,
+        "containerId": "carf",
+        "attributes": {}
       }
     ],
     "client": {
@@ -137,6 +149,16 @@
         {
           "name": "manage-team",
           "description": "Gerenciar equipe de campo (apenas coordenador)"
+        }
+      ],
+      "geogis": [
+        {
+          "name": "gis-reader",
+          "description": "Leitura de dados geoespaciais e ortofotos do tenant"
+        },
+        {
+          "name": "gis-writer",
+          "description": "Publicação de polígonos georreferenciados no backend"
         }
       ]
     }
@@ -200,7 +222,6 @@
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
-      "secret": "**********",
       "redirectUris": [
         "http://localhost:5173/*",
         "http://localhost:3000/*",
@@ -212,7 +233,7 @@
       "consentRequired": false,
       "standardFlowEnabled": true,
       "implicitFlowEnabled": false,
-      "directAccessGrantsEnabled": false,
+      "directAccessGrantsEnabled": true,
       "serviceAccountsEnabled": false,
       "publicClient": true,
       "frontchannelLogout": true,
@@ -550,7 +571,7 @@
             "id.token.claim": "true",
             "access.token.claim": "true",
             "claim.name": "allowed_tenants",
-            "jsonType.label": "JSON",
+            "jsonType.label": "String",
             "multivalued": "true"
           }
         },
@@ -566,7 +587,7 @@
             "id.token.claim": "true",
             "access.token.claim": "true",
             "claim.name": "community_ids",
-            "jsonType.label": "JSON",
+            "jsonType.label": "String",
             "multivalued": "true"
           }
         }
@@ -679,5 +700,99 @@
   "defaultLocale": "pt-BR",
   "users": [],
   "scopeMappings": [],
-  "clientScopeMappings": {}
+  "clientScopeMappings": {},
+  "userProfile": {
+    "attributes": [
+      {
+        "name": "username",
+        "displayName": "${username}",
+        "validations": {
+          "length": { "min": 3, "max": 255 },
+          "username-prohibited-characters": {},
+          "up-username-not-idn-homograph": {}
+        },
+        "permissions": {
+          "view": ["admin", "user"],
+          "edit": ["admin", "user"]
+        },
+        "multivalued": false
+      },
+      {
+        "name": "email",
+        "displayName": "${email}",
+        "validations": {
+          "email": {},
+          "length": { "max": 255 }
+        },
+        "required": { "roles": ["user"] },
+        "permissions": {
+          "view": ["admin", "user"],
+          "edit": ["admin", "user"]
+        },
+        "multivalued": false
+      },
+      {
+        "name": "firstName",
+        "displayName": "${firstName}",
+        "validations": {
+          "length": { "max": 255 },
+          "person-name-prohibited-characters": {}
+        },
+        "required": { "roles": ["user"] },
+        "permissions": {
+          "view": ["admin", "user"],
+          "edit": ["admin", "user"]
+        },
+        "multivalued": false
+      },
+      {
+        "name": "lastName",
+        "displayName": "${lastName}",
+        "validations": {
+          "length": { "max": 255 },
+          "person-name-prohibited-characters": {}
+        },
+        "required": { "roles": ["user"] },
+        "permissions": {
+          "view": ["admin", "user"],
+          "edit": ["admin", "user"]
+        },
+        "multivalued": false
+      },
+      {
+        "name": "current_tenant",
+        "displayName": "Current Tenant",
+        "permissions": {
+          "view": ["admin"],
+          "edit": ["admin"]
+        },
+        "multivalued": false
+      },
+      {
+        "name": "tenants",
+        "displayName": "Allowed Tenants",
+        "permissions": {
+          "view": ["admin"],
+          "edit": ["admin"]
+        },
+        "multivalued": true
+      },
+      {
+        "name": "community_ids",
+        "displayName": "Community IDs",
+        "permissions": {
+          "view": ["admin"],
+          "edit": ["admin"]
+        },
+        "multivalued": true
+      }
+    ],
+    "groups": [
+      {
+        "name": "user-metadata",
+        "displayHeader": "User metadata",
+        "displayDescription": "Attributes, which refer to user metadata"
+      }
+    ]
+  }
 }

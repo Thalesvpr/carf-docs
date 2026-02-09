@@ -55,7 +55,8 @@ services:
       - "${KEYCLOAK_HTTPS_PORT:-8443}:8443"
     volumes:
       # Realm import
-      - ./realm-export.json:/opt/keycloak/data/import/realm-export.json:ro
+      # Fonte de verdade: CENTRAL/INTEGRATION/KEYCLOAK/realm-export.json
+      - ../../../../CENTRAL/INTEGRATION/KEYCLOAK/realm-export.json:/opt/keycloak/data/import/realm-export.json:ro
 
       # Custom themes (opcional)
       # - ./themes:/opt/keycloak/themes:ro

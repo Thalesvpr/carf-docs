@@ -1,7 +1,7 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-19
+updated: 2026-02-07
 ---
 
 # Gerenciamento de Secrets

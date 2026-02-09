@@ -1,16 +1,14 @@
 ---
 type: readme
 status: review
-updated: 2026-01-11
+updated: 2026-02-07
 ---
 
-# KEYCLOAK - Autenticação CARF
+# KEYCLOAK - Autenticacao CARF
 
-Sistema autenticação OAuth2 OIDC customizado para ecossistema CARF implementando SSO entre seis aplicações multi-tenancy JWT claims RLS PostgreSQL. Stack: Keycloak 24.0 PostgreSQL 16 Docker custom themes PT-BR FreeMarker JavaScript validação CPF SPIs Java Maven testes Playwright Node.js.
+Sistema de autenticacao e autorizacao OAuth2/OIDC customizado para o ecossistema CARF, fornecendo SSO entre as seis aplicacoes do sistema com multi-tenancy via user attributes mapeados para claims JWT e isolamento de dados via Row-Level Security no PostgreSQL. Stack: Keycloak 24.0, PostgreSQL 16, Docker, temas Keycloakify.
 
-## Documentação
-
-Ver **[DOCS/](./DOCS/README.md)** para documentação técnica completa customizações desenvolvimento deployment.
+A [documentacao tecnica](./DOCS/README.md) cobre conceitos, arquitetura de temas e extensoes, integracao com clients OAuth2, RBAC, tokens, seguranca, guias praticos e procedimentos operacionais. O [codigo-fonte](./SRC-CODE/) contem a implementacao dos temas customizados e extensoes Java.
 
 <!-- CARF-INDEX-START -->
 > ⚠️ **Índice gerado automaticamente.** Não edite manualmente.

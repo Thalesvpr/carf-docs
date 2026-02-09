@@ -2,12 +2,12 @@
 type: leaf
 status: review
 description: "Usa tabela comparativa ao invés de prosa densa."
-updated: 2026-01-22
+updated: 2026-02-08
 ---
 
 # Keycloak Themes
 
-O sistema de temas do Keycloak permite customizar a aparência de todas as interfaces de usuario (login, registro, account console, emails). No projeto CARF, utilizamos **Keycloakify** como tecnologia padrao para desenvolvimento de temas, permitindo criar interfaces com React e TypeScript.
+O sistema de temas do Keycloak permite customizar a aparencia de todas as interfaces de usuario (login, registro, account console, emails). No projeto CARF, o tema atual utiliza **FreeMarker** com CSS customizado (ver [ARCHITECTURE/02-theme-architecture.md](../ARCHITECTURE/02-theme-architecture.md)). O ADR-001 decidiu migrar para **Keycloakify** (React/TypeScript) para reutilizar componentes @carf/ui, mas a migracao ainda nao foi implementada. Este documento explica os conceitos do Keycloakify como referencia para a migracao futura.
 
 ## O Que É Keycloakify
 

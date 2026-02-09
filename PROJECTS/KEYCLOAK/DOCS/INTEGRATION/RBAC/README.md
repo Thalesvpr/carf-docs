@@ -1,40 +1,14 @@
 ---
 type: readme
 status: review
-description: "README usa tabela resumo com bullets - reescrever tabela em prosa densa"
-updated: 2026-01-22
+updated: 2026-02-07
 ---
 
 # RBAC
 
-Sistema de controle de acesso baseado em roles (Role-Based Access Control) definindo permissões para cada tipo de usuário no ecossistema CARF.
+Sistema de controle de acesso baseado em roles definindo permissoes para cada tipo de usuario no ecossistema CARF. O realm-export.json configura seis realm roles operacionais em hierarquia de arvore (nao linear) via composite roles, mais uma role transversal dev planejada.
 
-A [hierarquia de roles](./01-roles-hierarchy.md) define sete níveis: `user` (base), `field-cadastrator`, `field-coordinator`, `analyst`, `admin`, `super-admin` (operacionais com herança), e `dev` (transversal). A role `field-cadastrator` tem acesso apenas a mapa e formularios, enquanto `field-coordinator` supervisiona equipe com menu mobile completo. A [role dev](./02-role-dev.md) é transversal e concede acesso a ferramentas de desenvolvimento. As [permissões detalhadas](./03-permissions.md) especificam ações permitidas por role em cada módulo do sistema.
-
-## Tabela Resumo
-
-| Role | Tipo | Descrição |
-|------|------|-----------|
-| `user` | Operacional | Usuário padrão, funcionalidades básicas |
-| `field-cadastrator` | Operacional | Cadastrador de campo, apenas mapa e formularios |
-| `field-coordinator` | Operacional | Coordenador de campo, menu completo, supervisao |
-| `analyst` | Operacional | Analista REURB, aprovações |
-| `admin` | Operacional | Administrador de tenant |
-| `super-admin` | Operacional | Acesso multi-tenant |
-| `dev` | Transversal | Desenvolvedor, acesso /dev/ |
-
-
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (3 arquivos)
-
-| ID | Titulo |
-|:---|:-------|
-| [01-roles-hierarchy](./01-roles-hierarchy.md) | Hierarquia de Roles |
-| [02-role-dev](./02-role-dev.md) | Role Dev |
-| [03-permissions](./03-permissions.md) | Permissões Detalhadas |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
+A [hierarquia de roles](./01-roles-hierarchy.md) organiza as roles em dois ramos sob manager: analyst (escritorio, aprovacoes, relatorios) e field-coordinator > field-cadastrator (campo, coleta, supervisao). Admin herda manager, super-admin herda admin. A [role dev](./02-role-dev.md) e transversal, sem relacao de heranca, concedendo acesso a ferramentas de desenvolvimento no WebDocs. As [permissoes detalhadas](./03-permissions.md) especificam acoes permitidas por role em cada endpoint da GEOAPI, incluindo client roles do admin (manage-users, manage-tenants, view-audit-logs) e do reurbcad (sync-data, manage-team).
 
 <!-- CARF-INDEX-START -->
 > ⚠️ **Índice gerado automaticamente.** Não edite manualmente.

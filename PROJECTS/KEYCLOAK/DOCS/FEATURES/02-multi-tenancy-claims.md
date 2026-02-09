@@ -1,15 +1,43 @@
 ---
 type: leaf
-status: review
-updated: 2026-01-11
+status: approved
+updated: 2026-02-07
 ---
 
-# Multi-Tenancy Claims - Claims Multi-Tenancy
+# Multi-Tenancy Claims
 
-Multi-tenancy Keycloak implementado via user attributes protocol mappers injetando claims JWT access token permitindo aplicações identificarem tenant atual tenants permitidos usuário filtrarem dados via Row-Level Security PostgreSQL sem necessidade session state compartilhado através de User Attributes adicionando custom attributes tenants multi-valued array ["prefeitura-a", "prefeitura-b"] current_tenant single value "prefeitura-a", Protocol Mappers Client Scopes profile scope criando mappers User Attribute tipo extraindo attributes mapeando Token Claim Names tenant_id allowed_tenants incluindo access token ID token userinfo endpoint, applications consuming claims via JWT token parsing extracting tenant_id aplicando filtro WHERE tenant_id = claim automaticamente via RLS policies PostgreSQL ou application-level filtering middleware.
+Multi-tenancy no Keycloak CARF e implementado via user attributes mapeados para claims JWT por protocol mappers do scope carf-tenant. Essa abordagem permite que todas as aplicacoes identifiquem o tenant ativo e os tenants permitidos do usuario diretamente a partir do access token, sem consultas adicionais ao Keycloak.
 
-User Attributes configuração Admin Console Users selecionando user Attributes tab adicionando key tenants value JSON array format ["tenant-uuid-1", "tenant-uuid-2"] multi-valued permitindo usuário pertencer múltiplos municípios simultaneously, adicionando key current_tenant value "tenant-uuid-1" single-valued indicando tenant ativo sessão atual switch tenant atualizando apenas current_tenant preservando tenants array, bulk import users via Admin API POST /admin/realms/carf/users body array users cada com attributes object tenants current_tenant, migration script existing users sem attributes adicionando default tenant baseado email domain ou manual assignment spreadsheet import CSV matching user IDs tenant IDs, validation garantindo current_tenant sempre presente tenants array consistency check impedindo orphan references tenant não autorizado.
+## User Attributes
 
-Protocol Mappers configuração Admin Console Client Scopes profile scope Mappers tab Add mapper Mapper Type "User Attribute" Name "tenant_id" User Attribute "current_tenant" Token Claim Name "tenant_id" Claim JSON Type "String" Add to ID token OFF Add to access token ON Add to userinfo ON Multivalued OFF, criando segundo mapper Name "allowed_tenants" User Attribute "tenants" Token Claim Name "allowed_tenants" Claim JSON Type "String" Multivalued ON adicionando array tenants claim, testando gerando token via Direct Grant flow POST /protocol/openid-connect/token grant_type password username password client_id decoding JWT via jwt.io verificando claims tenant_id e allowed_tenants presentes payload, aplicando mappers todos clients adicionando profile scope Client Scopes tab Default Client Scopes ou Optional dependendo requirement.
+Cada usuario possui atributos customizados configurados via Admin Console em Users, Attributes ou em lote via Admin API. O atributo tenants e multi-valued contendo array de identificadores dos tenants acessiveis ao usuario, por exemplo ["tenant-uuid-1", "tenant-uuid-2"]. O atributo current_tenant e single-valued indicando o tenant ativo na sessao atual. Validacao de consistencia garante que current_tenant esteja sempre presente no array tenants.
 
-Application integration backend middleware ASP.NET Core GEOAPI TenantMiddleware executando após UseAuthentication extraindo claim tenant_id via User.FindFirst("tenant_id")?.Value executing SQL SET LOCAL app.tenant_id = tenant_id PostgreSQL connection antes qualquer query RLS policies automaticamente filtrando, frontend React GEOWEB AuthContext useAuth hook parsing keycloak.tokenParsed.tenant_id exibindo TenantSwitcher dropdown se allowed_tenants.length > 1 permitindo switch, switch tenant flow usuário seleciona novo tenant dropdown chamando POST /api/auth/switch-tenant backend validando novo tenant presente allowed_tenants claim atualizando Keycloak user attribute current_tenant via Admin API kcAdmin.users.update forçando token refresh frontend keycloak.updateToken(-1) obtendo novo access token com tenant_id atualizado reload aplicação limpando cache garantindo queries usam novo tenant context, auditoria logging tenant switches audit_log table tracking user_id old_tenant new_tenant timestamp IP address para compliance rastreabilidade, security garantindo backend sempre valida tenant_id claim contra allowed_tenants impedindo spoofing JWT manipulação client-side porque token assinado RS256 Keycloak private key apenas Keycloak pode emitir tokens válidos applications verificam signature JWKS public keys.
+Migracao de usuarios existentes sem atributos de tenant pode ser feita via script bulk usando Admin API ou Required Action UPDATE_PROFILE forcando preenchimento no proximo login.
+
+## Protocol Mappers
+
+Tres mappers no client scope carf-tenant transformam atributos em claims JWT. Todos sao do tipo oidc-usermodel-attribute-mapper configurados no Admin Console em Client Scopes, carf-tenant, Mappers.
+
+| Mapper | User Attribute | Token Claim Name | Claim JSON Type | Multivalued |
+|:-------|:---------------|:-----------------|:----------------|:------------|
+| tenant_id | current_tenant | tenant_id | String | Nao |
+| allowed_tenants | tenants | allowed_tenants | String | Sim |
+| community_ids | community_ids | community_ids | String | Sim |
+
+Todos emitem claims em access token e userinfo endpoint. O scope carf-tenant integra os defaultClientScopes, sendo aplicado automaticamente a todos os clients.
+
+## Integracao com Backend
+
+O middleware TenantMiddleware no GEOAPI (.NET) executa apos UseAuthentication e extrai claim tenant_id do JWT via User.FindFirst("tenant_id"). Em seguida, configura variavel de sessao PostgreSQL via SET LOCAL app.tenant_id que aciona Row-Level Security policies automaticamente filtrando todas as queries pelo tenant ativo. Nenhum filtro WHERE explicito e necessario no codigo da aplicacao.
+
+## Integracao com Frontend
+
+No GEOWEB (React), o AuthContext e hook useAuth parseiam keycloak.tokenParsed para extrair tenant_id e allowed_tenants. Quando allowed_tenants contem mais de um valor, o componente TenantSwitcher renderiza dropdown permitindo troca de tenant.
+
+## Fluxo de Troca de Tenant
+
+Quando o usuario seleciona novo tenant no dropdown, o frontend chama POST /api/auth/switch-tenant com o novo tenantId. O backend valida que o tenant solicitado esta presente no claim allowed_tenants do JWT atual, atualiza o user attribute current_tenant via Keycloak Admin API e retorna sucesso. O frontend forca refresh do token via keycloak.updateToken(-1) obtendo novo access token com tenant_id atualizado. A aplicacao recarrega limpando cache para garantir que queries usem o novo contexto de tenant.
+
+## Seguranca
+
+O backend sempre valida tenant_id claim contra allowed_tenants, impedindo spoofing via manipulacao client-side. Tokens sao assinados com RS256 usando chave privada do Keycloak, tornando impossivel forjar claims validos sem acesso a chave. Toda troca de tenant e registrada em audit_log com user_id, old_tenant, new_tenant, timestamp e IP address para compliance e rastreabilidade.

@@ -1,10 +1,12 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-21
+updated: 2026-02-08
 ---
 
-# Desenvolvimento de Temas com Keycloakify
+# Desenvolvimento de Temas com Keycloakify (Migracao Planejada)
+
+> **Status: Migracao Planejada.** O tema CARF atualmente usa FreeMarker com CSS customizado e JavaScript puro (ver [FEATURES/06-login-theme-carf.md](../FEATURES/06-login-theme-carf.md) e [ARCHITECTURE/02-theme-architecture.md](../ARCHITECTURE/02-theme-architecture.md)). Este guia documenta o fluxo planejado de desenvolvimento com Keycloakify conforme decidido no [ADR-001](../ADRs/ADR-001-keycloakify-adoption.md), mas a migracao ainda nao foi implementada. Nao e necessario para operar o tema FreeMarker atual.
 
 Este guia cobre o fluxo completo de desenvolvimento de temas Keycloak usando Keycloakify, desde a configuração inicial do ambiente até o deploy em produção.
 

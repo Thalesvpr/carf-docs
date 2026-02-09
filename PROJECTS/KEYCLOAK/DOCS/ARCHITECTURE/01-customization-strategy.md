@@ -1,193 +1,49 @@
 ---
 type: leaf
 status: review
-description: "Usa listas numeradas, bullets e code blocks ao inves de prosa densa - reescrever completamente"
-updated: 2026-01-22
+updated: 2026-02-07
 ---
 
 # Estratégia de Customização do Keycloak
 
-## Visão Geral
+O projeto CARF customiza o Keycloak em três níveis complementares: temas visuais via Keycloakify, extensões funcionais via SPIs Java e configuração declarativa de realm via JSON. Cada nível tem escopo, complexidade e tecnologia distintos, e juntos cobrem todas as necessidades de identidade do sistema.
 
-O projeto CARF utiliza Keycloak como provedor de identidade centralizado (IdP) com customizações específicas para atender aos requisitos de UX e funcionalidades especializadas para o domínio de regularização fundiária urbana.
+## Temas — Customização Visual via Keycloakify
 
-## Níveis de Customização
+A customização visual utiliza Keycloakify (ADR-001) para desenvolver temas em React e TypeScript, consumindo componentes da biblioteca @carf/ui (Button, Input, FormField, Alert, Card). O resultado do build é um JAR que o Keycloak serve exatamente como um tema FreeMarker tradicional, sem diferença funcional na implantação.
 
-### 1. Temas (Themes) - Customização Visual
+Três tipos de tema são customizados: o tema de login (páginas de autenticação, registro, recuperação de senha, verificação de email e erro), o tema de account (console de gerenciamento de conta do usuário com perfil, sessões e 2FA) e o tema de email (templates de email transacionais para verificação, reset de senha e notificações).
 
-**Escopo:** Interface do usuário
-**Complexidade:** Baixa
-**Tecnologias:** HTML, CSS, JavaScript, FreeMarker
+O uso de @carf/ui garante consistência visual absoluta entre as telas de autenticação e as aplicações GEOWEB, ADMIN e WebDocs que consomem a mesma biblioteca. Mudanças no Design System propagam automaticamente para o tema Keycloak. O hook useCpfMask de @carf/ui aplica máscara e validação de CPF diretamente no formulário de login, eliminando a necessidade de reimplementar essa lógica em JavaScript vanilla.
 
-Customizações de tema incluem:
+O código fonte do tema fica em PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/ com estrutura padrão Keycloakify: entry point KcApp.tsx, páginas React em src/login/pages/ (Login.tsx, Register.tsx, ResetPassword.tsx), traduções em i18n.ts, e configuração em keycloakify.config.ts e vite.config.ts.
 
-#### Login Theme
-- Página de login com identidade visual CARF
-- Formulários de registro
-- Páginas de erro
-- Recuperação de senha
-- Verificação de email
+A abordagem FreeMarker tradicional foi rejeitada por impossibilitar reutilização de @carf/ui e forçar manutenção duplicada de estilos e validações. A documentação FreeMarker existente permanece válida como referência interna de como temas funcionam mas está marcada como legacy.
 
-#### Account Theme
-- Console de gerenciamento de conta do usuário
-- Página de perfil
-- Gerenciamento de sessões
-- Autenticação de dois fatores (2FA)
+## Extensions (SPIs) — Customização Funcional
 
-#### Email Theme
-- Templates de email transacionais
-- Email de boas-vindas
-- Notificações de alteração de senha
-- Verificação de email
+Extensões Java via Keycloak SPI adicionam lógica de negócio ao servidor de autenticação. As extensões planejadas para o CARF são implementadas em Java 17 e empacotadas como JARs copiados para /opt/keycloak/providers/.
 
-**Arquivos customizados:**
-```
-themes/carf/
-├── login/
-│   ├── theme.properties
-│   ├── resources/
-│   │   ├── css/
-│   │   │   └── login.css
-│   │   ├── js/
-│   │   │   └── login.js
-│   │   └── img/
-│   │       └── logo.svg
-│   └── login.ftl
-├── account/
-│   ├── theme.properties
-│   └── resources/
-└── email/
-    ├── theme.properties
-    └── html/
-        ├── email-verification.ftl
-        └── password-reset.ftl
-```
+O **CPF Authenticator** valida formato e dígitos verificadores de CPF durante o fluxo de autenticação, rejeitando documentos inválidos antes de consultar o banco. O **Tenant Claims Mapper** é um protocol mapper customizado que extrai os atributos de usuário current_tenant, tenants e community_ids e os injeta como claims no JWT dentro do scope carf-tenant. Na prática o realm-export.json já configura protocol mappers nativos (User Attribute → Token Claim) que resolvem esse mapeamento sem código Java, mas o SPI customizado permite lógica adicional como validação de tenant ativo contra a lista de tenants permitidos.
 
-### 2. Extensions (SPIs) - Customização Funcional
+**Event Listeners** customizados capturam eventos de autenticação (login, logout, falha) e administração (criação de usuário, alteração de role) para integração com sistema de logs centralizado e notificações para administradores.
 
-**Escopo:** Lógica de negócio
-**Complexidade:** Média/Alta
-**Tecnologias:** Java 17, Keycloak SPI
+A estrutura do projeto segue o padrão Maven com pacotes organizados em com.carf.keycloak.authenticators, com.carf.keycloak.listeners e com.carf.keycloak.mappers. Testes utilizam JUnit e Keycloak Testcontainers para integração.
 
-Extensões potenciais para CARF:
+## Configuração de Realm — Customização Declarativa
 
-#### Custom Authenticators
-- Validação de CPF durante registro
-- Integração com sistemas externos de validação de identidade
-- Autenticação baseada em geolocalização (para fiscais de campo)
+A configuração de realm via realm-export.json (fonte da verdade em CENTRAL/INTEGRATION/KEYCLOAK/realm-export.json) define de forma declarativa todas as entidades do provedor de identidade sem código customizado.
 
-#### Event Listeners
-- Auditoria customizada de eventos
-- Integração com sistema de logs centralizado
-- Notificações para administradores
+Roles e permissões CARF compreendem seis roles de realm em hierarquia de árvore: field-cadastrator, field-coordinator (herda field-cadastrator), analyst (ramo separado), manager (herda field-coordinator e analyst), admin (herda manager) e super-admin (herda admin). O scope OAuth2 customizado carf-tenant contém os protocol mappers que injetam claims de multi-tenancy no JWT.
 
-#### User Storage SPI
-- Federação com sistemas legados de usuários
-- Importação de usuários de sistemas municipais existentes
+A política de senha exige mínimo 8 caracteres (length(8)). Tokens têm vida curta: access token 5 minutos, SSO idle 30 minutos, SSO max 10 horas. Multi-tenancy funciona via atributos de usuário (tenants, current_tenant, community_ids) mapeados para claims JWT por protocol mappers nativos.
 
-#### Protocol Mappers
-- Claims customizados no JWT (tenant_id, roles específicas REURB)
-- Mapeamento de atributos específicos do domínio
+O realm-export.json é importado na primeira inicialização do Keycloak e versionado no Git. Alterações feitas via Admin Console devem ser re-exportadas para manter o JSON atualizado.
 
-**Estrutura de extension:**
-```
-extensions/
-├── pom.xml
-└── src/
-    └── main/
-        └── java/
-            └── com/
-                └── carf/
-                    └── keycloak/
-                        ├── authenticators/
-                        ├── listeners/
-                        └── mappers/
-```
+## Estratégia de Deploy
 
-### 3. Configuração de Realm
+Em desenvolvimento, o Keycloak roda via Docker Compose (docker-compose.dev.yml) com PostgreSQL 16. O tema Keycloakify é desenvolvido com hot reload via Vite (pnpm dev) e testado conectando ao Keycloak local. Extensions são compiladas com Maven e copiadas manualmente para providers/.
 
-**Escopo:** Configuração declarativa
-**Complexidade:** Baixa
-**Tecnologias:** JSON (realm export/import)
+Em staging e produção, uma imagem Docker customizada embute tema JAR e extensions JAR sobre a imagem base quay.io/keycloak/keycloak:24.0.0. O build executa /opt/keycloak/bin/kc.sh build para otimizar providers. Deploy via Kubernetes com configuração por Kustomize overlays.
 
-Customizações de realm:
-
-- Roles e permissões CARF (ADMIN, ANALYST, FIELD_COORDINATOR, FIELD_CADASTRATOR, MUNICIPALITY_MANAGER, PUBLIC)
-- Scopes OAuth2 customizados (carf-tenant, reurb-permissions)
-- Políticas de senha conforme LGPD
-- Configuração de sessões e tokens
-- Multi-tenancy via atributos de usuário
-
-**Arquivo:** `realm-export.json` (em [DOCS/CONFIG/](../CONFIG/))
-
-## Estratégia de Desenvolvimento
-
-### Ambiente de Desenvolvimento
-
-1. **Keycloak local com hot-reload de temas:**
-   ```bash
-   docker run -p 8080:8080 \
-     -e KEYCLOAK_ADMIN=admin \
-     -e KEYCLOAK_ADMIN_PASSWORD=admin \
-     -v ./themes:/opt/keycloak/themes \
-     quay.io/keycloak/keycloak:24.0.0 start-dev
-   ```
-
-2. **Build de extensions:**
-   ```bash
-   cd extensions
-   mvn clean package
-   cp target/carf-keycloak-extensions.jar /opt/keycloak/providers/
-   ```
-
-### Estratégia de Deployment
-
-#### Development
-- Keycloak standalone com Docker Compose
-- Temas montados via volume
-- Extensions copiados manualmente
-
-#### Staging/Production
-- Imagem Docker customizada com temas e extensions embutidos
-- Deployment via Kubernetes
-- Configuração via Kustomize overlays
-
-**Dockerfile customizado:**
-```dockerfile
-FROM quay.io/keycloak/keycloak:24.0.0
-
-# Copiar temas customizados
-COPY themes/carf /opt/keycloak/themes/carf
-
-# Copiar extensions
-COPY extensions/target/*.jar /opt/keycloak/providers/
-
-# Rebuild do Keycloak com extensions
-RUN /opt/keycloak/bin/kc.sh build
-
-ENTRYPOINT ["/opt/keycloak/bin/kc.sh"]
-```
-
-## Versionamento
-
-- **Temas:** Versionados junto com o código (Git)
-- **Extensions:** Versionamento semântico (MAJOR.MINOR.PATCH)
-- **Realm configuration:** Exportado e versionado no Git
-- **Imagem Docker:** Tagged com versão do projeto (ex: `carf-keycloak:1.2.0`)
-
-## Testes
-
-### Temas
-- Testes manuais de UI/UX
-- Testes de responsividade (mobile, desktop)
-- Validação de acessibilidade (WCAG 2.1)
-
-### Extensions
-- Unit tests (JUnit)
-- Integration tests com Keycloak Testcontainers
-- Testes de performance para authenticators customizados
-
-### Realm Configuration
-- Testes de importação/exportação
-- Validação de roles e permissões
-- Testes de fluxos OAuth2/OIDC
+Versionamento segue: temas e realm config versionados no Git junto com a documentação, extensions com versionamento semântico, e imagem Docker tagged com versão do projeto.

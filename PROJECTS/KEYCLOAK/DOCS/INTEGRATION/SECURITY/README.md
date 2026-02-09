@@ -1,27 +1,14 @@
 ---
 type: readme
 status: review
-updated: 2026-01-17
+updated: 2026-02-07
 ---
 
-# Security
+# SECURITY
 
-Práticas de segurança e hardening do Keycloak para proteger autenticação e autorização no ecossistema CARF. Esta seção documenta configurações obrigatórias para produção e medidas de proteção contra ataques comuns em sistemas de identidade.
+Praticas de seguranca e hardening do Keycloak para proteger autenticacao e autorizacao no ecossistema CARF. Documenta configuracoes obrigatorias para producao e medidas de protecao contra ataques comuns em sistemas de identidade.
 
-As [boas práticas](./01-best-practices.md) cobrem configurações recomendadas para produção incluindo HTTPS, políticas de senha e audit logging. A [proteção contra ataques](./02-attack-protection.md) documenta defesas contra brute force, CSRF e outros vetores de ataque. O [gerenciamento de secrets](./03-secrets-management.md) explica armazenamento seguro de credenciais usando Kubernetes Secrets e rotação periódica.
-
-
-<!-- GENERATED:START - Nao edite abaixo desta linha -->
-## Arquivos (3 arquivos)
-
-| ID | Titulo |
-|:---|:-------|
-| [01-best-practices](./01-best-practices.md) | Boas Práticas |
-| [02-attack-protection](./02-attack-protection.md) | Proteção Contra Ataques |
-| [03-secrets-management](./03-secrets-management.md) | Gerenciamento de Secrets |
-
-*Gerado automaticamente em 2026-01-17 11:57*
-<!-- GENERATED:END -->
+As [boas praticas](./01-best-practices.md) cobrem configuracoes recomendadas incluindo HTTPS obrigatorio (sslRequired: external), password policy e audit logging. A [protecao contra ataques](./02-attack-protection.md) documenta defesas contra brute force (5 tentativas, lockout progressivo ate 15min, janela de 12h) e outros vetores. O [gerenciamento de secrets](./03-secrets-management.md) explica armazenamento seguro de client secrets (geogis e confidential) usando Kubernetes Secrets e rotacao periodica.
 
 <!-- CARF-INDEX-START -->
 > ⚠️ **Índice gerado automaticamente.** Não edite manualmente.

@@ -1,15 +1,47 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-11
+updated: 2026-02-08
 ---
 
-# Theme Customization - Customização de Tema
+# Theme Customization
 
-Customização tema Keycloak implementada criando theme CARF personalizado aplicando identidade visual municipal branding logo cores fontes layout páginas login account email através de diretório /opt/keycloak/themes/carf/ contendo subdirectories login account email cada com structure theme.properties definindo parent base herdando templates padrão overriding específicos, resources/css/ contendo styles.css customizações visuais cores primária secundária backgrounds borders radius shadows, resources/img/ contendo logo-carf.png favicon.ico illustrations backgrounds, messages/ contendo messages_pt_BR.properties i18n traduções labels textos português Brasil, templates FreeMarker .ftl files login.ftl login-update-profile.ftl register.ftl error.ftl override HTML structure adicionando elementos custom classes IDs facilitando styling CSS.
+O tema CARF customiza a identidade visual das paginas de autenticacao, gerenciamento de conta e emails transacionais do Keycloak. A implementacao usa templates FreeMarker com CSS customizado, deployada em /opt/keycloak/themes/carf/ na imagem Docker.
 
-Customizações visuais implementadas via CSS variables root selector definindo --primary-color #2563eb azul institucional --secondary-color #10b981 verde aprovação --danger-color #ef4444 vermelho alertas --background-color #f9fafb cinza claro --text-color #111827 preto quase --border-radius 0.5rem arredondamento moderno aplicando body font-family Inter system-ui sans-serif stack, header logo substituindo Keycloak default por logo-carf.png width 200px height auto margin bottom spacing, form inputs styling border solid 1px border-color focus outline primary-color shadow-sm transition smooth padding vertical horizontal placeholder color gray-400, buttons primary background primary-color text white hover darken 10% disabled opacity 50% cursor not-allowed, alerts success background green-50 border green-500 text green-900 error background red-50 border red-500 text red-900, responsive design media queries max-width 768px mobile tablets ajustando padding margins font-sizes layout stack vertical, dark mode suporte prefers-color-scheme dark CSS media query invertendo cores background dark text light primary lighter shade.
+## Estrutura de Diretorios
 
-Templates FreeMarker customizados login.ftl adicionando section header com logo tagline "Sistema de Regularização Fundiária Urbana" subtitle município nome configurável, form fields reordering username email password campos adicionando campo CPF custom input type text name cpf placeholder "000.000.000-00" pattern regex validation, footer links suporte contato privacy policy terms service, register.ftl formulário cadastro adicional fields firstName lastName cpf telefone attributes mapeando user attributes Keycloak, error.ftl página erro customizada mensagens amigáveis português instruções troubleshooting links voltar home contact support, login-update-profile.ftl forçando usuário completar perfil first login campos obrigatórios cpf telefone validações inline, messages_pt_BR.properties traduções completas português Brasil loginTitle "Entrar no Sistema CARF" usernameOrEmail "CPF ou E-mail" password "Senha" doLogIn "Entrar" registerTitle "Cadastrar Nova Conta" errors "invalidUsernameOrEmailMessage" "CPF ou e-mail inválido", theme.properties configurando parent base styles css/styles.css locales pt-BR import common resources.
+O tema reside em PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak/themes/carf/ com tres subdiretorios, cada um contendo theme.properties que define heranca do tema pai, templates .ftl que sobreescrevem o comportamento padrao, resources/ com CSS, JavaScript e imagens, e messages/ com traducoes.
 
-Deployment tema build Maven ou manual copy arquivos /opt/keycloak/themes/carf/ Docker volume mount bind development -v ./themes/carf:/opt/keycloak/themes/carf production build image COPY themes Dockerfile, ativação tema Admin Console Realm Settings Themes tab selecionando Login Theme carf Account Theme carf Email Theme carf aplicando Save, cache clearing Admin Console Events Config tab Update Theme forçando reload templates CSS alterações reflected immediately desenvolvimento hot-reload production restart required, testing login flow navegando /realms/carf/protocol/openid-connect/auth verificando logo cores layout português validações CPF custom field, customizações avançadas JavaScript adicionando resources/js/custom.js scripts validações client-side AJAX calls dynamic content event listeners keypress input blur, email templates email/html/ email/text/ subdirectories contendo email-verification.ftl password-reset.ftl customizando emails transactional SMTP branding consistent visual identity.
+O subdirectorio login/ contem o tema de login com layout split-screen, formularios customizados e validacao CPF. Herda de keycloak base.
+
+O subdirectorio account/ contem o tema de gerenciamento de conta com customizacao visual. Herda de keycloak.v2.
+
+O subdirectorio email/ contem templates HTML e texto puro para emails transacionais com branding CARF.
+
+## Customizacao Visual
+
+As cores institucionais sao definidas via CSS custom properties no login.css (437 linhas). Verde primario #2C5F2D para branding, botoes e links. Verde secundario #97BC62 para gradientes e destaques. Vermelho #dc2626 para alertas de erro. Cinza claro #f9fafb para background. Preto #111827 para textos.
+
+A tipografia usa font-family Inter, Segoe UI, sans-serif como stack. Border-radius padrao 0.5rem para inputs e botoes. Inputs tem border 1px solid com focus outline na cor primaria e shadow-sm com transicao suave. Botoes primarios tem background na cor primaria, texto branco, hover 10% mais escuro, disabled opacity 50%.
+
+O layout e responsivo com media query em max-width 768px para mobile e tablets, convertendo o split-screen em stack vertical e ajustando padding, margins e font-sizes.
+
+## Templates FreeMarker
+
+Seis templates sobreescritos no tema de login. O template.ftl define o layout base split-screen com painel esquerdo 42% (fundo verde, logo CARF, tagline "Sistema de Regularizacao Fundiaria Urbana") e painel direito 58% (area de formulario). O login.ftl renderiza campos CPF/email e senha com checkbox "lembrar-me". O register.ftl adiciona campos firstName, lastName, CPF e telefone mapeados como user attributes do Keycloak. O login-reset-password.ftl exibe formulario de recuperacao de senha por email. O error.ftl mostra mensagens de erro amigaveis em portugues com instrucoes de troubleshooting. O info.ftl exibe mensagens informativas.
+
+## Validacao CPF
+
+O login.js (337 linhas) registra window.CarfValidations com mascara automatica XXX.XXX.XXX-XX nos campos CPF e validacao dos digitos verificadores via algoritmo Mod11 no evento blur. O carf-validations.js e um bundle minificado complementar carregado via tag script no template.ftl.
+
+## Internacionalizacao
+
+Traducoes em messages_pt_BR.properties (334 chaves) como idioma principal e messages_en.properties (40 chaves) como secundario. Chaves customizadas incluem loginAccountTitle "Entrar no Sistema CARF", usernameOrEmail "CPF ou E-mail", password "Senha", doLogIn "Entrar", registerTitle "Cadastrar Nova Conta" e invalidUsernameOrEmailMessage "CPF ou e-mail invalido".
+
+## Deploy
+
+Em desenvolvimento, docker-compose.dev.yml monta themes/carf/ como volume bind com cache de tema desabilitado, permitindo hot reload de alteracoes em templates e CSS sem restart do container. Em producao, o Dockerfile multi-stage copia themes/ para /opt/keycloak/themes/carf/ na imagem final. Ativacao no Admin Console em Realm Settings, Themes, selecionando "carf" para Login Theme, Account Theme e Email Theme.
+
+## Emails Transacionais
+
+Templates HTML e texto puro em email/html/ e email/text/ para email-verification.ftl (verificacao de email com link de confirmacao) e password-reset.ftl (reset de senha com link temporario). Ambos usam header com gradiente verde (#2C5F2D a #97BC62), logo CARF e botao CTA na cor primaria.

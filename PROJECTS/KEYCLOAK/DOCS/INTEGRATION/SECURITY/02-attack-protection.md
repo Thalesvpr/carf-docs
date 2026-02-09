@@ -1,12 +1,12 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-19
+updated: 2026-02-07
 ---
 
 # Proteção Contra Ataques
 
-Brute force protection habilitado em Realm Settings > Security Defenses > Brute Force Detection. Configuração bloqueia usuário após 5 tentativas falhas por 15 minutos. Bloqueio permanente após 30 falhas consecutivas requerendo intervenção de admin para desbloqueio.
+Brute force protection habilitado em Realm Settings > Security Defenses > Brute Force Detection. Configuração bloqueia usuário após 5 tentativas falhas (failureFactor: 5) com wait máximo de 15 minutos (maxFailureWaitSeconds: 900). Contador de falhas reseta após 12 horas de inatividade (maxDeltaTimeSeconds: 43200), não sendo bloqueio permanente.
 
 Rate limiting adicional via Ingress NGINX limita requisições por IP: 10 req/s para endpoints de autenticação, 100 req/s para demais endpoints. Burst de 20 requisições permitido antes de throttling. IPs que excedem limites repetidamente bloqueados por 1 hora.
 

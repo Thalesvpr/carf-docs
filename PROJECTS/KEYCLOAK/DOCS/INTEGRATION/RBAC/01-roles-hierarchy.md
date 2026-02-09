@@ -1,53 +1,37 @@
 ---
 type: leaf
-status: review
-description: "Usa tabela e diagrama ao inves de prosa densa - reescrever em paragrafos corridos"
-updated: 2026-01-22
+status: draft
+updated: 2026-02-08
 ---
 
 # Hierarquia de Roles
 
-Sistema CARF implementa seis níveis de roles sendo cinco operacionais hierárquicos onde roles superiores herdam automaticamente permissões das inferiores através de composite roles no Keycloak, mais uma role transversal para desenvolvedores.
+Sistema CARF implementa sete realm roles em hierarquia de arvore (nao linear) com composite roles no Keycloak. Seis roles operacionais em dois ramos (campo e escritorio) unificam-se a partir de manager. Role dev e transversal e combinavel com qualquer role operacional.
 
-## Tabela de Roles
+## Tabela de Heranca
 
-| Role | Descrição | Acesso Principal |
-|------|-----------|------------------|
-| `user` | Usuário padrão | Funcionalidades básicas, docs públicas |
-| `field-cadastrator` | Cadastrador de campo | REURBCAD apenas mapa e formularios, sem menu |
-| `field-coordinator` | Coordenador de campo | REURBCAD, coleta offline, upload fotos, menu completo, supervisao |
-| `analyst` | Analista REURB | Gestão de unidades, titulares, aprovações |
-| `admin` | Administrador | Gestão de tenants, usuários, permissões |
-| `super-admin` | Super administrador | Acesso total, multi-tenant |
-| `dev` | Desenvolvedor (transversal) | Seção /dev/ no WebDocs, Swagger, logs |
+| Role | Herda de | Permissoes Principais |
+|:-----|:---------|:----------------------|
+| field-cadastrator | Nenhuma (base) | REURBCAD mapa e formularios, cria/edita unidades proprias, upload fotos |
+| field-coordinator | field-cadastrator | Menu mobile completo, dados da equipe, reurbcad:manage-team |
+| analyst | Nenhuma (ramo separado) | GEOWEB aprovacoes/rejeicoes, edicao qualquer unidade, relatorios CSV/PDF |
+| manager | analyst E field-coordinator | Juncao campo e escritorio, gerencia equipes, visao completa do tenant |
+| admin | manager | Gestao usuarios, config tenant (nome, CNPJ), audit logs, admin:manage-users |
+| super-admin | admin | Criar/deletar tenants, switcher sem validacao, Admin API, admin:manage-tenants |
+| dev | Nenhuma (transversal) | Secao /dev/ WEBDOCS: Swagger, docs tecnica, metricas debug |
 
-## Detalhamento das Roles
+## Ramo de Campo
 
-Role user é o nível mais básico concedido automaticamente a todos usuários autenticados. Permite acessar documentação pública no WEBDOCS, visualizar informações básicas do próprio perfil, e usar funcionalidades públicas das aplicações. Não concede acesso a dados operacionais do sistema CARF.
+Field-cadastrator e o nivel operacional basico para coleta de dados no REURBCAD sem menu completo, sem deletar registros ou aprovar unidades. Field-coordinator herda essas permissoes e adiciona supervisao de equipe.
 
-Role field-cadastrator é destinada a cadastradores de campo que utilizam REURBCAD para coleta de dados com acesso restrito apenas ao mapa e formularios, sem menu completo. Herda permissões de user e adiciona: criar e editar unidades próprias, fazer upload de fotos e documentos. Não pode deletar registros, aprovar unidades ou acessar dados de outros coletores.
+## Ramo de Escritorio
 
-Role field-coordinator é destinada a coordenadores de campo que supervisionam equipes de cadastradores. Herda permissões de field-cadastrator e adiciona: menu mobile completo, visualização de dados da equipe, coordenação de trabalho em campo.
+Analyst destina-se a analistas GEOWEB que aprovam ou rejeitam unidades cadastradas e geram relatorios. Nao herda de field-coordinator pois sao contextos distintos (escritorio versus campo).
 
-Role analyst herda de field-coordinator e adiciona capacidade de aprovar, rejeitar ou solicitar correções em unidades cadastradas, criar e editar qualquer unidade do tenant independente do criador original, gerar relatórios consolidados e exportar dados em formatos CSV e PDF.
+## Unificacao
 
-Role admin herda de analyst e adiciona gerenciamento de usuários do tenant incluindo criar contas, editar perfis, atribuir roles e desativar acessos. Também permite configurar preferências do tenant como nome e CNPJ, visualizar audit logs de ações no tenant, e gerenciar equipes de trabalho.
-
-Role super-admin herda de admin e adiciona capacidade de criar novos tenants/prefeituras, transferir usuários entre tenants mantendo histórico, deletar tenants inativos, acessar qualquer tenant via switcher especial sem validação de allowed_tenants, e gerenciar realm Keycloak via Admin API.
+Manager unifica ambos os ramos herdando analyst e field-coordinator. Admin herda de manager adicionando gestao de usuarios. Super-admin herda de admin com capacidades cross-tenant.
 
 ## Role Transversal
 
-Role dev é transversal e não participa da hierarquia operacional podendo ser combinada com qualquer outra role sem relação de herança. Destina-se a desenvolvedores que precisam acessar seção /dev/ do WEBDOCS contendo Swagger interativo, documentação técnica interna, métricas de debug e guias de contribuição. Não concede permissões operacionais no sistema CARF sendo necessária atribuição explícita mesmo para usuários admin ou super-admin. Ver [02-role-dev.md](./02-role-dev.md) para detalhes.
-
-## Diagrama de Herança
-
-```
-user (base)
-  └── field-cadastrator
-        └── field-coordinator
-              └── analyst
-                    └── admin
-                          └── super-admin
-
-dev (transversal - pode ser combinada com qualquer role acima)
-```
+Role dev nao participa da hierarquia e pode ser combinada com qualquer role. Nao concede permissoes operacionais, requerendo atribuicao explicita. Ver [02-role-dev.md](./02-role-dev.md).

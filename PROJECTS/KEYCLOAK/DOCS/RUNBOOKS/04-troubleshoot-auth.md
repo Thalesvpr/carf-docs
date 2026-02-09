@@ -1,67 +1,67 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-15
+updated: 2026-02-08
 ---
 
-# Troubleshoot Autenticação
+# Troubleshoot Autenticacao
 
-## Usuário não consegue logar
+## Usuario Nao Consegue Logar
 
-### Verificar se usuário existe
+### Verificar se o Usuario Existe
 
-Obter admin token executando curl POST para realms/master/protocol/openid-connect/token com client_id admin-cli username admin password admin grant_type password extraindo access_token via jq armazenando em TOKEN seguido por verificar usuário executando curl GET para admin/realms/carf/users com query parameter username joao.silva usando Authorization header Bearer TOKEN formatando output com jq exibindo dados usuário se existir ou array vazio se não encontrado.
+Obtenha o admin token executando um `curl POST` para `realms/master/protocol/openid-connect/token` com `client_id=admin-cli`, `username=admin`, `password=admin` e `grant_type=password`, extraindo o `access_token` via `jq` e armazenando em `TOKEN`. Em seguida, verifique o usuário com um `curl GET` para `admin/realms/carf/users` com query parameter `username=joao.silva`, usando o header `Authorization: Bearer $TOKEN` e formatando o output com `jq`. O resultado exibirá os dados do usuário se ele existir, ou um array vazio se não for encontrado.
 
-### Verificar se está habilitado
+### Verificar se esta Habilitado
 
-Verificar se usuário está habilitado executando curl GET para admin/realms/carf/users/USER_ID com Authorization header Bearer TOKEN extraindo propriedade enabled via jq devendo retornar true para permitir login false indicando usuário desabilitado impedindo autenticação mesmo com credenciais corretas.
+Execute um `curl GET` para `admin/realms/carf/users/$USER_ID` com o header `Authorization: Bearer $TOKEN` e extraia a propriedade `enabled` via `jq`. O valor deve ser `true` para permitir o login. Um retorno `false` indica que o usuário está desabilitado, impedindo a autenticação mesmo com credenciais corretas.
 
-### Resetar senha
+### Resetar Senha
 
-Resetar senha do usuário executando curl PUT para admin/realms/carf/users/USER_ID/reset-password com Authorization header Bearer TOKEN Content-Type application/json enviando payload JSON contendo type password value nova_senha temporary false aplicando nova senha imediatamente sem requerer troca primeiro login permitindo usuário autenticar novamente resolvendo problemas senha esquecida ou bloqueio.
+Execute um `curl PUT` para `admin/realms/carf/users/$USER_ID/reset-password` com o header `Authorization: Bearer $TOKEN` e `Content-Type: application/json`, enviando o payload JSON com `type: password`, `value: nova_senha` e `temporary: false`. A nova senha é aplicada imediatamente sem requerer troca no primeiro login, permitindo que o usuário autentique novamente e resolvendo problemas de senha esquecida ou bloqueio.
 
-## Token expirado
+## Token Expirado
 
-### Configuração de timeout
+### Configuracao de Timeout
 
-Ver configuração atual de token lifespan executando curl GET para admin/realms/carf com Authorization header Bearer TOKEN extraindo accessTokenLifespan via jq exibindo duração em segundos, atualizar timeout executando curl PUT para admin/realms/carf enviando payload JSON accessTokenLifespan igual três mil e seiscentos configurando tokens válidos por uma hora aumentando tempo sessão reduzindo frequência refresh melhorando UX mas balanceando segurança sessões longas demais aumentam risco tokens comprometidos.
+Para verificar a configuração atual de token lifespan, execute um `curl GET` para `admin/realms/carf` com o header `Authorization: Bearer $TOKEN` e extraia `accessTokenLifespan` via `jq`, que exibirá a duração em segundos. Para atualizar o timeout, execute um `curl PUT` para `admin/realms/carf` enviando o payload JSON `{ "accessTokenLifespan": 3600 }`, configurando tokens válidos por uma hora. Aumentar o tempo de sessão reduz a frequência de refresh e melhora a experiência do usuário, mas deve ser balanceado com a segurança, pois sessões longas demais aumentam o risco de tokens comprometidos.
 
-### Refresh token
+### Refresh Token Automatico
 
-Frontend implementa auto refresh usando React useEffect criando interval executando setInterval callback invocando keycloak.updateToken com parâmetro trinta refreshing token se expirar em menos de trinta segundos executando a cada dez mil milissegundos dez segundos cleanup retornando clearInterval ao desmontar component garantindo sessões persistentes sem interrupção usuário trabalhando aplicação sem reauthenticação manual UX seamless tokens sempre válidos.
+O frontend implementa auto-refresh usando um `useEffect` do React que cria um interval com `setInterval`. O callback invoca `keycloak.updateToken(30)`, que faz o refresh do token se ele expirar em menos de trinta segundos. O interval é executado a cada dez mil milissegundos (dez segundos). A função de cleanup retorna `clearInterval` ao desmontar o componente. Esse mecanismo garante sessões persistentes sem interrupção, permitindo ao usuário trabalhar na aplicação sem reautenticação manual, com tokens sempre válidos.
 
-## CORS errors
+## CORS Errors
 
-### Configurar Web Origins no client
+### Configurar Web Origins no Client
 
-Resolver CORS errors configurando Web Origins executando curl PUT para admin/realms/carf/clients/CLIENT_ID com Authorization header Bearer TOKEN Content-Type application/json enviando payload JSON webOrigins array contendo http://localhost:3000 e https://app.carf.gov.br permitindo browsers aceitar responses Keycloak de origens especificadas eliminando bloqueios CORS preflight requests OPTIONS bem-sucedidos authentication flows funcionando corretamente.
+Para resolver CORS errors, configure as Web Origins do client executando um `curl PUT` para `admin/realms/carf/clients/$CLIENT_ID` com o header `Authorization: Bearer $TOKEN` e `Content-Type: application/json`, enviando o payload JSON com `webOrigins: ["http://localhost:3000", "https://app.carf.gov.br"]`. Isso permite que os browsers aceitem responses do Keycloak vindas das origens especificadas, eliminando bloqueios CORS e garantindo que preflight requests OPTIONS sejam bem-sucedidos e que os authentication flows funcionem corretamente.
 
-## Redirect URI mismatch
+## Redirect URI Mismatch
 
-### Adicionar redirect URIs válidas
+### Adicionar Redirect URIs Validas
 
-Resolver redirect URI mismatch executando curl PUT para admin/realms/carf/clients/CLIENT_ID enviando payload JSON redirectUris array contendo http://localhost:3000/asterisco https://app.carf.gov.br/asterisco e carf://callback cobrindo web development web production e mobile deep linking permitindo OAuth authorization code flow redirect callbacks validados Keycloak aceitando autenticação múltiplos ambientes plataformas sem errors invalid redirect uri bloqueando login.
+Para resolver o erro de redirect URI mismatch, execute um `curl PUT` para `admin/realms/carf/clients/$CLIENT_ID` com payload JSON contendo `redirectUris: ["http://localhost:3000/*", "https://app.carf.gov.br/*", "carf://callback"]`. Esse array cobre os três cenários: web em desenvolvimento, web em produção e mobile via deep linking. Com essas URIs registradas, o Keycloak aceita os redirect callbacks do OAuth authorization code flow em múltiplos ambientes e plataformas, eliminando erros de "invalid redirect uri" que bloqueiam o login.
 
-## Client secret inválido
+## Client Secret Invalido
 
-### Verificar secret atual
+### Verificar Secret Atual
 
-Verificar client secret atual executando curl GET para admin/realms/carf/clients/CLIENT_ID/client-secret com Authorization header Bearer TOKEN extraindo value via jq menos r exibindo secret plaintext comparável com configuração application.
+Execute um `curl GET` para `admin/realms/carf/clients/$CLIENT_ID/client-secret` com o header `Authorization: Bearer $TOKEN` e extraia o `value` via `jq -r`. O resultado exibe o secret em plaintext, que pode ser comparado com a configuração da aplicação.
 
-### Comparar com .env
+### Comparar com o .env
 
-Comparar secret Keycloak com environment variable executando grep KEYCLOAK_CLIENT_SECRET .env exibindo valor configurado aplicação identificando discrepâncias secret rotacionado Keycloak mas não atualizado .env causando authentication failures client confidential não conseguindo obter tokens.
+Execute `grep KEYCLOAK_CLIENT_SECRET .env` para exibir o valor configurado na aplicação. Discrepâncias entre esse valor e o secret no Keycloak indicam que o secret foi rotacionado no Keycloak mas não atualizado no `.env`, causando authentication failures onde o client confidential não consegue obter tokens.
 
-## Tenant errado no JWT
+## Tenant Errado no JWT
 
-### Verificar attributes do usuário
+### Verificar Attributes do Usuario
 
-Verificar attributes do usuário executando curl GET para admin/realms/carf/users/USER_ID com Authorization header Bearer TOKEN extraindo attributes via jq devendo ter tenants array com lista tenants acessíveis e current_tenant array com único tenant ativo atual, ausência desses attributes significa multi-tenancy não configurado corretamente claims tenant_id não aparecerão JWT causando RLS failures backend queries não filtradas por tenant.
+Execute um `curl GET` para `admin/realms/carf/users/$USER_ID` com o header `Authorization: Bearer $TOKEN` e extraia `attributes` via `jq`. O resultado deve conter `tenants` como um array com a lista de tenants acessíveis e `current_tenant` como array com um único tenant ativo. A ausência desses attributes significa que a multi-tenancy não está configurada corretamente e as claims `tenant_id` não aparecerão no JWT, causando falhas de RLS no backend com queries não filtradas por tenant.
 
-### Verificar protocol mapper
+### Verificar Protocol Mapper
 
-Verificar protocol mapper tenant_id configurado executando curl GET para admin/realms/carf/client-scopes/profile/protocol-mappers/models com Authorization header Bearer TOKEN filtrando via jq selecionando mapper name igual tenant_id confirmando mapper existe configurado corretamente transformando user attribute current_tenant em JWT claim tenant_id disponível backend extraction RLS filtering, ausência mapper significa claims não adicionados tokens mesmo attributes usuário corretos.
+Execute um `curl GET` para `admin/realms/carf/client-scopes/carf-tenant/protocol-mappers/models` com o header `Authorization: Bearer $TOKEN` e filtre via `jq` selecionando o mapper com `name == "tenant_id"`. A presença desse mapper confirma que ele está configurado corretamente para transformar o user attribute `current_tenant` na JWT claim `tenant_id`, disponível para extração no backend e filtragem RLS. A ausência do mapper significa que as claims não serão adicionadas aos tokens, mesmo que os attributes do usuário estejam corretos.
 
 ## Logs do Keycloak
 
-Visualizar logs Keycloak em tempo real executando docker-compose menos f docker-compose.dev.yml logs menos f keycloak seguindo output contínuo identificando errors warnings eventos autenticação, filtrar erros de autenticação executando docker-compose logs keycloak pipe grep menos i login barra vertical error barra vertical failed exibindo apenas linhas relevantes troubleshooting login failures, aumentar log level para debug executando KC_LOG_LEVEL igual debug docker-compose up menos d habilitando verbose logging detalhado OAuth flows SAML requests database queries facilitando debugging profundo problemas complexos autenticação multi-tenancy RLS.
+Para visualizar os logs do Keycloak em tempo real, execute `docker-compose -f docker-compose.dev.yml logs -f keycloak`, que segue o output contínuo mostrando errors, warnings e eventos de autenticação. Para filtrar apenas erros de autenticação, execute `docker-compose logs keycloak | grep -i "login\|error\|failed"`, exibindo apenas linhas relevantes para troubleshooting de login failures. Para debugging profundo de problemas complexos de autenticação, multi-tenancy ou RLS, aumente o log level para debug executando `KC_LOG_LEVEL=debug docker-compose up -d`, habilitando verbose logging detalhado de OAuth flows, SAML requests e database queries.

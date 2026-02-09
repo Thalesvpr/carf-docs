@@ -1,30 +1,27 @@
 ---
 type: readme
 status: review
-description: "README usa lista de bullets para descrever arquivos - reescrever em prosa densa"
-updated: 2026-01-22
+updated: 2026-02-07
 ---
 
 # ARCHITECTURE
 
-Arquitetura de customização Keycloak CARF baseada em três pilares: themes FreeMarker para UI login account email sem fork do source, SPIs Java para lógica server-side como validators e event listeners, e realm configuration versionada JSON para declarar clients roles mappers. Stack usa Keycloak 24 Quarkus distribution com PostgreSQL 16, Docker image customizada empacotando themes em /themes/carf/ e extensions em /providers/, CI/CD GitHub Actions buildando imagem testando via Playwright API e deployando rolling update Kubernetes.
+Arquitetura de customizacao do Keycloak CARF baseada em tres pilares: temas Keycloakify (React/TypeScript) para UI de login, account e email reutilizando componentes @carf/ui, SPIs Java para logica server-side como validadores e event listeners, e realm configuration versionada em JSON para declarar clients, roles e mappers. Stack usa Keycloak 24 Quarkus com PostgreSQL 16, Docker image customizada empacotando temas em /themes/carf/ e extensions em /providers/.
 
-## Arquivos
-
-- **[01-customization-strategy.md](./01-customization-strategy.md)** - Estratégia customização themes vs fork vs proxy trade-offs
-- **[02-theme-architecture.md](./02-theme-architecture.md)** - Arquitetura temas login account email herança hot reload
-- **[03-extension-development.md](./03-extension-development.md)** - Desenvolvimento extensões Java SPIs Maven Arquillian
+A [estrategia de customizacao](./01-customization-strategy.md) documenta trade-offs entre themes, fork e proxy. A [arquitetura de temas](./02-theme-architecture.md) cobre heranca, hot reload e estrutura de pastas login/account/email. As extensoes Java estao documentadas em tres arquivos: [estrutura Maven](./03a-extension-structure.md) com modulos e dependencias, [SPIs implementadas](./03b-extension-spis.md) com Authenticator, Event Listener e Protocol Mapper, e [deploy e testes](./03c-extension-deploy.md) com Docker, ativacao e estrategia de testes.
 
 <!-- CARF-INDEX-START -->
 > ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
 > Use os links abaixo para referenciar documentos desta pasta.
 
-## Documentos (3)
+## Documentos (5)
 
 | Documento | Status |
 |-----------|--------|
 | [Estratégia de Customização do Keycloak](./01-customization-strategy.md) | ⚠ |
 | [Arquitetura de Temas Keycloak](./02-theme-architecture.md) | ⚠ |
-| [Extension Development - SPIs Java](./03-extension-development.md) | ⚠ |
+| [Estrutura de Extensões Keycloak](./03a-extension-structure.md) | ⚠ |
+| [SPIs Keycloak CARF](./03b-extension-spis.md) | ⚠ |
+| [Deploy e Testes de Extensões](./03c-extension-deploy.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

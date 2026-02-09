@@ -10,6 +10,6 @@ Plugin QGIS para análises espaciais configurado como confidential client com se
 
 Client secret gerado com openssl rand -base64 32 armazenado de forma segura em QSettings encrypted do QGIS. Plugin executa POST direto para token endpoint enviando grant_type client_credentials, client_id geogis, e client_secret obtendo access_token sem user claims.
 
-Token contém client_id geogis, allowed-origins configurados, e resource_access com roles específicos do service account como gis-reader e gis-writer definidos em Service Account Roles no Keycloak Admin Console. Roles controlam acesso a operações WFS/WMS no GEOAPI.
+Token de service account contém client_id geogis e allowed-origins configurados. Atualmente o realm-export.json não define client roles específicos para geogis — se necessário, roles como gis-reader e gis-writer devem ser criados em Service Account Roles no Keycloak Admin Console antes do deploy.
 
 Também suporta standard flow com PKCE para cenários onde usuário humano precisa autenticar. Plugin abre browser local em http://localhost:random_port/ para capturar callback OAuth, útil quando operações GIS precisam de contexto de tenant específico do usuário.
