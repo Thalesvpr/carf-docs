@@ -1,161 +1,57 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-21
+updated: 2026-02-07
 ---
 
 # Criar Diagrama
 
 Guia para criar diagramas usando sintaxe Mermaid em documentos Markdown.
 
-Mermaid permite criar diagramas a partir de texto que é renderizado como SVG no build. Preferir Mermaid quando possível pois texto é pesquisável, versionável, e facilmente atualizável comparado a imagens.
+## Visao Geral
 
-Flowchart para fluxos de processo usa sintaxe graph TD (top-down) ou graph LR (left-right) seguido de definições de nós e conexões. Nós são definidos com ID e label entre colchetes para retângulos ou parênteses para arredondados. Setas conectam nós com texto opcional.
+Mermaid permite criar diagramas a partir de texto renderizado como SVG no build. Preferir Mermaid quando possivel pois texto e pesquisavel, versionavel e facilmente atualizavel comparado a imagens. Plugin Astro processa durante build convertendo para SVG inline sem JavaScript client-side. Tema segue configuracao global em astro.config.mjs aplicando cores do design system CARF com dark mode automatico. Para prototipar diagramas antes de incluir no documento, usar Mermaid Live Editor em mermaid.live.
 
-Sequence diagram para interações entre componentes usa sintaxe sequenceDiagram seguido de participant para definir atores e setas para mensagens. Útil para documentar fluxos de autenticação, chamadas de API, e comunicação entre serviços.
+## Tipos de Diagrama
 
-ER diagram para modelo de dados usa sintaxe erDiagram com entidades contendo atributos e relacionamentos usando notação de cardinalidade. Útil para documentar schema do banco de dados e relacionamentos entre entidades.
+| Tipo | Declaracao Inicial | Uso Principal |
+|---|---|---|
+| Flowchart | graph TD ou graph LR | Fluxos de processo e decisao |
+| Sequence Diagram | sequenceDiagram | Interacoes entre componentes |
+| ER Diagram | erDiagram | Modelo de dados e relacionamentos |
+| State Diagram | stateDiagram-v2 | Estados e transicoes de entidades |
+| Gantt Chart | gantt | Cronogramas de projeto |
 
-Incluir diagrama em documento usando code block com linguagem mermaid. Plugin Astro processa durante build convertendo para SVG inline. Diagrama é renderizado no HTML final sem JavaScript client-side.
+## Sintaxe de Flowchart
 
-Testar diagrama localmente verificando renderização no navegador. Erros de sintaxe são reportados no console do servidor de desenvolvimento. Mermaid Live Editor online ajuda a prototipar diagramas antes de incluir no documento.
+Para criar um fluxograma, iniciar com graph seguido da direcao. Nos sao definidos por identificador seguido de label entre colchetes para retangulo ou entre parenteses para arredondado. Conexoes entre nos usam setas com texto opcional entre pipes. Nos de decisao usam chaves para forma de losango.
 
-Tema do diagrama segue configuração global em astro.config.mjs que aplica cores do design system CARF. Dark mode usa variantes escuras automaticamente.
+| Sintaxe de Direcao | Significado |
+|---|---|
+| graph TD | Cima para baixo (top-down) |
+| graph TB | Mesmo que TD |
+| graph BT | Baixo para cima |
+| graph LR | Esquerda para direita |
+| graph RL | Direita para esquerda |
 
-## Exemplos de Sintaxe
+## Formas de Nos
 
-### Flowchart (Fluxo de Processo)
+| Sintaxe | Forma Resultante |
+|---|---|
+| A[texto] | Retangulo |
+| B(texto) | Retangulo arredondado |
+| C([texto]) | Estadio |
+| D[[texto]] | Subrotina |
+| E[(texto)] | Cilindro (banco de dados) |
+| F((texto)) | Circulo |
+| G>texto] | Flag |
+| H{texto} | Losango (decisao) |
+| I{{texto}} | Hexagono |
 
-```markdown
-```mermaid
-graph TD
-    A[Início] --> B{Usuário autenticado?}
-    B -->|Sim| C[Carregar dashboard]
-    B -->|Não| D[Redirecionar para login]
-    D --> E[Exibir formulário]
-    E --> F{Credenciais válidas?}
-    F -->|Sim| C
-    F -->|Não| G[Mostrar erro]
-    G --> E
-```
-```
+## Sequence Diagram
 
-### Sequence Diagram (Interação entre Componentes)
+Para diagramas de sequencia, declarar participantes com participant seguido de alias. Mensagens entre participantes usam setas: seta com dois hifens e maior para sincrona, seta tracejada com dois hifens e maior para resposta. Util para documentar fluxos de autenticacao e comunicacao entre servicos.
 
-```markdown
-```mermaid
-sequenceDiagram
-    participant U as Usuário
-    participant W as WEBDOCS
-    participant K as Keycloak
-    participant A as GEOAPI
+## ER e State Diagram
 
-    U->>W: Acessa /dev/
-    W->>W: Verifica cookie
-    W->>K: Valida token JWT
-    K-->>W: Token válido
-    W->>A: GET /api/data
-    A-->>W: Dados
-    W-->>U: Renderiza página
-```
-```
-
-### ER Diagram (Modelo de Dados)
-
-```markdown
-```mermaid
-erDiagram
-    COMMUNITY ||--o{ UNIT : contains
-    UNIT ||--o{ HOLDER : has
-    UNIT ||--o{ DOCUMENT : attached
-    HOLDER ||--o{ DOCUMENT : owns
-
-    COMMUNITY {
-        uuid id PK
-        string name
-        geometry boundary
-    }
-    UNIT {
-        uuid id PK
-        uuid community_id FK
-        string identifier
-        string status
-        geometry polygon
-    }
-    HOLDER {
-        uuid id PK
-        string cpf
-        string name
-    }
-```
-```
-
-### State Diagram (Estados de Unidade)
-
-```markdown
-```mermaid
-stateDiagram-v2
-    [*] --> Rascunho
-    Rascunho --> AguardandoAprovacao: Enviar
-    AguardandoAprovacao --> Aprovada: Aprovar
-    AguardandoAprovacao --> Rejeitada: Rejeitar
-    Rejeitada --> Rascunho: Corrigir
-    Aprovada --> EmLegitimacao: Iniciar processo
-    EmLegitimacao --> Legitimada: Concluir
-    Legitimada --> [*]
-```
-```
-
-### Gantt Chart (Cronograma)
-
-```markdown
-```mermaid
-gantt
-    title Cronograma do Projeto
-    dateFormat YYYY-MM-DD
-    section Fase 1
-    Levantamento      :a1, 2024-01-01, 30d
-    Análise           :a2, after a1, 20d
-    section Fase 2
-    Desenvolvimento   :b1, after a2, 60d
-    Testes           :b2, after b1, 30d
-    section Fase 3
-    Implantação      :c1, after b2, 15d
-```
-```
-
-## Direções de Flowchart
-
-| Sintaxe | Direção |
-|---------|---------|
-| `graph TD` | Top to Down (cima para baixo) |
-| `graph TB` | Top to Bottom (mesmo que TD) |
-| `graph BT` | Bottom to Top (baixo para cima) |
-| `graph LR` | Left to Right (esquerda para direita) |
-| `graph RL` | Right to Left (direita para esquerda) |
-
-## Formas de Nós
-
-```markdown
-A[Retângulo]
-B(Retângulo arredondado)
-C([Estádio])
-D[[Subrotina]]
-E[(Cilindro/Banco de dados)]
-F((Círculo))
-G>Flag]
-H{Losango/Decisão}
-I{{Hexágono}}
-J[/Paralelogramo/]
-K[\Paralelogramo invertido\]
-L[/Trapézio\]
-```
-
-## Mermaid Live Editor
-
-Para prototipar diagramas: https://mermaid.live/
-
----
-
-**Última atualização:** 2026-01-21
-**Status do arquivo**: Review
+Para diagramas ER, declarar entidades com atributos tipados e relacionamentos usando notacao de cardinalidade com pipes e chaves. Para diagramas de estado, declarar transicoes com setas entre estados e labels apos dois pontos descrevendo a acao que causa a transicao. Estado inicial representado por [*].

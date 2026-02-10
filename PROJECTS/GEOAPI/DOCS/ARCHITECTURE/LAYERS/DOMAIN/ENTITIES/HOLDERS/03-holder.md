@@ -18,7 +18,7 @@ O titular e a pessoa que reivindica direito sobre uma unidade habitacional. Seus
 |-------------|------|----------|-----------|
 | Id | Guid | nao | Chave primaria UUID. |
 | TenantId | Guid | nao | Municipio. FK para Tenant. |
-| Cpf | string | nao | CPF com 11 digitos sem formatacao. Validado via algoritmo Mod11. |
+| Cpf | CPF (Value Object) | nao | CPF com 11 digitos sem formatacao. Validado via algoritmo Mod11. Mapeado para coluna `cpf_number` varchar(11) via ValueConverter. |
 | Cnpj | string | sim | CNPJ com 14 digitos para pessoa juridica. |
 | FullName | string | nao | Nome completo com minimo de 2 palavras. |
 | SocialName | string | sim | Nome social quando diferente do registro civil. |

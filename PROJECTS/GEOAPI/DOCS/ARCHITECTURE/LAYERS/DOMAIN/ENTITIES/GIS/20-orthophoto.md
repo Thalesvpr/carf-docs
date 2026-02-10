@@ -1,12 +1,12 @@
 ---
 type: leaf
 status: approved
-updated: 2026-02-07
+updated: 2026-02-09
 ---
 
 # Orthophoto
 
-Entidade representando uma ortofoto georreferenciada de drone vinculada a um tenant e opcionalmente a uma comunidade especifica. Armazena metadados do arquivo original, versao otimizada para web e piramide de tiles gerada pelo pipeline de processamento GDAL. O ciclo de vida acompanha o processamento assincrono: upload inicial marca status PENDING, processamento via Hangfire muda para PROCESSING, e conclusao bem-sucedida ou falha marca COMPLETED ou FAILED respectivamente.
+Entidade representando uma ortofoto georreferenciada de drone vinculada a um tenant e opcionalmente a uma comunidade especifica. Armazena metadados do arquivo original, versao otimizada para web e piramide de tiles gerada pelo pipeline de processamento GDAL. A ingestao pode ocorrer via upload direto de arquivo ou submissao de link Pix4D, diferenciada pelo campo SourceType. O ciclo de vida acompanha o processamento assincrono: ingestao inicial marca status PENDING, processamento via Hangfire muda para PROCESSING, e conclusao bem-sucedida ou falha marca COMPLETED ou FAILED respectivamente.
 
 ## Papel no Dominio
 
@@ -32,6 +32,8 @@ Ortofotos sao a base visual do sistema de campo: servidas como tiles XYZ no mapa
 | ProcessingError | string | sim | Mensagem de erro quando status e FAILED. Contem descricao especifica do problema (arquivo sem georreferenciamento, formato invalido, erro GDAL). |
 | UploadedAt | DateTime | nao | Momento do upload. |
 | UploadedBy | Guid | nao | ID do usuario que fez upload. |
+| SourceType | string | nao | Origem da ortofoto. Enum OrtophotoSourceType: UPLOAD (upload direto de arquivo) ou PIX4D_LINK (download via link Pix4D). Default: UPLOAD. |
+| SourceUrl | string | sim | URL original do link Pix4D. Preenchido apenas quando SourceType e PIX4D_LINK. Null para uploads diretos. |
 | ProcessedAt | DateTime | sim | Momento da conclusao do processamento (sucesso ou falha). |
 
 ## Relacionamentos
@@ -45,6 +47,8 @@ Nao possui relacionamento direto com outras entidades. E consumida indiretamente
 ProcessingStatus deve seguir transicoes validas: PENDING so pode ir para PROCESSING, PROCESSING pode ir para COMPLETED ou FAILED. Nao ha retorno de COMPLETED ou FAILED para estados anteriores; em caso de reprocessamento, um novo registro e criado.
 
 OriginalPath deve ser preenchido no momento da criacao. OptimizedPath e TilesPath sao preenchidos apenas pelo job de processamento, nunca pelo usuario.
+
+Quando SourceType e PIX4D_LINK, SourceUrl deve estar preenchido com URL HTTPS valida. Quando SourceType e UPLOAD, SourceUrl deve ser null.
 
 FileSize deve ser positivo e nao pode exceder o limite configurado (default 2GB para ortofotos GeoTIFF).
 

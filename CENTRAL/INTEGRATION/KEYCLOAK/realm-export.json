@@ -283,8 +283,8 @@
         "carf://callback",
         "carf://oauth/callback",
         "http://localhost:19006/*",
-        "exp://localhost:19000/*",
-        "exp://192.168.*.*:*/*"
+        "exp://localhost:8081/*",
+        "exp://localhost:19000/*"
       ],
       "webOrigins": [],
       "notBefore": 0,

@@ -18,9 +18,7 @@ App carrega mapa georreferenciado da area selecionada.
 ## Fluxo
 
 1. Mapa georreferenciado da area e carregado
-2. Opcoes de visualizacao:
-   - Usar ortofoto ONLINE (se houver conectividade)
-   - Usar ortofoto OFFLINE (pacote baixado)
+2. Opcoes de visualizacao: usar ortofoto online (se houver conectividade) ou offline (pacote baixado)
 3. Poligonos de quadras e lotes exibidos sobre a ortofoto
 
 ## Modos de Visualizacao
@@ -30,24 +28,9 @@ App carrega mapa georreferenciado da area selecionada.
 | ONLINE | Conectividade | Ortofoto via streaming |
 | OFFLINE | Pacote baixado | Ortofoto local |
 
-## Diagrama
+## Composicao da Tela
 
-```
-┌─────────────────────────────────────┐
-│            MAPA                     │
-│  ┌─────────────────────────────┐    │
-│  │      ORTOFOTO               │    │
-│  │   ┌─────┬─────┬─────┐       │    │
-│  │   │ L01 │ L02 │ L03 │ Quadra│    │
-│  │   ├─────┼─────┼─────┤   A   │    │
-│  │   │ L04 │ L05 │ L06 │       │    │
-│  │   └─────┴─────┴─────┘       │    │
-│  │                              │    │
-│  └─────────────────────────────┘    │
-│                                     │
-│  [GPS] [CAMADAS] [ZOOM]             │
-└─────────────────────────────────────┘
-```
+A tela exibe o mapa ocupando a area principal, com a ortofoto como camada base. Sobre ela, os poligonos de quadras e lotes sao renderizados (por exemplo, Quadra A com lotes L01 a L06). Na parte inferior, botoes de controle para GPS, camadas e zoom ficam disponiveis.
 
 ## Camadas do Mapa
 

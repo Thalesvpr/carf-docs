@@ -1,7 +1,7 @@
 ---
 type: workflow
 status: approved
-updated: 2026-01-25
+updated: 2026-02-07
 part: 2
 step: 9
 ---
@@ -14,49 +14,24 @@ Analista publica o trabalho de georreferenciamento no backend.
 
 1. Analista finaliza georreferenciamento
 2. Analista clica em "Publicar" no Plugin
-3. Plugin valida dados localmente:
-   - Geometrias validas
-   - Atributos obrigatorios preenchidos
-   - Topologia consistente
-4. Plugin envia ao backend: `POST /api/poligonos/publicar`
+3. Plugin valida dados localmente: geometrias validas, atributos obrigatorios preenchidos, topologia consistente
+4. Plugin envia ao backend via requisicao POST para /api/poligonos/publicar, autenticado com Bearer token e AUTHENTICATION KEY
 5. Backend recebe e persiste poligonos
 6. Backend associa poligonos ao TENANT
 7. Backend registra timestamp de publicacao
 8. Plugin exibe confirmacao de sucesso
 
-## API Request
+## Corpo da Requisicao
 
-```http
-POST /api/poligonos/publicar
-Authorization: Bearer {jwt_token}
-X-Auth-Key: {authentication_key}
-Content-Type: application/json
+A requisicao de publicacao envia os seguintes dados:
 
-{
-  "tenant_id": "uuid",
-  "ortofoto_id": "uuid",
-  "poligonos": [
-    {
-      "tipo": "comunidade",
-      "nome": "Comunidade X",
-      "geometria": { "type": "Polygon", "coordinates": [...] },
-      "atributos": { ... }
-    },
-    {
-      "tipo": "quadra",
-      "nome": "Quadra A",
-      "comunidade_id": "uuid",
-      "geometria": { "type": "Polygon", "coordinates": [...] }
-    },
-    {
-      "tipo": "lote",
-      "codigo": "001",
-      "quadra_id": "uuid",
-      "geometria": { "type": "Polygon", "coordinates": [...] }
-    }
-  ]
-}
-```
+| Campo | Descricao |
+|-------|-----------|
+| tenant_id | UUID do tenant |
+| ortofoto_id | UUID da ortofoto de referencia |
+| poligonos | Lista de poligonos com tipo (comunidade, quadra, lote), nome ou codigo, geometria GeoJSON Polygon e atributos |
+
+Cada poligono de tipo quadra inclui comunidade_id e cada lote inclui quadra_id, estabelecendo a hierarquia.
 
 ## Validacoes do Plugin
 

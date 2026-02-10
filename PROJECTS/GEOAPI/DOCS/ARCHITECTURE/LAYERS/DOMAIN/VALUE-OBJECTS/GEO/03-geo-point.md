@@ -1,13 +1,32 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-12
+updated: 2026-02-08
 ---
 
 # GeoPoint
 
-Value object imutável herdando de BaseValueObject representando ponto geográfico com latitude e longitude em graus decimais, usado para localização precisa de marcos geodésicos, estações RBMC, centroides de geometrias e geotags de fotos. Validações incluem verificação de latitude entre -90 e 90 graus (sul a norte) e longitude entre -180 e 180 graus (oeste a leste), rejeitando coordenadas inválidas ou fora dos limites terrestres.
+Value object imutavel herdando de BaseValueObject que representa um ponto geografico com latitude e longitude em graus decimais. Usado para localizacao precisa de centroides de geometrias, geotags de fotos e marcos geodesicos. No banco de dados, corresponde a colunas do tipo geometry(Point, 4326) em PostGIS, como units.centroid.
 
-Métodos principais incluem construtor recebendo latitude e longitude como decimais, propriedades Latitude e Longitude read-only, ToWkt() retornando formato "POINT(longitude latitude)" para persistência PostGIS, ToGeoJson() retornando objeto GeoJSON RFC 7946, DistanceTo(GeoPoint other) calculando distância em metros usando fórmula de Haversine para grande círculo, e operadores de igualdade comparando coordenadas com tolerância de epsilon para imprecisão de ponto flutuante.
+O construtor recebe latitude e longitude como decimais e valida os limites. Coordenadas fora dos limites terrestres geram ValidationException.
 
-Usado em RbmcStation.Location para coordenadas de estações da Rede Brasileira de Monitoramento Contínuo IBGE, SurveyPoint.Location e SurveyPoint.ProcessedLocation para pontos coletados em campo e processados com correção diferencial, Document.Latitude/Longitude para geotag de fotos capturadas pelo app mobile, e GeoPolygon.Centroid() retornando centro geométrico de polígonos.
+## Regras de Validacao
+
+| Regra | Descricao |
+| --- | --- |
+| Latitude valida | Entre -90 e 90 graus (sul a norte). |
+| Longitude valida | Entre -180 e 180 graus (oeste a leste). |
+| Precisao de comparacao | Igualdade usa tolerancia epsilon para imprecisao de ponto flutuante. |
+| SRID 4326 | Sistema de referencia WGS84. |
+
+## Metodos Principais
+
+| Metodo | Retorno | Descricao |
+| --- | --- | --- |
+| Latitude | decimal | Propriedade read-only da latitude. |
+| Longitude | decimal | Propriedade read-only da longitude. |
+| ToWkt() | string | Formato POINT(longitude latitude) para PostGIS. |
+| ToGeoJson() | string | Objeto GeoJSON RFC 7946. |
+| DistanceTo(GeoPoint) | decimal | Distancia em metros usando formula de Haversine. |
+
+Usado em units.centroid como centroide calculado a partir do boundary, em SurveyPoint para coordenadas coletadas e processadas, em Document para geotag de fotos capturadas pelo app mobile REURBCAD, e retornado por GeoPolygon.Centroid().

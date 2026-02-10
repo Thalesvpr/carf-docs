@@ -1,86 +1,26 @@
 ---
 type: leaf
-status: review
-description: "Mais codigo que prosa - arquivo e 85% blocos de codigo C#"
-updated: 2026-01-22
+status: active
+updated: 2026-02-07
 ---
 
 # Validation Filter
 
-Filtro para validação automática de ModelState.
+A GEOAPI utiliza duas camadas de validacao: um action filter para ModelState e um pipeline behavior do MediatR para validacao de commands.
 
 ## ValidationFilter
 
-```csharp
-public class ValidationFilter : IAsyncActionFilter
-{
-    public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
-    {
-        if (!context.ModelState.IsValid)
-        {
-            var errors = context.ModelState
-                .Where(x => x.Value?.Errors.Any() == true)
-                .ToDictionary(
-                    kvp => kvp.Key,
-                    kvp => kvp.Value!.Errors.Select(e => e.ErrorMessage).ToArray()
-                );
-
-            var problemDetails = new ValidationProblemDetails(context.ModelState)
-            {
-                Title = "Validation Failed",
-                Status = StatusCodes.Status400BadRequest,
-                Detail = "One or more validation errors occurred."
-            };
-
-            context.Result = new BadRequestObjectResult(problemDetails);
-            return;
-        }
-
-        await next();
-    }
-}
-```
+A classe ValidationFilter implementa IAsyncActionFilter e intercepta todas as requisicoes antes da execucao do action method. Se o ModelState estiver invalido, o filtro monta um ValidationProblemDetails com titulo "Validation Failed", status 400 e a lista de erros agrupados por campo. A resposta e retornada como BadRequest sem executar o controller. Se o ModelState for valido, a execucao prossegue normalmente.
 
 ## Registro Global
 
-```csharp
-// Program.cs
-services.AddControllers(options =>
-{
-    options.Filters.Add<ValidationFilter>();
-});
+O filtro e adicionado globalmente na configuracao de controllers em Program.cs. A validacao automatica do ASP.NET e desabilitada via ApiBehaviorOptions com SuppressModelStateInvalidFilter configurado como verdadeiro, delegando todo o controle ao filtro customizado.
 
-// Desabilitar validação automática do ASP.NET
-services.Configure<ApiBehaviorOptions>(options =>
-{
-    options.SuppressModelStateInvalidFilter = true;
-});
-```
+## Integracao com FluentValidation
 
-## FluentValidation Integration
+Os validators do FluentValidation sao registrados automaticamente por assembly scanning a partir do CreateUnitRequestValidator. A classe ValidationBehavior implementa IPipelineBehavior do MediatR, servindo como segundo nivel de validacao. Para cada request que chega ao pipeline, o behavior executa todos os validators registrados para aquele tipo, coleta as falhas e, se houver alguma, lanca ValidationException antes de o handler ser invocado.
 
-```csharp
-// Registrar validators automaticamente
-services.AddValidatorsFromAssemblyContaining<CreateUnitRequestValidator>();
-
-// Pipeline behavior para validar commands
-public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-    where TRequest : IRequest<TResponse>
-{
-    private readonly IEnumerable<IValidator<TRequest>> _validators;
-
-    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken ct)
-    {
-        var failures = _validators
-            .Select(v => v.Validate(request))
-            .SelectMany(result => result.Errors)
-            .Where(f => f != null)
-            .ToList();
-
-        if (failures.Any())
-            throw new ValidationException(failures);
-
-        return await next();
-    }
-}
-```
+| Camada | Componente | Momento | Alvo |
+|--------|-----------|---------|------|
+| HTTP | ValidationFilter | Antes do controller | ModelState (DTOs de request) |
+| MediatR | ValidationBehavior | Antes do handler | Commands e Queries |

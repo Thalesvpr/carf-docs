@@ -1,12 +1,58 @@
 ---
 type: leaf
 status: review
-description: "Estrutura caotica. Numeracao nao agrupa por categoria. Precisa reorganizar por agregado/contexto. Stub de 11 linhas - incompleto."
-updated: 2026-01-19
+updated: 2026-02-08
 ---
 
 # Community Aggregate
 
-Aggregate pattern do Domain-Driven Design estabelecendo Community como aggregate root controlando boundaries de consistência e enforcement de invariantes para grupo de entities relacionadas a assentamento ou comunidade em processo de regularização fundiária. Aggregate boundary inclui Community como root, Blocks quadras urbanas subdividindo community geograficamente, CommunityAuthorizations definindo acesso granular de Teams e Accounts, Documents anexos polimórficos vinculados à community, e Annotations anotações comentários ou issues relacionados à community, onde todas operações que modificam entities dentro do boundary devem passar pelo aggregate root garantindo consistência transacional e validação de regras de negócio. Invariantes fundamentais estabelecem que Community deve ter ao menos uma CommunityAuthorization ativa garantindo que sempre existe Team ou Account com permissão de acesso prevenindo communities órfãs inacessíveis, geometria de Community quando presente deve conter geometrias de todos Blocks filhos validando que blocks não extrapolam limites geográficos da community, nome de Community deve ser único dentro de Tenant evitando confusão entre communities com nomes duplicados, municipio field quando preenchido deve ser nome válido de município brasileiro ou código IBGE permitindo isolamento geográfico de dados, e Community não pode ser deletada se contém Units ativas exigindo migração ou arquivamento de units antes de permitir remoção da community preservando integridade referencial. Operations expostas pelo aggregate incluem CreateCommunity validando dados básicos criando community e gerando primeira CommunityAuthorization para Account criador, AddBlock criando Block filho validando que geometria está dentro de Community boundary e code é único dentro da community, UpdateCommunityBoundary modificando geometria da community validando que nova geometria ainda contém todos Blocks existentes ou rejeitando operação, GrantAccess criando CommunityAuthorization para Team ou Account especificando permissões granulares (can_read can_create can_edit can_delete) e validando que apenas ADMIN ou MANAGER pode conceder acesso, RevokeAccess removendo CommunityAuthorization validando que não é última autorização ativa prevenindo community inacessível, AddDocument anexando Document à community validando tipo de documento e tamanho de arquivo, AddAnnotation criando Annotation vinculada à community para tracking de issues ou observações importantes, e ArchiveCommunity marcando community como arquivada após validar que todas Units foram concluídas migradas ou canceladas permitindo limpeza de communities finalizadas sem perda de histórico. Domain events emitidos pelo aggregate notificam outras partes do sistema sobre mudanças importantes incluindo CommunityCreatedEvent disparado ao criar community contendo community_id tenant_id e Account criador permitindo inicialização de recursos relacionados (criar pastas de armazenamento indexar em sistema de busca), CommunityBoundaryChangedEvent disparado ao modificar geometria permitindo recálculo de estatísticas espaciais e validação de Units potencialmente afetadas, AccessGrantedEvent disparado ao conceder CommunityAuthorization notificando Account ou Members de Team sobre novo acesso disponível, AccessRevokedEvent disparado ao remover autorização permitindo limpeza de caches de permissão e notificação a usuários afetados, BlockAddedEvent disparado ao adicionar Block permitindo atualização de índices espaciais e dashboards de progresso, e CommunityArchivedEvent disparado ao arquivar community permitindo limpeza de recursos temporários e atualização de relatórios consolidados. Consistency boundaries garantem que modificações em Community Block ou CommunityAuthorization dentro do mesmo aggregate são transacionais e atômicas onde criar Block e atualizar Community em transação única garante que falha reverte ambas operações preservando consistência, queries para Units dentro de Community não requerem transação do aggregate pois Units pertencem a aggregate separado (Unit Aggregate) mantendo boundaries desacoplados, e validações de invariantes são executadas antes de persistir mudanças rejeitando operações que violariam regras estabelecidas. Aggregate root Community expõe apenas operações que preservam invariantes encapsulando lógica de negócio e prevenindo acesso direto a entities filhas (não se cria Block diretamente mas sim via Community.AddBlock), coordena validações complexas que envolvem múltiplas entities como verificar sobreposição de geometrias de Blocks ao adicionar novo Block, e serve como ponto de entrada para todas modificações relacionadas a community garantindo auditoria completa e rastreabilidade de mudanças. Motivação para aggregate boundary escolhido baseia-se em coesão funcional onde Community Blocks e CommunityAuthorizations são fortemente acoplados representando estrutura e acesso de assentamento, transacional consistency onde modificações precisam ser atômicas para manter integridade de dados espaciais e permissões, e performance onde aggregate pequeno focado permite carregamento eficiente sem trazer Units associadas que podem ser milhares formando aggregate separado.
+Agregado de dominio estabelecendo Community como aggregate root, controlando boundaries de consistencia e enforcement de invariantes para o grupo de entidades relacionadas a assentamento ou comunidade em processo de regularizacao fundiaria.
 
-**Módulos:** GEOAPI, GEOWEB, REURBCAD, GEOGIS
+## Raiz do Agregado
+
+Community e a entidade raiz que coordena todas as mudancas dentro do boundary do agregado. Estende BaseAggregateRoot herdando Domain Events, auditoria temporal e concorrencia otimista.
+
+## Componentes Internos
+
+| Componente | Cardinalidade | Descricao |
+|------------|---------------|-----------|
+| Block | 1:N | Quadras urbanas subdividindo a community geograficamente. Geometria deve estar contida no boundary da community. |
+| CommunityAuthorization | 1:N | Controle de acesso granular. Pode ser atribuida a Team (team_id) ou Account individual (account_id), mutuamente exclusivos. |
+| Document | 1:N | Anexos polimorficos vinculados a community. EntityType COMMUNITY. |
+| Annotation | 1:N | Anotacoes e issues relacionados a community. |
+
+## Invariantes
+
+| Invariante | Descricao |
+|------------|-----------|
+| Autorizacao ativa | Community deve ter ao menos uma CommunityAuthorization ativa, prevenindo communities orfas inacessiveis. |
+| Contencao espacial | Geometria de todos os Blocks filhos deve estar contida no boundary da Community. |
+| Nome unico | Nome da Community deve ser unico dentro do tenant. |
+| Municipio valido | Campo municipality deve ser nome valido de municipio brasileiro ou codigo IBGE. |
+| Protecao contra exclusao | Community nao pode ser deletada se contem Units ativas. Exige migracao ou arquivamento previo. |
+
+## Operacoes da Raiz
+
+| Operacao | Descricao |
+|----------|-----------|
+| CreateCommunity(dados) | Valida dados basicos, cria community e gera primeira CommunityAuthorization para Account criador. Dispara CommunityCreatedEvent. |
+| AddBlock(code, boundary) | Cria Block filho validando que geometria esta dentro do boundary da community e code e unico. Dispara BlockAddedEvent. |
+| UpdateBoundary(newGeometry) | Modifica geometria validando que nova geometria contem todos Blocks existentes. Dispara CommunityBoundaryChangedEvent. |
+| GrantAccess(teamOrAccountId, permissions) | Cria CommunityAuthorization. Apenas ADMIN ou MANAGER pode conceder. Dispara AccessGrantedEvent. |
+| RevokeAccess(authorizationId) | Remove CommunityAuthorization validando que nao e a ultima ativa. Dispara AccessRevokedEvent. |
+| Archive() | Marca community como arquivada apos validar que todas Units foram concluidas ou canceladas. Dispara CommunityArchivedEvent. |
+
+## Eventos de Dominio
+
+| Evento | Contexto |
+|--------|----------|
+| CommunityCreatedEvent | Ao criar community. Permite inicializacao de recursos (pastas S3, indices de busca). |
+| CommunityBoundaryChangedEvent | Ao modificar geometria. Permite recalculo de estatisticas espaciais. |
+| AccessGrantedEvent | Ao conceder autorizacao. Notifica usuarios sobre novo acesso. |
+| AccessRevokedEvent | Ao remover autorizacao. Permite limpeza de caches de permissao. |
+| BlockAddedEvent | Ao adicionar quadra. Atualiza indices espaciais e dashboards. |
+| CommunityArchivedEvent | Ao arquivar. Permite limpeza de recursos temporarios. |
+
+## Motivacao do Boundary
+
+O boundary do agregado foi escolhido por coesao funcional (Community, Blocks e CommunityAuthorizations sao fortemente acoplados), consistencia transacional (modificacoes precisam ser atomicas para integridade espacial e permissoes) e performance (agregado pequeno sem trazer Units associadas que podem ser milhares).

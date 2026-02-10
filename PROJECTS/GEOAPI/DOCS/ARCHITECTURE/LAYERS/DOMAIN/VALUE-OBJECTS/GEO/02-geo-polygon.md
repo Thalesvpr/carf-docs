@@ -1,13 +1,36 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-12
+updated: 2026-02-08
 ---
 
 # GeoPolygon
 
-Value object imutável herdando de BaseValueObject representando polígono geográfico com validação de formato WKT (Well-Known Text) ou GeoJSON, garantindo que apenas geometrias válidas e fechadas sejam armazenadas para perímetros de unidades, lotes, quadras e comunidades. Validações incluem verificação de polígono válido (não self-intersecting), anel externo fechado (primeiro ponto igual ao último), mínimo de 3 vértices únicos formando área, e coordenadas dentro de ranges válidos (latitude -90 a 90, longitude -180 a 180).
+Value object imutavel herdando de BaseValueObject que representa um poligono geografico com validacao de formato WKT (Well-Known Text) ou GeoJSON. Garante que apenas geometrias validas e fechadas sejam armazenadas para perimetros de unidades, lotes, quadras e comunidades. No banco de dados, corresponde a colunas do tipo geometry(Polygon, 4326) em PostGIS, utilizando o sistema de referencia WGS84.
 
-Métodos principais incluem construtor FromWkt(string) parseando formato "POLYGON((lon lat, lon lat, ...))" e FromGeoJson(string) parseando formato GeoJSON RFC 7946, ToWkt() e ToGeoJson() para serialização nos formatos respectivos, Area() calculando área em metros quadrados usando projeção adequada, Centroid() retornando GeoPoint do centro geométrico, e Contains(GeoPoint) verificando se ponto está dentro do polígono.
+O objeto pode ser criado a partir de WKT via FromWkt() ou de GeoJSON via FromGeoJson(). Ambos os construtores validam a geometria antes de aceita-la. Integracao direta com PostGIS permite queries espaciais como ST_Contains e ST_Intersects.
 
-Usado em Unit.Geometry para perímetro da construção, Plot.Geometry para lote cadastral, Block.Geometry para quadra urbana, e Community.Geometry para delimitação total da comunidade, integrando com PostGIS no banco de dados para queries espaciais e com bibliotecas de mapas no frontend (Leaflet, MapLibre) e mobile (react-native-maps).
+## Regras de Validacao
+
+| Regra | Descricao |
+| --- | --- |
+| Poligono valido | Nao pode ter auto-intersecao (self-intersecting). |
+| Anel fechado | Primeiro ponto deve ser igual ao ultimo. |
+| Minimo 3 vertices | Pelo menos 3 vertices unicos formando area. |
+| Latitude valida | Entre -90 e 90 graus. |
+| Longitude valida | Entre -180 e 180 graus. |
+| SRID 4326 | Sistema de referencia WGS84 obrigatorio. |
+
+## Metodos Principais
+
+| Metodo | Retorno | Descricao |
+| --- | --- | --- |
+| FromWkt(string) | GeoPolygon | Cria instancia a partir de WKT. |
+| FromGeoJson(string) | GeoPolygon | Cria instancia a partir de GeoJSON. |
+| ToWkt() | string | Serializa para formato WKT. |
+| ToGeoJson() | string | Serializa para formato GeoJSON RFC 7946. |
+| Area() | decimal | Calcula area em metros quadrados via projecao adequada. |
+| Centroid() | GeoPoint | Retorna centro geometrico do poligono. |
+| Contains(GeoPoint) | bool | Verifica se ponto esta dentro do poligono. |
+
+Usado em Unit.boundary para perimetro da construcao, Community.boundary para delimitacao da comunidade, Block.boundary para quadra urbana, e Plot.boundary para lote cadastral. Indice GiST no banco garante performance em queries espaciais.

@@ -1,7 +1,7 @@
 ---
 type: leaf
 status: approved
-updated: 2026-02-06
+updated: 2026-02-07
 ---
 
 # Unit Validation
@@ -10,9 +10,14 @@ Regras de validacao aplicadas a entidade Unit garantindo integridade de dados es
 
 ## Hierarquia
 
-```
-Tenant > Community > Block > Plot > Building > Unit
-```
+| Nivel | Entidade | Contido em |
+|-------|----------|-----------|
+| 1 | Tenant | Raiz |
+| 2 | Community | Tenant |
+| 3 | Block | Community |
+| 4 | Plot | Block |
+| 5 | Building | Plot |
+| 6 | Unit | Building |
 
 Uma unidade pertence a uma edificacao (building). A edificacao pertence a um lote (plot). O campo `buildingId` e opcional pois em casos simples (casa unifamiliar) pode-se omitir a edificacao intermediaria.
 

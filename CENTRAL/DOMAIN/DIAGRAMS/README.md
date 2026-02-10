@@ -11,15 +11,16 @@ Diagramas conceituais do modelo de dominio CARF, visualizando graficamente a est
 Os diagramas usam sintaxe Mermaid embutida em blocos de codigo markdown, renderizaveis diretamente no Obsidian e GitHub. Todos seguem terminologia e fluxos definidos no WORKFLOW-MESTRE.
 
 <!-- CARF-INDEX-START -->
-> **Indice gerado automaticamente.** Nao edite manualmente.
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
 ## Documentos (4)
 
 | Documento | Status |
 |-----------|--------|
-| [Aggregates Diagram](./01-aggregates.md) | Review |
-| [ER Diagram](./02-er-diagram.md) | Review |
-| [Multi-Tenancy Diagram](./03-multi-tenancy.md) | Aprovado |
-| [Workflows Diagram](./04-workflows.md) | Aprovado |
+| [Aggregates Diagram](./01-aggregates.md) | ⚠ |
+| [ER Diagram](./02-er-diagram.md) | ⚠ |
+| [Multi-Tenancy Diagram](./03-multi-tenancy.md) | ⚠ |
+| [Workflows Diagram](./04-workflows.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

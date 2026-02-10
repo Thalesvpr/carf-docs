@@ -1,77 +1,38 @@
 ---
 type: leaf
-status: review
-description: "Mais codigo que prosa - arquivo e 85% blocos de codigo C#"
-updated: 2026-01-22
+status: active
+updated: 2026-02-07
 ---
 
 # Unit Queries
 
-Queries CQRS para operações de leitura de unidades.
+As queries CQRS de unidades implementam o lado de leitura do padrao CQRS na GEOAPI. Todas sao records imutaveis que implementam IRequest do MediatR, separando claramente operacoes de leitura das de escrita.
 
 ## GetUnitByIdQuery
 
-```csharp
-public record GetUnitByIdQuery(
-    Guid Id,
-    bool IncludeHolders = false,
-    bool IncludeCommunity = false
-) : IRequest<Result<UnitDto?>>;
-
-public class GetUnitByIdHandler : IRequestHandler<GetUnitByIdQuery, Result<UnitDto?>>
-{
-    public async Task<Result<UnitDto?>> Handle(GetUnitByIdQuery request, CancellationToken ct)
-    {
-        var query = _dbContext.Units
-            .Where(u => u.Id == request.Id);
-
-        if (request.IncludeHolders)
-            query = query.Include(u => u.UnitHolders).ThenInclude(uh => uh.Holder);
-
-        if (request.IncludeCommunity)
-            query = query.Include(u => u.Community);
-
-        var unit = await query.FirstOrDefaultAsync(ct);
-        return unit == null
-            ? Result.Success<UnitDto?>(null)
-            : Result.Success(_mapper.Map<UnitDto>(unit));
-    }
-}
-```
+Recebe o Id da unidade e dois flags opcionais: IncludeHolders e IncludeCommunity (ambos falso por padrao). O handler constroi a query base filtrando por Id e adiciona Include/ThenInclude condicionalmente conforme os flags. Retorna Result contendo UnitDto mapeado via AutoMapper ou nulo se nao encontrado.
 
 ## ListUnitsQuery
 
-```csharp
-public record ListUnitsQuery(
-    int Page = 1,
-    int Limit = 20,
-    string? Status = null,
-    string? Neighborhood = null,
-    Guid? CommunityId = null,
-    BoundingBox? Bbox = null,
-    string? Search = null,
-    string Sort = "-created_at"
-) : IRequest<PagedResult<UnitSummaryDto>>;
-```
+Query de listagem paginada com filtros compostos.
+
+| Parametro | Tipo | Padrao | Descricao |
+|-----------|------|--------|-----------|
+| Page | int | 1 | Pagina atual |
+| Limit | int | 20 | Registros por pagina |
+| Status | string | nulo | Filtro por status da unidade |
+| Neighborhood | string | nulo | Filtro por bairro |
+| CommunityId | Guid | nulo | Filtro por comunidade |
+| Bbox | BoundingBox | nulo | Envelope geografico para filtro espacial |
+| Search | string | nulo | Busca textual |
+| Sort | string | -created_at | Campo e direcao de ordenacao |
+
+Retorna PagedResult de UnitSummaryDto.
 
 ## GetUnitsGeoJsonQuery
 
-```csharp
-public record GetUnitsGeoJsonQuery(
-    Guid? CommunityId = null,
-    string? Status = null
-) : IRequest<GeoJsonFeatureCollection>;
-
-// Retorna FeatureCollection para renderização em mapa
-// Simplifica geometrias para viewport atual
-```
+Recebe filtros opcionais por CommunityId e Status. Retorna um GeoJsonFeatureCollection para renderizacao em mapa. O handler simplifica geometrias conforme o viewport atual.
 
 ## GetUnitStatisticsQuery
 
-```csharp
-public record GetUnitStatisticsQuery(
-    Guid? CommunityId = null
-) : IRequest<UnitStatisticsDto>;
-
-// Retorna agregações: total, por status, área total, etc.
-```
+Recebe filtro opcional por CommunityId. Retorna UnitStatisticsDto contendo agregacoes como total de unidades, contagem por status e area total.

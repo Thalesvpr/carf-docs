@@ -1,69 +1,41 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-24
+updated: 2026-02-07
 ---
 
 # Ecossistema CARF
 
 Visao geral de todos os sistemas do ecossistema CARF e suas conexoes, mostrando como usuarios interagem com aplicacoes frontend que consomem o backend central e servicos de autenticacao. O Plugin QGIS (GEOGIS) exige autenticacao em duas etapas via Keycloak OAuth2 seguido de AUTHENTICATION KEY.
 
-```mermaid
-flowchart TB
-    subgraph Usuarios["Usuarios"]
-        AnalistaDrone["Analista Drone<br/>Entrega Ortofotos"]
-        Analista["Analista<br/>Portal Web"]
-        AnalistaGIS["Analista GIS<br/>Plugin QGIS"]
-        Agente["Agente Campo<br/>App Mobile"]
-        Admin["Administrador<br/>Console Admin"]
-    end
+## Atores
 
-    subgraph Frontend["Aplicacoes Frontend"]
-        GEOWEB["GEOWEB<br/>React SPA"]
-        REURBCAD["REURBCAD<br/>React Native"]
-        ADMINUI["ADMIN<br/>React SPA"]
-        GEOGIS["GEOGIS<br/>Plugin QGIS"]
-        WEBDOCS["WEBDOCS<br/>Astro/Starlight"]
-    end
+| Ator | Descricao | Sistema Principal |
+|------|-----------|-------------------|
+| Analista Drone | Entrega ortofotos via portal de upload | GEOAPI (direto) |
+| Analista | Opera o portal web para analise e aprovacao | GEOWEB |
+| Analista GIS | Georreferencia poligonos via plugin QGIS | GEOGIS |
+| Agente Campo | Executa cadastros em campo via app mobile | REURBCAD |
+| Administrador | Gerencia usuarios, tenants e configuracoes | ADMIN |
 
-    subgraph Backend["Backend"]
-        GEOAPI["GEOAPI<br/>.NET 9 REST API"]
-    end
+## Aplicacoes Frontend
 
-    subgraph Identity["Identity"]
-        KEYCLOAK["KEYCLOAK<br/>OAuth2/OIDC"]
-        AUTHKEY["AUTHENTICATION KEY<br/>Chave Plugin"]
-    end
+| Sistema | Tecnologia | Funcao |
+|---------|-----------|--------|
+| GEOWEB | React SPA | Portal web de analise e gestao |
+| REURBCAD | React Native | App mobile para operacao em campo |
+| ADMIN | React SPA | Console de administracao |
+| GEOGIS | Plugin QGIS | Georreferenciamento de poligonos |
+| WEBDOCS | Astro/Starlight | Documentacao publica |
 
-    subgraph Data["Persistencia"]
-        POSTGRES[("PostgreSQL<br/>+ PostGIS")]
-        BUCKET[("Bucket S3/MinIO<br/>por TENANT")]
-    end
+## Backend e Servicos
 
-    subgraph External["Servicos Externos"]
-        WMS["WMS/WMTS<br/>Camadas Base"]
-    end
+O backend central e o GEOAPI, uma API REST em .NET 9. Todas as aplicacoes frontend consomem o GEOAPI. A camada de identidade e composta pelo Keycloak (OAuth2/OIDC) e pelo mecanismo de AUTHENTICATION KEY usado exclusivamente pelo plugin QGIS.
 
-    AnalistaDrone --> GEOAPI
-    Analista --> GEOWEB
-    AnalistaGIS --> GEOGIS
-    Agente --> REURBCAD
-    Admin --> ADMINUI
+## Persistencia
 
-    GEOWEB --> GEOAPI
-    REURBCAD --> GEOAPI
-    ADMINUI --> GEOAPI
-    GEOGIS --> GEOAPI
-    WEBDOCS --> GEOAPI
+Os dados sao armazenados em PostgreSQL com extensao PostGIS para dados geoespaciais. Arquivos pesados como ortofotos, documentos e fotos ficam em bucket S3/MinIO segregado por tenant.
 
-    GEOWEB --> KEYCLOAK
-    REURBCAD --> KEYCLOAK
-    ADMINUI --> KEYCLOAK
-    GEOGIS --> KEYCLOAK
-    GEOGIS --> AUTHKEY
+## Conexoes
 
-    GEOAPI --> KEYCLOAK
-    GEOAPI --> POSTGRES
-    GEOAPI --> BUCKET
-    GEOAPI --> WMS
-```
+Todas as aplicacoes frontend autenticam via Keycloak, exceto o GEOGIS que requer autenticacao dupla (Keycloak mais AUTHENTICATION KEY). Todas as aplicacoes consomem o GEOAPI, que por sua vez acessa PostgreSQL, bucket S3/MinIO e servicos WMS/WMTS para camadas base cartograficas.

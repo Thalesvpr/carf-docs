@@ -1,7 +1,7 @@
 ---
 type: leaf
 status: approved
-updated: 2026-01-24
+updated: 2026-02-07
 ---
 
 # Bucket por Tenant
@@ -12,16 +12,13 @@ Arquitetura multi-tenant exige que arquivos de um cliente nunca sejam acessiveis
 
 ## Estrutura de Pastas
 
-```
-/{tenant_id}/
-  ortofotos/
-    {ano}/{mes}/
-      original/
-      otimizada/
-      tiles/
-  documentos/
-  fotos/
-```
+| Caminho | Conteudo |
+|---------|----------|
+| /{tenant_id}/ortofotos/{ano}/{mes}/original/ | Ortofoto original |
+| /{tenant_id}/ortofotos/{ano}/{mes}/otimizada/ | Versao reduzida |
+| /{tenant_id}/ortofotos/{ano}/{mes}/tiles/ | Tiles para visualizacao |
+| /{tenant_id}/documentos/ | Documentos anexados |
+| /{tenant_id}/fotos/ | Fotos de campo |
 
 ## Tipos de Arquivos
 

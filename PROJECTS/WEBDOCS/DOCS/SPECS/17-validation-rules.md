@@ -1,225 +1,50 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-21
+updated: 2026-02-07
 ---
 
-# Regras de Validação
+# Regras de Validacao
 
-Regras de validação automática que garantem qualidade e alinhamento da documentação WEBDOCS.
+Regras automaticas de qualidade da documentacao WEBDOCS. Relacionado com 17-validation-scripts.md e 17-validation-ci.md.
 
-Arquivos relacionados:
-- Scripts de implementação: `17-validation-scripts.md`
-- Integração CI: `17-validation-ci.md`
+## Validacao de Fonte
 
-## Validação de Fonte (SOURCE)
+| ID | Severidade | Descricao |
+|----|------------|-----------|
+| SRC001 | ERROR | Source obrigatorio, exceto index e _ |
+| SRC002 | ERROR | Arquivo referenciado deve existir |
+| SRC003 | WARNING | Source compativel com secao (SPECS/16) |
+| SRC004 | ERROR | Pattern CENTRAL/ ou PROJECTS/ .md |
 
-```json
-{
-  "source_rules": [
-    {
-      "id": "SRC001",
-      "name": "Source Required",
-      "description": "Campo source é obrigatório no frontmatter de toda página de conteúdo",
-      "severity": "ERROR",
-      "applies_to": "src/content/docs/**/*.mdx",
-      "excludes": ["index.mdx", "_*.mdx"]
-    },
-    {
-      "id": "SRC002",
-      "name": "Source Exists",
-      "description": "Arquivo referenciado no campo source deve existir no repositório",
-      "severity": "ERROR",
-      "check": "Verificar se path existe em carf-docs"
-    },
-    {
-      "id": "SRC003",
-      "name": "Source Section Match",
-      "description": "Source deve ser compatível com a seção da página conforme mapeamento",
-      "severity": "WARNING",
-      "reference": "SPECS/16-source-alignment.md"
-    },
-    {
-      "id": "SRC004",
-      "name": "Source Format",
-      "description": "Source deve seguir pattern ^(CENTRAL|PROJECTS)/.*\\.md$",
-      "severity": "ERROR",
-      "pattern": "^(CENTRAL|PROJECTS)/.*\\.md$"
-    }
-  ]
-}
-```
+## Cobertura
 
-## Validação de Cobertura (COVERAGE)
+| ID | Severidade | Descricao |
+|----|------------|-----------|
+| COV001 | WARNING | Todo RF com pagina, exceto internals |
+| COV002 | WARNING | Todo UC com manual, exceto tecnicos |
+| COV003 | INFO | Todo workflow com guia |
+| COV004 | WARNING | Toda feature com manual |
 
-```json
-{
-  "coverage_rules": [
-    {
-      "id": "COV001",
-      "name": "RF Coverage",
-      "description": "Todo Requisito Funcional deve ter pelo menos uma página WEBDOCS referenciando-o",
-      "source_pattern": "CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS/**/RF-*.md",
-      "severity": "WARNING",
-      "exception": "RFs marcados como internal=true são isentos"
-    },
-    {
-      "id": "COV002",
-      "name": "UC Coverage",
-      "description": "Todo Caso de Uso deve ter manual correspondente em WEBDOCS",
-      "source_pattern": "CENTRAL/REQUIREMENTS/USE-CASES/**/UC-*.md",
-      "severity": "WARNING",
-      "exception": "UCs técnicos sem interface de usuário são isentos"
-    },
-    {
-      "id": "COV003",
-      "name": "Workflow Coverage",
-      "description": "Todo workflow operacional deve ter guia em /guia/",
-      "source_pattern": "CENTRAL/WORKFLOWS/*.md",
-      "severity": "INFO"
-    },
-    {
-      "id": "COV004",
-      "name": "Feature Coverage",
-      "description": "Toda feature de PROJECTS deve ter manual correspondente",
-      "source_pattern": "PROJECTS/*/DOCS/FEATURES/*.md",
-      "severity": "WARNING"
-    }
-  ]
-}
-```
+## Termos
 
-## Validação de Termos (TERMS)
+| ID | Severidade | Correto | Incorreto |
+|----|------------|---------|-----------|
+| TERM001 | WARNING | Unidade Habitacional | Unit |
+| TERM002 | WARNING | Em Rascunho | DRAFT |
+| TERM003 | ERROR | Coordenador de Campo | field-coordinator |
+| TERM004 | WARNING | GeoWeb, REURBCAD, GeoAPI | geoweb, Reurbcad |
 
-```json
-{
-  "term_rules": [
-    {
-      "id": "TERM001",
-      "name": "Entity Names",
-      "description": "Nomes de entidades devem usar grafia oficial",
-      "terms_source": "CENTRAL/DOMAIN-MODEL/ENTITIES/README.md",
-      "severity": "WARNING",
-      "examples": {
-        "correct": ["Unidade Habitacional", "Titular", "Comunidade"],
-        "incorrect": ["Unit", "Holder", "Community", "unidade"]
-      }
-    },
-    {
-      "id": "TERM002",
-      "name": "Status Values",
-      "description": "Valores de status devem usar labels oficiais",
-      "terms_source": "CENTRAL/DOMAIN-MODEL/VALUE-OBJECTS/03-unit-status.md",
-      "severity": "WARNING",
-      "examples": {
-        "correct": ["Em Rascunho", "Aguardando Aprovação", "Aprovada"],
-        "incorrect": ["DRAFT", "PENDING", "APPROVED", "draft"]
-      }
-    },
-    {
-      "id": "TERM003",
-      "name": "Role Names",
-      "description": "Nomes de roles devem usar labels oficiais",
-      "severity": "ERROR",
-      "examples": {
-        "correct": ["Coordenador de Campo", "Cadastrador de Campo", "Analista", "Administrador"],
-        "incorrect": ["field-coordinator", "field-cadastrator", "analyst", "admin"]
-      }
-    },
-    {
-      "id": "TERM004",
-      "name": "Product Names",
-      "description": "Nomes de produtos devem usar grafia oficial",
-      "severity": "WARNING",
-      "terms": {
-        "GeoWeb": ["geoweb", "Geoweb", "GEOWEB"],
-        "REURBCAD": ["Reurbcad", "ReurbCAD", "reurbcad"],
-        "GeoAPI": ["geoapi", "Geoapi", "GEOAPI"]
-      }
-    }
-  ]
-}
-```
+## Conteudo
 
-## Validação de Conteúdo (CONTENT)
+| ID | Severidade | Descricao |
+|----|------------|-----------|
+| CONT001 | ERROR | Description 50-160 chars |
+| CONT002 | ERROR | Title obrigatorio |
+| CONT003 | ERROR | Links internos validos |
+| CONT004 | ERROR | Imagens existem |
+| CONT005 | WARNING | Alt text em imagens |
 
-```json
-{
-  "content_rules": [
-    {
-      "id": "CONT001",
-      "name": "Description Length",
-      "description": "Campo description deve ter entre 50 e 160 caracteres",
-      "severity": "ERROR",
-      "min": 50,
-      "max": 160
-    },
-    {
-      "id": "CONT002",
-      "name": "Title Present",
-      "description": "Campo title é obrigatório e não pode ser vazio",
-      "severity": "ERROR"
-    },
-    {
-      "id": "CONT003",
-      "name": "No Broken Links",
-      "description": "Links internos devem apontar para páginas existentes",
-      "severity": "ERROR"
-    },
-    {
-      "id": "CONT004",
-      "name": "No Dead Images",
-      "description": "Imagens referenciadas devem existir em public/images/",
-      "severity": "ERROR"
-    },
-    {
-      "id": "CONT005",
-      "name": "Alt Text Required",
-      "description": "Todas imagens devem ter atributo alt para acessibilidade",
-      "severity": "WARNING"
-    }
-  ]
-}
-```
+## Execucao
 
-## Execução dos Validadores
-
-```json
-{
-  "commands": {
-    "all": "bun run validate",
-    "sources": "bun run validate:sources",
-    "coverage": "bun run validate:coverage",
-    "terms": "bun run validate:terms",
-    "content": "bun run validate:content"
-  },
-  "ci_integration": {
-    "trigger": "Pull requests e push para main",
-    "block_merge": "Erros com severity ERROR bloqueiam merge",
-    "warnings": "Warnings são reportados mas não bloqueiam"
-  },
-  "output": {
-    "format": "JSON com lista de violações",
-    "fields": ["rule_id", "severity", "file", "line", "message", "suggestion"]
-  }
-}
-```
-
-## Ignorando Regras
-
-Em casos excepcionais, regras podem ser ignoradas:
-
-```json
-{
-  "ignore_syntax": {
-    "frontmatter": "validate-ignore: [RULE_ID, RULE_ID]",
-    "example": "validate-ignore: [COV001, TERM002]",
-    "requirement": "Comentário explicando motivo da exceção"
-  }
-}
-```
-
----
-
-**Última atualização:** 2026-01-21
-**Status do arquivo**: Review
+ERROR bloqueia merge, WARNING reportado sem bloquear. Output JSON com rule_id, severity, file, line, message, suggestion. Ignorar regras via validate-ignore no frontmatter com IDs e justificativa.

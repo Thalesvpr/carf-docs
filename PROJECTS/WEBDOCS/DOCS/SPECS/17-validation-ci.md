@@ -1,88 +1,24 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-21
+updated: 2026-02-07
 ---
 
-# Validação - Integração CI
+# Validacao - Integracao CI
 
-Configuração de CI para executar validações automaticamente.
+Configuracao de CI para executar validacoes automaticamente. Arquivos relacionados: 17-validation-rules.md e 17-validation-scripts.md.
 
-Arquivos relacionados:
-- Regras de validação: `17-validation-rules.md`
-- Scripts: `17-validation-scripts.md`
+## Scripts de Validacao
 
-## package.json Scripts
-
-```json
-{
-  "scripts": {
-    "validate": "bun run validate:sources && bun run validate:links && bun run validate:images",
-    "validate:sources": "bun run scripts/validate-sources.ts",
-    "validate:links": "bun run scripts/validate-links.ts",
-    "validate:images": "bun run scripts/validate-images.ts",
-    "validate:terms": "bun run scripts/validate-terms.ts",
-    "validate:coverage": "bun run scripts/validate-coverage.ts"
-  }
-}
-```
+| Script | Comando | Descricao |
+|--------|---------|-----------|
+| validate | bun run validate:sources e validate:links e validate:images | Executa todas as validacoes |
+| validate:sources | bun run scripts/validate-sources.ts | Valida campo source no frontmatter |
+| validate:links | bun run scripts/validate-links.ts | Valida links internos |
+| validate:images | bun run scripts/validate-images.ts | Valida referencias de imagens |
+| validate:terms | bun run scripts/validate-terms.ts | Valida terminologia oficial |
+| validate:coverage | bun run scripts/validate-coverage.ts | Verifica cobertura de documentacao |
 
 ## Workflow GitHub Actions
 
-```yaml
-# .github/workflows/validate.yml
-name: Validate Documentation
-
-on:
-  pull_request:
-    paths:
-      - 'src/content/**'
-      - 'public/images/**'
-  push:
-    branches: [main]
-    paths:
-      - 'src/content/**'
-      - 'public/images/**'
-
-jobs:
-  validate:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Checkout docs repo
-        uses: actions/checkout@v4
-        with:
-          repository: carf/carf-docs
-          path: carf-docs
-
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v1
-        with:
-          bun-version: latest
-
-      - name: Install dependencies
-        run: bun install
-
-      - name: Run validation
-        env:
-          DOCS_REPO_PATH: ./carf-docs
-        run: bun run validate
-
-      - name: Comment on PR
-        if: failure() && github.event_name == 'pull_request'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: 'Validação de documentação falhou. Verifique os logs.'
-            })
-```
-
----
-
-**Última atualização:** 2026-01-21
-**Status do arquivo**: Review
+O workflow validate.yml dispara em pull requests e push para main quando caminhos src/content/ ou public/images/ sao modificados. O job validate roda em ubuntu-latest com os seguintes passos: checkout do codigo, checkout do repositorio carf/carf-docs no path carf-docs, setup do Bun com versao latest, instalacao de dependencias com bun install, execucao da validacao com variavel DOCS_REPO_PATH apontando para ./carf-docs. Em caso de falha em pull request, usa actions/github-script para comentar no PR informando que a validacao falhou.

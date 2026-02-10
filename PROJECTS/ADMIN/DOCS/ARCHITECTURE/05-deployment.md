@@ -1,40 +1,24 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-15
+updated: 2026-02-07
 ---
 
 # Deployment - ADMIN
 
 ## Deploy
 
-Deploy para Vercel como static SPA: build command `bun run build` gera `dist/` com HTML + JS bundle via Vite, Vercel serve arquivos estáticos via CDN com caching headers (max-age 1 year para assets, stale-while-revalidate para HTML), routing client-side via React Router com fallback para `index.html` configurado em `vercel.json` `rewrites: [{ source: "/(.*)", destination: "/index.html" }]`, variáveis de ambiente `VITE_API_URL` e `VITE_KEYCLOAK_URL` configuradas em Vercel dashboard, preview deployments em cada PR permitem testar mudanças antes de produção, production deployment em merge para `main` com healthcheck validando que `/` retorna 200 antes de finalizar deploy.
+O deploy do ADMIN e feito para Vercel como static SPA. O comando de build gera o diretorio dist/ contendo HTML e JS bundle otimizados via Vite. A Vercel serve arquivos estaticos via CDN com caching headers de max-age 1 year para assets e stale-while-revalidate para HTML. O routing client-side via React Router utiliza fallback para index.html configurado na Vercel com regra de rewrite que direciona todas as rotas para index.html. As variaveis de ambiente VITE_API_URL e VITE_KEYCLOAK_URL sao configuradas no Vercel dashboard. Preview deployments sao criados automaticamente em cada PR permitindo testar mudancas antes de producao. O production deployment ocorre no merge para main com healthcheck validando que a rota raiz retorna 200 antes de finalizar.
 
-## Vercel Configuration
+## Configuracao Vercel
 
-```json
-// vercel.json
-{
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
-  ],
-  "headers": [
-    {
-      "source": "/assets/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
-      ]
-    }
-  ]
-}
-```
+| Propriedade | Valor | Descricao |
+|-------------|-------|-----------|
+| rewrites | todas as rotas para /index.html | Suporte a client-side routing |
+| Cache-Control para /assets/ | public, max-age=31536000, immutable | Cache longo para assets estaticos |
+| VITE_API_URL | URL do GEOAPI | Variavel de ambiente configurada no dashboard |
+| VITE_KEYCLOAK_URL | URL do Keycloak | Variavel de ambiente configurada no dashboard |
 
-## Build
+## Build e Preview
 
-```bash
-# Build SPA
-bun run build  # → dist/
-
-# Preview locally
-bun run preview  # → http://localhost:4173
-```
+Para gerar o build de producao, executar o comando de build via bun que gera o diretorio dist/ otimizado. Para validacao local antes de deploy, executar o comando de preview via bun que serve o build em modo producao na porta 4173. O deploy para producao pode ser acionado automaticamente via push para branch main ou manualmente via CLI da Vercel com flag de producao.

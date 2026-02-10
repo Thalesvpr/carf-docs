@@ -1,12 +1,33 @@
 ---
 type: leaf
 status: review
-description: "Estrutura caotica. Numeracao nao agrupa por categoria. Precisa reorganizar por agregado/contexto. Stub de 11 linhas - incompleto."
-updated: 2026-01-19
+updated: 2026-02-08
 ---
 
-# Spatial Overlap Detection (Detecção de Sobreposição Espacial)
+# Spatial Overlap Detection
 
-Matriz completa de casos edge de sobreposição espacial entre Units Community Blocks e outras geometrias poligonais no sistema de legitimação fundiária usando análise geométrica espacial para detecção e resolução de conflitos territoriais. Classificação de overlap baseada em percentual de área sobreposta calculado via operação de interseção geométrica dividido por área total da Unit original onde overlap menor <10% é considerado ajustável via refinamento de boundaries, overlap moderado 10-50% exige análise de documentação de posse e priorização por antiguidade de ocupação ou título formal existente, overlap severo >50% geralmente resulta em cancelamento de uma das Units priorizando ocupação mais antiga ou título registrado, e overlap total 100% indica duplicação completa exigindo merge ou exclusão de registro duplicado preservando dados históricos via soft delete. Casos edge incluem overlap parcial em divisa onde duas Units compartilham segmento de perímetro devido a imprecisão de GPS no campo resolvido via ajuste para grade com tolerância de 0.5m e revisão manual em mapa comparando fotos georreferenciadas, overlap em área de servidão pública onde Unit sobrepõe via de acesso ou rede de infraestrutura resolvido via criação de Area Restriction geometric constraint preservando Unit mas registrando restrição de uso, overlap com APP (Área de Preservação Permanente) onde Unit invade área non aedificandi calculado via operação de diferença geométrica subtraindo geometria de APP da geometria de Unit gerando Unit reduzida válida e Area Restriction para porção sobreposta, overlap entre Units de Communities diferentes (cross-community) indicando erro de cadastro ou disputa territorial exigindo escalação para gestor municipal e possível ajuste de Community boundaries, overlap com propriedade formal registrada em cartório detectado via junção espacial com camada de matrículas georreferenciadas do município resultando em bloqueio automático de aprovação e notificação ao titular formal para manifestação conforme Lei 13.465/2017, overlap temporal onde Unit A foi cadastrada em 2023 e Unit B sobreposta cadastrada em 2024 resolvido via regra first-come-first-served mantendo Unit A integral e rejeitando Unit B com sugestão de ajuste de boundaries, e overlap intencional em casos de condomínio ou propriedade compartilhada onde múltiplas Units representam frações ideais do mesmo lote físico modelado via shared geometry reference e Holders com percentual de propriedade somando 100%. Algoritmo de detecção executa consulta espacial de sobreposição para todas Units dentro de buffer de 100m da Unit sendo validada calculando área de interseção e percentual via (área_interseção / área_unit * 100) classificando severity e disparando workflow apropriado onde minor overlap <10% permite auto-approve com flag de revisão, moderate 10-50% exige aprovação de MANAGER com justificativa, severe >50% bloqueia até resolução manual, e total 100% dispara verificação de duplicação consultando CPF de Holders e código de Unit. Resolução de conflicts implementa estratégias diferenciadas por tipo onde boundary adjustment usa ajuste para grade com precisão de 0.1m seguido de validação topológica garantindo geometria correta, area subtraction usa operação de diferença geométrica preservando porção não sobreposta e criando Annotation explicando ajuste, priority-based exclusion consulta metadata de created_at e Document attachments priorizando Unit com posse mais antiga ou documentação mais robusta, e merge de Units duplicadas consolida Holders via UnitHolder junction preservando percentuais redistribui Documents para Unit final e soft-deleta Unit duplicada mantendo audit trail completo. Visualização em mapa destaca overlaps com camada semi-transparente colorida por severity (amarelo minor laranja moderate vermelho severe) permitindo analista clicar e ver detalhes de ambas Units conflitantes área de interseção calculada sugestões automáticas de resolução e histórico de tentativas anteriores se houver, facilitando decisão informada e documentada em Annotation vinculada a ambas Units envolvidas.
+Matriz de deteccao de sobreposicao espacial entre Units, Communities, Blocks e outras geometrias poligonais, usando analise geometrica via PostGIS para identificacao e resolucao de conflitos territoriais.
 
-**Módulos:** GEOAPI, GEOWEB, REURBCAD, GEOGIS
+## Classificacao de Sobreposicao
+
+| Severidade | Percentual | Acao |
+|------------|-----------|------|
+| Minor | menor que 10% | Ajustavel via refinamento de boundaries. Auto-approve com flag de revisao. |
+| Moderate | 10-50% | Exige analise de documentacao e priorizacao por antiguidade de posse. Aprovacao de MANAGER obrigatoria. |
+| Severe | maior que 50% | Cancelamento de uma das Units. Prioriza ocupacao mais antiga ou titulo formal. Bloqueado ate resolucao manual. |
+| Total | 100% | Duplicacao completa. Exige merge ou exclusao preservando dados via soft delete. |
+
+## Casos Edge
+
+| Caso | Descricao | Resolucao |
+|------|-----------|-----------|
+| Divisa imprecisa | Duas Units compartilham segmento por imprecisao GPS. | Ajuste para grade com tolerancia 0.5m. |
+| Servidao publica | Unit sobrepoe via de acesso ou rede de infraestrutura. | Area Restriction preservando Unit. |
+| APP | Unit invade Area de Preservacao Permanente. | Operacao ST_Difference subtraindo APP da geometria. |
+| Cross-community | Units de communities diferentes se sobrepoem. | Escalacao para gestor municipal. |
+| Propriedade formal | Overlap com matricula georreferenciada de cartorio. | Bloqueio automatico e notificacao ao titular formal. |
+| Condominio | Multiplas Units representam fracoes ideais do mesmo lote. | Shared geometry com Holders somando 100%. |
+
+## Algoritmo de Deteccao
+
+Consulta espacial busca todas Units dentro de buffer de 100m da Unit sendo validada. Calcula area de intersecao via ST_Intersection e percentual (area_intersecao / area_unit * 100). Classifica severity e dispara workflow apropriado. Visualizacao em mapa destaca overlaps com camada semi-transparente colorida por severity.

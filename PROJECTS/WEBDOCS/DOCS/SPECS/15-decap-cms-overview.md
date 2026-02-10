@@ -1,93 +1,44 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-21
+updated: 2026-02-07
 ---
 
-# Decap CMS - Visão Geral
+# Decap CMS - Visao Geral
 
-Especificação da configuração do Decap CMS para edição visual de conteúdo do WEBDOCS.
+Especificacao da configuracao do Decap CMS para edicao visual de conteudo do WEBDOCS. Arquivos relacionados: 15-decap-cms-collections.md e 15-decap-cms-arquivos.md.
 
-Arquivos relacionados:
-- Collections detalhadas: `15-decap-cms-collections.md`
-- Arquivos completos: `15-decap-cms-arquivos.md`
+## Arquivos de Configuracao
 
-## Arquivos de Configuração
-
-O Decap CMS requer dois arquivos em public/admin/:
-
-```json
-{
-  "files": {
-    "public/admin/index.html": "HTML mínimo que carrega Decap CMS",
-    "public/admin/config.yml": "Configuração de backend, collections e fields"
-  }
-}
-```
+O Decap CMS requer dois arquivos na pasta public/admin/. O arquivo index.html e HTML minimo que carrega Decap CMS via script. O arquivo config.yml contem configuracao de backend, collections e fields.
 
 ## Backend GitHub
 
-Configuração do backend para integração com GitHub usando OAuth.
+| Propriedade | Valor | Descricao |
+|-------------|-------|-----------|
+| name | github | Provider de backend |
+| repo | carf/carf-webdocs | Repositorio alvo |
+| branch | main | Branch de publicacao |
+| base_url | https://docs.carf.com.br | URL base para OAuth |
+| auth_endpoint | /auth/cms | Endpoint de autenticacao |
 
-```yaml
-backend:
-  name: github
-  repo: carf/carf-webdocs
-  branch: main
-  base_url: https://docs.carf.com.br
-  auth_endpoint: /auth/cms
-  commit_messages:
-    create: 'docs: criar {{collection}} "{{slug}}"'
-    update: 'docs: atualizar {{collection}} "{{slug}}"'
-    delete: 'docs: remover {{collection}} "{{slug}}"'
-    uploadMedia: 'docs: upload {{path}}'
-    deleteMedia: 'docs: remover media {{path}}'
-```
+Commit messages seguem padrao convencional com prefixo docs: seguido da acao (criar, atualizar, remover) e nome do collection/slug.
 
-## Configuração de Media
+## Configuracao de Media
 
-Pasta para upload de imagens e arquivos.
+Pasta para upload e public/images com folder publico /images. Tamanho maximo de arquivo e 5MB. Extensoes permitidas sao jpg, jpeg, png, gif, svg e webp.
 
-```yaml
-media_folder: public/images
-public_folder: /images
-media_library:
-  max_file_size: 5242880  # 5MB
-  allowed_extensions:
-    - jpg
-    - jpeg
-    - png
-    - gif
-    - svg
-    - webp
-```
+## Configuracoes Adicionais
 
-## Configurações Adicionais
+| Propriedade | Valor | Descricao |
+|-------------|-------|-----------|
+| editor.preview | true | Habilita pre-visualizacao |
+| slug.encoding | unicode | Suporte a caracteres unicode |
+| slug.clean_accents | true | Remove acentos de slugs |
+| slug.sanitize_replacement | - | Substitui caracteres invalidos por hifen |
+| locale | pt | Idioma portugues |
+| site_url | https://docs.carf.com.br | URL para previews |
 
-```yaml
-# Editor
-editor:
-  preview: true
+## Autenticacao OAuth
 
-# Slug sanitization
-slug:
-  encoding: unicode
-  clean_accents: true
-  sanitize_replacement: "-"
-
-# Locale
-locale: pt
-
-# Site URL para previews
-site_url: https://docs.carf.com.br
-display_url: https://docs.carf.com.br
-```
-
-## Autenticação OAuth
-
-O Decap CMS usa OAuth para autenticar com GitHub. O endpoint /auth/cms no WEBDOCS funciona como proxy OAuth seguindo especificação do Decap. Usuários precisam de acesso de escrita ao repositório carf/carf-webdocs para usar o CMS.
-
----
-
-**Última atualização:** 2026-01-21
-**Status do arquivo**: Review
+O Decap CMS usa OAuth para autenticar com GitHub. O endpoint /auth/cms no WEBDOCS funciona como proxy OAuth seguindo especificacao do Decap. Usuarios precisam de acesso de escrita ao repositorio carf/carf-webdocs para usar o CMS.

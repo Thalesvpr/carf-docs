@@ -40,7 +40,7 @@ Os requisitos [RF-102](./RF-102-upload-de-documentos.md) a [RF-107](./RF-107-exc
 | [RF-121: Anexar Descricao a Foto](./RF-121-anexar-descrição-a-foto.md) | ⚠ |
 | [RF-122: Tirar Foto com Camera Mobile](./RF-122-tirar-foto-com-câmera-mobile.md) | ⚠ |
 | [RF-123: Selecionar Foto da Galeria Mobile](./RF-123-selecionar-foto-da-galeria-mobile.md) | ⚠ |
-| [RF-124: Exportar Documentos/Fotos](./RF-124-exportar-documentosfotos.md) | ⚠ |
+| [RF-124: Exportar Documentos e Fotos](./RF-124-exportar-documentosfotos.md) | ⚠ |
 | [RF-125: Limite de Armazenamento por Tenant](./RF-125-limite-de-armazenamento-por-tenant.md) | ⚠ |
 | [RF-126: Notificacao de Limite de Armazenamento](./RF-126-notificação-de-limite-de-armazenamento.md) | ⚠ |
 

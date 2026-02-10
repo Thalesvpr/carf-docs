@@ -1,104 +1,39 @@
 ---
 type: leaf
-status: review
-description: "Formato inadequado: blocos de codigo extensos ao inves de prosa densa explicativa. Deveria descrever o DbContext em paragrafos corridos explicando configuracao, multi-tenancy, mapeamentos."
-updated: 2026-01-22
+status: active
+updated: 2026-02-07
 ---
 
 # DbContext
 
-Configuração do Entity Framework Core DbContext do GEOAPI.
+O CARFDbContext e a classe central do Entity Framework Core na GEOAPI, configurando mapeamentos, extensoes PostGIS e isolamento multi-tenant via global query filters.
 
-## CARFDbContext
+## Estrutura do DbContext
 
-```csharp
-public class CARFDbContext : DbContext
-{
-    private readonly ITenantContext _tenantContext;
+O CARFDbContext herda de DbContext e recebe ITenantContext por injecao no construtor. Expoe DbSets para todas as entidades implementadas no sistema.
 
-    public CARFDbContext(
-        DbContextOptions<CARFDbContext> options,
-        ITenantContext tenantContext) : base(options)
-    {
-        _tenantContext = tenantContext;
-    }
+| DbSet | Entidade | Tabela | Configuration dedicada |
+|-------|----------|--------|----------------------|
+| Units | Unit | units | sim (UnitConfiguration) |
+| Holders | Holder | holders | sim (HolderConfiguration) |
+| Communities | Community | communities | sim (CommunityConfiguration) |
+| UnitHolders | UnitHolder | unit_holders | sim (UnitHolderConfiguration) |
+| Documents | Document | documents | sim (DocumentConfiguration) |
+| Teams | Team | teams | sim (TeamConfiguration) |
+| TeamMembers | TeamMember | team_members | nao (convencoes EF Core) |
+| CommunityAuthorizations | CommunityAuthorization | community_authorizations | nao (convencoes EF Core) |
+| SyncLogs | SyncLog | sync_logs | sim (SyncLogConfiguration) |
+| Accounts | Account | accounts | sim (AccountConfiguration) |
+| Tenants | Tenant | tenants | sim (TenantConfiguration) |
 
-    public DbSet<Unit> Units => Set<Unit>();
-    public DbSet<Holder> Holders => Set<Holder>();
-    public DbSet<Community> Communities => Set<Community>();
-    public DbSet<Legitimation> Legitimations => Set<Legitimation>();
-    public DbSet<UnitHolder> UnitHolders => Set<UnitHolder>();
+> **Nota**: TeamMember e CommunityAuthorization nao possuem arquivos IEntityTypeConfiguration dedicados. Seus mapeamentos dependem das convencoes default do EF Core. Indices e constraints especificos para essas entidades devem ser adicionados via configurations futuras ou migrations manuais.
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(CARFDbContext).Assembly);
-        modelBuilder.HasPostgresExtension("postgis");
+No metodo OnModelCreating, aplica todas as configuracoes de entidade do assembly automaticamente, habilita a extensao postgis e registra global query filters para Unit, Holder e Community, filtrando por TenantId do contexto atual.
 
-        // Global query filter para multi-tenancy
-        modelBuilder.Entity<Unit>().HasQueryFilter(u => u.TenantId == _tenantContext.TenantId);
-        modelBuilder.Entity<Holder>().HasQueryFilter(h => h.TenantId == _tenantContext.TenantId);
-        modelBuilder.Entity<Community>().HasQueryFilter(c => c.TenantId == _tenantContext.TenantId);
-    }
-}
-```
+## Configuracao da Entidade Unit
 
-## Configuração de Entidade
-
-```csharp
-public class UnitConfiguration : IEntityTypeConfiguration<Unit>
-{
-    public void Configure(EntityTypeBuilder<Unit> builder)
-    {
-        builder.ToTable("units");
-
-        builder.HasKey(u => u.Id);
-        builder.Property(u => u.Id).HasColumnName("id");
-
-        builder.Property(u => u.Code)
-            .HasColumnName("code")
-            .HasMaxLength(50)
-            .IsRequired();
-
-        builder.HasIndex(u => new { u.TenantId, u.Code }).IsUnique();
-
-        // Geometry com PostGIS
-        builder.Property(u => u.Boundary)
-            .HasColumnName("boundary")
-            .HasColumnType("geometry(Polygon, 4326)");
-
-        builder.Property(u => u.Centroid)
-            .HasColumnName("centroid")
-            .HasColumnType("geometry(Point, 4326)");
-
-        // Value Objects
-        builder.OwnsOne(u => u.Address, addr =>
-        {
-            addr.Property(a => a.Street).HasColumnName("address_street");
-            addr.Property(a => a.Number).HasColumnName("address_number");
-            // ...
-        });
-
-        // Relacionamentos
-        builder.HasMany(u => u.UnitHolders)
-            .WithOne(uh => uh.Unit)
-            .HasForeignKey(uh => uh.UnitId);
-
-        builder.HasOne(u => u.Community)
-            .WithMany(c => c.Units)
-            .HasForeignKey(u => u.CommunityId);
-    }
-}
-```
+A classe UnitConfiguration implementa IEntityTypeConfiguration e mapeia a entidade Unit para a tabela "units". A chave primaria e o Id. O campo Code tem tamanho maximo 50, e obrigatorio e possui indice unico composto com TenantId. As propriedades espaciais Boundary e Centroid sao mapeadas para geometry(Polygon, 4326) e geometry(Point, 4326) respectivamente. O value object Address e mapeado via OwnsOne com colunas prefixadas por "address_". O relacionamento com UnitHolders e um-para-muitos via UnitId. O relacionamento com Community e muitos-para-um via CommunityId.
 
 ## Registro no DI
 
-```csharp
-services.AddDbContext<CARFDbContext>(options =>
-{
-    options.UseNpgsql(connectionString, npgsql =>
-    {
-        npgsql.UseNetTopologySuite();
-        npgsql.MigrationsAssembly("GEOAPI.Infrastructure");
-    });
-});
-```
+O DbContext e registrado com Npgsql utilizando UseNetTopologySuite para suporte a tipos espaciais e MigrationsAssembly apontando para o projeto GEOAPI.Infrastructure.

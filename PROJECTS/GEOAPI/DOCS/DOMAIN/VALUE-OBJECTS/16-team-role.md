@@ -1,12 +1,20 @@
 ---
 type: leaf
 status: review
-description: "Estrutura caotica. Numeracao nao agrupa por categoria. Precisa reorganizar por agregado/contexto. Stub de 11 linhas - incompleto."
-updated: 2026-01-19
+updated: 2026-02-08
 ---
 
-# TeamRole (Papel dentro de Equipe)
+# TeamRole
 
-Value object enum representando papel ou função de membro dentro de Team definindo nível de autoridade e responsabilidades no contexto da equipe. Valores possíveis incluem LEADER líder ou supervisor da equipe com permissões elevadas para gerenciar membros e atribuições, e MEMBER membro regular da equipe que herda acesso às comunidades autorizadas mas não pode modificar estrutura ou permissões da equipe. Regras de autoridade estabelecem que LEADER pode adicionar novos membros à equipe convidando Accounts e especificando role inicial (tipicamente MEMBER para operadores de campo), remover membros da equipe exceto outros LEADER (prevenindo que líder remove seus pares sem consenso), modificar CommunityAuthorizations da equipe atribuindo ou revogando acesso a comunidades específicas controlando escopo de trabalho, promover MEMBER para LEADER ou rebaixar LEADER para MEMBER (com validação de que não é o último LEADER), e visualizar métricas e relatórios de produtividade da equipe agregando trabalho de todos membros. MEMBER herda todas as CommunityAuthorizations da equipe tendo acesso automático às mesmas comunidades que equipe pode acessar, pode criar e editar Units e Holders dentro de comunidades autorizadas conforme permissões de leitura/escrita definidas em CommunityAuthorization, pode criar Annotations e Documents vinculados a entidades que tem acesso, mas não pode modificar composição da equipe (adicionar/remover membros) nem alterar authorizations da equipe. Sistema garante que ao menos um LEADER existe por equipe impedindo remoção ou rebaixamento do último (validação ao deletar TeamMember ou alterar team_role verifica contagem de leaders e rejeita operação se resultaria em zero leaders), permite múltiplos LEADER simultaneamente facilitando co-liderança ou transições de responsabilidade sem interrupção, e suporta equipes grandes onde múltiplos LEADER dividem responsabilidades (um líder para campo, outro para validação, outro para topografia). Promoção de MEMBER para LEADER é decisão de LEADER existente ou ADMIN/MANAGER do tenant, pode ser temporária ou permanente conforme necessidade (líder temporário durante ausência de titular, líder permanente após treinamento e demonstração de competência), e histórico de mudanças de role é auditado preservando quem foi líder em qual período para rastreabilidade de decisões e ações tomadas. Exibição em interfaces mostra badge ou ícone diferenciado para LEADER facilitando identificação visual de quem são os líderes da equipe, listas de membros podem ser ordenadas mostrando LEADER primeiro depois MEMBER, e permissões de UI são ajustadas conforme role (botão "Adicionar Membro" visível apenas para LEADER, botão "Modificar Autorizações" restrito a LEADER). Futuramente sistema pode ter roles adicionais como SUPERVISOR com permissões intermediárias entre LEADER e MEMBER (pode gerenciar membros mas não modificar authorizations), OBSERVER com acesso somente leitura sem permissão de edição (para auditores ou estagiários), e CONTRIBUTOR com permissão de criar mas não editar ou deletar (para colaboradores externos temporários), expandindo granularidade de controle de acesso dentro de equipe.
+Value object enum imutavel representando o papel de um membro dentro de uma equipe de campo. Persiste na coluna role varchar(30) da tabela team_members. Define permissoes do membro dentro do contexto do team no app mobile REURBCAD.
 
-**Módulos:** GEOAPI, GEOWEB, REURBCAD, GEOGIS
+## Valores Permitidos
+
+| Valor | Descricao |
+|-------|-----------|
+| COORDINATOR | Coordenador de equipe. Visualiza dados de todos os membros, coordena trabalho em campo, acesso completo ao menu mobile. |
+| CADASTRATOR | Cadastrador de campo. Acesso restrito a mapa e formularios, visualiza apenas dados proprios. |
+
+## Diferenca de Role (Account) e TeamRole
+
+Role e o papel global do usuario no sistema (FIELD_COORDINATOR, FIELD_CADASTRATOR, ANALYST). TeamRole e o papel dentro de um Team especifico. Um usuario pode ser CADASTRATOR em um team e COORDINATOR em outro. Role de Account prevalece para operacoes fora de contexto de team.

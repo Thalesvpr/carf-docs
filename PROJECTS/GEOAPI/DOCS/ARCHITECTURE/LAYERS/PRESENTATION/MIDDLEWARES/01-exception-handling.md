@@ -1,103 +1,31 @@
 ---
 type: leaf
-status: review
-description: "Mais codigo que prosa - arquivo e 90% bloco de codigo C#"
-updated: 2026-01-22
+status: active
+updated: 2026-02-07
 ---
 
 # Exception Handling Middleware
 
-Middleware para tratamento global de exceções.
+O ExceptionHandlingMiddleware intercepta todas as excecoes nao tratadas na pipeline HTTP da GEOAPI e as converte em respostas padronizadas no formato ProblemDetails (RFC 7807) com content type application/problem+json.
 
-## ExceptionHandlingMiddleware
+## Mapeamento de Excecoes
 
-```csharp
-public class ExceptionHandlingMiddleware
-{
-    private readonly RequestDelegate _next;
-    private readonly ILogger<ExceptionHandlingMiddleware> _logger;
+O middleware utiliza pattern matching para mapear cada tipo de excecao ao status HTTP correspondente.
 
-    public async Task InvokeAsync(HttpContext context)
-    {
-        try
-        {
-            await _next(context);
-        }
-        catch (Exception ex)
-        {
-            await HandleExceptionAsync(context, ex);
-        }
-    }
+| Tipo de Excecao | Status HTTP | Titulo |
+|----------------|-------------|--------|
+| ValidationException | 400 Bad Request | Validation Error |
+| DomainException | 400 Bad Request | Domain Error |
+| NotFoundException | 404 Not Found | Not Found |
+| UnauthorizedException | 401 Unauthorized | Unauthorized |
+| ForbiddenException | 403 Forbidden | Forbidden |
+| ConflictException | 409 Conflict | Conflict |
+| Qualquer outra | 500 Internal Server Error | Internal Server Error |
 
-    private async Task HandleExceptionAsync(HttpContext context, Exception exception)
-    {
-        var correlationId = context.TraceIdentifier;
+## Comportamento
 
-        var (statusCode, problemDetails) = exception switch
-        {
-            ValidationException ve => (
-                StatusCodes.Status400BadRequest,
-                CreateProblemDetails("Validation Error", ve.Message, ve.Errors)),
-
-            DomainException de => (
-                StatusCodes.Status400BadRequest,
-                CreateProblemDetails("Domain Error", de.Message)),
-
-            NotFoundException nf => (
-                StatusCodes.Status404NotFound,
-                CreateProblemDetails("Not Found", nf.Message)),
-
-            UnauthorizedException => (
-                StatusCodes.Status401Unauthorized,
-                CreateProblemDetails("Unauthorized", "Authentication required")),
-
-            ForbiddenException fe => (
-                StatusCodes.Status403Forbidden,
-                CreateProblemDetails("Forbidden", fe.Message)),
-
-            ConflictException ce => (
-                StatusCodes.Status409Conflict,
-                CreateProblemDetails("Conflict", ce.Message)),
-
-            _ => (
-                StatusCodes.Status500InternalServerError,
-                CreateProblemDetails("Internal Server Error", "An unexpected error occurred"))
-        };
-
-        // Log
-        if (statusCode >= 500)
-            _logger.LogError(exception, "Unhandled exception. CorrelationId: {CorrelationId}", correlationId);
-        else
-            _logger.LogWarning("Handled exception: {Message}. CorrelationId: {CorrelationId}",
-                exception.Message, correlationId);
-
-        // Response
-        problemDetails.Extensions["correlationId"] = correlationId;
-        context.Response.StatusCode = statusCode;
-        context.Response.ContentType = "application/problem+json";
-        await context.Response.WriteAsJsonAsync(problemDetails);
-    }
-
-    private static ProblemDetails CreateProblemDetails(string title, string detail, object? errors = null)
-    {
-        var problemDetails = new ProblemDetails
-        {
-            Title = title,
-            Detail = detail,
-            Status = null // Set by response
-        };
-
-        if (errors != null)
-            problemDetails.Extensions["errors"] = errors;
-
-        return problemDetails;
-    }
-}
-```
+O metodo InvokeAsync envolve a chamada ao proximo middleware em um bloco try-catch. Quando uma excecao e capturada, o metodo HandleExceptionAsync extrai o correlationId do TraceIdentifier da requisicao. Erros com status 500 ou acima sao logados como Error com a excecao completa. Erros abaixo de 500 sao logados como Warning apenas com a mensagem. O correlationId e adicionado as extensions do ProblemDetails para rastreabilidade. Para ValidationException, os erros de campo sao incluidos na extensao "errors" do ProblemDetails. Mensagens internas de erro nunca sao expostas em respostas 500, que sempre retornam "An unexpected error occurred".
 
 ## Registro
 
-```csharp
-// Program.cs
-app.UseMiddleware<ExceptionHandlingMiddleware>();
-```
+O middleware e o primeiro componente do pipeline HTTP, registrado em Program.cs via UseMiddleware antes de Swagger, CORS e autenticacao.

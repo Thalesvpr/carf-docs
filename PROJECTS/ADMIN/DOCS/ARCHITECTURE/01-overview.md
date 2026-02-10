@@ -1,133 +1,29 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-15
+updated: 2026-02-07
 ---
 
 # Overview da Arquitetura - ADMIN
 
-## Visão Geral
+## Visao Geral
 
-ADMIN é console administrativo React SPA construído com Vite 5 e shadcn/ui fornecendo interface para operações privilegiadas (gerenciar usuários, tenants, visualizar audit logs, configurar sistema, executar operações batch) restrito a usuários com role ADMIN ou SUPER_ADMIN autenticados via Keycloak PKCE flow, comunica-se com GEOAPI `/api/admin/*` endpoints que fazem proxy seguro para Keycloak Admin API mantendo client_secret no backend, usa TanStack Query para server state management e Zustand para client state, implementa @carf/tscore para auth e validações, usa shadcn/ui para componentes visuais, e deploy para Vercel como static SPA com client-side routing via React Router v6.
+ADMIN e o console administrativo React SPA construido com Vite 5 e shadcn/ui, fornecendo interface para operacoes privilegiadas restrito a usuarios com role ADMIN ou SUPER_ADMIN autenticados via Keycloak PKCE flow. O sistema comunica-se com GEOAPI atraves dos endpoints /api/admin/ que fazem proxy seguro para Keycloak Admin API mantendo client_secret no backend. Utiliza TanStack Query para server state, Zustand para client state, @carf/tscore para auth e validacoes, e deploy para Vercel como static SPA com React Router v6.
 
-## Diagrama de Arquitetura
+## Camadas da Arquitetura
 
-```
-┌────────────────────────────────────────────────────────────┐
-│                    Admin User (Browser)                    │
-│              https://admin.carf.gov.br                     │
-└──────────────┬─────────────────────────────────────────────┘
-               │
-               │ HTTPS + JWT
-               ▼
-┌────────────────────────────────────────────────────────────┐
-│                      Vercel CDN                             │
-│                Static SPA Hosting                          │
-│            (HTML + JS bundle servido)                      │
-└──────────────┬─────────────────────────────────────────────┘
-               │ Static files
-               ▼
-┌────────────────────────────────────────────────────────────┐
-│              ADMIN Console (React SPA + Vite)               │
-│                                                            │
-│  ┌──────────────────────────────────────────────────┐     │
-│  │  Presentation Layer (React Components)           │     │
-│  │  - UserManagementPage                            │     │
-│  │  - TenantManagementPage                          │     │
-│  │  - AuditLogsPage                                 │     │
-│  └────────┬─────────────────────────────────────────┘     │
-│           │                                                │
-│  ┌────────▼─────────────────────────────────────────┐     │
-│  │  State Management Layer                          │     │
-│  │  - TanStack Query (server state/cache)           │     │
-│  │  - Zustand (client state)                        │     │
-│  └────────┬─────────────────────────────────────────┘     │
-│           │                                                │
-│  ┌────────▼─────────────────────────────────────────┐     │
-│  │  API Client Layer (@carf/geoapi-client)          │     │
-│  │  - Automatic JWT injection via interceptor       │     │
-│  │  - Retry logic + error handling                  │     │
-│  └────────┬─────────────────────────────────────────┘     │
-└───────────┼──────────────────────────────────────────────┘
-            │ HTTPS + JWT Bearer
-            ▼
-┌────────────────────────────────────────────────────────────┐
-│               GEOAPI Backend (.NET 9)                       │
-│                                                            │
-│  ┌──────────────────────────────────────────────────┐     │
-│  │  /api/admin/* Endpoints                          │     │
-│  │  (Proxy seguro para Keycloak Admin API)          │     │
-│  │                                                   │     │
-│  │  - POST /api/admin/users                         │     │
-│  │  - DELETE /api/admin/users/:id                   │     │
-│  │  - GET /api/admin/audit-logs                     │     │
-│  │  - POST /api/admin/tenants                       │     │
-│  └────────┬─────────────────────────────────────────┘     │
-│           │ JWT validation + role check               │     │
-└───────────┼──────────────────────────────────────────────┘
-            │ client_secret (confidential)
-            ▼
-┌────────────────────────────────────────────────────────────┐
-│            Keycloak Admin API                               │
-│         (Gerenciamento de usuários/roles)                  │
-└────────────────────────────────────────────────────────────┘
-```
+O usuario acessa admin.carf.gov.br via HTTPS com JWT. A Vercel CDN serve arquivos estaticos do SPA. A Presentation Layer renderiza componentes React. A State Management Layer usa TanStack Query e Zustand. A API Client Layer via @carf/geoapi-client injeta JWT automaticamente. As requisicoes chegam ao GEOAPI Backend .NET 9 nos endpoints /api/admin/ que validam JWT e verificam role antes de fazer proxy para a Keycloak Admin API.
 
 ## Funcionalidades Principais
 
-### 1. Gerenciamento de Usuários
+| Modulo | Descricao |
+|--------|-----------|
+| Gerenciamento de Usuarios | Listar, criar, editar, desabilitar, resetar senha, atribuir roles |
+| Gerenciamento de Tenants | Listar, criar, editar, visualizar estatisticas, deletar com validacao |
+| Audit Logs | Timeline com filtros, exportacao CSV/PDF, busca por entity_id |
+| Configuracoes do Sistema | Feature flags, rate limiting, timeout de sessoes |
+| Operacoes Batch | Importar usuarios CSV, scripts de manutencao, relatorios |
 
-- Listar todos os usuários do sistema
-- Criar novo usuário com role específica
-- Editar informações de usuário
-- Desabilitar/habilitar usuário
-- Resetar senha
-- Atribuir/remover roles
+## Seguranca
 
-### 2. Gerenciamento de Tenants
-
-- Listar municípios (tenants)
-- Criar novo município
-- Editar configurações de município
-- Visualizar estatísticas por município
-- Deletar município (com validação de dependências)
-
-### 3. Audit Logs
-
-- Visualizar timeline de todas as operações
-- Filtrar por usuário, tenant, data, tipo de operação
-- Exportar logs para CSV/PDF
-- Buscar por entity_id ou request_id
-
-### 4. Configurações do Sistema
-
-- Gerenciar feature flags
-- Configurar limites de rate limiting
-- Ajustar timeout de sessões
-- Configurar notificações
-
-### 5. Operações Batch
-
-- Importar usuários via CSV
-- Executar scripts de manutenção
-- Gerar relatórios consolidados
-
-## Segurança
-
-### Autenticação
-
-- JWT tokens via Keycloak
-- Refresh automático de tokens
-- Session timeout configurável
-
-### Autorização
-
-- RBAC com 2 níveis:
-  - **ADMIN:** Gerencia próprio tenant
-  - **SUPER_ADMIN:** Gerencia todos os tenants
-
-### Audit Trail
-
-- Todas operações administrativas são logadas
-- Quem, quando, o quê, tenant_id
-- Logs imutáveis
+A autenticacao utiliza JWT via Keycloak com refresh automatico. A autorizacao segue RBAC com dois niveis: ADMIN gerencia o proprio tenant enquanto SUPER_ADMIN gerencia todos. Todas as operacoes sao logadas em audit trail imutavel registrando quem, quando, o que e o tenant_id.

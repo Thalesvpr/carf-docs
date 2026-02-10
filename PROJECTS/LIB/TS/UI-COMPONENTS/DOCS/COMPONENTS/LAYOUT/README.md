@@ -7,7 +7,7 @@ updated: 2026-01-21
 
 # Layout Components
 
-Componentes para estruturacao de conteudo. Card para containers, Separator para divisao visual, Tabs para navegacao em abas, Accordion para paineis expansiveis, ScrollArea para scrollbars customizados. Todos com acessibilidade WCAG 2.1 AA e navegacao por teclado.
+Componentes para estruturacao de conteudo. Card para containers, Separator para divisao visual, Tabs para navegacao em abas, Accordion para paineis expansiveis, Wizard para formularios multi-step. Todos com acessibilidade WCAG 2.1 AA e navegacao por teclado.
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (5 arquivos)
@@ -18,9 +18,9 @@ Componentes para estruturacao de conteudo. Card para containers, Separator para 
 | [02-separator](./02-separator.md) | Separator |
 | [03-tabs](./03-tabs.md) | Tabs |
 | [04-accordion](./04-accordion.md) | Accordion |
-| [05-scroll-area](./05-scroll-area.md) | ScrollArea |
+| [06-wizard](./06-wizard.md) | Wizard |
 
-*Gerado automaticamente em 2026-01-21 17:38*
+*Gerado automaticamente em 2026-02-07*
 <!-- GENERATED:END -->
 
 
@@ -37,6 +37,6 @@ Componentes para estruturacao de conteudo. Card para containers, Separator para 
 | [Separator](./02-separator.md) | ⚠ |
 | [Tabs](./03-tabs.md) | ⚠ |
 | [Accordion](./04-accordion.md) | ⚠ |
-| [ScrollArea](./05-scroll-area.md) | ⚠ |
+| [Wizard](./06-wizard.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

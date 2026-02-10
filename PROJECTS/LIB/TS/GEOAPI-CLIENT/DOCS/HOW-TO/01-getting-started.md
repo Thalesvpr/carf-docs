@@ -1,114 +1,108 @@
 ---
 type: leaf
-status: review
-updated: 2026-01-21
+status: active
+updated: 2026-02-09
 ---
 
 # Getting Started
 
-Guia de início rápido para o GEOAPI Client TypeScript.
+Guia de inicio rapido para o @carf/geoapi-client.
 
-## Instalação
+## Instalacao
+
+Instalar via bun:
 
 ```bash
-npm install @carf/geoapi-client
-# ou
-pnpm add @carf/geoapi-client
+bun add @carf/geoapi-client
 ```
 
-## Configuração
+Para usar hooks React Query (GEOWEB), tambem instalar:
+
+```bash
+bun add @tanstack/react-query
+```
+
+## Para Devs do Pacote: Geracao
+
+O client e auto-gerado a partir do swagger.json da GEOAPI. Para regenerar apos mudancas na API:
+
+```bash
+# Baixar swagger atualizado (API deve estar rodando em localhost:5127)
+bun run swagger:fetch
+
+# Gerar tipos e hooks
+bun run generate
+```
+
+## Configuracao
+
+Criar o client passando baseURL e callbacks de auth:
 
 ```typescript
-import { GeoApiClient } from '@carf/geoapi-client';
+import { createApiClient } from '@carf/geoapi-client';
 
-const client = new GeoApiClient({
-  baseUrl: 'https://api.carf.com.br',
-  getAccessToken: async () => {
-    // Retornar token JWT do seu auth provider
-    return localStorage.getItem('access_token');
+const api = createApiClient({
+  baseURL: 'http://localhost:5127',
+  getToken: async () => {
+    // Sua logica de auth — ex: KeycloakClient, SecureStore, etc.
+    return keycloakClient.getAccessToken();
   },
-  tenantId: 'seu-tenant-uuid'
-});
-```
-
-## Uso Básico
-
-### Listar Unidades
-
-```typescript
-const units = await client.units.list({
-  page: 1,
-  limit: 20,
-  status: 'Aprovado'
-});
-
-console.log(units.data);
-console.log(units.pagination.total);
-```
-
-### Criar Unidade
-
-```typescript
-const newUnit = await client.units.create({
-  address: {
-    street: 'Rua das Flores',
-    number: '123',
-    neighborhood: 'Centro',
-    city: 'São Paulo',
-    state: 'SP',
-    zipCode: '01310-100'
+  getTenantId: () => {
+    return currentUser.tenantId;
   },
-  geometry: {
-    type: 'Polygon',
-    coordinates: [[[-46.6388, -23.5489], ...]]
-  }
 });
-
-console.log(newUnit.id, newUnit.code);
 ```
 
-### Buscar por ID
+## Uso com Hooks React Query (GEOWEB)
+
+Os hooks sao gerados automaticamente pelo orval:
 
 ```typescript
-const unit = await client.units.getById('unit-uuid', {
-  include: ['holders', 'community']
-});
+import { useGetApiUnits, usePostApiUnits } from '@carf/geoapi-client';
 
-console.log(unit.holders);
+function UnitsPage() {
+  // GET /api/units
+  const { data, isLoading } = useGetApiUnits({ communityId, page: 1, pageSize: 20 });
+
+  // POST /api/units
+  const createUnit = usePostApiUnits();
+
+  const handleCreate = () => {
+    createUnit.mutate({ data: { /* unit data */ } });
+  };
+}
 ```
 
-### Tratamento de Erros
+## Uso com Funcoes Vanilla (qualquer app)
+
+Para apps sem React Query:
 
 ```typescript
-import { ApiError } from '@carf/geoapi-client';
+import { getApiUnits, postApiUnits } from '@carf/geoapi-client';
+
+// GET /api/units
+const units = await getApiUnits({ communityId, page: 1, pageSize: 20 });
+
+// POST /api/units
+const created = await postApiUnits({ /* unit data */ });
+```
+
+## Tratamento de Erros
+
+Erros sao tipados automaticamente:
+
+```typescript
+import { ApiError, NotFoundError, ValidationError } from '@carf/geoapi-client';
 
 try {
-  await client.units.create(data);
+  await getApiUnitsId(unitId);
 } catch (error) {
-  if (error instanceof ApiError) {
-    console.log(error.status); // 400, 401, 409, etc.
-    console.log(error.code);   // 'GEOMETRY_OVERLAP'
-    console.log(error.message);
+  if (error instanceof NotFoundError) {
+    // Unidade nao encontrada
+  } else if (error instanceof ValidationError) {
+    // Dados invalidos — error.details contem campos
+  } else if (error instanceof ApiError) {
+    // Outro erro HTTP
   }
-}
-```
-
-## Com React Query
-
-```typescript
-import { useQuery, useMutation } from '@tanstack/react-query';
-
-function useUnits(filters: UnitFilters) {
-  return useQuery({
-    queryKey: ['units', filters],
-    queryFn: () => client.units.list(filters)
-  });
-}
-
-function useCreateUnit() {
-  return useMutation({
-    mutationFn: (data: CreateUnitRequest) => client.units.create(data),
-    onSuccess: () => queryClient.invalidateQueries(['units'])
-  });
 }
 ```

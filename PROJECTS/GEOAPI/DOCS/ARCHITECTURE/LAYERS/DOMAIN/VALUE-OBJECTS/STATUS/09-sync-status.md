@@ -1,13 +1,39 @@
 ---
 type: leaf
-status: review
-updated: 2026-01-12
+status: rejected
+updated: 2026-02-08
+description: Valor SUCCESS diverge do DOCS/DOMAIN/VALUE-OBJECTS/17-sync-status.md que usa SYNCED. Necessario alinhar nome do valor entre os dois arquivos.
 ---
 
 # SyncStatus
 
-Value object enum representando estado de sincronização de operações offline do aplicativo mobile REURBCAD com servidor GEOAPI, permitindo rastreamento e resolução de conflitos em cenários de conectividade intermitente. Valores possíveis são PENDING (operação enviada pelo dispositivo aguardando processamento no servidor), SUCCESS (sincronização completada com sucesso e dados persistidos), CONFLICT (conflito detectado quando BaseVersion do dispositivo difere do RowVersion atual no servidor) e FAILED (falha no processamento por erro de validação, constraint violada ou exception).
+Value object enum representando o estado de sincronizacao de operacoes offline do aplicativo mobile REURBCAD com o servidor GEOAPI, permitindo rastreamento e resolucao de conflitos em cenarios de conectividade intermitente. No banco de dados, e utilizado no contexto da tabela sync_logs para rastrear cada operacao.
 
-Métodos incluem IsResolved() verificando se está em estado final (SUCCESS ou resolvido manualmente após CONFLICT), RequiresUserIntervention() determinando se CONFLICT precisa resolução manual quando campos iguais foram alterados diferentemente, CanRetry() verificando se FAILED pode ser reenviado após correção, e ToDisplayString() retornando mensagem amigável para mostrar ao usuário no app.
+O fluxo de sincronizacao envia operacoes CREATE, UPDATE e DELETE do dispositivo para o servidor, que valida versoes e aplica mudancas ou detecta conflitos.
 
-Usado em SyncLog.Status para rastrear cada operação CREATE/UPDATE/DELETE enviada pelo mobile, dispara SyncConflictEvent quando detecta BaseVersion diferente do RowVersion permitindo estratégia de merge automático para campos distintos ou apresentação de UI de resolução manual ao técnico de campo, garantindo que nenhum dado seja perdido em cenários de trabalho offline prolongado.
+## Valores Permitidos
+
+| Valor | Descricao |
+| --- | --- |
+| PENDING | Operacao enviada pelo dispositivo aguardando processamento no servidor. |
+| SUCCESS | Sincronizacao completada com sucesso e dados persistidos. |
+| CONFLICT | Conflito detectado: BaseVersion do dispositivo difere do RowVersion atual no servidor. |
+| FAILED | Falha no processamento por erro de validacao, constraint violada ou exception. |
+
+## Regras de Validacao
+
+| Regra | Descricao |
+| --- | --- |
+| Estado final | SUCCESS e CONFLICT resolvido sao estados finais. |
+| Intervencao manual | CONFLICT com campos iguais alterados requer resolucao manual. |
+| Retry permitido | FAILED pode ser reenviado apos correcao dos dados. |
+
+## Metodos Principais
+
+| Metodo | Retorno | Descricao |
+| --- | --- | --- |
+| IsResolved() | bool | Verifica se esta em estado final. |
+| RequiresUserIntervention() | bool | Determina se CONFLICT precisa resolucao manual. |
+| CanRetry() | bool | Verifica se FAILED pode ser reenviado. |
+
+Usado em SyncLog.Status para rastrear cada operacao enviada pelo mobile. Dispara SyncConflictEvent quando detecta BaseVersion diferente do RowVersion, permitindo merge automatico para campos distintos ou resolucao manual pelo tecnico de campo.

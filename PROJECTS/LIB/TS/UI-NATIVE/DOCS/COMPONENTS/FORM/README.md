@@ -16,5 +16,9 @@ O componente [Checkbox](./03-checkbox.md) gerencia selecao booleana com visual c
 
 O componente [Switch](./04-switch.md) alterna entre dois estados com animacao. Util para preferencias on/off. Inclui labels acessiveis para leitores de tela.
 
+O componente [Select](./05-select.md) fornece dropdown nativo com BottomSheet no iOS para selecao de opcao unica. Suporta variantes default e outlined com accessibilityRole combobox.
+
+O componente [Textarea](./06-textarea.md) fornece campo multi-linha com auto-crescimento opcional. Suporta maxLength com contador visual e integracao com react-hook-form.
+
 <!-- CARF-INDEX-START -->
 <!-- CARF-INDEX-END -->

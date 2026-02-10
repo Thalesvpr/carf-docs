@@ -1,12 +1,22 @@
 ---
 type: leaf
 status: review
-description: "Estrutura caotica. Numeracao nao agrupa por categoria. Precisa reorganizar por agregado/contexto. Stub de 11 linhas - incompleto."
-updated: 2026-01-19
+updated: 2026-02-08
 ---
 
-# GeoPoint (Ponto Geográfico)
+# GeoPoint
 
-Value object imutável representando coordenada geográfica validada composta por latitude e longitude garantindo que apenas localizações válidas são aceitas no sistema evitando erros de posicionamento. Valor conceitual consiste em par de números decimais latitude (graus de -90 a +90 onde negativo é Sul e positivo é Norte) e longitude (graus de -180 a +180 onde negativo é Oeste e positivo é Leste), sistema de referência de coordenadas implícito é WGS84 (padrão GPS mundial) a menos que explicitamente especificado diferente, e precisão típica de 6 casas decimais (aproximadamente 10cm de resolução) suficiente para levantamentos topográficos urbanos. Regras de validação incluem latitude deve estar no intervalo fechado [-90, +90] rejeitando valores fora deste range que são fisicamente impossíveis, longitude deve estar no intervalo fechado [-180, +180] com tratamento de wraparound (180.0 é equivalente a -180.0 no meridiano oposto), validação adicional de bounds do Brasil pode ser aplicada opcionalmente rejeitando coordenadas fora do território nacional (latitude aproximadamente -33 a +5, longitude aproximadamente -74 a -34) detectando erros de digitação ou inversão de coordenadas, e valores nulos ou NaN são rejeitados exigindo coordenadas explícitas. Formato interno armazena latitude e longitude como números de ponto flutuante de dupla precisão mantendo precisão adequada para cálculos geoespaciais, formato de exibição pode ser decimal (exemplo: -22.906847, -43.172897) ou graus-minutos-segundos (22°54'24.6"S, 43°10'22.4"W) conforme preferência de contexto, e conversão para WKT (Well-Known Text) gera string "POINT(longitude latitude)" notando inversão de ordem onde WKT usa lon-lat enquanto interface humana tipicamente usa lat-lon. Operações incluem Create validando coordenadas e lançando ValidationException se inválidas, Distance calculando distância ortodrômica (great circle) entre dois GeoPoints usando fórmula de Haversine retornando metros, Within verificando se ponto está dentro de GeoPolygon usando algoritmo ray casting, ToWkt convertendo para formato WKT padrão OGC, e Equals comparando coordenadas com tolerância epsilon para acomodar imprecisões de ponto flutuante (dois pontos distantes menos de 1cm são considerados iguais). Uso típico em Unit armazenando centroid aproximado da geometria para buscas rápidas por proximidade sem processar polígono completo, em SurveyPoint registrando coordenada GPS coletada em campo com acurácia e timestamp associados, em Annotation permitindo anotações geolocalizadas marcando problemas em posições específicas do mapa, e em filtros de busca "unidades em raio de 500m do ponto X" calculando distâncias eficientemente. Sistema de coordenadas WGS84 é padrão para interoperabilidade com GPS, serviços de mapas e formatos de intercâmbio geoespacial (GeoJSON, KML, Shapefile), conversão para outros sistemas de referência (SIRGAS2000 para conformidade com legislação brasileira, UTM para cálculos de área em metros) é responsabilidade de camadas de infraestrutura usando bibliotecas de projeção cartográfica, não do value object conceitual. Altitude não é incluída em GeoPoint básico (apenas 2D lat/lng) pois maioria dos casos de uso não requer dimensão vertical, quando altitude é necessária (pontos topográficos, análise de relevo) entidade específica como SurveyPoint inclui campo adicional altitude_meters separadamente.
+Value object imutavel representando ponto geografico em coordenadas WGS84 (SRID 4326) armazenado como geometry(Point, 4326) via PostGIS. Utilizado para centroides de Units, localizacao de SurveyPoints e posicoes de GPS coletadas em campo pelo app REURBCAD.
 
-**Módulos:** GEOAPI, GEOWEB, REURBCAD, GEOGIS
+## Regras de Validacao
+
+| Regra | Descricao |
+|-------|-----------|
+| Latitude | Valor entre -90 e 90 graus decimais. |
+| Longitude | Valor entre -180 e 180 graus decimais. |
+| SRID | Deve ser 4326 (WGS84). |
+| Precisao | Minimo 6 casas decimais para precisao de aproximadamente 0.1 metro. |
+
+## Uso no Dominio
+
+Centroide de Unit e calculado automaticamente via ST_Centroid a partir do boundary (GeoPolygon). Tambem armazena posicoes de GPS coletadas durante cadastro em campo. Indice GiST na coluna centroid permite queries de proximidade (ST_DWithin) e busca por raio.

@@ -20,7 +20,7 @@ Multi-tenancy e definido por [Tenant](./07-tenant.md) e [BucketTenant](./36-buck
 
 | Documento | Status |
 |-----------|--------|
-| [Unidade Habitacional](./02-unit.md) | ✓ |
+| [Unidade Habitacional](./02-unit.md) | ⚠ |
 | [Titular](./03-holder.md) | ⚠ |
 | [Comunidade](./04-community.md) | ⚠ |
 | [Contestacao](./05-contestation.md) | ⚠ |
@@ -56,6 +56,6 @@ Multi-tenancy e definido por [Tenant](./07-tenant.md) e [BucketTenant](./36-buck
 | [Ortofoto](./35-ortofoto.md) | ⚠ |
 | [Bucket por Tenant](./36-bucket-tenant.md) | ⚠ |
 | [Authentication Key](./37-authentication-key.md) | ⚠ |
-| [Edificacao](./38-building.md) | ✓ |
+| [Edificacao](./38-building.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

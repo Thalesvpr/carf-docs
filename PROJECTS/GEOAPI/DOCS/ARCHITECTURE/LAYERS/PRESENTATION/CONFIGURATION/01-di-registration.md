@@ -1,116 +1,44 @@
 ---
 type: leaf
-status: review
-description: "Mais codigo que prosa - arquivo e 90% blocos de codigo C#"
-updated: 2026-01-22
+status: active
+updated: 2026-02-07
 ---
 
 # DI Registration
 
-Registro de serviços no container de injeção de dependência.
+O arquivo Program.cs configura todo o container de injecao de dependencia da GEOAPI. Os registros estao organizados por categoria funcional.
 
-## Program.cs
+## Configuracao de Options
 
-```csharp
-var builder = WebApplication.CreateBuilder(args);
+Tres secoes do appsettings sao mapeadas para options tipados: KeycloakOptions, StorageOptions e RedisOptions, cada um vinculado a sua respectiva secao de configuracao.
 
-// Configuration
-builder.Services.Configure<KeycloakOptions>(builder.Configuration.GetSection("Keycloak"));
-builder.Services.Configure<StorageOptions>(builder.Configuration.GetSection("Storage"));
-builder.Services.Configure<RedisOptions>(builder.Configuration.GetSection("Redis"));
+## Banco de Dados
 
-// Database
-builder.Services.AddDbContext<CARFDbContext>(options =>
-{
-    options.UseNpgsql(
-        builder.Configuration.GetConnectionString("DefaultConnection"),
-        npgsql => npgsql.UseNetTopologySuite());
-});
+O CARFDbContext e registrado com Npgsql e a extensao NetTopologySuite para suporte a tipos geograficos PostGIS.
 
-// Authentication
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer();
+## Autenticacao e Autorizacao
 
-// Authorization
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("RequireAdmin", policy => policy.RequireRole("admin"));
-    options.AddPolicy("RequireAprovador", policy => policy.RequireRole("aprovador"));
-});
+A autenticacao utiliza JWT Bearer via Keycloak. Duas policies de autorizacao sao definidas: RequireAdmin (exige role admin) e RequireAprovador (exige role aprovador).
 
-// MediatR
-builder.Services.AddMediatR(cfg =>
-{
-    cfg.RegisterServicesFromAssembly(typeof(CreateUnitCommand).Assembly);
-    cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-    cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
-});
+## MediatR e Validacao
 
-// AutoMapper
-builder.Services.AddAutoMapper(typeof(UnitMappingProfile).Assembly);
+O MediatR registra handlers do assembly de commands e adiciona dois pipeline behaviors: ValidationBehavior (executa FluentValidation antes do handler) e LoggingBehavior (loga requisicoes). Os validators do FluentValidation sao registrados automaticamente por assembly scanning.
 
-// FluentValidation
-builder.Services.AddValidatorsFromAssemblyContaining<CreateUnitRequestValidator>();
+## Mapeamento e Repositorios
 
-// Repositories
-builder.Services.AddScoped<IUnitRepository, UnitRepository>();
-builder.Services.AddScoped<IHolderRepository, HolderRepository>();
-builder.Services.AddScoped<ICommunityRepository, CommunityRepository>();
+AutoMapper carrega profiles do assembly de mapeamento. Os repositorios sao registrados como Scoped: IUnitRepository, IHolderRepository e ICommunityRepository.
 
-// Services
-builder.Services.AddScoped<ITenantContext, TenantContext>();
-builder.Services.AddScoped<IKeycloakService, KeycloakService>();
-builder.Services.AddScoped<IFileStorage, S3FileStorage>();
-builder.Services.AddScoped<ICacheService, RedisCacheService>();
-builder.Services.AddScoped<INotificationService, SignalRNotificationService>();
+## Servicos de Infraestrutura
 
-// Redis
-builder.Services.AddSingleton<IConnectionMultiplexer>(
-    ConnectionMultiplexer.Connect(builder.Configuration["Redis:ConnectionString"]!));
+| Servico | Implementacao | Lifetime |
+|---------|---------------|----------|
+| ITenantContext | TenantContext | Scoped |
+| IKeycloakService | KeycloakService | Scoped |
+| IFileStorage | S3FileStorage | Scoped |
+| ICacheService | RedisCacheService | Scoped |
+| INotificationService | SignalRNotificationService | Scoped |
+| IConnectionMultiplexer | ConnectionMultiplexer | Singleton |
 
-// Hangfire
-builder.Services.AddHangfire(config =>
-    config.UsePostgreSqlStorage(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddHangfireServer();
+## Pipeline de Middleware
 
-// SignalR
-builder.Services.AddSignalR();
-
-// Controllers
-builder.Services.AddControllers(options =>
-{
-    options.Filters.Add<ValidationFilter>();
-});
-
-// Swagger
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-// CORS
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowFrontend", policy =>
-    {
-        policy.WithOrigins(builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>()!)
-            .AllowAnyHeader()
-            .AllowAnyMethod()
-            .AllowCredentials();
-    });
-});
-
-var app = builder.Build();
-
-// Middleware pipeline
-app.UseMiddleware<ExceptionHandlingMiddleware>();
-app.UseSwagger();
-app.UseSwaggerUI();
-app.UseCors("AllowFrontend");
-app.UseAuthentication();
-app.UseAuthorization();
-app.MapControllers();
-app.MapHub<NotificationHub>("/hubs/notifications");
-app.MapHangfireDashboard("/hangfire");
-app.MapHealthChecks("/health");
-
-app.Run();
-```
+O Hangfire utiliza PostgreSQL como storage e registra o servidor de jobs. O SignalR e adicionado para comunicacao real-time. Controllers recebem o ValidationFilter como filtro global. CORS permite origens configuradas em Cors:AllowedOrigins com credenciais. O pipeline de middleware segue a ordem: ExceptionHandlingMiddleware, Swagger, CORS, Authentication, Authorization, Controllers, Hub de notificacoes em /hubs/notifications, dashboard Hangfire em /hangfire e health checks em /health.

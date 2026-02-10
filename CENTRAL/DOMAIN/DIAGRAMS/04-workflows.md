@@ -1,95 +1,54 @@
 ---
 type: leaf
 status: approved
-updated: 2026-01-24
+updated: 2026-02-07
 ---
 
 # Workflows Diagram
 
-Diagramas de state machine para os workflows principais do sistema: status de Unit, processo de Legitimacao e sincronizacao offline.
+Descricao das state machines para os workflows principais do sistema: status de Unit, processo de Legitimacao e sincronizacao offline.
 
-## Diagrama Mermaid
+## Workflow de Status da Unidade
 
-```mermaid
-stateDiagram-v2
-    [*] --> Rascunho: Equipe de campo cria unidade offline
+A unidade inicia no estado Rascunho quando criada offline pela equipe de campo. Ao sincronizar e submeter, transiciona para Pendente. O Analista inicia revisao, movendo para EmAnalise. A partir de EmAnalise, tres destinos sao possiveis: Aprovado (analista aprova), Rejeitado (analista rejeita com comentarios) ou RequerAlteracoes (analista solicita correcoes). De RequerAlteracoes, retorna a EmAnalise quando o usuario corrige e reenvia. De Rejeitado, retorna a Rascunho para reedicao. Aprovado e o estado terminal.
 
-    state "Workflow de Status da Unidade" as UnitWorkflow {
-        Rascunho --> Pendente: Usuario de campo sincroniza e submete
-        Pendente --> EmAnalise: Analista inicia revisao
-        EmAnalise --> Aprovado: Analista aprova
-        EmAnalise --> Rejeitado: Analista rejeita com comentarios
-        EmAnalise --> RequerAlteracoes: Analista solicita correcoes
+| De | Para | Gatilho | Role |
+|----|------|---------|------|
+| Rascunho | Pendente | Sincronizacao e submissao | Campo |
+| Pendente | EmAnalise | Inicio de revisao | Analista |
+| EmAnalise | Aprovado | Aprovacao | Analista |
+| EmAnalise | Rejeitado | Rejeicao com comentarios | Analista |
+| EmAnalise | RequerAlteracoes | Solicitacao de correcoes | Analista |
+| RequerAlteracoes | EmAnalise | Correcao e reenvio | Campo |
+| Rejeitado | Rascunho | Edicao e reenvio | Campo |
 
-        RequerAlteracoes --> EmAnalise: Usuario de campo corrige e reenvia
-        Rejeitado --> Rascunho: Usuario de campo pode editar e reenviar
-        Aprovado --> [*]: Unidade ativa
+Ao aprovar, o evento UnidadeAprovadaEvent e disparado, acionando NotificacaoEmailHandler, AuditLogHandler e CacheInvalidationHandler.
 
-        note right of Aprovado
-            UnidadeAprovadaEvent disparado
-            - NotificacaoEmailHandler
-            - AuditLogHandler
-            - CacheInvalidationHandler
-        end note
+## Workflow do Processo de Legitimacao
 
-        note right of EmAnalise
-            Role: ANALISTA
-            Valida conformidade com
-            regulamentos municipais
-        end note
-    }
+O processo inicia no estado Iniciado quando o Gestor cria o processo. O Analista analisa documentacao, movendo para SobAnalise. De SobAnalise, tres destinos: LegitimacaoAprovada, LegitimacaoRejeitada (com base legal) ou AguardandoDocumentacao. De AguardandoDocumentacao, retorna a SobAnalise quando titular submete documentos. De LegitimacaoAprovada, transiciona para CertidaoEmitida quando a certidao e gerada e assinada digitalmente. CertidaoEmitida e o estado terminal.
 
-    state "Workflow do Processo de Legitimacao" as LegitimationWorkflow {
-        [*] --> Iniciado: Gestor cria processo
+| De | Para | Gatilho |
+|----|------|---------|
+| Iniciado | SobAnalise | Analista analisa documentos |
+| SobAnalise | LegitimacaoAprovada | Aprovacao |
+| SobAnalise | LegitimacaoRejeitada | Rejeicao com base legal |
+| SobAnalise | AguardandoDocumentacao | Solicitacao de documentos adicionais |
+| AguardandoDocumentacao | SobAnalise | Titular submete documentos |
+| LegitimacaoAprovada | CertidaoEmitida | Certidao gerada e assinada |
 
-        Iniciado --> SobAnalise: Analista analisa docs
-        SobAnalise --> LegitimacaoAprovada: Analista aprova
-        SobAnalise --> LegitimacaoRejeitada: Analista rejeita com base legal
-        SobAnalise --> AguardandoDocumentacao: Analista solicita docs adicionais
+Ao concluir, o evento LegitimacaoConcluidaEvent aciona geracao de PDF, registro de titulo, notificacao ao municipio e arquivamento de documentos. O Analista valida documentacao legal, provas de propriedade, aprovacao municipal e conformidade com Lei 13.465.
 
-        AguardandoDocumentacao --> SobAnalise: Titular submete docs
-        LegitimacaoAprovada --> CertidaoEmitida: Certidao gerada e assinada digitalmente
-        CertidaoEmitida --> [*]: Processo completo
+## Workflow de Sincronizacao Offline
 
-        note right of CertidaoEmitida
-            LegitimacaoConcluidaEvent
-            - Gerar PDF da certidao
-            - Registrar titulo de propriedade
-            - Notificar municipio
-            - Arquivar documentos
-        end note
+Registro inicia como RascunhoLocal quando criado offline. Ao marcar para sync, transiciona para AguardandoUpload. Com rede disponivel, move para Enviando. Se a versao do servidor difere, entra em Conflito; caso contrario, vai para Sincronizado. De Conflito, o usuario escolhe resolucao (servidor vence, local vence ou merge manual) e transiciona para Sincronizado.
 
-        note right of SobAnalise
-            Role: ANALISTA
-            Valida:
-            - Documentacao legal
-            - Provas de propriedade
-            - Aprovacao municipal
-            - Conformidade Lei 13.465
-        end note
-    }
-
-    state "Workflow de Sincronizacao Offline" as SyncWorkflow {
-        [*] --> RascunhoLocal: Criado offline
-        RascunhoLocal --> AguardandoUpload: Marcado para sync
-        AguardandoUpload --> Enviando: Rede disponivel
-        Enviando --> Conflito: Versao do servidor difere
-        Enviando --> Sincronizado: Sucesso
-        Conflito --> Resolvendo: Usuario escolhe resolucao
-        Resolvendo --> Sincronizado: Conflito resolvido
-        Sincronizado --> [*]: Concluido
-
-        note right of Conflito
-            Merge three-way:
-            - Baseline (ultima sync)
-            - Alteracoes locais
-            - Alteracoes servidor
-            Usuario escolhe:
-            - Servidor vence
-            - Local vence
-            - Merge manual
-        end note
-    }
-```
+| De | Para | Gatilho |
+|----|------|---------|
+| RascunhoLocal | AguardandoUpload | Marcado para sync |
+| AguardandoUpload | Enviando | Rede disponivel |
+| Enviando | Sincronizado | Sucesso |
+| Enviando | Conflito | Versao do servidor difere |
+| Conflito | Sincronizado | Usuario resolve conflito |
 
 Os workflows seguem o WORKFLOW-MESTRE do CARF. A equipe de campo (Coordenador e Cadastrador) cria unidades offline que sincronizam com o backend. O Analista (via Plugin QGIS ou GEOWEB) revisa e aprova. O processo de Legitimacao segue rito legal da Lei 13.465/2017 com etapas obrigatorias.

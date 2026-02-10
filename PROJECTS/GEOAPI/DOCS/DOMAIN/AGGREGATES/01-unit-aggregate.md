@@ -1,12 +1,61 @@
 ---
 type: leaf
 status: review
-description: "Estrutura caotica. Numeracao nao agrupa por categoria. Precisa reorganizar por agregado/contexto. Stub de 11 linhas - incompleto."
-updated: 2026-01-19
+updated: 2026-02-08
 ---
 
 # Unit Aggregate
 
-Agregado de domínio tendo Unit como raiz controlando consistência transacional de unidade habitacional e suas entidades fortemente relacionadas seguindo padrão DDD de bounded consistency. Raiz do agregado é Unit entity que coordena todas mudanças garantindo invariantes de negócio, componentes internos incluem coleção de UnitHolder relacionamentos N:N com Holders contendo tipo de vínculo e percentual de propriedade, coleção de Documents anexos polimórficos vinculados à unidade, e coleção de Annotations observações da unidade. Limites do agregado estabelecem que apenas Unit pode adicionar ou remover UnitHolder garantindo que soma de percentuais de propriedade não excede 100%, apenas Unit pode adicionar Documents validando tipos permitidos e limites de tamanho, mudanças em entities dentro do agregado (como alterar tipo de UnitHolder) devem passar pela raiz Unit que valida e dispara eventos, e transação de persistência salva Unit e todos componentes atomicamente ou reverte tudo. Invariantes garantidas incluem Unit deve ter ao menos um Holder antes de status APPROVED validado ao tentar aprovar, soma de OwnershipPercentage de todos UnitHolder com tipo PROPRIETARIO não pode exceder 100%, Documents vinculados devem ter EntityType igual a UNIT e EntityId igual ao Unit.Id, e geometria se preenchida deve estar dentro ou próxima do perímetro da Community. Operações expostas pela raiz incluem Unit.LinkHolder(holderId type percentage) adicionando UnitHolder com validações, Unit.UnlinkHolder(holderId) removendo vínculo verificando que não deixa unidade sem holders se aprovada, Unit.UploadDocument(type file) criando Document anexo, Unit.AddAnnotation(content type) criando anotação, Unit.Approve() transitando status com validações pré-aprovação, Unit.Reject(reason) rejeitando com justificativa, e Unit.RequestChanges(issues) solicitando correções. Navegação para fora do agregado ocorre por referência de ID onde Unit tem CommunityId BlockId PlotId mas não carrega objetos completos evitando agregados grandes, queries podem fazer join com Community Block Plot para exibição mas mudanças neles ocorrem em seus próprios agregados, e relacionamento com Holder é especial sendo N:N mas UnitHolder é parte do agregado Unit controlando vínculo. Eventos de domínio emitidos incluem UnitCreatedEvent ao criar unidade, HolderLinkedEvent ao vincular titular, HolderUnlinkedEvent ao desvincular, UnitStatusChangedEvent em transições de workflow, DocumentUploadedEvent ao anexar arquivo, e todos eventos carregam Unit.Id permitindo subscribers reagirem. Implementação deve garantir que repository carrega Unit com todas coleções internas em single query usando eager loading, SaveChanges persiste mudanças em Unit UnitHolder Document Annotation atomicamente, e concorrência é controlada por RowVersion em Unit detectando modificações concorrentes.
+Agregado de dominio tendo Unit como raiz, controlando consistencia transacional da unidade habitacional e suas entidades fortemente relacionadas conforme padrao DDD de bounded consistency.
 
-**Módulos:** GEOAPI, GEOWEB, REURBCAD, GEOGIS
+## Raiz do Agregado
+
+Unit e a entidade raiz que coordena todas as mudancas dentro do agregado, garantindo invariantes de negocio. Estende BaseAggregateRoot, herdando suporte a Domain Events e controle de concorrencia otimista via RowVersion.
+
+## Componentes Internos
+
+| Componente | Cardinalidade | Descricao |
+|------------|---------------|-----------|
+| UnitHolder | 1:N | Relacionamentos N:N com Holders via tabela unit_holders. Armazena tipo de vinculo (PROPRIETARIO, CONJUGE, MORADOR, PROCURADOR, HERDEIRO) e percentual de propriedade. |
+| Document | 1:N | Anexos polimorficos vinculados a unidade (fotos, plantas, PDFs). EntityType UNIT, EntityId igual ao Unit.Id. |
+| Annotation | 1:N | Observacoes e notas vinculadas a unidade. EntityType UNIT. |
+
+## Invariantes
+
+| Invariante | Descricao |
+|------------|-----------|
+| Holder obrigatorio para aprovacao | Unit deve ter ao menos um Holder vinculado antes de transicionar para status APPROVED. |
+| Soma de propriedade | Soma de ownership_percentage de todos UnitHolder com tipo PROPRIETARIO nao pode exceder 100%. |
+| Tipo de documento | Documents vinculados devem ter EntityType igual a UNIT e EntityId igual ao Unit.Id. |
+| Geometria contida | Boundary, se preenchido, deve estar dentro ou proximo do perimetro da Community. |
+| Codigo unico | Code deve ser unico por tenant no formato UNI-AAAA-NNNNN. |
+
+## Operacoes da Raiz
+
+| Operacao | Descricao |
+|----------|-----------|
+| LinkHolder(holderId, type, percentage) | Adiciona UnitHolder com validacoes de tipo e percentual. Dispara HolderLinkedEvent. |
+| UnlinkHolder(holderId) | Remove vinculo verificando que nao deixa unidade sem holders se status e APPROVED. Dispara HolderUnlinkedEvent. |
+| UploadDocument(type, file) | Cria Document anexo validando tipo e tamanho. Dispara DocumentUploadedEvent. |
+| AddAnnotation(content, type) | Cria Annotation vinculada a unidade. |
+| Approve() | Transiciona status para APPROVED com validacoes pre-aprovacao. Dispara UnitStatusChangedEvent. |
+| Reject(reason) | Rejeita unidade com justificativa obrigatoria. Dispara UnitStatusChangedEvent. |
+| RequestChanges(issues) | Solicita correcoes retornando status para REQUIRES_CHANGES. |
+
+## Navegacao por Referencia
+
+Unit referencia Community, Block e Plot por ID (CommunityId, BlockId, PlotId) sem carregar objetos completos, evitando agregados grandes. Queries podem fazer join para exibicao, mas mudancas nessas entidades ocorrem em seus proprios agregados.
+
+## Eventos de Dominio
+
+| Evento | Contexto |
+|--------|----------|
+| UnitCreatedEvent | Ao criar unidade. |
+| HolderLinkedEvent | Ao vincular titular. |
+| HolderUnlinkedEvent | Ao desvincular titular. |
+| UnitStatusChangedEvent | Em transicoes de workflow (Approve, Reject, RequestChanges). |
+| DocumentUploadedEvent | Ao anexar arquivo. |
+
+## Persistencia
+
+Repository carrega Unit com todas as colecoes internas em query unica usando eager loading. SaveChanges persiste mudancas em Unit, UnitHolder, Document e Annotation atomicamente. Concorrencia controlada por RowVersion em Unit detectando modificacoes concorrentes.

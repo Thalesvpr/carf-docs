@@ -1,141 +1,151 @@
 ---
 type: leaf
 status: approved
-updated: 2026-01-24
+updated: 2026-02-07
 ---
-
-> **REVIEW**: Tipo diagram nao tem template definido. Arquivo usa multiplas H2s e bloco de codigo Mermaid.
 
 # ER Diagram
 
-Diagrama Entity-Relationship do banco de dados CARF com PostgreSQL e PostGIS para dados geoespaciais.
+Descricao do modelo Entity-Relationship do banco de dados CARF com PostgreSQL e PostGIS para dados geoespaciais.
 
-## Diagrama Mermaid
+## Relacionamentos
 
-```mermaid
-erDiagram
-    tenants ||--o{ units : contains
-    tenants ||--o{ holders : contains
-    tenants ||--o{ communities : contains
-    tenants ||--o{ legitimations : contains
+| Tabela Pai | Tabela Filha | Cardinalidade | Relacao |
+|------------|-------------|---------------|---------|
+| tenants | units | 1:N | Tenant contem unidades |
+| tenants | holders | 1:N | Tenant contem titulares |
+| tenants | communities | 1:N | Tenant contem comunidades |
+| tenants | legitimations | 1:N | Tenant contem legitimacoes |
+| communities | units | 1:N | Comunidade contem unidades |
+| units | unit_photos | 1:N | Unidade tem fotos |
+| units | unit_holders | 1:N | Unidade vinculada a titulares |
+| units | unit_documents | 1:N | Unidade tem documentos |
+| holders | unit_holders | 1:N | Titular vinculado a unidades |
+| holders | holder_documents | 1:N | Titular tem documentos |
+| legitimations | units | 1:1 | Legitimacao referencia unidade |
+| legitimations | legitimation_holders | 1:N | Legitimacao inclui titulares |
+| legitimations | legitimation_documents | 1:N | Legitimacao requer documentos |
+| legitimations | legitimation_history | 1:N | Legitimacao rastreia historico |
+| holders | legitimation_holders | 1:N | Titular participa de legitimacoes |
 
-    communities ||--o{ units : "contains"
+## Tabela tenants
 
-    units ||--o{ unit_photos : has
-    units ||--o{ unit_holders : linked_to
-    units ||--o{ unit_documents : has
+| Coluna | Tipo | Constraint |
+|--------|------|-----------|
+| id | uuid | PK |
+| name | string | - |
+| slug | string | UK |
+| settings | jsonb | - |
+| created_at | timestamp | - |
 
-    holders ||--o{ unit_holders : linked_to
-    holders ||--o{ holder_documents : has
+## Tabela communities
 
-    legitimations ||--|| units : references
-    legitimations ||--o{ legitimation_holders : includes
-    legitimations ||--o{ legitimation_documents : requires
-    legitimations ||--o{ legitimation_history : tracks
+| Coluna | Tipo | Constraint |
+|--------|------|-----------|
+| id | uuid | PK |
+| tenant_id | uuid | FK |
+| code | string | UK |
+| name | string | - |
+| description | text | - |
+| boundary | geometry | - |
+| area_m2 | decimal | - |
+| reurb_modality | string | - |
+| created_at | timestamp | - |
 
-    holders ||--o{ legitimation_holders : participates
+## Tabela units
 
-    tenants {
-        uuid id PK
-        string name
-        string slug UK
-        jsonb settings
-        timestamp created_at
-    }
+| Coluna | Tipo | Constraint |
+|--------|------|-----------|
+| id | uuid | PK |
+| tenant_id | uuid | FK |
+| community_id | uuid | FK |
+| code | string | UK |
+| status | string | - |
+| address | jsonb | - |
+| boundary | geometry | - |
+| area_m2 | decimal | - |
+| centroid | point | - |
+| created_at | timestamp | - |
+| updated_at | timestamp | - |
 
-    communities {
-        uuid id PK
-        uuid tenant_id FK
-        string code UK
-        string name
-        text description
-        geometry boundary
-        decimal area_m2
-        string reurb_modality
-        timestamp created_at
-    }
+## Tabela holders
 
-    units {
-        uuid id PK
-        uuid tenant_id FK
-        uuid community_id FK
-        string code UK
-        string status
-        jsonb address
-        geometry boundary
-        decimal area_m2
-        point centroid
-        timestamp created_at
-        timestamp updated_at
-    }
+| Coluna | Tipo | Constraint |
+|--------|------|-----------|
+| id | uuid | PK |
+| tenant_id | uuid | FK |
+| code | string | UK |
+| name | string | - |
+| cpf_encrypted | string | - |
+| cpf_hash | string | UK |
+| birth_date | date | - |
+| gender | string | - |
+| marital_status | string | - |
+| contact | jsonb | - |
+| income | jsonb | - |
+| created_at | timestamp | - |
 
-    unit_photos {
-        uuid id PK
-        uuid unit_id FK
-        string url
-        string thumbnail_url
-        string description
-        int order
-        timestamp created_at
-    }
+## Tabela unit_holders
 
-    holders {
-        uuid id PK
-        uuid tenant_id FK
-        string code UK
-        string name
-        string cpf_encrypted
-        string cpf_hash UK
-        date birth_date
-        string gender
-        string marital_status
-        jsonb contact
-        jsonb income
-        timestamp created_at
-    }
+| Coluna | Tipo | Constraint |
+|--------|------|-----------|
+| id | uuid | PK |
+| unit_id | uuid | FK |
+| holder_id | uuid | FK |
+| ownership_type | string | - |
+| ownership_percentage | decimal | - |
+| created_at | timestamp | - |
 
-    unit_holders {
-        uuid id PK
-        uuid unit_id FK
-        uuid holder_id FK
-        string ownership_type
-        decimal ownership_percentage
-        timestamp created_at
-    }
+## Tabela legitimations
 
-    legitimations {
-        uuid id PK
-        uuid tenant_id FK
-        uuid unit_id FK
-        string protocol UK
-        string status
-        string modality
-        date occupation_date
-        jsonb declaration
-        timestamp submitted_at
-        timestamp approved_at
-        uuid approved_by FK
-    }
+| Coluna | Tipo | Constraint |
+|--------|------|-----------|
+| id | uuid | PK |
+| tenant_id | uuid | FK |
+| unit_id | uuid | FK |
+| protocol | string | UK |
+| status | string | - |
+| modality | string | - |
+| occupation_date | date | - |
+| declaration | jsonb | - |
+| submitted_at | timestamp | - |
+| approved_at | timestamp | - |
+| approved_by | uuid | FK |
 
-    legitimation_holders {
-        uuid id PK
-        uuid legitimation_id FK
-        uuid holder_id FK
-        string ownership_type
-        decimal percentage
-    }
+## Tabela legitimation_holders
 
-    legitimation_history {
-        uuid id PK
-        uuid legitimation_id FK
-        string action
-        string from_status
-        string to_status
-        uuid user_id FK
-        text comments
-        timestamp created_at
-    }
-```
+| Coluna | Tipo | Constraint |
+|--------|------|-----------|
+| id | uuid | PK |
+| legitimation_id | uuid | FK |
+| holder_id | uuid | FK |
+| ownership_type | string | - |
+| percentage | decimal | - |
+
+## Tabela legitimation_history
+
+| Coluna | Tipo | Constraint |
+|--------|------|-----------|
+| id | uuid | PK |
+| legitimation_id | uuid | FK |
+| action | string | - |
+| from_status | string | - |
+| to_status | string | - |
+| user_id | uuid | FK |
+| comments | text | - |
+| created_at | timestamp | - |
+
+## Tabela unit_photos
+
+| Coluna | Tipo | Constraint |
+|--------|------|-----------|
+| id | uuid | PK |
+| unit_id | uuid | FK |
+| url | string | - |
+| thumbnail_url | string | - |
+| description | string | - |
+| order | int | - |
+| created_at | timestamp | - |
 
 ## Constraints
 

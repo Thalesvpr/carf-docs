@@ -1,15 +1,25 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-12
+updated: 2026-02-08
 ---
 
 # Admin Security
 
-Endpoints /api/admin/* do GEOAPI implementam 7 camadas segurança protegendo operações administrativas sensíveis gerenciamento tenants usuários configurações sistema consumidas pelo ADMIN Console. Decisão de não usar Next.js para admin foi tomada por segurança pois API Routes Next.js com Keycloak Admin Client requerem client_secret confidencial que pode vazar bundled client-side ou expostos environment variables browser, solução segura usa SPA React Vite com PKCE flow sem client_secret conectando GEOAPI backend .NET 9 onde /api/admin/* endpoints usam Keycloak Admin Client confidential com client_secret isolado backend nunca exposto frontend.
+Os endpoints /api/admin da GEOAPI implementam 7 camadas de seguranca para proteger operacoes administrativas sensiveis de gerenciamento de tenants, usuarios, roles e configuracoes, consumidas pelo console ADMIN.
 
-Estrutura no GEOAPI organiza Gateway/Controllers/AdminController.cs endpoints /api/admin/*, Application/Admin/Commands CreateTenantCommand CreateUserCommand AssignRolesCommand e Queries GetTenantsQuery GetUsersQuery, Infrastructure/Keycloak KeycloakAdminService wrapper Keycloak Admin Client e KeycloakAdminConfig configuração confidencial. Fluxo requisição inicia carf-admin SPA POST /api/admin/users com Authorization Bearer JWT token, AdminController Authorize Roles super-admin admin valida token JWT Keycloak valida role valida tenant admin só vê próprio tenant, MediatR Handler CreateUserCommand FluentValidation valida DTO, KeycloakAdminService usa client_secret confidencial POST /admin/realms/carf/users Keycloak Admin API, Response retorna carf-admin com auditoria registrada AdminActionLogger.
+## Decisao Arquitetural
 
-Sete camadas segurança incluem Autenticação OAuth2 JWT tokens Keycloak validados middleware, Autorização RBAC roles super-admin admin analyst field-coordinator field-cadastrator verificadas policies, Isolamento Tenant admin vê apenas próprio tenant via RLS, Validação Entrada FluentValidation sanitização DTOs, Rate Limiting proteção força bruta endpoints sensíveis, Auditoria Completa todas ações admin registradas AuditLog com IP user timestamp action, e Criptografia TLS 1.3 trânsito secrets criptografados repouso.
+A decisao de usar SPA React Vite com PKCE flow conectando ao backend .NET foi motivada por seguranca. API Routes de frameworks SSR com Keycloak Admin Client requerem client_secret confidencial que pode vazar no bundle client-side. A solucao segura isola o client_secret no backend .NET onde os endpoints /api/admin usam Keycloak Admin Client com client credentials flow, nunca expondo credenciais ao frontend.
 
-Endpoints admin disponíveis incluem tenants GET POST PUT DELETE /api/admin/tenants gerenciamento multi-tenancy, users GET POST PUT DELETE /api/admin/users CRUD usuários Keycloak, roles GET POST DELETE /api/admin/users/{id}/roles atribuição roles, settings GET PUT /api/admin/settings configurações sistema, e audit GET /api/admin/audit-logs consulta logs auditoria. Apenas super-admin acessa todos tenants, admin acessa apenas próprio tenant, demais roles não têm acesso endpoints admin.
+## Fluxo de Requisicao
+
+O fluxo inicia quando o ADMIN SPA envia POST /api/admin/users com Bearer JWT. O AdminController com Authorize(Roles = "admin, super-admin") valida o token e a role. O handler via MediatR processa o command com FluentValidation. O KeycloakAdminService usa client_secret confidencial para comunicar com a Keycloak Admin REST API. O response retorna ao ADMIN com auditoria registrada automaticamente pelo AuditLoggingBehavior.
+
+## Sete Camadas de Seguranca
+
+A primeira e autenticacao OAuth2 com JWT do Keycloak validado pelo middleware. A segunda e autorizacao RBAC com roles admin e super-admin verificadas via policies. A terceira e isolamento por tenant onde admin ve apenas seu proprio tenant via RLS. A quarta e validacao de entrada via FluentValidation sanitizando DTOs. A quinta e rate limiting protegendo endpoints sensiveis contra forca bruta. A sexta e auditoria completa com todas as acoes admin registradas em audit_logs com IP, usuario e timestamp. A setima e criptografia com TLS 1.3 em transito e secrets criptografados em repouso.
+
+## Escopo de Acesso
+
+O admin acessa apenas usuarios do proprio tenant. O super-admin acessa todos os tenants, pode criar novos tenants e transferir usuarios. Demais roles nao tem acesso a endpoints admin.

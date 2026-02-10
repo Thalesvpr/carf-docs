@@ -1,206 +1,78 @@
 ---
 type: leaf
-title: "Package.json - @carf/geoapi-client"
-status: review
-updated: 2026-01-21
-source: "CENTRAL/LIBRARIES/02-geoapi-client.md"
+status: active
+updated: 2026-02-09
 ---
 
 # Package.json - @carf/geoapi-client
 
-Configuracao completa do package.json para o cliente HTTP da GEOAPI.
+Configuracao do package.json para o cliente HTTP auto-gerado da GEOAPI.
 
-## Configuracao Completa
+## Metadados do Pacote
 
-```json
-{
-  "name": "@carf/geoapi-client",
-  "version": "0.1.0",
-  "description": "Cliente HTTP type-safe para a GEOAPI do ecossistema CARF",
-  "type": "module",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    }
-  },
-  "files": [
-    "dist",
-    "README.md"
-  ],
-  "scripts": {
-    "build": "bun build ./src/index.ts --outdir ./dist --target node --format esm && tsc --emitDeclarationOnly",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage",
-    "lint": "eslint src --ext .ts,.tsx",
-    "lint:fix": "eslint src --ext .ts,.tsx --fix",
-    "type-check": "tsc --noEmit",
-    "clean": "rm -rf dist",
-    "prepublishOnly": "bun run build"
-  },
-  "dependencies": {
-    "@carf/tscore": "0.1.0",
-    "axios": "1.6.5",
-    "axios-retry": "4.0.0"
-  },
-  "devDependencies": {
-    "typescript": "5.3.3",
-    "vitest": "1.2.0",
-    "axios-mock-adapter": "1.22.0",
-    "@types/node": "20.11.5",
-    "eslint": "8.56.0",
-    "@typescript-eslint/eslint-plugin": "6.19.0",
-    "@typescript-eslint/parser": "6.19.0"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/carf/carf-geoapi-client.git"
-  },
-  "keywords": [
-    "carf",
-    "geoapi",
-    "http-client",
-    "typescript",
-    "axios"
-  ],
-  "author": "CARF Team",
-  "license": "MIT",
-  "engines": {
-    "node": ">=18.0.0"
-  }
-}
-```
+| Propriedade | Valor |
+|:------------|:------|
+| name | @carf/geoapi-client |
+| version | 0.1.0 |
+| description | Cliente HTTP auto-gerado via orval para a GEOAPI do ecossistema CARF |
+| type | module |
+| main | ./dist/index.js |
+| types | ./dist/index.d.ts |
+| license | UNLICENSED |
+| author | CARF Team |
+| node engine | >= 18.0.0 |
 
-## Dependencias
+O campo exports mapeia "." para types ./dist/index.d.ts e import ./dist/index.js. O campo files inclui dist e README.md.
 
-### Producao
+## Dependencias de Producao
 
 | Pacote | Versao | Justificativa |
 |:-------|:-------|:--------------|
-| @carf/tscore | 0.1.0 | Types, validacoes e auth Keycloak |
-| axios | 1.6.5 | Cliente HTTP robusto com interceptors |
-| axios-retry | 4.0.0 | Retry automatico com exponential backoff |
+| axios | ^1.6.0 | Cliente HTTP base para o custom instance |
+| axios-retry | ^4.0.0 | Retry automatico com exponential backoff |
 
-### Desenvolvimento
+## Peer Dependencies
+
+| Pacote | Versao | Obrigatorio | Justificativa |
+|:-------|:-------|:------------|:--------------|
+| @carf/tscore | ^0.1.0 | Sim | Types compartilhados do ecossistema |
+| @tanstack/react-query | ^5.0.0 | Nao (opcional) | Necessario apenas para hooks React Query |
+
+## Dependencias de Desenvolvimento
 
 | Pacote | Versao | Uso |
 |:-------|:-------|:----|
-| typescript | 5.3.3 | Compilador e type checking |
-| vitest | 1.2.0 | Framework de testes |
-| axios-mock-adapter | 1.22.0 | Mock de requisicoes HTTP em testes |
-| @types/node | 20.11.5 | Types Node.js |
-| eslint | 8.56.0 | Linting |
+| orval | ^7.0.0 | Geracao automatica de tipos e hooks a partir do swagger.json |
+| typescript | ^5.3.0 | Compilador e type checking |
+| @types/node | ^20.10.0 | Types Node.js |
+| bun-types | latest | Types Bun runtime |
 
 ## Scripts
 
-### `build`
-
-Compila TypeScript para JavaScript ES Modules:
-
-```bash
-bun run build
-```
-
-**Saida:**
-- `dist/index.js` - Modulo JavaScript
-- `dist/index.d.ts` - Declaracoes TypeScript
-
-### `test`
-
-Executa suite de testes com Vitest:
-
-```bash
-bun test
-```
-
-### `test:coverage`
-
-Executa testes com relatorio de cobertura:
-
-```bash
-bun test:coverage
-```
-
-**Meta:** >= 80% de cobertura
-
-### `test:watch`
-
-Modo watch para desenvolvimento:
-
-```bash
-bun run test:watch
-```
-
-## Instalacao em Projetos Consumidores
-
-### Configurar Registry
-
-Criar `.npmrc` na raiz do projeto:
-
-```ini
-@carf:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
-```
-
-### Instalar
-
-```bash
-# Instalar biblioteca (inclui @carf/tscore como dependencia)
-bun add @carf/geoapi-client
-```
+| Script | Comando | Descricao |
+|:-------|:--------|:----------|
+| generate | orval --config orval.config.ts | Gera tipos e hooks a partir do swagger.json |
+| swagger:fetch | curl -o swagger.json http://localhost:5127/swagger/v1/swagger.json | Baixa swagger.json atualizado da API local |
+| build | bun run generate && bun build src/index.ts --outdir dist --target node | Gera codigo e compila |
+| build:types | tsc --emitDeclarationOnly --declaration --declarationMap | Gera declaracoes TypeScript |
+| build:all | bun run build && bun run build:types | Build completo |
+| typecheck | tsc --noEmit | Verificacao de tipos sem emitir |
 
 ## Estrutura de Arquivos
 
-```
-src/
-├── index.ts              # Entry point - exports GeoApiClient
-├── client.ts             # Classe principal GeoApiClient
-├── api/                  # APIs por dominio
-│   ├── index.ts
-│   ├── units.ts          # UnitsApi
-│   ├── holders.ts        # HoldersApi
-│   ├── communities.ts    # CommunitiesApi
-│   ├── legitimation.ts   # LegitimationApi
-│   ├── documents.ts      # DocumentsApi
-│   └── reports.ts        # ReportsApi
-├── interceptors/         # Axios interceptors
-│   ├── auth.ts           # Adiciona token JWT
-│   ├── retry.ts          # Retry logic
-│   └── error.ts          # Error handling
-├── errors/               # Classes de erro
-│   ├── index.ts
-│   ├── api-error.ts
-│   ├── validation-error.ts
-│   ├── not-found-error.ts
-│   └── ...
-└── types/                # Types internos
-    ├── config.ts
-    ├── request.ts
-    └── response.ts
-```
+O diretorio src contem:
 
-## Versionamento
+- **index.ts**: entry point, re-exporta generated + client + errors
+- **client.ts**: factory do axios instance customizado (mutator do orval)
+- **errors.ts**: hierarquia de erros tipados
+- **generated/**: codigo auto-gerado pelo orval (gitignored)
 
-Segue Semantic Versioning (SemVer):
+Na raiz do pacote:
 
-- **MAJOR**: Breaking changes na API publica
-- **MINOR**: Novas features backward-compatible
-- **PATCH**: Bug fixes
+- **orval.config.ts**: configuracao do orval
+- **swagger.json**: snapshot do OpenAPI spec da GEOAPI
+- **tsconfig.json**: configuracao TypeScript
 
-## Publicacao
+## Instalacao em Projetos Consumidores
 
-```bash
-# 1. Atualizar versao
-npm version patch  # ou minor, major
-
-# 2. Push com tags
-git push origin main --follow-tags
-
-# 3. CI/CD publica automaticamente
-```
+Instalar via `bun add @carf/geoapi-client`. Para usar hooks React Query, tambem instalar `@tanstack/react-query`.

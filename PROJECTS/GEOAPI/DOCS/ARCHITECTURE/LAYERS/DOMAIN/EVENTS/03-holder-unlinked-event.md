@@ -1,12 +1,33 @@
 ---
 type: leaf
 status: review
-description: "Estrutura caotica. Numeracao nao agrupa por categoria. Precisa reorganizar por agregado/contexto. Stub de 11 linhas - incompleto."
-updated: 2026-01-19
+updated: 2026-02-08
 ---
 
 # HolderUnlinkedEvent
 
-Domain event emitido por Unit aggregate root quando vínculo entre titular e unidade habitacional é removido representando fato que relacionamento de ownership ou ocupação foi desfeito permitindo rastreamento de mudanças de titularidade e atualização de índices e estatísticas. Payload do evento contém identificador da unidade da qual holder foi desvinculado, identificador do holder titular removido, tipo de relacionamento que foi desfeito (PROPRIETARIO CONJUGE MORADOR) especificando natureza do vínculo removido, percentual de propriedade que holder possuía antes de desvínculo útil para recalcular distribuição de ownership, identificador do tenant para isolamento multi-tenant em handlers, identificador do Account que executou desvinculação rastreando responsabilidade, motivo ou justificativa opcional do desvínculo documentando razão administrativa, e timestamp UTC quando desvínculo ocorreu preservando histórico temporal. Event handlers subscribers processam evento executando side effects como enviar notificação ao holder informando sobre remoção do vínculo com direito de contestação se aplicável, atualizar índices de busca removendo associação entre CPF de titular e unidade específica mantendo consistência de queries, invalidar caches relacionados forçando refresh de listagens de holders da unidade e unidades do holder, registrar em audit trail detalhado de mudanças de titularidade essencial para compliance legal e rastreabilidade em processos judiciais ou administrativos, recalcular estatísticas de unidades por titular atualizando dashboards e relatórios consolidados, validar assincronamente que unidade ainda possui ao menos um holder ativo caso seja requisito de negócio disparando alerta se violação detectada, e atualizar sistemas integrados externos como cartório ou registro de imóveis notificando sobre encerramento de vínculo. Motivação do evento permite rastreamento completo de histórico de titularidade onde todos vínculos desfeitos são preservados em event store reconstruindo timeline completa de mudanças, facilita eventual consistency onde remoção de vínculo propaga para índices e caches de forma assíncrona sem bloquear operação principal garantindo performance, habilita auditoria legal onde cada mudança de titular é rastreável com timestamp e responsável administrativo atendendo requisitos de LGPD e Lei 13465/2017, e suporta workflows complexos onde desvínculo de proprietário pode disparar reavaliação de processo de legitimação ou notificação a outros coproprietários. Regras de processamento estabelecem que evento é despachado apenas após SaveChanges bem-sucedido garantindo que UnitHolder foi realmente removido do banco antes de notificar, handlers executam fora de transação original prevenindo rollback cascata, falha em handler individual não impede outros handlers de processar garantindo resiliência, e idempotência é requerida pois evento pode ser reprocessado em caso de retry evitando duplicação de notificações ou side effects.
+Domain event emitido por Unit aggregate root quando vinculo entre titular e unidade habitacional e removido, representando que um relacionamento de propriedade ou ocupacao foi desfeito. Permite rastreamento de mudancas de titularidade e atualizacao de indices.
 
-**Módulos:** GEOAPI, GEOWEB, REURBCAD, GEOGIS
+## Payload
+
+| Campo | Tipo | Descricao |
+| --- | --- | --- |
+| UnitId | Guid | Unidade da qual holder foi desvinculado. |
+| HolderId | Guid | Titular removido. |
+| RelationshipType | string | Tipo de vinculo que foi desfeito. |
+| OwnershipPercentage | decimal | Percentual que holder possuia antes do desvinculo. |
+| UnlinkedBy | Guid | AccountId que executou a desvinculacao. |
+| TenantId | Guid | Tenant do contexto. |
+| OccurredAt | DateTime | Timestamp UTC do desvinculo. |
+
+## Handlers
+
+| Handler | Acao |
+| --- | --- |
+| HolderUnlinkedCacheHandler | Invalida caches de holders da unidade e unidades do holder. |
+| HolderUnlinkedAuditHandler | Registra em audit trail para compliance legal. |
+| HolderUnlinkedValidationHandler | Valida que unidade ainda possui ao menos um holder ativo. |
+
+## Contexto de Emissao
+
+Emitido pelo agregado Unit no metodo UnlinkHolder(holderId). Despachado apos SaveChanges garantindo que UnitHolder foi realmente removido do banco.

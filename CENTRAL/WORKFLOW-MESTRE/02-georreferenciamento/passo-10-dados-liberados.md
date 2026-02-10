@@ -17,22 +17,9 @@ Apos publicacao bem-sucedida, dados ficam disponiveis para a equipe de campo.
 3. Equipe de campo (Coordenador e Cadastrador) do mesmo TENANT podem acessar
 4. Ortofoto + poligonos disponiveis para download temporario
 
-## Diagrama
+## Transicao
 
-```
-Publicacao (Passo 9)
-        │
-        v
-  Backend marca como
-    "liberados"
-        │
-        v
-┌───────────────────┐
-│  PARTE 3 HABILITADA │
-│   Equipe de campo   │
-│  pode baixar pacote │
-└───────────────────┘
-```
+Apos a publicacao no Passo 9, o backend marca os dados como liberados. A Parte 3 torna-se habilitada e a equipe de campo pode baixar o pacote temporario.
 
 ## Status dos Dados
 

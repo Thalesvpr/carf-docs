@@ -25,14 +25,14 @@ Mosaico georreferenciado gerado a partir de imagens capturadas por drone. Repres
 Armazenamento de objetos (S3/MinIO) para arquivos pesados como ortofotos, documentos e midias.
 
 **Estrutura por TENANT:**
-```
-/{tenant_id}/ortofotos/{ano}/{mes}/
-  - original/
-  - otimizada/
-  - tiles/
-/{tenant_id}/documentos/
-/{tenant_id}/fotos/
-```
+
+| Caminho | Conteudo |
+|---------|----------|
+| /{tenant_id}/ortofotos/{ano}/{mes}/original/ | Ortofoto original |
+| /{tenant_id}/ortofotos/{ano}/{mes}/otimizada/ | Versao reduzida |
+| /{tenant_id}/ortofotos/{ano}/{mes}/tiles/ | Tiles para visualizacao |
+| /{tenant_id}/documentos/ | Documentos anexados |
+| /{tenant_id}/fotos/ | Fotos de campo |
 
 ## TENANT
 

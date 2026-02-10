@@ -1,12 +1,31 @@
 ---
 type: leaf
 status: review
-description: "Estrutura caotica. Numeracao nao agrupa por categoria. Precisa reorganizar por agregado/contexto. Stub de 11 linhas - incompleto."
-updated: 2026-01-19
+updated: 2026-02-08
 ---
 
-# Address (Endereço Brasileiro Estruturado)
+# Address
 
-Value object imutável representando endereço completo brasileiro estruturado em componentes padronizados facilitando busca validação e formatação consistente para documentos oficiais. Valor conceitual consiste em múltiplos campos logradouro tipo e nome da via (Rua Avenida Travessa Praça etc), numero número do imóvel podendo ser numérico (123) alfanumérico (123-A) ou especial (S/N para sem número), complemento informação adicional opcional (apartamento casa bloco lote), bairro nome do bairro ou distrito, cidade nome do município, estado sigla UF de 2 letras (RJ SP CE etc), e cep código de endereçamento postal formato XXXXX-XXX opcionalmente validado contra base dos Correios. Regras de validação incluem logradouro é obrigatório contendo ao menos tipo de via e nome com tamanho mínimo de 3 caracteres e máximo de 200 caracteres, numero pode ser "S/N" ou "SN" (abreviação padrão para sem número) quando imóvel não possui numeração oficial, complemento é opcional limitado a 100 caracteres, bairro é obrigatório com tamanho mínimo de 2 e máximo de 100 caracteres, cidade é obrigatória validada opcionalmente contra tabela de municípios do IBGE garantindo grafia correta e existência, estado deve ser uma das 27 UFs válidas (26 estados + DF) rejeitando siglas inválidas, e cep formato XXXXX-XXX ou somente 8 dígitos sem hífen validado opcionalmente via API dos Correios ou regex básica verificando range válido (01000-000 a 99999-999). Formato interno armazena componentes separadamente permitindo queries estruturadas (buscar todos endereços em bairro X ou cidade Y) e validação granular de cada campo, formato de exibição concatena componentes seguindo padrão brasileiro "Logradouro, Numero, Complemento - Bairro - Cidade/UF - CEP XXXXX-XXX" com tratamento de campos opcionais vazios (omitindo vírgulas extras), e formato compacto pode omitir complemento e cep gerando "Logradouro, Numero - Bairro - Cidade/UF" usado em relatórios com espaço limitado. Operações incluem Create validando cada componente e lançando ValidationException com mensagens específicas por campo inválido, Equals comparando valores normalizados (trim, uppercase para comparação case-insensitive de UF), ToString retornando formato de exibição completo, ToOneLine retornando endereço em linha única sem quebras, e opcionalmente Geocode integrando com serviço de geocodificação para obter coordenadas geográficas aproximadas a partir do endereço textual. Uso típico em Unit armazenando endereço da unidade habitacional para localização e documentos (certidão de legitimação inclui endereço completo), em Holder opcionalmente armazenando endereço de correspondência do titular se diferente do endereço da unidade, em relatórios formatando endereço de forma padronizada e legível, e em buscas permitindo filtros por cidade bairro ou faixa de CEP agrupando unidades geograficamente. Sistema suporta endereços rurais onde logradouro pode ser "Estrada", "Rodovia", "Fazenda", numero pode ser "Km 15" ou "Sítio 3", bairro pode ser "Zona Rural", e CEP geralmente cobre área ampla, validação é flexível para acomodar variabilidade de endereçamento em áreas não urbanizadas. Integração com API de CEP (ViaCEP, Correios, etc) permite autocompletar endereço a partir de CEP digitado pelo usuário preenchendo logradouro bairro cidade e estado automaticamente melhorando UX e qualidade de dados, validação de existência de CEP detecta typos (CEP inexistente) alertando usuário para correção. Normalização de endereço pode incluir correções de abreviações padronizadas (R. vira Rua, Av. vira Avenida), capitalização correta de nomes próprios (PRAÇA DA REPÚBLICA vira Praça da República), e remoção de caracteres especiais não permitidos em documentos oficiais. Compliance com documentação oficial exige que endereço em certidões e relatórios siga formatação exata conforme normas do cartório e órgãos governamentais, sistema pode ter múltiplos formatadores (formato certidão, formato relatório, formato etiqueta) aplicando regras específicas de cada contexto.
+Value object imutavel representando endereco brasileiro completo, desnormalizado em colunas separadas na tabela units para facilitar buscas textuais sem joins. Cada componente e uma coluna nullable independente.
 
-**Módulos:** GEOAPI, GEOWEB, REURBCAD, GEOGIS
+## Componentes
+
+| Componente | Coluna | Tipo | Descricao |
+|------------|--------|------|-----------|
+| Street | address_street | varchar(200) | Logradouro. |
+| Number | address_number | varchar(20) | Numero. String para comportar S/N e complementos. |
+| Complement | address_complement | varchar(100) | Complemento (apto, bloco, lote). |
+| Neighborhood | address_neighborhood | varchar(100) | Bairro. |
+| City | address_city | varchar(100) | Cidade. |
+| State | address_state | varchar(2) | UF em maiusculas (SP, RJ, MG). |
+| ZipCode | address_zip_code | varchar(9) | CEP sem formatacao (8 digitos). |
+
+## Regras de Validacao
+
+| Regra | Descricao |
+|-------|-----------|
+| State | Deve ser UF valida brasileira (2 letras maiusculas). |
+| ZipCode | 8 digitos numericos quando preenchido. |
+| Todos nullable | Todos os campos sao opcionais. Ocupacoes informais podem nao ter endereco formal. |
+
+Address e desnormalizado ao inves de tabela separada para evitar joins em listagens de unidades e permitir busca textual direta.

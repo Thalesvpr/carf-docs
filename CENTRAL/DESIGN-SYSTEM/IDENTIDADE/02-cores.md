@@ -1,7 +1,7 @@
 ---
 type: leaf
 status: approved
-updated: 2026-01-24
+updated: 2026-02-07
 ---
 
 # Cores
@@ -17,3 +17,16 @@ O azul transmite confianca e profissionalismo. Usado em links, elementos interat
 ## Significado Funcional
 
 Verde significa positivo, aprovado, sucesso. Amarelo significa atencao, pendente, aguardando. Vermelho significa erro, negado, problema. Cinza significa neutro, desabilitado, secundario. Essas associacoes sao universais e nao devem ser subvertidas.
+
+## Branding Dual: Web vs Mobile
+
+A plataforma web (GEOWEB, ADMIN) usa paleta verde institucional (#2C5F2D primary) como cor primaria, reforçando identidade governamental e continuidade com sistemas publicos existentes.
+
+O aplicativo mobile REURBCAD adota paleta azul (#1E40AF primary) intencionalmente. A diferenciacao visual entre plataformas e uma decisao de design, nao inconsistencia. O azul no mobile comunica confianca e modernidade para agentes de campo que usam o app diariamente. Evita confusao visual quando coordenadores alternam entre web e mobile no mesmo fluxo de trabalho.
+
+| Plataforma | Cor Primaria | Hex | Uso |
+|:-----------|:------------|:----|:----|
+| Web (GEOWEB, ADMIN) | Verde institucional | #2C5F2D | Cabecalhos, botoes primarios, links |
+| Mobile (REURBCAD) | Azul profissional | #1E40AF | Botoes primarios, tab bar, headers |
+
+Ambas plataformas compartilham as mesmas cores semanticas para status (verde aprovado, amarelo pendente, vermelho rejeitado) e mesmos tokens de feedback, garantindo consistencia funcional apesar da diferenciacao de marca.

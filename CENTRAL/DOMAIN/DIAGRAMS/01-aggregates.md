@@ -1,66 +1,46 @@
 ---
 type: leaf
 status: approved
-updated: 2026-01-24
+updated: 2026-02-07
 ---
-
-> **REVIEW**: Tipo diagram nao tem template definido. Arquivo usa multiplas H2s e bloco de codigo Mermaid.
 
 # Aggregates Diagram
 
-Diagrama dos aggregates e seus relacionamentos no modelo de dominio CARF, seguindo padroes de Domain-Driven Design.
+Descricao dos aggregates e seus relacionamentos no modelo de dominio CARF, seguindo padroes de Domain-Driven Design.
 
-## Diagrama Mermaid
+## Unit Aggregate
 
-```mermaid
-graph TB
-    subgraph "Unit Aggregate"
-        Unit[Unit<br/>Aggregate Root]
-        UnitAddress[Address<br/>Value Object]
-        UnitGeometry[Geometry<br/>Value Object]
-        UnitPhoto[Photo<br/>Entity]
-        Unit --> UnitAddress
-        Unit --> UnitGeometry
-        Unit --> UnitPhoto
-    end
+Unit e o aggregate root. Contem tres componentes internos: Address (value object para endereco), Geometry (value object para poligono e area) e Photo (entity para fotos da unidade).
 
-    subgraph "Holder Aggregate"
-        Holder[Holder<br/>Aggregate Root]
-        HolderCPF[CPF<br/>Value Object]
-        HolderContact[Contact<br/>Value Object]
-        HolderIncome[Income<br/>Value Object]
-        Holder --> HolderCPF
-        Holder --> HolderContact
-        Holder --> HolderIncome
-    end
+## Holder Aggregate
 
-    subgraph "Community Aggregate"
-        Community[Community<br/>Aggregate Root]
-        CommunityGeometry[Geometry<br/>Value Object]
-        CommunityContact[Contact<br/>Entity]
-        Community --> CommunityGeometry
-        Community --> CommunityContact
-    end
+Holder e o aggregate root. Armazena CPF como Value Object (DOMAIN.ValueObjects.CPF, validado via algoritmo Mod11 no construtor), Contact (telefone e email como strings) e Income (renda declarada como decimal).
 
-    subgraph "Legitimation Aggregate"
-        Legitimation[Legitimation<br/>Aggregate Root]
-        LegitimationDoc[Document<br/>Entity]
-        LegitimationHist[History<br/>Entity]
-        Legitimation --> LegitimationDoc
-        Legitimation --> LegitimationHist
-    end
+## Community Aggregate
 
-    %% Cross-aggregate references (by ID only)
-    Unit -.->|"unit_holders<br/>(junction)"| Holder
-    Unit -.->|"community_id"| Community
-    Legitimation -.->|"unit_id"| Unit
-    Legitimation -.->|"holder_ids"| Holder
+Community e o aggregate root. Contem Geometry (value object para limites da area) e Contact (entity para contatos da comunidade).
 
-    style Unit fill:#e1f5fe
-    style Holder fill:#fff3e0
-    style Community fill:#e8f5e9
-    style Legitimation fill:#fce4ec
-```
+## Legitimation Aggregate
+
+Legitimation e o aggregate root. Contem Document (entity para documentos anexados) e History (entity para historico de transicoes de status).
+
+## Composicao dos Aggregates
+
+| Aggregate | Root | Componentes Internos | Tipo |
+|-----------|------|---------------------|------|
+| Unit | Unit | Address, Geometry, Photo | Value Object, Value Object, Entity |
+| Holder | Holder | CPF (Value Object), Contact (strings), Income (decimal) | CPF e Value Object no DOMAIN layer; demais primitivos validados no APPLICATION layer |
+| Community | Community | Geometry, Contact | Value Object, Entity |
+| Legitimation | Legitimation | Document, History | Entity, Entity |
+
+## Referencias entre Aggregates
+
+| Origem | Destino | Mecanismo |
+|--------|---------|-----------|
+| Unit | Holder | Tabela junction unit_holders (por ID) |
+| Unit | Community | Chave estrangeira community_id |
+| Legitimation | Unit | Chave estrangeira unit_id |
+| Legitimation | Holder | Lista de holder_ids |
 
 ## Regras de Aggregate
 

@@ -1,105 +1,42 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-21
+updated: 2026-02-07
 ---
 
-# Content Schema - Visão Geral
+# Content Schema - Visao Geral
 
-Schema Zod para validação de frontmatter em Astro Content Collections.
+Schema Zod para validacao de frontmatter em Astro Content Collections. Arquivos relacionados: 23-content-schema-typescript.md e 23-content-schema-examples.md.
 
-Arquivos relacionados:
-- Schema TypeScript: `23-content-schema-typescript.md`
-- Exemplos: `23-content-schema-examples.md`
+## Visao Geral
 
-## Visão Geral
+Arquivo de definicao em src/content/config.ts. Tres collections definidas: docs para documentacao principal (guia, manuais, api, status), dev para documentacao tecnica protegida, e banners para notificacoes e avisos. Validacao usa Zod schemas com types exportados, integrado com Astro Content Collections API.
 
-```json
-{
-  "file": "src/content/config.ts",
-  "collections": {
-    "docs": "Documentação principal (guia, manuais, api, status)",
-    "dev": "Documentação técnica protegida",
-    "banners": "Notificações e avisos"
-  },
-  "validation": "Zod schemas com types exportados",
-  "integration": "Astro Content Collections API"
-}
-```
+## Validacoes Customizadas
 
-## Validações Customizadas
-
-```json
-{
-  "validations": {
-    "title": {
-      "min": 3,
-      "max": 100,
-      "reason": "Balanceamento entre clareza e display em sidebar"
-    },
-    "description": {
-      "min": 50,
-      "max": 160,
-      "reason": "SEO: meta description ideal entre 50-160 chars"
-    },
-    "source": {
-      "pattern": "^CENTRAL\\/[\\w\\-\\/]+\\.md$",
-      "example": "CENTRAL/WORKFLOWS/02-field-data-collection-workflow.md",
-      "reason": "Rastreabilidade para documento fonte"
-    },
-    "banner_id": {
-      "pattern": "^[a-z0-9-]+$",
-      "reason": "Usado em localStorage para dismiss state"
-    }
-  }
-}
-```
+| Campo | Min | Max | Motivo |
+|-------|-----|-----|--------|
+| title | 3 | 100 | Balanceamento entre clareza e display em sidebar |
+| description | 50 | 160 | SEO: meta description ideal entre 50-160 caracteres |
+| source | - | - | Pattern CENTRAL/path/file.md para rastreabilidade |
+| banner id | - | - | Pattern lowercase com hifens para localStorage dismiss state |
 
 ## Estrutura de Pastas
 
-```json
-{
-  "content_structure": {
-    "src/content/": {
-      "docs/": {
-        "guia/": "Páginas da seção /guia/",
-        "manuais/": "Páginas da seção /manuais/",
-        "api/": "Páginas da seção /api/",
-        "status/": "Página de status"
-      },
-      "dev/": "Páginas protegidas da seção /dev/",
-      "banners/": "Arquivos YAML de banners"
-    }
-  }
-}
-```
+| Pasta | Conteudo |
+|-------|----------|
+| src/content/docs/guia/ | Paginas da secao /guia/ |
+| src/content/docs/manuais/ | Paginas da secao /manuais/ |
+| src/content/docs/api/ | Paginas da secao /api/ |
+| src/content/docs/status/ | Pagina de status |
+| src/content/dev/ | Paginas protegidas da secao /dev/ |
+| src/content/banners/ | Arquivos YAML de banners |
 
-## Erros de Validação
+## Erros Comuns de Validacao
 
-```json
-{
-  "common_errors": {
-    "description_too_short": {
-      "error": "Descrição deve ter pelo menos 50 caracteres para SEO",
-      "fix": "Expandir descrição com mais detalhes relevantes"
-    },
-    "invalid_source_path": {
-      "error": "Source deve seguir padrão CENTRAL/PATH/file.md",
-      "fix": "Verificar caminho exato no repositório CENTRAL"
-    },
-    "invalid_section": {
-      "error": "Expected 'guia' | 'manuais' | 'api' | 'status' | 'dev'",
-      "fix": "Usar uma das seções válidas"
-    },
-    "sidebar_order_negative": {
-      "error": "Number must be greater than or equal to 0",
-      "fix": "Usar número inteiro >= 0 para ordem"
-    }
-  }
-}
-```
-
----
-
-**Última atualização:** 2026-01-21
-**Status do arquivo**: Review
+| Erro | Mensagem | Correcao |
+|------|----------|----------|
+| description_too_short | Descricao deve ter pelo menos 50 caracteres para SEO | Expandir descricao com mais detalhes relevantes |
+| invalid_source_path | Source deve seguir padrao CENTRAL/PATH/file.md | Verificar caminho exato no repositorio CENTRAL |
+| invalid_section | Expected guia, manuais, api, status ou dev | Usar uma das secoes validas |
+| sidebar_order_negative | Number must be greater than or equal to 0 | Usar numero inteiro >= 0 para ordem |

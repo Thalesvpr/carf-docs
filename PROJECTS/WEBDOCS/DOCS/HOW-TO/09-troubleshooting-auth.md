@@ -1,174 +1,43 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-21
+updated: 2026-02-07
 ---
 
-# Troubleshooting - Autenticação
+# Troubleshooting - Autenticacao
 
-Resolução de problemas de autenticação e CORS.
-
-Arquivos relacionados:
-- Problemas de build: `09-troubleshooting-build.md`
-- Problemas de runtime: `09-troubleshooting-runtime.md`
+Resolucao de problemas de autenticacao e CORS. Arquivos relacionados: 09-troubleshooting-build.md para problemas de build e 09-troubleshooting-runtime.md para problemas de runtime.
 
 ## Login Redirect Loop
 
-**Sintoma:** Usuário é redirecionado infinitamente entre WEBDOCS e Keycloak.
+Sintoma: usuario e redirecionado infinitamente entre WEBDOCS e Keycloak, browser mostra "too many redirects", cookies nao sao persistidos.
 
-```json
-{
-  "problem": "redirect_loop",
-  "symptoms": [
-    "Browser mostra 'too many redirects'",
-    "URL alterna entre /auth/login e Keycloak",
-    "Cookies não são persistidos"
-  ]
-}
-```
-
-**Causas e Soluções:**
-
-```json
-{
-  "cause_1": {
-    "description": "Cookie não está sendo salvo",
-    "check": "DevTools > Application > Cookies",
-    "solutions": [
-      "Verificar se Secure=true apenas em HTTPS",
-      "Em localhost, usar Secure=false ou HTTPS local",
-      "Verificar SameSite não é 'Strict' (usar 'Lax')"
-    ]
-  },
-  "cause_2": {
-    "description": "Redirect URI não cadastrada no Keycloak",
-    "check": "Keycloak Admin > Clients > carf-webdocs > Valid Redirect URIs",
-    "solutions": [
-      "Adicionar http://localhost:4321/auth/callback",
-      "Adicionar URL exata incluindo porta"
-    ]
-  },
-  "cause_3": {
-    "description": "State mismatch",
-    "check": "Console do browser por erro 'state mismatch'",
-    "solutions": [
-      "Limpar todos cookies do domínio",
-      "Verificar se cookie carf_auth_state está sendo salvo",
-      "Aumentar Max-Age do cookie de state"
-    ]
-  }
-}
-```
+| Causa | Verificacao | Solucao |
+|---|---|---|
+| Cookie nao sendo salvo | DevTools, Application, Cookies | Verificar Secure=true apenas em HTTPS; em localhost usar Secure=false; usar SameSite=Lax e nao Strict |
+| Redirect URI nao cadastrada | Keycloak Admin, Clients, carf-webdocs, Valid Redirect URIs | Adicionar http://localhost:4321/auth/callback com URL exata incluindo porta |
+| State mismatch | Console do browser por erro state mismatch | Limpar todos cookies do dominio; verificar cookie carf_auth_state sendo salvo; aumentar Max-Age do cookie de state |
 
 ## Token Expired Errors
 
-**Sintoma:** Usuário autenticado recebe erro 401 após alguns minutos.
+Sintoma: usuario autenticado recebe 401 Unauthorized em API calls apos alguns minutos, usuario e deslogado inesperadamente.
 
-```json
-{
-  "problem": "token_expired",
-  "symptoms": [
-    "401 Unauthorized em API calls",
-    "Usuário é deslogado inesperadamente",
-    "Console mostra 'token expired'"
-  ]
-}
-```
+| Solucao | Detalhes |
+|---|---|
+| Implementar refresh automatico | Em src/middleware.ts, verificar expiracao e chamar /auth/refresh antes de expirar |
+| Aumentar token lifetime | Keycloak, Realm Settings, Tokens: Access Token Lifespan 300 segundos ou mais, SSO Session Idle 1800 segundos |
+| Forcar re-login | Redirect para /auth/login quando refresh falha |
 
-**Soluções:**
+## 403 Forbidden em Secao Permitida
 
-```json
-{
-  "solution_1": {
-    "description": "Implementar refresh automático",
-    "code_location": "src/middleware.ts",
-    "action": "Verificar expiração e chamar /auth/refresh antes de expirar"
-  },
-  "solution_2": {
-    "description": "Aumentar token lifetime no Keycloak",
-    "location": "Keycloak > Realm Settings > Tokens",
-    "values": {
-      "Access Token Lifespan": "300 (5 min) ou mais",
-      "SSO Session Idle": "1800 (30 min)"
-    }
-  },
-  "solution_3": {
-    "description": "Forçar re-login",
-    "action": "Redirect para /auth/login quando refresh falha"
-  }
-}
-```
-
-## 403 Forbidden em Seção Permitida
-
-**Sintoma:** Usuário com role correta recebe 403.
-
-```json
-{
-  "problem": "forbidden_wrong_role",
-  "debug_steps": [
-    "1. Verificar roles no JWT: jwt.io para decodificar",
-    "2. Verificar claim realm_access.roles existe",
-    "3. Verificar mapeamento de roles no middleware",
-    "4. Verificar herança de roles está implementada"
-  ]
-}
-```
-
-**Verificação de JWT:**
-
-```bash
-# Copiar access_token do cookie e decodificar
-# Em jwt.io ou via código:
-
-# Payload esperado:
-{
-  "realm_access": {
-    "roles": ["user", "field-coordinator"]
-  },
-  "tenant_id": "uuid-do-tenant"
-}
-```
+Sintoma: usuario com role correta recebe 403. Passos de debug: verificar roles no JWT decodificando em jwt.io, confirmar que claim realm_access.roles existe e contem role esperada, verificar mapeamento de roles no middleware, e confirmar que heranca de roles esta implementada. O payload JWT deve conter realm_access.roles com array de roles do usuario e tenant_id com UUID do tenant.
 
 ## Problemas de CORS
 
-### Erro de CORS em Fetch para API
+Sintoma: erro Access-Control-Allow-Origin no console, fetch failed com CORS policy.
 
-**Sintoma:** `Access-Control-Allow-Origin` error no console.
-
-```json
-{
-  "problem": "cors_error",
-  "symptoms": [
-    "Fetch failed: CORS policy",
-    "No 'Access-Control-Allow-Origin' header"
-  ]
-}
-```
-
-**Soluções:**
-
-```json
-{
-  "keycloak_cors": {
-    "location": "Keycloak > Clients > carf-webdocs > Web Origins",
-    "add": [
-      "http://localhost:4321",
-      "https://docs.carf.com.br"
-    ]
-  },
-  "geoapi_cors": {
-    "location": "GeoAPI appsettings.json ou Program.cs",
-    "add_origin": "https://docs.carf.com.br"
-  },
-  "proxy_solution": {
-    "description": "Usar API route do Astro como proxy",
-    "example": "/api/proxy/[...path].ts proxies para GeoAPI"
-  }
-}
-```
-
----
-
-**Última atualização:** 2026-01-21
-**Status do arquivo**: Review
+| Servico | Local de Configuracao | Acao |
+|---|---|---|
+| Keycloak | Clients, carf-webdocs, Web Origins | Adicionar http://localhost:4321 e https://docs.carf.com.br |
+| GeoAPI | appsettings.json ou Program.cs | Adicionar https://docs.carf.com.br como origem |
+| Proxy alternativo | src/pages/api/proxy/[...path].ts | Usar API route do Astro como proxy para GeoAPI |

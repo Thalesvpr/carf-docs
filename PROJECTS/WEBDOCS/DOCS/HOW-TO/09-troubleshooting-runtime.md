@@ -1,197 +1,65 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-21
+updated: 2026-02-07
 ---
 
 # Troubleshooting - Runtime
 
-Resolução de problemas de runtime, performance e desenvolvimento local.
+Resolucao de problemas de runtime, performance e desenvolvimento local. Arquivos relacionados: 09-troubleshooting-auth.md para problemas de autenticacao e 09-troubleshooting-build.md para problemas de build.
 
-Arquivos relacionados:
-- Problemas de auth: `09-troubleshooting-auth.md`
-- Problemas de build: `09-troubleshooting-build.md`
+## Health Check Sempre Failing
 
-## Problemas de Status Page
+Sintoma: servico mostra como offline na status page mesmo estando online.
 
-### Health Check Sempre Failing
+| Passo | Acao | Verificacao |
+|---|---|---|
+| 1 | Testar endpoint diretamente via browser ou ferramenta HTTP | Resposta retorna status esperado |
+| 2 | Verificar timeout | Timeout configurado pode ser muito curto para servico |
+| 3 | Verificar CORS | Health endpoint deve permitir origem do WEBDOCS |
+| 4 | Verificar SSL | Certificado valido e nao expirado |
 
-**Sintoma:** Serviço mostra como offline mesmo estando online.
+## Status Page Mostra Dados Antigos
 
-```json
-{
-  "problem": "health_check_failing",
-  "debug_steps": [
-    {
-      "step": 1,
-      "action": "Testar endpoint diretamente",
-      "command": "curl -v https://api.carf.com.br/health"
-    },
-    {
-      "step": 2,
-      "action": "Verificar timeout",
-      "check": "Timeout configurado pode ser muito curto"
-    },
-    {
-      "step": 3,
-      "action": "Verificar CORS",
-      "check": "Health endpoint deve permitir origem do WEBDOCS"
-    },
-    {
-      "step": 4,
-      "action": "Verificar SSL",
-      "check": "Certificado válido e não expirado"
-    }
-  ]
-}
-```
+Sintoma: status nao atualiza mesmo com refresh. Causa tipica e SSR com cache ou CDN cache. Verificar que response inclui Cache-Control no-cache, adicionar parametro timestamp na URL se necessario, e confirmar que vercel.json nao esta cacheando rota /status.
 
-### Status Page Mostra Dados Antigos
+## Pagina Carrega Lentamente
 
-**Sintoma:** Status não atualiza mesmo com refresh.
+Sintoma: Lighthouse mostra score baixo de performance nas metricas LCP, FCP, TTI e CLS.
 
-```json
-{
-  "problem": "stale_status",
-  "cause": "SSR com cache ou CDN cache",
-  "solutions": [
-    "Verificar Cache-Control: no-cache no response",
-    "Adicionar ?t={timestamp} na URL",
-    "Verificar vercel.json não está cacheando /status"
-  ]
-}
-```
+| Problema | Solucao |
+|---|---|
+| Imagens nao otimizadas | Usar astro:assets para otimizacao automatica |
+| JS bloqueando render | Adicionar defer ou async em scripts |
+| CSS nao utilizado | Aplicar PurgeCSS ou revisar imports |
+| Assets sem cache headers | Configurar Cache-Control conforme SPECS/24 |
 
-## Problemas de Performance
+## Bun/Node Version Mismatch
 
-### Página Carrega Lentamente
+Sintoma: erros estranhos ou comportamento inconsistente. Verificar versao do Bun (esperado 1.0.0 ou superior) e Node (esperado 20.0.0 ou superior). Atualizar Bun reinstalando via script oficial e Node via nvm.
 
-**Sintoma:** Lighthouse mostra score baixo de performance.
+## Hot Reload Nao Funciona
 
-```json
-{
-  "problem": "slow_page_load",
-  "diagnostic": {
-    "tool": "Lighthouse ou WebPageTest",
-    "metrics": ["LCP", "FCP", "TTI", "CLS"]
-  },
-  "common_fixes": {
-    "large_images": {
-      "issue": "Imagens não otimizadas",
-      "fix": "Usar astro:assets para otimização automática"
-    },
-    "blocking_scripts": {
-      "issue": "JS bloqueando render",
-      "fix": "Adicionar defer ou async em scripts"
-    },
-    "unused_css": {
-      "issue": "CSS não utilizado",
-      "fix": "PurgeCSS ou revisar imports"
-    },
-    "no_caching": {
-      "issue": "Assets sem cache headers",
-      "fix": "Configurar Cache-Control conforme SPECS/24"
-    }
-  }
-}
-```
+Sintoma: mudancas no codigo nao refletem no browser. Verificar se dev server esta rodando, reiniciar com Ctrl+C e bun dev, limpar cache do Astro removendo pasta .astro, e confirmar que arquivo esta sendo watched pelo servidor.
 
-## Problemas de Desenvolvimento Local
+## Erro de Permissao em Windows
 
-### Bun/Node Version Mismatch
-
-**Sintoma:** Erros estranhos ou comportamento inconsistente.
-
-```json
-{
-  "problem": "version_mismatch",
-  "check": {
-    "bun": "bun --version (esperado: >= 1.0.0)",
-    "node": "node --version (esperado: >= 20.0.0)"
-  },
-  "fix": {
-    "bun": "curl -fsSL https://bun.sh/install | bash",
-    "node": "nvm use 20"
-  }
-}
-```
-
-### Hot Reload Não Funciona
-
-**Sintoma:** Mudanças no código não refletem no browser.
-
-```json
-{
-  "problem": "hot_reload_broken",
-  "solutions": [
-    "Verificar se dev server está rodando",
-    "Reiniciar dev server (Ctrl+C e bun dev)",
-    "Limpar cache do Astro: rm -rf .astro",
-    "Verificar se arquivo está sendo watched"
-  ]
-}
-```
-
-### Erro de Permissão em Windows
-
-**Sintoma:** `EPERM: operation not permitted`.
-
-```json
-{
-  "problem": "windows_permission",
-  "solutions": [
-    "Fechar VSCode/editores que podem estar lockando arquivos",
-    "Executar terminal como administrador",
-    "Desabilitar antivírus temporariamente",
-    "Usar WSL2 para desenvolvimento"
-  ]
-}
-```
+Sintoma: EPERM operation not permitted. Fechar VS Code e outros editores que podem estar lockando arquivos. Executar terminal como administrador. Desabilitar antivirus temporariamente. Considerar usar WSL2 para desenvolvimento.
 
 ## Logs e Debugging
 
-### Habilitar Debug Logs
+Para habilitar logs detalhados em desenvolvimento, executar bun dev com variavel DEBUG. Usar DEBUG=astro:* para logs do Astro, DEBUG=auth:* para apenas autenticacao, ou DEBUG=* para todos logs. Em producao no Vercel, acessar logs via CLI com vercel logs seguido da URL do site com flag --follow, ou via dashboard em Deployments, Functions, Logs.
 
-```bash
-# Astro verbose
-DEBUG=astro:* bun dev
+## Checklist de Diagnostico
 
-# Apenas auth
-DEBUG=auth:* bun dev
-
-# Tudo
-DEBUG=* bun dev
-```
-
-### Verificar Logs em Produção (Vercel)
-
-```bash
-# Via CLI
-vercel logs https://docs.carf.com.br --follow
-
-# Ou via dashboard
-# Vercel > Project > Deployments > Functions > Logs
-```
-
-## Checklist de Diagnóstico
-
-```json
-{
-  "diagnostic_checklist": [
-    "[ ] Console do browser sem erros?",
-    "[ ] Network tab mostra requests OK (200)?",
-    "[ ] Cookies estão sendo salvos?",
-    "[ ] Variáveis de ambiente configuradas?",
-    "[ ] Build local passa sem erros?",
-    "[ ] Keycloak está acessível?",
-    "[ ] GeoAPI health check OK?",
-    "[ ] DNS resolvendo corretamente?",
-    "[ ] SSL/TLS válido?"
-  ]
-}
-```
-
----
-
-**Última atualização:** 2026-01-21
-**Status do arquivo**: Review
+| Verificacao |
+|---|
+| Console do browser sem erros |
+| Network tab mostra requests com status 200 |
+| Cookies sendo salvos corretamente |
+| Variaveis de ambiente configuradas |
+| Build local passa sem erros |
+| Keycloak acessivel |
+| GeoAPI health check retornando OK |
+| DNS resolvendo corretamente |
+| SSL/TLS valido |

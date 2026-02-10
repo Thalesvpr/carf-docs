@@ -1,10 +1,61 @@
 ---
 type: leaf
 status: review
-description: "Estrutura caotica. Numeracao nao agrupa por categoria. Precisa reorganizar por agregado/contexto. Stub de 9 linhas - incompleto."
-updated: 2026-01-19
+updated: 2026-02-08
 ---
 
 # Entity Relationships
 
-Mapeamento completo de relacionamentos entre entidades do domínio especificando cardinalidades direções navegações e regras de integridade referencial de forma agnóstica a tecnologia. Relacionamentos principais incluem Community 1:N Units onde uma comunidade agrupa múltiplas unidades mas unidade pertence a apenas uma comunidade, relacionamento obrigatório em Unit, deletar Community deve validar ou cascade soft delete Units. Unit N:N Holders via UnitHolder entidade associativa armazenando tipo de vínculo (proprietário cônjuge morador) e percentual de propriedade, relacionamento bidirecional navegável, Unit pode ter múltiplos Holders e Holder pode estar em múltiplas Units, ao menos um vínculo obrigatório antes de aprovar Unit. Community 1:N Blocks hierarquia espacial opcional onde comunidade pode ser subdividida em quadras urbanas, Block pertence a uma Community, relacionamento opcional pode não existir em áreas rurais. Block 1:N Plots onde quadra contém múltiplos lotes individuais, Plot pertence a um Block, relacionamento opcional usado em áreas organizadas. Unit N:1 Plot opcional onde unidade pode estar vinculada a lote específico, relacionamento frequente em áreas urbanas regulares mas ausente em ocupações informais. Unit 1:N Documents polimórfico onde unidade possui anexos de fotos plantas PDFs, Document tem EntityType UNIT e EntityId referenciando Unit.Id, cascade delete Documents ao deletar Unit. Unit 1:N Annotations polimórfico onde unidade tem observações notas issues, Annotation tem EntityType UNIT e EntityId, soft delete preferencial. Holder 1:N Documents polimórfico documentos pessoais RG CPF, EntityType HOLDER. Team N:N Account via TeamMember entidade associativa com Role (LEADER MEMBER) e JoinedAt, relacionamento bidirecional. Community N:N Team OU N:N Account via CommunityAuthorization entidade controle de acesso, Authorization tem TeamId OU AccountId mutuamente exclusivo, campos CanRead CanCreate CanEdit, validação antes de operações em Community ou Units. SurveyPoint N:1 Community pontos topográficos pertencem a comunidade, 1:N SurveyProcessing histórico de processamentos GPS, 1:1 Monograph documentação técnica. LegitimationRequest N:1 Unit solicitação para unidade, 1:N LegitimationResponse pareceres múltiplos ao longo do processo, LegitimationResponse 1:1 LegitimationCertificate certidão emitida após aprovação. DescriptiveMemorial N:1 Unit memorial descritivo, nullable FK CertificateId vinculando a certidão. LegitimationPlan N:1 Unit planta técnica, FKs MemorialId e nullable CertificateId. Todos relacionamentos N:1 obrigatórios devem validar existência de FK antes de criar, relacionamentos opcionais permitem null, cascade delete deve ser cuidadoso usando soft delete quando possível, e navegações bidirecionais devem manter consistência em ambos lados.
+Mapeamento completo de relacionamentos entre entidades do dominio especificando cardinalidades, direcoes de navegacao e regras de integridade referencial de forma agnostica a tecnologia.
+
+## Relacionamentos Hierarquicos
+
+| Origem | Destino | Cardinalidade | Obrigatorio | Descricao |
+|--------|---------|---------------|-------------|-----------|
+| Community | Unit | 1:N | sim (em Unit) | Comunidade agrupa multiplas unidades. community_id obrigatorio em units. |
+| Community | Block | 1:N | sim (em Block) | Comunidade subdividida em quadras. Opcional em areas rurais. |
+| Block | Plot | 1:N | sim (em Plot) | Quadra contem multiplos lotes. |
+| Unit | Plot | N:1 | nao | Unidade pode estar vinculada a lote especifico. Ausente em ocupacoes informais. |
+| Unit | Building | N:1 | nao | Unidade pode pertencer a edificacao (predio, vila). |
+| Plot | Building | 1:N | nao | Edificacao pode existir sem lote formal (plot_id nullable). |
+
+## Relacionamentos N:N (via tabela associativa)
+
+| Origem | Destino | Tabela Associativa | Campos Extras | Descricao |
+|--------|---------|-------------------|---------------|-----------|
+| Unit | Holder | unit_holders | relationship_type, ownership_percentage, is_primary | Vinculo titular-unidade com tipo e percentual. |
+| Team | Account | team_members | role (COORDINATOR, CADASTRATOR), joined_at, left_at | Membros de equipe com papel e periodo. |
+| Community | Team/Account | community_authorizations | permission_level, team_id XOR account_id | Controle de acesso granular por comunidade. |
+
+## Relacionamentos Polimorficos
+
+| Entidade | Alvo | Campos | Descricao |
+|----------|------|--------|-----------|
+| Document | UNIT, HOLDER, COMMUNITY | entity_type, entity_id | Anexos vinculados a qualquer entidade. |
+| Annotation | UNIT, HOLDER, COMMUNITY | entity_type, entity_id | Observacoes vinculadas a qualquer entidade. |
+
+## Relacionamentos de Legitimacao
+
+| Origem | Destino | Cardinalidade | Descricao |
+|--------|---------|---------------|-----------|
+| LegitimationRequest | Unit | N:1 | Solicitacao vinculada a unidade. UNIQUE parcial impedindo dois processos ativos para mesma unit. |
+| LegitimationRequest | LegitimationResponse | 1:N | Pareceres multiplos ao longo do processo. |
+| LegitimationRequest | LegitimationCertificate | 1:0..1 | Certidao emitida apos aprovacao. |
+| DescriptiveMemorial | Unit | N:1 | Memorial descritivo da unidade. FK CertificateId nullable. |
+| LegitimationPlan | Unit | N:1 | Planta tecnica. FKs MemorialId (obrigatorio) e CertificateId (nullable). |
+
+## Relacionamentos de Ortofotos e Topografia
+
+| Origem | Destino | Cardinalidade | Descricao |
+|--------|---------|---------------|-----------|
+| Ortofoto | Community | N:1 | Ortofoto opcional vinculada a comunidade. community_id nullable. |
+| SurveyPoint | Community | N:1 | Pontos topograficos pertencem a comunidade. |
+
+## Regras Gerais de Integridade
+
+| Regra | Descricao |
+|-------|-----------|
+| FK obrigatorio | Relacionamentos N:1 obrigatorios validam existencia da FK antes de criar. |
+| Soft delete preferencial | Cascade delete usa soft delete quando possivel, preservando historico. |
+| Navegacao bidirecional | Navegacoes bidirecionais devem manter consistencia em ambos os lados. |
+| Referencia por ID | Agregados referenciam outros agregados por ID, nao por objeto, evitando acoplamento. |

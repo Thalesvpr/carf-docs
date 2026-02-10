@@ -1,115 +1,34 @@
 ---
 type: leaf
-status: review
-description: "Mais codigo que prosa - arquivo e 95% blocos de codigo C#"
-updated: 2026-01-22
+status: active
+updated: 2026-02-07
 ---
 
 # Unit Validators
 
-Validadores FluentValidation para commands e DTOs de unidades.
+Os validators da GEOAPI utilizam FluentValidation para validar requests de entrada e commands do MediatR. Cada validator herda de AbstractValidator e define regras declarativas.
 
 ## CreateUnitRequestValidator
 
-```csharp
-public class CreateUnitRequestValidator : AbstractValidator<CreateUnitRequest>
-{
-    public CreateUnitRequestValidator()
-    {
-        RuleFor(x => x.Address)
-            .NotNull()
-            .SetValidator(new AddressValidator());
-
-        RuleFor(x => x.Geometry)
-            .NotNull()
-            .SetValidator(new GeometryValidator());
-
-        RuleFor(x => x.Photos)
-            .ForEach(p => p.SetValidator(new PhotoValidator()))
-            .When(x => x.Photos != null);
-    }
-}
-```
+Valida o request de criacao de unidade. O campo Address e obrigatorio e delegado ao AddressValidator. O campo Geometry e obrigatorio e delegado ao GeometryValidator. O campo Photos, quando presente, tem cada item validado pelo PhotoValidator.
 
 ## AddressValidator
 
-```csharp
-public class AddressValidator : AbstractValidator<AddressDto>
-{
-    public AddressValidator()
-    {
-        RuleFor(x => x.Street)
-            .NotEmpty().WithMessage("Rua é obrigatória")
-            .MaximumLength(200);
+Valida o DTO de endereco com as seguintes regras:
 
-        RuleFor(x => x.Number)
-            .NotEmpty().WithMessage("Número é obrigatório")
-            .MaximumLength(20);
-
-        RuleFor(x => x.Neighborhood)
-            .NotEmpty().WithMessage("Bairro é obrigatório")
-            .MaximumLength(100);
-
-        RuleFor(x => x.City)
-            .NotEmpty().WithMessage("Cidade é obrigatória")
-            .MaximumLength(100);
-
-        RuleFor(x => x.State)
-            .NotEmpty()
-            .Matches("^[A-Z]{2}$").WithMessage("Estado deve ter 2 letras maiúsculas");
-
-        RuleFor(x => x.ZipCode)
-            .NotEmpty()
-            .Matches(@"^\d{5}-?\d{3}$").WithMessage("CEP inválido");
-    }
-}
-```
+| Campo | Regras | Mensagem de Erro |
+|-------|--------|-----------------|
+| Street | Obrigatorio, maximo 200 caracteres | Rua e obrigatoria |
+| Number | Obrigatorio, maximo 20 caracteres | Numero e obrigatorio |
+| Neighborhood | Obrigatorio, maximo 100 caracteres | Bairro e obrigatorio |
+| City | Obrigatorio, maximo 100 caracteres | Cidade e obrigatoria |
+| State | Obrigatorio, regex duas letras maiusculas | Estado deve ter 2 letras maiusculas |
+| ZipCode | Obrigatorio, regex 5 digitos hifen 3 digitos | CEP invalido |
 
 ## GeometryValidator
 
-```csharp
-public class GeometryValidator : AbstractValidator<GeometryDto>
-{
-    public GeometryValidator()
-    {
-        RuleFor(x => x.Type)
-            .Equal("Polygon").WithMessage("Tipo deve ser Polygon");
-
-        RuleFor(x => x.Coordinates)
-            .NotEmpty().WithMessage("Coordenadas são obrigatórias")
-            .Must(BeValidPolygon).WithMessage("Polígono inválido")
-            .Must(NotBeSelfIntersecting).WithMessage("Polígono não pode ter auto-intersecção");
-    }
-
-    private bool BeValidPolygon(double[][][] coords)
-    {
-        if (coords == null || coords.Length == 0) return false;
-        var ring = coords[0];
-        return ring.Length >= 4 && ring[0].SequenceEqual(ring[^1]);
-    }
-
-    private bool NotBeSelfIntersecting(double[][][] coords)
-    {
-        var polygon = GeometryFactory.CreatePolygon(coords);
-        return polygon.IsValid;
-    }
-}
-```
+Valida o DTO de geometria GeoJSON. O campo Type deve ser igual a "Polygon". O campo Coordinates e obrigatorio e deve satisfazer duas regras customizadas: BeValidPolygon verifica que o anel externo tem ao menos 4 pontos e que o primeiro ponto e igual ao ultimo (poligono fechado). NotBeSelfIntersecting cria o poligono via GeometryFactory e verifica que a propriedade IsValid e verdadeira.
 
 ## UpdateUnitRequestValidator
 
-```csharp
-public class UpdateUnitRequestValidator : AbstractValidator<UpdateUnitRequest>
-{
-    public UpdateUnitRequestValidator()
-    {
-        RuleFor(x => x.Address)
-            .SetValidator(new AddressValidator())
-            .When(x => x.Address != null);
-
-        RuleFor(x => x.Geometry)
-            .SetValidator(new GeometryValidator())
-            .When(x => x.Geometry != null);
-    }
-}
-```
+Valida o request de atualizacao de unidade. Ambos os campos Address e Geometry sao opcionais. Quando presentes, sao delegados aos respectivos validators (AddressValidator e GeometryValidator) via clausula condicional When.

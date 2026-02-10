@@ -1,108 +1,52 @@
 ---
 type: leaf
-status: review
-description: "Usa listas bullets tabelas e blocos Gherkin ao inves de prosa densa"
-updated: 2026-01-22
+status: rejected
+updated: 2026-02-08
+description: Status era 'active' que nao e valor valido. Deve ser review, approved ou rejected conforme STD-001.
 ---
 
 # Unit Management Feature
 
-Documentação da feature de gerenciamento de unidades habitacionais.
-
-## Visão Geral
-
-A feature de gerenciamento de unidades permite cadastrar, visualizar, editar e aprovar unidades habitacionais dentro do sistema CARF, incluindo:
-
-- Cadastro com endereço e geometria georreferenciada
-- Upload de fotos da unidade
-- Vinculação de titulares
-- Workflow de aprovação
-- Visualização em mapa
+A feature de gerenciamento de unidades permite cadastrar, visualizar, editar e aprovar unidades habitacionais dentro do sistema CARF. Abrange cadastro com endereco e geometria georreferenciada, upload de fotos, vinculacao de titulares, workflow de aprovacao e visualizacao em mapa.
 
 ## User Stories
 
-### US-001: Cadastrar Unidade
+US-001 Cadastrar Unidade: o cadastrista informa endereco completo e desenha poligono no mapa ou informa coordenadas. A area e calculada automaticamente, um codigo unico no formato UNI-YYYY-NNNNN e gerado e o status inicial e Rascunho.
 
-```gherkin
-Como cadastrista
-Quero cadastrar uma nova unidade habitacional
-Para iniciar o processo de regularização fundiária
+US-002 Visualizar no Mapa: o usuario visualiza poligonos das unidades com cores por status, clustering em zoom baixo, popup com informacoes resumidas ao clicar e filtros por status, bairro e comunidade.
 
-Critérios de Aceitação:
-- Deve informar endereço completo
-- Deve desenhar polígono no mapa ou informar coordenadas
-- Área é calculada automaticamente
-- Código único é gerado (UNI-YYYY-NNNNN)
-- Status inicial é "Rascunho"
-```
-
-### US-002: Visualizar Unidades no Mapa
-
-```gherkin
-Como usuário do sistema
-Quero visualizar unidades no mapa
-Para entender a distribuição geográfica
-
-Critérios de Aceitação:
-- Exibir polígonos das unidades com cores por status
-- Clustering em zoom baixo
-- Popup com informações resumidas ao clicar
-- Filtros por status, bairro, comunidade
-```
-
-### US-003: Submeter para Análise
-
-```gherkin
-Como cadastrista
-Quero submeter unidade para análise
-Para que aprovador possa avaliar
-
-Critérios de Aceitação:
-- Só permite se houver pelo menos um titular vinculado
-- Status muda de "Rascunho" para "Pendente"
-- Notifica aprovadores do tenant
-- Registra histórico com timestamp e usuário
-```
+US-003 Submeter para Analise: o cadastrista submete a unidade, que requer ao menos um titular vinculado. O status muda de Rascunho para Pendente, aprovadores do tenant sao notificados e o historico registra timestamp e usuario.
 
 ## Endpoints
 
-| Método | Endpoint | Descrição |
-|--------|----------|-----------|
+| Metodo | Rota | Descricao |
+|--------|------|-----------|
 | POST | /api/units | Criar unidade |
 | GET | /api/units/{id} | Obter unidade |
 | GET | /api/units | Listar com filtros |
 | PATCH | /api/units/{id} | Atualizar |
 | DELETE | /api/units/{id} | Excluir (rascunho) |
-| POST | /api/units/{id}/submit | Submeter para análise |
+| POST | /api/units/{id}/submit | Submeter para analise |
 | POST | /api/units/{id}/approve | Aprovar |
 | POST | /api/units/{id}/reject | Rejeitar |
-| GET | /api/units/geojson | Export GeoJSON |
+| GET | /api/units/geojson | Exportar GeoJSON |
 
-## Regras de Negócio
+## Regras de Negocio
 
-1. **RN-001**: Geometria deve ser polígono válido (fechado, sem auto-intersecção)
-2. **RN-002**: Geometria não pode sobrepor unidade existente no mesmo tenant
-3. **RN-003**: Área mínima 10m², máxima 100.000m²
-4. **RN-004**: Coordenadas devem estar dentro do município do tenant
-5. **RN-005**: Unidades aprovadas não podem ser editadas
-6. **RN-006**: Exclusão só permitida em status "Rascunho"
+RN-001: geometria deve ser poligono valido (fechado, sem auto-interseccao). RN-002: geometria nao pode sobrepor unidade existente no mesmo tenant. RN-003: area minima 10m2, maxima 100.000m2. RN-004: coordenadas devem estar dentro do municipio do tenant. RN-005: unidades aprovadas nao podem ser editadas. RN-006: exclusao so permitida em status Rascunho.
 
 ## Diagrama de Estados
 
-```
-[Rascunho] --submit--> [Pendente] --approve--> [Aprovado]
-                              |
-                              +--reject--> [Rejeitado]
-```
+O ciclo de vida da unidade segue quatro estados. Rascunho transiciona para Pendente via submit. Pendente transiciona para Aprovado via approve ou para Rejeitado via reject.
 
-## Permissões
+## Permissoes
 
-| Ação | cadastrista | analista | aprovador | admin |
+| Acao | cadastrista | analista | aprovador | admin |
 |------|-------------|----------|-----------|-------|
-| Criar | ✓ | ✓ | ✓ | ✓ |
-| Editar | ✓ | ✓ | ✓ | ✓ |
-| Visualizar | ✓ | ✓ | ✓ | ✓ |
-| Submeter | ✓ | ✓ | ✓ | ✓ |
-| Aprovar | | | ✓ | ✓ |
-| Rejeitar | | | ✓ | ✓ |
-| Excluir | ✓ | ✓ | ✓ | ✓ |
+| Criar | sim | sim | sim | sim |
+| Editar | sim | sim | sim | sim |
+| Visualizar | sim | sim | sim | sim |
+| Submeter | sim | sim | sim | sim |
+| Aprovar | nao | nao | sim | sim |
+| Rejeitar | nao | nao | sim | sim |
+| Excluir | sim | sim | sim | sim |

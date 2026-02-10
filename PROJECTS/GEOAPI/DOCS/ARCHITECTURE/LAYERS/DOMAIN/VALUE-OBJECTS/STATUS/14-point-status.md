@@ -1,13 +1,39 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-12
+updated: 2026-02-08
 ---
 
 # PointStatus
 
-Value object enum representando estado no workflow de processamento de pontos topográficos desde coleta em campo até aprovação final para uso em documentos técnicos de regularização. Valores possíveis são COLLECTED (ponto coletado em campo com coordenadas brutas do receptor GPS mas ainda não processado com correção diferencial), PROCESSED (coordenadas processadas usando estações RBMC base com cálculo de precisões mas aguardando validação técnica), APPROVED (ponto validado e aprovado para uso em memoriais descritivos e plantas oficiais), e REJECTED (ponto rejeitado por precisão insuficiente devendo ser recoletado).
+Value object enum representando o estado no workflow de processamento de pontos topograficos desde coleta em campo ate aprovacao final para uso em documentos tecnicos de regularizacao. Controla o fluxo de vida de cada ponto geodesico coletado por receptores GPS.
 
-Métodos incluem CanProcess() verificando se está em COLLECTED permitindo processamento, CanApprove() verificando se está em PROCESSED permitindo aprovação, CanUseInDocuments() retornando true apenas para APPROVED, RequiresRecollection() verificando se REJECTED exige nova ida a campo, e ValidateTransition(PointStatus newStatus) lançando exception se transição inválida.
+O fluxo segue sequencia linear com possibilidade de rejeicao: COLLECTED -> PROCESSED -> APPROVED ou REJECTED.
 
-Usado em SurveyPoint.Status controlando fluxo COLLECTED → PROCESSED → {APPROVED | REJECTED} com domain events disparados nas transições, validado em DescriptiveMemorial e LegitimationPlan garantindo que apenas pontos APPROVED têm coordenadas incluídas em documentos oficiais, e integra com Role onde FIELD_COORDINATOR ou FIELD_CADASTRATOR coleta pontos, SURVEYOR processa, e MANAGER aprova ou rejeita.
+## Valores Permitidos
+
+| Valor | Descricao |
+| --- | --- |
+| COLLECTED | Ponto coletado em campo com coordenadas brutas do receptor GPS, ainda nao processado. |
+| PROCESSED | Coordenadas processadas usando estacoes RBMC base com calculo de precisoes. |
+| APPROVED | Ponto validado e aprovado para uso em memoriais descritivos e plantas oficiais. |
+| REJECTED | Ponto rejeitado por precisao insuficiente, devendo ser recoletado. |
+
+## Transicoes Validas
+
+| De | Para | Condicao |
+| --- | --- | --- |
+| COLLECTED | PROCESSED | Processamento com correcao diferencial concluido. |
+| PROCESSED | APPROVED | Precisao atende requisito do tipo de ponto. |
+| PROCESSED | REJECTED | Precisao insuficiente para o tipo de ponto. |
+
+## Metodos Principais
+
+| Metodo | Retorno | Descricao |
+| --- | --- | --- |
+| CanProcess() | bool | Verifica se esta em COLLECTED. |
+| CanApprove() | bool | Verifica se esta em PROCESSED. |
+| CanUseInDocuments() | bool | Retorna true apenas para APPROVED. |
+| ValidateTransition(PointStatus) | void | Lanca exception se transicao invalida. |
+
+Usado em SurveyPoint.Status controlando fluxo com domain events disparados nas transicoes, validado em DescriptiveMemorial e LegitimationPlan garantindo que apenas pontos APPROVED sao incluidos em documentos oficiais.

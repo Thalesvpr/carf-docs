@@ -1,397 +1,54 @@
 ---
 type: leaf
-title: "File Upload - @carf/geoapi-client"
 status: review
-updated: 2026-01-21
-source: "interno"
+updated: 2026-02-07
 ---
 
 # File Upload - Guia Pratico
 
-Guia para upload de arquivos usando a Documents API.
+Guia para upload de arquivos usando a Documents API do @carf/geoapi-client.
 
 ## Upload Basico
 
-```typescript
-const file = document.getElementById('fileInput').files[0]
-
-const document = await api.documents.upload(file, {
-  type: 'ID_DOCUMENT',
-  entityType: 'HOLDER',
-  entityId: 'holder-123'
-})
-
-console.log('Upload completo:', document.id)
-```
+O upload utiliza api.documents.upload passando o arquivo, um objeto de metadados com type (tipo do documento, por exemplo ID_DOCUMENT), entityType (HOLDER, UNIT ou COMMUNITY) e entityId (UUID da entidade associada). O retorno contem o id do documento criado.
 
 ## Upload com Progresso
 
-```typescript
-const document = await api.documents.upload(file, metadata, {
-  onProgress: (progress) => {
-    console.log(`${progress.percentage}% (${progress.loaded}/${progress.total} bytes)`)
-  }
-})
-```
+O terceiro parametro de api.documents.upload aceita um callback onProgress que recebe um objeto com percentage (0 a 100), loaded (bytes enviados) e total (bytes totais). Uso tipico: atualizar uma barra de progresso na interface.
 
-## Componente React
+## Componente de Upload Simples
 
-### Upload Simples
+Um componente React de upload mantem estados de uploading (boolean), progress (numero de 0 a 100) e error (string ou null). Ao selecionar arquivo via input file, reseta os estados, marca uploading como verdadeiro, chama api.documents.upload com o callback de progresso e trata erros. O input aceita extensoes .pdf, .jpg, .jpeg e .png e fica desabilitado durante upload. Uma barra de progresso aparece durante o envio e mensagens de erro sao exibidas quando ocorrem.
 
-```tsx
-import { useState } from 'react'
-import { useApi } from '../hooks/useApi'
-import { DocumentType, UploadDocumentDTO } from '@carf/tscore/types'
+As props do componente sao:
 
-interface FileUploadProps {
-  entityType: 'UNIT' | 'HOLDER' | 'COMMUNITY'
-  entityId: string
-  documentType: DocumentType
-  onSuccess?: (document: Document) => void
-}
+| Prop | Tipo | Descricao |
+|:-----|:-----|:----------|
+| entityType | UNIT ou HOLDER ou COMMUNITY | Tipo da entidade associada |
+| entityId | string | UUID da entidade |
+| documentType | DocumentType | Tipo do documento |
+| onSuccess | funcao opcional | Callback com o documento criado |
 
-export function FileUpload({ entityType, entityId, documentType, onSuccess }: FileUploadProps) {
-  const api = useApi()
-  const [uploading, setUploading] = useState(false)
-  const [progress, setProgress] = useState(0)
-  const [error, setError] = useState<string | null>(null)
+## Upload com Drag and Drop
 
-  async function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0]
-    if (!file) return
-
-    // Reset state
-    setError(null)
-    setProgress(0)
-    setUploading(true)
-
-    try {
-      const doc = await api.documents.upload(
-        file,
-        {
-          type: documentType,
-          entityType,
-          entityId
-        },
-        {
-          onProgress: (p) => setProgress(p.percentage)
-        }
-      )
-
-      onSuccess?.(doc)
-    } catch (err) {
-      if (err instanceof Error) {
-        setError(err.message)
-      }
-    } finally {
-      setUploading(false)
-    }
-  }
-
-  return (
-    <div className="file-upload">
-      <input
-        type="file"
-        onChange={handleFileChange}
-        disabled={uploading}
-        accept=".pdf,.jpg,.jpeg,.png"
-      />
-
-      {uploading && (
-        <div className="progress-bar">
-          <div
-            className="progress-fill"
-            style={{ width: `${progress}%` }}
-          />
-          <span>{progress}%</span>
-        </div>
-      )}
-
-      {error && (
-        <div className="error">{error}</div>
-      )}
-    </div>
-  )
-}
-```
-
-### Upload com Drag & Drop
-
-```tsx
-import { useState, useCallback } from 'react'
-import { useDropzone } from 'react-dropzone'
-
-export function DragDropUpload({ entityType, entityId }: Props) {
-  const api = useApi()
-  const [files, setFiles] = useState<UploadFile[]>([])
-
-  interface UploadFile {
-    file: File
-    id: string
-    status: 'pending' | 'uploading' | 'success' | 'error'
-    progress: number
-    error?: string
-    document?: Document
-  }
-
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    // Adicionar arquivos a lista
-    const newFiles = acceptedFiles.map(file => ({
-      file,
-      id: crypto.randomUUID(),
-      status: 'pending' as const,
-      progress: 0
-    }))
-    setFiles(prev => [...prev, ...newFiles])
-
-    // Iniciar upload de cada arquivo
-    newFiles.forEach(uploadFile)
-  }, [])
-
-  async function uploadFile(uploadFile: UploadFile) {
-    // Marcar como uploading
-    setFiles(prev =>
-      prev.map(f =>
-        f.id === uploadFile.id
-          ? { ...f, status: 'uploading' as const }
-          : f
-      )
-    )
-
-    try {
-      const doc = await api.documents.upload(
-        uploadFile.file,
-        {
-          type: 'OTHER',
-          entityType,
-          entityId
-        },
-        {
-          onProgress: (p) => {
-            setFiles(prev =>
-              prev.map(f =>
-                f.id === uploadFile.id
-                  ? { ...f, progress: p.percentage }
-                  : f
-              )
-            )
-          }
-        }
-      )
-
-      // Marcar como sucesso
-      setFiles(prev =>
-        prev.map(f =>
-          f.id === uploadFile.id
-            ? { ...f, status: 'success' as const, document: doc }
-            : f
-        )
-      )
-    } catch (err) {
-      // Marcar como erro
-      setFiles(prev =>
-        prev.map(f =>
-          f.id === uploadFile.id
-            ? { ...f, status: 'error' as const, error: err.message }
-            : f
-        )
-      )
-    }
-  }
-
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop,
-    accept: {
-      'image/*': ['.jpg', '.jpeg', '.png'],
-      'application/pdf': ['.pdf']
-    },
-    maxSize: 10 * 1024 * 1024  // 10MB
-  })
-
-  return (
-    <div>
-      <div
-        {...getRootProps()}
-        className={`dropzone ${isDragActive ? 'active' : ''}`}
-      >
-        <input {...getInputProps()} />
-        {isDragActive ? (
-          <p>Solte os arquivos aqui...</p>
-        ) : (
-          <p>Arraste arquivos ou clique para selecionar</p>
-        )}
-      </div>
-
-      <ul className="file-list">
-        {files.map(f => (
-          <li key={f.id} className={`file-item ${f.status}`}>
-            <span className="name">{f.file.name}</span>
-            {f.status === 'uploading' && (
-              <progress value={f.progress} max={100} />
-            )}
-            {f.status === 'success' && <span>Enviado</span>}
-            {f.status === 'error' && <span className="error">{f.error}</span>}
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
-}
-```
+O componente de drag-and-drop usa a biblioteca react-dropzone com useDropzone. Mantem uma lista de UploadFile, cada um com file, id (UUID gerado), status (pending, uploading, success ou error), progress e opcionalmente error e document. Ao soltar arquivos, adiciona-os a lista e inicia upload individual de cada um. A area de drop aceita image/* (.jpg, .jpeg, .png) e application/pdf (.pdf) com tamanho maximo de 10 MB. Uma lista abaixo da area mostra o status de cada arquivo com barra de progresso durante envio.
 
 ## Upload com Cancelamento
 
-```typescript
-import { CancelToken } from '@carf/geoapi-client'
-
-function UploadWithCancel() {
-  const [cancelToken, setCancelToken] = useState<CancelTokenSource | null>(null)
-
-  async function startUpload(file: File) {
-    // Criar token de cancelamento
-    const source = CancelToken.source()
-    setCancelToken(source)
-
-    try {
-      const doc = await api.documents.upload(file, metadata, {
-        cancelToken: source.token,
-        onProgress: setProgress
-      })
-      return doc
-    } catch (error) {
-      if (CancelToken.isCancel(error)) {
-        console.log('Upload cancelado pelo usuario')
-      } else {
-        throw error
-      }
-    } finally {
-      setCancelToken(null)
-    }
-  }
-
-  function cancelUpload() {
-    cancelToken?.cancel('Cancelado pelo usuario')
-  }
-
-  return (
-    <div>
-      <input type="file" onChange={e => startUpload(e.target.files[0])} />
-      <button onClick={cancelUpload} disabled={!cancelToken}>
-        Cancelar
-      </button>
-    </div>
-  )
-}
-```
+O cancelamento usa CancelToken do geoapi-client. Cria-se um CancelToken.source, passa-se o token como opcao do upload e chama-se source.cancel quando o usuario solicita cancelamento. Erros de cancelamento sao detectados via CancelToken.isCancel e tratados silenciosamente. O botao de cancelar fica habilitado apenas durante o upload.
 
 ## Validacao de Arquivos
 
-### Client-side
-
-```typescript
-const MAX_FILE_SIZE = 10 * 1024 * 1024  // 10MB
-const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'application/pdf']
-const ALLOWED_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.pdf']
-
-function validateFile(file: File): string | null {
-  // Tamanho
-  if (file.size > MAX_FILE_SIZE) {
-    return `Arquivo muito grande. Maximo: ${MAX_FILE_SIZE / 1024 / 1024}MB`
-  }
-
-  // Tipo MIME
-  if (!ALLOWED_TYPES.includes(file.type)) {
-    return `Tipo de arquivo nao permitido: ${file.type}`
-  }
-
-  // Extensao
-  const ext = '.' + file.name.split('.').pop()?.toLowerCase()
-  if (!ALLOWED_EXTENSIONS.includes(ext)) {
-    return `Extensao nao permitida: ${ext}`
-  }
-
-  return null  // Valido
-}
-```
-
-### Antes do Upload
-
-```typescript
-async function handleUpload(file: File) {
-  // Validar
-  const error = validateFile(file)
-  if (error) {
-    toast.error(error)
-    return
-  }
-
-  // Upload
-  await api.documents.upload(file, metadata)
-}
-```
+A validacao client-side verifica tres criterios antes do envio: tamanho maximo de 10 MB, tipo MIME permitido (image/jpeg, image/png, application/pdf) e extensao permitida (.jpg, .jpeg, .png, .pdf). A funcao de validacao retorna null se o arquivo e valido ou uma string de erro descritiva.
 
 ## Compressao de Imagens
 
-```typescript
-import imageCompression from 'browser-image-compression'
-
-async function compressAndUpload(file: File) {
-  // Comprimir se for imagem maior que 1MB
-  let fileToUpload = file
-
-  if (file.type.startsWith('image/') && file.size > 1024 * 1024) {
-    fileToUpload = await imageCompression(file, {
-      maxSizeMB: 1,
-      maxWidthOrHeight: 1920,
-      useWebWorker: true
-    })
-    console.log(`Comprimido: ${file.size} -> ${fileToUpload.size}`)
-  }
-
-  return api.documents.upload(fileToUpload, metadata)
-}
-```
+Para imagens maiores que 1 MB, a biblioteca browser-image-compression comprime antes do envio, configurada com maxSizeMB de 1, maxWidthOrHeight de 1920 pixels e useWebWorker ativado.
 
 ## Multiplos Arquivos
 
-```typescript
-async function uploadMultiple(files: File[]) {
-  const results = await Promise.allSettled(
-    files.map(file =>
-      api.documents.upload(file, {
-        type: 'OTHER',
-        entityType: 'UNIT',
-        entityId: 'unit-123'
-      })
-    )
-  )
-
-  const successful = results.filter(r => r.status === 'fulfilled')
-  const failed = results.filter(r => r.status === 'rejected')
-
-  console.log(`${successful.length} enviados, ${failed.length} falharam`)
-}
-```
+O upload de multiplos arquivos usa Promise.allSettled para enviar todos em paralelo, separando os resultados entre fulfilled (sucesso) e rejected (falha) para exibir contagem de enviados e falhados.
 
 ## Tratamento de Erros
 
-```typescript
-try {
-  await api.documents.upload(file, metadata)
-} catch (error) {
-  if (error instanceof ValidationError) {
-    // Arquivo invalido
-    toast.error('Arquivo invalido: ' + error.message)
-  } else if (error.status === 413) {
-    // Payload too large
-    toast.error('Arquivo muito grande. Maximo: 10MB')
-  } else if (error.status === 415) {
-    // Unsupported media type
-    toast.error('Tipo de arquivo nao suportado')
-  } else if (error instanceof NetworkError) {
-    toast.error('Erro de conexao. Verifique sua internet.')
-  } else {
-    toast.error('Erro ao enviar arquivo')
-  }
-}
-```
+Erros de upload incluem: ValidationError (arquivo invalido), status 413 (payload too large, exibir limite de 10 MB), status 415 (unsupported media type) e NetworkError (erro de conexao).

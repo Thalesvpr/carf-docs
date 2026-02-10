@@ -1,96 +1,33 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-21
+updated: 2026-02-07
 ---
 
-# Embed de Vídeo
+# Embed de Video
 
-Guia para incluir vídeos do YouTube em páginas de documentação.
+Guia para incluir videos do YouTube em paginas de documentacao.
 
-Fazer upload do vídeo para canal YouTube do projeto ou canal pessoal autorizado. Configurar visibilidade como público ou não listado conforme necessidade. Copiar ID do vídeo da URL (parte após v= ou youtu.be/).
+## Preparacao do Video
 
-Usar componente YouTubeEmbed em arquivo MDX para embed responsivo. Importar componente no topo do arquivo e usar com props videoId contendo ID do vídeo e title descrevendo conteúdo para acessibilidade.
+Fazer upload do video para canal YouTube do projeto ou canal pessoal autorizado. Configurar visibilidade como publico ou nao listado conforme necessidade. Copiar ID do video da URL (parte apos v= ou youtu.be/).
 
-Alternativa em Markdown puro usa sintaxe de imagem com URL de thumbnail linkando para vídeo. Menos elegante que componente mas funciona em arquivos .md sem necessidade de MDX.
+## Componente MDX
 
-Adicionar transcrição abaixo do vídeo para acessibilidade. Usuários com deficiência auditiva ou em ambientes sem áudio se beneficiam de texto alternativo. Transcrição também melhora SEO pois conteúdo é indexável.
-
-Considerar timestamps para vídeos longos listando seções com links diretos para pontos específicos. Formato de link inclui parâmetro t com segundos (ex: ?t=120 para 2 minutos).
-
-Testar embed localmente verificando que vídeo carrega, player é responsivo em diferentes tamanhos de tela, e atributo title está presente no iframe para screen readers.
-
-Performance considerada com lazy loading habilitado por padrão no componente. Vídeo só carrega quando usuário scrolla até elemento reduzindo tempo de carregamento inicial da página.
-
-## Sintaxe do Componente MDX
-
-```mdx
----
-title: "Página com Vídeo"
----
-
-import { YouTubeEmbed } from '../../components/content/YouTubeEmbed.astro';
-
-# Tutorial em Vídeo
-
-Assista o vídeo abaixo para entender o processo:
-
-<YouTubeEmbed
-  videoId="dQw4w9WgXcQ"
-  title="Tutorial de cadastro de unidades"
-/>
-
-## Com tempo inicial
-
-<YouTubeEmbed
-  videoId="dQw4w9WgXcQ"
-  title="Seção sobre validação"
-  startTime={120}
-/>
-```
+Em arquivos .mdx, importar o componente YouTubeEmbed de components/content/YouTubeEmbed.astro no topo do arquivo. Utilizar o componente passando propriedade videoId com o ID do video e propriedade title descrevendo conteudo para acessibilidade. Para iniciar em ponto especifico, adicionar propriedade startTime com valor em segundos.
 
 ## Alternativa Markdown Puro
 
-Para arquivos .md sem suporte a MDX:
+Para arquivos .md sem suporte a MDX, usar sintaxe de imagem Markdown com URL de thumbnail do YouTube linkando para o video. A URL de thumbnail segue formato img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg e o link aponta para youtube.com/watch?v=VIDEO_ID. Menos elegante que componente mas funciona sem dependencia de MDX.
 
-```markdown
-[![Título do Vídeo](https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg)](https://www.youtube.com/watch?v=VIDEO_ID)
+## Transcricao
 
-*Clique na imagem para assistir no YouTube*
-```
+Adicionar transcricao abaixo do video para acessibilidade. Usuarios com deficiencia auditiva ou em ambientes sem audio se beneficiam de texto alternativo. Transcricao tambem melhora SEO pois conteudo e indexavel. Usar elemento details com summary para transcricao colapsavel, listando timestamps com descricao de cada secao do video.
 
-## Exemplo com Transcrição
+## Timestamps Clicaveis
 
-```mdx
-<YouTubeEmbed
-  videoId="dQw4w9WgXcQ"
-  title="Cadastro de unidades - tutorial completo"
-/>
+Para videos longos, listar secoes com links diretos para pontos especificos. Formato de link inclui parametro t com valor em segundos na URL do YouTube (ex: parametro t=120 para 2 minutos).
 
-<details>
-<summary>Transcrição do vídeo</summary>
+## Performance e Teste
 
-**00:00** - Introdução ao cadastro de unidades
-**01:30** - Acessando o módulo de cadastro
-**03:00** - Preenchendo campos obrigatórios
-**05:15** - Desenhando a geometria no mapa
-**08:00** - Salvando e enviando para aprovação
-
-</details>
-```
-
-## Timestamps Clicáveis
-
-```markdown
-### Índice do vídeo
-
-- [0:00 - Introdução](https://www.youtube.com/watch?v=VIDEO_ID&t=0)
-- [2:00 - Configuração inicial](https://www.youtube.com/watch?v=VIDEO_ID&t=120)
-- [5:30 - Cadastro de dados](https://www.youtube.com/watch?v=VIDEO_ID&t=330)
-- [10:00 - Validação e envio](https://www.youtube.com/watch?v=VIDEO_ID&t=600)
-```
-
----
-
-**Última atualização:** 2026-01-21
-**Status do arquivo**: Review
+Lazy loading habilitado por padrao no componente. Video so carrega quando usuario scrolla ate elemento reduzindo tempo de carregamento inicial. Testar embed localmente verificando que video carrega, player e responsivo em diferentes tamanhos de tela, e atributo title esta presente no iframe para screen readers.

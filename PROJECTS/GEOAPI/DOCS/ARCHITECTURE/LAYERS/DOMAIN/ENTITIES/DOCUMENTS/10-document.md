@@ -21,7 +21,7 @@ Documentos sao evidencias do processo de regularizacao fundiaria: fotos de facha
 | EntityType | string | nao | Tipo da entidade pai. Valores: UNIT, HOLDER, COMMUNITY. |
 | EntityId | Guid | nao | ID da entidade pai. Vinculo polimorfico. |
 | DocumentType | string | nao | Categoria do documento. Valores: RG (carteira de identidade), CPF (cadastro de pessoa fisica), CNH (carteira de habilitacao), COMPROVANTE_RESIDENCIA (conta de agua, luz, etc), FOTO_FACHADA (foto frontal do imovel), FOTO_DOCUMENTO (foto generica de documento), CERTIDAO (certidao oficial emitida), OUTRO (documento nao categorizado). |
-| FilePath | string | nao | Caminho completo no bucket S3. Formato: tenant_id/entity_type/entity_id/uuid.ext. |
+| FileKey | string | nao | Chave S3 do arquivo no bucket. Formato: tenant_id/entity_type/entity_id/uuid.ext. Mapeado para coluna `file_path` no banco. |
 | FileName | string | nao | Nome original do arquivo preservado para referencia do usuario. |
 | FileSize | long | nao | Tamanho em bytes. Limite maximo de 50MB. |
 | MimeType | string | nao | Tipo MIME do arquivo. Valores aceitos: image/jpeg, image/png, image/webp, application/pdf. |

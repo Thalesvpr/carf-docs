@@ -29,3 +29,15 @@ Patterns sao solucoes de design recorrentes que garantem consistencia entre dife
 - **LINGUAGEM-VISUAL**: Define espacamento, profundidade e movimento
 - **EXPERIENCIAS**: Define jornadas do usuario que usam os patterns
 - **PRINCIPIOS**: Define valores que guiam as decisoes de design
+
+<!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
+
+## Documentos (1)
+
+| Documento | Status |
+|-----------|--------|
+| [Bottom Navigation](./bottom-navigation.md) | ⚠ |
+
+<!-- CARF-INDEX-END -->

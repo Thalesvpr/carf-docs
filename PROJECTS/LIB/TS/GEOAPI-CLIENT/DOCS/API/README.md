@@ -1,87 +1,78 @@
 ---
 type: readme
 status: review
-description: "README usa listas/tabelas ao invés de prosa densa com links inline."
-updated: 2026-01-22
+description: "README usa listas/tabelas ao inves de prosa densa com links inline."
+updated: 2026-02-07
 ---
 
 # API Reference - @carf/geoapi-client
 
 ## Overview
 
-Referencia completa do cliente HTTP @carf/geoapi-client com todos os endpoints disponiveis organizados por dominio. Types TypeScript sincronizados com @carf/tscore.
+> **Nota:** Os endpoints abaixo sao auto-gerados pelo orval a partir do `swagger.json` da GEOAPI. Os 22 documentos individuais nesta pasta servem como **referencia de design** e serao gradualmente substituidos pelo swagger como fonte de verdade. Para a lista atualizada de endpoints, consulte o swagger da API em `http://localhost:5127/swagger`.
+
+Referencia dos endpoints da GEOAPI organizados por dominio.
 
 ## Endpoints Documentados
 
 | API | Arquivo | Descricao |
 |:----|:--------|:----------|
-| Units | [01-units-api.md](./01-units-api.md) | Unidades Habitacionais - CRUD, holders, documents |
-| Holders | [02-holders-api.md](./02-holders-api.md) | Posseiros/Titulares - CRUD, busca por CPF/CNPJ |
-| Communities | [03-communities-api.md](./03-communities-api.md) | Comunidades/Nucleos - CRUD, estatisticas, geometria |
-| Legitimation | [04-legitimation-api.md](./04-legitimation-api.md) | Processos de Legitimacao - workflow, historico |
-| Documents | [05-documents-api.md](./05-documents-api.md) | Upload, download e gestao de documentos |
-| Reports | [06-reports-api.md](./06-reports-api.md) | Geracao e download de relatorios |
+| Units CRUD | [01a-units-crud-api.md](./01a-units-crud-api.md) | Listagem, busca por ID e criacao de unidades |
+| Units Update | [01b-units-update-api.md](./01b-units-update-api.md) | Campos do DTO, update, patch e delete |
+| Units Workflow | [01c-units-workflow-api.md](./01c-units-workflow-api.md) | Submit, approve, reject e exportacao |
+| Units Holders | [01d-units-holders-api.md](./01d-units-holders-api.md) | Vincular, desvincular e atualizar titulares |
+| Holders CRUD | [02a-holders-crud-api.md](./02a-holders-crud-api.md) | Listagem, busca, criacao, update e delete |
+| Holders Search | [02b-holders-search-import-api.md](./02b-holders-search-import-api.md) | Campos do DTO, busca por CPF/CNPJ e importacao |
+| Communities CRUD | [03a-communities-crud-api.md](./03a-communities-crud-api.md) | Listagem, busca, criacao, update e delete |
+| Communities Stats | [03b-communities-stats-geo-api.md](./03b-communities-stats-geo-api.md) | Campos do DTO, estatisticas e geometria |
+| Legitimation Endpoints | [04a-legitimation-endpoints.md](./04a-legitimation-endpoints.md) | Endpoints, listagem e busca por ID |
+| Legitimation Workflow | [04b-legitimation-criacao-workflow.md](./04b-legitimation-criacao-workflow.md) | Criacao, acoes de workflow e fluxo de status |
+| Legitimation Docs | [04c-legitimation-historico-documentos.md](./04c-legitimation-historico-documentos.md) | Historico, documentos e certificado |
+| Documents Upload | [05a-documents-upload-download.md](./05a-documents-upload-download.md) | Upload, download e estrutura do Document |
+| Documents Listagem | [05b-documents-listagem-tipos.md](./05b-documents-listagem-tipos.md) | Listagem, metadados, delete e tipos |
+| Reports Exportacao | [06a-reports-exportacao.md](./06a-reports-exportacao.md) | Exportacao de unidades, posseiros e estatisticas |
+| Reports Download | [06b-reports-status-download.md](./06b-reports-status-download.md) | Status, download, helpers e formatos de saida |
+| Orthofotos | [07-orthofotos-api.md](./07-orthofotos-api.md) | Upload, processamento e tiles de ortofotos |
+| Sync | [08-sync-api.md](./08-sync-api.md) | Sincronizacao offline bidirecional |
+| Packages | [09-packages-api.md](./09-packages-api.md) | Pacotes de campo para trabalho offline |
+| Teams | [10-teams-api.md](./10-teams-api.md) | Gerenciamento de equipes de campo |
+| Auth Keys | [11-auth-keys-api.md](./11-auth-keys-api.md) | Chaves de API para integracao server-to-server |
+| Blocks | [12a-blocks-api.md](./12a-blocks-api.md) | Quadras - subdivisoes espaciais de comunidades |
+| Plots | [12b-plots-api.md](./12b-plots-api.md) | Lotes - subdivisoes de quadras com vinculo a unidades |
 
 ## Configuracao do Cliente
 
-```typescript
-import { GeoApiClient } from '@carf/geoapi-client'
-
-const api = new GeoApiClient({
-  baseURL: process.env.GEOAPI_URL || 'https://api.carf.gov.br',
-  auth: {
-    getAccessToken: () => keycloak.token,
-    refreshToken: () => keycloak.updateToken(30)
-  },
-  timeout: 30000,  // 30 segundos
-  retry: {
-    maxRetries: 3,
-    retryDelay: 1000
-  }
-})
-
-// Usar APIs
-api.units.list()
-api.holders.create(data)
-api.communities.getStatistics(id)
-api.legitimation.executeAction(id, action)
-```
-
-## Tratamento de Erros
-
-```typescript
-import { ApiError, NotFoundError, ValidationError, ConflictError } from '@carf/geoapi-client'
-
-try {
-  const unit = await api.units.getById('invalid-id')
-} catch (error) {
-  if (error instanceof NotFoundError) {
-    // 404 - Recurso nao encontrado
-  } else if (error instanceof ValidationError) {
-    // 400 - Dados invalidos
-    console.log(error.validationErrors)
-  } else if (error instanceof ConflictError) {
-    // 409 - Conflito de versao
-  } else if (error instanceof ApiError) {
-    // Outros erros HTTP
-    console.log(error.status, error.message)
-  }
-}
-```
+O client e criado via `createApiClient({ baseURL, getToken, getTenantId })`. Hooks React Query e funcoes vanilla sao importados diretamente do pacote. Ver HOW-TO/01-getting-started para exemplos.
 
 <!-- CARF-INDEX-START -->
-> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> **Indice gerado automaticamente.** Nao edite manualmente.
 > Use os links abaixo para referenciar documentos desta pasta.
 
-## Documentos (6)
+## Documentos (22)
 
 | Documento | Status |
 |-----------|--------|
-| [Units API - Gerenciamento de Unidades Habitacionais](./01-units-api.md) | ⚠ |
-| [Holders API - Gerenciamento de Posseiros/Titulares](./02-holders-api.md) | ⚠ |
-| [Communities API - Gerenciamento de Comunidades/Nucleos Urbanos](./03-communities-api.md) | ⚠ |
-| [Legitimation API - Processos de Legitimacao Fundiaria](./04-legitimation-api.md) | ⚠ |
-| [Documents API - Gerenciamento de Documentos](./05-documents-api.md) | ⚠ |
-| [Reports API - Geracao de Relatorios](./06-reports-api.md) | ⚠ |
+| [Units API - Operacoes CRUD Basicas](./01a-units-crud-api.md) | review |
+| [Units API - Criacao, Atualizacao e Remocao](./01b-units-update-api.md) | review |
+| [Units API - Workflow e Exportacao](./01c-units-workflow-api.md) | review |
+| [Units API - Gestao de Titulares na Unidade](./01d-units-holders-api.md) | review |
+| [Holders API - Operacoes CRUD](./02a-holders-crud-api.md) | review |
+| [Holders API - Campos, Busca e Importacao](./02b-holders-search-import-api.md) | review |
+| [Communities API - Operacoes CRUD](./03a-communities-crud-api.md) | review |
+| [Communities API - Campos, Estatisticas e Geometria](./03b-communities-stats-geo-api.md) | review |
+| [Legitimation API - Endpoints e Consultas](./04a-legitimation-endpoints.md) | review |
+| [Legitimation API - Criacao e Workflow](./04b-legitimation-criacao-workflow.md) | review |
+| [Legitimation API - Historico e Documentos](./04c-legitimation-historico-documentos.md) | review |
+| [Documents API - Upload e Download](./05a-documents-upload-download.md) | review |
+| [Documents API - Listagem e Tipos](./05b-documents-listagem-tipos.md) | review |
+| [Reports API - Solicitacao de Exportacao](./06a-reports-exportacao.md) | review |
+| [Reports API - Status, Download e Formatos](./06b-reports-status-download.md) | review |
+| [Orthofotos API - Gerenciamento de Ortofotos](./07-orthofotos-api.md) | review |
+| [Sync API - Sincronizacao Offline](./08-sync-api.md) | review |
+| [Field Packages API - Pacotes de Campo](./09-packages-api.md) | review |
+| [Teams API - Gerenciamento de Equipes](./10-teams-api.md) | review |
+| [Auth Keys API - Gerenciamento de Chaves de API](./11-auth-keys-api.md) | review |
+| [Blocks API - Gerenciamento de Quadras](./12a-blocks-api.md) | review |
+| [Plots API - Gerenciamento de Lotes](./12b-plots-api.md) | review |
 
 <!-- CARF-INDEX-END -->

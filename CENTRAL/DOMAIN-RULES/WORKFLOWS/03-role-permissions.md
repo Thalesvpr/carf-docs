@@ -21,16 +21,15 @@ Sistema RBAC com seis niveis hierarquicos de autorizacao, alinhado com Keycloak 
 
 ## Composicao de Roles (Keycloak)
 
-```
-super-admin
-  └── admin
-       └── manager
-            ├── analyst
-            └── field-coordinator
-                 └── field-cadastrator
-```
+| Role Pai | Herda de |
+|----------|----------|
+| super-admin | admin |
+| admin | manager |
+| manager | analyst, field-coordinator |
+| field-coordinator | field-cadastrator |
+| field-cadastrator | (base) |
 
-Cada role inclui permissoes de todos os roles abaixo na hierarquia.
+Cada role inclui permissoes de todos os roles abaixo na hierarquia. Super-admin herda admin, que herda manager. Manager bifurca em analyst e field-coordinator. Field-coordinator herda field-cadastrator.
 
 ## Papeis de Campo - Mobile (REURBCAD)
 

@@ -1,13 +1,57 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-12
+updated: 2026-02-08
 ---
 
 # LegitimationStatus
 
-Value object enum representando estado no workflow completo de processo de legitimação fundiária desde solicitação inicial até emissão de certidão final, com 11 estados cobrindo toda jornada conforme Lei 13.465/2017. Estados seguem fluxo: DRAFT (rascunho da solicitação), SUBMITTED (submetido para análise inicial), UNDER_ANALYSIS (em análise técnica pelo analista), PENDING_DOCUMENTATION (aguardando documentação complementar), APPROVED_FOR_PUBLICATION (aprovado para publicação de edital), PUBLISHED (edital publicado aguardando prazo legal de contestação), CONTESTED (recebeu contestação requerendo análise jurídica), APPROVED_FOR_CERTIFICATE (aprovado para emissão de certidão), CERTIFICATE_ISSUED (certidão emitida), REGISTERED (registrado em cartório) e REJECTED (rejeitado devendo reiniciar).
+Value object enum representando o estado no workflow completo de processo de legitimacao fundiaria desde solicitacao inicial ate emissao de certidao final, conforme Lei 13.465/2017. No banco de dados, corresponde ao campo legitimation_requests.status (varchar(30)) com CHECK constraint.
 
-Métodos incluem CanEdit() verificando se permite alteração (apenas DRAFT e PENDING_DOCUMENTATION), CanPublish() verificando se pode publicar edital, IsInLegalWaitingPeriod() verificando prazo legal, CanIssueCertificate() verificando pré-requisitos para emissão, IsFinalState() retornando true para estados finais, GetNextPossibleStatuses() retornando transições válidas, e GetLegalDeadlineDays() retornando prazo conforme legislação (PUBLISHED: 60 dias).
+O workflow possui 11 estados cobrindo toda a jornada legal, com transicoes rigorosas que garantem cumprimento dos prazos e requisitos normativos.
 
-Usado em LegitimationRequest.Status controlando workflow com validações rigorosas de transição, dispara eventos em cada mudança notificando partes interessadas, e alimenta dashboards mostrando funil de conversão e tempo médio em cada estágio do processo de regularização fundiária.
+## Valores Permitidos
+
+| Valor | Descricao |
+| --- | --- |
+| DRAFT | Rascunho da solicitacao, editavel pelo requerente. |
+| SUBMITTED | Submetido para analise inicial, protocolo gerado. |
+| UNDER_ANALYSIS | Em analise tecnica pelo analista designado. |
+| NOTIFICATION_PUBLISHED | Edital publicado aguardando prazo legal de contestacao. |
+| CONTESTATION_PERIOD | Periodo aberto para contestacoes de terceiros (30 dias). |
+| CONTESTATION_RECEIVED | Recebeu contestacao, requerendo analise juridica. |
+| DECISION_PENDING | Aguardando decisao final do gestor. |
+| APPROVED | Aprovado para emissao de certidao. |
+| REJECTED | Rejeitado com justificativa, processo encerrado. |
+| TITLE_ISSUED | Certidao de legitimacao emitida. |
+| REGISTERED | Registrado em cartorio, processo concluido. |
+
+## Transicoes Validas
+
+| De | Para | Quem | Condicao |
+| --- | --- | --- | --- |
+| DRAFT | SUBMITTED | ANALYST, MANAGER | Documentacao minima preenchida. |
+| SUBMITTED | UNDER_ANALYSIS | ANALYST | Analista designado assumiu processo. |
+| UNDER_ANALYSIS | NOTIFICATION_PUBLISHED | ANALYST | Parecer tecnico favoravel, edital gerado. |
+| NOTIFICATION_PUBLISHED | CONTESTATION_PERIOD | Sistema | Automatico apos publicacao do edital. |
+| CONTESTATION_PERIOD | DECISION_PENDING | Sistema | Prazo de 30 dias encerrado sem contestacao. |
+| CONTESTATION_PERIOD | CONTESTATION_RECEIVED | Sistema | Contestacao recebida durante prazo. |
+| CONTESTATION_RECEIVED | DECISION_PENDING | MANAGER | Contestacao analisada e resolvida. |
+| DECISION_PENDING | APPROVED | MANAGER | Decisao favoravel com justificativa. |
+| DECISION_PENDING | REJECTED | MANAGER | Decisao desfavoravel com justificativa obrigatoria. |
+| APPROVED | TITLE_ISSUED | MANAGER | Certidao emitida via IPdfGenerator. |
+| TITLE_ISSUED | REGISTERED | ADMIN | Registro em cartorio confirmado. |
+
+## Metodos Principais
+
+| Metodo | Retorno | Descricao |
+| --- | --- | --- |
+| CanEdit() | bool | Verifica se permite alteracao (apenas DRAFT). |
+| CanPublish() | bool | Verifica se pode publicar edital. |
+| IsInLegalWaitingPeriod() | bool | Verifica se esta em prazo legal (CONTESTATION_PERIOD ou NOTIFICATION_PUBLISHED). |
+| CanIssueCertificate() | bool | Verifica pre-requisitos para emissao (apenas APPROVED). |
+| IsFinalState() | bool | Retorna true para REGISTERED e REJECTED. |
+| GetNextPossibleStatuses() | list | Retorna transicoes validas a partir do estado atual. |
+| ValidateTransition(LegitimationStatus) | void | Lanca ValidationException se transicao invalida. |
+
+Usado em LegitimationRequest.Status controlando workflow com validacoes rigorosas de transicao, disparando eventos em cada mudanca e alimentando dashboards de acompanhamento do processo de regularizacao. Prazo de 120 dias desde SUBMITTED nao pode ser ultrapassado sem justificativa formal.

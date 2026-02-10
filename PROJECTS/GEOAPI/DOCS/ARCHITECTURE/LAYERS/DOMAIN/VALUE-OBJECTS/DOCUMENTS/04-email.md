@@ -1,13 +1,39 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-12
+updated: 2026-02-08
 ---
 
 # Email
 
-Value object imutável herdando de BaseValueObject representando endereço de email válido com validação de formato RFC 5322 simplificado, garantindo que apenas emails bem-formados sejam armazenados no sistema. Validações incluem verificação de formato básico "local@domain" com local-part contendo caracteres alfanuméricos, pontos, hífens e underscores, símbolo @ obrigatório único, domain com pelo menos um ponto, e TLD (top-level domain) com mínimo 2 caracteres.
+Value object imutavel herdando de BaseValueObject que representa um endereco de email valido com validacao de formato RFC 5322 simplificado. Garante que apenas emails bem-formados sejam armazenados no sistema. No banco de dados, corresponde ao campo holders.email (varchar(200), nullable).
 
-Métodos principais incluem construtor recebendo string e validando formato, propriedade Value read-only retornando email normalizado em lowercase para comparações case-insensitive, ToString() retornando valor formatado, Domain() extraindo parte após @ para validações de domínio corporativo, e operadores de igualdade comparando valores normalizados.
+O construtor recebe uma string, valida o formato e normaliza para lowercase para comparacoes case-insensitive. Se o formato for invalido, uma ValidationException e lancada.
 
-Usado em Account para email do usuário vinculado ao Keycloak garantindo unicidade de login, Holder para contato opcional do titular, envio de notificações e recuperação de senha, e validação de domínios permitidos em configurações de Tenant (ex: apenas emails @prefeitura.gov.br podem criar contas).
+## Regras de Validacao
+
+| Regra | Descricao |
+| --- | --- |
+| Formato basico | Deve seguir padrao local@dominio com exatamente um simbolo @. |
+| Local-part | Aceita caracteres alfanumericos, pontos, hifens e underscores. |
+| Dominio | Deve conter pelo menos um ponto separando subdominio de TLD. |
+| TLD minimo | Top-level domain deve ter minimo de 2 caracteres. |
+| Normalizacao | Armazenado em lowercase para comparacoes case-insensitive. |
+
+## Formato
+
+| Aspecto | Especificacao |
+| --- | --- |
+| Armazenamento | Lowercase normalizado (varchar(200)). |
+| ToString() | Retorna valor normalizado em lowercase. |
+| Domain() | Extrai parte apos @ para validacoes de dominio corporativo. |
+
+## Metodos Principais
+
+| Metodo | Retorno | Descricao |
+| --- | --- | --- |
+| ToString() | string | Retorna email normalizado. |
+| Domain() | string | Extrai dominio apos @. |
+| Equals / == | bool | Compara valores normalizados. |
+
+Usado em Holder para contato opcional do titular, em Account para email vinculado ao Keycloak garantindo unicidade de login, em envio de notificacoes de aprovacao e rejeicao de processos de legitimacao, e em validacao de dominios permitidos por Tenant.

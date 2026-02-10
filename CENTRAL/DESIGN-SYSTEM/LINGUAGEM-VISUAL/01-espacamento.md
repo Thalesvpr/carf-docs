@@ -1,7 +1,7 @@
 ---
 type: leaf
 status: approved
-updated: 2026-01-24
+updated: 2026-02-07
 ---
 
 # Espacamento
@@ -17,3 +17,19 @@ Elementos nao relacionados ficam distantes. Secoes diferentes tem espaco generos
 Telas lotadas intimidam e confundem. Mesmo quando ha muita informacao para mostrar, o espacamento cria pausas visuais que permitem processar uma coisa de cada vez. Scroll e preferivel a densidade excessiva - o usuario pode rolar, mas nao pode desembaralhar uma tela apertada.
 
 Em dispositivos moveis, espacamento generoso tambem significa alvos de toque seguros. Dedos sao imprecisos, especialmente sob estresse ou em movimento. Espaco entre elementos interativos previne toques acidentais.
+
+## Escala de Tokens
+
+A escala de espacamento usa base 4px, alinhada com Tailwind CSS defaults e as especificacoes do REURBCAD.
+
+| Token | Valor | Tailwind | Uso |
+|:------|:------|:---------|:----|
+| space-1 | 4px | p-1 / gap-1 | Padding inline minimo, gap entre icone e texto |
+| space-2 | 8px | p-2 / gap-2 | Gap entre elementos relacionados, padding de badges |
+| space-3 | 12px | p-3 / gap-3 | Padding de componentes compactos, gap em listas densas |
+| space-4 | 16px | p-4 / gap-4 | Padding padrao de cards e inputs, gap entre campos de form |
+| space-6 | 24px | p-6 / gap-6 | Gap entre secoes dentro de um card, padding de dialogs |
+| space-8 | 32px | p-8 / gap-8 | Margem entre blocos de conteudo, padding de paginas web |
+| space-12 | 48px | p-12 / gap-12 | Espacamento entre secoes maiores, margem de pagina mobile |
+
+Na pratica, use space-2 para micro-espacamento (dentro de componentes), space-4 como padrao (entre componentes), e space-8 para macro-espacamento (entre secoes). Em mobile, alvos de toque devem ter no minimo 44px de altura com space-2 entre eles.

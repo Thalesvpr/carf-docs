@@ -18,13 +18,14 @@ Para implementacao tecnica dos componentes consulte as bibliotecas em PROJECTS/.
 > ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
 > Use os links abaixo para referenciar documentos desta pasta.
 
-## Subpastas (4)
+## Subpastas (5)
 
 | Pasta | Descrição |
 |-------|-----------|
 | [EXPERIENCIAS](./EXPERIENCIAS/README.md) | ... |
 | [IDENTIDADE](./IDENTIDADE/README.md) | ... |
 | [LINGUAGEM-VISUAL](./LINGUAGEM-VISUAL/README.md) | ... |
+| [PATTERNS](./PATTERNS/README.md) | ... |
 | [PRINCIPIOS](./PRINCIPIOS/README.md) | ... |
 
 <!-- CARF-INDEX-END -->

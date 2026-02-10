@@ -8,6 +8,38 @@ updated: 2026-02-07
 
 Especificacao completa do schema PostgreSQL 15 com extensao PostGIS 3.4 utilizado pela GEOAPI. Todas as tabelas operam sob Row-Level Security (RLS) com isolamento por tenant_id extraido da variavel de sessao app.current_tenant definida pelo middleware de autenticacao a cada requisicao. O schema e versionado via EF Core Migrations e toda alteracao passa por migration incremental sem perda de dados.
 
+### Status de Implementacao
+
+Das 20 tabelas documentadas, **11 possuem entidades implementadas no codigo-fonte** (DOMAIN + INFRA com EF Core Configuration). As demais 9 estao documentadas como especificacao para implementacao futura.
+
+| Status | Significado |
+|--------|-------------|
+| IMPLEMENTADA | Entidade existe no DOMAIN, Configuration no INFRA, DbSet no DbContext |
+| PLANEJADA | Especificacao aprovada, sem codigo correspondente ainda |
+
+| # | Tabela | Status |
+|---|--------|--------|
+| 1 | units | IMPLEMENTADA |
+| 2 | holders | IMPLEMENTADA |
+| 3 | unit_holders | IMPLEMENTADA |
+| 4 | communities | IMPLEMENTADA |
+| 5 | blocks | PLANEJADA |
+| 6 | plots | PLANEJADA |
+| 7 | buildings | PLANEJADA |
+| 8 | documents | IMPLEMENTADA |
+| 9 | teams | IMPLEMENTADA |
+| 10 | team_members | IMPLEMENTADA (sem Configuration dedicada — usa convencoes EF Core) |
+| 11 | community_authorizations | IMPLEMENTADA (sem Configuration dedicada — usa convencoes EF Core) |
+| 12 | orthofotos | PLANEJADA |
+| 13 | legitimation_requests | PLANEJADA |
+| 14 | legitimation_responses | PLANEJADA |
+| 15 | legitimation_certificates | PLANEJADA |
+| 16 | sync_logs | IMPLEMENTADA |
+| 17 | audit_logs | PLANEJADA |
+| 18 | layers | PLANEJADA |
+| 19 | layer_features | PLANEJADA |
+| 20 | annotations | PLANEJADA |
+
 ---
 
 ## 1. units
@@ -147,7 +179,7 @@ Indices: UNIQUE em (tenant_id, code). GiST em boundary para queries espaciais. C
 
 ---
 
-## 5. blocks
+## 5. blocks — PLANEJADA
 
 Subdivisao espacial de uma comunidade representando uma quadra urbana. Organiza o territorio em areas menores contendo multiplos lotes. Opcional: comunidades rurais ou assentamentos informais podem nao ter blocos.
 
@@ -167,7 +199,7 @@ Indices: UNIQUE em (community_id, code). GiST em boundary.
 
 ---
 
-## 6. plots
+## 6. plots — PLANEJADA
 
 Lote individual dentro de um bloco representando a parcela cadastral minima. Pode ou nao estar vinculado a uma unidade, permitindo representar lotes vagos.
 
@@ -186,7 +218,7 @@ Indices: UNIQUE em (block_id, code). GiST em boundary.
 
 ---
 
-## 7. buildings
+## 7. buildings — PLANEJADA
 
 Edificacao dentro de um lote que pode conter multiplas unidades habitacionais. Util para predios, vilas e conjuntos habitacionais onde um unico lote tem varias unidades.
 
@@ -280,7 +312,7 @@ Constraints: CHECK garantindo que exatamente um entre team_id e account_id esta 
 
 ---
 
-## 12. orthofotos
+## 12. orthofotos — PLANEJADA
 
 Ortofotos de drone vinculadas opcionalmente a uma comunidade. Armazena metadados do arquivo original e das versoes processadas (otimizada para web e tiles para o mapa). O processamento e assincrono via Hangfire.
 
@@ -308,7 +340,7 @@ Indices: composto em (tenant_id). Composto em (processing_status) para fila de p
 
 ---
 
-## 13. legitimation_requests
+## 13. legitimation_requests — PLANEJADA
 
 Processo de legitimacao fundiaria conforme Lei 13.465/2017. Cada registro representa um requerimento de legitimacao vinculado a uma unidade, acompanhando todo o ciclo de vida desde a submissao ate o registro em cartorio.
 
@@ -335,7 +367,7 @@ Indices: composto em (tenant_id, status). UNIQUE em (unit_id) impedindo dois pro
 
 ---
 
-## 14. legitimation_responses
+## 14. legitimation_responses — PLANEJADA
 
 Respostas e pareceres vinculados a um processo de legitimacao. Inclui pareceres tecnicos de analistas, decisoes de managers e contestacoes de terceiros.
 
@@ -350,7 +382,7 @@ Respostas e pareceres vinculados a um processo de legitimacao. Inclui pareceres 
 
 ---
 
-## 15. legitimation_certificates
+## 15. legitimation_certificates — PLANEJADA
 
 Certidoes de legitimacao fundiaria emitidas apos aprovacao do processo. Cada certidao tem numero unico sequencial e gera um PDF oficial armazenado no S3.
 
@@ -390,7 +422,7 @@ Indices: composto em (tenant_id, user_id). Composto em (entity_type, entity_id).
 
 ---
 
-## 17. audit_logs
+## 17. audit_logs — PLANEJADA
 
 Trilha de auditoria imutavel registrando todas as operacoes de escrita no sistema. Append-only: registros nunca sao atualizados ou deletados. Retencao minima de 7 anos conforme LGPD para dados pessoais.
 
@@ -412,7 +444,7 @@ Indices: composto em (tenant_id, entity_type, entity_id) para historico de uma e
 
 ---
 
-## 18. layers
+## 18. layers — PLANEJADA
 
 Camadas GIS customizaveis por tenant para visualizacao de dados espaciais adicionais ao dominio principal de unidades e comunidades. Exemplos: areas de risco, rede de agua, perimetros de preservacao.
 
@@ -434,7 +466,7 @@ Indices: composto em (tenant_id, z_index).
 
 ---
 
-## 19. layer_features
+## 19. layer_features — PLANEJADA
 
 Features individuais de uma camada, cada uma com geometria propria e atributos descritivos em formato JSONB extensivel. Permite armazenar qualquer dado espacial customizado sem alteracao de schema.
 
@@ -452,7 +484,7 @@ Indices: GiST em geometry para queries espaciais. Composto em (layer_id). GIN em
 
 ---
 
-## 20. annotations
+## 20. annotations — PLANEJADA
 
 Anotacoes e observacoes vinculadas a qualquer entidade do sistema via relacionamento polimorfico. Permite registrar notas, alertas, problemas e lembretes com rastreamento de resolucao.
 

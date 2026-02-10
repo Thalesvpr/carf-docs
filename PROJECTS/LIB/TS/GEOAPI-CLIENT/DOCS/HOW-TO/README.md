@@ -1,10 +1,7 @@
 ---
 type: readme
-title: "How-To Guides - @carf/geoapi-client"
-description: "README usa listas/tabelas ao invés de prosa densa com links inline."
-status: review
-updated: 2026-01-22
-source: "interno"
+status: active
+updated: 2026-02-09
 ---
 
 # How-To Guides - @carf/geoapi-client
@@ -15,52 +12,35 @@ Guias praticos para uso da biblioteca @carf/geoapi-client.
 
 | Guia | Descricao |
 |:-----|:----------|
-| 01-getting-started | Instalacao, configuracao e uso basico |
+| 01-getting-started | Instalacao, geracao via orval e uso basico |
 | 02-error-handling | Tratamento de erros da API |
 | 03-file-upload | Upload de arquivos com progresso |
 
-## Quick Start
+## Fluxo de Geracao
 
-```bash
-# Instalar
-bun add @carf/geoapi-client @carf/tscore
+O client e auto-gerado via orval a partir do swagger.json da GEOAPI. Para regenerar:
 
-# Configurar .npmrc
-echo "@carf:registry=https://npm.pkg.github.com" >> .npmrc
-```
-
-```typescript
-import { createGeoApiClient } from '@carf/geoapi-client'
-
-const api = createGeoApiClient({
-  baseUrl: process.env.API_URL,
-  auth: { type: 'keycloak', realm: 'carf' },
-})
-
-// Usar
-const units = await api.units.list()
-const holder = await api.holders.getById(id)
-```
+1. `bun run swagger:fetch` — baixa swagger.json atualizado (API rodando em localhost:5127)
+2. `bun run generate` — gera tipos e hooks em src/generated/
 
 ## Topicos Abordados
 
-- Instalacao e configuracao inicial
-- Autenticacao com Keycloak
-- Tratamento de erros HTTP
-- Retry automatico e circuit breaker
+- Instalacao e configuracao com callbacks de auth
+- Geracao automatica via orval
+- Uso de hooks React Query (GEOWEB)
+- Uso de funcoes vanilla (qualquer app)
+- Tratamento de erros HTTP tipados
 - Upload de arquivos com progresso
-- Integracao com React Query
 
 <!-- CARF-INDEX-START -->
-> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
-> Use os links abaixo para referenciar documentos desta pasta.
+> Indice gerado automaticamente. Nao edite manualmente.
 
 ## Documentos (3)
 
 | Documento | Status |
-|-----------|--------|
-| [Getting Started](./01-getting-started.md) | ⚠ |
-| [Error Handling - Guia Pratico](./02-error-handling.md) | ⚠ |
-| [File Upload - Guia Pratico](./03-file-upload.md) | ⚠ |
+|:----------|:-------|
+| [Getting Started](./01-getting-started.md) | active |
+| [Error Handling - Guia Pratico](./02-error-handling.md) | review |
+| [File Upload - Guia Pratico](./03-file-upload.md) | review |
 
 <!-- CARF-INDEX-END -->

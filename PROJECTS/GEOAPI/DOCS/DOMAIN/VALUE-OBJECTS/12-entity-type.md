@@ -1,12 +1,23 @@
 ---
 type: leaf
 status: review
-description: "Estrutura caotica. Numeracao nao agrupa por categoria. Precisa reorganizar por agregado/contexto. Stub de 11 linhas - incompleto."
-updated: 2026-01-19
+updated: 2026-02-08
 ---
 
-# EntityType (Tipo de Entidade para Polimorfismo)
+# EntityType
 
-Value object enum representando tipo de entidade do sistema usado em relacionamentos polimórficos permitindo que Document e Annotation se vinculem a qualquer entidade sem criar tabelas junction específicas para cada tipo. Valores possíveis incluem UNIT representando unidade habitacional, HOLDER representando titular pessoa física, COMMUNITY representando comunidade ou assentamento, BLOCK representando quadra urbana, PLOT representando lote individual, LEGITIMATION_REQUEST representando processo de legitimação fundiária, LEGITIMATION_RESPONSE representando parecer técnico ou jurídico, LEGITIMATION_CERTIFICATE representando certidão oficial emitida, SURVEY_POINT representando ponto topográfico GPS coletado, SURVEYOR representando topógrafo profissional cadastrado, WMS_SERVER representando servidor de mapas WMS configurado, TEAM representando equipe de trabalho, e potencialmente outros tipos conforme sistema evolui sem quebrar estrutura existente. Regras de uso estabelecem que em Document entity_type indica qual tipo de entidade possui aquele documento (se UNIT então entity_id referencia Unit.id, se HOLDER então entity_id referencia Holder.id), em Annotation entity_type indica qual entidade está sendo anotada seguindo mesma lógica de referência polimórfica, constraint de banco de dados pode validar combinação válida de entity_type com entity_id usando triggers ou validações aplicativas (impedir entity_type=UNIT com entity_id que não existe na tabela units), e adicionar novo tipo requer apenas estender enum sem modificar schema de banco ou estrutura de tabelas existentes (extensibilidade). Validação em camada de aplicação verifica que entity_id corresponde a registro existente do tipo especificado antes de criar Document ou Annotation prevenindo referências órfãs, queries para buscar todos documentos de uma entidade filtram por entity_type e entity_id retornando lista polimórfica independente de tipo, e serialização JSON inclui entity_type facilitando desserialização no frontend que pode rotear para componente apropriado conforme tipo (documentos de Unit exibidos diferente de documentos de LegitimationRequest). Alternativa a polimorfismo seria criar tabelas junction separadas (UnitDocument, HolderDocument, etc) mas isso gera explosão de tabelas e duplicação de lógica, abordagem polimórfica centraliza Document em tabela única com type discriminator simplificando queries de auditoria (listar todos uploads de usuário X independente de entidade) e gestão de storage (quota única de documentos por tenant sem segmentar por tipo de entidade). Sistema suporta adição de novos tipos sem migração de dados apenas estendendo enum e atualizando validações, tipos removidos ou deprecados podem ser mantidos no enum para compatibilidade com dados históricos mas bloqueados em novas criações via validação de negócio, e nomenclatura segue padrão SCREAMING_SNAKE_CASE alinhado com convenções de enums em múltiplas linguagens facilitando mapeamento cross-platform. Futuramente sistema pode ter metadados por tipo definindo comportamentos específicos (tipos que permitem múltiplos documentos vs tipos que permitem apenas um, tipos que requerem aprovação de upload vs tipos de livre anexação, tipos que expiram documentos automaticamente após período) armazenados em configuração ou tabela auxiliar referenciada por EntityType.
+Value object enum imutavel representando o tipo de entidade pai em relacionamentos polimorficos. Utilizado nas tabelas documents e annotations para identificar a entidade a que o registro esta vinculado via par (entity_type, entity_id). Tambem usado em audit_logs para rastrear mudancas em qualquer entidade do dominio.
 
-**Módulos:** GEOAPI, GEOWEB, REURBCAD, GEOGIS
+## Valores Permitidos
+
+| Valor | Descricao | Uso |
+|-------|-----------|-----|
+| UNIT | Unidade habitacional | Documents, Annotations e AuditLogs vinculados a units. |
+| HOLDER | Titular ou posseiro | Documents pessoais (RG, CPF, comprovantes) e AuditLogs. |
+| COMMUNITY | Comunidade | Documents, Annotations e AuditLogs de nivel comunitario. |
+| BLOCK | Quadra urbana | AuditLogs rastreando mudancas em quadras. |
+| PLOT | Lote individual | AuditLogs rastreando mudancas em lotes. |
+
+## Uso no Dominio
+
+EntityType determina qual tabela contem a entidade pai referenciada por entity_id. Indice composto em (entity_type, entity_id) nas tabelas documents e annotations acelera listagem de anexos e anotacoes de uma entidade. Em audit_logs, o escopo e mais amplo incluindo BLOCK e PLOT para rastreamento completo de todas operacoes de escrita no sistema.

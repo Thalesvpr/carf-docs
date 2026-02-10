@@ -1,15 +1,15 @@
 ---
 type: readme
 title: "Documentacao @carf/geoapi-client"
-description: "README usa listas/tabelas ao invés de prosa densa com links inline."
-status: review
-updated: 2026-01-22
+description: "Cliente HTTP auto-gerado via orval a partir do swagger.json da GEOAPI"
+status: active
+updated: 2026-02-09
 source: "interno"
 ---
 
 # Documentacao @carf/geoapi-client
 
-Documentacao tecnica completa do cliente HTTP type-safe para comunicacao com a API GEOAPI.
+Cliente HTTP auto-gerado via orval a partir do swagger.json da GEOAPI. Gera tipos TypeScript e hooks React Query automaticamente, evoluindo junto com a API.
 
 ## Secoes
 
@@ -18,43 +18,64 @@ Documentacao tecnica completa do cliente HTTP type-safe para comunicacao com a A
 | [SPECS/](./SPECS/README.md) | Especificacoes tecnicas (package.json, client config) |
 | [ADRs/](./ADRs/README.md) | Decisoes arquiteturais |
 | [ARCHITECTURE/](./ARCHITECTURE/README.md) | Arquitetura do cliente |
-| [CONCEPTS/](./CONCEPTS/README.md) | HTTP client, interceptors |
-| [API/](./API/README.md) | Referencia de APIs (units, holders, etc.) |
+| [CONCEPTS/](./CONCEPTS/README.md) | Custom axios instance, mutator pattern |
+| [API/](./API/README.md) | Referencia de APIs (design reference) |
 | [HOW-TO/](./HOW-TO/README.md) | Guias praticos |
 | [CONTRIBUTING.md](./CONTRIBUTING.md) | Guia de contribuicao |
 
-## APIs Disponiveis
+## Geracao
 
-| API | Descricao |
-|:----|:----------|
-| units | Unidades habitacionais |
-| holders | Posseiros |
-| communities | Comunidades |
-| legitimation | Processos de legitimacao |
-| documents | Upload/download de documentos |
-| reports | Geracao de relatorios |
-
-Ver [API/](./API/README.md) para referencia completa.
-
-## Instalacao Rapida
+O client e auto-gerado a partir do swagger.json da GEOAPI:
 
 ```bash
-bun add @carf/geoapi-client @carf/tscore
+# Baixar swagger atualizado (API rodando em localhost:5127)
+bun run swagger:fetch
+
+# Gerar tipos e hooks
+bun run generate
+```
+
+## Uso Rapido
+
+```typescript
+import { createApiClient } from '@carf/geoapi-client';
+
+const api = createApiClient({
+  baseURL: 'http://localhost:5127',
+  getToken: async () => keycloakClient.getAccessToken(),
+  getTenantId: () => currentUser.tenantId,
+});
+```
+
+Hooks React Query (GEOWEB):
+
+```typescript
+import { useGetApiUnits } from '@carf/geoapi-client';
+
+const { data } = useGetApiUnits({ communityId, page: 1, pageSize: 20 });
+```
+
+Funcoes vanilla (qualquer app):
+
+```typescript
+import { getApiUnits } from '@carf/geoapi-client';
+
+const units = await getApiUnits({ communityId });
 ```
 
 ## Status de Especificacao
 
 | Secao | Arquivos | Status |
 |:------|:---------|:-------|
-| SPECS | 2 | Completo |
-| ADRs | 1 | Completo |
-| ARCHITECTURE | 3 | Existente |
-| CONCEPTS | 1 | Existente |
-| API | 6 | Completo |
-| HOW-TO | 3 | Completo |
+| SPECS | 2 | Atualizado |
+| ADRs | 1 | Aceito |
+| ARCHITECTURE | 3 | Atualizado |
+| CONCEPTS | 1 | Atualizado |
+| API | 22 | Referencia de design |
+| HOW-TO | 3 | Atualizado |
 
 <!-- CARF-INDEX-START -->
-> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> **Indice gerado automaticamente.** Nao edite manualmente.
 > Use os links abaixo para referenciar documentos desta pasta.
 
 ## Subpastas (6)
@@ -72,6 +93,6 @@ bun add @carf/geoapi-client @carf/tscore
 
 | Documento | Status |
 |-----------|--------|
-| [Contributing to @carf/geoapi-client](./CONTRIBUTING.md) | ⚠ |
+| [Contributing to @carf/geoapi-client](./CONTRIBUTING.md) | review |
 
 <!-- CARF-INDEX-END -->

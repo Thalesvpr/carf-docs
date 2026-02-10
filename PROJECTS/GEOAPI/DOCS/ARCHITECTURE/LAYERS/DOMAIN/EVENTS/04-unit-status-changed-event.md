@@ -1,12 +1,34 @@
 ---
 type: leaf
 status: review
-description: "Estrutura caotica. Numeracao nao agrupa por categoria. Precisa reorganizar por agregado/contexto. Stub de 11 linhas - incompleto."
-updated: 2026-01-19
+updated: 2026-02-08
 ---
 
 # UnitStatusChangedEvent
 
-Domain event emitido por Unit aggregate root sempre que status workflow de unidade habitacional transita entre estados representando mudança significativa no processo de regularização fundiária permitindo rastreamento de progresso e disparo de ações automatizadas específicas para cada transição. Payload do evento contém identificador da unidade que mudou status, status anterior antes da transição (DRAFT PENDING_ANALYSIS IN_REVIEW etc) preservando histórico, status novo após transição (APPROVED REJECTED REQUIRES_CHANGES etc) indicando estado atual, identificador do Account responsável pela mudança rastreando quem aprovou rejeitou ou solicitou correções, motivo ou justificativa da mudança especialmente importante para rejeições ou solicitações de correção documentando razão administrativa, identificador do tenant para isolamento multi-tenant, timestamp UTC quando transição ocorreu permitindo ordenação temporal de eventos, e metadados adicionais como ID de processo de legitimação vinculado se transição ocorreu no contexto de aprovação para regularização. Event handlers subscribers processam evento executando side effects específicos por tipo de transição como enviar email ao técnico de campo quando unidade transita para REQUIRES_CHANGES notificando sobre pendências a serem sanadas com lista detalhada de issues, notificar gestor quando unidade é APPROVED permitindo iniciar processo de legitimação subsequente, atualizar dashboard de métricas recalculando contadores de unidades por status mantendo estatísticas em tempo real, invalidar cache de listagens filtradas por status forçando refresh de queries, registrar marco importante em audit trail especialmente transições para estados terminais como APPROVED ou REJECTED preservando histórico completo, disparar workflow de validação subsequente quando unidade transita de DRAFT para PENDING_ANALYSIS iniciando processo de análise técnica, criar notification in-app para usuários monitorando unidade específica alertando sobre mudança de status, e integrar com sistemas externos notificando cartório ou órgão regulador sobre aprovação de unidade. Motivação do evento permite implementar state machine complexa onde cada transição pode ter side effects específicos sem acoplar lógica de notificação ou métricas ao aggregate root mantendo separation of concerns, facilita rastreabilidade completa de workflow onde event store preserva todas transições permitindo reconstruir histórico de aprovações e rejeições para auditoria legal, habilita eventual consistency onde estatísticas de progresso são recalculadas assincronamente sem bloquear operação crítica de mudança de status garantindo performance, e suporta workflows condicionais onde transição para APPROVED pode disparar validações adicionais ou criação automática de processo de legitimação se requisitos atendidos. Regras de processamento estabelecem que evento é despachado após SaveChanges garantindo que transição foi persistida, handlers podem consultar Unit via repository para validar estado atual antes de processar evitando race conditions, falha em handler de notificação não reverte mudança de status mas agenda retry para garantir entrega eventual, e idempotência é crítica pois mesma transição pode gerar evento múltiplas vezes em cenário de retry exigindo deduplicação por event_id em handlers.
+Domain event emitido por Unit aggregate root sempre que o status do workflow de unidade habitacional transita entre estados. Representa mudanca significativa no processo de regularizacao, permitindo rastreamento de progresso e disparo de acoes automatizadas especificas para cada transicao.
 
-**Módulos:** GEOAPI, GEOWEB, REURBCAD, GEOGIS
+## Payload
+
+| Campo | Tipo | Descricao |
+| --- | --- | --- |
+| UnitId | Guid | Identificador da unidade que mudou status. |
+| PreviousStatus | UnitStatus | Status anterior antes da transicao. |
+| NewStatus | UnitStatus | Status novo apos transicao. |
+| ChangedBy | Guid | AccountId responsavel pela mudanca. |
+| Reason | string | Justificativa, especialmente para rejeicoes. |
+| TenantId | Guid | Tenant do contexto. |
+| OccurredAt | DateTime | Timestamp UTC da transicao. |
+
+## Handlers
+
+| Handler | Acao |
+| --- | --- |
+| StatusChangedNotificationHandler | Envia email ao tecnico de campo quando REQUIRES_CHANGES. |
+| StatusChangedCacheHandler | Invalida cache de listagens filtradas por status. |
+| StatusChangedMetricsHandler | Recalcula contadores de unidades por status no dashboard. |
+| StatusChangedAuditHandler | Registra transicao em audit trail para compliance. |
+
+## Contexto de Emissao
+
+Emitido pelo agregado Unit nos metodos Submit(), Approve(), Reject() e RequestChanges(). Transicoes validas sao verificadas antes de emitir o evento, lancando ConflictException se transicao for invalida.

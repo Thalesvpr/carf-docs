@@ -51,14 +51,12 @@ Nao e possivel:
 - Ir direto para campo sem publicacao
 - Publicar sem ortofoto processada
 
-## Diagrama de Dependencia
+## Dependencias entre Partes
 
-```
-PARTE 1 ──> PARTE 2 ──> PARTE 3
-(Drone)    (Analista)  (Campo)
-   │           │          │
-   └──────┬────┘          │
-          │               │
-     Publicacao ──────────┘
-     (Pre-requisito)
-```
+| Parte | Depende de | Pre-requisito Critico |
+|-------|-----------|----------------------|
+| PARTE 1 (Drone) | Nenhuma | - |
+| PARTE 2 (Analista) | PARTE 1 concluida | Ortofoto processada e armazenada |
+| PARTE 3 (Campo) | PARTE 2 concluida | Publicacao (Passo 9) realizada |
+
+A Publicacao (Passo 9 da PARTE 2) e o ponto de conexao central: tanto PARTE 1 quanto PARTE 2 convergem nela, e somente apos sua conclusao a PARTE 3 e habilitada.

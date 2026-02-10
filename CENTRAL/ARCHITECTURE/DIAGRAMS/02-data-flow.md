@@ -1,67 +1,34 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-24
+updated: 2026-02-07
 ---
 
 # Fluxo de Dados
 
 Ilustra como dados fluem entre sistemas seguindo as tres partes do workflow: entrega de ortofotos pelo Analista de Drone, georreferenciamento e publicacao pelo Analista GIS, e operacao em campo pelo Agente com sincronizacao offline.
 
-```mermaid
-flowchart TB
-    subgraph PARTE1["PARTE 1: Entrega Ortofotos"]
-        Drone["Analista Drone"]
-        Upload["Link Upload<br/>Keycloak Auth"]
-        Processa["Backend Processa<br/>Reduz Tamanho"]
-        Bucket[("Bucket S3/MinIO<br/>por TENANT")]
-    end
+## Parte 1: Entrega de Ortofotos
 
-    subgraph PARTE2["PARTE 2: Georreferenciamento"]
-        AnalistaGIS["Analista GIS"]
-        Plugin["Plugin QGIS<br/>Keycloak + AUTH KEY"]
-        Ortofotos["Acessa Ortofotos<br/>do TENANT"]
-        Georref["Georreferencia<br/>Poligonos"]
-        Publica["Publica no Backend"]
-    end
+O Analista de Drone autentica via Keycloak e envia a ortofoto pelo link de upload. O backend processa o arquivo, gerando versao original e reduzida, e armazena ambas no bucket S3/MinIO segregado por tenant.
 
-    subgraph PARTE3["PARTE 3: Operacao Campo"]
-        Agente["Agente Campo"]
-        Download["Download Unico<br/>Temporario"]
-        Pacote["Pacote: Ortofoto<br/>+ Poligonos"]
-        LocalDB[("WatermelonDB<br/>SQLite Local")]
-        Operacao["GPS + Acoes<br/>Formulario + Assinatura<br/>QR Code + Anexos"]
-        Sync["Sincronizacao<br/>quando Online"]
-    end
+## Parte 2: Georreferenciamento
 
-    subgraph Backend["Backend Central"]
-        GEOAPI["GEOAPI<br/>.NET 9"]
-        POSTGRES[("PostgreSQL<br/>+ PostGIS")]
-    end
+O Analista GIS autentica no plugin QGIS via Keycloak e AUTHENTICATION KEY, acessa as ortofotos do tenant no bucket e georreferencia poligonos (comunidades, quadras, lotes). Ao publicar, o plugin envia os poligonos ao GEOAPI, que persiste no PostgreSQL.
 
-    %% PARTE 1: Drone -> Backend -> Bucket
-    Drone -->|"Ortofoto"| Upload
-    Upload --> Processa
-    Processa -->|"Original + Reduzida"| Bucket
+## Parte 3: Operacao em Campo
 
-    %% PARTE 2: Plugin -> Georref -> Publica
-    AnalistaGIS --> Plugin
-    Plugin -->|"Acesso TENANT"| Ortofotos
-    Bucket -.->|"Ortofotos"| Ortofotos
-    Ortofotos --> Georref
-    Georref -->|"Poligonos"| Publica
-    Publica --> GEOAPI
-    GEOAPI --> POSTGRES
+Somente apos a publicacao pelo Analista, a equipe de campo pode baixar um pacote temporario contendo ortofoto e poligonos. O pacote e armazenado localmente no WatermelonDB (SQLite). O agente opera com GPS, acoes no mapa, formularios e coleta de assinatura, tudo offline. Quando ha conectividade, o app sincroniza com o GEOAPI via push.
 
-    %% PARTE 3: Campo (so apos publicacao)
-    Publica -.->|"Libera Dados"| Download
-    Agente --> Download
-    Download --> Pacote
-    Bucket -.->|"Ortofoto"| Pacote
-    POSTGRES -.->|"Poligonos"| Pacote
-    Pacote --> LocalDB
-    LocalDB --> Operacao
-    Operacao --> LocalDB
-    LocalDB -->|"Push"| Sync
-    Sync --> GEOAPI
-```
+## Fluxo de Dados entre Sistemas
+
+| Origem | Destino | Dados | Condicao |
+|--------|---------|-------|----------|
+| Analista Drone | GEOAPI | Ortofoto bruta | Autenticacao Keycloak |
+| GEOAPI | Bucket S3/MinIO | Ortofoto original e reduzida | Processamento concluido |
+| Bucket S3/MinIO | Plugin QGIS | Ortofotos do tenant | Autenticacao dupla |
+| Plugin QGIS | GEOAPI | Poligonos georreferenciados | Publicacao |
+| GEOAPI | PostgreSQL | Poligonos persistidos | Recebimento |
+| PostgreSQL e Bucket | REURBCAD | Pacote (ortofoto e poligonos) | Publicacao concluida |
+| REURBCAD | WatermelonDB local | Dados de campo | Operacao offline |
+| WatermelonDB local | GEOAPI | Cadastros sincronizados | Conectividade disponivel |

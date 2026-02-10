@@ -24,24 +24,7 @@ Coordenador ou Cadastrador define parametros iniciais antes do cadastro completo
 
 ## Interface
 
-```
-┌─────────────────────────────┐
-│  PRE-FORMULARIO             │
-├─────────────────────────────┤
-│  Acao: [Criar cadastro ▼]   │
-│                             │
-│  Tipo de Unidade:           │
-│  ○ Residencial              │
-│  ● Comercial                │
-│  ○ Misto                    │
-│  ○ Vazio                    │
-│                             │
-│  Status Inicial:            │
-│  [Em atendimento ▼]         │
-│                             │
-│  [CANCELAR]  [CONTINUAR]    │
-└─────────────────────────────┘
-```
+A tela de pre-formulario exibe um dropdown para selecao de acao (Criar cadastro, Editar, Mover, Excluir), radio buttons para tipo de unidade (Residencial, Comercial, Misto, Vazio), dropdown para status inicial e botoes Cancelar e Continuar.
 
 ## Opcoes de Acao
 

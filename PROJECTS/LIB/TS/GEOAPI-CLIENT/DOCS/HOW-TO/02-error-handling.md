@@ -1,9 +1,7 @@
 ---
 type: leaf
-title: "Error Handling - @carf/geoapi-client"
 status: review
-updated: 2026-01-21
-source: "PROJECTS/LIB/TS/GEOAPI-CLIENT/DOCS/ARCHITECTURE/02-error-handling.md"
+updated: 2026-02-07
 ---
 
 # Error Handling - Guia Pratico
@@ -12,408 +10,50 @@ Guia pratico para tratamento de erros ao usar @carf/geoapi-client.
 
 ## Hierarquia de Erros
 
-```typescript
-import {
-  ApiError,           // Base - todos herdam
-  ValidationError,    // 400 - Dados invalidos
-  UnauthorizedError,  // 401 - Nao autenticado
-  ForbiddenError,     // 403 - Sem permissao
-  NotFoundError,      // 404 - Nao encontrado
-  ConflictError,      // 409 - Conflito (duplicado, versao)
-  TooManyRequestsError, // 429 - Rate limit
-  ServerError,        // 5xx - Erro do servidor
-  NetworkError,       // 0 - Sem conexao
-  TimeoutError,       // Timeout excedido
-} from '@carf/geoapi-client'
-```
+Todos os erros da API herdam de ApiError. Os tipos especificos sao: ValidationError (400, dados invalidos), UnauthorizedError (401, nao autenticado), ForbiddenError (403, sem permissao), NotFoundError (404, nao encontrado), ConflictError (409, conflito como duplicado ou versao), TooManyRequestsError (429, rate limit), ServerError (5xx, erro do servidor), NetworkError (sem conexao) e TimeoutError (timeout excedido).
 
 ## Tratamento Basico
 
-```typescript
-try {
-  const unit = await api.units.create(data)
-} catch (error) {
-  if (error instanceof ApiError) {
-    console.error(`Erro ${error.status}: ${error.message}`)
-    console.error('Codigo:', error.code)
-    console.error('Detalhes:', error.details)
-  }
-}
-```
+O padrao basico envolve try-catch com verificacao instanceof ApiError, acessando error.status (codigo HTTP), error.code (codigo do backend) e error.details (objeto com informacoes extras).
 
 ## Tratamento por Tipo
 
-### ValidationError (400)
+**ValidationError (400):** contem validationErrors, um mapa de campo para lista de mensagens. Uso tipico: iterar pelas entradas e exibir erros inline no formulario via setFieldError.
 
-Erro de validacao com detalhes por campo.
+**UnauthorizedError (401):** indica token expirado ou invalido. Uso tipico: tentar refresh do token e refazer a requisicao; se o refresh falhar, redirecionar para login.
 
-```typescript
-try {
-  await api.units.create(data)
-} catch (error) {
-  if (error instanceof ValidationError) {
-    // error.validationErrors: { [campo]: string[] }
-    console.log(error.validationErrors)
-    // { cpf: ['CPF invalido'], email: ['Email obrigatorio'] }
+**ForbiddenError (403):** usuario sem permissao para a acao. Uso tipico: exibir toast informando que nao ha permissao para a operacao.
 
-    // Exibir no formulario
-    Object.entries(error.validationErrors).forEach(([field, messages]) => {
-      setFieldError(field, messages.join(', '))
-    })
-  }
-}
-```
+**NotFoundError (404):** recurso nao existe. Uso tipico: exibir toast e redirecionar para a listagem correspondente.
 
-### UnauthorizedError (401)
+**ConflictError (409):** conflito de dados. Uso tipico: verificar error.code para distinguir entre VERSION_CONFLICT (pedir atualizacao da pagina) e DUPLICATE_CODE (exibir erro no campo do formulario).
 
-Token expirado ou invalido.
+**TooManyRequestsError (429):** rate limit atingido. Contem retryAfter indicando segundos para aguardar. Uso tipico: exibir aviso e agendar retry automatico apos o tempo indicado.
 
-```typescript
-try {
-  await api.units.list()
-} catch (error) {
-  if (error instanceof UnauthorizedError) {
-    // Tentar refresh do token
-    try {
-      await auth.refreshToken()
-      // Retry da requisicao
-      return await api.units.list()
-    } catch {
-      // Refresh falhou - redirecionar para login
-      router.push('/login')
-    }
-  }
-}
-```
+**ServerError (5xx):** erro interno do servidor. Uso tipico: exibir toast generico e logar requestId para suporte.
 
-### ForbiddenError (403)
+**NetworkError:** sem conexao com servidor. Uso tipico: exibir toast pedindo verificacao da internet.
 
-Usuario sem permissao para a acao.
-
-```typescript
-try {
-  await api.units.delete('unit-123')
-} catch (error) {
-  if (error instanceof ForbiddenError) {
-    toast.error('Voce nao tem permissao para excluir esta unidade')
-  }
-}
-```
-
-### NotFoundError (404)
-
-Recurso nao existe.
-
-```typescript
-try {
-  const unit = await api.units.getById('unit-123')
-} catch (error) {
-  if (error instanceof NotFoundError) {
-    toast.error('Unidade nao encontrada')
-    router.push('/units')
-  }
-}
-```
-
-### ConflictError (409)
-
-Conflito de dados (duplicado ou versao).
-
-```typescript
-try {
-  await api.units.update('unit-123', data)
-} catch (error) {
-  if (error instanceof ConflictError) {
-    if (error.code === 'VERSION_CONFLICT') {
-      // Outro usuario modificou
-      toast.error('Dados foram alterados por outro usuario. Atualize a pagina.')
-    } else if (error.code === 'DUPLICATE_CODE') {
-      // Codigo duplicado
-      setFieldError('code', 'Este codigo ja existe')
-    }
-  }
-}
-```
-
-### TooManyRequestsError (429)
-
-Rate limit atingido.
-
-```typescript
-try {
-  await api.units.list()
-} catch (error) {
-  if (error instanceof TooManyRequestsError) {
-    const retryAfter = error.retryAfter  // Segundos para aguardar
-    toast.warning(`Muitas requisicoes. Aguarde ${retryAfter} segundos.`)
-
-    // Retry automatico apos tempo indicado
-    await sleep(retryAfter * 1000)
-    return await api.units.list()
-  }
-}
-```
-
-### ServerError (5xx)
-
-Erro interno do servidor.
-
-```typescript
-try {
-  await api.units.create(data)
-} catch (error) {
-  if (error instanceof ServerError) {
-    toast.error('Erro no servidor. Tente novamente em alguns minutos.')
-
-    // Log para debugging
-    console.error('Server error:', {
-      status: error.status,
-      message: error.message,
-      requestId: error.requestId  // Para suporte
-    })
-  }
-}
-```
-
-### NetworkError
-
-Sem conexao com servidor.
-
-```typescript
-try {
-  await api.units.list()
-} catch (error) {
-  if (error instanceof NetworkError) {
-    toast.error('Sem conexao com o servidor. Verifique sua internet.')
-  }
-}
-```
-
-### TimeoutError
-
-Requisicao excedeu timeout.
-
-```typescript
-try {
-  await api.reports.exportUnits(filters, 'excel')
-} catch (error) {
-  if (error instanceof TimeoutError) {
-    toast.error('Requisicao demorou muito. Tente novamente.')
-  }
-}
-```
+**TimeoutError:** requisicao excedeu timeout. Uso tipico: exibir toast pedindo nova tentativa.
 
 ## Tratamento Centralizado
 
 ### Handler Global
 
-```typescript
-function handleApiError(error: unknown): void {
-  if (!(error instanceof ApiError)) {
-    console.error('Unexpected error:', error)
-    toast.error('Erro inesperado')
-    return
-  }
-
-  switch (true) {
-    case error instanceof ValidationError:
-      // Nao mostrar toast - exibir no formulario
-      break
-
-    case error instanceof UnauthorizedError:
-      auth.logout()
-      router.push('/login')
-      break
-
-    case error instanceof ForbiddenError:
-      toast.error('Sem permissao para esta acao')
-      break
-
-    case error instanceof NotFoundError:
-      toast.error('Recurso nao encontrado')
-      break
-
-    case error instanceof ConflictError:
-      toast.error('Conflito de dados. Atualize a pagina.')
-      break
-
-    case error instanceof TooManyRequestsError:
-      toast.warning('Muitas requisicoes. Aguarde um momento.')
-      break
-
-    case error instanceof ServerError:
-      toast.error('Erro no servidor. Tente novamente.')
-      break
-
-    case error instanceof NetworkError:
-      toast.error('Sem conexao')
-      break
-
-    default:
-      toast.error(error.message)
-  }
-}
-```
+Uma funcao handleApiError centralizada recebe o erro e despacha conforme o tipo: ValidationError nao exibe toast (erros ficam no formulario), UnauthorizedError faz logout e redireciona, ForbiddenError exibe toast de permissao, NotFoundError exibe toast de recurso nao encontrado, ConflictError pede atualizacao, TooManyRequestsError pede aguardar, ServerError e NetworkError exibem mensagens genericas, e demais erros mostram error.message.
 
 ### React Error Boundary
 
-```tsx
-import { Component, ReactNode } from 'react'
-import { ApiError, ServerError, NetworkError } from '@carf/geoapi-client'
-
-interface Props {
-  children: ReactNode
-  fallback?: ReactNode
-}
-
-interface State {
-  hasError: boolean
-  error?: Error
-}
-
-export class ApiErrorBoundary extends Component<Props, State> {
-  state: State = { hasError: false }
-
-  static getDerivedStateFromError(error: Error): State {
-    return { hasError: true, error }
-  }
-
-  componentDidCatch(error: Error) {
-    if (error instanceof ApiError) {
-      console.error('API Error:', {
-        status: error.status,
-        code: error.code,
-        message: error.message,
-        requestId: error.requestId
-      })
-    }
-  }
-
-  render() {
-    if (this.state.hasError) {
-      return this.props.fallback || <DefaultErrorFallback error={this.state.error} />
-    }
-    return this.props.children
-  }
-}
-```
+O componente ApiErrorBoundary (class component React) captura erros da arvore de componentes via getDerivedStateFromError e componentDidCatch, logando status, code, message e requestId para erros ApiError. Renderiza um fallback customizavel ou um DefaultErrorFallback.
 
 ### React Query
 
-```typescript
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ApiError, UnauthorizedError } from '@carf/geoapi-client'
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: (failureCount, error) => {
-        // Nao retry em erros de cliente (4xx)
-        if (error instanceof ApiError && error.status < 500) {
-          return false
-        }
-        return failureCount < 3
-      }
-    },
-    mutations: {
-      onError: (error) => {
-        if (error instanceof UnauthorizedError) {
-          // Redirecionar para login
-          window.location.href = '/login'
-        }
-      }
-    }
-  }
-})
-```
+O QueryClient e configurado com retry customizado que nao retenta erros de cliente (status abaixo de 500) e retenta ate 3 vezes em outros erros. A opcao global de mutations configura onError para redirecionar ao login em caso de UnauthorizedError.
 
 ## Logging de Erros
 
-```typescript
-function logApiError(error: ApiError): void {
-  const logData = {
-    status: error.status,
-    code: error.code,
-    message: error.message,
-    requestId: error.requestId,
-    timestamp: new Date().toISOString(),
-    url: window.location.href
-  }
-
-  // Console para dev
-  console.error('API Error:', logData)
-
-  // Enviar para servico de monitoramento (Sentry, etc)
-  if (typeof Sentry !== 'undefined') {
-    Sentry.captureException(error, {
-      tags: {
-        errorCode: error.code,
-        statusCode: error.status.toString()
-      },
-      extra: logData
-    })
-  }
-}
-```
+A funcao logApiError coleta status, code, message, requestId, timestamp e URL atual. Em desenvolvimento, loga no console. Em producao, envia para servico de monitoramento (Sentry) com tags errorCode e statusCode.
 
 ## Boas Praticas
 
-### 1. Seja especifico
-
-```typescript
-// Ruim - trata todos os erros igual
-catch (error) {
-  toast.error('Ocorreu um erro')
-}
-
-// Bom - tratamento especifico
-catch (error) {
-  if (error instanceof ValidationError) {
-    // Mostrar erros no formulario
-  } else if (error instanceof NotFoundError) {
-    // Redirecionar para listagem
-  } else {
-    // Erro generico
-  }
-}
-```
-
-### 2. Nao esconda erros
-
-```typescript
-// Ruim - silencia o erro
-catch (error) {
-  // nada
-}
-
-// Bom - pelo menos loga
-catch (error) {
-  console.error('Error:', error)
-}
-```
-
-### 3. Use requestId para suporte
-
-```typescript
-catch (error) {
-  if (error instanceof ApiError) {
-    toast.error(`Erro: ${error.message}. Codigo: ${error.requestId}`)
-    // Usuario pode informar requestId ao suporte
-  }
-}
-```
-
-### 4. Retry inteligente
-
-```typescript
-// Retry apenas em erros transientes
-catch (error) {
-  if (error instanceof ServerError || error instanceof NetworkError) {
-    // Pode tentar novamente
-    await retry(operation)
-  } else {
-    // Nao faz sentido retry
-    throw error
-  }
-}
-```
+Seja especifico no tratamento, usando instanceof para distinguir tipos ao inves de tratar todos igualmente. Nunca silencie erros sem ao menos logar. Use requestId para suporte, exibindo-o ao usuario. Retente apenas em erros transientes (ServerError, NetworkError), nunca em erros de cliente.

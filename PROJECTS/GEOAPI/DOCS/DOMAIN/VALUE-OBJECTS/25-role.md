@@ -1,12 +1,41 @@
 ---
 type: leaf
 status: review
-description: "Estrutura caotica. Numeracao nao agrupa por categoria. Precisa reorganizar por agregado/contexto. Stub de 11 linhas - incompleto."
-updated: 2026-01-19
+updated: 2026-02-08
 ---
 
-# Role (Papel de Usuário no Sistema)
+# Role
 
-Value object enum imutável representando papel funcional de usuário no sistema definindo nível de acesso permissões e responsabilidades conforme hierarquia organizacional implementando controle de acesso baseado em roles (RBAC). Valores possíveis incluem SUPER_ADMIN representando super administrador com acesso irrestrito a todas funcionalidades de todos tenants incluindo capacidade de gerenciar tenants criar administradores de tenant visualizar e modificar dados de qualquer organização e acessar configurações globais do sistema (role destinada a operadores da plataforma SaaS não a usuários finais de tenants específicos), ADMIN representando administrador de tenant com acesso completo a funcionalidades do seu próprio tenant incluindo gerenciamento de usuários criação de teams configuração de comunidades aprovação de processos e emissão de certidões mas sem acesso a dados de outros tenants (role para gestor máximo de prefeitura ou empresa de topografia), MANAGER representando gestor operacional com permissões de supervisão aprovação e decisões críticas podendo revisar e aprovar processos de legitimação gerenciar atribuição de trabalho a analistas visualizar relatórios consolidados mas sem capacidade de gerenciar usuários ou configurações de sistema (role para coordenador de equipe ou chefe de departamento), ANALYST representando analista técnico responsável por análise e validação de processos podendo revisar documentação emitir pareceres técnicos validar dados topográficos e recomendar aprovação ou rejeição mas sem autoridade para decisão final ou emissão de certidões (role para técnico qualificado de nível intermediário), FIELD_COORDINATOR representando coordenador de campo que supervisiona equipe de cadastradores com acesso completo ao menu mobile podendo visualizar dados da equipe coordenar trabalho em campo criar e editar units e holders em modo offline via app mobile tirar fotos anexar documentos mas sem capacidade de aprovar processos ou acessar funcionalidades administrativas (role para líder de equipe de campo), e FIELD_CADASTRATOR representando cadastrador de campo com acesso restrito apenas ao mapa e formularios podendo criar e editar units e holders próprios sem menu mobile completo sem visualização de dados de outras equipes ou funcionalidades administrativas (role para técnico de campo junior ou temporário). Hierarquia de permissões estabelece ordem decrescente de privilégios onde SUPER_ADMIN > ADMIN > MANAGER > ANALYST > FIELD_COORDINATOR > FIELD_CADASTRATOR e role superior herda todas permissões de roles inferiores (ADMIN pode fazer tudo que MANAGER ANALYST FIELD_COORDINATOR e FIELD_CADASTRATOR fazem, MANAGER pode fazer tudo que ANALYST FIELD_COORDINATOR e FIELD_CADASTRATOR fazem), validação de permissão verifica se role do usuário autenticado tem nível suficiente para ação solicitada (criar ApiKey requer ADMIN, aprovar LegitimationRequest requer MANAGER, criar Unit permite FIELD_COORDINATOR ou FIELD_CADASTRATOR), e operações críticas podem requerer role específico exato ao invés de hierárquico (emitir LegitimationCertificate requer ADMIN ou MANAGER mas não SUPER_ADMIN que é operador de plataforma externo). Uso em Account estabelece que cada usuário tem exatamente um role global armazenado em Account.role determinando permissões base, role pode variar por Team onde usuário pode ser MEMBER em um team e LEADER em outro via TeamMember.team_role mas role de Account prevalece para operações fora de contexto de team, role determina visibilidade de menu e features em interface (FIELD_CADASTRATOR vê apenas mapa e formulários sem menu completo, FIELD_COORDINATOR vê menu mobile completo com dados da equipe e sincronização, ANALYST vê também fila de análise e relatórios, MANAGER vê dashboard executivo e aprovações pendentes, ADMIN vê configurações e gerenciamento de usuários), e mudança de role de usuário requer ação de administrador com role superior (ADMIN pode promover ANALYST para MANAGER, MANAGER não pode promover ninguém pois não tem role superior a delegar). Regras de atribuição estabelecem que novo usuário criado via convite recebe role padrão FIELD_CADASTRATOR sendo promovido posteriormente para FIELD_COORDINATOR ou superior se necessário garantindo privilégio mínimo inicial, primeiro usuário de novo tenant é automaticamente ADMIN permitindo bootstrap de configuração inicial, SUPER_ADMIN só pode ser atribuído via acesso direto ao banco de dados ou script administrativo da plataforma prevenindo escalação não autorizada de privilégios, e role não pode ser removido (Account.role é obrigatório) apenas alterado para role diferente mantendo sempre usuário com role explícito conhecido. Permissões por role agrupadas por área funcional incluem Units (FIELD_CADASTRATOR create read update own-only, FIELD_COORDINATOR create read update team-scope, ANALYST delete approve bulk-edit, MANAGER force-delete import-shapefile, ADMIN configure-validation-rules), Holders (FIELD_CADASTRATOR create read update, ANALYST delete validate-cpf, MANAGER merge-duplicates, ADMIN), LegitimationRequest (ANALYST create review assign-to-self, MANAGER approve reject issue-certificate, ADMIN cancel-request edit-after-approval), Teams (MANAGER create assign-users, ADMIN delete change-leader), Users (ADMIN create deactivate change-role assign-to-team, SUPER_ADMIN impersonate access-all-tenants), e Reports (FIELD_CADASTRATOR basic-reports, ANALYST detailed-reports export-pdf, MANAGER executive-dashboard cross-community-reports, ADMIN tenant-wide-analytics usage-statistics). Sistema valida role em múltiplas camadas onde API endpoint verifica role antes de processar requisição retornando HTTP 403 Forbidden se insuficiente, serviço de domínio verifica role ao executar operação de negócio lançando UnauthorizedException se usuário não tem permissão, queries de banco filtram dados por role automaticamente (FIELD_CADASTRATOR só vê Units próprias, FIELD_COORDINATOR vê Units de Communities que seu Team tem CommunityAuthorization, ANALYST vê Units de Communities do tenant inteiro, ADMIN vê tudo), e interface esconde controles ou páginas que usuário não pode acessar prevenindo confusão e tentativas fúteis de executar operações não permitidas. Auditoria de uso de permissões rastreia quais roles executam quais operações gerando relatório de análise de uso permitindo identificar se roles foram bem dimensionados ou se ajustes são necessários (se ANALYST nunca usa permissão de bulk-edit talvez deveria ser movida para MANAGER, se FIELD_CADASTRATOR frequentemente precisa solicitar que ANALYST faça algo talvez deveria ganhar permissão adicional), detecção de anomalias alerta se usuário com role baixo tenta repetidamente acessar recurso restrito sugerindo possível tentativa de escalação de privilégios ou necessidade legítima de promoção de role, e sistema pode sugerir automaticamente promoção de role quando padrões de uso indicam que usuário consistentemente precisa de permissões além do seu role atual.
+Value object enum imutavel representando o papel funcional de um usuario no sistema, definindo nivel de acesso, permissoes e responsabilidades conforme hierarquia organizacional. Implementa controle de acesso baseado em roles (RBAC).
 
-**Módulos:** GEOAPI, GEOWEB, REURBCAD, GEOGIS
+## Valores Permitidos
+
+| Valor | Descricao |
+|-------|-----------|
+| SUPER_ADMIN | Super administrador. Acesso irrestrito a todos tenants. Destinado a operadores da plataforma SaaS. |
+| ADMIN | Administrador de tenant. Gestao completa do proprio tenant: usuarios, teams, configuracoes. |
+| MANAGER | Gestor operacional. Supervisao, aprovacao de processos, relatorios consolidados. |
+| ANALYST | Analista tecnico. Analise e validacao de processos, pareceres tecnicos. |
+| FIELD_COORDINATOR | Coordenador de campo. Menu mobile completo, visualiza dados da equipe, coordena trabalho. |
+| FIELD_CADASTRATOR | Cadastrador de campo. Acesso restrito a mapa e formularios, apenas dados proprios. |
+
+## Hierarquia de Permissoes
+
+| Nivel | Role | Pode fazer tudo de |
+|-------|------|--------------------|
+| 6 | SUPER_ADMIN | Todos os roles abaixo + gestao cross-tenant. |
+| 5 | ADMIN | MANAGER + gestao de usuarios e configuracoes. |
+| 4 | MANAGER | ANALYST + aprovacao de processos e gestao de equipes. |
+| 3 | ANALYST | FIELD_COORDINATOR + analise e pareceres. |
+| 2 | FIELD_COORDINATOR | FIELD_CADASTRATOR + visualizacao de dados da equipe. |
+| 1 | FIELD_CADASTRATOR | Operacoes basicas de cadastro. |
+
+## Regras de Atribuicao
+
+| Regra | Descricao |
+|-------|-----------|
+| Role padrao | Novo usuario recebe FIELD_CADASTRATOR por padrao (privilegio minimo). |
+| Primeiro do tenant | Primeiro usuario de novo tenant e automaticamente ADMIN. |
+| SUPER_ADMIN restrito | So pode ser atribuido via acesso administrativo da plataforma. |
+| Role obrigatorio | Account.role e obrigatorio. Nao pode ser removido, apenas alterado. |
+| Promocao requer superior | Mudanca de role requer acao de usuario com role superior. |

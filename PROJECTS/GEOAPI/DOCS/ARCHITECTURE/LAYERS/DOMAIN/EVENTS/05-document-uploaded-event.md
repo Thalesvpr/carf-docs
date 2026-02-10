@@ -1,12 +1,37 @@
 ---
 type: leaf
 status: review
-description: "Estrutura caotica. Numeracao nao agrupa por categoria. Precisa reorganizar por agregado/contexto. Stub de 11 linhas - incompleto."
-updated: 2026-01-19
+updated: 2026-02-08
 ---
 
 # DocumentUploadedEvent
 
-Domain event emitido por Unit aggregate root quando documento arquivo ou foto é anexado a unidade habitacional representando adição de evidência documental importante para processo de regularização permitindo validação de completude e notificação de partes interessadas. Payload do evento contém identificador da unidade ao qual documento foi anexado, identificador único do documento criado referenciando entity Document, tipo de documento especificado (PHOTO_FRONT PHOTO_BACK DOC_CPF DOC_RG PLANT_DWG MEMORIAL_DESCRITIVO etc) categorizando anexo, nome original do arquivo preservando identificação, tamanho em bytes útil para estatísticas de storage, MIME type validando formato esperado, identificador do Account que realizou upload rastreando responsabilidade, identificador do tenant para isolamento multi-tenant, e timestamp UTC quando upload foi concluído para ordenação cronológica de anexos. Event handlers subscribers processam evento executando side effects como validar assincronamente se documento é legível executando OCR em PDFs ou verificando integridade de imagens detectando corrupção, executar análise de malware em arquivo uploadado garantindo segurança antes de disponibilizar para download, gerar thumbnails para imagens facilitando preview rápido em interfaces, extrair metadados de arquivo como coordenadas GPS de fotos ou informações de criação de PDFs enriquecendo dados disponíveis, atualizar checklist de documentação obrigatória marcando tipo específico como completo e recalculando percentual de completude do processo, invalidar cache de listagem de documentos da unidade forçando refresh, notificar analista responsável quando documento crítico como memorial descritivo ou planta técnica é anexado permitindo revisão prioritária, registrar em audit trail upload para compliance e rastreabilidade especialmente importante para documentos jurídicos, e disparar workflow de validação documental quando conjunto completo de documentos obrigatórios é atingido automaticamente transicionando unidade para próximo estágio de análise. Motivação do evento permite processar documentos de forma assíncrona desacoplando upload de processamento pesado como OCR ou geração de thumbnails garantindo performance de operação principal, facilita rastreamento de histórico documental onde event store preserva quando cada documento foi adicionado mesmo se posteriormente removido ou substituído, habilita validações complexas de completude onde diferentes modalidades REURB-S vs REURB-E exigem conjuntos distintos de documentos validados via handlers específicos, e suporta integrações externas onde upload de certidão ou memorial pode disparar notificação para cartório ou órgão regulador. Regras de processamento estabelecem que evento é despachado após SaveChanges garantindo que Document entity foi persistida e arquivo armazenado com sucesso, handlers pesados como OCR ou análise de malware executam em background jobs separados prevenindo bloqueio, falha em handler de processamento secundário não impede acesso ao documento mas registra warning para investigação manual, e idempotência é requerida especialmente para side effects como geração de thumbnails evitando processamento duplicado desperdiçando recursos computacionais.
+Domain event emitido quando documento, arquivo ou foto e anexado a uma entidade do sistema, representando adicao de evidencia documental para o processo de regularizacao. Permite validacao de completude e processamento assincrono de arquivos.
 
-**Módulos:** GEOAPI, GEOWEB, REURBCAD, GEOGIS
+## Payload
+
+| Campo | Tipo | Descricao |
+| --- | --- | --- |
+| DocumentId | Guid | Identificador unico do documento criado. |
+| EntityType | EntityType | Tipo da entidade pai: UNIT, HOLDER, COMMUNITY. |
+| EntityId | Guid | ID da entidade ao qual documento foi anexado. |
+| DocumentType | DocumentType | Categoria: RG, CPF, FOTO_FACHADA, CERTIDAO, etc. |
+| FileName | string | Nome original do arquivo preservado. |
+| FileSize | bigint | Tamanho em bytes. |
+| MimeType | string | Tipo MIME: image/jpeg, application/pdf, etc. |
+| UploadedBy | Guid | AccountId que realizou upload. |
+| TenantId | Guid | Tenant do contexto. |
+| OccurredAt | DateTime | Timestamp UTC do upload. |
+
+## Handlers
+
+| Handler | Acao |
+| --- | --- |
+| DocumentThumbnailHandler | Gera thumbnails para imagens facilitando preview. |
+| DocumentChecklistHandler | Atualiza checklist de documentacao obrigatoria. |
+| DocumentCacheHandler | Invalida cache de listagem de documentos da entidade. |
+| DocumentAuditHandler | Registra upload em audit trail para compliance. |
+
+## Contexto de Emissao
+
+Emitido pela camada de aplicacao apos upload bem-sucedido via IFileStorage e persistencia do registro em documents. O arquivo e armazenado no S3 com checksum SHA-256 para verificacao de integridade.

@@ -1,10 +1,7 @@
 ---
 type: readme
-title: "Especificacoes Tecnicas - @carf/ui"
-description: "README usa listas/tabelas ao invés de prosa densa com links inline."
 status: review
-updated: 2026-01-22
-source: "interno"
+updated: 2026-02-07
 ---
 
 # Especificacoes Tecnicas - @carf/ui
@@ -22,49 +19,24 @@ Documentacao tecnica detalhada das configuracoes de projeto necessarias para bui
 
 ## Visao Geral
 
-O @carf/ui e configurado para:
-
-- **Build**: Vite + TypeScript
-- **Styling**: Tailwind CSS + CSS Variables
-- **Componentes Base**: shadcn/ui + Radix UI
-- **Documentacao**: Storybook
-- **Publicacao**: GitHub Packages (@carf scope)
+O @carf/ui e configurado para build via Vite com TypeScript, styling via Tailwind CSS com CSS Variables, componentes base via shadcn/ui e Radix UI, documentacao via Storybook e publicacao via GitHub Packages sob o scope @carf.
 
 ## Requisitos de Ambiente
 
-```bash
-# Versoes minimas
-node >= 18.0.0
-bun >= 1.0.0
-```
+As versoes minimas necessarias sao Node.js 18.0.0 ou superior e Bun 1.0.0 ou superior.
 
 ## Comandos Principais
 
-```bash
-# Instalar dependencias
-bun install
-
-# Build da biblioteca
-bun run build
-
-# Storybook (desenvolvimento)
-bun run storybook
-
-# Testes
-bun test
-
-# Type check
-tsc --noEmit
-```
+Para instalar dependencias, usar bun install. Para build da biblioteca, bun run build. Para iniciar Storybook em modo de desenvolvimento, bun run storybook. Para executar testes, bun test. Para verificacao de tipos, tsc --noEmit.
 
 <!-- CARF-INDEX-START -->
 ## Documentos
 
-### Em Revisão
-
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/SPECS/01-package-json.md|Package.json]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/SPECS/02-tailwind-config.md|Tailwind Config]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/SPECS/03-globals-css.md|Globals CSS]]
-- ○ [[PROJECTS/LIB/TS/UI-COMPONENTS/DOCS/SPECS/04-storybook-config.md|Storybook Config]]
+| ID | Titulo |
+|:---|:-------|
+| [01-package-json](./01-package-json.md) | Package.json |
+| [02-tailwind-config](./02-tailwind-config.md) | Tailwind Config |
+| [03-globals-css](./03-globals-css.md) | Globals CSS |
+| [04-storybook-config](./04-storybook-config.md) | Storybook Config |
 
 <!-- CARF-INDEX-END -->

@@ -1,17 +1,33 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-12
+updated: 2026-02-08
 ---
 
 # Data Flow
 
-Fluxo de dados no GEOAPI segue Clean Architecture onde requisição HTTP entra pela Gateway Layer, passa por Application Layer orquestrando use cases, Domain Layer aplicando regras negócio, Infrastructure Layer persistindo dados, e resposta retorna caminho inverso. Request HTTP chega Controller que deserializa JSON para DTO, Middleware autentica JWT extrai tenant_id claims, ValidationFilter valida DTO via FluentValidation, Controller despacha Command ou Query via MediatR.
+O fluxo de dados na GEOAPI segue a estrutura de Clean Architecture onde cada requisicao HTTP atravessa camadas concentricas com responsabilidades bem definidas.
 
-Command flow para operações escrita inicia CreateUnitCommand com dados DTO, Handler recebe command injeta IUnitRepository ICurrentUser, valida regras negócio via Domain Entity ou Specification, cria Entity via factory method ou construtor validando invariantes, persiste via Repository.Add e UnitOfWork.SaveChanges, dispara Domain Events UnitCreatedEvent via IDomainEventDispatcher, retorna DTO mapeado via extension method ToDto. Query flow para leitura otimizada inicia GetUnitsQuery com filtros paginação, Handler recebe query injeta DbContext diretamente para performance, projeta diretamente para DTO via Select evitando materialização Entity completa, aplica filtros Where OrderBy Skip Take, retorna lista DTOs paginada sem passar por Domain Layer.
+## Request Flow
 
-Multi-tenancy flow garante isolamento dados onde JWT token contém tenant_id claim, TenantMiddleware extrai claim seta HttpContext.Items, TenantProvider lê HttpContext.Items retorna tenant_id atual, DbContext interceptor ExecuteSqlRaw SET LOCAL app.tenant_id = {tenantId} antes cada query, PostgreSQL RLS policies filtram automaticamente todas tabelas por tenant_id sem necessidade filtro explícito código aplicação.
+A requisicao HTTP chega ao controller que deserializa JSON para DTO. O ExceptionHandlingMiddleware envolve toda a pipeline para captura de erros. O middleware de autenticacao valida o JWT e extrai claims. O TenantMiddleware extrai tenant_id do JWT e executa SET LOCAL app.current_tenant no PostgreSQL. O ValidationFilter valida o DTO via ModelState. O controller despacha Command ou Query via MediatR.
 
-Error handling flow captura exceções em múltiplas camadas onde Domain Exceptions ValidationException NotFoundException ConflictException contêm detalhes negócio, Application Exceptions UnauthorizedException ForbiddenException tratam autenticação autorização, ExceptionHandlerMiddleware captura todas exceções converte para ProblemDetails RFC 7807 com status code apropriado title detail instance, logs estruturados Serilog registram exception stack trace request context para debugging produção.
+## Command Flow
 
-Caching flow otimiza leituras frequentes onde Query Handler verifica IDistributedCache Redis antes consultar banco, cache miss executa query banco e armazena resultado cache com TTL configurável, cache hit retorna dados direto Redis sem query banco, Domain Events InvalidateCacheEvent disparam invalidação seletiva quando Entity modificada, cache keys seguem padrão tenant:entity:id permitindo invalidação granular ou por tenant.
+Para operacoes de escrita, o MediatR executa pipeline behaviors na ordem: ValidationBehavior (FluentValidation antes do handler), LoggingBehavior (loga entrada e saida), AuditLoggingBehavior (captura snapshots antes e depois). O handler recebe o command, injeta interfaces de repositorio e servicos, valida regras de negocio via Domain Entity, cria ou atualiza a entidade, persiste via Repository.Add e UnitOfWork.SaveChanges e dispara Domain Events via IDomainEventDispatcher. O resultado e mapeado para DTO e retornado ao controller.
+
+## Query Flow
+
+Para operacoes de leitura, o handler pode acessar DbContext diretamente para performance, projetando para DTO via Select sem materializar a entidade completa. Aplica filtros Where, ordenacao OrderBy e paginacao Skip/Take. O resultado e retornado sem passar pela camada Domain, otimizando leituras frequentes.
+
+## Multi-Tenancy Flow
+
+O JWT contem claim tenant_id. O TenantMiddleware extrai o claim e define a variavel de sessao app.current_tenant no PostgreSQL via ExecuteSqlRaw com parameter binding. Policies RLS filtram automaticamente todas as tabelas por tenant_id sem necessidade de filtro explicito no codigo.
+
+## Error Handling Flow
+
+Excecoes de dominio (ValidationException, NotFoundException, ConflictException) sao capturadas pelo ExceptionHandlingMiddleware e convertidas para ProblemDetails RFC 7807 com status HTTP apropriado. Erros 500 logam exception completa via Serilog, erros abaixo de 500 logam apenas mensagem. Mensagens internas nunca sao expostas em respostas 500.
+
+## Caching Flow
+
+Query handlers verificam IDistributedCache (Redis) antes de consultar o banco. Cache miss executa query e armazena resultado com TTL configuravel. Domain Events disparam invalidacao seletiva quando entidades sao modificadas. Cache keys seguem padrao tenant:entity:id.

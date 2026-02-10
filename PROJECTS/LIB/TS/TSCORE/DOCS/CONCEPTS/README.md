@@ -12,6 +12,8 @@ Os [value objects](./01-value-objects.md) explicam o pattern de objetos imutavei
 
 A [autenticacao](./02-authentication.md) descreve integracao com Keycloak via OAuth2 Authorization Code com PKCE. KeycloakClient gerencia ciclo de vida de tokens com refresh automatico, extracao de roles do JWT e verificacao de permissoes hierarquicas. Hooks useAuth abstraem estado de autenticacao para React e Vue.
 
+A [configuracao de autenticacao](./02a-authentication-config.md) detalha token lifetimes, refresh token rotation, scope offline_access para mobile, storage recomendado por plataforma e client roles para controle granular de funcionalidades.
+
 Os [tipos TypeScript](./03-typescript-types.md) documentam interfaces de dominio sincronizadas com backend .NET. Entidades Unit, Holder e Community representam dados cadastrais de regularizacao fundiaria. Enums definem estados de workflow e hierarquia de permissoes. DTOs especificam contratos de API.
 
 A [abstracao de storage](./04-storage-abstraction.md) apresenta interface StorageAdapter para persistencia cross-platform. Permite que KeycloakClient use localStorage em web e expo-secure-store em mobile sem modificar logica OAuth2.

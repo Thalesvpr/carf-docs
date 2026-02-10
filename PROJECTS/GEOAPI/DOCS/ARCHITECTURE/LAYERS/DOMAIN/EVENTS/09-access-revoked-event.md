@@ -1,12 +1,33 @@
 ---
 type: leaf
 status: review
-description: "Estrutura caotica. Numeracao nao agrupa por categoria. Precisa reorganizar por agregado/contexto. Stub de 11 linhas - incompleto."
-updated: 2026-01-19
+updated: 2026-02-08
 ---
 
 # AccessRevokedEvent
 
-Domain event emitido por Community aggregate root quando CommunityAuthorization existente é revogada removendo permissão de acesso de Team ou Account individual representando fato que autorização foi encerrada exigindo limpeza de dados locais em aplicação mobile e invalidação de caches de listagem de comunidades acessíveis. Payload do evento contém identificador da comunidade da qual acesso foi revogado, identificador de CommunityAuthorization entity removida referenciando autorização que existia, identificador de Team que perdeu acesso se autorização era coletiva afetando todos membros da equipe, identificador de Account que perdeu acesso se autorização era individual removendo permissão específica de usuário, permissões que foram revogadas (can_read can_create can_edit can_delete) documentando escopo de acesso perdido, identificador do Account que revogou acesso rastreando quem tem autoridade de gerenciar permissões especialmente importante para auditoria de segurança, motivo ou justificativa da revogação opcional documentando razão administrativa ou de compliance, identificador do tenant para isolamento multi-tenant, e timestamp UTC quando acesso foi revogado para rastreamento temporal de mudanças de permissão. Event handlers subscribers processam evento executando side effects críticos como enviar notificação ao Account ou membros de Team informando que acesso à comunidade foi removido com orientação para sincronizar dados pendentes antes de limpeza local, invalidar cache de listagem de comunidades acessíveis forçando refresh de queries impedindo visualização de dados após revogação, disparar limpeza de dados locais em aplicação mobile removendo unidades holders documentos e fotos da comunidade do banco de dados local liberando espaço de armazenamento, registrar em audit trail revogação de acesso para compliance e rastreabilidade essencial para investigação de segurança ou vazamento de dados, atualizar configuração de sincronização offline removendo comunidade do escopo de sync prevenindo download de novos dados, validar assincronamente que Account ou Team não possui dados pendentes de sincronização da comunidade revogada disparando alerta se houver risco de perda de dados, decrementar contador de membros com acesso em dashboard de gestão de equipes atualizando métricas de distribuição de trabalho, e disparar webhook para sistemas externos integrados notificando sobre remoção de atribuição de área de trabalho. Motivação do evento permite gerenciamento dinâmico de acesso onde mudanças organizacionais (funcionário saiu equipe foi dissolvida município foi reatribuído) são refletidas imediatamente no sistema sem requerer intervenção técnica, facilita compliance com LGPD onde usuário que não precisa mais acessar dados de comunidade específica tem acesso revogado minimizando exposição de dados pessoais, habilita limpeza automática de dados offline onde revogação dispara exclusão local em mobile prevenindo acúmulo de dados órfãos ou desatualizados, e suporta workflows de segurança onde suspeita de comprometimento de conta dispara revogação em massa de acessos permitindo contenção rápida de incidente. Regras de processamento estabelecem que evento é despachado após SaveChanges garantindo que CommunityAuthorization foi realmente removida do banco antes de disparar limpeza de dados locais, handlers de limpeza offline executam em background job separado permitindo sincronização final de dados pendentes antes de exclusão, falha em handler de notificação não impede revogação mas registra erro para retry garantindo usuário seja informado eventualmente, e idempotência é crítica especialmente para limpeza de dados locais prevenindo tentativa duplicada de deletar dados já removidos em caso de reprocessamento de evento.
+Domain event emitido por Community aggregate root quando CommunityAuthorization e revogada, removendo permissao de acesso de Team ou Account. Exige limpeza de dados locais no app mobile e invalidacao de caches.
 
-**Módulos:** GEOAPI, GEOWEB, REURBCAD, GEOGIS
+## Payload
+
+| Campo | Tipo | Descricao |
+| --- | --- | --- |
+| CommunityId | Guid | Comunidade da qual acesso foi revogado. |
+| AuthorizationId | Guid | CommunityAuthorization removida. |
+| TeamId | Guid | Team que perdeu acesso (se coletiva). |
+| AccountId | Guid | Account que perdeu acesso (se individual). |
+| RevokedBy | Guid | AccountId que revogou acesso. |
+| TenantId | Guid | Tenant do contexto. |
+| OccurredAt | DateTime | Timestamp UTC. |
+
+## Handlers
+
+| Handler | Acao |
+| --- | --- |
+| RevokeNotificationHandler | Notifica Account ou membros de Team sobre remocao de acesso. |
+| RevokeCacheHandler | Invalida cache de comunidades acessiveis. |
+| RevokeSyncHandler | Dispara limpeza de dados locais no app mobile. |
+
+## Contexto de Emissao
+
+Emitido pelo agregado Community no metodo RevokeAccess(). Valida que nao e ultima autorizacao ativa, prevenindo comunidade inacessivel.

@@ -39,36 +39,9 @@ Garantir que ortofotos (drone) sejam recebidas, processadas (reducao/tamanhos), 
 | 04-regras-inegociaveis/ | Regras que nao podem ser alteradas |
 | 05-conceitos-glossario/ | Definicoes e termos padronizados |
 
-## Diagrama Visual
+## Resumo das Partes
 
-```
-PARTE 1                          PARTE 2                          PARTE 3
-Drone → Backend → Bucket         Analista → Plugin → Backend      Equipe → Download → Campo
-
-┌─────────────────┐              ┌─────────────────┐              ┌─────────────────┐
-│ Analista Drone  │              │ Analista QGIS   │              │ Equipe Campo    │
-│                 │              │                 │              │ (Coord + Cad)   │
-│ 1. Autentica    │              │ 5. Designado    │              │ 11. Designado   │
-│    Keycloak     │              │    ao TENANT    │              │     ao TENANT   │
-│                 │              │                 │              │                 │
-│ 2. Envia        │              │ 6. Autentica    │              │ 12. Download    │
-│    ortofoto     │              │    Keycloak +   │              │     temporario  │
-│                 │              │    AUTH KEY     │              │                 │
-└────────┬────────┘              │                 │              │ 13. Seleciona   │
-         │                       │ 7. Acessa       │              │     comunidade  │
-         ▼                       │    ortofotos    │              │     (Coord)     │
-┌─────────────────┐              │                 │              │                 │
-│ Backend         │              │ 8. Georrefe-    │              │ 14. Mapa        │
-│                 │              │    rencia       │              │     carrega     │
-│ 3. Processa     │              │                 │              │                 │
-│    reduz        │              │ 9. Publica      │──────────────│ 15. Fluxo       │
-│    tamanho      │              │    backend      │  SOMENTE     │     operacional │
-│                 │              │                 │  APOS        │     GPS, acoes  │
-│ 4. Salva em     │              │ 10. Dados       │  PUBLICACAO  │     formulario  │
-│    bucket por   │              │     liberados   │              │     assinatura  │
-│    TENANT       │              │                 │              │     QR, sync    │
-└─────────────────┘              └─────────────────┘              └─────────────────┘
-```
+Na Parte 1, o Analista de Drone autentica via Keycloak (passo 1), envia a ortofoto (passo 2), o backend processa e reduz tamanho (passo 3) e salva em bucket por tenant (passo 4). Na Parte 2, o Analista e designado ao tenant (passo 5), autentica via Keycloak e AUTHENTICATION KEY (passo 6), acessa ortofotos (passo 7), georreferencia poligonos (passo 8), publica no backend (passo 9) e dados ficam liberados (passo 10). Na Parte 3, somente apos publicacao, a equipe e designada ao tenant (passo 11), baixa pacote temporario (passo 12), Coordenador seleciona comunidade (passo 13), mapa carrega (passo 14) e o fluxo operacional inclui GPS, acoes, formulario, assinatura, QR e sincronizacao (passos 15-18).
 
 ## Conceito Central: TENANT
 

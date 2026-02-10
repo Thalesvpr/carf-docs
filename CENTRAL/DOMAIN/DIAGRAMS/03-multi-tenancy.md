@@ -1,66 +1,36 @@
 ---
 type: leaf
 status: approved
-updated: 2026-01-24
+updated: 2026-02-07
 ---
 
 # Multi-Tenancy Diagram
 
-Diagrama do fluxo de isolamento multi-tenant via JWT e Row-Level Security no PostgreSQL, demonstrando as camadas de seguranca defense-in-depth.
+Descricao do fluxo de isolamento multi-tenant via JWT e Row-Level Security no PostgreSQL, demonstrando as camadas de seguranca defense-in-depth.
 
-## Diagrama Mermaid
+## Fluxo de Isolamento
 
-```mermaid
-graph LR
-    User[Usuario GEOWEB] -->|HTTP Request| Gateway[GEOAPI Gateway<br/>Controller]
-    Gateway -->|JWT Header| Middleware[JWT Validation<br/>Middleware]
+O usuario envia requisicao HTTP ao GEOAPI. O controller encaminha ao middleware de validacao JWT, que extrai os claims do token: sub (user_id), email, roles e tenant_id. O middleware configura o EF Core DbContext com o tenant extraido. O DbContext define a session variable no PostgreSQL via SET app.current_tenant.
 
-    Middleware -->|Extract Claims| Claims["JWT Claims:<br/>- sub (user_id)<br/>- email<br/>- roles<br/>- tenant_id"]
+Quando uma query SQL e executada (por exemplo, buscar unidades aprovadas), a policy RLS units_tenant_isolation intercepta automaticamente e adiciona o filtro tenant_id igual ao current_setting. O resultado retorna apenas linhas do tenant correto, garantindo isolamento completo.
 
-    Claims -->|Set Session| DbContext[EF Core<br/>DbContext]
+## Etapas do Fluxo
 
-    DbContext -->|"SET app.current_tenant"| SessionVar["PostgreSQL<br/>Session Variable<br/>current_setting('app.current_tenant')"]
+| Etapa | Componente | Acao |
+|-------|-----------|------|
+| 1 | GEOAPI Controller | Recebe requisicao HTTP com JWT |
+| 2 | JWT Validation Middleware | Valida token e extrai claims |
+| 3 | EF Core DbContext | Recebe tenant_id dos claims |
+| 4 | PostgreSQL Session Variable | Define app.current_tenant via SET |
+| 5 | SQL Query | Executa query original sem filtro de tenant |
+| 6 | RLS Policy | Intercepta e adiciona filtro automatico por tenant_id |
+| 7 | Query Filtrada | Retorna apenas linhas do tenant correto |
 
-    SessionVar -->|Execute| Query["SQL Query:<br/>SELECT * FROM units<br/>WHERE status = 'Aprovado'"]
+## Camadas de Seguranca
 
-    Query -->|Intercept| RLS["RLS Policy<br/>units_tenant_isolation"]
-
-    RLS -->|Auto-add Filter| FilteredQuery["SELECT * FROM units<br/>WHERE status = 'Aprovado'<br/>AND tenant_id = current_setting(...)::uuid"]
-
-    FilteredQuery -->|Return| Results["Apenas linhas do Tenant<br/>Isolamento garantido"]
-
-    Results --> DbContext
-    DbContext --> Gateway
-    Gateway --> User
-
-    subgraph "PostgreSQL Database"
-        SessionVar
-        Query
-        RLS
-        FilteredQuery
-
-        RLSPolicy["CREATE POLICY<br/>units_tenant_isolation<br/>ON units<br/>USING (tenant_id = current_setting('app.current_tenant')::uuid)"]
-
-        EnableRLS["ALTER TABLE units<br/>ENABLE ROW LEVEL SECURITY"]
-
-        RLSPolicy -.->|Applied| RLS
-        EnableRLS -.->|Enables| RLS
-    end
-
-    subgraph "Camadas de Seguranca"
-        Layer1["Camada 1:<br/>Middleware valida<br/>tenant_id claim"]
-
-        Layer2["Camada 2:<br/>RLS PostgreSQL<br/>filtro no kernel"]
-
-        Layer1 -.->|Primeira verificacao| Middleware
-        Layer2 -.->|Segunda verificacao| RLS
-    end
-
-    style RLS fill:#ffcccc
-    style SessionVar fill:#ccffcc
-    style FilteredQuery fill:#ccccff
-    style Layer1 fill:#ffffcc
-    style Layer2 fill:#ffccff
-```
+| Camada | Mecanismo | Descricao |
+|--------|-----------|-----------|
+| Camada 1 | Middleware JWT | Valida token e extrai tenant_id do claim |
+| Camada 2 | PostgreSQL RLS | Aplica filtro automatico no kernel do banco |
 
 Arquitetura defense-in-depth com duas camadas de protecao. Middleware valida token JWT e extrai tenant_id dos claims. PostgreSQL RLS aplica filtro automatico em todas as queries, impossibilitando vazamento de dados entre tenants mesmo em caso de SQL injection.

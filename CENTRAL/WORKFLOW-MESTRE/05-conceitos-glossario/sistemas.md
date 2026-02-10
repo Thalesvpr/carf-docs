@@ -1,7 +1,7 @@
 ---
 type: glossary
 status: approved
-updated: 2026-01-25
+updated: 2026-02-07
 category: sistemas
 ---
 
@@ -11,76 +11,38 @@ Definicoes dos sistemas que compoem o CARF.
 
 ## Backend (GEOAPI)
 
-Sistema central que:
-- Recebe e processa ortofotos
-- Armazena dados em bucket
-- Fornece APIs para Plugin e App
-- Recebe e processa sincronizacao
+Sistema central que recebe e processa ortofotos, armazena dados em bucket, fornece APIs para Plugin e App e recebe e processa sincronizacao.
 
-**Tecnologias:**
-- API REST
-- PostgreSQL com PostGIS
-- Integracao com S3/MinIO
+**Tecnologias:** API REST, PostgreSQL com PostGIS, integracao com S3/MinIO.
 
-**Endpoints principais:**
-- `/api/ortofotos` - Gerenciamento de ortofotos
-- `/api/poligonos` - Gerenciamento de poligonos
-- `/api/pacotes` - Pacotes para campo
+**Endpoints principais:** /api/ortofotos para gerenciamento de ortofotos, /api/poligonos para gerenciamento de poligonos e /api/pacotes para pacotes de campo.
 
 ## Keycloak
 
-Identity Provider que:
-- Autentica todos os usuarios
-- Emite tokens JWT
-- Gerencia roles e permissoes
-- Inclui `tenant_id` nos claims
+Identity Provider que autentica todos os usuarios, emite tokens JWT, gerencia roles e permissoes e inclui tenant_id nos claims.
 
-**Funcionalidades:**
-- OAuth2/OIDC
-- PKCE para apps desktop/mobile
-- Gerenciamento de usuarios e grupos
-- Claims customizados (tenant_id)
+**Funcionalidades:** OAuth2/OIDC, PKCE para apps desktop/mobile, gerenciamento de usuarios e grupos, claims customizados (tenant_id).
 
 ## App REURBCAD
 
-Aplicativo mobile para Agentes de Campo que:
-- Funciona offline-first
-- Armazena dados localmente (WatermelonDB)
-- Exibe mapas com GPS
-- Permite cadastros e sincronizacao
+Aplicativo mobile para Agentes de Campo que funciona offline-first, armazena dados localmente (WatermelonDB), exibe mapas com GPS e permite cadastros e sincronizacao.
 
-**Tecnologias:**
-- React Native
-- WatermelonDB (banco local)
-- Mapas georreferenciados
+**Tecnologias:** React Native, WatermelonDB (banco local), mapas georreferenciados.
 
-**Funcionalidades:**
-- Download de pacote temporario
-- Visualizacao de mapa com GPS
-- Formularios de cadastro
-- Coleta de assinatura digital
-- Sincronizacao PUSH/PULL
+**Funcionalidades:** download de pacote temporario, visualizacao de mapa com GPS, formularios de cadastro, coleta de assinatura digital, sincronizacao PUSH/PULL.
 
 ## Bucket (S3/MinIO)
 
-Armazenamento de objetos que:
-- Guarda ortofotos (originais e reduzidas)
-- Organiza por TENANT
-- Fornece URLs presigned para acesso
+Armazenamento de objetos que guarda ortofotos (originais e reduzidas), organiza por TENANT e fornece URLs presigned para acesso.
 
 **Estrutura:**
-```
-/{tenant_id}/
-  ├── ortofotos/
-  │   └── {ano}/{mes}/
-  │       ├── original/
-  │       ├── otimizada/
-  │       └── tiles/
-  ├── documentos/
-  └── fotos/
-```
 
-**Seguranca:**
-- URLs presigned com expiracao
-- Isolamento por TENANT
-- Acesso via backend apenas
+| Caminho | Conteudo |
+|---------|----------|
+| /{tenant_id}/ortofotos/{ano}/{mes}/original/ | Ortofoto original |
+| /{tenant_id}/ortofotos/{ano}/{mes}/otimizada/ | Versao reduzida |
+| /{tenant_id}/ortofotos/{ano}/{mes}/tiles/ | Tiles para visualizacao |
+| /{tenant_id}/documentos/ | Documentos anexados |
+| /{tenant_id}/fotos/ | Fotos de campo |
+
+**Seguranca:** URLs presigned com expiracao, isolamento por TENANT, acesso via backend apenas.

@@ -1,13 +1,30 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-12
+updated: 2026-02-08
 ---
 
 # Priority
 
-Value object enum representando nível de prioridade aplicável a diversos contextos do sistema como solicitações de legitimação, anotações e tickets de suporte. Valores possíveis são LOW (baixa prioridade para tarefas que podem aguardar sem impacto em prazos), NORMAL (prioridade padrão para fluxo regular de trabalho), HIGH (alta prioridade para situações que exigem atenção breve mas não impedem operação), e URGENT (urgência máxima para casos críticos que bloqueiam processos ou afetam prazos legais).
+Value object enum representando nivel de prioridade aplicavel a diversos contextos do sistema como anotacoes e solicitacoes de legitimacao. No banco de dados, corresponde ao campo annotations.priority (varchar(10), nullable) sendo obrigatorio para tipos ISSUE e REMINDER.
 
-Métodos incluem GetSLA() retornando tempo esperado de resposta em horas (URGENT: 4h, HIGH: 24h, NORMAL: 72h, LOW: 168h), GetColor() retornando código de cor para UI (URGENT: vermelho, HIGH: laranja, NORMAL: azul, LOW: cinza), CanEscalate() verificando se permite escalação automática após timeout, CompareTo(Priority other) implementando IComparable para ordenação, e ToDisplayString() retornando nome amigável.
+A prioridade influencia SLA de resposta, ordenacao em filas de trabalho e tipo de notificacao disparada.
 
-Usado em LegitimationRequest.Priority influenciando ordem de análise na fila de trabalho, Annotation.Priority para anotações tipo ISSUE definindo criticidade e REMINDER estabelecendo urgência, integra com sistema de notificações onde URGENT dispara alertas imediatos via email e push enquanto LOW apenas registra in-app, e alimenta relatórios gerenciais mostrando distribuição e SLA compliance.
+## Valores Permitidos
+
+| Valor | Descricao |
+| --- | --- |
+| LOW | Baixa prioridade para tarefas que podem aguardar sem impacto em prazos. SLA: 168h. |
+| NORMAL | Prioridade padrao para fluxo regular de trabalho. SLA: 72h. |
+| HIGH | Alta prioridade para situacoes que exigem atencao breve. SLA: 24h. |
+| URGENT | Urgencia maxima para casos criticos que bloqueiam processos ou afetam prazos legais. SLA: 4h. |
+
+## Regras de Validacao
+
+| Regra | Descricao |
+| --- | --- |
+| Obrigatoriedade | Obrigatorio para annotations com tipo ISSUE e REMINDER. |
+| Escalacao | URGENT e HIGH permitem escalacao automatica apos timeout de SLA. |
+| Notificacoes | URGENT dispara alertas imediatos via email e push; LOW apenas registra in-app. |
+
+Usado em Annotation.Priority para definir criticidade de ISSUE e urgencia de REMINDER, em LegitimationRequest influenciando ordem de analise na fila de trabalho, e alimenta relatorios gerenciais mostrando distribuicao e compliance de SLA.

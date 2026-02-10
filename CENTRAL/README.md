@@ -20,7 +20,7 @@ Configuracoes operacionais como deploy, testes, Git workflows e monitoramento re
 > ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
 > Use os links abaixo para referenciar documentos desta pasta.
 
-## Subpastas (7)
+## Subpastas (8)
 
 | Pasta | Descrição |
 |-------|-----------|
@@ -28,6 +28,7 @@ Configuracoes operacionais como deploy, testes, Git workflows e monitoramento re
 | [DESIGN-SYSTEM](./DESIGN-SYSTEM/README.md) | ... |
 | [DOMAIN](./DOMAIN/README.md) | ... |
 | [DOMAIN-RULES](./DOMAIN-RULES/README.md) | ... |
+| [INTEGRATION](./INTEGRATION/README.md) | ... |
 | [REQUIREMENTS](./REQUIREMENTS/README.md) | ... |
 | [SECURITY](./SECURITY/README.md) | ... |
 | [WORKFLOW-MESTRE](./WORKFLOW-MESTRE/README.md) | ... |

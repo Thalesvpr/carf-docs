@@ -1,37 +1,26 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-15
+updated: 2026-02-07
 ---
 
 # Data Flow - ADMIN
 
 ## Fluxo de Dados
 
-Data flow: **(1) User action** (ex: delete tenant) → **(2) React Component** chama mutation via TanStack Query `useMutation()` → **(3) Mutation function** chama `api.admin.tenants.delete(id)` via @carf/geoapi-client → **(4) API Client** adiciona JWT header automaticamente via interceptor, faz DELETE request para `/api/admin/tenants/:id` → **(5) GEOAPI Backend** valida JWT, verifica role ADMIN/SUPER_ADMIN, valida RLS policy, executa delete no banco, chama Keycloak Admin API se necessário → **(6) Response** volta para mutation function → **(7) TanStack Query** invalida cache com `queryClient.invalidateQueries(['tenants'])` → **(8) UI** re-renderiza automaticamente com dados atualizados via refetch automático.
+O fluxo de dados no ADMIN segue oito etapas sequenciais. Primeiro, a acao do usuario (por exemplo, deletar tenant) dispara um evento no React Component. O componente invoca uma mutation via TanStack Query useMutation. A mutation function chama o metodo correspondente no @carf/geoapi-client, como api.admin.tenants.delete(id). O API Client adiciona automaticamente o JWT header via interceptor e faz a requisicao HTTP para /api/admin/tenants/:id. O GEOAPI Backend valida o JWT, verifica role ADMIN ou SUPER_ADMIN, aplica RLS policy, executa a operacao no banco e chama Keycloak Admin API se necessario. A response retorna para a mutation function. O TanStack Query invalida o cache relacionado para forcar refetch. A UI re-renderiza automaticamente com dados atualizados.
 
-## Exemplo Prático
+## Etapas do Fluxo
 
-```typescript
-// 1. Component
-function TenantManagementPage() {
-  // 2. Mutation hook
-  const deleteMutation = useMutation({
-    mutationFn: (id: string) => api.admin.tenants.delete(id),
-    onSuccess: () => {
-      // 7. Invalidar cache
-      queryClient.invalidateQueries(['tenants'])
-      toast.success('Tenant deleted')
-    },
-  })
+| Etapa | Acao | Componente Responsavel |
+|-------|------|----------------------|
+| 1 | Acao do usuario (clique, submit) | React Component |
+| 2 | Dispara mutation | TanStack Query useMutation |
+| 3 | Chamada ao endpoint admin | @carf/geoapi-client |
+| 4 | Injeta JWT e envia request HTTP | API Client interceptor |
+| 5 | Valida JWT, verifica role, executa operacao | GEOAPI Backend |
+| 6 | Retorna response | HTTP response |
+| 7 | Invalida cache automaticamente | TanStack Query invalidateQueries |
+| 8 | Re-renderiza UI com dados atualizados | React Component via refetch |
 
-  return (
-    <Button onClick={() => deleteMutation.mutate(tenantId)}>
-      Delete
-    </Button>
-  )
-}
-
-// 3-6. Fluxo automático via @carf/geoapi-client
-// 8. UI atualiza automaticamente
-```
+O padrao de invalidacao de cache garante que apos qualquer mutation bem-sucedida, todas as queries relacionadas sao automaticamente refetchadas, mantendo a UI sempre sincronizada com o estado atual do servidor sem necessidade de refresh manual da pagina.

@@ -1,16 +1,38 @@
 ---
 type: leaf
 status: review
-description: "Estrutura caotica. Numeracao nao agrupa por categoria. Precisa reorganizar por agregado/contexto."
-updated: 2026-01-19
+updated: 2026-02-08
 ---
 
-# CustomData Schema (Unit.CustomData e Tenant.Settings)
+# CustomData Schema
 
-Value object conceitual definindo schemas de validação para campos JSONB dinâmicos permitindo configuração per-tenant de formulários cadastrais customizados e settings globais mantendo type-safety através de validação estrutural em runtime. Unit.CustomData armazena campos adicionais específicos de cada prefeitura onde alguns municipios precisam capturar tipo de construção (alvenaria madeira mista), material de cobertura (telha laje zinco), número de pavimentos, existência de quintal, poço artesiano, fossa séptica, energia elétrica, água encanada, situação de risco (enchente deslizamento), acessibilidade cadeirante, e observações específicas de programas habitacionais locais, schema de validação define campos opcionais com tipos primitivos (texto número booleano) arrays enumerações e objetos aninhados permitindo validação antes de persistir garantindo dados estruturados mesmo em campo flexível, exemplo schema inclui constructionType enumeração (MASONRY WOOD MIXED), roofMaterial enumeração (TILE CONCRETE_SLAB ZINC ASBESTOS STRAW), floors número mínimo 1 máximo 5, hasYard booleano, hasArtesianWell booleano, hasSepticTank booleano, hasElectricity booleano, hasPipedWater booleano, riskSituation array de enumerações (FLOOD LANDSLIDE EROSION NONE), wheelchairAccessible booleano, e housingProgramNotes texto opcional. Tenant.Settings armazena configurações globais de prefeitura incluindo fields configuration array definindo quais CustomData fields estão habilitados e obrigatórios para aquele tenant, workflow configuration definindo se aprovação requer apenas gestor ou múltiplos níveis (técnico supervisor gestor), notification preferences definindo canais ativos (email SMS push in-app), map configuration com tiles URL default zoom bounds geográficos de atuação, form configuration com labels customizados mensagens de ajuda e validações adicionais, export configuration com formatos habilitados (Shapefile GeoJSON KML CSV) e campos incluídos no export, e branding configuration com logo cores primária secundária URLs de termos de uso política privacidade. Schema de validação para Tenant.Settings define estrutura nested com regras para URLs cores hexadecimais e enumerações garantindo configurações válidas antes de persistir evitando estados inconsistentes que quebrariam sistema, migrations de schema quando tenant adiciona novo campo CustomData são versionadas permitindo Units antigas coexistirem com novas seguindo schema evolution pattern onde campos ausentes retornam valor nulo e validação aceita múltiplas versões de schema, e interface de administração de tenant permite editar Settings via construtor visual de formulários gerando schema de validação automaticamente reduzindo risco de configurações inválidas.
+Value object conceitual definindo schemas de validacao para campos JSONB dinamicos, permitindo configuracao per-tenant de formularios cadastrais customizados. Unit.custom_data armazena campos adicionais especificos de cada prefeitura sem necessidade de alteracao de schema do banco.
 
-Validação de CustomData ocorre em múltiplas camadas com frontend validando contra schema configurado para tenant atual fornecendo feedback imediato de erros antes de submissão, backend re-validando contra mesmo schema garantindo segurança caso cliente seja bypassado, e database validando que campo JSON é sintaticamente válido mas não valida schema semântico ficando validação estrutural em application layer. Exemplo de Unit.CustomData válido serializado como JSON é {"constructionType": "MASONRY", "roofMaterial": "TILE", "floors": 2, "hasYard": true, "hasElectricity": true, "hasPipedWater": false, "riskSituation": ["FLOOD"], "wheelchairAccessible": false} seguindo schema definido pelo tenant, campos não configurados pelo tenant são ignorados em validação permitindo flexibilidade mas evitando poluição de dados irrelevantes. Queries de CustomData utilizam operadores nativos de JSON do banco de dados para filtrar unidades por campos customizados onde queries espaciais podem ser combinadas com filtros em CustomData como unidades em risco de enchente retornando interseção de geometria com área de risco, índices especializados em campos JSON aceleram consultas mas devem ser criados seletivamente pois consomem espaço e degradam performance de escritas, e relatórios agregados podem sumarizar CustomData expandindo campos em linhas e agrupando para contar frequências de valores.
+## Estrutura do Schema
 
-Schema evolution implementa versioning onde Tenant.Settings.schemaVersion incrementa quando schema muda, Units antigas preservam CustomData no schema antigo sem necessidade de migration imediata, e application code valida contra schema correspondente à versão da Unit permitindo coexistência de múltiplas versões durante transição gradual, migrations podem ser forçadas via background job que lê Units antigas valida CustomData contra schema novo adicionando defaults para campos novos e persistindo versão atualizada, e deprecation de campos antigos marca campo como deprecated em schema mas mantém compatibilidade por período de grace antes de remover completamente. Tenant.Settings.fields configuration define cada campo CustomData com key name label type enum options required conditional logic (exemplo campo hasSepticTank só aparece se hasPipedWater false) e validation rules adicionais (exemplo floors max 3 para REURB-S max 5 para REURB-E), UI renderiza form dinamicamente baseado em configuration permitindo prefeituras ajustarem formulário sem code changes, e export de Units inclui CustomData expandido em colunas separadas no CSV ou como nested object em GeoJSON mantendo estrutura original.
+O schema define campos opcionais com tipos primitivos (texto, numero, booleano), arrays, enumeracoes e objetos aninhados. Cada tenant configura via Tenant.Settings.fields quais campos estao habilitados e obrigatorios.
 
-**Módulos:** GEOAPI, GEOWEB, REURBCAD, GEOGIS
+## Campos Tipicos
+
+| Campo | Tipo | Descricao |
+|-------|------|-----------|
+| constructionType | enum | MASONRY, WOOD, MIXED. Tipo de construcao. |
+| roofMaterial | enum | TILE, CONCRETE_SLAB, ZINC, ASBESTOS, STRAW. Material de cobertura. |
+| floors | number | Numero de pavimentos. Minimo 1, maximo 5. |
+| hasYard | boolean | Existencia de quintal. |
+| hasElectricity | boolean | Energia eletrica. |
+| hasPipedWater | boolean | Agua encanada. |
+| riskSituation | enum[] | FLOOD, LANDSLIDE, EROSION, NONE. Situacoes de risco. |
+| wheelchairAccessible | boolean | Acessibilidade para cadeirante. |
+
+## Validacao em Camadas
+
+| Camada | Descricao |
+|--------|-----------|
+| Frontend | Valida contra schema configurado para tenant atual, fornecendo feedback imediato. |
+| Backend | Re-valida contra mesmo schema garantindo seguranca caso cliente seja bypassado. |
+| Database | Valida que campo JSON e sintaticamente valido. Validacao semantica fica em application layer. |
+
+## Schema Evolution
+
+Quando tenant adiciona novo campo, schemaVersion incrementa. Units antigas preservam custom_data no schema antigo sem migration imediata. Application code valida contra schema correspondente a versao da Unit, permitindo coexistencia de multiplas versoes durante transicao gradual.

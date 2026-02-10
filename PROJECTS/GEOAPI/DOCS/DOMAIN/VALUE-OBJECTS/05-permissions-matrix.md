@@ -1,20 +1,43 @@
 ---
 type: leaf
 status: review
-description: "Estrutura caotica. Numeracao nao agrupa por categoria. Precisa reorganizar por agregado/contexto."
-updated: 2026-01-19
+updated: 2026-02-08
 ---
 
-# Permissions Matrix (Matriz de Permissões Granulares)
+# Permissions Matrix
 
-Value object conceitual definindo sistema de permissões granulares baseado em recursos e ações permitindo controle de acesso fino além de roles básicos (SUPER_ADMIN ADMIN MANAGER ANALYST FIELD_COORDINATOR FIELD_CADASTRATOR) através de permissions específicas atribuídas a users ou teams habilitando cenários complexos como analista que só pode editar Units do seu município mas ler todas Units da região ou field-cadastrator que cadastra Units próprias mas não aprova nem deleta, enquanto field-coordinator pode ver e coordenar dados de toda equipe. Permissions são compostas de recurso (UNIT HOLDER COMMUNITY PROCESS DOCUMENT TEAM TENANT) action (CREATE READ UPDATE DELETE APPROVE REJECT EXPORT) e scope opcional (OWN_ONLY TEAM_ONLY COMMUNITY_ONLY TENANT_ONLY ALL) formando permission strings como units.create.team_only ou processes.approve.community_only interpretadas em runtime por authorization middleware verificando se user tem permission necessária para operação solicitada. Roles pré-definidos têm permissions bundles padrão onde SUPER_ADMIN tem wildcard *.*.all permitindo tudo, ADMIN tem *.*.tenant_only permitindo gestão completa do seu tenant, MANAGER tem units.approve.community_only processes.approve.community_only teams.read.tenant_only permitindo aprovação mas não CRUD de configurações globais, ANALYST tem units.*.community_only holders.*.community_only documents.*.community_only permitindo CRUD de dados mas não aprovação, FIELD_COORDINATOR tem units.create.team_only units.read.team_only documents.create.team_only permitindo coleta de dados e visualização de dados da equipe com menu mobile completo, e FIELD_CADASTRATOR tem units.create.own_only units.read.own_only documents.create.own_only permitindo coleta de dados próprios apenas com mapa e formulários sem menu completo. Permissions customizadas podem ser atribuídas diretamente a Account ou Team sobrescrevendo defaults de role permitindo exceções como ANALYST específico com units.delete.own_only para corrigir cadastros próprios errados ou FIELD_COORDINATOR com units.approve.team_only para pré-validar dados da equipe antes de enviar para MANAGER.
+Value object conceitual definindo sistema de permissoes granulares baseado em recursos e acoes, permitindo controle de acesso fino alem de roles basicos (SUPER_ADMIN, ADMIN, MANAGER, ANALYST, FIELD_COORDINATOR, FIELD_CADASTRATOR).
 
-Matriz de permissions completa documenta 150+ combinations de resource x action x scope onde resources incluem UNIT (cadastros de unidades) HOLDER (titulares) COMMUNITY (comunidades) BLOCK (quadras) PLOT (lotes) PROCESS (processos de legitimação) DOCUMENT (anexos) ANNOTATION (anotações) SURVEY_POINT (pontos topográficos) TEAM (equipes) ACCOUNT (usuários) TENANT (configurações tenant) REPORT (relatórios) EXPORT (exportações) DASHBOARD (dashboards) AUDIT_LOG (logs auditoria) NOTIFICATION (notificações), actions incluem CREATE (criar novos) READ (visualizar) UPDATE (editar) DELETE (deletar soft) APPROVE (aprovar workflows) REJECT (rejeitar workflows) EXPORT (exportar dados) IMPORT (importar lote) ASSIGN (atribuir responsabilidade) TRANSFER (transferir ownership), e scopes incluem OWN_ONLY (apenas registros criados por si), TEAM_ONLY (registros da equipe), COMMUNITY_ONLY (registros da comunidade atribuída), TENANT_ONLY (registros do tenant), ALL (todos registros cross-tenant apenas SUPER_ADMIN). Permissions especiais incluem units.bulk_import.community_only permitindo import CSV/Shapefile em lote, processes.force_approve.tenant_only permitindo ADMIN forçar aprovação pulando workflow, audit_logs.read.all permitindo auditoria cross-tenant para compliance, tenants.settings.update.own permitindo ADMIN configurar seu tenant, teams.members.assign.team_only permitindo líder adicionar membros, e reports.schedule.community_only permitindo agendar relatórios recorrentes.
+## Estrutura de Permissao
 
-Authorization check implementa verification em múltiplas camadas com middleware de autorização verificando permission antes de executar ação consultando cache em memória distribuído de permissions do user evitando query database a cada request, domain services double-checking permission antes de executar business logic crítica como approval garantindo segurança mesmo se middleware for bypassado, repository layer aplicando filters automáticos baseado em scope onde READ com COMMUNITY_ONLY adiciona WHERE clause tenant_id = X AND community_id IN (user_communities) transparentemente, e frontend desabilitando botões e ocultando menus para actions sem permission melhorando UX mas não sendo camada de segurança confiável. Permission resolution segue hierarquia onde permissions explícitas do Account sobrescrevem permissions do Team que sobrescrevem permissions padrão do Role permitindo granularidade máxima, deny permissions (ex: units.delete.deny) têm precedência sobre allow permissions implementando least privilege principle, e permissions são cached por 5 minutos em cache distribuído invalidando cache quando permissions de user mudam via Admin UI. Audit trail registra todas authorization failures em SecurityAuditLog incluindo user resource action e razão de denial facilitando troubleshooting e detectando tentativas de acesso não autorizado.
+Cada permissao e composta de tres partes formando uma permission string: recurso.acao.escopo.
 
-Permission strings seguem convenção {resource}.{action}.{scope} sempre lowercase com underscores, wildcard * permitido apenas em SUPER_ADMIN como *.*.all, validation garante resource e action são válidos enums e scope é compatível com action (exemplo EXPORT action não aceita OWN_ONLY scope pois exportações são sempre de datasets completos), e UI de administração de tenant exibe permissions em tree view agrupadas por resource facilitando atribuição visual. Permissions são persistidas em junction table AccountPermission e TeamPermission com colunas account_id team_id permission_string e granted_at permitindo queries de "quem tem permission X", índices em permission_string aceleram lookups de authorization, e soft delete de permissions através de revoked_at permite audit trail completo de mudanças de acesso. Migration de roles para permissions granulares ocorre via script que lê role de cada Account cria permissions equivalentes e marca role como legacy mantendo backward compatibility durante transição, novos usuarios recebem apenas permissions sem role simplificando modelo, e deprecation de roles ocorre após 100% de usuarios migrados removendo coluna role de Account.
+| Componente | Valores | Descricao |
+|------------|---------|-----------|
+| Recurso | UNIT, HOLDER, COMMUNITY, PROCESS, DOCUMENT, TEAM, TENANT, REPORT | Entidade ou funcionalidade alvo. |
+| Acao | CREATE, READ, UPDATE, DELETE, APPROVE, REJECT, EXPORT, IMPORT | Operacao a ser executada. |
+| Escopo | OWN_ONLY, TEAM_ONLY, COMMUNITY_ONLY, TENANT_ONLY, ALL | Abrangencia dos registros acessiveis. |
 
-Casos de uso especiais incluem temporary permissions com expires_at permitindo acesso temporário a consultor externo para gerar relatório específico com auto-revoke após deadline, delegated permissions onde MANAGER delega units.approve.community_only para ANALYST específico por período mantendo accountability, conditional permissions baseadas em regras como units.approve só disponível em horário comercial ou processes.reject exigindo justificativa obrigatória validada em domain service, e hierarchical permissions onde permission em Community parent propaga para Blocks e Units children automaticamente simplificando atribuição em hierarquias geográficas complexas.
+## Permissoes por Role
 
-**Módulos:** GEOAPI, GEOWEB, REURBCAD, GEOGIS
+| Role | Permissoes Padrao |
+|------|-------------------|
+| SUPER_ADMIN | *.*.all (wildcard irrestrito cross-tenant). |
+| ADMIN | *.*.tenant_only (gestao completa do proprio tenant). |
+| MANAGER | units.approve.community_only, processes.approve.community_only, teams.read.tenant_only. |
+| ANALYST | units.*.community_only, holders.*.community_only, documents.*.community_only. |
+| FIELD_COORDINATOR | units.create.team_only, units.read.team_only, documents.create.team_only. |
+| FIELD_CADASTRATOR | units.create.own_only, units.read.own_only, documents.create.own_only. |
+
+## Resolucao de Permissao
+
+Permissoes explicitas do Account sobrescrevem permissoes do Team que sobrescrevem permissoes padrao do Role. Deny permissions (ex: units.delete.deny) tem precedencia sobre allow, implementando principio de privilegio minimo. Cache distribuido de 5 minutos com invalidacao ao alterar permissoes.
+
+## Verificacao em Camadas
+
+| Camada | Descricao |
+|--------|-----------|
+| Middleware | Verifica permission antes de executar acao consultando cache. |
+| Domain Service | Double-check em logica critica como approval. |
+| Repository | Aplica filtros automaticos baseado em scope (WHERE clause transparente). |
+| Frontend | Desabilita botoes e oculta menus sem permission (nao e camada de seguranca confiavel). |

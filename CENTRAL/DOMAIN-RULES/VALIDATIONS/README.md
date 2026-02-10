@@ -20,9 +20,9 @@ As validacoes de [negocio](./01-business-validation.md) cobrem regras como trans
 |-----------|--------|
 | [Business Validation](./01-business-validation.md) | ⚠ |
 | [Geographic Validation](./07-geographic-validation.md) | ⚠ |
-| [Holder Validation](./09-holder-validation.md) | ✓ |
-| [Building Validation](./10-building-validation.md) | ✓ |
-| [Unit Validation](./11-unit-validation.md) | ✓ |
-| [Field Registration Rules](./12-field-registration-rules.md) | ✓ |
+| [Holder Validation](./09-holder-validation.md) | ⚠ |
+| [Validacao de Edificacao](./10-building-validation.md) | ⚠ |
+| [Unit Validation](./11-unit-validation.md) | ⚠ |
+| [Field Registration Rules](./12-field-registration-rules.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

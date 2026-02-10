@@ -1,7 +1,7 @@
 ---
 type: leaf
-status: approved
-updated: 2026-01-24
+status: review
+updated: 2026-02-07
 ---
 
 # Authentication
@@ -12,4 +12,4 @@ Fluxo Authorization Code com PKCE e usado por aplicacoes com usuario interativo.
 
 ## Tokens
 
-Access token JWT de curta duracao (15 minutos) contem claims de identidade, roles e tenant_id. Refresh token de longa duracao (8 horas mobile, 30 minutos web) permite renovar access token sem reautenticar. ID token fornece informacoes de perfil do usuario para exibicao na interface.
+Access token JWT de curta duracao (5 minutos) contem claims de identidade, roles e tenant_id. SSO session idle de 30 minutos e max de 10 horas para clients web. REURBCAD mobile usa scope offline_access com refresh token de 30 dias idle para operacao em campo sem internet. ID token fornece informacoes de perfil do usuario para exibicao na interface.

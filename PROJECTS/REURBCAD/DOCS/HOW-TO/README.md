@@ -21,6 +21,7 @@ Guias praticos para desenvolvimento do REURBCAD React Native.
 - **[05-environment-variables.md](./05-environment-variables.md)** - Configuracao de .env, app.config.ts, variaveis por ambiente (dev/staging/prod)
 - **[06-troubleshooting.md](./06-troubleshooting.md)** - Problemas comuns: Metro bundler, builds nativas, permissoes, sync
 - **[07-add-new-screen.md](./07-add-new-screen.md)** - Passo-a-passo para criar nova tela com Expo Router, form, validacao
+- **[08-dev-start-dinamico.md](./08-dev-start-dinamico.md)** - Script automatizado: detecta IP, atualiza .env, registra redirect URIs no Keycloak, inicia Expo
 
 ## Setup Rapido
 
@@ -49,5 +50,9 @@ Guias praticos para desenvolvimento do REURBCAD React Native.
 - ○ [[PROJECTS/REURBCAD/DOCS/HOW-TO/05-environment-variables.md|05-environment-variables]]
 - ○ [[PROJECTS/REURBCAD/DOCS/HOW-TO/06-troubleshooting.md|06-troubleshooting]]
 - ○ [[PROJECTS/REURBCAD/DOCS/HOW-TO/07-add-new-screen.md|07-add-new-screen]]
+
+### Em Revisao
+
+- ○ [[PROJECTS/REURBCAD/DOCS/HOW-TO/08-dev-start-dinamico.md|08-dev-start-dinamico]]
 
 <!-- CARF-INDEX-END -->

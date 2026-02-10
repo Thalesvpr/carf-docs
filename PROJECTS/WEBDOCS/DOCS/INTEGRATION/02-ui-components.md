@@ -1,85 +1,39 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-21
+updated: 2026-02-07
 ---
 
-# Integração com UI Components
+# Integracao com UI Components
 
-WEBDOCS importa tema visual da biblioteca @carf/ui garantindo consistência de cores, tipografia e espaçamentos com demais aplicações do ecossistema CARF sem duplicação de definições.
+WEBDOCS importa tema visual da biblioteca @carf/ui garantindo consistencia de cores, tipografia e espacamentos com demais aplicacoes do ecossistema CARF sem duplicacao de definicoes.
 
-Design tokens exportados por ui-components incluem cores (primary, secondary, neutral, semantic), tipografia (font families, sizes, weights, line heights), espaçamentos (scale de 4px), bordas (radius, widths), e sombras. Tokens disponíveis como CSS custom properties e objetos JavaScript/TypeScript.
+Design tokens exportados por ui-components incluem cores (primary, secondary, neutral, semantic), tipografia (font families, sizes, weights, line heights), espacamentos (scale de 4px), bordas (radius, widths), e sombras. Tokens disponiveis como CSS custom properties e objetos JavaScript/TypeScript.
 
-Configuração do Starlight em astro.config.mjs importa customTheme de ui-components aplicando cores primárias ao header, links, e elementos interativos. Dark mode usa variantes escuras dos mesmos tokens mantendo contraste WCAG AA em ambos temas.
+Configuracao do Starlight em astro.config.mjs importa customTheme de ui-components aplicando cores primarias ao header, links, e elementos interativos. Dark mode usa variantes escuras dos mesmos tokens mantendo contraste WCAG AA em ambos temas.
 
-CSS global em src/styles/global.css importa @carf/ui/styles/tokens.css disponibilizando todas custom properties no escopo :root. Componentes customizados usam var(--carf-color-primary-500) referenciando tokens ao invés de valores hardcoded.
+CSS global em src/styles/global.css importa @carf/ui/styles/tokens.css disponibilizando todas custom properties no escopo :root. Componentes customizados usam var(--carf-color-primary-500) referenciando tokens ao inves de valores hardcoded.
 
-Atualizações de ui-components propagam automaticamente para WEBDOCS na próxima build. Mudanças breaking (remoção de tokens, alteração de nomes) são detectadas por TypeScript compilation errors garantindo que incompatibilidades sejam corrigidas antes de deploy.
+Atualizacoes de ui-components propagam automaticamente para WEBDOCS na proxima build. Mudancas breaking (remocao de tokens, alteracao de nomes) sao detectadas por TypeScript compilation errors garantindo que incompatibilidades sejam corrigidas antes de deploy.
 
-## Uso dos Design Tokens
-
-### CSS Custom Properties
-
-```css
-/* Disponíveis após importar @carf/ui/styles/tokens.css */
-
-.meu-componente {
-  /* Cores */
-  color: var(--carf-color-text-primary);
-  background: var(--carf-color-bg-surface);
-  border-color: var(--carf-color-border-default);
-
-  /* Cores semânticas */
-  --success: var(--carf-color-success-500);
-  --warning: var(--carf-color-warning-500);
-  --error: var(--carf-color-error-500);
-
-  /* Tipografia */
-  font-family: var(--carf-font-sans);
-  font-size: var(--carf-text-base);
-  line-height: var(--carf-leading-normal);
-
-  /* Espaçamentos (escala de 4px) */
-  padding: var(--carf-space-4); /* 16px */
-  margin-bottom: var(--carf-space-6); /* 24px */
-  gap: var(--carf-space-2); /* 8px */
-
-  /* Bordas */
-  border-radius: var(--carf-radius-md);
-  border-width: var(--carf-border-default);
-
-  /* Sombras */
-  box-shadow: var(--carf-shadow-sm);
-}
-```
-
-### Tokens Disponíveis
+## Tokens Disponiveis
 
 | Categoria | Prefixo | Exemplo |
 |-----------|---------|---------|
-| Cores primárias | `--carf-color-primary-*` | `--carf-color-primary-500` |
-| Cores neutras | `--carf-color-gray-*` | `--carf-color-gray-100` |
-| Semânticas | `--carf-color-{success,warning,error}-*` | `--carf-color-error-500` |
-| Texto | `--carf-color-text-*` | `--carf-color-text-muted` |
-| Background | `--carf-color-bg-*` | `--carf-color-bg-surface` |
-| Espaçamento | `--carf-space-{1-12}` | `--carf-space-4` (16px) |
-| Tipografia | `--carf-text-*` | `--carf-text-lg` |
-| Raio | `--carf-radius-*` | `--carf-radius-lg` |
-| Sombras | `--carf-shadow-*` | `--carf-shadow-md` |
+| Cores primarias | --carf-color-primary-* | --carf-color-primary-500 |
+| Cores neutras | --carf-color-gray-* | --carf-color-gray-100 |
+| Semanticas | --carf-color-{success,warning,error}-* | --carf-color-error-500 |
+| Texto | --carf-color-text-* | --carf-color-text-muted |
+| Background | --carf-color-bg-* | --carf-color-bg-surface |
+| Espacamento | --carf-space-{1-12} | --carf-space-4 (16px) |
+| Tipografia | --carf-text-* | --carf-text-lg |
+| Raio | --carf-radius-* | --carf-radius-lg |
+| Sombras | --carf-shadow-* | --carf-shadow-md |
 
-### Dark Mode
+## Uso em Componentes
 
-Tokens automaticamente ajustam valores para dark mode via media query:
+Componentes customizados referenciam tokens via var() para cores (--carf-color-text-primary, --carf-color-bg-surface, --carf-color-border-default), cores semanticas (--carf-color-success-500, --carf-color-warning-500, --carf-color-error-500), tipografia (--carf-font-sans, --carf-text-base, --carf-leading-normal), espacamentos na escala de 4px (--carf-space-4 para 16px, --carf-space-6 para 24px, --carf-space-2 para 8px), bordas (--carf-radius-md, --carf-border-default), e sombras (--carf-shadow-sm).
 
-```css
-/* Não precisa fazer nada - tokens respondem ao prefers-color-scheme */
-.card {
-  background: var(--carf-color-bg-surface);
-  /* Automaticamente #ffffff em light, #1a1a1a em dark */
-}
-```
+## Dark Mode
 
----
-
-**Última atualização:** 2026-01-21
-**Status do arquivo**: Review
+Tokens automaticamente ajustam valores para dark mode via media query prefers-color-scheme. Nenhuma configuracao adicional necessaria nos componentes. Exemplo: --carf-color-bg-surface resolve para #ffffff em light e #1a1a1a em dark automaticamente.

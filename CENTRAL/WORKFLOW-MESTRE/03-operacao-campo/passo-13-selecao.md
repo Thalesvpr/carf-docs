@@ -27,31 +27,11 @@ step: 13
 
 1. Cadastrador abre o app
 2. App carrega automaticamente a regiao atribuida pelo Admin/Manager
-3. **NAO ha tela de selecao** - vai direto pro mapa
+3. NAO ha tela de selecao - vai direto pro mapa
 
-## Interface - Coordenador
+## Interface
 
-```
-┌─────────────────────────────┐
-│  SELECIONAR COMUNIDADE      │
-├─────────────────────────────┤
-│  ○ Comunidade Vila Nova     │
-│  ○ Comunidade Jardim Azul   │
-│  ● Comunidade Boa Vista     │
-│  ○ Comunidade Sao Jose      │
-└─────────────────────────────┘
-        [CONTINUAR]
-```
-
-## Interface - Cadastrador
-
-```
-┌─────────────────────────────┐
-│  MAPA                       │
-│  (carrega direto na regiao  │
-│   atribuida pelo Admin)     │
-└─────────────────────────────┘
-```
+A tela do Coordenador exibe uma lista de comunidades disponiveis (como Vila Nova, Jardim Azul, Boa Vista, Sao Jose) com selecao por radio button e botao Continuar. O Cadastrador nao ve essa tela e abre diretamente o mapa da regiao atribuida pelo Admin.
 
 ## Diferenca de UI
 

@@ -1,78 +1,42 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-24
+updated: 2026-02-07
 ---
 
 # Topologia de Deployment
 
 Mostra a arquitetura de implantacao em producao com containers Kubernetes, load balancer, clusters de banco de dados e servicos de observabilidade.
 
-```mermaid
-flowchart TB
-    subgraph Internet["Internet"]
-        Users["Usuarios"]
-        CDN["CDN<br/>Assets Estaticos"]
-    end
+## Camada de Entrada
 
-    subgraph LoadBalancer["Load Balancer"]
-        LB["Nginx/Traefik<br/>SSL Termination"]
-    end
+Usuarios acessam o sistema pela internet. Assets estaticos sao servidos via CDN. Todo trafego passa por um load balancer (Nginx ou Traefik) com SSL termination antes de chegar ao cluster Kubernetes.
 
-    subgraph Kubernetes["Kubernetes Cluster"]
-        subgraph WebPods["Web Pods"]
-            GEOWEB1["GEOWEB"]
-            GEOWEB2["GEOWEB"]
-        end
+## Cluster Kubernetes
 
-        subgraph APIPods["API Pods"]
-            GEOAPI1["GEOAPI"]
-            GEOAPI2["GEOAPI"]
-            GEOAPI3["GEOAPI"]
-        end
+| Grupo de Pods | Replicas | Servico |
+|---------------|----------|---------|
+| Web Pods | 2 | GEOWEB (React SPA) |
+| API Pods | 3 | GEOAPI (.NET 9 REST API) |
+| Auth Pods | 2 | Keycloak (OAuth2/OIDC) |
+| Docs Pods | 1 | WEBDOCS (Astro/Starlight) |
 
-        subgraph AuthPods["Auth Pods"]
-            KC1["Keycloak"]
-            KC2["Keycloak"]
-        end
+O load balancer distribui trafego entre os pods conforme o tipo de requisicao. API Pods e Auth Pods possuem replicas para alta disponibilidade.
 
-        subgraph DocsPods["Docs Pods"]
-            WEBDOCS1["WEBDOCS"]
-        end
-    end
+## Database Cluster
 
-    subgraph Database["Database Cluster"]
-        PGPrimary[("PostgreSQL<br/>Primary")]
-        PGReplica[("PostgreSQL<br/>Replica")]
-    end
+PostgreSQL opera com replicacao primary-replica. O primary recebe escritas dos API Pods e Auth Pods. O replica atende leituras para balanceamento de carga.
 
-    subgraph Storage["Object Storage"]
-        S3["S3/MinIO<br/>Documentos"]
-    end
+## Object Storage
 
-    subgraph Monitoring["Observabilidade"]
-        Prometheus["Prometheus"]
-        Grafana["Grafana"]
-        Loki["Loki Logs"]
-    end
+Bucket S3/MinIO armazena documentos, ortofotos e fotos. Acessado exclusivamente pelos API Pods via URLs presigned.
 
-    Users --> CDN
-    Users --> LB
-    CDN --> LB
+## Observabilidade
 
-    LB --> WebPods
-    LB --> APIPods
-    LB --> AuthPods
-    LB --> DocsPods
+| Servico | Funcao |
+|---------|--------|
+| Prometheus | Coleta de metricas dos API Pods e Auth Pods |
+| Grafana | Dashboards de visualizacao das metricas |
+| Loki | Agregacao de logs dos API Pods |
 
-    APIPods --> PGPrimary
-    APIPods --> S3
-    AuthPods --> PGPrimary
-
-    PGPrimary --> PGReplica
-
-    APIPods --> Prometheus
-    AuthPods --> Prometheus
-    Prometheus --> Grafana
-    APIPods --> Loki
-```
+API Pods e Auth Pods exportam metricas para Prometheus e enviam logs para Loki. Grafana consome dados do Prometheus para dashboards operacionais.

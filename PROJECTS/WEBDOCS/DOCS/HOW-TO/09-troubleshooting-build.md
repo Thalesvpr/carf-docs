@@ -1,169 +1,50 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-21
+updated: 2026-02-07
 ---
 
 # Troubleshooting - Build
 
-Resolução de problemas de build e Decap CMS.
-
-Arquivos relacionados:
-- Problemas de auth: `09-troubleshooting-auth.md`
-- Problemas de runtime: `09-troubleshooting-runtime.md`
+Resolucao de problemas de build e Decap CMS. Arquivos relacionados: 09-troubleshooting-auth.md para problemas de autenticacao e 09-troubleshooting-runtime.md para problemas de runtime.
 
 ## Build Falha com Erro de Frontmatter
 
-**Sintoma:** Astro build falha com erro de validação.
-
-```json
-{
-  "problem": "frontmatter_validation_error",
-  "error_example": "ZodError: description must be at least 50 characters"
-}
-```
-
-**Solução:**
-
-```bash
-# Identificar arquivo com problema
-bun run astro check
-
-# Verificar frontmatter do arquivo indicado
-# Corrigir conforme SPECS/23-content-schema-overview.md
-```
+Sintoma: Astro build falha com erro de validacao como ZodError indicando campo com restricao nao atendida. Para identificar arquivo com problema, executar bun run astro check. Corrigir frontmatter conforme schema definido em SPECS/23-content-schema-overview.md.
 
 ## Build Falha com Import Error
 
-**Sintoma:** `Cannot find module` ou `Failed to resolve import`.
+Sintoma: erro "Cannot find module" ou "Failed to resolve import".
 
-```json
-{
-  "problem": "import_error",
-  "common_causes": {
-    "missing_dependency": "bun install",
-    "wrong_path": "Verificar caminho relativo vs absoluto",
-    "alias_not_configured": "Verificar tsconfig.json paths"
-  }
-}
-```
-
-**tsconfig.json paths:**
-
-```json
-{
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"],
-      "@components/*": ["src/components/*"],
-      "@lib/*": ["src/lib/*"]
-    }
-  }
-}
-```
+| Causa | Solucao |
+|---|---|
+| Dependencia ausente | Executar bun install |
+| Caminho incorreto | Verificar caminho relativo vs absoluto |
+| Alias nao configurado | Verificar tsconfig.json paths com baseUrl e mapeamentos para @/ (src/), @components/ (src/components/) e @lib/ (src/lib/) |
 
 ## Out of Memory Durante Build
 
-**Sintoma:** Build falha com `JavaScript heap out of memory`.
+Sintoma: build falha com "JavaScript heap out of memory".
 
-```json
-{
-  "problem": "oom_build",
-  "solutions": [
-    {
-      "description": "Aumentar memória do Node",
-      "command": "NODE_OPTIONS='--max-old-space-size=4096' bun run build"
-    },
-    {
-      "description": "Verificar imports circulares",
-      "tool": "madge --circular src/"
-    },
-    {
-      "description": "Lazy load componentes pesados",
-      "pattern": "const Heavy = lazy(() => import('./Heavy'))"
-    }
-  ]
-}
-```
+| Solucao | Detalhes |
+|---|---|
+| Aumentar memoria | Executar build com NODE_OPTIONS --max-old-space-size=4096 |
+| Verificar imports circulares | Usar ferramenta madge com flag --circular em src/ |
+| Lazy load componentes pesados | Usar pattern de import dinamico com lazy |
 
-## Problemas do Decap CMS
+## CMS Nao Carrega
 
-### CMS Não Carrega
+Sintoma: pagina /admin mostra tela branca ou erro. Verificar console do browser por erros, confirmar que /admin/config.yml existe, validar YAML syntax, e verificar backend configurado corretamente. Configuracao minima funcional requer backend com name github, repo, branch main, base_url e auth_endpoint; media_folder apontando para public/images; e ao menos uma collection com name, label, folder, create true e fields definidos.
 
-**Sintoma:** Página /admin mostra tela branca ou erro.
+## CMS Auth Failed
 
-```json
-{
-  "problem": "cms_blank_page",
-  "debug_steps": [
-    "1. Verificar console do browser por erros",
-    "2. Verificar se /admin/config.yml existe",
-    "3. Verificar YAML syntax válida",
-    "4. Verificar backend configurado corretamente"
-  ]
-}
-```
+Sintoma: erro ao autenticar no GitHub via CMS.
 
-**config.yml mínimo funcional:**
+| Causa | Verificacao |
+|---|---|
+| GitHub OAuth nao configurado | GitHub, Settings, Developer settings, OAuth Apps; confirmar Authorization callback URL correta |
+| Variaveis de ambiente ausentes | Confirmar GITHUB_CLIENT_ID e GITHUB_CLIENT_SECRET configurados em .env.local ou Vercel |
 
-```yaml
-backend:
-  name: github
-  repo: owner/repo
-  branch: main
-  base_url: https://docs.carf.com.br
-  auth_endpoint: /api/auth
+## CMS Preview Nao Funciona
 
-media_folder: public/images
-public_folder: /images
-
-collections:
-  - name: docs
-    label: Documentos
-    folder: src/content/docs
-    create: true
-    extension: mdx
-    fields:
-      - { name: title, label: Título, widget: string }
-```
-
-### CMS Auth Failed
-
-**Sintoma:** Erro ao autenticar no GitHub via CMS.
-
-```json
-{
-  "problem": "cms_auth_failed",
-  "causes": {
-    "github_oauth_not_configured": {
-      "check": "GitHub > Settings > Developer settings > OAuth Apps",
-      "ensure": "Authorization callback URL = https://docs.carf.com.br/api/auth/callback"
-    },
-    "env_vars_missing": {
-      "check": "GITHUB_CLIENT_ID e GITHUB_CLIENT_SECRET configurados",
-      "location": ".env.local ou Vercel Environment Variables"
-    }
-  }
-}
-```
-
-### CMS Preview Não Funciona
-
-**Sintoma:** Preview mostra conteúdo errado ou não atualiza.
-
-```json
-{
-  "problem": "cms_preview_broken",
-  "solutions": [
-    "Verificar registerPreviewTemplate está chamado",
-    "Verificar componente de preview importa estilos",
-    "Hard refresh do CMS (Ctrl+Shift+R)"
-  ]
-}
-```
-
----
-
-**Última atualização:** 2026-01-21
-**Status do arquivo**: Review
+Sintoma: preview mostra conteudo errado ou nao atualiza. Verificar que registerPreviewTemplate esta sendo chamado, que componente de preview importa estilos corretamente, e fazer hard refresh do CMS com Ctrl+Shift+R.

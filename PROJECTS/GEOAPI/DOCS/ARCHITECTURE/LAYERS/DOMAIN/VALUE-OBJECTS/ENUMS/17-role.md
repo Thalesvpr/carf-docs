@@ -1,13 +1,33 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-12
+updated: 2026-02-08
 ---
 
 # Role
 
-Value object enum representando papel de usuário no sistema definindo conjunto de permissões e acesso a funcionalidades conforme hierarquia organizacional. Valores possíveis são SUPER_ADMIN (administrador do sistema com acesso total a todos os tenants), ADMIN (administrador do tenant com acesso completo dentro de seu cliente), MANAGER (gerente coordenando múltiplas equipes com permissão de aprovar/rejeitar unidades e visualizar dashboards), ANALYST (analista técnico responsável por analisar solicitações de legitimação e emitir pareceres), FIELD_COORDINATOR (coordenador de campo que supervisiona equipe de cadastradores com menu mobile completo e visualização de dados da equipe), e FIELD_CADASTRATOR (cadastrador de campo que tem acesso restrito apenas a mapa e formulários sem menu completo).
+Value object enum representando papel de usuario no sistema definindo conjunto de permissoes e acesso a funcionalidades conforme hierarquia organizacional. Os papeis sao sincronizados com Keycloak via claims JWT, determinando tanto a UI exibida quanto as operacoes permitidas.
 
-Métodos incluem GetPermissions() retornando lista de permissões do papel, CanAccessTenant(tenantId) verificando acesso multi-tenant (apenas SUPER_ADMIN pode trocar), CanApproveUnits() retornando true para MANAGER/ANALYST, CanManageUsers() retornando true para SUPER_ADMIN/ADMIN, IsFieldRole() verificando se é papel de campo (FIELD_COORDINATOR ou FIELD_CADASTRATOR), e CompareTo(Role other) implementando hierarquia para validações.
+A hierarquia de papeis segue: SUPER_ADMIN > ADMIN > MANAGER > ANALYST > FIELD_COORDINATOR > FIELD_CADASTRATOR.
 
-Usado em Account.Role definindo permissões do usuário, validado em authorization policies via IPermissionChecker, integra com Keycloak onde roles são sincronizadas via claims JWT, e determina UI exibida (FIELD_CADASTRATOR vê apenas mapa e formulários sem menu, FIELD_COORDINATOR vê menu mobile completo com dados da equipe, ANALYST vê backoffice análise, ADMIN vê configurações).
+## Valores Permitidos
+
+| Valor | Descricao |
+| --- | --- |
+| SUPER_ADMIN | Administrador do sistema com acesso total a todos os tenants. |
+| ADMIN | Administrador do tenant com acesso completo dentro de seu cliente. |
+| MANAGER | Gerente coordenando equipes, pode aprovar/rejeitar unidades e ver dashboards. |
+| ANALYST | Analista tecnico responsavel por analisar solicitacoes de legitimacao e emitir pareceres. |
+| FIELD_COORDINATOR | Coordenador de campo com menu mobile completo e visualizacao de dados da equipe. |
+| FIELD_CADASTRATOR | Cadastrador de campo com acesso restrito apenas a mapa e formularios. |
+
+## Regras de Validacao
+
+| Regra | Descricao |
+| --- | --- |
+| Acesso multi-tenant | Apenas SUPER_ADMIN pode trocar de tenant. |
+| Aprovacao de unidades | Apenas MANAGER e ANALYST podem aprovar unidades. |
+| Gerenciamento de usuarios | Apenas SUPER_ADMIN e ADMIN podem gerenciar usuarios. |
+| Papeis de campo | FIELD_COORDINATOR e FIELD_CADASTRATOR operam no app mobile REURBCAD. |
+
+Usado em Account.Role definindo permissoes do usuario, validado em authorization policies, integra com Keycloak onde roles sao sincronizadas via claims JWT, e determina UI exibida em cada aplicacao do ecossistema.

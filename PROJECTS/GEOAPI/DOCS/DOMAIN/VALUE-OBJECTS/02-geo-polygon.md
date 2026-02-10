@@ -1,12 +1,31 @@
 ---
 type: leaf
 status: review
-description: "Estrutura caotica. Numeracao nao agrupa por categoria. Precisa reorganizar por agregado/contexto. Stub de 11 linhas - incompleto."
-updated: 2026-01-19
+updated: 2026-02-08
 ---
 
-# GeoPolygon (Polígono Geográfico)
+# GeoPolygon
 
-Value object imutável representando geometria poligonal georreferenciada delimitando perímetro de unidade habitacional comunidade quadra ou lote usando coordenadas geográficas ou projetadas. Valor conceitual pode ser armazenado em múltiplos formatos: WKT Well-Known Text formato textual padrão OGC tipo "POLYGON((lng1 lat1, lng2 lat2, ...))" para persistência e interoperabilidade, GeoJSON formato JSON padrão web tipo {"type":"Polygon","coordinates":\[\[\[lng,lat],...]]} para APIs REST e frontend JavaScript, ou formato binário WKB Well-Known Binary para otimização de storage e performance em bancos espaciais. Regras de validação incluem deve ser polígono válido topologicamente sem auto-interseções onde arestas não se cruzam, deve ser fechado onde primeiro e último vértices coincidem ou estão muito próximos (tolerância 0.0001 graus), deve ter mínimo 3 vértices formando triângulo embora maioria terá 4+ vértices, coordenadas devem estar em range válido latitude -90 a +90 longitude -180 a +180 se geográficas ou validar bounds se projetadas UTM, polígono pode conter ilhas (holes) representando áreas excluídas do perímetro mas exterior e holes não podem se intersectar, e validação geométrica usa bibliotecas de geometria computacional conforme plataforma. Comportamentos incluem igualdade por valor comparando geometrias com tolerância espacial pequena para diferenças de arredondamento, cálculo de área em metros quadrados usando fórmula de Gauss para coordenadas projetadas ou algoritmo esférico para geográficas, cálculo de perímetro somando distâncias euclidianas ou geodésicas entre vértices consecutivos, verificação de contenção testando se ponto está dentro do polígono útil para validar se coordenada está no perímetro, verificação de interseção testando se dois polígonos se sobrepõem, buffer criando polígono expandido ou contraído por distância, simplificação reduzindo número de vértices mantendo forma geral usando Douglas-Peucker, e conversão entre formatos WKT GeoJSON WKB conforme necessidade de cada camada. Regras de negócio estabelecem que polígono de Unit deve estar dentro ou muito próximo de polígono da Community validando consistência espacial, área calculada do polígono deve ser compatível com campo Area numérico da entidade alertando se divergência maior que 5%, sistema de referência padrão é sistema geográfico brasileiro ou sistema projetado UTM conforme região do Brasil, conversões entre sistemas devem usar bibliotecas geodésicas confiáveis evitando implementação manual de transformações complexas, e visualização em mapas web requer conversão para GeoJSON com coordenadas longitude latitude nessa ordem conforme especificação padrão.
+Value object imutavel representando poligono geografico em coordenadas WGS84 (SRID 4326) armazenado como geometry(Polygon, 4326) via PostGIS. Utilizado para definir perimetros de Units, Communities e Blocks, permitindo queries espaciais como ST_Contains, ST_Intersects e ST_Area.
 
-**Módulos:** GEOAPI, GEOWEB, REURBCAD, GEOGIS
+## Regras de Validacao
+
+| Regra | Descricao |
+|-------|-----------|
+| Minimo de vertices | Ao menos 4 pontos (3 vertices mais fechamento). |
+| Poligono fechado | Primeiro e ultimo ponto devem ser identicos. |
+| Geometria valida | ST_IsValid deve retornar true. Sem auto-interseccao. |
+| SRID correto | Deve ser 4326 (WGS84). |
+| Orientacao | Anel externo em sentido anti-horario conforme convencao OGC. |
+
+## Operacoes Espaciais
+
+| Operacao | Descricao |
+|----------|-----------|
+| ST_Area | Calcula area em metros quadrados (geography cast). |
+| ST_Centroid | Calcula centroide para posicionamento de marcadores no mapa. |
+| ST_Contains | Verifica se poligono contem outro (Block dentro de Community). |
+| ST_Intersects | Detecta sobreposicao entre Units para validacao espacial. |
+| ST_Buffer | Cria buffer ao redor do poligono para queries de proximidade. |
+
+Indice GiST na coluna boundary acelera todas as queries espaciais.

@@ -1,47 +1,27 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-15
+updated: 2026-02-07
 ---
 
 # Testing - ADMIN
 
 ## Testes E2E
 
-Testes E2E com Playwright em `e2e/` cobrindo fluxos críticos (login como admin, criar tenant, deletar user, visualizar audit logs), rodar com `bun run test:e2e` que abre browser headless executando testes contra app rodando em `http://localhost:5173`, testes devem setup banco em estado conhecido usando fixtures resetando dados antes de cada test, validar RBAC testando que usuário sem role ADMIN não consegue acessar `/admin`, e CI roda testes em GitHub Actions em cada PR validando que mudanças não quebram fluxos administrativos.
+Os testes end-to-end utilizam Playwright no diretorio e2e/ cobrindo fluxos criticos como login como admin, criar tenant, deletar user e visualizar audit logs. Para executar os testes, utilizar o comando de test e2e via bun que abre browser headless executando testes contra o aplicativo rodando em localhost na porta 5173. Para depuracao, existe o modo UI do Playwright que permite visualizar a execucao passo a passo. Tambem e possivel executar testes especificos passando o nome do modulo como argumento.
 
-## Comandos
+## Estrategia de Testes
 
-```bash
-# Rodar testes E2E
-bun run test:e2e
+| Aspecto | Descricao |
+|---------|-----------|
+| Framework | Playwright com browser headless |
+| Ambiente | App local em localhost:5173 |
+| Fixtures | Setup de banco em estado conhecido, reset antes de cada teste |
+| RBAC | Validacao que usuario sem role ADMIN nao acessa /admin |
+| CI | GitHub Actions executa testes em cada PR |
 
-# Rodar em modo UI (debug)
-bun run test:e2e --ui
+## Exemplo de Fluxo Testado
 
-# Rodar testes específicos
-bun run test:e2e user-management
-```
+O teste de criacao de tenant segue o fluxo: o Playwright navega para a pagina de login, preenche credenciais do usuario admin, submete o formulario, navega para a secao de Tenants, clica em novo tenant, preenche o nome do municipio, clica em criar e verifica que o novo municipio aparece na listagem. Este fluxo valida a cadeia completa desde autenticacao ate a persistencia e exibicao do dado criado.
 
-## Exemplo de Teste
-
-```typescript
-test('admin can create tenant', async ({ page }) => {
-  // Login
-  await page.goto('http://localhost:5173')
-  await page.fill('[name=username]', 'admin@carf.gov.br')
-  await page.fill('[name=password]', 'admin123')
-  await page.click('button[type=submit]')
-
-  // Navigate to tenants
-  await page.click('text=Tenants')
-
-  // Create tenant
-  await page.click('text=New Tenant')
-  await page.fill('[name=name]', 'Test Municipality')
-  await page.click('button:has-text("Create")')
-
-  // Verify
-  await expect(page.locator('text=Test Municipality')).toBeVisible()
-})
-```
+Os testes devem garantir que o banco esteja em estado conhecido usando fixtures que resetam dados antes de cada execucao, e que a validacao de RBAC impeca acesso nao autorizado as rotas administrativas.

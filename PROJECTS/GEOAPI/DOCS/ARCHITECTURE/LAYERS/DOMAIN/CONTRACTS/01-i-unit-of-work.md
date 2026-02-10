@@ -1,10 +1,23 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-12
+updated: 2026-02-08
 ---
 
 # IUnitOfWork
 
+Interface definindo controle de transacao agrupando multiplas operacoes de repositorios em transacao atomica, seguindo padrao Unit of Work. Garante que todas mudancas sejam persistidas juntas ou nenhuma, mantendo consistencia de dados.
 
-Interface definindo controle de transação agrupando múltiplas operações de repositórios em transação atômica garantindo que todas mudanças sejam persistidas juntas ou nenhuma seja seguindo padrão Unit of Work mantendo consistência de dados. Método principal SaveChangesAsync() persistindo todas mudanças rastreadas pelo DbContext em única transação retornando número de entidades afetadas disparando domain events após commit bem-sucedido e revertendo automaticamente se exception ocorrer. Métodos adicionais incluem BeginTransactionAsync() iniciando transação explícita quando múltiplas operações SaveChanges necessárias mantendo controle manual, CommitTransactionAsync() confirmando transação explícita persistindo mudanças, RollbackTransactionAsync() revertendo transação explícita descartando mudanças, e Dispose() liberando recursos do contexto. Implementada por UnitOfWork class na Infrastructure encapsulando DbContext do Entity Framework Core coordenando todos repositórios injetados compartilhando mesmo contexto garantindo que mudanças em Unit Holder Community Document sejam salvas atomicamente. Integra com application layer através de injeção de dependência onde command handlers usam IUnitOfWork.SaveChangesAsync após executar lógica de negócio persistindo agregados modificados, suporta interceptação através de SaveChangesInterceptor capturando mudanças antes do commit populando AuditLog automaticamente rastreando criações atualizações exclusões sem código manual, dispara domain events após commit através de IDomainEventDispatcher iterando entidades modificadas que são BaseAggregateRoot coletando eventos da coleção DomainEvents e despachando para handlers permitindo side effects como notificações invalidação de cache ou disparo de jobs, e garante isolamento de tenant aplicando TenantId automaticamente em todas queries e inserts através de global query filter configurado no OnModelCreating do DbContext impedindo vazamento de dados entre clientes.
+Apos SaveChanges bem-sucedido, domain events sao despachados via IDomainEventDispatcher para handlers processarem side effects.
+
+## Metodos
+
+| Metodo | Parametros | Retorno | Descricao |
+| --- | --- | --- | --- |
+| SaveChangesAsync | (nenhum) | int | Persiste mudancas, despacha events, retorna entidades afetadas. |
+| BeginTransactionAsync | (nenhum) | Task | Inicia transacao explicita. |
+| CommitTransactionAsync | (nenhum) | Task | Confirma transacao explicita. |
+| RollbackTransactionAsync | (nenhum) | Task | Reverte transacao explicita. |
+| Dispose | (nenhum) | void | Libera recursos do contexto. |
+
+Implementada por UnitOfWork encapsulando DbContext do EF Core. Intercepta SaveChanges para popular AuditLog automaticamente e despachar domain events apos commit.

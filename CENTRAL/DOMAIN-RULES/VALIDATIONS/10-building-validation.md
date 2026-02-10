@@ -10,9 +10,14 @@ Regras de validacao para a entidade Edificacao (Building), nivel intermediario e
 
 ## Hierarquia
 
-```
-Tenant > Community > Block > Plot > Building > Unit
-```
+| Nivel | Entidade | Contido em |
+|-------|----------|-----------|
+| 1 | Tenant | Raiz |
+| 2 | Community | Tenant |
+| 3 | Block | Community |
+| 4 | Plot | Block |
+| 5 | Building | Plot |
+| 6 | Unit | Building |
 
 Um lote pode conter multiplas edificacoes. Cada edificacao contem uma ou mais unidades.
 

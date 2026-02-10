@@ -1,12 +1,34 @@
 ---
 type: leaf
 status: review
-description: "Estrutura caotica. Numeracao nao agrupa por categoria. Precisa reorganizar por agregado/contexto. Stub de 11 linhas - incompleto."
-updated: 2026-01-19
+updated: 2026-02-08
 ---
 
-# UnitStatus (Status da Unidade)
+# UnitStatus
 
-Value object enum representando estado da unidade habitacional no workflow de cadastro análise e aprovação para regularização fundiária controlando transições válidas e permissões de operação. Valores possíveis conceituais incluem DRAFT rascunho inicial onde unidade está sendo cadastrada com dados incompletos permitindo edição livre sem validações estritas, PENDING_ANALYSIS pendente de análise técnica onde cadastro foi finalizado e aguarda revisão por analista com dados completos validados, IN_REVIEW em revisão ativa onde analista está verificando documentação dados e conformidade com critérios de elegibilidade, APPROVED aprovado onde unidade passou em todas validações e está apta para legitimação gerando certidões e documentos oficiais, REJECTED rejeitado onde unidade não atende critérios sendo excluída do processo com justificativa registrada, e REQUIRES_CHANGES requer correções onde analista identificou problemas sanáveis solicitando ajustes para resubmissão. Transições válidas no workflow incluem DRAFT pode transitar para PENDING_ANALYSIS quando usuário finaliza cadastro clicando submeter após validar campos obrigatórios, PENDING_ANALYSIS pode transitar para IN_REVIEW quando analista assume responsabilidade iniciando análise, IN_REVIEW pode transitar para APPROVED se tudo conforme REJECTED se inelegível ou REQUIRES_CHANGES se necessita ajustes, REQUIRES_CHANGES retorna para DRAFT permitindo correções pelo técnico de campo, e estados terminais APPROVED REJECTED normalmente não permitem retrocesso exceto com permissão especial e justificativa auditada. Regras de negócio associadas incluem apenas usuários com role ANALYST ou superior podem transitar de PENDING_ANALYSIS para IN_REVIEW, apenas MANAGER pode aprovar ou rejeitar transitando para APPROVED REJECTED, edição de dados é permitida apenas em DRAFT e REQUIRES_CHANGES bloqueada em demais status preservando integridade após análise, cada transição deve registrar quem executou quando e opcionalmente justificativa para auditoria completa, mudanças de status disparam domain events como UnitStatusChangedEvent permitindo notificações automáticas ao responsável via email ou app, e relatórios e dashboards filtram unidades por status mostrando funil de progresso do processo de regularização.
+Value object enum imutavel representando o estado atual de uma Unit no workflow de cadastro e aprovacao. Persiste na coluna status varchar(30) da tabela units com CHECK constraint nos valores DRAFT, PENDING_ANALYSIS, IN_REVIEW, APPROVED, REJECTED e REQUIRES_CHANGES. Default DRAFT ao criar nova unidade.
 
-**Módulos:** GEOAPI, GEOWEB, REURBCAD, GEOGIS
+## Valores Permitidos
+
+| Valor | Descricao |
+|-------|-----------|
+| DRAFT | Rascunho inicial. Unidade criada mas nao submetida para analise. Editavel livremente. |
+| PENDING_ANALYSIS | Submetida e aguardando atribuicao de analista. Nao editavel por campo. |
+| IN_REVIEW | Em analise pelo analista designado. Pode solicitar correcoes. |
+| APPROVED | Aprovada apos validacao de todos os dados e documentos. Imutavel exceto por ADMIN. |
+| REJECTED | Rejeitada com justificativa obrigatoria. Pode retornar a DRAFT para correcao. |
+| REQUIRES_CHANGES | Devolvida ao agente de campo para correcoes especificas antes de prosseguir. |
+
+## Transicoes Validas
+
+| De | Para | Quem | Condicao |
+|----|------|------|----------|
+| DRAFT | PENDING_ANALYSIS | FIELD_COORDINATOR, FIELD_CADASTRATOR | Documentacao minima preenchida e ao menos um Holder vinculado. |
+| PENDING_ANALYSIS | IN_REVIEW | ANALYST | Analista assumiu a analise. |
+| IN_REVIEW | APPROVED | MANAGER | Parecer tecnico favoravel. |
+| IN_REVIEW | REJECTED | MANAGER | Parecer tecnico desfavoravel com justificativa obrigatoria. |
+| IN_REVIEW | REQUIRES_CHANGES | ANALYST | Correcoes necessarias identificadas. |
+| REQUIRES_CHANGES | DRAFT | FIELD_COORDINATOR | Apos correcao pelo agente de campo. |
+| REJECTED | DRAFT | ADMIN | Apos correcao pelo requerente, reprocessamento excepcional. |
+
+Transicoes invalidas sao impedidas pelo dominio lancando ValidationException. Edicao da unidade so e permitida nos estados DRAFT e REQUIRES_CHANGES. Exclusao so e permitida em DRAFT.

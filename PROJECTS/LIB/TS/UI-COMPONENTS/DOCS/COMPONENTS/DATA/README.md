@@ -7,7 +7,7 @@ updated: 2026-01-21
 
 # Data Components
 
-Componentes para exibicao de dados. Avatar para imagens de perfil, Badge para rotulos de status, Table semantica para dados tabulares, Tooltip para dicas contextuais, Popover para conteudo flutuante, HoverCard para preview ao hover. Todos seguem padroes de acessibilidade com roles ARIA apropriados.
+Componentes para exibicao de dados. Avatar para imagens de perfil, Badge para rotulos de status, Table semantica para dados tabulares, Tooltip para dicas contextuais, Popover para conteudo flutuante, Timeline para historico de eventos. Todos seguem padroes de acessibilidade com roles ARIA apropriados.
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Arquivos (6 arquivos)
@@ -19,12 +19,10 @@ Componentes para exibicao de dados. Avatar para imagens de perfil, Badge para ro
 | [03-table](./03-table.md) | Table |
 | [04-tooltip](./04-tooltip.md) | Tooltip |
 | [05-popover](./05-popover.md) | Popover |
-| [06-hover-card](./06-hover-card.md) | HoverCard |
+| [07-timeline](./07-timeline.md) | Timeline |
 
-*Gerado automaticamente em 2026-01-21 17:38*
+*Gerado automaticamente em 2026-02-07*
 <!-- GENERATED:END -->
-
-
 
 
 
@@ -41,6 +39,6 @@ Componentes para exibicao de dados. Avatar para imagens de perfil, Badge para ro
 | [Table](./03-table.md) | ⚠ |
 | [Tooltip](./04-tooltip.md) | ⚠ |
 | [Popover](./05-popover.md) | ⚠ |
-| [HoverCard](./06-hover-card.md) | ⚠ |
+| [Timeline](./07-timeline.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

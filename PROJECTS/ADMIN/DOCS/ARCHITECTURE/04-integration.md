@@ -1,23 +1,25 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-15
+updated: 2026-02-07
 ---
 
 # Integration - ADMIN
 
-## Integrações
+## Integracoes
 
-Integrações: **(1) GEOAPI** via `@carf/geoapi-client` consumindo endpoints `/api/admin/*` protegidos por role check no backend (POST /api/admin/users, DELETE /api/admin/tenants, GET /api/admin/audit-logs), GEOAPI faz proxy seguro para Keycloak Admin API mantendo client_secret confidencial no backend, **(2) @carf/tscore** para KeycloakClient gerenciando auth com PKCE flow (sem client_secret no frontend), validações (CPF, CNPJ, Email), e types compartilhados, **(3) shadcn/ui** para componentes visuais (DataTable, Dialog, Form), **(4) React Router** com protected routes validando role antes de renderizar páginas admin redirecionando para `/unauthorized` se usuário não tem permissão.
+O ADMIN integra-se com quatro sistemas principais. A integracao com GEOAPI acontece via @carf/geoapi-client consumindo endpoints /api/admin/ protegidos por role check no backend, incluindo POST /api/admin/users, DELETE /api/admin/tenants e GET /api/admin/audit-logs. O GEOAPI faz proxy seguro para Keycloak Admin API mantendo client_secret confidencial no backend. A integracao com @carf/tscore fornece KeycloakClient para auth com PKCE flow sem client_secret no frontend, alem de validacoes de CPF, CNPJ e Email e types compartilhados. O shadcn/ui fornece componentes visuais como DataTable, Dialog e Form. O React Router implementa protected routes validando role antes de renderizar paginas admin, redirecionando para /unauthorized se o usuario nao tem permissao.
 
-## Arquitetura de Segurança
+## Mapa de Integracoes
 
-```
-ADMIN SPA (no secret)
-    ↓ PKCE flow
-Keycloak (auth)
-    ↓ JWT
-GEOAPI /api/admin/* (role check)
-    ↓ client_secret (confidential)
-Keycloak Admin API (gerenciamento)
-```
+| Sistema | Protocolo | Funcao |
+|---------|-----------|--------|
+| GEOAPI /api/admin/ | HTTPS + JWT Bearer | Proxy seguro para operacoes administrativas |
+| Keycloak Admin API | Via GEOAPI com client_secret | Gerenciamento de usuarios e roles |
+| @carf/tscore | Dependencia NPM | Auth PKCE, validacoes, types |
+| shadcn/ui | Dependencia NPM | Componentes visuais |
+| React Router v6 | Client-side | Rotas protegidas com validacao de role |
+
+## Arquitetura de Seguranca
+
+O fluxo de seguranca segue uma cadeia de confianca onde o ADMIN SPA nao possui nenhum secret, autenticando-se via PKCE flow diretamente com o Keycloak. O JWT obtido e enviado ao GEOAPI nos endpoints /api/admin/ que verificam a role do usuario. Somente o GEOAPI possui o client_secret confidencial necessario para acessar a Keycloak Admin API e executar operacoes de gerenciamento de usuarios e roles. Essa separacao garante que credenciais sensiveis nunca ficam expostas no frontend.

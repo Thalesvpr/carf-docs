@@ -1,96 +1,24 @@
 ---
 type: leaf
-status: review
-description: "Mais codigo que prosa - arquivo e 95% bloco de codigo C#"
-updated: 2026-01-22
+status: active
+updated: 2026-02-07
 ---
 
 # Units Controller
 
-Controller REST para operações de unidades habitacionais.
+O UnitsController e o controller REST principal para operacoes de unidades habitacionais. Anotado com ApiController e Authorize, exige autenticacao em todos os endpoints. Delega toda a logica ao MediatR, enviando commands para operacoes de escrita e queries para operacoes de leitura.
 
-## UnitsController
+## Endpoints
 
-```csharp
-[ApiController]
-[Route("api/[controller]")]
-[Authorize]
-public class UnitsController : ControllerBase
-{
-    private readonly IMediator _mediator;
+| Metodo | Rota | Descricao | Sucesso | Erro |
+|--------|------|-----------|---------|------|
+| POST | /api/units | Criar unidade | 201 Created com UnitDto e header Location | 400 Bad Request com ProblemDetails |
+| GET | /api/units/{id} | Obter por id | 200 OK com UnitDto | 404 Not Found |
+| GET | /api/units | Listar com filtros e paginacao | 200 OK com PagedResult de UnitSummaryDto | - |
+| PATCH | /api/units/{id} | Atualizar endereco e geometria | 200 OK com UnitDto | 400 ou 403 se unidade travada |
+| POST | /api/units/{id}/submit | Submeter para analise | 200 OK | 400 com ProblemDetails |
+| DELETE | /api/units/{id} | Excluir unidade rascunho | 204 No Content | 400 com ProblemDetails |
 
-    [HttpPost]
-    [ProducesResponseType(typeof(UnitDto), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Create([FromBody] CreateUnitRequest request, CancellationToken ct)
-    {
-        var command = new CreateUnitCommand(request.Address, request.Geometry, request.CommunityId, request.Photos);
-        var result = await _mediator.Send(command, ct);
+## Comportamento dos Endpoints
 
-        return result.IsSuccess
-            ? CreatedAtAction(nameof(GetById), new { id = result.Value.Id }, result.Value)
-            : BadRequest(result.ToProblemDetails());
-    }
-
-    [HttpGet("{id:guid}")]
-    [ProducesResponseType(typeof(UnitDto), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> GetById(
-        Guid id,
-        [FromQuery] bool includeHolders = false,
-        [FromQuery] bool includeCommunity = false,
-        CancellationToken ct = default)
-    {
-        var query = new GetUnitByIdQuery(id, includeHolders, includeCommunity);
-        var result = await _mediator.Send(query, ct);
-
-        return result.Value != null
-            ? Ok(result.Value)
-            : NotFound();
-    }
-
-    [HttpGet]
-    [ProducesResponseType(typeof(PagedResult<UnitSummaryDto>), StatusCodes.Status200OK)]
-    public async Task<IActionResult> List([FromQuery] ListUnitsQueryParams queryParams, CancellationToken ct)
-    {
-        var query = queryParams.ToQuery();
-        var result = await _mediator.Send(query, ct);
-        return Ok(result);
-    }
-
-    [HttpPatch("{id:guid}")]
-    [ProducesResponseType(typeof(UnitDto), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status403Forbidden)]
-    public async Task<IActionResult> Update(Guid id, [FromBody] UpdateUnitRequest request, CancellationToken ct)
-    {
-        var command = new UpdateUnitCommand(id, request.Address, request.Geometry);
-        var result = await _mediator.Send(command, ct);
-
-        return result.IsSuccess
-            ? Ok(result.Value)
-            : result.Error.Code == "UNIT_LOCKED"
-                ? Forbid()
-                : BadRequest(result.ToProblemDetails());
-    }
-
-    [HttpPost("{id:guid}/submit")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<IActionResult> Submit(Guid id, CancellationToken ct)
-    {
-        var command = new SubmitUnitCommand(id);
-        var result = await _mediator.Send(command, ct);
-
-        return result.IsSuccess ? Ok() : BadRequest(result.ToProblemDetails());
-    }
-
-    [HttpDelete("{id:guid}")]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> Delete(Guid id, CancellationToken ct)
-    {
-        var command = new DeleteUnitCommand(id);
-        var result = await _mediator.Send(command, ct);
-
-        return result.IsSuccess ? NoContent() : BadRequest(result.ToProblemDetails());
-    }
-}
-```
+O endpoint de criacao monta um CreateUnitCommand com endereco, geometria, comunidade e fotos, e retorna CreatedAtAction apontando para GetById. O endpoint de consulta por id aceita query params opcionais includeHolders e includeCommunity para controlar eager loading de relacionamentos. A listagem recebe ListUnitsQueryParams que converte para query CQRS internamente. O endpoint de atualizacao trata o erro UNIT_LOCKED retornando 403 Forbid, diferenciando de erros genericos de validacao que retornam 400.

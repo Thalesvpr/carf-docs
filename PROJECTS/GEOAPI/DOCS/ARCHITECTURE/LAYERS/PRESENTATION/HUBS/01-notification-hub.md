@@ -1,103 +1,31 @@
 ---
 type: leaf
-status: review
-description: "Mais codigo que prosa - arquivo e 90% blocos de codigo C# e TypeScript"
-updated: 2026-01-22
+status: active
+updated: 2026-02-07
 ---
 
 # Notification Hub
 
-SignalR Hub para comunicação real-time.
+A GEOAPI utiliza SignalR para comunicacao real-time com clientes conectados. O hub e protegido por autenticacao JWT e organiza conexoes em grupos por tenant e por usuario.
 
 ## NotificationHub
 
-```csharp
-[Authorize]
-public class NotificationHub : Hub
-{
-    private readonly ITenantContext _tenantContext;
+A classe NotificationHub herda de Hub e requer autorizacao. Ao conectar, o metodo OnConnectedAsync adiciona a conexao a dois grupos: "tenant:{tenantId}" para notificacoes de escopo do municipio e "user:{userId}" para notificacoes pessoais. A desconexao nao exige limpeza manual pois o SignalR remove automaticamente conexoes dos grupos.
 
-    public override async Task OnConnectedAsync()
-    {
-        // Adicionar cliente ao grupo do tenant
-        var tenantGroup = $"tenant:{_tenantContext.TenantId}";
-        await Groups.AddToGroupAsync(Context.ConnectionId, tenantGroup);
+## Servico de Notificacoes
 
-        // Adicionar ao grupo do usuário
-        var userGroup = $"user:{_tenantContext.UserId}";
-        await Groups.AddToGroupAsync(Context.ConnectionId, userGroup);
+A interface INotificationService define o contrato de notificacoes do dominio. A implementacao SignalRNotificationService utiliza IHubContext para enviar mensagens aos grupos corretos.
 
-        await base.OnConnectedAsync();
-    }
+| Metodo | Grupo Alvo | Evento | Payload |
+|--------|-----------|--------|---------|
+| NotifyUnitCreated | tenant:{tenantId} | UnitCreated | UnitSummaryDto |
+| NotifyUnitUpdated | tenant:{tenantId} | UnitUpdated | unitId |
+| NotifyLegitimationStatusChanged | user:{userId} | LegitimationStatusChanged | legitimationId e newStatus |
 
-    public override async Task OnDisconnectedAsync(Exception? exception)
-    {
-        // Grupos são automaticamente limpos
-        await base.OnDisconnectedAsync(exception);
-    }
-}
-```
+## Integracao com Clientes
 
-## INotificationService
+O cliente JavaScript conecta ao hub via HubConnectionBuilder apontando para /hubs/notifications, fornecendo o access token JWT via accessTokenFactory. A conexao e configurada com reconexao automatica. Os listeners registram callbacks para os eventos UnitCreated (atualiza lista de unidades) e LegitimationStatusChanged (exibe notificacao de status).
 
-```csharp
-public interface INotificationService
-{
-    Task NotifyUnitCreated(Guid tenantId, UnitSummaryDto unit);
-    Task NotifyUnitUpdated(Guid tenantId, Guid unitId);
-    Task NotifyLegitimationStatusChanged(Guid userId, Guid legitimationId, string newStatus);
-}
+## Configuracao
 
-public class SignalRNotificationService : INotificationService
-{
-    private readonly IHubContext<NotificationHub> _hubContext;
-
-    public async Task NotifyUnitCreated(Guid tenantId, UnitSummaryDto unit)
-    {
-        await _hubContext.Clients
-            .Group($"tenant:{tenantId}")
-            .SendAsync("UnitCreated", unit);
-    }
-
-    public async Task NotifyLegitimationStatusChanged(Guid userId, Guid legitimationId, string newStatus)
-    {
-        await _hubContext.Clients
-            .Group($"user:{userId}")
-            .SendAsync("LegitimationStatusChanged", new { legitimationId, newStatus });
-    }
-}
-```
-
-## Cliente JavaScript
-
-```typescript
-// Conectar ao hub
-const connection = new signalR.HubConnectionBuilder()
-    .withUrl("/hubs/notifications", {
-        accessTokenFactory: () => getAccessToken()
-    })
-    .withAutomaticReconnect()
-    .build();
-
-// Listeners
-connection.on("UnitCreated", (unit) => {
-    console.log("Nova unidade criada:", unit);
-    refreshUnitList();
-});
-
-connection.on("LegitimationStatusChanged", ({ legitimationId, newStatus }) => {
-    showNotification(`Status atualizado para: ${newStatus}`);
-});
-
-// Iniciar conexão
-await connection.start();
-```
-
-## Configuração
-
-```csharp
-// Program.cs
-services.AddSignalR();
-
-app.MapHub<NotificationHub>("/hubs/notifications");
-```
+O SignalR e registrado no container de DI em Program.cs e o hub e mapeado na rota /hubs/notifications no pipeline de middleware.

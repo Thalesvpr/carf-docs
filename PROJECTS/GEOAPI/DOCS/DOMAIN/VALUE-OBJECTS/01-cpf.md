@@ -1,12 +1,31 @@
 ---
 type: leaf
 status: review
-description: "Estrutura caotica. Numeracao nao agrupa por categoria. Precisa reorganizar por agregado/contexto. Stub de 11 linhas - incompleto."
-updated: 2026-01-19
+updated: 2026-02-08
 ---
 
-# CPF (Cadastro de Pessoa Física)
+# CPF (Cadastro de Pessoa Fisica)
 
-Value object imutável representando CPF brasileiro validado garantindo que apenas números válidos são aceitos no sistema evitando dados incorretos de titulares. Valor conceitual é texto de exatamente 11 dígitos numéricos ou opcionalmente formatado com pontos e hífen (###.###.###-##) para exibição. Regras de validação incluem deve ter exatamente 11 dígitos após remover formatação, não pode ser sequência repetida (00000000000 até 99999999999 são inválidos), deve ter dígitos verificadores corretos calculados por algoritmo oficial da Receita Federal onde décimo dígito é calculado com pesos 10 a 2 sobre primeiros 9 dígitos e décimo primeiro com pesos 11 a 2 sobre primeiros 10 dígitos usando módulo 11, e validação deve ocorrer na criação do value object lançando exception se inválido impedindo criação de CPF malformado. Comportamentos incluem igualdade por valor onde dois CPFs com mesmos 11 dígitos são considerados iguais independente de formatação ou instância de memória, formatação para exibição retornando string ###.###.###-## para interface de usuário, desformatação retornando apenas 11 dígitos numéricos para persistência ou comparação, e ToString retornando versão formatada por padrão. Regras de negócio estabelecem que CPF deve ser único por Holder no sistema não permitindo cadastro duplicado de mesma pessoa, é campo sensível LGPD exigindo criptografia em repouso logs de acesso e consentimento para uso, pode ser mascarado em exibições públicas mostrando apenas primeiros 3 e últimos 2 dígitos (###.***.**#-##) protegendo privacidade, e validação deve ocorrer tanto em frontend para feedback imediato quanto em backend para segurança impedindo bypass.
+Value object imutavel representando CPF brasileiro validado, garantindo que apenas numeros validos pelo algoritmo Mod11 da Receita Federal sao aceitos no sistema. Utilizado como identificador natural de Holder dentro de cada tenant, com constraint UNIQUE em (tenant_id, cpf) na tabela holders.
 
-**Módulos:** GEOAPI, GEOWEB, REURBCAD, GEOGIS
+## Regras de Validacao
+
+| Regra | Descricao |
+|-------|-----------|
+| Tamanho | Exatamente 11 digitos apos remover formatacao. |
+| Sequencia repetida | Rejeita CPFs com todos digitos iguais (00000000000 a 99999999999). |
+| Digito verificador 1 | Decimo digito calculado com pesos 10 a 2 sobre primeiros 9 digitos, modulo 11. |
+| Digito verificador 2 | Decimo primeiro digito calculado com pesos 11 a 2 sobre primeiros 10 digitos, modulo 11. |
+| Validacao na criacao | Exception lancada se CPF invalido, impedindo criacao de instancia malformada. |
+
+## Formato
+
+| Operacao | Formato | Exemplo |
+|----------|---------|---------|
+| Armazenamento | 11 digitos sem formatacao | 12345678901 |
+| Exibicao | ###.###.###-## | 123.456.789-01 |
+| Mascarado (LGPD) | ###.***.**#-## | 123.***.***-01 |
+
+## Regras de Negocio
+
+CPF deve ser unico por Holder dentro do tenant. E campo sensivel LGPD exigindo criptografia em repouso, logs de acesso e consentimento para uso. Validacao ocorre tanto em frontend para feedback imediato quanto em backend para seguranca.

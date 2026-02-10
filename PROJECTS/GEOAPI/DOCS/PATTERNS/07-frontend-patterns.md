@@ -1,10 +1,29 @@
 ---
 type: leaf
 status: review
-description: "Stub 8 linhas. Patterns devem ter contexto, problema, solucao, consequencias. Consolidar em ADR unico de arquitetura. Stub de 9 linhas - incompleto."
-updated: 2026-01-20
+updated: 2026-02-08
 ---
 
 # Frontend Patterns
 
-Padrões frontend do GEOWEB React e ADMIN Next.js seguindo arquitetura component-based e state management centralizado com code sharing via biblioteca @carf/tscore. Component patterns usando function components com hooks (useState, useEffect, useContext), compound components encapsulando UI complexas (FormField com Label + Input + Error), render props para lógica reutilizável, e HOCs para cross-cutting concerns (withAuth, withTenant). State management via Context API para estado global simples (AuthContext, TenantContext) provido por @carf/tscore/auth/react AuthProvider, e TanStack Query (React Query) gerenciando server state com cache automático, invalidação inteligente, optimistic updates (cadastrar unidade mostra imediatamente antes confirmar servidor), retry automático em falhas rede, e prefetching dados navegação antecipada. Form handling com React Hook Form reduzindo re-renders, validação schema Zod integrando value objects @carf/tscore/validations (CPF, CNPJ, Email, Phone) via custom validators garantindo regras negócio brasileiras consistentes cross-projects eliminando duplicação validação lógica, field-level errors inline, e controlled components sincronizados com estado. Routing via React Router v6 (GEOWEB) ou Next.js App Router (ADMIN) com lazy loading routes code-splitting bundles, protected routes usando @carf/tscore/auth/react ProtectedRoute component verificando isAuthenticated e requiredRoles antes renderizar bloqueando acesso não autorizado, nested routes para layouts compartilhados (DashboardLayout envolvendo rotas autenticadas), e breadcrumbs automáticos via route metadata. Type safety garantida por @carf/tscore/types importando interfaces TypeScript domain entities (Unit, Holder, Community, Tenant) sincronizadas com backend .NET garantindo contratos API type-safe em compile-time detectando mismatches campos antes runtime evitando bugs silenciosos null reference errors crashes produção. Performance otimizada com React.memo evitando re-renders desnecessários, useMemo/useCallback memoizando cálculos caros incluindo validations via value objects, virtualization (react-window) renderizando apenas itens visíveis em listas grandes (1000+ unidades), e Suspense boundaries mostrando skeletons durante loading. Error boundaries capturando crashes componentes exibindo fallback UI, logging erros para Sentry, e retry mechanism permitindo usuário tentar novamente.
+Os padroes frontend do ecossistema CARF padronizam implementacao entre GEOWEB (React SPA), ADMIN (React Vite SPA) e REURBCAD (React Native Expo), compartilhando logica via bibliotecas @carf/tscore e @carf/ui.
+
+## State Management
+
+O gerenciamento de estado segue separacao entre server state e client state. Server state (dados da API) e gerenciado via TanStack Query com cache automatico, invalidacao por mutation, optimistic updates para cadastro de unidades e retry automatico em falhas de rede. Client state (UI, formularios) e gerenciado via Zustand para estados globais simples como tema e sidebar, e React Hook Form para estado de formularios com validacao Zod.
+
+## Componentes e Formularios
+
+Componentes seguem padrao function components com hooks, compound components para UI complexas (FormField com Label, Input e Error) e composicao via children. Formularios utilizam React Hook Form integrando validacoes do @carf/tscore/validations (CPF Mod-11, CNPJ, Email, Phone) via resolvers Zod, garantindo regras de negocio brasileiras consistentes entre projetos. Field-level errors sao exibidos inline abaixo de cada campo.
+
+## Autenticacao e Rotas
+
+O AuthProvider do @carf/tscore/auth/react gerencia sessao OAuth2 com Keycloak, fornecendo isAuthenticated, user, roles e funcoes login/logout via context. ProtectedRoute verifica autenticacao e requiredRoles antes de renderizar, redirecionando para login quando necessario. Rotas usam React Router v6 no GEOWEB e file-based routing no ADMIN, com lazy loading para code-splitting.
+
+## Mapas
+
+GEOWEB utiliza React Leaflet para renderizacao de mapas interativos com poligonos de unidades coloridos por status, clustering em zoom baixo via react-leaflet-cluster, popup com informacoes resumidas ao clicar e suporte a tiles XYZ de ortofotos. REURBCAD utiliza react-native-maps com MapView integrada a GPS nativo para captura de coordenadas em campo.
+
+## Type Safety
+
+Interfaces TypeScript de entidades de dominio (Unit, Holder, Community) sao compartilhadas via @carf/tscore/types, sincronizadas com o backend .NET para garantir contratos API type-safe em compile-time.

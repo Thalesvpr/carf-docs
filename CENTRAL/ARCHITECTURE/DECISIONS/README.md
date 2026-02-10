@@ -26,8 +26,8 @@ Cada ADR segue formato padronizado que registra o contexto e problema que motivo
 | [ADR-006: PostgreSQL com PostGIS](./06-database.md) | ⚠ |
 | [ADR-007: React Native com Expo para Mobile](./07-mobile-stack.md) | ⚠ |
 | [ADR-008: Clean Architecture com CQRS](./08-architecture-style.md) | ⚠ |
-| [ADR-009: Git como Controle de Versao](./09-git.md) | ⚠ |
-| [ADR-010: GitHub como Plataforma](./10-github.md) | ⚠ |
+| [ADR-009: Git como Sistema de Controle de Versao](./09-git.md) | ⚠ |
+| [ADR-010: GitHub como Plataforma de Hospedagem](./10-github.md) | ⚠ |
 | [ADR-011: Arquitetura Polyrepo](./11-polyrepo.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

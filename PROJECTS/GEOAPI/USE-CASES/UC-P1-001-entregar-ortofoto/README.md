@@ -1,21 +1,15 @@
 ---
 type: readme
 status: review
-updated: 2026-01-24
+updated: 2026-02-07
 ---
 
 # UC-P1-001: Entregar Ortofoto
 
-Caso de uso da PARTE 1 do workflow: entrega de ortofoto pelo Analista de Drone.
-
-## Documentos
+Este caso de uso pertence a PARTE 1 do workflow mestre e descreve o fluxo de entrega de ortofoto pelo Analista de Drone. E o primeiro passo da cadeia de processamento, recebendo o arquivo bruto que sera posteriormente processado pelo UC-P1-002 e disponibilizado para o tenant pelo UC-P1-003.
 
 | Documento | Descricao |
 |-----------|-----------|
 | [UC-P1-001](./UC-P1-001-entregar-ortofoto.md) | Fluxo principal |
 
-## Contexto no Workflow
-
-```
-PARTE 1: Drone -> [UC-P1-001] -> UC-P1-002 -> UC-P1-003
-```
+No contexto do workflow da PARTE 1, este caso de uso e o ponto de entrada, sendo seguido pelo processamento automatico da ortofoto e pela disponibilizacao para o tenant.

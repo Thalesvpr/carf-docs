@@ -1,7 +1,7 @@
 ---
 type: workflow
 status: approved
-updated: 2026-01-25
+updated: 2026-02-07
 part: 2
 step: 8
 ---
@@ -12,11 +12,7 @@ Analista desenha poligonos de comunidades, quadras e lotes sobre a ortofoto.
 
 ## Fluxo
 
-1. Analista usa ferramentas do QGIS para desenhar/produzir:
-   - Poligonos de comunidades (limites da area)
-   - Poligonos de quadras (divisoes internas)
-   - Poligonos de lotes (unidades individuais)
-   - Atributos e metadados associados a cada poligono
+1. Analista usa ferramentas do QGIS para desenhar/produzir poligonos de comunidades (limites da area), quadras (divisoes internas), lotes (unidades individuais) e atributos e metadados associados
 2. Analista utiliza ortofoto como referencia visual
 3. Analista pode usar snapping para precisao
 4. Analista valida topologia (sem sobreposicoes, sem gaps)
@@ -24,11 +20,11 @@ Analista desenha poligonos de comunidades, quadras e lotes sobre a ortofoto.
 
 ## Hierarquia de Poligonos
 
-```
-Comunidade
-    └── Quadra
-           └── Lote
-```
+| Nivel | Tipo | Contido em |
+|-------|------|-----------|
+| 1 | Comunidade | Raiz |
+| 2 | Quadra | Comunidade |
+| 3 | Lote | Quadra |
 
 ## Tipos de Poligonos
 
@@ -47,11 +43,7 @@ Comunidade
 
 ## Validacao Topologica
 
-Antes de publicar, a topologia deve estar consistente:
-- Sem sobreposicoes entre poligonos do mesmo nivel
-- Sem gaps (buracos) entre poligonos adjacentes
-- Lotes contidos dentro de quadras
-- Quadras contidas dentro de comunidades
+Antes de publicar, a topologia deve estar consistente: sem sobreposicoes entre poligonos do mesmo nivel, sem gaps (buracos) entre poligonos adjacentes, lotes contidos dentro de quadras e quadras contidas dentro de comunidades.
 
 ## Resultado
 

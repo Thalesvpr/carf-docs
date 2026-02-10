@@ -14,7 +14,7 @@ As [transicoes de unidade](./01-unit-status-transitions.md) cobrem o ciclo desde
 > ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
 > Use os links abaixo para referenciar documentos desta pasta.
 
-## Documentos (5)
+## Documentos (7)
 
 | Documento | Status |
 |-----------|--------|
@@ -22,6 +22,8 @@ As [transicoes de unidade](./01-unit-status-transitions.md) cobrem o ciclo desde
 | [Legitimation Status Transitions](./02-legitimation-status-transitions.md) | ⚠ |
 | [Role Permissions](./03-role-permissions.md) | ⚠ |
 | [SLA Rules](./04-sla-rules.md) | ⚠ |
+| [Unit Status Machine](./04-unit-status-machine.md) | ⚠ |
+| [Legitimation Status Machine](./05-legitimation-status-machine.md) | ⚠ |
 | [Notification Triggers](./05-notification-triggers.md) | ⚠ |
 
 <!-- CARF-INDEX-END -->

@@ -1,7 +1,7 @@
 ---
 type: workflow
 status: approved
-updated: 2026-01-25
+updated: 2026-02-07
 part: 1
 step: 1
 ---
@@ -17,26 +17,17 @@ Autenticacao do Analista de Drone no sistema via Keycloak.
 3. Sistema redireciona para Keycloak
 4. Analista de Drone insere credenciais (usuario/senha)
 5. Keycloak valida credenciais e emite token JWT
-6. Token contem `tenant_id` do analista
+6. Token contem tenant_id do analista
 7. Sistema redireciona de volta ao portal de upload
 
-## Diagrama
+## Fluxo de Autenticacao
 
-```
-Analista ──> Portal Upload ──> Keycloak ──> Validacao
-                                  │
-                                  v
-                            Token JWT
-                         (com tenant_id)
-                                  │
-                                  v
-                          Portal Upload
-```
+O Analista acessa o portal de upload, que redireciona para a pagina de login do Keycloak. Apos validacao de credenciais, o Keycloak emite um token JWT contendo o tenant_id e redireciona de volta ao portal de upload com a sessao autenticada.
 
 ## Resultado
 
 - Analista de Drone autenticado
-- Token JWT valido com `tenant_id`
+- Token JWT valido com tenant_id
 - Acesso ao portal de upload liberado
 
 ## Proximo Passo
