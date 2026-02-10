@@ -1,232 +1,55 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-21
+updated: 2026-02-07
 ---
 
 # Keycloak Client Configuration
 
-Configuração completa do client Keycloak para autenticação do WEBDOCS. Client carf-webdocs é public client que usa Authorization Code flow com PKCE para Single Page Applications.
+Client carf-webdocs e public client com Authorization Code flow e PKCE.
 
-## Client Configuration JSON
+## Client
 
-```json
-{
-  "clientId": "carf-webdocs",
-  "name": "CARF WebDocs Portal",
-  "description": "Portal de documentação do sistema CARF",
-  "enabled": true,
-  "publicClient": true,
-  "protocol": "openid-connect",
-  "rootUrl": "https://docs.carf.com.br",
-  "baseUrl": "/",
-  "redirectUris": [
-    "http://localhost:4321/auth/callback",
-    "http://localhost:4321/admin",
-    "https://docs.carf.com.br/auth/callback",
-    "https://docs.carf.com.br/admin"
-  ],
-  "webOrigins": [
-    "http://localhost:4321",
-    "https://docs.carf.com.br"
-  ],
-  "adminUrl": "https://docs.carf.com.br",
-  "attributes": {
-    "pkce.code.challenge.method": "S256",
-    "post.logout.redirect.uris": "http://localhost:4321/+https://docs.carf.com.br/"
-  }
-}
-```
+| Propriedade | Valor |
+|-------------|-------|
+| clientId | carf-webdocs |
+| publicClient | true |
+| protocol | openid-connect |
+| rootUrl | https://docs.carf.com.br |
+| pkce.code.challenge.method | S256 |
 
-## Token Configuration
+Redirect URIs: localhost:4321 e docs.carf.com.br para /auth/callback e /admin. Web Origins: localhost:4321 e docs.carf.com.br.
 
-```json
-{
-  "token_settings": {
-    "accessTokenLifespan": 300,
-    "accessTokenLifespanForImplicitFlow": 300,
-    "refreshTokenLifespan": 28800,
-    "ssoSessionIdleTimeout": 1800,
-    "ssoSessionMaxLifespan": 28800,
-    "offlineSessionIdleTimeout": 2592000,
-    "offlineSessionMaxLifespan": 5184000
-  },
-  "description": {
-    "accessTokenLifespan": "5 minutos - tempo curto para segurança",
-    "refreshTokenLifespan": "8 horas - sessão de trabalho típica",
-    "ssoSessionIdleTimeout": "30 minutos - inatividade antes de reautenticar",
-    "ssoSessionMaxLifespan": "8 horas - máximo absoluto de sessão SSO"
-  }
-}
-```
+## Tokens
 
-## Scopes Necessários
+| Propriedade | Valor | Descricao |
+|-------------|-------|-----------|
+| accessTokenLifespan | 300 | 5 minutos |
+| refreshTokenLifespan | 28800 | 8 horas |
+| ssoSessionIdleTimeout | 1800 | 30 minutos inatividade |
+| ssoSessionMaxLifespan | 28800 | 8 horas maximo |
 
-```json
-{
-  "defaultClientScopes": [
-    "openid",
-    "profile",
-    "email",
-    "roles"
-  ],
-  "optionalClientScopes": [
-    "offline_access"
-  ],
-  "scope_details": {
-    "openid": "Obrigatório para OIDC - retorna sub claim",
-    "profile": "Nome, sobrenome, username - exibição no UserMenu",
-    "email": "Email do usuário - exibição e notificações",
-    "roles": "realm_access.roles - necessário para RBAC"
-  }
-}
-```
+## Scopes e Mappers
 
-## Mapper Configuration
+Default scopes: openid (sub claim), profile (nome/username), email, roles (RBAC). Opcional: offline_access. Mapper realm roles inclui realm_access.roles nos tokens. Mapper tenant_id inclui atributo tenant_id.
 
-Client precisa de mapper para incluir roles no token:
+## Endpoints
 
-```json
-{
-  "mappers": [
-    {
-      "name": "realm roles",
-      "protocol": "openid-connect",
-      "protocolMapper": "oidc-usermodel-realm-role-mapper",
-      "consentRequired": false,
-      "config": {
-        "multivalued": "true",
-        "userinfo.token.claim": "true",
-        "id.token.claim": "true",
-        "access.token.claim": "true",
-        "claim.name": "realm_access.roles",
-        "jsonType.label": "String"
-      }
-    },
-    {
-      "name": "tenant_id",
-      "protocol": "openid-connect",
-      "protocolMapper": "oidc-usermodel-attribute-mapper",
-      "consentRequired": false,
-      "config": {
-        "userinfo.token.claim": "true",
-        "user.attribute": "tenant_id",
-        "id.token.claim": "true",
-        "access.token.claim": "true",
-        "claim.name": "tenant_id",
-        "jsonType.label": "String"
-      }
-    }
-  ]
-}
-```
+| Endpoint | Path |
+|----------|------|
+| authorization | /realms/carf/protocol/openid-connect/auth |
+| token | /realms/carf/protocol/openid-connect/token |
+| userinfo | /realms/carf/protocol/openid-connect/userinfo |
+| logout | /realms/carf/protocol/openid-connect/logout |
+| jwks | /realms/carf/protocol/openid-connect/certs |
 
-## Endpoints do Realm
-
-```json
-{
-  "endpoints": {
-    "issuer": "https://auth.carf.com.br/realms/carf",
-    "authorization_endpoint": "https://auth.carf.com.br/realms/carf/protocol/openid-connect/auth",
-    "token_endpoint": "https://auth.carf.com.br/realms/carf/protocol/openid-connect/token",
-    "userinfo_endpoint": "https://auth.carf.com.br/realms/carf/protocol/openid-connect/userinfo",
-    "end_session_endpoint": "https://auth.carf.com.br/realms/carf/protocol/openid-connect/logout",
-    "jwks_uri": "https://auth.carf.com.br/realms/carf/protocol/openid-connect/certs",
-    "introspection_endpoint": "https://auth.carf.com.br/realms/carf/protocol/openid-connect/token/introspect"
-  }
-}
-```
-
-## Configuração para Desenvolvimento Local
-
-Para desenvolvimento local, criar client separado ou adicionar URIs:
-
-```json
-{
-  "development": {
-    "redirectUris_to_add": [
-      "http://localhost:4321/*",
-      "http://127.0.0.1:4321/*"
-    ],
-    "webOrigins_to_add": [
-      "http://localhost:4321",
-      "http://127.0.0.1:4321"
-    ],
-    "notes": [
-      "Usar variável KEYCLOAK_URL=http://localhost:8080 para Keycloak local",
-      "Realm de desenvolvimento pode ter tokens mais longos para debug"
-    ]
-  }
-}
-```
-
-## Variáveis de Ambiente Relacionadas
-
-```bash
-# Keycloak Configuration
-KEYCLOAK_URL=https://auth.carf.com.br
-KEYCLOAK_REALM=carf
-KEYCLOAK_CLIENT_ID=carf-webdocs
-
-# Desenvolvimento Local
-# KEYCLOAK_URL=http://localhost:8080
-# KEYCLOAK_REALM=carf-dev
-```
-
-## Validação de Configuração
-
-Teste de configuração correta:
-
-1. **Verificar .well-known:**
-```bash
-curl https://auth.carf.com.br/realms/carf/.well-known/openid-configuration
-```
-
-2. **Verificar JWKS:**
-```bash
-curl https://auth.carf.com.br/realms/carf/protocol/openid-connect/certs
-```
-
-3. **Testar Authorization URL manualmente:**
-```
-https://auth.carf.com.br/realms/carf/protocol/openid-connect/auth?
-  client_id=carf-webdocs&
-  redirect_uri=http://localhost:4321/auth/callback&
-  response_type=code&
-  scope=openid profile email&
-  code_challenge=<GENERATED>&
-  code_challenge_method=S256&
-  state=<RANDOM>
-```
+Base URL: https://auth.carf.com.br
 
 ## Troubleshooting
 
-```json
-{
-  "common_errors": {
-    "invalid_redirect_uri": {
-      "cause": "URI não cadastrada no client",
-      "solution": "Adicionar URI exata (incluindo porta) nas redirectUris"
-    },
-    "invalid_client": {
-      "cause": "client_id incorreto ou client desabilitado",
-      "solution": "Verificar clientId e enabled=true"
-    },
-    "cors_error": {
-      "cause": "Origin não permitida",
-      "solution": "Adicionar origin nas webOrigins do client"
-    },
-    "pkce_required": {
-      "cause": "Client requer PKCE mas code_challenge não enviado",
-      "solution": "Implementar PKCE conforme SPECS/21-pkce-implementation.md"
-    }
-  }
-}
-```
-
-Configuração detalhada de PKCE em SPECS/21-pkce-implementation.md.
-
----
-
-**Última atualização:** 2026-01-20
-**Status do arquivo**: Review
+| Erro | Solucao |
+|------|---------|
+| invalid_redirect_uri | Adicionar URI exata nas redirectUris |
+| invalid_client | Verificar clientId e enabled |
+| cors_error | Adicionar origin nas webOrigins |
+| pkce_required | Implementar PKCE conforme SPECS/21a-pkce-overview.md |

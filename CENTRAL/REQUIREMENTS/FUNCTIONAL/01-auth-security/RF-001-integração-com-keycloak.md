@@ -1,7 +1,7 @@
 ---
 type: rf
-status: approved
-updated: 2026-01-25
+status: review
+updated: 2026-02-07
 modules:
   - GEOAPI
   - GEOWEB
@@ -13,7 +13,7 @@ modules:
 
 ## Descricao
 
-O sistema deve integrar-se com Keycloak como identity provider centralizado implementando OAuth2 e OpenID Connect. Cada tenant possui realm ou configuracao isolada garantindo seguranca multi-tenant. A integracao suporta SSO permitindo que usuario autenticado em um modulo acesse outros sem re-autenticacao. Configuracao inclui client IDs, secrets, redirect URIs e escopos apropriados para cada aplicacao.
+O sistema deve integrar-se com Keycloak como identity provider centralizado implementando OAuth2 e OpenID Connect. Multi-tenancy opera em single realm CARF com isolamento via atributos de usuario (tenants, current_tenant) mapeados como claims no JWT, combinado com Row Level Security no PostgreSQL para isolamento de dados por tenant. A integracao suporta SSO permitindo que usuario autenticado em um modulo acesse outros sem re-autenticacao. Configuracao inclui client IDs, secrets (apenas geogis confidential), redirect URIs e escopos apropriados para cada aplicacao.
 
 ## Criterios de Aceitacao
 

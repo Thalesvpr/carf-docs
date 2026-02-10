@@ -1,12 +1,12 @@
 ---
 type: leaf
 status: review
-updated: 2026-01-21
+updated: 2026-02-07
 ---
 
 # Integração com Keycloak
 
-WEBDOCS integra com Keycloak para autenticação de usuários que acessam seção protegida /dev/. Client carf-webdocs configurado como public client usa Authorization Code flow com PKCE para obter tokens JWT sem expor client secret.
+WEBDOCS integra com Keycloak para autenticação de usuários que acessam seção protegida /dev/. Client `webdocs` configurado como public client usa Authorization Code flow com PKCE para obter tokens JWT sem expor client secret.
 
 Fluxo de autenticação inicia quando usuário acessa rota /dev/*. Middleware SSR verifica presença de cookie de sessão. Se ausente, redireciona para Keycloak /authorize endpoint com parâmetros client_id, redirect_uri, response_type=code, code_challenge (PKCE), scope=openid profile, e state para proteção CSRF.
 

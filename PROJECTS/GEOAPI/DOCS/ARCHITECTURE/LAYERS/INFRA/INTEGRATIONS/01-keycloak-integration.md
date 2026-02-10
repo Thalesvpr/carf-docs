@@ -1,123 +1,17 @@
 ---
 type: leaf
 status: review
-description: "Formato inadequado: blocos de codigo extensos ao inves de prosa densa. Deveria explicar integracao Keycloak, fluxos OAuth2, claims em paragrafos corridos."
-updated: 2026-01-22
+updated: 2026-02-07
 ---
 
 # Keycloak Integration
 
-Integração com Keycloak para autenticação OAuth2/OIDC.
+GEOAPI integra com Keycloak como client bearer-only, o que significa que nao autentica usuarios diretamente nem emite tokens. Recebe tokens JWT emitidos por outros clients (geoweb, reurbcad, admin) e valida assinatura, lifetime e claims antes de processar cada requisicao. O client ID no Keycloak e `geoapi`, configurado sem secret (bearer-only nao precisa) com Authority apontando para `https://keycloak.carf.com.br/realms/carf` e Audience `geoapi`.
 
-## Configuração
+A configuracao .NET usa `AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer()` com `ValidateIssuer`, `ValidateAudience` e `ValidateLifetime` todos habilitados e `ClockSkew = TimeSpan.Zero` para validacao estrita de expiracao. O middleware automaticamente busca as chaves publicas do Keycloak via endpoint JWKS (`/protocol/openid-connect/certs`) e verifica assinatura RS256 do token. Se o token for invalido, expirado ou com audience errada, retorna 401 Unauthorized sem processar o request.
 
-```csharp
-// appsettings.json
-{
-  "Keycloak": {
-    "Authority": "https://keycloak.carf.com.br/realms/carf",
-    "Audience": "carf-api",
-    "ClientId": "carf-api",
-    "ClientSecret": "***"
-  }
-}
+TenantContext extrai claims do JWT autenticado via `IHttpContextAccessor`. As tres claims customizadas do scope `carf-tenant` sao: `tenant_id` (Guid do municipio atual do usuario), `allowed_tenants` (array JSON de Guids dos municipios permitidos) e `community_ids` (array JSON de Guids das comunidades associadas). Alem dessas, extrai `sub` (UserId), `email`, `preferred_username` e `realm_access.roles` (array de roles como field-cadastrator, analyst, admin). O TenantMiddleware usa o `tenant_id` extraido para executar `SET LOCAL app.tenant_id = '{tenantId}'` no PostgreSQL, ativando Row Level Security que filtra automaticamente todos os dados pelo municipio correto.
 
-// Program.cs
-services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
-    {
-        options.Authority = keycloakOptions.Authority;
-        options.Audience = keycloakOptions.Audience;
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ClockSkew = TimeSpan.Zero
-        };
-    });
-```
+Autorizacao por role usa `[Authorize(Roles = "admin,super-admin")]` nos controllers .NET, que valida contra o array `realm_access.roles` do token. Client roles especificas do client `admin` (manage-users, manage-tenants, view-audit-logs) sao verificadas via `resource_access.admin.roles` para endpoints de administracao.
 
-## IKeycloakService
-
-```csharp
-public interface IKeycloakService
-{
-    Task<TokenResponse> LoginAsync(string username, string password, Guid? tenantId, CancellationToken ct);
-    Task<TokenResponse> RefreshTokenAsync(string refreshToken, CancellationToken ct);
-    Task RevokeTokenAsync(string refreshToken, CancellationToken ct);
-    Task<UserInfo> GetUserInfoAsync(string accessToken, CancellationToken ct);
-}
-```
-
-## KeycloakService
-
-```csharp
-public class KeycloakService : IKeycloakService
-{
-    private readonly HttpClient _httpClient;
-    private readonly KeycloakOptions _options;
-
-    public async Task<TokenResponse> LoginAsync(string username, string password, Guid? tenantId, CancellationToken ct)
-    {
-        var tokenEndpoint = $"{_options.Authority}/protocol/openid-connect/token";
-
-        var form = new Dictionary<string, string>
-        {
-            ["grant_type"] = "password",
-            ["client_id"] = _options.ClientId,
-            ["client_secret"] = _options.ClientSecret,
-            ["username"] = username,
-            ["password"] = password,
-            ["scope"] = "openid profile email"
-        };
-
-        var response = await _httpClient.PostAsync(tokenEndpoint,
-            new FormUrlEncodedContent(form), ct);
-
-        if (!response.IsSuccessStatusCode)
-        {
-            var error = await response.Content.ReadFromJsonAsync<KeycloakError>(ct);
-            throw new AuthenticationException(error.ErrorDescription);
-        }
-
-        return await response.Content.ReadFromJsonAsync<TokenResponse>(ct);
-    }
-
-    public async Task RevokeTokenAsync(string refreshToken, CancellationToken ct)
-    {
-        var revokeEndpoint = $"{_options.Authority}/protocol/openid-connect/revoke";
-
-        var form = new Dictionary<string, string>
-        {
-            ["token"] = refreshToken,
-            ["token_type_hint"] = "refresh_token",
-            ["client_id"] = _options.ClientId,
-            ["client_secret"] = _options.ClientSecret
-        };
-
-        await _httpClient.PostAsync(revokeEndpoint,
-            new FormUrlEncodedContent(form), ct);
-    }
-}
-```
-
-## Extração de Claims
-
-```csharp
-public class TenantContext : ITenantContext
-{
-    private readonly IHttpContextAccessor _httpContextAccessor;
-
-    public Guid TenantId => GetClaimValue<Guid>("tenant_id");
-    public Guid UserId => GetClaimValue<Guid>(ClaimTypes.NameIdentifier);
-    public string Email => GetClaimValue<string>(ClaimTypes.Email);
-    public IEnumerable<string> Roles => GetClaimValues("roles");
-
-    private T GetClaimValue<T>(string claimType)
-    {
-        var claim = _httpContextAccessor.HttpContext?.User.FindFirst(claimType);
-        return claim != null ? (T)Convert.ChangeType(claim.Value, typeof(T)) : default;
-    }
-}
-```
+GEOAPI tambem atua como proxy seguro para a Keycloak Admin REST API, permitindo que o sistema ADMIN (SPA publica, sem secrets) gerencie usuarios, roles e tenants via endpoints `/api/admin/*`. O GEOAPI valida que o usuario tem role admin ou superior, e entao faz chamadas a Admin API do Keycloak usando credenciais de servico configuradas no backend (separadas do client bearer-only).
