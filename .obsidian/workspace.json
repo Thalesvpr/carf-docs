@@ -39,16 +39,44 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CENTRAL/DOMAIN-RULES/LEGAL/01-lei-13465-2017.md",
+                "file": "CENTRAL/ARCHITECTURE/DECISIONS/01-multi-tenancy.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "01-lei-13465-2017"
+              "title": "01-multi-tenancy"
+            }
+          },
+          {
+            "id": "71dc3bd3ebe8dfe4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CENTRAL/SECURITY/README.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "README"
+            }
+          },
+          {
+            "id": "94f08d4543131099",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CENTRAL/DOMAIN/CONCEPTS/22-survey-processing.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "22-survey-processing"
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -105,7 +133,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 470.5
+    "width": 225.5
   },
   "right": {
     "id": "5c80d725b66a9060",
@@ -223,42 +251,51 @@
   },
   "active": "aad1928f2fff3657",
   "lastOpenFiles": [
-    "CENTRAL/WORKFLOW-MESTRE/02-georreferenciamento/passo-10-dados-liberados.md",
-    "CENTRAL/WORKFLOW-MESTRE/02-georreferenciamento/README.md",
-    "CENTRAL/WORKFLOW-MESTRE/02-georreferenciamento/passo-09-publicacao.md",
-    "CENTRAL/WORKFLOW-MESTRE/02-georreferenciamento/passo-06-autenticacao-plugin.md",
-    "CENTRAL/WORKFLOW-MESTRE/02-georreferenciamento/passo-08-georreferenciamento.md",
-    "CENTRAL/WORKFLOW-MESTRE/02-georreferenciamento/passo-07-acesso-ortofotos.md",
-    "CENTRAL/WORKFLOW-MESTRE/02-georreferenciamento/passo-05-designacao.md",
-    "CENTRAL/WORKFLOW-MESTRE/05-conceitos-glossario/termos-tecnicos.md",
-    "CENTRAL/WORKFLOW-MESTRE/05-conceitos-glossario/sistemas.md",
-    "CENTRAL/WORKFLOW-MESTRE/05-conceitos-glossario/README.md",
-    "CENTRAL/WORKFLOW-MESTRE/05-conceitos-glossario/conceitos-principais.md",
-    "CENTRAL/WORKFLOW-MESTRE/05-conceitos-glossario/atores.md",
-    "CENTRAL/WORKFLOW-MESTRE/04-regras-inegociaveis/regras-tenant.md",
-    "CENTRAL/WORKFLOW-MESTRE/04-regras-inegociaveis/regras-publicacao.md",
-    "CENTRAL/WORKFLOW-MESTRE/04-regras-inegociaveis/regras-ortofotos.md",
-    "CENTRAL/WORKFLOW-MESTRE/04-regras-inegociaveis/regras-ordem.md",
-    "CENTRAL/WORKFLOW-MESTRE/04-regras-inegociaveis/regras-campo.md",
-    "CENTRAL/WORKFLOW-MESTRE/04-regras-inegociaveis/regras-autenticacao.md",
-    "CENTRAL/WORKFLOW-MESTRE/01-entrega-ortofotos/passo-02-upload.md",
-    "CENTRAL/WORKFLOW-MESTRE/01-entrega-ortofotos/passo-04-armazenamento.md",
-    "CENTRAL/WORKFLOW-MESTRE/04-regras-inegociaveis/README.md",
-    "CENTRAL/WORKFLOW-MESTRE/01-entrega-ortofotos/README.md",
-    "CENTRAL/WORKFLOW-MESTRE/01-entrega-ortofotos/passo-03-processamento.md",
-    "CENTRAL/WORKFLOW-MESTRE/01-entrega-ortofotos/passo-01-autenticacao.md",
-    "CENTRAL/WORKFLOW-MESTRE/03-operacao-campo/README.md",
-    "CENTRAL/WORKFLOW-MESTRE/03-operacao-campo/passo-18-finalizacao.md",
-    "CENTRAL/WORKFLOW-MESTRE/02-georreferenciamento",
-    "CENTRAL/WORKFLOW-MESTRE/05-conceitos-glossario",
-    "CENTRAL/WORKFLOW-MESTRE/04-regras-inegociaveis",
-    "CENTRAL/WORKFLOW-MESTRE/01-entrega-ortofotos",
-    "CENTRAL/WORKFLOW-MESTRE/03-operacao-campo",
-    "CENTRAL/WORKFLOW-MESTRE",
-    "PROJECTS/LIB/TS/UI-NATIVE/DOCS/COMPONENTS/DATA",
-    "PROJECTS/LIB/TS/UI-NATIVE/DOCS/COMPONENTS/FORM",
-    "PROJECTS/LIB/TS/UI-NATIVE/DOCS/COMPONENTS/DOMAIN",
-    "PROJECTS/LIB/TS/UI-NATIVE/DOCS/COMPONENTS/FEEDBACK",
-    "PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/public/img/logo.svg"
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/app/(modals)/facade-camera.tsx",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/assets/vectors/logoREURBCAD.svg",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/assets/vectors",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/assets/Nova pasta",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/src/assets/sounds/shutter.wav",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/expo-av/android/src/main/java/expo/modules/av/player/datasource/DataSourceFactoryProvider.java",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/expo-av/android/src/main/java/expo/modules/av/player/datasource/SharedCookiesDataSourceFactory.java",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/expo-av/android/src/main/java/expo/modules/av/video/scalablevideoview/ScaleManager.java",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/expo-av/android/src/main/java/expo/modules/av/video/scalablevideoview/ScalableType.java",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/expo-av/android/src/main/java/expo/modules/av/video/scalablevideoview/PivotPoint.java",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/expo-av/android/src/main/java/expo/modules/av/player/datasource/SharedCookiesDataSourceFactoryProvider.java",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/expo-av/android/src/main/java/expo/modules/av/player/datasource/CustomHeadersOkHttpDataSourceFactory.kt",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/expo-av/android/src/main/res/drawable-xxxhdpi/ic_fullscreen_exit_32dp.png",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/expo-av/android/src/main/res/drawable-xxxhdpi/ic_fullscreen_32dp.png",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/expo-av/android/src/main/res/drawable-xxhdpi/ic_fullscreen_exit_32dp.png",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/expo-av/android/src/main/res/drawable-xxhdpi/ic_fullscreen_32dp.png",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/expo-av/android/src/main/res/drawable-xhdpi/ic_fullscreen_exit_32dp.png",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/expo-av/android/src/main/res/drawable-xhdpi/ic_fullscreen_32dp.png",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/expo-av/android/src/main/res/drawable-mdpi/ic_fullscreen_exit_32dp.png",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/expo-av/android/src/main/res/drawable-mdpi/ic_fullscreen_32dp.png",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/expo-av/android/src/main/res/drawable-hdpi/ic_fullscreen_exit_32dp.png",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/expo-av/README.md",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/expo-av/CHANGELOG.md",
+    "PROJECTS/REURBCAD/DOCS/LEGAL/02-politica-de-privacidade.md",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/expo-network/README.md",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/expo-network/CHANGELOG.md",
+    "PROJECTS/REURBCAD/DOCS/LEGAL/README.md",
+    "PROJECTS/REURBCAD/DOCS/LEGAL/01-termos-de-uso.md",
+    "PROJECTS/WEBDOCS/SRC-CODE/carf-webdocs/webdocs/dev/setup/index.md",
+    "PROJECTS/WEBDOCS/SRC-CODE/carf-webdocs/webdocs/dev/database/index.md",
+    "PROJECTS/WEBDOCS/SRC-CODE/carf-webdocs/webdocs/dev/guias/index.md",
+    "PROJECTS/WEBDOCS/SRC-CODE/carf-webdocs/webdocs/dev/arquitetura/index.md",
+    "PROJECTS/WEBDOCS/SRC-CODE/carf-webdocs/webdocs/dev/api/index.md",
+    "PROJECTS/WEBDOCS/SRC-CODE/carf-webdocs/webdocs/dev/index.md",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/xcode/CONTRIBUTING.md",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/ws/README.md",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/write-file-atomic/README.md",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/write-file-atomic/LICENSE.md",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/wrappy/README.md",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/wrap-ansi/readme.md",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/wonka/README.md",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/wonka/LICENSE.md",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/wonka/CONTRIBUTING.md",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/wonka/CHANGELOG.md",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/which/README.md",
+    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/which/CHANGELOG.md"
   ]
 }

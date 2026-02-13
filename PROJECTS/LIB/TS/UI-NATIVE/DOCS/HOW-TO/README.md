@@ -12,5 +12,7 @@ O guia [getting started](./01-getting-started.md) ensina como copiar componentes
 
 O guia [expo setup](./02-expo-setup.md) orienta configuracao completa de NativeWind em projeto Expo. Detalha babel config, tailwind config e metro config necessarios.
 
+O guia [CLI reference](./03-cli-reference.md) documenta o CLI `carf-ui` para copiar componentes automaticamente. Cobre comandos init, add e list, tabela de componentes e troubleshooting.
+
 <!-- CARF-INDEX-START -->
 <!-- CARF-INDEX-END -->

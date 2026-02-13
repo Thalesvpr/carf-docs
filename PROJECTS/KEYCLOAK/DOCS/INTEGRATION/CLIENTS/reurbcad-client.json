@@ -11,7 +11,8 @@
     "carf://callback",
     "carf://oauth/callback",
     "http://localhost:19006/*",
-    "exp://localhost:19000/*"
+    "exp://localhost:19000/*",
+    "exp://192.168.*:*/*"
   ],
   "webOrigins": [],
   "attributes": {

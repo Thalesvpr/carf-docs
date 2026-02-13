@@ -186,12 +186,14 @@ adb devices
 O REURBCAD usa modulos nativos (WatermelonDB JSI, expo-camera, expo-location) que exigem um Dev Client customizado ao inves do Expo Go:
 
 ```bash
-# Build local para Android
-npx expo run:android
+# Build local para Android (usa gradle.properties, evita problemas de long path no Windows)
+npx expo run:android --all-arch
 
 # Build local para iOS (macOS apenas)
 npx expo run:ios
 ```
+
+> **Windows**: o flag `--all-arch` e importante pois evita que o Expo CLI detecte ABIs do device e force armeabi-v7a, cujos paths CMake estourarem o limite de ~250 caracteres do Windows. Veja [Troubleshooting > Build Nativo](./06-troubleshooting.md#build-nativo-android) para detalhes.
 
 Ou via EAS Build para desenvolvimento:
 
@@ -250,6 +252,11 @@ Opcoes disponiveis no terminal:
 | `adb not found` | Instalar platform-tools separadamente: `sdkmanager "platform-tools"` |
 | Porta 8081 em uso | `netstat -ano \| findstr :8081` e matar o processo |
 | `npm install` falha com node-gyp | Instalar Build Tools: `npm install -g windows-build-tools` |
+| `ninja: error: mkdir(...): No such file or directory` (CMake armeabi-v7a) | Usar `npx expo run:android --all-arch` para pular deteccao de ABIs. Veja [Troubleshooting > Build Nativo](./06-troubleshooting.md#build-nativo-android). |
+| Gradle falha com NDK version nao encontrada | Deletar pasta corrompida em `%LOCALAPPDATA%\Android\Sdk\ndk\` (sem `source.properties`). Gradle re-baixa automaticamente. |
+| `This computer is not authorized` ao conectar device fisico | Aceitar popup "Permitir depuracao USB" no dispositivo. Marcar "sempre permitir deste computador". |
+| `SDK location not found` apos `prebuild --clean` | `prebuild --clean` apaga `local.properties`. Setar `ANDROID_HOME` permanentemente: `setx ANDROID_HOME "%LOCALAPPDATA%\Android\Sdk"`. |
+| `IllegalStateException: API key not found` (Maps) | Adicionar `android.config.googleMaps.apiKey` no `app.json`. Rodar `npx expo prebuild --clean` e rebuildar. |
 
 ### macOS
 

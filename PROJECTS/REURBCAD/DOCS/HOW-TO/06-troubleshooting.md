@@ -20,6 +20,21 @@ Guia de resolucao de problemas comuns durante desenvolvimento e uso do REURBCAD,
 | `TypeScript error: Cannot find module '@carf/tscore'` | Workspace links nao resolvidos | Executar `npm link @carf/tscore @carf/geoapi-client` ou verificar paths em `tsconfig.json`. |
 | `Gradle build failed: Java version` | Versao do Java incompativel com Gradle | Instalar OpenJDK 17. Configurar `JAVA_HOME`. Verificar com `java -version`. |
 
+## Build Nativo (Android)
+
+Problemas especificos do build nativo com `npx expo run:android`, especialmente em Windows com modulos que usam CMake/NDK (Vision Camera, OpenCV, WatermelonDB JSI).
+
+| Sintoma | Causa Provavel | Solucao |
+|---------|---------------|---------|
+| `ninja: error: mkdir(...): No such file or directory` durante CMake do armeabi-v7a | `expo run:android` detecta ABIs do device conectado e passa `-PreactNativeArchitectures=arm64-v8a,armeabi-v7a` por CLI, ignorando `gradle.properties`. O path do armeabi-v7a estoura o limite de ~250 chars do Windows. | Usar `npx expo run:android --all-arch` que pula deteccao de ABIs e usa `gradle.properties` (configurado com `arm64-v8a` only). O config plugin `withArm64Only` garante `abiFilters` correto no prebuild. |
+| Gradle falha com erro de NDK version nao encontrada | Pasta do NDK (ex: `27.0.12077973`) existe em `%LOCALAPPDATA%\Android\Sdk\ndk\` mas sem arquivo `source.properties` (corrupcao). | Deletar a pasta corrompida do NDK. Gradle baixa automaticamente a versao correta no proximo build. |
+| `DebugServerException: 404` ao carregar bundle no Metro | Build feito a partir de um junction/symlink (ex: `C:\rn`) mas paths internos do Metro apontam para o caminho real do projeto. | Rodar Metro sempre do diretorio original do projeto, nao de junctions ou symlinks. |
+| `IllegalStateException: API key not found` + crash ao abrir MapView | Google Maps API key nao configurada no `app.json` | Adicionar `android.config.googleMaps.apiKey` no `app.json` com a key do Google Cloud Console (Maps SDK for Android habilitado). Rodar `npx expo prebuild --clean` e rebuildar. |
+| `ninja: error: mkdir(...)` apos `prebuild --clean` mesmo usando `--all-arch` | `prebuild --clean` regenera `gradle.properties` com todas as ABIs (`armeabi-v7a,arm64-v8a,x86,x86_64`), ignorando o plugin `withArm64Only` se ele so setava `abiFilters` no `build.gradle`. | Garantir que o plugin `withArm64Only` tambem usa `withGradleProperties` para sobrescrever `reactNativeArchitectures=arm64-v8a` no `gradle.properties`. Sem isso, `--all-arch` manda CMake compilar todas as ABIs. |
+| `SDK location not found` apos `prebuild --clean` | `prebuild --clean` deleta o `android/` inteiro incluindo `local.properties` (que tem o path do SDK). Se `ANDROID_HOME` nao esta setado como variavel de ambiente, Gradle nao encontra o SDK. | Setar `ANDROID_HOME` permanentemente: `setx ANDROID_HOME "%LOCALAPPDATA%\Android\Sdk"`. Alternativamente, recriar `android/local.properties` com `sdk.dir=C:\\Users\\<user>\\AppData\\Local\\Android\\Sdk`. |
+
+> **Referencia**: para setup completo do ambiente e troubleshooting por OS, consulte [Setup Dev Environment](./04-setup-dev-environment.md#troubleshooting-por-sistema-operacional).
+
 ## Metro Bundler e Dev Server
 
 | Sintoma | Causa Provavel | Solucao |
