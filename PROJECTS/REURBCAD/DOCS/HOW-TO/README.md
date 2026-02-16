@@ -22,6 +22,7 @@ Guias praticos para desenvolvimento do REURBCAD React Native.
 - **[06-troubleshooting.md](./06-troubleshooting.md)** - Problemas comuns: Metro bundler, builds nativas, permissoes, sync
 - **[07-add-new-screen.md](./07-add-new-screen.md)** - Passo-a-passo para criar nova tela com Expo Router, form, validacao
 - **[08-dev-start-dinamico.md](./08-dev-start-dinamico.md)** - Script automatizado: detecta IP, atualiza .env, registra redirect URIs no Keycloak, inicia Expo
+- **[09-adb-wifi.md](./09-adb-wifi.md)** - Desenvolvimento sem cabo USB via ADB WiFi
 
 ## Setup Rapido
 
