@@ -3,7 +3,7 @@ type: rf
 status: approved
 updated: 2026-01-25
 modules:
-  - GEOWEB
+  - REURBWEB
 ---
 
 # RF-149: Visibilidade de Camadas
@@ -22,5 +22,5 @@ Sistema deve permitir controlar visibilidade de cada camada individualmente no m
 
 ## Rastreabilidade
 
-- Modulos: GEOWEB
+- Modulos: REURBWEB
 - Requisitos dependentes: RF-127, RF-130

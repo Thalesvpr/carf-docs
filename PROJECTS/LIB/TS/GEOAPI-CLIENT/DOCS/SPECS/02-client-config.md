@@ -28,7 +28,7 @@ Interface de configuracao do createApiClient.
 
 ## Exemplos de Configuracao
 
-**Configuracao minima:** requer baseURL, getToken e getTenantId. A funcao getToken tipicamente delega para o auth provider da aplicacao (KeycloakClient no GEOWEB, SecureStore adapter no REURBCAD).
+**Configuracao minima:** requer baseURL, getToken e getTenantId. A funcao getToken tipicamente delega para o auth provider da aplicacao (KeycloakClient no REURBWEB, SecureStore adapter no REURBCAD).
 
 **Desenvolvimento:** usa http://localhost:5127 como baseURL, getToken retornando token de teste, getTenantId retornando tenant fixo.
 

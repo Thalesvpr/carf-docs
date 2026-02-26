@@ -17,7 +17,7 @@ class ModuleIndexer(Indexer):
     Output format:
     ## Indice por Modulo
 
-    ### GEOWEB
+    ### REURBWEB
 
     | ID | Titulo |
     |:---|:-------|

@@ -8,7 +8,7 @@ updated: 2026-01-25
 
 ## Descricao
 
-A renderizacao inicial do componente de mapa no GEOWEB deve ser rapida para permitir interacao imediata. Tempo medido ate o mapa estar completamente interativo (zoom, pan, cliques).
+A renderizacao inicial do componente de mapa no REURBWEB deve ser rapida para permitir interacao imediata. Tempo medido ate o mapa estar completamente interativo (zoom, pan, cliques).
 
 ## Metricas
 

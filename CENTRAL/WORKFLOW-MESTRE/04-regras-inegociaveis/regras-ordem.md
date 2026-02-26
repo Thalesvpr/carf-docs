@@ -1,7 +1,7 @@
 ---
 type: workflow
 status: approved
-updated: 2026-02-07
+updated: 2026-02-21
 category: regras
 ---
 
@@ -23,7 +23,7 @@ Regras que definem a sequencia obrigatoria das etapas.
 ### ORDEM-01: PARTE 1 antes de PARTE 2
 
 Sequencia obrigatoria:
-1. Analista de Drone entrega ortofoto
+1. Operador de Drone entrega ortofoto
 2. Backend processa e armazena
 3. Somente entao Analista do Plugin pode acessar
 

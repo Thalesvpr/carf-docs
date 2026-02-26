@@ -3,7 +3,7 @@ type: rf
 status: approved
 updated: 2026-01-25
 modules:
-  - GEOWEB
+  - REURBWEB
 ---
 
 # RF-146: Medicao de Area
@@ -22,5 +22,5 @@ Sistema deve fornecer ferramenta interativa de medicao de area permitindo calcul
 
 ## Rastreabilidade
 
-- Modulos: GEOWEB
+- Modulos: REURBWEB
 - Requisitos dependentes: RF-053

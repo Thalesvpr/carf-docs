@@ -14,7 +14,7 @@ O guia [desenvolvimento local](./02-local-development.md) orienta contribuidores
 
 O guia [publicacao](./03-publishing.md) documenta processo de release no GitHub Packages. Detalha versionamento semantico, criacao de tags Git, pipeline CI/CD automatizado e verificacao de publicacao bem-sucedida. Inclui troubleshooting para problemas comuns de autenticacao e permissao.
 
-Cada guia segue formato passo-a-passo com contexto inicial, procedimento detalhado e verificacao de sucesso. Exemplos usam projetos reais GEOWEB, REURBCAD, ADMIN e WEBDOCS para demonstrar uso em producao.
+Cada guia segue formato passo-a-passo com contexto inicial, procedimento detalhado e verificacao de sucesso. Exemplos usam projetos reais REURBWEB, REURBCAD, REURBMASTER e WEBDOCS para demonstrar uso em producao.
 
 <!-- CARF-INDEX-START -->
 <!-- CARF-INDEX-END -->

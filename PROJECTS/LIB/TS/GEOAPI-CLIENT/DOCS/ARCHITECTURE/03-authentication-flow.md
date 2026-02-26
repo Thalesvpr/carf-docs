@@ -30,16 +30,16 @@ Injeta o header `X-Tenant-Id` com o valor retornado por `getTenantId()` em todas
 Se o backend retorna 401, a responsabilidade de refresh e da funcao `getToken()` fornecida pela aplicacao. O padrao recomendado:
 
 1. `getToken()` verifica se o token esta expirado
-2. Se expirado, faz refresh automaticamente (via KeycloakClient no GEOWEB, via SecureStore adapter no REURBCAD)
+2. Se expirado, faz refresh automaticamente (via KeycloakClient no REURBWEB, via SecureStore adapter no REURBCAD)
 3. Retorna o novo token
 
 O axios-retry nao retenta 401 automaticamente (e um erro 4xx). Se a app precisa de retry apos refresh, deve implementar essa logica no proprio `getToken()`.
 
 ## Configuracao por App
 
-### GEOWEB (React/Next.js)
+### REURBWEB (React/Next.js)
 
-O GEOWEB usa KeycloakClient do @carf/tscore. A funcao getToken delega para keycloakClient.getAccessToken que gerencia cache e refresh. A funcao getTenantId busca o tenantId do contexto do usuario autenticado.
+O REURBWEB usa KeycloakClient do @carf/tscore. A funcao getToken delega para keycloakClient.getAccessToken que gerencia cache e refresh. A funcao getTenantId busca o tenantId do contexto do usuario autenticado.
 
 ### REURBCAD (React Native/Expo)
 
@@ -47,6 +47,6 @@ O REURBCAD usa SecureStore para armazenar tokens e um adapter que implementa a m
 
 ## Seguranca
 
-- PKCE e usado nos public clients (GEOWEB, REURBCAD) para prevenir interceptacao
+- PKCE e usado nos public clients (REURBWEB, REURBCAD) para prevenir interceptacao
 - Em producao, todas as URLs devem usar HTTPS
 - Tokens sao armazenados de forma segura por cada app consumidora (localStorage para web, SecureStore para mobile)

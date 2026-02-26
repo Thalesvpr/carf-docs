@@ -3,7 +3,7 @@ type: rf
 status: approved
 updated: 2026-01-25
 modules:
-  - GEOWEB
+  - REURBWEB
 ---
 
 # RF-220: Trocar Basemap
@@ -22,5 +22,5 @@ Sistema deve disponibilizar seletor intuitivo de basemap permitindo usuario alte
 
 ## Rastreabilidade
 
-- Modulos: GEOWEB
+- Modulos: REURBWEB
 - Requisitos dependentes: RF-219

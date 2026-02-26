@@ -4,7 +4,7 @@ status: approved
 updated: 2026-01-25
 modules:
   - GEOAPI
-  - GEOWEB
+  - REURBWEB
 ---
 
 # RF-009: MANAGER - Aprovacao de Workflows
@@ -23,5 +23,5 @@ Usuarios com role MANAGER possuem responsabilidade de aprovar ou rejeitar unidad
 
 ## Rastreabilidade
 
-- Modulos: GEOAPI, GEOWEB
+- Modulos: GEOAPI, REURBWEB
 - Requisitos dependentes: RF-006

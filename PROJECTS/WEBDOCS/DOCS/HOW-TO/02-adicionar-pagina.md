@@ -14,9 +14,9 @@ Guia para criar novo documento no WEBDOCS com frontmatter correto e estrutura ad
 |---|---|---|
 | src/content/docs/guia/ | Conceitos e workflows | Todos usuarios |
 | src/content/docs/sistema/ | Visao geral do CARF | Analistas+ |
-| src/content/docs/manuais/geoweb/ | Manual do GeoWeb | Analistas |
+| src/content/docs/manuais/reurbweb/ | Manual do ReurbWeb | Analistas |
 | src/content/docs/manuais/reurbcad/ | Manual do REURBCAD | Agentes de campo |
-| src/content/docs/manuais/admin/ | Manual Admin | Administradores |
+| src/content/docs/manuais/reurbmaster/ | Manual Admin | Administradores |
 | src/content/docs/api/ | Documentacao da API | Desenvolvedores |
 | src/content/docs/status/ | Pagina de status | Todos |
 

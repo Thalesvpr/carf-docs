@@ -27,7 +27,7 @@ O client e auto-gerado via orval a partir do swagger.json da GEOAPI. Para regene
 
 - Instalacao e configuracao com callbacks de auth
 - Geracao automatica via orval
-- Uso de hooks React Query (GEOWEB)
+- Uso de hooks React Query (REURBWEB)
 - Uso de funcoes vanilla (qualquer app)
 - Tratamento de erros HTTP tipados
 - Upload de arquivos com progresso

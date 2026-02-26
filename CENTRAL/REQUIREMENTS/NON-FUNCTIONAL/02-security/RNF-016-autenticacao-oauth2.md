@@ -8,7 +8,7 @@ updated: 2026-01-25
 
 ## Descricao
 
-Toda autenticacao no sistema CARF deve utilizar OAuth2 via Keycloak. Mecanismo padronizado e centralizado para controle de acesso aos modulos GEOAPI, GEOWEB, REURBCAD e GEOGIS.
+Toda autenticacao no sistema CARF deve utilizar OAuth2 via Keycloak. Mecanismo padronizado e centralizado para controle de acesso aos modulos GEOAPI, REURBWEB, REURBCAD e GEOGIS.
 
 ## Metricas
 
@@ -18,6 +18,6 @@ Toda autenticacao no sistema CARF deve utilizar OAuth2 via Keycloak. Mecanismo p
 
 ## Criterios de Aceitacao
 
-1. GEOWEB e REURBCAD implementam Authorization Code com PKCE (RFC 7636)
+1. REURBWEB e REURBCAD implementam Authorization Code com PKCE (RFC 7636)
 2. GEOGIS implementa Client Credentials para integracao maquina-a-maquina
 3. Todos os tokens JWT assinados com RS256

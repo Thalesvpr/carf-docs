@@ -24,7 +24,7 @@ class UCCoverageValidator(GlobalValidator):
         issues: List[ValidationIssue] = []
 
         # Coleta todos os UC com seus modules
-        uc_modules: Dict[str, Set[str]] = {}  # UC-XXX -> {GEOWEB, GEOAPI, ...}
+        uc_modules: Dict[str, Set[str]] = {}  # UC-XXX -> {REURBWEB, GEOAPI, ...}
         uc_docs = context.get_by_type(DocumentType.UC)
 
         for doc in uc_docs:

@@ -1,7 +1,7 @@
 ---
 type: workflow
 status: approved
-updated: 2026-02-07
+updated: 2026-02-21
 category: regras
 ---
 
@@ -14,7 +14,7 @@ Regras que garantem a seguranca de acesso ao sistema.
 | Regra | Descricao |
 |-------|-----------|
 | AUTH-01 | Autenticacao via Keycloak e OBRIGATORIA para TODOS os perfis |
-| AUTH-02 | Analista de Drone SO envia ortofotos APOS autenticar no Keycloak |
+| AUTH-02 | Operador de Drone SO envia ortofotos APOS autenticar no Keycloak |
 | AUTH-03 | Analista do Plugin SO acessa ortofotos APOS autenticar Keycloak + AUTHENTICATION KEY |
 | AUTH-04 | Equipe de campo SO acessa dados APOS autenticar no Keycloak |
 | AUTH-05 | AUTHENTICATION KEY e ADICIONAL ao Keycloak (camada extra) |
@@ -24,7 +24,7 @@ Regras que garantem a seguranca de acesso ao sistema.
 ### AUTH-01: Keycloak Obrigatorio
 
 Todos os perfis devem autenticar via Keycloak:
-- Analista de Drone
+- Operador de Drone
 - Analista do Plugin QGIS
 - Coordenador de Campo
 - Cadastrador de Campo
@@ -33,7 +33,7 @@ Todos os perfis devem autenticar via Keycloak:
 ### AUTH-02 a AUTH-04: Autenticacao por Perfil
 
 Cada perfil tem seu fluxo de autenticacao:
-- **Analista de Drone**: Keycloak apenas
+- **Operador de Drone**: Keycloak apenas
 - **Analista Plugin**: Keycloak + AUTHENTICATION KEY (dupla)
 - **Equipe de Campo**: Keycloak apenas (via app mobile)
 

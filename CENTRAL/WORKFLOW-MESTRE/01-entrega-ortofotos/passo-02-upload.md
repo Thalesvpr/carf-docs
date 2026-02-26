@@ -1,7 +1,7 @@
 ---
 type: workflow
 status: approved
-updated: 2026-01-25
+updated: 2026-02-21
 part: 1
 step: 2
 ---
@@ -12,7 +12,7 @@ Envio do arquivo de ortofoto para o backend.
 
 ## Fluxo
 
-1. Analista de Drone seleciona arquivo de ortofoto
+1. Operador de Drone seleciona arquivo de ortofoto
 2. Sistema valida formato (GeoTIFF, JPEG2000, etc.)
 3. Sistema valida tamanho maximo permitido
 4. Sistema inicia upload multipart (para arquivos grandes)

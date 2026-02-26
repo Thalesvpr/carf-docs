@@ -16,4 +16,4 @@ PostgreSQL com PostGIS e padrao de facto para sistemas geoespaciais governamenta
 
 ## Aplicacao
 
-Aplica-se a todos os projetos do ecossistema CARF: GEOAPI, GEOWEB, REURBCAD, GEOGIS, ADMIN. Excecao: databases locais em mobile podem usar SQLite via WatermelonDB para cache offline.
+Aplica-se a todos os projetos do ecossistema CARF: GEOAPI, REURBWEB, REURBCAD, GEOGIS, ADMIN. Excecao: databases locais em mobile podem usar SQLite via WatermelonDB para cache offline.

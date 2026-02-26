@@ -12,7 +12,7 @@ A [estrutura de pacote](./01-package-structure.md) apresenta a organizacao inter
 
 A arquitetura segue principios de biblioteca compartilhada publicada via npm. Value objects sao imutaveis com validacao no construtor, garantindo que instancias sempre representam dados validos. Tipos TypeScript espelham modelos do backend .NET para consistencia entre frontend e API. O cliente de autenticacao abstrai OAuth2 PKCE com storage configuravel.
 
-Projetos GEOWEB, REURBCAD, ADMIN e WEBDOCS consomem a biblioteca via GitHub Packages. Cada projeto configura .npmrc com registry @carf e instala com bun add @carf/tscore. Desenvolvimento local usa npm link para testar mudancas antes de publicar.
+Projetos REURBWEB, REURBCAD, REURBMASTER e WEBDOCS consomem a biblioteca via GitHub Packages. Cada projeto configura .npmrc com registry @carf e instala com bun add @carf/tscore. Desenvolvimento local usa npm link para testar mudancas antes de publicar.
 
 A biblioteca nao possui dependencias de runtime exceto Zod para schemas. React e Vue sao peer dependencies opcionais carregadas apenas quando auth/react ou auth/vue sao importados. Esta abordagem minimiza bundle size e evita conflitos de versao.
 

@@ -3,7 +3,7 @@ type: rf
 status: approved
 updated: 2026-01-25
 modules:
-  - GEOWEB
+  - REURBWEB
   - GEOAPI
 ---
 
@@ -23,5 +23,5 @@ Sistema deve permitir exclusao de fotos via soft delete marcando registro como e
 
 ## Rastreabilidade
 
-- Modulos: GEOWEB, GEOAPI
+- Modulos: REURBWEB, GEOAPI
 - Requisitos dependentes: RF-108, RF-116

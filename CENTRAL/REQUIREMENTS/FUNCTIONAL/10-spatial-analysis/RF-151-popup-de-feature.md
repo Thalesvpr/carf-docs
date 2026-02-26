@@ -3,7 +3,7 @@ type: rf
 status: approved
 updated: 2026-01-25
 modules:
-  - GEOWEB
+  - REURBWEB
 ---
 
 # RF-151: Popup de Feature
@@ -22,5 +22,5 @@ Sistema deve exibir popup ou tooltip ao clicar em feature renderizada no mapa, c
 
 ## Rastreabilidade
 
-- Modulos: GEOWEB
+- Modulos: REURBWEB
 - Requisitos dependentes: RF-132, RF-133, RF-134

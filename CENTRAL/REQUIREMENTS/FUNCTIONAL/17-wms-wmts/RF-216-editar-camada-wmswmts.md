@@ -3,7 +3,7 @@ type: rf
 status: approved
 updated: 2026-01-25
 modules:
-  - GEOWEB
+  - REURBWEB
   - GEOAPI
 ---
 
@@ -23,5 +23,5 @@ Sistema deve possibilitar edicao de configuracoes de servicos WMS/WMTS previamen
 
 ## Rastreabilidade
 
-- Modulos: GEOWEB, GEOAPI
+- Modulos: REURBWEB, GEOAPI
 - Requisitos dependentes: RF-212, RF-214

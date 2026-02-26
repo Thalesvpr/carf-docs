@@ -6,7 +6,7 @@ updated: 2026-02-08
 
 # API de Tipos
 
-Documentacao das interfaces e enums de dominio exportados pelo modulo types do tscore. Todos os tipos espelham modelos do backend .NET e o [schema PostgreSQL](../../../GEOAPI/DOCS/ARCHITECTURE/LAYERS/INFRA/PERSISTENCE/02-database-schema.md) para consistencia entre frontend e API, cobrindo entidades, enums e DTOs utilizados pelos sistemas REURBCAD, GEOWEB, ADMIN e demais clientes do ecossistema CARF.
+Documentacao das interfaces e enums de dominio exportados pelo modulo types do tscore. Todos os tipos espelham modelos do backend .NET e o [schema PostgreSQL](../../../GEOAPI/DOCS/ARCHITECTURE/LAYERS/INFRA/PERSISTENCE/02-database-schema.md) para consistencia entre frontend e API, cobrindo entidades, enums e DTOs utilizados pelos sistemas REURBCAD, REURBWEB, ADMIN e demais clientes do ecossistema CARF.
 
 O modulo types exporta mais de vinte interfaces de entidade de dominio e dezessete enums de classificacao e status. DTOs de API (Create*Request, Update*Request) sao agora gerados automaticamente pelo @carf/geoapi-client via orval e nao fazem mais parte do tscore. A documentacao completa esta organizada nos seguintes sub-documentos.
 

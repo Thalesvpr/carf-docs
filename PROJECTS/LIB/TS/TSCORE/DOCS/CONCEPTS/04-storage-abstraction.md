@@ -18,7 +18,7 @@ Interface define tres metodos para persistencia. Metodo getItem recebe key e ret
 
 ## WebStorageAdapter
 
-Implementacao para browser usando localStorage. Metodos getItem, setItem e removeItem delegam para localStorage.getItem, setItem e removeItem envolvendo em Promise.resolve para manter assinatura assincrona. Usado por padrao em GEOWEB, ADMIN e WEBDOCS.
+Implementacao para browser usando localStorage. Metodos getItem, setItem e removeItem delegam para localStorage.getItem, setItem e removeItem envolvendo em Promise.resolve para manter assinatura assincrona. Usado por padrao em REURBWEB, REURBMASTER e WEBDOCS.
 
 ## MobileStorageAdapter
 

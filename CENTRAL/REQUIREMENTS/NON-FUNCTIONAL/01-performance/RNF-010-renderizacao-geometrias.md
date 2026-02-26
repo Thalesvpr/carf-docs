@@ -8,7 +8,7 @@ updated: 2026-01-25
 
 ## Descricao
 
-O componente de mapa deve renderizar grandes volumes de geometrias sem lag perceptivel durante interacoes. Aplica-se aos modulos GEOWEB e REURBCAD que utilizam mapas como interface principal.
+O componente de mapa deve renderizar grandes volumes de geometrias sem lag perceptivel durante interacoes. Aplica-se aos modulos REURBWEB e REURBCAD que utilizam mapas como interface principal.
 
 ## Metricas
 

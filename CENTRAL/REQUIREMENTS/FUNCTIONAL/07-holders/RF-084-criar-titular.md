@@ -3,7 +3,7 @@ type: rf
 status: approved
 updated: 2026-01-25
 modules:
-  - GEOWEB
+  - REURBWEB
   - REURBCAD
   - GEOAPI
 ---
@@ -24,5 +24,5 @@ Sistema deve permitir cadastro de novos titulares representando pessoas fisicas 
 
 ## Rastreabilidade
 
-- Modulos: GEOWEB, REURBCAD, GEOAPI
+- Modulos: REURBWEB, REURBCAD, GEOAPI
 - Requisitos dependentes: RF-088, RF-089, RF-090, RF-096

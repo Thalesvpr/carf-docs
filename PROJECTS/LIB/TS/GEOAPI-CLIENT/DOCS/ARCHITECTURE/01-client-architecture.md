@@ -8,7 +8,7 @@ updated: 2026-02-09
 
 ## Visao Geral
 
-O pacote @carf/geoapi-client usa geracao automatica de codigo via orval para criar tipos TypeScript e hooks React Query a partir do swagger.json da GEOAPI. A aplicacao consumidora (GEOWEB, REURBCAD, ADMIN) importa funcoes e hooks prontos, sem necessidade de implementar chamadas HTTP manualmente.
+O pacote @carf/geoapi-client usa geracao automatica de codigo via orval para criar tipos TypeScript e hooks React Query a partir do swagger.json da GEOAPI. A aplicacao consumidora (REURBWEB, REURBCAD, REURBMASTER) importa funcoes e hooks prontos, sem necessidade de implementar chamadas HTTP manualmente.
 
 ## Fluxo de Geracao
 
@@ -66,7 +66,7 @@ O mode tags-split do orval gera um arquivo separado por tag do Swagger. Cada con
 
 ### Callback Injection
 
-Auth e tenant sao injetados via callbacks (`getToken`, `getTenantId`) em vez de depender diretamente de KeycloakClient. Isso permite que cada app consumidora plugue sua propria implementacao (GEOWEB usa KeycloakClient, REURBCAD usa SecureStore adapter).
+Auth e tenant sao injetados via callbacks (`getToken`, `getTenantId`) em vez de depender diretamente de KeycloakClient. Isso permite que cada app consumidora plugue sua propria implementacao (REURBWEB usa KeycloakClient, REURBCAD usa SecureStore adapter).
 
 ## Configuracao
 

@@ -93,7 +93,7 @@ Dados inseridos apenas em ambiente de desenvolvimento para facilitar testes e ex
 
 | Email Pattern | Role | Senha Dev | Tenant |
 |---------------|------|-----------|--------|
-| admin@{slug}.test | ADMIN | dev123!@# | Cada tenant |
+| admin@{slug}.test | REURBMASTER | dev123!@# | Cada tenant |
 | coord01@{slug}.test | COORDINATOR | dev123!@# | Cada tenant |
 | coord02@{slug}.test | COORDINATOR | dev123!@# | Cada tenant |
 | cad01@{slug}.test | CADASTRATOR | dev123!@# | Cada tenant |

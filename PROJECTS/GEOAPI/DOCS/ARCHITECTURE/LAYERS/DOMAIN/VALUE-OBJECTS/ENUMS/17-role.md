@@ -15,7 +15,7 @@ A hierarquia de papeis segue: SUPER_ADMIN > ADMIN > MANAGER > ANALYST > FIELD_CO
 | Valor | Descricao |
 | --- | --- |
 | SUPER_ADMIN | Administrador do sistema com acesso total a todos os tenants. |
-| ADMIN | Administrador do tenant com acesso completo dentro de seu cliente. |
+| REURBMASTER | Administrador do tenant com acesso completo dentro de seu cliente. |
 | MANAGER | Gerente coordenando equipes, pode aprovar/rejeitar unidades e ver dashboards. |
 | ANALYST | Analista tecnico responsavel por analisar solicitacoes de legitimacao e emitir pareceres. |
 | FIELD_COORDINATOR | Coordenador de campo com menu mobile completo e visualizacao de dados da equipe. |

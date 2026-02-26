@@ -8,7 +8,7 @@ updated: 2026-01-25
 
 ## Descricao
 
-Deploys de GEOAPI e GEOWEB devem ser revertiveis em menos de 5 minutos. Permite mitigar rapidamente incidentes causados por versoes defeituosas.
+Deploys de GEOAPI e REURBWEB devem ser revertiveis em menos de 5 minutos. Permite mitigar rapidamente incidentes causados por versoes defeituosas.
 
 ## Metricas
 

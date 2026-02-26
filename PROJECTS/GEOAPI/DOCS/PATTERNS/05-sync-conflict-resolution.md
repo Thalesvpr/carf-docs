@@ -158,7 +158,7 @@ Esse mecanismo evita que conflitos pendentes bloqueiem a sincronizacao indefinid
 ### Cenario 1: Agente edita observacao enquanto analista altera status
 
 - Agente em campo edita `observation` da unidade (offline)
-- Analista no GEOWEB altera `status` de DRAFT para PENDING
+- Analista no REURBWEB altera `status` de DRAFT para PENDING
 - No sync: `observation` -> CLIENT_WINS (valor do agente), `status` -> SERVER_WINS (valor do analista)
 - Resultado: merge automatico, sem intervencao manual
 
@@ -172,9 +172,9 @@ Esse mecanismo evita que conflitos pendentes bloqueiem a sincronizacao indefinid
 ### Cenario 3: Titular renomeado em ambos os lados
 
 - Agente corrige nome do titular em campo: "Maria Silva" -> "Maria da Silva Santos"
-- Analista corrige no GEOWEB: "Maria Silva" -> "Maria S. Santos"
+- Analista corrige no REURBWEB: "Maria Silva" -> "Maria S. Santos"
 - No sync: `name` -> CLIENT_WINS (valor do agente, pois verificou documento em campo)
-- Analista ve a alteracao no proximo acesso ao GEOWEB
+- Analista ve a alteracao no proximo acesso ao REURBWEB
 
 ### Cenario 4: Percentual de propriedade alterado
 

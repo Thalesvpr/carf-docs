@@ -3,7 +3,7 @@ type: rf
 status: approved
 updated: 2026-01-25
 modules:
-  - GEOWEB
+  - REURBWEB
   - GEOAPI
 ---
 
@@ -23,5 +23,5 @@ Sistema deve permitir clonagem de unidades habitacionais criando copia com todos
 
 ## Rastreabilidade
 
-- Modulos: GEOWEB, GEOAPI
+- Modulos: REURBWEB, GEOAPI
 - Requisitos dependentes: RF-049, RF-076

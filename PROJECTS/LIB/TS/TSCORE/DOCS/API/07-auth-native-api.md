@@ -58,7 +58,7 @@ Se nenhum adapter for fornecido, o KeycloakClient detecta o ambiente automaticam
 
 ## Configuracao por Plataforma
 
-Para GEOWEB e ADMIN (web), usa-se WebStorageAdapter com WebNavigationAdapter. O clientId e "geoweb-client" ou "admin-client", o redirectUri e a URL do app seguida de /callback, e o scope inclui "openid profile".
+Para REURBWEB e REURBMASTER (web), usa-se WebStorageAdapter com WebNavigationAdapter. O clientId e "reurbweb-client" ou "admin-client", o redirectUri e a URL do app seguida de /callback, e o scope inclui "openid profile".
 
 Para REURBCAD (mobile), usa-se MobileStorageAdapter com MobileNavigationAdapter. O clientId e "reurbcad-client", o redirectUri e "carf://callback", e o scope inclui "openid profile offline_access" para refresh token de 30 dias que permite sessao persistente entre idas a campo.
 

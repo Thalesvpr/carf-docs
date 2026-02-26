@@ -3,7 +3,7 @@ type: rf
 status: approved
 updated: 2026-01-25
 modules:
-  - GEOWEB
+  - REURBWEB
   - GEOAPI
 ---
 
@@ -23,5 +23,5 @@ Usuarios com role ADMIN podem adicionar usuarios existentes a equipes. Selecao d
 
 ## Rastreabilidade
 
-- Modulos: GEOWEB, GEOAPI
+- Modulos: REURBWEB, GEOAPI
 - Requisitos dependentes: RF-026, RF-021

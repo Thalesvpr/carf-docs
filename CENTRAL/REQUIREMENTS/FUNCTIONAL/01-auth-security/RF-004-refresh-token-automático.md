@@ -3,7 +3,7 @@ type: rf
 status: approved
 updated: 2026-01-25
 modules:
-  - GEOWEB
+  - REURBWEB
   - REURBCAD
   - GEOGIS
 ---
@@ -24,5 +24,5 @@ O sistema deve renovar automaticamente tokens de acesso antes da expiracao utili
 
 ## Rastreabilidade
 
-- Modulos: GEOWEB, REURBCAD, GEOGIS
+- Modulos: REURBWEB, REURBCAD, GEOGIS
 - Requisitos dependentes: RF-001, RF-002, RF-003

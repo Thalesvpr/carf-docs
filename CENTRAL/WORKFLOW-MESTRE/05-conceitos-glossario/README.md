@@ -1,7 +1,7 @@
 ---
 type: glossary
 status: approved
-updated: 2026-01-25
+updated: 2026-02-21
 ---
 
 # Conceitos e Glossario
@@ -13,7 +13,7 @@ Definicoes padronizadas para garantir consistencia em toda a documentacao do CAR
 | Categoria | Documento | Descricao |
 |-----------|-----------|-----------|
 | Conceitos Principais | conceitos-principais.md | Ortofoto, Bucket, TENANT, Plugin, AUTH KEY, Pacote |
-| Atores | atores.md | Analista Drone, Analista Plugin, Agente Campo |
+| Atores | atores.md | Operador Drone, Analista Plugin, Agente Campo |
 | Sistemas | sistemas.md | Backend, Keycloak, App, Bucket |
 | Termos Tecnicos | termos-tecnicos.md | Poligono, Georreferenciamento, Topologia, etc. |
 

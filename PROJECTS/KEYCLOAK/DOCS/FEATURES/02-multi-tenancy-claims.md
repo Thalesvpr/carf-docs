@@ -32,7 +32,7 @@ O middleware TenantMiddleware no GEOAPI (.NET) executa apos UseAuthentication e 
 
 ## Integracao com Frontend
 
-No GEOWEB (React), o AuthContext e hook useAuth parseiam keycloak.tokenParsed para extrair tenant_id e allowed_tenants. Quando allowed_tenants contem mais de um valor, o componente TenantSwitcher renderiza dropdown permitindo troca de tenant.
+No REURBWEB (React), o AuthContext e hook useAuth parseiam keycloak.tokenParsed para extrair tenant_id e allowed_tenants. Quando allowed_tenants contem mais de um valor, o componente TenantSwitcher renderiza dropdown permitindo troca de tenant.
 
 ## Fluxo de Troca de Tenant
 

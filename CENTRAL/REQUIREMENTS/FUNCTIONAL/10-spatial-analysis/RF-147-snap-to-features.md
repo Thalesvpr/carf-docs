@@ -3,7 +3,7 @@ type: rf
 status: approved
 updated: 2026-01-25
 modules:
-  - GEOWEB
+  - REURBWEB
 ---
 
 # RF-147: Snap to Features
@@ -22,5 +22,5 @@ Sistema deve oferecer funcionalidade de snap durante edicao ou criacao de featur
 
 ## Rastreabilidade
 
-- Modulos: GEOWEB
+- Modulos: REURBWEB
 - Requisitos dependentes: RF-132, RF-133

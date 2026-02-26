@@ -15,7 +15,7 @@ Plugin para Obsidian que gerencia documentação CARF com validação automátic
 ---
 id: RF-001
 type: RF
-modules: [GEOAPI, GEOWEB]
+modules: [GEOAPI, REURBWEB]
 epic: authentication
 status: review
 created: 2026-01-15

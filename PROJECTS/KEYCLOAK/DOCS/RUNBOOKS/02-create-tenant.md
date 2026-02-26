@@ -24,7 +24,7 @@ Para trocar o tenant ativo sem alterar a lista de tenants acessíveis, execute u
 
 ## Verificar Tenant no JWT
 
-Para confirmar que o tenant está correto no token, faça login executando um `curl POST` para `realms/carf/protocol/openid-connect/token` com `client_id=geoweb`, `grant_type=password`, `username=joao.silva` e `password=senha123`. Extraia o `access_token` via `jq` e armazene em `ACCESS_TOKEN`. Em seguida, decodifique o payload com `echo $ACCESS_TOKEN | cut -d. -f2 | base64 -d | jq .tenant_id`. O output deve ser `"tenant2"`, confirmando que a claim `tenant_id` está presente no JWT e reflete o `current_tenant` configurado nos user attributes do Keycloak. Essa claim é usada pelo backend para aplicar RLS, filtrando queries automaticamente por tenant.
+Para confirmar que o tenant está correto no token, faça login executando um `curl POST` para `realms/carf/protocol/openid-connect/token` com `client_id=reurbweb`, `grant_type=password`, `username=joao.silva` e `password=senha123`. Extraia o `access_token` via `jq` e armazene em `ACCESS_TOKEN`. Em seguida, decodifique o payload com `echo $ACCESS_TOKEN | cut -d. -f2 | base64 -d | jq .tenant_id`. O output deve ser `"tenant2"`, confirmando que a claim `tenant_id` está presente no JWT e reflete o `current_tenant` configurado nos user attributes do Keycloak. Essa claim é usada pelo backend para aplicar RLS, filtrando queries automaticamente por tenant.
 
 ## Client-Side Tenant Switcher
 

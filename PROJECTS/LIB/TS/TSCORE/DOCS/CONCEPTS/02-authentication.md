@@ -6,7 +6,7 @@ updated: 2026-02-08
 
 # Autenticacao
 
-Sistema de autenticacao integrado com Keycloak usando OAuth2 Authorization Code com PKCE (Proof Key for Code Exchange). O KeycloakClient do @carf/tscore gerencia o ciclo de vida completo de tokens incluindo obtencao, refresh automatico, extracao de roles e verificacao de permissoes hierarquicas. O fluxo e identico para todos os clientes do ecossistema CARF (GEOWEB, REURBCAD, ADMIN) com diferenca apenas nos adapters de storage e navegacao documentados em [02a-authentication-config](./02a-authentication-config.md).
+Sistema de autenticacao integrado com Keycloak usando OAuth2 Authorization Code com PKCE (Proof Key for Code Exchange). O KeycloakClient do @carf/tscore gerencia o ciclo de vida completo de tokens incluindo obtencao, refresh automatico, extracao de roles e verificacao de permissoes hierarquicas. O fluxo e identico para todos os clientes do ecossistema CARF (REURBWEB, REURBCAD, REURBMASTER) com diferenca apenas nos adapters de storage e navegacao documentados em [02a-authentication-config](./02a-authentication-config.md).
 
 ## Fluxo OAuth2 Authorization Code com PKCE
 
@@ -20,7 +20,7 @@ Apos autenticacao bem-sucedida, o Keycloak redireciona para o redirect_uri com d
 
 O access_token tem duracao de 5 minutos conforme configuracao do realm CARF. O metodo getToken verifica a expiracao do token antes de retorna-lo, considerando uma margem de seguranca de 5 minutos: se o token expira em menos de 5 minutos, o cliente executa refresh proativo sem aguardar expiracao efetiva. O refresh ocorre transparentemente sem intervencao do usuario, enviando o refresh_token ao token endpoint com grant_type refresh_token.
 
-Em aplicacoes web (GEOWEB, ADMIN), o refresh_token expira com o SSO Session Idle de 30 minutos. Se o usuario ficar inativo por mais de 30 minutos, o refresh falha com 401 e o cliente emite o evento auth:session-expired para que a aplicacao redirecione para login. Em aplicacoes mobile (REURBCAD), o scope offline_access garante refresh_token de 30 dias, permitindo que agentes de campo mantenham sessao entre idas a campo sem re-autenticacao.
+Em aplicacoes web (REURBWEB, REURBMASTER), o refresh_token expira com o SSO Session Idle de 30 minutos. Se o usuario ficar inativo por mais de 30 minutos, o refresh falha com 401 e o cliente emite o evento auth:session-expired para que a aplicacao redirecione para login. Em aplicacoes mobile (REURBCAD), o scope offline_access garante refresh_token de 30 dias, permitindo que agentes de campo mantenham sessao entre idas a campo sem re-autenticacao.
 
 ## Silent Refresh
 

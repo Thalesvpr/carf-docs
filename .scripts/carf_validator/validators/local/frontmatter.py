@@ -29,7 +29,7 @@ class FrontmatterValidator(LocalValidator):
 
     # Módulos válidos
     VALID_MODULES = {
-        "GEOAPI", "GEOWEB", "REURBCAD", "GEOGIS",
+        "GEOAPI", "REURBWEB", "REURBCAD", "GEOGIS",
         "ADMIN", "KEYCLOAK", "WEBDOCS"
     }
 
@@ -67,7 +67,7 @@ class FrontmatterValidator(LocalValidator):
                     code="FRONT002",
                     message="Campo 'modules' ausente no frontmatter",
                     file_path=doc.path,
-                    suggestion="Adicione modules: [GEOWEB] ou projeto apropriado",
+                    suggestion="Adicione modules: [REURBWEB] ou projeto apropriado",
                 ))
             else:
                 # Valida módulos

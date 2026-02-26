@@ -1,7 +1,7 @@
 ---
 type: leaf
 status: review
-updated: 2026-02-08
+updated: 2026-02-21
 ---
 
 # Realm Export - Roles, Users e Auth Flows
@@ -18,6 +18,7 @@ Secoes do realm-export.json referentes a roles, usuarios seed e authentication f
 | manager | Gerente de operacoes | sim | analyst, field-coordinator |
 | admin | Administrador do tenant | sim | manager |
 | super-admin | Super administrador | sim | admin |
+| drone-operator | Operador de drone (upload ortofotos) | nao | - |
 | dev | Desenvolvedor (transversal) | nao | - |
 
 ## Client Roles

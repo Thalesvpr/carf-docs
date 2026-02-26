@@ -4,7 +4,7 @@ status: approved
 updated: 2026-01-25
 modules:
   - GEOAPI
-  - GEOWEB
+  - REURBWEB
 ---
 
 # RF-007: SUPER_ADMIN - Acesso Total
@@ -23,5 +23,5 @@ Usuarios com role SUPER_ADMIN devem ter acesso irrestrito a todas funcionalidade
 
 ## Rastreabilidade
 
-- Modulos: GEOAPI, GEOWEB
+- Modulos: GEOAPI, REURBWEB
 - Requisitos dependentes: RF-006, RF-013

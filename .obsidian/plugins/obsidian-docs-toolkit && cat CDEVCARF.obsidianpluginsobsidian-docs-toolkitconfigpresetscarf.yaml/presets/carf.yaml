@@ -29,7 +29,7 @@ documentTypes:
       fields:
         id: { pattern: "^RF-\\d{3}$" }
         status: { enum: [review, approved, rejected, template] }
-        modules: { type: array, items: { enum: [GEOAPI, GEOWEB, ADMIN, KEYCLOAK, WEBDOCS] } }
+        modules: { type: array, items: { enum: [GEOAPI, REURBWEB, ADMIN, KEYCLOAK, WEBDOCS] } }
     title:
       pattern: "^# RF-\\d{3}:\\s+.+"
     sections:

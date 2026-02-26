@@ -40,7 +40,7 @@ O workflow possui 11 estados cobrindo toda a jornada legal, com transicoes rigor
 | DECISION_PENDING | APPROVED | MANAGER | Decisao favoravel com justificativa. |
 | DECISION_PENDING | REJECTED | MANAGER | Decisao desfavoravel com justificativa obrigatoria. |
 | APPROVED | TITLE_ISSUED | MANAGER | Certidao emitida via IPdfGenerator. |
-| TITLE_ISSUED | REGISTERED | ADMIN | Registro em cartorio confirmado. |
+| TITLE_ISSUED | REGISTERED | REURBMASTER | Registro em cartorio confirmado. |
 
 ## Metodos Principais
 

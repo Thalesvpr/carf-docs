@@ -3,7 +3,7 @@ type: rf
 status: approved
 updated: 2026-01-25
 modules:
-  - GEOWEB
+  - REURBWEB
 ---
 
 # RF-111: Galeria de Fotos
@@ -22,5 +22,5 @@ Sistema deve exibir fotos em interface de galeria visual otimizada com grid de m
 
 ## Rastreabilidade
 
-- Modulos: GEOWEB
+- Modulos: REURBWEB
 - Requisitos dependentes: RF-108, RF-115

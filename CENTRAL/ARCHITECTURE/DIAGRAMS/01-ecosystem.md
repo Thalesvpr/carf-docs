@@ -1,7 +1,7 @@
 ---
 type: leaf
 status: review
-updated: 2026-02-07
+updated: 2026-02-21
 ---
 
 # Ecossistema CARF
@@ -12,19 +12,19 @@ Visao geral de todos os sistemas do ecossistema CARF e suas conexoes, mostrando 
 
 | Ator | Descricao | Sistema Principal |
 |------|-----------|-------------------|
-| Analista Drone | Entrega ortofotos via portal de upload | GEOAPI (direto) |
-| Analista | Opera o portal web para analise e aprovacao | GEOWEB |
+| Operador Drone | Entrega ortofotos via portal de upload | GEOAPI (direto) |
+| Analista | Opera o portal web para analise e aprovacao | REURBWEB |
 | Analista GIS | Georreferencia poligonos via plugin QGIS | GEOGIS |
 | Agente Campo | Executa cadastros em campo via app mobile | REURBCAD |
-| Administrador | Gerencia usuarios, tenants e configuracoes | ADMIN |
+| Administrador | Gerencia usuarios, tenants e configuracoes | REURBMASTER |
 
 ## Aplicacoes Frontend
 
 | Sistema | Tecnologia | Funcao |
 |---------|-----------|--------|
-| GEOWEB | React SPA | Portal web de analise e gestao |
+| REURBWEB | React SPA | Portal web de analise e gestao |
 | REURBCAD | React Native | App mobile para operacao em campo |
-| ADMIN | React SPA | Console de administracao |
+| REURBMASTER | React SPA | Console de administracao |
 | GEOGIS | Plugin QGIS | Georreferenciamento de poligonos |
 | WEBDOCS | Astro/Starlight | Documentacao publica |
 

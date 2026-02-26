@@ -18,9 +18,9 @@ Tipo string obrigatorio, pattern CENTRAL/ ou PROJECTS/ terminando em .md. Valida
 |---------------|-------------------|-----------|
 | /guia/ | CENTRAL/WORKFLOWS/, BUSINESS-RULES/ | Linguagem simplificada |
 | /sistema/ | CENTRAL/DOMAIN-MODEL/, ARCHITECTURE/, BUSINESS-RULES/ | Precisao com explicacoes |
-| /manuais/geoweb/ | PROJECTS/GEOWEB/FEATURES/, HOW-TO/, USE-CASES/ | Passos praticos |
+| /manuais/reurbweb/ | PROJECTS/REURBWEB/FEATURES/, HOW-TO/, USE-CASES/ | Passos praticos |
 | /manuais/reurbcad/ | PROJECTS/REURBCAD/FEATURES/, HOW-TO/, USE-CASES/ | Offline e sync |
-| /manuais/admin/ | PROJECTS/ADMIN/FEATURES/, HOW-TO/ | Config e gestao |
+| /manuais/reurbmaster/ | PROJECTS/REURBMASTER/FEATURES/, HOW-TO/ | Config e gestao |
 | /api/ | CENTRAL/API/, PROJECTS/GEOAPI/, CENTRAL/INTEGRATION/ | Exemplos praticos |
 | /dev/ | CENTRAL/ARCHITECTURE/, VERSIONING/, PROJECTS/LIB/ | Linguagem tecnica |
 

@@ -1,7 +1,7 @@
 ---
 type: adr
 status: approved
-updated: 2026-01-24
+updated: 2026-02-21
 ---
 
 # ADR-004: .NET 9 para Backend
@@ -12,7 +12,7 @@ Backend deve processar dados geoespaciais, implementar regras de negocio complex
 
 ## Decisao
 
-Adotamos .NET 9 com C# como stack backend. Entity Framework Core com provider Npgsql para PostgreSQL e NetTopologySuite para geometrias. Clean Architecture organiza codigo em camadas com inversao de dependencia. MediatR implementa CQRS separando comandos de queries. O backend processa ortofotos recebidas do Analista de Drone, reduzindo tamanho e gerando versoes otimizadas, armazenando em bucket S3/MinIO segregado por tenant.
+Adotamos .NET 9 com C# como stack backend. Entity Framework Core com provider Npgsql para PostgreSQL e NetTopologySuite para geometrias. Clean Architecture organiza codigo em camadas com inversao de dependencia. MediatR implementa CQRS separando comandos de queries. O backend processa ortofotos recebidas do Operador de Drone, reduzindo tamanho e gerando versoes otimizadas, armazenando em bucket S3/MinIO segregado por tenant.
 
 ## Consequencias
 

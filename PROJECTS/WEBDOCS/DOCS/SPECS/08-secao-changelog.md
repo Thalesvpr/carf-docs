@@ -10,7 +10,7 @@ Seção /changelog/ documenta release notes das versões do ecossistema CARF per
 
 Estrutura de pastas em src/content/docs/changelog/ contém um arquivo por release nomeado com versão (v1.0.0.md, v1.1.0.md, etc). Ordem de navegação por data decrescente mostrando versões mais recentes primeiro.
 
-Frontmatter define campos específicos: version como string semver, releaseDate como data ISO, applications como array de aplicações afetadas (GEOWEB, REURBCAD, GEOAPI, etc), e highlights como array de strings com principais mudanças para preview.
+Frontmatter define campos específicos: version como string semver, releaseDate como data ISO, applications como array de aplicações afetadas (REURBWEB, REURBCAD, GEOAPI, etc), e highlights como array de strings com principais mudanças para preview.
 
 Estrutura de conteúdo por release inclui seção de highlights com principais novidades em destaque, seção de novas funcionalidades detalhando features adicionadas, seção de melhorias listando aperfeiçoamentos de funcionalidades existentes, seção de correções documentando bugs resolvidos, e seção de breaking changes alertando sobre mudanças que requerem ação dos usuários.
 

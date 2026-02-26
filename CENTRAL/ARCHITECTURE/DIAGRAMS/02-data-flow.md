@@ -1,16 +1,16 @@
 ---
 type: leaf
 status: review
-updated: 2026-02-07
+updated: 2026-02-21
 ---
 
 # Fluxo de Dados
 
-Ilustra como dados fluem entre sistemas seguindo as tres partes do workflow: entrega de ortofotos pelo Analista de Drone, georreferenciamento e publicacao pelo Analista GIS, e operacao em campo pelo Agente com sincronizacao offline.
+Ilustra como dados fluem entre sistemas seguindo as tres partes do workflow: entrega de ortofotos pelo Operador de Drone, georreferenciamento e publicacao pelo Analista GIS, e operacao em campo pelo Agente com sincronizacao offline.
 
 ## Parte 1: Entrega de Ortofotos
 
-O Analista de Drone autentica via Keycloak e envia a ortofoto pelo link de upload. O backend processa o arquivo, gerando versao original e reduzida, e armazena ambas no bucket S3/MinIO segregado por tenant.
+O Operador de Drone autentica via Keycloak e envia a ortofoto pelo link de upload. O backend processa o arquivo, gerando versao original e reduzida, e armazena ambas no bucket S3/MinIO segregado por tenant.
 
 ## Parte 2: Georreferenciamento
 
@@ -24,7 +24,7 @@ Somente apos a publicacao pelo Analista, a equipe de campo pode baixar um pacote
 
 | Origem | Destino | Dados | Condicao |
 |--------|---------|-------|----------|
-| Analista Drone | GEOAPI | Ortofoto bruta | Autenticacao Keycloak |
+| Operador Drone | GEOAPI | Ortofoto bruta | Autenticacao Keycloak |
 | GEOAPI | Bucket S3/MinIO | Ortofoto original e reduzida | Processamento concluido |
 | Bucket S3/MinIO | Plugin QGIS | Ortofotos do tenant | Autenticacao dupla |
 | Plugin QGIS | GEOAPI | Poligonos georreferenciados | Publicacao |

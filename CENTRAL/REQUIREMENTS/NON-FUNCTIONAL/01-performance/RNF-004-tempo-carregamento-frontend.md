@@ -8,7 +8,7 @@ updated: 2026-01-25
 
 ## Descricao
 
-O modulo GEOWEB deve carregar a pagina inicial rapidamente para proporcionar feedback visual imediato ao usuario. Metricas Web Vitals garantem experiencia de carregamento adequada.
+O modulo REURBWEB deve carregar a pagina inicial rapidamente para proporcionar feedback visual imediato ao usuario. Metricas Web Vitals garantem experiencia de carregamento adequada.
 
 ## Metricas
 

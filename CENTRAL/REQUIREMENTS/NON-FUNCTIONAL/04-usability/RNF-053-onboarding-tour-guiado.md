@@ -8,7 +8,7 @@ updated: 2026-01-25
 
 ## Descricao
 
-GEOWEB deve oferecer tour guiado interativo para novos usuarios apresentando principais funcionalidades. Reduz curva de aprendizado inicial.
+REURBWEB deve oferecer tour guiado interativo para novos usuarios apresentando principais funcionalidades. Reduz curva de aprendizado inicial.
 
 ## Metricas
 

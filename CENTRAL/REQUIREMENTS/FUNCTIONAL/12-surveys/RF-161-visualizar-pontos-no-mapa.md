@@ -3,7 +3,7 @@ type: rf
 status: approved
 updated: 2026-01-25
 modules:
-  - GEOWEB
+  - REURBWEB
 ---
 
 # RF-161: Visualizar Pontos no Mapa
@@ -22,5 +22,5 @@ Sistema deve renderizar pontos topograficos importados no mapa interativo atrave
 
 ## Rastreabilidade
 
-- Modulos: GEOWEB
+- Modulos: REURBWEB
 - Requisitos dependentes: RF-160, RF-151

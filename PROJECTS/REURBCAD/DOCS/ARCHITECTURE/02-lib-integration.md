@@ -1,7 +1,7 @@
 ---
 type: leaf
 status: review
-updated: 2026-02-07
+updated: 2026-02-21
 ---
 
 # Integracao REURBCAD com Bibliotecas Compartilhadas
@@ -38,7 +38,7 @@ Componentes de UI seguem o padrao de copia local inspirado no shadcn/ui. Compone
 | @carf/geoapi-client | CRUD | units, holders, communities |
 | @carf/geoapi-client | sync | pullChanges, pushChanges, getStatus |
 | @carf/geoapi-client | packages | downloadField para dados offline |
-| @carf/geoapi-client | orthofotos | getTile para camada de mapa |
+| @carf/geoapi-client | orthofotos | getOrtofoto para camada de mapa |
 | @carf/ui-native (copiado) | FORM | Button, Input, Select, Checkbox, Switch, Textarea |
 | @carf/ui-native (copiado) | LAYOUT | Card, Tabs, BottomSheet |
 | @carf/ui-native (copiado) | FEEDBACK | Alert, Toast, Dialog, Progress, OfflineIndicator |

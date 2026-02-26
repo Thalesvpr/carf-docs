@@ -160,7 +160,7 @@ Configuracao de Cross-Origin Resource Sharing.
 
 | Ambiente | Origins |
 |----------|---------|
-| Development | `http://localhost:3000` (GEOWEB), `http://localhost:4321` (WEBDOCS), `http://localhost:19006` (Expo) |
+| Development | `http://localhost:3000` (REURBWEB), `http://localhost:4321` (WEBDOCS), `http://localhost:19006` (Expo) |
 | Staging | `https://staging.carf.gov.br`, `https://docs-staging.carf.gov.br` |
 | Production | `https://app.carf.gov.br`, `https://docs.carf.gov.br` |
 

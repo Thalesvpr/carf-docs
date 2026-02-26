@@ -12,7 +12,7 @@ GEOAPI deve implementar CORS restritivo permitindo apenas origens autorizadas. P
 
 ## Metricas
 
-- Whitelist: dominios GEOWEB (dev, staging, prod) e capacitor://
+- Whitelist: dominios REURBWEB (dev, staging, prod) e capacitor://
 - Middleware: ASP.NET Core CORS centralizado
 - Cache preflight: Access-Control-Max-Age configurado
 

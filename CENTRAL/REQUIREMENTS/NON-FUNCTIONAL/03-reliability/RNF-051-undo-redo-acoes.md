@@ -8,7 +8,7 @@ updated: 2026-01-25
 
 ## Descricao
 
-GEOWEB deve implementar confirmacao e reversao para acoes destrutivas. Reduz ansiedade do usuario e permite recuperacao rapida de erros acidentais.
+REURBWEB deve implementar confirmacao e reversao para acoes destrutivas. Reduz ansiedade do usuario e permite recuperacao rapida de erros acidentais.
 
 ## Metricas
 

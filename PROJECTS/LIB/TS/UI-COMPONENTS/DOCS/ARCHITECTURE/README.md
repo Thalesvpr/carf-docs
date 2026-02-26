@@ -11,7 +11,7 @@ updated: 2026-01-22
 
 - **01-overview** - Visao geral da arquitetura de componentes React
 - **03-data-flow** - Fluxo de dados (props, state, context)
-- **04-integration** - Integracao com GEOWEB e ADMIN
+- **04-integration** - Integracao com REURBWEB e REURBMASTER
 - **05-deployment** - Build, publicacao NPM, versionamento
 
 Ver tabela abaixo para links.

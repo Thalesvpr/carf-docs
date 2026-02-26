@@ -36,6 +36,6 @@ O que o sistema deve fazer? Qual comportamento esperado? Quais dados envolvidos?
 
 ## Rastreabilidade
 
-- Modulos: GEOAPI, GEOWEB (quais implementam)
+- Modulos: GEOAPI, REURBWEB (quais implementam)
 - User Stories relacionadas: US-XXX
 - Requisitos dependentes: RF-YYY

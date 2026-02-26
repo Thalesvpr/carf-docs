@@ -1,16 +1,16 @@
 ---
 type: leaf
 status: approved
-updated: 2026-02-09
+updated: 2026-02-21
 ---
 
 # Orthophoto
 
-Entidade representando uma ortofoto georreferenciada de drone vinculada a um tenant e opcionalmente a uma comunidade especifica. Armazena metadados do arquivo original, versao otimizada para web e piramide de tiles gerada pelo pipeline de processamento GDAL. A ingestao pode ocorrer via upload direto de arquivo ou submissao de link Pix4D, diferenciada pelo campo SourceType. O ciclo de vida acompanha o processamento assincrono: ingestao inicial marca status PENDING, processamento via Hangfire muda para PROCESSING, e conclusao bem-sucedida ou falha marca COMPLETED ou FAILED respectivamente.
+Entidade representando uma ortofoto georreferenciada de drone vinculada a um tenant e opcionalmente a uma comunidade especifica. Armazena metadados do arquivo original e versao otimizada para web gerada pelo pipeline de processamento GDAL. A ingestao pode ocorrer via upload direto de arquivo ou submissao de link Pix4D, diferenciada pelo campo SourceType. O ciclo de vida acompanha o processamento assincrono: ingestao inicial marca status PENDING, processamento via Hangfire muda para PROCESSING, e conclusao bem-sucedida ou falha marca COMPLETED ou FAILED respectivamente.
 
 ## Papel no Dominio
 
-Ortofotos sao a base visual do sistema de campo: servidas como tiles XYZ no mapa do REURBCAD mobile e no GeoWeb, permitindo que equipes de campo e analistas visualizem a situacao real do terreno com alta resolucao. O upload e feito por analistas via GEOAPI, o processamento gera tiles otimizados, e o pacote de campo inclui os tiles relevantes para download offline. Sem ortofoto processada, a equipe de campo opera apenas com mapa base generico.
+Ortofotos sao a base visual do sistema de campo: servidas como imagem otimizada no mapa do REURBCAD mobile e no ReurbWeb, permitindo que equipes de campo e analistas visualizem a situacao real do terreno com alta resolucao. O upload e feito por drone-operators ou analistas via GEOAPI, o processamento gera versao otimizada, e o pacote de campo inclui as ortofotos relevantes para download offline. Sem ortofoto processada, a equipe de campo opera apenas com mapa base generico.
 
 ## Propriedades
 
@@ -21,7 +21,6 @@ Ortofotos sao a base visual do sistema de campo: servidas como tiles XYZ no mapa
 | CommunityId | Guid | sim | FK para Community. Nullable quando a ortofoto cobre area mais ampla que uma comunidade. |
 | OriginalPath | string | nao | Caminho no bucket S3 do arquivo original (tipicamente GeoTIFF). Formato: {tenant_id}/orthofotos/{id}/original. |
 | OptimizedPath | string | sim | Caminho S3 da versao otimizada para web (JPEG quality 85, lado maior limitado a 4096px). Preenchido apos processamento. |
-| TilesPath | string | sim | Caminho base S3 da piramide de tiles XYZ (formato: {tenant_id}/orthofotos/{id}/tiles/{z}/{x}/{y}.png). Preenchido apos processamento. |
 | FileSize | long | nao | Tamanho do arquivo original em bytes. |
 | Width | int | sim | Largura em pixels. Extraida via GDAL durante processamento. |
 | Height | int | sim | Altura em pixels. Extraida via GDAL durante processamento. |
@@ -40,13 +39,13 @@ Ortofotos sao a base visual do sistema de campo: servidas como tiles XYZ no mapa
 
 Pertence a um Tenant via TenantId. Opcionalmente vinculada a uma Community via CommunityId.
 
-Nao possui relacionamento direto com outras entidades. E consumida indiretamente: o pacote de campo inclui tiles de ortofotos do tenant, e o mapa do REURBCAD e GeoWeb renderiza os tiles via endpoint de tiles da GEOAPI.
+Nao possui relacionamento direto com outras entidades. E consumida indiretamente: o pacote de campo inclui ortofotos otimizadas do tenant, e o mapa do REURBCAD e ReurbWeb renderiza as ortofotos via GEOAPI.
 
 ## Invariantes de Negocio
 
 ProcessingStatus deve seguir transicoes validas: PENDING so pode ir para PROCESSING, PROCESSING pode ir para COMPLETED ou FAILED. Nao ha retorno de COMPLETED ou FAILED para estados anteriores; em caso de reprocessamento, um novo registro e criado.
 
-OriginalPath deve ser preenchido no momento da criacao. OptimizedPath e TilesPath sao preenchidos apenas pelo job de processamento, nunca pelo usuario.
+OriginalPath deve ser preenchido no momento da criacao. OptimizedPath e preenchido apenas pelo job de processamento, nunca pelo usuario.
 
 Quando SourceType e PIX4D_LINK, SourceUrl deve estar preenchido com URL HTTPS valida. Quando SourceType e UPLOAD, SourceUrl deve ser null.
 

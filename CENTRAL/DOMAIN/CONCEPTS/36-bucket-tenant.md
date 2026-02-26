@@ -1,7 +1,7 @@
 ---
 type: leaf
 status: approved
-updated: 2026-02-07
+updated: 2026-02-21
 ---
 
 # Bucket por Tenant
@@ -16,7 +16,6 @@ Arquitetura multi-tenant exige que arquivos de um cliente nunca sejam acessiveis
 |---------|----------|
 | /{tenant_id}/ortofotos/{ano}/{mes}/original/ | Ortofoto original |
 | /{tenant_id}/ortofotos/{ano}/{mes}/otimizada/ | Versao reduzida |
-| /{tenant_id}/ortofotos/{ano}/{mes}/tiles/ | Tiles para visualizacao |
 | /{tenant_id}/documentos/ | Documentos anexados |
 | /{tenant_id}/fotos/ | Fotos de campo |
 

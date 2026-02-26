@@ -16,7 +16,7 @@ Instalar via bun:
 bun add @carf/geoapi-client
 ```
 
-Para usar hooks React Query (GEOWEB), tambem instalar:
+Para usar hooks React Query (REURBWEB), tambem instalar:
 
 ```bash
 bun add @tanstack/react-query
@@ -53,7 +53,7 @@ const api = createApiClient({
 });
 ```
 
-## Uso com Hooks React Query (GEOWEB)
+## Uso com Hooks React Query (REURBWEB)
 
 Os hooks sao gerados automaticamente pelo orval:
 

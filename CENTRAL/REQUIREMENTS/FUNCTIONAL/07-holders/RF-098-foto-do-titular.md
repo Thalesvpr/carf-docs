@@ -3,7 +3,7 @@ type: rf
 status: approved
 updated: 2026-01-25
 modules:
-  - GEOWEB
+  - REURBWEB
   - REURBCAD
 ---
 
@@ -23,5 +23,5 @@ Sistema deve permitir upload de foto 3x4 de titulares PESSOA_FISICA para identif
 
 ## Rastreabilidade
 
-- Modulos: GEOWEB, REURBCAD
+- Modulos: REURBWEB, REURBCAD
 - Requisitos dependentes: RF-084, RF-088

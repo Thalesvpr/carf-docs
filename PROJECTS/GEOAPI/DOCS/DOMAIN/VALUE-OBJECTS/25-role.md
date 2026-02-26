@@ -13,7 +13,7 @@ Value object enum imutavel representando o papel funcional de um usuario no sist
 | Valor | Descricao |
 |-------|-----------|
 | SUPER_ADMIN | Super administrador. Acesso irrestrito a todos tenants. Destinado a operadores da plataforma SaaS. |
-| ADMIN | Administrador de tenant. Gestao completa do proprio tenant: usuarios, teams, configuracoes. |
+| REURBMASTER | Administrador de tenant. Gestao completa do proprio tenant: usuarios, teams, configuracoes. |
 | MANAGER | Gestor operacional. Supervisao, aprovacao de processos, relatorios consolidados. |
 | ANALYST | Analista tecnico. Analise e validacao de processos, pareceres tecnicos. |
 | FIELD_COORDINATOR | Coordenador de campo. Menu mobile completo, visualiza dados da equipe, coordena trabalho. |
@@ -24,7 +24,7 @@ Value object enum imutavel representando o papel funcional de um usuario no sist
 | Nivel | Role | Pode fazer tudo de |
 |-------|------|--------------------|
 | 6 | SUPER_ADMIN | Todos os roles abaixo + gestao cross-tenant. |
-| 5 | ADMIN | MANAGER + gestao de usuarios e configuracoes. |
+| 5 | REURBMASTER | MANAGER + gestao de usuarios e configuracoes. |
 | 4 | MANAGER | ANALYST + aprovacao de processos e gestao de equipes. |
 | 3 | ANALYST | FIELD_COORDINATOR + analise e pareceres. |
 | 2 | FIELD_COORDINATOR | FIELD_CADASTRATOR + visualizacao de dados da equipe. |

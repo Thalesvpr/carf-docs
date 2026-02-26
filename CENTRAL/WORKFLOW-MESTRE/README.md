@@ -1,7 +1,7 @@
 ---
 type: readme
 status: approved
-updated: 2026-02-07
+updated: 2026-02-21
 ---
 
 # WORKFLOW-MESTRE
@@ -16,7 +16,7 @@ Garantir que ortofotos (drone) sejam recebidas, processadas (reducao/tamanhos), 
 
 | Ator | Responsabilidade | Sistema |
 |------|------------------|---------|
-| Analista de Drone | Publicar/entregar ortofotos prontas via link de upload | Portal Upload |
+| Operador de Drone | Publicar/entregar ortofotos prontas via link de upload | Portal Upload |
 | Backend | Receber ortofotos, reduzir tamanho, armazenar em bucket, controlar permissoes | GEOAPI |
 | Keycloak | Autenticacao e autorizacao (login, emissao/validacao de tokens) | Keycloak |
 | Analista (QGIS Plugin) | Acessar ortofotos do tenant, georreferenciar lotes/comunidades, enviar poligonos | GEOGIS |
@@ -41,7 +41,7 @@ Garantir que ortofotos (drone) sejam recebidas, processadas (reducao/tamanhos), 
 
 ## Resumo das Partes
 
-Na Parte 1, o Analista de Drone autentica via Keycloak (passo 1), envia a ortofoto (passo 2), o backend processa e reduz tamanho (passo 3) e salva em bucket por tenant (passo 4). Na Parte 2, o Analista e designado ao tenant (passo 5), autentica via Keycloak e AUTHENTICATION KEY (passo 6), acessa ortofotos (passo 7), georreferencia poligonos (passo 8), publica no backend (passo 9) e dados ficam liberados (passo 10). Na Parte 3, somente apos publicacao, a equipe e designada ao tenant (passo 11), baixa pacote temporario (passo 12), Coordenador seleciona comunidade (passo 13), mapa carrega (passo 14) e o fluxo operacional inclui GPS, acoes, formulario, assinatura, QR e sincronizacao (passos 15-18).
+Na Parte 1, o Operador de Drone autentica via Keycloak (passo 1), envia a ortofoto (passo 2), o backend processa e reduz tamanho (passo 3) e salva em bucket por tenant (passo 4). Na Parte 2, o Analista e designado ao tenant (passo 5), autentica via Keycloak e AUTHENTICATION KEY (passo 6), acessa ortofotos (passo 7), georreferencia poligonos (passo 8), publica no backend (passo 9) e dados ficam liberados (passo 10). Na Parte 3, somente apos publicacao, a equipe e designada ao tenant (passo 11), baixa pacote temporario (passo 12), Coordenador seleciona comunidade (passo 13), mapa carrega (passo 14) e o fluxo operacional inclui GPS, acoes, formulario, assinatura, QR e sincronizacao (passos 15-18).
 
 ## Conceito Central: TENANT
 

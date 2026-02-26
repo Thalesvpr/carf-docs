@@ -4,7 +4,7 @@ status: approved
 updated: 2026-01-25
 modules:
   - GEOAPI
-  - GEOWEB
+  - REURBWEB
 ---
 
 # RF-008: ADMIN - Gestao de Tenant
@@ -23,5 +23,5 @@ Usuarios com role ADMIN podem gerenciar todos recursos dentro do seu tenant espe
 
 ## Rastreabilidade
 
-- Modulos: GEOAPI, GEOWEB
+- Modulos: GEOAPI, REURBWEB
 - Requisitos dependentes: RF-006, RF-013

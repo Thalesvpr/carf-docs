@@ -4,7 +4,7 @@ status: review
 updated: 2026-02-07
 modules:
   - GEOAPI
-  - GEOWEB
+  - REURBWEB
   - REURBCAD
   - GEOGIS
 ---
@@ -17,7 +17,7 @@ O sistema deve integrar-se com Keycloak como identity provider centralizado impl
 
 ## Criterios de Aceitacao
 
-1. Login via Keycloak funciona em GEOWEB, REURBCAD e GEOGIS
+1. Login via Keycloak funciona em REURBWEB, REURBCAD e GEOGIS
 2. SSO permite navegacao entre modulos sem re-autenticacao
 3. Configuracao de realm e clients documentada por ambiente
 4. Tokens JWT incluem claims de tenant_id e roles
@@ -25,5 +25,5 @@ O sistema deve integrar-se com Keycloak como identity provider centralizado impl
 
 ## Rastreabilidade
 
-- Modulos: GEOAPI, GEOWEB, REURBCAD, GEOGIS
+- Modulos: GEOAPI, REURBWEB, REURBCAD, GEOGIS
 - Requisitos dependentes: RF-002, RF-003, RF-005

@@ -1,12 +1,12 @@
 ---
 type: leaf
 status: draft
-updated: 2026-02-08
+updated: 2026-02-21
 ---
 
 # Hierarquia de Roles
 
-Sistema CARF implementa sete realm roles em hierarquia de arvore (nao linear) com composite roles no Keycloak. Seis roles operacionais em dois ramos (campo e escritorio) unificam-se a partir de manager. Role dev e transversal e combinavel com qualquer role operacional.
+Sistema CARF implementa oito realm roles em hierarquia de arvore (nao linear) com composite roles no Keycloak. Seis roles operacionais em dois ramos (campo e escritorio) unificam-se a partir de manager. Role dev e transversal e combinavel com qualquer role operacional. Role drone-operator e uma base isolada exclusiva para upload de ortofotos.
 
 ## Tabela de Heranca
 
@@ -14,10 +14,11 @@ Sistema CARF implementa sete realm roles em hierarquia de arvore (nao linear) co
 |:-----|:---------|:----------------------|
 | field-cadastrator | Nenhuma (base) | REURBCAD mapa e formularios, cria/edita unidades proprias, upload fotos |
 | field-coordinator | field-cadastrator | Menu mobile completo, dados da equipe, reurbcad:manage-team |
-| analyst | Nenhuma (ramo separado) | GEOWEB aprovacoes/rejeicoes, edicao qualquer unidade, relatorios CSV/PDF |
+| analyst | Nenhuma (ramo separado) | REURBWEB aprovacoes/rejeicoes, edicao qualquer unidade, relatorios CSV/PDF |
 | manager | analyst E field-coordinator | Juncao campo e escritorio, gerencia equipes, visao completa do tenant |
 | admin | manager | Gestao usuarios, config tenant (nome, CNPJ), audit logs, admin:manage-users |
 | super-admin | admin | Criar/deletar tenants, switcher sem validacao, Admin API, admin:manage-tenants |
+| drone-operator | Nenhuma (base isolada) | Upload de ortofotos via portal, restrito ao tenant designado |
 | dev | Nenhuma (transversal) | Secao /dev/ WEBDOCS: Swagger, docs tecnica, metricas debug |
 
 ## Ramo de Campo
@@ -26,7 +27,11 @@ Field-cadastrator e o nivel operacional basico para coleta de dados no REURBCAD 
 
 ## Ramo de Escritorio
 
-Analyst destina-se a analistas GEOWEB que aprovam ou rejeitam unidades cadastradas e geram relatorios. Nao herda de field-coordinator pois sao contextos distintos (escritorio versus campo).
+Analyst destina-se a analistas REURBWEB que aprovam ou rejeitam unidades cadastradas e geram relatorios. Nao herda de field-coordinator pois sao contextos distintos (escritorio versus campo).
+
+## Ramo de Operador de Drone
+
+Drone-operator e uma role base isolada que nao pertence ao ramo de campo nem ao ramo de escritorio. Concede exclusivamente permissao de upload de ortofotos (imagens aereas capturadas por drone) no portal do tenant designado. Nao herda de nenhuma outra role e nao concede acesso a qualquer outra capacidade do sistema — nao acessa REURBCAD, REURBWEB, ADMIN, nao visualiza unidades, nao gera relatorios. Nenhuma role herda de drone-operator.
 
 ## Unificacao
 

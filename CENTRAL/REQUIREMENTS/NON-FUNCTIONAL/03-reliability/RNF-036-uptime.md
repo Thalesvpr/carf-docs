@@ -8,7 +8,7 @@ updated: 2026-01-25
 
 ## Descricao
 
-GEOAPI e GEOWEB devem manter alta disponibilidade conforme SLA estabelecido. Health checks verificam conectividade com todos componentes criticos da arquitetura.
+GEOAPI e REURBWEB devem manter alta disponibilidade conforme SLA estabelecido. Health checks verificam conectividade com todos componentes criticos da arquitetura.
 
 ## Metricas
 

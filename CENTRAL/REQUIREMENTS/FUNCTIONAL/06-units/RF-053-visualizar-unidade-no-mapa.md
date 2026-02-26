@@ -3,7 +3,7 @@ type: rf
 status: approved
 updated: 2026-01-25
 modules:
-  - GEOWEB
+  - REURBWEB
   - REURBCAD
 ---
 
@@ -23,5 +23,5 @@ Sistema deve exibir unidade no mapa web interativo com geometria colorida por st
 
 ## Rastreabilidade
 
-- Modulos: GEOWEB, REURBCAD
+- Modulos: REURBWEB, REURBCAD
 - Requisitos dependentes: RF-049, RF-056

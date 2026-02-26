@@ -3,7 +3,7 @@ type: rf
 status: approved
 updated: 2026-01-25
 modules:
-  - GEOWEB
+  - REURBWEB
   - REURBCAD
 ---
 
@@ -23,5 +23,5 @@ Usuario deve poder fazer logout voluntario do sistema revogando tokens ativos. P
 
 ## Rastreabilidade
 
-- Modulos: GEOWEB, REURBCAD
+- Modulos: REURBWEB, REURBCAD
 - Requisitos dependentes: RF-001, RF-002

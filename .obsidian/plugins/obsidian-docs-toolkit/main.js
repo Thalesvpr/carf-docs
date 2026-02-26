@@ -1496,7 +1496,7 @@ var LinksValidator = class extends LocalValidator {
    * not relative file paths within the vault.
    *
    * Examples:
-   * - /manuais/geoweb/ → route link (skip)
+   * - /manuais/reurbweb/ → route link (skip)
    * - /guia/aprovar-unidade/ → route link (skip)
    * - //cdn.site.com/x → protocol-relative URL (NOT a route, treat as external)
    * - ./README.md → relative link (validate)
@@ -2110,7 +2110,7 @@ var Status = /* @__PURE__ */ ((Status2) => {
 })(Status || {});
 var VALID_MODULES = [
   "GEOAPI",
-  "GEOWEB",
+  "REURBWEB",
   "ADMIN",
   "KEYCLOAK",
   "WEBDOCS"

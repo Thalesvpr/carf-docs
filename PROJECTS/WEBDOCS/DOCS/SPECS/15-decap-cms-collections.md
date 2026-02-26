@@ -24,7 +24,7 @@ Compartilhados entre guia e manuais:
 
 ## Collections de Conteudo
 
-Collection guia em src/content/docs/guia, extensao mdx. Filtro de rascunhos, sortavel por title e sidebar.order. Tres collections de manuais com mesma estrutura: manuais-geoweb, manuais-reurbcad e manuais-admin em respectivas subpastas de src/content/docs/manuais/.
+Collection guia em src/content/docs/guia, extensao mdx. Filtro de rascunhos, sortavel por title e sidebar.order. Tres collections de manuais com mesma estrutura: manuais-reurbweb, manuais-reurbcad e manuais-admin em respectivas subpastas de src/content/docs/manuais/.
 
 ## Incidentes
 

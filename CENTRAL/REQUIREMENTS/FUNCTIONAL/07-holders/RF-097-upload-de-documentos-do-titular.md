@@ -3,7 +3,7 @@ type: rf
 status: approved
 updated: 2026-01-25
 modules:
-  - GEOWEB
+  - REURBWEB
   - REURBCAD
   - GEOAPI
 ---
@@ -24,5 +24,5 @@ Sistema deve permitir anexacao de documentos pessoais a titulares incluindo RG, 
 
 ## Rastreabilidade
 
-- Modulos: GEOWEB, REURBCAD, GEOAPI
+- Modulos: REURBWEB, REURBCAD, GEOAPI
 - Requisitos dependentes: RF-084, RF-064

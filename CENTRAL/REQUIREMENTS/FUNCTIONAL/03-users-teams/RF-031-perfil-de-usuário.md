@@ -3,7 +3,7 @@ type: rf
 status: approved
 updated: 2026-01-25
 modules:
-  - GEOWEB
+  - REURBWEB
 ---
 
 # RF-031: Perfil de Usuario
@@ -22,5 +22,5 @@ Usuario autenticado pode visualizar e editar seu proprio perfil. Exibicao inclui
 
 ## Rastreabilidade
 
-- Modulos: GEOWEB
+- Modulos: REURBWEB
 - Requisitos dependentes: RF-001, RF-021

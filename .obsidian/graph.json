@@ -50,14 +50,14 @@
       }
     },
     {
-      "query": "path:PROJECTS/GEOWEB file:README.md",
+      "query": "path:PROJECTS/REURBWEB file:README.md",
       "color": {
         "a": 1,
         "rgb": 5431492
       }
     },
     {
-      "query": "path:PROJECTS/GEOWEB  ",
+      "query": "path:PROJECTS/REURBWEB  ",
       "color": {
         "a": 1,
         "rgb": 4358262

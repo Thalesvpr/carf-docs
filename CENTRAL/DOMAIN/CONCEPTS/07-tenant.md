@@ -1,7 +1,7 @@
 ---
 type: leaf
 status: approved
-updated: 2026-01-24
+updated: 2026-02-21
 ---
 
 # Tenant
@@ -25,3 +25,16 @@ Administradores do tenant gerenciam seus proprios usuarios sem depender do supor
 ## Isolamento de Dados
 
 Todas as consultas ao banco sao automaticamente filtradas por tenant. E impossivel que consulta de um tenant retorne dados de outro - a seguranca e garantida em nivel de infraestrutura.
+
+## Organizacao Operacional
+
+Um Tenant pode definir **Regioes** para organizar sua atuacao. Regioes sao unidades estrategicas — nao niveis geograficos fixos. Cada Tenant decide o que "regiao" significa para seu contexto (pode ser bairro, cidade, macrorregiao, contrato, etc.).
+
+Comunidades podem ser associadas a Regioes, mas a associacao e flexivel e configuravel pelo Tenant. Nao ha hierarquia geografica rigida imposta pelo sistema.
+
+Estrutura tipica: Tenant > Regioes (opcionais) > Comunidades
+
+### Referencia
+
+- Ver [39-regiao.md](./39-regiao.md)
+- Ver [04-community.md](./04-community.md)

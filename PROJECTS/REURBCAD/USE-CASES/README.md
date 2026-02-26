@@ -8,7 +8,7 @@ updated: 2026-02-07
 
 Esta secao documenta os casos de uso do aplicativo mobile REURBCAD focados na PARTE 3 do workflow mestre, que abrange a operacao em campo. Todos os casos de uso aqui descritos implementam o fluxo definido no WORKFLOW-MESTRE documentado em CENTRAL.
 
-O fluxo sequencial da PARTE 3 inicia com a autenticacao do agente de campo via Keycloak no UC-P3-001, seguido pelo download do pacote unico e temporario no UC-P3-002, pela selecao de comunidade e carregamento do mapa no UC-P3-003, pela operacao completa em campo com GPS, formularios, assinatura e QR code no UC-P3-004, e pela sincronizacao de dados push/pull com o backend no UC-005. O REURBCAD integra-se com GEOAPI como backend que fornece pacotes e recebe sincronizacao, com GEOGIS como origem dos dados publicados na PARTE 2, e com GEOWEB como portal para visualizacao e aprovacao.
+O fluxo sequencial da PARTE 3 inicia com a autenticacao do agente de campo via Keycloak no UC-P3-001, seguido pelo download do pacote unico e temporario no UC-P3-002, pela selecao de comunidade e carregamento do mapa no UC-P3-003, pela operacao completa em campo com GPS, formularios, assinatura e QR code no UC-P3-004, e pela sincronizacao de dados push/pull com o backend no UC-005. O REURBCAD integra-se com GEOAPI como backend que fornece pacotes e recebe sincronizacao, com GEOGIS como origem dos dados publicados na PARTE 2, e com REURBWEB como portal para visualizacao e aprovacao.
 
 ## PARTE 3: Operacao em Campo
 

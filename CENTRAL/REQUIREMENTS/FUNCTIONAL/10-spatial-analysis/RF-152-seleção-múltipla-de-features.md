@@ -3,7 +3,7 @@ type: rf
 status: approved
 updated: 2026-01-25
 modules:
-  - GEOWEB
+  - REURBWEB
 ---
 
 # RF-152: Selecao Multipla de Features
@@ -22,5 +22,5 @@ Sistema deve permitir selecao de multiplas features simultaneamente atraves de m
 
 ## Rastreabilidade
 
-- Modulos: GEOWEB
+- Modulos: REURBWEB
 - Requisitos dependentes: RF-132, RF-133, RF-134

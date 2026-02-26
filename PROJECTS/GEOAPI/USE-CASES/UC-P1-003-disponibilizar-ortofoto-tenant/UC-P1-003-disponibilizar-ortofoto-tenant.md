@@ -4,7 +4,7 @@ type: UC
 modules: []
 status: review
 created: 2026-01-24
-updated: 2026-01-24
+updated: 2026-02-21
 workflow: PARTE-1
 ---
 
@@ -24,18 +24,17 @@ Este UC implementa passo 4 do [WORKFLOW-MESTRE](../../../../CENTRAL/WORKFLOW-MES
 ## Pre-condicoes
 
 - Ortofoto processada (UC-P1-002 concluido)
-- Tenant do Analista de Drone identificado
+- Tenant do Operador de Drone identificado
 - Bucket operacional
 
 ## Fluxo Principal
 
-1. Backend determina TENANT do Analista de Drone (via token JWT)
+1. Backend determina TENANT do Operador de Drone (via token JWT)
 2. Backend cria estrutura de pastas no bucket:
    - `/{tenant_id}/ortofotos/{ano}/{mes}/`
 3. Backend salva arquivos:
    - `original/` - ortofoto original
    - `otimizada/` - versao reduzida
-   - `tiles/` - tiles para visualizacao
 4. Backend registra URLs no banco de dados
 5. Backend associa ortofoto ao TENANT
 6. Backend marca ortofoto como "disponivel"

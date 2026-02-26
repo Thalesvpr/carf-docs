@@ -8,7 +8,7 @@ updated: 2026-01-25
 
 ## Descricao
 
-O bundle inicial do GEOWEB deve ser compacto para garantir carregamento rapido mesmo em conexoes lentas. Tamanho reduzido melhora experiencia especialmente em primeiro acesso.
+O bundle inicial do REURBWEB deve ser compacto para garantir carregamento rapido mesmo em conexoes lentas. Tamanho reduzido melhora experiencia especialmente em primeiro acesso.
 
 ## Metricas
 

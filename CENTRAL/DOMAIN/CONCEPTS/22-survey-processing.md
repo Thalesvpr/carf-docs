@@ -9,7 +9,7 @@ updated: 2026-01-24
 Job de pos-processamento diferencial que corrige coordenadas GPS brutas usando dados de estacao RBMC. Transforma precisao de metros em centimetros.
 
 O processamento e etapa obrigatoria para levantamentos oficiais. Coordenadas coletadas diretamente do GPS nao tem precisao suficiente para documentacao tecnica de registro em cartorio.
-
+[[06-pdf-templates]]
 ## Entradas
 
 Arquivo bruto de observacoes do receptor GPS usado em campo, no formato RINEX. Arquivo de observacoes da estacao RBMC para o mesmo periodo de coleta.

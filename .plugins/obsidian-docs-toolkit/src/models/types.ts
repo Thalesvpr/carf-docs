@@ -35,7 +35,7 @@ export enum Severity {
  */
 export const VALID_MODULES = [
   "GEOAPI",
-  "GEOWEB",
+  "REURBWEB",
   "ADMIN",
   "KEYCLOAK",
   "WEBDOCS"

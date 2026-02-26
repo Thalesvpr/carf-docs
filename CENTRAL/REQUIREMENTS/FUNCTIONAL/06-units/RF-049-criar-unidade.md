@@ -3,7 +3,7 @@ type: rf
 status: approved
 updated: 2026-01-25
 modules:
-  - GEOWEB
+  - REURBWEB
   - REURBCAD
   - GEOAPI
 ---
@@ -24,5 +24,5 @@ Usuarios autorizados (ANALYST, FIELD_COORDINATOR, FIELD_CADASTRATOR, MANAGER) po
 
 ## Rastreabilidade
 
-- Modulos: GEOWEB, REURBCAD, GEOAPI
+- Modulos: REURBWEB, REURBCAD, GEOAPI
 - Requisitos dependentes: RF-054, RF-066

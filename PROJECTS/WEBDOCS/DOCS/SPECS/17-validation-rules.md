@@ -33,7 +33,7 @@ Regras automaticas de qualidade da documentacao WEBDOCS. Relacionado com 17-vali
 | TERM001 | WARNING | Unidade Habitacional | Unit |
 | TERM002 | WARNING | Em Rascunho | DRAFT |
 | TERM003 | ERROR | Coordenador de Campo | field-coordinator |
-| TERM004 | WARNING | GeoWeb, REURBCAD, GeoAPI | geoweb, Reurbcad |
+| TERM004 | WARNING | ReurbWeb, REURBCAD, GeoAPI | reurbweb, Reurbcad |
 
 ## Conteudo
 

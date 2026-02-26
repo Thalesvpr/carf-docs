@@ -12,7 +12,7 @@ O realm CARF e o container principal de configuracao de identidade no Keycloak, 
 
 O realm configura seis clients com tipos e flows distintos conforme modelo de ameacas de cada aplicacao.
 
-Quatro clients sao public (sem client secret): GEOWEB (React SPA para analistas, Authorization Code com PKCE S256), REURBCAD (React Native mobile com deep links carf:// e suporte offline_access), ADMIN (Next.js para gestao administrativa com PKCE) e WEBDOCS (VitePress com auth para secao /dev/). O GEOAPI opera como bearer-only (.NET backend que apenas valida JWTs sem participar de flows de login). O GEOGIS e o unico confidential, suportando Standard Flow com PKCE para usuario humano e Client Credentials para comunicacao M2M, com secret armazenado em vault seguro.
+Quatro clients sao public (sem client secret): REURBWEB (React SPA para analistas, Authorization Code com PKCE S256), REURBCAD (React Native mobile com deep links carf:// e suporte offline_access), ADMIN (Next.js para gestao administrativa com PKCE) e WEBDOCS (VitePress com auth para secao /dev/). O GEOAPI opera como bearer-only (.NET backend que apenas valida JWTs sem participar de flows de login). O GEOGIS e o unico confidential, suportando Standard Flow com PKCE para usuario humano e Client Credentials para comunicacao M2M, com secret armazenado em vault seguro.
 
 Valid Redirect URIs incluem localhost para desenvolvimento e dominios de producao com wildcards. Web Origins configurados como "+" herdam automaticamente dos redirect URIs, permitindo CORS apenas de origens registradas.
 

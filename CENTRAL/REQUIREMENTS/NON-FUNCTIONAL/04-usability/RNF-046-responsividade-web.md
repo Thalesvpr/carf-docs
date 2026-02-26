@@ -8,7 +8,7 @@ updated: 2026-01-25
 
 ## Descricao
 
-GEOWEB deve implementar design responsivo para desktop (1280px+) e tablets (768px+). Todas funcionalidades acessiveis sem scroll horizontal.
+REURBWEB deve implementar design responsivo para desktop (1280px+) e tablets (768px+). Todas funcionalidades acessiveis sem scroll horizontal.
 
 ## Metricas
 

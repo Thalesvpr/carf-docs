@@ -1,12 +1,12 @@
 ---
 type: leaf
 status: review
-updated: 2026-02-09
+updated: 2026-02-21
 ---
 
 # Ortofoto DTOs
 
-Os Data Transfer Objects de ortofotos definem os contratos de entrada e saida da API para operacoes de upload, processamento e servico de tiles.
+Os Data Transfer Objects de ortofotos definem os contratos de entrada e saida da API para operacoes de upload, processamento e servico de ortofotos.
 
 ## DTOs de Resposta
 

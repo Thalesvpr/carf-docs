@@ -8,7 +8,7 @@ updated: 2026-01-25
 
 ## Descricao
 
-Interface deve seguir design system consistente aplicado uniformemente em GEOWEB e REURBCAD. Reduz carga cognitiva eliminando variacoes arbitrarias.
+Interface deve seguir design system consistente aplicado uniformemente em REURBWEB e REURBCAD. Reduz carga cognitiva eliminando variacoes arbitrarias.
 
 ## Metricas
 

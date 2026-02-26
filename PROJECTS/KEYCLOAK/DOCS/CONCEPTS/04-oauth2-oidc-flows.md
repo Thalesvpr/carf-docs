@@ -10,7 +10,7 @@ OAuth2 e OpenID Connect sao os protocolos de autenticacao e autorizacao implemen
 
 ## Authorization Code com PKCE
 
-Este e o flow principal usado por SPAs (GEOWEB, ADMIN, WEBDOCS) e mobile apps (REURBCAD). O frontend redireciona para o authorization endpoint do Keycloak incluindo client_id, redirect_uri, response_type code, scopes (openid profile email carf-tenant) e os parametros PKCE: code_challenge (hash SHA-256 base64url do code_verifier) e code_challenge_method S256. O code_verifier e um valor aleatorio de 43 a 128 caracteres armazenado em sessionStorage.
+Este e o flow principal usado por SPAs (REURBWEB, ADMIN, WEBDOCS) e mobile apps (REURBCAD). O frontend redireciona para o authorization endpoint do Keycloak incluindo client_id, redirect_uri, response_type code, scopes (openid profile email carf-tenant) e os parametros PKCE: code_challenge (hash SHA-256 base64url do code_verifier) e code_challenge_method S256. O code_verifier e um valor aleatorio de 43 a 128 caracteres armazenado em sessionStorage.
 
 Apos autenticacao do usuario, o Keycloak redireciona de volta para a redirect_uri com authorization code e state na URL. O frontend troca o code por tokens via POST ao token endpoint enviando grant_type authorization_code, code, redirect_uri, client_id e code_verifier (sem client_secret pois e public client). O Keycloak verifica o hash do code_verifier contra o code_challenge original e, se valido, retorna access_token JWT RS256 (valido 5 minutos), refresh_token (valido conforme SSO session), id_token com informacoes do usuario, token_type Bearer e scope concedido.
 

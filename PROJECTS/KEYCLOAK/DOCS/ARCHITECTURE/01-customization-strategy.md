@@ -14,7 +14,7 @@ A customização visual utiliza Keycloakify (ADR-001) para desenvolver temas em 
 
 Três tipos de tema são customizados: o tema de login (páginas de autenticação, registro, recuperação de senha, verificação de email e erro), o tema de account (console de gerenciamento de conta do usuário com perfil, sessões e 2FA) e o tema de email (templates de email transacionais para verificação, reset de senha e notificações).
 
-O uso de @carf/ui garante consistência visual absoluta entre as telas de autenticação e as aplicações GEOWEB, ADMIN e WebDocs que consomem a mesma biblioteca. Mudanças no Design System propagam automaticamente para o tema Keycloak. O hook useCpfMask de @carf/ui aplica máscara e validação de CPF diretamente no formulário de login, eliminando a necessidade de reimplementar essa lógica em JavaScript vanilla.
+O uso de @carf/ui garante consistência visual absoluta entre as telas de autenticação e as aplicações REURBWEB, ADMIN e WebDocs que consomem a mesma biblioteca. Mudanças no Design System propagam automaticamente para o tema Keycloak. O hook useCpfMask de @carf/ui aplica máscara e validação de CPF diretamente no formulário de login, eliminando a necessidade de reimplementar essa lógica em JavaScript vanilla.
 
 O código fonte do tema fica em PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak-theme/ com estrutura padrão Keycloakify: entry point KcApp.tsx, páginas React em src/login/pages/ (Login.tsx, Register.tsx, ResetPassword.tsx), traduções em i18n.ts, e configuração em keycloakify.config.ts e vite.config.ts.
 

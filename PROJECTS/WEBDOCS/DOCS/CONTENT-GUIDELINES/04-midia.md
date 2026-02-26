@@ -8,7 +8,7 @@ updated: 2026-01-21
 
 Diretrizes para uso de fotos, vídeos e diagramas no conteúdo do WEBDOCS garantindo qualidade, performance e acessibilidade.
 
-Screenshots são armazenados em public/images/ do repositório organizados por seção (manuais/geoweb/, manuais/reurbcad/, etc). Formato PNG para interfaces com texto, JPEG para fotos. Resolução 2x para displays retina com width/height explícitos evitando layout shift.
+Screenshots são armazenados em public/images/ do repositório organizados por seção (manuais/reurbweb/, manuais/reurbcad/, etc). Formato PNG para interfaces com texto, JPEG para fotos. Resolução 2x para displays retina com width/height explícitos evitando layout shift.
 
 Captura de screenshots deve mostrar apenas área relevante sem elementos pessoais ou dados sensíveis. Dados de exemplo usam informações fictícias óbvias (João da Silva, CPF 000.000.000-00). Destacar elementos importantes com anotações ou setas adicionadas via ferramenta de edição.
 

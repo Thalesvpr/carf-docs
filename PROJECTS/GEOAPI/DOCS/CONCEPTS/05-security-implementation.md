@@ -153,7 +153,7 @@ Em desenvolvimento, o certificado HTTPS e configurado via `dotnet dev-certs http
 | Vetor de Ataque | Protecao | Implementacao |
 |-----------------|---------|---------------|
 | SQL Injection | Queries parametrizadas | EF Core gera queries parametrizadas automaticamente. RLS adiciona camada extra de isolamento |
-| XSS | Nao aplicavel | GEOAPI e API-only, sem renderizacao de HTML. Clientes (GEOWEB, REURBCAD) sao responsaveis por sanitizacao na exibicao |
+| XSS | Nao aplicavel | GEOAPI e API-only, sem renderizacao de HTML. Clientes (REURBWEB, REURBCAD) sao responsaveis por sanitizacao na exibicao |
 | CSRF | Nao aplicavel | API stateless com Bearer token. Sem cookies de sessao para proteger |
 | File Upload Malicioso | Validacao de content type + tamanho | Content types permitidos: image/jpeg, image/png, application/pdf. Tamanho maximo: 10MB por arquivo. Em producao, scan antivirus via ClamAV |
 | Mass Assignment | DTOs explicitos | Apenas campos definidos no DTO sao aceitos. Campos como tenant_id e created_by nunca vem do request |
@@ -252,7 +252,7 @@ O audit logging e implementado via interceptor do EF Core (`SaveChangesIntercept
   },
   "timestamp": "2024-03-16T10:00:00Z",
   "ipAddress": "200.100.50.25",
-  "userAgent": "Mozilla/5.0 (GEOWEB)",
+  "userAgent": "Mozilla/5.0 (REURBWEB)",
   "correlationId": "req-uuid-901"
 }
 ```

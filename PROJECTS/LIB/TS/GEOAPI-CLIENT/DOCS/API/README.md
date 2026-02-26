@@ -2,7 +2,7 @@
 type: readme
 status: review
 description: "README usa listas/tabelas ao inves de prosa densa com links inline."
-updated: 2026-02-07
+updated: 2026-02-21
 ---
 
 # API Reference - @carf/geoapi-client
@@ -32,7 +32,7 @@ Referencia dos endpoints da GEOAPI organizados por dominio.
 | Documents Listagem | [05b-documents-listagem-tipos.md](./05b-documents-listagem-tipos.md) | Listagem, metadados, delete e tipos |
 | Reports Exportacao | [06a-reports-exportacao.md](./06a-reports-exportacao.md) | Exportacao de unidades, posseiros e estatisticas |
 | Reports Download | [06b-reports-status-download.md](./06b-reports-status-download.md) | Status, download, helpers e formatos de saida |
-| Orthofotos | [07-orthofotos-api.md](./07-orthofotos-api.md) | Upload, processamento e tiles de ortofotos |
+| Orthofotos | [07-orthofotos-api.md](./07-orthofotos-api.md) | Upload, processamento e gerenciamento de ortofotos |
 | Sync | [08-sync-api.md](./08-sync-api.md) | Sincronizacao offline bidirecional |
 | Packages | [09-packages-api.md](./09-packages-api.md) | Pacotes de campo para trabalho offline |
 | Teams | [10-teams-api.md](./10-teams-api.md) | Gerenciamento de equipes de campo |

@@ -51,7 +51,7 @@ CATEGORY_CONTEXT = {
     "Backend & API Architecture": {
         "tech_stack": ".NET 9, ASP.NET Core, Entity Framework Core",
         "related_adrs": ["ADR-001", "ADR-008", "ADR-009"],
-        "domain_context": "GEOAPI backend serving GEOWEB, REURBCAD and ADMIN frontends",
+        "domain_context": "GEOAPI backend serving REURBWEB, REURBCAD and ADMIN frontends",
         "decisor": "Equipe de Arquitetura Backend"
     },
     "Database & Data Persistence": {
@@ -99,7 +99,7 @@ CATEGORY_CONTEXT = {
     "Frontend Web Architecture": {
         "tech_stack": "React 18, Vite, TanStack Query, Zustand, shadcn/ui",
         "related_adrs": ["ADR-012", "ADR-014", "ADR-015", "ADR-019"],
-        "domain_context": "GEOWEB and ADMIN SPA frontends",
+        "domain_context": "REURBWEB and REURBMASTER SPA frontends",
         "decisor": "Equipe Frontend"
     },
     "Data Export & Reporting": {
@@ -211,7 +211,7 @@ def generate_implementation_details(topic: Dict, category_name: str, context: Di
         details += f"em conjunto com decisões anteriores documentadas em {', '.join(context['related_adrs'])} "
 
     details += "garantindo consistência arquitetural e reuso de padrões já validados em produção. "
-    details += "Código de referência encontra-se em PROJECTS/GEOAPI para backend e PROJECTS/GEOWEB para frontend, "
+    details += "Código de referência encontra-se em PROJECTS/GEOAPI para backend e PROJECTS/REURBWEB para frontend, "
     details += "com documentação de domínio em CENTRAL/DOMAIN-MODEL e regras de negócio em CENTRAL/BUSINESS-RULES."
 
     return details

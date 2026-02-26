@@ -10,10 +10,10 @@ Implementacao da autenticacao OAuth2/OIDC na GEOAPI usando Keycloak como Identit
 
 ## Visao Geral
 
-A GEOAPI (.NET 8) utiliza OAuth2 com OpenID Connect para autenticar todas as requisicoes. O Keycloak emite JWTs (JSON Web Tokens) que sao validados pelo middleware ASP.NET Core em cada request. O fluxo e stateless: nenhum fluxo de login acontece na API. Todas as aplicacoes cliente (GEOWEB, REURBCAD, ADMIN, WEBDOCS, GEOGIS) autenticam o usuario diretamente no Keycloak via Authorization Code com PKCE e enviam o access token resultante no header `Authorization: Bearer {token}`.
+A GEOAPI (.NET 8) utiliza OAuth2 com OpenID Connect para autenticar todas as requisicoes. O Keycloak emite JWTs (JSON Web Tokens) que sao validados pelo middleware ASP.NET Core em cada request. O fluxo e stateless: nenhum fluxo de login acontece na API. Todas as aplicacoes cliente (REURBWEB, REURBCAD, REURBMASTER, WEBDOCS, GEOGIS) autenticam o usuario diretamente no Keycloak via Authorization Code com PKCE e enviam o access token resultante no header `Authorization: Bearer {token}`.
 
 ```
-Cliente (GEOWEB/REURBCAD/ADMIN)
+Cliente (REURBWEB/REURBCAD/ADMIN)
     |
     | Bearer JWT
     v
@@ -351,7 +351,7 @@ public class TenantInterceptor : DbConnectionInterceptor
 
 ## Fluxos por Aplicacao
 
-GEOWEB, ADMIN e WEBDOCS usam Authorization Code com PKCE (S256) como clients publicos, redirecionando para Keycloak e recebendo tokens via browser redirect. Access token expira em 5 minutos com refresh silencioso via refresh token.
+REURBWEB, REURBMASTER e WEBDOCS usam Authorization Code com PKCE (S256) como clients publicos, redirecionando para Keycloak e recebendo tokens via browser redirect. Access token expira em 5 minutos com refresh silencioso via refresh token.
 
 REURBCAD (mobile) usa Authorization Code com PKCE via custom URL scheme `carf://callback`, com scope `offline_access` para obter refresh token de 30 dias que permite operacao em campo sem internet. Tokens sao armazenados em secure storage nativo (Keychain iOS, EncryptedSharedPreferences Android).
 

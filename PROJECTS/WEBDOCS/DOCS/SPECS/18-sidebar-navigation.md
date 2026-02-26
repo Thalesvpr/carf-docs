@@ -22,7 +22,7 @@ Estrutura de navegacao do sidebar do WEBDOCS com hierarquia, labels e badges.
 
 ## Itens
 
-Guia: Bem-vindo, Primeiros Passos, Conceitos, Glossario, FAQ. Sistema: Visao Geral, Lei 13.465/2017, Fluxo, Papeis, Entidades. Manuais GeoWeb: Introducao, Mapa, Unidades, Titulares, Analise, Relatorios. REURBCAD: Introducao, Coleta, Geometrias, Fotos, Sync. Admin: Introducao, Usuarios, Equipes, Config, Relatorios. API: Visao Geral, Autenticacao, Recursos, Erros, Swagger. Dev: Getting Started, Arquitetura, Bibliotecas, Componentes UI (Acoes, Inputs, Feedback, Overlays, Layout, Data Display), Contribuindo, Debug.
+Guia: Bem-vindo, Primeiros Passos, Conceitos, Glossario, FAQ. Sistema: Visao Geral, Lei 13.465/2017, Fluxo, Papeis, Entidades. Manuais ReurbWeb: Introducao, Mapa, Unidades, Titulares, Analise, Relatorios. REURBCAD: Introducao, Coleta, Geometrias, Fotos, Sync. Admin: Introducao, Usuarios, Equipes, Config, Relatorios. API: Visao Geral, Autenticacao, Recursos, Erros, Swagger. Dev: Getting Started, Arquitetura, Bibliotecas, Componentes UI (Acoes, Inputs, Feedback, Overlays, Layout, Data Display), Contribuindo, Debug.
 
 ## Filtragem por Role
 

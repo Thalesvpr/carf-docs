@@ -18,9 +18,9 @@ Access Token Lifespan de 5 minutos (300 segundos) forca refresh frequente minimi
 
 ## Clients OAuth2
 
-Seis clients atendem as aplicacoes do ecossistema. O GEOWEB e public com Standard Flow e PKCE, redirect URIs para localhost:5173 (desenvolvimento) e geoweb.carf.gov.br (producao), Web Origins "+" para CORS automatico. O REURBCAD e public com PKCE e redirect URIs de custom scheme carf://callback para deep links mobile e portas Expo para desenvolvimento. O GEOAPI e bearer-only sem redirect URIs pois apenas valida tokens JWT recebidos dos frontends.
+Seis clients atendem as aplicacoes do ecossistema. O REURBWEB e public com Standard Flow e PKCE, redirect URIs para localhost:5173 (desenvolvimento) e reurbweb.carf.gov.br (producao), Web Origins "+" para CORS automatico. O REURBCAD e public com PKCE e redirect URIs de custom scheme carf://callback para deep links mobile e portas Expo para desenvolvimento. O GEOAPI e bearer-only sem redirect URIs pois apenas valida tokens JWT recebidos dos frontends.
 
-O GEOGIS e confidential com Standard Flow e Service Accounts habilitados, suportando tanto Authorization Code com PKCE quanto Client Credentials. O secret e gerado e armazenado em vault seguro, nunca no Git. O ADMIN e public com PKCE e client roles especificos manage-users, manage-tenants e view-audit-logs. O WEBDOCS e public com auth necessario apenas para secao /dev/ que requer role dev.
+O GEOGIS e confidential com Standard Flow e Service Accounts habilitados, suportando tanto Authorization Code com PKCE quanto Client Credentials. O secret e gerado e armazenado em vault seguro, nunca no Git. O REURBMASTER e public com PKCE e client roles especificos manage-users, manage-tenants e view-audit-logs. O WEBDOCS e public com auth necessario apenas para secao /dev/ que requer role dev.
 
 ## Roles
 

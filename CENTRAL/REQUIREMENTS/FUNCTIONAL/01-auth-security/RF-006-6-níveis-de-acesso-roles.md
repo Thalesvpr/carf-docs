@@ -4,7 +4,7 @@ status: approved
 updated: 2026-01-25
 modules:
   - GEOAPI
-  - GEOWEB
+  - REURBWEB
   - REURBCAD
   - GEOGIS
 ---
@@ -25,5 +25,5 @@ O sistema deve suportar seis niveis hierarquicos de acesso baseados em roles: SU
 
 ## Rastreabilidade
 
-- Modulos: GEOAPI, GEOWEB, REURBCAD, GEOGIS
+- Modulos: GEOAPI, REURBWEB, REURBCAD, GEOGIS
 - Requisitos dependentes: RF-001, RF-005

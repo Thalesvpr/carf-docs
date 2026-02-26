@@ -1,12 +1,12 @@
 ---
 type: leaf
 status: review
-updated: 2026-02-08
+updated: 2026-02-21
 ---
 
 # Frontend Patterns
 
-Os padroes frontend do ecossistema CARF padronizam implementacao entre GEOWEB (React SPA), ADMIN (React Vite SPA) e REURBCAD (React Native Expo), compartilhando logica via bibliotecas @carf/tscore e @carf/ui.
+Os padroes frontend do ecossistema CARF padronizam implementacao entre REURBWEB (React SPA), REURBMASTER (React Vite SPA) e REURBCAD (React Native Expo), compartilhando logica via bibliotecas @carf/tscore e @carf/ui.
 
 ## State Management
 
@@ -18,11 +18,11 @@ Componentes seguem padrao function components com hooks, compound components par
 
 ## Autenticacao e Rotas
 
-O AuthProvider do @carf/tscore/auth/react gerencia sessao OAuth2 com Keycloak, fornecendo isAuthenticated, user, roles e funcoes login/logout via context. ProtectedRoute verifica autenticacao e requiredRoles antes de renderizar, redirecionando para login quando necessario. Rotas usam React Router v6 no GEOWEB e file-based routing no ADMIN, com lazy loading para code-splitting.
+O AuthProvider do @carf/tscore/auth/react gerencia sessao OAuth2 com Keycloak, fornecendo isAuthenticated, user, roles e funcoes login/logout via context. ProtectedRoute verifica autenticacao e requiredRoles antes de renderizar, redirecionando para login quando necessario. Rotas usam React Router v6 no REURBWEB e file-based routing no ADMIN, com lazy loading para code-splitting.
 
 ## Mapas
 
-GEOWEB utiliza React Leaflet para renderizacao de mapas interativos com poligonos de unidades coloridos por status, clustering em zoom baixo via react-leaflet-cluster, popup com informacoes resumidas ao clicar e suporte a tiles XYZ de ortofotos. REURBCAD utiliza react-native-maps com MapView integrada a GPS nativo para captura de coordenadas em campo.
+REURBWEB utiliza React Leaflet para renderizacao de mapas interativos com poligonos de unidades coloridos por status, clustering em zoom baixo via react-leaflet-cluster, popup com informacoes resumidas ao clicar e suporte a ortofotos otimizadas. REURBCAD utiliza react-native-maps com MapView integrada a GPS nativo para captura de coordenadas em campo.
 
 ## Type Safety
 

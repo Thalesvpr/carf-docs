@@ -1,7 +1,7 @@
 ---
 type: leaf
 status: review
-updated: 2026-02-08
+updated: 2026-02-21
 ---
 
 # Orthofotos API - Gerenciamento de Ortofotos
@@ -15,7 +15,6 @@ A Orthofotos API fornece operacoes para upload, processamento assincrono e consu
 | POST | /api/orthofotos/upload | Upload de ortofoto GeoTIFF | 202 Accepted | 413 FILE_TOO_LARGE, 415 UNSUPPORTED_FORMAT | analyst+ |
 | GET | /api/orthofotos/{id} | Obter metadados | 200 | 404 | todos autenticados |
 | GET | /api/orthofotos | Listar ortofotos do tenant | 200 | - | todos autenticados |
-| GET | /api/orthofotos/{id}/tiles/{z}/{x}/{y} | Obter tile PNG 256x256 | 200 image/png | 404 | todos autenticados |
 | GET | /api/orthofotos/jobs/{jobId} | Status do processamento | 200 | 404 | analyst+ |
 
 ## upload (POST /api/orthofotos/upload)
@@ -29,7 +28,7 @@ Response retorna HTTP 202 Accepted (processamento assincrono) com body:
 | ortofotoId | string | UUID do registro criado para a ortofoto |
 | jobId | string | UUID do job Hangfire para acompanhamento |
 
-O processamento gera versao JPEG otimizada para web e tiles XYZ para exibicao no mapa. O client deve usar o jobId para consultar o progresso via getJobStatus.
+O processamento gera versao JPEG otimizada para web. O client deve usar o jobId para consultar o progresso via getJobStatus.
 
 ## list (GET /api/orthofotos)
 
@@ -37,11 +36,7 @@ Lista ortofotos do tenant com paginacao padrao. Aceita query params page, limit 
 
 ## getById (GET /api/orthofotos/{id})
 
-Busca ortofoto por ID. Aceita id string, retorna Promise de Orthophoto com todos os campos incluindo tilesPath e boundsGeojson quando processamento concluido. Lanca NotFoundError 404 se nao existir.
-
-## getTile (GET /api/orthofotos/{id}/tiles/{z}/{x}/{y})
-
-Obtem tile individual no padrao XYZ para exibicao em mapa. Aceita id string, z (zoom level de 12 a 20), x (coluna) e y (linha). Retorna imagem PNG 256x256 pixels com Content-Type image/png. Retorna NotFoundError 404 para tiles inexistentes (areas sem dados). Response inclui Cache-Control com max-age de 86400 (1 dia) pois tiles nao mudam apos processamento. No REURBCAD mobile, tiles sao cacheados localmente para uso offline via tileOverlay do MapComponent do @carf/ui-native.
+Busca ortofoto por ID. Aceita id string, retorna Promise de Orthophoto com todos os campos incluindo boundsGeojson quando processamento concluido. Lanca NotFoundError 404 se nao existir.
 
 ## getJobStatus (GET /api/orthofotos/jobs/{jobId})
 
@@ -54,4 +49,4 @@ Consulta status de processamento assincrono. Aceita jobId string, retorna:
 | error | string ou null | Mensagem de erro quando status FAILED |
 | ortofotoId | string | UUID da ortofoto para referencia cruzada |
 
-O client deve fazer polling periodico (recomendado a cada 5 segundos) enquanto status for PENDING ou PROCESSING. Quando COMPLETED, os campos optimizedPath e tilesPath da Orthophoto estarao preenchidos. Restrito a roles analyst ou superior.
+O client deve fazer polling periodico (recomendado a cada 5 segundos) enquanto status for PENDING ou PROCESSING. Quando COMPLETED, o campo optimizedPath da Orthophoto estara preenchido. Restrito a roles analyst ou superior.

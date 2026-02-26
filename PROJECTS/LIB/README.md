@@ -8,7 +8,7 @@ source: "interno"
 
 # LIB - Bibliotecas Compartilhadas
 
-Bibliotecas TypeScript compartilhadas entre todas as aplicacoes do ecossistema CARF. O pacote [@carf/tscore](./TS/TSCORE/README.md) fornece value objects, validacoes e tipos de dominio. O [@carf/geoapi-client](./TS/GEOAPI-CLIENT/README.md) e um HTTP client type-safe para consumir a GEOAPI. O [@carf/ui](./TS/UI-COMPONENTS/README.md) contem componentes React baseados em shadcn/ui para interfaces consistentes entre GEOWEB, ADMIN e outras aplicacoes web. Todas as bibliotecas sao publicadas no GitHub Packages com scope `@carf`.
+Bibliotecas TypeScript compartilhadas entre todas as aplicacoes do ecossistema CARF. O pacote [@carf/tscore](./TS/TSCORE/README.md) fornece value objects, validacoes e tipos de dominio. O [@carf/geoapi-client](./TS/GEOAPI-CLIENT/README.md) e um HTTP client type-safe para consumir a GEOAPI. O [@carf/ui](./TS/UI-COMPONENTS/README.md) contem componentes React baseados em shadcn/ui para interfaces consistentes entre REURBWEB, ADMIN e outras aplicacoes web. Todas as bibliotecas sao publicadas no GitHub Packages com scope `@carf`.
 
 <!-- GENERATED:START - Nao edite abaixo desta linha -->
 ## Indice por Dominio (55 arquivos)

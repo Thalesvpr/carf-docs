@@ -1,7 +1,7 @@
 ---
 type: leaf
 status: active
-updated: 2026-02-07
+updated: 2026-02-21
 ---
 
 # File Storage
@@ -69,7 +69,7 @@ Pattern geral: `{tenant_id}/{entity_type}/{entity_id}/{uuid}.{ext}`
 | Foto de unidade (thumbnail) | `abc123/units/unit-456/thumb_img-789.jpg` |
 | Documento de titular | `abc123/holders/holder-789/doc-012.pdf` |
 | Ortofoto original | `abc123/orthofotos/orto-345/original.tiff` |
-| Ortofoto processada (tiles) | `abc123/orthofotos/orto-345/tiles/{z}/{x}/{y}.png` |
+| Ortofoto otimizada | `abc123/orthofotos/orto-345/optimized.jpg` |
 | Ortofoto thumbnail | `abc123/orthofotos/orto-345/thumb.png` |
 | Relatorio exportado | `abc123/reports/report-678/export.pdf` |
 | Certidao de legitimacao | `abc123/legitimation/leg-901/certidao.pdf` |

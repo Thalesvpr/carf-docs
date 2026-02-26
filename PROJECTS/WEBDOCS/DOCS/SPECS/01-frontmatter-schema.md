@@ -22,7 +22,7 @@ Schema Zod define campos obrigatorios e opcionais do frontmatter WEBDOCS. Valida
 |-------|------|---------|
 | section | enum | guia, sistema, manuais, api, dev, status, changelog |
 | audience | enum | user, dev |
-| subsection | enum | geoweb, reurbcad, admin |
+| subsection | enum | reurbweb, reurbcad, admin |
 | lastUpdated | date | formato ISO |
 
 ## Navegacao

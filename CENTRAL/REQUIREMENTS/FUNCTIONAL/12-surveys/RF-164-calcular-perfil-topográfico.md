@@ -3,7 +3,7 @@ type: rf
 status: approved
 updated: 2026-01-25
 modules:
-  - GEOWEB
+  - REURBWEB
 ---
 
 # RF-164: Calcular Perfil Topografico
@@ -22,5 +22,5 @@ Sistema deve fornecer ferramenta interativa para calculo de perfil topografico p
 
 ## Rastreabilidade
 
-- Modulos: GEOWEB
+- Modulos: REURBWEB
 - Requisitos dependentes: RF-160, RF-163

@@ -1,7 +1,7 @@
 ---
 type: leaf
 status: active
-updated: 2026-02-07
+updated: 2026-02-21
 ---
 
 # Background Jobs
@@ -37,7 +37,7 @@ Jobs podem ser disparados de duas formas. Fire-and-forget com BackgroundJob.Enqu
 
 | Job | Classe | Fila | Trigger | Cron | Timeout | Retry | Descricao |
 |-----|--------|------|---------|------|---------|-------|-----------|
-| OrtophotoProcessing | OrtophotoProcessingJob | critical | Fire-and-forget (apos upload) | - | 30min | 3x com backoff | Processa GeoTIFF: reprojecao, tile generation, thumbnail |
+| OrtophotoProcessing | OrtophotoProcessingJob | critical | Fire-and-forget (apos upload) | - | 30min | 3x com backoff | Processa GeoTIFF: reprojecao, downscale otimizado, thumbnail |
 | ReportGeneration | ReportGenerationJob | default | Fire-and-forget (solicitacao usuario) | - | 10min | 2x | Gera PDF/CSV/Shapefile |
 | NotificationEmail | NotificationJob | critical | Fire-and-forget | - | 1min | 3x | Envia email individual |
 | NotificationBulk | NotificationJob | low | Fire-and-forget | - | 5min | 1x | Enfileira emails em massa |
@@ -49,7 +49,7 @@ Jobs podem ser disparados de duas formas. Fire-and-forget com BackgroundJob.Enqu
 
 ### Detalhes de Jobs Especificos
 
-**OrtophotoProcessingJob**: Recebe o ID da ortofoto recem-uploadada. Etapas: (1) download do GeoTIFF original do S3, (2) validacao de formato e CRS (deve ser EPSG:4674 SIRGAS 2000), (3) reprojecao se necessario via GDAL, (4) geracao de tiles para visualizacao web (256x256 PNG), (5) geracao de thumbnail 512px, (6) upload dos artefatos processados para S3, (7) atualizacao do status da ortofoto para "processed". Em caso de falha, status atualizado para "failed" com mensagem de erro.
+**OrtophotoProcessingJob**: Recebe o ID da ortofoto recem-uploadada. Etapas: (1) download do GeoTIFF original do S3, (2) validacao de formato e CRS (deve ser EPSG:4674 SIRGAS 2000), (3) reprojecao se necessario via GDAL, (4) geracao de versao otimizada para web (downscale JPEG), (5) geracao de thumbnail 512px, (6) upload dos artefatos processados para S3, (7) atualizacao do status da ortofoto para "processed". Em caso de falha, status atualizado para "failed" com mensagem de erro.
 
 **SyncMonitorJob**: Consulta a tabela de sync_logs para encontrar devices cuja ultima sincronizacao foi ha mais de 7 dias. Para cada device encontrado, enfileira uma NotificationEmail para o coordenador da equipe responsavel. Registra alerta no log estruturado com nivel Warning.
 

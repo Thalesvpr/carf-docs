@@ -23,7 +23,7 @@ Cada permissao e composta de tres partes formando uma permission string: recurso
 | Role | Permissoes Padrao |
 |------|-------------------|
 | SUPER_ADMIN | *.*.all (wildcard irrestrito cross-tenant). |
-| ADMIN | *.*.tenant_only (gestao completa do proprio tenant). |
+| REURBMASTER | *.*.tenant_only (gestao completa do proprio tenant). |
 | MANAGER | units.approve.community_only, processes.approve.community_only, teams.read.tenant_only. |
 | ANALYST | units.*.community_only, holders.*.community_only, documents.*.community_only. |
 | FIELD_COORDINATOR | units.create.team_only, units.read.team_only, documents.create.team_only. |

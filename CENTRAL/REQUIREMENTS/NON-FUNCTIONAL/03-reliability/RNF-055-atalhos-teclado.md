@@ -8,7 +8,7 @@ updated: 2026-01-25
 
 ## Descricao
 
-GEOWEB deve implementar atalhos de teclado para acoes frequentes. Permite usuarios avancados operarem mais eficientemente seguindo convencoes estabelecidas.
+REURBWEB deve implementar atalhos de teclado para acoes frequentes. Permite usuarios avancados operarem mais eficientemente seguindo convencoes estabelecidas.
 
 ## Metricas
 

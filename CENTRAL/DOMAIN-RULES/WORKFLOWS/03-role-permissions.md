@@ -13,7 +13,7 @@ Sistema RBAC com seis niveis hierarquicos de autorizacao, alinhado com Keycloak 
 | Role | Keycloak Name | Nivel | Descricao |
 |------|---------------|-------|-----------|
 | SUPER_ADMIN | super-admin | 6 | Acesso irrestrito incluindo todos os tenants |
-| ADMIN | admin | 5 | Gerencia usuarios, times e configuracoes do tenant |
+| REURBMASTER | admin | 5 | Gerencia usuarios, times e configuracoes do tenant |
 | MANAGER | manager | 4 | Aprova unidades, gerencia processos de legitimacao |
 | ANALYST | analyst | 3 | Revisa e recomenda aprovacao |
 | FIELD_COORDINATOR | field-coordinator | 2 | Coordenador de equipe de campo |

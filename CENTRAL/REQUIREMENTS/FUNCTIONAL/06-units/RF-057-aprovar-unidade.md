@@ -3,7 +3,7 @@ type: rf
 status: approved
 updated: 2026-01-25
 modules:
-  - GEOWEB
+  - REURBWEB
   - GEOAPI
 ---
 
@@ -11,7 +11,7 @@ modules:
 
 ## Descricao
 
-Sistema deve permitir que usuarios com perfil MANAGER aprovem unidades em status PENDING_APPROVAL. Interface GEOWEB exibe botao de aprovacao visivel apenas para gestores ao visualizar detalhes de unidades pendentes. Gestor pode opcionalmente adicionar comentario explicando os motivos da aprovacao. Status alterado automaticamente para APPROVED com registro em historico de auditoria e notificacao automatica ao usuario criador.
+Sistema deve permitir que usuarios com perfil MANAGER aprovem unidades em status PENDING_APPROVAL. Interface REURBWEB exibe botao de aprovacao visivel apenas para gestores ao visualizar detalhes de unidades pendentes. Gestor pode opcionalmente adicionar comentario explicando os motivos da aprovacao. Status alterado automaticamente para APPROVED com registro em historico de auditoria e notificacao automatica ao usuario criador.
 
 ## Criterios de Aceitacao
 
@@ -23,5 +23,5 @@ Sistema deve permitir que usuarios com perfil MANAGER aprovem unidades em status
 
 ## Rastreabilidade
 
-- Modulos: GEOWEB, GEOAPI
+- Modulos: REURBWEB, GEOAPI
 - Requisitos dependentes: RF-056, RF-033

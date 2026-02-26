@@ -16,7 +16,7 @@ Usuarios acessam o sistema pela internet. Assets estaticos sao servidos via CDN.
 
 | Grupo de Pods | Replicas | Servico |
 |---------------|----------|---------|
-| Web Pods | 2 | GEOWEB (React SPA) |
+| Web Pods | 2 | REURBWEB (React SPA) |
 | API Pods | 3 | GEOAPI (.NET 9 REST API) |
 | Auth Pods | 2 | Keycloak (OAuth2/OIDC) |
 | Docs Pods | 1 | WEBDOCS (Astro/Starlight) |

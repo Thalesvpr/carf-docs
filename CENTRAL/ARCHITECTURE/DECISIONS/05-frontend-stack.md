@@ -8,7 +8,7 @@ updated: 2026-01-24
 
 ## Contexto
 
-Portal web deve exibir mapas interativos, formularios complexos e dashboards com metricas. Componentizacao facilita reuso entre GEOWEB e ADMIN. TypeScript desejado para consistencia com bibliotecas compartilhadas. Decisao impacta produtividade e manutencao de longo prazo.
+Portal web deve exibir mapas interativos, formularios complexos e dashboards com metricas. Componentizacao facilita reuso entre REURBWEB e REURBMASTER. TypeScript desejado para consistencia com bibliotecas compartilhadas. Decisao impacta produtividade e manutencao de longo prazo.
 
 ## Decisao
 

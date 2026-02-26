@@ -3,7 +3,7 @@ type: rf
 status: approved
 updated: 2026-01-25
 modules:
-  - GEOWEB
+  - REURBWEB
 ---
 
 # RF-145: Medicao de Distancia
@@ -22,5 +22,5 @@ Sistema deve fornecer ferramenta interativa de medicao de distancia permitindo c
 
 ## Rastreabilidade
 
-- Modulos: GEOWEB
+- Modulos: REURBWEB
 - Requisitos dependentes: RF-053

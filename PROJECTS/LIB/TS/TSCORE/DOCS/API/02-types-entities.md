@@ -1,7 +1,7 @@
 ---
 type: leaf
 status: review
-updated: 2026-02-08
+updated: 2026-02-21
 ---
 
 # Tipos de Entidade
@@ -248,7 +248,6 @@ Interface representando ortofoto de drone vinculada a uma comunidade.
 | communityId | string | sim | UUID da comunidade, nullable se cobre area sem comunidade |
 | originalPath | string | nao | Caminho S3 do GeoTIFF original |
 | optimizedPath | string | sim | Caminho S3 da versao JPEG otimizada |
-| tilesPath | string | sim | Caminho base S3 dos tiles XYZ |
 | fileSize | number | nao | Tamanho do original em bytes |
 | width | number | sim | Largura em pixels |
 | height | number | sim | Altura em pixels |

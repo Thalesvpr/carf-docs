@@ -88,8 +88,8 @@ Role define hierarquia de permissoes com seis niveis organizados em arvore com d
 
 | Valor | Descricao | Herda de |
 |:------|:----------|:---------|
-| SUPER_ADMIN | Acesso total a todos os tenants | ADMIN |
-| ADMIN | Administrador de tenant especifico | MANAGER |
+| SUPER_ADMIN | Acesso total a todos os tenants | REURBMASTER |
+| REURBMASTER | Administrador de tenant especifico | MANAGER |
 | MANAGER | Gestor com poder de decisao | ANALYST, FIELD_COORDINATOR |
 | ANALYST | Analista tecnico de escritorio | - |
 | FIELD_COORDINATOR | Coordenador de equipe de campo | FIELD_CADASTRATOR |

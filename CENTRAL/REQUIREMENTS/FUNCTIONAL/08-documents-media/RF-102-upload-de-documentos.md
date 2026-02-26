@@ -3,7 +3,7 @@ type: rf
 status: approved
 updated: 2026-01-25
 modules:
-  - GEOWEB
+  - REURBWEB
   - REURBCAD
   - GEOAPI
 ---
@@ -24,5 +24,5 @@ Sistema deve permitir upload de documentos em formatos diversos (PDF, DOCX, XLSX
 
 ## Rastreabilidade
 
-- Modulos: GEOWEB, REURBCAD, GEOAPI
+- Modulos: REURBWEB, REURBCAD, GEOAPI
 - Requisitos dependentes: RF-103, RF-104, RF-116

@@ -3,7 +3,7 @@ type: rf
 status: approved
 updated: 2026-01-25
 modules:
-  - GEOWEB
+  - REURBWEB
   - GEOAPI
 ---
 
@@ -11,7 +11,7 @@ modules:
 
 ## Descricao
 
-Sistema deve exibir historico completo e cronologico de todas as alteracoes ocorridas em uma unidade habitacional. Timeline apresenta eventos como criacao inicial, edicoes de campos, mudancas de status, vinculacao de titulares e upload de documentos ou fotos. Cada evento registra timestamp preciso, usuario responsavel, tipo de operacao e valores anteriores e novos quando aplicavel. Interface GEOWEB renderiza timeline em ordem cronologica reversa com icones diferenciados por tipo de evento.
+Sistema deve exibir historico completo e cronologico de todas as alteracoes ocorridas em uma unidade habitacional. Timeline apresenta eventos como criacao inicial, edicoes de campos, mudancas de status, vinculacao de titulares e upload de documentos ou fotos. Cada evento registra timestamp preciso, usuario responsavel, tipo de operacao e valores anteriores e novos quando aplicavel. Interface REURBWEB renderiza timeline em ordem cronologica reversa com icones diferenciados por tipo de evento.
 
 ## Criterios de Aceitacao
 
@@ -23,5 +23,5 @@ Sistema deve exibir historico completo e cronologico de todas as alteracoes ocor
 
 ## Rastreabilidade
 
-- Modulos: GEOWEB, GEOAPI
+- Modulos: REURBWEB, GEOAPI
 - Requisitos dependentes: RF-049, RF-056

@@ -24,9 +24,9 @@ Importar CPF, CNPJ, Email ou Phone de @carf/tscore/validations. Usar construtor 
 
 Importar interfaces usando type keyword como Unit, Holder e Community de @carf/tscore/types. Importar enums como UnitStatus e Role diretamente para uso em comparacoes. Usar tipos em definicoes de estado React, props de componentes e retornos de queries TanStack Query. Tipos garantem autocomplete e previnem erros de digitacao.
 
-## Integracao com GEOWEB
+## Integracao com REURBWEB
 
-GEOWEB importa tipos para TanStack Query tipando retornos de API. Validacoes integram com formularios react-hook-form. AuthProvider envolve App com KeycloakClient configurado. useAuth fornece estado de autenticacao em componentes.
+REURBWEB importa tipos para TanStack Query tipando retornos de API. Validacoes integram com formularios react-hook-form. AuthProvider envolve App com KeycloakClient configurado. useAuth fornece estado de autenticacao em componentes.
 
 ## Integracao com REURBCAD
 

@@ -63,7 +63,7 @@ REQUIREMENT_TYPES: Dict[str, Dict[str, str]] = {
 
 # Ordem dos modulos para agrupamento
 MODULE_ORDER: List[str] = [
-    "GEOWEB",
+    "REURBWEB",
     "REURBCAD",
     "GEOAPI",
     "GEOGIS",

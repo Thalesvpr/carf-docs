@@ -1,7 +1,7 @@
 ---
 type: workflow
 status: approved
-updated: 2026-01-25
+updated: 2026-02-21
 part: 1
 step: 3
 ---
@@ -16,7 +16,6 @@ Processamento da ortofoto recebida, incluindo reducao e geracao de versoes otimi
 2. Backend extrai metadados (EXIF, coordenadas, data captura)
 3. Backend processa e reduz tamanho:
    - Gera versao otimizada para visualizacao web (compressao JPEG/WebP)
-   - Gera tiles para consumo eficiente (piramide de resolucoes)
    - Mantem versao original para analise detalhada
 4. Backend registra metadados no banco de dados
 
@@ -26,7 +25,6 @@ Processamento da ortofoto recebida, incluindo reducao e geracao de versoes otimi
 |--------|-----------|-----|
 | Original | Arquivo original sem alteracao | Analise detalhada |
 | Otimizada | Compressao JPEG/WebP | Visualizacao web |
-| Tiles | Piramide de resolucoes | Navegacao eficiente |
 
 ## Metadados Extraidos
 
@@ -39,7 +37,7 @@ Processamento da ortofoto recebida, incluindo reducao e geracao de versoes otimi
 
 ## Resultado
 
-- Ortofoto processada em multiplas versoes
+- Ortofoto processada em duas versoes (original e otimizada)
 - Metadados extraidos e registrados
 - Pronto para armazenamento em bucket
 

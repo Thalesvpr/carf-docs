@@ -1,7 +1,7 @@
 ---
 type: leaf
 status: approved
-updated: 2026-02-07
+updated: 2026-02-21
 ---
 
 # API Reference
@@ -110,17 +110,14 @@ Request de download (GET /api/documents/{id}/download): retorna HTTP 302 com Loc
 
 | Metodo | Rota | Descricao | Sucesso | Erros | Roles |
 |--------|------|-----------|---------|-------|-------|
-| POST | /api/orthofotos/upload | Upload ortofoto (multipart) | 202 Accepted | 413 FILE_TOO_LARGE, 415 UNSUPPORTED_FORMAT | analyst+ |
+| POST | /api/orthofotos/upload | Upload ortofoto (multipart) | 202 Accepted | 413 FILE_TOO_LARGE, 415 UNSUPPORTED_FORMAT | drone-operator, analyst+ |
 | GET | /api/orthofotos/{id} | Obter metadados | 200 | 404 | todos autenticados |
 | GET | /api/orthofotos | Listar ortofotos do tenant | 200 | - | todos autenticados |
-| GET | /api/orthofotos/{id}/tiles/{z}/{x}/{y} | Obter tile individual | 200 image/png | 404 | todos autenticados |
-| GET | /api/orthofotos/jobs/{jobId} | Status do processamento | 200 | 404 | analyst+ |
+| GET | /api/orthofotos/jobs/{jobId} | Status do processamento | 200 | 404 | drone-operator, analyst+ |
 
 Request de upload (POST /api/orthofotos/upload): multipart/form-data com campo file contendo arquivo GeoTIFF, communityId como UUID opcional e captureDate como string ISO 8601 opcional. Tipo aceito: image/tiff. Tamanho maximo: 500MB para ortofotos. Response retorna HTTP 202 Accepted com body contendo ortofotoId (UUID do registro criado) e jobId (UUID do job Hangfire para acompanhamento). O processamento e assincrono.
 
 Request de status do job (GET /api/orthofotos/jobs/{jobId}): retorna objeto com status (PENDING, PROCESSING, COMPLETED, FAILED), progress como percentual estimado, error como string nullable com mensagem de erro quando FAILED e ortofotoId para referencia cruzada.
-
-Request de tile (GET /api/orthofotos/{id}/tiles/{z}/{x}/{y}): retorna imagem PNG 256x256 pixels com Content-Type image/png. Parametro z e o zoom level (12 a 20), x a coluna e y a linha. Retorna 404 para tiles inexistentes (areas sem dados). Cache-Control com max-age de 1 dia pois tiles nao mudam apos processamento.
 
 ---
 
@@ -147,7 +144,7 @@ Request de status (GET /api/sync/status): retorna objeto com lastSyncAt como tim
 | GET | /api/packages/field | Metadados do pacote | 200 | 403 | field-coordinator, field-cadastrator |
 | GET | /api/packages/field/{id}/download | Download binario do pacote | 200 | 404 | field-coordinator, field-cadastrator |
 
-Request de metadados (GET /api/packages/field): retorna objeto com packageId como UUID, sizeBytes com tamanho estimado, communities como array de nomes das comunidades incluidas, createdAt com timestamp de criacao do pacote e downloadUrl como URL pre-assinada do S3 valida para download unico. O pacote contem: tiles de ortofoto para as comunidades autorizadas do usuario, poligonos GeoJSON de unidades e comunidades e metadados pre-cadastrados de comunidades e unidades existentes.
+Request de metadados (GET /api/packages/field): retorna objeto com packageId como UUID, sizeBytes com tamanho estimado, communities como array de nomes das comunidades incluidas, createdAt com timestamp de criacao do pacote e downloadUrl como URL pre-assinada do S3 valida para download unico. O pacote contem: versao otimizada de ortofoto para as comunidades autorizadas do usuario, poligonos GeoJSON de unidades e comunidades e metadados pre-cadastrados de comunidades e unidades existentes.
 
 Request de download (GET /api/packages/field/{id}/download): retorna binario do pacote compactado em formato ZIP com Content-Type application/zip. A URL pre-assinada expira apos primeiro uso para evitar compartilhamento indevido.
 

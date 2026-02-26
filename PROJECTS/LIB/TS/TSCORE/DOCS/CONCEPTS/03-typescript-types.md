@@ -6,7 +6,7 @@ updated: 2026-02-08
 
 # Tipos TypeScript
 
-Interfaces e enums de dominio CARF exportados pelo modulo @carf/tscore/types, garantindo type safety e autocomplete em todos os frontends do ecossistema. Os tipos sao a fundacao compartilhada entre REURBCAD, GEOWEB, ADMIN e as bibliotecas @carf/geoapi-client e @carf/ui-native.
+Interfaces e enums de dominio CARF exportados pelo modulo @carf/tscore/types, garantindo type safety e autocomplete em todos os frontends do ecossistema. Os tipos sao a fundacao compartilhada entre REURBCAD, REURBWEB, ADMIN e as bibliotecas @carf/geoapi-client e @carf/ui-native.
 
 ## Mapeamento com Backend .NET e PostgreSQL
 
@@ -24,4 +24,4 @@ Os tipos seguem o versionamento semantico do pacote @carf/tscore. Breaking chang
 
 ## Uso nos Projetos
 
-O REURBCAD importa types para tipar dados no WatermelonDB, garantindo que o schema local espelhe o PostgreSQL. O @carf/geoapi-client gera seus proprios tipos de request/response via orval a partir do swagger.json e usa os enums do tscore para logica de negocio. O @carf/ui-native consome os types em props de componentes de dominio como UnitCard e HolderCard. O GEOWEB e ADMIN usam os types em formularios e listagens. A fronteira e clara: tscore fornece modelos de dominio completos (para WatermelonDB, logica de campo, offline), enums com logica de negocio, auth e validacoes; geoapi-client fornece tipos de API (request/response) e hooks React Query.
+O REURBCAD importa types para tipar dados no WatermelonDB, garantindo que o schema local espelhe o PostgreSQL. O @carf/geoapi-client gera seus proprios tipos de request/response via orval a partir do swagger.json e usa os enums do tscore para logica de negocio. O @carf/ui-native consome os types em props de componentes de dominio como UnitCard e HolderCard. O REURBWEB e REURBMASTER usam os types em formularios e listagens. A fronteira e clara: tscore fornece modelos de dominio completos (para WatermelonDB, logica de campo, offline), enums com logica de negocio, auth e validacoes; geoapi-client fornece tipos de API (request/response) e hooks React Query.

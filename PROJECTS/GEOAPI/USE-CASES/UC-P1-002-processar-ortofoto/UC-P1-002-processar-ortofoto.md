@@ -4,7 +4,7 @@ type: UC
 modules: []
 status: review
 created: 2026-01-24
-updated: 2026-01-24
+updated: 2026-02-21
 workflow: PARTE-1
 ---
 
@@ -33,24 +33,21 @@ Este UC implementa passo 3 do [WORKFLOW-MESTRE](../../../../CENTRAL/WORKFLOW-MES
 2. Backend extrai metadados (EXIF, coordenadas, data captura)
 3. Backend valida georreferenciamento
 4. Backend gera versao otimizada para web (JPEG/WebP comprimido)
-5. Backend gera tiles para consumo eficiente (piramide de resolucoes)
-6. Backend mantem versao original para analise detalhada
-7. Backend registra metadados no banco de dados
-8. Backend notifica conclusao do processamento
-9. Sistema aciona armazenamento (UC-P1-003)
+5. Backend mantem versao original para analise detalhada
+6. Backend registra metadados no banco de dados
+7. Backend notifica conclusao do processamento
+8. Sistema aciona armazenamento (UC-P1-003)
 
 ## Fluxos de Excecao
 
 - FE-001: Ortofoto sem georreferenciamento valido
-- FE-002: Falha na geracao de tiles
-- FE-003: Espaco insuficiente no bucket
-- FE-004: Timeout no processamento
+- FE-002: Espaco insuficiente no bucket
+- FE-003: Timeout no processamento
 
 ## Pos-condicoes
 
 - Versao original preservada
 - Versao otimizada gerada
-- Tiles gerados
 - Metadados registrados no banco
 
 ## Regras de Negocio
@@ -59,4 +56,3 @@ Este UC implementa passo 3 do [WORKFLOW-MESTRE](../../../../CENTRAL/WORKFLOW-MES
 |-------|-----------|
 | RN-01 | Backend SEMPRE reduz tamanho da ortofoto |
 | RN-02 | Versao original DEVE ser preservada |
-| RN-03 | Tiles DEVEM seguir padrao de piramide |

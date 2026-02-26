@@ -6,7 +6,7 @@ updated: 2026-02-08
 
 # Overview
 
-A GEOAPI e o backend REST API do ecossistema CARF, construido em .NET 9 seguindo Clean Architecture com CQRS via MediatR e Domain-Driven Design. Serve como unica fonte de dados para todos os clientes: GEOWEB (React SPA para analistas), REURBCAD (React Native para campo), ADMIN (React Vite para administracao), GEOGIS (plugin QGIS para analise espacial) e WEBDOCS (portal de documentacao).
+A GEOAPI e o backend REST API do ecossistema CARF, construido em .NET 9 seguindo Clean Architecture com CQRS via MediatR e Domain-Driven Design. Serve como unica fonte de dados para todos os clientes: REURBWEB (React SPA para analistas), REURBCAD (React Native para campo), REURBMASTER (React Vite para administracao), GEOGIS (plugin QGIS para analise espacial) e WEBDOCS (portal de documentacao).
 
 ## Quatro Camadas
 

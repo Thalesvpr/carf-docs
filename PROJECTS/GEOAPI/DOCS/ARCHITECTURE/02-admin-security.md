@@ -6,7 +6,7 @@ updated: 2026-02-08
 
 # Admin Security
 
-Os endpoints /api/admin da GEOAPI implementam 7 camadas de seguranca para proteger operacoes administrativas sensiveis de gerenciamento de tenants, usuarios, roles e configuracoes, consumidas pelo console ADMIN.
+Os endpoints /api/admin da GEOAPI implementam 7 camadas de seguranca para proteger operacoes administrativas sensiveis de gerenciamento de tenants, usuarios, roles e configuracoes, consumidas pelo console REURBMASTER.
 
 ## Decisao Arquitetural
 
@@ -14,7 +14,7 @@ A decisao de usar SPA React Vite com PKCE flow conectando ao backend .NET foi mo
 
 ## Fluxo de Requisicao
 
-O fluxo inicia quando o ADMIN SPA envia POST /api/admin/users com Bearer JWT. O AdminController com Authorize(Roles = "admin, super-admin") valida o token e a role. O handler via MediatR processa o command com FluentValidation. O KeycloakAdminService usa client_secret confidencial para comunicar com a Keycloak Admin REST API. O response retorna ao ADMIN com auditoria registrada automaticamente pelo AuditLoggingBehavior.
+O fluxo inicia quando o REURBMASTER SPA envia POST /api/admin/users com Bearer JWT. O AdminController com Authorize(Roles = "admin, super-admin") valida o token e a role. O handler via MediatR processa o command com FluentValidation. O KeycloakAdminService usa client_secret confidencial para comunicar com a Keycloak Admin REST API. O response retorna ao ADMIN com auditoria registrada automaticamente pelo AuditLoggingBehavior.
 
 ## Sete Camadas de Seguranca
 

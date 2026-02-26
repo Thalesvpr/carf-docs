@@ -3,7 +3,7 @@ type: rf
 status: approved
 updated: 2026-01-25
 modules:
-  - GEOWEB
+  - REURBWEB
   - GEOAPI
   - REURBCAD
 ---
@@ -24,5 +24,5 @@ Sistema deve permitir criacao de registros de levantamento topografico documenta
 
 ## Rastreabilidade
 
-- Modulos: GEOWEB, GEOAPI, REURBCAD
+- Modulos: REURBWEB, GEOAPI, REURBCAD
 - Requisitos dependentes: RF-017, RF-102

@@ -4,7 +4,7 @@ status: approved
 updated: 2026-01-25
 modules:
   - GEOAPI
-  - GEOWEB
+  - REURBWEB
 ---
 
 # RF-010: ANALYST - Cadastro e Edicao
@@ -23,5 +23,5 @@ Usuarios com role ANALYST podem cadastrar e editar unidades, titulares e documen
 
 ## Rastreabilidade
 
-- Modulos: GEOAPI, GEOWEB
+- Modulos: GEOAPI, REURBWEB
 - Requisitos dependentes: RF-006

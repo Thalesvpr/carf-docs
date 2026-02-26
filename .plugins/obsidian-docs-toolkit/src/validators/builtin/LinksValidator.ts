@@ -38,7 +38,7 @@ export class LinksValidator extends LocalValidator {
       }
 
       // Skip route links (portal routes starting with "/")
-      // These are web routes like /manuais/geoweb/, /guia/aprovar-unidade/
+      // These are web routes like /manuais/reurbweb/, /guia/aprovar-unidade/
       // They are NOT vault file paths, so we cannot validate them
       if (this.isRouteLink(link.target)) {
         continue;
@@ -72,7 +72,7 @@ export class LinksValidator extends LocalValidator {
    * not relative file paths within the vault.
    *
    * Examples:
-   * - /manuais/geoweb/ → route link (skip)
+   * - /manuais/reurbweb/ → route link (skip)
    * - /guia/aprovar-unidade/ → route link (skip)
    * - //cdn.site.com/x → protocol-relative URL (NOT a route, treat as external)
    * - ./README.md → relative link (validate)

@@ -54,7 +54,7 @@ Conforme planejado originalmente. Exigiria manter 13+ classes de endpoint, dezen
 - Types e hooks sempre sincronizados com o backend — basta rodar `bun run generate`
 - Novos endpoints no backend refletem automaticamente no client apos regeneracao
 - Menos codigo manual = menos bugs de sincronia
-- Hooks React Query prontos para uso no GEOWEB
+- Hooks React Query prontos para uso no REURBWEB
 
 ### Negativas
 

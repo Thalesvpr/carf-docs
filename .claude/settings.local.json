@@ -104,7 +104,13 @@
       "Bash(\"C:\\\\Users\\\\omnia\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\platform-tools\\\\adb.exe\" devices)",
       "Bash(cmd /c \"dir %USERPROFILE%\\\\.android\\\\debug.keystore\")",
       "Bash(bun run:*)",
-      "Bash(head:*)"
+      "Bash(head:*)",
+      "Bash(dotnet build:*)",
+      "Bash(tasklist:*)",
+      "Bash(dotnet ef database update:*)",
+      "Bash(npx vite build)",
+      "Bash(dotnet run:*)",
+      "Bash(for pw in \"carf\" \"password\" \"123456\" \"admin\" \"Dev@123\" \"carf123\" \"changeme\")"
     ],
     "deny": [],
     "ask": []

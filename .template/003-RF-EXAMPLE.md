@@ -4,7 +4,7 @@ status: review
 updated: 2026-01-22
 modules:
   - GEOAPI
-  - GEOWEB
+  - REURBWEB
 ---
 
 # RF-049: Criar Unidade Habitacional
@@ -24,6 +24,6 @@ O sistema deve permitir a criacao de unidades habitacionais vinculadas a uma com
 
 ## Rastreabilidade
 
-- Modulos: GEOAPI, GEOWEB, REURBCAD
+- Modulos: GEOAPI, REURBWEB, REURBCAD
 - User Stories: US-014, US-040
 - Requisitos dependentes: RF-034 (comunidade deve existir)

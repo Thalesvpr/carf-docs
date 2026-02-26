@@ -32,7 +32,7 @@ Alem de roles e tenant, equipes de campo tem acesso restrito a comunidades espec
 
 A tabela abaixo detalha as permissoes de cada role para cada endpoint da API. Os valores indicam o escopo de acesso: "Proprias" (registros criados pelo usuario), "Equipe" (registros de membros da equipe), "Todas tenant" (todos os registros do tenant), "Todas" (todos os registros de todos os tenants), "Tenant" (operacao restrita ao proprio tenant), "Autorizadas" (comunidades com autorizacao explicita via community_authorizations).
 
-| Endpoint | Metodo | FIELD_CADASTRATOR | FIELD_COORDINATOR | ANALYST | MANAGER | ADMIN | SUPER_ADMIN |
+| Endpoint | Metodo | FIELD_CADASTRATOR | FIELD_COORDINATOR | ANALYST | MANAGER | REURBMASTER | SUPER_ADMIN |
 |----------|--------|-------------------|-------------------|---------|---------|-------|-------------|
 | /api/units | GET | Proprias | Equipe | Todas tenant | Todas tenant | Todas tenant | Todas |
 | /api/units | POST | Sim | Sim | Sim | Sim | Sim | Sim |
@@ -52,7 +52,7 @@ A tabela abaixo detalha as permissoes de cada role para cada endpoint da API. Os
 | /api/legitimation/{id}/approve | POST | Nao | Nao | Nao | Sim | Sim | Sim |
 | /api/reports | POST | Nao | Nao | Sim | Sim | Sim | Sim |
 
-Os endpoints de sync (/api/sync/*) sao exclusivos para roles de campo (FIELD_CADASTRATOR e FIELD_COORDINATOR) pois apenas o app mobile REURBCAD utiliza o protocolo offline-first. Roles de analise, gestao e administracao acessam a GEOAPI diretamente via GEOWEB ou ADMIN, que operam sempre online.
+Os endpoints de sync (/api/sync/*) sao exclusivos para roles de campo (FIELD_CADASTRATOR e FIELD_COORDINATOR) pois apenas o app mobile REURBCAD utiliza o protocolo offline-first. Roles de analise, gestao e administracao acessam a GEOAPI diretamente via REURBWEB ou ADMIN, que operam sempre online.
 
 A restricao "Proprias (Draft)" significa que o usuario so pode editar registros criados por ele e apenas enquanto estiverem no status DRAFT. A restricao "Equipe (Draft)" estende isso para registros de qualquer membro da equipe coordenada.
 
@@ -92,7 +92,7 @@ A configuracao CORS varia por ambiente para balancear seguranca e praticidade no
 | Ambiente | AllowedOrigins | AllowCredentials | AllowedHeaders | AllowedMethods |
 |----------|---------------|-----------------|----------------|----------------|
 | Development | http://localhost:3000, http://localhost:5173, http://localhost:4321 | true | Authorization, Content-Type, X-Tenant-Id, X-Request-Id | GET, POST, PUT, DELETE, PATCH, OPTIONS |
-| Staging | https://staging.geoweb.carf.dev, https://staging.admin.carf.dev, https://staging.webdocs.carf.dev | true | Authorization, Content-Type, X-Tenant-Id, X-Request-Id | GET, POST, PUT, DELETE, PATCH, OPTIONS |
-| Production | https://geoweb.carf.gov.br, https://admin.carf.gov.br, https://webdocs.carf.gov.br | true | Authorization, Content-Type, X-Tenant-Id, X-Request-Id | GET, POST, PUT, DELETE, PATCH, OPTIONS |
+| Staging | https://staging.reurbweb.carf.dev, https://staging.admin.carf.dev, https://staging.webdocs.carf.dev | true | Authorization, Content-Type, X-Tenant-Id, X-Request-Id | GET, POST, PUT, DELETE, PATCH, OPTIONS |
+| Production | https://reurbweb.carf.gov.br, https://admin.carf.gov.br, https://webdocs.carf.gov.br | true | Authorization, Content-Type, X-Tenant-Id, X-Request-Id | GET, POST, PUT, DELETE, PATCH, OPTIONS |
 
-O app mobile REURBCAD nao precisa de CORS pois faz requests nativos via HTTP client, sem restricoces de same-origin policy do navegador. O AllowCredentials e habilitado em todos os ambientes para suportar envio do cookie de sessao do Keycloak durante o fluxo Authorization Code com PKCE. O header X-Tenant-Id e enviado explicitamente pelo GEOWEB e ADMIN para indicar o tenant selecionado. O header X-Request-Id e um correlation ID para rastreamento de requests distribuidos.
+O app mobile REURBCAD nao precisa de CORS pois faz requests nativos via HTTP client, sem restricoces de same-origin policy do navegador. O AllowCredentials e habilitado em todos os ambientes para suportar envio do cookie de sessao do Keycloak durante o fluxo Authorization Code com PKCE. O header X-Tenant-Id e enviado explicitamente pelo REURBWEB e REURBMASTER para indicar o tenant selecionado. O header X-Request-Id e um correlation ID para rastreamento de requests distribuidos.

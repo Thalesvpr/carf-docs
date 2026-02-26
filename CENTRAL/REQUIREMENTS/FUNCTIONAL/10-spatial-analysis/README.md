@@ -6,7 +6,7 @@ updated: 2026-01-25
 
 # Analise Espacial
 
-Requisitos funcionais para ferramentas de analise espacial e interacao com mapa no ecossistema CARF. Define operacoes de busca espacial, medicoes, buffer, interseccao e controles de visualizacao de camadas, conforme WORKFLOW-MESTRE onde dados geoespaciais sao armazenados em PostGIS e renderizados via GEOWEB.
+Requisitos funcionais para ferramentas de analise espacial e interacao com mapa no ecossistema CARF. Define operacoes de busca espacial, medicoes, buffer, interseccao e controles de visualizacao de camadas, conforme WORKFLOW-MESTRE onde dados geoespaciais sao armazenados em PostGIS e renderizados via REURBWEB.
 
 Os requisitos [RF-142](./RF-142-busca-espacial-de-features.md) a [RF-144](./RF-144-análise-espacial-intersect.md) cobrem busca e analise espacial (buffer, intersect). Os requisitos [RF-145](./RF-145-medição-de-distância.md) e [RF-146](./RF-146-medição-de-área.md) tratam ferramentas de medicao interativa. O requisito [RF-147](./RF-147-snap-to-features.md) define snap para precisao topologica. Os requisitos [RF-148](./RF-148-ordenação-de-camadas.md) a [RF-150](./RF-150-zoom-para-camada.md) cobrem controles de camadas (ordem, visibilidade, zoom). Os requisitos [RF-151](./RF-151-popup-de-feature.md) e [RF-152](./RF-152-seleção-múltipla-de-features.md) tratam interacao com features no mapa.
 

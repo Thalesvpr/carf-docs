@@ -14,7 +14,7 @@ Especificacao da estrutura de diretorios e arquivos do codigo fonte do WEBDOCS, 
 |-----------|-----------|
 | src/content/docs/guia/ | Paginas de guia do usuario (MDX) |
 | src/content/docs/sistema/ | Paginas sobre o sistema CARF |
-| src/content/docs/manuais/ | Subpastas geoweb/, reurbcad/, admin/ |
+| src/content/docs/manuais/ | Subpastas reurbweb/, reurbcad/, admin/ |
 | src/content/docs/api/ | Documentacao de API |
 | src/content/docs/dev/ | Documentacao para desenvolvedores |
 | src/content/docs/status/ | Pagina de status (single page) |

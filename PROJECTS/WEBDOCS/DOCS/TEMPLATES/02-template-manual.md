@@ -6,7 +6,7 @@ updated: 2026-02-07
 
 # Template de Manual
 
-Template para paginas da secao /manuais/ que documentam uso das aplicacoes GEOWEB, REURBCAD e ADMIN.
+Template para paginas da secao /manuais/ que documentam uso das aplicacoes REURBWEB, REURBCAD e REURBMASTER.
 
 Frontmatter obrigatorio define title com nome da funcionalidade ou fluxo documentado, description com resumo de 1-2 linhas, source apontando para doc de feature no PROJECTS correspondente, sidebar com order e label, e draft false.
 
@@ -15,8 +15,8 @@ Frontmatter obrigatorio define title com nome da funcionalidade ou fluxo documen
 | Campo | Obrigatorio | Descricao | Exemplo |
 |-------|-------------|-----------|---------|
 | title | Sim | Nome da funcionalidade | Cadastrar Unidade Habitacional |
-| description | Sim | Resumo 1-2 linhas | Passo a passo para registrar unidade no GeoWeb |
-| source | Sim | Path doc feature em PROJECTS | PROJECTS/GEOWEB/DOCS/FEATURES/02-unit-crud.md |
+| description | Sim | Resumo 1-2 linhas | Passo a passo para registrar unidade no ReurbWeb |
+| source | Sim | Path doc feature em PROJECTS | PROJECTS/REURBWEB/DOCS/FEATURES/02-unit-crud.md |
 | sidebar.order | Sim | Posicao na navegacao | 3 |
 | sidebar.label | Sim | Label curto | Cadastrar Unidade |
 | draft | Sim | false para publicar | false |
@@ -35,4 +35,4 @@ Secao Ver Tambem usa CardGrid com Cards linkando para funcionalidades relacionad
 
 ## Exemplo de Frontmatter
 
-Para manual de cadastro de unidade: title seria Cadastrar Unidade Habitacional, description seria Passo a passo completo para cadastrar nova unidade habitacional no GeoWeb com desenho de geometria e preenchimento de dados, source seria PROJECTS/GEOWEB/DOCS/FEATURES/02-unit-crud.md, sidebar com order 3 e label Cadastrar Unidade, draft false.
+Para manual de cadastro de unidade: title seria Cadastrar Unidade Habitacional, description seria Passo a passo completo para cadastrar nova unidade habitacional no ReurbWeb com desenho de geometria e preenchimento de dados, source seria PROJECTS/REURBWEB/DOCS/FEATURES/02-unit-crud.md, sidebar com order 3 e label Cadastrar Unidade, draft false.

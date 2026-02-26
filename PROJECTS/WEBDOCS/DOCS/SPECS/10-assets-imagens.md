@@ -8,7 +8,7 @@ updated: 2026-01-21
 
 Organização de screenshots, diagramas e outros assets visuais garantindo consistência e performance.
 
-Estrutura de pastas em public/images/ organiza assets por seção e subsection. Pasta manuais/ subdivide em geoweb/, reurbcad/, e admin/. Pasta sistema/ contém diagramas de fluxo e arquitetura. Pasta changelog/ contém screenshots de novas features por versão.
+Estrutura de pastas em public/images/ organiza assets por seção e subsection. Pasta manuais/ subdivide em reurbweb/, reurbcad/, e admin/. Pasta sistema/ contém diagramas de fluxo e arquitetura. Pasta changelog/ contém screenshots de novas features por versão.
 
 Nomenclatura de arquivos usa kebab-case descritivo: tela-cadastro-unidade.png, fluxo-aprovacao.svg, botao-salvar-destacado.png. Nome deve indicar conteúdo sem precisar abrir arquivo.
 

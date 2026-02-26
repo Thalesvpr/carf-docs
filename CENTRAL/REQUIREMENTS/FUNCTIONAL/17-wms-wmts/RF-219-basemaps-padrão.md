@@ -3,7 +3,7 @@ type: rf
 status: approved
 updated: 2026-01-25
 modules:
-  - GEOWEB
+  - REURBWEB
 ---
 
 # RF-219: Basemaps Padrao
@@ -22,5 +22,5 @@ Sistema deve oferecer conjunto predefinido de basemaps essenciais garantindo fun
 
 ## Rastreabilidade
 
-- Modulos: GEOWEB
+- Modulos: REURBWEB
 - Requisitos dependentes: RF-220

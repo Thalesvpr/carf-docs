@@ -6,7 +6,7 @@ updated: 2026-02-08
 
 # Admin Controller
 
-O AdminController serve como proxy seguro para a Keycloak Admin API, permitindo que o console ADMIN gerencie usuarios, roles e tenants sem expor client_secret no frontend. A rota base e /api/admin. Todos os endpoints requerem role admin ou super-admin. O backend utiliza Keycloak Admin Client com client credentials flow para comunicar com a Admin API do Keycloak.
+O AdminController serve como proxy seguro para a Keycloak Admin API, permitindo que o console REURBMASTER gerencie usuarios, roles e tenants sem expor client_secret no frontend. A rota base e /api/admin. Todos os endpoints requerem role admin ou super-admin. O backend utiliza Keycloak Admin Client com client credentials flow para comunicar com a Admin API do Keycloak.
 
 ## Endpoints
 

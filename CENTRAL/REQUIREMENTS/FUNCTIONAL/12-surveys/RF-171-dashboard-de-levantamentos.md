@@ -3,7 +3,7 @@ type: rf
 status: approved
 updated: 2026-01-25
 modules:
-  - GEOWEB
+  - REURBWEB
 ---
 
 # RF-171: Dashboard de Levantamentos
@@ -22,5 +22,5 @@ Sistema deve disponibilizar painel de controle para visualizacao de estatisticas
 
 ## Rastreabilidade
 
-- Modulos: GEOWEB
+- Modulos: REURBWEB
 - Requisitos dependentes: RF-157, RF-159

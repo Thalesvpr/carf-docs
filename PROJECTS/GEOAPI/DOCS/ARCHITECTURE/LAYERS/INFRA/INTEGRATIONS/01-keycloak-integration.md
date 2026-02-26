@@ -6,7 +6,7 @@ updated: 2026-02-07
 
 # Keycloak Integration
 
-GEOAPI integra com Keycloak como client bearer-only, o que significa que nao autentica usuarios diretamente nem emite tokens. Recebe tokens JWT emitidos por outros clients (geoweb, reurbcad, admin) e valida assinatura, lifetime e claims antes de processar cada requisicao. O client ID no Keycloak e `geoapi`, configurado sem secret (bearer-only nao precisa) com Authority apontando para `https://keycloak.carf.com.br/realms/carf` e Audience `geoapi`.
+GEOAPI integra com Keycloak como client bearer-only, o que significa que nao autentica usuarios diretamente nem emite tokens. Recebe tokens JWT emitidos por outros clients (reurbweb, reurbcad, admin) e valida assinatura, lifetime e claims antes de processar cada requisicao. O client ID no Keycloak e `geoapi`, configurado sem secret (bearer-only nao precisa) com Authority apontando para `https://keycloak.carf.com.br/realms/carf` e Audience `geoapi`.
 
 A configuracao .NET usa `AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer()` com `ValidateIssuer`, `ValidateAudience` e `ValidateLifetime` todos habilitados e `ClockSkew = TimeSpan.Zero` para validacao estrita de expiracao. O middleware automaticamente busca as chaves publicas do Keycloak via endpoint JWKS (`/protocol/openid-connect/certs`) e verifica assinatura RS256 do token. Se o token for invalido, expirado ou com audience errada, retorna 401 Unauthorized sem processar o request.
 
@@ -14,4 +14,4 @@ TenantContext extrai claims do JWT autenticado via `IHttpContextAccessor`. As tr
 
 Autorizacao por role usa `[Authorize(Roles = "admin,super-admin")]` nos controllers .NET, que valida contra o array `realm_access.roles` do token. Client roles especificas do client `admin` (manage-users, manage-tenants, view-audit-logs) sao verificadas via `resource_access.admin.roles` para endpoints de administracao.
 
-GEOAPI tambem atua como proxy seguro para a Keycloak Admin REST API, permitindo que o sistema ADMIN (SPA publica, sem secrets) gerencie usuarios, roles e tenants via endpoints `/api/admin/*`. O GEOAPI valida que o usuario tem role admin ou superior, e entao faz chamadas a Admin API do Keycloak usando credenciais de servico configuradas no backend (separadas do client bearer-only).
+GEOAPI tambem atua como proxy seguro para a Keycloak Admin REST API, permitindo que o sistema REURBMASTER (SPA publica, sem secrets) gerencie usuarios, roles e tenants via endpoints `/api/admin/*`. O GEOAPI valida que o usuario tem role admin ou superior, e entao faz chamadas a Admin API do Keycloak usando credenciais de servico configuradas no backend (separadas do client bearer-only).

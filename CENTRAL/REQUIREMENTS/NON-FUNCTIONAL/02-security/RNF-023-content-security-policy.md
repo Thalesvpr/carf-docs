@@ -8,7 +8,7 @@ updated: 2026-01-25
 
 ## Descricao
 
-GEOWEB deve implementar CSP via headers HTTP para prevenir XSS, clickjacking e injecao de codigo. Camada adicional de defesa alem da sanitizacao de inputs.
+REURBWEB deve implementar CSP via headers HTTP para prevenir XSS, clickjacking e injecao de codigo. Camada adicional de defesa alem da sanitizacao de inputs.
 
 ## Metricas
 

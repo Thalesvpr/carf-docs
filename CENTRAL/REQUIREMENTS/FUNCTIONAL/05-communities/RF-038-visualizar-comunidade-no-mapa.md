@@ -3,7 +3,7 @@ type: rf
 status: approved
 updated: 2026-01-25
 modules:
-  - GEOWEB
+  - REURBWEB
 ---
 
 # RF-038: Visualizar Comunidade no Mapa
@@ -22,5 +22,5 @@ Usuario pode visualizar comunidade no mapa web interativo onde poligono da comun
 
 ## Rastreabilidade
 
-- Modulos: GEOWEB
+- Modulos: REURBWEB
 - Requisitos dependentes: RF-034, RF-046

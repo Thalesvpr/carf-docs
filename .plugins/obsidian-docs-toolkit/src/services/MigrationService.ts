@@ -114,7 +114,7 @@ export class MigrationService {
     // Look for footer patterns like:
     // ---
     // **Status:** Review
-    // **Módulos:** GEOAPI, GEOWEB
+    // **Módulos:** GEOAPI, REURBWEB
     // **Epic:** authentication
     // ---
 

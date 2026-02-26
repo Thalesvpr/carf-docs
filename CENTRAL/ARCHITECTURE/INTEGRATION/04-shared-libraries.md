@@ -12,4 +12,4 @@ O pacote @carf/tscore contem utilitarios TypeScript como validadores de CPF/CNPJ
 
 ## Clientes de API
 
-O pacote geoapi-client fornece cliente TypeScript tipado para GEOAPI gerado automaticamente a partir do OpenAPI spec. Inclui interceptors para autenticacao, retry, e tratamento de erros. Usado por GEOWEB, ADMIN e REURBCAD garantindo consistencia na comunicacao com backend e tipagem forte de payloads.
+O pacote geoapi-client fornece cliente TypeScript tipado para GEOAPI gerado automaticamente a partir do OpenAPI spec. Inclui interceptors para autenticacao, retry, e tratamento de erros. Usado por REURBWEB, REURBMASTER e REURBCAD garantindo consistencia na comunicacao com backend e tipagem forte de payloads.

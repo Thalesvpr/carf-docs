@@ -1,7 +1,7 @@
 ---
 type: leaf
 status: approved
-updated: 2026-02-07
+updated: 2026-02-21
 ---
 
 # Database Schema
@@ -314,7 +314,7 @@ Constraints: CHECK garantindo que exatamente um entre team_id e account_id esta 
 
 ## 12. orthofotos — PLANEJADA
 
-Ortofotos de drone vinculadas opcionalmente a uma comunidade. Armazena metadados do arquivo original e das versoes processadas (otimizada para web e tiles para o mapa). O processamento e assincrono via Hangfire.
+Ortofotos de drone vinculadas opcionalmente a uma comunidade. Armazena metadados do arquivo original e da versao otimizada para web. O processamento e assincrono via Hangfire.
 
 | Coluna | Tipo PostgreSQL | Nullable | Default | Descricao |
 |--------|----------------|----------|---------|-----------|
@@ -323,7 +323,6 @@ Ortofotos de drone vinculadas opcionalmente a uma comunidade. Armazena metadados
 | community_id | uuid | sim | null | FK para communities. Nullable se ortofoto cobre area sem comunidade cadastrada. |
 | original_path | varchar(500) | nao | - | Caminho S3 do arquivo GeoTIFF original. |
 | optimized_path | varchar(500) | sim | null | Caminho S3 da versao JPEG otimizada para web. Preenchido apos processamento. |
-| tiles_path | varchar(500) | sim | null | Caminho base S3 dos tiles XYZ. Preenchido apos processamento. |
 | file_size | bigint | nao | - | Tamanho do arquivo original em bytes. |
 | width | int | sim | null | Largura em pixels. Extraido via GDAL apos processamento. |
 | height | int | sim | null | Altura em pixels. |

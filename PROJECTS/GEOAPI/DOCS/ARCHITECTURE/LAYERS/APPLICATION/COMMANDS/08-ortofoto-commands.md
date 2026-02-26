@@ -1,12 +1,12 @@
 ---
 type: leaf
 status: review
-updated: 2026-02-09
+updated: 2026-02-21
 ---
 
 # Ortofoto Commands
 
-Os commands de ortofotos representam operacoes de ingestao e processamento assincrono de imagens aereas GeoTIFF. A ingestao pode ocorrer de duas formas: upload direto de arquivo via multipart/form-data ou submissao de link Pix4D para download automatico. Ambos os fluxos armazenam o arquivo original no S3 e agendam processamento via Hangfire. O processamento gera tiles XYZ e versao otimizada para web.
+Os commands de ortofotos representam operacoes de ingestao e processamento assincrono de imagens aereas GeoTIFF. A ingestao pode ocorrer de duas formas: upload direto de arquivo via multipart/form-data ou submissao de link Pix4D para download automatico. Ambos os fluxos armazenam o arquivo original no S3 e agendam processamento via Hangfire. O processamento gera versao otimizada para web.
 
 ---
 
@@ -30,7 +30,7 @@ Erros possiveis: FILE_TOO_LARGE para arquivos acima de 500MB, UNSUPPORTED_FORMAT
 |-----------|------|-------------|-----------|
 | OrtofotoId | Guid | sim | Identificador da ortofoto a processar |
 
-O handler e executado de forma assincrona via Hangfire. Atualiza processing_status para PROCESSING. Utiliza GDAL para extrair metadados (width, height, srid, bounds_geojson). Gera versao JPEG otimizada para visualizacao web e armazena no S3 em optimized_path. Gera tiles XYZ para zoom levels 12 a 20 como imagens PNG 256x256 pixels, armazenando no S3 sob tiles_path. Ao concluir, atualiza processing_status para COMPLETED e preenche processed_at. Em caso de erro, atualiza para FAILED e registra mensagem em processing_error.
+O handler e executado de forma assincrona via Hangfire. Atualiza processing_status para PROCESSING. Utiliza GDAL para extrair metadados (width, height, srid, bounds_geojson). Gera versao JPEG otimizada para visualizacao web e armazena no S3 em optimized_path. Ao concluir, atualiza processing_status para COMPLETED e preenche processed_at. Em caso de erro, atualiza para FAILED e registra mensagem em processing_error.
 
 Emite OrtofotoProcessedEvent com OrtofotoId quando COMPLETED ou OrtofotoProcessingFailedEvent quando FAILED.
 

@@ -8,7 +8,7 @@ updated: 2026-01-25
 
 ## Descricao
 
-GEOWEB deve implementar nivel AA de acessibilidade conforme WCAG 2.1. Garante uso por pessoas com deficiencias visuais, motoras e cognitivas.
+REURBWEB deve implementar nivel AA de acessibilidade conforme WCAG 2.1. Garante uso por pessoas com deficiencias visuais, motoras e cognitivas.
 
 ## Metricas
 

@@ -8,7 +8,7 @@ updated: 2026-01-25
 
 ## Descricao
 
-GEOWEB e REURBCAD devem implementar timeout automatico de sessoes inativas. Previne acesso nao autorizado quando usuarios deixam dispositivos desacompanhados.
+REURBWEB e REURBCAD devem implementar timeout automatico de sessoes inativas. Previne acesso nao autorizado quando usuarios deixam dispositivos desacompanhados.
 
 ## Metricas
 

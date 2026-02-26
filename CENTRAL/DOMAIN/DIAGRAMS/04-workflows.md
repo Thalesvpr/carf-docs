@@ -51,4 +51,4 @@ Registro inicia como RascunhoLocal quando criado offline. Ao marcar para sync, t
 | Enviando | Conflito | Versao do servidor difere |
 | Conflito | Sincronizado | Usuario resolve conflito |
 
-Os workflows seguem o WORKFLOW-MESTRE do CARF. A equipe de campo (Coordenador e Cadastrador) cria unidades offline que sincronizam com o backend. O Analista (via Plugin QGIS ou GEOWEB) revisa e aprova. O processo de Legitimacao segue rito legal da Lei 13.465/2017 com etapas obrigatorias.
+Os workflows seguem o WORKFLOW-MESTRE do CARF. A equipe de campo (Coordenador e Cadastrador) cria unidades offline que sincronizam com o backend. O Analista (via Plugin QGIS ou REURBWEB) revisa e aprova. O processo de Legitimacao segue rito legal da Lei 13.465/2017 com etapas obrigatorias.

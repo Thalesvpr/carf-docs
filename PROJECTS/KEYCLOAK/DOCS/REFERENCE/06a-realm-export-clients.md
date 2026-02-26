@@ -25,7 +25,7 @@ Secoes do realm-export.json referentes a clients e client scopes do realm CARF.
 
 | Client | Tipo | Flow | Descricao |
 |:-------|:-----|:-----|:----------|
-| geoweb | publico | Auth Code + PKCE | Frontend React |
+| reurbweb | publico | Auth Code + PKCE | Frontend React |
 | reurbcad | publico | Auth Code + PKCE | Mobile React Native |
 | geoapi | bearer-only | Validacao tokens | Backend .NET |
 | geogis | confidential | Auth Code + Credentials | Plugin QGIS |

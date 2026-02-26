@@ -16,7 +16,7 @@ Interface de configuracao obrigatoria para instanciacao do KeycloakClient.
 |:------------|:--------|:------------|:----------|
 | keycloakUrl | string | sim | URL do servidor Keycloak (ex: https://auth.carf.gov.br) |
 | realm | string | sim | Nome do realm, padrao "carf" |
-| clientId | string | sim | Client ID registrado no Keycloak (geoweb-client, reurbcad-client, admin-client) |
+| clientId | string | sim | Client ID registrado no Keycloak (reurbweb-client, reurbcad-client, admin-client) |
 | redirectUri | string | sim | URI de callback apos autenticacao |
 | scope | string | nao | Scopes adicionais separados por espaco, ex: "openid profile offline_access" |
 | storage | StorageAdapter | nao | Adapter de storage customizado, auto-detectado se omitido |

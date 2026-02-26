@@ -4,13 +4,13 @@ type: UC
 modules: []
 status: review
 created: 2026-01-24
-updated: 2026-01-24
+updated: 2026-02-21
 workflow: PARTE-1
 ---
 
 # UC-P1-001: Entregar Ortofoto
 
-Fluxo de entrega de ortofoto pelo Analista de Drone ao sistema.
+Fluxo de entrega de ortofoto pelo Operador de Drone ao sistema.
 
 ## Referencia
 
@@ -18,26 +18,26 @@ Este UC implementa passos 1-2 do [WORKFLOW-MESTRE](../../../../CENTRAL/WORKFLOW-
 
 ## Atores
 
-- Primario: Analista de Drone
+- Primario: Operador de Drone
 - Secundario: Keycloak, Backend GEOAPI
 
 ## Pre-condicoes
 
-- Analista de Drone possui credenciais validas no Keycloak
-- Analista de Drone esta designado a um TENANT
+- Operador de Drone possui credenciais validas no Keycloak
+- Operador de Drone esta designado a um TENANT
 - Ortofoto esta pronta para envio (mosaico processado)
 - Backend esta operacional
 
 ## Fluxo Principal
 
-1. Analista de Drone recebe link/portal para envio de ortofotos
-2. Analista acessa o portal de upload
+1. Operador de Drone recebe link/portal para envio de ortofotos
+2. Operador acessa o portal de upload
 3. Sistema redireciona para Keycloak
-4. Analista insere credenciais (usuario/senha)
+4. Operador insere credenciais (usuario/senha)
 5. Keycloak valida credenciais e emite token JWT
-6. Token contem `tenant_id` do analista
+6. Token contem `tenant_id` do operador
 7. Sistema redireciona de volta ao portal
-8. Analista seleciona arquivo de ortofoto
+8. Operador seleciona arquivo de ortofoto
 9. Sistema valida formato (GeoTIFF, JPEG2000)
 10. Sistema valida tamanho maximo permitido
 11. Sistema inicia upload multipart
@@ -63,5 +63,5 @@ Este UC implementa passos 1-2 do [WORKFLOW-MESTRE](../../../../CENTRAL/WORKFLOW-
 | Regra | Descricao |
 |-------|-----------|
 | RN-01 | Autenticacao via Keycloak e OBRIGATORIA |
-| RN-02 | Apenas Analistas de Drone podem enviar ortofotos |
+| RN-02 | Apenas Operadores de Drone (role `drone-operator`) podem enviar ortofotos |
 | RN-03 | Ortofoto deve ter coordenadas embarcadas |

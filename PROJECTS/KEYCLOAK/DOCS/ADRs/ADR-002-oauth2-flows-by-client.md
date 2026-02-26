@@ -9,7 +9,7 @@ description: "Decisao de padronizar OAuth2 flows por tipo de cliente no ecossist
 
 ## Contexto
 
-O ecossistema CARF possui tipos distintos de clientes: SPAs web como GEOWEB, ADMIN e WebDocs, aplicacao mobile REURBCAD, backend GEOAPI e desktop GEOGIS. SPAs nao podem armazenar secrets pois o codigo JavaScript e publico. Mobile apps possuem secure storage mas devem usar flows nativos. Backends podem usar client secret pois o codigo fica no servidor. Cada tipo de cliente exige o flow OAuth2 adequado ao seu modelo de ameacas.
+O ecossistema CARF possui tipos distintos de clientes: SPAs web como REURBWEB, ADMIN e WebDocs, aplicacao mobile REURBCAD, backend GEOAPI e desktop GEOGIS. SPAs nao podem armazenar secrets pois o codigo JavaScript e publico. Mobile apps possuem secure storage mas devem usar flows nativos. Backends podem usar client secret pois o codigo fica no servidor. Cada tipo de cliente exige o flow OAuth2 adequado ao seu modelo de ameacas.
 
 ## Decisao
 

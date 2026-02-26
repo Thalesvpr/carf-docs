@@ -1,7 +1,7 @@
 ---
 type: workflow
 status: approved
-updated: 2026-02-07
+updated: 2026-02-21
 part: 1
 step: 4
 ---
@@ -12,9 +12,9 @@ Armazenamento das ortofotos processadas no bucket, segregadas por TENANT.
 
 ## Fluxo
 
-1. Backend determina TENANT do Analista de Drone (via token JWT)
+1. Backend determina TENANT do Operador de Drone (via token JWT)
 2. Backend cria estrutura de pastas no bucket no caminho /{tenant_id}/ortofotos/{ano}/{mes}/
-3. Backend salva arquivos nas subpastas original (ortofoto original), otimizada (versao reduzida) e tiles (tiles para visualizacao)
+3. Backend salva arquivos nas subpastas original (ortofoto original) e otimizada (versao reduzida)
 4. Backend registra URLs no banco de dados
 5. Backend associa ortofoto ao TENANT correspondente
 
@@ -26,7 +26,6 @@ Armazenamento das ortofotos processadas no bucket, segregadas por TENANT.
 | Ortofotos | /ortofotos/{ano}/{mes}/ | Organizacao temporal |
 | Original | /original/ortofoto_{id}.tif | Arquivo original GeoTIFF |
 | Otimizada | /otimizada/ortofoto_{id}.webp | Versao reduzida WebP |
-| Tiles | /tiles/{z}/{x}/{y}.png | Tiles para visualizacao |
 
 ## Segregacao por TENANT
 

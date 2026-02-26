@@ -1,7 +1,7 @@
 ---
 type: glossary
 status: approved
-updated: 2026-02-07
+updated: 2026-02-21
 category: atores
 ---
 
@@ -13,17 +13,16 @@ Definicoes dos perfis de usuario do sistema CARF.
 
 ### Parte 1: Entrega de Ortofotos
 
-#### Analista de Drone
+#### Operador de Drone
 
-Profissional responsavel por gerar e entregar ortofotos prontas para o sistema.
+Profissional responsavel por entregar ortofotos prontas ao sistema via portal de upload.
 
 **Responsabilidades:**
-- Realizar voos de drone
-- Processar mosaicos
 - Entregar ortofotos via portal de upload
 
 **Autenticacao:**
 - Keycloak (login/senha)
+- Role no Keycloak: `drone-operator`
 
 **Acesso:**
 - Portal de upload de ortofotos
@@ -133,7 +132,7 @@ Profissional que revisa cadastros e recomenda aprovacao via sistema web.
 - Recomendar aprovacao ou rejeicao
 
 **Acesso:**
-- GEOWEB (painel de revisao)
+- REURBWEB (painel de revisao)
 - Dados do TENANT designado
 
 ### Manager
@@ -146,7 +145,7 @@ Profissional que aprova unidades e gerencia processos de legitimacao.
 - Emitir certidoes (com permissoes adequadas)
 
 **Acesso:**
-- GEOWEB (painel de aprovacao)
+- REURBWEB (painel de aprovacao)
 - Dados do TENANT designado
 
 ### Admin

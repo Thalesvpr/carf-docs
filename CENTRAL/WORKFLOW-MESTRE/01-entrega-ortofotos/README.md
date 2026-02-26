@@ -1,27 +1,27 @@
 ---
 type: workflow
 status: approved
-updated: 2026-01-25
+updated: 2026-02-21
 part: 1
 ---
 
 # PARTE 1: Entrega e Processamento de Ortofotos
 
-Fluxo de entrega de ortofotos desde o Analista de Drone ate o armazenamento em bucket segregado por TENANT.
+Fluxo de entrega de ortofotos desde o Operador de Drone ate o armazenamento em bucket segregado por TENANT.
 
 ## Atores
 
 | Ator | Papel |
 |------|-------|
-| Analista de Drone | Responsavel por publicar/entregar ortofotos prontas |
+| Operador de Drone | Responsavel por publicar/entregar ortofotos prontas |
 | Backend (GEOAPI) | Recebe, processa e armazena ortofotos |
-| Keycloak | Autentica o Analista de Drone |
+| Keycloak | Autentica o Operador de Drone |
 | Bucket (S3/MinIO) | Armazena ortofotos originais e versoes reduzidas |
 
 ## Pre-condicoes
 
-- Analista de Drone possui credenciais validas no Keycloak
-- Analista de Drone esta designado a um TENANT
+- Operador de Drone possui credenciais validas no Keycloak
+- Operador de Drone esta designado a um TENANT
 - Ortofoto esta pronta para envio (mosaico gerado a partir de imagens de drone)
 - Backend esta operacional e conectado ao bucket
 

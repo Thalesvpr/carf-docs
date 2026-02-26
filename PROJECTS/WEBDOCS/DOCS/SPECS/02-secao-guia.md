@@ -16,6 +16,6 @@ Tom de escrita é acolhedor e didático assumindo que leitor pode não ter exper
 
 Frontmatter padrão define section como guia, audience como user, e sidebar com order sequencial. Title deve ser descritivo indicando claramente o que página ensina.
 
-Links para outras seções direcionam usuário conforme necessidade: analistas para manuais do GEOWEB, agentes de campo para manuais do REURBCAD, e gestores para manuais do ADMIN.
+Links para outras seções direcionam usuário conforme necessidade: analistas para manuais do REURBWEB, agentes de campo para manuais do REURBCAD, e gestores para manuais do REURBMASTER.
 
 Manutenção inclui revisar FAQ periodicamente adicionando perguntas recorrentes de suporte, atualizar capturas de tela quando interface muda, e validar links para outras seções.

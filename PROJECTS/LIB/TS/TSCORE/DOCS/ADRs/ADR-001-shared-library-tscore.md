@@ -8,7 +8,7 @@ updated: 2026-01-24
 
 ## Contexto
 
-Projetos frontend GEOWEB, ADMIN, WEBDOCS e REURBCAD duplicavam codigo de validacoes brasileiras, tipos de dominio e integracao Keycloak. Inconsistencias entre implementacoes causavam bugs e dificultavam manutencao. Atualizacoes em regras de validacao requeriam modificacoes em multiplos repositorios.
+Projetos frontend REURBWEB, ADMIN, WEBDOCS e REURBCAD duplicavam codigo de validacoes brasileiras, tipos de dominio e integracao Keycloak. Inconsistencias entre implementacoes causavam bugs e dificultavam manutencao. Atualizacoes em regras de validacao requeriam modificacoes em multiplos repositorios.
 
 ## Decisao
 

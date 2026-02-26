@@ -3,7 +3,7 @@ type: rf
 status: approved
 updated: 2026-01-25
 modules:
-  - GEOWEB
+  - REURBWEB
   - GEOAPI
 ---
 
@@ -11,7 +11,7 @@ modules:
 
 ## Descricao
 
-Sistema deve permitir que usuarios ADMIN importem multiplas unidades atraves de upload de arquivo shapefile (.zip contendo .shp, .shx, .dbf, .prj). Interface GEOWEB oferece wizard guiando processo de importacao em etapas. Wizard de mapeamento permite associar colunas do shapefile aos campos do modelo de unidade com sugestoes automaticas baseadas em nomes similares. Preview mostra estatisticas e alertas sobre problemas antes do commit. Importacao transacional garante consistencia com rollback em caso de falha.
+Sistema deve permitir que usuarios ADMIN importem multiplas unidades atraves de upload de arquivo shapefile (.zip contendo .shp, .shx, .dbf, .prj). Interface REURBWEB oferece wizard guiando processo de importacao em etapas. Wizard de mapeamento permite associar colunas do shapefile aos campos do modelo de unidade com sugestoes automaticas baseadas em nomes similares. Preview mostra estatisticas e alertas sobre problemas antes do commit. Importacao transacional garante consistencia com rollback em caso de falha.
 
 ## Criterios de Aceitacao
 
@@ -23,5 +23,5 @@ Sistema deve permitir que usuarios ADMIN importem multiplas unidades atraves de 
 
 ## Rastreabilidade
 
-- Modulos: GEOWEB, GEOAPI
+- Modulos: REURBWEB, GEOAPI
 - Requisitos dependentes: RF-049, RF-066

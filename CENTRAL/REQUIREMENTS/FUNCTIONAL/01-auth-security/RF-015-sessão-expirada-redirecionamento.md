@@ -3,7 +3,7 @@ type: rf
 status: approved
 updated: 2026-01-25
 modules:
-  - GEOWEB
+  - REURBWEB
   - REURBCAD
 ---
 
@@ -23,5 +23,5 @@ Sistema deve detectar quando sessao expirou e renovacao via refresh_token falhou
 
 ## Rastreabilidade
 
-- Modulos: GEOWEB, REURBCAD
+- Modulos: REURBWEB, REURBCAD
 - Requisitos dependentes: RF-004, RF-014

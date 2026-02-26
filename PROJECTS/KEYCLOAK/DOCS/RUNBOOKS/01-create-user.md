@@ -27,4 +27,4 @@ Para atribuir a role, primeiro obtenha o `USER_ID` via `curl GET` para o endpoin
 
 ## Verificacao
 
-Para confirmar que o usuário foi criado corretamente, execute um `curl POST` para `http://localhost:8080/realms/carf/protocol/openid-connect/token` com os parâmetros `client_id=geoweb`, `grant_type=password`, `username=joao.silva` e `password=senha123`. Extraia o `access_token` via `jq` e decodifique o payload JWT usando `cut -d. -f2 | base64 -d | jq`. O resultado deve exibir as claims `tenants`, `current_tenant` e `roles`, confirmando que a autenticacao foi bem-sucedida e que as configuracoes de multi-tenancy estao funcionando.
+Para confirmar que o usuário foi criado corretamente, execute um `curl POST` para `http://localhost:8080/realms/carf/protocol/openid-connect/token` com os parâmetros `client_id=reurbweb`, `grant_type=password`, `username=joao.silva` e `password=senha123`. Extraia o `access_token` via `jq` e decodifique o payload JWT usando `cut -d. -f2 | base64 -d | jq`. O resultado deve exibir as claims `tenants`, `current_tenant` e `roles`, confirmando que a autenticacao foi bem-sucedida e que as configuracoes de multi-tenancy estao funcionando.

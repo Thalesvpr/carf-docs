@@ -18,7 +18,7 @@ Navegar para diretorio do tscore e executar npm link. Este comando registra paco
 
 ## Consumindo Link em Projeto
 
-Navegar para projeto consumidor como GEOWEB e executar npm link @carf/tscore. Imports de @carf/tscore agora resolvem para codigo local do tscore em vez de versao publicada. Mudancas no tscore refletem imediatamente apos rebuild.
+Navegar para projeto consumidor como REURBWEB e executar npm link @carf/tscore. Imports de @carf/tscore agora resolvem para codigo local do tscore em vez de versao publicada. Mudancas no tscore refletem imediatamente apos rebuild.
 
 ## Workflow de Desenvolvimento
 

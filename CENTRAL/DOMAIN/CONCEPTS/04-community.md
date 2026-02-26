@@ -1,7 +1,7 @@
 ---
 type: leaf
 status: approved
-updated: 2026-01-24
+updated: 2026-02-21
 ---
 
 # Comunidade
@@ -18,10 +18,17 @@ Comunidades urbanas seguem o rito REURB da Lei 13.465/2017. Comunidades rurais t
 
 Dentro de uma comunidade urbana, aplica-se REURB-S (interesse social) quando beneficiarios sao de baixa renda e area individual nao excede 250m². REURB-E (interesse especifico) aplica-se aos demais casos. A modalidade define taxas, prazos e requisitos documentais.
 
-## Hierarquia Espacial
+## Organizacao
 
-Comunidades maiores podem ser subdivididas em quadras e lotes para facilitar organizacao. Essa subdivisao e opcional - comunidades pequenas podem ter unidades cadastradas diretamente sem hierarquia intermediaria.
+Uma Comunidade pode estar associada a uma **Regiao** do Tenant, mas isso nao e obrigatorio. Regioes sao agrupamentos operacionais definidos pela empresa — nao niveis geograficos fixos. Ver [39-regiao.md](./39-regiao.md).
+
+Internamente, comunidades maiores podem ser subdivididas em quadras e lotes para facilitar organizacao. Essa subdivisao e opcional — comunidades pequenas podem ter unidades cadastradas diretamente sem hierarquia intermediaria.
 
 ## Perimetro e Limites
 
 O contorno geografico da comunidade delimita onde unidades podem ser criadas. Unidades fora do perimetro indicam erro de cadastro ou necessidade de expandir os limites do assentamento.
+
+## Referencia
+
+- Ver [39-regiao.md](./39-regiao.md)
+- Ver [07-tenant.md](./07-tenant.md)

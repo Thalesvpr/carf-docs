@@ -29,6 +29,6 @@ Value object enum imutavel representando o estado atual de uma Unit no workflow 
 | IN_REVIEW | REJECTED | MANAGER | Parecer tecnico desfavoravel com justificativa obrigatoria. |
 | IN_REVIEW | REQUIRES_CHANGES | ANALYST | Correcoes necessarias identificadas. |
 | REQUIRES_CHANGES | DRAFT | FIELD_COORDINATOR | Apos correcao pelo agente de campo. |
-| REJECTED | DRAFT | ADMIN | Apos correcao pelo requerente, reprocessamento excepcional. |
+| REJECTED | DRAFT | REURBMASTER | Apos correcao pelo requerente, reprocessamento excepcional. |
 
 Transicoes invalidas sao impedidas pelo dominio lancando ValidationException. Edicao da unidade so e permitida nos estados DRAFT e REQUIRES_CHANGES. Exclusao so e permitida em DRAFT.

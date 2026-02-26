@@ -1,7 +1,7 @@
 ---
 type: leaf
 status: review
-updated: 2026-02-08
+updated: 2026-02-21
 ---
 
 # GIS Spatial Patterns
@@ -19,10 +19,6 @@ As queries espaciais utilizam funcoes PostGIS em operacoes de negocio. ST_Area c
 ## Indices Espaciais
 
 Indices GiST sao criados em todas as colunas geometry para otimizar queries espaciais. O indice GiST em units.boundary acelera verificacao de sobreposicao durante cadastro. O indice GiST em communities.boundary acelera filtros de unidades por area geografica. Indices GIN em layer_features.properties otimizam queries JSONB sobre atributos de features.
-
-## Tiles XYZ
-
-Ortofotos processadas geram tiles no formato XYZ para zoom levels 12 a 20. Cada tile e uma imagem PNG 256x256 pixels servida via endpoint GET /api/orthofotos/{id}/tiles/{z}/{x}/{y} com Cache-Control de 1 dia. Tiles inexistentes retornam 404 para areas sem dados.
 
 ## WMS e WMTS
 

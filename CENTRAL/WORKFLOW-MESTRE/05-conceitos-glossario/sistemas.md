@@ -1,7 +1,7 @@
 ---
 type: glossary
 status: approved
-updated: 2026-02-07
+updated: 2026-02-21
 category: sistemas
 ---
 
@@ -41,7 +41,6 @@ Armazenamento de objetos que guarda ortofotos (originais e reduzidas), organiza 
 |---------|----------|
 | /{tenant_id}/ortofotos/{ano}/{mes}/original/ | Ortofoto original |
 | /{tenant_id}/ortofotos/{ano}/{mes}/otimizada/ | Versao reduzida |
-| /{tenant_id}/ortofotos/{ano}/{mes}/tiles/ | Tiles para visualizacao |
 | /{tenant_id}/documentos/ | Documentos anexados |
 | /{tenant_id}/fotos/ | Fotos de campo |
 

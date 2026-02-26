@@ -10,7 +10,7 @@ Feature de gestao de equipes implementada como visualizacao **readonly** no mobi
 
 ## Visao Geral
 
-Equipes sao gerenciadas exclusivamente via interfaces web (ADMIN ou GEOWEB) e sincronizadas unidirecionalmente (server -> mobile). O app mobile permite apenas consulta e filtragem, sem operacoes de escrita.
+Equipes sao gerenciadas exclusivamente via interfaces web (ADMIN ou REURBWEB) e sincronizadas unidirecionalmente (server -> mobile). O app mobile permite apenas consulta e filtragem, sem operacoes de escrita.
 
 ## Telas
 
@@ -69,7 +69,7 @@ Historico de coletas realizadas pela equipe.
 
 ## Padrao Readonly
 
-Validacoes de CRUD nao se aplicam pois a feature e **readonly** no mobile. Teams sao gerenciadas via ADMIN ou GEOWEB web interfaces e sincronizadas down para o mobile app.
+Validacoes de CRUD nao se aplicam pois a feature e **readonly** no mobile. Teams sao gerenciadas via ADMIN ou REURBWEB web interfaces e sincronizadas down para o mobile app.
 
 ### Validacoes de Sync
 
@@ -150,7 +150,7 @@ Implementacao dos requisitos de visualizacao de equipes:
 - Filtrar units por team assignment
 - Coordenar trabalho verificando assignments de colegas
 - Contactar lider para duvidas e issues de campo
-- Sync unidirecional server -> mobile (sem push de teams changes, pois modificacoes sao gerenciadas via web interfaces ADMIN/GEOWEB)
+- Sync unidirecional server -> mobile (sem push de teams changes, pois modificacoes sao gerenciadas via web interfaces ADMIN/REURBWEB)
 
 Rastreando requisitos: **RF-024**, **RF-026** (consulta equipes, coordenacao trabalho campo, accountability, rastreamento atribuicoes).
 

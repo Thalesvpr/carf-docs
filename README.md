@@ -17,7 +17,7 @@ A documentacao fica organizada em duas partes principais. A [documentacao centra
 | Pasta | Proposito |
 |-------|-----------|
 | [CENTRAL](./CENTRAL/README.md) | Especificacao compartilhada: dominio, regras, requisitos, arquitetura, design system, seguranca |
-| [PROJECTS](./PROJECTS/README.md) | Implementacoes: GEOAPI, GEOWEB, REURBCAD, GEOGIS, KEYCLOAK, bibliotecas |
+| [PROJECTS](./PROJECTS/README.md) | Implementacoes: GEOAPI, REURBWEB, REURBCAD, GEOGIS, KEYCLOAK, bibliotecas |
 | [STANDARDS](./STANDARDS/README.md) | Convencoes de nomenclatura, status, conteudo, links e codigo |
 
 ## Convencoes Rapidas

@@ -47,7 +47,7 @@ const api = createApiClient({
 });
 ```
 
-Hooks React Query (GEOWEB):
+Hooks React Query (REURBWEB):
 
 ```typescript
 import { useGetApiUnits } from '@carf/geoapi-client';

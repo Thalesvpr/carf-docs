@@ -15,7 +15,7 @@ Configuracoes definidas no realm CARF do Keycloak. O access_token de 5 minutos f
 | Token | Lifetime | Plataforma | Justificativa |
 |:------|:---------|:-----------|:--------------|
 | Access Token | 5 min | Todas | Janela curta de comprometimento |
-| Refresh Token (web) | 30 min (SSO idle) | GEOWEB, ADMIN | Sessao de escritorio com inatividade limitada |
+| Refresh Token (web) | 30 min (SSO idle) | REURBWEB, ADMIN | Sessao de escritorio com inatividade limitada |
 | Refresh Token (mobile) | 30 dias | REURBCAD | Agentes de campo sem acesso constante a internet |
 | Refresh Token (desktop) | 30 dias | GEOGIS | Sessoes longas de georreferenciamento |
 | SSO Session Max | 10 horas | Web | Limita duracao total de sessao web |
@@ -34,8 +34,8 @@ A escolha de storage impacta diretamente a seguranca dos tokens. Cada plataforma
 
 | Plataforma | Storage | Mecanismo | Seguranca |
 |:-----------|:--------|:----------|:----------|
-| GEOWEB (web) | WebStorageAdapter | localStorage para access_token (curta duracao) | Vulneravel a XSS; access_token de 5 min limita janela |
-| ADMIN (web) | WebStorageAdapter | localStorage para access_token | Mesmo modelo do GEOWEB |
+| REURBWEB (web) | WebStorageAdapter | localStorage para access_token (curta duracao) | Vulneravel a XSS; access_token de 5 min limita janela |
+| ADMIN (web) | WebStorageAdapter | localStorage para access_token | Mesmo modelo do REURBWEB |
 | REURBCAD (iOS) | MobileStorageAdapter | Keychain via expo-secure-store | Criptografado pelo SO, isolado por app |
 | REURBCAD (Android) | MobileStorageAdapter | EncryptedSharedPreferences via expo-secure-store | Criptografia AES-256 pelo Android Keystore |
 | GEOGIS (desktop) | QSettings adapter | QSettings do Qt em arquivo .ini protegido | Permissoes de arquivo do SO |
