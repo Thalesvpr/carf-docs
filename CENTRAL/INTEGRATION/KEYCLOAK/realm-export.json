@@ -209,13 +209,257 @@
   "clientPolicies": {
     "policies": []
   },
+  "authenticationFlows": [
+    {
+      "id": "reurbmaster-browser-flow-id",
+      "alias": "reurbmaster-browser",
+      "description": "Browser flow for REURBMASTER — restricted to admin/super-admin/dev roles. Non-admin users are denied at login.",
+      "providerId": "basic-flow",
+      "topLevel": true,
+      "builtIn": false,
+      "authenticationExecutions": [
+        {
+          "authenticator": "auth-cookie",
+          "authenticatorFlow": false,
+          "requirement": "ALTERNATIVE",
+          "priority": 10,
+          "autheticatorFlow": false,
+          "userSetupAllowed": false
+        },
+        {
+          "authenticatorFlow": true,
+          "requirement": "ALTERNATIVE",
+          "priority": 20,
+          "flowAlias": "reurbmaster-forms",
+          "autheticatorFlow": true,
+          "userSetupAllowed": false
+        },
+        {
+          "authenticatorFlow": true,
+          "requirement": "CONDITIONAL",
+          "priority": 30,
+          "flowAlias": "reurbmaster-deny-non-admin",
+          "autheticatorFlow": true,
+          "userSetupAllowed": false
+        }
+      ]
+    },
+    {
+      "id": "reurbmaster-forms-flow-id",
+      "alias": "reurbmaster-forms",
+      "description": "Username/password + optional OTP for REURBMASTER",
+      "providerId": "basic-flow",
+      "topLevel": false,
+      "builtIn": false,
+      "authenticationExecutions": [
+        {
+          "authenticator": "auth-username-password-form",
+          "authenticatorFlow": false,
+          "requirement": "REQUIRED",
+          "priority": 10,
+          "autheticatorFlow": false,
+          "userSetupAllowed": false
+        },
+        {
+          "authenticatorFlow": true,
+          "requirement": "CONDITIONAL",
+          "priority": 20,
+          "flowAlias": "reurbmaster-conditional-otp",
+          "autheticatorFlow": true,
+          "userSetupAllowed": false
+        }
+      ]
+    },
+    {
+      "id": "reurbmaster-conditional-otp-flow-id",
+      "alias": "reurbmaster-conditional-otp",
+      "description": "OTP verification if user has configured it",
+      "providerId": "basic-flow",
+      "topLevel": false,
+      "builtIn": false,
+      "authenticationExecutions": [
+        {
+          "authenticator": "conditional-user-configured",
+          "authenticatorFlow": false,
+          "requirement": "REQUIRED",
+          "priority": 10,
+          "autheticatorFlow": false,
+          "userSetupAllowed": false
+        },
+        {
+          "authenticator": "auth-otp-form",
+          "authenticatorFlow": false,
+          "requirement": "REQUIRED",
+          "priority": 20,
+          "autheticatorFlow": false,
+          "userSetupAllowed": false
+        }
+      ]
+    },
+    {
+      "id": "reurbmaster-deny-non-admin-flow-id",
+      "alias": "reurbmaster-deny-non-admin",
+      "description": "Deny access if user lacks admin (includes super-admin) or dev realm role",
+      "providerId": "basic-flow",
+      "topLevel": false,
+      "builtIn": false,
+      "authenticationExecutions": [
+        {
+          "authenticator": "conditional-user-role",
+          "authenticatorFlow": false,
+          "requirement": "REQUIRED",
+          "priority": 10,
+          "authenticatorConfig": "reurbmaster-not-admin-condition",
+          "autheticatorFlow": false,
+          "userSetupAllowed": false
+        },
+        {
+          "authenticator": "conditional-user-role",
+          "authenticatorFlow": false,
+          "requirement": "REQUIRED",
+          "priority": 20,
+          "authenticatorConfig": "reurbmaster-not-dev-condition",
+          "autheticatorFlow": false,
+          "userSetupAllowed": false
+        },
+        {
+          "authenticator": "deny-access-authenticator",
+          "authenticatorFlow": false,
+          "requirement": "REQUIRED",
+          "priority": 30,
+          "authenticatorConfig": "reurbmaster-deny-message",
+          "autheticatorFlow": false,
+          "userSetupAllowed": false
+        }
+      ]
+    },
+    {
+      "id": "reurbmaster-direct-grant-flow-id",
+      "alias": "reurbmaster-direct-grant",
+      "description": "Direct grant flow for REURBMASTER — restricted to admin/super-admin/dev roles",
+      "providerId": "basic-flow",
+      "topLevel": true,
+      "builtIn": false,
+      "authenticationExecutions": [
+        {
+          "authenticator": "direct-grant-validate-username",
+          "authenticatorFlow": false,
+          "requirement": "REQUIRED",
+          "priority": 10,
+          "autheticatorFlow": false,
+          "userSetupAllowed": false
+        },
+        {
+          "authenticator": "direct-grant-validate-password",
+          "authenticatorFlow": false,
+          "requirement": "REQUIRED",
+          "priority": 20,
+          "autheticatorFlow": false,
+          "userSetupAllowed": false
+        },
+        {
+          "authenticatorFlow": true,
+          "requirement": "CONDITIONAL",
+          "priority": 30,
+          "flowAlias": "reurbmaster-dg-deny-non-admin",
+          "autheticatorFlow": true,
+          "userSetupAllowed": false
+        }
+      ]
+    },
+    {
+      "id": "reurbmaster-dg-deny-non-admin-flow-id",
+      "alias": "reurbmaster-dg-deny-non-admin",
+      "description": "Deny access on direct grant if user lacks admin or dev role",
+      "providerId": "basic-flow",
+      "topLevel": false,
+      "builtIn": false,
+      "authenticationExecutions": [
+        {
+          "authenticator": "conditional-user-role",
+          "authenticatorFlow": false,
+          "requirement": "REQUIRED",
+          "priority": 10,
+          "authenticatorConfig": "reurbmaster-dg-not-admin-condition",
+          "autheticatorFlow": false,
+          "userSetupAllowed": false
+        },
+        {
+          "authenticator": "conditional-user-role",
+          "authenticatorFlow": false,
+          "requirement": "REQUIRED",
+          "priority": 20,
+          "authenticatorConfig": "reurbmaster-dg-not-dev-condition",
+          "autheticatorFlow": false,
+          "userSetupAllowed": false
+        },
+        {
+          "authenticator": "deny-access-authenticator",
+          "authenticatorFlow": false,
+          "requirement": "REQUIRED",
+          "priority": 30,
+          "authenticatorConfig": "reurbmaster-dg-deny-message",
+          "autheticatorFlow": false,
+          "userSetupAllowed": false
+        }
+      ]
+    }
+  ],
+  "authenticatorConfig": [
+    {
+      "id": "reurbmaster-not-admin-condition-id",
+      "alias": "reurbmaster-not-admin-condition",
+      "config": {
+        "condUserRole": "admin",
+        "negate": "true"
+      }
+    },
+    {
+      "id": "reurbmaster-not-dev-condition-id",
+      "alias": "reurbmaster-not-dev-condition",
+      "config": {
+        "condUserRole": "dev",
+        "negate": "true"
+      }
+    },
+    {
+      "id": "reurbmaster-deny-message-id",
+      "alias": "reurbmaster-deny-message",
+      "config": {
+        "error_message": "Acesso restrito. Apenas administradores e desenvolvedores podem acessar o REURBMASTER."
+      }
+    },
+    {
+      "id": "reurbmaster-dg-not-admin-condition-id",
+      "alias": "reurbmaster-dg-not-admin-condition",
+      "config": {
+        "condUserRole": "admin",
+        "negate": "true"
+      }
+    },
+    {
+      "id": "reurbmaster-dg-not-dev-condition-id",
+      "alias": "reurbmaster-dg-not-dev-condition",
+      "config": {
+        "condUserRole": "dev",
+        "negate": "true"
+      }
+    },
+    {
+      "id": "reurbmaster-dg-deny-message-id",
+      "alias": "reurbmaster-dg-deny-message",
+      "config": {
+        "error_message": "Acesso restrito. Apenas administradores e desenvolvedores podem acessar o REURBMASTER."
+      }
+    }
+  ],
   "clients": [
     {
       "id": "reurbweb-client-id",
       "clientId": "reurbweb",
       "name": "REURBWEB - Frontend React",
       "description": "Aplicação web de cadastramento de unidades habitacionais",
-      "rootUrl": "http://localhost:5173",
+      "rootUrl": "http://localhost:3000",
       "adminUrl": "",
       "baseUrl": "/",
       "surrogateAuthRequired": false,
@@ -223,9 +467,9 @@
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "http://localhost:5173/*",
         "http://localhost:3000/*",
-        "https://reurbweb.carf.example.com/*"
+        "https://*.ts.net/*",
+        "https://*.ts.net:*/*"
       ],
       "webOrigins": ["+"],
       "notBefore": 0,
@@ -280,8 +524,8 @@
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
         "http://localhost:5174/*",
-        "http://localhost:5173/*",
-        "https://reurbmaster.carf.example.com/*"
+        "https://*.ts.net/*",
+        "https://*.ts.net:*/*"
       ],
       "webOrigins": ["+"],
       "notBefore": 0,
@@ -531,7 +775,7 @@
         "offline_access",
         "microprofile-jwt"
       ]
-    },
+    }
   ],
   "clientScopes": [
     {
