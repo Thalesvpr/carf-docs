@@ -13,14 +13,15 @@
 #   │   ├── GEOAPI/SRC-CODE/CARF-GEOAPI/
 #   │   ├── REURBWEB/SRC-CODE/carf-reurbweb/
 #   │   ├── REURBMASTER/SRC-CODE/carf-reurbmaster/
-#   │   ├── KEYCLOAK/SRC-CODE/carf-keycloak/
-#   │   └── LIB/TS/TSCORE/SRC-CODE/carf-tscore/
+#   │   └── KEYCLOAK/SRC-CODE/carf-keycloak/
 #   └── ...
+#
+# Libs (@carffundiaria/tscore, @carffundiaria/geoapi-client, @carffundiaria/ui) are NOT cloned here.
+# They are installed from GitHub Packages during Docker build.
 
 set -euo pipefail
 
 # ─── Configuração ────────────────────────────────────
-# Ajuste a org/owner e branch se necessário
 GH_ORG="Thalesvpr"
 BASE_DIR="${HOME}/carf"
 ACTION="${1:-clone}"
@@ -32,7 +33,6 @@ declare -A REPOS=(
   ["carf-reurbweb"]="PROJECTS/REURBWEB/SRC-CODE/carf-reurbweb|main"
   ["carf-reurbmaster"]="PROJECTS/REURBMASTER/SRC-CODE/carf-reurbmaster|main"
   ["carf-keycloak"]="PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak|main"
-  ["carf-tscore"]="PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore|main"
 )
 
 # ─── Funções ─────────────────────────────────────────
@@ -44,7 +44,6 @@ clone_repo() {
   local branch="${config##*|}"
 
   if [ "$name" = "CARF" ]; then
-    # Repo principal — clona na raiz
     if [ ! -d "$dest/.git" ]; then
       echo "[clone] $name → $dest (branch: $branch)"
       git clone --branch "$branch" "https://github.com/${GH_ORG}/${name}.git" "$dest"
@@ -52,7 +51,6 @@ clone_repo() {
       echo "[skip]  $name já existe em $dest"
     fi
   else
-    # Sub-repos — clona dentro da estrutura
     if [ ! -d "$dest/.git" ]; then
       echo "[clone] $name → $dest (branch: $branch)"
       mkdir -p "$(dirname "$dest")"
@@ -107,8 +105,8 @@ echo ""
 echo "=== Pronto! Estrutura: ==="
 echo "$BASE_DIR/"
 for repo in "${!REPOS[@]}"; do
-  local config=${REPOS[$repo]}
-  local dest="${config%%|*}"
+  config=${REPOS[$repo]}
+  dest="${config%%|*}"
   echo "  ├── $dest/ ($repo)"
 done
 echo ""

@@ -183,8 +183,7 @@ services:
       dockerfile: PROJECTS/DEPLOY/dockerfiles/frontend.Dockerfile
       args:
         PROJECT_DIR: PROJECTS/REURBWEB/SRC-CODE/carf-reurbweb
-        TSCORE_DIR: PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore
-        GEOAPI_CLIENT_DIR: PROJECTS/LIB/TS/GEOAPI-CLIENT/SRC-CODE/carf-geoapi-client
+        NODE_AUTH_TOKEN: ${GITHUB_TOKEN}
         VITE_API_URL: http://hml-api.${VPS_IP}.sslip.io/api
         VITE_KEYCLOAK_URL: http://hml-auth.${VPS_IP}.sslip.io
         VITE_KEYCLOAK_REALM: carf
@@ -201,8 +200,7 @@ services:
       dockerfile: PROJECTS/DEPLOY/dockerfiles/frontend.Dockerfile
       args:
         PROJECT_DIR: PROJECTS/REURBMASTER/SRC-CODE/carf-reurbmaster
-        TSCORE_DIR: PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore
-        GEOAPI_CLIENT_DIR: PROJECTS/LIB/TS/GEOAPI-CLIENT/SRC-CODE/carf-geoapi-client
+        NODE_AUTH_TOKEN: ${GITHUB_TOKEN}
         VITE_API_URL: http://hml-api.${VPS_IP}.sslip.io/api
         VITE_KEYCLOAK_URL: http://hml-auth.${VPS_IP}.sslip.io
         VITE_KEYCLOAK_REALM: carf

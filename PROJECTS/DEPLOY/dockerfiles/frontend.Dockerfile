@@ -1,41 +1,22 @@
-# CARF Frontend - Multi-stage Build
+# CARF Frontend - Simplified Build
 # Shared by REURBWEB and REURBMASTER
-# Build context: repo root
+# Libs are installed from GitHub Packages (no more multi-stage lib builds)
 
-ARG TSCORE_DIR=PROJECTS/LIB/TS/TSCORE/SRC-CODE/carf-tscore
-ARG GEOAPI_CLIENT_DIR=PROJECTS/LIB/TS/GEOAPI-CLIENT/SRC-CODE/carf-geoapi-client
-
-# Stage 1: Build @carf/tscore
-FROM node:20-alpine AS tscore-build
-ARG TSCORE_DIR
-WORKDIR /tscore
-COPY ${TSCORE_DIR}/ .
-RUN npm install --ignore-scripts && npx tsc -p tsconfig.build.json
-
-# Stage 2: Build @carf/geoapi-client
-FROM node:20-alpine AS geoapi-client-build
-ARG GEOAPI_CLIENT_DIR
-WORKDIR /geoapi-client
-COPY ${GEOAPI_CLIENT_DIR}/ .
-RUN npm install
-RUN npx orval --config orval.config.ts
-RUN npx tsc --skipLibCheck
-
-# Stage 3: Build frontend
+# Stage 1: Build frontend
 FROM node:20-alpine AS app-build
 ARG PROJECT_DIR
+ARG NODE_AUTH_TOKEN
 WORKDIR /app
 
-COPY --from=tscore-build /tscore /tscore
-COPY --from=geoapi-client-build /geoapi-client /geoapi-client
+# .npmrc for GitHub Packages authentication
+RUN echo "@carffundiaria:registry=https://npm.pkg.github.com" > .npmrc && \
+    echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" >> .npmrc
 
-COPY ${PROJECT_DIR}/package.json ./
-RUN sed -i 's|file:[^"]*carf-tscore|file:/tscore|' package.json
-RUN sed -i 's|file:[^"]*carf-geoapi-client|file:/geoapi-client|' package.json
+COPY ${PROJECT_DIR}/package.json ${PROJECT_DIR}/package-lock.json* ./
 RUN npm install
 
 COPY ${PROJECT_DIR}/ .
-RUN rm -f .env .env.local .env.production .env.*.local
+RUN rm -f .env .env.local .env.production .env.*.local .npmrc
 
 ARG VITE_API_URL
 ARG VITE_KEYCLOAK_URL
@@ -50,7 +31,7 @@ ENV VITE_API_URL=${VITE_API_URL} \
 
 RUN npm run build
 
-# Stage 4: Serve
+# Stage 2: Serve
 FROM nginx:alpine
 COPY --from=app-build /app/dist /usr/share/nginx/html
 RUN printf 'server {\n\
@@ -63,8 +44,7 @@ RUN printf 'server {\n\
     location ~* \\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$ {\n\
         expires 1y;\n\
         add_header Cache-Control "public, immutable";\n\
-    }\n\
-}\n' > /etc/nginx/conf.d/default.conf
+    }\n}\n' > /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 HEALTHCHECK --interval=30s --timeout=3s --retries=3 \
