@@ -22,7 +22,7 @@
 set -euo pipefail
 
 # ─── Configuração ────────────────────────────────────
-GH_ORG="Thalesvpr"
+GH_ORG="carffundiaria"
 BASE_DIR="${HOME}/carf"
 ACTION="${1:-clone}"
 
