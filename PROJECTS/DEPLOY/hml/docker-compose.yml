@@ -136,8 +136,6 @@ services:
       KC_HTTP_ENABLED: "true"
       KC_PROXY_HEADERS: xforwarded
       KC_HEALTH_ENABLED: "true"
-    volumes:
-      - ../../../CENTRAL/INTEGRATION/KEYCLOAK/realm-export.json:/opt/keycloak/data/import/realm.json:ro
     depends_on:
       keycloak-db:
         condition: service_healthy
