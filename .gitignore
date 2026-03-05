@@ -1,6 +1,7 @@
 ## Repositórios Git Independentes (não rastrear no CENTRAL)
 ## Cada projeto tem seu próprio repo - docs não tracka código fonte
 **/SRC-CODE/
+PROJECTS/DEPLOY/
 
 ## Node
 node_modules/
