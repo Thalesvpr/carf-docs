@@ -1,5 +1,5 @@
 # ============================================
-# CARF — HOMOLOGAÇÃO (HML)
+# CARF — HOMOLOGACAO (HML)
 # ============================================
 #
 # Uso:
@@ -9,15 +9,20 @@
 #   docker compose logs -f
 #
 # URLs (substitua IP pelo seu):
-#   hml-app.IP.sslip.io      → REURBWEB
-#   hml-admin.IP.sslip.io    → REURBMASTER
-#   hml-api.IP.sslip.io      → GEOAPI (Swagger: /swagger)
-#   hml-auth.IP.sslip.io     → Keycloak
-#   hml-s3.IP.sslip.io       → MinIO Console
-#   hml-storage.IP.sslip.io  → MinIO API
+#   hml-app.IP.sslip.io      -> REURBWEB
+#   hml-admin.IP.sslip.io    -> REURBMASTER
+#   hml-api.IP.sslip.io      -> GEOAPI (Swagger: /swagger)
+#   hml-auth.IP.sslip.io     -> Keycloak
+#   hml-s3.IP.sslip.io       -> MinIO Console
+#   hml-storage.IP.sslip.io  -> MinIO API
+#
+# Troubleshooting:
+#   - Frontends 403 no build? Verificar NPM_TOKEN no .env (precisa read:packages na org)
+#   - GEOAPI 500? Provavelmente RequireHttpsMetadata — ver env vars abaixo
+#   - Keycloak admin 401? Rodar bootstrap-admin (ver POST-DEPLOY.md)
 
 services:
-  # ─── Infraestrutura ────────────────────────────────
+  # --- Infraestrutura ----------------------------------------
 
   postgres:
     image: postgis/postgis:16-3.4
@@ -102,10 +107,17 @@ services:
     networks:
       - carf-hml
 
-  # ─── Keycloak ──────────────────────────────────────
+  # --- Keycloak ----------------------------------------------
+  # Imagem: Keycloak 26.x (start-dev para HML, nao precisa de HTTPS)
+  # O realm 'carf' e importado automaticamente no primeiro boot.
+  # Boots subsequentes ignoram o import (dados ja existem no DB).
+  #
+  # GOTCHA: KEYCLOAK_ADMIN/KEYCLOAK_ADMIN_PASSWORD so criam o admin
+  # no PRIMEIRO boot. Se o volume persistir e a senha mudar no .env,
+  # precisa fazer bootstrap-admin (ver POST-DEPLOY.md).
 
   keycloak:
-    image: quay.io/keycloak/keycloak:24.0.0
+    image: quay.io/keycloak/keycloak:26.0
     container_name: carf-hml-keycloak
     command: start-dev --import-realm
     restart: unless-stopped
@@ -123,19 +135,45 @@ services:
       KC_HEALTH_ENABLED: "true"
     volumes:
       - ../../../CENTRAL/INTEGRATION/KEYCLOAK/realm-export.json:/opt/keycloak/data/import/realm.json:ro
+      - ./keycloak-theme:/opt/keycloak/themes/carf:ro
     depends_on:
       keycloak-db:
         condition: service_healthy
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:8080/health || exit 1"]
-      interval: 30s
+      # Keycloak 26 management interface runs on port 9000
+      test: ["CMD-SHELL", "exec 3<>/dev/tcp/localhost/9000"]
+      interval: 15s
       timeout: 5s
       retries: 10
-      start_period: 60s
+      start_period: 90s
     networks:
       - carf-hml
 
-  # ─── GEOAPI (.NET 9) ──────────────────────────────
+  keycloak-init:
+    image: quay.io/keycloak/keycloak:26.0
+    container_name: carf-hml-keycloak-init
+    entrypoint: /bin/bash
+    command: /scripts/keycloak-init.sh
+    restart: "no"
+    environment:
+      KC_ADMIN_USER: ${KC_ADMIN_USER}
+      KC_ADMIN_PASSWORD: ${KC_ADMIN_PASSWORD}
+      VPS_IP: ${VPS_IP}
+      KC_SEED_USER_PASSWORD: ${KC_SEED_USER_PASSWORD:-Dev@1234}
+    volumes:
+      - ./scripts/keycloak-init.sh:/scripts/keycloak-init.sh:ro
+    depends_on:
+      keycloak:
+        condition: service_healthy
+    networks:
+      - carf-hml
+
+  # --- GEOAPI (.NET 9) ----------------------------------------
+  # GOTCHA: HML usa HTTP para Keycloak, entao:
+  #   - ASPNETCORE_ENVIRONMENT=Development (desabilita RequireHttpsMetadata)
+  #   - Ou usar Keycloak__RequireHttpsMetadata=false (se codigo suportar)
+  # extra_hosts mapeia o hostname sslip.io para o host gateway,
+  # permitindo que o GEOAPI alcance o Keycloak via nginx.
 
   geoapi:
     build:
@@ -144,7 +182,9 @@ services:
     container_name: carf-hml-geoapi
     restart: unless-stopped
     environment:
-      ASPNETCORE_ENVIRONMENT: Staging
+      # Development porque Keycloak roda HTTP (sem TLS)
+      # Em producao com HTTPS, trocar para Staging/Production
+      ASPNETCORE_ENVIRONMENT: Development
       ConnectionStrings__DefaultConnection: >-
         Host=postgres;Port=5432;
         Database=${POSTGRES_DB};
@@ -152,6 +192,8 @@ services:
         Password=${POSTGRES_PASSWORD}
       Keycloak__Authority: http://hml-auth.${VPS_IP}.sslip.io/realms/carf
       Keycloak__Audience: carf-api
+      Keycloak__RequireHttpsMetadata: "false"
+      Keycloak__ValidateIssuer: "false"
       Keycloak__AdminClientId: geoapi-admin
       Keycloak__AdminClientSecret: ${KC_GEOAPI_CLIENT_SECRET:-changeme}
       Storage__ServiceUrl: http://minio:9000
@@ -172,10 +214,24 @@ services:
         condition: service_healthy
       keycloak:
         condition: service_healthy
+    # Override do Dockerfile healthcheck (/health/live nao existe na build atual)
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:8080/swagger/index.html || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
     networks:
       - carf-hml
 
-  # ─── Frontends ─────────────────────────────────────
+  # --- Frontends -----------------------------------------------
+  # Build via frontend.Dockerfile compartilhado.
+  # Libs (@carffundiaria/*) sao baixadas do GitHub Packages via NPM_TOKEN.
+  #
+  # GOTCHA: O token precisa de scope read:packages com acesso a org carffundiaria.
+  # Tokens pessoais (ghp_*) precisam de SSO authorize.
+  # Tokens de gh auth (gho_*) funcionam mas podem expirar.
+  # Ideal: PAT classico com read:packages + SSO authorized.
 
   reurbweb:
     build:
@@ -183,7 +239,7 @@ services:
       dockerfile: PROJECTS/DEPLOY/dockerfiles/frontend.Dockerfile
       args:
         PROJECT_DIR: PROJECTS/REURBWEB/SRC-CODE/carf-reurbweb
-        NODE_AUTH_TOKEN: ${GITHUB_TOKEN}
+        NPM_TOKEN: ${NPM_TOKEN}
         VITE_API_URL: http://hml-api.${VPS_IP}.sslip.io/api
         VITE_KEYCLOAK_URL: http://hml-auth.${VPS_IP}.sslip.io
         VITE_KEYCLOAK_REALM: carf
@@ -200,7 +256,7 @@ services:
       dockerfile: PROJECTS/DEPLOY/dockerfiles/frontend.Dockerfile
       args:
         PROJECT_DIR: PROJECTS/REURBMASTER/SRC-CODE/carf-reurbmaster
-        NODE_AUTH_TOKEN: ${GITHUB_TOKEN}
+        NPM_TOKEN: ${NPM_TOKEN}
         VITE_API_URL: http://hml-api.${VPS_IP}.sslip.io/api
         VITE_KEYCLOAK_URL: http://hml-auth.${VPS_IP}.sslip.io
         VITE_KEYCLOAK_REALM: carf
@@ -211,7 +267,9 @@ services:
     networks:
       - carf-hml
 
-  # ─── Reverse Proxy ────────────────────────────────
+  # --- Reverse Proxy -------------------------------------------
+  # Nginx usa envsubst automatico para substituir ${VPS_IP} no template.
+  # Catch-all retorna 444 (drop connection) para requests sem Host valido.
 
   nginx:
     image: nginx:alpine

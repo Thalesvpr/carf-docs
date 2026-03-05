@@ -1,76 +1,103 @@
-# Pós-Deploy HML — Checklist Keycloak
+# Pos-Deploy HML
 
-Depois do `docker compose up -d --build`, o Keycloak importa o realm `carf` automaticamente.
-Os clients estão configurados para `localhost`. Atualize os redirect URIs para HML.
+## O que e automatico
 
-## 1. Acessar Keycloak Admin
+O `keycloak-init` container cuida de tudo automaticamente ao rodar `docker compose up -d --build`:
 
-- URL: `http://hml-auth.IP.sslip.io/admin`
-- Login: valores de `KC_ADMIN_USER` / `KC_ADMIN_PASSWORD` do `.env`
+- Desabilita SSL required nos realms `master` e `carf`
+- Atualiza redirect URIs do `reurbweb` e `reurbmaster` para o IP do HML
+- Preserva localhost nos redirect URIs (dev local continua funcionando)
+- Cria usuario `admin.hml` com senha (ver `KC_SEED_USER_PASSWORD` no `.env`)
+- Atribui roles `super-admin`, `admin`, `dev`
+- Define atributos de tenant (`current_tenant=default`, `tenants=default`)
+- Monta o tema CARF no Keycloak (tela de login customizada)
 
-## 2. Atualizar client `reurbweb`
+## Verificar se o init rodou
 
-Realm: `carf` → Clients → `reurbweb`
+```bash
+docker logs carf-hml-keycloak-init
+```
 
-| Campo | Valor |
-|---|---|
-| Root URL | `http://hml-app.IP.sslip.io` |
-| Valid Redirect URIs | `http://hml-app.IP.sslip.io/*` |
-| Valid Post Logout Redirect URIs | `http://hml-app.IP.sslip.io/*` |
-| Web Origins | `http://hml-app.IP.sslip.io` |
+Todos os passos devem mostrar `[ok]`. O container termina com exit 0.
 
-## 3. Atualizar client `reurbmaster`
+## Unica verificacao manual: geoapi-admin secret
 
-Realm: `carf` → Clients → `reurbmaster`
+O client `geoapi-admin` vem com secret `changeme` do realm-export.json.
+Se voce trocou `KC_GEOAPI_CLIENT_SECRET` no `.env`, confirme que bate com o Keycloak:
 
-| Campo | Valor |
-|---|---|
-| Root URL | `http://hml-admin.IP.sslip.io` |
-| Valid Redirect URIs | `http://hml-admin.IP.sslip.io/*` |
-| Valid Post Logout Redirect URIs | `http://hml-admin.IP.sslip.io/*` |
-| Web Origins | `http://hml-admin.IP.sslip.io` |
+```bash
+docker exec carf-hml-keycloak \
+  /opt/keycloak/bin/kcadm.sh config credentials \
+    --server http://localhost:8080 --realm master \
+    --user admin --password 'SUA_SENHA'
 
-## 4. Atualizar (ou criar) client `geoapi-admin`
+docker exec carf-hml-keycloak \
+  /opt/keycloak/bin/kcadm.sh get clients -r carf -q clientId=geoapi-admin \
+    --fields id,clientId,serviceAccountsEnabled
 
-Realm: `carf` → Clients → `geoapi-admin`
+# Ver o secret atual (substituir CLIENT_ID)
+docker exec carf-hml-keycloak \
+  /opt/keycloak/bin/kcadm.sh get clients/CLIENT_ID/client-secret -r carf
+```
 
-Se não existir, crie:
+## Testar fluxo completo
 
-| Campo | Valor |
-|---|---|
-| Client ID | `geoapi-admin` |
-| Client Authentication | ON (confidential) |
-| Service accounts roles | ON |
-| Valid Redirect URIs | `http://hml-api.IP.sslip.io/*` |
+| # | Teste | URL | Esperado |
+|---|-------|-----|----------|
+| 1 | REURBWEB | `http://hml-app.IP.sslip.io` | Login com tema CARF (nao tema padrao Keycloak) |
+| 2 | Login | (tela do Keycloak) | Login com admin.hml / Dev@1234 |
+| 3 | Dashboard | (apos login) | Dashboard do REURBWEB |
+| 4 | REURBMASTER | `http://hml-admin.IP.sslip.io` | Login + dashboard admin |
+| 5 | Swagger | `http://hml-api.IP.sslip.io/swagger` | Swagger UI |
+| 6 | Keycloak admin | `http://hml-auth.IP.sslip.io/admin` | Admin console (sem erro "HTTPS required") |
+| 7 | MinIO | `http://hml-s3.IP.sslip.io` | MinIO console |
 
-Depois de criar:
-1. Aba **Credentials** → copiar **Client Secret**
-2. Colar no `.env` em `KC_GEOAPI_CLIENT_SECRET`
-3. `docker compose restart geoapi`
+## Troubleshooting
 
-## 5. Criar usuário de teste
+### keycloak-init falha ao autenticar
 
-Realm: `carf` → Users → Add user
+As env vars `KEYCLOAK_ADMIN`/`KEYCLOAK_ADMIN_PASSWORD` so criam o admin no **primeiro boot**.
+Se o volume persistiu de um deploy anterior com senha diferente:
 
-| Campo | Valor |
-|---|---|
-| Username | `dev@carf.com` |
-| Email | `dev@carf.com` |
-| Email verified | ON |
-| First name | Dev |
-| Last name | HML |
+```bash
+# Resetar o admin (o erro "Address already in use" no final e esperado)
+docker exec \
+  -e KC_BOOTSTRAP_ADMIN_PASSWORD='NOVA_SENHA' \
+  carf-hml-keycloak \
+  /opt/keycloak/bin/kc.sh bootstrap-admin user \
+    --username admin \
+    --password:env KC_BOOTSTRAP_ADMIN_PASSWORD \
+    --no-prompt
 
-Depois:
-1. Aba **Credentials** → Set password: `Dev@1234` (temporary OFF)
-2. Aba **Attributes** → adicionar:
-   - `current_tenant` = ID do tenant (criar via API depois)
-   - `tenants` = mesmo ID
-3. Aba **Role Mappings** → atribuir roles
+docker compose restart keycloak
+# Atualizar KC_ADMIN_PASSWORD no .env, depois:
+docker compose up -d keycloak-init
+```
 
-## 6. Testar fluxo completo
+### GEOAPI retorna 500
 
-1. `http://hml-app.IP.sslip.io` → redireciona pro Keycloak → login → REURBWEB
-2. `http://hml-api.IP.sslip.io/swagger` → Swagger
-3. `http://hml-admin.IP.sslip.io` → REURBMASTER
-4. `http://hml-s3.IP.sslip.io` → MinIO Console
-5. `http://hml-auth.IP.sslip.io/admin` → Keycloak Admin
+Causa mais comum: `RequireHttpsMetadata=true` quando Keycloak roda HTTP.
+
+```bash
+docker compose logs geoapi --tail 20
+```
+
+O docker-compose.yml ja define `ASPNETCORE_ENVIRONMENT: Development` que desabilita o check.
+
+### Frontends retornam 403 no build
+
+O token NPM nao tem acesso ao GitHub Packages da org `carffundiaria`.
+
+```bash
+curl -s -o /dev/null -w '%{http_code}' \
+  -H "Authorization: Bearer $NPM_TOKEN" \
+  https://npm.pkg.github.com/@carffundiaria/ui
+# 200 ou 302 = OK. 401/403 = sem acesso.
+```
+
+### Re-executar o init manualmente
+
+```bash
+docker compose up -d keycloak-init
+docker logs -f carf-hml-keycloak-init
+```

@@ -1,0 +1,61 @@
+/* CARF Account Theme - Reuse login variables */
+@import url('../../../login/resources/css/login.css');
+
+.account-page {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--carf-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--carf-shadow);
+}
+
+.account-header {
+  border-bottom: 2px solid var(--carf-primary);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+.account-nav {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--carf-border);
+}
+
+.account-nav a {
+  padding: 0.75rem 1rem;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s;
+}
+
+.account-nav a:hover,
+.account-nav a.active {
+  border-bottom-color: var(--carf-primary);
+  color: var(--carf-primary);
+}
+
+.account-section {
+  margin-bottom: 2rem;
+}
+
+.account-section h2 {
+  color: var(--carf-primary);
+  margin-bottom: 1rem;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--carf-border);
+}
+
+.info-row label {
+  font-weight: 600;
+  color: var(--carf-text);
+}
+
+.info-row span {
+  color: var(--carf-text-secondary);
+}
