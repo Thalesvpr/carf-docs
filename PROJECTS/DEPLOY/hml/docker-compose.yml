@@ -117,7 +117,10 @@ services:
   # precisa fazer bootstrap-admin (ver POST-DEPLOY.md).
 
   keycloak:
-    image: quay.io/keycloak/keycloak:26.0
+    build:
+      context: ../../KEYCLOAK/SRC-CODE/carf-keycloak
+      dockerfile: ../../../DEPLOY/dockerfiles/keycloak.Dockerfile
+    image: carf-hml-keycloak
     container_name: carf-hml-keycloak
     command: start-dev --import-realm
     restart: unless-stopped
@@ -135,7 +138,6 @@ services:
       KC_HEALTH_ENABLED: "true"
     volumes:
       - ../../../CENTRAL/INTEGRATION/KEYCLOAK/realm-export.json:/opt/keycloak/data/import/realm.json:ro
-      - ./keycloak-theme:/opt/keycloak/themes/carf:ro
     depends_on:
       keycloak-db:
         condition: service_healthy
@@ -150,7 +152,7 @@ services:
       - carf-hml
 
   keycloak-init:
-    image: quay.io/keycloak/keycloak:26.0
+    image: carf-hml-keycloak
     container_name: carf-hml-keycloak-init
     entrypoint: /bin/bash
     command: /scripts/keycloak-init.sh

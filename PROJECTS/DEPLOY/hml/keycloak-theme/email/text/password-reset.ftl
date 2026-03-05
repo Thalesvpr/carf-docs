@@ -1,1 +1,0 @@
-${msg("passwordResetBody",link, realmName, linkExpirationFormatter(linkExpiration))}
