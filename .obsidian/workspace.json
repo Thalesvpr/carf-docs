@@ -251,6 +251,8 @@
   },
   "active": "94f08d4543131099",
   "lastOpenFiles": [
+    "PROJECTS/GEOAPI/SRC-CODE/CARF-GEOAPI/APPLICATION/Commands/Teams/UnassignEmpreendimentoCommand.cs",
+    "PROJECTS/GEOAPI/SRC-CODE/CARF-GEOAPI/APPLICATION/Commands/Teams/AssignEmpreendimentoCommand.cs",
     "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/react-native-svg/android/build/intermediates/data_binding_layout_info_type_package/debug/packageDebugResources/out",
     "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/react-native-svg/android/build/intermediates/data_binding_layout_info_type_package/debug/packageDebugResources",
     "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/react-native-svg/android/build/intermediates/data_binding_layout_info_type_package/debug",
@@ -260,8 +262,6 @@
     "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/@nozbe/watermelondb/native/android/build/intermediates/compile_symbol_list/debug",
     "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/@nozbe/watermelondb/native/android/build/intermediates/compile_symbol_list",
     "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/@nozbe/watermelondb/native/android/build/intermediates/compile_r_class_jar/debug/generateDebugRFile/R.jar",
-    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/@nozbe/watermelondb/native/android/build/intermediates/compile_r_class_jar/debug/generateDebugRFile",
-    "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/@nozbe/watermelondb/native/android/build/intermediates/compile_r_class_jar/debug",
     "PROJECTS/REURBCAD/DOCS/HOW-TO/09-adb-wifi.md",
     "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/expo-dev-menu/android/build/intermediates/packaged_res/debug/packageDebugResources/drawable-xhdpi-v4/refresh_round_icon.png",
     "PROJECTS/REURBCAD/SRC-CODE/carf-reurbcad/node_modules/expo-dev-menu/android/build/intermediates/packaged_res/debug/packageDebugResources/drawable-xhdpi-v4/ellipsis_horizontal.png",

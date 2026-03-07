@@ -110,7 +110,8 @@
       "Bash(dotnet ef database update:*)",
       "Bash(npx vite build)",
       "Bash(dotnet run:*)",
-      "Bash(for pw in \"carf\" \"password\" \"123456\" \"admin\" \"Dev@123\" \"carf123\" \"changeme\")"
+      "Bash(for pw in \"carf\" \"password\" \"123456\" \"admin\" \"Dev@123\" \"carf123\" \"changeme\")",
+      "Bash(npx vitest:*)"
     ],
     "deny": [],
     "ask": []
