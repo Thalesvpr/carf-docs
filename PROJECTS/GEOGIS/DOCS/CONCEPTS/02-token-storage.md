@@ -1,3 +1,10 @@
+---
+type: leaf
+status: review
+description: "Wall of text sem estrutura. Paragrafos gigantes sem formatacao."
+updated: 2026-01-22
+---
+
 Token storage no GEOGIS usa QSettings QGIS built-in settings manager que automaticamente encrypts valores via platform password managers Keychain macOS KWallet ou Secret Service Linux GNOME KDE Windows Credential Manager garantindo tokens não armazenados plain text em config files usage pattern settings = QSettings('CARF', 'GEOGIS') criando settings object com organization 'CARF' e application 'GEOGIS' gerando namespace unique evitando conflicts com outros plugins settings.setValue('access_token', token) salva token encrypted passando para password manager backend automaticamente sem código adicional token = settings.value('access_token', defaultValue=None) lê token decrypted retornando None se não existe settings.remove('access_token') deleta token do password manager permanentemente.
 
 Sensitive values como access_token refresh_token client_secret devem usar QSettings porque encrypted non-sensitive values como API_URL last_sync_time theme_preference podem usar regular QSettings ou Python config files porque não security risk QSettings automatically syncs ao disk periodically e durante app shutdown garantindo persistence across plugin reload QGIS restart location QSettings armazena depende de platform sendo macOS ~/Library/Preferences/com.CARF.GEOGIS.plist Linux ~/.config/CARF/GEOGIS.conf Windows HKEY_CURRENT_USER\Software\CARF\GEOGIS registry mas password manager entries armazenados separately em Keychain KWallet Credential Manager não plain text nestes files.

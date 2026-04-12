@@ -1,8 +1,21 @@
-# IPdfGenerator
-
-
-Interface abstraindo geração de PDFs formatados a partir de templates e dados permitindo criar certidões memoriais descritivos plantas relatórios e outros documentos oficiais mantendo domain independente de biblioteca específica como QuestPDF iTextSharp ou Razor facilitando testes e substituição. Método principal GenerateAsync(string templateName object model) renderizando template com dados fornecidos retornando Stream do PDF gerado tipo await GenerateAsync("legitimation-certificate" certificateData) usando Razor views ou templates customizados, GenerateFromHtmlAsync(string htmlContent) convertendo HTML para PDF útil para conteúdo dinâmico rico, e SaveAsync(string templateName object model string destinationPath) gerando e salvando diretamente em IFileStorage retornando path final. Métodos específicos incluem GenerateCertificateAsync recebendo LegitimationCertificate compilando dados em template oficial com cabeçalho brasão texto legal assinatura digital QR code seguindo layout padrão órgão emissor, GenerateMemorialAsync recebendo DescriptiveMemorial formatando vértices confrontações em tabelas incluindo mapa esquemático coordenadas UTM e geográficas assinatura e carimbo do surveyor com número ART, GeneratePlanAsync recebendo LegitimationPlan plotando polígono com medidas azimutes norte geográfico escala legenda carimbo profissional em formato A3 ou A4, GenerateMonographAsync recebendo Monograph compilando fotos cardeais description croqui coordenadas processadas em ficha técnica padrão, e GenerateReportAsync genérico recebendo dados customizados e template flexible para relatórios diversos. Implementada por QuestPdfGenerator usando QuestPDF library fluent API construindo documentos programaticamente com controle total de layout paginação estilos fontes, ou RazorPdfGenerator usando Razor views renderizando HTML convertendo para PDF via library como Puppeteer ou wkhtmltopdf permitindo designers criar templates visualmente, e MockPdfGenerator em testes retornando PDF vazio ou fixo validando apenas que geração foi chamada sem executar rendering real. Usada em LegitimationCertificate.GeneratePdf chamando generator.GenerateCertificateAsync salvando resultado em PdfPath através de fileStorage, em DescriptiveMemorial compilando memorial técnico, em LegitimationPlan gerando planta gráfica, em Monograph documentando ponto topográfico, e em relatórios administrativos tipo lista de unidades aprovadas por período exportando PDF para impressão. Integra com IFileStorage onde PDF gerado é salvo automaticamente retornando path para armazenar em entidade, suporta templates customizáveis por tenant permitindo personalização de logos cores layouts mantendo estrutura de dados padrão através de tenant-specific template folders, permite geração assíncrona processando PDFs pesados em background job evitando timeout de request retornando task ID para polling de progresso, aplica watermark em PDFs de preview ou rascunho marcando como "NÃO OFICIAL" até aprovação final, e fornece cache de templates compilados evitando reparse de Razor views ou layouts complexos melhorando performance de geração em lote.
-
+---
+type: leaf
+status: review
+updated: 2026-02-08
 ---
 
-**Última atualização:** 2026-01-12
+# IPdfGenerator
+
+Interface abstraindo geracao de PDFs formatados a partir de templates e dados, permitindo criar certidoes, memoriais descritivos, plantas e relatorios oficiais mantendo dominio independente de biblioteca especifica.
+
+## Metodos
+
+| Metodo | Parametros | Retorno | Descricao |
+| --- | --- | --- | --- |
+| GenerateAsync | string templateName, object model | Stream | Renderiza template com dados retornando PDF. |
+| GenerateCertificateAsync | LegitimationCertificate data | Stream | Gera certidao oficial com cabecalho, texto legal, assinatura e QR code. |
+| GenerateMemorialAsync | DescriptiveMemorial data | Stream | Gera memorial descritivo com coordenadas e confrontacoes. |
+| GeneratePlanAsync | LegitimationPlan data | Stream | Gera planta tecnica com poligono, medidas e escala. |
+| SaveAsync | templateName, model, destPath | string | Gera e salva no IFileStorage retornando path. |
+
+Implementada por QuestPdfGenerator usando QuestPDF fluent API ou RazorPdfGenerator usando views Razor. Suporta templates customizaveis por tenant, geracao assincrona em background job, e cache de templates compilados.

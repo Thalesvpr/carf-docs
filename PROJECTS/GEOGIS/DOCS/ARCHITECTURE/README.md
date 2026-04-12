@@ -1,3 +1,10 @@
+---
+type: readme
+status: review
+description: "Usa listas/bullets extensivamente ao inves de paragrafos densos (18+ bullets)"
+updated: 2026-01-22
+---
+
 # ARCHITECTURE - GEOGIS
 
 Arquitetura do plugin GEOGIS - QGIS Python 3 plugin seguindo estrutura modular.
@@ -46,6 +53,14 @@ Permite salvar selected features como:
 
 Registrados via `QgsProcessingProvider` permitindo usuário executar via Processing Toolbox com parameters input/output configuráveis.
 
----
+<!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-**Última atualização:** 2026-01-10
+## Documentos (1)
+
+| Documento | Status |
+|-----------|--------|
+| [01-keycloak-integration](./01-keycloak-integration.md) | ⚠ |
+
+<!-- CARF-INDEX-END -->

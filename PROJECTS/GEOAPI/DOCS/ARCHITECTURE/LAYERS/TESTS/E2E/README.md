@@ -1,3 +1,9 @@
+---
+type: readme
+status: review
+updated: 2026-01-12
+---
+
 # E2E
 
 Testes end-to-end do GEOAPI exercitando API completa via HTTP requests validando contratos REST, autenticação JWT, autorização RBAC, serialization JSON e fluxos completos desde request até response atravessando todas camadas. WebApplicationFactory cria servidor in-memory hospedando aplicação ASP.NET Core com todas dependências configuradas (DbContext apontando Testcontainers PostgreSQL, Redis mock, Keycloak mock retornando tokens válidos, S3 mock) permitindo enviar HttpClient requests reais para endpoints verificando status codes, headers e response bodies. Testes validam happy paths (criar unidade retorna 201 Created com Location header, listar unidades retorna 200 OK com array JSON) e error scenarios (criar sem autenticação retorna 401 Unauthorized, atualizar entity outro tenant retorna 404 Not Found por RLS, input inválido retorna 400 Bad Request com validation errors ProblemDetails). Fluxos multi-step testam sequências realistas como field agent login → criar unidade → upload foto → submit para análise → analista login → aprovar legitimação verificando state transitions corretas e domain events despachados notificando stakeholders via SignalR.
@@ -38,6 +44,14 @@ Testes end-to-end do GEOAPI exercitando API completa via HTTP requests validando
 
 E2E tests usam HttpClient fornecido por WebApplicationFactory enviando requests reais para endpoints com headers autenticação (Bearer token gerado por helper method), query params e request bodies JSON verificando response via assertions sobre StatusCode, Headers e Content deserialized para DTOs esperados. Test fixtures compartilhados via IClassFixture provêem WebApplicationFactory configurada e DbContext seeded com dados base (users, roles, tenant) reduzindo setup time entre tests mantendo isolation via transaction rollback ou database reset após cada test. Helpers criam tokens JWT válidos com claims específicas (tenant_id, user_id, roles) permitindo tests simular diferentes usuários e verificar authorization policies sem depender de Keycloak real rodando. Response assertions verificam não apenas status code mas schema completo validando response body contra expected DTO structure usando FluentAssertions Should().BeEquivalentTo() comparando deep equality incluindo nested objects e arrays. Performance assertions usando StopWatch verificam endpoints respondem dentro SLA esperado (< 200ms para queries simples, < 2s para aggregations complexas) identificando regressões performance antes deploy production.
 
----
+<!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-**Última atualização:** 2026-01-12
+## Documentos (1)
+
+| Documento | Status |
+|-----------|--------|
+| [API E2E Tests](./01-api-e2e-tests.md) | ⚠ |
+
+<!-- CARF-INDEX-END -->

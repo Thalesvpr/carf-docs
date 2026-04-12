@@ -1,15 +1,31 @@
-# KEYCLOAK - Customizações CARF
-
-Customizações Keycloak para sistema CARF incluindo temas PT-BR validação CPF client-side realm configuration Docker setup scripts automação testes. Stack: Keycloak 24.0 FreeMarker JavaScript themes Maven Java SPIs Node.js API tests Playwright E2E.
-
-## Documentação
-
-- **[ARCHITECTURE/](./ARCHITECTURE/README.md)** - Arquitetura temas desenvolvimento extensões
-- **[CONCEPTS/](./CONCEPTS/README.md)** - Temas SPIs customização realm OAuth2 multi-tenancy
-- **[HOW-TO/](./HOW-TO/README.md)** - Desenvolver temas deploy extensões configuração build imagem
-- **[REFERENCE/](./REFERENCE/README.md)** - Admin REST API propriedades temas variáveis ambiente
-- **[FEATURES/](./FEATURES/README.md)** - Customização temas validação CPF multi-tenancy
-
+---
+type: readme
+status: review
+updated: 2026-02-07
 ---
 
-**Última atualização:** 2026-01-11
+# KEYCLOAK - Documentacao
+
+Documentacao completa do Keycloak no ecossistema CARF, cobrindo desde conceitos teoricos ate procedimentos operacionais. Ponto central para toda documentacao de autenticacao e autorizacao do sistema. Fonte da verdade para configuracao do realm e CENTRAL/INTEGRATION/KEYCLOAK/realm-export.json.
+
+A documentacao organiza-se em [CONCEPTS](./CONCEPTS/README.md) com fundamentos de OAuth2, OIDC, SPIs e multi-tenancy, [ARCHITECTURE](./ARCHITECTURE/README.md) com estrategia de customizacao de temas e extensoes, [INTEGRATION](./INTEGRATION/README.md) com configuracao de clients, RBAC, realm, tokens e seguranca, [FEATURES](./FEATURES/README.md) com customizacoes CARF implementadas, [CONFIG](./CONFIG/README.md) com docker-compose e variaveis de ambiente, [HOW-TO](./HOW-TO/README.md) com guias praticos, [RUNBOOKS](./RUNBOOKS/README.md) com procedimentos operacionais, e [REFERENCE](./REFERENCE/README.md) com APIs, endpoints e schemas.
+
+<!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
+
+## Subpastas (9)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [ADRs](./ADRs/README.md) | ... |
+| [ARCHITECTURE](./ARCHITECTURE/README.md) | ... |
+| [CONCEPTS](./CONCEPTS/README.md) | ... |
+| [CONFIG](./CONFIG/README.md) | ... |
+| [FEATURES](./FEATURES/README.md) | ... |
+| [HOW-TO](./HOW-TO/README.md) | ... |
+| [INTEGRATION](./INTEGRATION/README.md) | ... |
+| [REFERENCE](./REFERENCE/README.md) | ... |
+| [RUNBOOKS](./RUNBOOKS/README.md) | ... |
+
+<!-- CARF-INDEX-END -->

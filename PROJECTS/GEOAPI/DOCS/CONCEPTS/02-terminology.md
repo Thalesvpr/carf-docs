@@ -1,3 +1,10 @@
+---
+type: leaf
+status: review
+description: "Usa listas e bullets ao inves de prosa densa - estrutura de glossario com sublistas"
+updated: 2026-01-22
+---
+
 # Terminology - GEOAPI
 
 ## Glossário Técnico
@@ -55,8 +62,8 @@
 ### Keycloak
 
 - **Realm** - Namespace isolado no Keycloak. GEOAPI usa realm `carf`.
-- **Client** - Aplicação registrada no Keycloak (geoweb-client, admin-client).
-- **Role** - Permissão atribuída a usuários (ADMIN, ANALYST, FIELD_AGENT).
+- **Client** - Aplicação registrada no Keycloak (reurbweb-client, admin-client).
+- **Role** - Permissão atribuída a usuários (ADMIN, ANALYST, FIELD_COORDINATOR, FIELD_CADASTRATOR).
 - **JWT (JSON Web Token)** - Token de autenticação contendo claims (roles, tenant_id, user_id).
 
 ### PostgreSQL + PostGIS
@@ -80,4 +87,3 @@
 - **Núcleo Urbano Informal** - Conjunto de unidades (Community entity).
 - **Legitimação Fundiária** - Instrumento de regularização que transfere propriedade (LegitimationRequest).
 - **CRI** - Cartório de Registro de Imóveis. Registra propriedade.
-

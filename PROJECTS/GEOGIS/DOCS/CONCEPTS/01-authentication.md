@@ -1,3 +1,10 @@
+---
+type: leaf
+status: review
+description: "Wall of text sem estrutura. Texto corrido ilegivel."
+updated: 2026-01-22
+---
+
 Authentication no GEOGIS Python plugin oferece dois modos sendo Service Account mode usando Client Credentials Flow ideal para scripts automatizados batch processing sem user interaction onde token = keycloak_openid.token(grant_type='client_credentials') faz POST ao token endpoint com client_id e client_secret obtendo access_token sem authorization code flow client secret armazenado em QSettings encrypted via QGIS password manager token renovado automaticamente quando expira checking expires_in claim usado para operações scheduled tasks nightly sync bulk export reports sem user presente.
 
 User Account mode usando Authorization Code + PKCE Flow para operations requiring user context audit logs showing who performed action implementado gerando code_verifier random com secrets.token_urlsafe(64) calculando code_challenge SHA256 hash construindo auth_url com parameters client_id redirect_uri=http://localhost:8888/callback response_type=code scope=openid profile email code_challenge code_challenge_method=S256 abrindo browser com webbrowser.open(auth_url) que navega usuário para Keycloak login screen iniciando local HTTP server com http.server.HTTPServer(('localhost', 8888), CallbackHandler) listening em porta 8888 aguardando callback CallbackHandler extends BaseHTTPRequestHandler implementando do_GET() que extrai code da URL query params salva em variable accessible ao main thread retorna 200 OK com HTML message "Login successful! You can close this window" server shutdown após single request.

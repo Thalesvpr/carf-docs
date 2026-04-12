@@ -1,3 +1,9 @@
+---
+type: readme
+status: review
+updated: 2026-01-12
+---
+
 # TESTS
 
 Estratégia testes GEOAPI implementando pirâmide três níveis: unitários validando entities value objects validators isolados com xUnit Moq, integração verificando interação camadas com Testcontainers PostgreSQL real queries EF Core migrations RLS policies, e E2E exercitando API completa via WebApplicationFactory HTTP requests validando contratos REST autenticação JWT autorização RBAC. Stack inclui xUnit runner, Moq mocking, Testcontainers Docker, FluentAssertions syntax, Bogus dados fake, Coverlet coverage. Convenções nomeiam projetos espelhando source (GeoApi.Domain.Tests), métodos seguem MethodName_Scenario_ExpectedBehavior, fixtures compartilham setup custoso via IClassFixture.
@@ -8,6 +14,16 @@ Estratégia testes GEOAPI implementando pirâmide três níveis: unitários vali
 - **[INTEGRATION/](./INTEGRATION/README.md)** - Testes integração com database real
 - **[E2E/](./E2E/README.md)** - Testes end-to-end API completa
 
----
+<!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-**Última atualização:** 2026-01-12
+## Subpastas (3)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [E2E](./E2E/README.md) | ... |
+| [INTEGRATION](./INTEGRATION/README.md) | ... |
+| [UNIT](./UNIT/README.md) | ... |
+
+<!-- CARF-INDEX-END -->

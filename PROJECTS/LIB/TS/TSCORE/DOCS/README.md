@@ -1,24 +1,18 @@
-# @carf/tscore - Biblioteca TypeScript Core
-
-Biblioteca TypeScript compartilhada eliminando duplicação código entre GEOWEB REURBCAD ADMIN WEBDOCS fornecendo autenticação Keycloak value objects CPF CNPJ validações brasileiras types sincronizados backend hooks React composables Vue. Stack: TypeScript 5.3 Zod OAuth2 OIDC Keycloak React 18 Vue 3 Bun publicação NPM GitHub Packages semantic versioning.
-
-## Instalação
-
-```bash
-# Configurar .npmrc
-echo "@carf:registry=https://npm.pkg.github.com" >> .npmrc
-
-# Instalar
-bun add @carf/tscore
-```
-
-## Documentação
-
-- **[ARCHITECTURE/](./ARCHITECTURE/README.md)** - Decisões design biblioteca shared code strategies
-- **[CONCEPTS/](./CONCEPTS/README.md)** - Value objects validações autenticação types
-- **[HOW-TO/](./HOW-TO/README.md)** - Uso prático validações auth React Vue
-- **[API/](./API/README.md)** - Referência completa API classes métodos types
-
+---
+type: readme
+status: review
+updated: 2026-01-24
 ---
 
-**Última atualização:** 2026-01-11
+# Documentacao @carf/tscore
+
+Documentacao tecnica completa da biblioteca core TypeScript compartilhada entre todos os projetos do ecossistema CARF. Esta biblioteca fornece value objects com validacoes brasileiras, tipos de dominio, cliente de autenticacao Keycloak e hooks para React e Vue.
+
+A documentacao esta organizada em seis secoes principais. As [especificacoes tecnicas](./SPECS/README.md) detalham configuracoes de package.json, tsconfig e exports map necessarias para build e publicacao. As [decisoes arquiteturais](./ADRs/README.md) registram o historico de escolhas tecnicas fundamentais da biblioteca. A [arquitetura](./ARCHITECTURE/README.md) descreve a estrutura de modulos, subpath exports e integracao com projetos consumidores.
+
+Os [conceitos](./CONCEPTS/README.md) explicam value objects imutaveis, sistema de autenticacao OAuth2 PKCE e tipos TypeScript compartilhados. A [referencia de API](./API/README.md) documenta todas as classes, interfaces e funcoes publicas. Os [guias praticos](./HOW-TO/README.md) orientam desenvolvedores na instalacao, uso e publicacao da biblioteca.
+
+A biblioteca exporta quatro modulos principais via subpath exports. O modulo validations fornece CPF, CNPJ, Email e Phone como value objects. O modulo types disponibiliza interfaces Unit, Holder, Community e enums como UnitStatus e Role. O modulo auth oferece KeycloakClient com suporte a PKCE. Os modulos auth/react e auth/vue fornecem hooks especificos para cada framework.
+
+<!-- CARF-INDEX-START -->
+<!-- CARF-INDEX-END -->

@@ -1,0 +1,15 @@
+---
+type: leaf
+status: review
+updated: 2026-02-07
+---
+
+# Estrategia de Seguranca
+
+O CARF implementa defesa em profundidade com multiplas camadas de protecao para o Keycloak como identity provider centralizado e para os dados sensiveis de regularizacao fundiaria.
+
+A protecao contra brute force bloqueia contas apos 5 tentativas falhas (failureFactor: 5) por ate 15 minutos (maxFailureWaitSeconds: 900), com contador de falhas resetando apos 12 horas de inatividade (maxDeltaTimeSeconds: 43200) — nao ha bloqueio permanente. Rate limiting no Ingress NGINX limita endpoints de autenticacao a 10 requisicoes por segundo, bloqueando IPs abusivos por 1 hora. A politica de senha exige minimo 8 caracteres (length(8) no realm-export.json).
+
+O Admin Console do Keycloak e acessivel apenas via VPN ou kubectl port-forward, nunca exposto publicamente. MFA via TOTP e obrigatorio para roles admin e super-admin. Toda comunicacao usa TLS 1.3 com certificados renovados automaticamente via cert-manager. Tokens JWT usam RS256 com chaves RSA 2048-bit rotacionadas anualmente.
+
+Audit logging registra todos eventos de autenticacao com retencao de 90 dias, e acoes administrativas por 1 ano. Logs sao exportados para SIEM via syslog com alertas configurados para anomalias como multiplas falhas de login ou acesso fora de horario comercial. Headers de seguranca incluem HSTS, X-Frame-Options DENY e Content-Security-Policy restritiva.

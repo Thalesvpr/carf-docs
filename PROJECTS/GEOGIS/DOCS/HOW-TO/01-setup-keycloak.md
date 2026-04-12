@@ -1,3 +1,10 @@
+---
+type: leaf
+status: review
+description: "Wall of text sem estrutura. Texto corrido sem formatacao."
+updated: 2026-01-22
+---
+
 Setup Keycloak no GEOGIS requer primeiro instalar python-keycloak library via OSGeo4W Shell Windows executando python -m pip install python-keycloak requests ou terminal Linux macOS com /usr/bin/python3 -m pip install python-keycloak requests usando QGIS Python interpreter path verificar installation abrindo QGIS Python Console digitando import keycloak print(keycloak.__version__) should print version sem errors criar config.py em plugin directory com constants KEYCLOAK_URL = 'http://localhost:8080' KEYCLOAK_REALM = 'carf' KEYCLOAK_CLIENT_ID = 'geogis' KEYCLOAK_CLIENT_SECRET = '' filled later API_URL = 'http://localhost:5000'.
 
 Criar auth_manager.py implementando AuthManager class singleton com _instance = None @classmethod getInstance() returning cached instance __init__() initializing KeycloakOpenID with config values self.access_token = None self.refresh_token = None self.expires_at = None implementar login_service_account() method para client credentials flow executando token = self.keycloak_openid.token(grant_type='client_credentials') catching exceptions storing tokens via QSettings settings = QSettings('CARF', 'GEOGIS') settings.setValue('access_token', token['access_token']) seting self.expires_at = datetime.now() + timedelta(seconds=token['expires_in']) implementar login_user() method para authorization code flow gerando code_verifier com secrets.token_urlsafe(64) calculating code_challenge SHA256 hash base64.urlsafe_b64encode(hashlib.sha256(code_verifier.encode()).digest()).decode().rstrip('=').

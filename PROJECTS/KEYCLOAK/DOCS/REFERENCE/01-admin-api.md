@@ -1,7 +1,28 @@
-# Admin REST API
-
-Keycloak Admin REST API base URL /admin/realms/carf autenticada via Bearer token obtido através admin-cli client credentials flow ou token de usuário com role realm-admin. Endpoints principais incluem GET /admin/realms/carf retornando configuração realm, GET /users listando usuários com paginação first max query params e filtros username email search, POST /users criando usuário com payload JSON username email firstName lastName enabled attributes, GET /users/{id} obtendo usuário específico por UUID, PUT /users/{id} atualizando campos, DELETE /users/{id} removendo usuário. Gerenciamento roles via GET /roles listando realm roles, POST /users/{id}/role-mappings/realm atribuindo roles array, DELETE /users/{id}/role-mappings/realm removendo. Clients via GET /clients listando, GET /clients/{id}/service-account-user obtendo service account. Groups via GET /groups, POST /users/{id}/groups/{groupId} adicionando usuário. User attributes acessíveis via attributes map no payload user, atualizáveis via PUT incluindo tenants array e current_tenant para multi-tenancy. Rate limiting recomendado para chamadas bulk, paginação obrigatória para listagens grandes, caching de tokens admin-cli com refresh antes expiração.
-
+---
+type: leaf
+status: review
+updated: 2026-02-07
 ---
 
-**Última atualização:** 2026-01-12
+# Admin REST API
+
+Keycloak Admin REST API permite gerenciamento programatico de realms, usuarios, roles, clients e configuracoes. A base URL para o realm CARF e /admin/realms/carf. Autenticacao exige Bearer token obtido via admin-cli client credentials flow ou token de usuario com role realm-admin.
+
+## Autenticacao
+
+Para obter um token admin, envia-se requisicao POST ao endpoint /realms/master/protocol/openid-connect/token com content type application/x-www-form-urlencoded. O body contem client_id igual a admin-cli, username e password do administrador, e grant_type igual a password. A resposta retorna access_token, expires_in, refresh_expires_in, refresh_token e token_type Bearer. Todas requisicoes subsequentes devem incluir headers Authorization Bearer com o token e Content-Type application/json.
+
+## Endpoints de Realm
+
+| Metodo | Endpoint | Descricao |
+|:-------|:---------|:----------|
+| GET | /admin/realms/{realm} | Retorna configuracao completa do realm |
+| PUT | /admin/realms/{realm} | Atualiza configuracoes do realm |
+
+A resposta do GET retorna campos como id, realm, displayName, enabled, sslRequired, registrationAllowed, loginWithEmailAllowed, resetPasswordAllowed, bruteForceProtected, failureFactor, accessTokenLifespan, ssoSessionIdleTimeout, loginTheme, internationalizationEnabled, supportedLocales e defaultLocale. O PUT aceita body parcial com apenas os campos a alterar.
+
+## Boas Praticas
+
+Paginacao e obrigatoria para listagens grandes, usando parametros first e max para evitar timeout. Implementar backoff exponencial para chamadas em lote pois Keycloak nao possui rate limiting nativo. Admin tokens expiram rapidamente (300s padrao), exigindo cache e refresh antes da expiracao. Todas operacoes admin sao registradas em log de auditoria consultavel via /admin/realms/{realm}/events.
+
+Ver [01a-admin-api-users](./01a-admin-api-users.md) para endpoints de usuarios e [01b-admin-api-roles-clients](./01b-admin-api-roles-clients.md) para roles, clients, groups e sessoes.

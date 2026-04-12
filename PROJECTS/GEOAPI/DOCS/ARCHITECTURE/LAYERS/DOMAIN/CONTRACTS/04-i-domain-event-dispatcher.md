@@ -1,8 +1,18 @@
-# IDomainEventDispatcher
-
-
-Interface responsável por despachar domain events coletados de aggregate roots após commit bem-sucedido de transação garantindo que side effects como notificações invalidação de cache ou jobs sejam executados apenas se mudanças foram persistidas evitando inconsistências. Método principal DispatchAsync(IEnumerable domainEvents) iterando coleção de eventos encontrando handlers registrados no DI container através de INotificationHandler do MediatR e invocando ProcessAsync de cada handler em ordem permitindo múltiplos handlers para mesmo evento. Método adicional DispatchAsync(IDomainEvent singleEvent) sobrecarga conveniente para evento único evitando criação de coleção. Implementada por MediatRDomainEventDispatcher wrapper encapsulando IMediator do MediatR delegando dispatch mantendo domain layer independente de biblioteca específica permitindo substituição futura, ou por InMemoryDomainEventDispatcher implementação simples para testes mantendo lista de handlers registrados manualmente sem DI. Usada em IUnitOfWork.SaveChangesAsync onde após DbContext.SaveChangesAsync bem-sucedido código itera entidades do ChangeTracker filtrando BaseAggregateRoot coletando propriedade DomainEvents de cada aggregate despachando eventos e limpando coleção evitando redispatch em SaveChanges subsequente. Integra com event handlers registrados como INotificationHandler no DI container onde cada handler implementa lógica específica tipo UnitCreatedEventHandler enviando email de boas-vindas ou SyncConflictEventHandler criando notificação in-app para usuário mobile, suporta execução assíncrona permitindo handlers lentos como envio de email ou chamadas HTTP sem bloquear SaveChanges através de await paralelo ou fire-and-forget, permite ordenação de handlers através de convenção de nomenclatura ou atributos customizados garantindo que handler crítico execute antes de opcional, registra exceptions de handlers sem propagar para UnitOfWork evitando rollback de transação por falha em side effect logando erro e continuando dispatch dos demais eventos, e fornece hook para audit trail rastreando quais eventos foram disparados quando e resultado de cada handler útil para debugging de fluxos complexos.
-
+---
+type: leaf
+status: review
+updated: 2026-02-08
 ---
 
-**Última atualização:** 2026-01-12
+# IDomainEventDispatcher
+
+Interface responsavel por despachar domain events coletados de aggregate roots apos commit bem-sucedido de transacao. Garante que side effects como notificacoes, invalidacao de cache ou jobs executam apenas se mudancas foram persistidas.
+
+## Metodos
+
+| Metodo | Parametros | Retorno | Descricao |
+| --- | --- | --- | --- |
+| DispatchAsync | IEnumerable de IDomainEvent | Task | Itera eventos, encontra handlers registrados e invoca. |
+| DispatchAsync | IDomainEvent singleEvent | Task | Sobrecarga para evento unico. |
+
+Implementada por MediatRDomainEventDispatcher delegando para IMediator do MediatR. Registra exceptions de handlers sem propagar para UnitOfWork, evitando rollback por falha em side effect. Suporta execucao assincrona de handlers.

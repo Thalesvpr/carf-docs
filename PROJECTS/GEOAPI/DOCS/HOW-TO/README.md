@@ -1,3 +1,10 @@
+---
+type: readme
+status: review
+description: "README usa listas/tabelas ao invés de prosa densa com links inline."
+updated: 2026-01-22
+---
+
 # HOW-TO - GEOAPI
 
 Guias práticos para desenvolvimento e configuração do GEOAPI backend .NET.
@@ -18,10 +25,22 @@ Guias práticos para desenvolvimento e configuração do GEOAPI backend .NET.
 
 ## Conceitos Relacionados
 
-Ver também:
-- [ARCHITECTURE/](../ARCHITECTURE/README.md) - Decisões arquiteturais específicas do GEOAPI
-- [CONCEPTS/](../CONCEPTS/README.md) - Conceitos fundamentais (Clean Architecture, CQRS, DDD)
+Ver também em GEOAPI/DOCS:
+- ARCHITECTURE - Decisões arquiteturais específicas do GEOAPI
+- CONCEPTS - Conceitos fundamentais (Clean Architecture, CQRS, DDD)
 
----
+<!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-**Última atualização:** 2026-01-12
+## Documentos (5)
+
+| Documento | Status |
+|-----------|--------|
+| [Configure Keycloak](./01-configure-keycloak.md) | ⚠ |
+| [Setup Dev Environment - GEOAPI](./01-setup-dev-environment.md) | ⚠ |
+| [Build and Run](./02-build-and-run.md) | ⚠ |
+| [Validate Tokens](./02-validate-tokens.md) | ⚠ |
+| [Test Authentication](./03-test-authentication.md) | ⚠ |
+
+<!-- CARF-INDEX-END -->

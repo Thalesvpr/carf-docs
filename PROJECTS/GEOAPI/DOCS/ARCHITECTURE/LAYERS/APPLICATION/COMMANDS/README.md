@@ -1,3 +1,9 @@
+---
+type: readme
+status: review
+updated: 2026-01-12
+---
+
 # COMMANDS
 
 Commands CQRS do GEOAPI representando intenções de alterar estado do sistema (writes), organizados por feature (Units, Holders, Communities, Teams, Legitimation, Surveying) e seguindo convenção de nomenclatura CreateXCommand/UpdateXCommand/DeleteXCommand. Cada command é record imutável contendo apenas dados necessários para operação validados por validator FluentValidation correspondente antes de execução pelo handler. Handlers implementam IRequestHandler<TCommand, Result<TResponse>> do MediatR, recebem command validado, coordenam operações de domínio delegando lógica para entities/aggregates, persistem via IUnitOfWork e retornam Result<T> indicando sucesso com dados ou erro com messages para tratamento explícito sem exceptions. Commands não acessam DbContext diretamente mas apenas via repositories garantindo que todas alterações passem por lógica de domínio encapsulada nas entidades, mantendo consistência e permitindo domain events serem disparados apropriadamente.
@@ -35,6 +41,14 @@ Commands CQRS do GEOAPI representando intenções de alterar estado do sistema (
 - 18-upload-document-command.md
 - 19-delete-document-command.md
 
----
+<!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-**Última atualização:** 2026-01-12
+## Documentos (1)
+
+| Documento | Status |
+|-----------|--------|
+| [Unit Commands](./01-unit-commands.md) | ⚠ |
+
+<!-- CARF-INDEX-END -->

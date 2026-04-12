@@ -1,13 +1,30 @@
-# ARCHITECTURE
-
-Documentação da arquitetura sistêmica do CARF organizada em DEPLOYMENT (estratégias multi-ambiente dev/staging/prod, containerização, orquestração Kubernetes, CI/CD, mobile deployment, static sites), PATTERNS (padrões arquiteturais como Clean Architecture, CQRS, Repository/UoW, Domain Events, frontend patterns React, offline-first mobile, GIS spatial patterns), e ADRs (Architecture Decision Records documentando decisões críticas polyrepo, Keycloak auth, RLS multi-tenancy, offline-first). Define princípios arquiteturais separation of concerns, dependency inversion, single responsibility, e fail-fast com circuit breakers aplicados nos cinco projetos (GEOAPI, GEOWEB, REURBCAD, GEOGIS, WEBDOCS). Para implementação técnica detalhada de cada projeto consulte PROJECTS/*/DOCS/ contendo guias práticos por camada, conceitos específicos, e how-tos de desenvolvimento (exemplo: PROJECTS/GEOAPI/DOCS/LAYERS/ documenta Domain/Application/Infrastructure em .NET).
-
-## Estrutura
-
-- **[ADRs](./ADRs/README.md)** - Architecture Decision Records documentando decisões arquiteturais críticas com contexto, alternativas avaliadas, decisão tomada e consequências
-- **[DEPLOYMENT](./DEPLOYMENT/README.md)** - Estratégias deployment multi-ambiente, containerização Docker, orquestração Kubernetes, CI/CD pipelines, mobile deployment, static sites
-- **[PATTERNS](./PATTERNS/README.md)** - Padrões arquiteturais aplicados (Clean Architecture, CQRS, Repository/UoW, Domain Events, Frontend Patterns, Offline-First, GIS Spatial)
-
+---
+type: readme
+status: approved
+updated: 2026-01-24
 ---
 
-**Última atualização:** 2025-12-29
+# ARCHITECTURE
+
+Documentacao da arquitetura sistemica do CARF definindo sistemas, integracoes, decisoes tecnicas e padroes obrigatorios para todos os projetos do ecossistema.
+
+A pasta [SYSTEM](./SYSTEM/README.md) documenta cada sistema do ecossistema CARF incluindo GEOAPI, REURBWEB, REURBCAD, REURBMASTER, GEOGIS, WEBDOCS e KEYCLOAK, descrevendo proposito, usuarios-alvo, capacidades e dependencias de cada um sem entrar em detalhes de implementacao. A pasta [INTEGRATION](./INTEGRATION/README.md) explica como os sistemas se comunicam cobrindo autenticacao OAuth2/OIDC, comunicacao via API REST, sincronizacao offline do mobile, bibliotecas compartilhadas e camada de dados PostgreSQL/PostGIS.
+
+A pasta [DECISIONS](./DECISIONS/README.md) contem Architecture Decision Records documentando escolhas arquiteturais significativas como multi-tenancy via RLS, offline-first com WatermelonDB, Keycloak como identity provider, e stack tecnologico de backend e frontend. A pasta [DIAGRAMS](./DIAGRAMS/README.md) fornece visualizacoes Mermaid do ecossistema, fluxo de dados e topologia de deployment. Padroes obrigatorios de documentacao, codigo, commits e API estao centralizados em STANDARDS/ na raiz do repositorio.
+
+Para implementacao tecnica especifica de cada projeto incluindo arquitetura de codigo, configuracoes, guias de desenvolvimento e estrategias de deployment, consulte a documentacao em PROJECTS/*/DOCS/.
+
+<!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
+
+## Subpastas (4)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [DECISIONS](./DECISIONS/README.md) | ... |
+| [DIAGRAMS](./DIAGRAMS/README.md) | ... |
+| [INTEGRATION](./INTEGRATION/README.md) | ... |
+| [SYSTEM](./SYSTEM/README.md) | ... |
+
+<!-- CARF-INDEX-END -->

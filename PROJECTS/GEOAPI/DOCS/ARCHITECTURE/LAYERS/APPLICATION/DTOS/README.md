@@ -1,3 +1,9 @@
+---
+type: readme
+status: review
+updated: 2026-01-12
+---
+
 # DTOS
 
 Data Transfer Objects do GEOAPI implementados como records imutáveis C# para transferência de dados entre camadas e contratos de API, organizados por feature (Units, Holders, Communities) com sufixos indicando propósito (CreateUnitDto para input, UnitDto para output, UnitSummaryDto para listagens). DTOs evitam expor entidades de domínio diretamente protegendo encapsulamento, permitem diferentes representações de mesma entidade para diferentes contextos (detalhes vs resumo vs formulário), e facilitam versionamento de API pois mudanças em domain não quebram contratos públicos. Input DTOs contêm apenas dados necessários para operação validados por FluentValidation, output DTOs projetam entidades de domínio em formato otimizado para apresentação incluindo dados relacionados já carregados, e DTOs podem ter propriedades extras como links HATEOAS, metadados de paginação ou campos calculados não presentes em domain. Mapeamento entre entities e DTOs feito via AutoMapper profiles ou métodos explícitos ToDto/FromDto garantindo separação clara de responsabilidades.
@@ -36,6 +42,14 @@ Data Transfer Objects do GEOAPI implementados como records imutáveis C# para tr
 - 19-geo-point-dto.md - Coordenada geográfica
 - 20-paged-result-dto.md - Resultado paginado
 
----
+<!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-**Última atualização:** 2026-01-12
+## Documentos (1)
+
+| Documento | Status |
+|-----------|--------|
+| [Unit DTOs](./01-unit-dtos.md) | ⚠ |
+
+<!-- CARF-INDEX-END -->

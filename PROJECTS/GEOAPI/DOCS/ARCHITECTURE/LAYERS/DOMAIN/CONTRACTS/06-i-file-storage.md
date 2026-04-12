@@ -1,8 +1,21 @@
-# IFileStorage
-
-
-Interface abstraindo operações de armazenamento de arquivos permitindo upload download e exclusão de documentos fotos PDFs DWGs em storage cloud como AWS S3 Azure Blob ou local filesystem mantendo domain independente de provider específico facilitando substituição ou testes. Métodos principais incluem UploadAsync(Stream fileStream string fileName string contentType string folder) fazendo upload de arquivo retornando path completo tipo "s3://bucket/tenant-123/documents/photo-001.jpg" validando tamanho e tipo permitido, DownloadAsync(string filePath) retornando Stream do arquivo para download ou visualização lançando NotFoundException se não existir, DeleteAsync(string filePath) removendo arquivo permanentemente usado ao excluir Document ou limpar temporários, GetPresignedUrlAsync(string filePath TimeSpan expiration) gerando URL temporária assinada para download direto sem passar pelo backend útil para exibir imagens em frontend com validade de 1 hora, ExistsAsync(string filePath) verificando existência sem baixar arquivo otimizando validações, e GetFileSizeAsync(string filePath) retornando tamanho em bytes para validações de quota. Métodos adicionais incluem UploadThumbnailAsync gerando e salvando thumbnail de imagem redimensionando para 200x200px, CopyAsync copiando arquivo entre pastas útil para mover de staging para produção, e ListFilesAsync listando arquivos em pasta específica retornando metadados para navegação. Implementada por S3FileStorage usando AWS SDK S3Client fazendo upload para bucket configurado organizando por tenant e tipo de arquivo tipo bucket/tenant-{guid}/documents/ bucket/tenant-{guid}/photos/ mantendo isolamento, AzureBlobFileStorage alternativa usando Azure SDK BlobContainerClient, e LocalFileStorage para desenvolvimento ou testes salvando em disco local filesystem simulando estrutura de pastas. Usada em Document entity ao fazer upload populando StoragePath FileName FileSize MimeType retornados pelo UploadAsync, em Monograph gerando PDF salvando ReportPath e PhotoPaths array, em LegitimationCertificate gerando certidão salvando PdfPath SignaturePath SealPath, em DescriptiveMemorial e LegitimationPlan salvando PDFs e DWGs, e em SurveyProcessing armazenando RawFilePath arquivos RINEX grandes. Integra com validações verificando contentType permitido bloqueando executáveis permitindo apenas image jpeg png pdf application dwg types configuráveis, aplica limites de tamanho por tipo rejeitando uploads maiores que 10MB para fotos 50MB para PDFs 100MB para DWGs evitando abuso, organiza arquivos por tenant e categoria mantendo estrutura "tenant-{guid}/documents/" "tenant-{guid}/photos/" facilitando backup e cleanup, suporta versionamento onde cada upload gera nome único usando Guid evitando sobrescrita acidental, permite bulk delete ao excluir tenant removendo todos arquivos da pasta recursivamente, e fornece métricas de uso rastreando storage consumido por tenant para billing e quotas.
-
+---
+type: leaf
+status: review
+updated: 2026-02-08
 ---
 
-**Última atualização:** 2026-01-12
+# IFileStorage
+
+Interface abstraindo operacoes de armazenamento de arquivos permitindo upload, download e exclusao de documentos, fotos e PDFs em storage cloud (AWS S3) ou local, mantendo dominio independente de provider especifico.
+
+## Metodos
+
+| Metodo | Parametros | Retorno | Descricao |
+| --- | --- | --- | --- |
+| UploadAsync | Stream, fileName, contentType, folder | string | Faz upload retornando path completo no S3. |
+| DownloadAsync | string filePath | Stream | Retorna Stream do arquivo para download. |
+| DeleteAsync | string filePath | Task | Remove arquivo permanentemente. |
+| GetPresignedUrlAsync | string filePath, TimeSpan expiration | string | Gera URL temporaria assinada para download direto. |
+| ExistsAsync | string filePath | bool | Verifica existencia sem baixar. |
+
+Implementada por S3FileStorage usando AWS SDK, organizando por tenant: bucket/tenant-guid/documents/. Aplica validacoes de contentType e limites de tamanho (fotos: 10MB, PDFs: 50MB). Usada em Document, LegitimationCertificate, DescriptiveMemorial e LegitimationPlan.

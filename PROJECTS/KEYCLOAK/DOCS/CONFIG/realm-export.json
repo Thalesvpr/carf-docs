@@ -1,0 +1,5 @@
+{
+  "_redirect": "Este arquivo foi movido para CENTRAL/INTEGRATION/KEYCLOAK/realm-export.json",
+  "_reason": "O realm export deve ficar em CENTRAL para ser acessado pelo docker-compose de todos os projetos",
+  "_see": "CENTRAL/INTEGRATION/KEYCLOAK/realm-export.json"
+}

@@ -1,3 +1,10 @@
+---
+type: readme
+status: review
+description: "Usa listas/bullets extensivamente ao inves de paragrafos densos (18+ bullets)"
+updated: 2026-01-22
+---
+
 # LAYERS - GEOGIS
 
 Estrutura de camadas do código do plugin GEOGIS QGIS.
@@ -42,6 +49,14 @@ Estrutura de camadas do código do plugin GEOGIS QGIS.
 - CalculateArea - cálculo preciso de áreas
 - ExportShapefile - export para formatos GIS
 
----
+<!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-**Última atualização:** 2026-01-10
+## Documentos (1)
+
+| Documento | Status |
+|-----------|--------|
+| [01-auth-manager](./01-auth-manager.md) | ⚠ |
+
+<!-- CARF-INDEX-END -->

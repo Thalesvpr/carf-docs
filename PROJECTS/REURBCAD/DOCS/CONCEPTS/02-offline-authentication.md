@@ -1,7 +1,114 @@
-Offline authentication no REURBCAD permite field collectors trabalhar semanas sem internet mantendo autenticação válida via offline refresh tokens com duração estendida (30 dias idle, 60 dias max) obtidos incluindo offline_access scope no OAuth2 authorization request, quando usuário faz login online pela primeira vez app obtém access_token (5 min), id_token (5 min), refresh_token offline (30 dias) armazenado em SecureStore encrypted via Keychain/Keystore, access_token cached em memória dura apenas 5 minutos mas refresh_token permite renovação sem internet porque Keycloak permite refresh offline se sessão ainda válida.
+---
+type: leaf
+status: review
+updated: 2026-02-08
+---
 
-Workflow típico field collector faz login segunda-feira com conexão WiFi obtendo tokens incluindo offline refresh, vai para campo terça sem internet mas app já tem refresh_token válido em SecureStore, durante semana app usa cached access_token para assinar requests locais (não enviados ainda porque offline), quando access_token expira após 5 min app tenta refresh que falha porque offline mas não problema porque requests são queued localmente mesmo sem token válido, sexta volta para escritório com WiFi, app detecta conexão via NetInfo, chama getAccessToken() que tenta refresh usando offline refresh_token armazenado, POST /protocol/openid-connect/token com grant_type=refresh_token, refresh_token, client_id=reurbcad, Keycloak valida refresh_token checa que sessão offline ainda válida (não passou 30 dias idle), retorna novo access_token fresco com exp renovado, app atualiza cached token, processa sync queue enviando occupations coletadas durante semana com Authorization header atualizado, se refresh falha porque passou 30 dias idle então offline token expirou, app mostra login screen forçando re-autenticação antes de sync.
+# Autenticacao Offline
 
-Token storage seguro crítico porque se device perdido/roubado token poderia ser extraído, SecureStore usa hardware-backed encryption Keychain (iOS with Secure Enclave) e Keystore (Android with TEE - Trusted Execution Environment) prevenindo acesso mesmo com device rooted/jailbroken, nunca AsyncStorage porque plain text JSON visível em backups ou com root access, session expiration configurada no Keycloak realm settings com Offline Session Idle = 30 days significa 30 dias sem nenhum refresh attempt, Offline Session Max = 60 days significa 60 dias desde login inicial mesmo se refresh frequency regular, best practice field collectors devem fazer login semanal quando tem conexão para renovar sessão offline evitando expiração.
+## Visao Geral
 
-Multi-device consideration se user loga mesmo account em tablet + phone cada device tem próprio refresh_token independente com sessões offline separadas não compartilhadas, security trade-off offline tokens mais longos aumentam convenience mas também attack window se device comprometido, mitigação via device PIN/biometric required para abrir app e auto-lock após inatividade.
+Offline authentication no REURBCAD permite field collectors trabalhar semanas sem internet mantendo autenticacao valida via offline refresh tokens com duracao estendida, obtidos incluindo o scope `offline_access` no OAuth2 authorization request.
+
+## Token Lifetimes
+
+| Token | Duracao | Armazenamento | Observacao |
+|---|---|---|---|
+| Access Token | 5 minutos | Memoria (class property) | Curto, renovado via refresh |
+| ID Token | 5 minutos | Memoria | Usado para extrair claims |
+| Refresh Token (offline) | 30 dias idle / 60 dias max | SecureStore (Keychain/Keystore) | Encrypted via hardware |
+
+Quando usuario faz login online pela primeira vez, o app obtem:
+
+- `access_token` (5 min)
+- `id_token` (5 min)
+- `refresh_token` offline (30 dias) - armazenado em SecureStore encrypted via Keychain/Keystore
+
+O `access_token` cached em memoria dura apenas 5 minutos, mas o `refresh_token` permite renovacao sem internet porque Keycloak permite refresh offline se sessao ainda valida.
+
+## Workflow Tipico (Segunda a Sexta)
+
+```
+Segunda (com WiFi)
+  └─> Login online → obtem tokens incluindo offline refresh_token
+
+Terca-Quinta (sem internet, em campo)
+  └─> App usa cached access_token para assinar requests locais
+      (nao enviados porque offline)
+  └─> Quando access_token expira apos 5 min, app tenta refresh
+      que falha porque offline - mas nao e problema porque
+      requests sao queued localmente mesmo sem token valido
+
+Sexta (volta ao escritorio com WiFi)
+  └─> App detecta conexao via NetInfo
+  └─> Chama getAccessToken() que tenta refresh usando
+      offline refresh_token armazenado
+  └─> POST /protocol/openid-connect/token com:
+      - grant_type=refresh_token
+      - refresh_token=<stored_token>
+      - client_id=reurbcad
+  └─> Keycloak valida refresh_token, checa que sessao
+      offline ainda valida (nao passou 30 dias idle)
+  └─> Retorna novo access_token fresco com exp renovado
+  └─> App atualiza cached token
+  └─> Processa sync queue enviando occupations coletadas
+      durante semana com Authorization header atualizado
+```
+
+### Refresh Token Expirado
+
+Se refresh falha porque passou 30 dias idle, o offline token expirou. O app mostra login screen forcando re-autenticacao antes de sync.
+
+## Token Refresh Offline
+
+O refresh token offline funciona diferente do refresh token padrao:
+
+- **Refresh padrao**: requer comunicacao com Keycloak a cada refresh
+- **Refresh offline**: armazenado localmente, Keycloak valida apenas quando ha conexao
+
+Durante periodos sem internet, o app nao envia requests reais - apenas enfileira operacoes localmente. O refresh so e necessario no momento de reconexao.
+
+## Multi-Device
+
+Se user loga mesmo account em tablet + phone:
+
+- Cada device tem proprio `refresh_token` independente
+- Sessoes offline separadas, nao compartilhadas
+- Revogacao de um token nao afeta outro ate proximo refresh
+
+## Security Trade-offs
+
+| Aspecto | Beneficio | Risco |
+|---|---|---|
+| Tokens longos (30 dias) | Convenience para trabalho em campo | Maior attack window se device comprometido |
+| Armazenamento local | Funciona offline | Token pode ser extraido se device roubado |
+| Sem re-autenticacao frequente | Produtividade do field collector | Sem validacao de credencial por semanas |
+
+### Mitigacao
+
+- Device PIN/biometric required para abrir app
+- Auto-lock apos inatividade
+- SecureStore usa hardware-backed encryption (Keychain/Keystore) prevenindo acesso mesmo com device rooted/jailbroken
+- Nunca AsyncStorage porque plain text JSON visivel em backups ou com root access
+
+## Configuracao Keycloak
+
+Sessao offline configurada no Keycloak realm settings:
+
+| Parametro | Valor | Significado |
+|---|---|---|
+| Offline Session Idle | 30 days | 30 dias sem nenhum refresh attempt |
+| Offline Session Max | 60 days | 60 dias desde login inicial, mesmo com refresh frequente |
+
+## Best Practices
+
+- Field collectors devem fazer login semanal quando tem conexao para renovar sessao offline, evitando expiracao
+- Sincronizar dados assim que conexao disponivel para minimizar risco de perda
+- Manter device com PIN/biometria ativo sempre
+- Nao compartilhar device entre usuarios diferentes
+
+## Referencias
+
+- [Authentication](./01-authentication.md)
+- [Secure Storage](./03-secure-storage.md)
+- [Keycloak Integration](../ARCHITECTURE/01-keycloak-integration.md)

@@ -1,3 +1,10 @@
+---
+type: readme
+status: review
+description: "Usa listas/bullets extensivamente ao inves de paragrafos densos (25+ bullets)"
+updated: 2026-01-22
+---
+
 # CONCEPTS - GEOGIS
 
 Conceitos fundamentais do plugin GEOGIS Python para QGIS.
@@ -71,6 +78,15 @@ Custom tools registered via `QgsProcessingProvider` com:
 - try/except catching exceptions gracefully
 - QMessageBox.critical() com stack trace details
 
----
+<!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-**Última atualização:** 2026-01-10
+## Documentos (2)
+
+| Documento | Status |
+|-----------|--------|
+| [01-authentication](./01-authentication.md) | ⚠ |
+| [02-token-storage](./02-token-storage.md) | ⚠ |
+
+<!-- CARF-INDEX-END -->

@@ -1,3 +1,9 @@
+---
+type: readme
+status: review
+updated: 2026-01-12
+---
+
 # CONTROLLERS
 
 Controllers REST do GEOAPI organizados por feature seguindo convenção RESTful com rotas padronizadas (GET /api/units, POST /api/units, GET /api/units/{id}, PUT /api/units/{id}, DELETE /api/units/{id}) e versionamento via URL ou header. Controllers herdam de ControllerBase marcados com [ApiController] habilitando validação automática ModelState, binding automático de request body/query params e retorno automático ProblemDetails para errors. Métodos action recebem DTOs validados, executam commands/queries via IMediator injetado, mapeiam Result<T> para ActionResult apropriado (Ok/Created/BadRequest/NotFound) e retornam responses com status codes HTTP semânticos. Autorização declarativa via [Authorize] attribute com policies verificando roles e claims específicas antes de executar action, rate limiting por endpoint via [RateLimit] attribute e API documentation via Swagger annotations gerando OpenAPI spec automático para consumers. Controllers não contêm lógica negócio apenas orquestração thin delegando para Application layer mantendo separation of concerns.
@@ -20,6 +26,14 @@ Controllers REST do GEOAPI organizados por feature seguindo convenção RESTful 
 - 09-controller-base-patterns.md - Padrões comuns reutilizáveis
 - 10-error-responses.md - Formatação ProblemDetails
 
----
+<!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-**Última atualização:** 2026-01-12
+## Documentos (1)
+
+| Documento | Status |
+|-----------|--------|
+| [Units Controller](./01-units-controller.md) | ⚠ |
+
+<!-- CARF-INDEX-END -->

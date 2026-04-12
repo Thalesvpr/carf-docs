@@ -1,0 +1,2 @@
+[console_scripts]
+carf-toolkit = carf_toolkit.__main__:main

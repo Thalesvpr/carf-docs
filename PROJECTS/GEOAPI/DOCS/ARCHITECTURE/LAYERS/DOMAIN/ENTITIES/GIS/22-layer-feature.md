@@ -1,11 +1,33 @@
-# LayerFeature
-
-Entidade representando geometria individual vetorial dentro Layer como ponto específico risco linha tubulação ou polígono área preservação com atributos descritivos permitindo armazenamento dados geográficos customizados tenant. Herda de BaseEntity fornecendo auditoria soft delete. Campos principais incluem LayerId Guid FK camada pertence, Geometry string WKT ou GeoJSON (Point LineString Polygon conforme GeometryType Layer), Properties JSON atributos descritivos customizados (risco alto, populacao_afetada 150, diametro_mm 100) e Label string nullable rótulo mapa.
-
-Métodos incluem ValidateGeometry() verificando Geometry corresponde GeometryType Layer pai lançando ValidationException se incompatível, GetBoundingBox() calculando envelope retangular mínimo otimização queries, Intersects(geometry) verificando interseção análises espaciais, UpdateProperties(json) atualizando atributos e GetProperty(key) extraindo valor específico JSON.
-
-Integra Layer através FK herdando StyleConfig renderização, suporta indexação espacial PostGIS índices GiST queries rápidas proximidade interseção contenção, participa análises identificando Unit dentro Features Áreas Risco usando ST_Within ou Units próximas Pontos Coleta usando ST_DWithin, permite queries atributos operadores JSONB PostgreSQL e integra importação Shapefile GeoJSON preservando geometria atributos.
-
+---
+type: leaf
+status: approved
+updated: 2026-02-07
 ---
 
-**Última atualização:** 2026-01-12
+# LayerFeature
+
+Entidade representando geometria individual dentro de uma Layer com atributos descritivos em formato JSONB extensivel. Cada feature e um ponto, linha ou poligono com propriedades customizaveis por tenant. Herda de BaseEntity fornecendo auditoria e soft delete.
+
+## Papel no Dominio
+
+LayerFeatures armazenam dados espaciais customizados sem necessidade de alteracao de schema. As propriedades JSONB permitem atributos livres como nivel de risco, populacao afetada, diametro de tubulacao ou qualquer outro dado relevante para o contexto do municipio. Indexacao espacial via GiST permite queries rapidas de proximidade, intersecao e contencao.
+
+## Propriedades
+
+| Propriedade | Tipo | Nullable | Descricao |
+|-------------|------|----------|-----------|
+| Id | Guid | nao | Chave primaria UUID. |
+| LayerId | Guid | nao | FK para Layer pai. |
+| Geometry | geometry | nao | Geometria PostGIS. Tipo deve corresponder ao LayerType da camada pai (POINT, LINESTRING ou POLYGON). |
+| Properties | JsonDocument | sim | Atributos descritivos em formato JSONB livre. Exemplos: risco "alto", populacao_afetada 150, diametro_mm 100. |
+| CreatedAt | DateTime | nao | Data de criacao. |
+| UpdatedAt | DateTime | nao | Ultima atualizacao. |
+| DeletedAt | DateTime | sim | Soft delete. |
+
+## Relacionamentos
+
+Pertence a uma Layer (obrigatorio). Herda estilo visual da camada pai para renderizacao no frontend.
+
+## Invariantes de Negocio
+
+Geometria deve ser do mesmo tipo que o LayerType da Layer pai. Indices GiST em geometry para queries espaciais rapidas. Indice GIN em properties para queries JSONB eficientes.

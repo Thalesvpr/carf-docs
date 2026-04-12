@@ -1,3 +1,9 @@
+---
+type: readme
+status: review
+updated: 2026-01-12
+---
+
 # STATUS
 
 Value objects representando estados e transições workflow das entidades principais incluindo unidades pontos topográficos sincronização e processo legitimação fundiária com regras transição validadas.
@@ -11,6 +17,19 @@ Value objects representando estados e transições workflow das entidades princi
 - **[21-decision.md](./21-decision.md)** - Decisões parecer técnico (APPROVED REJECTED NEEDS_CORRECTION)
 - **[22-certificate-situation.md](./22-certificate-situation.md)** - Situação certidão (COVERED CONFRONTING BOTH)
 
----
+<!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-**Última atualização:** 2026-01-12
+## Documentos (6)
+
+| Documento | Status |
+|-----------|--------|
+| [UnitStatus](./07-unit-status.md) | ⚠ |
+| [SyncStatus](./09-sync-status.md) | ⚠ |
+| [PointStatus](./14-point-status.md) | ⚠ |
+| [LegitimationStatus](./20-legitimation-status.md) | ⚠ |
+| [Decision](./21-decision.md) | ⚠ |
+| [CertificateSituation](./22-certificate-situation.md) | ⚠ |
+
+<!-- CARF-INDEX-END -->

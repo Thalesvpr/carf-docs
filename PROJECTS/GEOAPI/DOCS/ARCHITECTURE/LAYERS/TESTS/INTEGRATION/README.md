@@ -1,3 +1,9 @@
+---
+type: readme
+status: review
+updated: 2026-01-12
+---
+
 # INTEGRATION
 
 Testes integração do GEOAPI validando interação entre múltiplas camadas usando infraestrutura real provisionada via Testcontainers garantindo EF Core queries, migrations, constraints e RLS policies funcionam corretamente contra PostgreSQL PostGIS real. Database integration tests usam PostgreSQL container executando migrations via EF Core verificando schema criado corretamente com indexes, foreign keys, spatial indexes GiST e RLS policies aplicadas, depois exercitam repositories testando queries complexas incluindo spatial operations (ST_Within, ST_Distance), eager loading de relacionamentos via Include() e soft delete filtering via global query filters. Redis integration tests verificam caching layer usando Redis container validando set/get operations, expiration policies, distributed locking via RedLock e pub/sub messaging para cache invalidation cross instances quando entity updated. S3 integration tests usando MinIO container local verificam file upload/download operations, presigned URL generation com expiration, multipart upload para arquivos grandes e cleanup de objetos órfãos quando entity deleted.
@@ -34,6 +40,14 @@ Testes integração do GEOAPI validando interação entre múltiplas camadas usa
 
 Integration tests usam Testcontainers para provisionar infraestrutura garantindo environment limpo isolado entre test runs sem poluir database desenvolvimento ou depender de serviços externos rodando. Cada test class implementa IAsyncLifetime inicializando containers em InitializeAsync() executado uma vez antes todos tests e disposing em DisposeAsync() garantindo cleanup resources. Database seeding via DbContext cria dados base necessários para testes (tenant padrão, roles, community teste) permitindo tests focar em cenário específico sem setup complexo duplicado. Assertions verificam não apenas resultado query mas também performance usando StopWatch verificando queries espaciais executam em tempo razoável (< 500ms) e explain plan via logging confirma indexes usados corretamente. Transaction rollback após cada test via TransactionScope garante isolation entre tests revertendo todas changes mantendo database em estado consistente conhecido evitando flaky tests por side effects.
 
----
+<!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-**Última atualização:** 2026-01-12
+## Documentos (1)
+
+| Documento | Status |
+|-----------|--------|
+| [Repository Integration Tests](./01-repository-tests.md) | ⚠ |
+
+<!-- CARF-INDEX-END -->

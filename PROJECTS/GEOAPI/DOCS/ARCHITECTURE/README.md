@@ -1,3 +1,10 @@
+---
+type: readme
+status: review
+description: "README usa listas/tabelas ao invés de prosa densa com links inline."
+updated: 2026-01-22
+---
+
 # ARCHITECTURE
 
 Arquitetura do GEOAPI backend .NET 9 com Clean Architecture, DDD e CQRS.
@@ -14,6 +21,24 @@ Arquitetura do GEOAPI backend .NET 9 com Clean Architecture, DDD e CQRS.
 
 - **[LAYERS/](./LAYERS/README.md)** - Detalhamento Domain Application Infrastructure Gateway
 
----
+<!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-**Última atualização:** 2026-01-12
+## Subpastas (1)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [LAYERS](./LAYERS/README.md) | ... |
+
+## Documentos (5)
+
+| Documento | Status |
+|-----------|--------|
+| [Overview](./01-overview.md) | ⚠ |
+| [Admin Security](./02-admin-security.md) | ⚠ |
+| [Data Flow](./03-data-flow.md) | ⚠ |
+| [Integrações](./04-integration.md) | ⚠ |
+| [Deployment](./05-deployment.md) | ⚠ |
+
+<!-- CARF-INDEX-END -->

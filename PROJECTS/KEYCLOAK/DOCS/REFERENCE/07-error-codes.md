@@ -1,7 +1,70 @@
-# Error Codes
-
-Códigos erro OAuth2/OIDC retornados em responses seguindo RFC 6749. invalid_request indica request malformado faltando parâmetros obrigatórios como client_id redirect_uri ou formato inválido, ação validar payload. invalid_client falha autenticação client por client_id inexistente ou client_secret incorreto, ação verificar credenciais. invalid_grant indica authorization code ou refresh token inválido expirado ou já usado, ação re-autenticar usuário. unauthorized_client client não autorizado para grant_type solicitado como client credentials em client público, ação verificar configuração client. unsupported_grant_type grant type não suportado ou não habilitado no client, ação habilitar grant type desejado. invalid_scope scope solicitado não existe ou não permitido para client, ação verificar scopes configurados. access_denied usuário negou consentimento ou cancelou fluxo autorização, ação informar usuário. HTTP status codes 200 success, 400 bad request validar input, 401 unauthorized token inválido expirado fazer refresh, 403 forbidden sem permissão verificar roles, 404 not found recurso inexistente, 409 conflict username email duplicado, 429 too many requests rate limit implementar backoff exponencial, 500 internal error verificar logs server, 503 unavailable server down ou overloaded retry com backoff.
-
+---
+type: leaf
+status: review
+updated: 2026-02-07
 ---
 
-**Última atualização:** 2026-01-12
+# Error Codes - Erros OAuth2
+
+Codigos de erro OAuth2 retornados pelo Keycloak seguindo RFC 6749. Respostas contem campos error e error_description.
+
+## invalid_request
+
+Request malformado ou faltando parametros.
+
+| Contexto | Causa | Solucao |
+|:---------|:------|:--------|
+| Authorization | client_id ou redirect_uri ausente | Verificar URL |
+| Token | grant_type ou code ausente | Verificar payload |
+| Token | redirect_uri diferente | Usar mesma redirect_uri |
+
+## invalid_client
+
+| Causa | Solucao |
+|:------|:--------|
+| client_id inexistente | Verificar no Admin Console |
+| client_secret incorreto | Regenerar secret |
+| Client desabilitado | Habilitar no Admin Console |
+| Autenticacao faltando | Incluir client_id e secret |
+
+## invalid_grant
+
+Authorization code ou refresh token invalido.
+
+| Causa | Solucao |
+|:------|:--------|
+| Code expirado (60s) | Trocar code imediatamente |
+| Code ja usado | Codes sao single-use |
+| Refresh token expirado | Re-autenticar |
+| PKCE code_verifier incorreto | Verificar geracao |
+
+## unauthorized_client
+
+| Causa | Solucao |
+|:------|:--------|
+| Client credentials em publico | Converter para confidencial |
+| Auth code flow desabilitado | Habilitar standardFlowEnabled |
+| Direct access desabilitado | Habilitar directAccessGrantsEnabled |
+
+## unsupported_grant_type
+
+| Grant Type | Configuracao |
+|:-----------|:-------------|
+| authorization_code | standardFlowEnabled true |
+| refresh_token | Automatico com auth code |
+| client_credentials | serviceAccountsEnabled true |
+| password | directAccessGrantsEnabled true |
+
+## invalid_scope
+
+Scope inexistente ou nao atribuido ao client como default ou optional scope.
+
+## access_denied
+
+Usuario cancelou consent, conta desabilitada, brute force lock ou required action pendente.
+
+## server_error e temporarily_unavailable
+
+Erro interno indica problemas de database ou configuracao. Servidor indisponivel exige retry com backoff.
+
+Ver [07a-error-codes-http](./07a-error-codes-http.md) para codigos HTTP e mensagens de autenticacao.

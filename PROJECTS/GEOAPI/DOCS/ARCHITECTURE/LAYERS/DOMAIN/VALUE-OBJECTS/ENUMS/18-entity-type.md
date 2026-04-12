@@ -1,11 +1,31 @@
-# EntityType
-
-Value object enum representando tipo de entidade em contextos polimórficos onde múltiplas entidades podem ser referenciadas pelo mesmo campo, permitindo relacionamentos genéricos mantendo type-safety. Valores possíveis são UNIT (unidade habitacional), HOLDER (titular pessoa física), COMMUNITY (comunidade/assentamento), BLOCK (quadra urbana), PLOT (lote/terreno), e SURVEY_POINT (ponto topográfico), cobrindo as principais entidades que podem receber anotações, documentos ou auditorias.
-
-Métodos incluem GetEntityName() retornando nome da classe para reflection, GetTableName() retornando nome da tabela para queries dinâmicas, SupportsAnnotations() verificando se tipo permite anotações (todos suportam), SupportsDocuments() verificando se tipo permite upload de arquivos, RequiresGeometry() verificando se entidade deve ter geometria espacial, e ToDisplayString() retornando nome amigável para UI.
-
-Usado em Annotation.EntityType e Annotation.EntityId criando relacionamento polimórfico permitindo anotar qualquer entidade, Document.EntityType vinculando fotos e PDFs a diferentes entidades, AuditLog.EntityType rastreando mudanças em qualquer entidade do sistema, e em queries genéricas agregando resultados por tipo mantendo flexibilidade sem perder rastreabilidade.
-
+---
+type: leaf
+status: review
+updated: 2026-02-08
 ---
 
-**Última atualização:** 2026-01-12
+# EntityType
+
+Value object enum representando tipo de entidade em contextos polimorficos onde multiplas entidades podem ser referenciadas pelo mesmo campo, permitindo relacionamentos genericos mantendo type-safety. No banco de dados, usado em annotations.entity_type, documents.entity_type e audit_logs.entity_type (varchar(30)).
+
+O EntityType permite que tabelas como documents e annotations vinculem-se a qualquer entidade do dominio via combinacao entity_type + entity_id, implementando padrao polimorfico sem heranca de tabela. A tabela documents define CHECK constraint limitando entity_type aos valores UNIT, HOLDER e COMMUNITY, porem audit_logs aceita qualquer tipo incluindo BLOCK e PLOT para rastreamento completo de mudancas.
+
+## Valores Permitidos
+
+| Valor | Descricao |
+| --- | --- |
+| UNIT | Unidade habitacional cadastrada. Principal entidade do dominio. |
+| HOLDER | Titular pessoa fisica ou juridica vinculado a unidades. |
+| COMMUNITY | Comunidade ou assentamento agrupando unidades. |
+| BLOCK | Quadra urbana subdividindo uma comunidade. Usado em audit_logs. |
+| PLOT | Lote individual dentro de um bloco. Usado em audit_logs. |
+
+## Regras de Validacao
+
+| Regra | Descricao |
+| --- | --- |
+| Tipo valido | Deve ser um dos valores permitidos no contexto de uso. Documents e annotations aceitam UNIT, HOLDER e COMMUNITY. Audit logs aceitam todos os valores. |
+| Entidade existente | O entity_id deve referenciar registro existente do tipo indicado na tabela correspondente. |
+| Consistencia | O tipo deve corresponder a tabela correta para queries de integridade referencial. |
+
+Usado em Annotation.entity_type e Document.entity_type criando relacionamento polimorfico permitindo anotar ou anexar documentos a qualquer entidade, em AuditLog.entity_type rastreando mudancas em todas entidades do dominio, e em queries genericas agregando resultados por tipo para relatorios e dashboards.

@@ -1,11 +1,46 @@
-# UnitHolder
-
-Entidade representando relacionamento N:N entre Unit e Holder vinculando titular unidade habitacional com tipo vínculo percentual propriedade permitindo múltiplos titulares unidade e múltiplas unidades titular. Herda de BaseEntity fornecendo auditoria temporal. Campos principais incluem UnitId Guid FK, HolderId Guid FK, HolderType string (PROPRIETARIO CONJUGE MORADOR PROCURADOR HERDEIRO), OwnershipPercentage decimal nullable 0-100 aplicável apenas PROPRIETARIO permitindo copropriedade e IsPrimary bool titular principal responsável legal.
-
-Campos auditoria incluem LinkedAt DateTime quando vínculo estabelecido e LinkedBy Guid FK Account que criou. Métodos incluem ValidateOwnership() verificando PROPRIETARIO requer OwnershipPercentage preenchido entre 0.01-100 lançando ValidationException, IsPrimaryOwner() verificando IsPrimary e PROPRIETARIO, CalculateTotalOwnership() estático validando soma não ultrapassa 100% e SetAsPrimary() desmarcando outros garantindo único primary.
-
-Regra negócio Unit deve ter ao menos um Holder vinculado, PROPRIETARIO requer OwnershipPercentage, soma proprietários não ultrapassa 100% mas pode ser menor se parcialmente documentada. Integra Unit.LinkHolder()/UnlinkHolder() gerenciando coleção, participa validações LegitimationRequest onde apenas PROPRIETARIO contribui cálculo área legitimável e suporta transferência propriedade criando novos soft deleting antigos preservando histórico titularidade.
-
+---
+type: leaf
+status: approved
+updated: 2026-02-07
 ---
 
-**Última atualização:** 2026-01-12
+# UnitHolder
+
+Entidade de juncao representando o vinculo N:N entre Unit e Holder. Cada registro especifica o tipo de relacionamento do titular com a unidade e, para proprietarios, o percentual de participacao na propriedade. Herda de BaseEntity fornecendo auditoria temporal.
+
+## Papel no Dominio
+
+O UnitHolder materializa a relacao entre pessoa e imovel, central para todo o processo de regularizacao fundiaria. Cada unidade precisa de ao menos um titular vinculado como PROPRIETARIO com is_primary true para avancar no workflow de aprovacao. O sistema suporta copropriedade (multiplos proprietarios com percentuais somando ate 100) e outros tipos de vinculo que nao conferem direito de propriedade mas sao relevantes para o cadastro.
+
+## Propriedades
+
+| Propriedade | Tipo | Nullable | Descricao |
+|-------------|------|----------|-----------|
+| Id | Guid | nao | Chave primaria UUID. |
+| UnitId | Guid | nao | FK para Unit. ON DELETE CASCADE. |
+| HolderId | Guid | nao | FK para Holder. ON DELETE RESTRICT. |
+| RelationshipType | string | nao | Tipo de vinculo. Valores permitidos: PROPRIETARIO (possui direito sobre o imovel), CONJUGE (conjuge do proprietario), MORADOR (reside sem titulo de propriedade), PROCURADOR (representa o proprietario legalmente), HERDEIRO (herdeiro do proprietario falecido). |
+| OwnershipPercentage | decimal | sim | Percentual de propriedade entre 0.01 e 100. Obrigatorio quando RelationshipType e PROPRIETARIO. Nao aplicavel para outros tipos de vinculo. |
+| IsPrimary | bool | nao | Indica o titular principal responsavel legal pela unidade. Exatamente um titular por unidade deve ser marcado como primary. Default false. |
+| CreatedAt | DateTime | nao | Quando o vinculo foi estabelecido. |
+| CreatedBy | Guid | nao | Account que criou o vinculo. |
+
+## Relacionamentos
+
+Pertence a uma Unit (obrigatorio). Pertence a um Holder (obrigatorio). O par (UnitId, HolderId) e unico: um mesmo titular nao pode ser vinculado duas vezes a mesma unidade.
+
+## Invariantes de Negocio
+
+A soma de OwnershipPercentage de todos os vinculos PROPRIETARIO de uma mesma unidade nao pode exceder 100. Tentativa de vincular proprietario que exceda o limite retorna erro PERCENTAGE_EXCEEDED.
+
+Exatamente um vinculo por unidade deve ter IsPrimary true. Tentativa de marcar segundo titular como primary retorna erro MULTIPLE_PRIMARY. Ao vincular o primeiro titular de uma unidade, IsPrimary e automaticamente definido como true.
+
+Quando RelationshipType e PROPRIETARIO, OwnershipPercentage e obrigatorio e deve estar entre 0.01 e 100. Para outros tipos, OwnershipPercentage deve ser null.
+
+Holder vinculado como CONJUGE deve ter CPF do conjuge correspondente ao SpouseCpf do titular PROPRIETARIO principal, quando ambos estao presentes.
+
+Apenas titulares PROPRIETARIO contribuem para o calculo de area legitimavel no processo de legitimacao fundiaria.
+
+## Domain Events
+
+Nao emite eventos proprios. Os eventos HolderLinkedEvent e HolderUnlinkedEvent sao emitidos pela entidade Unit ao gerenciar sua colecao de UnitHolders.

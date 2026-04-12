@@ -1,0 +1,402 @@
+import { App, TFile, parseYaml, stringifyYaml } from "obsidian";
+import { CARFFrontmatter, DocType, Status, Module, VALID_MODULES } from "../models/types";
+import { Document, DocumentLink } from "../models/Document";
+import { TypeRegistry } from "./TypeRegistry";
+
+/**
+ * Service for managing YAML frontmatter in CARF documents
+ */
+export class MetadataService {
+  private app: App;
+  private typeRegistry: TypeRegistry | null = null;
+
+  constructor(app: App, typeRegistry?: TypeRegistry) {
+    this.app = app;
+    this.typeRegistry = typeRegistry || null;
+  }
+
+  /**
+   * Set TypeRegistry (for late initialization)
+   */
+  setTypeRegistry(typeRegistry: TypeRegistry): void {
+    this.typeRegistry = typeRegistry;
+  }
+
+  /**
+   * Parse a file into a Document object
+   */
+  async parseDocument(file: TFile): Promise<Document> {
+    const content = await this.app.vault.read(file);
+    const frontmatter = this.parseFrontmatter(content);
+    const bodyContent = this.getBodyContent(content);
+    const sections = this.parseSections(bodyContent);
+    const links = this.parseLinks(bodyContent);
+    const title = this.parseTitle(bodyContent);
+
+    return new Document(file, frontmatter, content, sections, links, title);
+  }
+
+  /**
+   * Parse YAML frontmatter from content
+   */
+  parseFrontmatter(content: string): CARFFrontmatter | null {
+    const match = content.match(/^---\n([\s\S]*?)\n---/);
+    if (!match) return null;
+
+    try {
+      const yaml = parseYaml(match[1]);
+      if (!yaml) return null;
+
+      // Validate and normalize the frontmatter
+      return this.normalizeFrontmatter(yaml);
+    } catch (e) {
+      console.error("Failed to parse frontmatter:", e);
+      return null;
+    }
+  }
+
+  /**
+   * Normalize raw YAML to CARFFrontmatter
+   */
+  private normalizeFrontmatter(yaml: any): CARFFrontmatter | null {
+    // Validate required fields
+    if (!yaml.id || !yaml.type || !yaml.status) {
+      return null;
+    }
+
+    // Normalize type
+    const type = yaml.type.toUpperCase() as DocType;
+    if (!Object.values(DocType).includes(type)) {
+      return null;
+    }
+
+    // Normalize status
+    const status = yaml.status.toLowerCase() as Status;
+    if (!Object.values(Status).includes(status)) {
+      return null;
+    }
+
+    // Normalize modules
+    let modules: Module[] = [];
+    if (Array.isArray(yaml.modules)) {
+      modules = yaml.modules
+        .map((m: string) => m.toUpperCase())
+        .filter((m: string) => VALID_MODULES.includes(m as Module)) as Module[];
+    }
+
+    return {
+      id: yaml.id,
+      type: type,
+      modules: modules,
+      epic: yaml.epic || undefined,
+      status: status,
+      created: yaml.created || this.formatDate(new Date()),
+      updated: yaml.updated || this.formatDate(new Date())
+    };
+  }
+
+  /**
+   * Get body content without frontmatter
+   */
+  getBodyContent(content: string): string {
+    return content.replace(/^---\n[\s\S]*?\n---\n*/, "");
+  }
+
+  /**
+   * Parse sections from body content
+   */
+  parseSections(content: string): Map<string, string> {
+    const sections = new Map<string, string>();
+    const lines = content.split("\n");
+    let currentSection = "";
+    let currentContent: string[] = [];
+
+    for (const line of lines) {
+      const headerMatch = line.match(/^#{2,3}\s+(.+)$/);
+      if (headerMatch) {
+        if (currentSection) {
+          sections.set(currentSection, currentContent.join("\n").trim());
+        }
+        currentSection = headerMatch[1].trim();
+        currentContent = [];
+      } else if (currentSection) {
+        currentContent.push(line);
+      }
+    }
+
+    // Save last section
+    if (currentSection) {
+      sections.set(currentSection, currentContent.join("\n").trim());
+    }
+
+    return sections;
+  }
+
+  /**
+   * Parse links from content
+   */
+  parseLinks(content: string): DocumentLink[] {
+    const links: DocumentLink[] = [];
+    const lines = content.split("\n");
+
+    for (let lineNum = 0; lineNum < lines.length; lineNum++) {
+      const line = lines[lineNum];
+
+      // Wiki links: [[target]] or [[target|alias]]
+      const wikiLinkRegex = /\[\[([^\]|]+)(?:\|[^\]]+)?\]\]/g;
+      let match;
+      while ((match = wikiLinkRegex.exec(line)) !== null) {
+        links.push({
+          target: match[1],
+          line: lineNum + 1,
+          column: match.index,
+          type: "wiki",
+          resolved: false // Will be resolved later
+        });
+      }
+
+      // Markdown links: [text](target)
+      const mdLinkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+      while ((match = mdLinkRegex.exec(line)) !== null) {
+        const target = match[2];
+        // Skip external links
+        if (!target.startsWith("http://") && !target.startsWith("https://")) {
+          links.push({
+            target: target,
+            line: lineNum + 1,
+            column: match.index,
+            type: "markdown",
+            resolved: false
+          });
+        }
+      }
+    }
+
+    return links;
+  }
+
+  /**
+   * Parse title (H1) from content
+   */
+  parseTitle(content: string): string | null {
+    const match = content.match(/^#\s+(.+)$/m);
+    return match ? match[1].trim() : null;
+  }
+
+  /**
+   * Create minimal frontmatter for a new document
+   */
+  createDefaultFrontmatter(file: TFile): Record<string, unknown> {
+    const now = this.formatDate(new Date());
+    const type = this.inferTypeFromFilename(file.name);
+
+    return {
+      type,
+      status: Status.REVIEW,
+      updated: now
+    };
+  }
+
+  /**
+   * Infer document type from filename
+   * Note: This method is less accurate than inferTypeFromPath.
+   * For best results, use inferTypeFromPath which can use TypeRegistry.
+   */
+  private inferTypeFromFilename(filename: string): string {
+    // Legacy logic - cannot use TypeRegistry here as we only have filename
+    if (filename.includes("-000-template")) return "template";
+    if (filename.startsWith("ADR-")) return "adr";
+    if (filename.startsWith("RF-")) return "rf";
+    if (filename.startsWith("RNF-")) return "rnf";
+    if (filename.startsWith("UC-") || filename.match(/^\d{2}-UC-/)) return "uc";
+    if (filename.startsWith("US-")) return "us";
+    if (filename === "README.md") return "readme";
+    return "doc";
+  }
+
+  /**
+   * Extract ID from filename
+   */
+  private extractIdFromFilename(filename: string): string | null {
+    const match = filename.match(/^(RF|RNF|UC|US)-\d{3}/);
+    return match ? match[0] : null;
+  }
+
+  /**
+   * Format date as YYYY-MM-DD
+   */
+  formatDate(date: Date): string {
+    return date.toISOString().split("T")[0];
+  }
+
+  /**
+   * Add or update frontmatter in a file
+   */
+  async setFrontmatter(file: TFile, frontmatter: Record<string, unknown> | CARFFrontmatter): Promise<void> {
+    const content = await this.app.vault.read(file);
+    const bodyContent = this.getBodyContent(content);
+
+    const yamlStr = stringifyYaml(frontmatter);
+    const newContent = `---\n${yamlStr}---\n\n${bodyContent}`;
+
+    await this.app.vault.modify(file, newContent);
+  }
+
+  /**
+   * Update a single field in frontmatter
+   */
+  async updateFrontmatterField<K extends keyof CARFFrontmatter>(
+    file: TFile,
+    field: K,
+    value: CARFFrontmatter[K]
+  ): Promise<void> {
+    const content = await this.app.vault.read(file);
+    const frontmatter = this.parseFrontmatter(content);
+
+    if (!frontmatter) {
+      throw new Error("File has no valid frontmatter");
+    }
+
+    frontmatter[field] = value;
+    await this.setFrontmatter(file, frontmatter);
+  }
+
+  /**
+   * Update the 'updated' timestamp
+   */
+  async updateTimestamp(file: TFile): Promise<void> {
+    const content = await this.app.vault.read(file);
+    const frontmatter = this.parseFrontmatter(content);
+
+    if (frontmatter) {
+      frontmatter.updated = this.formatDate(new Date());
+      await this.setFrontmatter(file, frontmatter);
+    }
+  }
+
+  /**
+   * Set document status
+   */
+  async setStatus(file: TFile, status: Status): Promise<void> {
+    await this.updateFrontmatterField(file, "status", status);
+    await this.updateFrontmatterField(file, "updated", this.formatDate(new Date()));
+  }
+
+  /**
+   * Check if file has frontmatter
+   */
+  async hasFrontmatter(file: TFile): Promise<boolean> {
+    const content = await this.app.vault.read(file);
+    return this.parseFrontmatter(content) !== null;
+  }
+
+  /**
+   * Initialize frontmatter for a file that doesn't have it
+   */
+  async initFrontmatter(file: TFile): Promise<Record<string, unknown>> {
+    const frontmatter = this.createDefaultFrontmatter(file);
+    await this.setFrontmatter(file, frontmatter);
+    return frontmatter;
+  }
+
+  /**
+   * Update frontmatter: add missing fields, infer type, update timestamp
+   * Preserves existing fields.
+   */
+  async updateFrontmatter(file: TFile): Promise<{ updated: boolean; fields: string[] }> {
+    const content = await this.app.vault.read(file);
+    const match = content.match(/^---\n([\s\S]*?)\n---/);
+    const updatedFields: string[] = [];
+
+    let frontmatter: Record<string, unknown> = {};
+
+    if (match) {
+      try {
+        frontmatter = parseYaml(match[1]) || {};
+      } catch {
+        frontmatter = {};
+      }
+    }
+
+    // Infer and add type if missing
+    if (!frontmatter.type) {
+      frontmatter.type = this.inferTypeFromPath(file);
+      updatedFields.push("type");
+    }
+
+    // Add status if missing
+    if (!frontmatter.status) {
+      frontmatter.status = "review";
+      updatedFields.push("status");
+    }
+
+    // Update timestamp
+    const today = this.formatDate(new Date());
+    if (frontmatter.updated !== today) {
+      frontmatter.updated = today;
+      updatedFields.push("updated");
+    }
+
+    // Only write if something changed
+    if (updatedFields.length > 0) {
+      const bodyContent = this.getBodyContent(content);
+      const yamlStr = stringifyYaml(frontmatter);
+      const newContent = `---\n${yamlStr}---\n\n${bodyContent}`;
+      await this.app.vault.modify(file, newContent);
+      return { updated: true, fields: updatedFields };
+    }
+
+    return { updated: false, fields: [] };
+  }
+
+  /**
+   * Infer document type from file path and name
+   * Uses TypeRegistry when available, otherwise falls back to hardcoded logic
+   */
+  inferTypeFromPath(file: TFile): string {
+    // Use TypeRegistry if available (data-driven)
+    if (this.typeRegistry) {
+      // Get frontmatter from metadataCache for detection
+      const frontmatter = this.app.metadataCache.getFileCache(file)?.frontmatter || null;
+      return this.typeRegistry.detectType(file, frontmatter);
+    }
+
+    // Fallback to hardcoded logic (legacy)
+    return this.inferTypeFromPathLegacy(file);
+  }
+
+  /**
+   * Legacy type inference (deprecated, kept for backwards compatibility)
+   * @deprecated Use TypeRegistry instead
+   */
+  private inferTypeFromPathLegacy(file: TFile): string {
+    const filename = file.name;
+    const path = file.path.toLowerCase();
+
+    // Check filename patterns first
+    if (filename.includes("-000-template")) return "template";
+    if (filename.startsWith("ADR-")) return "adr";
+    if (filename.startsWith("RF-")) return "rf";
+    if (filename.startsWith("RNF-")) return "rnf";
+    if (filename.startsWith("UC-") || filename.match(/^\d{2}-UC-/)) return "uc";
+    if (filename.startsWith("US-")) return "us";
+
+    // Check path patterns
+    if (path.includes("/adrs/")) return "adr";
+    if (path.includes("/concepts/")) return "concept";
+    if (path.includes("/how-to/")) return "how-to";
+    if (path.includes("/runbooks/")) return "runbook";
+    if (path.includes("/reference/")) return "reference";
+    if (path.includes("/features/")) return "feature";
+    if (path.includes("/specs/")) return "spec";
+    if (path.includes("/api/")) return "api";
+    if (path.includes("/config/")) return "config";
+    if (path.includes("/integration/")) return "integration";
+    if (path.includes("/architecture/")) return "architecture";
+
+    // README files
+    if (filename === "README.md") return "readme";
+
+    return "doc";
+  }
+}

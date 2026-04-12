@@ -1,11 +1,24 @@
-# Conceitos - WEBDOCS
+---
+type: readme
+status: review
+updated: 2026-01-17
+---
 
-## Documentos Disponíveis
+# Concepts
 
-- [01-key-concepts.md](./01-key-concepts.md) - SSG, MDX, content collections, islands
-- [02-terminology.md](./02-terminology.md) - Glossário Astro (slots, islands, layouts)
-- [03-design-principles.md](./03-design-principles.md) - SEO-first, performance, acessibilidade
+Fundamentos tecnológicos do WEBDOCS explicando conceitos essenciais para entender e desenvolver o portal de documentação.
 
-## Conceitos Fundamentais
+O [Astro Starlight](./01-astro-starlight.md) explica o framework e theme usados para gerar o site. As [Content Collections](./02-content-collections.md) documentam sistema de gerenciamento de conteúdo do Astro com validação Zod. O [MDX](./03-mdx.md) cobre extensão do Markdown com componentes. O [Decap CMS](./04-decap-cms.md) explica o sistema de edição visual Git-based. O [Pagefind](./05-pagefind.md) documenta a engine de busca client-side.
 
-WEBDOCS aplica **Static Site Generation (SSG)** compilando todo conteúdo em HTML no build time, **MDX** permitindo componentes React em Markdown, **Content Collections** com type safety via Zod, e **Islands Architecture** hidratando apenas componentes interativos necessários.
+<!-- CARF-INDEX-START -->
+## Documentos
+
+### Em Revisão
+
+- ○ [[PROJECTS/WEBDOCS/DOCS/CONCEPTS/01-astro-starlight.md|Astro Starlight]]
+- ○ [[PROJECTS/WEBDOCS/DOCS/CONCEPTS/02-content-collections.md|Content Collections]]
+- ○ [[PROJECTS/WEBDOCS/DOCS/CONCEPTS/03-mdx.md|MDX]]
+- ○ [[PROJECTS/WEBDOCS/DOCS/CONCEPTS/04-decap-cms.md|Decap CMS]]
+- ○ [[PROJECTS/WEBDOCS/DOCS/CONCEPTS/05-pagefind.md|Pagefind]]
+
+<!-- CARF-INDEX-END -->

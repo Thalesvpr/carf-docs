@@ -1,11 +1,44 @@
-# Account
-
-Entidade representando usuário sistema vinculado Tenant específico sincronizado Keycloak autenticação OAuth2/OIDC armazenando perfil preferências relacionamentos internos. Herda de BaseEntity fornecendo auditoria soft delete. Campos principais incluem TenantId Guid FK isolando via RLS, ExternalId UUID Keycloak sincronização bidirecional, Name nome completo, Email único por tenant para login, PhoneNumber opcional contato e Role definindo permissões SUPER_ADMIN/ADMIN/MANAGER/ANALYST/FIELD_AGENT.
-
-Campos adicionais incluem ProfilePhoto URL S3 ou Gravatar, Preferences JSON configurações UI tema idioma timezone, IsActive bool desabilitando acesso sem deletar e LastLoginAt DateTime rastreando último acesso. Relacionamentos incluem TeamMember vinculando Account Teams, CommunityAuthorization acessos individuais comunidades, Session sessões ativas e ApiKey chaves API scripts.
-
-Métodos negócio incluem Activate()/Deactivate() controlando IsActive, UpdatePreferences(json) validando estrutura JSON, UpdateProfile(name phone photo) validações e HasAccessToCommunity(communityId) verificando acesso direto ou via Team hierarquia permissões. Sincronizado Keycloak onde criação/atualização dispara webhook mantendo email nome roles consistentes sistemas.
-
+---
+type: leaf
+status: approved
+updated: 2026-02-07
 ---
 
-**Última atualização:** 2026-01-12
+# Account
+
+Entidade representando usuario do sistema vinculado a um Tenant especifico, sincronizado com Keycloak para autenticacao OAuth2/OIDC. Armazena perfil local, preferencias e relacionamentos internos. Herda de BaseEntity fornecendo auditoria e soft delete.
+
+## Papel no Dominio
+
+O Account e a representacao local de um usuario do Keycloak dentro do contexto do CARF. Enquanto o Keycloak gerencia autenticacao, senhas e tokens, o Account armazena dados de dominio como role dentro do sistema, vinculacao com equipes e preferencias de interface. A sincronizacao e bidirecional: criacao ou atualizacao no Keycloak dispara webhook que atualiza o Account local, mantendo email, nome e roles consistentes entre os sistemas.
+
+## Propriedades
+
+| Propriedade | Tipo | Nullable | Descricao |
+|-------------|------|----------|-----------|
+| Id | Guid | nao | Chave primaria UUID. |
+| TenantId | Guid | nao | Municipio vinculado. FK para Tenant. Isolamento via RLS. |
+| ExternalId | Guid | nao | UUID do usuario no Keycloak para sincronizacao bidirecional. |
+| Name | string | nao | Nome completo. |
+| Email | string | nao | Email unico por tenant. Usado para login. |
+| PhoneNumber | string | sim | Telefone de contato. |
+| Role | string | nao | Role que define permissoes. Valores: SUPER_ADMIN (acesso total cross-tenant), ADMIN (administrador do tenant), MANAGER (gestor com poder de aprovacao), ANALYST (analista tecnico), FIELD_COORDINATOR (coordenador de equipe de campo), FIELD_CADASTRATOR (cadastrador de campo). |
+| ProfilePhoto | string | sim | URL da foto de perfil no S3 ou Gravatar. |
+| Preferences | JsonDocument | sim | Configuracoes de UI em JSON: tema, idioma, timezone. |
+| IsActive | bool | nao | Indica se conta esta ativa. Desabilitar impede acesso sem deletar. |
+| LastLoginAt | DateTime | sim | Ultimo acesso registrado. |
+| CreatedAt | DateTime | nao | Data de criacao. |
+| UpdatedAt | DateTime | nao | Ultima atualizacao. |
+| DeletedAt | DateTime | sim | Soft delete. |
+
+## Relacionamentos
+
+TeamMember vinculando Account a Teams com role especifica (COORDINATOR ou CADASTRATOR). CommunityAuthorization para acessos individuais a comunidades que sobrescrevem autorizacoes de equipe. Session rastreando sessoes ativas. ApiKey para chaves de API do plugin QGIS.
+
+## Invariantes de Negocio
+
+Email unico por tenant. ExternalId deve corresponder a um usuario valido no Keycloak. IsActive false bloqueia acesso a todas as funcionalidades sem excluir dados historicos.
+
+## Domain Events
+
+AccountCreatedEvent emitido ao criar. AccountDeactivatedEvent emitido ao desativar.

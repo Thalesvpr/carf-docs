@@ -1,11 +1,39 @@
-# PhoneNumber
-
-Value object imutável herdando de BaseValueObject representando número de telefone brasileiro (fixo ou celular) com validação de formato e DDD, normalizando diferentes entradas para formato padrão armazenável. Validações incluem verificação de 10 dígitos para fixo (DDD + 8 dígitos) ou 11 dígitos para celular (DDD + 9 começando com 9 + 8 dígitos), DDD válido entre 11 e 99 conforme divisão territorial brasileira da Anatel.
-
-Métodos principais incluem construtor recebendo string com ou sem formatação (aceita "(21)98765-4321", "21987654321", "021 9 8765-4321") normalizando para apenas dígitos, ToString() retornando formato legível "(21) 98765-4321" para celular ou "(21) 3456-7890" para fixo, ToUnformatted() retornando apenas dígitos "21987654321" para persistência, IsCellPhone() verificando se é celular, DDD() extraindo código de área, e operadores de igualdade comparando valores normalizados.
-
-Usado em Holder para contato do titular, Surveyor para contato do profissional responsável, e Account para telefone do usuário, permitindo envio de notificações SMS e validação via WhatsApp Business API em workflows de aprovação de documentos.
-
+---
+type: leaf
+status: review
+updated: 2026-02-08
 ---
 
-**Última atualização:** 2026-01-12
+# PhoneNumber
+
+Value object imutavel herdando de BaseValueObject que representa numero de telefone brasileiro (fixo ou celular) com validacao de formato e DDD. Normaliza diferentes formatos de entrada para armazenamento padrao apenas com digitos. No banco de dados, corresponde ao campo holders.phone (varchar(20), nullable).
+
+O construtor aceita formatos variados como (21)98765-4321 ou 21987654321 e normaliza para apenas digitos. Se a validacao falhar, uma ValidationException e lancada.
+
+## Regras de Validacao
+
+| Regra | Descricao |
+| --- | --- |
+| Comprimento fixo | 10 digitos para fixo (DDD + 8) ou 11 para celular (DDD + 9 + 8). |
+| Celular comeca com 9 | Apos o DDD, celulares devem comecar com digito 9. |
+| DDD valido | Codigo de area entre 11 e 99 conforme divisao territorial da Anatel. |
+| Normalizacao | Caracteres nao numericos sao removidos antes da validacao. |
+
+## Formato
+
+| Aspecto | Especificacao |
+| --- | --- |
+| Armazenamento | Apenas digitos: 21987654321 (varchar(20)). |
+| Exibicao celular | (21) 98765-4321. |
+| Exibicao fixo | (21) 3456-7890. |
+
+## Metodos Principais
+
+| Metodo | Retorno | Descricao |
+| --- | --- | --- |
+| ToString() | string | Retorna formato legivel com parenteses e hifen. |
+| ToUnformatted() | string | Retorna apenas digitos. |
+| IsCellPhone() | bool | Verifica se e celular (11 digitos, terceiro digito 9). |
+| DDD() | string | Extrai codigo de area (2 primeiros digitos). |
+
+Usado em Holder para contato do titular, em Account para telefone do usuario, e em integracoes de notificacao via SMS para workflows de aprovacao de processos de legitimacao fundiaria.

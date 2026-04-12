@@ -1,3 +1,10 @@
+---
+type: leaf
+status: review
+description: "Wall of text sem estrutura. Texto corrido sem formatacao."
+updated: 2026-01-22
+---
+
 API requests no GEOGIS implementadas via ApiClient class wrapper ao redor requests.Session() provendo interface limpa para fazer HTTP calls ao GEOAPI implementação em src/api/api_client.py com class ApiClient: def __init__(self, auth_manager) storing auth_manager reference creating self.session = requests.Session() com base_url configuration configuring retry strategy com retry = Retry(total=3, backoff_factor=1, status_forcelist=[429, 500, 502, 503, 504]) e adapter = HTTPAdapter(max_retries=retry) então self.session.mount('http://', adapter) e self.session.mount('https://', adapter) _request(self, method, endpoint, **kwargs) internal method obtendo token com token = self.auth_manager.getAccessToken() que automatically refresh se necessário adicionando header self.session.headers.update Authorization Bearer token construindo full URL url = f'{self.base_url}{endpoint}' fazendo request response = self.session.request(method, url, timeout=30, **kwargs) com timeout preventing hangs.
 
 Handling errors response.raise_for_status() raising HTTPError se status 4xx 5xx catching 401 Unauthorized except requests.exceptions.HTTPError as e: if e.response.status_code == 401 tentando refresh token uma vez self.auth_manager.getAccessToken(force_refresh=True) depois retry request se falha novamente raising error forçando re-authentication retornando return response.json() parsed JSON public methods get(self, endpoint, params=None) wrapper calling self._request('GET', endpoint, params=params) post(self, endpoint, json=None) calling self._request('POST', endpoint, json=json) put(self, endpoint, json=None) delete(self, endpoint) domain-specific methods get_occupations(self, filters=None) calling self.get('/api/occupations', params=filters) retornando list of occupations create_occupation(self, data) calling self.post('/api/occupations', json=data) get_layers() calling self.get('/api/layers') retornando available WFS WMS layers metadata.

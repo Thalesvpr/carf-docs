@@ -1,11 +1,39 @@
-# ApiKeyValue
-
-Value object imutável herdando de BaseValueObject representando chave de API para autenticação de sistemas externos e scripts automatizados, seguindo formato específico com prefixo identificável e hash criptográfico para armazenamento seguro. Validações incluem verificação de formato "geoapi_sk_" seguido de 32 caracteres alfanuméricos aleatórios gerados criptograficamente, rejeitando qualquer chave que não siga padrão ou tenha comprimento incorreto.
-
-Métodos principais incluem Generate() estático gerando nova chave aleatória usando RNGCryptoServiceProvider, construtor recebendo string completa validando formato, Prefix() retornando parte visível "geoapi_sk_" para identificar tipo de chave, ToHash() gerando SHA256 hash do valor completo para persistência segura nunca armazenando plaintext, Matches(string plainKey) comparando hash armazenado com hash de chave fornecida para autenticação, e ToMasked() retornando versão parcialmente oculta "geoapi_sk_abc...xyz" para UI.
-
-Usado em ApiKey.Value armazenando apenas hash criptográfico no banco de dados, em autenticação de requests onde header "X-API-Key: geoapi_sk_..." é validado hasheando valor e comparando com hashes armazenados, e em exibição de chaves ativas em telas administrativas mostrando versão mascarada por segurança, garantindo que mesmo com acesso ao banco valores originais não podem ser recuperados.
-
+---
+type: leaf
+status: review
+updated: 2026-02-08
 ---
 
-**Última atualização:** 2026-01-12
+# ApiKeyValue
+
+Value object imutavel herdando de BaseValueObject que representa uma chave de API para autenticacao de sistemas externos e scripts automatizados. Segue formato especifico com prefixo identificavel e hash criptografico para armazenamento seguro. O valor original nunca e armazenado em banco de dados; apenas o hash SHA-256 e persistido.
+
+O metodo estatico Generate() cria novas chaves aleatorias usando gerador criptografico seguro.
+
+## Regras de Validacao
+
+| Regra | Descricao |
+| --- | --- |
+| Formato | Prefixo geoapi_sk_ seguido de 32 caracteres alfanumericos aleatorios. |
+| Geracao criptografica | Caracteres gerados via RNGCryptoServiceProvider. |
+| Armazenamento seguro | Apenas hash SHA-256 e persistido, nunca o valor original. |
+
+## Formato
+
+| Aspecto | Especificacao |
+| --- | --- |
+| Valor completo | geoapi_sk_ seguido de 32 caracteres alfanumericos. |
+| Prefixo | geoapi_sk_ para identificar tipo de chave. |
+| Mascarado (ToMasked) | geoapi_sk_abc...xyz para exibicao em UI. |
+| Hash armazenado | SHA-256 do valor completo para persistencia segura. |
+
+## Metodos Principais
+
+| Metodo | Retorno | Descricao |
+| --- | --- | --- |
+| Generate() | ApiKeyValue | Estatico, gera nova chave aleatoria segura. |
+| ToHash() | string | Gera SHA-256 hash para persistencia. |
+| Matches(string) | bool | Compara hash armazenado com hash de chave fornecida. |
+| ToMasked() | string | Retorna versao parcialmente oculta para exibicao. |
+
+Usado em ApiKey.Value armazenando apenas hash no banco de dados, em autenticacao de requests onde header X-API-Key e validado por comparacao de hashes, e em telas administrativas mostrando versao mascarada por seguranca.

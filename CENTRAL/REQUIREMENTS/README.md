@@ -1,14 +1,26 @@
-# REQUIREMENTS
-
-Especificação completa de requisitos do sistema CARF organizados em 457 arquivos distribuídos hierarquicamente através USE-CASES com 11 casos de uso principais documentando fluxos completos end-to-end interação usuário sistema incluindo happy paths fluxos alternativos excepcionais pré-condições pós-condições identificando atores personas módulos implementadores via frontmatter YAML modules, FUNCTIONAL-REQUIREMENTS com 221 requisitos funcionais atômicos definindo capacidades específicas O QUE sistema deve fazer sem especificar COMO implementar mantendo independência tecnológica permitindo múltiplas implementações satisfazendo mesmo requirement, USER-STORIES com 140 user stories formato BDD As a WHO I want WHAT So that WHY estabelecendo perspectiva usuário valor negócio justificando development effort priorização backlog product owner, e NON-FUNCTIONAL-REQUIREMENTS com 85 requisitos qualidade sistema performance scalability security usability maintainability definindo SLAs SLOs thresholds aceitáveis response time throughput concurrent users uptime availability. Requisitos organizados hierarquicamente onde RF Requisitos Funcionais definem O QUE fazer sendo referenciados por US User Stories especificando QUEM usa e POR QUE que por sua vez são referenciados por UC Use Cases documentando COMO fazer completo incluindo fluxos alternativos e excepcionais, casos de uso identificam módulos implementadores via frontmatter modules resultando em implementação documentada em PROJECTS/*/DOCS/FEATURES/*.md estabelecendo rastreabilidade completa entre especificação e código. Requirements funcionam como SOURCE NODES não linkando para implementação mas sendo linkados por PROJECTS/*/FEATURES/ estabelecendo rastreabilidade bidirecional entre especificação de produto em CENTRAL/ e código técnico em PROJECTS/. Navegação facilitada via índices múltiplas dimensões incluindo index-by-epic agrupando requirements por épica temática Security Performance Scalability Usability Compatibility com 6 épicas principais (performance 100 items, compatibility 66 items, security 65 items, scalability 61 items, usability 46 items, units 37 items), index-by-module cruzando UCs/RFs/USs/RNFs com módulos implementadores mostrando cobertura GEOWEB 83.2% com 380 items implementados REURBCAD 50.3% com 230 items GEOAPI 39.8% com 182 items GEOGIS 24.3% com 111 items ADMIN 7.9% com 36 items KEYCLOAK 4.4% com 20 items identificando gaps implementation backlog priorizado, e traceability-matrix mapeando bidirecional completo UC→RF→US→RNF garantindo cada requirement possui implementation verificável testável demonstrando compliance satisfazendo acceptance criteria validação stakeholders product owners com 100% UCs tendo seção Rastreabilidade mapeando RFs e USs relacionados 100% UCs linkados em PROJECTS/*/FEATURES/ via frontmatter 30.8% RFs referenciados diretamente por UCs 17.1% USs referenciados por UCs 0% RNFs referenciados por UCs pois são transversais aplicando-se múltiplos UCs organizados por épica Performance Security Reliability Usability. Frontmatter YAML obrigatório em todos arquivos incluindo campo modules listando projetos implementadores e campo epic identificando épica permitindo indexação automática, Use Cases incluem seção Rastreabilidade listando RFs e USs relacionados no formato RF-049 RF-050 RF-054 e US-014 US-019 US-021 estabelecendo links explícitos entre níveis hierárquicos, nomenclatura padronizada UC-XXX-nome-descritivo.md com 11 principais + 62 FA/FE, RF-XXX-nome-descritivo.md com 221 arquivos, US-XXX-nome-descritivo.md com 140 arquivos, RNF-XXX-nome-descritivo.md com 85 arquivos. Validação automática via script .scripts/validate-uc-coverage.py verificando todos UCs com frontmatter modules estão linkados em PROJECTS/*/DOCS/FEATURES/*.md executado via comando python .scripts\validate-uc-coverage.py retornando mensagem All UCs covered in PROJECTS/*/FEATURES/ quando validação passa confirmando rastreabilidade completa entre requirements e features implementadas.
-
-## Estrutura
-
-- **[USE-CASES](./USE-CASES/README.md)** - Casos de uso e fluxos completos
-- **[FUNCTIONAL-REQUIREMENTS](./FUNCTIONAL-REQUIREMENTS/README.md)** - Requisitos funcionais atômicos
-- **[USER-STORIES](./USER-STORIES/README.md)** - User stories formato BDD
-- **[NON-FUNCTIONAL-REQUIREMENTS](./NON-FUNCTIONAL-REQUIREMENTS/README.md)** - Requisitos não-funcionais e qualidade
-
+---
+type: readme
+status: approved
+updated: 2026-01-25
 ---
 
-**Última atualização:** 2026-01-10
+# REQUIREMENTS
+
+Especificacao do QUE o sistema faz. Funcionalidades e casos de uso organizados por dominio de negocio.
+
+A pasta esta organizada em duas partes: [FUNCTIONAL](./FUNCTIONAL/README.md) contem requisitos funcionais atomicos por dominio e [NON-FUNCTIONAL](./NON-FUNCTIONAL/README.md) define requisitos de qualidade como performance, seguranca e escalabilidade.
+
+Requisitos funcionais (RF) definem capacidades atomicas como "sistema permite criar unidade". Requisitos nao-funcionais (RNF) estabelecem metricas de qualidade transversais como "resposta em menos de 2 segundos".
+
+<!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
+
+## Subpastas (2)
+
+| Pasta | Descrição |
+|-------|-----------|
+| [FUNCTIONAL](./FUNCTIONAL/README.md) | ... |
+| [NON-FUNCTIONAL](./NON-FUNCTIONAL/README.md) | ... |
+
+<!-- CARF-INDEX-END -->

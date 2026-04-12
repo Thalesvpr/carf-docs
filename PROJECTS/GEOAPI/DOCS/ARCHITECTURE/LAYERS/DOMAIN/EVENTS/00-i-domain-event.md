@@ -1,8 +1,28 @@
-# IDomainEvent
-
-
-Interface marcadora base para todos domain events indicando que classe representa evento de domínio significativo emitido por aggregate root quando mudança importante ocorre permitindo comunicação desacoplada entre agregados e disparo de side effects após persistência. Não define métodos ou propriedades servindo apenas como contrato comum permitindo IDomainEventDispatcher processar qualquer evento genericamente através de polimorfismo. Propriedades recomendadas por convenção incluem OccurredAt DateTime timestamp quando evento ocorreu populado no construtor com IDateTimeProvider.Now, EntityId Guid identificador da entidade que emitiu evento, TenantId Guid tenant do contexto, e EventId Guid identificador único do evento útil para deduplicação e rastreamento. Implementada por todas classes de evento do domínio como UnitCreatedEvent HolderLinkedEvent SyncConflictEvent LegitimationCertificateIssuedEvent cada uma adicionando propriedades específicas do contexto tipo UnitId HolderId ConflictData CertificateNumber mantendo dados necessários para handlers processarem. Usada em BaseAggregateRoot que mantém coleção privada List DomainEvents fornecendo método protegido AddDomainEvent(IDomainEvent evento) permitindo entidades registrarem eventos durante execução de métodos de negócio tipo Unit.Approve() adiciona UnitApprovedEvent sem disparar imediatamente, e método público GetDomainEvents() retornando coleção readonly consumida por IUnitOfWork após SaveChanges. Eventos são despachados apenas APÓS commit bem-sucedido garantindo consistência onde handlers executam apenas se mudanças foram persistidas evitando notificar usuário de aprovação que falhou por constraint violation, processados por IDomainEventDispatcher que encontra INotificationHandler registrados invocando handlers em ordem, e permitem side effects como enviar email notificação push invalidar cache disparar background job integrar sistema externo tudo desacoplado da lógica principal de negócio mantendo agregados focados e testáveis.
-
+---
+type: leaf
+status: review
+updated: 2026-02-08
 ---
 
-**Última atualização:** 2026-01-12
+# IDomainEvent
+
+Interface marcadora base para todos os domain events do sistema, indicando que uma classe representa evento de dominio significativo emitido por aggregate root quando mudanca importante ocorre. Permite comunicacao desacoplada entre agregados e disparo de side effects apos persistencia bem-sucedida.
+
+A interface nao define metodos ou propriedades obrigatorias, servindo como contrato comum que permite IDomainEventDispatcher processar qualquer evento genericamente via polimorfismo. Por convencao, todos os eventos incluem propriedades padrao.
+
+## Propriedades por Convencao
+
+| Campo | Tipo | Descricao |
+| --- | --- | --- |
+| OccurredAt | DateTime | Timestamp UTC quando evento ocorreu. |
+| EntityId | Guid | Identificador da entidade que emitiu evento. |
+| TenantId | Guid | Tenant do contexto para isolamento multi-tenant. |
+| EventId | Guid | Identificador unico do evento para deduplicacao. |
+
+## Ciclo de Vida
+
+Eventos sao adicionados a colecao DomainEvents em BaseAggregateRoot via metodo protegido AddDomainEvent() durante execucao de metodos de negocio. Sao despachados apenas APOS commit bem-sucedido de transacao via IUnitOfWork.SaveChangesAsync(), garantindo que handlers executam apenas se mudancas foram persistidas.
+
+## Implementacoes
+
+Implementada por todas as classes de evento do dominio como UnitCreatedEvent, HolderLinkedEvent, SyncConflictEvent, CommunityCreatedEvent, RequestSubmittedEvent, CertificateIssuedEvent, entre outros. Cada implementacao adiciona propriedades especificas do contexto.

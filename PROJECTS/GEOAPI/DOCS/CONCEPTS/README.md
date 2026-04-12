@@ -1,3 +1,9 @@
+---
+type: readme
+status: review
+updated: 2026-01-12
+---
+
 # CONCEPTS
 
 Documentação conceitual do backend REST API GEOAPI explicando conceitos fundamentais arquitetura patterns e terminologia do domínio de regularização fundiária. Clean Architecture organiza código em 4 camadas onde Gateway recebe HTTP requests Controllers DTOs, Application orquestra use cases Commands Queries Handlers, Domain contém regras negócio puras Entities Aggregates Value Objects sem dependências externas, e Infrastructure implementa detalhes técnicos EF Core PostgreSQL Keycloak. Domain-Driven Design modela domínio com Aggregates garantindo consistência transacional UnitAggregate CommunityAggregate LegitimationRequestAggregate, Value Objects imutáveis CPF Address Coordinates validados no construtor, e Domain Events comunicação assíncrona UnitCreatedEvent LegitimationApprovedEvent.
@@ -13,7 +19,19 @@ CQRS separa Commands que modificam estado com validação complexa de Queries qu
 - **[03-design-principles.md](./03-design-principles.md)** - Princípios SOLID DRY KISS YAGNI
 - **[04-audit-logging.md](./04-audit-logging.md)** - Sistema auditoria LGPD compliance
 
----
+<!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-**Última atualização:** 2026-01-12
+## Documentos (6)
 
+| Documento | Status |
+|-----------|--------|
+| [01-authentication](./01-authentication.md) | ⚠ |
+| [Key Concepts](./01-key-concepts.md) | ⚠ |
+| [02-authorization](./02-authorization.md) | ⚠ |
+| [Terminology - GEOAPI](./02-terminology.md) | ⚠ |
+| [Design Principles](./03-design-principles.md) | ⚠ |
+| [Audit Logging](./04-audit-logging.md) | ⚠ |
+
+<!-- CARF-INDEX-END -->

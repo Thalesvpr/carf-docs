@@ -1,11 +1,45 @@
-# UnitStatus
-
-Value object enum representando estados do workflow de cadastro e aprovação de unidades habitacionais, controlando transições válidas de status e permissões de edição em cada estágio do processo de regularização. Valores possíveis são DRAFT (rascunho inicial criado por técnico de campo, editável livremente), PENDING_ANALYSIS (submetido para análise técnica, não editável por campo), IN_REVIEW (em revisão por analista, pode solicitar correções), APPROVED (aprovado para emissão de certidão, imutável exceto por administradores), REJECTED (rejeitado com justificativa, retorna para DRAFT para correção) e REQUIRES_CHANGES (analista solicitou mudanças específicas).
-
-Transições válidas seguem fluxo DRAFT → PENDING_ANALYSIS → IN_REVIEW → {APPROVED | REJECTED | REQUIRES_CHANGES}, sendo que REJECTED e REQUIRES_CHANGES retornam para DRAFT após correções. Métodos incluem CanEdit() verificando se status permite edição, CanSubmit() verificando se pode avançar para análise, CanApprove() verificando se está em estado aprovável, e ValidateTransition(UnitStatus newStatus) lançando exception se transição inválida.
-
-Usado em Unit para controlar workflow com domain event UnitStatusChangedEvent disparado em cada transição, integrando com sistema de permissões via Role (FIELD_AGENT pode editar DRAFT, ANALYST pode analisar PENDING_ANALYSIS) e auditoria rastreando quem e quando cada mudança de status ocorreu.
-
+---
+type: leaf
+status: review
+updated: 2026-02-08
 ---
 
-**Última atualização:** 2026-01-12
+# UnitStatus
+
+Value object enum representando os estados do workflow de cadastro e aprovacao de unidades habitacionais, controlando transicoes validas de status e permissoes de edicao em cada estagio do processo de regularizacao. No banco de dados, corresponde ao campo units.status (varchar(30)) com CHECK constraint.
+
+As transicoes seguem fluxo definido onde cada estado determina quais operacoes sao permitidas e quais papeis (Role) podem executar acoes naquele estagio.
+
+## Valores Permitidos
+
+| Valor | Descricao |
+| --- | --- |
+| DRAFT | Rascunho inicial criado por tecnico de campo. Editavel livremente. |
+| PENDING_ANALYSIS | Submetido para analise tecnica. Nao editavel por campo. |
+| IN_REVIEW | Em revisao por analista. Pode solicitar correcoes. |
+| APPROVED | Aprovado para emissao de certidao. Imutavel exceto por administradores. |
+| REJECTED | Rejeitado com justificativa. Retorna para DRAFT para correcao. |
+| REQUIRES_CHANGES | Analista solicitou mudancas especificas antes de prosseguir. |
+
+## Transicoes Validas
+
+| De | Para | Condicao |
+| --- | --- | --- |
+| DRAFT | PENDING_ANALYSIS | Documentacao minima preenchida. |
+| PENDING_ANALYSIS | IN_REVIEW | Analista assumiu a analise. |
+| IN_REVIEW | APPROVED | Parecer tecnico favoravel. |
+| IN_REVIEW | REJECTED | Parecer tecnico desfavoravel com justificativa. |
+| IN_REVIEW | REQUIRES_CHANGES | Correcoes necessarias identificadas. |
+| REJECTED | DRAFT | Apos correcao pelo requerente. |
+| REQUIRES_CHANGES | DRAFT | Apos correcao pelo requerente. |
+
+## Metodos Principais
+
+| Metodo | Retorno | Descricao |
+| --- | --- | --- |
+| CanEdit() | bool | Verifica se status permite edicao. |
+| CanSubmit() | bool | Verifica se pode avancar para analise. |
+| CanApprove() | bool | Verifica se esta em estado aprovavel. |
+| ValidateTransition(UnitStatus) | void | Lanca exception se transicao invalida. |
+
+Usado em Unit para controlar workflow com domain event UnitStatusChangedEvent disparado em cada transicao, integrando com sistema de permissoes via Role (COORDINATOR e CADASTRATOR editam DRAFT, ANALYST analisa PENDING_ANALYSIS).

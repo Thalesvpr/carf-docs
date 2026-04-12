@@ -3,9 +3,12 @@
   "realm": "carf",
   "displayName": "CARF - Sistema de Regularização Fundiária",
   "displayNameHtml": "<div class=\"kc-logo-text\"><span>CARF</span></div>",
+  "loginTheme": "carf",
+  "accountTheme": "carf",
+  "emailTheme": "carf",
   "notBefore": 0,
   "defaultSignatureAlgorithm": "RS256",
-  "revokeRefreshToken": false,
+  "revokeRefreshToken": true,
   "refreshTokenMaxReuse": 0,
   "accessTokenLifespan": 300,
   "accessTokenLifespanForImplicitFlow": 900,
@@ -48,10 +51,22 @@
   "roles": {
     "realm": [
       {
-        "id": "field-collector-role-id",
-        "name": "field-collector",
-        "description": "Coletor de campo - cadastra unidades habitacionais in loco via mobile",
+        "id": "field-cadastrator-role-id",
+        "name": "field-cadastrator",
+        "description": "Cadastrador de campo - acesso apenas a mapa e formulários de cadastro",
         "composite": false,
+        "clientRole": false,
+        "containerId": "carf",
+        "attributes": {}
+      },
+      {
+        "id": "field-coordinator-role-id",
+        "name": "field-coordinator",
+        "description": "Coordenador de campo - supervisiona equipe, menu completo do app mobile",
+        "composite": true,
+        "composites": {
+          "realm": ["field-cadastrator"]
+        },
         "clientRole": false,
         "containerId": "carf",
         "attributes": {}
@@ -66,12 +81,24 @@
         "attributes": {}
       },
       {
+        "id": "manager-role-id",
+        "name": "manager",
+        "description": "Gerente - gerencia equipes e operações de campo",
+        "composite": true,
+        "composites": {
+          "realm": ["analyst", "field-coordinator"]
+        },
+        "clientRole": false,
+        "containerId": "carf",
+        "attributes": {}
+      },
+      {
         "id": "admin-role-id",
         "name": "admin",
         "description": "Administrador do tenant - gerencia usuários e configurações",
         "composite": true,
         "composites": {
-          "realm": ["analyst", "field-collector"]
+          "realm": ["manager"]
         },
         "clientRole": false,
         "containerId": "carf",
@@ -83,8 +110,17 @@
         "description": "Super administrador - gerencia todos os tenants e cria prefeituras",
         "composite": true,
         "composites": {
-          "realm": ["admin", "analyst", "field-collector"]
+          "realm": ["admin"]
         },
+        "clientRole": false,
+        "containerId": "carf",
+        "attributes": {}
+      },
+      {
+        "id": "dev-role-id",
+        "name": "dev",
+        "description": "Desenvolvedor - acesso transversal a área /dev/ do WEBDOCS (Swagger, docs técnica, métricas debug). Não participa da hierarquia principal, combinável com qualquer role.",
+        "composite": false,
         "clientRole": false,
         "containerId": "carf",
         "attributes": {}
@@ -103,6 +139,26 @@
         {
           "name": "view-audit-logs",
           "description": "Visualizar logs de auditoria"
+        }
+      ],
+      "reurbcad": [
+        {
+          "name": "sync-data",
+          "description": "Sincronizar dados offline/online"
+        },
+        {
+          "name": "manage-team",
+          "description": "Gerenciar equipe de campo (apenas coordenador)"
+        }
+      ],
+      "geogis": [
+        {
+          "name": "gis-reader",
+          "description": "Leitura de dados geoespaciais e ortofotos do tenant"
+        },
+        {
+          "name": "gis-writer",
+          "description": "Publicação de polígonos georreferenciados no backend"
         }
       ]
     }
@@ -153,24 +209,267 @@
   "clientPolicies": {
     "policies": []
   },
+  "authenticationFlows": [
+    {
+      "id": "reurbmaster-browser-flow-id",
+      "alias": "reurbmaster-browser",
+      "description": "Browser flow for REURBMASTER — restricted to admin/super-admin/dev roles. Non-admin users are denied at login.",
+      "providerId": "basic-flow",
+      "topLevel": true,
+      "builtIn": false,
+      "authenticationExecutions": [
+        {
+          "authenticator": "auth-cookie",
+          "authenticatorFlow": false,
+          "requirement": "ALTERNATIVE",
+          "priority": 10,
+          "autheticatorFlow": false,
+          "userSetupAllowed": false
+        },
+        {
+          "authenticatorFlow": true,
+          "requirement": "ALTERNATIVE",
+          "priority": 20,
+          "flowAlias": "reurbmaster-forms",
+          "autheticatorFlow": true,
+          "userSetupAllowed": false
+        },
+        {
+          "authenticatorFlow": true,
+          "requirement": "CONDITIONAL",
+          "priority": 30,
+          "flowAlias": "reurbmaster-deny-non-admin",
+          "autheticatorFlow": true,
+          "userSetupAllowed": false
+        }
+      ]
+    },
+    {
+      "id": "reurbmaster-forms-flow-id",
+      "alias": "reurbmaster-forms",
+      "description": "Username/password + optional OTP for REURBMASTER",
+      "providerId": "basic-flow",
+      "topLevel": false,
+      "builtIn": false,
+      "authenticationExecutions": [
+        {
+          "authenticator": "auth-username-password-form",
+          "authenticatorFlow": false,
+          "requirement": "REQUIRED",
+          "priority": 10,
+          "autheticatorFlow": false,
+          "userSetupAllowed": false
+        },
+        {
+          "authenticatorFlow": true,
+          "requirement": "CONDITIONAL",
+          "priority": 20,
+          "flowAlias": "reurbmaster-conditional-otp",
+          "autheticatorFlow": true,
+          "userSetupAllowed": false
+        }
+      ]
+    },
+    {
+      "id": "reurbmaster-conditional-otp-flow-id",
+      "alias": "reurbmaster-conditional-otp",
+      "description": "OTP verification if user has configured it",
+      "providerId": "basic-flow",
+      "topLevel": false,
+      "builtIn": false,
+      "authenticationExecutions": [
+        {
+          "authenticator": "conditional-user-configured",
+          "authenticatorFlow": false,
+          "requirement": "REQUIRED",
+          "priority": 10,
+          "autheticatorFlow": false,
+          "userSetupAllowed": false
+        },
+        {
+          "authenticator": "auth-otp-form",
+          "authenticatorFlow": false,
+          "requirement": "REQUIRED",
+          "priority": 20,
+          "autheticatorFlow": false,
+          "userSetupAllowed": false
+        }
+      ]
+    },
+    {
+      "id": "reurbmaster-deny-non-admin-flow-id",
+      "alias": "reurbmaster-deny-non-admin",
+      "description": "Deny access if user lacks admin (includes super-admin) or dev realm role",
+      "providerId": "basic-flow",
+      "topLevel": false,
+      "builtIn": false,
+      "authenticationExecutions": [
+        {
+          "authenticator": "conditional-user-role",
+          "authenticatorFlow": false,
+          "requirement": "REQUIRED",
+          "priority": 10,
+          "authenticatorConfig": "reurbmaster-not-admin-condition",
+          "autheticatorFlow": false,
+          "userSetupAllowed": false
+        },
+        {
+          "authenticator": "conditional-user-role",
+          "authenticatorFlow": false,
+          "requirement": "REQUIRED",
+          "priority": 20,
+          "authenticatorConfig": "reurbmaster-not-dev-condition",
+          "autheticatorFlow": false,
+          "userSetupAllowed": false
+        },
+        {
+          "authenticator": "deny-access-authenticator",
+          "authenticatorFlow": false,
+          "requirement": "REQUIRED",
+          "priority": 30,
+          "authenticatorConfig": "reurbmaster-deny-message",
+          "autheticatorFlow": false,
+          "userSetupAllowed": false
+        }
+      ]
+    },
+    {
+      "id": "reurbmaster-direct-grant-flow-id",
+      "alias": "reurbmaster-direct-grant",
+      "description": "Direct grant flow for REURBMASTER — restricted to admin/super-admin/dev roles",
+      "providerId": "basic-flow",
+      "topLevel": true,
+      "builtIn": false,
+      "authenticationExecutions": [
+        {
+          "authenticator": "direct-grant-validate-username",
+          "authenticatorFlow": false,
+          "requirement": "REQUIRED",
+          "priority": 10,
+          "autheticatorFlow": false,
+          "userSetupAllowed": false
+        },
+        {
+          "authenticator": "direct-grant-validate-password",
+          "authenticatorFlow": false,
+          "requirement": "REQUIRED",
+          "priority": 20,
+          "autheticatorFlow": false,
+          "userSetupAllowed": false
+        },
+        {
+          "authenticatorFlow": true,
+          "requirement": "CONDITIONAL",
+          "priority": 30,
+          "flowAlias": "reurbmaster-dg-deny-non-admin",
+          "autheticatorFlow": true,
+          "userSetupAllowed": false
+        }
+      ]
+    },
+    {
+      "id": "reurbmaster-dg-deny-non-admin-flow-id",
+      "alias": "reurbmaster-dg-deny-non-admin",
+      "description": "Deny access on direct grant if user lacks admin or dev role",
+      "providerId": "basic-flow",
+      "topLevel": false,
+      "builtIn": false,
+      "authenticationExecutions": [
+        {
+          "authenticator": "conditional-user-role",
+          "authenticatorFlow": false,
+          "requirement": "REQUIRED",
+          "priority": 10,
+          "authenticatorConfig": "reurbmaster-dg-not-admin-condition",
+          "autheticatorFlow": false,
+          "userSetupAllowed": false
+        },
+        {
+          "authenticator": "conditional-user-role",
+          "authenticatorFlow": false,
+          "requirement": "REQUIRED",
+          "priority": 20,
+          "authenticatorConfig": "reurbmaster-dg-not-dev-condition",
+          "autheticatorFlow": false,
+          "userSetupAllowed": false
+        },
+        {
+          "authenticator": "deny-access-authenticator",
+          "authenticatorFlow": false,
+          "requirement": "REQUIRED",
+          "priority": 30,
+          "authenticatorConfig": "reurbmaster-dg-deny-message",
+          "autheticatorFlow": false,
+          "userSetupAllowed": false
+        }
+      ]
+    }
+  ],
+  "authenticatorConfig": [
+    {
+      "id": "reurbmaster-not-admin-condition-id",
+      "alias": "reurbmaster-not-admin-condition",
+      "config": {
+        "condUserRole": "admin",
+        "negate": "true"
+      }
+    },
+    {
+      "id": "reurbmaster-not-dev-condition-id",
+      "alias": "reurbmaster-not-dev-condition",
+      "config": {
+        "condUserRole": "dev",
+        "negate": "true"
+      }
+    },
+    {
+      "id": "reurbmaster-deny-message-id",
+      "alias": "reurbmaster-deny-message",
+      "config": {
+        "error_message": "Acesso restrito. Apenas administradores e desenvolvedores podem acessar o REURBMASTER."
+      }
+    },
+    {
+      "id": "reurbmaster-dg-not-admin-condition-id",
+      "alias": "reurbmaster-dg-not-admin-condition",
+      "config": {
+        "condUserRole": "admin",
+        "negate": "true"
+      }
+    },
+    {
+      "id": "reurbmaster-dg-not-dev-condition-id",
+      "alias": "reurbmaster-dg-not-dev-condition",
+      "config": {
+        "condUserRole": "dev",
+        "negate": "true"
+      }
+    },
+    {
+      "id": "reurbmaster-dg-deny-message-id",
+      "alias": "reurbmaster-dg-deny-message",
+      "config": {
+        "error_message": "Acesso restrito. Apenas administradores e desenvolvedores podem acessar o REURBMASTER."
+      }
+    }
+  ],
   "clients": [
     {
-      "id": "geoweb-client-id",
-      "clientId": "geoweb",
-      "name": "GEOWEB - Frontend React",
+      "id": "reurbweb-client-id",
+      "clientId": "reurbweb",
+      "name": "REURBWEB - Frontend React",
       "description": "Aplicação web de cadastramento de unidades habitacionais",
-      "rootUrl": "http://localhost:5173",
+      "rootUrl": "http://localhost:3000",
       "adminUrl": "",
       "baseUrl": "/",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
-      "secret": "**********",
       "redirectUris": [
-        "http://localhost:5173/*",
         "http://localhost:3000/*",
-        "https://geoweb.carf.example.com/*"
+        "https://*.ts.net/*",
+        "https://*.ts.net:*/*"
       ],
       "webOrigins": ["+"],
       "notBefore": 0,
@@ -178,7 +477,7 @@
       "consentRequired": false,
       "standardFlowEnabled": true,
       "implicitFlowEnabled": false,
-      "directAccessGrantsEnabled": false,
+      "directAccessGrantsEnabled": true,
       "serviceAccountsEnabled": false,
       "publicClient": true,
       "frontchannelLogout": true,
@@ -201,7 +500,64 @@
         "acr",
         "profile",
         "roles",
-        "email"
+        "email",
+        "carf-tenant"
+      ],
+      "optionalClientScopes": [
+        "address",
+        "phone",
+        "offline_access",
+        "microprofile-jwt"
+      ]
+    },
+    {
+      "id": "reurbmaster-client-id",
+      "clientId": "reurbmaster",
+      "name": "REURBMASTER - Console Administrativo",
+      "description": "Console de administração para gestão de tenants, usuários e configurações",
+      "rootUrl": "http://localhost:5174",
+      "adminUrl": "",
+      "baseUrl": "/",
+      "surrogateAuthRequired": false,
+      "enabled": true,
+      "alwaysDisplayInConsole": false,
+      "clientAuthenticatorType": "client-secret",
+      "redirectUris": [
+        "http://localhost:5174/*",
+        "https://*.ts.net/*",
+        "https://*.ts.net:*/*"
+      ],
+      "webOrigins": ["+"],
+      "notBefore": 0,
+      "bearerOnly": false,
+      "consentRequired": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": false,
+      "publicClient": true,
+      "frontchannelLogout": true,
+      "protocol": "openid-connect",
+      "attributes": {
+        "oidc.ciba.grant.enabled": "false",
+        "client.secret.creation.time": "1704708000",
+        "backchannel.logout.session.required": "true",
+        "post.logout.redirect.uris": "+",
+        "oauth2.device.authorization.grant.enabled": "false",
+        "display.on.consent.screen": "false",
+        "backchannel.logout.revoke.offline.tokens": "false",
+        "pkce.code.challenge.method": "S256"
+      },
+      "authenticationFlowBindingOverrides": {},
+      "fullScopeAllowed": true,
+      "nodeReRegistrationTimeout": -1,
+      "defaultClientScopes": [
+        "web-origins",
+        "acr",
+        "profile",
+        "roles",
+        "email",
+        "carf-tenant"
       ],
       "optionalClientScopes": [
         "address",
@@ -214,7 +570,7 @@
       "id": "reurbcad-client-id",
       "clientId": "reurbcad",
       "name": "REURBCAD - Mobile React Native",
-      "description": "Aplicação móvel para coleta de dados em campo",
+      "description": "Aplicação móvel para coleta de dados em campo (offline-first)",
       "rootUrl": "",
       "adminUrl": "",
       "baseUrl": "",
@@ -227,6 +583,7 @@
         "carf://callback",
         "carf://oauth/callback",
         "http://localhost:19006/*",
+        "exp://localhost:8081/*",
         "exp://localhost:19000/*"
       ],
       "webOrigins": [],
@@ -256,7 +613,8 @@
         "acr",
         "profile",
         "roles",
-        "email"
+        "email",
+        "carf-tenant"
       ],
       "optionalClientScopes": [
         "address",
@@ -302,7 +660,8 @@
         "acr",
         "profile",
         "roles",
-        "email"
+        "email",
+        "carf-tenant"
       ],
       "optionalClientScopes": [
         "address",
@@ -354,7 +713,8 @@
         "acr",
         "profile",
         "roles",
-        "email"
+        "email",
+        "carf-tenant"
       ],
       "optionalClientScopes": [
         "address",
@@ -406,60 +766,8 @@
         "acr",
         "profile",
         "roles",
-        "email"
-      ],
-      "optionalClientScopes": [
-        "address",
-        "phone",
-        "offline_access",
-        "microprofile-jwt"
-      ]
-    },
-    {
-      "id": "admin-client-id",
-      "clientId": "admin",
-      "name": "ADMIN - Frontend Administrativo",
-      "description": "Console de administração Next.js para gestão de tenants e usuários",
-      "rootUrl": "http://localhost:3000",
-      "adminUrl": "",
-      "baseUrl": "/",
-      "surrogateAuthRequired": false,
-      "enabled": true,
-      "alwaysDisplayInConsole": false,
-      "clientAuthenticatorType": "client-secret",
-      "secret": "**********",
-      "redirectUris": [
-        "http://localhost:3000/*",
-        "https://admin.carf.example.com/*"
-      ],
-      "webOrigins": ["+"],
-      "notBefore": 0,
-      "bearerOnly": false,
-      "consentRequired": false,
-      "standardFlowEnabled": true,
-      "implicitFlowEnabled": false,
-      "directAccessGrantsEnabled": false,
-      "serviceAccountsEnabled": false,
-      "publicClient": true,
-      "frontchannelLogout": true,
-      "protocol": "openid-connect",
-      "attributes": {
-        "oidc.ciba.grant.enabled": "false",
-        "post.logout.redirect.uris": "+",
-        "oauth2.device.authorization.grant.enabled": "false",
-        "display.on.consent.screen": "false",
-        "pkce.code.challenge.method": "S256"
-      },
-      "authenticationFlowBindingOverrides": {},
-      "fullScopeAllowed": true,
-      "nodeReRegistrationTimeout": -1,
-      "protocolMappers": [],
-      "defaultClientScopes": [
-        "web-origins",
-        "acr",
-        "profile",
-        "roles",
-        "email"
+        "email",
+        "carf-tenant"
       ],
       "optionalClientScopes": [
         "address",
@@ -509,7 +817,23 @@
             "id.token.claim": "true",
             "access.token.claim": "true",
             "claim.name": "allowed_tenants",
-            "jsonType.label": "JSON",
+            "jsonType.label": "String",
+            "multivalued": "true"
+          }
+        },
+        {
+          "id": "community-ids-mapper",
+          "name": "community_ids",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-attribute-mapper",
+          "consentRequired": false,
+          "config": {
+            "userinfo.token.claim": "true",
+            "user.attribute": "community_ids",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "community_ids",
+            "jsonType.label": "String",
             "multivalued": "true"
           }
         }
@@ -617,20 +941,104 @@
       }
     ]
   },
-  "internationalizationEnabled": false,
-  "supportedLocales": [],
-  "authenticationFlows": [],
-  "authenticatorConfig": [],
-  "requiredActions": [],
-  "browserFlow": "browser",
-  "registrationFlow": "registration",
-  "directGrantFlow": "direct grant",
-  "resetCredentialsFlow": "reset credentials",
-  "clientAuthenticationFlow": "clients",
-  "dockerAuthenticationFlow": "docker auth",
+  "internationalizationEnabled": true,
+  "supportedLocales": ["pt-BR", "en"],
+  "defaultLocale": "pt-BR",
   "users": [],
-  "federatedUsers": [],
   "scopeMappings": [],
   "clientScopeMappings": {},
-  "protocolMappers": []
+  "userProfile": {
+    "attributes": [
+      {
+        "name": "username",
+        "displayName": "${username}",
+        "validations": {
+          "length": { "min": 3, "max": 255 },
+          "username-prohibited-characters": {},
+          "up-username-not-idn-homograph": {}
+        },
+        "permissions": {
+          "view": ["admin", "user"],
+          "edit": ["admin", "user"]
+        },
+        "multivalued": false
+      },
+      {
+        "name": "email",
+        "displayName": "${email}",
+        "validations": {
+          "email": {},
+          "length": { "max": 255 }
+        },
+        "required": { "roles": ["user"] },
+        "permissions": {
+          "view": ["admin", "user"],
+          "edit": ["admin", "user"]
+        },
+        "multivalued": false
+      },
+      {
+        "name": "firstName",
+        "displayName": "${firstName}",
+        "validations": {
+          "length": { "max": 255 },
+          "person-name-prohibited-characters": {}
+        },
+        "required": { "roles": ["user"] },
+        "permissions": {
+          "view": ["admin", "user"],
+          "edit": ["admin", "user"]
+        },
+        "multivalued": false
+      },
+      {
+        "name": "lastName",
+        "displayName": "${lastName}",
+        "validations": {
+          "length": { "max": 255 },
+          "person-name-prohibited-characters": {}
+        },
+        "required": { "roles": ["user"] },
+        "permissions": {
+          "view": ["admin", "user"],
+          "edit": ["admin", "user"]
+        },
+        "multivalued": false
+      },
+      {
+        "name": "current_tenant",
+        "displayName": "Current Tenant",
+        "permissions": {
+          "view": ["admin"],
+          "edit": ["admin"]
+        },
+        "multivalued": false
+      },
+      {
+        "name": "tenants",
+        "displayName": "Allowed Tenants",
+        "permissions": {
+          "view": ["admin"],
+          "edit": ["admin"]
+        },
+        "multivalued": true
+      },
+      {
+        "name": "community_ids",
+        "displayName": "Community IDs",
+        "permissions": {
+          "view": ["admin"],
+          "edit": ["admin"]
+        },
+        "multivalued": true
+      }
+    ],
+    "groups": [
+      {
+        "name": "user-metadata",
+        "displayHeader": "User metadata",
+        "displayDescription": "Attributes, which refer to user metadata"
+      }
+    ]
+  }
 }

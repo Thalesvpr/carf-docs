@@ -1,0 +1,163 @@
+import { TFile } from "obsidian";
+import { Document } from "../../core/Document";
+import { Issue } from "../../core/Issue";
+import { Severity } from "../../core/Severity";
+import { LocalValidator, ValidatorContext, getConfiguredSeverity } from "../base/Validator";
+
+/**
+ * Validates that internal links resolve to existing files
+ *
+ * Link types handled:
+ * - External (http://, https://) → skipped
+ * - Anchor-only (#section) → skipped
+ * - Route links (/path/to/page) → skipped (portal routes, not vault files)
+ * - Relative links (./file, ../file) → validated
+ * - Wiki links ([[file]]) → validated via metadataCache
+ */
+export class LinksValidator extends LocalValidator {
+  readonly id = "broken-links";
+  readonly nameKey = "validators.links.name";
+  readonly descriptionKey = "validators.links.description";
+  readonly defaultSeverity = Severity.ERROR;
+
+  async validate(doc: Document, ctx: ValidatorContext): Promise<Issue[]> {
+    const issues: Issue[] = [];
+    const severity = getConfiguredSeverity(this.id, ctx.config, this.defaultSeverity);
+
+    for (const link of doc.links) {
+      // Skip external links (including protocol-relative URLs)
+      if (link.target.startsWith("http://") ||
+          link.target.startsWith("https://") ||
+          link.target.startsWith("//")) {
+        continue;
+      }
+
+      // Skip anchor-only links
+      if (link.target.startsWith("#")) {
+        continue;
+      }
+
+      // Skip route links (portal routes starting with "/")
+      // These are web routes like /manuais/reurbweb/, /guia/aprovar-unidade/
+      // They are NOT vault file paths, so we cannot validate them
+      if (this.isRouteLink(link.target)) {
+        continue;
+      }
+
+      // Resolve the link
+      const resolved = this.resolveLink(link.target, doc.file, ctx);
+
+      if (!resolved) {
+        issues.push(new Issue(
+          doc.file,
+          this.id,
+          severity,
+          "validators.links.broken",
+          { target: link.target },
+          link.line,
+          link.column,
+          "validators.links.broken_suggestion",
+          { target: link.target }
+        ));
+      }
+    }
+
+    return issues;
+  }
+
+  /**
+   * Check if a link is a portal route (not a vault file path)
+   *
+   * Route links start with "/" and are web routes for the portal,
+   * not relative file paths within the vault.
+   *
+   * Examples:
+   * - /manuais/reurbweb/ → route link (skip)
+   * - /guia/aprovar-unidade/ → route link (skip)
+   * - //cdn.site.com/x → protocol-relative URL (NOT a route, treat as external)
+   * - ./README.md → relative link (validate)
+   * - ../file.md → relative link (validate)
+   */
+  private isRouteLink(target: string): boolean {
+    // Protocol-relative URLs (//...) are external, not portal routes
+    if (target.startsWith("//")) {
+      return false;
+    }
+
+    // Links starting with "/" (but not "//") are portal routes, not vault paths
+    // Vault relative links use "./" or "../" or just the filename
+    if (target.startsWith("/")) {
+      return true;
+    }
+
+    return false;
+  }
+
+  /**
+   * Resolve a link target to a file
+   */
+  private resolveLink(target: string, sourceFile: TFile, ctx: ValidatorContext): TFile | null {
+    // Remove anchor from target
+    const [path] = target.split("#");
+    if (!path) return null; // anchor-only links handled above
+
+    // Try to resolve as wiki link (just filename)
+    const metadataCache = ctx.app.metadataCache;
+    const linkedFile = metadataCache.getFirstLinkpathDest(path, sourceFile.path);
+
+    if (linkedFile) {
+      return linkedFile;
+    }
+
+    // Try to resolve as relative path
+    const resolvedPath = this.resolveRelativePath(path, sourceFile);
+    const file = ctx.app.vault.getAbstractFileByPath(resolvedPath);
+
+    if (file instanceof TFile) {
+      return file;
+    }
+
+    // Try adding .md extension
+    if (!path.endsWith(".md")) {
+      const withMd = ctx.app.vault.getAbstractFileByPath(resolvedPath + ".md");
+      if (withMd instanceof TFile) {
+        return withMd;
+      }
+    }
+
+    return null;
+  }
+
+  /**
+   * Resolve a relative path from a source file
+   * Note: Route links (starting with "/") are filtered out before this method is called
+   */
+  private resolveRelativePath(path: string, sourceFile: TFile): string {
+    // Handle url-encoded paths
+    const decodedPath = decodeURIComponent(path);
+
+    // Relative path from source file's folder
+    const sourceDir = sourceFile.parent?.path || "";
+
+    if (decodedPath.startsWith("./")) {
+      return sourceDir ? `${sourceDir}/${decodedPath.slice(2)}` : decodedPath.slice(2);
+    }
+
+    if (decodedPath.startsWith("../")) {
+      // Navigate up directories
+      const parts = sourceDir.split("/");
+      let relativeParts = decodedPath.split("/");
+      let finalParts = [...parts];
+
+      while (relativeParts[0] === "..") {
+        finalParts.pop();
+        relativeParts.shift();
+      }
+
+      return [...finalParts, ...relativeParts].join("/");
+    }
+
+    // Assume it's a path relative to source directory (wiki-style link)
+    return sourceDir ? `${sourceDir}/${decodedPath}` : decodedPath;
+  }
+}

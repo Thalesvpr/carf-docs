@@ -1,3 +1,9 @@
+---
+type: readme
+status: review
+updated: 2026-01-12
+---
+
 # INTEGRATIONS
 
 Integrações do GEOAPI com sistemas externos abstraídas por interfaces no Domain e implementadas no Infrastructure isolando detalhes técnicos de comunicação HTTP, autenticação e tratamento erros. KeycloakClient implementa ICurrentUser e IPermissionChecker comunicando via Admin API REST para validar tokens JWT, obter dados usuário autenticado (sub, email, roles) e verificar permissões RBAC injetadas em cada request. CpfValidationClient consome APIs Receita Federal validando CPF/CNPJ verificando situação cadastral, nome contribuinte e status regularidade fiscal com cache Redis para reduzir chamadas externas e retry policy Polly para transient failures. GeoCodingClient integra serviços de geocoding transformando endereços em coordenadas lat/lon e vice-versa validando CEPs via ViaCEP API. WmsClient comunica com servidores WMS externos (IBGE, prefeituras) via GetCapabilities/GetMap verificando disponibilidade layers e proxy imagens para frontend. NotificationService envia notificações push via Firebase Cloud Messaging, emails via SendGrid SMTP e webhooks para sistemas legados quando eventos críticos ocorrem (legitimação aprovada, documento enviado).
@@ -20,6 +26,14 @@ Integrações do GEOAPI com sistemas externos abstraídas por interfaces no Doma
 - 07-notification-service.md - FCM/SendGrid/Webhooks
 - 08-email-templates.md - Templates HTML emails
 
----
+<!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-**Última atualização:** 2026-01-12
+## Documentos (1)
+
+| Documento | Status |
+|-----------|--------|
+| [Keycloak Integration](./01-keycloak-integration.md) | ⚠ |
+
+<!-- CARF-INDEX-END -->

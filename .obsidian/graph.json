@@ -8,21 +8,56 @@
   "collapse-color-groups": false,
   "colorGroups": [
     {
-      "query": "path:CENTRAL",
+      "query": "path:CENTRAL/REQUIREMENTS/FUNCTIONAL-REQUIREMENTS  ",
       "color": {
         "a": 1,
-        "rgb": 16711680
+        "rgb": 15316999
       }
     },
     {
-      "query": "path:PROJECTS/GEOWEB file:README.md",
+      "query": "path:CENTRAL/REQUIREMENTS/NON-FUNCTIONAL-REQUIREMENTS  ",
+      "color": {
+        "a": 1,
+        "rgb": 10645249
+      }
+    },
+    {
+      "query": "path:CENTRAL/REQUIREMENTS/USE-CASES  ",
+      "color": {
+        "a": 1,
+        "rgb": 16409600
+      }
+    },
+    {
+      "query": "path:CENTRAL/REQUIREMENTS/USER-STORIES  ",
+      "color": {
+        "a": 1,
+        "rgb": 14810880
+      }
+    },
+    {
+      "query": "path:CENTRAL file:README.md",
+      "color": {
+        "a": 1,
+        "rgb": 16711705
+      }
+    },
+    {
+      "query": "path:CENTRAL",
+      "color": {
+        "a": 1,
+        "rgb": 8654864
+      }
+    },
+    {
+      "query": "path:PROJECTS/REURBWEB file:README.md",
       "color": {
         "a": 1,
         "rgb": 5431492
       }
     },
     {
-      "query": "path:PROJECTS/GEOWEB  ",
+      "query": "path:PROJECTS/REURBWEB  ",
       "color": {
         "a": 1,
         "rgb": 4358262
@@ -102,6 +137,6 @@
   "repelStrength": 20,
   "linkStrength": 1,
   "linkDistance": 30,
-  "scale": 0.04089912578005863,
-  "close": false
+  "scale": 0.059326164534091314,
+  "close": true
 }

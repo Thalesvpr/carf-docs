@@ -1,29 +1,147 @@
-# Como Desenvolver Temas para Keycloak
-
-Desenvolvimento de temas Keycloak CARF requer Docker instalado, editor VS Code recomendado, conhecimento básico HTML CSS JavaScript e FreeMarker opcional. Estrutura de diretórios navegando para PROJECTS/KEYCLOAK/SRC-CODE/carf-keycloak criando themes/carf/login/resources/css js img e messages, themes/carf/account/resources/css js, themes/carf/email/html text.
-
-Keycloak em modo desenvolvimento via docker-compose.dev.yml definindo service keycloak image quay.io/keycloak/keycloak:24.0.0 command start-dev environment KEYCLOAK_ADMIN admin KEYCLOAK_ADMIN_PASSWORD admin KC_HTTP_PORT 8080 KC_HOSTNAME_STRICT false ports 8080:8080 volumes mapeando ./themes para /opt/keycloak/themes e ./realm-export.json para /opt/keycloak/data/import/realm.json:ro, command start-dev --import-realm, iniciar docker-compose -f docker-compose.dev.yml up, acessar http://localhost:8080.
-
-Configuração inicial tema criando themes/carf/login/theme.properties com parent=keycloak.v2 import=common/keycloak styles=css/login.css scripts=js/login.js locales=pt-BR,en meta viewport width=device-width initial-scale=1 favicon img/favicon.ico.
-
-Template base themes/carf/login/template.ftl usando macro registrationLayout com parâmetros bodyClass displayInfo displayMessage displayRequiredFields, DOCTYPE html lang locale, head com meta charset utf-8 viewport robots noindex nofollow, title usando msg loginTitle realm.displayName, processamento dinâmico properties.meta e properties.styles para incluir CSS e scripts JavaScript, body com classes kcBodyClass bodyClass, container kc-container kc-container-wrapper, header kc-header com logo img src url.resourcesPath/img/logo.svg e títulos msg carf.title carf.subtitle, content area kc-content kc-content-wrapper processando mensagens alert alert-type para success warning error info, nested sections header form info, footer kc-footer msg carf.footer.
-
-Página login themes/carf/login/login.ftl importando template.ftl usando registrationLayout macro, section header com h2 kc-page-title msg loginAccountTitle, section form com form kc-form-login action url.loginAction method post, form-group label username processando realm.loginWithEmailAllowed e realm.registrationEmailAsUsername, input id username class form-control type text autofocus placeholder msg username, validação messagesPerField.existsError mostrando error-message span, form-group password input type password, form-options checkbox rememberMe se realm.rememberMe e link forgot-password href url.loginResetCredentialsUrl msg doForgotPassword, botão submit btn btn-primary btn-block name login id kc-login msg doLogIn, section info com link registro url.registrationUrl msg doRegister se realm.registrationAllowed.
-
-Estilos CSS themes/carf/login/resources/css/login.css com variáveis CSS root --carf-primary #2C5F2D --carf-secondary #97BC62 --carf-accent #FFB300 --carf-background #F5F5F5 --carf-text #333333 --carf-error #D32F2F --carf-border #E0E0E0 --font-family Inter apple-system BlinkMacSystemFont Segoe UI sans-serif. Reset e base box-sizing border-box margin padding 0, body font-family background linear-gradient 135deg primary secondary min-height 100vh flex center padding 2rem 1rem. Container kc-container max-width 450px, wrapper background white border-radius 16px box-shadow 0 10px 40px rgba0,0,0,0.15. Header kc-header background linear-gradient primary to #234d24 padding 3rem 2rem text-align center color white, img max-width 180px margin-bottom 1rem, h1 font-size 1.5rem font-weight 700. Content kc-content padding 2.5rem, kc-page-title font-size 1.5rem font-weight 600 margin-bottom 2rem text-align center. Formulário form-group margin-bottom 1.5rem, form-label font-weight 500 font-size 0.875rem, form-control width 100% padding 0.875rem 1rem font-size 1rem border 2px solid border-radius 8px transition 0.3s, focus outline none border-color primary box-shadow 0 0 0 3px rgba. Botões btn padding 1rem 1.5rem font-weight 600 border-radius 8px cursor pointer transition 0.3s, btn-primary background primary color white hover background #234d24 transform translateY -2px box-shadow 0 6px 20px rgba. Alertas alert padding 1rem border-radius 8px margin-bottom 1.5rem flex align-items center, alert-error background #FFEBEE color error border-left 4px solid error, alert-success background #E8F5E9 color #2E7D32, alert-warning background #FFF3E0 color #F57C00, alert-info background #E3F2FD color #1976D2. Registro kc-registration-container margin-top 2rem padding-top 2rem border-top 1px solid border text-align center, link color primary font-weight 600 hover text-decoration underline. Footer kc-footer text-align center padding 1.5rem color white font-size 0.875rem opacity 0.9. Responsividade media max-width 576px body padding 1rem 0.5rem kc-content padding 2rem 1.5rem kc-header padding 2rem 1.5rem form-options flex-direction column gap 0.75rem. Acessibilidade media prefers-reduced-motion reduce animation-duration 0.01ms transition-duration 0.01ms.
-
-JavaScript customizado themes/carf/login/resources/js/login.js com DOMContentLoaded listener, máscara CPF para campo username detectando 11 dígitos aplicando formato XXX.XXX.XXX-XX via replace regex, validação básica formulário login verificando username e password preenchidos antes submit, auto-focus no campo username se vazio.
-
-Internacionalização themes/carf/login/messages/messages_pt_BR.properties com loginAccountTitle=Entre com sua conta carf.title=Sistema CARF carf.subtitle=Regularização Fundiária Urbana carf.footer=© 2025 CARF - Todos os direitos reservados, campos username=CPF usernameOrEmail=CPF ou Email password=Senha rememberMe=Lembrar-me neste dispositivo doForgotPassword=Esqueci minha senha, botões doLogIn=Entrar doRegister=Criar uma conta doCancel=Cancelar doSubmit=Enviar, registro noAccount=Não tem uma conta? registerTitle=Criar Conta, mensagens erro invalidUserMessage=CPF ou senha inválidos loginTimeout=Sua sessão expirou accountDisabledMessage=Sua conta está desabilitada accountTemporarilyDisabledMessage=Sua conta está temporariamente bloqueada, LGPD termsTitle=Termos de Uso e Política de Privacidade termsText=Ao se cadastrar você concorda com nossos Termos conforme LGPD termsAccept=Li e aceito os termos.
-
-Teste do tema acessando Admin Console http://localhost:8080 login admin/admin, selecionar realm carf, Realm Settings Themes, Login Theme carf, Save. Testar páginas login http://localhost:8080/realms/carf/account, registro ativar em Realm Settings Login User Registration, esqueci senha clicar link na página login. Hot reload mudanças CSS JS recarregadas automaticamente, templates .ftl podem precisar restart docker-compose restart.
-
-Debugging via Browser DevTools F12 Inspector para HTML CSS, Console para erros JavaScript, Network para verificar carregamento recursos. Logs Keycloak docker-compose logs -f keycloak. Template errors FreeMarker mostram stack trace no navegador em modo dev.
-
-Build produção minificar CSS JS instalando csso-cli uglify-js via npm install -g, minificar csso login.css -o login.min.css uglifyjs login.js -o login.min.js, atualizar theme.properties styles=css/login.min.css scripts=js/login.min.js, build imagem Docker docker build -t carf-keycloak:latest -f docker/Dockerfile.custom.
-
-Próximos passos desenvolver tema Account, tema Email, adicionar mais páginas register.ftl error.ftl, implementar testes automatizados, documentar guia contribuição. Referências Keycloak Theme SPI keycloak.org/docs/latest/server_development/#_themes, FreeMarker Documentation freemarker.apache.org/docs, CSS Variables MDN developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties.
-
+---
+type: leaf
+status: review
+updated: 2026-02-08
 ---
 
-**Última atualização:** 2026-01-12
+# Desenvolvimento de Temas com Keycloakify (Migracao Planejada)
+
+> **Status: Migracao Planejada.** O tema CARF atualmente usa FreeMarker com CSS customizado e JavaScript puro (ver [FEATURES/06-login-theme-carf.md](../FEATURES/06-login-theme-carf.md) e [ARCHITECTURE/02-theme-architecture.md](../ARCHITECTURE/02-theme-architecture.md)). Este guia documenta o fluxo planejado de desenvolvimento com Keycloakify conforme decidido no [ADR-001](../ADRs/ADR-001-keycloakify-adoption.md), mas a migracao ainda nao foi implementada. Nao e necessario para operar o tema FreeMarker atual.
+
+Este guia cobre o fluxo completo de desenvolvimento de temas Keycloak usando Keycloakify, desde a configuração inicial do ambiente até o deploy em produção.
+
+## Pré-requisitos
+
+Antes de iniciar o desenvolvimento, certifique-se de ter as seguintes ferramentas instaladas.
+
+Node.js versão 18 ou superior é necessário para executar o Keycloakify CLI e o ambiente de desenvolvimento. Recomenda-se usar a versão LTS mais recente.
+
+Um gerenciador de pacotes npm, yarn ou pnpm pode ser usado. O projeto CARF padroniza em pnpm para consistência com outros projetos do monorepo.
+
+Docker é necessário para testes locais com uma instância Keycloak real. A imagem oficial quay.io/keycloak/keycloak será usada.
+
+Conhecimento básico de React e TypeScript é assumido, já que os temas são desenvolvidos como aplicações React convencionais.
+
+## Estrutura do Projeto
+
+O projeto carf-keycloak-theme segue a estrutura padrão recomendada pelo Keycloakify com algumas adaptações para o contexto CARF.
+
+O diretório raiz contém os arquivos de configuração: package.json com dependências e scripts, keycloakify.config.ts com configurações do tema, tsconfig.json para TypeScript, e vite.config.ts para o bundler.
+
+O diretório src contém o código-fonte React. Dentro dele, o subdiretório login contém as páginas de autenticação (Login, Register, etc.), o subdiretório account contém as páginas do console de conta, e o subdiretório email contém os templates de email se customizados.
+
+O diretório public contém assets estáticos como imagens, fontes e o favicon que serão incluídos no tema final.
+
+Após o build, o diretório dist_keycloak é criado contendo o JAR do tema pronto para implantação.
+
+## Configuração Inicial
+
+Para criar um novo tema ou configurar o existente, algumas etapas são necessárias.
+
+O arquivo keycloakify.config.ts é o ponto central de configuração. Nele define-se o nome do tema que aparecerá no Admin Console do Keycloak, as versões do Keycloak suportadas, propriedades extras do tema (equivalentes ao theme.properties), e configurações de build como diretório de saída.
+
+As propriedades do tema definidas neste arquivo são acessíveis em runtime via kcContext.properties, permitindo configurar valores como URL do logo, cores primárias e informações de contato sem alterar o código.
+
+A integração com @carf/ui requer que a biblioteca esteja disponível como dependência. No contexto do monorepo CARF, isso é feito via workspace reference. Em projetos standalone, a biblioteca deve ser instalada do registro npm.
+
+## Ambiente de Desenvolvimento
+
+O ambiente de desenvolvimento local permite iterar rapidamente sem precisar rebuildar o tema a cada mudança.
+
+O comando de desenvolvimento inicia um servidor Vite com hot reload. As páginas do tema são renderizadas usando dados mock que simulam o contexto do Keycloak. Isso permite desenvolver e estilizar páginas sem uma instância Keycloak rodando.
+
+Os mocks estão configurados para representar cenários comuns: login com erro, login bem-sucedido, registro com campos obrigatórios, recuperação de senha, etc. Cada cenário pode ser acessado via diferentes rotas do servidor de desenvolvimento.
+
+Para testar cenários específicos não cobertos pelos mocks padrão, é possível criar mocks customizados que representem situações como login social, autenticação em dois fatores, ou erros específicos de validação.
+
+## Customização de Páginas
+
+Cada página do fluxo de autenticação pode ser customizada independentemente.
+
+A página de login é o ponto de entrada mais comum e geralmente a primeira a ser customizada. Ela deve exibir o formulário de credenciais, opções de login social se configuradas, links para registro e recuperação de senha, e mensagens de erro quando aplicável.
+
+A página de registro apresenta o formulário de criação de conta. Os campos exibidos dependem da configuração do realm no Keycloak. O tema deve renderizar dinamicamente os campos configurados, respeitando quais são obrigatórios e quais são opcionais.
+
+A página de erro é exibida quando algo dá errado no fluxo de autenticação. Ela deve apresentar a mensagem de erro de forma clara e oferecer opções para o usuário (tentar novamente, voltar ao login, etc.).
+
+Para customizar uma página, cria-se um componente React que recebe o kcContext específico daquela página como prop. O componente tem acesso a todas as informações necessárias via este contexto, incluindo URLs de ação do formulário, mensagens i18n, dados do usuário e configurações do realm.
+
+## Internacionalização
+
+O sistema de i18n do Keycloakify integra-se com o mecanismo de mensagens do Keycloak.
+
+As mensagens padrão do Keycloak estão disponíveis via função msg() que recebe a chave da mensagem e retorna o texto no idioma atual do usuário. As chaves são as mesmas usadas em templates FreeMarker e documentadas na referência do Keycloak.
+
+Mensagens customizadas podem ser adicionadas criando arquivos de mensagens no diretório apropriado. O formato segue o padrão Java properties com chave=valor. Arquivos separados são criados para cada idioma suportado (messages_pt_BR.properties, messages_en.properties, etc.).
+
+O idioma atual é determinado pelo Keycloak baseado nas configurações do realm e preferências do usuário. O tema pode oferecer um seletor de idioma se o realm tiver internacionalização habilitada com múltiplos idiomas.
+
+## Estilização
+
+A estilização do tema utiliza as ferramentas padrão do ecossistema React.
+
+Os tokens do Design System CARF (cores, tipografia, espaçamento) devem ser usados para garantir consistência visual. Esses tokens estão disponíveis como variáveis CSS quando @carf/ui é importado.
+
+O Tailwind CSS pode ser usado para estilização utilitária, seguindo o mesmo padrão das aplicações CARF. A configuração do Tailwind deve estender o preset @carf/ui que define as cores e breakpoints institucionais.
+
+Estilos específicos do tema que não se encaixam em classes utilitárias podem ser escritos em arquivos CSS separados ou usando a abordagem de módulos CSS para escopo local.
+
+## Testes Locais com Keycloak
+
+Para validar o tema em uma instância Keycloak real, um ambiente Docker é disponibilizado.
+
+O arquivo docker-compose.dev.yml na raiz do projeto configura uma instância Keycloak com o tema montado como volume. Mudanças nos arquivos fonte são refletidas após reload da página, sem necessidade de restart do container.
+
+O realm de desenvolvimento já vem configurado com um client de teste, usuários de exemplo e todas as features habilitadas (registro, recuperação de senha, login social mock) para facilitar testes de todos os fluxos.
+
+Para testar fluxos específicos como verificação de email ou reset de senha, o maildev é incluído no docker-compose como servidor SMTP fake, permitindo visualizar os emails enviados pelo Keycloak.
+
+## Build de Produção
+
+O build de produção gera o artefato final para implantação.
+
+O comando de build executa a compilação TypeScript, bundling via Vite, otimização de assets e empacotamento em JAR. O processo completo é automatizado pelo Keycloakify CLI.
+
+O JAR resultante contém o tema compilado no formato esperado pelo Keycloak: diretórios de recursos, templates HTML gerados e arquivo theme.properties. Este JAR é idêntico em estrutura a um tema FreeMarker tradicional.
+
+Validação pós-build deve incluir verificação do tamanho do bundle (alertar se exceder limites definidos), checagem de assets incluídos e teste de carregamento em instância Keycloak limpa.
+
+## Deploy
+
+O deploy do tema em ambientes Keycloak pode seguir diferentes estratégias.
+
+Para **Keycloak em container**, o JAR deve ser copiado para o diretório /opt/keycloak/providers/ dentro do container. Isso pode ser feito via volume mount ou incluindo o JAR em uma imagem derivada da imagem base do Keycloak.
+
+Para **Keycloak standalone**, o JAR é copiado para o diretório providers/ da instalação. Após copiar, é necessário executar o comando de build do Keycloak para registrar o novo provider.
+
+Após o deploy, o tema fica disponível para seleção no Admin Console do Keycloak. Navegue até Realm Settings > Themes e selecione o tema carf nos dropdowns de Login theme, Account theme e Email theme conforme apropriado.
+
+## Pipeline CI/CD
+
+A integração com pipelines de CI/CD automatiza o build e deploy do tema.
+
+O stage de build deve instalar dependências, executar linting e testes, buildar o tema e armazenar o JAR como artefato do pipeline.
+
+O stage de deploy copia o JAR para o ambiente alvo. Em ambientes Kubernetes, isso geralmente envolve atualizar um ConfigMap ou Secret que é montado no pod do Keycloak, seguido de rolling restart.
+
+Testes de smoke pós-deploy devem verificar que o tema carrega corretamente acessando a página de login e verificando elementos visuais esperados.
+
+## Troubleshooting
+
+Problemas comuns durante o desenvolvimento e suas soluções.
+
+Se as **mudanças não aparecem**, verifique se o cache de temas está desabilitado no Keycloak de desenvolvimento. As variáveis KC_SPI_THEME_CACHE_THEMES e KC_SPI_THEME_CACHE_TEMPLATES devem ser false.
+
+Se o **build falha**, verifique a versão do Node.js (deve ser 18+) e se todas as dependências estão instaladas. Limpe o diretório node_modules e reinstale se necessário.
+
+Se o **tema não aparece** no Admin Console após deploy, verifique os logs do Keycloak durante startup para erros de carregamento de providers. O JAR deve estar no diretório correto e o Keycloak deve ter sido reiniciado após a adição.
+
+Se há **erros de runtime**, verifique o console do browser para erros JavaScript. Problemas comuns incluem acesso a propriedades undefined do kcContext (verifique tipos) e imports incorretos de componentes.
+
+## Referencias
+
+Para detalhes sobre as APIs e tipos disponiveis, consulte [REFERENCE/04-keycloakify-api.md](../REFERENCE/04-keycloakify-api.md).
+
+Para entender os conceitos por tras do Keycloakify, consulte [CONCEPTS/01-keycloak-themes.md](../CONCEPTS/01-keycloak-themes.md).
+
+A documentacao oficial do Keycloakify em keycloakify.dev contem guias adicionais e exemplos de temas da comunidade.

@@ -1,0 +1,25 @@
+# DocsLinter Configuration for CARF
+# This file configures the obsidian-docs-toolkit plugin v2.0
+
+# Extend the CARF preset (contains all CARF-specific rules)
+extends: carf
+
+# Override language if needed (carf preset uses pt-BR)
+# language: en
+
+# Additional paths to exclude (merged with preset)
+# paths:
+#   exclude:
+#     - "ARCHIVE/**"
+
+# Override specific validators
+# validators:
+#   stale:
+#     thresholdDays: 90
+
+# Custom document types can be added here
+# documentTypes:
+#   custom-type:
+#     name: "Custom Type"
+#     detection:
+#       filename: "^CUSTOM-\\d{3}-.+\\.md$"

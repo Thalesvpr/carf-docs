@@ -1,0 +1,288 @@
+{
+  "categories": [
+    {
+      "name": "Backend & API Architecture",
+      "start_number": 22,
+      "topics": [
+        {"slug": "api-versioning-strategy", "title": "Estratégia de Versionamento de API"},
+        {"slug": "rest-pagination-strategy", "title": "Estratégia de Paginação REST para Queries Geográficas"},
+        {"slug": "rate-limiting-throttling", "title": "Rate Limiting e Throttling por Tenant"},
+        {"slug": "request-response-compression", "title": "Compressão de Request/Response para Dados Geográficos"},
+        {"slug": "api-gateway-design", "title": "Design de API Gateway com Nginx"},
+        {"slug": "field-validation-layer", "title": "Camada de Validação de Campos (DTO, Domain, DB)"},
+        {"slug": "error-response-standardization", "title": "Padronização de Respostas de Erro (ProblemDetails)"},
+        {"slug": "idempotency-keys", "title": "Chaves de Idempotência para Sync Offline"},
+        {"slug": "api-documentation-openapi", "title": "Documentação de API com OpenAPI/Swagger"},
+        {"slug": "webhook-strategy", "title": "Estratégia de Webhooks para Notificações Externas"},
+        {"slug": "hateoas-hypermedia", "title": "HATEOAS e Hypermedia para Navegação de API"},
+        {"slug": "bulk-operations-api", "title": "API de Operações em Lote para Importação"}
+      ]
+    },
+    {
+      "name": "Database & Data Persistence",
+      "start_number": 34,
+      "topics": [
+        {"slug": "temporal-data-management", "title": "Gerenciamento de Dados Temporais e Audit Trails"},
+        {"slug": "geometry-storage-strategy", "title": "Estratégia de Armazenamento de Geometrias PostGIS"},
+        {"slug": "table-partitioning-strategy", "title": "Estratégia de Particionamento de Tabelas"},
+        {"slug": "backup-recovery-rto-rpo", "title": "Backup e Recovery com RTO/RPO Definidos"},
+        {"slug": "data-archival-strategy", "title": "Estratégia de Arquivamento de Dados Históricos"},
+        {"slug": "jsonb-vs-relational", "title": "JSONB vs Relacional para Dados Flexíveis"},
+        {"slug": "id-generation-strategy", "title": "Estratégia de Geração de IDs (UUID vs Serial)"},
+        {"slug": "query-optimization-indexes", "title": "Otimização de Queries e Estratégia de Índices"},
+        {"slug": "connection-pooling-pgbouncer", "title": "Connection Pooling com PgBouncer"},
+        {"slug": "full-text-search-strategy", "title": "Estratégia de Full-Text Search para Processos"}
+      ]
+    },
+    {
+      "name": "Offline-First & Synchronization",
+      "start_number": 44,
+      "topics": [
+        {"slug": "offline-data-scope", "title": "Escopo de Dados Disponíveis Offline"},
+        {"slug": "conflict-resolution-strategy", "title": "Estratégia de Resolução de Conflitos de Sync"},
+        {"slug": "bandwidth-optimized-sync", "title": "Sincronização Otimizada para Banda Limitada"},
+        {"slug": "sync-queue-management", "title": "Gerenciamento de Fila de Sincronização"},
+        {"slug": "local-storage-encryption", "title": "Criptografia de Storage Local no Dispositivo"},
+        {"slug": "bidirectional-sync-protocol", "title": "Protocolo de Sincronização Bidirecional"},
+        {"slug": "offline-ui-indicators", "title": "Indicadores de UI para Modo Offline"},
+        {"slug": "offline-data-retention", "title": "Política de Retenção de Dados Offline"}
+      ]
+    },
+    {
+      "name": "Authentication & Authorization",
+      "start_number": 52,
+      "topics": [
+        {"slug": "jwt-token-refresh-strategy", "title": "Estratégia de Refresh de Token JWT"},
+        {"slug": "cross-tenant-blocking", "title": "Bloqueio de Requisições Cross-Tenant"},
+        {"slug": "api-key-management", "title": "Gerenciamento de API Keys por Aplicação"},
+        {"slug": "permission-hierarchy", "title": "Hierarquia de Permissões vs Modelo Flat"},
+        {"slug": "resource-level-authorization", "title": "Autorização em Nível de Recurso"},
+        {"slug": "delegated-access", "title": "Acesso Delegado para Suporte Admin"},
+        {"slug": "mobile-session-management", "title": "Gerenciamento de Sessão em Mobile"},
+        {"slug": "single-sign-out-cascade", "title": "Single Sign-Out em Cascata"},
+        {"slug": "oauth2-scope-granularity", "title": "Granularidade de Scopes OAuth2"},
+        {"slug": "service-to-service-auth", "title": "Autenticação Service-to-Service"}
+      ]
+    },
+    {
+      "name": "Geospatial & Mapping",
+      "start_number": 62,
+      "topics": [
+        {"slug": "coordinate-system-strategy", "title": "Estratégia de Sistema de Coordenadas (WGS84 vs UTM)"},
+        {"slug": "spatial-index-types", "title": "Tipos de Índice Espacial (GIST vs BRIN)"},
+        {"slug": "geometry-validation-rules", "title": "Regras de Validação de Geometrias"},
+        {"slug": "tile-caching-strategy", "title": "Estratégia de Cache de Tiles"},
+        {"slug": "wms-wmts-integration", "title": "Integração com Serviços WMS/WMTS"},
+        {"slug": "geometric-operation-precision", "title": "Precisão de Operações Geométricas"},
+        {"slug": "spatial-querying-performance", "title": "Performance de Queries Espaciais"},
+        {"slug": "map-projection-switching", "title": "Suporte a Múltiplas Projeções"},
+        {"slug": "shapefile-import-validation", "title": "Validação de Importação de Shapefile"},
+        {"slug": "annotation-storage", "title": "Armazenamento de Anotações de Campo"},
+        {"slug": "geojson-standardization", "title": "Padronização de GeoJSON"},
+        {"slug": "vector-tile-generation", "title": "Geração de Vector Tiles"}
+      ]
+    },
+    {
+      "name": "Domain Modeling & Business Logic",
+      "start_number": 74,
+      "topics": [
+        {"slug": "state-machine-implementation", "title": "Implementação de State Machine para Workflows"},
+        {"slug": "aggregate-boundary-definition", "title": "Definição de Fronteiras de Agregados DDD"},
+        {"slug": "event-sourcing-vs-event-driven", "title": "Event Sourcing vs Event-Driven Architecture"},
+        {"slug": "snapshot-strategy", "title": "Estratégia de Snapshots de Agregados"},
+        {"slug": "value-object-immutability", "title": "Garantia de Imutabilidade de Value Objects"},
+        {"slug": "validation-domain-vs-application", "title": "Validação em Domain vs Application Layer"},
+        {"slug": "invariant-enforcement", "title": "Garantia de Invariantes de Domínio"},
+        {"slug": "bounded-context-communication", "title": "Comunicação entre Bounded Contexts"},
+        {"slug": "duplicate-prevention-strategy", "title": "Estratégia de Prevenção de Duplicados"},
+        {"slug": "soft-delete-vs-physical-delete", "title": "Soft Delete vs Physical Delete"}
+      ]
+    },
+    {
+      "name": "Security & Compliance",
+      "start_number": 84,
+      "topics": [
+        {"slug": "lgpd-right-to-erasure", "title": "Implementação do Direito ao Esquecimento LGPD"},
+        {"slug": "data-retention-policies", "title": "Políticas de Retenção de Dados"},
+        {"slug": "encryption-key-rotation", "title": "Rotação de Chaves de Criptografia"},
+        {"slug": "secrets-management", "title": "Gerenciamento de Secrets com Vault"},
+        {"slug": "access-logging-granularity", "title": "Granularidade de Logging de Acesso"},
+        {"slug": "pii-masking-logs", "title": "Mascaramento de PII em Logs"},
+        {"slug": "sql-injection-prevention", "title": "Prevenção de SQL Injection"},
+        {"slug": "csrf-protection", "title": "Proteção contra CSRF"},
+        {"slug": "content-security-policy", "title": "Política de Segurança de Conteúdo (CSP)"},
+        {"slug": "breach-disclosure-timeline", "title": "Timeline de Divulgação de Incidentes"},
+        {"slug": "certificate-pinning", "title": "Certificate Pinning em Mobile"},
+        {"slug": "input-sanitization", "title": "Sanitização de Input em Todas Camadas"}
+      ]
+    },
+    {
+      "name": "Mobile Architecture",
+      "start_number": 96,
+      "topics": [
+        {"slug": "mobile-state-management", "title": "Arquitetura de State Management Mobile"},
+        {"slug": "native-module-usage", "title": "Uso de Módulos Nativos (GPS, Camera, Files)"},
+        {"slug": "react-native-navigation", "title": "Estratégia de Navegação React Native"},
+        {"slug": "mobile-build-configuration", "title": "Configuração de Build por Ambiente"},
+        {"slug": "background-sync-trigger", "title": "Trigger de Sincronização em Background"},
+        {"slug": "push-notification-strategy", "title": "Estratégia de Push Notifications"},
+        {"slug": "app-update-strategy", "title": "Estratégia de Atualização de App"},
+        {"slug": "mobile-crash-reporting", "title": "Relatório de Crashes em Mobile"}
+      ]
+    },
+    {
+      "name": "Frontend Web Architecture",
+      "start_number": 104,
+      "topics": [
+        {"slug": "frontend-state-architecture", "title": "Arquitetura de State Management Frontend"},
+        {"slug": "metadata-caching-strategy", "title": "Estratégia de Cache de Metadados"},
+        {"slug": "spatial-component-architecture", "title": "Arquitetura de Componentes Espaciais"},
+        {"slug": "form-state-management", "title": "Gerenciamento de Estado de Formulários"},
+        {"slug": "realtime-updates-strategy", "title": "Estratégia de Atualizações em Tempo Real"},
+        {"slug": "component-library-composition", "title": "Composição de Component Library"},
+        {"slug": "responsive-design-strategy", "title": "Estratégia de Design Responsivo"},
+        {"slug": "accessibility-standards", "title": "Padrões de Acessibilidade WCAG 2.1"},
+        {"slug": "frontend-performance-monitoring", "title": "Monitoramento de Performance Frontend"},
+        {"slug": "build-output-optimization", "title": "Otimização de Output de Build"}
+      ]
+    },
+    {
+      "name": "Data Export & Reporting",
+      "start_number": 114,
+      "topics": [
+        {"slug": "export-format-support", "title": "Suporte a Formatos de Exportação"},
+        {"slug": "batch-export-processing", "title": "Processamento de Exportação em Lote"},
+        {"slug": "report-scheduling", "title": "Agendamento de Relatórios"},
+        {"slug": "chart-library-strategy", "title": "Estratégia de Biblioteca de Gráficos"},
+        {"slug": "pdf-generation-strategy", "title": "Estratégia de Geração de PDF"},
+        {"slug": "spatial-report-templates", "title": "Templates de Relatórios Espaciais"},
+        {"slug": "data-anonymization-exports", "title": "Anonimização de Dados em Exportações"},
+        {"slug": "export-versioning", "title": "Versionamento de Formatos de Exportação"}
+      ]
+    },
+    {
+      "name": "Testing Strategy",
+      "start_number": 122,
+      "topics": [
+        {"slug": "test-data-management", "title": "Gerenciamento de Dados de Teste"},
+        {"slug": "test-database-strategy", "title": "Estratégia de Database para Testes"},
+        {"slug": "geographic-data-testing", "title": "Testes com Dados Geográficos"},
+        {"slug": "e2e-test-coverage", "title": "Cobertura de Testes E2E"},
+        {"slug": "performance-testing-strategy", "title": "Estratégia de Testes de Performance"},
+        {"slug": "integration-test-isolation", "title": "Isolamento de Testes de Integração"},
+        {"slug": "mobile-app-testing", "title": "Estratégia de Testes de App Mobile"},
+        {"slug": "spatial-assertion-libraries", "title": "Bibliotecas de Assertions Espaciais"},
+        {"slug": "test-maintenance-costs", "title": "Custos de Manutenção de Testes"},
+        {"slug": "mutation-testing", "title": "Mutation Testing para Lógica Crítica"}
+      ]
+    },
+    {
+      "name": "CI/CD & Deployment",
+      "start_number": 132,
+      "topics": [
+        {"slug": "environment-promotion-path", "title": "Caminho de Promoção entre Ambientes"},
+        {"slug": "database-migration-strategy", "title": "Estratégia de Migração de Database"},
+        {"slug": "feature-flags-strategy", "title": "Estratégia de Feature Flags"},
+        {"slug": "canary-deployment", "title": "Deployment Canário"},
+        {"slug": "container-registry-strategy", "title": "Estratégia de Container Registry"},
+        {"slug": "secrets-rotation-cicd", "title": "Rotação de Secrets em CI/CD"},
+        {"slug": "build-artifact-management", "title": "Gerenciamento de Artefatos de Build"},
+        {"slug": "dependency-scanning", "title": "Scanning de Dependências de Segurança"},
+        {"slug": "sbom-generation", "title": "Geração de SBOM (Software Bill of Materials)"},
+        {"slug": "deployment-rollback-strategy", "title": "Estratégia de Rollback de Deploy"},
+        {"slug": "release-notes-generation", "title": "Geração de Release Notes"},
+        {"slug": "hotfix-process", "title": "Processo de Hotfix em Produção"}
+      ]
+    },
+    {
+      "name": "Monitoring & Observability",
+      "start_number": 144,
+      "topics": [
+        {"slug": "log-aggregation-strategy", "title": "Estratégia de Agregação de Logs"},
+        {"slug": "metric-collection-strategy", "title": "Estratégia de Coleta de Métricas"},
+        {"slug": "distributed-tracing", "title": "Tracing Distribuído com Jaeger"},
+        {"slug": "alert-severity-levels", "title": "Níveis de Severidade de Alertas"},
+        {"slug": "sla-slo-definition", "title": "Definição de SLA/SLO"},
+        {"slug": "custom-metric-strategy", "title": "Estratégia de Métricas de Negócio"},
+        {"slug": "cost-monitoring", "title": "Monitoramento de Custos de Infraestrutura"},
+        {"slug": "log-sampling-scale", "title": "Sampling de Logs em Escala"},
+        {"slug": "correlation-id-propagation", "title": "Propagação de Correlation ID"},
+        {"slug": "metrics-retention-policy", "title": "Política de Retenção de Métricas"}
+      ]
+    },
+    {
+      "name": "Workflow & Process Management",
+      "start_number": 154,
+      "topics": [
+        {"slug": "workflow-state-machine-framework", "title": "Framework de State Machine para Workflows"},
+        {"slug": "human-task-assignment", "title": "Atribuição de Tarefas Humanas"},
+        {"slug": "workflow-timeout-handling", "title": "Tratamento de Timeout em Workflows"},
+        {"slug": "parallel-workflow-execution", "title": "Execução Paralela de Workflows"},
+        {"slug": "conditional-branching", "title": "Branching Condicional (REURB-S vs REURB-E)"},
+        {"slug": "workflow-history-auditing", "title": "Auditoria de Histórico de Workflow"},
+        {"slug": "workflow-compensation", "title": "Compensação de Workflows"},
+        {"slug": "workflow-suspension-resume", "title": "Suspensão e Resumo de Workflows"},
+        {"slug": "workflow-performance-sla", "title": "SLA de Performance de Workflows"}
+      ]
+    },
+    {
+      "name": "Data Quality & Validation",
+      "start_number": 163,
+      "topics": [
+        {"slug": "geometry-quality-metrics", "title": "Métricas de Qualidade de Geometria"},
+        {"slug": "data-completeness-rules", "title": "Regras de Completude de Dados"},
+        {"slug": "referential-integrity", "title": "Integridade Referencial (FK vs App)"},
+        {"slug": "coordinate-precision", "title": "Precisão de Coordenadas"},
+        {"slug": "unit-naming-conventions", "title": "Convenções de Nomenclatura de Unidades"},
+        {"slug": "documentation-completeness", "title": "Completude de Documentação por Processo"},
+        {"slug": "data-quality-dashboard", "title": "Dashboard de Qualidade de Dados"},
+        {"slug": "remediation-workflow", "title": "Workflow de Remediação de Dados"}
+      ]
+    },
+    {
+      "name": "Integration & External Systems",
+      "start_number": 171,
+      "topics": [
+        {"slug": "third-party-api-timeout", "title": "Timeout de APIs de Terceiros"},
+        {"slug": "retry-policy-circuit-breaker", "title": "Política de Retry e Circuit Breaker"},
+        {"slug": "api-consumer-versioning", "title": "Versionamento para Consumidores de API"},
+        {"slug": "webhook-delivery-guarantees", "title": "Garantias de Entrega de Webhooks"},
+        {"slug": "batch-processing-integration", "title": "Integração de Processamento em Lote"},
+        {"slug": "integration-auth-patterns", "title": "Padrões de Autenticação em Integrações"},
+        {"slug": "legacy-system-bridge", "title": "Ponte com Sistemas Legados"},
+        {"slug": "data-transformation-pipeline", "title": "Pipeline de Transformação de Dados"},
+        {"slug": "integration-test-containers", "title": "Containers de Teste para Integrações"},
+        {"slug": "dead-letter-queue-strategy", "title": "Estratégia de Dead Letter Queue"}
+      ]
+    },
+    {
+      "name": "Document Management",
+      "start_number": 181,
+      "topics": [
+        {"slug": "file-storage-strategy", "title": "Estratégia de Armazenamento de Arquivos (S3)"},
+        {"slug": "document-versioning", "title": "Versionamento de Documentos"},
+        {"slug": "ocr-processing", "title": "Processamento OCR de Documentos"},
+        {"slug": "digital-signature-strategy", "title": "Estratégia de Assinatura Digital"},
+        {"slug": "document-retention", "title": "Retenção de Documentos por Tipo"},
+        {"slug": "virus-scanning", "title": "Scanning de Vírus em Uploads"}
+      ]
+    },
+    {
+      "name": "Organizational & Process",
+      "start_number": 187,
+      "topics": [
+        {"slug": "architecture-review-board", "title": "Processo de Architecture Review Board"},
+        {"slug": "adr-process", "title": "Processo de Criação e Revisão de ADRs"},
+        {"slug": "technical-debt-management", "title": "Gerenciamento de Dívida Técnica"},
+        {"slug": "breaking-changes-policy", "title": "Política de Breaking Changes"}
+      ]
+    }
+  ],
+  "metadata": {
+    "total_topics": 169,
+    "existing_adrs": 21,
+    "new_adrs_to_create": 148,
+    "last_existing_number": 21,
+    "first_new_number": 22
+  }
+}

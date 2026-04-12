@@ -1,3 +1,9 @@
+---
+type: readme
+status: review
+updated: 2026-01-12
+---
+
 # JOBS
 
 Background jobs Hangfire do GEOAPI executando processos assíncronos fora do request cycle HTTP incluindo envio notificações batch, geração relatórios pesados, sincronização sistemas legados e manutenção dados temporários. Jobs scheduled rodam periodicamente (hourly, daily, weekly) via cron expressions para limpeza sessions expiradas, invalidação cache stale, reprocessamento legitimations pendentes e backup metadata. Fire-and-forget jobs enfileirados sob demanda processam uploads documentos (virus scan, OCR, metadata extraction), envio emails confirmação e webhooks integrações externas com retry automático 3x com backoff exponencial quando falha. Delayed jobs agendam execução futura para reminders notificações (SLA approaching, approval pending 7 days) e jobs continuations encadeiam processamento multi-step onde output de um job alimenta input do próximo (generate report → upload S3 → send email with link). Dashboard Hangfire integrado permite monitoring manual retry de failed jobs e visualização estatísticas throughput latency fila por tipo job.
@@ -18,6 +24,14 @@ Background jobs Hangfire do GEOAPI executando processos assíncronos fora do req
 - 07-job-retry-policies.md - Backoff e dead letter queue
 - 08-job-monitoring.md - Dashboard e alerting
 
----
+<!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-**Última atualização:** 2026-01-12
+## Documentos (1)
+
+| Documento | Status |
+|-----------|--------|
+| [Background Jobs](./01-background-jobs.md) | ⚠ |
+
+<!-- CARF-INDEX-END -->

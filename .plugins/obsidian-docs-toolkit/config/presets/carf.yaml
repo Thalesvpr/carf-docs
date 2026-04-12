@@ -1,0 +1,386 @@
+# CARF Documentation Preset
+# This preset provides all CARF-specific document types and validation rules
+#
+# Document types are detected in priority order (higher priority = checked first)
+# Detection criteria are OR'd - any matching criterion triggers the type
+
+language: pt-BR
+
+paths:
+  exclude:
+    - ".obsidian/**"
+    - ".git/**"
+    - "node_modules/**"
+    - ".plugins/**"
+    - ".scripts/**"
+    - "**/SRC-CODE/**"
+    - "**/src/**"
+    - "**/dist/**"
+    - "**/build/**"
+    - "**/ARCHIVE/**"
+    - "**/node_modules/**"
+
+documentTypes:
+  # ===================
+  # Templates (highest priority)
+  # ===================
+  template:
+    name: "Template"
+    priority: 100
+    detection:
+      frontmatter:
+        type: "template"
+      filename:
+        pattern: "-000-template\\.md$"
+      path:
+        contains: "/.template/"
+
+  # ===================
+  # CARF Document Types
+  # ===================
+  adr:
+    name: "Architecture Decision Record"
+    priority: 50
+    detection:
+      frontmatter:
+        type: "adr"
+      filename:
+        pattern: "^ADR-\\d{3}"
+      path:
+        contains: "/adrs/"
+    frontmatter:
+      required: [status, updated]
+      fields:
+        status: { enum: [review, approved, rejected, deprecated, superseded, template] }
+        type: { enum: [adr] }
+    title:
+      pattern: "^# ADR-\\d{3}:"
+    sections:
+      required:
+        - "Contexto"
+        - "Decisao"
+        - "Consequencias"
+        - "Alternativas Rejeitadas"
+    wordCount:
+      max: 300
+      maxPerSection: 80
+    forbidden:
+      patterns: ["```", "http", "|--|", "- ["]
+      ignoreInCodeBlocks: true
+      ignoreInTables: true
+
+  rf:
+    name: "Requisito Funcional"
+    priority: 50
+    detection:
+      frontmatter:
+        type: "rf"
+      filename:
+        pattern: "^RF-\\d{3}"
+      path:
+        contains: "/FUNCTIONAL/"
+    frontmatter:
+      required: [id, status, updated]
+      fields:
+        id: { pattern: "^RF-\\d{3}$" }
+        status: { enum: [review, approved, rejected, template] }
+        modules: { type: array, items: { enum: [GEOAPI, REURBWEB, ADMIN, KEYCLOAK, WEBDOCS] } }
+    title:
+      pattern: "^# RF-\\d{3}:"
+    sections:
+      required:
+        - "Critérios de Aceitação"
+        - "Regras de Negócio"
+
+  rnf:
+    name: "Requisito Não Funcional"
+    priority: 50
+    detection:
+      frontmatter:
+        type: "rnf"
+      filename:
+        pattern: "^RNF-\\d{3}"
+      path:
+        contains: "/NON-FUNCTIONAL/"
+    frontmatter:
+      required: [id, status, updated]
+      fields:
+        id: { pattern: "^RNF-\\d{3}$" }
+        status: { enum: [review, approved, rejected, template] }
+    title:
+      pattern: "^# RNF-\\d{3}:"
+    sections:
+      required:
+        - "Critérios de Aceitação"
+        - "Métricas"
+
+  uc:
+    name: "Caso de Uso"
+    priority: 50
+    detection:
+      frontmatter:
+        type: "uc"
+      filename:
+        pattern: "^(\\d{2}-)?UC-\\d{3}"
+      path:
+        contains: "/USE-CASES/"
+    frontmatter:
+      required: [id, status, updated]
+      fields:
+        id: { pattern: "^UC-\\d{3}$" }
+        status: { enum: [review, approved, rejected, template] }
+    title:
+      pattern: "^# UC-\\d{3}:"
+    sections:
+      required:
+        - "Atores"
+        - "Pré-condições"
+        - "Fluxo Principal"
+        - "Fluxos Alternativos"
+        - "Pós-condições"
+
+  us:
+    name: "User Story"
+    priority: 50
+    detection:
+      frontmatter:
+        type: "us"
+      filename:
+        pattern: "^US-\\d{3}"
+      path:
+        contains: "/USER-STORIES/"
+    frontmatter:
+      required: [id, status, updated]
+      fields:
+        id: { pattern: "^US-\\d{3}$" }
+        status: { enum: [review, approved, rejected, template] }
+    title:
+      pattern: "^# US-\\d{3}:"
+    sections:
+      required:
+        - "Critérios de Aceitação"
+
+  # ===================
+  # Path-based Types (lower priority)
+  # ===================
+  concept:
+    name: "Concept Document"
+    priority: 20
+    detection:
+      frontmatter:
+        type: "concept"
+      path:
+        contains: "/concepts/"
+    frontmatter:
+      required: [status, updated]
+      fields:
+        status: { enum: [review, approved, rejected] }
+
+  how-to:
+    name: "How-To Guide"
+    priority: 20
+    detection:
+      frontmatter:
+        type: "how-to"
+      path:
+        contains: "/how-to/"
+    frontmatter:
+      required: [status, updated]
+      fields:
+        status: { enum: [review, approved, rejected] }
+
+  runbook:
+    name: "Runbook"
+    priority: 20
+    detection:
+      frontmatter:
+        type: "runbook"
+      path:
+        contains: "/runbooks/"
+    frontmatter:
+      required: [status, updated]
+      fields:
+        status: { enum: [review, approved, rejected] }
+
+  reference:
+    name: "Reference"
+    priority: 20
+    detection:
+      frontmatter:
+        type: "reference"
+      path:
+        contains: "/reference/"
+    frontmatter:
+      required: [status, updated]
+      fields:
+        status: { enum: [review, approved, rejected] }
+
+  feature:
+    name: "Feature Documentation"
+    priority: 20
+    detection:
+      frontmatter:
+        type: "feature"
+      path:
+        contains: "/features/"
+    frontmatter:
+      required: [status, updated]
+      fields:
+        status: { enum: [review, approved, rejected] }
+
+  spec:
+    name: "Specification"
+    priority: 20
+    detection:
+      frontmatter:
+        type: "spec"
+      path:
+        contains: "/specs/"
+    frontmatter:
+      required: [status, updated]
+      fields:
+        status: { enum: [review, approved, rejected] }
+
+  api:
+    name: "API Documentation"
+    priority: 20
+    detection:
+      frontmatter:
+        type: "api"
+      path:
+        contains: "/api/"
+    frontmatter:
+      required: [status, updated]
+      fields:
+        status: { enum: [review, approved, rejected] }
+
+  config:
+    name: "Configuration"
+    priority: 20
+    detection:
+      frontmatter:
+        type: "config"
+      path:
+        contains: "/config/"
+    frontmatter:
+      required: [status, updated]
+      fields:
+        status: { enum: [review, approved, rejected] }
+
+  integration:
+    name: "Integration Guide"
+    priority: 20
+    detection:
+      frontmatter:
+        type: "integration"
+      path:
+        contains: "/integration/"
+    frontmatter:
+      required: [status, updated]
+      fields:
+        status: { enum: [review, approved, rejected] }
+
+  architecture:
+    name: "Architecture Document"
+    priority: 20
+    detection:
+      frontmatter:
+        type: "architecture"
+      path:
+        contains: "/architecture/"
+    frontmatter:
+      required: [status, updated]
+      fields:
+        status: { enum: [review, approved, rejected] }
+
+  # ===================
+  # README (special handling)
+  # ===================
+  readme:
+    name: "README"
+    priority: 10
+    detection:
+      filename:
+        exact: "README.md"
+    frontmatter:
+      required: [status, updated]
+      fields:
+        status: { enum: [review, approved, rejected] }
+
+  # ===================
+  # Fallback (lowest priority)
+  # ===================
+  doc:
+    name: "Document"
+    priority: -1
+    detection:
+      filename:
+        pattern: "\\.md$"
+    frontmatter:
+      required: [status, updated]
+      fields:
+        status: { enum: [review, approved, rejected] }
+
+validators:
+  frontmatter:
+    enabled: true
+    severity: error
+  sections:
+    enabled: true
+    severity: warning
+  naming:
+    enabled: true
+    severity: error
+  title:
+    enabled: true
+    severity: warning
+  broken-links:
+    enabled: true
+    severity: error
+  orphans:
+    enabled: true
+    severity: warning
+    exclude:
+      - "**/README.md"
+      - "**/template*.md"
+      - "**/ADR-000-template.md"
+  stale:
+    enabled: true
+    severity: info
+    thresholdDays: 180
+  forbidden-patterns:
+    enabled: true
+    severity: warning
+  word-count:
+    enabled: true
+    severity: info
+  empty-folders:
+    enabled: true
+    severity: info
+
+workflow:
+  statuses:
+    review:
+      name: "Em Revisão"
+      icon: "refresh-cw"
+      color: "#f0ad4e"
+    approved:
+      name: "Aprovado"
+      icon: "check"
+      color: "#5cb85c"
+    rejected:
+      name: "Rejeitado"
+      icon: "x"
+      color: "#d9534f"
+    template:
+      name: "Template"
+      icon: "file-text"
+      color: "#5bc0de"
+    deprecated:
+      name: "Deprecado"
+      icon: "archive"
+      color: "#777"
+    superseded:
+      name: "Substituído"
+      icon: "git-branch"
+      color: "#777"

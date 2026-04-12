@@ -1,3 +1,9 @@
+---
+type: readme
+status: review
+updated: 2026-01-12
+---
+
 # CONFIGURATION
 
 Configuração startup do GEOAPI em Program.cs registrando serviços no DI container, configurando middleware pipeline, aplicando settings de appsettings.json/environment variables e preparando aplicação para receber requests HTTP. Service registration inclui AddDbContext configurando connection string PostgreSQL e retry policy, AddMediatR registrando handlers commands/queries, AddFluentValidation descobrindo validators via assembly scanning, AddAuthentication/AddAuthorization configurando JWT bearer scheme e policies RBAC, AddStackExchangeRedis para cache distribuído, AddHangfire para background jobs, AddSignalR para real-time hubs e AddControllers configurando JSON serialization camelCase e referenceHandling. Middleware pipeline ordena middlewares em sequência crítica (ExceptionHandling → Logging → Cors → Authentication → Authorization → RateLimiting → Routing → Endpoints) garantindo exceptions capturadas primeiro e autenticação validada antes de rate limiting. Health checks registram verificações para PostgreSQL connectivity, Redis availability, S3 storage access e Keycloak reachability expostas em /health endpoint para Kubernetes readiness/liveness probes.
@@ -12,6 +18,14 @@ Configuração startup do GEOAPI em Program.cs registrando serviços no DI conta
 - 06-cors-policies.md - Configuração origens permitidas
 - 07-jwt-authentication.md - Bearer token validation setup
 
----
+<!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-**Última atualização:** 2026-01-12
+## Documentos (1)
+
+| Documento | Status |
+|-----------|--------|
+| [DI Registration](./01-di-registration.md) | ⚠ |
+
+<!-- CARF-INDEX-END -->

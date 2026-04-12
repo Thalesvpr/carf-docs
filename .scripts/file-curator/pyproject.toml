@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "file-curator"
+version = "0.2.0"
+description = "Professional GUI for curating documentation files - Tinder for files"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "CARF Project", email = "carf@example.com"}
+]
+keywords = ["gui", "documentation", "curation", "review", "pyside6", "qt"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: X11 Applications :: Qt",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Documentation",
+    "Topic :: Text Processing :: Markup :: Markdown",
+]
+dependencies = [
+    "PySide6>=6.6.0",
+    "markdown>=3.5.0",
+    "pyyaml>=6.0",
+    "rich>=13.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.0",
+    "pytest-qt>=4.2.0",
+]
+
+[project.scripts]
+file-curator = "file_curator.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["file_curator*"]
+
+[tool.setuptools.package-data]
+file_curator = [
+    "templates/defaults/*.md",
+    "gui/resources/*.qss",
+    "gui/resources/*.css",
+    "gui/resources/icons/*.svg",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

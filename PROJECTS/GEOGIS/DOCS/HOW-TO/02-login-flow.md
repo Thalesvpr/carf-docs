@@ -1,3 +1,10 @@
+---
+type: leaf
+status: review
+description: "Wall of text sem estrutura. Paragrafos gigantes ilegíveis."
+updated: 2026-01-22
+---
+
 Login flow no GEOGIS implementado com LoginDialog PyQt5 dialog window mostrando dois radio buttons "Service Account" e "User Account" Service Account radio selected mostra label "Client ID" readonly field displaying configured client_id label "Client Secret" masked QLineEdit para inserir secret button "Login" enabled quando secret non-empty User Account radio selected mostra label "Browser-based authentication" description text explaining flow button "Login with Browser" enabled sempre dialog code em src/ui/login_dialog.py extending QDialog with def __init__(self, parent=None) setting up UI def on_service_account_login() handler checking client_secret field não empty calling AuthManager.getInstance().login_service_account() em try except block showing QMessageBox.information() se sucesso com "Login successful!" closing dialog com self.accept() showing QMessageBox.critical() se erro com exception message.
 
 def on_user_account_login() handler calling AuthManager.getInstance().login_user() que abre browser starts local server user completa login código recebe callback exchange tokens retorna success failure showing appropriate message box closing dialog se success plugin main class implementa check_authentication() method em initGui() verificando auth_manager = AuthManager.getInstance() if not auth_manager.restore_session() então dialog = LoginDialog(self.iface.mainWindow()) result = dialog.exec_() showing modal dialog blocking until user logs in ou cancels se result == QDialog.Accepted significa login success então initializes plugin features loading layers enabling toolbar actions se result == QDialog.Rejected significa user cancelled então QMessageBox.warning('Authentication required - Plugin will not function') não inicializa features deixando toolbar disabled.

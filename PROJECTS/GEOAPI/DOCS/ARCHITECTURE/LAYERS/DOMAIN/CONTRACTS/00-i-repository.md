@@ -1,8 +1,26 @@
-# IRepository<T>
-
-
-Interface genérica de repositório definindo operações CRUD padrão para todas as entidades do domínio seguindo padrão Repository de DDD garantindo que lógica de acesso a dados permanece isolada na camada Infrastructure permitindo testabilidade e substituição de persistência sem afetar Domain. Tipo genérico T deve herdar de BaseEntity garantindo que todas entidades têm Id Guid e campos de auditoria. Métodos principais incluem GetByIdAsync(Guid id) retornando entidade por ID ou null se não encontrada, GetAllAsync() retornando lista completa de entidades ativas sem soft deleted, FindAsync(Expression predicate) permitindo busca customizada com lambda expression tipo repo.FindAsync(x => x.Status == UnitStatus.APPROVED), AddAsync(T entity) adicionando nova entidade ao contexto sem persistir até SaveChanges, Update(T entity) marcando entidade como modificada rastreando mudanças, Delete(T entity) executando soft delete preenchendo DeletedAt ou hard delete conforme necessidade, ExistsAsync(Guid id) verificando existência sem carregar entidade otimizando performance, e CountAsync(Expression predicate) retornando contagem filtrada. Implementada por GenericRepository base class na camada Infrastructure usando Entity Framework DbContext encapsulando DbSet operations permitindo override de métodos específicos em repositórios concretos. Integra com IUnitOfWork onde múltiplos repositórios compartilham mesmo contexto de transação garantindo consistência, suporta eager loading através de sobrecarga FindAsync(Expression predicate params Expression includes) permitindo Include de navegações evitando N+1 queries, permite paginação através de sobrecarga GetPagedAsync(int pageNumber int pageSize Expression predicate Expression orderBy) retornando PagedResult wrapper, e fornece base para repositórios especializados como IUnitRepository que herda IRepository adicionando métodos específicos como GetByCommunityIdAsync GetByStatusAsync ou spatial queries específicas do domínio.
-
+---
+type: leaf
+status: review
+updated: 2026-02-08
 ---
 
-**Última atualização:** 2026-01-12
+# IRepository<T>
+
+Interface generica de repositorio definindo operacoes CRUD padrao para todas entidades do dominio, seguindo padrao Repository de DDD. Garante que logica de acesso a dados permanece isolada na camada Infrastructure, permitindo testabilidade e substituicao de persistencia.
+
+O tipo generico T deve herdar de BaseEntity, garantindo que todas entidades possuem Id, campos de auditoria e soft delete.
+
+## Metodos
+
+| Metodo | Parametros | Retorno | Descricao |
+| --- | --- | --- | --- |
+| GetByIdAsync | Guid id | T ou null | Busca entidade por ID. |
+| GetAllAsync | (nenhum) | List de T | Lista entidades ativas (sem soft delete). |
+| FindAsync | Expression predicate | List de T | Busca customizada com lambda. |
+| AddAsync | T entity | Task | Adiciona ao contexto sem persistir. |
+| Update | T entity | void | Marca como modificada. |
+| Delete | T entity | void | Soft delete preenchendo DeletedAt. |
+| ExistsAsync | Guid id | bool | Verifica existencia sem carregar. |
+| CountAsync | Expression predicate | int | Contagem filtrada. |
+
+Implementada por GenericRepository na Infrastructure usando EF Core DbContext. Integra com IUnitOfWork para transacoes atomicas. Repositorios especializados como IUnitRepository herdam adicionando metodos especificos.

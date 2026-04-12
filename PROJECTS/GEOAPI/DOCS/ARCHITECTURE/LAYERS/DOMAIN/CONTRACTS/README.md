@@ -1,3 +1,9 @@
+---
+type: readme
+status: review
+updated: 2026-01-12
+---
+
 # CONTRACTS
 
 Interfaces definidas na camada Domain e implementadas no Infrastructure seguindo Dependency Inversion Principle da Clean Architecture, garantindo que o núcleo de negócio não depende de detalhes de implementação. Interfaces base incluem IRepository<T> para operações CRUD genéricas, IUnitOfWork para controle transacional com SaveChanges, IDateTimeProvider para fornecimento de data/hora atual testável, ITenantProvider para obtenção do tenant_id do request atual e IDomainEventDispatcher para despacho de eventos de domínio. Repositories por feature fornecem operações específicas (IUnitRepository com busca espacial e por status, IHolderRepository busca por CPF, ICommunityRepository, ITeamRepository, ICommunityAuthorizationRepository, IBlockRepository, IPlotRepository, ILayerRepository, IWmsServerRepository, IWmsLayerRepository, ISurveyorRepository, IRbmcStationRepository, ISurveyPointRepository, ISurveyProcessingRepository, IMonographRepository, ILegitimationRequestRepository, ILegitimationCertificateRepository, IDescriptiveMemorialRepository, ILegitimationPlanRepository, IAnnotationRepository, IDocumentRepository, ISyncLogRepository, IAuditLogRepository). Interfaces de serviço abstraem operações externas (ICurrentUser dados do usuário autenticado, IPermissionChecker verificação de permissões, ICommunityAccessChecker acesso a comunidade, IFileStorage upload/download, IWmsClient comunicação WMS, IGpsProcessor processamento GPS, IPdfGenerator geração de certidões e memoriais, INotificationService envio de notificações).
@@ -13,6 +19,21 @@ Interfaces definidas na camada Domain e implementadas no Infrastructure seguindo
 - **[06-i-file-storage.md](./06-i-file-storage.md)** - Interface storage arquivos S3
 - **[07-i-pdf-generator.md](./07-i-pdf-generator.md)** - Interface geração PDFs certidões memoriais
 
----
+<!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-**Última atualização:** 2026-01-12
+## Documentos (8)
+
+| Documento | Status |
+|-----------|--------|
+| [IRepository<T>](./00-i-repository.md) | ⚠ |
+| [IUnitOfWork](./01-i-unit-of-work.md) | ⚠ |
+| [IDateTimeProvider](./02-i-date-time-provider.md) | ⚠ |
+| [ITenantProvider](./03-i-tenant-provider.md) | ⚠ |
+| [IDomainEventDispatcher](./04-i-domain-event-dispatcher.md) | ⚠ |
+| [ICurrentUser](./05-i-current-user.md) | ⚠ |
+| [IFileStorage](./06-i-file-storage.md) | ⚠ |
+| [IPdfGenerator](./07-i-pdf-generator.md) | ⚠ |
+
+<!-- CARF-INDEX-END -->

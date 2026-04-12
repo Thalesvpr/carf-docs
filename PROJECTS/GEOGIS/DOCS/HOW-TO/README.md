@@ -1,3 +1,10 @@
+---
+type: readme
+status: review
+description: "Usa listas/bullets extensivamente ao inves de paragrafos densos (23+ bullets/itens numerados)"
+updated: 2026-01-22
+---
+
 # HOW-TO - GEOGIS
 
 Guias práticos para desenvolver e usar o plugin GEOGIS QGIS.
@@ -50,6 +57,16 @@ Guias práticos para desenvolver e usar o plugin GEOGIS QGIS.
 - "Layer loading failed" → verificar connectivity GEOAPI e WFS endpoint habilitado
 - "Export failed" → verificar permissions write em output directory e CRS transformation suportada pelo GDAL
 
----
+<!-- CARF-INDEX-START -->
+> ⚠️ **Índice gerado automaticamente.** Não edite manualmente.
+> Use os links abaixo para referenciar documentos desta pasta.
 
-**Última atualização:** 2026-01-10
+## Documentos (3)
+
+| Documento | Status |
+|-----------|--------|
+| [01-setup-keycloak](./01-setup-keycloak.md) | ⚠ |
+| [02-login-flow](./02-login-flow.md) | ⚠ |
+| [03-api-requests](./03-api-requests.md) | ⚠ |
+
+<!-- CARF-INDEX-END -->

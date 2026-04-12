@@ -1,12 +1,25 @@
-# Design Principles
-
-Princípios SOLID aplicados no GEOAPI incluem Single Responsibility Principle (SRP) onde cada classe tem uma única razão para mudar com Controllers recebendo requests e retornando responses, Handlers processando lógica de negócio e Repositories acessando dados. Open/Closed Principle (OCP) permite extensão via novos handlers e events sem modificar código existente. Liskov Substitution Principle (LSP) garante que interfaces IRepository são substituíveis por qualquer implementação seja EF Core, Dapper ou mock. Interface Segregation Principle (ISP) define interfaces pequenas e específicas como IUnitReader e IUnitWriter ao invés de uma grande interface genérica. Dependency Inversion Principle (DIP) faz Domain depender de abstrações IRepository enquanto Infrastructure implementa concreções UnitRepository.
-
-DRY (Don't Repeat Yourself) evita duplicação via base classes Entity<TId> com propriedades Id CreatedAt UpdatedAt compartilhadas entre todas entities, métodos compartilhados via extensions methods e helpers. KISS (Keep It Simple) aplica CQRS completo apenas para use cases complexos enquanto queries simples podem ser feitas diretamente no controller sem handler separado evitando over-engineering. YAGNI (You Aren't Gonna Need It) implementa features quando necessário evitando abstrações prematuras como factories e validators quando só há uma implementação.
-
-Separation of Concerns isola cada layer com responsabilidade única onde Domain contém regras de negócio puras sem EF Core nem ASP.NET, Application orquestra use cases, Infrastructure implementa detalhes técnicos, e Gateway cuida de HTTP serialização e autenticação. Fail Fast valida no construtor de Value Objects lançando exception imediata para dados inválidos e FluentValidation valida Commands/DTOs antes de chegar Domain. Explicit Over Implicit prefere mapeamento explícito de DTOs via extension methods ToDto() ao invés de AutoMapper mágico facilitando debug e performance. Database-Agnostic Domain não conhece database dependendo apenas de interfaces sem referências a EF Core. Test-Driven Design injeta dependências via construtor tornando código testável com mocks. Performance Awareness usa AsNoTracking() em queries read-only e projeções Select() ao invés de carregar entidades completas com Includes.
-
+---
+type: leaf
+status: review
+updated: 2026-02-08
 ---
 
-**Última atualização:** 2026-01-12
+# Design Principles
 
+Principios de design aplicados na arquitetura e implementacao da GEOAPI.
+
+## SOLID
+
+Single Responsibility garante que Controllers recebem requests e retornam responses, Handlers processam logica de negocio e Repositories acessam dados, cada classe com uma unica razao para mudar. Open/Closed permite extensao via novos handlers e domain events sem modificar codigo existente. Liskov Substitution garante que interfaces IRepository sao substituiveis por qualquer implementacao (EF Core, Dapper, mock). Interface Segregation define interfaces pequenas e especificas como IUnitReader e IUnitWriter. Dependency Inversion faz Domain depender de abstracoes IRepository enquanto Infrastructure implementa concrecoes.
+
+## DDD Tactical Patterns
+
+Aggregates delimitam fronteiras de consistencia transacional com Unit, Community e LegitimationRequest como aggregate roots. Value Objects imutaveis (CPF, Email, Address, GeoPolygon) encapsulam validacao no construtor seguindo Fail Fast. Domain Events permitem comunicacao assincrona entre aggregates sem acoplamento direto. Factory methods em entidades encapsulam logica de criacao validando invariantes.
+
+## Separacao de Concerns
+
+Cada camada tem responsabilidade unica: Domain contem regras de negocio puras sem EF Core nem ASP.NET, Application orquestra use cases, Infrastructure implementa detalhes tecnicos, Presentation cuida de HTTP e serializacao. Essa separacao permite testar logica de negocio sem banco de dados, sem HTTP e sem servicos externos usando mocks.
+
+## Performance e Pragmatismo
+
+Queries de leitura usam AsNoTracking e projecoes Select direto para DTOs evitando materializacao de entidades completas. CQRS completo e aplicado apenas para use cases que justificam, queries simples podem ser feitas diretamente sem handler separado. Cache Redis com invalidacao seletiva via domain events otimiza leituras frequentes. Fail Fast valida dados no construtor de Value Objects e via FluentValidation em Commands antes de chegar ao Domain.

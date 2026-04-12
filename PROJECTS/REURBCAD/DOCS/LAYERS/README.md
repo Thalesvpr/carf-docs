@@ -1,3 +1,10 @@
+---
+type: readme
+status: review
+description: "Usa listas/bullets extensivamente ao inves de paragrafos densos (15+ bullets)"
+updated: 2026-01-22
+---
+
 # LAYERS - REURBCAD
 
 Estrutura de camadas do código React Native do REURBCAD.
@@ -36,6 +43,11 @@ Estrutura de camadas do código React Native do REURBCAD.
 - Camera (expo-camera)
 - Forms com validation
 
----
+<!-- CARF-INDEX-START -->
+## Documentos
 
-**Última atualização:** 2026-01-10
+### Em Revisão
+
+- ○ [[PROJECTS/REURBCAD/DOCS/LAYERS/01-auth-service.md|01-auth-service]]
+
+<!-- CARF-INDEX-END -->
